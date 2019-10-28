@@ -1,6 +1,7 @@
 <!-- Generator: Widdershins v3.6.6 -->
 
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana">API Reference</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
@@ -14,8 +15,10 @@ Base URLs:
 <a href="https://asana.com/terms">Terms of service</a>
 Web: <a href="https://asana.com/support">Asana Support</a> 
 License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
+</section>
 
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-attachments">Attachments</h1>
 
 <pre class="highlight http tab-http">
@@ -24,7 +27,10 @@ License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
 
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get an attachment
 
 <a id="opIdgetAttachment"></a>
@@ -38,20 +44,6 @@ curl -X GET https://app.asana.com/api/1.0/attachments/{attachment_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /attachments/{attachment_gid}</code>
-</p>
-
-Get the full record for a single attachment.
-
-<h3 id="get-an-attachment-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|attachment_gid|path|string|true|Globally unique identifier for the attachment.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -71,6 +63,20 @@ Get the full record for a single attachment.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /attachments/{attachment_gid}</code>
+</p>
+
+Get the full record for a single attachment.
+
+<h3 id="get-an-attachment-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|attachment_gid|path|string|true|Globally unique identifier for the attachment.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-an-attachment-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -87,7 +93,10 @@ Get the full record for a single attachment.
 |503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|[Error](#schemaerror)|
 |504|[Gateway Time-out](https://tools.ietf.org/html/rfc7231#section-6.6.5)|This request took too long to complete.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get attachments for a task
 
 <a id="opIdgetAttachmentsForTask"></a>
@@ -100,6 +109,21 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "attachment",
+      "name": "Screenshot.png"
+    }
+  ]
+}
 ```
 
 <p>
@@ -118,21 +142,6 @@ Returns the compact records for all attachments on the task.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "attachment",
-      "name": "Screenshot.png"
-    }
-  ]
-}
-```
-
 <h3 id="get-attachments-for-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -144,7 +153,10 @@ Returns the compact records for all attachments on the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Upload an attachment
 
 <a id="opIduploadAttachmentToTask"></a>
@@ -158,6 +170,31 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```yaml
+file: string
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "attachment",
+    "name": "Screenshot.png",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
+    "host": "dropbox",
+    "parent": null,
+    "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
+  }
+}
 ```
 
 <p>
@@ -181,13 +218,6 @@ Requests made should follow the HTTP/1.1 specification that line
 terminators are of the form `CRLF` or `\r\n` outlined
 [here](http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Basic-Rules)
 in order for the server to reliably and properly handle the request.
-
-> Body parameter
-
-```yaml
-file: string
-
-```
 
 <h3 id="upload-an-attachment-parameters">Parameters</h3>
 
@@ -213,24 +243,6 @@ When uploading PDFs with curl, force the content-type to be pdf by
 appending the content type to the file path: `—form
 “file=@file.pdf;type=application/pdf”`.
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "attachment",
-    "name": "Screenshot.png",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
-    "host": "dropbox",
-    "parent": null,
-    "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
-  }
-}
-```
-
 <h3 id="upload-an-attachment-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -242,7 +254,10 @@ appending the content type to the file path: `—form
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-batch-api">Batch API</h1>
 
 <pre class="highlight http tab-http">
@@ -289,7 +304,10 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 * Any SCIM operations
 * Nested calls to the batch API
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Submit parallel requests
 
 <a id="opIdbatchRequest"></a>
@@ -304,12 +322,6 @@ curl -X POST https://app.asana.com/api/1.0/batch \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="post-verb">POST</span> /batch</code>
-</p>
-
-Make multiple requests in parallel to Asana's API.
 
 > Body parameter
 
@@ -331,6 +343,32 @@ Make multiple requests in parallel to Asana's API.
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "status_code": 200,
+      "headers": {
+        "location": "/tasks/1234"
+      },
+      "body": {
+        "data": {
+          ...
+        }
+      }
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /batch</code>
+</p>
+
+Make multiple requests in parallel to Asana's API.
 
 <h3 id="submit-parallel-requests-parameters">Parameters</h3>
 
@@ -360,26 +398,6 @@ Make multiple requests in parallel to Asana's API.
 | method|patch|
 | method|head|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "status_code": 200,
-      "headers": {
-        "location": "/tasks/1234"
-      },
-      "body": {
-        "data": {
-          ...
-        }
-      }
-    }
-  ]
-}
-```
-
 <h3 id="submit-parallel-requests-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -391,7 +409,10 @@ Make multiple requests in parallel to Asana's API.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-custom-fields">Custom Fields</h1>
 
 <pre class="highlight http tab-http">
@@ -428,7 +449,10 @@ Enum fields represent a selection from a list of options. On the metadata, they 
 
 On the Task's Custom Field value, the enum will have an `enum_value` property which will be the same as one of the choices from the list defined in the Custom Field metadata.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a custom field
 
 <a id="opIdcreateCustomField"></a>
@@ -443,20 +467,6 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="post-verb">POST</span> /custom_fields</code>
-</p>
-
-Creates a new custom field in a workspace. Every custom field is required
-to be created in a specific workspace, and this workspace cannot be
-changed once set.
-
-A custom field’s name must be unique within a workspace and not conflict
-with names of existing task properties such as ‘Due Date’ or ‘Assignee’.
-A custom field’s type must be one of ‘text’, ‘enum’, or ‘number’.
-
-Returns the full record of the newly created custom field.
 
 > Body parameter
 
@@ -480,6 +490,47 @@ Returns the full record of the newly created custom field.
   }
 }
 ```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "custom_field",
+    "name": "Bug Task",
+    "resource_subtype": "milestone",
+    "type": "text",
+    "enum_options": [
+      {
+        ...
+      }
+    ],
+    "enum_value": null,
+    "enabled": true,
+    "text_value": "Some Value",
+    "description": "Development team priority",
+    "precision": 2,
+    "is_global_to_workspace": true,
+    "has_notifications_enabled": true
+  }
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /custom_fields</code>
+</p>
+
+Creates a new custom field in a workspace. Every custom field is required
+to be created in a specific workspace, and this workspace cannot be
+changed once set.
+
+A custom field’s name must be unique within a workspace and not conflict
+with names of existing task properties such as ‘Due Date’ or ‘Assignee’.
+A custom field’s type must be one of ‘text’, ‘enum’, or ‘number’.
+
+Returns the full record of the newly created custom field.
 
 <h3 id="create-a-custom-field-parameters">Parameters</h3>
 
@@ -524,7 +575,36 @@ Returns the full record of the newly created custom field.
 | type|enum|
 | type|number|
 
-> 201 Response
+<h3 id="create-a-custom-field-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Custom field successfully created.|[CustomField](#schemacustomfield)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get a custom field
+
+<a id="opIdgetCustomField"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
 
 ```json
 {
@@ -549,32 +629,6 @@ Returns the full record of the newly created custom field.
     "has_notifications_enabled": true
   }
 }
-```
-
-<h3 id="create-a-custom-field-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Custom field successfully created.|[CustomField](#schemacustomfield)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get a custom field
-
-<a id="opIdgetCustomField"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
 ```
 
 <p>
@@ -598,33 +652,6 @@ type-specific custom field definitions.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "custom_field",
-    "name": "Bug Task",
-    "resource_subtype": "milestone",
-    "type": "text",
-    "enum_options": [
-      {
-        ...
-      }
-    ],
-    "enum_value": null,
-    "enabled": true,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "is_global_to_workspace": true,
-    "has_notifications_enabled": true
-  }
-}
-```
-
 <h3 id="get-a-custom-field-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -636,7 +663,10 @@ type-specific custom field definitions.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a custom field
 
 <a id="opIdupdateCustomField"></a>
@@ -651,17 +681,6 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="put-verb">PUT</span> /custom_fields/{custom_field_gid}</code>
-</p>
-
-A specific, existing custom field can be updated by making a PUT request on the URL for that custom field. Only the fields provided in the `data` block will be updated; any unspecified fields will remain unchanged
-When using this method, it is best to specify only those fields you wish to change, or else you may overwrite changes made by another user since you last retrieved the custom field.
-A custom field’s `type` cannot be updated.
-An enum custom field’s `enum_options` cannot be updated with this endpoint. Instead see “Work With Enum Options” for information on how to update `enum_options`.
-Locked custom fields can only be updated by the user who locked the field.
-Returns the complete updated custom field record.
 
 > Body parameter
 
@@ -685,15 +704,6 @@ Returns the complete updated custom field record.
 }
 ```
 
-<h3 id="update-a-custom-field-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[CustomFieldObject](#schemacustomfieldobject)|false|The custom field object with all updated properties.|
-|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-
 > 200 Response
 
 ```json
@@ -721,6 +731,26 @@ Returns the complete updated custom field record.
 }
 ```
 
+<p>
+<code> <span class="put-verb">PUT</span> /custom_fields/{custom_field_gid}</code>
+</p>
+
+A specific, existing custom field can be updated by making a PUT request on the URL for that custom field. Only the fields provided in the `data` block will be updated; any unspecified fields will remain unchanged
+When using this method, it is best to specify only those fields you wish to change, or else you may overwrite changes made by another user since you last retrieved the custom field.
+A custom field’s `type` cannot be updated.
+An enum custom field’s `enum_options` cannot be updated with this endpoint. Instead see “Work With Enum Options” for information on how to update `enum_options`.
+Locked custom fields can only be updated by the user who locked the field.
+Returns the complete updated custom field record.
+
+<h3 id="update-a-custom-field-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CustomFieldObject](#schemacustomfieldobject)|false|The custom field object with all updated properties.|
+|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="update-a-custom-field-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -732,7 +762,10 @@ Returns the complete updated custom field record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Delete a custom field
 
 <a id="opIddeleteCustomField"></a>
@@ -745,6 +778,14 @@ curl -X DELETE https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -763,14 +804,6 @@ Returns an empty data record.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="delete-a-custom-field-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -782,7 +815,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a workspace's custom fields
 
 <a id="opIdgetCustomFieldsInWorkspace"></a>
@@ -796,22 +832,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/custom_fields</code>
-</p>
-
-Returns a list of the compact representation of all of the custom fields in a workspace.
-
-<h3 id="get-a-workspace's-custom-fields-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -836,6 +856,22 @@ Returns a list of the compact representation of all of the custom fields in a wo
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/custom_fields</code>
+</p>
+
+Returns a list of the compact representation of all of the custom fields in a workspace.
+
+<h3 id="get-a-workspace's-custom-fields-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-a-workspace's-custom-fields-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -847,7 +883,10 @@ Returns a list of the compact representation of all of the custom fields in a wo
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create an enum option
 
 <a id="opIdaddEnumOption"></a>
@@ -863,14 +902,6 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options</code>
-</p>
-
-Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 50 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list.
-Locked custom fields can only have enum options added by the user who locked the field.
-Returns the full record of the newly created enum option.
-
 > Body parameter
 
 ```json
@@ -884,6 +915,29 @@ Returns the full record of the newly created enum option.
   }
 }
 ```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "enum_option",
+    "name": "Low",
+    "enabled": true,
+    "color": "blue"
+  }
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options</code>
+</p>
+
+Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 50 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list.
+Locked custom fields can only have enum options added by the user who locked the field.
+Returns the full record of the newly created enum option.
 
 <h3 id="create-an-enum-option-parameters">Parameters</h3>
 
@@ -905,21 +959,6 @@ Returns the full record of the newly created enum option.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 201 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "enum_option",
-    "name": "Low",
-    "enabled": true,
-    "color": "blue"
-  }
-}
-```
-
 <h3 id="create-an-enum-option-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -931,7 +970,10 @@ Returns the full record of the newly created enum option.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Reorder a custom field's enum
 
 <a id="opIdreorderEnumOption"></a>
@@ -947,13 +989,6 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options/insert</code>
-</p>
-
-Moves a particular enum option to be either before or after another specified enum option in the custom field.
-Locked custom fields can only be reordered by the user who locked the field.
-
 > Body parameter
 
 ```json
@@ -968,6 +1003,28 @@ Locked custom fields can only be reordered by the user who locked the field.
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "enum_option",
+    "name": "Low",
+    "enabled": true,
+    "color": "blue"
+  }
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options/insert</code>
+</p>
+
+Moves a particular enum option to be either before or after another specified enum option in the custom field.
+Locked custom fields can only be reordered by the user who locked the field.
 
 <h3 id="reorder-a-custom-field's-enum-parameters">Parameters</h3>
 
@@ -988,21 +1045,6 @@ Locked custom fields can only be reordered by the user who locked the field.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "enum_option",
-    "name": "Low",
-    "enabled": true,
-    "color": "blue"
-  }
-}
-```
-
 <h3 id="reorder-a-custom-field's-enum-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1014,7 +1056,10 @@ Locked custom fields can only be reordered by the user who locked the field.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update an enum option
 
 <a id="opIdupdateEnumOption"></a>
@@ -1030,14 +1075,6 @@ curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
 
 ```
 
-<p>
-<code> <span class="put-verb">PUT</span> /enum_options/{enum_option_gid}</code>
-</p>
-
-Updates an existing enum option. Enum custom fields require at least one enabled enum option.
-Locked custom fields can only be updated by the user who locked the field.
-Returns the full record of the updated enum option.
-
 > Body parameter
 
 ```json
@@ -1049,6 +1086,29 @@ Returns the full record of the updated enum option.
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "enum_option",
+    "name": "Low",
+    "enabled": true,
+    "color": "blue"
+  }
+}
+```
+
+<p>
+<code> <span class="put-verb">PUT</span> /enum_options/{enum_option_gid}</code>
+</p>
+
+Updates an existing enum option. Enum custom fields require at least one enabled enum option.
+Locked custom fields can only be updated by the user who locked the field.
+Returns the full record of the updated enum option.
 
 <h3 id="update-an-enum-option-parameters">Parameters</h3>
 
@@ -1066,21 +1126,6 @@ Returns the full record of the updated enum option.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "enum_option",
-    "name": "Low",
-    "enabled": true,
-    "color": "blue"
-  }
-}
-```
-
 <h3 id="update-an-enum-option-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1092,7 +1137,10 @@ Returns the full record of the updated enum option.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
@@ -1101,7 +1149,10 @@ Returns the full record of the updated enum option.
 
 Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a project's custom fields
 
 <a id="opIdgetCustomFieldSettingsForProject"></a>
@@ -1114,6 +1165,24 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "custom_field_setting",
+      "project": null,
+      "is_important": false,
+      "parent": null,
+      "custom_field": null
+    }
+  ]
+}
 ```
 
 <p>
@@ -1132,6 +1201,35 @@ Returns a list of all of the custom fields settings on a project, in compact for
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
+<h3 id="get-a-project's-custom-fields-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved custom field settings objects for a project.|[CustomFieldSetting](#schemacustomfieldsetting)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get a portfolio's custom fields
+
+<a id="opIdgetCustomFieldSettingsForPortfolio"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
 > 200 Response
 
 ```json
@@ -1148,32 +1246,6 @@ Returns a list of all of the custom fields settings on a project, in compact for
     }
   ]
 }
-```
-
-<h3 id="get-a-project's-custom-fields-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved custom field settings objects for a project.|[CustomFieldSetting](#schemacustomfieldsetting)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get a portfolio's custom fields
-
-<a id="opIdgetCustomFieldSettingsForPortfolio"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
 ```
 
 <p>
@@ -1192,24 +1264,6 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "custom_field_setting",
-      "project": null,
-      "is_important": false,
-      "parent": null,
-      "custom_field": null
-    }
-  ]
-}
-```
-
 <h3 id="get-a-portfolio's-custom-fields-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1221,7 +1275,10 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-events">Events</h1>
 
 <pre class="highlight http tab-http">
@@ -1242,7 +1299,10 @@ When you receive a `412 Precondition Failed` error, it means that the sync token
 
 Sync tokens always expire after 24 hours, but may expire sooner, depending on load on the service.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get events on a resource
 
 <a id="opIdgetEvents"></a>
@@ -1255,6 +1315,30 @@ curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "user": {
+        ...
+      },
+      "resource": {
+        ...
+      },
+      "type": "task",
+      "action": "changed",
+      "parent": {
+        ...
+      },
+      "created_at": "2012-02-22T02:06:58.147Z"
+    }
+  ],
+  "sync": "de4774f6915eae04714ca93bb2f5ee81"
+}
 ```
 
 <p>
@@ -1281,30 +1365,6 @@ lieu of including the resource ID in the data for the request.
 **sync**: A sync token received from the last request, or none on first sync. Events will be returned from the point in time that the sync token was generated.
 *Note: On your first request, omit the sync token. The response will be the same as for an expired sync token, and will include a new valid sync token.If the sync token is too old (which may happen from time to time) the API will return a `412 Precondition Failed` error, and include a fresh sync token in the response.*
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "user": {
-        ...
-      },
-      "resource": {
-        ...
-      },
-      "type": "task",
-      "action": "changed",
-      "parent": {
-        ...
-      },
-      "created_at": "2012-02-22T02:06:58.147Z"
-    }
-  ],
-  "sync": "de4774f6915eae04714ca93bb2f5ee81"
-}
-```
-
 <h3 id="get-events-on-a-resource-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1316,7 +1376,10 @@ lieu of including the resource ID in the data for the request.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-jobs">Jobs</h1>
 
 <pre class="highlight http tab-http">
@@ -1327,7 +1390,10 @@ Jobs represent processes that handle asynchronous work.
 Jobs are created when an endpoint requests an action that will be handled asynchronously. Such as project or task duplication.
 Only the creator of the duplication process can access the duplication status of the new object.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a job by id
 
 <a id="opIdgetJob"></a>
@@ -1341,20 +1407,6 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /jobs/{job_gid}</code>
-</p>
-
-Returns the full record for a job.
-
-<h3 id="get-a-job-by-id-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|job_gid|path|string|true|Globally unique identifier for the job.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -1382,6 +1434,20 @@ Returns the full record for a job.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /jobs/{job_gid}</code>
+</p>
+
+Returns the full record for a job.
+
+<h3 id="get-a-job-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|job_gid|path|string|true|Globally unique identifier for the job.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-job-by-id-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1393,7 +1459,10 @@ Returns the full record for a job.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-organization-exports">Organization Exports</h1>
 
 <pre class="highlight http tab-http">
@@ -1414,7 +1483,10 @@ To export an Organization using this API:
 
 *Note: These endpoints are only available to [Service Accounts](https://asana.com/guide/help/premium/service-accounts) of an [Enterprise](https://asana.com/enterprise) Organization.*
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create an organization export request
 
 <a id="opIdcreateOrganizationExport"></a>
@@ -1430,12 +1502,6 @@ curl -X POST https://app.asana.com/api/1.0/organization_exports \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /organization_exports</code>
-</p>
-
-This method creates a request to export an Organization. Asana will complete the export at some point after you create the request.
-
 > Body parameter
 
 ```json
@@ -1445,18 +1511,6 @@ This method creates a request to export an Organization. Asana will complete the
   }
 }
 ```
-
-<h3 id="create-an-organization-export-request-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The organization to export.|
-|» data|body|object|false|none|
-|»» organization|body|string|false|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -1477,6 +1531,24 @@ This method creates a request to export an Organization. Asana will complete the
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /organization_exports</code>
+</p>
+
+This method creates a request to export an Organization. Asana will complete the export at some point after you create the request.
+
+<h3 id="create-an-organization-export-request-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The organization to export.|
+|» data|body|object|false|none|
+|»» organization|body|string|false|Globally unique identifier for the workspace or organization.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="create-an-organization-export-request-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1488,7 +1560,10 @@ This method creates a request to export an Organization. Asana will complete the
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get details on an org export request
 
 <a id="opIdgetOrganizationExport"></a>
@@ -1502,20 +1577,6 @@ curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_exp
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /organization_exports/{organization_export_gid}</code>
-</p>
-
-Returns details of a previously-requested Organization export.
-
-<h3 id="get-details-on-an-org-export-request-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organization_export_gid|path|string|true|Globally unique identifier for the organization export.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -1536,6 +1597,20 @@ Returns details of a previously-requested Organization export.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /organization_exports/{organization_export_gid}</code>
+</p>
+
+Returns details of a previously-requested Organization export.
+
+<h3 id="get-details-on-an-org-export-request-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organization_export_gid|path|string|true|Globally unique identifier for the organization export.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-details-on-an-org-export-request-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1547,7 +1622,10 @@ Returns details of a previously-requested Organization export.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
@@ -1557,7 +1635,10 @@ Returns details of a previously-requested Organization export.
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple portfolios
 
 <a id="opIdgetPortfolios"></a>
@@ -1570,6 +1651,21 @@ curl -X GET https://app.asana.com/api/1.0/portfolios \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "portfolio",
+      "name": "Bug Task"
+    }
+  ]
+}
 ```
 
 <p>
@@ -1589,21 +1685,6 @@ Returns a list of the portfolios in compact representation that are owned by the
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "portfolio",
-      "name": "Bug Task"
-    }
-  ]
-}
-```
-
 <h3 id="get-multiple-portfolios-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1615,7 +1696,10 @@ Returns a list of the portfolios in compact representation that are owned by the
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a portfolio
 
 <a id="opIdcreatePortfolio"></a>
@@ -1631,18 +1715,6 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /portfolios</code>
-</p>
-
-Creates a new portfolio in the given workspace with the supplied name.
-
-Note that portfolios created in the Asana UI may have some state
-(like the “Priority” custom field) which is automatically added
-to the portfolio when it is created. Portfolios created via our
-API will *not* be created with the same initial state to allow
-integrations to create their own starting state on a portfolio.
-
 > Body parameter
 
 ```json
@@ -1656,14 +1728,6 @@ integrations to create their own starting state on a portfolio.
   }
 }
 ```
-
-<h3 id="create-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[PortfolioObject](#schemaportfolioobject)|true|The portfolio to create.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 201 Response
 
@@ -1680,6 +1744,26 @@ integrations to create their own starting state on a portfolio.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /portfolios</code>
+</p>
+
+Creates a new portfolio in the given workspace with the supplied name.
+
+Note that portfolios created in the Asana UI may have some state
+(like the “Priority” custom field) which is automatically added
+to the portfolio when it is created. Portfolios created via our
+API will *not* be created with the same initial state to allow
+integrations to create their own starting state on a portfolio.
+
+<h3 id="create-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[PortfolioObject](#schemaportfolioobject)|true|The portfolio to create.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1691,7 +1775,10 @@ integrations to create their own starting state on a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a portfolio
 
 <a id="opIdgetPortfolio"></a>
@@ -1704,6 +1791,35 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "portfolio",
+    "name": "Bug Task",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "color": "light-green",
+    "custom_field_settings": [
+      {
+        ...
+      }
+    ],
+    "owner": null,
+    "workspace": null,
+    "members": null
+  }
+}
 ```
 
 <p>
@@ -1720,35 +1836,6 @@ Returns the complete portfolio record for a single portfolio.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "portfolio",
-    "name": "Bug Task",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "color": "light-green",
-    "custom_field_settings": [
-      {
-        ...
-      }
-    ],
-    "owner": null,
-    "workspace": null,
-    "members": null
-  }
-}
-```
-
 <h3 id="get-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1760,7 +1847,10 @@ Returns the complete portfolio record for a single portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a portfolio
 
 <a id="opIdupdateportfolio"></a>
@@ -1776,16 +1866,6 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 
 ```
 
-<p>
-<code> <span class="put-verb">PUT</span> /portfolios/{portfolio_gid}</code>
-</p>
-
-An existing portfolio can be updated by making a PUT request on the URL for
-that portfolio. Only the fields provided in the `data` block will be updated;
-any unspecified fields will remain unchanged.
-
-Returns the complete updated portfolio record.
-
 > Body parameter
 
 ```json
@@ -1799,15 +1879,6 @@ Returns the complete updated portfolio record.
   }
 }
 ```
-
-<h3 id="update-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[PortfolioObject](#schemaportfolioobject)|true|The updated fields for the portfolio.|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -1838,6 +1909,25 @@ Returns the complete updated portfolio record.
 }
 ```
 
+<p>
+<code> <span class="put-verb">PUT</span> /portfolios/{portfolio_gid}</code>
+</p>
+
+An existing portfolio can be updated by making a PUT request on the URL for
+that portfolio. Only the fields provided in the `data` block will be updated;
+any unspecified fields will remain unchanged.
+
+Returns the complete updated portfolio record.
+
+<h3 id="update-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[PortfolioObject](#schemaportfolioobject)|true|The updated fields for the portfolio.|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="update-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1849,7 +1939,10 @@ Returns the complete updated portfolio record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Delete a portfolio
 
 <a id="opIddeletePortfolio"></a>
@@ -1862,6 +1955,14 @@ curl -X DELETE https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -1881,14 +1982,6 @@ Returns an empty data record.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="delete-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1900,7 +1993,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get portfolio items
 
 <a id="opIdgetPortfolioItems"></a>
@@ -1914,22 +2010,6 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/items</code>
-</p>
-
-Get a list of the items in compact form in a portfolio.
-
-<h3 id="get-portfolio-items-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -1978,6 +2058,22 @@ Get a list of the items in compact form in a portfolio.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/items</code>
+</p>
+
+Get a list of the items in compact form in a portfolio.
+
+<h3 id="get-portfolio-items-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-portfolio-items-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -1989,7 +2085,10 @@ Get a list of the items in compact form in a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add a portfolio item
 
 <a id="opIdaddPortfolioItem"></a>
@@ -2002,6 +2101,14 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem?it
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -2022,14 +2129,6 @@ Returns an empty data block.
 |insert_before|query|string|true|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 |insert_after|query|string|true|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="add-a-portfolio-item-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2041,7 +2140,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove a portfolio item
 
 <a id="opIdremovePortfolioItem"></a>
@@ -2054,6 +2156,14 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -2072,14 +2182,6 @@ Returns an empty data block.
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |item|query|string|true|The item to remove from the portfolio.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="remove-a-portfolio-item-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2091,7 +2193,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add users to a portfolio
 
 <a id="opIdaddPortfolioMembers"></a>
@@ -2104,6 +2209,14 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -2122,14 +2235,6 @@ Returns the updated portfolio record.
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |members|query|string|true|An array of user ids.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="add-users-to-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2141,7 +2246,10 @@ Returns the updated portfolio record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove users from a portfolio
 
 <a id="opIdremovePortfolioMembers"></a>
@@ -2154,6 +2262,14 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMemb
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -2172,14 +2288,6 @@ Returns the updated portfolio record.
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |members|query|string|true|An array of user ids.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="remove-users-from-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2191,7 +2299,10 @@ Returns the updated portfolio record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add a custom field to a portfolio
 
 <a id="opIdportfolio.addCustomFieldSetting"></a>
@@ -2204,6 +2315,14 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomF
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -2223,14 +2342,6 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 |insert_after|query|string|false|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2242,7 +2353,10 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove a custom field from a portfolio
 
 <a id="opIdportfolio.removeCustomFieldSetting"></a>
@@ -2255,6 +2369,14 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCust
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -2271,14 +2393,6 @@ Removes a custom field setting from a portfolio.
 |custom_field|query|string|true|The custom field to remove from this portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2290,7 +2404,10 @@ Removes a custom field setting from a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
 
 <pre class="highlight http tab-http">
@@ -2299,7 +2416,10 @@ Removes a custom field setting from a portfolio.
 
 This object determines if a user is a member of a portfolio.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple portfolio memberships
 
 <a id="opIdgetPortfolioMemberships"></a>
@@ -2312,6 +2432,21 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "portfolio",
+      "name": "Bug Task"
+    }
+  ]
+}
 ```
 
 <p>
@@ -2332,21 +2467,6 @@ Returns a list of portfolio memberships in compact representation. You must spec
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "portfolio",
-      "name": "Bug Task"
-    }
-  ]
-}
-```
-
 <h3 id="get-multiple-portfolio-memberships-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2358,7 +2478,10 @@ Returns a list of portfolio memberships in compact representation. You must spec
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a portfolio membership
 
 <a id="opIdgetPortfolioMembership"></a>
@@ -2372,20 +2495,6 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membe
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /portfolio_memberships/{portfolio_membership_gid}</code>
-</p>
-
-Returns the complete portfolio record for a single portfolio membership.
-
-<h3 id="get-a-portfolio-membership-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_membership_path_gid|path|string|true|none|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -2411,6 +2520,20 @@ Returns the complete portfolio record for a single portfolio membership.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /portfolio_memberships/{portfolio_membership_gid}</code>
+</p>
+
+Returns the complete portfolio record for a single portfolio membership.
+
+<h3 id="get-a-portfolio-membership-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_membership_path_gid|path|string|true|none|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-portfolio-membership-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2422,7 +2545,10 @@ Returns the complete portfolio record for a single portfolio membership.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get memberships from a portfolio
 
 <a id="opIdgetPortfolioMembershipsForPortfolio"></a>
@@ -2435,6 +2561,23 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_m
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "portfolio_membership",
+      "user": {
+        ...
+      }
+    }
+  ]
+}
 ```
 
 <p>
@@ -2454,23 +2597,6 @@ Returns the compact portfolio membership records for the portfolio.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "portfolio_membership",
-      "user": {
-        ...
-      }
-    }
-  ]
-}
-```
-
 <h3 id="get-memberships-from-a-portfolio-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2482,7 +2608,10 @@ Returns the compact portfolio membership records for the portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
@@ -2495,7 +2624,10 @@ Projects in organizations are shared with a single team. You cannot currently ch
 
 Followers of a project are a subset of the members of that project. Followers of a project will receive all updates including tasks created, added and removed from that project. Members of the project have access to and will receive status updates of the project. Adding followers to a project will add them as members if they are not already, removing followers from a project will not affect membership.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple projects
 
 <a id="opIdgetProjects"></a>
@@ -2509,24 +2641,6 @@ curl -X GET https://app.asana.com/api/1.0/projects \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /projects</code>
-</p>
-
-Returns the compact project records for some filtered set of projects. Use one or more of the parameters provided to filter the projects returned.
-
-<h3 id="get-multiple-projects-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace|query|string|false|The workspace or organization to filter projects on.|
-|team|query|string|false|The team to filter projects on.|
-|archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -2575,6 +2689,24 @@ Returns the compact project records for some filtered set of projects. Use one o
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /projects</code>
+</p>
+
+Returns the compact project records for some filtered set of projects. Use one or more of the parameters provided to filter the projects returned.
+
+<h3 id="get-multiple-projects-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|workspace|query|string|false|The workspace or organization to filter projects on.|
+|team|query|string|false|The team to filter projects on.|
+|archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-multiple-projects-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2586,7 +2718,10 @@ Returns the compact project records for some filtered set of projects. Use one o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a project
 
 <a id="opIdcreateProject"></a>
@@ -2602,22 +2737,6 @@ curl -X POST https://app.asana.com/api/1.0/projects \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /projects</code>
-</p>
-
-Create a new project in a workspace or team.
-
-Every project is required to be created in a specific workspace or
-organization, and this cannot be changed once set. Note that you can use
-the `workspace` parameter regardless of whether or not it is an
-organization.
-
-If the workspace for your project is an organization, you must also
-supply a `team` to share the project with.
-
-Returns the full record of the newly created project.
-
 > Body parameter
 
 ```json
@@ -2630,19 +2749,6 @@ Returns the full record of the newly created project.
   }
 }
 ```
-
-<h3 id="create-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The project to create.|
-|» data|body|object|false|none|
-|»» name|body|string|false|The name of the project.|
-|»» notes|body|string|false|The description of the project.|
-|»» workspace|body|string|false|The workspace or organization to create the project in.|
-|»» team|body|string|false|If creating in an organization, the specific team to create the project in.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 201 Response
 
@@ -2701,6 +2807,35 @@ Returns the full record of the newly created project.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /projects</code>
+</p>
+
+Create a new project in a workspace or team.
+
+Every project is required to be created in a specific workspace or
+organization, and this cannot be changed once set. Note that you can use
+the `workspace` parameter regardless of whether or not it is an
+organization.
+
+If the workspace for your project is an organization, you must also
+supply a `team` to share the project with.
+
+Returns the full record of the newly created project.
+
+<h3 id="create-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The project to create.|
+|» data|body|object|false|none|
+|»» name|body|string|false|The name of the project.|
+|»» notes|body|string|false|The description of the project.|
+|»» workspace|body|string|false|The workspace or organization to create the project in.|
+|»» team|body|string|false|If creating in an organization, the specific team to create the project in.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2712,7 +2847,10 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a project
 
 <a id="opIdgetProject"></a>
@@ -2726,20 +2864,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /projects/{project_gid}</code>
-</p>
-
-Returns the complete project record for a single project.
-
-<h3 id="get-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -2798,6 +2922,20 @@ Returns the complete project record for a single project.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}</code>
+</p>
+
+Returns the complete project record for a single project.
+
+<h3 id="get-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2809,7 +2947,10 @@ Returns the complete project record for a single project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a project
 
 <a id="opIdupdateProject"></a>
@@ -2824,20 +2965,6 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="put-verb">PUT</span> /projects/{project_gid}</code>
-</p>
-
-A specific, existing project can be updated by making a PUT request on
-the URL for that project. Only the fields provided in the `data` block
-will be updated; any unspecified fields will remain unchanged.
-
-When using this method, it is best to specify only those fields you wish
-to change, or else you may overwrite changes made by another user since
-you last retrieved the task.
-
-Returns the complete updated project record.
 
 > Body parameter
 
@@ -2862,15 +2989,6 @@ Returns the complete updated project record.
 }
 ```
 
-<h3 id="update-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ProjectObject](#schemaprojectobject)|true|The updated fields for the project.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-
 > 200 Response
 
 ```json
@@ -2928,6 +3046,29 @@ Returns the complete updated project record.
 }
 ```
 
+<p>
+<code> <span class="put-verb">PUT</span> /projects/{project_gid}</code>
+</p>
+
+A specific, existing project can be updated by making a PUT request on
+the URL for that project. Only the fields provided in the `data` block
+will be updated; any unspecified fields will remain unchanged.
+
+When using this method, it is best to specify only those fields you wish
+to change, or else you may overwrite changes made by another user since
+you last retrieved the task.
+
+Returns the complete updated project record.
+
+<h3 id="update-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ProjectObject](#schemaprojectobject)|true|The updated fields for the project.|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="update-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2939,7 +3080,10 @@ Returns the complete updated project record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Delete a project
 
 <a id="opIddeleteProject"></a>
@@ -2952,6 +3096,14 @@ curl -X DELETE https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -2971,14 +3123,6 @@ Returns an empty data record.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="delete-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -2990,7 +3134,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Duplicate a project
 
 <a id="opIdduplicateProject"></a>
@@ -3005,12 +3152,6 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="post-verb">POST</span> /projects/{project_gid}/duplicate</code>
-</p>
-
-Creates and returns a job that will asynchronously handle the duplication.
 
 > Body parameter
 
@@ -3031,6 +3172,38 @@ Creates and returns a job that will asynchronously handle the duplication.
   }
 }
 ```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "resource_subtype": "milestone",
+    "status": "in_progress",
+    "new_project": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "new_task": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  }
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/duplicate</code>
+</p>
+
+Creates and returns a job that will asynchronously handle the duplication.
 
 <h3 id="duplicate-a-project-parameters">Parameters</h3>
 
@@ -3065,32 +3238,6 @@ Creates and returns a job that will asynchronously handle the duplication.
 | include|task_tags|
 | include|task_projects|
 
-> 201 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "task",
-    "resource_subtype": "milestone",
-    "status": "in_progress",
-    "new_project": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "project",
-      "name": "Stuff to buy"
-    },
-    "new_task": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
-  }
-}
-```
-
 <h3 id="duplicate-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3102,7 +3249,10 @@ Creates and returns a job that will asynchronously handle the duplication.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get projects a task is in
 
 <a id="opIdgetTaskProjects"></a>
@@ -3116,22 +3266,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /tasks/{task_gid}/projects</code>
-</p>
-
-Returns a compact representation of all of the projects the task is in.
-
-<h3 id="get-projects-a-task-is-in-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -3180,6 +3314,22 @@ Returns a compact representation of all of the projects the task is in.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/projects</code>
+</p>
+
+Returns a compact representation of all of the projects the task is in.
+
+<h3 id="get-projects-a-task-is-in-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-projects-a-task-is-in-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3191,7 +3341,10 @@ Returns a compact representation of all of the projects the task is in.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a team's projects
 
 <a id="opIdgetProjectsInTeam"></a>
@@ -3204,6 +3357,53 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "archived": false,
+      "color": "light-green",
+      "current_status": {
+        ...
+      },
+      "custom_fields": [
+        ...
+      ],
+      "custom_field_settings": [
+        ...
+      ],
+      "default_view": "calendar",
+      "due_date": "2012-03-26",
+      "due_on": "2012-03-26",
+      "followers": [
+        ...
+      ],
+      "html_notes": "These are things we need to purchase.",
+      "is_template": false,
+      "layout": "list",
+      "members": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "These are things we need to purchase.",
+      "owner": null,
+      "public": false,
+      "section_migration_status": "not_migrated",
+      "start_on": "2012-03-26",
+      "team": null,
+      "workspace": null
+    }
+  ]
+}
 ```
 
 <p>
@@ -3223,53 +3423,6 @@ Returns the compact project records for all projects in the team.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "project",
-      "name": "Stuff to buy",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "archived": false,
-      "color": "light-green",
-      "current_status": {
-        ...
-      },
-      "custom_fields": [
-        ...
-      ],
-      "custom_field_settings": [
-        ...
-      ],
-      "default_view": "calendar",
-      "due_date": "2012-03-26",
-      "due_on": "2012-03-26",
-      "followers": [
-        ...
-      ],
-      "html_notes": "These are things we need to purchase.",
-      "is_template": false,
-      "layout": "list",
-      "members": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "These are things we need to purchase.",
-      "owner": null,
-      "public": false,
-      "section_migration_status": "not_migrated",
-      "start_on": "2012-03-26",
-      "team": null,
-      "workspace": null
-    }
-  ]
-}
-```
-
 <h3 id="get-a-team's-projects-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3281,7 +3434,10 @@ Returns the compact project records for all projects in the team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a project in a team
 
 <a id="opIdcreateProjectsWithTeam"></a>
@@ -3296,14 +3452,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="post-verb">POST</span> /teams/{team_gid}/projects</code>
-</p>
-
-Creates a project shared with the given team.
-
-Returns the full record of the newly created project.
 
 > Body parameter
 
@@ -3327,15 +3475,6 @@ Returns the full record of the newly created project.
   }
 }
 ```
-
-<h3 id="create-a-project-in-a-team-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ProjectObject](#schemaprojectobject)|true|The new project to create.|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 201 Response
 
@@ -3394,6 +3533,23 @@ Returns the full record of the newly created project.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /teams/{team_gid}/projects</code>
+</p>
+
+Creates a project shared with the given team.
+
+Returns the full record of the newly created project.
+
+<h3 id="create-a-project-in-a-team-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ProjectObject](#schemaprojectobject)|true|The new project to create.|
+|team_gid|path|string|true|Globally unique identifier for the team.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-project-in-a-team-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3405,7 +3561,10 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get all projects in a workspace
 
 <a id="opIdgetProjectsInWorkspace"></a>
@@ -3418,6 +3577,53 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "archived": false,
+      "color": "light-green",
+      "current_status": {
+        ...
+      },
+      "custom_fields": [
+        ...
+      ],
+      "custom_field_settings": [
+        ...
+      ],
+      "default_view": "calendar",
+      "due_date": "2012-03-26",
+      "due_on": "2012-03-26",
+      "followers": [
+        ...
+      ],
+      "html_notes": "These are things we need to purchase.",
+      "is_template": false,
+      "layout": "list",
+      "members": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "These are things we need to purchase.",
+      "owner": null,
+      "public": false,
+      "section_migration_status": "not_migrated",
+      "start_on": "2012-03-26",
+      "team": null,
+      "workspace": null
+    }
+  ]
+}
 ```
 
 <p>
@@ -3437,53 +3643,6 @@ Returns the compact project records for all projects in the workspace.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "project",
-      "name": "Stuff to buy",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "archived": false,
-      "color": "light-green",
-      "current_status": {
-        ...
-      },
-      "custom_fields": [
-        ...
-      ],
-      "custom_field_settings": [
-        ...
-      ],
-      "default_view": "calendar",
-      "due_date": "2012-03-26",
-      "due_on": "2012-03-26",
-      "followers": [
-        ...
-      ],
-      "html_notes": "These are things we need to purchase.",
-      "is_template": false,
-      "layout": "list",
-      "members": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "These are things we need to purchase.",
-      "owner": null,
-      "public": false,
-      "section_migration_status": "not_migrated",
-      "start_on": "2012-03-26",
-      "team": null,
-      "workspace": null
-    }
-  ]
-}
-```
-
 <h3 id="get-all-projects-in-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3495,7 +3654,10 @@ Returns the compact project records for all projects in the workspace.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a project in a workspace
 
 <a id="opIdcreateProjectsInWorkspace"></a>
@@ -3510,17 +3672,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/projects</code>
-</p>
-
-Returns the compact project records for all projects in the workspace.
-
-If the workspace for your project is an organization, you must also
-supply a team to share the project with.
-
-Returns the full record of the newly created project.
 
 > Body parameter
 
@@ -3544,15 +3695,6 @@ Returns the full record of the newly created project.
   }
 }
 ```
-
-<h3 id="create-a-project-in-a-workspace-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ProjectObject](#schemaprojectobject)|true|The new project to create.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 201 Response
 
@@ -3611,6 +3753,26 @@ Returns the full record of the newly created project.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/projects</code>
+</p>
+
+Returns the compact project records for all projects in the workspace.
+
+If the workspace for your project is an organization, you must also
+supply a team to share the project with.
+
+Returns the full record of the newly created project.
+
+<h3 id="create-a-project-in-a-workspace-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ProjectObject](#schemaprojectobject)|true|The new project to create.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-project-in-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3622,7 +3784,10 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add a custom field to a project
 
 <a id="opIdproject.addCustomFieldSetting"></a>
@@ -3635,6 +3800,14 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomField
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -3654,14 +3827,6 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 |insert_after|query|string|false|An id of a Custom Field Setting on this project, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="add-a-custom-field-to-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3673,7 +3838,10 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove a custom field from a project
 
 <a id="opIdproject.removeCustomFieldSetting"></a>
@@ -3686,6 +3854,14 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFi
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -3702,14 +3878,6 @@ Removes a custom field setting from a project.
 |custom_field|query|string|true|The custom field to remove from this project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="remove-a-custom-field-from-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3721,7 +3889,10 @@ Removes a custom field setting from a project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-project-memberships">Project Memberships</h1>
 
 <pre class="highlight http tab-http">
@@ -3730,7 +3901,10 @@ Removes a custom field setting from a project.
 
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a project membership
 
 <a id="opIdgetProjectMembership"></a>
@@ -3744,20 +3918,6 @@ curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_membershi
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /project_memberships/{project_membership_gid}</code>
-</p>
-
-Returns the complete project record for a single project membership.
-
-<h3 id="get-a-project-membership-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_membership_path_gid|path|string|true|none|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -3784,6 +3944,20 @@ Returns the complete project record for a single project membership.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /project_memberships/{project_membership_gid}</code>
+</p>
+
+Returns the complete project record for a single project membership.
+
+<h3 id="get-a-project-membership-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|project_membership_path_gid|path|string|true|none|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-project-membership-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3795,7 +3969,10 @@ Returns the complete project record for a single project membership.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get memberships from a project
 
 <a id="opIdgetProjectMembershipsForProject"></a>
@@ -3808,6 +3985,23 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_members
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project_membership",
+      "user": {
+        ...
+      }
+    }
+  ]
+}
 ```
 
 <p>
@@ -3827,23 +4021,6 @@ Returns the compact project membership records for the project.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "project_membership",
-      "user": {
-        ...
-      }
-    }
-  ]
-}
-```
-
 <h3 id="get-memberships-from-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3855,7 +4032,10 @@ Returns the compact project membership records for the project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-project-statuses">Project Statuses</h1>
 
 <pre class="highlight http tab-http">
@@ -3866,7 +4046,10 @@ A *project status* is an update on the progress of a particular project, and is 
 
 Project statuses can be created and deleted, but not modified.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a project status
 
 <a id="opIdgetProductStatus"></a>
@@ -3880,18 +4063,6 @@ curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} 
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /project_statuses/{project_status_gid}</code>
-</p>
-
-Returns the complete record for a single status update.
-
-<h3 id="get-a-project-status-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_status_path_gid|path|string|true|The project status update to get.|
 
 > 200 Response
 
@@ -3916,6 +4087,18 @@ Returns the complete record for a single status update.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /project_statuses/{project_status_gid}</code>
+</p>
+
+Returns the complete record for a single status update.
+
+<h3 id="get-a-project-status-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|project_status_path_gid|path|string|true|The project status update to get.|
+
 <h3 id="get-a-project-status-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3927,7 +4110,10 @@ Returns the complete record for a single status update.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Delete a project status
 
 <a id="opIddeleteProductStatus"></a>
@@ -3940,6 +4126,14 @@ curl -X DELETE https://app.asana.com/api/1.0/project_statuses/{project_status_gi
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -3956,14 +4150,6 @@ Returns an empty data record.
 |---|---|---|---|---|
 |project_status_path_gid|path|string|true|The project status update to get.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="delete-a-project-status-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -3975,7 +4161,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get statuses from a project
 
 <a id="opIdgetProductStatuses"></a>
@@ -3989,22 +4178,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuse
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /projects/{project_gid}/project_statuses</code>
-</p>
-
-Returns the compact project status update records for all updates on the project.
-
-<h3 id="get-statuses-from-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -4028,6 +4201,22 @@ Returns the compact project status update records for all updates on the project
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/project_statuses</code>
+</p>
+
+Returns the compact project status update records for all updates on the project.
+
+<h3 id="get-statuses-from-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-statuses-from-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4039,7 +4228,10 @@ Returns the compact project status update records for all updates on the project
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a project status
 
 <a id="opIdcreateProjectStatus"></a>
@@ -4055,13 +4247,6 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /projects/{project_gid}/project_statuses</code>
-</p>
-
-Creates a new status update on the project.
-Returns the full record of the newly created project status update.
-
 > Body parameter
 
 ```json
@@ -4073,25 +4258,6 @@ Returns the full record of the newly created project status update.
   }
 }
 ```
-
-<h3 id="create-a-project-status-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The project status to create.|
-|» data|body|object|false|none|
-|»» project|body|string|true|Globally unique identifier for the project.|
-|»» text|body|string|true|The text of the project status update.|
-|»» color|body|any|true|The color to associate with the status update.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-| color|green|
-| color|yellow|
-| color|red|
 
 > 201 Response
 
@@ -4116,6 +4282,32 @@ Returns the full record of the newly created project status update.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/project_statuses</code>
+</p>
+
+Creates a new status update on the project.
+Returns the full record of the newly created project status update.
+
+<h3 id="create-a-project-status-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The project status to create.|
+|» data|body|object|false|none|
+|»» project|body|string|true|Globally unique identifier for the project.|
+|»» text|body|string|true|The text of the project status update.|
+|»» color|body|any|true|The color to associate with the status update.|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|green|
+| color|yellow|
+| color|red|
+
 <h3 id="create-a-project-status-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4127,7 +4319,10 @@ Returns the full record of the newly created project status update.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-sections">Sections</h1>
 
 <pre class="highlight http tab-http">
@@ -4140,7 +4335,10 @@ Sections are largely a shared idiom in Asana’s API for both list and board vie
 
 The ‘memberships’ property when [getting a task](#get-a-task) will return the information for the section or the column under ‘section’ in the response.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a section
 
 <a id="opIdgetSection"></a>
@@ -4154,20 +4352,6 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /sections/{section_gid}</code>
-</p>
-
-Returns the complete record for a single section.
-
-<h3 id="get-a-section-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identified for the section.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -4188,6 +4372,20 @@ Returns the complete record for a single section.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /sections/{section_gid}</code>
+</p>
+
+Returns the complete record for a single section.
+
+<h3 id="get-a-section-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|section_gid|path|string|true|The globally unique identified for the section.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-section-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4199,7 +4397,10 @@ Returns the complete record for a single section.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a section
 
 <a id="opIdupdateSection"></a>
@@ -4213,6 +4414,40 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "name": "Next Actions",
+    "projects": [
+      {
+        ...
+      }
+    ]
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "section",
+    "name": "Next Actions",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "projects": [
+      {
+        ...
+      }
+    ]
+  }
+}
 ```
 
 <p>
@@ -4230,21 +4465,6 @@ you last retrieved the task.
 
 Returns the complete updated section record.
 
-> Body parameter
-
-```json
-{
-  "data": {
-    "name": "Next Actions",
-    "projects": [
-      {
-        ...
-      }
-    ]
-  }
-}
-```
-
 <h3 id="update-a-section-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -4253,25 +4473,6 @@ Returns the complete updated section record.
 |section_gid|path|string|true|The globally unique identified for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "section",
-    "name": "Next Actions",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "projects": [
-      {
-        ...
-      }
-    ]
-  }
-}
-```
 
 <h3 id="update-a-section-responses">Responses</h3>
 
@@ -4284,7 +4485,10 @@ Returns the complete updated section record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Delete a section
 
 <a id="opIddeleteSection"></a>
@@ -4297,6 +4501,14 @@ curl -X DELETE https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -4320,14 +4532,6 @@ Returns an empty data block.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="delete-a-section-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4339,7 +4543,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get sections in a project
 
 <a id="opIdgetSectionsInProject"></a>
@@ -4353,22 +4560,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /projects/{project_gid}/sections</code>
-</p>
-
-Returns the compact records for all sections in the specified project.
-
-<h3 id="get-sections-in-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -4389,6 +4580,22 @@ Returns the compact records for all sections in the specified project.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/sections</code>
+</p>
+
+Returns the compact records for all sections in the specified project.
+
+<h3 id="get-sections-in-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-sections-in-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4400,7 +4607,10 @@ Returns the compact records for all sections in the specified project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a section in a project
 
 <a id="opIdcreateSectionInProject"></a>
@@ -4416,13 +4626,6 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /projects/{project_gid}/sections</code>
-</p>
-
-Creates a new section in a project.
-Returns the full record of the newly created section.
-
 > Body parameter
 
 ```json
@@ -4433,18 +4636,6 @@ Returns the full record of the newly created section.
   }
 }
 ```
-
-<h3 id="create-a-section-in-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The section to create.|
-|» data|body|object|false|none|
-|»» project|body|string|true|The project to create the section in|
-|»» name|body|string|true|The text to be displayed as the section name. This cannot be an empty string.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 201 Response
 
@@ -4465,6 +4656,25 @@ Returns the full record of the newly created section.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/sections</code>
+</p>
+
+Creates a new section in a project.
+Returns the full record of the newly created section.
+
+<h3 id="create-a-section-in-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The section to create.|
+|» data|body|object|false|none|
+|»» project|body|string|true|The project to create the section in|
+|»» name|body|string|true|The text to be displayed as the section name. This cannot be an empty string.|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-section-in-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4476,7 +4686,10 @@ Returns the full record of the newly created section.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add task to section
 
 <a id="opIdaddTaskToSection"></a>
@@ -4492,16 +4705,6 @@ curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /sections/{section_gid}/addTask</code>
-</p>
-
-Add a task to a specific, existing section. This is remove the task from other sections of the project.
-
-The task will be inserted at the top of a section unless an insert_before or insert_after parameter is declared.
-
-This does not work for separators (tasks with the resource_subtype of section).
-
 > Body parameter
 
 ```json
@@ -4513,6 +4716,24 @@ This does not work for separators (tasks with the resource_subtype of section).
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /sections/{section_gid}/addTask</code>
+</p>
+
+Add a task to a specific, existing section. This is remove the task from other sections of the project.
+
+The task will be inserted at the top of a section unless an insert_before or insert_after parameter is declared.
+
+This does not work for separators (tasks with the resource_subtype of section).
 
 <h3 id="add-task-to-section-parameters">Parameters</h3>
 
@@ -4527,14 +4748,6 @@ This does not work for separators (tasks with the resource_subtype of section).
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="add-task-to-section-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4546,7 +4759,10 @@ This does not work for separators (tasks with the resource_subtype of section).
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Move sections
 
 <a id="opIdmoveSection"></a>
@@ -4560,6 +4776,27 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/inser
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "project": "123456",
+    "section": "321654",
+    "before_section": "86420",
+    "after_section": "987654"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -4576,19 +4813,6 @@ only board views.
 
 Returns an empty data block.
 
-> Body parameter
-
-```json
-{
-  "data": {
-    "project": "123456",
-    "section": "321654",
-    "before_section": "86420",
-    "after_section": "987654"
-  }
-}
-```
-
 <h3 id="move-sections-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -4603,14 +4827,6 @@ Returns an empty data block.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="move-sections-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4622,7 +4838,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-stories">Stories</h1>
 
 <pre class="highlight http tab-http">
@@ -4633,7 +4852,10 @@ Returns an empty data block.
 
 A *story* represents an activity associated with an object in the Asana system. Stories are generated by the system whenever users take actions such as creating or assigning tasks, or moving tasks between projects. *Comments* are also a form of user-generated story.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a story
 
 <a id="opIdgetStory"></a>
@@ -4647,22 +4869,6 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /stories/{story_gid}</code>
-</p>
-
-Returns the full record for a single story.
-
-<h3 id="get-a-story-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|story_gid|path|string|true|Globally unique identifier for the story.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -4833,6 +5039,22 @@ Returns the full record for a single story.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /stories/{story_gid}</code>
+</p>
+
+Returns the full record for a single story.
+
+<h3 id="get-a-story-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|story_gid|path|string|true|Globally unique identifier for the story.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-story-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -4844,7 +5066,10 @@ Returns the full record for a single story.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a story
 
 <a id="opIdupdateStory"></a>
@@ -4859,12 +5084,6 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="put-verb">PUT</span> /stories/{story_gid}</code>
-</p>
-
-Updates the story and returns the full record for the updated story. Only comment stories can have their text updated, and only comment stories and attachment stories can be pinned. Only one of `text` and `html_text` can be specified.
 
 > Body parameter
 
@@ -4932,15 +5151,6 @@ Updates the story and returns the full record for the updated story. Only commen
 }
 ```
 
-<h3 id="update-a-story-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[StoryObject](#schemastoryobject)|true|The comment story to update.|
-|story_gid|path|string|true|Globally unique identifier for the story.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-
 > 200 Response
 
 ```json
@@ -5110,6 +5320,21 @@ Updates the story and returns the full record for the updated story. Only commen
 }
 ```
 
+<p>
+<code> <span class="put-verb">PUT</span> /stories/{story_gid}</code>
+</p>
+
+Updates the story and returns the full record for the updated story. Only comment stories can have their text updated, and only comment stories and attachment stories can be pinned. Only one of `text` and `html_text` can be specified.
+
+<h3 id="update-a-story-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[StoryObject](#schemastoryobject)|true|The comment story to update.|
+|story_gid|path|string|true|Globally unique identifier for the story.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="update-a-story-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5121,7 +5346,10 @@ Updates the story and returns the full record for the updated story. Only commen
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Delete a story
 
 <a id="opIddeleteStory"></a>
@@ -5134,6 +5362,14 @@ curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -5152,14 +5388,6 @@ Returns an empty data record.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="delete-a-story-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5171,7 +5399,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get stories from a task
 
 <a id="opIdgetTaskStories"></a>
@@ -5185,22 +5416,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /tasks/{task_gid}/stories</code>
-</p>
-
-Returns the compact records for all stories on the task.
-
-<h3 id="get-stories-from-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -5299,6 +5514,22 @@ Returns the compact records for all stories on the task.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/stories</code>
+</p>
+
+Returns the compact records for all stories on the task.
+
+<h3 id="get-stories-from-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-stories-from-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5310,7 +5541,10 @@ Returns the compact records for all stories on the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a comment on a task
 
 <a id="opIdcreateCommentStory"></a>
@@ -5326,16 +5560,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/stories</code>
-</p>
-
-Adds a comment to a task. The comment will be authored by the currently
-authenticated user, and timestamped when the server receives the
-request.
-
-Returns the full record for the new story added to the task.
-
 > Body parameter
 
 ```json
@@ -5346,18 +5570,6 @@ Returns the full record for the new story added to the task.
   }
 }
 ```
-
-<h3 id="create-a-comment-on-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The comment story to create.|
-|» data|body|object|false|none|
-|»» task|body|string|true|Globally unique identifier for the task.|
-|»» text|body|string|true|The plain text of the comment to add.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 201 Response
 
@@ -5528,6 +5740,28 @@ Returns the full record for the new story added to the task.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/stories</code>
+</p>
+
+Adds a comment to a task. The comment will be authored by the currently
+authenticated user, and timestamped when the server receives the
+request.
+
+Returns the full record for the new story added to the task.
+
+<h3 id="create-a-comment-on-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The comment story to create.|
+|» data|body|object|false|none|
+|»» task|body|string|true|Globally unique identifier for the task.|
+|»» text|body|string|true|The plain text of the comment to add.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-comment-on-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5539,7 +5773,10 @@ Returns the full record for the new story added to the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-tags">Tags</h1>
 
 <pre class="highlight http tab-http">
@@ -5550,7 +5787,10 @@ A tag is a label that can be attached to any task in Asana. It exists in a singl
 
 Tags have some metadata associated with them, but it is possible that we will simplify them in the future so it is not encouraged to rely too heavily on it. Unlike projects, tags do not provide any ordering on the tasks they are associated with.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple tags
 
 <a id="opIdqueryTags"></a>
@@ -5564,23 +5804,6 @@ curl -X GET https://app.asana.com/api/1.0/tags \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /tags</code>
-</p>
-
-Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.
-
-<h3 id="get-multiple-tags-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace|query|string|false|The workspace to filter tags on.|
-|archived|query|boolean|false|Only return tags whose `archived` field takes on the value of this parameter.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -5604,6 +5827,23 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /tags</code>
+</p>
+
+Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.
+
+<h3 id="get-multiple-tags-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|workspace|query|string|false|The workspace to filter tags on.|
+|archived|query|boolean|false|Only return tags whose `archived` field takes on the value of this parameter.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-multiple-tags-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5615,7 +5855,10 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a tag
 
 <a id="opIdcreateTag"></a>
@@ -5631,19 +5874,6 @@ curl -X POST https://app.asana.com/api/1.0/tags \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tags</code>
-</p>
-
-Creates a new tag in a workspace or organization.
-
-Every tag is required to be created in a specific workspace or
-organization, and this cannot be changed once set. Note that you can use
-the workspace parameter regardless of whether or not it is an
-organization.
-
-Returns the full record of the newly created tag.
-
 > Body parameter
 
 ```json
@@ -5657,14 +5887,6 @@ Returns the full record of the newly created tag.
   }
 }
 ```
-
-<h3 id="create-a-tag-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[TagObject](#schematagobject)|true|The tag to create.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 201 Response
 
@@ -5691,6 +5913,27 @@ Returns the full record of the newly created tag.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /tags</code>
+</p>
+
+Creates a new tag in a workspace or organization.
+
+Every tag is required to be created in a specific workspace or
+organization, and this cannot be changed once set. Note that you can use
+the workspace parameter regardless of whether or not it is an
+organization.
+
+Returns the full record of the newly created tag.
+
+<h3 id="create-a-tag-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[TagObject](#schematagobject)|true|The tag to create.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-tag-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5702,7 +5945,10 @@ Returns the full record of the newly created tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a tag
 
 <a id="opIdgetTag"></a>
@@ -5716,22 +5962,6 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /tags/{tag_gid}</code>
-</p>
-
-Returns the complete tag record for a single tag.
-
-<h3 id="get-a-tag-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|tag_gid|path|string|true|Globally unique identifier for the tag.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -5758,6 +5988,22 @@ Returns the complete tag record for a single tag.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /tags/{tag_gid}</code>
+</p>
+
+Returns the complete tag record for a single tag.
+
+<h3 id="get-a-tag-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|tag_gid|path|string|true|Globally unique identifier for the tag.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-a-tag-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5769,7 +6015,10 @@ Returns the complete tag record for a single tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a tag
 
 <a id="opIdupdateTag"></a>
@@ -5782,6 +6031,31 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "tag",
+    "name": "Stuff to buy",
+    "followers": [
+      {
+        ...
+      }
+    ],
+    "color": "light-green",
+    "workspace": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "Bug Task"
+    }
+  }
+}
 ```
 
 <p>
@@ -5807,31 +6081,6 @@ Returns the complete updated tag record.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "tag",
-    "name": "Stuff to buy",
-    "followers": [
-      {
-        ...
-      }
-    ],
-    "color": "light-green",
-    "workspace": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "Bug Task"
-    }
-  }
-}
-```
-
 <h3 id="update-a-tag-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5843,7 +6092,10 @@ Returns the complete updated tag record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a task's tags
 
 <a id="opIdgetTaskTags"></a>
@@ -5856,6 +6108,28 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "tag",
+      "name": "Stuff to buy",
+      "followers": [
+        ...
+      ],
+      "color": "light-green",
+      "workspace": {
+        ...
+      }
+    }
+  ]
+}
 ```
 
 <p>
@@ -5874,6 +6148,35 @@ Get a compact representation of all of the tags the task has.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
+<h3 id="get-a-task's-tags-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the tags for the given task.|[Tag](#schematag)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get tags in a workspace
+
+<a id="opIdqueryAllTagsInWorkspace"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
 > 200 Response
 
 ```json
@@ -5894,32 +6197,6 @@ Get a compact representation of all of the tags the task has.
     }
   ]
 }
-```
-
-<h3 id="get-a-task's-tags-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the tags for the given task.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get tags in a workspace
-
-<a id="opIdqueryAllTagsInWorkspace"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
 ```
 
 <p>
@@ -5938,28 +6215,6 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "tag",
-      "name": "Stuff to buy",
-      "followers": [
-        ...
-      ],
-      "color": "light-green",
-      "workspace": {
-        ...
-      }
-    }
-  ]
-}
-```
-
 <h3 id="get-tags-in-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -5971,7 +6226,10 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a tag in a workspace
 
 <a id="opIdcreateTagInWorkspace"></a>
@@ -5987,19 +6245,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/tags</code>
-</p>
-
-Creates a new tag in a workspace or organization.
-
-Every tag is required to be created in a specific workspace or
-organization, and this cannot be changed once set. Note that you can use
-the workspace parameter regardless of whether or not it is an
-organization.
-
-Returns the full record of the newly created tag.
-
 > Body parameter
 
 ```json
@@ -6013,15 +6258,6 @@ Returns the full record of the newly created tag.
   }
 }
 ```
-
-<h3 id="create-a-tag-in-a-workspace-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[TagObject](#schematagobject)|true|The tag to create.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -6045,6 +6281,28 @@ Returns the full record of the newly created tag.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/tags</code>
+</p>
+
+Creates a new tag in a workspace or organization.
+
+Every tag is required to be created in a specific workspace or
+organization, and this cannot be changed once set. Note that you can use
+the workspace parameter regardless of whether or not it is an
+organization.
+
+Returns the full record of the newly created tag.
+
+<h3 id="create-a-tag-in-a-workspace-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[TagObject](#schematagobject)|true|The tag to create.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="create-a-tag-in-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -6056,7 +6314,10 @@ Returns the full record of the newly created tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-tasks">Tasks</h1>
 
 <pre class="highlight http tab-http">
@@ -6069,7 +6330,10 @@ Sections are unique in that they will be included in the *memberships* field of 
 
 [Queries](#get-a-set-of-tasks) return a compact representation of each object which is typically the id and name fields. Interested in a specific set of fields or all of the fields? Use [field selectors](#input-output-options) to manipulate what data is included in a response.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple tasks
 
 <a id="opIdqueryTasks"></a>
@@ -6083,49 +6347,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /tasks</code>
-</p>
-
-Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
-
-For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](#search-tasks-in-a-workspace).
-
-<h3 id="get-multiple-tasks-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|assignee|query|string|false|The assignee to filter tasks on.|
-|project|query|string|false|The project to filter tasks on.|
-|section|query|string|false|The section to filter tasks on.|
-|workspace|query|string|false|The workspace to filter tasks on.|
-|completed_since|query|string(date-time)|false|Only return tasks that are either incomplete or that have been completed since this time.|
-|modified_since|query|string(date-time)|false|Only return tasks that have been modified since the given time.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-
-#### Detailed descriptions
-
-**assignee**: The assignee to filter tasks on.
-*Note: If you specify `assignee`, you must also specify the `workspace` to filter on.*
-
-**section**: The section to filter tasks on.
-*Note: Currently, this is only supported in board views.*
-
-**workspace**: The workspace to filter tasks on.
-*Note: If you specify `workspace`, you must also specify the `assignee` to filter on.*
-
-**modified_since**: Only return tasks that have been modified since the given time.
-
-*Note: A task is considered “modified” if any of its properties
-change, or associations between it and other objects are modified
-(e.g.  a task being added to a project). A task is not considered
-modified just because another object it is associated with (e.g. a
-subtask) is modified. Actions that count as modifying the task
-include assigning, renaming, completing, and adding stories.*
 
 > 200 Response
 
@@ -6192,6 +6413,49 @@ include assigning, renaming, completing, and adding stories.*
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /tasks</code>
+</p>
+
+Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
+
+For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](#search-tasks-in-a-workspace).
+
+<h3 id="get-multiple-tasks-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|assignee|query|string|false|The assignee to filter tasks on.|
+|project|query|string|false|The project to filter tasks on.|
+|section|query|string|false|The section to filter tasks on.|
+|workspace|query|string|false|The workspace to filter tasks on.|
+|completed_since|query|string(date-time)|false|Only return tasks that are either incomplete or that have been completed since this time.|
+|modified_since|query|string(date-time)|false|Only return tasks that have been modified since the given time.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
+#### Detailed descriptions
+
+**assignee**: The assignee to filter tasks on.
+*Note: If you specify `assignee`, you must also specify the `workspace` to filter on.*
+
+**section**: The section to filter tasks on.
+*Note: Currently, this is only supported in board views.*
+
+**workspace**: The workspace to filter tasks on.
+*Note: If you specify `workspace`, you must also specify the `assignee` to filter on.*
+
+**modified_since**: Only return tasks that have been modified since the given time.
+
+*Note: A task is considered “modified” if any of its properties
+change, or associations between it and other objects are modified
+(e.g.  a task being added to a project). A task is not considered
+modified just because another object it is associated with (e.g. a
+subtask) is modified. Actions that count as modifying the task
+include assigning, renaming, completing, and adding stories.*
+
 <h3 id="get-multiple-tasks-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -6203,7 +6467,10 @@ include assigning, renaming, completing, and adding stories.*
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Create a task
 
 <a id="opIdcreateTask"></a>
@@ -6218,18 +6485,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="post-verb">POST</span> /tasks</code>
-</p>
-
-Creating a new task is as easy as POSTing to the `/tasks` endpoint with a
-data block containing the fields you’d like to set on the task. Any
-unspecified fields will take on default values.
-
-Every task is required to be created in a specific workspace, and this
-workspace cannot be changed once set. The workspace need not be set
-explicitly if you specify `projects` or a `parent` task instead.
 
 > Body parameter
 
@@ -6263,6 +6518,106 @@ explicitly if you specify `projects` or a `parent` task instead.
   }
 }
 ```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Buy catnip",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "resource_subtype": "default_task",
+    "assignee": null,
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "custom_fields": [
+      {
+        ...
+      }
+    ],
+    "dependencies": [
+      {
+        ...
+      },
+      {
+        ...
+      }
+    ],
+    "dependents": [
+      {
+        ...
+      },
+      {
+        ...
+      }
+    ],
+    "due_at": "2012-02-22T02:06:58.147Z",
+    "due_on": "2012-03-26",
+    "external": {
+      "gid": "my_gid",
+      "data": "A blob of information"
+    },
+    "followers": [
+      {
+        ...
+      }
+    ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "hearted": true,
+    "hearts": [
+      {
+        ...
+      }
+    ],
+    "is_rendered_as_separator": false,
+    "liked": true,
+    "likes": [
+      {
+        ...
+      }
+    ],
+    "memberships": [
+      {
+        ...
+      }
+    ],
+    "modified_at": "2012-02-22T02:06:58.147Z",
+    "notes": "Mittens really likes the stuff from Humboldt.",
+    "num_hearts": 5,
+    "num_likes": 5,
+    "num_subtasks": 3,
+    "parent": null,
+    "projects": [
+      {
+        ...
+      }
+    ],
+    "start_on": "2012-03-26",
+    "tags": [
+      {
+        ...
+      }
+    ],
+    "workspace": null
+  }
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /tasks</code>
+</p>
+
+Creating a new task is as easy as POSTing to the `/tasks` endpoint with a
+data block containing the fields you’d like to set on the task. Any
+unspecified fields will take on default values.
+
+Every task is required to be created in a specific workspace, and this
+workspace cannot be changed once set. The workspace need not be set
+explicitly if you specify `projects` or a `parent` task instead.
 
 <h3 id="create-a-task-parameters">Parameters</h3>
 
@@ -6401,94 +6756,6 @@ added or removed from the task.*
 | type|enum|
 | type|number|
 
-> 201 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Buy catnip",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "resource_subtype": "default_task",
-    "assignee": null,
-    "assignee_status": "upcoming",
-    "completed": false,
-    "completed_at": "2012-02-22T02:06:58.147Z",
-    "custom_fields": [
-      {
-        ...
-      }
-    ],
-    "dependencies": [
-      {
-        ...
-      },
-      {
-        ...
-      }
-    ],
-    "dependents": [
-      {
-        ...
-      },
-      {
-        ...
-      }
-    ],
-    "due_at": "2012-02-22T02:06:58.147Z",
-    "due_on": "2012-03-26",
-    "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
-    },
-    "followers": [
-      {
-        ...
-      }
-    ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "hearted": true,
-    "hearts": [
-      {
-        ...
-      }
-    ],
-    "is_rendered_as_separator": false,
-    "liked": true,
-    "likes": [
-      {
-        ...
-      }
-    ],
-    "memberships": [
-      {
-        ...
-      }
-    ],
-    "modified_at": "2012-02-22T02:06:58.147Z",
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "num_hearts": 5,
-    "num_likes": 5,
-    "num_subtasks": 3,
-    "parent": null,
-    "projects": [
-      {
-        ...
-      }
-    ],
-    "start_on": "2012-03-26",
-    "tags": [
-      {
-        ...
-      }
-    ],
-    "workspace": null
-  }
-}
-```
-
 <h3 id="create-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -6500,7 +6767,10 @@ added or removed from the task.*
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a task
 
 <a id="opIdgetTask"></a>
@@ -6514,20 +6784,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /tasks/{task_gid}</code>
-</p>
-
-Returns the complete task record for a single task.
-
-<h3 id="get-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -6617,6 +6873,20 @@ Returns the complete task record for a single task.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}</code>
+</p>
+
+Returns the complete task record for a single task.
+
+<h3 id="get-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -6628,7 +6898,10 @@ Returns the complete task record for a single task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a task
 
 <a id="opIdupdateTask"></a>
@@ -6643,20 +6916,6 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="put-verb">PUT</span> /tasks/{task_gid}</code>
-</p>
-
-A specific, existing task can be updated by making a PUT request on the
-URL for that task. Only the fields provided in the `data` block will be
-updated; any unspecified fields will remain unchanged.
-
-When using this method, it is best to specify only those fields you wish
-to change, or else you may overwrite changes made by another user since
-you last retrieved the task.
-
-Returns the complete updated task record.
 
 > Body parameter
 
@@ -6681,6 +6940,108 @@ Returns the complete updated task record.
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Buy catnip",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "resource_subtype": "default_task",
+    "assignee": null,
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "custom_fields": [
+      {
+        ...
+      }
+    ],
+    "dependencies": [
+      {
+        ...
+      },
+      {
+        ...
+      }
+    ],
+    "dependents": [
+      {
+        ...
+      },
+      {
+        ...
+      }
+    ],
+    "due_at": "2012-02-22T02:06:58.147Z",
+    "due_on": "2012-03-26",
+    "external": {
+      "gid": "my_gid",
+      "data": "A blob of information"
+    },
+    "followers": [
+      {
+        ...
+      }
+    ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "hearted": true,
+    "hearts": [
+      {
+        ...
+      }
+    ],
+    "is_rendered_as_separator": false,
+    "liked": true,
+    "likes": [
+      {
+        ...
+      }
+    ],
+    "memberships": [
+      {
+        ...
+      }
+    ],
+    "modified_at": "2012-02-22T02:06:58.147Z",
+    "notes": "Mittens really likes the stuff from Humboldt.",
+    "num_hearts": 5,
+    "num_likes": 5,
+    "num_subtasks": 3,
+    "parent": null,
+    "projects": [
+      {
+        ...
+      }
+    ],
+    "start_on": "2012-03-26",
+    "tags": [
+      {
+        ...
+      }
+    ],
+    "workspace": null
+  }
+}
+```
+
+<p>
+<code> <span class="put-verb">PUT</span> /tasks/{task_gid}</code>
+</p>
+
+A specific, existing task can be updated by making a PUT request on the
+URL for that task. Only the fields provided in the `data` block will be
+updated; any unspecified fields will remain unchanged.
+
+When using this method, it is best to specify only those fields you wish
+to change, or else you may overwrite changes made by another user since
+you last retrieved the task.
+
+Returns the complete updated task record.
 
 <h3 id="update-a-task-parameters">Parameters</h3>
 
@@ -6820,7 +7181,668 @@ added or removed from the task.*
 | type|enum|
 | type|number|
 
+<h3 id="update-a-task-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified task.|[Task](#schematask)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Delete a task
+
+<a id="opIddeleteTask"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
 > 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="delete-verb">DELETE</span> /tasks/{task_gid}</code>
+</p>
+
+A specific, existing task can be deleted by making a DELETE request on
+the URL for that task. Deleted tasks go into the “trash” of the user
+making the delete request. Tasks can be recovered from the trash within a
+period of 30 days; afterward they are completely removed from the system.
+
+Returns an empty data record.
+
+<h3 id="delete-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
+<h3 id="delete-a-task-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified task.|[Empty](#schemaempty)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Duplicate a task
+
+<a id="opIdduplicateTask"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "name": "New Task Name",
+    "include": [
+      "notes",
+      "assignee"
+    ]
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "resource_subtype": "milestone",
+    "status": "in_progress",
+    "new_project": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "new_task": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  }
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/duplicate</code>
+</p>
+
+Creates and returns a job that will asynchronously handle the duplication.
+
+<h3 id="duplicate-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|Describes the duplicate's name and the fields that will be duplicated.|
+|» data|body|object|false|none|
+|»» name|body|string|false|The name of the new task.|
+|»» include|body|string|false|The fields that will be duplicated to the new task.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| include|notes|
+| include|assignee|
+| include|subtasks|
+| include|attachments|
+| include|tags|
+| include|followers|
+| include|projects|
+| include|dates|
+| include|dependencies|
+| include|parent|
+
+<h3 id="duplicate-a-task-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the job to handle duplication.|[Job](#schemajob)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get tasks from a project
+
+<a id="opIdgetProjectTasks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Buy catnip",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "default_task",
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "due_on": "2012-03-26",
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "hearted": true,
+      "hearts": [
+        ...
+      ],
+      "is_rendered_as_separator": false,
+      "liked": true,
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_hearts": 5,
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "parent": null,
+      "projects": [
+        ...
+      ],
+      "start_on": "2012-03-26",
+      "tags": [
+        ...
+      ],
+      "workspace": null
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/tasks</code>
+</p>
+
+Returns the compact task records for all tasks within the given project, ordered by their priority within the project. Tasks can exist in more than one project at a time.
+
+<h3 id="get-tasks-from-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+<h3 id="get-tasks-from-a-project-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project's tasks.|[Task](#schematask)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get tasks from a section
+
+<a id="opIdgetSectionTasks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Buy catnip",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "default_task",
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "due_on": "2012-03-26",
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "hearted": true,
+      "hearts": [
+        ...
+      ],
+      "is_rendered_as_separator": false,
+      "liked": true,
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_hearts": 5,
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "parent": null,
+      "projects": [
+        ...
+      ],
+      "start_on": "2012-03-26",
+      "tags": [
+        ...
+      ],
+      "workspace": null
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /sections/{section_gid}/tasks</code>
+</p>
+
+*Board view only*: Returns the compact section records for all tasks within the given section.
+
+<h3 id="get-tasks-from-a-section-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|section_gid|path|string|true|The globally unique identified for the section.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+<h3 id="get-tasks-from-a-section-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the section's tasks.|[Task](#schematask)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get tasks from a tag
+
+<a id="opIdgetTagTasks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Buy catnip",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "default_task",
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "due_on": "2012-03-26",
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "hearted": true,
+      "hearts": [
+        ...
+      ],
+      "is_rendered_as_separator": false,
+      "liked": true,
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_hearts": 5,
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "parent": null,
+      "projects": [
+        ...
+      ],
+      "start_on": "2012-03-26",
+      "tags": [
+        ...
+      ],
+      "workspace": null
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /tags/{tag_gid}/tasks</code>
+</p>
+
+Returns the compact task records for all tasks with the given tag. Tasks can have more than one tag at a time.
+
+<h3 id="get-tasks-from-a-tag-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|tag_gid|path|string|true|Globally unique identifier for the tag.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+<h3 id="get-tasks-from-a-tag-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the tasks associated with the specified tag.|[Task](#schematask)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get subtasks from a task
+
+<a id="opIdgetSubTasks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Buy catnip",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "default_task",
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "due_on": "2012-03-26",
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "hearted": true,
+      "hearts": [
+        ...
+      ],
+      "is_rendered_as_separator": false,
+      "liked": true,
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_hearts": 5,
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "parent": null,
+      "projects": [
+        ...
+      ],
+      "start_on": "2012-03-26",
+      "tags": [
+        ...
+      ],
+      "workspace": null
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/subtasks</code>
+</p>
+
+Returns a compact representation of all of the subtasks of a task.
+
+<h3 id="get-subtasks-from-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
+<h3 id="get-subtasks-from-a-task-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified task's subtasks.|[Task](#schematask)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Create a subtask
+
+<a id="opIdcreateSubtask"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "name": "Buy catnip",
+    "assignee": "12345",
+    "assignee_status": "upcoming",
+    "completed": false,
+    "due_at": "2012-02-22T02:06:58.147Z",
+    "due_on": "2012-03-26",
+    "external": {
+      "gid": "my_gid",
+      "data": "A blob of information"
+    },
+    "followers": [
+      "12345"
+    ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "notes": "Mittens really likes the stuff from Humboldt.",
+    "projects": [
+      "12345"
+    ],
+    "start_on": "2012-03-26",
+    "tags": [
+      "12345"
+    ],
+    "workspace": "12345"
+  }
+}
+```
+
+> 201 Response
 
 ```json
 {
@@ -6908,651 +7930,11 @@ added or removed from the task.*
 }
 ```
 
-<h3 id="update-a-task-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Delete a task
-
-<a id="opIddeleteTask"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-<p>
-<code> <span class="delete-verb">DELETE</span> /tasks/{task_gid}</code>
-</p>
-
-A specific, existing task can be deleted by making a DELETE request on
-the URL for that task. Deleted tasks go into the “trash” of the user
-making the delete request. Tasks can be recovered from the trash within a
-period of 30 days; afterward they are completely removed from the system.
-
-Returns an empty data record.
-
-<h3 id="delete-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<h3 id="delete-a-task-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Duplicate a task
-
-<a id="opIdduplicateTask"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/duplicate</code>
-</p>
-
-Creates and returns a job that will asynchronously handle the duplication.
-
-> Body parameter
-
-```json
-{
-  "data": {
-    "name": "New Task Name",
-    "include": [
-      "notes",
-      "assignee"
-    ]
-  }
-}
-```
-
-<h3 id="duplicate-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|Describes the duplicate's name and the fields that will be duplicated.|
-|» data|body|object|false|none|
-|»» name|body|string|false|The name of the new task.|
-|»» include|body|string|false|The fields that will be duplicated to the new task.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-| include|notes|
-| include|assignee|
-| include|subtasks|
-| include|attachments|
-| include|tags|
-| include|followers|
-| include|projects|
-| include|dates|
-| include|dependencies|
-| include|parent|
-
-> 201 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "task",
-    "resource_subtype": "milestone",
-    "status": "in_progress",
-    "new_project": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "project",
-      "name": "Stuff to buy"
-    },
-    "new_task": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
-  }
-}
-```
-
-<h3 id="duplicate-a-task-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the job to handle duplication.|[Job](#schemajob)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get tasks from a project
-
-<a id="opIdgetProjectTasks"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /projects/{project_gid}/tasks</code>
-</p>
-
-Returns the compact task records for all tasks within the given project, ordered by their priority within the project. Tasks can exist in more than one project at a time.
-
-<h3 id="get-tasks-from-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
-    }
-  ]
-}
-```
-
-<h3 id="get-tasks-from-a-project-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project's tasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get tasks from a section
-
-<a id="opIdgetSectionTasks"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /sections/{section_gid}/tasks</code>
-</p>
-
-*Board view only*: Returns the compact section records for all tasks within the given section.
-
-<h3 id="get-tasks-from-a-section-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identified for the section.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
-    }
-  ]
-}
-```
-
-<h3 id="get-tasks-from-a-section-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the section's tasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get tasks from a tag
-
-<a id="opIdgetTagTasks"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /tags/{tag_gid}/tasks</code>
-</p>
-
-Returns the compact task records for all tasks with the given tag. Tasks can have more than one tag at a time.
-
-<h3 id="get-tasks-from-a-tag-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|tag_gid|path|string|true|Globally unique identifier for the tag.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
-    }
-  ]
-}
-```
-
-<h3 id="get-tasks-from-a-tag-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the tasks associated with the specified tag.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get subtasks from a task
-
-<a id="opIdgetSubTasks"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /tasks/{task_gid}/subtasks</code>
-</p>
-
-Returns a compact representation of all of the subtasks of a task.
-
-<h3 id="get-subtasks-from-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
-    }
-  ]
-}
-```
-
-<h3 id="get-subtasks-from-a-task-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified task's subtasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Create a subtask
-
-<a id="opIdcreateSubtask"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/subtasks</code>
 </p>
 
 Creates a new subtask and adds it to the parent task. Returns the full record for the newly created subtask.
-
-> Body parameter
-
-```json
-{
-  "data": {
-    "name": "Buy catnip",
-    "assignee": "12345",
-    "assignee_status": "upcoming",
-    "completed": false,
-    "due_at": "2012-02-22T02:06:58.147Z",
-    "due_on": "2012-03-26",
-    "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
-    },
-    "followers": [
-      "12345"
-    ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "projects": [
-      "12345"
-    ],
-    "start_on": "2012-03-26",
-    "tags": [
-      "12345"
-    ],
-    "workspace": "12345"
-  }
-}
-```
 
 <h3 id="create-a-subtask-parameters">Parameters</h3>
 
@@ -7692,94 +8074,6 @@ added or removed from the task.*
 | type|enum|
 | type|number|
 
-> 201 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Buy catnip",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "resource_subtype": "default_task",
-    "assignee": null,
-    "assignee_status": "upcoming",
-    "completed": false,
-    "completed_at": "2012-02-22T02:06:58.147Z",
-    "custom_fields": [
-      {
-        ...
-      }
-    ],
-    "dependencies": [
-      {
-        ...
-      },
-      {
-        ...
-      }
-    ],
-    "dependents": [
-      {
-        ...
-      },
-      {
-        ...
-      }
-    ],
-    "due_at": "2012-02-22T02:06:58.147Z",
-    "due_on": "2012-03-26",
-    "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
-    },
-    "followers": [
-      {
-        ...
-      }
-    ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "hearted": true,
-    "hearts": [
-      {
-        ...
-      }
-    ],
-    "is_rendered_as_separator": false,
-    "liked": true,
-    "likes": [
-      {
-        ...
-      }
-    ],
-    "memberships": [
-      {
-        ...
-      }
-    ],
-    "modified_at": "2012-02-22T02:06:58.147Z",
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "num_hearts": 5,
-    "num_likes": 5,
-    "num_subtasks": 3,
-    "parent": null,
-    "projects": [
-      {
-        ...
-      }
-    ],
-    "start_on": "2012-03-26",
-    "tags": [
-      {
-        ...
-      }
-    ],
-    "workspace": null
-  }
-}
-```
-
 <h3 id="create-a-subtask-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -7791,7 +8085,10 @@ added or removed from the task.*
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Change the parent of a task
 
 <a id="opIdchangeSubtaskParent"></a>
@@ -7807,12 +8104,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/setParent</code>
-</p>
-
-parent, or no parent task at all. Returns an empty data block. When using `insert_before` and `insert_after`, at most one of those two options can be specified, and they must already be subtasks of the parent.
-
 > Body parameter
 
 ```json
@@ -7824,19 +8115,6 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
   }
 }
 ```
-
-<h3 id="change-the-parent-of-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The new parent of the subtask.|
-|» data|body|object|false|none|
-|»» parent|body|string|true|The new parent of the task, or `null` for no parent.|
-|»» insert_after|body|string|false|A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.|
-|»» insert_before|body|string|false|A subtask of the parent to insert the task before, or `null` to insert at the end of the list.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -7926,6 +8204,25 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/setParent</code>
+</p>
+
+parent, or no parent task at all. Returns an empty data block. When using `insert_before` and `insert_after`, at most one of those two options can be specified, and they must already be subtasks of the parent.
+
+<h3 id="change-the-parent-of-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The new parent of the subtask.|
+|» data|body|object|false|none|
+|»» parent|body|string|true|The new parent of the task, or `null` for no parent.|
+|»» insert_after|body|string|false|A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.|
+|»» insert_before|body|string|false|A subtask of the parent to insert the task before, or `null` to insert at the end of the list.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="change-the-parent-of-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -7937,7 +8234,10 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get dependencies from a task
 
 <a id="opIdgetTaskDependencies"></a>
@@ -7950,6 +8250,71 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Buy catnip",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "default_task",
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "due_on": "2012-03-26",
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "hearted": true,
+      "hearts": [
+        ...
+      ],
+      "is_rendered_as_separator": false,
+      "liked": true,
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_hearts": 5,
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "parent": null,
+      "projects": [
+        ...
+      ],
+      "start_on": "2012-03-26",
+      "tags": [
+        ...
+      ],
+      "workspace": null
+    }
+  ]
+}
 ```
 
 <p>
@@ -7968,71 +8333,6 @@ Returns the compact representations of all of the dependencies of a task.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
-    }
-  ]
-}
-```
-
 <h3 id="get-dependencies-from-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8044,7 +8344,10 @@ Returns the compact representations of all of the dependencies of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Set dependencies for a task
 
 <a id="opIdaddTaskDependencies"></a>
@@ -8060,12 +8363,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependencies</code>
-</p>
-
-Marks a set of tasks as dependencies of this task, if they are not already dependencies. *A task can have at most 15 dependencies*.
-
 > Body parameter
 
 ```json
@@ -8078,15 +8375,6 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
   }
 }
 ```
-
-<h3 id="set-dependencies-for-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependencyArray](#schemadependencyarray)|true|The list of tasks to set as dependencies.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -8153,6 +8441,21 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependencies</code>
+</p>
+
+Marks a set of tasks as dependencies of this task, if they are not already dependencies. *A task can have at most 15 dependencies*.
+
+<h3 id="set-dependencies-for-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[DependencyArray](#schemadependencyarray)|true|The list of tasks to set as dependencies.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="set-dependencies-for-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8164,7 +8467,10 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Unlink dependencies from a task
 
 <a id="opIdremoveTaskDependencies"></a>
@@ -8180,12 +8486,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependencies</code>
-</p>
-
-Unlinks a set of dependencies from this task.
-
 > Body parameter
 
 ```json
@@ -8198,15 +8498,6 @@ Unlinks a set of dependencies from this task.
   }
 }
 ```
-
-<h3 id="unlink-dependencies-from-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependencyArray](#schemadependencyarray)|true|The list of tasks to unlink as dependencies.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -8273,6 +8564,21 @@ Unlinks a set of dependencies from this task.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependencies</code>
+</p>
+
+Unlinks a set of dependencies from this task.
+
+<h3 id="unlink-dependencies-from-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[DependencyArray](#schemadependencyarray)|true|The list of tasks to unlink as dependencies.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="unlink-dependencies-from-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8284,7 +8590,10 @@ Unlinks a set of dependencies from this task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get dependents from a task
 
 <a id="opIdgetTaskDependents"></a>
@@ -8297,6 +8606,71 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Buy catnip",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "default_task",
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "due_on": "2012-03-26",
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "hearted": true,
+      "hearts": [
+        ...
+      ],
+      "is_rendered_as_separator": false,
+      "liked": true,
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_hearts": 5,
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "parent": null,
+      "projects": [
+        ...
+      ],
+      "start_on": "2012-03-26",
+      "tags": [
+        ...
+      ],
+      "workspace": null
+    }
+  ]
+}
 ```
 
 <p>
@@ -8315,71 +8689,6 @@ Returns the compact representations of all of the dependents of a task.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
-    }
-  ]
-}
-```
-
 <h3 id="get-dependents-from-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8391,7 +8700,10 @@ Returns the compact representations of all of the dependents of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Set dependents for a task
 
 <a id="opIdaddTaskDependents"></a>
@@ -8407,12 +8719,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependents</code>
-</p>
-
-Marks a set of tasks as dependents of this task, if they are not already dependents. *A task can have at most 30 dependents*.
-
 > Body parameter
 
 ```json
@@ -8425,15 +8731,6 @@ Marks a set of tasks as dependents of this task, if they are not already depende
   }
 }
 ```
-
-<h3 id="set-dependents-for-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependentArray](#schemadependentarray)|true|The list of tasks to add as dependents.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -8500,6 +8797,21 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependents</code>
+</p>
+
+Marks a set of tasks as dependents of this task, if they are not already dependents. *A task can have at most 30 dependents*.
+
+<h3 id="set-dependents-for-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[DependentArray](#schemadependentarray)|true|The list of tasks to add as dependents.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="set-dependents-for-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8511,7 +8823,10 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Unlink dependents from a task
 
 <a id="opIdremoveTaskDependents"></a>
@@ -8527,12 +8842,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependents</code>
-</p>
-
-Unlinks a set of dependents from this task.
-
 > Body parameter
 
 ```json
@@ -8545,15 +8854,6 @@ Unlinks a set of dependents from this task.
   }
 }
 ```
-
-<h3 id="unlink-dependents-from-a-task-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependentArray](#schemadependentarray)|true|The list of tasks to remove as dependents.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -8620,6 +8920,21 @@ Unlinks a set of dependents from this task.
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependents</code>
+</p>
+
+Unlinks a set of dependents from this task.
+
+<h3 id="unlink-dependents-from-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[DependentArray](#schemadependentarray)|true|The list of tasks to remove as dependents.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="unlink-dependents-from-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8631,7 +8946,10 @@ Unlinks a set of dependents from this task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add a project to a task
 
 <a id="opIdaddProjectToTask"></a>
@@ -8645,6 +8963,27 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "project": "13579",
+    "insert_after": "124816",
+    "insert_before": "432134",
+    "section": "987654"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -8666,19 +9005,6 @@ within the section to anchor the position of this task.
 
 Returns an empty data block.
 
-> Body parameter
-
-```json
-{
-  "data": {
-    "project": "13579",
-    "insert_after": "124816",
-    "insert_before": "432134",
-    "section": "987654"
-  }
-}
-```
-
 <h3 id="add-a-project-to-a-task-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -8693,14 +9019,6 @@ Returns an empty data block.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="add-a-project-to-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8712,7 +9030,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove a project from a task
 
 <a id="opIdremoveProjectFromTask"></a>
@@ -8728,15 +9049,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeProject</code>
-</p>
-
-Removes the task from the specified project. The task will still exist in
-the system, but it will not be in the project anymore.
-
-Returns an empty data block.
-
 > Body parameter
 
 ```json
@@ -8746,6 +9058,23 @@ Returns an empty data block.
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeProject</code>
+</p>
+
+Removes the task from the specified project. The task will still exist in
+the system, but it will not be in the project anymore.
+
+Returns an empty data block.
 
 <h3 id="remove-a-project-from-a-task-parameters">Parameters</h3>
 
@@ -8758,14 +9087,6 @@ Returns an empty data block.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="remove-a-project-from-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8777,7 +9098,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add a tag to a task
 
 <a id="opIdaddTagToTask"></a>
@@ -8793,12 +9117,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addTag</code>
-</p>
-
-Adds a tag to a task. Returns an empty data block.
-
 > Body parameter
 
 ```json
@@ -8808,6 +9126,20 @@ Adds a tag to a task. Returns an empty data block.
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addTag</code>
+</p>
+
+Adds a tag to a task. Returns an empty data block.
 
 <h3 id="add-a-tag-to-a-task-parameters">Parameters</h3>
 
@@ -8820,14 +9152,6 @@ Adds a tag to a task. Returns an empty data block.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="add-a-tag-to-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8839,7 +9163,10 @@ Adds a tag to a task. Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove a tag from a task
 
 <a id="opIdremoveTagFromTask"></a>
@@ -8855,12 +9182,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeTag</code>
-</p>
-
-Removes a tag from a task. Returns an empty data block.
-
 > Body parameter
 
 ```json
@@ -8870,6 +9191,20 @@ Removes a tag from a task. Returns an empty data block.
   }
 }
 ```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeTag</code>
+</p>
+
+Removes a tag from a task. Returns an empty data block.
 
 <h3 id="remove-a-tag-from-a-task-parameters">Parameters</h3>
 
@@ -8882,14 +9217,6 @@ Removes a tag from a task. Returns an empty data block.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="remove-a-tag-from-a-task-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -8901,7 +9228,10 @@ Removes a tag from a task. Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add followers to a task
 
 <a id="opIdaddFollowerToTask"></a>
@@ -8917,14 +9247,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addFollowers</code>
-</p>
-
-Adds a tag to a task. Returns an empty data block.
-Each task can be associated with zero or more followers in the system.
-Requests to add/remove followers, if successful, will return the complete updated task record, described above.
-
 > Body parameter
 
 ```json
@@ -8938,6 +9260,22 @@ Requests to add/remove followers, if successful, will return the complete update
 }
 ```
 
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addFollowers</code>
+</p>
+
+Adds a tag to a task. Returns an empty data block.
+Each task can be associated with zero or more followers in the system.
+Requests to add/remove followers, if successful, will return the complete updated task record, described above.
+
 <h3 id="add-followers-to-a-task-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -8948,14 +9286,6 @@ Requests to add/remove followers, if successful, will return the complete update
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
 
 <h3 id="add-followers-to-a-task-responses">Responses</h3>
 
@@ -8968,7 +9298,10 @@ Requests to add/remove followers, if successful, will return the complete update
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove followers from a task
 
 <a id="opIdremoveFollowerToTask"></a>
@@ -8984,12 +9317,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeFollowers</code>
-</p>
-
-Removes each of the specified followers from the task if they are following. Returns the complete, updated record for the affected task.
-
 > Body parameter
 
 ```json
@@ -9003,6 +9330,20 @@ Removes each of the specified followers from the task if they are following. Ret
 }
 ```
 
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeFollowers</code>
+</p>
+
+Removes each of the specified followers from the task if they are following. Returns the complete, updated record for the affected task.
+
 <h3 id="remove-followers-from-a-task-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -9013,14 +9354,6 @@ Removes each of the specified followers from the task if they are following. Ret
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
 
 <h3 id="remove-followers-from-a-task-responses">Responses</h3>
 
@@ -9033,7 +9366,10 @@ Removes each of the specified followers from the task if they are following. Ret
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Search tasks in a workspace
 
 <a id="opIdgetWorkspaceTasksSearch"></a>
@@ -9046,6 +9382,71 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/searc
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Buy catnip",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "default_task",
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "due_on": "2012-03-26",
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "hearted": true,
+      "hearts": [
+        ...
+      ],
+      "is_rendered_as_separator": false,
+      "liked": true,
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_hearts": 5,
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "parent": null,
+      "projects": [
+        ...
+      ],
+      "start_on": "2012-03-26",
+      "tags": [
+        ...
+      ],
+      "workspace": null
+    }
+  ]
+}
 ```
 
 <p>
@@ -9161,71 +9562,6 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |sort_by|likes|
 |sort_by|modified_at|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
-    }
-  ]
-}
-```
-
 <h3 id="search-tasks-in-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9237,7 +9573,10 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-teams">Teams</h1>
 
 <pre class="highlight http tab-http">
@@ -9246,7 +9585,10 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a team
 
 <a id="opIdgetTeam"></a>
@@ -9259,6 +9601,22 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Bug Task",
+    "description": "All developers should be members of this team.",
+    "html_description": "<body><em>All</em> developers should be members of this team.</body>",
+    "organization": null
+  }
+}
 ```
 
 <p>
@@ -9277,22 +9635,6 @@ Returns the full record for a single team.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "team",
-    "name": "Bug Task",
-    "description": "All developers should be members of this team.",
-    "html_description": "<body><em>All</em> developers should be members of this team.</body>",
-    "organization": null
-  }
-}
-```
-
 <h3 id="get-a-team-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9304,7 +9646,10 @@ Returns the full record for a single team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get teams in an organization
 
 <a id="opIdgetAllTeams"></a>
@@ -9318,22 +9663,6 @@ curl -X GET https://app.asana.com/api/1.0/organizations/{workspace_gid}/teams \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /organizations/{workspace_gid}/teams</code>
-</p>
-
-Returns the compact records for all teams in the organization visible to the authorized user.
-
-<h3 id="get-teams-in-an-organization-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -9353,6 +9682,22 @@ Returns the compact records for all teams in the organization visible to the aut
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /organizations/{workspace_gid}/teams</code>
+</p>
+
+Returns the compact records for all teams in the organization visible to the authorized user.
+
+<h3 id="get-teams-in-an-organization-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-teams-in-an-organization-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9364,7 +9709,10 @@ Returns the compact records for all teams in the organization visible to the aut
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get teams for a user
 
 <a id="opIdgetTeamsForUser"></a>
@@ -9377,6 +9725,24 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gi
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Bug Task",
+      "description": "All developers should be members of this team.",
+      "html_description": "<body><em>All</em> developers should be members of this team.</body>",
+      "organization": null
+    }
+  ]
+}
 ```
 
 <p>
@@ -9396,24 +9762,6 @@ Returns the compact records for all teams to which the given user is assigned.
 |offset|query|string|false|Offset token.|
 |organization_gid|query|string|true|The workspace or organization to filter teams on.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Bug Task",
-      "description": "All developers should be members of this team.",
-      "html_description": "<body><em>All</em> developers should be members of this team.</body>",
-      "organization": null
-    }
-  ]
-}
-```
-
 <h3 id="get-teams-for-a-user-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9425,7 +9773,10 @@ Returns the compact records for all teams to which the given user is assigned.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add a user to a team
 
 <a id="opIdaddUserToTeam"></a>
@@ -9441,12 +9792,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /teams/{team_gid}/addUser</code>
-</p>
-
-The user making this call must be a member of the team in order to add others. The user being added must exist in the same organization as the team.
-
 > Body parameter
 
 ```json
@@ -9456,15 +9801,6 @@ The user making this call must be a member of the team in order to add others. T
   }
 }
 ```
-
-<h3 id="add-a-user-to-a-team-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the team.|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -9488,6 +9824,21 @@ The user making this call must be a member of the team in order to add others. T
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /teams/{team_gid}/addUser</code>
+</p>
+
+The user making this call must be a member of the team in order to add others. The user being added must exist in the same organization as the team.
+
+<h3 id="add-a-user-to-a-team-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the team.|
+|team_gid|path|string|true|Globally unique identifier for the team.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="add-a-user-to-a-team-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9499,7 +9850,10 @@ The user making this call must be a member of the team in order to add others. T
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove a user from a team
 
 <a id="opIdremoveUserFromTeam"></a>
@@ -9515,12 +9869,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /teams/{team_gid}/removeUser</code>
-</p>
-
-The user making this call must be a member of the team in order to remove themselves or others.
-
 > Body parameter
 
 ```json
@@ -9530,15 +9878,6 @@ The user making this call must be a member of the team in order to remove themse
   }
 }
 ```
-
-<h3 id="remove-a-user-from-a-team-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[UserIdObject](#schemauseridobject)|true|The user to remove from the team.|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -9562,6 +9901,21 @@ The user making this call must be a member of the team in order to remove themse
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /teams/{team_gid}/removeUser</code>
+</p>
+
+The user making this call must be a member of the team in order to remove themselves or others.
+
+<h3 id="remove-a-user-from-a-team-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UserIdObject](#schemauseridobject)|true|The user to remove from the team.|
+|team_gid|path|string|true|Globally unique identifier for the team.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="remove-a-user-from-a-team-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9573,7 +9927,10 @@ The user making this call must be a member of the team in order to remove themse
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-typeahead">Typeahead</h1>
 
 <pre class="highlight http tab-http">
@@ -9582,7 +9939,10 @@ The user making this call must be a member of the team in order to remove themse
 
 The typeahead search API provides search for objects from a single workspace.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get objects via typeahead
 
 <a id="opIdgetTypeahead"></a>
@@ -9595,6 +9955,21 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?r
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  ]
+}
 ```
 
 <p>
@@ -9648,21 +10023,6 @@ data is included in a response.
 |type|task|
 |type|user|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
-  ]
-}
-```
-
 <h3 id="get-objects-via-typeahead-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9674,7 +10034,10 @@ data is included in a response.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-users">Users</h1>
 
 <pre class="highlight http tab-http">
@@ -9685,7 +10048,10 @@ A user object represents an account in Asana that can be given access to various
 
 Like other objects in the system, users are referred to by numerical IDs. However, the special string identifier `me` can be used anywhere a user ID is accepted, to refer to the current authenticated user.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple users
 
 <a id="opIdgetAllUsers"></a>
@@ -9699,23 +10065,6 @@ curl -X GET https://app.asana.com/api/1.0/users \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /users</code>
-</p>
-
-Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter.
-Results are sorted by user ID.
-
-<h3 id="get-multiple-users-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace|query|string|false|The workspace or organization ID to filter users on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -9739,6 +10088,23 @@ Results are sorted by user ID.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /users</code>
+</p>
+
+Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter.
+Results are sorted by user ID.
+
+<h3 id="get-multiple-users-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|workspace|query|string|false|The workspace or organization ID to filter users on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-multiple-users-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9750,7 +10116,10 @@ Results are sorted by user ID.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a user
 
 <a id="opIdgetUser"></a>
@@ -9764,21 +10133,6 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /users/{user_gid}</code>
-</p>
-
-Returns the full user record for the single user with the provided ID.
-Results are sorted by user ID.
-
-<h3 id="get-a-user-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -9806,6 +10160,21 @@ Results are sorted by user ID.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}</code>
+</p>
+
+Returns the full user record for the single user with the provided ID.
+Results are sorted by user ID.
+
+<h3 id="get-a-user-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|user_gid|path|string|true|Globally unique identifier for the user.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-user-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9817,7 +10186,10 @@ Results are sorted by user ID.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a user's favorites
 
 <a id="opIdgetUserFavorites"></a>
@@ -9830,6 +10202,16 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_ty
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "id": 12345,
+  "gid": "12345",
+  "resource_type": "task"
+}
 ```
 
 <p>
@@ -9859,16 +10241,6 @@ Results are given in order (The same order as Asana's sidebar).
 |resource_type|task|
 |resource_type|user|
 
-> 200 Response
-
-```json
-{
-  "id": 12345,
-  "gid": "12345",
-  "resource_type": "task"
-}
-```
-
 <h3 id="get-a-user's-favorites-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9880,7 +10252,10 @@ Results are given in order (The same order as Asana's sidebar).
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get users in a team
 
 <a id="opIdgetUsersForTeam"></a>
@@ -9894,22 +10269,6 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /teams/{team_gid}/users</code>
-</p>
-
-Returns the compact records for all users that are members of the team.
-
-<h3 id="get-users-in-a-team-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -9933,6 +10292,22 @@ Returns the compact records for all users that are members of the team.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /teams/{team_gid}/users</code>
+</p>
+
+Returns the compact records for all users that are members of the team.
+
+<h3 id="get-users-in-a-team-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|team_gid|path|string|true|Globally unique identifier for the team.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-users-in-a-team-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -9944,7 +10319,10 @@ Returns the compact records for all users that are members of the team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get users in a workspace or organization
 
 <a id="opIdgetUsersInWorkspace"></a>
@@ -9957,6 +10335,28 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez",
+      "email": "gsanchez@example.com",
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
+    }
+  ]
+}
 ```
 
 <p>
@@ -9976,28 +10376,6 @@ Results are sorted alphabetically by user names.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        ...
-      },
-      "workspaces": [
-        ...
-      ]
-    }
-  ]
-}
-```
-
 <h3 id="get-users-in-a-workspace-or-organization-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10009,7 +10387,10 @@ Results are sorted alphabetically by user names.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-user-task-lists">User Task Lists</h1>
 
 <pre class="highlight http tab-http">
@@ -10020,7 +10401,10 @@ A user task list represents the tasks assigned to a particular user.
 
 A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](#tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get tasks from a user task list
 
 <a id="opIdgetUserTaskListTasks"></a>
@@ -10034,30 +10418,6 @@ curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/t
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
-</p>
-
-Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
-*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
-*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
-*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
-
-<h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|completed_since|query|string|false|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
-|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-#### Detailed descriptions
-
-**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
 
 > 200 Response
 
@@ -10124,6 +10484,30 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
+</p>
+
+Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
+*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
+*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
+*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
+
+<h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|completed_since|query|string|false|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
+|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+#### Detailed descriptions
+
+**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
+
 <h3 id="get-tasks-from-a-user-task-list-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10135,7 +10519,10 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a user task list
 
 <a id="opIdgetUserTaskList"></a>
@@ -10148,6 +10535,21 @@ curl -X GET https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task",
+    "owner": null,
+    "workspace": null
+  }
+}
 ```
 
 <p>
@@ -10164,6 +10566,35 @@ Returns the full record for a user task list.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
+<h3 id="get-a-user-task-list-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list.|[UserTaskList](#schemausertasklist)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get a user's task list
+
+<a id="opIdgetUsersTaskList"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
 > 200 Response
 
 ```json
@@ -10177,32 +10608,6 @@ Returns the full record for a user task list.
     "workspace": null
   }
 }
-```
-
-<h3 id="get-a-user-task-list-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list.|[UserTaskList](#schemausertasklist)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get a user's task list
-
-<a id="opIdgetUsersTaskList"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
 ```
 
 <p>
@@ -10219,21 +10624,6 @@ Returns the full record for a user's task list.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task",
-    "owner": null,
-    "workspace": null
-  }
-}
-```
-
 <h3 id="get-a-user's-task-list-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10245,7 +10635,10 @@ Returns the full record for a user's task list.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-webhooks">Webhooks</h1>
 
 <pre class="highlight http tab-http">
@@ -10283,7 +10676,10 @@ Note that events are "skinny" - we expect consumers who desire syncing data to m
 
 If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect it to take no longer than approximately an hour after they come back before the paused delivery resumes. However, if we are unable to deliver a message for 24 hours the webhook will be deactivated.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple webhooks
 
 <a id="opIdgetWebhooks"></a>
@@ -10297,23 +10693,6 @@ curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /webhooks</code>
-</p>
-
-Get the compact representation of all webhooks your app has registered for the authenticated user in the given workspace.
-
-<h3 id="get-multiple-webhooks-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace|query|string|true|The workspace to query for webhooks in.|
-|resource|query|string|false|Only return webhooks for the given resource.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -10336,6 +10715,23 @@ Get the compact representation of all webhooks your app has registered for the a
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /webhooks</code>
+</p>
+
+Get the compact representation of all webhooks your app has registered for the authenticated user in the given workspace.
+
+<h3 id="get-multiple-webhooks-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+|workspace|query|string|true|The workspace to query for webhooks in.|
+|resource|query|string|false|Only return webhooks for the given resource.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-multiple-webhooks-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10347,7 +10743,10 @@ Get the compact representation of all webhooks your app has registered for the a
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Establish a webhook
 
 <a id="opIdcreateWebhook"></a>
@@ -10361,6 +10760,36 @@ curl -X POST https://app.asana.com/api/1.0/webhooks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "resource": "12345",
+    "target": "https://example.com/receive-webhook/7654"
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "active": false,
+    "last_failure_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+    "last_success_at": "2012-02-22T02:06:58.147Z",
+    "resource": null,
+    "target": "https://example.com/receive-webhook/7654"
+  }
+}
 ```
 
 <p>
@@ -10422,17 +10851,6 @@ HTTP/1.1 201
 }
 ```
 
-> Body parameter
-
-```json
-{
-  "data": {
-    "resource": "12345",
-    "target": "https://example.com/receive-webhook/7654"
-  }
-}
-```
-
 <h3 id="establish-a-webhook-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -10444,7 +10862,36 @@ HTTP/1.1 201
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 201 Response
+<h3 id="establish-a-webhook-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the requested webhook.|[Webhook](#schemawebhook)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get a webhook
+
+<a id="opIdgetWebhook"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
 
 ```json
 {
@@ -10461,32 +10908,6 @@ HTTP/1.1 201
     "target": "https://example.com/receive-webhook/7654"
   }
 }
-```
-
-<h3 id="establish-a-webhook-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the requested webhook.|[Webhook](#schemawebhook)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get a webhook
-
-<a id="opIdgetWebhook"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
 ```
 
 <p>
@@ -10503,25 +10924,6 @@ Returns the full record for the given webhook.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "task",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "active": false,
-    "last_failure_at": "2012-02-22T02:06:58.147Z",
-    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-    "last_success_at": "2012-02-22T02:06:58.147Z",
-    "resource": null,
-    "target": "https://example.com/receive-webhook/7654"
-  }
-}
-```
-
 <h3 id="get-a-webhook-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10533,7 +10935,10 @@ Returns the full record for the given webhook.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Delete a webhook
 
 <a id="opIddeleteWebhook"></a>
@@ -10546,6 +10951,14 @@ curl -X DELETE https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
 ```
 
 <p>
@@ -10562,14 +10975,6 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
 <h3 id="delete-a-webhook-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10581,7 +10986,10 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-workspaces">Workspaces</h1>
 
 <pre class="highlight http tab-http">
@@ -10594,7 +11002,10 @@ An *organization* is a special kind of workspace that represents a company. In a
 
 Over time, we intend to migrate most workspaces into organizations and to release more organization-specific functionality. We may eventually deprecate using workspace-based APIs for organizations. Currently, and until after some reasonable grace period following any further announcements, you can still reference organizations in any `workspace` parameter.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get multiple workspaces
 
 <a id="opIdgetAllWorkspaces"></a>
@@ -10608,21 +11019,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces \
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /workspaces</code>
-</p>
-
-Returns the compact records for all workspaces visible to the authorized user.
-
-<h3 id="get-multiple-workspaces-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -10643,6 +11039,21 @@ Returns the compact records for all workspaces visible to the authorized user.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /workspaces</code>
+</p>
+
+Returns the compact records for all workspaces visible to the authorized user.
+
+<h3 id="get-multiple-workspaces-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-multiple-workspaces-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10654,7 +11065,10 @@ Returns the compact records for all workspaces visible to the authorized user.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a workspace
 
 <a id="opIdgetWorkspace"></a>
@@ -10667,6 +11081,23 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task",
+    "email_domains": [
+      "asana.com"
+    ],
+    "is_organization": false
+  }
+}
 ```
 
 <p>
@@ -10683,23 +11114,6 @@ Returns the full workspace record for a single workspace.
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task",
-    "email_domains": [
-      "asana.com"
-    ],
-    "is_organization": false
-  }
-}
-```
-
 <h3 id="get-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10711,7 +11125,10 @@ Returns the full workspace record for a single workspace.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Update a workspace
 
 <a id="opIdupdateWorkspace"></a>
@@ -10727,14 +11144,6 @@ curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
 
 ```
 
-<p>
-<code> <span class="put-verb">PUT</span> /workspaces/{workspace_gid}</code>
-</p>
-
-A specific, existing workspace can be updated by making a PUT request on the URL for that workspace. Only the fields provided in the data block will be updated; any unspecified fields will remain unchanged.
-Currently the only field that can be modified for a workspace is its name.
-Returns the complete, updated workspace record.
-
 > Body parameter
 
 ```json
@@ -10748,15 +11157,6 @@ Returns the complete, updated workspace record.
   }
 }
 ```
-
-<h3 id="update-a-workspace-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[WorkspaceObject](#schemaworkspaceobject)|true|The workspace object with all updated properties.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -10775,6 +11175,23 @@ Returns the complete, updated workspace record.
 }
 ```
 
+<p>
+<code> <span class="put-verb">PUT</span> /workspaces/{workspace_gid}</code>
+</p>
+
+A specific, existing workspace can be updated by making a PUT request on the URL for that workspace. Only the fields provided in the data block will be updated; any unspecified fields will remain unchanged.
+Currently the only field that can be modified for a workspace is its name.
+Returns the complete, updated workspace record.
+
+<h3 id="update-a-workspace-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[WorkspaceObject](#schemaworkspaceobject)|true|The workspace object with all updated properties.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="update-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10786,7 +11203,10 @@ Returns the complete, updated workspace record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Add a user to a workspace or organization
 
 <a id="opIdaddUserToWorkspace"></a>
@@ -10802,13 +11222,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/addUser</code>
-</p>
-
-Add a user to a workspace or organization.
-The user can be referenced by their globally unique user ID or their email address. Returns the full user record for the invited user.
-
 > Body parameter
 
 ```json
@@ -10818,15 +11231,6 @@ The user can be referenced by their globally unique user ID or their email addre
   }
 }
 ```
-
-<h3 id="add-a-user-to-a-workspace-or-organization-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the workspace.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -10854,6 +11258,22 @@ The user can be referenced by their globally unique user ID or their email addre
 }
 ```
 
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/addUser</code>
+</p>
+
+Add a user to a workspace or organization.
+The user can be referenced by their globally unique user ID or their email address. Returns the full user record for the invited user.
+
+<h3 id="add-a-user-to-a-workspace-or-organization-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the workspace.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="add-a-user-to-a-workspace-or-organization-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -10865,7 +11285,10 @@ The user can be referenced by their globally unique user ID or their email addre
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Remove a user from a workspace or organization
 
 <a id="opIdremoveUserToWorkspace"></a>
@@ -10881,14 +11304,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser
 
 ```
 
-<p>
-<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/removeUser</code>
-</p>
-
-Remove a user from a workspace or organization.
-The user making this call must be an admin in the workspace. The user can be referenced by their globally unique user ID or their email address.
-Returns an empty data record.
-
 > Body parameter
 
 ```json
@@ -10899,6 +11314,22 @@ Returns an empty data record.
 }
 ```
 
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/removeUser</code>
+</p>
+
+Remove a user from a workspace or organization.
+The user making this call must be an admin in the workspace. The user can be referenced by their globally unique user ID or their email address.
+Returns an empty data record.
+
 <h3 id="remove-a-user-from-a-workspace-or-organization-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -10907,14 +11338,6 @@ Returns an empty data record.
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
 
 <h3 id="remove-a-user-from-a-workspace-or-organization-responses">Responses</h3>
 
@@ -10927,7 +11350,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 <h1 id="asana-workspace-memberships">Workspace Memberships</h1>
 
 <pre class="highlight http tab-http">
@@ -10936,7 +11362,10 @@ Returns an empty data record.
 
 This object determines if a user is a member of a workspace.
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get a workspace membership
 
 <a id="opIdgetWorkspaceMembership"></a>
@@ -10950,20 +11379,6 @@ curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membe
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /workspace_memberships/{workspace_membership_gid}</code>
-</p>
-
-Returns the complete workspace record for a single workspace membership.
-
-<h3 id="get-a-workspace-membership-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_membership_path_gid|path|string|true|none|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -11000,6 +11415,20 @@ Returns the complete workspace record for a single workspace membership.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /workspace_memberships/{workspace_membership_gid}</code>
+</p>
+
+Returns the complete workspace record for a single workspace membership.
+
+<h3 id="get-a-workspace-membership-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|workspace_membership_path_gid|path|string|true|none|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
 <h3 id="get-a-workspace-membership-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -11011,7 +11440,10 @@ Returns the complete workspace record for a single workspace membership.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get workspace memberships for a user
 
 <a id="opIdgetWorkspaceMembershipsForUser"></a>
@@ -11025,22 +11457,6 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/workspace_memberships
   -H 'Authorization: Bearer {access-token}'
 
 ```
-
-<p>
-<code> <span class="get-verb">GET</span> /users/{user_gid}/workspace_memberships</code>
-</p>
-
-Returns the compact workspace membership records for the user.
-
-<h3 id="get-workspace-memberships-for-a-user-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -11062,6 +11478,22 @@ Returns the compact workspace membership records for the user.
 }
 ```
 
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}/workspace_memberships</code>
+</p>
+
+Returns the compact workspace membership records for the user.
+
+<h3 id="get-workspace-memberships-for-a-user-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|user_gid|path|string|true|Globally unique identifier for the user.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
 <h3 id="get-workspace-memberships-for-a-user-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -11073,7 +11505,10 @@ Returns the compact workspace membership records for the user.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+</section>
+
 <hr class="half-line">
+<section>
 ## Get the workspace memberships for a workspace
 
 <a id="opIdgetWorkspaceMembershipsForWorkspace"></a>
@@ -11086,6 +11521,26 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/workspace_m
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "workspace_membership",
+      "user": {
+        ...
+      },
+      "workspace": {
+        ...
+      }
+    }
+  ]
+}
 ```
 
 <p>
@@ -11105,40 +11560,24 @@ Returns the compact workspace membership records for the workspace.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "workspace_membership",
-      "user": {
-        ...
-      },
-      "workspace": {
-        ...
-      }
-    }
-  ]
-}
-```
-
 <h3 id="get-the-workspace-memberships-for-a-workspace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested workspace's memberships.|[WorkspaceMembership](#schemaworkspacemembership)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 
 # Schemas
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Attachment">Attachment</h2>
-<!-- backwards compatibility -->
 <a id="schemaattachment"></a>
 <a id="schema_Attachment"></a>
 <a id="tocSattachment"></a>
@@ -11175,10 +11614,11 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |parent|any|false|none|none|
 |view_url|string(uri)¦null|false|read-only|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_AttachmentCompact">AttachmentCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaattachmentcompact"></a>
 <a id="schema_AttachmentCompact"></a>
 <a id="tocSattachmentcompact"></a>
@@ -11205,10 +11645,11 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|read-only|The name of the file.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_BatchRequest">BatchRequest</h2>
-<!-- backwards compatibility -->
 <a id="schemabatchrequest"></a>
 <a id="schema_BatchRequest"></a>
 <a id="tocSbatchrequest"></a>
@@ -11259,10 +11700,11 @@ A request object for use in a batch request.
 |method|patch|
 |method|head|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_BatchResult">BatchResult</h2>
-<!-- backwards compatibility -->
 <a id="schemabatchresult"></a>
 <a id="schema_BatchResult"></a>
 <a id="tocSbatchresult"></a>
@@ -11296,10 +11738,11 @@ A response object returned from a batch request.
 |headers|object|false|none|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
 |body|object|false|none|The JSON body that the invoked endpoint returned.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomField">CustomField</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfield"></a>
 <a id="schema_CustomField"></a>
 <a id="tocScustomfield"></a>
@@ -11374,10 +11817,11 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomFieldCompact">CustomFieldCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfieldcompact"></a>
 <a id="schema_CustomFieldCompact"></a>
 <a id="tocScustomfieldcompact"></a>
@@ -11444,10 +11888,11 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfieldsetting"></a>
 <a id="schema_CustomFieldSetting"></a>
 <a id="tocScustomfieldsetting"></a>
@@ -11480,10 +11925,11 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |parent|any|false|none|none|
 |custom_field|any|false|none|none|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomFieldSettingCompact">CustomFieldSettingCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfieldsettingcompact"></a>
 <a id="schema_CustomFieldSettingCompact"></a>
 <a id="tocScustomfieldsettingcompact"></a>
@@ -11508,10 +11954,11 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_EnumOption">EnumOption</h2>
-<!-- backwards compatibility -->
 <a id="schemaenumoption"></a>
 <a id="schema_EnumOption"></a>
 <a id="tocSenumoption"></a>
@@ -11552,10 +11999,11 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 |enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_EnumOptionCompact">EnumOptionCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaenumoptioncompact"></a>
 <a id="schema_EnumOptionCompact"></a>
 <a id="tocSenumoptioncompact"></a>
@@ -11596,10 +12044,11 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 |enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Error">Error</h2>
-<!-- backwards compatibility -->
 <a id="schemaerror"></a>
 <a id="schema_Error"></a>
 <a id="tocSerror"></a>
@@ -11639,10 +12088,11 @@ error.
 |» help|string|false|read-only|Additional information directing developers to resources on how to address and fix the problem, if available.|
 |» phrase|string|false|read-only|*500 errors only*. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Event">Event</h2>
-<!-- backwards compatibility -->
 <a id="schemaevent"></a>
 <a id="schema_Event"></a>
 <a id="tocSevent"></a>
@@ -11697,10 +12147,11 @@ observed by an event subscription.
 |» name|string|false|none|The name of the object.|
 |created_at|string(date-time)|false|read-only|The timestamp when the event occurred.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Job">Job</h2>
-<!-- backwards compatibility -->
 <a id="schemajob"></a>
 <a id="schema_Job"></a>
 <a id="tocSjob"></a>
@@ -11760,10 +12211,11 @@ A *job* is an object representing a process that handles asynchronous work.
 |status|completed|
 |status|failed|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_OrganizationExport">OrganizationExport</h2>
-<!-- backwards compatibility -->
 <a id="schemaorganizationexport"></a>
 <a id="schema_OrganizationExport"></a>
 <a id="tocSorganizationexport"></a>
@@ -11810,10 +12262,11 @@ An *organization_export* object represents a request to export the complete data
 |state|finished|
 |state|error|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Portfolio">Portfolio</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfolio"></a>
 <a id="schema_Portfolio"></a>
 <a id="tocSportfolio"></a>
@@ -11904,10 +12357,11 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |color|light-purple|
 |color|light-warm-gray|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_PortfolioCompact">PortfolioCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfoliocompact"></a>
 <a id="schema_PortfolioCompact"></a>
 <a id="tocSportfoliocompact"></a>
@@ -11935,10 +12389,11 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_PortfolioMembership">PortfolioMembership</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfoliomembership"></a>
 <a id="schema_PortfolioMembership"></a>
 <a id="tocSportfoliomembership"></a>
@@ -11985,10 +12440,11 @@ This object determines if a user is a member of a portfolio.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_PortfolioMembershipCompact">PortfolioMembershipCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfoliomembershipcompact"></a>
 <a id="schema_PortfolioMembershipCompact"></a>
 <a id="tocSportfoliomembershipcompact"></a>
@@ -12024,10 +12480,11 @@ This object determines if a user is a member of a portfolio.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Preview">Preview</h2>
-<!-- backwards compatibility -->
 <a id="schemapreview"></a>
 <a id="schema_Preview"></a>
 <a id="tocSpreview"></a>
@@ -12064,10 +12521,11 @@ This is read-only except for a small group of whitelisted apps.
 |title|string|false|none|Text to display as the title.|
 |title_link|string|false|none|Where to title will link to.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Project">Project</h2>
-<!-- backwards compatibility -->
 <a id="schemaproject"></a>
 <a id="schema_Project"></a>
 <a id="tocSproject"></a>
@@ -12255,10 +12713,11 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |section_migration_status|in_progress|
 |section_migration_status|completed|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectCompact">ProjectCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectcompact"></a>
 <a id="schema_ProjectCompact"></a>
 <a id="tocSprojectcompact"></a>
@@ -12285,10 +12744,11 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectMembership">ProjectMembership</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectmembership"></a>
 <a id="schema_ProjectMembership"></a>
 <a id="tocSprojectmembership"></a>
@@ -12344,10 +12804,11 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 |write_access|full_write|
 |write_access|comment_only|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectMembershipCompact">ProjectMembershipCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectmembershipcompact"></a>
 <a id="schema_ProjectMembershipCompact"></a>
 <a id="tocSprojectmembershipcompact"></a>
@@ -12383,10 +12844,11 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectStatus">ProjectStatus</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectstatus"></a>
 <a id="schema_ProjectStatus"></a>
 <a id="tocSprojectstatus"></a>
@@ -12440,10 +12902,11 @@ A *project status* is an update on the progress of a particular project, and is 
 |color|yellow|
 |color|red|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectStatusCompact">ProjectStatusCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectstatuscompact"></a>
 <a id="schema_ProjectStatusCompact"></a>
 <a id="tocSprojectstatuscompact"></a>
@@ -12470,10 +12933,11 @@ A *project status* is an update on the progress of a particular project, and is 
 |resource_type|string|false|read-only|The base type of this resource.|
 |title|string|false|read-only|The title of the project status update.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Section">Section</h2>
-<!-- backwards compatibility -->
 <a id="schemasection"></a>
 <a id="schema_Section"></a>
 <a id="tocSsection"></a>
@@ -12515,10 +12979,11 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_SectionCompact">SectionCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemasectioncompact"></a>
 <a id="schema_SectionCompact"></a>
 <a id="tocSsectioncompact"></a>
@@ -12545,10 +13010,11 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Story">Story</h2>
-<!-- backwards compatibility -->
 <a id="schemastory"></a>
 <a id="schema_Story"></a>
 <a id="tocSstory"></a>
@@ -12950,10 +13416,11 @@ A story represents an activity associated with an object in the Asana system.
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_StoryCompact">StoryCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemastorycompact"></a>
 <a id="schema_StoryCompact"></a>
 <a id="tocSstorycompact"></a>
@@ -12997,10 +13464,11 @@ A story represents an activity associated with an object in the Asana system.
 |text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
 |type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Tag">Tag</h2>
-<!-- backwards compatibility -->
 <a id="schematag"></a>
 <a id="schema_Tag"></a>
 <a id="tocStag"></a>
@@ -13076,10 +13544,11 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |color|light-purple|
 |color|light-warm-gray|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_TagCompact">TagCompact</h2>
-<!-- backwards compatibility -->
 <a id="schematagcompact"></a>
 <a id="schema_TagCompact"></a>
 <a id="tocStagcompact"></a>
@@ -13106,10 +13575,11 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Task">Task</h2>
-<!-- backwards compatibility -->
 <a id="schematask"></a>
 <a id="schema_Task"></a>
 <a id="tocStask"></a>
@@ -13347,10 +13817,11 @@ The *task* is the basic object around which many operations in Asana are centere
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_TaskCompact">TaskCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemataskcompact"></a>
 <a id="schema_TaskCompact"></a>
 <a id="tocStaskcompact"></a>
@@ -13377,10 +13848,11 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Team">Team</h2>
-<!-- backwards compatibility -->
 <a id="schemateam"></a>
 <a id="schema_Team"></a>
 <a id="tocSteam"></a>
@@ -13413,10 +13885,11 @@ A *team* is used to group related projects and people together within an organiz
 |html_description|string|false|none|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://developers.asana.com/docs/#rich-text) for more information.*|
 |organization|any|false|none|none|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_TeamCompact">TeamCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemateamcompact"></a>
 <a id="schema_TeamCompact"></a>
 <a id="tocSteamcompact"></a>
@@ -13443,10 +13916,11 @@ A *team* is used to group related projects and people together within an organiz
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_User">User</h2>
-<!-- backwards compatibility -->
 <a id="schemauser"></a>
 <a id="schema_User"></a>
 <a id="tocSuser"></a>
@@ -13507,10 +13981,11 @@ A *user* object represents an account in Asana that can be given access to vario
 |» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_UserCompact">UserCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemausercompact"></a>
 <a id="schema_UserCompact"></a>
 <a id="tocSusercompact"></a>
@@ -13537,10 +14012,11 @@ A *user* object represents an account in Asana that can be given access to vario
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_UserTaskList">UserTaskList</h2>
-<!-- backwards compatibility -->
 <a id="schemausertasklist"></a>
 <a id="schema_UserTaskList"></a>
 <a id="tocSusertasklist"></a>
@@ -13571,10 +14047,11 @@ A user task list represents the tasks assigned to a particular user. It provides
 |owner|any|false|none|none|
 |workspace|any|false|none|none|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_UserTaskListCompact">UserTaskListCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemausertasklistcompact"></a>
 <a id="schema_UserTaskListCompact"></a>
 <a id="tocSusertasklistcompact"></a>
@@ -13601,10 +14078,11 @@ A generic Asana Object, containing a globally unique identifier.
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Webhook">Webhook</h2>
-<!-- backwards compatibility -->
 <a id="schemawebhook"></a>
 <a id="schema_Webhook"></a>
 <a id="tocSwebhook"></a>
@@ -13647,10 +14125,11 @@ In both cases, however, changes are represented as Event objects - refer to the 
 |resource|any|false|none|none|
 |target|string(uri)|false|read-only|The URL to receive the HTTP POST.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WebhookEvent">WebhookEvent</h2>
-<!-- backwards compatibility -->
 <a id="schemawebhookevent"></a>
 <a id="schema_WebhookEvent"></a>
 <a id="tocSwebhookevent"></a>
@@ -13679,10 +14158,11 @@ In both cases, however, changes are represented as Event objects - refer to the 
 |type|string|false|read-only|The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
 |user|string¦null|false|read-only|The gid of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Workspace">Workspace</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspace"></a>
 <a id="schema_Workspace"></a>
 <a id="tocSworkspace"></a>
@@ -13715,10 +14195,11 @@ A generic Asana Object, containing a globally unique identifier.
 |email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |is_organization|boolean|false|none|Whether the workspace is an *organization*.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WorkspaceCompact">WorkspaceCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspacecompact"></a>
 <a id="schema_WorkspaceCompact"></a>
 <a id="tocSworkspacecompact"></a>
@@ -13745,10 +14226,11 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WorkspaceMembership">WorkspaceMembership</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspacemembership"></a>
 <a id="schema_WorkspaceMembership"></a>
 <a id="tocSworkspacemembership"></a>
@@ -13816,10 +14298,11 @@ This object determines if a user is a member of a workspace.
 |is_admin|boolean|false|read-only|Reflects if this user is an admin of the workspace.|
 |is_guest|boolean|false|read-only|Reflects if this user is a guest of the workspace.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WorkspaceMembershipCompact">WorkspaceMembershipCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspacemembershipcompact"></a>
 <a id="schema_WorkspaceMembershipCompact"></a>
 <a id="tocSworkspacemembershipcompact"></a>
@@ -13865,4 +14348,6 @@ This object determines if a user is a member of a workspace.
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
+
+</section>
 
