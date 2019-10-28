@@ -12,6 +12,7 @@ includes:
    - intro
    - auth
    - give_kudos
+   - user_lookup
    - definitions
    - errors 
 

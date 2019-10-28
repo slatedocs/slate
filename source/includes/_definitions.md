@@ -136,3 +136,41 @@ skills for which your recipient(s) have demonstrated.
 | ---------- | ----------- | -------- | ---- |
 |kind| An enumeration of the type of user named. Your choices include: email, group_name |Yes|enum|
 |value| This could be an email, or the name of a group, department or location |Yes|string|
+
+## Points
+
+<a id="schemapoints"></a>
+
+```json
+100
+
+```
+
+### Properties
+
+| Attributes | Description | Required | Type |
+| ---------- | ----------- | -------- | ---- |
+|points| User points balance  |Yes|integer|
+
+
+## Lookup User Object
+<a id="lookup_user_object"></a>
+
+```json
+{
+  "id": 1,
+  "email": "user@example.com",
+  "pointsBalance": 200,
+  "employeeNumber": "123"
+}
+
+```
+
+### Properties
+
+|Attribute|Description|Type|
+|---|---|---|---|---|
+|id|User's Id|integer|
+|email|User's Email Address|string|
+|pointsBalance|Points Balance|[Points](#schemapoints)|
+|employeeNumber|Employee Number|string|
