@@ -13,8 +13,9 @@ includes:
    - auth
    - give_kudos
    - user_lookup
+   - create_redemption
    - definitions
-   - errors 
+   - errors
 
 search: true 
 --- 
