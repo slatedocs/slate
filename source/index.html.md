@@ -128,8 +128,7 @@ The request is signed by including three headers:
 
 The following details are concatenated together:
 
-    `nonce + \n`
-    `timestamp`
+    nonce+\ntimestamp
 
 The string is then encrypted using `HMAC-SHA256` using the private key.
 
