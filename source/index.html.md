@@ -14,6 +14,7 @@ includes:
    - give_kudos
    - user_lookup
    - create_redemption
+   - redemption_history
    - definitions
    - errors
 

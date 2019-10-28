@@ -6,9 +6,9 @@
 This endpoint looks up for a user, by either an email address or employee number; both of them are not required.
 
 ```shell
-$ curl -i -X POST -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/users/lookup?apikey=your_key_here&email=sender%40example.com'
+$ curl -i -X GET -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/users/lookup?apikey=your_key_here&email=sender%40example.com'
 Or
-$ curl -i -X POST -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/users/lookup?apikey=your_key_here&employeeNumber=123'
+$ curl -i -X GET -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/users/lookup?apikey=your_key_here&employeeNumber=123'
 ```
 ```javascript
 var request = require('request');

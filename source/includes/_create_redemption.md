@@ -1,4 +1,4 @@
-# Rewards Endpoints
+# Redemption Endpoints
 
 ## Create Redemption
 
