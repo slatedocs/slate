@@ -47,21 +47,3 @@ Status Code **200**
 | Attribute | Description | Required | Type |
 |---|---|---|---|
 |» data|Response object|false|[RedemptionsHistory](#schemaredemptionshistory)|
-|»» page|Page number|true|integer|
-|»» totalCount|Total count of redemptions|true|integer|
-|»» data|Redemptions list|true|[[Redemption](#schemaredemption)]|
-|»»» id|Redemption id|true|integer|
-|»»» cancellationDate|Date this redemption was cancelled|false|string(date)|
-|»»» createdBy|Date this redemption was created|true|integer|
-|»»» rewardId|Reward's id|true|string|
-|»»» name|Reward's name|true|string|
-|»»» description|Reward's description|true|string|
-|»»» kudosPoints|User's points deducted due to this redemption|true|integer|
-|»»» currencyCode|Currency code of the amount|true|string|
-|»»» amountInCents|Amount in cents|true|integer|
-|»»» transactionId|Transaction id|true|string|
-|»»» userId|User's id|true|string|
-|»»» orderId|Order id|true|string|
-|»»» notes|Notes|false|string|
-|»»» createdAt|Date this redemption was created|true|string(date)|
-|»»» updatedAt|Date this redemption was last updated|true|string(date)|

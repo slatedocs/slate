@@ -69,8 +69,4 @@ Status Code **200**
 
 | Attribute | Description | Required | Type |
 |---|---|---|---|
-|» data|User object|true|[User](#lookup_user_object)|
-|»» id|User's id|true|integer|
-|»» email|User's email address|true|string|
-|»» pointsBalance|User's points balance|true|[Points](#schemapoints)|
-|»» employeeNumber|User's employee number|false|string|
+|data|User object|true|[User](#lookup_user_object)|
