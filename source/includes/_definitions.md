@@ -212,7 +212,7 @@ skills for which your recipient(s) have demonstrated.
 |currencyCode|The currency code. Defaults to "USD"|false|string|
 |amountInCents|The reward&#39;s monetary value in cents|true|integer|
 |transactionId|The unique transaction ID|true|string|
-|orderId|The Unique Order id|true|string|
+|orderId|The Unique Order ID|true|string|
 |notes|Additional redemption notes|false|string|
 
 <h2 id="tocSredemptionshistory">Redemptions History</h2>
