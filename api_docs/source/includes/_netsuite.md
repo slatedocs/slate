@@ -1620,7 +1620,82 @@ STATUS | status can be "pending", "synced", or "error"
 
 200 OK
 
+## Get Item Receipts<code class='get'>GET</code>
 
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 91,
+      "purchase_order": {
+        "id": 66,
+        "purchase_order_no": "",
+        "uuid": "c7634af7-80fa-11e7-b6ee-021a9831e76d",
+        "external_id": "9999",
+        "custom_fields": {
+          "Weight": null,
+          "New Field": null
+        }
+      },
+      "line_items": [
+        {
+          "id": 119,
+          "name": "Paulin - M12x25 Metric Hex Bolt 8.8 Unc",
+          "purchased_quantity": "2.00",
+          "received_quantity": "0.00",
+          "external_id": null,
+          "custom_fields": {}
+        }
+      ],
+      "total_received_quantity": "0.00",
+      "external_id": "8888",
+      "custom_fields": {}
+    }
+  ],
+  "metadata": {
+    "pagination": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "page_size": 10,
+      "num_pages": 1,
+      "current_page": 1
+    }
+  }
+}
+```
+
+This endpoint retrieves a list of item receipts with specific status.
+
+### HTTP Request
+
+`GET https://example.procurify.com/api/v3/integrations/netsuite/item-receipts/?status=<STATUS>`
+
+### URL Parameters
+
+#### status
+
+Value       | Description
+----------- | -----------
+pending     | Get all records that need to be processed in NS (a combination of new/updated/deleted)
+new         | Get all new records that need to be created
+updated     | Get all updated records previously created
+deleted     | Get all entries that need to be deleted because of 0 quantity
+synced      | Get all synced records previously successfully synced
+error       | Get all records that encountered an error during its most recent sync
+
+
+### HTTP Response Status Code
+
+200 OK
+
+### Fun Facts
+
+- New item receipts are guaranteed to have at least 1 item with quantity > 0
+- You can check above by parsing field total_received_quantity
+- Pending item receipts will only show up if PO has status `SYNCED`
 
 ## Get Vendors<code class='get'>GET</code>
 
