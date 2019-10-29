@@ -2,7 +2,7 @@
 
 <a id="opIdredemptionHistory"></a>
 
-This end points fetches redemption history for a user or the complete organization.
+This end points fetches the redemption history scoped by a user or by the organization.
 
 ```shell
 $ curl -i -X GET -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/redemptions?apikey=your_key_here&userId=1&page=1&perPage=15'
@@ -30,9 +30,9 @@ request(options, function (error, response, body) {
 
 |Name|Located in|Description|Required|Type|
 |---|---|---|---|--|
-|userId|query|User Id|false|integer|
+|userId|query|User ID|false|integer|
 |page|query|Page number|false|integer|
-|perPage|query|Count of items per page (15 by default)|false|integer|
+|perPage|query|Number of redemptions per page. Defaults to 15|false|integer|
 
 <h3 id="redemptionhistory-responses">Responses</h3>
 

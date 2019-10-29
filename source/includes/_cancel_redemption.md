@@ -2,7 +2,7 @@
 
 <a id="opIdcancelRedemption"></a>
 
-This endpoint looks up for a user, by either an email address or employee number; both of them are not required.
+This endpoint looks up a user by email address or employee number; both are not required.
 
 ```shell
 $ curl -i -X DELETE -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/redemptions/{id}?apikey=your_key_here&userId=0&senderId=0'

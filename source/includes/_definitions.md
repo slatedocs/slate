@@ -170,8 +170,8 @@ skills for which your recipient(s) have demonstrated.
 
 |Attribute|Description|Type|
 |---|---|---|---|---|
-|id|User's Id|integer|
-|email|User's Email Address|string|
+|id|User ID|integer|
+|email|Email Address|string|
 |pointsBalance|Points Balance|[Points](#schemapoints)|
 |employeeNumber|Employee Number|string|
 
@@ -203,17 +203,17 @@ skills for which your recipient(s) have demonstrated.
 
 | Attribute | Description | Required | Type |
 |---|---|---|---|
-|userId|User's id, can be fetched from [user lookup](#opIdlookUpUser)|true|integer|
-|senderId|Sender's id, can be fetched from [user lookup](#opIdlookUpUser) |true|integer|
-|rewardId|A unique per user rewards id|true|string|
-|name|Reward's Name|true|string|
-|description|Reward's Description|false|string|
-|kudosPoints|Points to deduct for the user when redeeming this reward|true|integer|
-|currencyCode|The currency code, should be something like USD, CAD, GBP|false|string|
-|amountInCents|The amount of the reward in cents|true|integer|
-|transactionId|A unique transaction ID|true|string|
-|orderId|A Unique Order id|true|string|
-|notes|Notes related to the redemption|false|string|
+|userId|Redeeming user ID, can be fetched from [user lookup](#opIdlookUpUser)|true|integer|
+|senderId|Request sender (redemption creator) user ID, can be fetched from [user lookup](#opIdlookUpUser) |true|integer|
+|rewardId|Reward ID|true|string|
+|name|Reward name|true|string|
+|description|Reward Description|false|string|
+|kudosPoints|Number of points to deduct from the redeeming user|true|integer|
+|currencyCode|The currency code. Defaults to "USD"|false|string|
+|amountInCents|The reward&#39;s monetary value in cents|true|integer|
+|transactionId|The unique transaction ID|true|string|
+|orderId|The Unique Order id|true|string|
+|notes|Additional redemption notes|false|string|
 
 <h2 id="tocSredemptionshistory">Redemptions History</h2>
 
@@ -251,7 +251,7 @@ skills for which your recipient(s) have demonstrated.
 | Attribute | Description | Required | Type |
 |---|---|---|---|
 |page|The current page number|true|integer|none|
-|totalCount|The total count of redemptions|true|integer|none|
+|totalCount|The total number of redemptions|true|integer|none|
 |data|List of redemptions|true|[Redemptions](#schemaredemptions)|none|
 
 <h2 id="tocSredemptions">Redemptions</h2>
@@ -317,18 +317,18 @@ skills for which your recipient(s) have demonstrated.
 | Attribute | Description | Required | Type |
 |---|---|---|---|---|
 |id||true|integer|
-|cancellationDate|Date this redemption was cancelled|false|string(date)|
-|createdBy|The user's id who created this redemption|true|integer|
-|rewardId|Reward Id|true|string|
-|name|Reward's Name|true|string|
-|description|Reward's Description|true|string|
-|kudosPoints|User's points deducted due to this redemption|true|integer|
-|currencyCode|Currency code of the amount|true|string|
-|amountInCents|Amount in cents|true|integer|
-|transactionId|Unique Transaction id|true|string|
-|userId|The user's id|true|string|
-|orderId|Order id|true|string|
+|cancellationDate|Redemption cancellation date|false|string(date)|
+|createdBy|Redemption creator user ID|true|integer|
+|rewardId|Reward ID|true|string|
+|name|Reward Name|true|string|
+|description|Reward Description|true|string|
+|kudosPoints|Number of points deducted from redeeming user|true|integer|
+|currencyCode|The currency code. Defaults to "USD"|true|string|
+|amountInCents|The reward's monetary value in cents|true|integer|
+|transactionId|The unique transaction ID|true|string|
+|userId|User ID|true|integer|
+|orderId|Order ID|true|string|
 |notes|Notes|false|string|
-|createdAt|Date this redemption was created|true|string(date)|
-|updatedAt|Date this redemption was updated|true|string(date)|
+|createdAt|Creation date|true|string(date)|
+|updatedAt|Last updated date|true|string(date)|
 

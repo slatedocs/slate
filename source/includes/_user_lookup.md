@@ -3,7 +3,7 @@
 ## User Lookup
 <a id="opIdlookUpUser"></a>
 
-This endpoint looks up for a user, by either an email address or employee number; both of them are not required.
+This endpoint looks up a user by email address or employee number; both are not required.
 
 ```shell
 $ curl -i -X GET -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/users/lookup?apikey=your_key_here&email=sender%40example.com'
@@ -43,7 +43,7 @@ request(options, function (error, response, body) {
 
 |Name|Located In|Type|Required|Description|
 |---|---|---|---|---|
-|email|query|string|false|Users email|
+|email|query|string|false|Email Address|
 |employeeNumber|query|string|false|Employee Number|
 
 **Responses**
