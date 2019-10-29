@@ -8,6 +8,14 @@ is upgraded to Ruby 2.3.x (as required here).
 It is assumed you have this repository checked out adjacent to the Kudos web repo. So that `cd ../kudos` will
 take you there.  If not, the synchronization step will need to be updated.
 
+## Generate Documentation
+
+To generate documentation, first install `widdershins` locally `npm i -g widdershins`, and then run the `update.sh`, and it should give you a `swagger.md` file in the `source` directory, remember not to addd the file when you commit your changes.
+
+After you have generated the `swagger.md` file successfully, open it and cherry pick the new documentation pieces and create a new file with them, and save it in the `source/includes` folder, and link the file in the `source/index.md`.
+
+Run the commands below, and the documentation should be updated in the kudos repo.
+
 ## Manual build steps
 
 ### Docker
