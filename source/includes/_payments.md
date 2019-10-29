@@ -471,7 +471,7 @@ Authorization: Basic ...
     "type" : "type"
   },
   "officerList" : {
-    "officers" : [ {
+    "items" : [ {
       "officerRole" : "officerRole",
       "firstName" : "firstName",
       "lastName" : "lastName",
@@ -538,7 +538,7 @@ Register a corporate for wallet management
 | companyProfile.companyNumber | string | Company Number                                 ||
 | companyProfile.sicCodes      | array  | standard industrial classification (sic) codes ||
 | officerList                  | ref    |                                                | required |
-| officerList.officers         | array  | Officers                                       ||
+| officerList.items            | array  | Officers                                       ||
 
 ## `POST /wallet`
 ```http
