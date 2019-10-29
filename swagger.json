@@ -1043,37 +1043,37 @@
             "type": "string"
         },
         "commission_rate": {
-            "type": "rate at which commission fee will be calculated for a trade in given contract"
+            "type": "string",
+            "description" : "rate at which commission fee will be calculated for a trade in given contract"
         },
         "maker_commission_rate": {
-            "type": "rate at which maker rebate will be calculated"
+            "type": "string",
+            "description" : "rate at which maker rebate will be calculated"
         },
         "liquidation_penalty_factor": {
             "type": "string"
         },
         "contract_type": {
-            "type": "string"
+            "type": "string",
+            "description" : " Type of contracts e.g. futures, perpetual futures, "
         },
         "position_size_limit": {
-            "type": "integer"
+            "type": "integer",
+            "description" : "Maximum size of contracts in a single order can be placed"
         },
         "basis_factor_max_limit": {
             "type": "string"
         },
         "is_quanto": {
-            "type": "boolean"
+            "type": "boolean",
+            "description" : "Flag which denotes whether future contract is quanto or not"
         },
         "funding_method": {
-            "type": "string"
+            "type": "string",
+            "description" : "Method used to calculate funding for given contract. e.g. Fixed or mark price"
         },
         "annualized_funding": {
             "type": "string"
-        },
-        "price_clubbing_values": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            }
         },
         "price_band": {
             "type": "string"

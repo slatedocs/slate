@@ -1,17 +1,3 @@
----
-title: Delta Exchange Api
-language_tabs:
-  - python: Python
-  - shell: Shell
-  - ruby: Ruby
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
-
----
-
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
 
@@ -168,8 +154,8 @@ p JSON.parse(result)
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -177,9 +163,6 @@ p JSON.parse(result)
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -411,8 +394,8 @@ p JSON.parse(result)
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -420,9 +403,6 @@ p JSON.parse(result)
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -589,8 +569,8 @@ p JSON.parse(result)
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -598,9 +578,6 @@ p JSON.parse(result)
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -761,8 +738,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -770,9 +747,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -916,8 +890,8 @@ p JSON.parse(result)
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -925,9 +899,6 @@ p JSON.parse(result)
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -1207,8 +1178,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -1216,9 +1187,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -1270,8 +1238,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -1279,9 +1247,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -1452,8 +1417,8 @@ p JSON.parse(result)
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -1461,9 +1426,6 @@ p JSON.parse(result)
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -1628,8 +1590,8 @@ p JSON.parse(result)
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -1637,9 +1599,6 @@ p JSON.parse(result)
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -1960,8 +1919,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -1969,9 +1928,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -2110,8 +2066,8 @@ p JSON.parse(result)
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -2119,9 +2075,6 @@ p JSON.parse(result)
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -2275,8 +2228,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -2284,9 +2237,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -2416,8 +2366,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -2425,9 +2375,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -2745,8 +2692,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -2754,9 +2701,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -2886,8 +2830,8 @@ p JSON.parse(result)
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -2895,9 +2839,6 @@ p JSON.parse(result)
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -3115,8 +3056,8 @@ This operation does not require authentication.
   "default_leverage": "string",
   "initial_margin_scaling_factor": "string",
   "maintenance_margin_scaling_factor": "string",
-  "commission_rate": null,
-  "maker_commission_rate": null,
+  "commission_rate": "string",
+  "maker_commission_rate": "string",
   "liquidation_penalty_factor": "string",
   "contract_type": "string",
   "position_size_limit": 0,
@@ -3124,9 +3065,6 @@ This operation does not require authentication.
   "is_quanto": true,
   "funding_method": "string",
   "annualized_funding": "string",
-  "price_clubbing_values": [
-    0
-  ],
   "price_band": "string",
   "underlying_asset": {
     "id": 0,
@@ -3170,16 +3108,15 @@ This operation does not require authentication.
 |default_leverage|string|false|none|default leverage|
 |initial_margin_scaling_factor|string|false|none|none|
 |maintenance_margin_scaling_factor|string|false|none|none|
-|commission_rate|rate at which commission fee will be calculated for a trade in given contract|false|none|none|
-|maker_commission_rate|rate at which maker rebate will be calculated|false|none|none|
+|commission_rate|string|false|none|rate at which commission fee will be calculated for a trade in given contract|
+|maker_commission_rate|string|false|none|rate at which maker rebate will be calculated|
 |liquidation_penalty_factor|string|false|none|none|
-|contract_type|string|false|none|none|
-|position_size_limit|integer|false|none|none|
+|contract_type|string|false|none|Type of contracts e.g. futures, perpetual futures,|
+|position_size_limit|integer|false|none|Maximum size of contracts in a single order can be placed|
 |basis_factor_max_limit|string|false|none|none|
-|is_quanto|boolean|false|none|none|
-|funding_method|string|false|none|none|
+|is_quanto|boolean|false|none|Flag which denotes whether future contract is quanto or not|
+|funding_method|string|false|none|Method used to calculate funding for given contract. e.g. Fixed or mark price|
 |annualized_funding|string|false|none|none|
-|price_clubbing_values|[number]|false|none|none|
 |price_band|string|false|none|none|
 |underlying_asset|[Asset](#schemaasset)|false|none|none|
 |quoting_asset|[Asset](#schemaasset)|false|none|none|
@@ -3221,8 +3158,8 @@ This operation does not require authentication.
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -3230,9 +3167,6 @@ This operation does not require authentication.
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -3298,8 +3232,8 @@ This operation does not require authentication.
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -3307,9 +3241,6 @@ This operation does not require authentication.
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -3406,8 +3337,8 @@ This operation does not require authentication.
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -3415,9 +3346,6 @@ This operation does not require authentication.
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -3485,8 +3413,8 @@ This operation does not require authentication.
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -3494,9 +3422,6 @@ This operation does not require authentication.
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -3548,8 +3473,8 @@ This operation does not require authentication.
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -3557,9 +3482,6 @@ This operation does not require authentication.
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -3861,8 +3783,8 @@ This operation does not require authentication.
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -3870,9 +3792,6 @@ This operation does not require authentication.
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -3943,8 +3862,8 @@ This operation does not require authentication.
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -3952,9 +3871,6 @@ This operation does not require authentication.
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -4016,8 +3932,8 @@ This operation does not require authentication.
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -4025,9 +3941,6 @@ This operation does not require authentication.
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -4107,8 +4020,8 @@ This operation does not require authentication.
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -4116,9 +4029,6 @@ This operation does not require authentication.
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
@@ -4321,8 +4231,8 @@ This operation does not require authentication.
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": null,
-    "maker_commission_rate": null,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
     "position_size_limit": 0,
@@ -4330,9 +4240,6 @@ This operation does not require authentication.
     "is_quanto": true,
     "funding_method": "string",
     "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
     "price_band": "string",
     "underlying_asset": {
       "id": 0,
@@ -4414,8 +4321,8 @@ This operation does not require authentication.
       "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
-      "commission_rate": null,
-      "maker_commission_rate": null,
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
       "liquidation_penalty_factor": "string",
       "contract_type": "string",
       "position_size_limit": 0,
@@ -4423,9 +4330,6 @@ This operation does not require authentication.
       "is_quanto": true,
       "funding_method": "string",
       "annualized_funding": "string",
-      "price_clubbing_values": [
-        0
-      ],
       "price_band": "string",
       "underlying_asset": {
         "id": 0,
