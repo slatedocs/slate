@@ -597,6 +597,30 @@ curl --request GET \
       "third_party_login": true,
       "prohibited_words": [
         "bad", "cuss"
+      ],
+      "confidential_commenting": false,
+      "guest_contributions": false,
+      "comment_reactions": [
+        {
+            "id": 39,
+            "label": "Like",
+            "custom": false,
+            "short_code": null
+        }
+      ],
+      "page_reactions": [
+        {
+            "id": 10,
+            "label": "100%",
+            "custom": false,
+            "short_code": ":100:"
+        },
+        {
+            "id": 11,
+            "label": "Celebrate",
+            "custom": false,
+            "short_code": ":tada:"
+        },
       ]
     }
   }
@@ -624,7 +648,20 @@ The important data inside this response is the data refering `attributes` key. B
 | font_color |string| font colour of the widget|
 | third_party_login |boolean| indicates if the account uses own(true) login or metype(false) login|
 | prohibited_words |array| words that will determine a profane comment according to account configuration|
+| confidential_commenting |boolean| indicates if confidential commenting can be allowed while posting a comment|
 | guest_contributions |string| indicates if guest contributions are allowed in feed/widget|
+| comment_reactions | array of objects | array of reactions |
+| page_reactions | array of objects | array of reactions |
+
+Reaction object in comment reactions, page reactions is explained here:
+
+|key|type|description|
+|--|--|--|
+|id|integer|Unique id account's reaction|
+|label|string|Display label of the reaction|
+|custom|boolean|indicates if the reaction is custom or not|
+|short_code|string|short code for the emoji that can be translated to unicode|
+
 
 Key points that needs your attention:
 
