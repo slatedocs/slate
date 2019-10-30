@@ -27,7 +27,7 @@ An API Token must be called with every request.  To obtain your API Token contac
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://staging.sellerchamp.com/api/orders \
+  https://sellerchamp.com/api/orders \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -114,7 +114,7 @@ Url format with filters:
 
 ```shell
 curl --request GET \
-  --url 'https://staging.sellerchamp.com/api/orders?buyer_name={buyer_name}%0A&order_number={order_number}%0A&order_status={order_status}%0A&purchased_at_start={purchased_at_start}%0A&purchased_at_end={purchased_at_start}%0A&store_id={store_id}%0A&sort={sort_by}%0A&direction={sort_direction}%0A&page={page}%0A&page_size={page_size}&created_at_start={created_at_start}%0A&created_at_end={created_at_end}%0A&updated_at_start={updated_at_start}%0A&updated_at_end={updated_at_end}%0A' \
+  --url 'https://sellerchamp.com/api/orders?buyer_name={buyer_name}%0A&order_number={order_number}%0A&order_status={order_status}%0A&purchased_at_start={purchased_at_start}%0A&purchased_at_end={purchased_at_start}%0A&store_id={store_id}%0A&sort={sort_by}%0A&direction={sort_direction}%0A&page={page}%0A&page_size={page_size}&created_at_start={created_at_start}%0A&created_at_end={created_at_end}%0A&updated_at_start={updated_at_start}%0A&updated_at_end={updated_at_end}%0A' \
   -H 'token: YOUR-TOKEN' \
 ```
 ### URL Parameters
@@ -136,6 +136,31 @@ direction | String | Sets the direction of the sort order. Example: ASC.
 page | String | Page number Default: 1.
 page_size | number | Requested page size. Default: 250.
 
+## Update an Order
+
+Updates an order. If tracking number and carrier code are provided, they are submitted to the respective marketplace.
+
+URL format:
+
+/orders/{order_id}
+
+```shell
+curl --request PUT \
+ --url https://sellerchamp.com/api/orders/{order_id} \
+ --header 'Content-Type: application/json' \
+ --header 'cache-control: no-cache,no-cache,no-cache' \
+ --header 'token: YOUR-TOKEN' \
+ --data '{ "order": { "id": "{id}", tracking_number: "{tracking_number}", carrier_code: "{carrier_code}" } }'
+```
+
+### URL Parameters
+
+Name | Data Type | Description
+-------------- | -------------- | --------------
+id | String | The ID of the order to update
+tracking_number | String | The order's tracking number
+carrier_code | String | The carrier service used to ship the order (UPS, USPS, FedEx, etc.)
+
 # Manifest
 
 ## Create Manifest with parameters
@@ -148,7 +173,7 @@ Url format with filters:
 
 ```shell
 curl --request POST \
-  --url https://staging.sellerchamp.com/api/manifests \
+  --url https://sellerchamp.com/api/manifests \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache,no-cache,no-cache' \
   --header 'token: YOUR-TOKEN' \
