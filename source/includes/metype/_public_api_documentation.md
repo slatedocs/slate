@@ -133,7 +133,7 @@ headline | string | The title of the story of the page which tagged as `og:title
 hidden | bool | `True` when hidden by author of the comment and vice-versa.
 deleted | bool | `True` when deleted by admin/moderator of the account
 realm_comment_count | integer | Number of published comments in a comment_realm.
-author | object | Contents of this are explained [here] (#get-user-info)
+author | object | Contents of this are explained [here] (#get-user-info); null when comment is confidential
 mentions | array | Array of users mentioned in the comment. For more info check here.
 total_count | integer | Number of published comments in a page.
 total_parent_comments_count | integer | Number of parent comments in a page.
@@ -210,6 +210,7 @@ curl -X POST \
             "captcha_response": "captcha" // for guest_commenting
         },
     },
+    "confidential": true, // optional
     "jwt": "jwt",
     "mobile": true, // to differentiate mobile client for recaptcha support
   }'
@@ -267,6 +268,11 @@ This endpoint creates a comment and gives the details of the comment created.
 For reference of comment body structure check [here] (#comment-body-structure).
 
 For reference of comment response structure check [here] (#api-response-reference)
+
+Data to create a confidential comment
+|Name| type| Description | optional |
+|----|-----|-------------|----------|
+|confidential| boolean | Confidentiality flag | yes, only supported for logged-in user and where confindetial commenting in enabled |
 
 Additional data to be posted to support guest_commenting
 
