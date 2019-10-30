@@ -3,10 +3,24 @@
 
 Integra Dátil a tu sistema en minutos.
 
-### Más reciente (6.1.0)
+### Más reciente (6.2.0)
 
-- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_64bit_generic.exe)
-- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_32bit_generic.exe)
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.0_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.0_64bit.exe)
+
+#### Notas de la versión
+
+#### <strong>6.2.0</strong><br><small><strong>Octubre 30, 2019</strong></small>
+
+##### Nuevo
+Soporte para Microsoft Access. 
+
+### Versiones anteriores
+
+#### 6.1.0
+
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_32bit_generic.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_64bit_generic.exe)
 
 #### Notas de la versión
 
@@ -32,8 +46,6 @@ La longitud máxima para el nombre de una columna en versiones de ORACLE menores
 a la 12 es de 30 caracteres. Por esto agregamos alias más cortos para parámetros
 que exceden esta longitud, como `fecha_emision_documento_sustento -> fecha_emi_doc_sustento`,
 `numero_autorizacion_documento_sustento -> num_aut_doc_sustento`
-
-### Versiones anteriores
 
 #### 5.0.0
 
