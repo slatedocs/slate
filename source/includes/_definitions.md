@@ -136,3 +136,199 @@ skills for which your recipient(s) have demonstrated.
 | ---------- | ----------- | -------- | ---- |
 |kind| An enumeration of the type of user named. Your choices include: email, group_name |Yes|enum|
 |value| This could be an email, or the name of a group, department or location |Yes|string|
+
+## Points
+
+<a id="schemapoints"></a>
+
+```json
+100
+
+```
+
+### Properties
+
+| Attributes | Description | Required | Type |
+| ---------- | ----------- | -------- | ---- |
+|points| User points balance  |Yes|integer|
+
+
+## Lookup User Object
+<a id="lookup_user_object"></a>
+
+```json
+{
+  "id": 1,
+  "email": "user@example.com",
+  "pointsBalance": 200,
+  "employeeNumber": "123"
+}
+
+```
+
+### Properties
+
+|Attribute|Description|Type|
+|---|---|---|---|---|
+|id|User ID|integer|
+|email|Email Address|string|
+|pointsBalance|Points Balance|[Points](#schemapoints)|
+|employeeNumber|Employee Number|string|
+
+
+
+
+<h2 id="tocScreateredemption">Create Redemption</h2>
+
+<a id="schemacreateredemption"></a>
+
+```json
+{
+  "userId": 0,
+  "senderId": 0,
+  "rewardId": "string",
+  "name": "string",
+  "description": "string",
+  "kudosPoints": 0,
+  "currencyCode": "USD",
+  "amountInCents": 0,
+  "transactionId": "string",
+  "orderId": "string",
+  "notes": "string"
+}
+
+```
+
+### Properties
+
+| Attribute | Description | Required | Type |
+|---|---|---|---|
+|userId|Redeeming user ID, can be fetched from [user lookup](#opIdlookUpUser)|true|integer|
+|senderId|Request sender (redemption creator) user ID, can be fetched from [user lookup](#opIdlookUpUser) |true|integer|
+|rewardId|Reward ID|true|string|
+|name|Reward name|true|string|
+|description|Reward Description|false|string|
+|kudosPoints|Number of points to deduct from the redeeming user|true|integer|
+|currencyCode|The currency code. Defaults to "USD"|false|string|
+|amountInCents|The reward&#39;s monetary value in cents|true|integer|
+|transactionId|The unique transaction ID|true|string|
+|orderId|The Unique Order ID|true|string|
+|notes|Additional redemption notes|false|string|
+
+<h2 id="tocSredemptionshistory">Redemptions History</h2>
+
+<a id="schemaredemptionshistory"></a>
+
+```json
+{
+  "page": 0,
+  "totalCount": 0,
+  "data": [
+    {
+      "id": 0,
+      "cancellationDate": "2019-10-28",
+      "createdBy": 0,
+      "rewardId": "string",
+      "name": "string",
+      "description": "string",
+      "kudosPoints": 0,
+      "currencyCode": "string",
+      "amountInCents": 0,
+      "transactionId": "string",
+      "userId": "string",
+      "orderId": "string",
+      "notes": "string",
+      "createdAt": "2019-10-28",
+      "updatedAt": "2019-10-28"
+    }
+  ]
+}
+
+```
+
+### Properties
+
+| Attribute | Description | Required | Type |
+|---|---|---|---|
+|page|The current page number|true|integer|none|
+|totalCount|The total number of redemptions|true|integer|none|
+|data|List of redemptions|true|[Redemptions](#schemaredemptions)|none|
+
+<h2 id="tocSredemptions">Redemptions</h2>
+
+<a id="schemaredemptions"></a>
+
+```json
+[
+  {
+    "id": 0,
+    "cancellationDate": "2019-10-28",
+    "createdBy": 0,
+    "rewardId": "string",
+    "name": "string",
+    "description": "string",
+    "kudosPoints": 0,
+    "currencyCode": "string",
+    "amountInCents": 0,
+    "transactionId": "string",
+    "userId": "string",
+    "orderId": "string",
+    "notes": "string",
+    "createdAt": "2019-10-28",
+    "updatedAt": "2019-10-28"
+  }
+]
+
+```
+
+### Properties
+
+| Attribute | Description | Required | Type |
+|---|---|---|---|
+|*anonymous*|Redemption|false|[[Redemption](#schemaredemption)]|
+
+<h2 id="tocSredemption">Redemption</h2>
+
+<a id="schemaredemption"></a>
+
+```json
+{
+  "id": 0,
+  "cancellationDate": "2019-10-28",
+  "createdBy": 0,
+  "rewardId": "string",
+  "name": "string",
+  "description": "string",
+  "kudosPoints": 0,
+  "currencyCode": "string",
+  "amountInCents": 0,
+  "transactionId": "string",
+  "userId": "string",
+  "orderId": "string",
+  "notes": "string",
+  "createdAt": "2019-10-28",
+  "updatedAt": "2019-10-28"
+}
+
+```
+
+### Properties
+
+| Attribute | Description | Required | Type |
+|---|---|---|---|---|
+|id||true|integer|
+|cancellationDate|Redemption cancellation date|false|string(date)|
+|createdBy|Redemption creator user ID|true|integer|
+|rewardId|Reward ID|true|string|
+|name|Reward Name|true|string|
+|description|Reward Description|true|string|
+|kudosPoints|Number of points deducted from redeeming user|true|integer|
+|currencyCode|The currency code. Defaults to "USD"|true|string|
+|amountInCents|The reward's monetary value in cents|true|integer|
+|transactionId|The unique transaction ID|true|string|
+|userId|User ID|true|integer|
+|orderId|Order ID|true|string|
+|notes|Notes|false|string|
+|createdAt|Creation date|true|string(date)|
+|updatedAt|Last updated date|true|string(date)|
+

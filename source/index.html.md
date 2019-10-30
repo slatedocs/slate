@@ -12,8 +12,12 @@ includes:
    - intro
    - auth
    - give_kudos
+   - user_lookup
+   - create_redemption
+   - redemption_history
+   - cancel_redemption
    - definitions
-   - errors 
+   - errors
 
 search: true 
 --- 
