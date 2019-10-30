@@ -20,7 +20,7 @@ curl -X GET \
     "signed_in": true,
     "current_user": {
         "name": "name",
-        "avatar": "http://avata.com/avatar",
+        "avatar": "http://avatar.com/avatar",
         "id": 109,
         "slug": "name-2",
         "guest": false,
@@ -89,7 +89,9 @@ This is documents APIs related to comments APIs. It also gives information about
     "hidden_at": null,
     "deleted_by_id": null,
     "deleted_at": null,
-    "reactions": {},
+    "reactions": {
+      "1": 1
+    },
     "edited_at": null,
     "is_spam": false,
     "is_published": true,
@@ -120,7 +122,7 @@ hidden_by_id | integer | Unique id of user who hid the comment. Holds same value
 hidden_at | string | This is time stamp indicating when comment was hidden.
 deleted_by_id | integer | Unique id of admin who deleted the comment.
 deleted_at | string | This is time stamp indicating comment deleted time.
-reactions | object | Contents of this are explained here.
+reactions | object | Key, value pair with key as reaction id and value as number of reactions
 edited_at | string | This is time stamp indicating when comment was edited.
 is_spam | boolean | `True` when comment is recognised as spam and vice-versa.
 is_published | boolean | `True` when comment is published and vice-versa.
@@ -135,7 +137,6 @@ author | object | Contents of this are explained [here] (#get-user-info)
 mentions | array | Array of users mentioned in the comment. For more info check here.
 total_count | integer | Number of published comments in a page.
 total_parent_comments_count | integer | Number of parent comments in a page.
-
 
 ### Comment body structure
 
@@ -271,7 +272,7 @@ Additional data to be posted to support guest_commenting
 
 |Name| type| Description | optional |
 |----|-----|-------------|----------|
-|captcha_response| string | Recaptcha response validate response | yes, but needed for guest commenting |
+|captcha_response| string | Recaptcha response | yes, but needed for guest commenting |
 |mobile| boolean | To indicate the rquest source is mobile | yes, but needed for guest commenting and source is mobile |
 
 ### Comment PUT
@@ -564,6 +565,32 @@ child_comments_sort_order | string | `desc` when latest child comments should be
 
 `parent_comments_limit` value should be equal to `initial_load_comments_limit` that's available in config API.
 
+
+## Comment reactions
+
+### POST comment reaction
+
+```shell--request
+curl -X POST \
+  https://www.metype.com/api/v1/accounts/<account_id>/reactions/<reaction_id>/comments/<comment_id>/activity \
+  -d '{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtZW1iZXItaWQiOiIxMjM0IiwibmFtZSI6ImJhdCJ9.WPlG1dXQs0kDHtBRwrwSFHP3gbEv7AtAiTGpaHdXbFQ"
+  }'
+```
+
+This API is useful to react on a comment.
+
+### DELETE comment reaction
+
+```shell--request
+curl -X DELETE \
+  https://www.metype.com/api/v1/accounts/<account_id>/reactions/<reaction_id>/comments/<comment_id>/activity \
+  -d '{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtZW1iZXItaWQiOiIxMjM0IiwibmFtZSI6ImJhdCJ9.WPlG1dXQs0kDHtBRwrwSFHP3gbEv7AtAiTGpaHdXbFQ"
+  }'
+```
+
+This API is useful to undo a comment reaction.
 
 ## Account Config
 
@@ -1027,3 +1054,55 @@ This endpoint can be used to fetch all contributions for a given user. The param
 |page|integer|Page of Contributions to return (50 per page)|
 
 Please see the 'request' and 'response' tabs on the right for a sample request
+
+## Mentions
+
+### GET mentions
+
+```shell--request
+  curl -X GET \
+  'https://www.metype.com/api/v1/accounts/<account_id>/pages/<page_id>/authors.json?name=<search_term>&limit=<number>'
+```
+
+```shell--response
+  {
+    "all_authors": [
+        {
+          "id": 1,
+          "name": "name",
+          "avatar": "http://avatar.com/avatar",
+          "id": 109,
+          "slug": "name-2",
+          "guest": false,
+          "bio": "",
+          "accounts": []
+        }
+    ],
+    "realm_authors": [
+      {
+        "id": 1,
+        "name": "name",
+        "avatar": "http://avatar.com/avatar",
+        "id": 109,
+        "slug": "name-2",
+        "guest": false,
+        "bio": "",
+        "accounts": []
+      }
+    ]
+  }
+```
+
+Supported parameters:
+
+Name | type | description |
+-----|------|-----|
+name | string | a string search team to find users
+limit | integer | number of mentions that has to be shown
+
+API response reference
+
+API response will have two keys:
+
+* all_authors: This is an array of [user] (?shell--response#get-user-info) objects matching the term in entire metype
+* realm_authors:  This is an array of [user] (?shell--response#get-user-info) objects matching the term and commented in this realm
