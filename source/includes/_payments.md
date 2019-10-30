@@ -455,46 +455,46 @@ Authorization: Basic ...
 
 {
   "profile": {
-    "companyName": "companyName",
+    "companyName": "Company Name",
     "address": {
-      "country": "country",
+      "country": "UK",
       "poBox": "poBox",
       "careOf": "careOf",
-      "postalCode": "postalCode",
+      "postalCode": "AB12CD",
       "locality": "locality",
       "addressLine1": "addressLine1",
       "addressLine2": "addressLine2",
       "region": "region"
     },
-    "type": "type",
-    "companyNumber": "companyNumber",
+    "type": "ltd",
+    "companyNumber": "10965535",
     "sicCodes": [
-      "sicCode"
+      "80900"
     ]
   },
   "officerList": {
     "items": [
       {
-        "officerRole": "officerRole",
-        "firstName": "firstName",
-        "lastName": "lastName",
-        "emailAddress": "emailAddress",
+        "officerRole": "director",
+        "firstName": "Name",
+        "lastName": "Surename",
+        "emailAddress": "example@example.com",
         "address": {
-          "country": "country",
+          "country": "UK",
           "poBox": "poBox",
           "careOf": "careOf",
-          "postalCode": "postalCode",
-          "locality": "locality",
+          "postalCode": "AB12CD",
+          "locality": "UK",
           "addressLine1": "addressLine1",
           "addressLine2": "addressLine2",
           "region": "region"
         },
-        "phoneNumber": "phoneNumber",
+        "phoneNumber": "07512345678",
         "resignedOn": "resignedOn",
-        "dateOfBirth": "1970-03-29",
+        "dateOfBirth": "1980-01-30",
         "countryOfResidence": "countryOfResidence",
-        "appointedOn": "appointedOn",
-        "percentageOwnership": 12
+        "appointedOn": "1999-01-30",
+        "percentageOwnership": 99
       }
     ]
   }
