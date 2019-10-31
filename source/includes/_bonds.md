@@ -58,12 +58,12 @@ that their account has been credited.
 
 ![](/images/bond-management/images/bond-maturity.png "")
 
-## `GET /bondManagement/current`
+## `GET /platformApi/bondManagement/current`
 
 ```http
 
-GET /bondManagement/current HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/bondManagement/current HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -137,12 +137,12 @@ Returns details of the current bonds
 | bonds[].initialInvestmentAmount | ref    | The initial investment amount.                                                                                  |
 | bonds[].totalInterestAmount     | ref    | The total amount of interest accrued. This also includes any interest that has been accrued but not yet repaid. |
 | bonds[].nextRepaymentDate       | string | The date of the next repayment event.                                                                           |
-## `POST /bondManagement/product`
+## `POST /platformApi/bondManagement/product`
 
 ```http
 
-POST /bondManagement/product HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/bondManagement/product HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -226,12 +226,12 @@ Creates an investment product.
 | Name | Type   | Description                  |
 | ---- | ------ | ---------------------------- |
 | id   | string | The unique id of the product |
-## `POST /test/bondManagement/investmentCycle`
+## `POST /platformApi/test/bondManagement/investmentCycle`
 
 ```http
 
-POST /test/bondManagement/investmentCycle HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/test/bondManagement/investmentCycle HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -319,12 +319,12 @@ Runs a simulated investment cycle. This simulates funds being invested and being
 | bonds[].initialInvestmentAmount | ref    | The initial investment amount.                                                                                  |
 | bonds[].totalInterestAmount     | ref    | The total amount of interest accrued. This also includes any interest that has been accrued but not yet repaid. |
 | bonds[].nextRepaymentDate       | string | The date of the next repayment event.                                                                           |
-## `POST /test/bondManagement/investmentCycle/repaymentsAccrual`
+## `POST /platformApi/test/bondManagement/investmentCycle/repaymentsAccrual`
 
 ```http
 
-POST /test/bondManagement/investmentCycle/repaymentsAccrual HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/test/bondManagement/investmentCycle/repaymentsAccrual HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -346,14 +346,13 @@ Simulates interest repayment accruals.
 | Name        | Type   | Description                                     | Required |
 | ----------- | ------ | ----------------------------------------------- | -------- |
 | accrualDate | string | The date up to which accruals will be generated | optional |
-api-sandbox.goji.investments
 
-## `GET /investors/{clientId}/accounts/{accountType}/investments`
+## `GET /platformApi/investors/{clientId}/accounts/{accountType}/investments`
 
 ```http
 
-GET /investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -416,12 +415,12 @@ Lists the investments for the account.
 | investments[].endDate                | string | The end date of the investment.                                                                                                               |
 | investments[].amountInvested         | ref    | The amount invested.                                                                                                                          |
 | investments[].gainToDate             | ref    | The gain to date. Can be negative if the investment has decreased in value.                                                                   |
-## `POST /investors/{clientId}/accounts/{accountType}/investments`
+## `POST /platformApi/investors/{clientId}/accounts/{accountType}/investments`
 
 ```http
 
-POST /investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -459,8 +458,8 @@ Adds an investment to the account.
 
 ```http
 
-GET /investments/products HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investments/products HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 

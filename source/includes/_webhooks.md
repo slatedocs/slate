@@ -329,7 +329,7 @@ The following event `type`s will be supported, along with the content as `JSON`.
 ```
 
 >FUNDS_RECEIVED
-><br>This is fired whenever repayment funds are received from the investment manager. Bond Management API only.
+><br>This is fired whenever repayment funds are received from the investment manager.
 
 ```json
 {

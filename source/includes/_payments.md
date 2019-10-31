@@ -37,12 +37,172 @@ Below are some valid sample details you can use:
 |166051  |  99993193|
 |166051  |  87889196|
 
-## `GET /investors/{clientId}/accounts/balances`
+## `GET /platformApi/investors/{clientId}/bankTransferDetails`
 
 ```http
 
-GET /investors/{clientId}/accounts/balances HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/bankTransferDetails HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "bankReference" : "bankReference",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+```
+### Description
+Retrieve the bank details for depositing funds to the general investments account.
+### Response
+| Name          | Type   | Description                            |
+| ------------- | ------ | -------------------------------------- |
+| accountNumber | string | The account number.                    |
+| sortCode      | string | The sort code.                         |
+| bankReference | string | The reference to use for the transfer. |
+## `GET /platformApi/investors/{clientId}/bankTransferDetails/isa`
+
+```http
+
+GET /platformApi/investors/{clientId}/bankTransferDetails/isa HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "bankReference" : "bankReference",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+```
+### Description
+Retrieve the bank details for depositing funds to the ISA account.
+### Response
+| Name          | Type   | Description                            |
+| ------------- | ------ | -------------------------------------- |
+| accountNumber | string | The account number.                    |
+| sortCode      | string | The sort code.                         |
+| bankReference | string | The reference to use for the transfer. |
+## `GET /platformApi/investors/{clientId}/bankDetails`
+
+```http
+
+GET /platformApi/investors/{clientId}/bankDetails HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "accountName" : "accountName",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+```
+### Description
+Retrieve the investor's bank details.
+### Response
+| Name          | Type   | Description         |
+| ------------- | ------ | ------------------- |
+| accountNumber | string | The account number. |
+| sortCode      | string | The sort code.      |
+| accountName   | string | The account name.   |
+## `PUT /platformApi/investors/{clientId}/bankDetails`
+
+```http
+
+PUT /platformApi/investors/{clientId}/bankDetails HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "accountName" : "accountName",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "accountName" : "accountName",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+```
+### Description
+Replaces the investor's bank details.
+### Request
+| Name          | Type   | Description         | Required |
+| ------------- | ------ | ------------------- | -------- |
+| accountNumber | string | The account number. | required |
+| sortCode      | string | The sort code.      | required |
+| accountName   | string | The account name.   | required |
+### Response
+| Name          | Type   | Description         |
+| ------------- | ------ | ------------------- |
+| accountNumber | string | The account number. |
+| sortCode      | string | The sort code.      |
+| accountName   | string | The account name.   |
+## `POST /platformApi/investors/{clientId}/bankDetails`
+
+```http
+
+POST /platformApi/investors/{clientId}/bankDetails HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "accountName" : "accountName",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "accountName" : "accountName",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+```
+### Description
+Adds the investor's bank details.
+### Request
+| Name          | Type   | Description         | Required |
+| ------------- | ------ | ------------------- | -------- |
+| accountNumber | string | The account number. | required |
+| sortCode      | string | The sort code.      | required |
+| accountName   | string | The account name.   | required |
+### Response
+| Name          | Type   | Description         |
+| ------------- | ------ | ------------------- |
+| accountNumber | string | The account number. |
+| sortCode      | string | The sort code.      |
+| accountName   | string | The account name.   |
+## `GET /platformApi/investors/{clientId}/accounts/balances`
+
+```http
+
+GET /platformApi/investors/{clientId}/accounts/balances HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -89,13 +249,12 @@ Returns the investor's account balances.
 | totalInvestedBalance.amount         | number | The amount.                                                           |
 | totalInvestedBalance.currency       | string | The ISO 4217 three character codes eg 'GBP'                           |
 | accounts                            | object | A breakdown of the balances by account.                               |
-
-## `GET /investors/{clientId}/accounts/balances/{accountType}`
+## `GET /platformApi/investors/{clientId}/accounts/balances/{accountType}`
 
 ```http
 
-GET /investors/{clientId}/accounts/balances/{accountType} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/accounts/balances/{accountType} HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -147,239 +306,12 @@ Returns the specified account balance.
 | isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-
-## `GET /investors/{clientId}/transactions`
-
-```http
-
-GET /investors/{clientId}/transactions HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-[ {
-  "dateTime" : "dateTime",
-  "amount" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "totalBalance" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "cashBalance" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "investedBalance" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "id" : "id",
-  "type" : "DEPOSIT",
-  "account" : "account",
-  "status" : "CLEARED"
-} ]
-```
-### Description
-Retrieves a list of cash transactions associated with a given investor.
-### Response
-| Name                        | Type   | Description                                             |
-| --------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [].id                       | string | The ID of the cash transaction                          |
-| [].dateTime                 | string | The datetime the cash transaction occurred              |
-| [].amount                   | ref    | The total amount involved in the cash transaction       |
-| [].amount.amount            | number | The amount                                              |
-| [].amount.currency          | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].type                     | string | The transaction type Possible values are: <br>`DEPOSIT`<br>`BONUS`<br>`WITHDRAWAL`<br>`INVESTMENT`<br>`CANCELLED_INVESTMENT`<br>`TRANSFER_INVESTMENT_OUT`<br>`TRANSFER_INVESTMENT_IN`<br>`INTEREST_REPAYMENT`<br>`CAPITAL_REPAYMENT`<br>`FEES`<br>`WITHHOLDING_TAX`<br>`ACCOUNT_TRANSFER_IN`<br>`ACCOUNT_TRANSFER_OUT`<br>`ISA_TRANSFER_IN`<br>`ISA_TRANSFER_IN_RESIDUAL_INCOME`<br>`ISA_TRANSFER_IN_REPAIR`<br>`ISA_TRANSFER_IN_REPAIR_DEDUCTION_FROM_ISA`<br>`ISA_TRANSFER_OUT`<br>`SIPP_TRANSFER_IN`<br>`BUY_PREMIUM`<br>`SELL_PREMIUM`<br> |
-| [].cashBalance              | ref    | The cash balance                                        |
-| [].cashBalance.amount       | number | The amount                                              |
-| [].cashBalance.currency     | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].investedBalance          | ref    | The invested balance                                    |
-| [].investedBalance.amount   | number | The amount                                              |
-| [].investedBalance.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].totalBalance             | ref    | The total balance                                       |
-| [].totalBalance.amount      | number | The amount                                              |
-| [].totalBalance.currency    | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].account                  | string | The transaction account                                 |
-| [].status                   | string | The transaction status Possible values are: <br>`ASSIGNED`<br>`PENDING`<br>`CLEARED`<br>                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-
-## `GET /investors/{clientId}/bankTransferDetails`
+## `POST /platformApi/investors/{clientId}/accounts/{accountType}/withdrawal`
 
 ```http
 
-GET /investors/{clientId}/bankTransferDetails HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "bankReference" : "bankReference",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
-}
-```
-### Description
-Retrieve the bank details for depositing funds to the general investments account.
-### Response
-| Name          | Type   | Description                            |
-| ------------- | ------ | -------------------------------------- |
-| accountNumber | string | The account number.                    |
-| sortCode      | string | The sort code.                         |
-| bankReference | string | The reference to use for the transfer. |
-
-## `GET /investors/{clientId}/bankTransferDetails/isa`
-
-```http
-
-GET /investors/{clientId}/bankTransferDetails/isa HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "bankReference" : "bankReference",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
-}
-```
-### Description
-Retrieve the bank details for depositing funds to the ISA account.
-### Response
-| Name          | Type   | Description                            |
-| ------------- | ------ | -------------------------------------- |
-| accountNumber | string | The account number.                    |
-| sortCode      | string | The sort code.                         |
-| bankReference | string | The reference to use for the transfer. |
-
-## `GET /investors/{clientId}/bankDetails`
-
-```http
-
-GET /investors/{clientId}/bankDetails HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
-}
-```
-### Description
-Retrieve the investor's withdrawal bank details.
-### Response
-| Name          | Type   | Description         |
-| ------------- | ------ | ------------------- |
-| accountNumber | string | The account number. |
-| sortCode      | string | The sort code.      |
-| accountName   | string | The account name.   |
-
-## `POST /investors/{clientId}/bankDetails`
-
-```http
-
-POST /investors/{clientId}/bankDetails HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-{
-  "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
-}
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
-}
-```
-### Description
-Adds the investor's withdrawal bank details.
-### Request
-| Name          | Type   | Description         | Required |
-| ------------- | ------ | ------------------- | -------- |
-| accountNumber | string | The account number. | required |
-| sortCode      | string | The sort code.      | required |
-| accountName   | string | The account name.   | required |
-### Response
-| Name          | Type   | Description         |
-| ------------- | ------ | ------------------- |
-| accountNumber | string | The account number. |
-| sortCode      | string | The sort code.      |
-| accountName   | string | The account name.   |
-
-## `PUT /investors/{clientId}/bankDetails`
-
-```http
-
-PUT /investors/{clientId}/bankDetails HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-{
-  "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
-}
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
-}
-```
-### Description
-Replaces the investor's withdrawal bank details.
-### Request
-| Name          | Type   | Description         | Required |
-| ------------- | ------ | ------------------- | -------- |
-| accountNumber | string | The account number. | required |
-| sortCode      | string | The sort code.      | required |
-| accountName   | string | The account name.   | required |
-### Response
-| Name          | Type   | Description         |
-| ------------- | ------ | ------------------- |
-| accountNumber | string | The account number. |
-| sortCode      | string | The sort code.      |
-| accountName   | string | The account name.   |
-
-## `POST /investors/{clientId}/accounts/{accountType}/withdrawal`
-
-```http
-
-POST /investors/{clientId}/accounts/{accountType}/withdrawal HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/investors/{clientId}/accounts/{accountType}/withdrawal HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -444,13 +376,12 @@ Withdraw cash from the specified account to the registered investor bank details
 | isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-
-## `POST /investors/{clientId}/accounts/{accountType}/transfer`
+## `POST /platformApi/investors/{clientId}/accounts/{accountType}/transfer`
 
 ```http
 
-POST /investors/{clientId}/accounts/{accountType}/transfer HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/investors/{clientId}/accounts/{accountType}/transfer HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -515,10 +446,10 @@ Transfer cash to another account.
 | isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-## `POST /wallet/company/registration`
+## `POST /platformApi/wallet/company/registration`
 ```http
-POST /wallet/company/registration HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/wallet/company/registration HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -614,11 +545,11 @@ Register a corporate for wallet management
 | officerList.items.address.postalCode        | string | Postal Code                                    | required |
 | officerList.items.address.region            | string | Region                                         | required |
 
-## `POST /wallet`
+## `POST /platformApi/wallet`
 ```http
 
-POST /wallet HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/wallet HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -647,11 +578,11 @@ Create a wallet
 | Name       | Type   | Description
 | ---------- | ------ | ---------------
 | id | string | The unique identifier for the created wallet
-## `GET /wallet/{id}`
+## `GET /platformApi/wallet/{id}`
 ```http
 
-GET /wallet/{id} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/wallet/:id HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -672,12 +603,12 @@ Wallet Details
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
-## `DELETE /wallet/{id}`
+## `DELETE /platformApi/wallet/:id`
 
 ```http
 
-DELETE /wallet/{id} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+DELETE /platformApi/wallet/:id HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -698,11 +629,11 @@ Delete wallet
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
-## `POST /wallet/{id}/payment`
+## `POST /platformApi/wallet/{id}/payment`
 ```http
 
-POST /wallet/{id}/payment HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/wallet/{id}/payment HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -733,12 +664,12 @@ Create a payment instruction from a wallet
 | reference                     | string | The bank reference used for the transfer    | required |
 | narrative                     | string | The reason for the wallet transfer          |
 
-## `GET /wallet/{id}/transactions`
+## `GET /platformApi/wallet/{id}/transactions`
 
 ```http
 
-GET /wallet/{id}/transactions HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/wallet/{id}/transactions HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -777,11 +708,11 @@ Retrieve a list of transactions for a given wallet.
 | narrative                     | string | The reason for the wallet transfer          |
 | createdDateTime               | date/time | The date / time the transaction was created          |
 | clearedDateTime               | date/time | The date / time the transaction was cleared          |
-## `GET /bankAccountDetails`
+## `GET /platformApi/bankAccountDetails`
 ```http
 
-GET /bankAccountDetails HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/bankAccountDetails HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -808,12 +739,12 @@ List of bank accounts we hold in the system for sending money to.
 | [].sortCode      | string | The sort code.                             |
 | [].accountName   | string | The account name.                          |
 | [].status        | string | Whether or not the account has passed AML. |
-## `POST /bankAccountDetails`
+## `POST /platformApi/bankAccountDetails`
 
 ```http
 
-POST /bankAccountDetails HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/bankAccountDetails HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -842,12 +773,12 @@ Create a set of bank details.
 | Name | Type   | Description          |
 | ---- | ------ | -------------------- |
 | id   | string | The bank account ID. |
-## `GET /bankAccountDetails/{id}`
+## `GET /platformApi/bankAccountDetails/:id`
 
 ```http
 
-GET /bankAccountDetails/{id} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/bankAccountDetails/:id HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -874,12 +805,12 @@ Get a specific bank account we hold in the system for sending money to.
 | sortCode      | string | The sort code.                             |
 | accountName   | string | The account name.                          |
 | status        | string | Whether or not the account has passed AML. |
-## `PUT /bankAccountDetails/{id}`
+## `PUT /platformApi/bankAccountDetails/:id`
 
 ```http
 
-PUT /bankAccountDetails/{id} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+PUT /platformApi/bankAccountDetails/:id HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -903,12 +834,12 @@ Updates a specific set of stored account details. This will trigger an AML check
 | sortCode      | string | The sort code.      | required |
 | accountName   | string | The account name.   | required |
 
-## `POST /test/payment`
+## `POST /platformApi/test/payment`
 
 ```http
 
-POST /test/payment HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/test/payment HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
