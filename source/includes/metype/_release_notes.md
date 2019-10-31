@@ -1,6 +1,26 @@
 # Release Notes
 
+## 23 Aug 2019 Release Note - Metype
+1. Commenting widget caching optimisations; a cached comment widget which allows users to comment, is loaded even before the comments made by other users load.
+2. [Bug fix]Feed widget does not load more than 20 stories.
 
+## 16 Aug 2019 Release Note - Metype
+1. Premium Metype accounts are now given a badge in the Metype admin dashboard.
+2. Minor bug fixes.
+
+## 14 Aug 2019 Release Note - Metype
+1. **Top Pages in Feed Update** - The display of Top Pages in the Feed widget is now controlled by the Top Pages configuration in the Metype > Settings dashboard.
+2. **Third Party Login Update** - The base 64 URI encoded page URL is now sent as part of Third Party Login, so that users are brought back to the page from which they logged in.
+
+
+## 9 Aug 2019 Release Note - Metype
+1. **Comment Manager Upgrade** - The comment manager is now equipped with a date range filter along with the number of commments in each of the tabs is displayed upfront. 
+![Comment Manager Date Range and Comment Count](../../images/Metype_CM_DateRange_CommentCount.png "Comment Manager Date Range and Comment Count")
+2. Page reactions are now supported without labels.
+3. Minor bug fixes.
+
+## 6 Aug 2019 Release Note - Metype
+1. [Bug Fixes] - Page Reactions UI fix on low resolution mobile phones, Profile pop-up on replies and @mention users and z-index fix on comment reactions.
 
 ## 1 Aug 2019 Release Note - Metype
 1. Performance and Tech - Emoji library upgrade, API performance reindex optimisation.
