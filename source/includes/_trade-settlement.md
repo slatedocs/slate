@@ -43,7 +43,7 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#instruments-get-tr
 | sell.fees[].cost.amount   | Number    | Number     | The amount of the fee in `cost.currency`.                                  |
 
 ## `POST /trades`
-```HTTP
+```http
 POST /trades HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
@@ -121,7 +121,7 @@ Authorization: Basic ...
 X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 ```
 
-```HTTP
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -168,7 +168,7 @@ Retrieves the details of an existing trade.
 
 Body: None
 
-### Response *r6TH_.r.-zF4-syEEW8
+### Response
 
 Body: [Trade Model](/#trade-settlement-trade-model)
 
