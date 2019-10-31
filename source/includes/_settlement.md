@@ -349,7 +349,6 @@ Authorization: Basic ...
 
 {
   "buySide" : {
-    "reference" : "reference",
     "clientId" : "clientId",
     "accountType" : "GOJI_INVESTMENT",
     "fee" : {
@@ -357,31 +356,34 @@ Authorization: Basic ...
       "currency" : "currency"
     },
     "bankAccountId" : "bankAccountId",
-    "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)",
-    "newInvestmentId" : "newInvestmentId",
+    "reference" : "reference",
     "totalPurchaseAmount" : {
       "amount" : 2.68,
       "currency" : "currency"
-    }
+    },
+    "newInvestmentId" : "newInvestmentId",
+    "dateTime": "2019-01-01T12:33:00Z", 
+    "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)"
   },
   "sellSide" : {
-    "reference" : "reference",
     "clientId" : "clientId",
-    "premium" : {
-      "amount" : 2.68,
-      "currency" : "currency"
-    },
-    "investmentId" : "investmentId",
+    "accountType" : "GOJI_INVESTMENT",
     "fee" : {
       "amount" : 2.68,
       "currency" : "currency"
     },
     "bankAccountId" : "bankAccountId",
-    "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)",
+    "reference" : "reference",
+    "investmentId" : "investmentId",
+    "premium" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
     "capitalAmount" : {
       "amount" : 2.68,
       "currency" : "currency"
-    }
+    },
+    "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)"
   }
 }
 
@@ -395,29 +397,31 @@ Records the settlement of a secondary market trade.
 ### Request
 | Name                                        | Type   | Description                                                                                                     | Required |
 | ------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------- | -------- |
-| sellSide                                    | ref    | Details of the sell side.                                                                                       | required |
-| sellSide.clientId                           | string | The client ID of the seller                                                                                     ||
-| sellSide.investmentId                       | string | The ID of the investment being sold                                                                             ||
-| capitalAmount.amount                        | number | The amount.                                                                                                     ||
-| capitalAmount.currency                      | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
-| premium.amount                              | number | The amount.                                                                                                     ||
-| premium.currency                            | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
-| fee.amount                                  | number | The amount.                                                                                                     ||
-| fee.currency                                | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
-| sellSide.feePaymentDestination (Deprecated) | string | The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field ||
-| sellSide.bankAccountId                      | string | The ID of the bank account details to send fees to                                                              ||
-| sellSide.reference                          | string | The bank reference for the funds transfer                                                                       ||
 | buySide                                     | ref    | Details of the buy side.                                                                                        | required |
 | buySide.clientId                            | string | The client ID of the buyer                                                                                      ||
 | buySide.accountType                         | string | The account purchasing the investment Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>`SIPP`<br>         ||
-| totalPurchaseAmount.amount                  | number | The amount.                                                                                                     ||
-| totalPurchaseAmount.currency                | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
-| fee.amount                                  | number | The amount.                                                                                                     ||
-| fee.currency                                | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
-| buySide.feePaymentDestination (Deprecated)  | string | The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field ||
+| buySide.fee.amount                          | number | The amount.                                                                                                     ||
+| buySide.fee.currency                        | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | buySide.bankAccountId                       | string | The ID of the bank account details to send fees to                                                              ||
 | buySide.reference                           | string | The bank reference for the funds transfer                                                                       ||
+| buySide.totalPurchaseAmount.amount          | number | The amount.                                                                                                     ||
+| buySide.totalPurchaseAmount.currency        | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | buySide.newInvestmentId                     | string | The ID for the investment being held by the buy side investor                                                   ||
+| buySide.dateTime                            | date/time | The date / time for the trade settlement                                                                     ||
+| buySide.feePaymentDestination (Deprecated)  | string | The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field ||
+| sellSide                                    | ref    | Details of the sell side.                                                                                       | required |
+| sellSide.clientId                           | string | The client ID of the seller                                                                                     ||
+| sellSide.accountType                        | string | The account selling the investment Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>`SIPP`<br>            ||
+| sellSide.fee.amount                         | number | The amount.                                                                                                     ||
+| sellSide.fee.currency                       | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| sellSide.bankAccountId                      | string | The ID of the bank account details to send fees to                                                              ||
+| sellSide.reference                          | string | The bank reference for the funds transfer                                                                       ||
+| sellSide.investmentId                       | string | The ID of the investment being sold                                                                             ||
+| sellSide.premium.amount                     | number | The amount.                                                                                                     ||
+| sellSide.premium.currency                   | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| sellSide.capitalAmount.amount               | number | The amount.                                                                                                     ||
+| sellSide.capitalAmount.currency             | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| sellSide.feePaymentDestination (Deprecated) | string | The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field ||
 
 ## `GET /platformApi/settlement/product`
 
