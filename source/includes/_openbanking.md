@@ -34,7 +34,7 @@ For a detailed description of requirements and supported algorithms please check
 
 ## Sandbox Access
 
-We highly recommend that you get started with connecting to our sandbox first, before moving on to production. To get started with the registration process drop us an email to `openbanking@transferwise.com`
+We highly recommend that you get started with connecting to our sandbox first, before moving on to production. To get started with the registration process drop us an email to [openbanking@transferwise.com](mailto:openbanking@transferwise.com).
 
 ### Open Banking Directory
 
@@ -48,7 +48,7 @@ In either case, please make sure to have your list of **Redirect Uri**-s correct
 
 ### eIDAS Certificates
 
-In case you're using an eIDAS certificates instead of the ones issued by the Open Banking Directory just contact us at `openbanking@transferwise.com` to 
+In case you're using an eIDAS certificates instead of the ones issued by the Open Banking Directory just contact us at [openbanking@transferwise.com](mailto:openbanking@transferwise.com) to 
 see how we can move forward. 
 
 ## Sandbox Test User
