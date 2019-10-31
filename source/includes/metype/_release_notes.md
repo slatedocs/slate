@@ -1,9 +1,23 @@
 # Release Notes
 
+## 29 Oct 2019 Release Note - Metype
+1. **User Generated Content Upgrade** - Contributions are now allowed to be submitted by Guests as well as logged in users. The user's profile information available in Metype will be used to auto-populate the UGC form. For guest contributors, Google's re-captcha will be used for bot-protection.
+![UGC guest and login](../../images/Metype_GuestContribution.png "UGC guest and login")
+2. Few tech stack upgrages.
+
+## 21 Oct 2019 Release Note - Metype
+1. **Bookmark URLs** - Metype now allows users to save URLs to read later. New set of APIs to store URLs bookmarked by users and retrieve them. Documentation available [here](/metype?shell--request#bookmarks).
+2. **User Generated Content upgrade** -  New API to fetch all the contributions submitted by a Metype user. Documentation available [here](/metype?shell--request#get-all-contributions-for-a-user).
+3. Tech stack upgrade.
+
+## 14 Oct 2019 Release Note - Metype
+1. Metype widgets now support URLs with non-latin-alphabet(vernacular) characters.
+2. Tech stack upgrades and minor bug fixes.
+
 ## 1 Oct 2019 Release Note - Metype
 1. API performance optimisations - purging and database.
 2. Metype social share and Feed URLs are now post-fixed with anchor tags to bring the user directly to the commenting widget.
-3. Metype Config API - All account level configurations are now available as an API. The documentation is available [here](#get-account-config).
+3. Metype Config API - All account level configurations are now available as an API. The documentation is available [here](/metype?shell--request#get-account-config).
 
 ## 9 Sep 2019 Release Note - Metype
 1. **Guest Commenting Upgrade** is now allowed when the 3rd Party Login configuration is turned on.
