@@ -38,24 +38,24 @@ We highly recommend that you get started with connecting to our sandbox first, b
 
 ### Open Banking Directory
 
-If you're a registered TPP in the Open Banking Directory and you are using Signing and Transport certificates issue by
+If you're a registered TPP in the Open Banking Directory and you are using Signing and Transport certificates issued by
 Open Banking, you can easily onboard by providing either of the following things:
 
-* You can generate and send us a Software Statement Assertion (SSA) from Open Banking Directory.  
-* Alternatively, you can also just sent us your Open Banking Organization ID together with the Software Statement ID that you wish to use.
+* You can generate and send us a Software Statement Assertion (SSA) from the Open Banking Directory.  
+* Alternatively, you can also just send us your Open Banking Organization ID together with the Software Statement ID that you wish to use.
 
-In either case, please make sure to have your list of **Redirect Uri**-s correctly configured in your Software Statement, otherwise you'll not be able to go through to whole flow.
+In either case, please make sure to have your list of **Redirect Uri**-s correctly configured in your Software Statement, otherwise you'll not be able to go through the whole flow.
 
 ### eIDAS Certificates
 
-In case you're using an eIDAS certificates instead of the ones issued by the Open Banking Directory just contact us to 
+In case you're using an eIDAS certificates instead of the ones issued by the Open Banking Directory just contact us at `openbanking@transferwise.com` to 
 see how we can move forward. 
 
 ## Sandbox Test User
 
 You can sign up for a test user account here [https://sandbox.transferwise.tech/register](https://sandbox.transferwise.tech/register). The 2FA code used for any subsequent logins to the sandbox will alway be `111111`.
 
-You'll be asked to set up a developer account by filling in your profile information. Once this is done, you'll see that your newly created profile comes with a couple of test accounts opened and some test balance in them.
+You'll be asked to set up a developer account by filling in your profile information. Once this is done, you'll see that your newly created profile comes with a couple of test accounts opened and some test funds in them.
 
 You do **NOT** need to create an API Token via the web interface in case you're intention is to use this test user for the Open Banking flow.
 
@@ -244,7 +244,7 @@ You can take a look at the example JWT request object on the right. Please note 
 * The `openbanking_intent_id` **must** be filled with a valid `ConsentId` issued to the TPP.
 * The JWT **must** be signed with a valid signing certificate.
 
-Once the TPP redirects the user browser to the Authorization Endpoint the next things will happen in order:
+Once the TPP redirects the user browser to the Authorization Endpoint the following things will happen in order:
 
 1. User Login (use the username and password from the [Test User Registration](#open-banking-api-sandbox-test-user))
 2. Pass 2FA challenge (User the code `111111` in sandbox)
