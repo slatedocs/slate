@@ -945,15 +945,6 @@ components:
         A generic Asana Object, containing a globally unique identifier.
       type: object
       properties:
-        id:
-          description: >
-            Globally unique ID of the attachment, as an integer. *Note: This
-            field is under active migration to the gid field—please see our blog
-            post for more information.*
-          type: integer
-          format: int64
-          readOnly: true
-          example: 12345
         gid:
           description: >-
             Globally unique identifier of the object, as a string.
@@ -3264,7 +3255,7 @@ components:
             $ref: '#/components/schemas/Webhook'
     Workspace:
       allOf:
-        - $ref: '#/components/schemas/AsanaNamedObject'
+        - $ref: '#/components/schemas/WorkspaceCompact'
         - type: object
           properties:
             email_domains:
@@ -3287,6 +3278,8 @@ components:
             A *workspace* is the highest-level organizational unit in Asana. All
             projects and tasks have an associated workspace.
           properties:
+            name:
+              example: My Company Workspace
             resource_type:
               example: workspace
     WorkspaceObject:
