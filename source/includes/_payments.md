@@ -721,10 +721,24 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-""
+[ {
+  "accountName" : "accountName",
+  "id" : "id",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode",
+  "status" : "status"
+} ]
 ```
 ### Description
 List of bank accounts we hold in the system for sending money to.
+### Response
+| Name             | Type   | Description                                |
+| ---------------- | ------ | ------------------------------------------ |
+| [].id            | string | The bank account details ID.               |
+| [].accountNumber | string | The account number.                        |
+| [].sortCode      | string | The sort code.                             |
+| [].accountName   | string | The account name.                          |
+| [].status        | string | Whether or not the account has passed AML. |
 ## `POST /bankAccountDetails`
 
 ```http
