@@ -2,6 +2,11 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 28 Aug 19 Release Note - Accesstype
+1. **Stripe Payment Gateway Integration** - Accestype now integrates with Stripe to collect payments. This includes update includes accepting one-time payments from subscribers in INR and USD currencies, listens to webhooks from Stripe and stores payment transaction information in Accesstype.
+![Accesstype Stripe](../../images/Accesstype_Stripe.png "Accesstype Stripe")
+2. The Subscriber object is now included in the Subscription Object in all the webhook payloads as well as Subscription Preview and Create API responses.
+
 ## 19 Aug 19 Release Note - Accesstype
 1. Attempts CSV report now contains the payment gateway that was used by the potential subscriber to perform the attempt to subscribe.
 2. [Bug fix] - Add identity now trims leading and trailing spaces when Accesstype user adds an email.
