@@ -600,7 +600,7 @@ This API is useful to undo a comment reaction.
 
 ## Account Config
 
-### GET
+### GET Account Config
 ```shell--request
 curl --request GET \
   --url https://www.metype.com/api/v1/accounts/<account_id>/config \

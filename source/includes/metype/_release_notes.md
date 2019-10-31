@@ -1,5 +1,23 @@
 # Release Notes
 
+## 1 Oct 2019 Release Note - Metype
+1. API performance optimisations - purging and database.
+2. Metype social share and Feed URLs are now post-fixed with anchor tags to bring the user directly to the commenting widget.
+3. Metype Config API - All account level configurations are now available as an API. The documentation is available [here](#get-account-config).
+
+## 9 Sep 2019 Release Note - Metype
+1. **Guest Commenting Upgrade** is now allowed when the 3rd Party Login configuration is turned on.
+
+## 4 Sep 2019 Release Note - Metype
+1. Bug fixes on comment count API and Comment Manager Actions.
+
+## 3 Sep 2019 Release Note - Metype
+1. [Minor bug fixes] Unsubscribe to Metype emails, quick date in date range picker, social login logos update.
+
+## 28 Aug 2019 Release Note - Metype
+1. Date range picker in Comments Manager now has an enhanced UX.
+2. Bug fix on adding admin users on Metype dashboard.
+
 ## 23 Aug 2019 Release Note - Metype
 1. Commenting widget caching optimisations; a cached comment widget which allows users to comment, is loaded even before the comments made by other users load.
 2. [Bug fix]Feed widget does not load more than 20 stories.
