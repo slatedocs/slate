@@ -38,12 +38,12 @@ transactions are recorded and funds are moved to the seller's account.
 
 ![](/images/settlement/images/client-money-secondary-market.png "")
 
-## `GET /settlement/payment-destination`
+## `GET /platformApi/settlement/payment-destination`
 
 ```http
 
-GET /settlement/payment-destination HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/settlement/payment-destination HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -62,12 +62,12 @@ Lists payment destinations. This has been deprecated to be replaced with https:/
 | Name | Type   | Description                              |
 | ---- | ------ | ---------------------------------------- |
 | id   | string | The unique id of the payment destination |
-## `POST /settlement/payment-destination`
+## `POST /platformApi/settlement/payment-destination`
 
 ```http
 
-POST /settlement/payment-destination HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/settlement/payment-destination HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -98,12 +98,12 @@ Adds a payment destination. This has been deprecated to be replaced with https:/
 | Name | Type   | Description                              |
 | ---- | ------ | ---------------------------------------- |
 | id   | string | The unique id of the payment destination |
-## `PUT /settlement/payment-destination/{id}`
+## `PUT /platformApi/settlement/payment-destination/{id}`
 
 ```http
 
-PUT /settlement/payment-destination/{id} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+PUT /platformApi/settlement/payment-destination/{id} HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -134,12 +134,12 @@ Updates a payment destination. This has been deprecated to be replaced with http
 | Name | Type   | Description                              |
 | ---- | ------ | ---------------------------------------- |
 | id   | string | The unique id of the payment destination |
-## `POST /settlement/repayment`
+## `POST /platformApi/settlement/repayment`
 
 ```http
 
-POST /settlement/repayment HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/settlement/repayment HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -187,13 +187,12 @@ Adds a repayment to an investment.
 | investorRepayments[].amount       | ref    | The amount being repaid                                                        | required |
 | investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment                           | optional |
 
-
-## `GET /settlement/repayment/reference`
+## `GET /platformApi/settlement/repayment/reference`
 
 ```http
 
-GET /settlement/repayment/reference HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/settlement/repayment/reference HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -216,12 +215,12 @@ Generates a repayment reference to be used when depositing repayment funds.
 | reference     | string | The bank reference to be used when depositing the repayment. |
 | accountNumber | string | The account number for the repayment deposit.                |
 | sortCode      | string | The sort code for the repayment deposit.                     |
-## `GET /settlement/investors/{clientId}/accounts/{accountType}/investments`
+## `GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments`
 
 ```http
 
-GET /settlement/investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -266,12 +265,12 @@ Lists recorded investments for an investor.
 | investments[].trancheId    | string | The ID of the investment tranche of a particular product                                                        |
 | investments[].amount       | ref    | The amount being invested                                                                                       |
 | investments[].accountType  | string | The account making the investment. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                      |
-## `POST /settlement/tranche`
+## `POST /platformApi/settlement/tranche`
 
 ```http
 
-POST /settlement/tranche HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/settlement/tranche HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -339,12 +338,12 @@ Records an investment and triggers a transfer of funds to the Investment Manager
 | sortCode             | string | The sort code the funds will be sent to      |
 | accountNumber        | string | The account number the funds will be sent to |
 | reference            | string | The bank reference for the funds transfer    |
-## `POST /settlement/secondary-market`
+## `POST /platformApi/settlement/secondary-market`
 
 ```http
 
-POST /settlement/secondary-market HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/settlement/secondary-market HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -420,13 +419,12 @@ Records the settlement of a secondary market trade.
 | buySide.reference                           | string | The bank reference for the funds transfer                                                                       ||
 | buySide.newInvestmentId                     | string | The ID for the investment being held by the buy side investor                                                   ||
 
-
-## `GET /settlement/product`
+## `GET /platformApi/settlement/product`
 
 ```http
 
-GET /settlement/product HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/settlement/product HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -456,12 +454,12 @@ Returns list of registered products
 | products[].id                 | string  | The unique ID of the product                                                                                   |
 | products[].investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. |
 | products[].isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           |
-## `POST /settlement/product`
+## `POST /platformApi/settlement/product`
 
 ```http
 
-POST /settlement/product HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/settlement/product HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -494,12 +492,12 @@ Adds a registered product
 | id                 | string  | The unique ID of the product                                                                                   |
 | investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. |
 | isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           |
-## `PUT /settlement/product/{productId}`
+## `PUT /platformApi/settlement/product/{productId}`
 
 ```http
 
-PUT /settlement/product/{productId} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+PUT /platformApi/settlement/product/{productId} HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
