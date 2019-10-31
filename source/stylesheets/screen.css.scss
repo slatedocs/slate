@@ -103,23 +103,29 @@ html, body {
   }
 
   .search-results {
-    margin-top: 0;
-    box-sizing: border-box;
     height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    transition-property: height, margin;
-    transition-duration: 180ms;
+    transition-property: height;
+    transition-duration: 380ms;
     transition-timing-function: ease-in-out;
     background: $nav-subitem-bg;
+    box-shadow: 0px 2px 5px -1px rgba(102,102,102,0.5);
+
     &.visible {
       height: 30%;
-      margin-bottom: 1em;
+      margin: -10px 10px 5px 23px;
+      border-top: 0;
+      box-sizing: border-box;
     }
 
     li {
-      margin: 1em $nav-padding;
+      margin: 5px;
       line-height: 1;
+      background: rgba(243, 247, 249, 0.4);
+      padding: 5px;
+      border: 1px solid rgba(243, 247, 249, 0.8);
+      border-radius: 3px;
     }
 
     a {
