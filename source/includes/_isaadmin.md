@@ -565,7 +565,7 @@ Issues a token that indicates that the investor has read and agreed to the speci
 #### Investor Lifecycle
 This endpoint should be called before creating the investor and when the investor signs a new version of the terms and conditions.
 #### Possible Error Codes:
-Please see [sign terms errors](/isa-administration-api/guides/Error%20Codes)
+Please see [sign terms errors](#errors)
 ### Request
 | Name                      | Type   | Description                                                                               | Required |
 | ------------------------- | ------ | ----------------------------------------------------------------------------------------- | -------- |
@@ -717,7 +717,7 @@ Records an investor agreeing to the ISA Declaration.
 #### Investor Lifecycle
 This endpoint should be called before creating the investor.
 #### Possible Error Codes:
-Please see [sign declaration errors](/isa-administration-api/guides/Error%20Codes)
+Please see [sign declaration errors](#errors)
 ### Request
 | Name               | Type   | Description                                                                      | Required |
 | ------------------ | ------ | -------------------------------------------------------------------------------- | -------- |
@@ -796,7 +796,7 @@ In addition to checking the format of the supplied data, the following validatio
 * ensure the National Insurance number is valid.
 * ensure the user complies with the ISA UK residency checks
 #### Possible Error Codes
-Please see [create investor errors](/isa-administration-api/guides/Error%20Codes)
+Please see [create investor errors](#errors)
 ### Request
 | Name                           | Type   | Description                                                                                                                                                                                        | Required |
 | ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -873,7 +873,7 @@ Checks performed:
 * UK residency check against the address
 * Age of investor
 #### Possible Error Codes
-Please see [validate investor errors](/isa-administration-api/guides/Error%20Codes)
+Please see [validate investor errors](#errors)
 ### Request
 | Name                    | Type   | Description                                                                                                                                                                                        | Required |
 | ----------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -2230,7 +2230,7 @@ This endpoint should be called whenever monies are drawn down from the investor'
 #### Validation
 The ISA must have a cash balance equal or greater to the amount of the investment.
 #### Possible Error Codes
-Please see [create investment errors](/isa-administration-api/guides/Error%20Codes)
+Please see [create investment errors](#errors)
 ### Request
 | Name                      | Type   | Description                                                                                         | Required |
 | ------------------------- | ------ | --------------------------------------------------------------------------------------------------- | -------- |
@@ -2745,7 +2745,7 @@ This endpoint should be called whenever the captial amount of an investment need
 #### Validation
 The ISA must have a cash balance equal or greater to the amount of the investment.
 #### Possible Error Codes
-Please see [create investment errors](/isa-administration-api/guides/Error%20Codes)
+Please see [create investment errors](#errors)
 ### Request
 | Name             | Type   | Description                                                  | Required |
 | ---------------- | ------ | ------------------------------------------------------------ | -------- |
@@ -2828,7 +2828,7 @@ Records a repayment against a specific investment.
 #### Investor Lifecycle
 This endpoint should be called whenever a repayment is received from the borrower against an investor's investment. This repayment increases the cash balance of the ISA as it is not automatically reinvested by the P2P Platform.
 #### Possible Error Codes
-Please see [create repayment errors](/isa-administration-api/guides/Error%20Codes)
+Please see [create repayment errors](#errors)
 ### Request
 | Name                    | Type   | Description                                                 | Required |
 | ----------------------- | ------ | ----------------------------------------------------------- | -------- |
@@ -3080,7 +3080,7 @@ Records a reinvestment against a specific investment.
 This endpoint should be called whenever a repayment is received from the borrower against an investor's investment. This amount is automatically reinvested by the P2P Platform and so does not increase the cash balance of the ISA, however the ISA balance is increased by the interest component of the reinvestment.
 This endpoint creates the new investment associated with the reinvestment.
 #### Possible Error Codes
-Please see [create reinvestment errors](/isa-administration-api/guides/Error%20Codes)
+Please see [create reinvestment errors](#errors)
 ### Request
 | Name                             | Type   | Description                                                                                         | Required |
 | -------------------------------- | ------ | --------------------------------------------------------------------------------------------------- | -------- |
@@ -4455,7 +4455,7 @@ Content-Type: application/json
 ### Description
 This endpoint should be called by the P2PP when they have received the deposit for a transfer in and have confirmed the split between current/prior year subscriptions. The transfer amount is the value of the total amount received from the previus ISA manager. Either the repair amount or the subscribed amount needs to be specified. The subscribed amount is the portion allocated to the ISA. The repair amount is the amount that had to be credited to the non-ISA account. Please see the integration guide for more details.
 #### Possible Error Codes
-Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
+Please see [transfer cash errors](#errors)
 ### Request
 | Name                      | Type   | Description                                                                                                                                                                          | Required |
 | ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
@@ -4497,7 +4497,7 @@ Content-Type: application/json
 ### Description
 This endpoint should be called by the P2PP when they have received a residual income payment for a transfer in. Please see the integration guide for more details.
 #### Possible Error Codes
-Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
+Please see [transfer cash errors](#errors)
 ### Request
 | Name                | Type   | Description                                             | Required |
 | ------------------- | ------ | ------------------------------------------------------- | -------- |
@@ -4541,7 +4541,7 @@ Content-Type: application/json
 ### Description
 This endpoint should be called by the P2PP when they want to validate the transfer in cash transaction before processing it.
 #### Possible Error Codes
-Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
+Please see [transfer cash errors](#errors)
 ### Request
 | Name                      | Type   | Description                                                                                                                                                                          | Required |
 | ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
