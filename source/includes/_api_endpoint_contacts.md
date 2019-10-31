@@ -370,6 +370,9 @@ If `PATCH`, the expected response code is `200`.
 
 Same as [Get Contact](#get-contact).
 
+> Note: In order to remove tag from contact add minus `-` before it.
+> For example: `tags: ['one', '-two']`  - sending this in request body will add tag `one` and remove tag `two` from contact.
+
 ### Delete Contact
 ```php
 <?php
