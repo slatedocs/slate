@@ -3293,7 +3293,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Workspace'
+            $ref: '#/components/schemas/WorkspaceCompact'
     WorkspaceMembership:
       allOf:
         - $ref: '#/components/schemas/WorkspaceMembershipCompact'

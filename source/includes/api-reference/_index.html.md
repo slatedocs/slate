@@ -10843,11 +10843,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces \
     {
       "gid": "12345",
       "resource_type": "workspace",
-      "name": "My Company Workspace",
-      "email_domains": [
-        ...
-      ],
-      "is_organization": false
+      "name": "My Company Workspace"
     }
   ]
 }
