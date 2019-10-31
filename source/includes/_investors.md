@@ -1066,6 +1066,136 @@ Gets a specific transfer in for the investor.
 | fundsTransferType            | string | The funds transfer type                                 |
 | bankReference                | string | The bank reference                                      |
 | transferInDate               | string | The date stated on the transfer history form            |
+
+## `GET /transferIn/investors/{clientId}/open`
+
+```http
+
+GET /transferIn/investors/{clientId}/open HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[ {
+  "isaManagerName" : "isaManagerName",
+  "transferSummary" : {
+    "previousYearsSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "totalIsaTransferAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "repairAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "currentYearSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    }
+  },
+  "cashArrived" : true,
+  "previousYearsAmountType" : "previousYearsAmountType",
+  "id" : "id",
+  "isaType" : "isaType",
+  "transferDate" : "2000-01-23",
+  "includeCurrentYear" : true
+} ]
+```
+### Description
+Returns an overview of all open transfers in for a particular investor. 
+The `transferDate` is only non-null if the transfer history form has been received.
+### Response
+| Name                                        | Type    | Description                                                                    |
+| ------------------------------------------- | ------- | ------------------------------------------------------------------------------ |
+| [].id                                       | string  | The id                                                                         |
+| [].isaType                                  | string  | The type of ISA the investor holds                                             |
+| [].isaManagerName                           | string  | The name of the ISA manager involved with the Transfer In                      |
+| [].transferSummary                          | ref     | Details of the amounts being transferred                                       |
+| [].currentYearSubscriptionAmount.amount     | number  | The amount                                                                     |
+| [].currentYearSubscriptionAmount.currency   | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].previousYearsSubscriptionAmount.amount   | number  | The amount                                                                     |
+| [].previousYearsSubscriptionAmount.currency | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].repairAmount.amount                      | number  | The amount                                                                     |
+| [].repairAmount.currency                    | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].totalIsaTransferAmount.amount            | number  | The amount                                                                     |
+| [].totalIsaTransferAmount.currency          | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].includeCurrentYear                       | boolean | True if current year subscriptions should be transferred                       |
+| [].previousYearsAmountType                  | string  | Determines how much prior year subscription should be included in the transfer |
+| [].transferDate                             | string  | The date on which the transfer should occur                                    |
+| [].cashArrived                              | boolean | True if the cash for the Transfer In has arrived                                                            |
+
+## `GET /transferIn/investors/{clientId}/closed`
+
+```http
+
+GET /transferIn/investors/{clientId}/closed HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[ {
+  "isaManagerName" : "isaManagerName",
+  "transferSummary" : {
+    "previousYearsSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "totalIsaTransferAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "repairAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "currentYearSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    }
+  },
+  "cashArrived" : true,
+  "previousYearsAmountType" : "previousYearsAmountType",
+  "id" : "id",
+  "isaType" : "isaType",
+  "transferDate" : "2000-01-23",
+  "includeCurrentYear" : true
+} ]
+```
+### Description
+Returns an overview of all closed transfers in for a particular investor.
+### Response
+| Name                                        | Type    | Description                                                                    |
+| ------------------------------------------- | ------- | ------------------------------------------------------------------------------ |
+| [].id                                       | string  | The id                                                                         |
+| [].isaType                                  | string  | The type of ISA the investor holds                                             |
+| [].isaManagerName                           | string  | The name of the ISA manager involved with the Transfer In                      |
+| [].transferSummary                          | ref     | Details of the amounts being transferred                                       |
+| [].currentYearSubscriptionAmount.amount     | number  | The amount                                                                     |
+| [].currentYearSubscriptionAmount.currency   | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].previousYearsSubscriptionAmount.amount   | number  | The amount                                                                     |
+| [].previousYearsSubscriptionAmount.currency | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].repairAmount.amount                      | number  | The amount                                                                     |
+| [].repairAmount.currency                    | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].totalIsaTransferAmount.amount            | number  | The amount                                                                     |
+| [].totalIsaTransferAmount.currency          | string  | The currency in ISO 4217 three character codes eg 'GBP'                        |
+| [].includeCurrentYear                       | boolean | True if current year subscriptions should be transferred                       |
+| [].previousYearsAmountType                  | string  | Determines how much prior year subscription should be included in the transfer |
+| [].transferDate                             | string  | The date on which the transfer should occur                                    |
+| [].cashArrived                              | boolean | True if the cash for the Transfer In has arrived                                                            |
+
 ## `GET /platformApi/transferIn/deposits/{date}`
 
 ```http
