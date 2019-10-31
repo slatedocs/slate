@@ -203,8 +203,8 @@ Any existing ISA data is preserved.
 
 ```http
 
-GET /terms HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/terms HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -225,12 +225,12 @@ Loads the current set of terms and conditions.
 | ------------------ | ------ | ---------------------------------------- |
 | termsAndConditions | string | The terms and conditions in HTML format. |
 | version            | string | The version of the terms and conditions. |
-## `GET /isaDeclaration`
+## `GET /platformApi/isaDeclaration`
 
 ```http
 
-GET /isaDeclaration HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/isaDeclaration HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -252,13 +252,12 @@ Loads the current ISA declaration.
 | ----------- | ------ | ----------------------------------- |
 | declaration | string | The ISA declaration in HTML format. |
 | version     | string | The version of the ISA declaration. |
-
-## `POST /investors`
+## `POST /platformApi/investors`
 
 ```http
 
-POST /investors HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/investors HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -407,12 +406,12 @@ Creates an investor and triggers a KYC check.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
-## `GET /investors/{clientId}`
+## `GET /platformApi/investors/{clientId}`
 
 ```http
 
-GET /investors/{clientId} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId} HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -487,12 +486,12 @@ Retrieves an investor.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
-## `PUT /investors/{clientId}`
+## `PUT /platformApi/investors/{clientId}`
 
 ```http
 
-PUT /investors/{clientId} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+PUT /platformApi/investors/{clientId} HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -625,12 +624,12 @@ Updates an investor.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
-## `GET /investors/{clientId}/kyc`
+## `GET /platformApi/investors/{clientId}/kyc`
 
 ```http
 
-GET /investors/{clientId}/kyc HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/kyc HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -673,12 +672,12 @@ Retrieves an investor's KYC details.
 | lastFailure                                         | ref    |                                                                                                                                                                                     |
 | lastFailure.failureDate                             | string | Date of rejection                                                                                                                                                                   |
 | lastFailure.rejectedDocuments                       | array  | The rejected documents.                                                                                                                                                             |
-## `GET /investors/{clientId}/kyb`
+## `GET /platformApi/investors/{clientId}/kyb`
 
 ```http
 
-GET /investors/{clientId}/kyb HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/kyb HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -697,12 +696,12 @@ Retrieves an investor's KYB status - this is only applicable for corporates.
 | Name   | Type   | Description                                                                                            |
 | ------ | ------ | ------------------------------------------------------------------------------------------------------ |
 | status | string | The KYB status of a corporate investor Possible values are: <br>`DOCUMENTS_REQUIRED`<br>`VERIFIED`<br> |
-## `POST /investors/{clientId}/kyc/documents`
+## `POST /platformApi/investors/{clientId}/kyc/documents`
 
 ```http
 
-POST /investors/{clientId}/kyc/documents HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/investors/{clientId}/kyc/documents HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -730,12 +729,12 @@ Add an investor's KYC documents.
 | documents[].fileName | string | The file name eg passport.pdf.     | required |
 | documents[].data     | string | The file to upload Base64 encoded. | required |
 
-## `GET /investors/{clientId}/transactions`
+## `GET /platformApi/investors/{clientId}/transactions`
 
 ```http
 
-GET /investors/{clientId}/transactions HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/transactions HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -790,12 +789,12 @@ Retrieves a list of cash transactions associated with a given investor.
 | [].totalBalance.currency    | string | The currency in ISO 4217 three character codes eg 'GBP' |
 | [].account                  | string | The transaction account                                 |
 | [].status                   | string | The transaction status Possible values are: <br>`ASSIGNED`<br>`PENDING`<br>`CLEARED`<br>                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-## `POST /investors/{clientId}/accounts/ISA`
+## `POST /platformApi/investors/{clientId}/accounts/ISA`
 
 ```http
 
-POST /investors/{clientId}/accounts/ISA HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/investors/{clientId}/accounts/ISA HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -876,12 +875,12 @@ Add an ISA account.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
-## `GET /investors/{clientId}/accounts/ISA/transferIn/UI`
+## `GET /platformApi/investors/{clientId}/accounts/ISA/transferIn/UI`
 
 ```http
 
-GET /investors/{clientId}/accounts/ISA/transferIn/UI HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/accounts/ISA/transferIn/UI HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -906,12 +905,12 @@ Retrieve data to initialise the transfer in widget. See the documentation for de
 | styleSrc  | string |             |
 | scriptSrc | string |             |
 | token     | string |             |
-## `GET /transferIn/open/summary`
+## `GET /platformApi/transferIn/open/summary`
 
 ```http
 
-GET /transferIn/open/summary HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/transferIn/open/summary HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -952,12 +951,12 @@ Returns аll opened transfers in.
 | [].fundsTransferType            | string | The funds transfer type                                 |
 | [].bankReference                | string | The bank reference                                      |
 | [].transferInDate               | string | The date stated on the transfer history form            |
-## `GET /investors/{clientId}/transferOut`
+## `GET /platformApi/investors/{clientId}/transferOut`
 
 ```http
 
-GET /investors/{clientId}/transferOut HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/transferOut HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -1035,12 +1034,12 @@ Lists transfers out for the investor.
 | [].amountToTransfer.currency                         | string  | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                            |
 | [].amountToTransferAlert                             | boolean | True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.                                                        |
 | [].dateFundsTransferred                              | string  | The date the funds were transferred to the new ISA manager.                                                                                                                                        |
-## `GET /investors/{clientId}/transferIn`
+## `GET /platformApi/investors/{clientId}/transferIn`
 
 ```http
 
-GET /investors/{clientId}/transferIn HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/transferIn HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -1081,12 +1080,12 @@ Lists transfers in for the investor.
 | [].fundsTransferType            | string | The funds transfer type                                 |
 | [].bankReference                | string | The bank reference                                      |
 | [].transferInDate               | string | The date stated on the transfer history form            |
-## `GET /investors/{clientId}/transferIn/{transferInId}`
+## `GET /platformApi/investors/{clientId}/transferIn/{transferInId}`
 
 ```http
 
-GET /investors/{clientId}/transferIn/{transferInId} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/investors/{clientId}/transferIn/{transferInId} HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -1127,12 +1126,12 @@ Gets a specific transfer in for the investor.
 | fundsTransferType            | string | The funds transfer type                                 |
 | bankReference                | string | The bank reference                                      |
 | transferInDate               | string | The date stated on the transfer history form            |
-## `GET /transferIn/deposits/{date}`
+## `GET /platformApi/transferIn/deposits/{date}`
 
 ```http
 
-GET /transferIn/deposits/{date} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/transferIn/deposits/{date} HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -1168,12 +1167,12 @@ Lists deposits for transfer in for a given date
 | products            | array  |                                                         |
 | products[].id       | string | The transfer in ID                                      |
 | products[].clientId | string | The ID of the investor for the transfer in              |
-## `GET /transfersOut`
+## `GET /platformApi/transfersOut`
 
 ```http
 
-GET /transfersOut HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+GET /platformApi/transfersOut HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
