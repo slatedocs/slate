@@ -20,6 +20,7 @@ Welcome to the TransferWise API documentation. You can explore the different way
 * [Affiliates](#transferwise-api-affiliates)
 * [Connected Applications](#transferwise-api-connected-applications)
 * [Receive Money](#transferwise-api-receive-money)
+* [Open Banking API](#open-banking-api)
 
 ## Payouts and Account Automation
 
@@ -124,3 +125,7 @@ You can receive money to the local bank details that come with your TransferWise
 ## Checkout flows
 
 We currently don’t offer the option to build TransferWise into your checkout flow as a payment option to receive money. Note though that TransferWise can be added as a payout option on your site for beneficiaries to choose to receive their payout through to an email address, directly to a bank account or any other mechanism we support in our standard product.
+
+## Open Banking API
+
+Under the Second Payment Services Directive (PDS2) we are opening up the standardized version of our API to the rest of the world. Find out more about our [Open Banking API](#open-banking-api)    

@@ -13,6 +13,7 @@ includes:
   - banks
   - affiliates
   - connected-apps
+  - openbanking
   - contact-us
   - full-reference-separator
   - reference/addresses
