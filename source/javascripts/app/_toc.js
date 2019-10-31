@@ -43,6 +43,22 @@
       });
     };
 
+    var minimiseParamsAndPrefix = function() {
+      var $codePaths = $toc.find('li code');
+
+      $codePaths.each(function(i, el) {
+        var $el = $(el);
+        var html = $el.html();
+
+        if (html.indexOf('<small>') === -1) {
+          $el.html($el.text()
+            .replace(/(GET|PUT|POST|DELETE)/g, '<span class="http-method">$1</span>')
+            .replace(/\/platformApi/g, '<small class="url-prefix">/platformApi</small>')
+            .replace(/({[^}]+})/g, '<small class="url-var">$1</small>'));
+        }
+      });
+    };
+
     var refreshToc = function() {
       var currentTop = $(document).scrollTop() + scrollOffset;
 
@@ -92,6 +108,7 @@
     var makeToc = function() {
       recacheHeights();
       refreshToc();
+      minimiseParamsAndPrefix();
 
       $("#nav-button").click(function() {
         $(".toc-wrapper").toggleClass('open');
