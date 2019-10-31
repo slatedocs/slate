@@ -1,5 +1,14 @@
 # Release Notes
 
+
+
+## 1 Aug 2019 Release Note - Metype
+1. Performance and Tech - Emoji library upgrade, API performance reindex optimisation.
+
+## 29 Jul 2019 Release Note - Metype
+1. User Profile in Comments Manager - The user's email is now displayed to admins, in the user profile snapshot in the Comments Manager.
+![User Profile Email](../../images/Metype_UserProfileEmail.png "User Profile Email")
+
 ## 17 Jul 2019 Release Note - Metype
 1. Re-moderate edited comments - Comments approved by the admin, when edited by the commenter are now required to be re-aproved when pre-moderation is turned on.
 2. [Bug fix] - Console log has CORS error.
