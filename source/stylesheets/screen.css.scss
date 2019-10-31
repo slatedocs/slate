@@ -154,6 +154,38 @@ html, body {
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 200ms;
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      display: flex;
+      flex-direction: row;
+      letter-spacing: -1px;
+
+      .http-method {
+        padding-right: 4px;
+        opacity: 0.6;
+      }
+
+      small {
+        font-size: 100%;
+
+        &.url-prefix {
+          opacity: 0.4;
+          min-width: 25px;
+          flex-shrink: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 80%;
+        }
+        &.url-var {
+          color: rgba(66, 4, 37, 0.8);;
+        }
+      }
+    }
   }
 
   // This is the currently selected ToC entry
