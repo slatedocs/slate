@@ -221,7 +221,7 @@ https://sandbox.transferwise.tech/openbanking/authorize?
 }
 ```
 
-At the moment we are only supporting the browser redirect flow (what Open Banking calls [Hybrid Flow](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/83919096/Open+Banking+Security+Profile+-+Implementer+s+Draft+v1.1.2#OpenBankingSecurityProfile-Implementer'sDraftv1.1.2-HybridFlowRequestwithIntentId)) for authorizing the created consent.
+At the moment we are only supporting the browser redirect flow ([Hybrid Flow](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/83919096/Open+Banking+Security+Profile+-+Implementer+s+Draft+v1.1.2#OpenBankingSecurityProfile-Implementer'sDraftv1.1.2-HybridFlowRequestwithIntentId)) for authorizing the created consent.
 
 The customer journey will start from the TPPs website from where a user action will trigger a redirect to the TransferWise Open Banking Authorization Endpoint
 
