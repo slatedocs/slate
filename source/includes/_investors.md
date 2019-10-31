@@ -729,67 +729,6 @@ Add an investor's KYC documents.
 | documents            | array  | The documents.                     | required |
 | documents[].fileName | string | The file name eg passport.pdf.     | required |
 | documents[].data     | string | The file to upload Base64 encoded. | required |
-
-## `GET /investors/{clientId}/transactions`
-
-```http
-
-GET /investors/{clientId}/transactions HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-[ {
-  "dateTime" : "dateTime",
-  "amount" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "totalBalance" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "cashBalance" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "investedBalance" : {
-    "amount" : 123.45,
-    "currency" : "currency"
-  },
-  "id" : "id",
-  "type" : "DEPOSIT",
-  "account" : "account",
-  "status" : "CLEARED"
-} ]
-```
-### Description
-Retrieves a list of cash transactions associated with a given investor.
-### Response
-| Name                        | Type   | Description                                             |
-| --------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [].id                       | string | The ID of the cash transaction                          |
-| [].dateTime                 | string | The datetime the cash transaction occurred              |
-| [].amount                   | ref    | The total amount involved in the cash transaction       |
-| [].amount.amount            | number | The amount                                              |
-| [].amount.currency          | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].type                     | string | The transaction type Possible values are: <br>`DEPOSIT`<br>`BONUS`<br>`WITHDRAWAL`<br>`INVESTMENT`<br>`CANCELLED_INVESTMENT`<br>`TRANSFER_INVESTMENT_OUT`<br>`TRANSFER_INVESTMENT_IN`<br>`INTEREST_REPAYMENT`<br>`CAPITAL_REPAYMENT`<br>`FEES`<br>`WITHHOLDING_TAX`<br>`ACCOUNT_TRANSFER_IN`<br>`ACCOUNT_TRANSFER_OUT`<br>`ISA_TRANSFER_IN`<br>`ISA_TRANSFER_IN_RESIDUAL_INCOME`<br>`ISA_TRANSFER_IN_REPAIR`<br>`ISA_TRANSFER_IN_REPAIR_DEDUCTION_FROM_ISA`<br>`ISA_TRANSFER_OUT`<br>`SIPP_TRANSFER_IN`<br>`BUY_PREMIUM`<br>`SELL_PREMIUM`<br> |
-| [].cashBalance              | ref    | The cash balance                                        |
-| [].cashBalance.amount       | number | The amount                                              |
-| [].cashBalance.currency     | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].investedBalance          | ref    | The invested balance                                    |
-| [].investedBalance.amount   | number | The amount                                              |
-| [].investedBalance.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].totalBalance             | ref    | The total balance                                       |
-| [].totalBalance.amount      | number | The amount                                              |
-| [].totalBalance.currency    | string | The currency in ISO 4217 three character codes eg 'GBP' |
-| [].account                  | string | The transaction account                                 |
-| [].status                   | string | The transaction status Possible values are: <br>`ASSIGNED`<br>`PENDING`<br>`CLEARED`<br>                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 ## `POST /investors/{clientId}/accounts/ISA`
 
 ```http
