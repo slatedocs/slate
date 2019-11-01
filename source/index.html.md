@@ -3728,3 +3728,107 @@ socket.on("trade-update", (response) => {
 # API call limits
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
 In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second. -->
+
+## Bracket Order Trades
+
+### Definitions
+<ul>
+  <li><strong>Channel:</strong> coindcx</li>
+  <li><strong>Event:</strong> bo-trade-update</li>
+</ul>
+
+### Response
+<ul>
+  <li>id - is client order id / system generated order id</li>
+  <li>side - is whether order is placed to buy or sell</li>
+  <li>status - is current status of the order</li>
+  <li>market - is the trading pair</li>
+  <li>order_type - is the type of order placed</li>
+  <li>trailing_sl - indicates whether order placed is with Trailing Stop Loss</li>
+  <li>avg_entry - is the entry price in base currency</li>
+  <li>avg_exit - is the exit price</li>
+  <li>fee - is the fee charged in percentage</li>
+  <li>entry_fee - is the entry fee</li>
+  <li>exit_fee - is the exit fee</li>
+  <li>active_pos - is the quantity filled</li>
+  <li>total_pos - is the total quantity filled</li>
+  <li>price - is the price at which order was placed</li>
+  <li>sl_price - is the price at which the trader wishes to Stop Loss</li>
+  <li>target_price - is the price at which order position is to be closed</li>
+  <li>stop_price - is used in the Stop Variant order</li>
+  <li>pnl - is the net profit and loss</li>
+  <li>interest - is the interest charged</li>
+  <li>orders - contains the details abput target order</li>
+</ul>
+
+```python
+@sio.on('bo-trade-update')
+def on_message(response):
+    print(response.data)
+```
+
+```javascript
+socket.on("bo-trade-update", (response) => {
+  console.log(response.data);
+});
+```
+
+> Bracket Order Trade update response:
+
+```json
+[{
+  "id": "dbbce8e2-48e6-4aa2-a7af-15463120e241",
+  "side": "sell",
+  "status": "open",
+  "market": "XRPBTC",
+  "order_type": "market_order",
+  "trailing_sl": false,
+  "trail_percent": null,
+  "avg_entry": 0.00003414,
+  "avg_exit": 0,
+  "fee": 0.02,
+  "entry_fee": 4.8e-7,
+  "exit_fee": 0,
+  "active_pos": 70,
+  "exit_pos": 0,
+  "total_pos": 70,
+  "quantity": 70,
+  "price": 0.00003415,
+  "sl_price": 0.00004866,
+  "target_price": 0,
+  "stop_price": 0,
+  "pnl": 0,
+  "initial_margin": 0.0011962062,
+  "interest": 0.05,
+  "interest_amount": 0,
+  "leverage": 2,
+  "result": null,
+  "created_at": 1570620552918,
+  "updated_at": 1570620553456,
+  "orders": [{
+    "id": 165059,
+    "order_type": "market_order",
+    "status": "filled",
+    "market": "XRPBTC",
+    "side": "sell",
+    "avg_price": 0.00003414,
+    "total_quantity": 70,
+    "remaining_quantity": 0,
+    "price_per_unit": 0,
+    "timestamp": 1570620552975.75,
+    "fee": 0.02,
+    "fee_amount": 4.8e-7,
+    "filled_quantity": 70,
+    "bo_stage": "stage_entry",
+    "cancelled_quantity": 0,
+    "stop_price": 0
+  }]
+}]
+```
+<!-- ------------------- END Sockets ---------------------- -->
+
+<!--
+
+# API call limits
+We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
+In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second. -->
