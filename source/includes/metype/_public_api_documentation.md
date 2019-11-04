@@ -63,6 +63,16 @@ For third party login any API on metype will avoid user's state when JWT is not 
 * Parent comment: First level of comment.
 * Child comment: Metype supports two levels of hierarchy. A reply to a main thread is usually a child comment.
 
+## Reference of URL Parameters common accross APIs
+
+```javascript
+let url = 'https://www.metype.com/section/slug'
+let base64_uri_enoded_url = btoa(encodeURIComponent(url)) \\ aHR0cHMlM0ElMkYlMkZ3d3cubWV0eXBlLmNvbSUyRnNlY3Rpb24lMkZzbHVn
+```
+
+* account_id: This is nothing but account_id of the account. Account id reference.
+* page_id: This is a base64, URI encoded url. A javascript example is shown [here] (?javascript#parameters)
+
 
 ## Comment
 
@@ -270,6 +280,7 @@ For reference of comment body structure check [here] (#comment-body-structure).
 For reference of comment response structure check [here] (#api-response-reference)
 
 Data to create a confidential comment
+
 |Name| type| Description | optional |
 |----|-----|-------------|----------|
 |confidential| boolean | Confidentiality flag | yes, only supported for logged-in user and where confindetial commenting in enabled |
