@@ -394,28 +394,7 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-  "isaRemainingSubscriptionAmount" : {
-    "amount" : 2.68,
-    "currency" : "currency"
-  },
-  "totalBalance" : {
-    "amount" : 2.68,
-    "currency" : "currency"
-  },
-  "totalQueuedInvestedBalance" : {
-    "amount" : 2.68,
-    "currency" : "currency"
-  },
-  "totalCashBalance" : {
-    "amount" : 2.68,
-    "currency" : "currency"
-  },
-  "totalInvestedBalance" : {
-    "amount" : 2.68,
-    "currency" : "currency"
-  }
-}
+""
 ```
 ### Description
 Withdraw cash from the specified account to the registered investor bank details.
