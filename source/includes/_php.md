@@ -64,6 +64,22 @@ not need to be installed directly.
         <span class="step">2</span>
       </td>
       <td style="padding-top: 15px">
+        <p>Install the <code>scoutapm</code> php extension (optional, recommended):</p>
+<pre style="width:500px">
+sudo pecl install scoutapm
+</pre>
+<p>
+Several instruments require the native extension to be included, including timing of <code>libcurl</code> and <code>file_get_contents</code>.
+
+For more information, or to compile manually, the <a href="https://github.com/scoutapp/scout-apm-php-ext">README</a> has additional instructions.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td style="padding-top: 15px">
         <p>Configure Scout in your <code>.env</code> file:</p>
 <pre style="width:500px">
 # Scout settings
