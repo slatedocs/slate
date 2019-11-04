@@ -67,11 +67,11 @@ For third party login any API on metype will avoid user's state when JWT is not 
 
 ```javascript
 let url = 'https://www.metype.com/section/slug'
-let base64_uri_enoded_url = btoa(encodeURIComponent(url)) \\ aHR0cHMlM0ElMkYlMkZ3d3cubWV0eXBlLmNvbSUyRnNlY3Rpb24lMkZzbHVn
+let base64_uri_encoded_url = btoa(encodeURIComponent(url)) \\ aHR0cHMlM0ElMkYlMkZ3d3cubWV0eXBlLmNvbSUyRnNlY3Rpb24lMkZzbHVn
 ```
 
 * account_id: This is nothing but account_id of the account. Account id reference.
-* page_id: This is a base64, URI encoded url. A javascript example is shown [here] (?javascript#parameters)
+* base64_uri_encoded_url: This is the Page URL which is first URI encoded and then base64 encoded. A javascript example is shown [here] (?javascript#parameters)
 
 
 ## Comment
@@ -206,7 +206,7 @@ Image | Object | ```{ "insert": { "image": "https://s3.amazonaws.com/a.png" }}``
 
 ```shell--request
 curl -X POST \
-  https://www.metype.com/api/v1/accounts/<account_id>/pages/<page_id>/comments.json \
+  https://www.metype.com/api/v1/accounts/<account_id>/pages/<base64_uri_encoded_url>/comments.json \
   -H 'Content-Type: application/json' \
   -H 'Origin: http://localhost:3000' \
   -d '{
@@ -296,7 +296,7 @@ Additional data to be posted to support guest_commenting
 
 ```shell--request
 curl -X PUT \
-  https://www.metype.com/api/v1/accounts/<account_id>/pages/<page_id>/comments/<comment_id> \
+  https://www.metype.com/api/v1/accounts/<account_id>/pages/<base64_uri_encoded_url>/comments/<comment_id> \
   -H 'Content-Type: application/json' \
   -d '{
     "comment": {
@@ -363,7 +363,7 @@ For reference of comment response structure check [here] (#api-response-referenc
 
 ```shell--request
 curl -X POST \
-  https://www.metype.com/api/v1/accounts/<account_id>/pages/<page_id>/comments/<comment_id/hide \
+  https://www.metype.com/api/v1/accounts/<account_id>/pages/<base64_uri_encoded_url>/comments/<comment_id>/hide \
   -H 'Content-Type: application/json' \
   -d '{
     "jwt": "jwt"
@@ -402,7 +402,7 @@ In the response `hidden`, `hidden_at` are the keys of importance here.
 ### Comment POST(reply)
 ```shell--request
 curl -X POST \
-  http://localhost:3000/api/v1/accounts/<account_id>/pages/<page_id>/comments.json \
+  http://localhost:3000/api/v1/accounts/<account_id>/pages/<base64_uri_encoded_url>/comments.json \
   -H 'Content-Type: application/json' \
   -d '{
     "comment": {
@@ -518,7 +518,7 @@ This endpoint is not too different from `comment_creation` API. It is comment cr
 
 ```shell--request
 curl -X GET \
-  'https://www.metype.com/api/v1/accounts/<accout_id>/pages/<page_id>/comments.json?parent_comments_limit=1&parent_comments_offset=0&sort_order=desc&child_comments_sort_order=asc'
+  'https://www.metype.com/api/v1/accounts/<accout_id>/pages/<base64_uri_encoded_url>/comments.json?parent_comments_limit=1&parent_comments_offset=0&sort_order=desc&child_comments_sort_order=asc'
 ```
 
 ```shell--response
@@ -1078,7 +1078,7 @@ Please see the 'request' and 'response' tabs on the right for a sample request
 
 ```shell--request
   curl -X GET \
-  'https://www.metype.com/api/v1/accounts/<account_id>/pages/<page_id>/authors.json?name=<search_term>&limit=<number>'
+  'https://www.metype.com/api/v1/accounts/<account_id>/pages/<base64_uri_encoded_url>/authors.json?name=<search_term>&limit=<number>'
 ```
 
 ```shell--response
