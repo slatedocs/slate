@@ -1,5 +1,66 @@
 # Release Notes
 
+## 29 Oct 2019 Release Note - Metype
+1. **User Generated Content Upgrade** - Contributions are now allowed to be submitted by Guests as well as logged in users. The user's profile information available in Metype will be used to auto-populate the UGC form. For guest contributors, Google's re-captcha will be used for bot-protection.
+![UGC guest and login](../../images/Metype_GuestContribution.png "UGC guest and login")
+2. Few tech stack upgrages.
+
+## 21 Oct 2019 Release Note - Metype
+1. **Bookmark URLs** - Metype now allows users to save URLs to read later. New set of APIs to store URLs bookmarked by users and retrieve them. Documentation available [here](/metype?shell--request#bookmarks).
+2. **User Generated Content upgrade** -  New API to fetch all the contributions submitted by a Metype user. Documentation available [here](/metype?shell--request#get-all-contributions-for-a-user).
+3. Tech stack upgrade.
+
+## 14 Oct 2019 Release Note - Metype
+1. Metype widgets now support URLs with non-latin-alphabet(vernacular) characters.
+2. Tech stack upgrades and minor bug fixes.
+
+## 1 Oct 2019 Release Note - Metype
+1. API performance optimisations - purging and database.
+2. Metype social share and Feed URLs are now post-fixed with anchor tags to bring the user directly to the commenting widget.
+3. Metype Config API - All account level configurations are now available as an API. The documentation is available [here](/metype?shell--request#get-account-config).
+
+## 9 Sep 2019 Release Note - Metype
+1. **Guest Commenting Upgrade** is now allowed when the 3rd Party Login configuration is turned on.
+
+## 4 Sep 2019 Release Note - Metype
+1. Bug fixes on comment count API and Comment Manager Actions.
+
+## 3 Sep 2019 Release Note - Metype
+1. [Minor bug fixes] Unsubscribe to Metype emails, quick date in date range picker, social login logos update.
+
+## 28 Aug 2019 Release Note - Metype
+1. Date range picker in Comments Manager now has an enhanced UX.
+2. Bug fix on adding admin users on Metype dashboard.
+
+## 23 Aug 2019 Release Note - Metype
+1. Commenting widget caching optimisations; a cached comment widget which allows users to comment, is loaded even before the comments made by other users load.
+2. [Bug fix]Feed widget does not load more than 20 stories.
+
+## 16 Aug 2019 Release Note - Metype
+1. Premium Metype accounts are now given a badge in the Metype admin dashboard.
+2. Minor bug fixes.
+
+## 14 Aug 2019 Release Note - Metype
+1. **Top Pages in Feed Update** - The display of Top Pages in the Feed widget is now controlled by the Top Pages configuration in the Metype > Settings dashboard.
+2. **Third Party Login Update** - The base 64 URI encoded page URL is now sent as part of Third Party Login, so that users are brought back to the page from which they logged in.
+
+
+## 9 Aug 2019 Release Note - Metype
+1. **Comment Manager Upgrade** - The comment manager is now equipped with a date range filter along with the number of commments in each of the tabs is displayed upfront. 
+![Comment Manager Date Range and Comment Count](../../images/Metype_CM_DateRange_CommentCount.png "Comment Manager Date Range and Comment Count")
+2. Page reactions are now supported without labels.
+3. Minor bug fixes.
+
+## 6 Aug 2019 Release Note - Metype
+1. [Bug Fixes] - Page Reactions UI fix on low resolution mobile phones, Profile pop-up on replies and @mention users and z-index fix on comment reactions.
+
+## 1 Aug 2019 Release Note - Metype
+1. Performance and Tech - Emoji library upgrade, API performance reindex optimisation.
+
+## 29 Jul 2019 Release Note - Metype
+1. User Profile in Comments Manager - The user's email is now displayed to admins, in the user profile snapshot in the Comments Manager.
+![User Profile Email](../../images/Metype_UserProfileEmail.png "User Profile Email")
+
 ## 17 Jul 2019 Release Note - Metype
 1. Re-moderate edited comments - Comments approved by the admin, when edited by the commenter are now required to be re-aproved when pre-moderation is turned on.
 2. [Bug fix] - Console log has CORS error.
