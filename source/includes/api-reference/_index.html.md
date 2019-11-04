@@ -4326,7 +4326,7 @@ Returns the complete record for a single section.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identified for the section.|
+|section_gid|path|string|true|The globally unique identifier for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -4413,7 +4413,7 @@ Returns the complete updated section record.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[SectionObject](#schemasectionobject)|true|The section to create.|
-|section_gid|path|string|true|The globally unique identified for the section.|
+|section_gid|path|string|true|The globally unique identifier for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -4471,7 +4471,7 @@ Returns an empty data block.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identified for the section.|
+|section_gid|path|string|true|The globally unique identifier for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -4685,7 +4685,7 @@ This does not work for separators (tasks with the resource_subtype of section).
 |»» task|body|string|true|The task to add to this section.|
 |»» insert_before|body|string|false|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
 |»» insert_after|body|string|false|An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.|
-|section_gid|path|string|true|The globally unique identified for the section.|
+|section_gid|path|string|true|The globally unique identifier for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -7407,7 +7407,7 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identified for the section.|
+|section_gid|path|string|true|The globally unique identifier for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|

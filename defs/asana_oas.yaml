@@ -695,7 +695,7 @@ components:
       name: section_gid
       in: path
       required: true
-      description: The globally unique identified for the section.
+      description: The globally unique identifier for the section.
       schema:
         type: string
       example: '321654'
