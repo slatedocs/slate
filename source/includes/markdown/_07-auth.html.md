@@ -155,7 +155,7 @@ scopes. An exhaustive list of the supported scopes is provided here:
 
 | Scope | Access provided |
 |---|---|
-| `default` | Provides access to all endpoints documented in our [API reference](/developers/api-reference). If no scopes are requested, this scope is assumed by default. |
+| `default` | Provides access to all endpoints documented in our [API reference](#asana). If no scopes are requested, this scope is assumed by default. |
 | `openid` | Provides access to [OpenID Connect ID tokens](#openid-connect) and the [OpenID Connect](#openid-connect) user info endpoint. |
 | `email` | Provides access to the user's email through the [OpenID Connect](#openid-connect) user info endpoint. |
 | `profile` | Provides access to the user's name and profile photo through the [OpenID Connect](#openid-connect) user info endpoint. |
