@@ -65,7 +65,7 @@ curl "https://demo.gomus.de/api/v4/exhibitions"
 
 ### Response
 
-The json response contains a list of exhibitions as an array and a meta block.
+The JSON response contains a list of exhibitions as an array and a meta block.
 
 - id (integer), the unique database id of the exhibition
 - museum_id (integer), the unique database id of the museum to which the exhibition belongs
@@ -129,7 +129,7 @@ curl "https://demo.gomus.de/api/v4/exhibitions/1"
 
 ### Response
 
-The json response contains an exhibition block with information for that exhibition. The information is the same as that of the exhibitions list response, but with the addition of a location block.
+The JSON response contains an exhibition block with information for that exhibition. The information is the same as that of the exhibitions list response, but with the addition of a location block.
 
 - location, contains information about the location of the exhibition.
 - content, contains key/value pairs of custom defined attributes, e.g. the following:

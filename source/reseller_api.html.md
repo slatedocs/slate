@@ -77,7 +77,7 @@ curl "https://demo.gomus.de/api/v4/orders"
 
 ### Response
 
-The json response contains a list of existing orders as an array and a meta block.
+The JSON response contains a list of existing orders as an array and a meta block.
 
 - id (integer), the unique database id of the order
 - token (string), a unique token of the order, see more at the documents section

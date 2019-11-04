@@ -13,10 +13,10 @@ search: true
 
 # Preparation
 
-Before you can use the go~mus Cash Point API you will have to register a cash point account with an API key. 
+Before you can use the go~mus Cash Point API you will have to register a cash point account with an API key.
 Please talk to your contact person in order to get access.
 
-See [detailed documentation on Public API](/public_api.html) for information on how to request the basic data 
+See [detailed documentation on Public API](/public_api.html) for information on how to request the basic data
 for events, tours and tickets.
 
 
@@ -36,7 +36,7 @@ for the orders placed by the cash point, the filter `only_my_orders` is provided
 
 - only_my_orders (boolean, true|false, default: all)
 
-See [detailed documentation on Reseller API](/reseller_api.html) for information on how to create an order 
+See [detailed documentation on Reseller API](/reseller_api.html) for information on how to create an order
 for events, tours and tickets against the orders end point.
 
 # Bookings
@@ -141,7 +141,7 @@ curl "https://demo.gomus.de/api/v4/events/123/dates/456/bookings"
 
 ### Response
 
-The json response contains a list of existing bookings as an array and a meta block.
+The JSON response contains a list of existing bookings as an array and a meta block.
 
 - id (integer), the unique database id of the booking
 - customer (object), contains name, category and institution reference
@@ -149,7 +149,7 @@ The json response contains a list of existing bookings as an array and a meta bl
 - status (integer, any of BOOKED=20, CANCELED=60)
 - seats (integer) number of booked seats
 - prices (array)
-    
+
 ## Tour bookings
 
 The cash point can access all individual tour bookings via the tours bookings endpoint.
@@ -222,7 +222,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings"
 - by_categories (Array of category names), filter by categories, see categories section
 - by_status_ids (Array, any of BOOKED=20, CANCELED=50, FINISHED=25)
 
-  
+
 ### Available parameters:
 
 - start_at, order date (`YYYY-MM-DD`), defaults to beginning of today
@@ -232,7 +232,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings"
 
 ### Response
 
-The json response contains a list of existing bookings as an array and a meta block.
+The JSON response contains a list of existing bookings as an array and a meta block.
 
 - id (integer), the unique database id of the booking
 - start_time (iso8601), the booking's timestamp
@@ -306,7 +306,7 @@ curl "https://demo.gomus.de/api/v4/tours/bookings/1"
 
 ### Response
 
-The json response contains details for a booking like in the list view, but with a few additional information.
+The JSON response contains details for a booking like in the list view, but with a few additional information.
 
 - prices: an array of price objects, containing both default and custom booking prices.
 
@@ -314,7 +314,7 @@ The json response contains details for a booking like in the list view, but with
 
 ## Changing prices
 
-It is possible to add and update custom booking prices unless the booking has been payed already. It is not possible 
+It is possible to add and update custom booking prices unless the booking has been payed already. It is not possible
 to change the default prices but e.g. give a discount and add additional custom items.
 
 Note that the cash point has only access to customer booking prices and can change only custom type prices.

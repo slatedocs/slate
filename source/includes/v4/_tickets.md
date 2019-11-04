@@ -64,7 +64,7 @@ curl "https://demo.gomus.de/api/v4/tickets"
 
 ### Response
 
-The json response contains a list of tickets as an array and a meta block.
+The JSON response contains a list of tickets as an array and a meta block.
 
 - id (integer), the unique database id of the ticket
 - title (string), the name of the ticket
@@ -146,7 +146,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
 
 ### Response
 
-The json response contains a ticket block with information for that the information is the same as that of the tickets list response, but with the addition of a couple of keys.
+The JSON response contains a ticket block with information for that the information is the same as that of the tickets list response, but with the addition of a couple of keys.
 
 - after_sale_information (string), information to be shown after the sale of a ticket. Can contain html elements.
 - location, contains information about the location of the museum that the ticket belongs to.
@@ -184,7 +184,7 @@ curl "https://demo.gomus.de/api/v4/tickets/1/capacity"
 }
 ```
 
-Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016,
+Using the JSON response on the right as an example, between 11.00 and 11.30 on the 6th July 2016,
 the maximum bookable quantity is 15. If only one available time slot is returned, as is the case for day
 tickets, the time range is up untill the end of the day.
 
@@ -195,7 +195,7 @@ tickets, the time range is up untill the end of the day.
 
 ### Response
 
-The json response contains a data block of available time slots and capacities as a hash (key/value pairs). For day tickets, the first possible entry will be returned.
+The JSON response contains a data block of available time slots and capacities as a hash (key/value pairs). For day tickets, the first possible entry will be returned.
 
 The capacity check takes all quotas that the ticket belongs to into account. Zero values are not returned.
 
@@ -427,6 +427,6 @@ curl "https://demo.gomus.de/api/v4/tickets/content?ticket_ids[]=14&ticket_ids[]=
 
 ### Response
 
-The json response contains a list of contents for a set of tickets as an array and a meta block.
+The JSON response contains a list of contents for a set of tickets as an array and a meta block.
 
 - content, contains key/value pairs of a specific attribute per set of tickets

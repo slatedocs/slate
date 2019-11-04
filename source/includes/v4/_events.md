@@ -33,7 +33,7 @@ curl "https://demo.gomus.de/api/v4/events/categories"
 
 ### Response
 
-The json response contains a list of all event categories to build up filters.
+The JSON response contains a list of all event categories to build up filters.
 Note: this only contains valid elements, some events might have no name set. Some categories have
 duplicate names.
 
@@ -65,7 +65,7 @@ curl "https://demo.gomus.de/api/v4/events/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable event products to build up filters.
+The JSON response contains a list of all languages used by online bookable event products to build up filters.
 
 ## Event tags
 
@@ -200,7 +200,7 @@ curl "https://demo.gomus.de/api/v4/events/grades"
 
 ### Tag responses
 
-The json response contains a list of used event tags by category to build up filters.
+The JSON response contains a list of used event tags by category to build up filters.
 
 
 ## List of events
@@ -296,7 +296,7 @@ curl "https://demo.gomus.de/api/v4/events"
 
 ### Response
 
-The json response contains a list of events as an array and a meta block.
+The JSON response contains a list of events as an array and a meta block.
 
 - id (integer), the unique database id of the event
 - title (string), the name of the event
@@ -400,7 +400,7 @@ Queries the available dates for a specific event. The default shows only dates f
 
 ### Response
 
-The json response contains a list of dates as an array and a meta block.
+The JSON response contains a list of dates as an array and a meta block.
 
 - id (integer), the unique database id of the events' date
 - event_id (integer), the unique database id of the parent event
@@ -526,7 +526,7 @@ registration form.
 
 ### Response
 
-The json response contains more attributes than in the overview:
+The JSON response contains more attributes than in the overview:
 
 - vat_pct (float), the pricing tax rate
 - discount (integer), discount in percent (0-100) to apply on total price for this item if ordered
@@ -622,7 +622,7 @@ curl "https://demo.gomus.de/api/v4/dates"
 
 ### Response
 
-The json response contains a list of dates for all events as an array and a meta block.
+The JSON response contains a list of dates for all events as an array and a meta block.
 
 ## Date languages
 
@@ -653,7 +653,7 @@ curl "https://demo.gomus.de/api/v4/dates/languages"
 
 ### Response
 
-The json response contains a list of all languages used by online bookable date to build up filters.
+The JSON response contains a list of all languages used by online bookable date to build up filters.
 
 
 ## Global events calendar

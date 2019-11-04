@@ -48,7 +48,7 @@ curl "https://demo.gomus.de/api/v4/countries"
 
 ### Response
 
-The json response contains a list of countries as an array and a meta block.
+The JSON response contains a list of countries as an array and a meta block.
 
 - name (string), the name of the country
 - id (integer), the unique database id of the country
@@ -110,7 +110,7 @@ curl "https://demo.gomus.de/api/v4/states"
 
 ### Response
 
-The json response contains a list of states as an array and a meta block.
+The JSON response contains a list of states as an array and a meta block.
 
 - name (string), the name of the state
 - id (integer), the unique database id of the state
@@ -157,7 +157,7 @@ curl "https://demo.gomus.de/api/v4/dispatch_modes"
 
 ### Response
 
-The json response contains a list of dispatch modes as an array and a meta block.
+The JSON response contains a list of dispatch modes as an array and a meta block.
 
 - name (string), the name of the dispatch mode
 - id (integer), the unique database id of the dispatch mode

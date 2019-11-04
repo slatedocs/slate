@@ -54,7 +54,7 @@ curl "https://demo.gomus.de/api/v4/museums"
 
 ### Response
 
-The json response contains a list of museums as an array and a meta block.
+The JSON response contains a list of museums as an array and a meta block.
 
 - id (integer), the unique database id of the museum
 - title (string), the name of the museum
@@ -105,7 +105,7 @@ curl "https://demo.gomus.de/api/v4/museums/1"
 
 ### Response
 
-The json response contains a museum block with information for that museum. The information is the same as that of the museums list response, but with the addition of a location block.
+The JSON response contains a museum block with information for that museum. The information is the same as that of the museums list response, but with the addition of a location block.
 
 - location, contains information about the location of the museum.
 - content, contains key/value pairs of custom defined attributes, e.g. the following:
@@ -148,4 +148,4 @@ curl "https://demo.gomus.de/api/v4/museums/1/opening_hours?date=2016-12-31"
 
 ### Response
 
-The json response contains the begin and end of the opening hours as datetimes.
+The JSON response contains the begin and end of the opening hours as datetimes.

@@ -123,7 +123,7 @@ curl "https://demo.gomus.de/api/v4/entry/scans/3"
 
 ### Response
 
-The json response contains a serialized scan event.
+The JSON response contains a serialized scan event.
 
 
 ## Exit API - Tracking exits
