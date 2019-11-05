@@ -3,7 +3,7 @@
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
 ## 5 Nov 19 Release Note - Accesstype
-1. **General Settings** - A new settings page with Account Details and API Key Auth Token. The API Authentication Token and API Key fields are displayed to Users with the "Owner" role.
+1. **General Settings** - A new settings page with Account Detailsm API Key and Authentication Key. The API Authentication and API Key fields are displayed to Users with the "Owner" role.
 ![Accesstype General Settings](../../images/Accesstype_GeneralSettings.png "Accesstype General Settings")
 2. **Admin email addresses** - A new feature to manage recepients of all admin related emails.
 ![Accesstype Admin Email Settings](../../images/Accesstype_AdminEmail.png "Accesstype Admin Email Settings")
