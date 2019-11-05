@@ -28,8 +28,8 @@ You should verify that the `Authorization` header matches the expected signature
 
 ```http
 
-POST /webhooks HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
+POST /platformApi/webhooks HTTP/1.1
+Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
@@ -40,7 +40,11 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-""
+{
+  "url" : "url",
+  "secret" : "secret"
+}
+
 ```
 ### Description
 Register a webhook url.
@@ -48,7 +52,11 @@ Register a webhook url.
 | Name | Type   | Description                         | Required |
 | ---- | ------ | ----------------------------------- | -------- |
 | url  | string | The url to dispatch the webhook to. | optional |
-
+### Response
+| Name | Type   | Description          |
+| ---- | ------ | -------------------- |
+| url   | string | The url as specified in the request. |
+| secret   | string | The webhook secret used to check the validity of the request and that it originated from Goji (see [Webhooks authentication](#webhooks-authentication) for full details). |
 
 ## Webhook Types
 
