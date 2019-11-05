@@ -2,6 +2,14 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 5 Nov 19 Release Note - Accesstype
+1. **General Settings** - A new settings page with Account Details and API Key Auth Token. The API Authentication Token and API Key fields are displayed to Users with the "Owner" role.
+![Accesstype General Settings](../../images/Accesstype_GeneralSettings.png "Accesstype General Settings")
+2. **Admin email addresses** - A new feature to manage recepients of all admin related emails.
+![Accesstype Admin Email Settings](../../images/Accesstype_AdminEmail.png "Accesstype Admin Email Settings")
+3. **Trial Period in Recurring Subscriptions** - A new feature where recurring subscription plans now have the ability to offer subscribers a trial period before actually being charged. This is functional with Razorpay payment gateway.
+![Accesstype Trial Period](../../images/Accesstype_TrialPeriodRecurring.png "Accesstype Trial Period")
+
 ## 22 Oct 19 Release Note - Accesstype
 1. **Accesstype.js new method** - Cancel Subscription is now allowed as a method in Accesstype.js.
 
