@@ -513,19 +513,29 @@ CATALOG_ITEM_ID | ID of the catalog item being deleted
 
 ```json
 {
-    "data": [
-        {
-            "id": 231,
-            "app_label": "account",
-            "model": "emailaddress"
-        },
-        {
-            "id": 232,
-            "app_label": "account",
-            "model": "emailconfirmation"
-        }
-    ],
-    "metadata": {}
+  "data": [
+    {
+      "id": 180,
+      "app_label": "ap",
+      "model": "bill"
+    },
+    {
+      "id": 185,
+      "app_label": "ap",
+      "model": "item"
+    },
+    {
+      "id": 23,
+      "app_label": "procurify",
+      "model": "po"
+    },
+    {
+      "id": 280,
+      "app_label": "receipt",
+      "model": "item"
+    }
+  ],
+  "metadata": {}
 }
 ```
 
@@ -1626,44 +1636,80 @@ STATUS | status can be "pending", "synced", or "error"
 
 ```json
 {
-  "data": [
-    {
-      "id": 91,
-      "purchase_order": {
-        "id": 66,
-        "purchase_order_no": "",
-        "uuid": "c7634af7-80fa-11e7-b6ee-021a9831e76d",
-        "external_id": "9999",
-        "custom_fields": {
-          "Weight": null,
-          "New Field": null
-        }
-      },
-      "line_items": [
+    "data": [
         {
-          "id": 119,
-          "name": "Paulin - M12x25 Metric Hex Bolt 8.8 Unc",
-          "purchased_quantity": "2.00",
-          "received_quantity": "0.00",
-          "external_id": null,
-          "custom_fields": {}
+            "id": 28,
+            "name": "Cleaning Service",
+            "order_item_id": 25,
+            "purchased_quantity": "3.00",
+            "received_quantity": "0.00",
+            "receive_history": [
+                {
+                    "received_quantity": "2.00",
+                    "timestamp": "2019-11-05T12:18:16.097000-08:00"
+                },
+                {
+                    "received_quantity": "1.00",
+                    "timestamp": "2019-11-05T12:18:56.147000-08:00"
+                },
+                {
+                    "received_quantity": "0.00",
+                    "timestamp": "2019-11-05T13:07:22.078000-08:00"
+                }
+            ],
+            "purchase_order": {
+                "id": 65,
+                "purchase_order_no": "",
+                "uuid": "7f10446f-7d48-11e7-a713-06649396b11b",
+                "external_id": "9999",
+                "custom_fields": {
+                    "Weight": null,
+                    "New Field": null
+                }
+            },
+            "created_at": "2019-11-05T12:18:16.096980-08:00",
+            "updated_at": "2019-11-05T13:07:22.078795-08:00",
+            "external_id": "9999",
+            "custom_fields": {}
+        },
+        {
+            "id": 30,
+            "name": "Cleaning Service",
+            "order_item_id": 25,
+            "purchased_quantity": "3.00",
+            "received_quantity": "1.00",
+            "receive_history": [
+                {
+                    "received_quantity": "1.00",
+                    "timestamp": "2019-11-05T13:08:16.609000-08:00"
+                }
+            ],
+            "purchase_order": {
+                "id": 65,
+                "purchase_order_no": "",
+                "uuid": "7f10446f-7d48-11e7-a713-06649396b11b",
+                "external_id": "9999",
+                "custom_fields": {
+                    "Weight": null,
+                    "New Field": null
+                }
+            },
+            "created_at": "2019-11-05T13:08:16.609849-08:00",
+            "updated_at": "2019-11-05T13:08:16.609878-08:00",
+            "external_id": "",
+            "custom_fields": {}
         }
-      ],
-      "total_received_quantity": "0.00",
-      "external_id": "8888",
-      "custom_fields": {}
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 2,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
     }
-  ],
-  "metadata": {
-    "pagination": {
-      "count": 1,
-      "next": null,
-      "previous": null,
-      "page_size": 10,
-      "num_pages": 1,
-      "current_page": 1
-    }
-  }
 }
 ```
 
