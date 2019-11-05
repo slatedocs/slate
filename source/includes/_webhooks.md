@@ -56,7 +56,7 @@ Register a webhook url.
 | Name | Type   | Description          |
 | ---- | ------ | -------------------- |
 | url   | string | The url as specified in the request. |
-| secret   | string | The webhook secret used to check the validity of the request and that it originated from Goji (see [Webhooks authentication](#webhooks-authentication) for full details). |
+| secret   | string | The webhook secret that should be used to check the validity of webhooks received (see [Webhooks authentication](#webhooks-authentication) for full details). |
 
 ## Webhook Types
 
