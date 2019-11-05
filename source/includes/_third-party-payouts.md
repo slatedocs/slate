@@ -34,4 +34,4 @@ All other functionality is available exactly same way as described under Payouts
 
 * **API only.** You can only create third party transfers via API.  Creating third party transfers via batch file upload or via transferwise.com user interface is not possible yet.
 * **Email recipients are not supported.** We don't support setting up third party transfers to email recipients. You can send payments to bank accounts only.
-* **Some currency routes are not supported.** Please contact bdsupport@transferwise.com for details.
+* **Some currency routes are not supported.** Please contact our [sales team](https://transferwise.com/gb/business/contact) for details.

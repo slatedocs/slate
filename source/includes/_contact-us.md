@@ -9,7 +9,7 @@ Send email to api@transferwise.com
 
 
 **Making lots of payments?**</br>
-We have a dedicated team to talk to you. [https://transferwise.com/contact-sales](https://transferwise.com/contact-sales)
+We have a dedicated team to talk to you. [https://transferwise.com/gb/business/contact](https://transferwise.com/gb/business/contact)
 
 
 **Have a question about how TransferWise works?**<br/>
