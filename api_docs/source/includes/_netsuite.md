@@ -1717,7 +1717,7 @@ This endpoint retrieves a list of item receipts with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/item-receipts/?status=<STATUS>`
+`GET https://example.procurify.com/api/v3/integrations/netsuite/receive-logs/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -1739,9 +1739,8 @@ error       | Get all records that encountered an error during its most recent s
 
 ### Fun Facts
 
-- New item receipts are guaranteed to have at least 1 item with quantity > 0
-- You can check above by parsing field total_received_quantity
-- Pending item receipts will only show up if PO has status `SYNCED`
+- New receive logs are guaranteed to have at least 1 item with quantity > 0
+- Pending receive logs will only show up if PO has status `SYNCED`
 
 ## Get Vendors<code class='get'>GET</code>
 
