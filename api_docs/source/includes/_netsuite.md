@@ -1630,7 +1630,7 @@ STATUS | status can be "pending", "synced", or "error"
 
 200 OK
 
-## Get Item Receipts<code class='get'>GET</code>
+## Get Item Receipt Lines<code class='get'>GET</code>
 
 > The above command returns a JSON structured like this:
 
@@ -1713,11 +1713,11 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-This endpoint retrieves a list of item receipts with specific status.
+This endpoint retrieves a list of item receipt lines with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/receive-logs/?status=<STATUS>`
+`GET https://example.procurify.com/api/v3/integrations/netsuite/item-receipt-lines/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -1739,8 +1739,8 @@ error       | Get all records that encountered an error during its most recent s
 
 ### Fun Facts
 
-- New receive logs are guaranteed to have at least 1 item with quantity > 0
-- Pending receive logs will only show up if PO has status `SYNCED`
+- New item receipt lines are guaranteed to have at least 1 item with quantity > 0
+- Pending item receipt lines will only show up if PO has status `SYNCED`
 
 ## Get Vendors<code class='get'>GET</code>
 
