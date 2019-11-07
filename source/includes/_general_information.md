@@ -36,6 +36,33 @@ e.g. **.DEBNBXBT**
 It is important to note that the BTCUSD Index price doesn't follow this convention as its symbol is **.DEXBTUSD**.
 
   
+## Pagination
+Pagination allows to fetch data page-wise.
+Pagination can be called in following APIs
+
+API|End ponint|
+--|--
+Orders|/orders
+Orders History|/orders/history
+Fills|/fills
+Wallet transactions|/wallet/transactions
+
+**Pagination parameters**
+- page_num 
+  - page number for pagination
+  - Default value: 1
+- page_size
+  - page size for pagination
+  - Default value: 25
+
+In API response following headers will be received
+- x-pagination-page-size : page size specified in API request
+- x-pagination-page-num: page number specified in API request
+- x-pagination-total : total number of records 
+
+**Example**
+
+https://api.delta.exchange/orders?state=open&page_num=1&page_size=30
 
 ## Data Centers 
 Delta Exchange data centers are in **AWS Ireland**
