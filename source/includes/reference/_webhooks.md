@@ -131,8 +131,8 @@ Delete a subscription.
 Events are messages that will be sent to your server as HTTP `POST` requests.
 They will not contain any personally identifiable information.
 
-To acknowledge that you have successfully processed an event, make sure your server answers with the HTTP status code `200`
-within 5s. Otherwise, we will consider the delivery attempt as having failed and will later try to resend the message.
+To acknowledge that you have successfully processed an event, make sure your server answers with a `2xx`-series HTTP status
+code within 5 seconds. Otherwise, we will consider the delivery attempt as having failed and will later try to resend the message.
 
 We will attempt to redeliver messages at increasing intervals over a two week period. We will try at most 25 times to do this.
 
