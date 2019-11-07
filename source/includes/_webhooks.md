@@ -149,6 +149,19 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
+>ISA_AUTO_REPAIRED
+><br>This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.
+
+```json
+{
+  "clientId": "string",
+  "repairedAmount": {
+      "amount": 0.00,
+      "currency": "GBP"
+  }
+}
+```
+
 >INVESTOR_FUNDS_WITHDRAWN
 ><br>This is fired whenever an investor withdraws funds.
 

@@ -791,10 +791,13 @@ This creates an investor on the Goji platform and allocates it to the P2P platfo
 #### Investor Lifecycle
 This endpoint should be called whenever an investor wishes to create an IF ISA.
 #### Validation
+
 In addition to checking the format of the supplied data, the following validation is applied:
+
 * ensure the investor has not already created an IF ISA via the Goji platform.
 * ensure the National Insurance number is valid.
 * ensure the user complies with the ISA UK residency checks
+
 #### Possible Error Codes
 Please see [create investor errors](#errors)
 ### Request
@@ -869,9 +872,12 @@ Content-Type: application/json
 ```
 ### Description
 Validates the details of an investor to allow a P2PP to verify whether an investor is ellgibile for an ISA.
+
 Checks performed:
+
 * UK residency check against the address
 * Age of investor
+
 #### Possible Error Codes
 Please see [validate investor errors](#errors)
 ### Request
