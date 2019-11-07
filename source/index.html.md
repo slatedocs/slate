@@ -936,7 +936,7 @@ sender_district_id | true | string | | Id of sender's district. Get in api [GET 
 receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
 receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
 cod | false | integer | 0 | Amount of cod
-value | false | integer | 0 | Value of product using for calculate insurance fee
+value | false | integer | 0 | Value of all products using for calculate insurance fee
 total_weight | false | integer | 0 | Total weight of all products (gram)
 is_receiver_pay | false | boolean | false | If `true` all cost of the tracking will be paid by the receiver
 
