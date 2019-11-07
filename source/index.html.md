@@ -544,9 +544,9 @@ This endpoint retrieves services.
 
 Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
-sender_district_id | true | string | | Id of sender's district
-receiver_district_id | true | string | | Id of receiver's district
-receiver_commune_id | false | string | | Id of receiver's commune -->
+sender_district_id | true | string | | Id of sender's district. Get in api [GET /geo/districts](#get-districts)
+receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
+receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
 
 ## Get Trackings
 
@@ -886,6 +886,59 @@ Parameter | Required | Type    | Default | Description
 name | true | string | | Name of item or product
 weight | true | integer | | Weight of item or product
 quantity | true | integer | | Quantity of item or product
+
+## Calculate shipping cost
+
+```http
+POST /snappy/trackings/cal_shipping_cost HTTP/1.1
+Content-Type: application/json
+```
+
+> Sample params
+
+```json
+{
+    "business_id": 37,
+    "sender_district_id": "10101",
+    "receiver_district_id": "10109",
+    "receiver_commune_id": "1010901",
+    "cod": 1000000,
+    "value": 1000000,
+    "total_weight": 100,
+    "is_receiver_pay": false
+}
+```
+
+> Response if success
+
+```json
+{
+    "cod_cost": 0,
+    "discount": null,
+    "insurance_cost": 0,
+    "shipping_cost": 20000,
+    "success": true
+}
+```
+
+This endpoint calculate all cost of a tracking.
+
+### HTTP Request
+
+`POST /snappy/trackings/cal_shipping_cost`
+
+### Query Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+sender_district_id | true | string | | Id of sender's district. Get in api [GET /geo/districts](#get-districts)
+receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
+receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
+cod | false | integer | 0 | Amount of cod
+value | false | integer | 0 | Value of product using for calculate insurance fee
+total_weight | false | integer | 0 | Total weight of all products (gram)
+is_receiver_pay | false | boolean | false | If `true` all cost of the tracking will be paid by the receiver
 
 ## Cancel tracking
 
