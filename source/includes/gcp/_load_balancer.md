@@ -81,7 +81,7 @@ curl -X GET \
     "urlMap": "https://www.googleapis.com/compute/v1/projects/test-project/global/urlMaps/my-url",
     "backendService": "https://www.googleapis.com/compute/v1/projects/test-project/global/backendServices/my-backendServices",
     "backendServices": [
-      "https://www.googleapis.com/compute/v1/projects/cmc-gcp-env-jamie-hvh/global/backendServices/abackendservice"
+      "https://www.googleapis.com/compute/v1/projects/test-project/global/backendServices/abackendservice"
     ],
     "name": "my-loadbalancer",
     "protocol": "HTTP",
