@@ -135,6 +135,16 @@ Create a new Purchase Order and return the `Purchase Order` object that is creat
 You need to pass `commit` param which accepts 2 values for now `Draft` and `Send`,
 these values will determine the status of the Purchase Order.
 
+### Currency setting
+
+We now have two options to attach currency to purchase_order.
+
+1. using `currency_id` field
+2. using `iso_code` field
+
+So, now api client should be able to pass either currency_id or iso_code of the currency
+and that currency will be attached to the purchase order.
+
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/purchase_orders`
@@ -152,6 +162,7 @@ these values will determine the status of the Purchase Order.
 | purchase_order[creator_id]                                                                         | integer | required                                                           | Creator ID                                                 |
 | purchase_order[supplier_id]                                                                        | integer | required                                                           | Supplier ID                                                |
 | purchase_order[currency_id]                                                                        | integer | required                                                           | Currency ID                                                |
+| purchase_order[iso_code]                                                                        | string | Optional                                                           | Currency Iso Code                                                |
 | purchase_order[notes]                                                                              | string  | optional                                                           | Notes for this PO                                          |
 | purchase_order[status]                                                                             | boolean | `Pending` <br /> `Draft`                                           | Status                                                     |
 | purchase_order[company_id]                                                                         | integer | required                                                           | Company ID                                                 |
