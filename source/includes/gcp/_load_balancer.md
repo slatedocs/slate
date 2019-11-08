@@ -18,22 +18,24 @@ curl -X GET \
 {
     "data": [
         {
-            "id": "5538770461112637304",
-            "forwardingRule": "https://www.googleapis.com/compute/v1/projects/test-project/global/forwardingRules/my-forwarding-rule",
-            "targetProxy": "https://www.googleapis.com/compute/v1/projects/test-project/global/targetHttpsProxies/my-target-proxy",
-            "urlMap": "https://www.googleapis.com/compute/v1/projects/test-project/global/urlMaps/my-url",
-            "backendService": "https://www.googleapis.com/compute/v1/projects/test-project/global/backendServices/my-backendServices",
-            "sslCertificates": [
-                "https://www.googleapis.com/compute/v1/projects/test-project/global/sslCertificates/my-ssl-cert"
+            "id": "8268558443601303519",
+            "forwardingRules": [
+                "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/gfr-test-cme",
+                "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/gfr-test-qxq"
             ],
-            "name": "my-loadbalancer",
+            "targetProxies": [
+                "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpProxies/tp-test-fkb",
+                "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpsProxies/tp-test-rqi"
+            ],
+            "urlMap": "https://www.googleapis.com/compute/v1/projects/test-area/global/urlMaps/um-test-dfr",
+            "backendServices": [
+                "https://www.googleapis.com/compute/v1/projects/test-area/global/backendServices/be-test-jik"
+            ],
+            "name": "um-test-dfr",
             "protocol": "HTTPS",
-            "publicAddress": "*.random.net",
-            "backends": [
-                "instance-group-1",
-                "instance-group-2"
-            ],
-            "shortBackends": "instance-group-1, instance-group-2"
+            "publicAddress": "34.98.108.48, 34.102.228.10",
+            "reserveStaticIP": false,
+            "shortDisplayBackends": "be-test-jik"
         }
     ],
     "metadata": {
@@ -48,18 +50,107 @@ Retrieve a list of all load balancers in a given [environment](#administration-e
 
 Attributes | &nbsp;
 ------- | -----------
-`backends`<br/>*List<String>* | The list of backends for this resource
-`backendService`<br/>*String* | Server-defined URL for corresponding backend service
-`forwardingRule`<br/>*String* | Server-defined URL for corresponding forwarding rule
-`id`<br/>*String* | The id of this resource, which should be the same id as corresponding forwarding rule
+`backendServices`<br/>*List<String>* | The list of backends for this resource
+`forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
+`id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
 `name`<br/>*String* | The name of this resource
-`protocol`<br/>*String* | The protocol of this resource
-`publicAddress`<br/>*String* | The public address which allow user access their service quickly
-`shortBackends`<br/>*String* | The list of backends for this resource in string format 
-`targetProxy`<br/>*String* | Server-defined URL for corresponding target proxy
+`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS.
+`publicAddress`<br/>*List<String>* | The list of external addresses
+`reserveStaticIP`<br/>*boolean* | [Read-only] The type of external IP used, false = ephemeral, true = static
+`shortDisplayBackends`<br/>*String* | [Read-only] The list of backends for this resource in string format
+`targetProxies`<br/>*List<String>* | The list of target proxies for this resource
 `urlMap`<br/>*String* | Server-defined URL for corresponding url map
 
+<!-------------------- RETRIEVE A LOAD BALANCER -------------------->
 
+#### Retrieve a load balancer
 
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
 
+# The above command returns JSON structured like this:
+```
 
+```json
+{
+    "data": {
+        "id": "8268558443601303519",
+        "forwardingRules": [
+            "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/gfr-test-cme",
+            "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/gfr-test-qxq"
+        ],
+        "targetProxies": [
+            "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpProxies/tp-test-fkb",
+            "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpsProxies/tp-test-rqi"
+        ],
+        "urlMap": "https://www.googleapis.com/compute/v1/projects/test-area/global/urlMaps/um-test-dfr",
+        "backendServices": [
+            "https://www.googleapis.com/compute/v1/projects/test-area/global/backendServices/be-test-jik"
+        ],
+        "name": "um-test-dfr",
+        "protocol": "HTTPS",
+        "publicAddress": "34.98.108.48, 34.102.228.10",
+        "reserveStaticIP": false,
+        "shortDisplayBackends": "be-test-jik"
+    }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers/:id</code>
+
+Retrieve a load balancer in a given [environment](#administration-environments)
+
+Attributes | &nbsp;
+------- | -----------
+`backendServices`<br/>*List<String>* | The list of backends for this resource
+`forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
+`id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
+`name`<br/>*String* | The name of this resource
+`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS.
+`publicAddress`<br/>*List<String>* | The list of external addresses
+`reserveStaticIP`<br/>*boolean* | [Read-only] The type of external IP used, false = ephemeral, true = static
+`shortDisplayBackends`<br/>*String* | [Read-only] The list of backends for this resource in string format
+`targetProxies`<br/>*List<String>* | The list of target proxies for this resource
+`urlMap`<br/>*String* | Server-defined URL for corresponding url map
+
+<!-------------------- DELETE A LOAD BALANCER -------------------->
+
+#### Delete a load balancer
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
+```
+
+```json
+{
+  "shortBackendsToDelete": "be-test-jik",
+  "shortHealthChecksToDelete": "hc-test-olp",
+  "shortSslCertificatesToDelete": "sc-test-ert"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers/:id</code>
+
+Delete an existing load balancer
+
+<aside class="notice">
+By default the forwarding rules, target proxies and url map will be deleted.
+</aside>
+
+<aside class="notice">
+If a health check is specified, the backend using this health check in the load balancer, will also be selected for deletion.
+</aside>
+
+<aside class="notice">
+Any specified optional resources to be removed will be deleted if they can be deleted. If any other resource outside of the current load balancer is using them, the delete will not happen. The overall delete operation will still be marked as successful.
+</aside>
+
+Optional | &nbsp;
+------ | -----------
+`shortBackendsToDelete`<br/>*List<String>* | A list of backend services to delete
+`shortHealthChecksToDelete`<br/>*List<String>* | A list of health checks to delete
+`shortSslCertificatesToDelete`<br/>*List<String>* | A list of SSL certificates to delete
