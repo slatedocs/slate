@@ -1,7 +1,7 @@
 # Webhook events
 
-Events are messages that will be sent to your server as HTTP `POST` requests once you create a webhook subscription (and a resource you have access to is updated).
-They will not contain any personally identifiable information.
+Events are messages that will be sent to your server as HTTP `POST` requests once you create a webhook subscription
+(and a resource you have access to is updated). They will not contain any personally identifiable information.
 
 To acknowledge that you have successfully processed an event, make sure your server answers with a `2xx`-series HTTP status
 code within 5 seconds. Otherwise, we will consider the delivery attempt as having failed and will later try to resend the
@@ -63,8 +63,6 @@ Each `POST` request includes `X-Signature` header, which contains a signature.
 }
 ```
 
-### Event payload
-
 All events share same payload structure. Depending on the `event_type` the only object that will change is `data`.
 
 Field           | Description                                     | Format
@@ -75,7 +73,9 @@ event_type      | Type of event, which defines `data` object      | Integer
 schema_version  | The event representation semantic version       | String
 sent_at         | Timestamp when update happened                  | Timestamp
 
-## Transfer status change event 
+## Event types
+
+### Transfer status change event  (`transfers#state-change`)
 
 > Example event:
 
@@ -99,11 +99,13 @@ sent_at         | Timestamp when update happened                  | Timestamp
 }
 ```
 
-### Event
+This event will be triggered every time a transfer's status is updated. Each event contains a timestamp.
+As we do not guarantee the order of events, please use `data.occured_at` to reconcile the order. 
 
-Event will be triggered every time transfer status is updated. Each event contains a timestamp. As we do not guarantee the order of events, please use `data.occured_at` to reconcile the order. 
+If you would like to subscribe to transfer state change events, please use `transfers#state-change`
+when creating your subscription.
 
-If you would like to subscribe to transfer state change events, please use `transfers#state-change` when creating your subscription.
+#### Schema version `2.0.0` (latest)
 
 Field                       | Description                                   | Format
 ---------                   | -------                                       | -----------
@@ -115,7 +117,8 @@ data.current_state          | Newly acquired state of the resource, possible val
 data.previous_state         | Previous state of the resource, possible values are same as [transfer statuses](#payouts-guide-track-transfer-status) | String
 data.occured_at             | Timestamp when the update happened            | Timestamp
 
-## Transfer issue event
+
+### Transfer issue event (`transfers#active-cases`)
 
 > Example event:
 
@@ -137,11 +140,11 @@ data.occured_at             | Timestamp when the update happened            | Ti
 }
 ```
 
-### Event
-
-Event will be triggered every time transfer's list of active issues is updated.
+This event will be triggered every time a transfer's list of active issues is updated.
 
 If you would like to subscribe to transfer active issue events, please use `transfers#active-cases` when creating your subscription.
+
+#### Schema version `2.0.0` (latest)
 
 Field                       | Description                                   | Format
 ---------                   | -------                                       | -----------
@@ -152,7 +155,7 @@ data.resource.type          | Type of the resource that was updated         | St
 data.active_cases           | List of ongoing issues related to the transfer| String
 
 
-## Balance deposit event
+### Balance deposit event (`balances#credit`)
 
 > Example event:
 
@@ -176,16 +179,19 @@ data.active_cases           | List of ongoing issues related to the transfer| St
   "sent_at": "2019-10-14T12:43:37Z"
 }
 ```
-### Event
 
-Event will be triggered every time balance is credited. This event will not be delivered to application subscriptions.
+This event will be triggered every time a balance account is credited.
+
+Please note: This event is not currently delivered to application subscriptions.
 
 If you would like to subscribe to balance credit events, please use `balances#credit` when creating your subscription.
 
-Field                     | Description                                   | Format
----------                 | -------                                       | -----------
-subscriptionId            | ID of subscription that triggers this notification | String
-profileId                 | ID of the profile that owns the balance       | Integer
-amount                    | Deposit amount                                | Decimal
-currency                  | Currency of the balance that got updated      | String
-eventType                 | Type of update                                | String
+#### Schema version `2.0.0` (latest)
+
+Field                     | Description                                         | Format
+---------                 | -------                                             | -----------
+subscriptionId            | ID of subscription that triggers this notification  | String
+profileId                 | ID of the profile that owns the balance             | Integer
+amount                    | Deposit amount                                      | Decimal
+currency                  | Currency of the balance that got updated            | String
+eventType                 | Type of update                                      | String
