@@ -429,7 +429,10 @@ Get executed quotes between the given time range. Time range should be provided 
 
 ```shell
 # substitute placeholders with correct authorization header values
-curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-28T00:00:00+00:00&platform=api" \
+curl -X GET "https://api.falconx.io/v1/quotes" \
+      --data-urlencode "t_start=2019-06-20T00:00:00+00:00" \
+      --data-urlencode "t_end=2019-06-21T00:00:00+00:00" \
+      --data-urlencode "platform=api" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
       -H "FX-ACCESS-KEY: <api_key>" \
@@ -566,7 +569,10 @@ Get deposits / withdrawals between the given time range. Time range should be pr
 
 ```shell
 # substitute placeholders with correct authorization header values
-curl -X GET "https://api.falconx.io/v1/transfers?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-21T00:00:00+00:00&platform=browser" \
+curl -X GET "https://api.falconx.io/v1/transfers" \
+      --data-urlencode "t_start=2019-06-20T00:00:00+00:00" \
+      --data-urlencode "t_end=2019-06-21T00:00:00+00:00" \
+      --data-urlencode "platform=api" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
       -H "FX-ACCESS-KEY: <api_key>" \
