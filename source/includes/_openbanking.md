@@ -27,7 +27,7 @@ https://sandbox.transferwise.tech/openbanking/.well-known/openid-configuration
 There's a couple of things you should be aware of in order to connect to the TransferWise Open Banking API:
 
 * Being a registered TPP under the Open Banking Directory will ease the integration process.
-* We are using [mutualTLS](https://en.wikipedia.org/wiki/Mutual_authentication) as the means for authentication. Moreover, the `CN` of your client certificate is expected to match the `clientId` under which you are registered. 
+* We are using [mutualTLS](https://tools.ietf.org/html/draft-ietf-oauth-mtls-17) as the means for authentication. Moreover, the `CN` of your client certificate is expected to match the `clientId` under which you are registered. 
 * You need to register your client, before you'll be able to call any of the APIs. Check out the [Sandbox Access](#open-banking-api-sandbox-access) first.
 
 For a detailed description of requirements and supported algorithms please check out the Well-Known Open Banking URL.
@@ -39,7 +39,8 @@ We highly recommend that you get started with connecting to our sandbox first, b
 ### Open Banking Directory
 
 If you're a registered TPP in the Open Banking Directory and you are using Signing and Transport certificates issued by
-Open Banking, you can easily onboard by providing either of the following things:
+Open Banking. At the moment we accept both the old style OB Transport and OB Signing, as well as the eIDAS-like OBWAC and OBSeal certificates. 
+You can easily onboard by providing either of the following things:
 
 * You can generate and send us a Software Statement Assertion (SSA) from the Open Banking Directory.  
 * Alternatively, you can also just send us your Open Banking Organization ID together with the Software Statement ID that you wish to use.
