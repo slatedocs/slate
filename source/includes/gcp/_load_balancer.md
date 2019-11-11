@@ -33,7 +33,7 @@ curl -X GET \
             ],
             "name": "um-test-dfr",
             "protocol": "HTTPS",
-            "publicAddress": "34.98.108.48, 34.102.228.10"
+            "publicAddresses": "34.98.108.48, 34.102.228.10"
         }
     ],
     "metadata": {
@@ -53,7 +53,7 @@ Attributes | &nbsp;
 `id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
 `name`<br/>*String* | The name of this resource
 `protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS. Valid values are HTTP or HTTPS.
-`publicAddress`<br/>*List<String>* | The list of external addresses
+`publicAddresses`<br/>*List<String>* | The list of external addresses
 `targetProxies`<br/>*List<String>* | The list of target proxies for this resource
 `urlMap`<br/>*String* | Server-defined URL for corresponding url map
 
@@ -87,7 +87,7 @@ curl -X GET \
         ],
         "name": "um-test-dfr",
         "protocol": "HTTPS",
-        "publicAddress": "34.98.108.48, 34.102.228.10"
+        "publicAddresses": "34.98.108.48, 34.102.228.10"
     }
 }
 ```
@@ -103,7 +103,7 @@ Attributes | &nbsp;
 `id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
 `name`<br/>*String* | The name of this resource
 `protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS. Valid values are HTTP or HTTPS.
-`publicAddress`<br/>*List<String>* | The list of external addresses
+`publicAddresses`<br/>*List<String>* | The list of external addresses
 `targetProxies`<br/>*List<String>* | The list of target proxies for this resource
 `urlMap`<br/>*String* | Server-defined URL for corresponding url map
 
