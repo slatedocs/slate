@@ -2945,7 +2945,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Task'
+            $ref: '#/components/schemas/TaskCompact'
     Team:
       allOf:
         - $ref: '#/components/schemas/TeamCompact'
@@ -8236,6 +8236,14 @@ paths:
       - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
+      - name: workspace
+        in: query
+        required: true
+        description: >-
+          The workspace in which to get the user task list.
+        schema:
+          type: string
+        example: '1234'
     get:
       summary: Get a user's task list
       description: >-

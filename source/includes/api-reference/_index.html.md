@@ -6291,57 +6291,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -7285,57 +7235,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -7394,57 +7294,7 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -7503,57 +7353,7 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -7612,57 +7412,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -8152,57 +7902,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -8275,57 +7975,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -8397,57 +8047,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -8505,57 +8105,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -8628,57 +8178,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -8750,57 +8250,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -9278,57 +8728,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/searc
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -10301,57 +9701,7 @@ curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/t
     {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Buy catnip",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": null,
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        ...
-      ],
-      "dependencies": [
-        ...
-      ],
-      "dependents": [
-        ...
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        ...
-      },
-      "followers": [
-        ...
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        ...
-      ],
-      "is_rendered_as_separator": false,
-      "liked": true,
-      "likes": [
-        ...
-      ],
-      "memberships": [
-        ...
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": null,
-      "projects": [
-        ...
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        ...
-      ],
-      "workspace": null
+      "name": "Bug Task"
     }
   ]
 }
@@ -10461,7 +9811,7 @@ Returns the full record for a user task list.
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list \
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list?workspace=1234 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -10494,6 +9844,7 @@ Returns the full record for a user's task list.
 |user_gid|path|string|true|Globally unique identifier for the user.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
+|workspace|query|string|true|The workspace in which to get the user task list.|
 
 <h3 id="get-a-user's-task-list-responses">Responses</h3>
 
