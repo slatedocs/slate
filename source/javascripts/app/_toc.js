@@ -108,9 +108,12 @@
         }, 0);
       });
 
+      var w = $(window).width();
       $(window).scroll(debounce(refreshToc, 200));
       $(window).resize(debounce(
         function() {
+          if ($(window).width() === w) return;
+          w = $(window).width();
           recacheHeights();
           var currentAnchor = (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
           if (currentAnchor != null) {
