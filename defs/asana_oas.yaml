@@ -3425,6 +3425,32 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
         504:
           $ref: '#/components/responses/GatewayTimeout'
+    delete:
+      summary: Delete an attachment
+      description: |-
+        Deletes a specific, existing attachment.
+
+        Returns an empty data record.
+      tags:
+        - Attachments
+      operationId: deleteAttachment
+      responses:
+        200:
+          description: Successfully deleted the specified attachment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/attachments:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'

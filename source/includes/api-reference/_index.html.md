@@ -22,7 +22,7 @@ License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
 <h1 id="asana-attachments">Attachments</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-an-attachment"><span class="get-verb">GET</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="#get-attachments-for-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a><br><a href="#upload-an-attachment"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a></code>
+<code><a href="#get-an-attachment"><span class="get-verb">GET</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="#delete-an-attachment"><span class="delete-verb">DELETE</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="#get-attachments-for-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a><br><a href="#upload-an-attachment"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a></code>
 </pre>
 
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
@@ -91,6 +91,59 @@ Get the full record for a single attachment.
 |501|[Not Implemented](https://tools.ietf.org/html/rfc7231#section-6.6.2)|There is an issue between the load balancers and Asana's API.|[Error](#schemaerror)|
 |503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|[Error](#schemaerror)|
 |504|[Gateway Time-out](https://tools.ietf.org/html/rfc7231#section-6.6.5)|This request took too long to complete.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Delete an attachment
+
+<a id="opIddeleteAttachment"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/attachments/{attachment_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="delete-verb">DELETE</span> /attachments/{attachment_gid}</code>
+</p>
+
+Deletes a specific, existing attachment.
+
+Returns an empty data record.
+
+<h3 id="delete-an-attachment-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|attachment_gid|path|string|true|Globally unique identifier for the attachment.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
+<h3 id="delete-an-attachment-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified attachment.|[Empty](#schemaempty)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 </section>
 
