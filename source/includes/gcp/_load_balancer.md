@@ -33,9 +33,7 @@ curl -X GET \
             ],
             "name": "um-test-dfr",
             "protocol": "HTTPS",
-            "publicAddress": "34.98.108.48, 34.102.228.10",
-            "reserveStaticIP": false,
-            "shortDisplayBackends": "be-test-jik"
+            "publicAddress": "34.98.108.48, 34.102.228.10"
         }
     ],
     "metadata": {
@@ -54,10 +52,8 @@ Attributes | &nbsp;
 `forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
 `id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
 `name`<br/>*String* | The name of this resource
-`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS.
+`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS. Valid values are HTTP or HTTPS.
 `publicAddress`<br/>*List<String>* | The list of external addresses
-`reserveStaticIP`<br/>*boolean* | [Read-only] The type of external IP used, false = ephemeral, true = static
-`shortDisplayBackends`<br/>*String* | [Read-only] The list of backends for this resource in string format
 `targetProxies`<br/>*List<String>* | The list of target proxies for this resource
 `urlMap`<br/>*String* | Server-defined URL for corresponding url map
 
@@ -91,9 +87,7 @@ curl -X GET \
         ],
         "name": "um-test-dfr",
         "protocol": "HTTPS",
-        "publicAddress": "34.98.108.48, 34.102.228.10",
-        "reserveStaticIP": false,
-        "shortDisplayBackends": "be-test-jik"
+        "publicAddress": "34.98.108.48, 34.102.228.10"
     }
 }
 ```
@@ -108,10 +102,8 @@ Attributes | &nbsp;
 `forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
 `id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
 `name`<br/>*String* | The name of this resource
-`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS.
+`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS. Valid values are HTTP or HTTPS.
 `publicAddress`<br/>*List<String>* | The list of external addresses
-`reserveStaticIP`<br/>*boolean* | [Read-only] The type of external IP used, false = ephemeral, true = static
-`shortDisplayBackends`<br/>*String* | [Read-only] The list of backends for this resource in string format
 `targetProxies`<br/>*List<String>* | The list of target proxies for this resource
 `urlMap`<br/>*String* | Server-defined URL for corresponding url map
 
@@ -127,9 +119,9 @@ curl -X DELETE \
 
 ```json
 {
-  "shortBackendsToDelete": "be-test-jik",
-  "shortHealthChecksToDelete": "hc-test-olp",
-  "shortSslCertificatesToDelete": "sc-test-ert"
+  "shortBackendsToDelete": "be-test-jik, be-other-srd",
+  "shortHealthChecksToDelete": "hc-test-olp, hc-other-kop",
+  "shortSslCertificatesToDelete": "sc-test-ert, sc-other-awe"
 }
 ```
 
@@ -142,7 +134,7 @@ By default the forwarding rules, target proxies and url map will be deleted.
 </aside>
 
 <aside class="notice">
-If a health check is specified, the backend using this health check in the load balancer, will also be selected for deletion.
+If a health check is specified, the backend(s) using this health check in the load balancer, will also be selected for deletion.
 </aside>
 
 <aside class="notice">
