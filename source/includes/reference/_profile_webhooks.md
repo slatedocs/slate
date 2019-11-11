@@ -15,6 +15,11 @@ You can have multiple subscriptions per event type though be mindful you will re
 
 If you will be dealing with multiple profiles in your integration, check out [***application webhooks***](#application-webhooks). You will have to subscribe only once and you will receive updates concerning all resources that were created in your application.
 
+### There's two ways you can manage profile webhooks:
+
+* via API (read more below) 
+* via user interface (go to your <a href="https://transferwise.com/user/settings#webhooks" target="_blank">settings page</a>)
+
 ## Create
 
 
