@@ -31,9 +31,7 @@ curl -X GET \
             "backendServices": [
                 "https://www.googleapis.com/compute/v1/projects/test-area/global/backendServices/be-test-jik"
             ],
-            "name": "um-test-dfr",
-            "protocol": "HTTPS",
-            "publicAddresses": "34.98.108.48, 34.102.228.10"
+            "name": "um-test-dfr"
         }
     ],
     "metadata": {
@@ -52,8 +50,6 @@ Attributes | &nbsp;
 `forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
 `id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
 `name`<br/>*String* | The name of this resource
-`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS. Valid values are HTTP or HTTPS.
-`publicAddresses`<br/>*List<String>* | The list of external addresses
 `targetProxies`<br/>*List<String>* | The list of target proxies for this resource
 `urlMap`<br/>*String* | Server-defined URL for corresponding url map
 
@@ -85,9 +81,7 @@ curl -X GET \
         "backendServices": [
             "https://www.googleapis.com/compute/v1/projects/test-area/global/backendServices/be-test-jik"
         ],
-        "name": "um-test-dfr",
-        "protocol": "HTTPS",
-        "publicAddresses": "34.98.108.48, 34.102.228.10"
+        "name": "um-test-dfr"
     }
 }
 ```
@@ -102,8 +96,6 @@ Attributes | &nbsp;
 `forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
 `id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
 `name`<br/>*String* | The name of this resource
-`protocol`<br/>*String* | The protocol of this resource. If there are multiple target proxies, and at least one of them is HTTPS, the protocol for the load balancer is set to HTTPS. Valid values are HTTP or HTTPS.
-`publicAddresses`<br/>*List<String>* | The list of external addresses
 `targetProxies`<br/>*List<String>* | The list of target proxies for this resource
 `urlMap`<br/>*String* | Server-defined URL for corresponding url map
 
@@ -119,9 +111,9 @@ curl -X DELETE \
 
 ```json
 {
-  "shortBackendsToDelete": "be-test-jik, be-other-srd",
-  "shortHealthChecksToDelete": "hc-test-olp, hc-other-kop",
-  "shortSslCertificatesToDelete": "sc-test-ert, sc-other-awe"
+  "shortBackendsToDelete": "[be-test-jik, be-other-srd]",
+  "shortHealthChecksToDelete": "[hc-test-olp, hc-other-kop]",
+  "shortSslCertificatesToDelete": "[sc-test-ert]"
 }
 ```
 
