@@ -1,4 +1,4 @@
-# Investor Payments
+# Payments - Investors
 
 ## Depositing funds
 

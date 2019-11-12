@@ -1,4 +1,4 @@
-# Platform Payments
+# Payments - Manager
 
 ### Testing outbound payments
 
