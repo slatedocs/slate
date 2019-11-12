@@ -4,7 +4,7 @@ Websocket api can be used for the following use cases
 
 - Get real time feed of market data, this includes L2 and L3 orderbook and recent trades.
 - Get price feeds - Mark prices of different contracts, price feed of underlying indexes etc.
-- Get account specific notifications like fills, liquidations, ADL and PnL updates.
+- Get account specific notifications like fills, liquidations, [ADL](https://www.delta.exchange/user-guide/docs/trading-guide/ADL/) and PnL updates.
 
 Access url
 
@@ -114,7 +114,7 @@ If you want to unsubscribe from channel/contracts pairs, send an "unsubscribe" m
 
 ## Authenticating a connection
 
-Authentication allows clients to receives private messages, like trading notifications. Examples of the trading notifications are: fills, liquidations, adl and pnl updates.
+Authentication allows clients to receives private messages, like trading notifications. Examples of the trading notifications are: fills, liquidations, [adl](/#trading-notitifications) and pnl updates.
 
 To authenticate, you need to send a signed request of type 'auth' on your socket connection. Check the authentication section above for more details on how to sign a request using api key and secret.
 
