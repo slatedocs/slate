@@ -120,7 +120,7 @@ Required | &nbsp;
 `shortBackend`<br/>*string* | The existing backend serivce that will be attached to this load balancer.
 `shortProtocol`<br/>*string* | The protocol of this resource.
 `shortPort`<br/>*string* | The port number of this resource.
-`shortCertificate`<br/>*string* | The name of the SSL certificate that will be attached to the target proxy if HTTPS is selected. (Required if HTTPS is selected for shortProtocol) 
+`shortCertificate`<br/>*string* | The name of the SSL certificate that will be attached to the target proxy if HTTPS is selected. (Required if HTTPS is selected for shortProtocol)
 
 Optional | &nbsp;
 ------- | -----------
