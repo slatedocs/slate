@@ -1,16 +1,16 @@
 ## <em>Instruments 🚧</em>
 
-The Instruments API allows an Investment Manager to [create new Instruments](/#instruments-instrument-creation), and 
-[issue/allocate shares](/#instruments-issuing-allocating-shares) of that instrument.
+The Instruments API allows an Investment Manager to [create new Instruments](/#settlement-equity-instrument-creation), and 
+[issue/allocate shares](/#settlement-equity-issuing-allocating-shares) of that instrument.
 
 This instrument can then be used for:
 
- * [Trade Settlement](/#trade-settlement)
- * [Corporate Actions](/#corporate-actions)
+ * [Trade Settlement](/#settlement-equity-trade-settlement)
+ * [Corporate Actions](/#settlement-equity-corporate-actions)
 
 ## Instrument Creation
 
-Instrument creation allows registering a new [Instrument](/#instruments-instrument-model), which is later referenced
+Instrument creation allows registering a new [Instrument](/#settlement-equity-instrument-model), which is later referenced
 by the `InstrumentSymbol`.  Currently only equity instruments are supported.
 
 ## Instrument Model
@@ -28,7 +28,7 @@ by the `InstrumentSymbol`.  Currently only equity instruments are supported.
 }
 ```
 
-The Instrument model used for both the [`POST /instruments`](/#instruments-post-instruments) and [`GET /instruments/{InstrumentSymbol}`](/#instruments-get-instruments) endpoints.
+The Instrument model used for both the [`POST /instruments`](/#settlement-equity-post-instruments) and [`GET /instruments/{InstrumentSymbol}`](/#settlement-equity-get-instruments-instrumentsymbol) endpoints.
 
 | Key                        | JSON Type | Value Type       | Value Description                                                                                |
 |----------------------------|-----------|------------------|--------------------------------------------------------------------------------------------------|
@@ -36,7 +36,7 @@ The Instrument model used for both the [`POST /instruments`](/#instruments-post-
 | assetClass                 | String    | AssetClass       | Values: EQUITY                                                                                   |
 | primaryMarketBankAccountId | String    | BankAccountId    | The bank account ID to send primary market sale funds to.                                        |
 | feeTypes[].symbol          | String    | FeeSymbol        | A symbolic representation of the type of fee, i.e. STAMP_DUTY.                                   |
-| feeTypes[].bankAccountId   | String    | BankAccountId    | BankAccountID from [`POST /platformApi/bankAccountDetails`](/#payments-post-bankaccountdetails). |
+| feeTypes[].bankAccountId   | String    | BankAccountId    | BankAccountID from [`POST /platformApi/bankAccountDetails`](/#payments-manager-post-bankaccountdetails). |
 
 ## `POST /instruments`
 
@@ -85,20 +85,20 @@ Registers a new instrument which can then be referenced by its symbol in other A
 
 The instrument can then be referenced by the `InstrumentSymbol` in the following APIs:
 
- * [Trade Settlement API](/#trade-settlement)
- * [Corporate Actions API](/#corporate-actions)
+ * [Trade Settlement API](/#settlement-equity-trade-settlement)
+ * [Corporate Actions API](/#settlement-equity-corporate-actions)
  
 In addition to defining the instrument, a list of fees that will apply to any trade settlement for this instrument 
 must be specified.  The `FeeSymbol`s that have been registered will later be specified in the
-[Trade Settlement API](/#trade-settlement) to charge fees to the investors at settlement time.
+[Trade Settlement API](/#settlement-equity-trade-settlement) to charge fees to the investors at settlement time.
 
 ### Request
 
-Body: [Instrument Model](/#instruments-instrument-model)
+Body: [Instrument Model](/#settlement-equity-instrument-model)
 
 ### Response
 
-Body: [Instrument Model](/#instruments-instrument-model)
+Body: [Instrument Model](/#settlement-equity-instrument-model)
 
 Http Status:
 
@@ -146,7 +146,7 @@ Body: None
 
 ### Response
 
-Body: [Instrument Model](/#instruments-instrument-model)
+Body: [Instrument Model](/#settlement-equity-instrument-model)
 
 Http Status:
 
@@ -160,10 +160,10 @@ Http Status:
 ## Issuing / Allocating Shares
 
 After an instrument has been created, a number of shares must be issued to the nominee company.  This can be achieved
-using [`POST /allocations`](/#instruments-post-allocations).
+using [`POST /allocations`](/#settlement-equity-post-allocations).
 
 Alternatively, if this instrument is created during migration of asset custody to Goji Nominee Ltd, and shares have 
-already been sold to investors, the [`POST /allocations`](/#instruments-post-allocations) can be used to allocate 
+already been sold to investors, the [`POST /allocations`](/#settlement-equity-post-allocations) can be used to allocate 
 each investor's shares.
 
 ## Allocation Model
@@ -227,11 +227,11 @@ When migrating shares, the `investor` must be specified.
 
 ### Request
 
-Body: [Allocation Model](/#instruments-allocation-model)
+Body: [Allocation Model](/#settlement-equity-allocation-model)
 
 ### Response
 
-Body: [Allocation Model](/#instruments-allocation-model)
+Body: [Allocation Model](/#settlement-equity-allocation-model)
 
 Http Status: 
 
@@ -274,11 +274,11 @@ Retrieves the details of an existing allocation.
 
 ### Request
 
-Body: [Allocation Model](/#instruments-allocation-model)
+Body: [Allocation Model](/#settlement-equity-allocation-model)
 
 ### Response
 
-Body: [Allocation Model](/#instruments-allocation-model)
+Body: [Allocation Model](/#settlement-equity-allocation-model)
 
 Http Status: 
 

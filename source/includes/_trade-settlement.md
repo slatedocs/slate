@@ -6,9 +6,9 @@ The API is currently under construction.
 
 ## Trades
 
-Once an instrument has been created, it can then be traded. A trade can be submitted using [`POST /trades`](/#instruments-post-trades).
+Once an instrument has been created, it can then be traded. A trade can be submitted using [`POST /trades`](/#settlement-equity-post-trades).
 
-To retrieve an existing trade, the [`GET /trades/{tradeId}`](#instruments-get-trades) endpoint can be used.
+To retrieve an existing trade, the [`GET /trades/{tradeId}`](#settlement-equity-get-trades-tradeid) endpoint can be used.
 
 
 ## Trade Model
@@ -88,7 +88,7 @@ Persists a new trade which will then undergo the settlement process.
 
 An instrument must first be registered using the following API:
 
- * [Instrument API](/#instruments)
+ * [Instrument API](/#settlement-equity-instruments)
  
 ...before it can be traded.
 
@@ -96,11 +96,11 @@ Trades can be between the nominee company and an investor or two investors.
 
 ### Request
 
-Body: [Trade Model](/#trade-settlement-trade-model)
+Body: [Trade Model](/#settlement-equity-trade-model)
 
 ### Response
 
-Body: [Trade Model](/#trade-settlement-trade-model)
+Body: [Trade Model](/#settlement-equity-trade-model)
 
 Http Status: 
 
@@ -170,7 +170,7 @@ Body: None
 
 ### Response
 
-Body: [Trade Model](/#trade-settlement-trade-model)
+Body: [Trade Model](/#settlement-equity-trade-model)
 
 Http Status: 
 

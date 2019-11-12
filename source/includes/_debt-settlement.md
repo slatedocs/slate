@@ -173,7 +173,7 @@ Content-Type: application/json
 Lists payment destinations. 
 
 <aside class="warning">
-Deprecated and replaced with <a href="#payments-get-platformapi-bankaccountdetails">general bank account details</a>.
+Deprecated and replaced with <a href="#payments-manager-get-platformapi-bankaccountdetails">general bank account details</a>.
 </aside>
 ### Response
 | Name | Type   | Description                              |
@@ -207,7 +207,7 @@ Content-Type: application/json
 Adds a payment destination.
  
 <aside class="warning">
-Deprecated and replaced with <a href="#payments-post-platformapi-bankaccountdetails">general bank account details</a>.
+Deprecated and replaced with <a href="#payments-manager-post-platformapi-bankaccountdetails">general bank account details</a>.
 </aside>
 ### Request
 | Name          | Type   | Description                                       | Required |
@@ -248,7 +248,7 @@ Content-Type: application/json
 Updates a payment destination.
  
 <aside class="warning">
-Deprecated and replaced with <a href="#payments-put-platformapi-bankaccountdetails-id">general bank account details</a>.
+Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankaccountdetails-id">general bank account details</a>.
 </aside>
 ### Request
 | Name          | Type   | Description                                       | Required |

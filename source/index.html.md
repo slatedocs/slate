@@ -45,13 +45,32 @@ The Investors API can:
 * Open general/ISA accounts for your Investors
 * Retrieve and update Investor data
 
-###[Payments API](#payments)
+###[Payments - Investors API](#payments-investors)
 For Investors who have passed KYC checks, the Payments API can:
 
 * Retrieve Investors bank details
 * Retrieve Investors balance information
 * Transfer funds between accounts
 * Execute withdrawals
+
+###[Payments - Manager API](#payments-manager)
+For Managers (platforms) to control money that doesn't yet, or no longer, belongs to the investor:
+
+* Retrieve and create bank details of beneficiaries
+* Create wallets to hold and move platform controlled money
+* Transfer funds between wallets and beneficiaries.
+
+###[Debt Settlement API](#settlement-debt)
+The Debt Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:
+
+* P2P loans
+* Bonds
+* etc.
+
+This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.
+
+###[Equity Settlement API](#settlement-equity)
+The Equity Settlement API supports settling of shares.
 
 ###[Bond management API](#bond-management)
 
@@ -64,15 +83,6 @@ The Goji Platform supports issuing:
 * Fixed term bonds
 * Fixed rate bonds (debt based securities)
 The Bond management API allows you to configure these products, determine who has invested in each bond and when repayments are due.
-
-###[Settlement API](#settlement)
-The Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:
-
-* P2P loans
-* Bonds
-* etc.
-
-This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.
 
 ###[Webhooks API](#webhooks)
 Many events in the Goji platform publish events which can be consumed as a webhook.

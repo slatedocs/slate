@@ -9,8 +9,8 @@ This guide gives a brief overview on how to:
 Please ensure you also read the complete documentation for each API.
 
 * [Investors API](/#investors)
-* [Payments API](/#payments)
-* [Settlement API](/#settlement)
+* [Payments API](/#payments-investors)
+* [Settlement API](/#settlement-debt)
 
 ### Authentication
 API calls in production need to be cryptographically signed. You can find more information [here](/#introduction-authentication).
