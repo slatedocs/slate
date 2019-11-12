@@ -2871,6 +2871,238 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Raise withdrawals request
+
+<a id="opIdraiseWithdrawalRequest"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/wallet/withdrawals', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/wallet/withdrawals \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/wallet/withdrawals',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /wallet/withdrawals`
+
+> Body parameter
+
+```json
+{
+  "release_promo_credit": "string",
+  "amount": "string",
+  "address": "string"
+}
+```
+
+<h3 id="raise-withdrawals-request-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» release_promo_credit|body|string|false|none|
+|» amount|body|string|true|none|
+|» address|body|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "address": "string",
+  "amount": "string",
+  "fee": "string",
+  "id": 0,
+  "state": "string",
+  "transaction_meta": "string",
+  "user_id": 0
+}
+```
+
+<h3 id="raise-withdrawals-request-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the WithdrawalsResponse object|[WithdrawalsResponse](#schemawithdrawalsresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if Withdrawal limit exceeded, ammount or address is missing or invalid|Inline|
+
+<h3 id="raise-withdrawals-request-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» error|string|false|none|none|
+|» message|string|false|none|A more verbose error message|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|error|WithdrawalLimitExceeded|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Cancel withdrawals request
+
+<a id="opIdcancelWithdrawalRequest"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/wallet/withdrawals/cancel', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/wallet/withdrawals/cancel \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/wallet/withdrawals/cancel',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /wallet/withdrawals/cancel`
+
+> Body parameter
+
+```json
+{
+  "withdrawal_id": 0
+}
+```
+
+<h3 id="cancel-withdrawals-request-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» withdrawal_id|body|integer|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true
+}
+```
+
+<h3 id="cancel-withdrawals-request-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns success true or false|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if Withdrawal Withdrawal Already Processed|Inline|
+
+<h3 id="cancel-withdrawals-request-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» success|boolean|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» error|string|false|none|none|
+|» message|string|false|none|A more verbose error message|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|error|WithdrawalAlreadyProcessed|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 <h1 id="delta-exchange-api-ohlc-candles">OHLC Candles</h1>
 
 ## Get OHLC candles
@@ -4426,4 +4658,33 @@ This operation does not require authentication.
 |l|[string]|false|none|low prices for candles|
 |c|[string]|false|none|close prices for candles|
 |v|[integer]|false|none|volumes for candles|
+
+<h2 id="tocSwithdrawalsresponse">WithdrawalsResponse</h2>
+
+<a id="schemawithdrawalsresponse"></a>
+
+```json
+{
+  "address": "string",
+  "amount": "string",
+  "fee": "string",
+  "id": 0,
+  "state": "string",
+  "transaction_meta": "string",
+  "user_id": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|address|string|false|none|BTC Destination Address|
+|amount|string|false|none|Amount to be Withdrawn|
+|fee|string|false|none|Withdrawal Fee|
+|id|integer(int64)|false|none|Trasaction id|
+|state|string|false|none|state of withdrawal request|
+|transaction_meta|string|false|none|Amount to be Withdrawn|
+|user_id|integer(int64)|false|none|User id|
 

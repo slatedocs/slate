@@ -875,6 +875,125 @@
         }
       }
     },
+    "/wallet/withdrawals":{
+      "post": {
+        "tags": ["Wallet"],
+        "summary": "Raise withdrawals request",
+        "operationId": "raiseWithdrawalRequest",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Raise withdrawals request",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["amount", "address"],
+              "properties": {
+                "release_promo_credit": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns the WithdrawalsResponse object",
+            "schema": {
+              "$ref": "#/definitions/WithdrawalsResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if Withdrawal limit exceeded, ammount or address is missing or invalid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "enum": ["WithdrawalLimitExceeded"]
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wallet/withdrawals/cancel":{
+      "post": {
+        "tags": ["Wallet"],
+        "summary": "Cancel withdrawals request",
+        "operationId": "cancelWithdrawalRequest",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Cancel withdrawals request",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["withdrawal_id"],
+              "properties": {
+                "withdrawal_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns success true or false",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                }
+            }
+           }
+          },
+          "400": {
+            "description": "Returns error if Withdrawal Withdrawal Already Processed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "enum": ["WithdrawalAlreadyProcessed"]
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/chart/history" : {
       "get" : {
         "tags" : [ "OHLC Candles" ],
@@ -1611,6 +1730,41 @@
           "items" : {
             "type" : "integer"
           }
+        }
+      }
+    },
+    "WithdrawalsResponse" :{
+      "type" : "object",
+      "properties" : {
+        "address" : {
+          "type" : "string",
+          "description" : "BTC Destination Address"
+        },
+        "amount" : {
+          "type" : "string",
+          "description" : "Amount to be Withdrawn"
+        },
+        "fee" : {
+          "type" : "string",
+          "description" : "Withdrawal Fee"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Trasaction id"
+        },
+        "state" : {
+          "type" : "string",
+          "description" : "state of withdrawal request"
+        },
+        "transaction_meta" : {
+          "type" : "string",
+          "description" : "Amount to be Withdrawn"
+        },
+        "user_id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "User id"
         }
       }
     }

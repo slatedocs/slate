@@ -40,7 +40,7 @@ It is important to note that the BTCUSD Index price doesn't follow this conventi
 Pagination allows to fetch data page-wise.
 Pagination can be called in following APIs
 
-API|End ponint|
+API|End point|
 --|--
 Orders|/orders
 Orders History|/orders/history
