@@ -383,6 +383,7 @@ html, body {
       max-width: 100% - $examples-width - $examples-padding-left;
       margin-left: 0;
       margin-right: 0;
+      box-sizing: border-box;
 
       @extend %left-col;
     }
