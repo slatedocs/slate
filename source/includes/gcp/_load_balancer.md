@@ -111,9 +111,9 @@ curl -X DELETE \
 
 ```json
 {
-  "shortBackendsToDelete": "[be-test-jik, be-other-srd]",
-  "shortHealthChecksToDelete": "[hc-test-olp, hc-other-kop]",
-  "shortSslCertificatesToDelete": "[sc-test-ert]"
+  "shortBackendsToDelete": ["be-test-jik", "be-other-srd"],
+  "shortHealthChecksToDelete": ["hc-test-olp", "hc-other-kop"],
+  "shortSslCertificatesToDelete": ["sc-test-ert"]
 }
 ```
 
