@@ -384,6 +384,7 @@ html, body {
       margin-left: 0;
       margin-right: 0;
       box-sizing: border-box;
+      overflow-wrap: break-word;
 
       @extend %left-col;
     }
