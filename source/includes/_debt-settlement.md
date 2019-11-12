@@ -1,4 +1,4 @@
-# Settlement
+# Settlement - Debt
 
 The Settlement API allows the investment manager to record trades that have been executed.
 

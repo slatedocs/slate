@@ -209,6 +209,14 @@ html, body {
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
     font-size: 12px;
+
+    em {
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px dotted #ccc;
+      font-weight: bold;
+      font-style: normal;
+    }
   }
 
   .toc-footer {

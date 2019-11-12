@@ -1,4 +1,4 @@
-# Instruments 🚧
+## <em>Instruments 🚧</em>
 
 The Instruments API allows an Investment Manager to [create new Instruments](/#instruments-instrument-creation), and 
 [issue/allocate shares](/#instruments-issuing-allocating-shares) of that instrument.

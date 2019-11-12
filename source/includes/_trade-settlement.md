@@ -1,4 +1,4 @@
-# Trade Settlement 🚧
+## <em>Trade Settlement 🚧</em>
 
 The Trade Settlement API allows an Investment Manager to report trades which require settlement.
 

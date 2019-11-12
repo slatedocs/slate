@@ -1,4 +1,4 @@
-# Quickstart (Equities) 🚧
+## Quickstart Settlement - Equities 🚧
 
 This guide gives a brief overview to how to do the following, using the settlement API:
 

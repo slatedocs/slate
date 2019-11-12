@@ -15,14 +15,16 @@ includes:
   - quickstart-settlement
   - quickstart-equities
   - investors
-  - payments
-  - settlement
-  - webhooks
-  - bonds
-  - isaadmin
+  - investor-payments
+  - platform-payments
+  - debt-settlement
+  - equity-settlement
   - instruments
   - trade-settlement
   - corporate-actions
+  - bonds
+  - webhooks
+  - isaadmin
   - errors
 
 search: true
@@ -260,4 +262,6 @@ If you already have a `TXT` record with SPF information, you'll need to add Mand
 
 ###Domain Ownership Verification
 Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to [techsupport@goji.investments](mailto:techsupport@goji.investments)
+
+# Quickstart Guides
 
