@@ -632,6 +632,66 @@ from scout_apm.sqlalchemy import instrument_sqlalchemy
 instrument_sqlalchemy(engine)
 ```
 
+## Starlette
+
+Scout supports Starlette 0.12+.
+
+General instructions for a Starlette app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure Scout and attach its middleware to your Starlette app:</p>
+
+<pre class="terminal" style="width: initial">
+<span>from scout_apm.api import Config</span>
+<span>from scout_apm.async_.starlette import ScoutMiddleware</span>
+from starlette.applications import Starlette
+
+app = Starlette()
+
+<span>Config.set(
+    key="[AVAILABLE IN THE SCOUT UI]",
+    name="A FRIENDLY NAME FOR YOUR APP",
+    monitor=True,
+)</span>
+<span># Should be *last* call to add_middleware, so it's the outermost and can</span>
+<span>track all requests</span>
+<span>app.add_middleware(ScoutMiddleware)</span>
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>Config.set</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="python-troubleshooting">Troubleshooting</h2>
 
 Not seeing data? Email support@scoutapm.com with:
