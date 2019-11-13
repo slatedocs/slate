@@ -1148,6 +1148,31 @@ with scout_apm.api.BackgroundTransaction("Foo"):
     print(response.text)
 ```
 
+### Ignoring Transactions
+
+If you don't want to track the current transaction, at any point you can call `ignore_transaction()` to ignore it:
+
+```python
+import scout_apm.api
+
+if is_health_check():
+    scout_apm.api.ignore_transaction()
+```
+
+You can use this whether the transaction was started from a built-in integration or custom instrumentation.
+
+### Renaming Transactions
+
+If you want to rename the current transaction, call `rename_transaction()` with the new name:
+
+```python
+import scout_apm.api
+
+scout_apm.api.rename_transaction("Controller/" + derive_graphql_name())
+```
+
+You can use this whether the transaction was started from a built-in integration or custom instrumentation.
+
 ### Timing functions and blocks of code
 
 Traces that allocate significant amount of time to `View`, `Job`, or `Template` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
