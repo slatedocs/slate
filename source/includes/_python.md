@@ -341,7 +341,7 @@ pip install scout-apm
         <span class="step">2</span>
       </td>
       <td style="padding-top: 15px">
-        <p>Configure Scout inside your Flask app:</p>
+        <p>Attach the Scout middleware to your Falcon app:</p>
 
 <pre style="width:initial">
 import falcon
