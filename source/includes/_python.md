@@ -30,6 +30,7 @@ The libraries below require a small number of configuration updates. Click on th
 * [Falcon](#falcon)
 * [Flask](#flask)
 * [Flask SQLAlchemy](#flask-sqlalchemy)
+* [Huey](#huey)
 * [Nameko](#nameko)
 * [Pyramid](#pyramid)
 * [SQLAlchemy](#sqlalchemy)
@@ -442,6 +443,65 @@ from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
 # Assuming something like engine = create_engine('sqlite:///:memory:', echo=True)
 instrument_sqlalchemy(engine)
 ```
+
+## Huey
+
+Scout supports Huey 2.0+.
+
+Add the following to instrument your Huey application:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Add Scout to your Huey application:</p>
+<pre class="terminal" style="width: initial">
+from huey import SqliteHuey
+<span>from scout_apm.api import Config</span>
+<span>from scout_apm.huey import attach_scout</span>
+
+broker = SqliteHuey()
+
+<span>
+Config.set(
+    monitor=True,
+    name="A FRIENDLY NAME FOR YOUR APP",
+    key="[AVAILABLE IN THE SCOUT UI]",
+)</span>
+<span>attach_scout(huey)</span>
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of calling <code>Config.set()</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+        <p>Tasks will appear in the "Background Jobs" area of the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Nameko
 
