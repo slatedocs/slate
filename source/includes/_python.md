@@ -21,6 +21,7 @@ The libraries below require a small number of configuration updates. Click on th
 
 * [Bottle](#bottle)
 * [Celery](#celery)
+* [Dash](#dash)
 * [Django](#django)
     * Middleware
     * Templates (compiling & rendering)
@@ -161,6 +162,25 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
     </tr>
   </tbody>
 </table>
+
+## Dash
+
+[Plotly Dash](https://dash.plot.ly/) is built on top of Flask. Therefore you should use the Scout Flask integration with the underlying Flask application object. For example:
+
+<pre style="width:500px">
+import dash
+from scout_apm.flask import ScoutApm
+
+app = dash.Dash("myapp")
+app.config.suppress_callback_exceptions = True
+flask_app = app.server
+
+# Setup as per Flask integration
+ScoutApm(flask_app)
+flask_app.config["SCOUT_NAME"] = "A FRIENDLY NAME FOR YOUR APP"
+</pre>
+
+For full instructions, see [the Flask integration](#flask).
 
 ## Django
 
