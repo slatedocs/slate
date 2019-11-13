@@ -136,7 +136,7 @@ from celery import Celery
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
 <span>
 Config.set(
-    key="SCOUT_KEY",
+    key="[AVAILABLE IN THE SCOUT UI]",
     name="Same as Web App Name",
     monitor=True,
 )
@@ -292,7 +292,7 @@ broker = RabbitmqBroker()
 
 <span>
 Config.set(
-    key="SCOUT_KEY",
+    key="[AVAILABLE IN THE SCOUT UI]",
     name="Same as Web App Name",
     monitor=True,
 )
@@ -533,8 +533,8 @@ from scout_apm.nameko import ScoutReporter
 
 
 Config.set(
-    key=os.environ["SCOUT_KEY"],
-    name="Test Nameko App",
+    key="[AVAILABLE IN THE SCOUT UI]",
+    name="A FRIENDLY NAME FOR YOUR APP",
     monitor=True,
 )
 
@@ -595,9 +595,9 @@ import scout_apm.pyramid
 if __name__ == "__main__":
     with Configurator() as config:
         config.add_settings(
-            SCOUT_KEY="...",
+            SCOUT_KEY="[AVAILABLE IN THE SCOUT UI]",
             SCOUT_MONITOR=True,
-            SCOUT_NAME="My Pyramid App"
+            SCOUT_NAME="A FRIENDLY NAME FOR YOUR APP"
         )
         config.include("scout_apm.pyramid")
 
