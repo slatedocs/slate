@@ -185,7 +185,7 @@ The whole `juspay` key is optional for the above `subscriptionParams` object.
 ### Razorpay Recurring Integration
 For a plan that is set as recurring in Accesstype, `subscriptionParams.payment.payment_type` needs to be `razorpay_recurring`.
 
-## Table of Contents
+### Table of Contents
 
 -   [AccessType][1]
     -   [version][2]
@@ -214,56 +214,58 @@ For a plan that is set as recurring in Accesstype, `subscriptionParams.payment.p
     -   [getSubscriptions][25]
     -   [updateSubscription][26]
         -   [Parameters][27]
-    -   [getAssets][28]
-    -   [getRewards][29]
-    -   [resetWallets][30]
-    -   [downloadInvoice][31]
-        -   [Parameters][32]
-    -   [isPrivateMode][33]
-    -   [getReferralVoucher][34]
--   [DurationUnit][35]
--   [SubscriptionType][36]
--   [AssetType][37]
--   [PaymentType][38]
--   [Environment][39]
--   [User][40]
-    -   [Properties][41]
--   [SubscriptionPlan][42]
+    -   [cancelSubscription][28]
+        -   [Parameters][29]
+    -   [getAssets][30]
+    -   [getRewards][31]
+    -   [resetWallets][32]
+    -   [downloadInvoice][33]
+        -   [Parameters][34]
+    -   [isPrivateMode][35]
+    -   [getReferralVoucher][36]
+-   [DurationUnit][37]
+-   [SubscriptionType][38]
+-   [AssetType][39]
+-   [PaymentType][40]
+-   [Environment][41]
+-   [User][42]
     -   [Properties][43]
--   [SubscriptionAsset][44]
+-   [SubscriptionPlan][44]
     -   [Properties][45]
--   [PaymentParams][46]
+-   [SubscriptionAsset][46]
     -   [Properties][47]
--   [SubscriptionParams][48]
+-   [PaymentParams][48]
     -   [Properties][49]
--   [SubscriptionMetadata][50]
+-   [SubscriptionParams][50]
     -   [Properties][51]
--   [InitConfig][52]
+-   [SubscriptionMetadata][52]
     -   [Properties][53]
--   [PurchaseableAsset][54]
+-   [InitConfig][54]
     -   [Properties][55]
--   [PaymentOption][56]
+-   [PurchaseableAsset][56]
     -   [Properties][57]
--   [PaymentOptions][58]
--   [Error][59]
-    -   [Properties][60]
--   [CouponValidationRequest][61]
+-   [PaymentOption][58]
+    -   [Properties][59]
+-   [PaymentOptions][60]
+-   [Error][61]
     -   [Properties][62]
--   [VoucherValidationRequest][63]
+-   [CouponValidationRequest][63]
     -   [Properties][64]
--   [DiscountDetails][65]
+-   [VoucherValidationRequest][65]
     -   [Properties][66]
--   [CouponValidationResponse][67]
--   [AssetAttributes][68]
-    -   [Properties][69]
--   [Asset][70]
+-   [DiscountDetails][67]
+    -   [Properties][68]
+-   [CouponValidationResponse][69]
+-   [AssetAttributes][70]
     -   [Properties][71]
--   [Meter][72]
+-   [Asset][72]
     -   [Properties][73]
--   [AssetAccess][74]
+-   [Meter][74]
     -   [Properties][75]
+-   [AssetAccess][76]
+    -   [Properties][77]
 
-### AccessType
+## AccessType
 
 Available as a global variable on loading accesstype.js
 
@@ -278,7 +280,7 @@ This is an internal method and will be invoked as part of script initialization 
 
 #### Parameters
 
--   `config` **[InitConfig][76]** 
+-   `config` **[InitConfig][78]** 
 
 ### setUser
 
@@ -286,9 +288,9 @@ Set the user context immediately after user logs in.
 
 #### Parameters
 
--   `user` **[User][77]** 
+-   `user` **[User][79]** 
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### unsetUser
 
@@ -300,13 +302,16 @@ Returns **void**
 
 Returns payment options available for the given user for a given transaction amount
 Payable amount has to be sent as transactionAmountCents, it's generally the price_cents of plan
-discounted_price_cents from discount_details has to be sent as transactionAmountCents if a coupon code is applied
+discounted_price_cents from discount_details has to be sent as transactionAmountCents if a coupon code is applied.
+subscriptionPlan object can be sent as second parameter to return only the payment gateways the plan supports. Both parameters
+are optional.
 
 #### Parameters
 
--   `transactionAmountCents` **[number][79]?** 
+-   `transactionAmountCents` **[number][81]?** 
+-   `subscriptionPlan` **[SubscriptionPlan][82]?** 
 
-Returns **[Promise][78]&lt;[PaymentOptions][80]>** 
+Returns **[Promise][80]&lt;[PaymentOptions][83]>** 
 
 ### getAssetPlans
 
@@ -314,15 +319,15 @@ Returns subscription plans for given param
 
 #### Parameters
 
--   `asset` **[PurchaseableAsset][81]** 
+-   `asset` **[PurchaseableAsset][84]** 
 
-Returns **[Promise][78]&lt;[Array][82]&lt;[SubscriptionPlan][83]>>** 
+Returns **[Promise][80]&lt;[Array][85]&lt;[SubscriptionPlan][82]>>** 
 
 ### getSubscriptionPlans
 
 Returns list of subscription plans across all subscription groups
 
-Returns **[Promise][78]&lt;[Array][82]&lt;[SubscriptionPlan][83]>>** 
+Returns **[Promise][80]&lt;[Array][85]&lt;[SubscriptionPlan][82]>>** 
 
 ### hasAccess
 
@@ -330,9 +335,9 @@ Deprecated. Returns if user has access to story id
 
 #### Parameters
 
--   `storyId` **[string][84]** 
+-   `storyId` **[string][86]** 
 
-Returns **[Promise][78]&lt;[boolean][85]>** 
+Returns **[Promise][80]&lt;[boolean][87]>** 
 
 ### isAssetAccessible
 
@@ -340,10 +345,10 @@ Returns if the user has access to an asset or not, along with its reason. It mak
 
 #### Parameters
 
--   `asset` **[PurchaseableAsset][81]** 
--   `disableMeter` **[boolean][85]?** 
+-   `asset` **[PurchaseableAsset][84]** 
+-   `disableMeter` **[boolean][87]?** 
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### pingbackAssetAccess
 
@@ -351,10 +356,10 @@ To be used for updating the meter after asset is accessed. It makes use of thinm
 
 #### Parameters
 
--   `asset` **[PurchaseableAsset][81]** 
+-   `asset` **[PurchaseableAsset][84]** 
 -   `accessGrant` **any** 
 
-Returns **[Promise][78]&lt;[AssetAccess][86]>** 
+Returns **[Promise][80]&lt;[AssetAccess][88]>** 
 
 ### purchase
 
@@ -363,9 +368,9 @@ Useful for integrating with payment options that AccessTypeJS does not have firs
 
 #### Parameters
 
--   `subscriptionParams` **[SubscriptionParams][87]** 
+-   `subscriptionParams` **[SubscriptionParams][89]** 
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### validateCoupon
 
@@ -373,9 +378,9 @@ Validate coupon with plan
 
 #### Parameters
 
--   `params` **[CouponValidationRequest][88]** 
+-   `params` **[CouponValidationRequest][90]** 
 
-Returns **[Promise][78]&lt;[CouponValidationResponse][89]>** 
+Returns **[Promise][80]&lt;[CouponValidationResponse][91]>** 
 
 ### validateVoucher
 
@@ -383,15 +388,15 @@ Validate voucher with plan
 
 #### Parameters
 
--   `params` **[VoucherValidationRequest][90]** 
+-   `params` **[VoucherValidationRequest][92]** 
 
-Returns **[Promise][78]&lt;[VoucherValidationRequest][90]>** 
+Returns **[Promise][80]&lt;[VoucherValidationRequest][92]>** 
 
 ### getSubscriptions
 
 Get all subscriptions for a user
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### updateSubscription
 
@@ -399,29 +404,39 @@ update metadata for a subscription
 
 #### Parameters
 
--   `subscriptionId` **[number][79]** 
--   `updateParams` **[SubscriptionMetadata][91]** 
+-   `subscriptionId` **[number][81]** 
+-   `updateParams` **[SubscriptionMetadata][93]** 
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
+
+### cancelSubscription
+
+cancel a subscription
+
+#### Parameters
+
+-   `subscriptionId` **[number][81]** 
+
+Returns **[Promise][80]&lt;any>** 
 
 ### getAssets
 
 Get all assets accessible to a user
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### getRewards
 
 Get all rewards for a user
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### resetWallets
 
 Reset user wallets
 For e.g. when user has changed their linked mobile number
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### downloadInvoice
 
@@ -429,10 +444,10 @@ Download Invoice for a subscription
 
 #### Parameters
 
--   `subscriptionId` **[number][79]** 
--   `invoiceId` **[number][79]** 
+-   `subscriptionId` **[number][81]** 
+-   `invoiceId` **[number][81]** 
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ### isPrivateMode
 
@@ -442,7 +457,7 @@ Check if browser is in private mode
 
 Get Referral code for a user
 
-Returns **[Promise][78]&lt;any>** 
+Returns **[Promise][80]&lt;any>** 
 
 ## DurationUnit
 
@@ -466,7 +481,7 @@ Type: `"story"`
 
 Represents supported payment types
 
-Type: (`"razorpay"` \| `"simpl"` \| `"paytm_auto_debit"`)
+Type: (`"razorpay"` \| `"simpl"` \| `"paytm_auto_debit"` \| `"juspay"` \| `"stripe"`)
 
 ## Environment
 
@@ -478,104 +493,106 @@ Type: (`"production"` \| `"sandbox"`)
 
 Represents a user
 
-Type: {name: [string][84], emailAddress: [string][84], mobileNumber: [string][84], isLoggedIn: [boolean][85]?}
+Type: {name: [string][86], emailAddress: [string][86], mobileNumber: [string][86], isLoggedIn: [boolean][87]?}
 
 ### Properties
 
--   `name` **[string][84]** 
--   `emailAddress` **[string][84]** 
--   `mobileNumber` **[string][84]** 
--   `isLoggedIn` **[boolean][85]?** 
+-   `name` **[string][86]** 
+-   `emailAddress` **[string][86]** 
+-   `mobileNumber` **[string][86]** 
+-   `isLoggedIn` **[boolean][87]?** 
 
 ## SubscriptionPlan
 
 Represents a subscription plan
 
-Type: {id: [string][84], title: [string][84]?, description: [string][84]?, price_cents: [number][79], price_currency: [string][84], duration_length: [number][79], duration_unit: [DurationUnit][92]}
+Type: {id: [string][86], title: [string][86]?, description: [string][86]?, price_cents: [number][81], price_currency: [string][86], duration_length: [number][81], duration_unit: [DurationUnit][94], supported_payment_providers: [Array][85]&lt;[string][86]>?}
 
 ### Properties
 
--   `id` **[string][84]** 
--   `title` **[string][84]?** 
--   `description` **[string][84]?** 
--   `price_cents` **[number][79]** 
--   `price_currency` **[string][84]** 
--   `duration_length` **[number][79]** 
--   `duration_unit` **[DurationUnit][92]** 
+-   `id` **[string][86]** 
+-   `title` **[string][86]?** 
+-   `description` **[string][86]?** 
+-   `price_cents` **[number][81]** 
+-   `price_currency` **[string][86]** 
+-   `duration_length` **[number][81]** 
+-   `duration_unit` **[DurationUnit][94]** 
+-   `supported_payment_providers` **[Array][85]&lt;[string][86]>?** 
 
 ## SubscriptionAsset
 
 Represents an Asset
 
-Type: {id: [string][84], title: [string][84], slug: [string][84]}
+Type: {id: [string][86], title: [string][86], slug: [string][86]}
 
 ### Properties
 
--   `id` **[string][84]** 
--   `title` **[string][84]** 
--   `slug` **[string][84]** 
+-   `id` **[string][86]** 
+-   `title` **[string][86]** 
+-   `slug` **[string][86]** 
 
 ## PaymentParams
 
 Represents payment request params
 
-Type: {payment_type: [PaymentType][93], amount_cents: [string][84], amount_currency: [string][84]}
+Type: {payment_type: [PaymentType][95], amount_cents: [string][86], amount_currency: [string][86]}
 
 ### Properties
 
--   `payment_type` **[PaymentType][93]** 
--   `amount_cents` **[string][84]** 
--   `amount_currency` **[string][84]** 
+-   `payment_type` **[PaymentType][95]** 
+-   `amount_cents` **[string][86]** 
+-   `amount_currency` **[string][86]** 
 
 ## SubscriptionParams
 
 Represents SubscriptionParams which encapsulates the parameters required to make a subscription
 
-Type: {type: [SubscriptionType][94], plan: [SubscriptionPlan][83], payment: [PaymentParams][95], assets: [Array][82]&lt;[SubscriptionAsset][96]>, coupon_code: [string][84]?}
+Type: {type: [SubscriptionType][96], plan: [SubscriptionPlan][82], payment: [PaymentParams][97], assets: [Array][85]&lt;[SubscriptionAsset][98]>, coupon_code: [string][86]?, options: [Object][99]?}
 
 ### Properties
 
--   `type` **[SubscriptionType][94]** 
--   `plan` **[SubscriptionPlan][83]** 
--   `payment` **[PaymentParams][95]** 
--   `assets` **[Array][82]&lt;[SubscriptionAsset][96]>** 
--   `coupon_code` **[string][84]?** 
+-   `type` **[SubscriptionType][96]** 
+-   `plan` **[SubscriptionPlan][82]** 
+-   `payment` **[PaymentParams][97]** 
+-   `assets` **[Array][85]&lt;[SubscriptionAsset][98]>** 
+-   `coupon_code` **[string][86]?** 
+-   `options` **[Object][99]?** 
 
 ## SubscriptionMetadata
 
 Represents metadata fields required to be updated
 
-Type: {metadata: [Object][97]}
+Type: {metadata: [Object][99]}
 
 ### Properties
 
--   `metadata` **[Object][97]** 
+-   `metadata` **[Object][99]** 
 
 ## InitConfig
 
 Represents InitConfig which encapsulates initialization params.
 Used internally only.
 
-Type: {accesstype_host: [string][84], account_key: [string][84], account_name: [string][84], payment_providers: {}, env: [Environment][98]}
+Type: {accesstype_host: [string][86], account_key: [string][86], account_name: [string][86], payment_providers: {}, env: [Environment][100]}
 
 ### Properties
 
--   `accesstype_host` **[string][84]** 
--   `account_key` **[string][84]** 
--   `account_name` **[string][84]** 
+-   `accesstype_host` **[string][86]** 
+-   `account_key` **[string][86]** 
+-   `account_name` **[string][86]** 
 -   `payment_providers` **{}** 
--   `env` **[Environment][98]** 
+-   `env` **[Environment][100]** 
 
 ## PurchaseableAsset
 
 Represent a purchaseable asset
 
-Type: {id: [string][84], type: [AssetType][99]}
+Type: {id: [string][86], type: [AssetType][101]}
 
 ### Properties
 
--   `id` **[string][84]** 
--   `type` **[AssetType][99]** 
+-   `id` **[string][86]** 
+-   `type` **[AssetType][101]** 
 
 ## PaymentOption
 
@@ -589,12 +606,12 @@ When action is 'pay', proceed(params: SubscriptionParams)
 
 When action is 'link', proceed()
 
-Type: {action: [string][84], proceed: function (): [Promise][78]&lt;any>}
+Type: {action: [string][86], proceed: function (): [Promise][80]&lt;any>}
 
 ### Properties
 
--   `action` **[string][84]** 
--   `proceed` **function (): [Promise][78]&lt;any>** 
+-   `action` **[string][86]** 
+-   `proceed` **function (): [Promise][80]&lt;any>** 
 
 ## PaymentOptions
 
@@ -606,50 +623,50 @@ Type: {}
 
 Represents error response
 
-Type: {code: [string][84], message: [string][84]}
+Type: {code: [string][86], message: [string][86]}
 
 ### Properties
 
--   `code` **[string][84]** 
--   `message` **[string][84]** 
+-   `code` **[string][86]** 
+-   `message` **[string][86]** 
 
 ## CouponValidationRequest
 
 Represents a coupon validation request
 
-Type: {subscriptionPlanId: [string][84], couponCode: [string][84]}
+Type: {subscriptionPlanId: [string][86], couponCode: [string][86]}
 
 ### Properties
 
--   `subscriptionPlanId` **[string][84]** 
--   `couponCode` **[string][84]** 
+-   `subscriptionPlanId` **[string][86]** 
+-   `couponCode` **[string][86]** 
 
 ## VoucherValidationRequest
 
 Represents a voucher validation request
 
-Type: {subscriptionPlanId: [string][84], voucher: [string][84]}
+Type: {subscriptionPlanId: [string][86], voucher: [string][86]}
 
 ### Properties
 
--   `subscriptionPlanId` **[string][84]** 
--   `voucher` **[string][84]** 
+-   `subscriptionPlanId` **[string][86]** 
+-   `voucher` **[string][86]** 
 
 ## DiscountDetails
 
 Represents coupon discount
 
-Type: {code: [string][84], discount_type: [string][84], title: [string][84], value: [number][79], discounted_price_cents: [number][79], price_cents: [number][79], price_currency: [string][84]}
+Type: {code: [string][86], discount_type: [string][86], title: [string][86], value: [number][81], discounted_price_cents: [number][81], price_cents: [number][81], price_currency: [string][86]}
 
 ### Properties
 
--   `code` **[string][84]** 
--   `discount_type` **[string][84]** 
--   `title` **[string][84]** 
--   `value` **[number][79]** 
--   `discounted_price_cents` **[number][79]** 
--   `price_cents` **[number][79]** 
--   `price_currency` **[string][84]** 
+-   `code` **[string][86]** 
+-   `discount_type` **[string][86]** 
+-   `title` **[string][86]** 
+-   `value` **[number][81]** 
+-   `discounted_price_cents` **[number][81]** 
+-   `price_cents` **[number][81]** 
+-   `price_currency` **[string][86]** 
 
 ## CouponValidationResponse
 
@@ -659,47 +676,47 @@ Represents coupon validation response
 
 Represents Asset Attributes (e.g. story attributes)
 
-Type: {accessLevel: AccessLevel, accessLevelValue: [number][79]?}
+Type: {accessLevel: AccessLevel, accessLevelValue: [number][81]?}
 
 ### Properties
 
 -   `accessLevel` **AccessLevel** 
--   `accessLevelValue` **[number][79]?** 
+-   `accessLevelValue` **[number][81]?** 
 
 ## Asset
 
 Represents an Asset
 
-Type: {id: [string][84], type: [AssetType][99], attributes: [AssetAttributes][100]}
+Type: {id: [string][86], type: [AssetType][101], attributes: [AssetAttributes][102]}
 
 ### Properties
 
--   `id` **[string][84]** 
--   `type` **[AssetType][99]** 
--   `attributes` **[AssetAttributes][100]** 
+-   `id` **[string][86]** 
+-   `type` **[AssetType][101]** 
+-   `attributes` **[AssetAttributes][102]** 
 
 ## Meter
 
 Represents paywall meter counts
 
-Type: {consumed: [number][79], total: [number][79]}
+Type: {consumed: [number][81], total: [number][81]}
 
 ### Properties
 
--   `consumed` **[number][79]** 
--   `total` **[number][79]** 
+-   `consumed` **[number][81]** 
+-   `total` **[number][81]** 
 
 ## AssetAccess
 
 Represents access of an Asset
 
-Type: {hasAccess: [boolean][85], accessType: AccessTypeEnum?, meter: [Meter][101]?}
+Type: {hasAccess: [boolean][87], accessType: AccessTypeEnum?, meter: [Meter][103]?}
 
 ### Properties
 
--   `hasAccess` **[boolean][85]** 
+-   `hasAccess` **[boolean][87]** 
 -   `accessType` **AccessTypeEnum?** 
--   `meter` **[Meter][101]?** 
+-   `meter` **[Meter][103]?** 
 
 [1]: #accesstype
 
@@ -755,150 +772,154 @@ Type: {hasAccess: [boolean][85], accessType: AccessTypeEnum?, meter: [Meter][101
 
 [27]: #parameters-10
 
-[28]: #getassets
+[28]: #cancelsubscription
 
-[29]: #getrewards
+[29]: #parameters-11
 
-[30]: #resetwallets
+[30]: #getassets
 
-[31]: #downloadinvoice
+[31]: #getrewards
 
-[32]: #parameters-11
+[32]: #resetwallets
 
-[33]: #isprivatemode
+[33]: #downloadinvoice
 
-[34]: #getreferralvoucher
+[34]: #parameters-12
 
-[35]: #durationunit
+[35]: #isprivatemode
 
-[36]: #subscriptiontype
+[36]: #getreferralvoucher
 
-[37]: #assettype
+[37]: #durationunit
 
-[38]: #paymenttype
+[38]: #subscriptiontype
 
-[39]: #environment
+[39]: #assettype
 
-[40]: #user
+[40]: #paymenttype
 
-[41]: #properties
+[41]: #environment
 
-[42]: #subscriptionplan
+[42]: #user
 
-[43]: #properties-1
+[43]: #properties
 
-[44]: #subscriptionasset
+[44]: #subscriptionplan
 
-[45]: #properties-2
+[45]: #properties-1
 
-[46]: #paymentparams
+[46]: #subscriptionasset
 
-[47]: #properties-3
+[47]: #properties-2
 
-[48]: #subscriptionparams
+[48]: #paymentparams
 
-[49]: #properties-4
+[49]: #properties-3
 
-[50]: #subscriptionmetadata
+[50]: #subscriptionparams
 
-[51]: #properties-5
+[51]: #properties-4
 
-[52]: #initconfig
+[52]: #subscriptionmetadata
 
-[53]: #properties-6
+[53]: #properties-5
 
-[54]: #purchaseableasset
+[54]: #initconfig
 
-[55]: #properties-7
+[55]: #properties-6
 
-[56]: #paymentoption
+[56]: #purchaseableasset
 
-[57]: #properties-8
+[57]: #properties-7
 
-[58]: #paymentoptions
+[58]: #paymentoption
 
-[59]: #error
+[59]: #properties-8
 
-[60]: #properties-9
+[60]: #paymentoptions
 
-[61]: #couponvalidationrequest
+[61]: #error
 
-[62]: #properties-10
+[62]: #properties-9
 
-[63]: #vouchervalidationrequest
+[63]: #couponvalidationrequest
 
-[64]: #properties-11
+[64]: #properties-10
 
-[65]: #discountdetails
+[65]: #vouchervalidationrequest
 
-[66]: #properties-12
+[66]: #properties-11
 
-[67]: #couponvalidationresponse
+[67]: #discountdetails
 
-[68]: #assetattributes
+[68]: #properties-12
 
-[69]: #properties-13
+[69]: #couponvalidationresponse
 
-[70]: #asset
+[70]: #assetattributes
 
-[71]: #properties-14
+[71]: #properties-13
 
-[72]: #meter
+[72]: #asset
 
-[73]: #properties-15
+[73]: #properties-14
 
-[74]: #assetaccess
+[74]: #meter
 
-[75]: #properties-16
+[75]: #properties-15
 
-[76]: #initconfig
+[76]: #assetaccess
 
-[77]: #user
+[77]: #properties-16
 
-[78]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[78]: #initconfig
 
-[79]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[79]: #user
 
-[80]: #paymentoptions
+[80]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[81]: #purchaseableasset
+[81]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[82]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[82]: #subscriptionplan
 
-[83]: #subscriptionplan
+[83]: #paymentoptions
 
-[84]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[84]: #purchaseableasset
 
-[85]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[85]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[86]: #assetaccess
+[86]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[87]: #subscriptionparams
+[87]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[88]: #couponvalidationrequest
+[88]: #assetaccess
 
-[89]: #couponvalidationresponse
+[89]: #subscriptionparams
 
-[90]: #vouchervalidationrequest
+[90]: #couponvalidationrequest
 
-[91]: #subscriptionmetadata
+[91]: #couponvalidationresponse
 
-[92]: #durationunit
+[92]: #vouchervalidationrequest
 
-[93]: #paymenttype
+[93]: #subscriptionmetadata
 
-[94]: #subscriptiontype
+[94]: #durationunit
 
-[95]: #paymentparams
+[95]: #paymenttype
 
-[96]: #subscriptionasset
+[96]: #subscriptiontype
 
-[97]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[97]: #paymentparams
 
-[98]: #environment
+[98]: #subscriptionasset
 
-[99]: #assettype
+[99]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[100]: #assetattributes
+[100]: #environment
 
-[101]: #meter
+[101]: #assettype
+
+[102]: #assetattributes
+
+[103]: #meter
