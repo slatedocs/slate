@@ -48,3 +48,33 @@ CREATE TABLE
     CONSTRAINT fk_control_id FOREIGN KEY (id_control) REFERENCES Control(id_control)
     )
 </pre>
+
+Creando índices para la tabla de control:
+
+<pre>
+CREATE NONCLUSTERED INDEX estado ON Control 
+(
+    tipo_comprobante ASC,
+    estado ASC,
+    company_name ASC
+) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON PRIMARY
+</pre>
+
+<pre>
+ALTER TABLE Control ADD  CONSTRAINT ix_tipo_idlocal UNIQUE NONCLUSTERED 
+(
+    tipo_comprobante ASC,
+    id_local ASC,
+    numero_comprobante ASC,
+    company_name ASC
+) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON PRIMARY
+</pre>
+
+<pre>
+CREATE NONCLUSTERED INDEX IX_Control_tipo_fecha ON Control 
+(
+    tipo_comprobante ASC,
+    fecha_emision ASC,
+    company_name ASC
+) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON PRIMARY
+</pre>
