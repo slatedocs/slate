@@ -65,6 +65,16 @@ marca | string | Máximo 300 caracteres. __Requerido__
 modelo | string | Máximo 300 caracteres. __Requerido__
 serie | string | Máximo 300 caracteres. __Requerido__
 
+## Info adicional
+
+Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle
+que no pueda ser descrito con los elementos que son parte del documento.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+nombre | string | Máximo 300 caracteres. __Requerido__
+valor | string | Máximo 300 caracteres. __Requerido__
+
 ## Persona
 
 Datos de una persona. Utilizado como __comprador__ en facturas y notas de crédito, como __sujeto__ en retenciones

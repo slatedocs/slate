@@ -19,7 +19,7 @@ curl -v https://link.datil.co/invoices/issue \
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2019-09-28T11:28:56.782Z",
+  "fecha_emision":"2019-10-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad": true,
@@ -34,18 +34,15 @@ curl -v https://link.datil.co/invoices/issue \
     }
   },
   "moneda":"USD",
-  "informacion_adicional":{
-    "Tiempo de entrega":"5 días"
-  },
+  "info_adicional":[
+    {
+      "nombre": "Tiempo de entrega",
+      "valor": "5 días"
+    }
+  ],
   "totales":{
     "total_sin_impuestos":4359.54,
     "impuestos":[
-      {
-        "base_imponible":0.0,
-        "valor":0.0,
-        "codigo":"2",
-        "codigo_porcentaje":"0"
-      },
       {
         "base_imponible":4359.54,
         "valor":523.14,
@@ -70,10 +67,10 @@ curl -v https://link.datil.co/invoices/issue \
       "cantidad":622.0,
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descuento": 0,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -93,24 +90,17 @@ curl -v https://link.datil.co/invoices/issue \
   "valor_retenido_iva": 70.40,
   "valor_retenido_renta": 29.60,
   "credito": {
-    "fecha_vencimiento": "2015-03-28",
-    "monto": 34.21
+    "fecha_vencimiento": "2019-12-31",
+    "monto": 1900.00
   },
   "pagos": [
     {
       "medio": "cheque",
-      "total": 4882.68,
+      "total": 2882.68,
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
-    }
-  ],
-  "compensaciones": [
-    {
-      "codigo": 1,
-      "tarifa": 2,
-      "valor": 2.00
     }
   ],
   "exportacion": {
@@ -145,7 +135,7 @@ factura = {
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2019-09-28T11:28:56.782Z",
+  "fecha_emision":"2019-10-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":True,
@@ -160,18 +150,15 @@ factura = {
     }
   },
   "moneda":"USD",
-  "informacion_adicional":{
-    "Tiempo de entrega":"5 días"
-  },
+  "info_adicional":[
+    {
+      "nombre":"Tiempo de entrega",
+      "valor":"5 días"
+    }
+  ],
   "totales":{
     "total_sin_impuestos":4359.54,
     "impuestos":[
-      {
-        "base_imponible":0.0,
-        "valor":0.0,
-        "codigo":"2",
-        "codigo_porcentaje":"0"
-      },
       {
         "base_imponible":4359.54,
         "valor":523.14,
@@ -196,10 +183,10 @@ factura = {
       "cantidad":622.0,
       "codigo_principal":"ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descuento":0,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -219,24 +206,17 @@ factura = {
   "valor_retenido_iva": 70.40,
   "valor_retenido_renta": 29.60,
   "credito": {
-    "fecha_vencimiento": "2015-03-28",
-    "monto": 34.21
+    "fecha_vencimiento": "2019-12-28",
+    "monto": 1900.00
   },
   "pagos": [
     {
       "medio": "cheque",
-      "total": 4882.68,
+      "total": 2882.68,
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
-    }
-  ],
-  "compensaciones": [
-    {
-      "codigo": 1,
-      "tarifa": 2,
-      "valor": 2.00
     }
   ],
   "exportacion": {
@@ -352,7 +332,7 @@ namespace DatilClient {
             ""precio_unitario"": 7.01,
             ""descuento"": 0,
             ""descripcion"": ""Zanahoria granel  50 Kg."",
-            ""precio_total_sin_impuestos"": 4360.22,
+            ""precio_total_sin_impuestos"": 4359.54,
             ""impuestos"": [
               {
                 ""base_imponible"":4359.54,
@@ -373,23 +353,16 @@ namespace DatilClient {
         ""valor_retenido_renta"": 29.60,
         ""credito"": {
             ""fecha_vencimiento"": ""2015-03-28"",
-            ""monto"": 34.21
+            ""monto"": 1900.00
         },
       ""pagos"": [
         {
           ""medio"": ""cheque"",
-          ""total"": 4882.68,
+          ""total"": 2882.68,
           ""propiedades"": {
             ""numero"": ""1234567890"",
-            ""banco"": "Banco Pacífico""
+            ""banco"": ""Banco Pacífico""
           }
-        }
-      ],
-        ""compensaciones"": [
-        {
-              ""codigo"": 1,
-              ""tarifa"": 2,
-              ""valor"": 2.00
         }
       ],
       ""exportacion"": {
@@ -429,19 +402,20 @@ comprobante en el cuerpo del requerimiento en formato JSON.
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la factura. __Requerido__
+secuencial | integer (min. 1 - max. 999999999 ) | Número de secuencia de la factura. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
-guia_remision | string | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
+guia_remision | string (17 caracteres) | Número de guía de remisión asociada a esta factura en formato 001-002-000000003 ([0-9]{3}-[0-9]{3}-[0-9]{9})
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
 totales | objeto tipo [totales](#totales-factura) | Listado de totales. __Requerido__
 comprador | objeto tipo [persona](#persona) | Información del comprador. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. __Requerido__
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
-clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}`
+clave_acceso | string (49 caracteres) | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+info_adicional | Listado de objectos de tipo [información adicional](#info-adicional) | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` [{"nombre":"plan", "valor":"Inicial", "nombre":"vigencia", "valor":"1 mes"}]`
+informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}` <span style="color: red">__Obsoleto__</span> *utiliza el parámetro info_adicional*
 valor_retenido_iva | float | Valor retenido por IVA
 valor_retenido_renta | float | Valor retenido por renta
 retenciones | Listado de objetos de tipo [retencion](#retencion-de-factura) | Retenciones incluídas en la factura. Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
@@ -607,12 +581,6 @@ respuesta = requests.post(
     "total_sin_impuestos": 4359.54,
     "impuestos": [
       {
-        "base_imponible": 0.0,
-        "valor": 0.0,
-        "codigo": "2",
-        "codigo_porcentaje": "0"
-      },
-      {
         "base_imponible": 4359.54,
         "valor": 523.14,
         "codigo": "2",
@@ -641,7 +609,7 @@ respuesta = requests.post(
       "precio_total_sin_impuestos": 4360.22,
       "impuestos":[
         {
-          "base_imponible": 4359.54,
+          "base_imponible": 4360.22,
           "valor": 523.14,
           "tarifa": 12.0,
           "codigo": "2",
@@ -658,24 +626,17 @@ respuesta = requests.post(
   "valor_retenido_iva": 70.40,
   "valor_retenido_renta": 29.60,
   "credito": {
-    "fecha_vencimiento": "2015-03-28",
-    "monto": 34.21
+    "fecha_vencimiento": "2019-12-28",
+    "monto": 1900.00
   },
   "pagos": [
     {
       "medio": "cheque",
-      "total": 4882.68,
+      "total": 2882.68,
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       }
-    }
-  ],
-  "compensaciones": [
-    {
-      "codigo": 1,
-      "tarifa": 2,
-      "valor": 2.00
     }
   ],
   "exportacion": {
