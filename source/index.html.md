@@ -606,13 +606,13 @@ API will return a list of the following structure:
 | **t_create**    | JSON                              | Time of creation |
 
 
-# Get Trailing Volume
+# Get 30-day Trailing Volume
 
-Get the trailing volume in USD for last 30 days or between the given time range. Time range should be provided in ISO 8601 date format.
+Get the trade volume for the last 30 days.
 
 
 ## HTTP Request
-`GET https://api.falconx.io/v1/get_trailing_volume`
+`GET https://api.falconx.io/v1/get_30_day_trailing_volume`
 
 ## Query Parameters
 
@@ -620,7 +620,7 @@ Get the trailing volume in USD for last 30 days or between the given time range.
 
 ```shell
 # substitute placeholders with correct authorization header values
-curl -X GET "https://api.falconx.io/v1/get_trailing_volume" \
+curl -X GET "https://api.falconx.io/v1/get_30_day_trailing_volume" \
       --data-urlencode "t_start=2019-06-20T00:00:00+00:00" \
       --data-urlencode "t_end=2019-06-21T00:00:00+00:00" \
       -H "FX-ACCESS-SIGN: <signature>" \
@@ -629,7 +629,52 @@ curl -X GET "https://api.falconx.io/v1/get_trailing_volume" \
       -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
       -H "Content-Type: application/json"
 ```
-If none of t_start and t_end is provided, the USD volume of trailing 30 days will be returned.
+
+## Response Parameters
+
+> Response Sample
+
+```json
+[
+  {
+    "end_date": "2019-11-18T06:54:27.623978+00:00",
+    "start_date": "2019-10-19T06:54:27.623978+00.00",
+    "usd_volume": 69100283.78000,
+  }
+]
+```
+API will return a list of the following structure:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **end_date**        | STRING                            | End date of the resultant volume|
+| **start_date**   | STRING                            | Start date of the resultant volume
+| **usd_volume**   | DECIMAL                            | Total volume traded in USD between start_date and end_date
+
+
+# Get Trade Volume
+
+Get the trade volume between the given time range. Time range should be provided in ISO 8601 date format.
+
+
+## HTTP Request
+`GET https://api.falconx.io/v1/get_trade_volume`
+
+## Query Parameters
+
+> Request Sample
+
+```shell
+# substitute placeholders with correct authorization header values
+curl -X GET "https://api.falconx.io/v1/get_trade_volume" \
+      --data-urlencode "t_start=2019-06-20T00:00:00+00:00" \
+      --data-urlencode "t_end=2019-06-21T00:00:00+00:00" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
+```
 
 | Parameter         | Type                                | Description
 | ---------         | ----------------------------------- | ------------
