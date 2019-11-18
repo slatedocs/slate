@@ -100,7 +100,8 @@ curl -v https://link.datil.co/invoices/issue \
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
-      }
+      },
+      "notas": "Depósitado en cuenta corriente"
     }
   ],
   "exportacion": {
@@ -213,6 +214,7 @@ factura = {
     {
       "medio": "cheque",
       "total": 2882.68,
+      "notas": "Depósitado en cuenta corriente",
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
@@ -359,6 +361,7 @@ namespace DatilClient {
         {
           ""medio"": ""cheque"",
           ""total"": 2882.68,
+          ""notas"": ""Depósitado en cuenta corriente"",
           ""propiedades"": {
             ""numero"": ""1234567890"",
             ""banco"": ""Banco Pacífico""
@@ -442,6 +445,7 @@ Parámetro   | Tipo         | Descripción
 fecha       | string       | Fecha de recepción del pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es especificado se utiliza la fecha y hora actual.
 medio       | string       | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
 total       | float        | Total aplicable a la forma de pago especificada. __Requerido__
+notas       | string (máximo 300 caracteres) | Texto abierto que te permite registrar cualquier nota relacionada al pago.
 propiedades | objeto       | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
 
 #### Crédito
@@ -636,7 +640,8 @@ respuesta = requests.post(
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
-      }
+      },
+      "notas": "Depósitado en cuenta corriente"
     }
   ],
   "exportacion": {
@@ -829,7 +834,8 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
         "propiedades": {
           "numero": "1234567890",
           "banco": "Banco Pacífico"
-        }
+        },
+        "notas": "Depósitado en cuenta corriente"
       }
     ],
     "compensaciones": [
