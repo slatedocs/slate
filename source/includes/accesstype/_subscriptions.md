@@ -580,25 +580,19 @@ Trial period is available for a recurring subscription. In order to create a sub
 
 ![Accesstype Subscription Plan Enable Trial Period](../../images/trial_period.png "Accesstype Subscription Plan Enable Trial Period")
 
-If you create a subscription with trial period, only authorization amount of 5 rs will be charged to the customer, which will be refunded. And at the end of trial period duration, first subscription charge will occur.
+If you create a subscription by a subscription plan which has trial period enabled, only authorization amount of 5 rs will be charged to the customer, which will be refunded. And at the end of trial period duration, first subscription charge will occur.
 
-
-For creating a subscription with trial period.
-
-In the subscription object, the following key has to be sent
-
-`"trial_period": true`
-
-The trial period duration of subscription plan will be applied to the subscription.
+By default the trial period duration of the plan is for the trial period duration
 
 However you can customize the trial period. You need to send the following keys in the subscription object, if you don't want the default trial period of the subscription plan
 
-
-`"trial_period": true,
-"trial_period_length": 2,
+`"trial_period_length": 2,
 "trial_period_unit": "weeks"`
 
 The valid trial period units are `days, weeks, months, years`
 
 Note: The trial period duration in the subscription should be less than or equal to
 trial period configured in the subscription plan
+
+
+If you don't want to give a trial period for a subscription plan, which has trial period configured. You need to send `"trial_period": false` in the subscription object
