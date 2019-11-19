@@ -240,6 +240,7 @@ Client sends request to get quote to this endpoint. The response contains the ti
   "t_quote": "2019-06-27T11:59:21.875725+00:00",
   "t_expiry": "2019-06-27T11:59:22.875725+00:00",
   "is_filled": false,
+  "fee_bps": 5,
   "side_executed": null,
   "error": null
 }
@@ -258,6 +259,7 @@ Client sends request to get quote to this endpoint. The response contains the ti
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN                          | `true` if quote has been executed successfully else `false`. `false` for quote request
+| **fee_bps**      | DECIMAL                          | Fee in basis points applicable on trade execution
 | **side_executed**       | STRING                              | Side of quote executed. `null` for quote request
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
@@ -308,6 +310,7 @@ Execute quote fetched in the [Get Quote](#get-quote) API call.
   "t_quote": "2019-06-27T11:59:21.875725+00:00",
   "t_expiry": "2019-06-27T11:59:22.875725+00:00",
   "is_filled": true,
+  "fee_bps": 5,
   "side_executed": "buy",
   "error": null
 }
@@ -326,6 +329,7 @@ Execute quote fetched in the [Get Quote](#get-quote) API call.
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
+| **fee_bps**      | DECIMAL                          | Fee in basis points applicable on trade execution
 | **side_executed**       | STRING                              | Side of quote executed
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
@@ -384,6 +388,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
   "t_quote": "2019-06-27T11:59:21.875725+00:00",
   "t_expiry": "2019-06-27T11:59:22.875725+00:00",  
   "is_filled": true,
+  "fee_bps": 5,
   "side_executed": "buy",
   "trader_email": "trader@company.com",
   "error": null
@@ -403,6 +408,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
+| **fee_bps**      | DECIMAL                          | Fee in basis points applicable on trade execution
 | **side_executed**       | STRING                              | Side of quote executed. `null` if not executed
 | **trader_email**       | STRING                              | Email of trader who requested the quote
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
@@ -464,6 +470,7 @@ curl -X GET "https://api.falconx.io/v1/quotes" \
     "t_quote": "2019-06-27T11:59:21.875725+00:00",
     "t_expiry": "2019-06-27T11:59:22.875725+00:00",
     "is_filled": true,
+    "fee_bps": 5,
     "side_executed": "buy",
     "trader_email": "trader@company.com",
     "error": null
@@ -485,6 +492,7 @@ API will return a list of the following structure:
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
+| **fee_bps**      | DECIMAL                          | Fee in basis points applicable on trade execution
 | **side_executed**       | STRING                              | Side of quote executed
 | **trader_email**       | STRING                              | Email of trader who requested the quote
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
@@ -604,6 +612,95 @@ API will return a list of the following structure:
 | **token**   | DECIMAL                            | Token symbol
 | **quantity**   | DECIMAL                            | Quantity
 | **t_create**    | JSON                              | Time of creation |
+
+
+# Get 30-day Trailing Volume
+
+Get trading volume for the last 30 days.
+
+
+## HTTP Request
+`GET https://api.falconx.io/v1/get_30_day_trailing_volume`
+
+> Request Sample
+
+```shell
+# substitute placeholders with correct authorization header values
+curl -X GET "https://api.falconx.io/v1/get_30_day_trailing_volume" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
+```
+
+## Response Parameters
+
+> Response Sample
+
+```json
+{
+  "end_date": "2019-11-18T06:54:27.623978+00:00",
+  "start_date": "2019-10-19T06:54:27.623978+00.00",
+  "usd_volume": 69100283.78000,
+}
+```
+API will return a list of the following structure:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **end_date**        | STRING                            | End date of the resultant volume|
+| **start_date**   | STRING                            | Start date of the resultant volume
+| **usd_volume**   | DECIMAL                            | Total volume traded in USD between start_date and end_date
+
+
+# Get Trade Volume
+
+Get trading volume between the given time range. Time range should be provided in ISO 8601 date format.
+
+
+## HTTP Request
+`GET https://api.falconx.io/v1/get_trade_volume`
+
+## Query Parameters
+
+> Request Sample
+
+```shell
+# substitute placeholders with correct authorization header values
+curl -X GET "https://api.falconx.io/v1/get_trade_volume" \
+      --data-urlencode "t_start=2019-06-20T00:00:00+00:00" \
+      --data-urlencode "t_end=2019-06-21T00:00:00+00:00" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
+```
+
+| Parameter         | Type                                | Description
+| ---------         | ----------------------------------- | ------------
+| **t_start**   | STRING                         | Start of time range in ISO 8601 date format
+| **t_end**   | STRING                         | End of time range in ISO 8601 date format
+
+## Response Parameters
+
+> Response Sample
+
+```json
+{
+  "end_date": "2019-11-18T06:54:27.623978+00:00",
+  "start_date": "2019-10-19T06:54:27.623978+00.00",
+  "usd_volume": 69100283.78000,
+}
+```
+API will return a list of the following structure:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **end_date**        | STRING                            | End date of the resultant volume|
+| **start_date**   | STRING                            | Start date of the resultant volume
+| **usd_volume**   | DECIMAL                            | Total volume traded in USD between start_date and end_date
 
 
 # JSON Structures
