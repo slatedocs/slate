@@ -147,7 +147,7 @@ Accesstype has the ability to inform third party system by webhook calls that it
 * In case the external system responds will a failure (non 2xx), then Accesstype will send an email to the Admins and Owners of the Accesstype account along with the payload and will also retry making the webhook call every hour. Accesstype will discontinue retrying the webhook call when it receives a success response or after 24 retries, whichever is earlier.
 * If the failures continue to persist, Accesstype will disable the webhook.
 * The disabled webhook can then be re-activated in the dashboard by going to Accesstype.com > Settings > Outgoing Webhooks > Activate.
-
+**Note:** Accesstype server waits for 10 seconds to open a connection with the destination server and 5 seconds to receive a response form it.
 
 
 ## Description of events
