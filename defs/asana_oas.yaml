@@ -1246,6 +1246,7 @@ components:
               description: >
                 The type of the custom field. Must be one of the given values.
               type: string
+              example: text
               enum:
                 - text
                 - enum
@@ -1605,6 +1606,8 @@ components:
           description: >-
             A *job* is an object representing a process that handles asynchronous work.
           properties:
+            resource_subtype:
+              example: duplicate_task
             status:
               type: string
               enum:
@@ -2501,6 +2504,8 @@ components:
           properties:
             resource_type:
               example: story
+            resource_subtype:
+              example: comment_added
             text:
               description: >-
                 *Create-only*. Human-readable text for the story or comment.
@@ -2946,6 +2951,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaskCompact'
+    TaskCount:
+      description: A response object returned from the task count endpoint.
+      type: object
+      properties:
+        num_tasks:
+          description: The number of tasks in a project.
+          type: integer
+          example: 200
+        num_incomplete_tasks:
+          description: The number of incomplete tasks in a project.
+          type: integer
+          example: 50
+        num_completed_tasks:
+          description: The number of completed tasks in a project.
+          type: integer
+          example: 150
+        num_milestones:
+          description: The number of milestones in a project.
+          type: integer
+          example: 10
+        num_incomplete_milestones:
+          description: The number of incomplete milestones in a project.
+          type: integer
+          example: 7
+        num_completed_milestones:
+          description: The number of completed milestones in a project.
+          type: integer
+          example: 3
+    TaskCountObject:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TaskCount'
     Team:
       allOf:
         - $ref: '#/components/schemas/TeamCompact'
@@ -4511,36 +4549,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - name: item
-        in: query
-        description: >-
-          The item to add to the portfolio.
-        schema:
-          type: string
-        required: true
-        example: '1331'
-      - name: insert_before
-        in: query
-        description: >-
-          An id of an item in this portfolio. The new
-          item will be added before the one specified here.
-          `insert_before` and `insert_after` parameters cannot both
-          be specified.
-        schema:
-          type: string
-        required: true
-        example: '1331'
-      - name: insert_after
-        in: query
-        description: >-
-          An id of an item in this portfolio. The new
-          item will be added after the one specified here.
-          `insert_before` and `insert_after` parameters cannot both
-          be specified.
-        schema:
-          type: string
-        required: true
-        example: '1331'
     post:
       summary: Add a portfolio item
       description: >-
@@ -4551,6 +4559,39 @@ paths:
         - Portfolios
         - Items
       operationId: addPortfolioItem
+      requestBody:
+        description: Information about the item being inserted.
+        required: true
+        content:
+          application/json:
+            schema:
+              name: data
+              in: body
+              type: object
+              required:
+                - item
+              properties:
+                item:
+                  description: >-
+                    The item to add to the portfolio.
+                  type: string
+                  example: '1331'
+                insert_before:
+                  description: >-
+                    An id of an item in this portfolio. The new
+                    item will be added before the one specified here.
+                    `insert_before` and `insert_after` parameters cannot both
+                    be specified.
+                  type: string
+                  example: '1331'
+                insert_after:
+                  description: >-
+                    An id of an item in this portfolio. The new
+                    item will be added after the one specified here.
+                    `insert_before` and `insert_after` parameters cannot both
+                    be specified.
+                  type: string
+                  example: '1331'
       responses:
         200:
           description: Successfully added the item to the portfolio.
@@ -5555,6 +5596,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmptyObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /projects/{project_gid}/task_counts:
+    parameters:
+      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get task count of a project
+      description: >-
+        Get an object that holds task count fields. **All fields are excluded by default**. You must
+        [opt in](#input-output-options) using `opt_fields` to get any information from this endpoint.
+
+
+        This endpoint has an additional [rate limit](#standard-rate-limits) and each field counts especially high
+        against our [cost limits](#cost-limits).
+
+
+        Milestones are just tasks, so they are included in the `num_tasks`, `num_incomplete_tasks`, and
+        `num_completed_tasks` counts.
+      tags:
+        - Projects
+      operationId: getProjectTaskCounts
+      responses:
+        200:
+          description: Successfully retrieved the requested project's task counts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCountObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:

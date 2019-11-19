@@ -549,7 +549,7 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
     "gid": "12345",
     "resource_type": "custom_field",
     "name": "Bug Task",
-    "resource_subtype": "milestone",
+    "resource_subtype": "text",
     "type": "text",
     "enum_options": [
       {
@@ -659,7 +659,7 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "gid": "12345",
     "resource_type": "custom_field",
     "name": "Bug Task",
-    "resource_subtype": "milestone",
+    "resource_subtype": "text",
     "type": "text",
     "enum_options": [
       {
@@ -758,7 +758,7 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "gid": "12345",
     "resource_type": "custom_field",
     "name": "Bug Task",
-    "resource_subtype": "milestone",
+    "resource_subtype": "text",
     "type": "text",
     "enum_options": [
       {
@@ -887,7 +887,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
       "gid": "12345",
       "resource_type": "custom_field",
       "name": "Bug Task",
-      "resource_subtype": "milestone",
+      "resource_subtype": "text",
       "type": "text",
       "enum_options": [
         ...
@@ -1451,7 +1451,7 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "resource_subtype": "milestone",
+    "resource_subtype": "duplicate_task",
     "status": "in_progress",
     "new_project": {
       "gid": "12345",
@@ -2121,10 +2121,21 @@ Get a list of the items in compact form in a portfolio.
 
 ```shell
 # You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem?item=1331&insert_before=1331&insert_after=1331 \
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem \
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "item": "1331",
+  "insert_before": "1331",
+  "insert_after": "1331"
+}
 ```
 
 > 200 Response
@@ -2146,12 +2157,13 @@ Returns an empty data block.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|body|body|object|true|Information about the item being inserted.|
+|» item|body|string|true|The item to add to the portfolio.|
+|» insert_before|body|string|false|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|» insert_after|body|string|false|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|item|query|string|true|The item to add to the portfolio.|
-|insert_before|query|string|true|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
-|insert_after|query|string|true|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 
 <h3 id="add-a-portfolio-item-responses">Responses</h3>
 
@@ -2634,7 +2646,7 @@ Returns the compact portfolio membership records for the portfolio.
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a></code>
+<code><a href="#get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a></code>
 </pre>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
@@ -3195,7 +3207,7 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "resource_subtype": "milestone",
+    "resource_subtype": "duplicate_task",
     "status": "in_progress",
     "new_project": {
       "gid": "12345",
@@ -3890,6 +3902,70 @@ Removes a custom field setting from a project.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the custom field from the project.|[Empty](#schemaempty)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get task count of a project
+
+<a id="opIdgetProjectTaskCounts"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/task_counts \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "num_tasks": 200,
+    "num_incomplete_tasks": 50,
+    "num_completed_tasks": 150,
+    "num_milestones": 10,
+    "num_incomplete_milestones": 7,
+    "num_completed_milestones": 3
+  }
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/task_counts</code>
+</p>
+
+Get an object that holds task count fields. **All fields are excluded by default**. You must [opt in](#input-output-options) using `opt_fields` to get any information from this endpoint.
+
+This endpoint has an additional [rate limit](#standard-rate-limits) and each field counts especially high against our [cost limits](#cost-limits).
+
+Milestones are just tasks, so they are included in the `num_tasks`, `num_incomplete_tasks`, and `num_completed_tasks` counts.
+
+<h3 id="get-task-count-of-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+<h3 id="get-task-count-of-a-project-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project's task counts.|[TaskCount](#schemataskcount)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
@@ -4871,7 +4947,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "milestone",
+    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -4919,7 +4995,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
     "story": {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "milestone",
+      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         ...
@@ -4966,7 +5042,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       "gid": "12345",
       "resource_type": "custom_field",
       "name": "Bug Task",
-      "resource_subtype": "milestone",
+      "resource_subtype": "text",
       "type": "text",
       "enum_options": [
         ...
@@ -5136,7 +5212,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "milestone",
+    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -5184,7 +5260,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     "story": {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "milestone",
+      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         ...
@@ -5231,7 +5307,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "gid": "12345",
       "resource_type": "custom_field",
       "name": "Bug Task",
-      "resource_subtype": "milestone",
+      "resource_subtype": "text",
       "type": "text",
       "enum_options": [
         ...
@@ -5387,7 +5463,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "milestone",
+      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         ...
@@ -5539,7 +5615,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   "data": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "milestone",
+    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -5587,7 +5663,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     "story": {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "milestone",
+      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         ...
@@ -5634,7 +5710,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "gid": "12345",
       "resource_type": "custom_field",
       "name": "Bug Task",
-      "resource_subtype": "milestone",
+      "resource_subtype": "text",
       "type": "text",
       "enum_options": [
         ...
@@ -7149,7 +7225,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "resource_subtype": "milestone",
+    "resource_subtype": "duplicate_task",
     "status": "in_progress",
     "new_project": {
       "gid": "12345",
@@ -10954,7 +11030,7 @@ A response object returned from a batch request.
   "gid": "12345",
   "resource_type": "custom_field",
   "name": "Bug Task",
-  "resource_subtype": "milestone",
+  "resource_subtype": "text",
   "type": "text",
   "enum_options": [
     {
@@ -11029,7 +11105,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
   "gid": "12345",
   "resource_type": "custom_field",
   "name": "Bug Task",
-  "resource_subtype": "milestone",
+  "resource_subtype": "text",
   "type": "text",
   "enum_options": [
     {
@@ -11342,7 +11418,7 @@ observed by an event subscription.
 {
   "gid": "12345",
   "resource_type": "task",
-  "resource_subtype": "milestone",
+  "resource_subtype": "duplicate_task",
   "status": "in_progress",
   "new_project": {
     "gid": "12345",
@@ -11707,7 +11783,7 @@ This is read-only except for a small group of whitelisted apps.
       "gid": "12345",
       "resource_type": "custom_field",
       "name": "Bug Task",
-      "resource_subtype": "milestone",
+      "resource_subtype": "text",
       "type": "text",
       "enum_options": [
         ...
@@ -12143,7 +12219,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 {
   "gid": "12345",
   "resource_type": "story",
-  "resource_subtype": "milestone",
+  "resource_subtype": "comment_added",
   "created_at": "2012-02-22T02:06:58.147Z",
   "created_by": {
     "gid": "12345",
@@ -12216,7 +12292,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
   "story": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "milestone",
+    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -12265,7 +12341,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
     "gid": "12345",
     "resource_type": "custom_field",
     "name": "Bug Task",
-    "resource_subtype": "milestone",
+    "resource_subtype": "text",
     "type": "text",
     "enum_options": [
       {
@@ -12508,7 +12584,7 @@ A story represents an activity associated with an object in the Asana system.
 {
   "gid": "12345",
   "resource_type": "story",
-  "resource_subtype": "milestone",
+  "resource_subtype": "comment_added",
   "created_at": "2012-02-22T02:06:58.147Z",
   "created_by": {
     "gid": "12345",
@@ -12667,7 +12743,7 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
       "gid": "12345",
       "resource_type": "custom_field",
       "name": "Bug Task",
-      "resource_subtype": "milestone",
+      "resource_subtype": "text",
       "type": "text",
       "enum_options": [
         ...
@@ -12895,6 +12971,41 @@ The *task* is the basic object around which many operations in Asana are centere
 |gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
+
+</section>
+
+<hr>
+<section>
+<h2 id="tocS_TaskCount">TaskCount</h2>
+<a id="schemataskcount"></a>
+<a id="schema_TaskCount"></a>
+<a id="tocStaskcount"></a>
+<a id="tocstaskcount"></a>
+
+```json
+{
+  "num_tasks": 200,
+  "num_incomplete_tasks": 50,
+  "num_completed_tasks": 150,
+  "num_milestones": 10,
+  "num_incomplete_milestones": 7,
+  "num_completed_milestones": 3
+}
+
+```
+
+A response object returned from the task count endpoint.
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|num_tasks|integer|false|none|The number of tasks in a project.|
+|num_incomplete_tasks|integer|false|none|The number of incomplete tasks in a project.|
+|num_completed_tasks|integer|false|none|The number of completed tasks in a project.|
+|num_milestones|integer|false|none|The number of milestones in a project.|
+|num_incomplete_milestones|integer|false|none|The number of incomplete milestones in a project.|
+|num_completed_milestones|integer|false|none|The number of completed milestones in a project.|
 
 </section>
 
