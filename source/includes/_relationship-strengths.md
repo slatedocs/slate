@@ -17,7 +17,7 @@ Relationship strengths are usually recalculated daily.
 {
   "external_id": 1234,
   "internal_id": 2345,
-  "strength": 0.5,
+  "strength": 0.5
 }
 ```
 
@@ -28,12 +28,11 @@ There may be at most one resource for
 every (internal, external) pair. If an internal and external person have no previous
 interactions, there may be no relationship strength resource for the pair.
 
-Attribute | Type | Description
---------- | ------- | -----------
-internal_id | integer | The internal person associated with this relationship strength.
-external_id | integer | The external person associated with this relationship strength.
-strength | float | The actual relationship strength. This is currently a number between 0 and 1, but may change in the future.
-
+| Attribute   | Type    | Description                                                                                                 |
+| ----------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| internal_id | integer | The internal person associated with this relationship strength.                                             |
+| external_id | integer | The external person associated with this relationship strength.                                             |
+| strength    | float   | The actual relationship strength. This is currently a number between 0 and 1, but may change in the future. |
 
 ## Fetch a relationship strength
 
@@ -53,7 +52,7 @@ curl "https://api.affinity.co/relationships-strengths?external_id=1234&internal_
   {
     "internal_id": 1234,
     "external_id": 2345,
-    "strength": 0.5,
+    "strength": 0.5
   }
 ]
 ```
@@ -85,10 +84,10 @@ curl "https://api.affinity.co/relationships-strengths?external_id=1234" -u :<API
 
 ### Query Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-internal_id | integer | false | The internal person associated with this relationship strength.
-external_id | integer | true | The external person associated with this relationship strength.
+| Parameter   | Type    | Required | Description                                                     |
+| ----------- | ------- | -------- | --------------------------------------------------------------- |
+| internal_id | integer | false    | The internal person associated with this relationship strength. |
+| external_id | integer | true     | The external person associated with this relationship strength. |
 
 ### Returns
 

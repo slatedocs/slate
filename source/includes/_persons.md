@@ -1,4 +1,5 @@
 # Persons
+
 The persons API allows you to manage all the contacts of your organization. These people
 include anyone your team has ever been in email communications or meetings with, and all
 the people that your team has added to Affinity either manually or through the API.
@@ -7,12 +8,13 @@ list has a given email address.
 
 **Note:**
 
-1. If you are looking to add or remove a person from a list, please check out the
-[List Entries](#list-entries) section of the API.
-2. If you are looking to modify a person's field values (one of the cells on Affinity's
-spreadsheet), please check out the [Field Values](#field-values) section of the API.
+1.  If you are looking to add or remove a person from a list, please check out the
+    [List Entries](#list-entries) section of the API.
+2.  If you are looking to modify a person's field values (one of the cells on Affinity's
+    spreadsheet), please check out the [Field Values](#field-values) section of the API.
 
 ## The person resource
+
 > Example Response
 
 ```json
@@ -72,26 +74,27 @@ Dates of the most recent and upcoming interactions with a person are available i
 `with_interaction_dates=true` as a query parameter to the `/persons` or
 the `/persons/{person_id}` endpoints.
 
-Attribute | Type | Description
---------- | ------- | -----------
-id | integer | The unique identifier of the person object.
-type | integer | The type of person (see below).
-first_name | string | The first name of the person.
-last_name | string | The last name of the person.
-emails | string[] | The email addresses of the person.
-primary_email | string | The email (automatically computed) that is most likely to the current active email address of the person.
-organization_ids | integer[] | An array of unique identifiers of organizations that the person is associated with.
-list_entries | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a specific person](#get-a-specific-person) endpoint.
-interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
+| Attribute         | Type        | Description                                                                                                                                                                                                                                                                       |
+| ----------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                | integer     | The unique identifier of the person object.                                                                                                                                                                                                                                       |
+| type              | integer     | The type of person (see below).                                                                                                                                                                                                                                                   |
+| first_name        | string      | The first name of the person.                                                                                                                                                                                                                                                     |
+| last_name         | string      | The last name of the person.                                                                                                                                                                                                                                                      |
+| emails            | string[]    | The email addresses of the person.                                                                                                                                                                                                                                                |
+| primary_email     | string      | The email (automatically computed) that is most likely to the current active email address of the person.                                                                                                                                                                         |
+| organization_ids  | integer[]   | An array of unique identifiers of organizations that the person is associated with.                                                                                                                                                                                               |
+| list_entries      | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a specific person](#get-a-specific-person) endpoint.                                                                                                                               |
+| interaction_dates | object      | An object with four string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
 
 ### Person types
 
-Type | Value | Description
---------- | ------- | -----------
-external | 0 | Default value. All people that your team has spoken with externally have this type.
-internal | 1 | All people on your team that have Affinity accounts will have this type.
+| Type     | Value | Description                                                                         |
+| -------- | ----- | ----------------------------------------------------------------------------------- |
+| external | 0     | Default value. All people that your team has spoken with externally have this type. |
+| internal | 1     | All people on your team that have Affinity accounts will have this type.            |
 
 ## Search for persons
+
 `GET /persons`
 
 Searches your teams data and fetches all the persons that meet the search criteria.
@@ -101,8 +104,7 @@ This result is paginated. An initial request returns an object with two fields: 
 and `next_page_token`. `persons` contains an array of person resources. The value of
 `next_page_token` should be sent as the query parameter `page_token` in another request to
 retrieve the next page of results. While paginating through results, each request must have
-identical query parameters other than the changing `page_token`. Otherwise, an `Invalid
-page_token variable` error will be returned.
+identical query parameters other than the changing `page_token`. Otherwise, an `Invalid page_token variable` error will be returned.
 
 The absence of a `next_page_token` indicates that all the records have been fetched,
 though its presence does not necessarily indicate that there are _more_ resources to be
@@ -122,6 +124,7 @@ be ISO 8601 formatted date strings.
 ```shell
 curl "https://api.affinity.co/persons?term=doe" -u :<API-KEY>
 ```
+
 > Example Response
 
 ```json
@@ -165,15 +168,16 @@ curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybS
 
 ### Query Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-term | string | true | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.
-with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.
-`{min,max}_<interaction>_date` | string | false | Only returns persons with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, or `next_event`.
-page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
-page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
+| Parameter                      | Type    | Required | Description                                                                                                                                                                                      |
+| ------------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| term                           | string  | true     | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.                                                                |
+| with_interaction_dates         | boolean | false    | When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.                                                                    |
+| `{min,max}_<interaction>_date` | string  | false    | Only returns persons with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, or `next_event`. |
+| page_size                      | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                      |
+| page_token                     | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                  |
 
 ### Returns
+
 An object with two fields: `persons` and `next_page_token`. `persons` maps to an array of
 all the person resources that match the search criteria. Does not include the associated
 `organization_ids` or `list_entries`. `next_page_token` includes a token to be sent along
@@ -224,12 +228,13 @@ Fetches a person with a specified `person_id`.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-person_id | integer | true | The unique id of the person that needs to be retrieved.
-with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources.
+| Parameter              | Type    | Required | Description                                                             |
+| ---------------------- | ------- | -------- | ----------------------------------------------------------------------- |
+| person_id              | integer | true     | The unique id of the person that needs to be retrieved.                 |
+| with_interaction_dates | boolean | false    | When true, interaction dates will be present on the returned resources. |
 
 ### Returns
+
 The person resource corresponding to the `person_id`.
 
 ## Create a new person
@@ -249,13 +254,13 @@ curl "https://api.affinity.co/persons" \
 
 ```json
 {
-  "id":860197,
-  "type":0,
-  "first_name":"Alice",
-  "last_name":"Doe",
-  "primary_email":"alice@affinity.co",
-  "emails":["alice@affinity.co"],
-  "organization_ids":[1687449]
+  "id": 860197,
+  "type": 0,
+  "first_name": "Alice",
+  "last_name": "Doe",
+  "primary_email": "alice@affinity.co",
+  "emails": ["alice@affinity.co"],
+  "organization_ids": [1687449]
 }
 ```
 
@@ -265,21 +270,22 @@ Creates a new person with the supplied parameters.
 
 **Note:**
 
-1. If one of the supplied email addresses conflicts with another person object, this
-request will fail and an appropriate error will be returned.
-2. If you are looking to add an existing person to a list, please check the [List Entries](#list-entries) section
-of the API.
+1.  If one of the supplied email addresses conflicts with another person object, this
+    request will fail and an appropriate error will be returned.
+2.  If you are looking to add an existing person to a list, please check the [List Entries](#list-entries) section
+    of the API.
 
 ### Payload Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-first_name | string | true | The first name of the person.
-last_name | string | true | The last name of the person.
-emails | string[] | true | The email addresses of the person. If there are no email addresses, please specify an empty array.
-organization_ids | integer[] | false | An array of unique identifiers of organizations that the person is associated with.
+| Parameter        | Type      | Required | Description                                                                                        |
+| ---------------- | --------- | -------- | -------------------------------------------------------------------------------------------------- |
+| first_name       | string    | true     | The first name of the person.                                                                      |
+| last_name        | string    | true     | The last name of the person.                                                                       |
+| emails           | string[]  | true     | The email addresses of the person. If there are no email addresses, please specify an empty array. |
+| organization_ids | integer[] | false    | An array of unique identifiers of organizations that the person is associated with.                |
 
 ### Returns
+
 The person resource was newly created from this successful request.
 
 ## Update a person
@@ -299,13 +305,13 @@ curl "https://api.affinity.co/860197" \
 
 ```json
 {
-  "id":860197,
-  "type":0,
-  "first_name":"Allison",
-  "last_name":"Doe",
-  "primary_email":"alice@affinity.co",
-  "emails":["alice@affinity.co", "allison@example.com", "allison@gmail.com"],
-  "organization_ids":[1687449]
+  "id": 860197,
+  "type": 0,
+  "first_name": "Allison",
+  "last_name": "Doe",
+  "primary_email": "alice@affinity.co",
+  "emails": ["alice@affinity.co", "allison@example.com", "allison@gmail.com"],
+  "organization_ids": [1687449]
 }
 ```
 
@@ -324,21 +330,21 @@ existing values for `emails` and `organization_ids` must also be supplied as par
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-person_id | integer | true | The unique id of the person that needs to be retrieved.
-
+| Parameter | Type    | Required | Description                                             |
+| --------- | ------- | -------- | ------------------------------------------------------- |
+| person_id | integer | true     | The unique id of the person that needs to be retrieved. |
 
 ### Payload Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-first_name | string | false | The first name of the person.
-last_name | string | false | The last name of the person.
-emails | string[] | false | The email addresses of the person. If there are no email addresses, please specify an empty array.
-organization_ids | integer[] | false | An array of unique identifiers of organizations that the person is associated with
+| Parameter        | Type      | Required | Description                                                                                        |
+| ---------------- | --------- | -------- | -------------------------------------------------------------------------------------------------- |
+| first_name       | string    | false    | The first name of the person.                                                                      |
+| last_name        | string    | false    | The last name of the person.                                                                       |
+| emails           | string[]  | false    | The email addresses of the person. If there are no email addresses, please specify an empty array. |
+| organization_ids | integer[] | false    | An array of unique identifiers of organizations that the person is associated with                 |
 
 ### Returns
+
 The person object that was just updated through this request.
 
 ## Delete a person
@@ -354,7 +360,7 @@ curl "https://api.affinity.co/persons/860197" \
 > Example Response
 
 ```json
-{"success": true}
+{ "success": true }
 ```
 
 `DELETE /persons/{person_id}`
@@ -366,11 +372,12 @@ Such field values exist linked to either global or list-specific fields.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-person_id | integer | true | The unique id of the person that needs to be deleted.
+| Parameter | Type    | Required | Description                                           |
+| --------- | ------- | -------- | ----------------------------------------------------- |
+| person_id | integer | true     | The unique id of the person that needs to be deleted. |
 
 ### Returns
+
 `{success: true}`.
 
 ## Get global fields
@@ -417,7 +424,9 @@ curl "https://api.affinity.co/persons/fields" -u :<API-KEY>
 ```
 
 ### Parameters
+
 None.
 
 ### Returns
+
 An array of the global fields that exist on people for your team.

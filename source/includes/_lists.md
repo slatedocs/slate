@@ -1,4 +1,5 @@
 # Lists
+
 Lists are the primary data structure that you can interact with in Affinity. Each list
 manages a collection of either people or organizations. We call people or organizations
 "entities".
@@ -35,21 +36,21 @@ person entity. Furthermore, the list would have two "fields" with the names
 }
 ```
 
-Attribute | Type | Description
---------- | ------- | -----------
-id | integer | The unique identifier of the list object.
-type | integer | The type of the entities contained within the list. A list can contain people or organizations, but not both.
-name | string | The title of the list that is displayed in Affinity.
-public | boolean | If the list is publicly accessible to all users in your team, this is true. Otherwise, this is false.
-owner_id | integer | The unique id of the internal person who created this list.
-list_size | integer | The number of list entries contained within the list.
+| Attribute | Type    | Description                                                                                                   |
+| --------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| id        | integer | The unique identifier of the list object.                                                                     |
+| type      | integer | The type of the entities contained within the list. A list can contain people or organizations, but not both. |
+| name      | string  | The title of the list that is displayed in Affinity.                                                          |
+| public    | boolean | If the list is publicly accessible to all users in your team, this is true. Otherwise, this is false.         |
+| owner_id  | integer | The unique id of the internal person who created this list.                                                   |
+| list_size | integer | The number of list entries contained within the list.                                                         |
 
 ### List types
 
-List Type | Value | Description
---------- | ------- | -----------
-person | 0 | Type specifying a list of people.
-organization | 1 | Type specifying a list of organizations.
+| List Type    | Value | Description                              |
+| ------------ | ----- | ---------------------------------------- |
+| person       | 0     | Type specifying a list of people.        |
+| organization | 1     | Type specifying a list of organizations. |
 
 ## Get all lists
 
@@ -83,9 +84,11 @@ curl "https://api.affinity.co/lists" -u :<API-KEY>
 Returns a collection of all the lists visible to you.
 
 ### Parameters
+
 None
 
 ### Returns
+
 An array of all the list resources for lists visible to you. Each list resource in the
 array includes the `id`, `name`, and `type` (refer to the
 [list resource](#the-list-resource) above for further help).
@@ -142,11 +145,12 @@ Gets the details for a specific list given the existing list id.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-list_id | integer | true | The unique id of the list object to be retrieved.
+| Parameter | Type    | Required | Description                                       |
+| --------- | ------- | -------- | ------------------------------------------------- |
+| list_id   | integer | true     | The unique id of the list object to be retrieved. |
 
 ### Returns
+
 The details of the list resource corresponding to the list id specified in the path
 parameter. These details include an array of the fields that are specific
 to this list. An appropriate error is returned if an invalid list is supplied.

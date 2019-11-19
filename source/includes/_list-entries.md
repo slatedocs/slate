@@ -15,10 +15,7 @@
     "first_name": "John",
     "last_name": "Doe",
     "primary_email": "jdoe@jdoe.com",
-    "emails": [
-      "jdoe@jdoe.com",
-      "jdoe2@jdoe2.com",
-    ],
+    "emails": ["jdoe@jdoe.com", "jdoe2@jdoe2.com"]
   },
   "created_at": "2017-01-16 16:34:03 -0800"
 }
@@ -39,14 +36,14 @@ entry, please refer to the [Field Values](#field-values) section. The list entry
 is only used for getting, adding, or removing entities from a list. It does not
 handle updating individual cells in columns.
 
-Attribute | Type | Description
---------- | ------- | -----------
-id | integer | The unique identifier of the list entry object.
-list_id | integer | The unique identifier of the list on which the list entry resides.
-creator_id | integer | The unique identifier of the user who created the list entry. If you create a list entry through the API, the user corresponding to the API token will be the creator by default.
-entity_id | integer | The unique identifier of the entity corresponding to the list entry.
-entity | object | Object containing entity-specific details like name, email address, domain etc. for the entity corresponding to `entity_id`.
-created_at | datetime | The time when the list entry was created.
+| Attribute  | Type     | Description                                                                                                                                                                       |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id         | integer  | The unique identifier of the list entry object.                                                                                                                                   |
+| list_id    | integer  | The unique identifier of the list on which the list entry resides.                                                                                                                |
+| creator_id | integer  | The unique identifier of the user who created the list entry. If you create a list entry through the API, the user corresponding to the API token will be the creator by default. |
+| entity_id  | integer  | The unique identifier of the entity corresponding to the list entry.                                                                                                              |
+| entity     | object   | Object containing entity-specific details like name, email address, domain etc. for the entity corresponding to `entity_id`.                                                      |
+| created_at | datetime | The time when the list entry was created.                                                                                                                                         |
 
 ## Get all list entries
 
@@ -55,6 +52,7 @@ created_at | datetime | The time when the list entry was created.
 ```shell
 curl "https://api.affinity.co/lists/450/list-entries" -u :<API-KEY>
 ```
+
 > Example Response
 
 ```json
@@ -140,24 +138,25 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :<API-KEY>
 
 `GET /lists/{list_id}/list-entries`
 
-If no page size is specified, fetches all the list entries in the list with the supplied 
-list id. If a page size is specified, fetches up to that number of list entries in the 
+If no page size is specified, fetches all the list entries in the list with the supplied
+list id. If a page size is specified, fetches up to that number of list entries in the
 list with the supplied list id.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-list_id | integer | true | The unique id of the list whose list entries are to be retrieved.
-page_size | integer | false | How many results to return per page. (Default is to return all results.)
-page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
+| Parameter  | Type    | Required | Description                                                                                     |
+| ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
+| list_id    | integer | true     | The unique id of the list whose list entries are to be retrieved.                               |
+| page_size  | integer | false    | How many results to return per page. (Default is to return all results.)                        |
+| page_token | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results. |
 
 ### Returns
-If the `page_size` is not passed in as a parameter, an array of all the list entry 
+
+If the `page_size` is not passed in as a parameter, an array of all the list entry
 resources corresponding to the provided list will be returned.
-If the `page_size` is passed in as a parameter, an object with two fields: `list_entries` 
-and `next_page_token` are returned. `list_entries` maps to an array of up to `page_size` 
-list entries. `next_page_token` includes a token to be sent along with the next request 
+If the `page_size` is passed in as a parameter, an object with two fields: `list_entries`
+and `next_page_token` are returned. `list_entries` maps to an array of up to `page_size`
+list entries. `next_page_token` includes a token to be sent along with the next request
 as the `page_token` parameter to fetch the next page of results.
 Each list entry in the both cases includes all the attributes as specified in the
 [list entry resource](#the-list-entry-resource) section above.
@@ -188,31 +187,31 @@ curl "https://api.affinity.co/lists/450/list-entries/16367" -u :<API-KEY>
     "first_name": "John",
     "last_name": "Doe",
     "primary_email": "jdoe@stanford.edu",
-    "emails": [
-      "jdoe@stanford.edu"
-    ],
-  },
+    "emails": ["jdoe@stanford.edu"]
+  }
 }
 ```
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-list_id | integer | true | The unique id of the list that contains the specified `list_entry_id`.
-list_entry_id | integer | true| The unique id of the list entry object to be retrieved.
+| Parameter     | Type    | Required | Description                                                            |
+| ------------- | ------- | -------- | ---------------------------------------------------------------------- |
+| list_id       | integer | true     | The unique id of the list that contains the specified `list_entry_id`. |
+| list_entry_id | integer | true     | The unique id of the list entry object to be retrieved.                |
 
 ### Returns
+
 The list entry object corresponding to the `list_entry_id`.
 
 ## Create a new list entry
+
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/lists/450/list-entries" \
    -u :<API-KEY> \
    -d entity_id=38706
- ```
+```
 
 > Example Response
 
@@ -228,10 +227,8 @@ curl "https://api.affinity.co/lists/450/list-entries" \
     "first_name": "John",
     "last_name": "Doe",
     "primary_email": "jdoe@stanford.edu",
-    "emails": [
-      "jdoe@stanford.edu"
-    ],
-  },
+    "emails": ["jdoe@stanford.edu"]
+  }
 }
 ```
 
@@ -244,16 +241,18 @@ you might want to make sure that it does not exist in the list already.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-list_id | integer | true | The unique id of the list whose list entries are to be retrieved.
-entity_id | integer | true| The unique id of the entity (person, organization, or opportunity) to add to this list.
-creator_id | integer | false | The id of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.
+| Parameter  | Type    | Required | Description                                                                                                                                                                                     |
+| ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| list_id    | integer | true     | The unique id of the list whose list entries are to be retrieved.                                                                                                                               |
+| entity_id  | integer | true     | The unique id of the entity (person, organization, or opportunity) to add to this list.                                                                                                         |
+| creator_id | integer | false    | The id of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key. |
 
 ### Returns
+
 The list entry resource that was just created through this request.
 
 ## Delete a specific list entry
+
 > Example Request
 
 ```shell
@@ -261,12 +260,12 @@ curl "https://api.affinity.co/lists/450/list-entries/56517" \
    -u :<API-KEY> \
    -d entity_id=38706 \
    -X "DELETE"
- ```
+```
 
 > Example Response
 
 ```json
-{"success": true}
+{ "success": true }
 ```
 
 `DELETE /lists/{list_id}/list-entries/{list_entry_id}`
@@ -275,17 +274,18 @@ Deletes a list entry with a specified `list_entry_id`.
 
 **Note:**
 
-1. This will also delete all the field values, if any, associated with the list entry.
-Such field values will only exist in fields specific to this list.
-2. If the list entry belongs to an Opportunity list, then the opportunity that the list
-entry is associated with will also be deleted.
+1.  This will also delete all the field values, if any, associated with the list entry.
+    Such field values will only exist in fields specific to this list.
+2.  If the list entry belongs to an Opportunity list, then the opportunity that the list
+    entry is associated with will also be deleted.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-list_id | integer | true | The unique id of the list that contains the specified `list_entry_id`.
-list_entry_id | integer | true| The unique id of the list entry object to be deleted.
+| Parameter     | Type    | Required | Description                                                            |
+| ------------- | ------- | -------- | ---------------------------------------------------------------------- |
+| list_id       | integer | true     | The unique id of the list that contains the specified `list_entry_id`. |
+| list_entry_id | integer | true     | The unique id of the list entry object to be deleted.                  |
 
 ### Returns
+
 The JSON object `{"success": true}`.

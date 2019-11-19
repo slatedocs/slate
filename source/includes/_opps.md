@@ -1,4 +1,5 @@
 # Opportunities
+
 An opportunity in Affinity represents a potential future sale or deal for your team. It
 can have multiple people - your team's main points of contacts for the opportunity - and
 organization(s) associated with it. Opportunities are generally used to track the progress
@@ -12,11 +13,11 @@ any of those opportunities.
 
 **Note:**
 
-1. If you are looking to remove an opportunity from a list, note that deleting an opportunity
-is the same as removing an opportunity from a list because an opportunity can only exist on
-a single list with a single list entry.
-2. If you are looking to modify a field value (one of the cells on Affinity's
-spreadsheet), please check out the [Field Values](#field-values) section of the API.
+1.  If you are looking to remove an opportunity from a list, note that deleting an opportunity
+    is the same as removing an opportunity from a list because an opportunity can only exist on
+    a single list with a single list entry.
+2.  If you are looking to modify a field value (one of the cells on Affinity's
+    spreadsheet), please check out the [Field Values](#field-values) section of the API.
 
 ## The opportunity resource
 
@@ -24,33 +25,35 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
 
 ```json
 {
-  "id":117,
-  "name":"Affinity Opp",
-  "person_ids":[38706],
-  "organization_ids":[21442],
+  "id": 117,
+  "name": "Affinity Opp",
+  "person_ids": [38706],
+  "organization_ids": [21442],
   "list_entries": [
     {
-      "id":442313,
-      "creator":{
-        "id":38706,
-        "type":1,
+      "id": 442313,
+      "creator": {
+        "id": 38706,
+        "type": 1,
         "emails": ["john@affinity.co", "johnjdoe@gmail.com"],
-        "firstName":"John",
-        "lastName":"Doe",
-        "photoUrl":"https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
-        "entityType":0,
-        "inferredType":1,
-        "interactionsHidden":true,
-        "hiddenExternal":false,
-        "primaryEmail":"john@affinity.co"
+        "firstName": "John",
+        "lastName": "Doe",
+        "photoUrl":
+          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
+        "entityType": 0,
+        "inferredType": 1,
+        "interactionsHidden": true,
+        "hiddenExternal": false,
+        "primaryEmail": "john@affinity.co"
       },
-      "listId":4974,
-      "entityId":117,
-      "createdAt":"2018-03-03T23:02:46.412-08:00"
-    },
-  ],
+      "listId": 4974,
+      "entityId": 117,
+      "createdAt": "2018-03-03T23:02:46.412-08:00"
+    }
+  ]
 }
 ```
+
 Each opportunity object has a unique `id`. It also has a `name`, `persons_ids` and
 `organization_ids` associated with it, and an array of `list_entries`. An important attribute to note
 is `list_entries`. Because an opportunity can only belong to a single list, `list_entries`
@@ -58,13 +61,14 @@ can only have one list entry.
 
 Of course, all fields can be modified and the opportunity can be deleted.
 
-Attribute | Type | Description
---------- | ------- | -----------
-id | integer | The unique identifier of the opportunity object.
-name | integer | The name of the opportunity (see below).
-person_ids | number[] | An array of unique identifiers for persons that are associated with the opportunity
-organization_ids | number[] | An array of unique identifiers for organizations that are associated with the opportunity
-list_entries | ListEntry[] | An array of list entry resources associated with the opportunity (at most 1 list entry). If the
+| Attribute        | Type        | Description                                                                                     |
+| ---------------- | ----------- | ----------------------------------------------------------------------------------------------- |
+| id               | integer     | The unique identifier of the opportunity object.                                                |
+| name             | integer     | The name of the opportunity (see below).                                                        |
+| person_ids       | number[]    | An array of unique identifiers for persons that are associated with the opportunity             |
+| organization_ids | number[]    | An array of unique identifiers for organizations that are associated with the opportunity       |
+| list_entries     | ListEntry[] | An array of list entry resources associated with the opportunity (at most 1 list entry). If the |
+
 user corresponding to the API key does not have access to the list, this will be empty.
 
 ## Search for opportunities
@@ -91,6 +95,7 @@ confirm that there are no more resources).
 ```shell
 curl "https://api.affinity.co/opportunities?term=affinity" -u :<API-KEY>
 ```
+
 > Example Response
 
 ```json
@@ -165,13 +170,14 @@ curl "https://api.affinity.co/opportunities?term=affinity&page_token=eyJwYXJhbXM
 
 ### Query Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-term | string | false | A string used to search all the opportunities in your team's database. This could be part of a name.
-page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
-page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
+| Parameter  | Type   | Required | Description                                                                                          |
+| ---------- | ------ | -------- | ---------------------------------------------------------------------------------------------------- |
+| term       | string | false    | A string used to search all the opportunities in your team's database. This could be part of a name. |
+| page_size  | number | false    | How many results to return per page. (Default is the maximum value of 500.)                          |
+| page_token | string | false    | The `next_page_token` from the previous response required to retrieve the next page of results.      |
 
 ### Returns
+
 An object with two fields: `opportunities` and `next_page_token`. `opportunities` maps to
 an array of all the opportunity resources that match the search criteria.
 `next_page_token` includes a token to be sent along with the next request as the
@@ -189,31 +195,32 @@ curl "https://api.affinity.co/opportunities/117" -u :<API-KEY>
 
 ```json
 {
-  "id":121,
-  "name":"Affinity Opp",
-  "person_ids":[3526824],
-  "organization_ids":[128367168],
+  "id": 121,
+  "name": "Affinity Opp",
+  "person_ids": [3526824],
+  "organization_ids": [128367168],
   "list_entries": [
     {
-      "id":442313,
+      "id": 442313,
       "creator": {
-        "id":1124736,
-        "type":1,
+        "id": 1124736,
+        "type": 1,
         "emails": ["john@affinity.co", "johnjdoe@gmail.com"],
-        "firstName":"John",
-        "lastName":"Doe",
-        "photoUrl":"https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
-        "entityType":0,
-        "inferredType":1,
-        "interactionsHidden":true,
-        "hiddenExternal":false,
-        "primaryEmail":"john@affinity.co"
+        "firstName": "John",
+        "lastName": "Doe",
+        "photoUrl":
+          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
+        "entityType": 0,
+        "inferredType": 1,
+        "interactionsHidden": true,
+        "hiddenExternal": false,
+        "primaryEmail": "john@affinity.co"
       },
-      "listId":4974,
-      "entityId":121,
-      "createdAt":"2018-03-03T23:02:46.412-08:00"
-    },
-  ],
+      "listId": 4974,
+      "entityId": 121,
+      "createdAt": "2018-03-03T23:02:46.412-08:00"
+    }
+  ]
 }
 ```
 
@@ -223,11 +230,12 @@ Fetches an opportunity with a specified `opportunity_id`.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-opportunity_id | integer | true | The unique id of the opportunity that needs to be retrieved.
+| Parameter      | Type    | Required | Description                                                  |
+| -------------- | ------- | -------- | ------------------------------------------------------------ |
+| opportunity_id | integer | true     | The unique id of the opportunity that needs to be retrieved. |
 
 ### Returns
+
 The opportunity object corresponding to the `opportunity_id`.
 
 ## Create a new opportunity
@@ -247,30 +255,31 @@ curl "https://api.affinity.co/opportunities" \
 
 ```json
 {
-  "id":50,
-  "name":"Penny Opportunity",
-  "person_ids":[38706],
-  "organization_ids":[21442],
+  "id": 50,
+  "name": "Penny Opportunity",
+  "person_ids": [38706],
+  "organization_ids": [21442],
   "list_entries": [
     {
-      "id":999886,
+      "id": 999886,
       "creator": {
-        "id":1127776,
-        "type":1,
-        "emails":["john@affinity.co", "john@berkeley.edu"],
-        "firstName":"John",
-        "lastName":"Doe",
-        "photoUrl":"https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f73259b807a06f6d826a",
-        "entityType":0,
-        "inferredType":1,
-        "interactionsHidden":true,
-        "hiddenExternal":false,
-        "primaryEmail":"john@affinity.co"
+        "id": 1127776,
+        "type": 1,
+        "emails": ["john@affinity.co", "john@berkeley.edu"],
+        "firstName": "John",
+        "lastName": "Doe",
+        "photoUrl":
+          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f73259b807a06f6d826a",
+        "entityType": 0,
+        "inferredType": 1,
+        "interactionsHidden": true,
+        "hiddenExternal": false,
+        "primaryEmail": "john@affinity.co"
       },
-      "listId":6645,
-      "entityId":50,
-      "createdAt":"2018-03-07T16:32:35.794-08:00"
-    },
+      "listId": 6645,
+      "entityId": 50,
+      "createdAt": "2018-03-07T16:32:35.794-08:00"
+    }
   ]
 }
 ```
@@ -281,14 +290,15 @@ Creates a new opportunity with the supplied parameters.
 
 ### Payload Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-name | string | true | The name of the opportunity.
-list_id | integer | true | An unique identifier of the list that the new opportunity will be associated with. This list must be of type opportunity.
-person_ids | integer[] | false | An array of unique identifiers of persons that the new opportunity will be associated with.
-organization_ids | integer[] | false | An array of unique identifiers of organizations that the new opportunity will be associated with.
+| Parameter        | Type      | Required | Description                                                                                                               |
+| ---------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
+| name             | string    | true     | The name of the opportunity.                                                                                              |
+| list_id          | integer   | true     | An unique identifier of the list that the new opportunity will be associated with. This list must be of type opportunity. |
+| person_ids       | integer[] | false    | An array of unique identifiers of persons that the new opportunity will be associated with.                               |
+| organization_ids | integer[] | false    | An array of unique identifiers of organizations that the new opportunity will be associated with.                         |
 
 ### Returns
+
 The opportunity resource that was just created by a successful request (without `person_ids` and `organization_ids`).
 
 ## Update an opportunity
@@ -308,29 +318,30 @@ curl "https://api.affinity.co/opportunities/120611418" \
 
 ```json
 {
-  "id":50,
-  "name":"Penny Opp",
-  "person_ids":[38706,89734],
-  "organization_ids":[21442],
+  "id": 50,
+  "name": "Penny Opp",
+  "person_ids": [38706, 89734],
+  "organization_ids": [21442],
   "list_entries": [
     {
-      "id":999886,
+      "id": 999886,
       "creator": {
-        "id":1127776,
-        "type":1,
-        "emails":["john@affinity.co", "john@berkeley.edu"],
-        "firstName":"John",
-        "lastName":"Doe",
-        "photoUrl":"https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f73259b807a06f6d826a",
-        "entityType":0,
-        "inferredType":1,
-        "interactionsHidden":true,
-        "hiddenExternal":false,
-        "primaryEmail":"john@affinity.co"
+        "id": 1127776,
+        "type": 1,
+        "emails": ["john@affinity.co", "john@berkeley.edu"],
+        "firstName": "John",
+        "lastName": "Doe",
+        "photoUrl":
+          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f73259b807a06f6d826a",
+        "entityType": 0,
+        "inferredType": 1,
+        "interactionsHidden": true,
+        "hiddenExternal": false,
+        "primaryEmail": "john@affinity.co"
       },
-      "listId":6645,
-      "entityId":50,
-      "createdAt":"2018-03-07T16:32:35.794-08:00"
+      "listId": 6645,
+      "entityId": 50,
+      "createdAt": "2018-03-07T16:32:35.794-08:00"
     }
   ]
 }
@@ -350,19 +361,20 @@ If you are trying to add an organization to an opportunity, the existing values 
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-opportunity_id | integer | true | The unique id of the opportunity to be updated.
+| Parameter      | Type    | Required | Description                                     |
+| -------------- | ------- | -------- | ----------------------------------------------- |
+| opportunity_id | integer | true     | The unique id of the opportunity to be updated. |
 
 ### Payload Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-name | string | false | The name of the opportunity.
-person_ids | integer[] | false | An array of unique identifiers of persons that the opportunity will be associated with.
-organization_ids | integer[] | false | An array of unique identifiers of organizations that the opportunity will be associated with.
+| Parameter        | Type      | Required | Description                                                                                   |
+| ---------------- | --------- | -------- | --------------------------------------------------------------------------------------------- |
+| name             | string    | false    | The name of the opportunity.                                                                  |
+| person_ids       | integer[] | false    | An array of unique identifiers of persons that the opportunity will be associated with.       |
+| organization_ids | integer[] | false    | An array of unique identifiers of organizations that the opportunity will be associated with. |
 
 ### Returns
+
 The opportunity resource that was just updated through a successful request.
 
 ## Delete an opportunity
@@ -378,7 +390,7 @@ curl "https://api.affinity.co/opportunities/120611418" \
 > Example Response
 
 ```json
-{"success": true}
+{ "success": true }
 ```
 
 `DELETE /opportunities/{opportunity_id}`
@@ -387,13 +399,14 @@ Deletes an opportunity with a specified `opportunity_id`.
 
 **Note:**
 
-1. This will also delete all the field values, if any, associated with the opportunity.
+1.  This will also delete all the field values, if any, associated with the opportunity.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-opportunity_id | integer | true | The unique id of the opportunity that needs to be deleted.
+| Parameter      | Type    | Required | Description                                                |
+| -------------- | ------- | -------- | ---------------------------------------------------------- |
+| opportunity_id | integer | true     | The unique id of the opportunity that needs to be deleted. |
 
 ### Returns
+
 `{success: true}`.

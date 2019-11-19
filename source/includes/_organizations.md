@@ -1,4 +1,5 @@
 # Organizations
+
 An organization in Affinity represents an external company that your team is in touch
 with- this could be an organization you're trying to invest in, sell to, or establish a
 relationship with.
@@ -13,10 +14,10 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
 
 **Note:**
 
-1. If you are looking to add or remove an organization from a list, please check out the
-[List Entries](#list-entries) section of the API.
-2. If you are looking to modify a field value (one of the cells on Affinity's
-spreadsheet), please check out the [Field Values](#field-values) section of the API.
+1.  If you are looking to add or remove an organization from a list, please check out the
+    [List Entries](#list-entries) section of the API.
+2.  If you are looking to modify a field value (one of the cells on Affinity's
+    spreadsheet), please check out the [Field Values](#field-values) section of the API.
 
 ## The organization resource
 
@@ -49,6 +50,7 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
   },
 }
 ```
+
 Each organization object has a unique `id`. It also has a `name`, `domain` (the website
 of the organization), and `persons` associated with it. The `domain` is an important
 attribute from an automation perspective, as it helps Affinity automatically link all
@@ -67,17 +69,16 @@ Dates of the most recent and upcoming interactions with an organization are avai
 `with_interaction_dates=true` as a query parameter to the `/organizations` or
 the `/organizations/{organization_id}` endpoints.
 
-Attribute | Type | Description
---------- | ------- | -----------
-id | integer | The unique identifier of the organization object.
-name | integer | The name of the organization (see below).
-domain | string | The website name of the organization. This is used by Affinity to automatically associate person objects with an organization.
-crunchbase_uuid | string | The [Crunchbase UUID](https://data.crunchbase.com/docs/uuid) of the organization
-person_ids | string[] | An array of unique identifiers of person that are associated with the organization
-global | boolean | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.
-list_entries | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.
-interaction_dates | object | An object with four string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.
-
+| Attribute         | Type        | Description                                                                                                                                                                                                                                                                             |
+| ----------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                | integer     | The unique identifier of the organization object.                                                                                                                                                                                                                                       |
+| name              | integer     | The name of the organization (see below).                                                                                                                                                                                                                                               |
+| domain            | string      | The website name of the organization. This is used by Affinity to automatically associate person objects with an organization.                                                                                                                                                          |
+| crunchbase_uuid   | string      | The [Crunchbase UUID](https://data.crunchbase.com/docs/uuid) of the organization                                                                                                                                                                                                        |
+| person_ids        | string[]    | An array of unique identifiers of person that are associated with the organization                                                                                                                                                                                                      |
+| global            | boolean     | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.                                                                                                                                 |
+| list_entries      | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.                                                                                                                   |
+| interaction_dates | object      | An object with four string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
 
 ## Search for organizations
 
@@ -111,6 +112,7 @@ be ISO 8601 formatted date strings.
 ```shell
 curl "https://api.affinity.co/organizations?term=affinity" -u :<API-KEY>
 ```
+
 > Example Response
 
 ```json
@@ -145,15 +147,16 @@ curl "https://api.affinity.co/organizations?term=affinity&page_token=eyJwYXJhbXM
 
 ### Query Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-term | string | false | A string used to search all the organizations in your team's address book. This could be a name or a domain name.
-with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.
-`{min,max}_<interaction>_date` | string | false | Only returns organizations with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, or `next_event`.
-page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
-page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
+| Parameter                      | Type    | Required | Description                                                                                                                                                                                            |
+| ------------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| term                           | string  | false    | A string used to search all the organizations in your team's address book. This could be a name or a domain name.                                                                                      |
+| with_interaction_dates         | boolean | false    | When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.                                                                    |
+| `{min,max}_<interaction>_date` | string  | false    | Only returns organizations with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, or `next_event`. |
+| page_size                      | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                            |
+| page_token                     | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                        |
 
 ### Returns
+
 An object with two fields: `organizations` and `next_page_token`. `organizations` maps to
 an array of all the organization resources that match the search criteria.
 `next_page_token` includes a token to be sent along with the next request as the
@@ -197,12 +200,13 @@ Fetches an organization with a specified `organization_id`.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-organization_id | integer | true | The unique id of the organization that needs to be retrieved.
-with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources.
+| Parameter              | Type    | Required | Description                                                             |
+| ---------------------- | ------- | -------- | ----------------------------------------------------------------------- |
+| organization_id        | integer | true     | The unique id of the organization that needs to be retrieved.           |
+| with_interaction_dates | boolean | false    | When true, interaction dates will be present on the returned resources. |
 
 ### Returns
+
 The organization object corresponding to the `organization_id`.
 
 ## Create a new organization
@@ -221,12 +225,12 @@ curl "https://api.affinity.co/organizations" \
 
 ```json
 {
-  "id":120611418,
-  "name":"Acme Corporation",
-  "domain":"acme.co",
-  "crunchbase_uuid":null,
-  "global":false,
-  "person_ids":[38706],
+  "id": 120611418,
+  "name": "Acme Corporation",
+  "domain": "acme.co",
+  "crunchbase_uuid": null,
+  "global": false,
+  "person_ids": [38706]
 }
 ```
 
@@ -239,13 +243,14 @@ the [List Entries](#list-entries) section of the API.
 
 ### Payload Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-name | string | true | The name of the organization.
-domain | string | false | The domain name of the organization.
-person_ids | integer[] | false | An array of unique identifiers of persons that the new organization will be associated with.
+| Parameter  | Type      | Required | Description                                                                                  |
+| ---------- | --------- | -------- | -------------------------------------------------------------------------------------------- |
+| name       | string    | true     | The name of the organization.                                                                |
+| domain     | string    | false    | The domain name of the organization.                                                         |
+| person_ids | integer[] | false    | An array of unique identifiers of persons that the new organization will be associated with. |
 
 ### Returns
+
 The organization resource that was just created by a successful request.
 
 ## Update an organization
@@ -265,12 +270,12 @@ curl "https://api.affinity.co/organizations/120611418" \
 
 ```json
 {
-  "id":120611418,
-  "name":"Acme Corp.",
-  "domain":"acme.co",
-  "crunchbase_uuid":null,
-  "global":false,
-  "person_ids":[38706,89734]
+  "id": 120611418,
+  "name": "Acme Corp.",
+  "domain": "acme.co",
+  "crunchbase_uuid": null,
+  "global": false,
+  "person_ids": [38706, 89734]
 }
 ```
 
@@ -288,19 +293,20 @@ If you are trying to add a person to an organization, the existing values for
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-organization_id | integer | true | The unique id of the organization to be updated.
+| Parameter       | Type    | Required | Description                                      |
+| --------------- | ------- | -------- | ------------------------------------------------ |
+| organization_id | integer | true     | The unique id of the organization to be updated. |
 
 ### Payload Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-name | string | false | The name of the organization.
-domain | string | false | The domain name of the organization.
-person_ids | integer[] | false | An array of unique identifiers of persons that the organization will be associated with.
+| Parameter  | Type      | Required | Description                                                                              |
+| ---------- | --------- | -------- | ---------------------------------------------------------------------------------------- |
+| name       | string    | false    | The name of the organization.                                                            |
+| domain     | string    | false    | The domain name of the organization.                                                     |
+| person_ids | integer[] | false    | An array of unique identifiers of persons that the organization will be associated with. |
 
 ### Returns
+
 The organization resource that was just updated through a successful request.
 
 ## Delete an organization
@@ -316,7 +322,7 @@ curl "https://api.affinity.co/organizations/120611418" \
 > Example Response
 
 ```json
-{"success": true}
+{ "success": true }
 ```
 
 `DELETE /organizations/{organization_id}`
@@ -325,17 +331,18 @@ Deletes an organization with a specified `organization_id`.
 
 **Note:**
 
-1. An appropriate error will be returned if you are trying to delete a `global` organization.
-2. This will also delete all the field values, if any, associated with the organization.
-Such field values exist linked to either global or list-specific fields.
+1.  An appropriate error will be returned if you are trying to delete a `global` organization.
+2.  This will also delete all the field values, if any, associated with the organization.
+    Such field values exist linked to either global or list-specific fields.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-organization_id | integer | true | The unique id of the organization that needs to be deleted.
+| Parameter       | Type    | Required | Description                                                 |
+| --------------- | ------- | -------- | ----------------------------------------------------------- |
+| organization_id | integer | true     | The unique id of the organization that needs to be deleted. |
 
 ### Returns
+
 `{success: true}`.
 
 ## Get global fields
@@ -382,7 +389,9 @@ If you aren't sure about what fields are, please read the
 [Fields](#fields) section first.
 
 ### Parameters
+
 None.
 
 ### Returns
+
 An array of the fields that exist on all organizations for your team.

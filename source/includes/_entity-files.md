@@ -8,27 +8,27 @@ Entity files are files uploaded to a relevant entity. Possible files, for exampl
 
 ```json
 {
-    "id": 43212,
-    "name": "JohnDoeFriends.csv",
-    "size": 993,
-    "personId": 10,
-    "organizationId": null,
-    "opportunityId": null,
-    "createdAt": "2011-01-25T09:59:35.288-08:00",
-    "uploaderId": 10
+  "id": 43212,
+  "name": "JohnDoeFriends.csv",
+  "size": 993,
+  "personId": 10,
+  "organizationId": null,
+  "opportunityId": null,
+  "createdAt": "2011-01-25T09:59:35.288-08:00",
+  "uploaderId": 10
 }
 ```
-Attribute | Type | Description
---------- | ------- | -----------
-id | integer | The unique identifier of the entity file object.
-name | string | The name of the file.
-size | string | The size of the file in bytes.
-personId | integer | The unique identifier of the person corresponding to the entity file.
-organizationId | integer | The unique identifier of the organization corresponding to the entity file.
-opportunityId | integer | The unique identifier of the opportunity corresponding to the entity file.
-uploaderId | integer | The unique identifier of the user who created the entity file.
-created_at | datetime | The time when the entity file was created.
 
+| Attribute      | Type     | Description                                                                 |
+| -------------- | -------- | --------------------------------------------------------------------------- |
+| id             | integer  | The unique identifier of the entity file object.                            |
+| name           | string   | The name of the file.                                                       |
+| size           | string   | The size of the file in bytes.                                              |
+| personId       | integer  | The unique identifier of the person corresponding to the entity file.       |
+| organizationId | integer  | The unique identifier of the organization corresponding to the entity file. |
+| opportunityId  | integer  | The unique identifier of the opportunity corresponding to the entity file.  |
+| uploaderId     | integer  | The unique identifier of the user who created the entity file.              |
+| created_at     | datetime | The time when the entity file was created.                                  |
 
 ## Get all files
 
@@ -93,19 +93,19 @@ confirm that there are no more resources).
 Can optionally be filtered to return only entity files associated with a specific `person`,
 `organization`, or `opportunity`.
 
-
 ### Query Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
-page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
-person_id | integer | false | A unique id that represents a Person whose associated files should be retrieved.
-organization_id | integer | false | A unique id that represents an Organization whose associated files should be retrieved.
-opportunity_id | integer | false | A unique id that represents an Opportunity whose associated files should be retrieved.
+| Parameter       | Type    | Required | Description                                                                                     |
+| --------------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
+| page_size       | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                     |
+| page_token      | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results. |
+| person_id       | integer | false    | A unique id that represents a Person whose associated files should be retrieved.                |
+| organization_id | integer | false    | A unique id that represents an Organization whose associated files should be retrieved.         |
+| opportunity_id  | integer | false    | A unique id that represents an Opportunity whose associated files should be retrieved.          |
 
 ### Returns
-An object with two fields: `entity_files` and `next_page_token`. `entity_files ` maps to an
+
+An object with two fields: `entity_files` and `next_page_token`. `entity_files` maps to an
 array of all the entity file resources. See description for more details on pagination.
 
 ## Get a specific file
@@ -120,14 +120,14 @@ curl "https://api.affinity.co/entity-files/43212" -u :<API-KEY>
 
 ```json
 {
-    "id": 43212,
-    "name": "GoogleFriends.csv",
-    "size": 993,
-    "personId": null,
-    "organizationId": 10,
-    "opportunityId": null,
-    "createdAt": "2011-01-25T09:59:35.288-08:00",
-    "uploaderId": 10
+  "id": 43212,
+  "name": "GoogleFriends.csv",
+  "size": 993,
+  "personId": null,
+  "organizationId": 10,
+  "opportunityId": null,
+  "createdAt": "2011-01-25T09:59:35.288-08:00",
+  "uploaderId": 10
 }
 ```
 
@@ -137,11 +137,12 @@ Fetches an entity with a specified `entity_file_id`.
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-entity_file_id | integer | true | The unique id of the entity file that needs to be retrieved.
+| Parameter      | Type    | Required | Description                                                  |
+| -------------- | ------- | -------- | ------------------------------------------------------------ |
+| entity_file_id | integer | true     | The unique id of the entity file that needs to be retrieved. |
 
 ### Returns
+
 The entity file resource corresponding to the `entity_file_id`.
 
 ## Download File
@@ -160,11 +161,12 @@ Downloads an entity file with a specified `entity_file_id`
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-entity_file_id | integer | true | The unique id of the entity file that needs to be downloaded.
+| Parameter      | Type    | Required | Description                                                   |
+| -------------- | ------- | -------- | ------------------------------------------------------------- |
+| entity_file_id | integer | true     | The unique id of the entity file that needs to be downloaded. |
 
 ### Returns
+
 The actual entity file corresponding to the `entity_file_id`.
 
 ## Upload files
@@ -182,7 +184,7 @@ curl "https://api.affinity.co/entity-files" \
 > Example Response
 
 ```json
-{"success": true}
+{ "success": true }
 ```
 
 `POST /entity-files`
@@ -193,18 +195,19 @@ The file will display on the entity's profile, provided that the entity is not a
 
 ### Path Parameters
 
-Parameter | Type | Required | Description
---------- | ------- | ---------- | -----------
-file | File | false | A singular file to be uploaded, formatted as form data (multipart/form-data).
-files | File[] | false | An array of files to be uploaded, formatted as form data (multipart/form-data).
-person_id | integer | false | The unique identifier of the person object to attach the file(s) to.
-organization_id | integer | false | The unique identifier of the organization object to attach the file(s) to.
-opportunity_id | integer | false | The unique identifier of the opportunity object to attach the file(s) to.
+| Parameter       | Type    | Required | Description                                                                     |
+| --------------- | ------- | -------- | ------------------------------------------------------------------------------- |
+| file            | File    | false    | A singular file to be uploaded, formatted as form data (multipart/form-data).   |
+| files           | File[]  | false    | An array of files to be uploaded, formatted as form data (multipart/form-data). |
+| person_id       | integer | false    | The unique identifier of the person object to attach the file(s) to.            |
+| organization_id | integer | false    | The unique identifier of the organization object to attach the file(s) to.      |
+| opportunity_id  | integer | false    | The unique identifier of the opportunity object to attach the file(s) to.       |
 
 **Note:**
 
-1. Files must be attached to a single entity, specified using one of the three entity id parameters (`person_id`, `organization_id`, and `opportunity_id`).
-2. At least one file must be uploaded using the `file` or `files` parameters.
+1.  Files must be attached to a single entity, specified using one of the three entity id parameters (`person_id`, `organization_id`, and `opportunity_id`).
+2.  At least one file must be uploaded using the `file` or `files` parameters.
 
 ### Returns
+
 `{"success": true}`

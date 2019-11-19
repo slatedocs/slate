@@ -52,6 +52,7 @@ will need to pass in the key with every API request for us to process it success
 Otherwise, an error with a code of `401` will be returned.
 
 ## Requests & Responses
+
 This is a full-featured RESTful API. We provide reading & writing functionality for each
 object type in Affinity. All requests use the base URL of `https://api.affinity.co/`.
 
@@ -60,18 +61,19 @@ requested, or a valid error message and error code as outlined below.
 
 Here is a list of all the error codes the Affinity API returns in case something does not go as expected:
 
-Error Code | Meaning
---------------------- | -------
-401 | Unauthorized -- Your API key is invalid.
-404 | Not Found -- Requested resource does not exist.
-422 | Unprocessable Entity -- Malformed parameters supplied. This can also happen in cases the parameters supplied logically cannot complete the request. In this case, an appropriate error message is delivered.
-429 | Too Many Requests -- You have exceed the rate limit.
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- This shouldn't generally happen. Either a deploy is in process, or Affinity services are down.
+| Error Code | Meaning                                                                                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 401        | Unauthorized -- Your API key is invalid.                                                                                                                                                                     |
+| 404        | Not Found -- Requested resource does not exist.                                                                                                                                                              |
+| 422        | Unprocessable Entity -- Malformed parameters supplied. This can also happen in cases the parameters supplied logically cannot complete the request. In this case, an appropriate error message is delivered. |
+| 429        | Too Many Requests -- You have exceed the rate limit.                                                                                                                                                         |
+| 500        | Internal Server Error -- We had a problem with our server. Try again later.                                                                                                                                  |
+| 503        | Service Unavailable -- This shouldn't generally happen. Either a deploy is in process, or Affinity services are down.                                                                                        |
 
 **Note:** Requests must be sent over HTTPS. Requests sent over HTTP will not return any
 data in order to ensure your sensitive information remains secure.
 
 ## Rate Limiting
+
 Each API key is limited to 450k requests per day. Once you hit the quota, all further requests will return an error code of
 429 - this will reset as soon as the next day begins.

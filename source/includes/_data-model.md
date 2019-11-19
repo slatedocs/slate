@@ -1,4 +1,5 @@
 # Data Model
+
 The three top-level objects in Affinity are Persons, Organizations, and Opportunities, and
 everything in the product is centered around these three resources. We refer to a data
 model that is a person, organization, or opportunity as an Entity.
