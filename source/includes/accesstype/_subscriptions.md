@@ -582,7 +582,7 @@ Trial period is available for a recurring subscription. In order to create a sub
 
 If you create a subscription by a subscription plan which has trial period enabled, only authorization amount of 5 rs will be charged to the customer, which will be refunded. And at the end of trial period duration, first subscription charge will occur.
 
-By default the trial period duration of the plan is for the trial period duration
+By default the subscription's trial period duration is taken from the trial period duration specified in the plan
 
 However you can customize the trial period. You need to send the following keys in the subscription object, if you don't want the default trial period of the subscription plan
 
