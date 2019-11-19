@@ -213,7 +213,72 @@ The following event `type`s will be supported, along with the content as `JSON`.
 ```
 
 >TRANSFER_OUT_CREATED
-><br>This is fired whenever a transfer in is requested.
+><br>This is fired whenever a transfer out is requested.
+
+```json
+{
+  "transferOut": {
+    "id": "string",
+    "isaId": "string",
+    "originatorId": "string",
+    "originatorName": "string",
+    "clientId": "string",
+    "workflowId": "string",
+    "isaManager": {
+      "name": "string",
+      "address": {
+        "lineOne": "string",
+        "lineTwo": "string",
+        "lineThree": "string",
+        "townCity": "string",
+        "region": "string",
+        "country": "string",
+        "postcode": "string"
+      },
+      "accountNumber": "string",
+      "sortCode": "string",
+      "bankReference": "string"
+    },
+    "transferDetails": {
+      "dateTAFReceived": "2017-12-12",
+      "transferDateFromNewIsaManager": "2017-12-12",
+      "transferAll": "boolean",
+      "transferCurrentYearSubscriptions": "boolean",
+      "transferPriorYearSubscriptions": "boolean",
+      "transferAllPriorYearSubscriptions": "boolean",
+      "priorYearAmountToTransfer": {
+        "amount": 0.00,
+          "currency": "GBP"
+      },
+      "transferOutFee": {
+        "amount": 0.00,
+        "currency": "GBP"
+      }
+    },
+    "transferOutFee": {
+      "id": "string",
+      "transferOutId": "string",
+      "transferOutFee": {
+        "amount": 0.00,
+        "currency": "GBP"
+      },
+      "dateTime": "2017-12-12T14:34:23"
+    },
+    "dateTimeStarted": "2017-12-12T14:34:23",
+    "amountToTransfer": {
+      "amount": 0.00,
+      "currency": "GBP"
+    },
+    "amountSubscribedInCurrentYear": {
+      "amount": 0.00,
+      "currency": "GBP"
+    },
+    "dateOfFirstSubscriptionInCurrentYear": "2017-12-12"
+  }
+```
+
+>TRANSFER_OUT_COMPLETED
+><br>This is fired whenever a transfer out is completed.
 
 ```json
 {
