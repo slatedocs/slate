@@ -11,6 +11,7 @@ includes:
   - authentication
   - rate_limits
   - types
+  - place_order_error_codes
   - rest_api
   - errors
   - rest_clients

@@ -122,7 +122,7 @@
             }
           },
           "400" : {
-            "description" : "Returns error if order could not be placed",
+            "description" : "Returns [error](#place-order-error-description) if order could not be placed",
             "schema" : {
               "type" : "object",
               "properties" : {
@@ -263,7 +263,7 @@
             }
           },
           "400" : {
-            "description" : "Returns error if order could not be placed",
+            "description" : "Returns [error](#place-order-error-description) if order could not be placed",
             "schema" : {
               "type" : "object",
               "properties" : {
@@ -396,8 +396,8 @@
           "schema" : {
             "$ref" : "#/definitions/ArrayOfCreateOrderRequest"
           },
-          "description" : "Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders"
-        } ],
+          "description" : "Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders"        
+          } ],
         "responses" : {
           "200" : {
             "description" : "returns the orders placed",
