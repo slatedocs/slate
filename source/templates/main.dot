@@ -115,9 +115,9 @@ Base URLs:
 ### Properties
 {{?}}
 
-{{? block.rows.length}}|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|{{?}}
-{{~ block.rows :p}}|{{=p.displayName}}|{{=p.safeType}}|{{=p.required}}|{{=p.restrictions||'none'}}|{{=p.description||'none'}}|
+{{? block.rows.length}}|Name|Description|
+|---|---|{{?}}
+{{~ block.rows :p}}|{{=p.displayName}}<span class="param-type"> {{=p.safeType}}</span>|{{=p.description || 'none'}}|
 {{~}}
 {{~}}
 {{? (blocks[0].rows.length === 0) && (blocks.length === 1) }}

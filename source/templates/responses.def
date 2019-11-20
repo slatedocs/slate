@@ -6,9 +6,9 @@
 
 <h3 id="{{=data.operationUniqueSlug}}-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-{{~ data.responses :r}}|{{=r.status}}|{{=r.meaning}}|{{=r.description || 'none'}}|{{= r.schema.replaceAll(/object/ig, "").replaceAll(/array/ig, "")}}|
+|Status|Description|
+|---|---|
+{{~ data.responses :r}}|{{=r.status}}<span class="param-type"> {{= r.schema.replaceAll(/object/ig, "").replaceAll(/array/ig, "")}}</span>|{{=r.description || 'none'}}|
 {{~}}
 
 {{ data.responseSchemas = false; }}

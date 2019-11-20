@@ -3819,7 +3819,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomFieldObject'
+              allOf:
+                - $ref: '#/components/schemas/CustomFieldObject'
       responses:
         200:
           description: The custom field was successfully updated.
@@ -4404,7 +4405,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PortfolioObject'
+              allOf:
+                - $ref: '#/components/schemas/PortfolioObject'
       responses:
         201:
           description: Successfully retrieved portfolios.
@@ -4467,7 +4469,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PortfolioObject'
+              allOf:
+                - $ref: '#/components/schemas/PortfolioObject'
       responses:
         200:
           description: Successfully updated the portfolio.
@@ -4614,14 +4617,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - name: item
-        in: query
-        description: >-
-          The item to remove from the portfolio.
-        schema:
-          type: string
-        required: true
-        example: '1331'
     post:
       summary: Remove a portfolio item
       description: >-
@@ -4632,6 +4627,23 @@ paths:
         - Portfolios
         - Items
       operationId: removePortfolioItem
+      requestBody:
+        description: Information about the item being removed.
+        required: true
+        content:
+          application/json:
+            schema:
+              name: data
+              in: body
+              type: object
+              required:
+                - item
+              properties:
+                item:
+                  description: >-
+                    The item to remove from the portfolio.
+                  type: string
+                  example: '1331'
       responses:
         200:
           description: Successfully removed the item from the portfolio.
@@ -4654,14 +4666,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - name: members
-        in: query
-        description: >-
-          An array of user ids.
-        schema:
-          type: string
-        required: true
-        example: 521621,621373
     post:
       summary: Add users to a portfolio
       description: >-
@@ -4671,6 +4675,23 @@ paths:
       tags:
         - Portfolios
       operationId: addPortfolioMembers
+      requestBody:
+        description: Information about the members being added.
+        required: true
+        content:
+          application/json:
+            schema:
+              name: data
+              in: body
+              type: object
+              required:
+                - members
+              properties:
+                members:
+                  description: >-
+                    An array of user ids.
+                  type: string
+                  example: 521621,621373
       responses:
         200:
           description: Successfully added members to the portfolio.
@@ -4693,14 +4714,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - name: members
-        in: query
-        description: >-
-          An array of user ids.
-        schema:
-          type: string
-        required: true
-        example: 521621,621373
     post:
       summary: Remove users from a portfolio
       description: >-
@@ -4710,6 +4723,23 @@ paths:
       tags:
         - Portfolios
       operationId: removePortfolioMembers
+      requestBody:
+        description: Information about the members being removed.
+        required: true
+        content:
+          application/json:
+            schema:
+              name: data
+              in: body
+              type: object
+              required:
+                - members
+              properties:
+                members:
+                  description: >-
+                    An array of user ids.
+                  type: string
+                  example: 521621,621373
       responses:
         200:
           description: Successfully removed the members from the portfolio.
@@ -4730,39 +4760,6 @@ paths:
   /portfolios/{portfolio_gid}/addCustomFieldSetting:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
-      - name: custom_field
-        in: query
-        description: The custom field to associate with this portfolio.
-        required: true
-        schema:
-          type: string
-        example: '14916'
-      - name: is_important
-        in: query
-        description: >-
-          Whether this field should be considered important to this portfolio
-          (for instance, to display in the list view of items in the portfolio).
-        schema:
-          type: boolean
-        example: true
-      - name: insert_before
-        in: query
-        description: >-
-          An id of a Custom Field Setting on this portfolio, before which the new
-          Custom Field Setting will be added.  `insert_before` and `insert_after`
-          parameters cannot both be specified.
-        schema:
-          type: string
-        example: '1331'
-      - name: insert_after
-        in: query
-        description: >-
-          An id of a Custom Field Setting on this portfolio, after which the new
-          Custom Field Setting will be added.  `insert_before` and `insert_after`
-          parameters cannot both be specified.
-        schema:
-          type: string
-        example: '1331'
       - $ref: '#/components/parameters/pretty'
     post:
       summary: Add a custom field to a portfolio
@@ -4770,9 +4767,44 @@ paths:
         Custom fields are associated with portfolios by way of custom field
         settings.  This method creates a setting for the portfolio.
       tags:
-        - Portfolios
-        - Custom Fields
+        - Custom Field Settings
       operationId: portfolio.addCustomFieldSetting
+      requestBody:
+        description: Information about the custom field setting.
+        required: true
+        content:
+          application/json:
+            schema:
+              name: data
+              in: body
+              type: object
+              required:
+                - custom_field
+              properties:
+                custom_field:
+                  description: The custom field to associate with this portfolio.
+                  type: string
+                  example: '14916'
+                is_important:
+                  description: >-
+                    Whether this field should be considered important to this portfolio
+                    (for instance, to display in the list view of items in the portfolio).
+                  type: boolean
+                  example: true
+                insert_before:
+                  description: >-
+                    An id of a Custom Field Setting on this portfolio, before which the new
+                    Custom Field Setting will be added.  `insert_before` and `insert_after`
+                    parameters cannot both be specified.
+                  type: string
+                  example: '1331'
+                insert_after:
+                  description: >-
+                    An id of a Custom Field Setting on this portfolio, after which the new
+                    Custom Field Setting will be added.  `insert_before` and `insert_after`
+                    parameters cannot both be specified.
+                  type: string
+                  example: '1331'
       responses:
         200:
           description: Successfully added the custom field to the portfolio.
@@ -4793,22 +4825,30 @@ paths:
   /portfolios/{portfolio_gid}/removeCustomFieldSetting:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
-      - name: custom_field
-        in: query
-        description: The custom field to remove from this portfolio.
-        required: true
-        schema:
-          type: string
-        example: '14916'
       - $ref: '#/components/parameters/pretty'
     post:
       summary: Remove a custom field from a portfolio
       description: >-
-        Removes a custom field setting from a portfolio.
+        Removes a custom field setting from a portfolio
       tags:
-        - Portfolios
-        - Custom Fields
+        - Custom Field Settings
       operationId: portfolio.removeCustomFieldSetting
+      requestBody:
+        description: Information about the custom field setting being removed.
+        required: true
+        content:
+          application/json:
+            schema:
+              name: data
+              in: body
+              type: object
+              required:
+                - custom_field
+              properties:
+                custom_field:
+                  description: The custom field to remove from this portfolio.
+                  type: string
+                  example: '14916'
       responses:
         200:
           description: Successfully removed the custom field from the portfolio.
@@ -5190,7 +5230,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProjectObject'
+              allOf:
+                - $ref: '#/components/schemas/ProjectObject'
       responses:
         200:
           description: Successfully updated the project.
@@ -5420,7 +5461,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProjectObject'
+              allOf:
+                - $ref: '#/components/schemas/ProjectObject'
       responses:
         201:
           description: Successfully created the specified project.
@@ -5489,7 +5531,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProjectObject'
+              allOf:
+                - $ref: '#/components/schemas/ProjectObject'
       responses:
         201:
           description: >-
@@ -5697,7 +5740,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SectionObject'
+              allOf:
+                - $ref: '#/components/schemas/SectionObject'
       responses:
         200:
           description: Successfully updated the specified section.
@@ -6011,7 +6055,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StoryObject'
+              allOf:
+                - $ref: '#/components/schemas/StoryObject'
       responses:
         200:
           description: Successfully retrieved the specified story.
@@ -6204,7 +6249,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TagObject'
+              allOf:
+                - $ref: '#/components/schemas/TagObject'
       responses:
         201:
           description: Successfully created the newly specified tag.
@@ -6368,7 +6414,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TagObject'
+              allOf:
+                - $ref: '#/components/schemas/TagObject'
       responses:
         200:
           description: Successfully retrieved the specified set of tags.
@@ -7074,7 +7121,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DependencyArray'
+              allOf:
+                - $ref: '#/components/schemas/DependencyArray'
       responses:
         200:
           description: Successfully set the specified dependencies on the task.
@@ -7109,7 +7157,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DependencyArray'
+              allOf:
+                - $ref: '#/components/schemas/DependencyArray'
       responses:
         200:
           description: >-
@@ -7179,7 +7228,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DependentArray'
+              allOf:
+                - $ref: '#/components/schemas/DependentArray'
       responses:
         200:
           description: >-
@@ -7216,7 +7266,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DependentArray'
+              allOf:
+                - $ref: '#/components/schemas/DependentArray'
       responses:
         200:
           description: >-
@@ -8127,7 +8178,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserIdObject'
+              allOf:
+                - $ref: '#/components/schemas/UserIdObject'
       responses:
         200:
           description: >-
@@ -8165,7 +8217,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserIdObject'
+              allOf:
+                - $ref: '#/components/schemas/UserIdObject'
       responses:
         200:
           description: >-
@@ -8915,7 +8968,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WorkspaceObject'
+              allOf:
+                - $ref: '#/components/schemas/WorkspaceObject'
       responses:
         200:
           description: Update for the workspace was successful.
@@ -8954,7 +9008,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserIdObject'
+              allOf:
+                - $ref: '#/components/schemas/UserIdObject'
       responses:
         200:
           description: >-
@@ -8996,7 +9051,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserIdObject'
+              allOf:
+                - $ref: '#/components/schemas/UserIdObject'
       responses:
         200:
           description: >-

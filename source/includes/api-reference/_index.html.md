@@ -70,27 +70,27 @@ Get the full record for a single attachment.
 
 <h3 id="get-an-attachment-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|attachment_gid|path|string|true|Globally unique identifier for the attachment.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/attachment_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the attachment.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-an-attachment-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the record for a single attachment.|[Attachment](#schemaattachment)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|402|[Payment Required](https://tools.ietf.org/html/rfc7231#section-6.5.2)|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|None|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|424|[Failed Dependency](https://tools.ietf.org/html/rfc2518#section-10.5)|You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](https://developers.asana.com/docs/#rate-limits) for more information.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-|501|[Not Implemented](https://tools.ietf.org/html/rfc7231#section-6.6.2)|There is an issue between the load balancers and Asana's API.|[Error](#schemaerror)|
-|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|[Error](#schemaerror)|
-|504|[Gateway Time-out](https://tools.ietf.org/html/rfc7231#section-6.6.5)|This request took too long to complete.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Attachment](#schemaattachment)</span>|Successfully retrieved the record for a single attachment.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> None</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|424<span class="param-type"> [Error](#schemaerror)</span>|You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](https://developers.asana.com/docs/#rate-limits) for more information.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+|501<span class="param-type"> [Error](#schemaerror)</span>|There is an issue between the load balancers and Asana's API.|
+|503<span class="param-type"> [Error](#schemaerror)</span>|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|
+|504<span class="param-type"> [Error](#schemaerror)</span>|This request took too long to complete.|
 
 </section>
 
@@ -128,22 +128,22 @@ Returns an empty data record.
 
 <h3 id="delete-an-attachment-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|attachment_gid|path|string|true|Globally unique identifier for the attachment.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/attachment_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the attachment.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-an-attachment-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified attachment.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified attachment.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -185,24 +185,24 @@ Returns the compact records for all attachments on the task.
 
 <h3 id="get-attachments-for-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-attachments-for-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the compact records for all attachments on the task.|[Attachment](#schemaattachment)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Attachment](#schemaattachment)</span>|Successfully retrieved the compact records for all attachments on the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -271,14 +271,14 @@ in order for the server to reliably and properly handle the request.
 
 <h3 id="upload-an-attachment-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The file you want to upload.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The file you want to upload.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 #### Detailed descriptions
 
@@ -295,14 +295,14 @@ appending the content type to the file path: `—form
 
 <h3 id="upload-an-attachment-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully uploaded the attachment to the task.|[Attachment](#schemaattachment)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Attachment](#schemaattachment)</span>|Successfully uploaded the attachment to the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -383,10 +383,14 @@ curl -X POST https://app.asana.com/api/1.0/batch \
         "relative_path": "/tasks/123",
         "method": "get",
         "data": {
-          ...
+          "assignee": "me",
+          "workspace": "1337"
         },
         "options": {
-          ...
+          "limit": 3,
+          "fields": [
+            ...
+          ]
         }
       }
     ]
@@ -406,7 +410,10 @@ curl -X POST https://app.asana.com/api/1.0/batch \
       },
       "body": {
         "data": {
-          ...
+          "gid": "1967",
+          "completed": false,
+          "name": "Hello, world!",
+          "notes": "How are you today?"
         }
       }
     }
@@ -422,20 +429,20 @@ Make multiple requests in parallel to Asana's API.
 
 <h3 id="submit-parallel-requests-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The requests to batch together via the Batch API.|
-|» data|body|object|false|none|
-|»» actions|body|[[BatchRequest](#schemabatchrequest)]|false|[A request object for use in a batch request.]|
-|»»» relative_path|body|string|true|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
-|»»» method|body|string|true|The HTTP method you wish to emulate for the action.|
-|»»» data|body|object|false|For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.|
-|»»» options|body|object|false|Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. “Pretty” JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.|
-|»»»» limit|body|integer|false|Pagination limit for the request.|
-|»»»» offset|body|integer|false|Pagination offset for the request.|
-|»»»» fields|body|[string]|false|The fields to retrieve in the request.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The requests to batch together via the Batch API.|
+|» data<span class="param-type"> object</span>|none|
+|»» actions<span class="param-type"> [[BatchRequest](#schemabatchrequest)]</span>|[A request object for use in a batch request.]|
+|»»» relative_path<span class="param-type"> string</span><div class="param-required">required</div>|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
+|»»» method<span class="param-type"> string</span><div class="param-required">required</div>|The HTTP method you wish to emulate for the action.|
+|»»» data<span class="param-type"> object</span>|For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.|
+|»»» options<span class="param-type"> object</span>|Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. “Pretty” JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.|
+|»»»» limit<span class="param-type"> integer</span>|Pagination limit for the request.|
+|»»»» offset<span class="param-type"> integer</span>|Pagination offset for the request.|
+|»»»» fields<span class="param-type"> [string]</span>|The fields to retrieve in the request.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Enumerated Values
 
@@ -450,14 +457,14 @@ Make multiple requests in parallel to Asana's API.
 
 <h3 id="submit-parallel-requests-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully completed the requested batch API operations.|[BatchResult](#schemabatchresult)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [BatchResult](#schemabatchresult)</span>|Successfully completed the requested batch API operations.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -527,7 +534,9 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
     "type": "text",
     "enum_options": [
       {
-        ...
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       }
     ],
     "enum_value": null,
@@ -553,7 +562,11 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
     "type": "text",
     "enum_options": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       }
     ],
     "enum_value": null,
@@ -583,33 +596,33 @@ Returns the full record of the newly created custom field.
 
 <h3 id="create-a-custom-field-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|false|The custom field object to create.|
-|» data|body|object|false|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
-|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»» resource_type|body|string|false|The base type of this resource.|
-|»» name|body|string|false|The name of the object.|
-|»» resource_subtype|body|string|false|The type of the custom field. Must be one of the given values.|
-|»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|The name of the enum option.|
-|»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» enum_value|body|any|false|none|
-|»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
-|»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
-|»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
-|»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» workspace|body|string|true|The workspace to create a custom field in.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span>|The custom field object to create.|
+|» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enum_value<span class="param-type"> any</span>|none|
+|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace to create a custom field in.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 #### Enumerated Values
 
@@ -624,14 +637,14 @@ Returns the full record of the newly created custom field.
 
 <h3 id="create-a-custom-field-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Custom field successfully created.|[CustomField](#schemacustomfield)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [CustomField](#schemacustomfield)</span>|Custom field successfully created.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -663,7 +676,11 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "type": "text",
     "enum_options": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       }
     ],
     "enum_value": null,
@@ -692,22 +709,22 @@ type-specific custom field definitions.
 
 <h3 id="get-a-custom-field-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-custom-field-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the complete definition of a custom field’s metadata.|[CustomField](#schemacustomfield)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [CustomField](#schemacustomfield)</span>|Successfully retrieved the complete definition of a custom field’s metadata.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -737,7 +754,9 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "type": "text",
     "enum_options": [
       {
-        ...
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       }
     ],
     "enum_value": null,
@@ -762,7 +781,11 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "type": "text",
     "enum_options": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       }
     ],
     "enum_value": null,
@@ -789,23 +812,53 @@ Returns the complete updated custom field record.
 
 <h3 id="update-a-custom-field-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[CustomFieldObject](#schemacustomfieldobject)|false|The custom field object with all updated properties.|
-|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span>|The custom field object with all updated properties.|
+|» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enum_value<span class="param-type"> any</span>|none|
+|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
+| type|text|
+| type|enum|
+| type|number|
 
 <h3 id="update-a-custom-field-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The custom field was successfully updated.|[CustomField](#schemacustomfield)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [CustomField](#schemacustomfield)</span>|The custom field was successfully updated.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -843,22 +896,22 @@ Returns an empty data record.
 
 <h3 id="delete-a-custom-field-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-custom-field-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The custom field was successfully deleted.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|The custom field was successfully deleted.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -890,7 +943,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
-        ...
+        {
+          ...
+        }
       ],
       "enum_value": null,
       "enabled": true,
@@ -908,24 +963,24 @@ Returns a list of the compact representation of all of the custom fields in a wo
 
 <h3 id="get-a-workspace's-custom-fields-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-a-workspace's-custom-fields-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved all custom fields for the given workspace.|[CustomField](#schemacustomfield)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [CustomField](#schemacustomfield)</span>|Successfully retrieved all custom fields for the given workspace.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -984,33 +1039,33 @@ Returns the full record of the newly created enum option.
 
 <h3 id="create-an-enum-option-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|false|The enum option object to create.|
-|» data|body|object|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»» resource_type|body|string|false|The base type of this resource.|
-|»» name|body|string|false|The name of the enum option.|
-|»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» insert_before|body|string|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
-|»» insert_after|body|string|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
-|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span>|The enum option object to create.|
+|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="create-an-enum-option-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Custom field enum option successfully created.|[EnumOption](#schemaenumoption)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Custom field enum option successfully created.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1069,32 +1124,32 @@ Locked custom fields can only be reordered by the user who locked the field.
 
 <h3 id="reorder-a-custom-field's-enum-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|false|The enum option object to create.|
-|» data|body|object|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»» resource_type|body|string|false|The base type of this resource.|
-|»» name|body|string|false|The name of the enum option.|
-|»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» enum_option|body|string|true|The gid of the enum option to relocate.|
-|»» before_enum_option|body|string|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
-|»» after_enum_option|body|string|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
-|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span>|The enum option object to create.|
+|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enum_option<span class="param-type"> string</span><div class="param-required">required</div>|The gid of the enum option to relocate.|
+|»» before_enum_option<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» after_enum_option<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="reorder-a-custom-field's-enum-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Custom field enum option successfully reordered.|[EnumOption](#schemaenumoption)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Custom field enum option successfully reordered.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1151,29 +1206,29 @@ Returns the full record of the updated enum option.
 
 <h3 id="update-an-enum-option-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|false|The enum option object to update|
-|» data|body|[EnumOption](#schemaenumoption)|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»» resource_type|body|string|false|The base type of this resource.|
-|»» name|body|string|false|The name of the enum option.|
-|»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|enum_option_gid|path|string|false|Globally unique identifier for the enum option.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span>|The enum option object to update|
+|» data<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|/enum_option_gid<span class="param-type"> string</span>|Globally unique identifier for the enum option.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="update-an-enum-option-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified custom field enum.|[EnumOption](#schemaenumoption)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Successfully updated the specified custom field enum.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1182,7 +1237,7 @@ Returns the full record of the updated enum option.
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
+<code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a></code>
 </pre>
 
 Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
@@ -1230,24 +1285,24 @@ Returns a list of all of the custom fields settings on a project, in compact for
 
 <h3 id="get-a-project's-custom-fields-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-a-project's-custom-fields-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved custom field settings objects for a project.|[CustomFieldSetting](#schemacustomfieldsetting)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [CustomFieldSetting](#schemacustomfieldsetting)</span>|Successfully retrieved custom field settings objects for a project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1292,24 +1347,152 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 
 <h3 id="get-a-portfolio's-custom-fields-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-a-portfolio's-custom-fields-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved custom field settings objects for a portfolio.|[CustomFieldSetting](#schemacustomfieldsetting)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [CustomFieldSetting](#schemacustomfieldsetting)</span>|Successfully retrieved custom field settings objects for a portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Add a custom field to a portfolio
+
+<a id="opIdportfolio.addCustomFieldSetting"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "custom_field": "14916",
+  "is_important": true,
+  "insert_before": "1331",
+  "insert_after": "1331"
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
+</p>
+
+Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
+
+<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
+|» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this portfolio.|
+|» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this portfolio (for instance, to display in the list view of items in the portfolio).|
+|» insert_before<span class="param-type"> string</span>|An id of a Custom Field Setting on this portfolio, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|» insert_after<span class="param-type"> string</span>|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+
+<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the custom field to the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Remove a custom field from a portfolio
+
+<a id="opIdportfolio.removeCustomFieldSetting"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "custom_field": "14916"
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
+</p>
+
+Removes a custom field setting from a portfolio
+
+<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting being removed.|
+|» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this portfolio.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+
+<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the custom field from the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1360,15 +1543,20 @@ curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
   "data": [
     {
       "user": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "resource": {
-        ...
+        "gid": "12345",
+        "name": "Bug Task"
       },
       "type": "task",
       "action": "changed",
       "parent": {
-        ...
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Bug Task"
       },
       "created_at": "2012-02-22T02:06:58.147Z"
     }
@@ -1389,12 +1577,12 @@ lieu of including the resource ID in the data for the request.
 
 <h3 id="get-events-on-a-resource-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|resource|query|string|true|A resource ID to subscribe to. The resource can be a task or project.|
-|sync|query|string|false|A sync token received from the last request, or none on first sync. Events will be returned from the point in time that the sync token was generated.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?resource<span class="param-type"> string</span><div class="param-required">required</div>|A resource ID to subscribe to. The resource can be a task or project.|
+|?sync<span class="param-type"> string</span>|A sync token received from the last request, or none on first sync. Events will be returned from the point in time that the sync token was generated.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
@@ -1403,14 +1591,14 @@ lieu of including the resource ID in the data for the request.
 
 <h3 id="get-events-on-a-resource-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved events.|[Event](#schemaevent)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Event](#schemaevent)</span>|Successfully retrieved events.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1475,22 +1663,22 @@ Returns the full record for a job.
 
 <h3 id="get-a-job-by-id-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|job_gid|path|string|true|Globally unique identifier for the job.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/job_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the job.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-job-by-id-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved Job.|[Job](#schemajob)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Job](#schemajob)</span>|Successfully retrieved Job.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1571,26 +1759,26 @@ This method creates a request to export an Organization. Asana will complete the
 
 <h3 id="create-an-organization-export-request-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The organization to export.|
-|» data|body|object|false|none|
-|»» organization|body|string|false|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The organization to export.|
+|» data<span class="param-type"> object</span>|none|
+|»» organization<span class="param-type"> string</span>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="create-an-organization-export-request-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created organization export request.|[OrganizationExport](#schemaorganizationexport)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [OrganizationExport](#schemaorganizationexport)</span>|Successfully created organization export request.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1636,22 +1824,22 @@ Returns details of a previously-requested Organization export.
 
 <h3 id="get-details-on-an-org-export-request-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organization_export_gid|path|string|true|Globally unique identifier for the organization export.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/organization_export_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the organization export.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-details-on-an-org-export-request-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved organization export object.|[OrganizationExport](#schemaorganizationexport)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [OrganizationExport](#schemaorganizationexport)</span>|Successfully retrieved organization export object.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1660,7 +1848,7 @@ Returns details of a previously-requested Organization export.
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a></code>
+<code><a href="#get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a></code>
 </pre>
 
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
@@ -1706,25 +1894,25 @@ Returns a list of the portfolios in compact representation that are owned by the
 
 <h3 id="get-multiple-portfolios-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace|query|string|false|The workspace or organization to filter portfolios on.|
-|owner|query|string|false|The user who owns the portfolio. Currently, API users can only get a list of portfolios that they themselves own.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?workspace<span class="param-type"> string</span>|The workspace or organization to filter portfolios on.|
+|?owner<span class="param-type"> string</span>|The user who owns the portfolio. Currently, API users can only get a list of portfolios that they themselves own.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-multiple-portfolios-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved portfolios.|[Portfolio](#schemaportfolio)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully retrieved portfolios.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1787,22 +1975,65 @@ integrations to create their own starting state on a portfolio.
 
 <h3 id="create-a-portfolio-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[PortfolioObject](#schemaportfolioobject)|true|The portfolio to create.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The portfolio to create.|
+|» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» color<span class="param-type"> string</span>|Color of the portfolio.|
+|»» custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» project<span class="param-type"> any</span>|none|
+|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|»»» parent<span class="param-type"> any</span>|none|
+|»»» custom_field<span class="param-type"> any</span>|none|
+|»» owner<span class="param-type"> any</span>|none|
+|»» workspace<span class="param-type"> any</span>|none|
+|»» members<span class="param-type"> any</span>|none|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
 
 <h3 id="create-a-portfolio-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully retrieved portfolios.|[Portfolio](#schemaportfolio)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully retrieved portfolios.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1839,7 +2070,12 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
     "color": "light-green",
     "custom_field_settings": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field_setting",
+        "project": null,
+        "is_important": false,
+        "parent": null,
+        "custom_field": null
       }
     ],
     "owner": null,
@@ -1857,22 +2093,22 @@ Returns the complete portfolio record for a single portfolio.
 
 <h3 id="get-a-portfolio-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-portfolio-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio.|[Portfolio](#schemaportfolio)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully retrieved the requested portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -1924,7 +2160,12 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
     "color": "light-green",
     "custom_field_settings": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field_setting",
+        "project": null,
+        "is_important": false,
+        "parent": null,
+        "custom_field": null
       }
     ],
     "owner": null,
@@ -1946,23 +2187,66 @@ Returns the complete updated portfolio record.
 
 <h3 id="update-a-portfolio-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[PortfolioObject](#schemaportfolioobject)|true|The updated fields for the portfolio.|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the portfolio.|
+|» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» color<span class="param-type"> string</span>|Color of the portfolio.|
+|»» custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» project<span class="param-type"> any</span>|none|
+|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|»»» parent<span class="param-type"> any</span>|none|
+|»»» custom_field<span class="param-type"> any</span>|none|
+|»» owner<span class="param-type"> any</span>|none|
+|»» workspace<span class="param-type"> any</span>|none|
+|»» members<span class="param-type"> any</span>|none|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
 
 <h3 id="update-a-portfolio-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the portfolio.|[Portfolio](#schemaportfolio)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully updated the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2001,22 +2285,22 @@ Returns an empty data record.
 
 <h3 id="delete-a-portfolio-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-portfolio-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified portfolio.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2049,25 +2333,37 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
       "archived": false,
       "color": "light-green",
       "current_status": {
-        ...
+        "color": "green",
+        "text": "Everything is great",
+        "author": {
+          ...
+        }
       },
       "custom_fields": [
-        ...
+        {
+          ...
+        }
       ],
       "custom_field_settings": [
-        ...
+        {
+          ...
+        }
       ],
       "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
       "members": [
-        ...
+        {
+          ...
+        }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
@@ -2090,24 +2386,24 @@ Get a list of the items in compact form in a portfolio.
 
 <h3 id="get-portfolio-items-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-portfolio-items-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio's items.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the requested portfolio's items.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2155,26 +2451,26 @@ Returns an empty data block.
 
 <h3 id="add-a-portfolio-item-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|Information about the item being inserted.|
-|» item|body|string|true|The item to add to the portfolio.|
-|» insert_before|body|string|false|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
-|» insert_after|body|string|false|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the item being inserted.|
+|» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to add to the portfolio.|
+|» insert_before<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|» insert_after<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-a-portfolio-item-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the item to the portfolio.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the item to the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2188,10 +2484,19 @@ Returns an empty data block.
 
 ```shell
 # You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem?item=1331 \
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem \
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "item": "1331"
+}
 ```
 
 > 200 Response
@@ -2211,23 +2516,24 @@ Returns an empty data block.
 
 <h3 id="remove-a-portfolio-item-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|item|query|string|true|The item to remove from the portfolio.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the item being removed.|
+|» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to remove from the portfolio.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="remove-a-portfolio-item-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the item from the portfolio.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the item from the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2241,10 +2547,19 @@ Returns an empty data block.
 
 ```shell
 # You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers?members=521621%2C621373 \
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers \
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "members": "521621,621373"
+}
 ```
 
 > 200 Response
@@ -2264,23 +2579,24 @@ Returns the updated portfolio record.
 
 <h3 id="add-users-to-a-portfolio-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|members|query|string|true|An array of user ids.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being added.|
+|» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-users-to-a-portfolio-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added members to the portfolio.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added members to the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2294,10 +2610,19 @@ Returns the updated portfolio record.
 
 ```shell
 # You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMembers?members=521621%2C621373 \
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMembers \
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "members": "521621,621373"
+}
 ```
 
 > 200 Response
@@ -2317,128 +2642,24 @@ Returns the updated portfolio record.
 
 <h3 id="remove-users-from-a-portfolio-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|members|query|string|true|An array of user ids.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being removed.|
+|» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="remove-users-from-a-portfolio-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the members from the portfolio.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-</section>
-
-<hr class="half-line">
-<section>
-## Add a custom field to a portfolio
-
-<a id="opIdportfolio.addCustomFieldSetting"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916 \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
-</p>
-
-Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
-
-<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|custom_field|query|string|true|The custom field to associate with this portfolio.|
-|is_important|query|boolean|false|Whether this field should be considered important to this portfolio (for instance, to display in the list view of items in the portfolio).|
-|insert_before|query|string|false|An id of a Custom Field Setting on this portfolio, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|insert_after|query|string|false|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-
-<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the custom field to the portfolio.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-</section>
-
-<hr class="half-line">
-<section>
-## Remove a custom field from a portfolio
-
-<a id="opIdportfolio.removeCustomFieldSetting"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916 \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
-</p>
-
-Removes a custom field setting from a portfolio.
-
-<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|custom_field|query|string|true|The custom field to remove from this portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-
-<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the custom field from the portfolio.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the members from the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2492,26 +2713,26 @@ Returns a list of portfolio memberships in compact representation. You must spec
 
 <h3 id="get-multiple-portfolio-memberships-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio|query|string|false|The portfolio to filter results on.|
-|workspace|query|string|false|The workspace to filter results on.|
-|user|query|string(email)|false|The user to filter results on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|?portfolio<span class="param-type"> string</span>|The portfolio to filter results on.|
+|?workspace<span class="param-type"> string</span>|The workspace to filter results on.|
+|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-multiple-portfolio-memberships-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved portfolio memberships.|[Portfolio](#schemaportfolio)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully retrieved portfolio memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2560,22 +2781,22 @@ Returns the complete portfolio record for a single portfolio membership.
 
 <h3 id="get-a-portfolio-membership-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_membership_path_gid|path|string|true|none|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/portfolio_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-portfolio-membership-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio membership.|[PortfolioMembership](#schemaportfoliomembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [PortfolioMembership](#schemaportfoliomembership)</span>|Successfully retrieved the requested portfolio membership.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2604,7 +2825,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_m
       "gid": "12345",
       "resource_type": "portfolio_membership",
       "user": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     }
   ]
@@ -2619,25 +2842,25 @@ Returns the compact portfolio membership records for the portfolio.
 
 <h3 id="get-memberships-from-a-portfolio-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|user|query|string(email)|false|The user to filter results on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-memberships-from-a-portfolio-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio's memberships.|[PortfolioMembership](#schemaportfoliomembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [PortfolioMembership](#schemaportfoliomembership)</span>|Successfully retrieved the requested portfolio's memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2686,25 +2909,37 @@ curl -X GET https://app.asana.com/api/1.0/projects \
       "archived": false,
       "color": "light-green",
       "current_status": {
-        ...
+        "color": "green",
+        "text": "Everything is great",
+        "author": {
+          ...
+        }
       },
       "custom_fields": [
-        ...
+        {
+          ...
+        }
       ],
       "custom_field_settings": [
-        ...
+        {
+          ...
+        }
       ],
       "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
       "members": [
-        ...
+        {
+          ...
+        }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
@@ -2727,26 +2962,26 @@ Returns the compact project records for some filtered set of projects. Use one o
 
 <h3 id="get-multiple-projects-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace|query|string|false|The workspace or organization to filter projects on.|
-|team|query|string|false|The team to filter projects on.|
-|archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?workspace<span class="param-type"> string</span>|The workspace or organization to filter projects on.|
+|?team<span class="param-type"> string</span>|The team to filter projects on.|
+|?archived<span class="param-type"> boolean</span>|Only return projects whose `archived` field takes on the value of this parameter.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-multiple-projects-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved projects.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved projects.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2795,17 +3030,29 @@ curl -X POST https://app.asana.com/api/1.0/projects \
       "color": "green",
       "text": "Everything is great",
       "author": {
-        ...
+        "gid": "12345",
+        "name": "Greg Bizarro"
       }
     },
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value"
       }
     ],
     "custom_field_settings": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -2813,7 +3060,9 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     "due_on": "2012-03-26",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "These are things we need to purchase.",
@@ -2821,7 +3070,9 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     "layout": "list",
     "members": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -2854,27 +3105,27 @@ Returns the full record of the newly created project.
 
 <h3 id="create-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The project to create.|
-|» data|body|object|false|none|
-|»» name|body|string|false|The name of the project.|
-|»» notes|body|string|false|The description of the project.|
-|»» workspace|body|string|false|The workspace or organization to create the project in.|
-|»» team|body|string|false|If creating in an organization, the specific team to create the project in.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The project to create.|
+|» data<span class="param-type"> object</span>|none|
+|»» name<span class="param-type"> string</span>|The name of the project.|
+|»» notes<span class="param-type"> string</span>|The description of the project.|
+|»» workspace<span class="param-type"> string</span>|The workspace or organization to create the project in.|
+|»» team<span class="param-type"> string</span>|If creating in an organization, the specific team to create the project in.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="create-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully retrieved projects.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved projects.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -2909,17 +3160,29 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
       "color": "green",
       "text": "Everything is great",
       "author": {
-        ...
+        "gid": "12345",
+        "name": "Greg Bizarro"
       }
     },
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value"
       }
     ],
     "custom_field_settings": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -2927,7 +3190,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
     "due_on": "2012-03-26",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "These are things we need to purchase.",
@@ -2935,7 +3200,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
     "layout": "list",
     "members": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -2958,22 +3225,22 @@ Returns the complete project record for a single project.
 
 <h3 id="get-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the requested project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3032,17 +3299,29 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
       "color": "green",
       "text": "Everything is great",
       "author": {
-        ...
+        "gid": "12345",
+        "name": "Greg Bizarro"
       }
     },
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value"
       }
     ],
     "custom_field_settings": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -3050,7 +3329,9 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "due_on": "2012-03-26",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "These are things we need to purchase.",
@@ -3058,7 +3339,9 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "layout": "list",
     "members": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -3089,23 +3372,126 @@ Returns the complete updated project record.
 
 <h3 id="update-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ProjectObject](#schemaprojectobject)|true|The updated fields for the project.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the project.|
+|» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
+|»» color<span class="param-type"> string¦null</span>|Color of the project.|
+|»» current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
+|»»» color<span class="param-type"> string</span>|none|
+|»»» text<span class="param-type"> string</span>|none|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> any</span>|none|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»» layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
+|»» members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> any</span>|none|
+|»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
+|»» section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» team<span class="param-type"> any</span>|none|
+|»» workspace<span class="param-type"> any</span>|none|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
+*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
+
+**modified_at**: The time at which this project was last modified.
+*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
+| color|green|
+| color|yellow|
+| color|red|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
+| type|text|
+| type|enum|
+| type|number|
+| default_view|list|
+| default_view|board|
+| default_view|calendar|
+| default_view|timeline|
+| layout|list|
+| layout|board|
+| section_migration_status|not_migrated|
+| section_migration_status|in_progress|
+| section_migration_status|completed|
 
 <h3 id="update-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the project.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully updated the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3144,22 +3530,22 @@ Returns an empty data record.
 
 <h3 id="delete-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified project.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3231,20 +3617,20 @@ Creates and returns a job that will asynchronously handle the duplication.
 
 <h3 id="duplicate-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|false|Describes the duplicate's name and the elements that will be duplicated.|
-|» data|body|object|false|none|
-|»» name|body|string|true|The name of the new project.|
-|»» team|body|string|false|Sets the team of the new project. If team is not defined, the new project will be in the same team as the the original project.|
-|»» include|body|string|false|The elements that will be duplicated to the new project. Tasks are always included.|
-|»» schedule_dates|body|object|false|A dictionary of options to auto-shift dates. `task_dates` must be included to use this option. Requires either `start_on` or `due_on`, but not both.|
-|»»» should_skip_weekends|body|boolean|true|Determines if the auto-shifted dates should skip weekends.|
-|»»» due_on|body|string|false|Sets the last due date in the duplicated project to the given date. The rest of the due dates will be offset by the same amount as the due dates in the original project.|
-|»»» start_on|body|string|false|Sets the first start date in the duplicated project to the given date. The rest of the start dates will be offset by the same amount as the start dates in the original project.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span>|Describes the duplicate's name and the elements that will be duplicated.|
+|» data<span class="param-type"> object</span>|none|
+|»» name<span class="param-type"> string</span><div class="param-required">required</div>|The name of the new project.|
+|»» team<span class="param-type"> string</span>|Sets the team of the new project. If team is not defined, the new project will be in the same team as the the original project.|
+|»» include<span class="param-type"> string</span>|The elements that will be duplicated to the new project. Tasks are always included.|
+|»» schedule_dates<span class="param-type"> object</span>|A dictionary of options to auto-shift dates. `task_dates` must be included to use this option. Requires either `start_on` or `due_on`, but not both.|
+|»»» should_skip_weekends<span class="param-type"> boolean</span><div class="param-required">required</div>|Determines if the auto-shifted dates should skip weekends.|
+|»»» due_on<span class="param-type"> string</span>|Sets the last due date in the duplicated project to the given date. The rest of the due dates will be offset by the same amount as the due dates in the original project.|
+|»»» start_on<span class="param-type"> string</span>|Sets the first start date in the duplicated project to the given date. The rest of the start dates will be offset by the same amount as the start dates in the original project.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Enumerated Values
 
@@ -3264,14 +3650,14 @@ Creates and returns a job that will asynchronously handle the duplication.
 
 <h3 id="duplicate-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the job to handle duplication.|[Job](#schemajob)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Job](#schemajob)</span>|Successfully created the job to handle duplication.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3304,25 +3690,37 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
       "archived": false,
       "color": "light-green",
       "current_status": {
-        ...
+        "color": "green",
+        "text": "Everything is great",
+        "author": {
+          ...
+        }
       },
       "custom_fields": [
-        ...
+        {
+          ...
+        }
       ],
       "custom_field_settings": [
-        ...
+        {
+          ...
+        }
       ],
       "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
       "members": [
-        ...
+        {
+          ...
+        }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
@@ -3345,24 +3743,24 @@ Returns a compact representation of all of the projects the task is in.
 
 <h3 id="get-projects-a-task-is-in-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-projects-a-task-is-in-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the projects for the given task.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the projects for the given task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3395,25 +3793,37 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "archived": false,
       "color": "light-green",
       "current_status": {
-        ...
+        "color": "green",
+        "text": "Everything is great",
+        "author": {
+          ...
+        }
       },
       "custom_fields": [
-        ...
+        {
+          ...
+        }
       ],
       "custom_field_settings": [
-        ...
+        {
+          ...
+        }
       ],
       "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
       "members": [
-        ...
+        {
+          ...
+        }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
@@ -3436,25 +3846,25 @@ Returns the compact project records for all projects in the team.
 
 <h3 id="get-a-team's-projects-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?archived<span class="param-type"> boolean</span>|Only return projects whose `archived` field takes on the value of this parameter.|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-team's-projects-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested team's projects.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the requested team's projects.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3513,17 +3923,29 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "color": "green",
       "text": "Everything is great",
       "author": {
-        ...
+        "gid": "12345",
+        "name": "Greg Bizarro"
       }
     },
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value"
       }
     ],
     "custom_field_settings": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -3531,7 +3953,9 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "due_on": "2012-03-26",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "These are things we need to purchase.",
@@ -3539,7 +3963,9 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "layout": "list",
     "members": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -3564,23 +3990,126 @@ Returns the full record of the newly created project.
 
 <h3 id="create-a-project-in-a-team-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ProjectObject](#schemaprojectobject)|true|The new project to create.|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The new project to create.|
+|» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
+|»» color<span class="param-type"> string¦null</span>|Color of the project.|
+|»» current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
+|»»» color<span class="param-type"> string</span>|none|
+|»»» text<span class="param-type"> string</span>|none|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> any</span>|none|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»» layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
+|»» members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> any</span>|none|
+|»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
+|»» section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» team<span class="param-type"> any</span>|none|
+|»» workspace<span class="param-type"> any</span>|none|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
+*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
+
+**modified_at**: The time at which this project was last modified.
+*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
+| color|green|
+| color|yellow|
+| color|red|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
+| type|text|
+| type|enum|
+| type|number|
+| default_view|list|
+| default_view|board|
+| default_view|calendar|
+| default_view|timeline|
+| layout|list|
+| layout|board|
+| section_migration_status|not_migrated|
+| section_migration_status|in_progress|
+| section_migration_status|completed|
 
 <h3 id="create-a-project-in-a-team-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the specified project.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Project](#schemaproject)</span>|Successfully created the specified project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3613,25 +4142,37 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "archived": false,
       "color": "light-green",
       "current_status": {
-        ...
+        "color": "green",
+        "text": "Everything is great",
+        "author": {
+          ...
+        }
       },
       "custom_fields": [
-        ...
+        {
+          ...
+        }
       ],
       "custom_field_settings": [
-        ...
+        {
+          ...
+        }
       ],
       "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
       "members": [
-        ...
+        {
+          ...
+        }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
@@ -3654,25 +4195,25 @@ Returns the compact project records for all projects in the workspace.
 
 <h3 id="get-all-projects-in-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?archived<span class="param-type"> boolean</span>|Only return projects whose `archived` field takes on the value of this parameter.|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-all-projects-in-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested workspace's projects.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the requested workspace's projects.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3731,17 +4272,29 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "color": "green",
       "text": "Everything is great",
       "author": {
-        ...
+        "gid": "12345",
+        "name": "Greg Bizarro"
       }
     },
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value"
       }
     ],
     "custom_field_settings": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -3749,7 +4302,9 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "due_on": "2012-03-26",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "These are things we need to purchase.",
@@ -3757,7 +4312,9 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "layout": "list",
     "members": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -3785,23 +4342,126 @@ Returns the full record of the newly created project.
 
 <h3 id="create-a-project-in-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ProjectObject](#schemaprojectobject)|true|The new project to create.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The new project to create.|
+|» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
+|»» color<span class="param-type"> string¦null</span>|Color of the project.|
+|»» current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
+|»»» color<span class="param-type"> string</span>|none|
+|»»» text<span class="param-type"> string</span>|none|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> any</span>|none|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»» layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
+|»» members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> any</span>|none|
+|»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
+|»» section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» team<span class="param-type"> any</span>|none|
+|»» workspace<span class="param-type"> any</span>|none|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
+*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
+
+**modified_at**: The time at which this project was last modified.
+*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
+| color|green|
+| color|yellow|
+| color|red|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
+| type|text|
+| type|enum|
+| type|number|
+| default_view|list|
+| default_view|board|
+| default_view|calendar|
+| default_view|timeline|
+| layout|list|
+| layout|board|
+| section_migration_status|not_migrated|
+| section_migration_status|in_progress|
+| section_migration_status|completed|
 
 <h3 id="create-a-project-in-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created a new project in the specified workspace.|[Project](#schemaproject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Project](#schemaproject)</span>|Successfully created a new project in the specified workspace.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3837,25 +4497,25 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 
 <h3 id="add-a-custom-field-to-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|custom_field|query|string|true|The custom field to associate with this project.|
-|is_important|query|boolean|false|Whether this field should be considered "important" to this project. This may cause it to be displayed more prominently, for example in the task grid.|
-|insert_before|query|string|false|An id of a Custom Field Setting on this project, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|insert_after|query|string|false|An id of a Custom Field Setting on this project, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this project.|
+|?is_important<span class="param-type"> boolean</span>|Whether this field should be considered "important" to this project. This may cause it to be displayed more prominently, for example in the task grid.|
+|?insert_before<span class="param-type"> string</span>|An id of a Custom Field Setting on this project, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|?insert_after<span class="param-type"> string</span>|An id of a Custom Field Setting on this project, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 
 <h3 id="add-a-custom-field-to-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the custom field to the project.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the custom field to the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3891,22 +4551,22 @@ Removes a custom field setting from a project.
 
 <h3 id="remove-a-custom-field-from-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|custom_field|query|string|true|The custom field to remove from this project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 
 <h3 id="remove-a-custom-field-from-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the custom field from the project.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the custom field from the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -3953,24 +4613,24 @@ Milestones are just tasks, so they are included in the `num_tasks`, `num_incompl
 
 <h3 id="get-task-count-of-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-task-count-of-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project's task counts.|[TaskCount](#schemataskcount)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TaskCount](#schemataskcount)</span>|Successfully retrieved the requested project's task counts.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4032,22 +4692,22 @@ Returns the complete project record for a single project membership.
 
 <h3 id="get-a-project-membership-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_membership_path_gid|path|string|true|none|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/project_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-project-membership-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project membership.|[ProjectMembership](#schemaprojectmembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [ProjectMembership](#schemaprojectmembership)</span>|Successfully retrieved the requested project membership.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4076,7 +4736,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_members
       "gid": "12345",
       "resource_type": "project_membership",
       "user": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     }
   ]
@@ -4091,25 +4753,25 @@ Returns the compact project membership records for the project.
 
 <h3 id="get-memberships-from-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|user|query|string(email)|false|The user to filter results on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-memberships-from-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project's memberships.|[ProjectMembership](#schemaprojectmembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [ProjectMembership](#schemaprojectmembership)</span>|Successfully retrieved the requested project's memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4172,20 +4834,20 @@ Returns the complete record for a single status update.
 
 <h3 id="get-a-project-status-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_status_path_gid|path|string|true|The project status update to get.|
+|Name|Description|
+|---|---|
+|/project_status_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
 
 <h3 id="get-a-project-status-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified project's status updates.|[ProjectStatus](#schemaprojectstatus)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [ProjectStatus](#schemaprojectstatus)</span>|Successfully retrieved the specified project's status updates.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4223,20 +4885,20 @@ Returns an empty data record.
 
 <h3 id="delete-a-project-status-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_status_path_gid|path|string|true|The project status update to get.|
+|Name|Description|
+|---|---|
+|/project_status_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
 
 <h3 id="delete-a-project-status-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified product status.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified product status.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4267,7 +4929,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuse
       "title": "Status Update - Jun 15",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "text": "The project is moving forward according to plan...",
       "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
@@ -4285,24 +4949,24 @@ Returns the compact project status update records for all updates on the project
 
 <h3 id="get-statuses-from-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-statuses-from-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified project's status updates.|[ProjectStatus](#schemaprojectstatus)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [ProjectStatus](#schemaprojectstatus)</span>|Successfully retrieved the specified project's status updates.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4365,14 +5029,14 @@ Returns the full record of the newly created project status update.
 
 <h3 id="create-a-project-status-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The project status to create.|
-|» data|body|object|false|none|
-|»» project|body|string|true|Globally unique identifier for the project.|
-|»» text|body|string|true|The text of the project status update.|
-|»» color|body|any|true|The color to associate with the status update.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The project status to create.|
+|» data<span class="param-type"> object</span>|none|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text of the project status update.|
+|»» color<span class="param-type"> any</span><div class="param-required">required</div>|The color to associate with the status update.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 
 #### Enumerated Values
 
@@ -4384,14 +5048,14 @@ Returns the full record of the newly created project status update.
 
 <h3 id="create-a-project-status-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created a new story.|[ProjectStatus](#schemaprojectstatus)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [ProjectStatus](#schemaprojectstatus)</span>|Successfully created a new story.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4438,7 +5102,9 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ]
   }
@@ -4453,22 +5119,22 @@ Returns the complete record for a single section.
 
 <h3 id="get-a-section-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identifier for the section.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-section-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved section.|[Section](#schemasection)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Section](#schemasection)</span>|Successfully retrieved section.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4497,7 +5163,7 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
     "name": "Next Actions",
     "projects": [
       {
-        ...
+        "name": "Stuff to buy"
       }
     ]
   }
@@ -4515,7 +5181,9 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ]
   }
@@ -4539,23 +5207,32 @@ Returns the complete updated section record.
 
 <h3 id="update-a-section-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[SectionObject](#schemasectionobject)|true|The section to create.|
-|section_gid|path|string|true|The globally unique identifier for the section.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
+|» data<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» projects<span class="param-type"> [object]</span>|none|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="update-a-section-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified section.|[Section](#schemasection)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Section](#schemasection)</span>|Successfully updated the specified section.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4598,22 +5275,22 @@ Returns an empty data block.
 
 <h3 id="delete-a-section-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identifier for the section.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-section-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified section.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified section.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4644,7 +5321,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
       "name": "Next Actions",
       "created_at": "2012-02-22T02:06:58.147Z",
       "projects": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ]
@@ -4659,24 +5338,24 @@ Returns the compact records for all sections in the specified project.
 
 <h3 id="get-sections-in-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-sections-in-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved sections in project.|[Section](#schemasection)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Section](#schemasection)</span>|Successfully retrieved sections in project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4719,7 +5398,9 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ]
   }
@@ -4735,26 +5416,26 @@ Returns the full record of the newly created section.
 
 <h3 id="create-a-section-in-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The section to create.|
-|» data|body|object|false|none|
-|»» project|body|string|true|The project to create the section in|
-|»» name|body|string|true|The text to be displayed as the section name. This cannot be an empty string.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
+|» data<span class="param-type"> object</span>|none|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project to create the section in|
+|»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="create-a-section-in-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the specified section.|[Section](#schemasection)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Section](#schemasection)</span>|Successfully created the specified section.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4807,27 +5488,27 @@ This does not work for separators (tasks with the resource_subtype of section).
 
 <h3 id="add-task-to-section-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The task and optionally the insert location.|
-|» data|body|object|false|none|
-|»» task|body|string|true|The task to add to this section.|
-|»» insert_before|body|string|false|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
-|»» insert_after|body|string|false|An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.|
-|section_gid|path|string|true|The globally unique identifier for the section.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The task and optionally the insert location.|
+|» data<span class="param-type"> object</span>|none|
+|»» task<span class="param-type"> string</span><div class="param-required">required</div>|The task to add to this section.|
+|»» insert_before<span class="param-type"> string</span>|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
+|»» insert_after<span class="param-type"> string</span>|An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.|
+|/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-task-to-section-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4885,28 +5566,28 @@ Returns an empty data block.
 
 <h3 id="move-sections-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The section's move action.|
-|» data|body|object|false|none|
-|»» project|body|string|true|The project in which to reorder the given section.|
-|»» section|body|string|true|The section to reorder.|
-|»» before_section|body|string|false|Insert the given section immediately before the section specified by this parameter.|
-|»» after_section|body|string|false|Insert the given section immediately after the section specified by this parameter.|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The section's move action.|
+|» data<span class="param-type"> object</span>|none|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project in which to reorder the given section.|
+|»» section<span class="param-type"> string</span><div class="param-required">required</div>|The section to reorder.|
+|»» before_section<span class="param-type"> string</span>|Insert the given section immediately before the section specified by this parameter.|
+|»» after_section<span class="param-type"> string</span>|Insert the given section immediately after the section specified by this parameter.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="move-sections-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully moved the specified section.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully moved the specified section.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -4962,20 +5643,45 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
     "hearted": false,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez",
+        "email": "gsanchez@example.com",
+        "photo": {
+          ...
+        },
+        "workspaces": [
+          ...
+        ]
       }
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez",
+        "email": "gsanchez@example.com",
+        "photo": {
+          ...
+        },
+        "workspaces": [
+          ...
+        ]
       }
     ],
     "num_likes": 5,
     "previews": [
       {
-        ...
+        "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+        "footer": "Mar 17, 2019 1:25 PM",
+        "header": "Asana for Slack",
+        "header_link": "https://asana.comn/apps/slack",
+        "html_text": "<body>Great! I like this idea.</body>",
+        "text": "Great! I like this idea.",
+        "title": "Greg",
+        "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
       }
     ],
     "old_name": "This was the Old Name",
@@ -4998,7 +5704,9 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "text": "marked today",
       "type": "comment"
@@ -5045,7 +5753,9 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
-        ...
+        {
+          ...
+        }
       ],
       "enum_value": null,
       "enabled": true,
@@ -5101,24 +5811,24 @@ Returns the full record for a single story.
 
 <h3 id="get-a-story-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|story_gid|path|string|true|Globally unique identifier for the story.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-story-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified story.|[Story](#schemastory)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Story](#schemastory)</span>|Successfully retrieved the specified story.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -5176,7 +5886,9 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "name": "Bug Task",
       "type": "text",
       "enum_options": [
-        ...
+        {
+          ...
+        }
       ],
       "enum_value": null,
       "enabled": true,
@@ -5227,20 +5939,45 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     "hearted": false,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez",
+        "email": "gsanchez@example.com",
+        "photo": {
+          ...
+        },
+        "workspaces": [
+          ...
+        ]
       }
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez",
+        "email": "gsanchez@example.com",
+        "photo": {
+          ...
+        },
+        "workspaces": [
+          ...
+        ]
       }
     ],
     "num_likes": 5,
     "previews": [
       {
-        ...
+        "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+        "footer": "Mar 17, 2019 1:25 PM",
+        "header": "Asana for Slack",
+        "header_link": "https://asana.comn/apps/slack",
+        "html_text": "<body>Great! I like this idea.</body>",
+        "text": "Great! I like this idea.",
+        "title": "Greg",
+        "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
       }
     ],
     "old_name": "This was the Old Name",
@@ -5263,7 +6000,9 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "text": "marked today",
       "type": "comment"
@@ -5310,7 +6049,9 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
-        ...
+        {
+          ...
+        }
       ],
       "enum_value": null,
       "enabled": true,
@@ -5366,23 +6107,262 @@ Updates the story and returns the full record for the updated story. Only commen
 
 <h3 id="update-a-story-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[StoryObject](#schemastoryobject)|true|The comment story to update.|
-|story_gid|path|string|true|Globally unique identifier for the story.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The comment story to update.|
+|» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.|
+|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options).|
+|»» is_edited<span class="param-type"> boolean</span>|*Conditional*. Whether the text of the story has been edited after creation.|
+|»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use likes instead*|
+|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead*|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» email<span class="param-type"> string(email)</span>|The user’s email address.|
+|»»» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|»»»» image_21x21<span class="param-type"> string(uri)</span>|none|
+|»»»» image_27x27<span class="param-type"> string(uri)</span>|none|
+|»»»» image_36x36<span class="param-type"> string(uri)</span>|none|
+|»»»» image_60x60<span class="param-type"> string(uri)</span>|none|
+|»»»» image_128x128<span class="param-type"> string(uri)</span>|none|
+|»»» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|»»»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
+|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*|
+|»» liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
+|»» likes<span class="param-type"> [object]</span>|*Conditional*. Array of users who have liked this story.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» email<span class="param-type"> string(email)</span>|The user’s email address.|
+|»»» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|»»»» image_21x21<span class="param-type"> string(uri)</span>|none|
+|»»»» image_27x27<span class="param-type"> string(uri)</span>|none|
+|»»»» image_36x36<span class="param-type"> string(uri)</span>|none|
+|»»»» image_60x60<span class="param-type"> string(uri)</span>|none|
+|»»»» image_128x128<span class="param-type"> string(uri)</span>|none|
+|»»» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|»»»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
+|»» num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
+|»» previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.|
+|»»» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
+|»»» footer<span class="param-type"> string</span>|Text to display in the footer.|
+|»»» header<span class="param-type"> string</span>|Text to display in the header.|
+|»»» header_link<span class="param-type"> string</span>|Where the header will link to.|
+|»»» html_text<span class="param-type"> string</span>|HTML formatted text for the body of the preview.|
+|»»» text<span class="param-type"> string</span>|Text for the body of the preview.|
+|»»» title<span class="param-type"> string</span>|Text to display as the title.|
+|»»» title_link<span class="param-type"> string</span>|Where to title will link to.|
+|»» old_name<span class="param-type"> string</span>|*Conditional*'|
+|»» new_name<span class="param-type"> string</span>|*Conditional*|
+|»» old_dates<span class="param-type"> object</span>|*Conditional*|
+|»»» start_on<span class="param-type"> string(date)</span>|none|
+|»»» due_at<span class="param-type"> string(date-time)</span>|none|
+|»»» due_on<span class="param-type"> string(date)</span>|none|
+|»» new_dates<span class="param-type"> object</span>|*Conditional*|
+|»»» start_on<span class="param-type"> string(date)</span>|none|
+|»»» due_at<span class="param-type"> string(date-time)</span>|none|
+|»»» due_on<span class="param-type"> string(date)</span>|none|
+|»» old_resource_subtype<span class="param-type"> string</span>|*Conditional*|
+|»» new_resource_subtype<span class="param-type"> string</span>|*Conditional*|
+|»» story<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|»» assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» follower<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» old_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|»» new_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|»» task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» tag<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> any</span>|none|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» old_text_value<span class="param-type"> string</span>|*Conditional*|
+|»» new_text_value<span class="param-type"> string</span>|*Conditional*|
+|»» old_number_value<span class="param-type"> integer</span>|*Conditional*|
+|»» new_number_value<span class="param-type"> integer</span>|*Conditional*|
+|»» old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» duplicate_of<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» duplicated_from<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» dependency<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» source<span class="param-type"> string</span>|The component of the Asana product the user used to trigger the story.|
+|»» target<span class="param-type"> object</span>|The object this story is associated with. Currently may only be a task.|
+|»»» gid<span class="param-type"> string</span>|none|
+|»»» name<span class="param-type"> string</span>|none|
+|/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**text**: *Create-only*. Human-readable text for the story or comment.
+This will not include the name of the creator.
+*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*
+Use the `resource_subtype` property to discover the action that created the story.
+
+**html_text**: [Opt In](#input-output-options).
+HTML formatted text for a comment. This will not include the name
+of the creator.
+
+*Note: This field is under active migration—please see our blog
+post for more information.*
+
+**hearted**: *Deprecated - please use likes instead*
+
+*Conditional*. True if the story is hearted by the authorized user, false if not.
+
+**hearts**: *Deprecated - please use likes instead*
+
+*Conditional*. Array of users who have hearted this story.
+
+**workspaces**: Workspaces and organizations this user may access.
+Note\: The API will only return workspaces and organizations that also contain the authenticated user.
+
+**num_hearts**: *Deprecated - please use likes instead*
+
+*Conditional*. The number of users who have hearted this story.
+
+**workspaces**: Workspaces and organizations this user may access.
+Note\: The API will only return workspaces and organizations that also contain the authenticated user.
+
+**previews**: *Conditional*. A collection of previews to be displayed in the story.
+
+*Note: This property only exists for comment stories.*
+
+**text**: *Create-only*. Human-readable text for the story or comment.
+This will not include the name of the creator.
+*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*
+Use the `resource_subtype` property to discover the action that created the story.
+
+**custom_field**: Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
+
+Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
+
+**old_enum_value**: Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
+
+You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
+
+**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.
+
+On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.
+
+Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.
+
+An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
+
+**new_enum_value**: Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
+
+You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
+
+**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.
+
+On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.
+
+Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.
+
+An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
+| type|text|
+| type|enum|
+| type|number|
 
 <h3 id="update-a-story-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified story.|[Story](#schemastory)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Story](#schemastory)</span>|Successfully retrieved the specified story.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -5420,22 +6400,22 @@ Returns an empty data record.
 
 <h3 id="delete-a-story-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|story_gid|path|string|true|Globally unique identifier for the story.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-story-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified story.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified story.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -5466,7 +6446,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "text": "marked today",
       "type": "comment",
@@ -5475,76 +6457,133 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "is_pinned": false,
       "hearted": false,
       "hearts": [
-        ...
+        {
+          ...
+        }
       ],
       "num_hearts": 5,
       "liked": false,
       "likes": [
-        ...
+        {
+          ...
+        }
       ],
       "num_likes": 5,
       "previews": [
-        ...
+        {
+          ...
+        }
       ],
       "old_name": "This was the Old Name",
       "new_name": "This is the New Name",
       "old_dates": {
-        ...
+        "start_on": "2019-09-15",
+        "due_at": "2012-02-22T02:06:58.158Z",
+        "due_on": "2019-09-15"
       },
       "new_dates": {
-        ...
+        "start_on": "2019-09-15",
+        "due_at": "2012-02-22T02:06:58.158Z",
+        "due_on": "2019-09-15"
       },
       "old_resource_subtype": "default_task",
       "new_resource_subtype": "milestone",
       "story": {
-        ...
+        "gid": "12345",
+        "resource_type": "story",
+        "resource_subtype": "comment_added",
+        "created_at": "2012-02-22T02:06:58.147Z",
+        "created_by": {
+          ...
+        },
+        "text": "marked today",
+        "type": "comment"
       },
       "assignee": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "follower": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "old_section": {
-        ...
+        "gid": "12345",
+        "resource_type": "section",
+        "name": "Next Actions"
       },
       "new_section": {
-        ...
+        "gid": "12345",
+        "resource_type": "section",
+        "name": "Next Actions"
       },
       "task": {
-        ...
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Bug Task"
       },
       "project": {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       },
       "tag": {
-        ...
+        "gid": "12345",
+        "resource_type": "tag",
+        "name": "Stuff to buy"
       },
       "custom_field": {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value"
       },
       "old_text_value": "This was the Old Text",
       "new_text_value": "This is the New Text",
       "old_number_value": 1,
       "new_number_value": 2,
       "old_enum_value": {
-        ...
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       },
       "new_enum_value": {
-        ...
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       },
       "duplicate_of": {
-        ...
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Bug Task"
       },
       "duplicated_from": {
-        ...
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Bug Task"
       },
       "dependency": {
-        ...
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Bug Task"
       },
       "source": "web",
       "target": {
-        ...
+        "gid": "1234",
+        "name": "Bug Task"
       }
     }
   ]
@@ -5559,24 +6598,24 @@ Returns the compact records for all stories on the task.
 
 <h3 id="get-stories-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-stories-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified task's stories.|[Story](#schemastory)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Story](#schemastory)</span>|Successfully retrieved the specified task's stories.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -5630,20 +6669,45 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     "hearted": false,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez",
+        "email": "gsanchez@example.com",
+        "photo": {
+          ...
+        },
+        "workspaces": [
+          ...
+        ]
       }
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez",
+        "email": "gsanchez@example.com",
+        "photo": {
+          ...
+        },
+        "workspaces": [
+          ...
+        ]
       }
     ],
     "num_likes": 5,
     "previews": [
       {
-        ...
+        "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+        "footer": "Mar 17, 2019 1:25 PM",
+        "header": "Asana for Slack",
+        "header_link": "https://asana.comn/apps/slack",
+        "html_text": "<body>Great! I like this idea.</body>",
+        "text": "Great! I like this idea.",
+        "title": "Greg",
+        "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
       }
     ],
     "old_name": "This was the Old Name",
@@ -5666,7 +6730,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "text": "marked today",
       "type": "comment"
@@ -5713,7 +6779,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
-        ...
+        {
+          ...
+        }
       ],
       "enum_value": null,
       "enabled": true,
@@ -5773,26 +6841,26 @@ Returns the full record for the new story added to the task.
 
 <h3 id="create-a-comment-on-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The comment story to create.|
-|» data|body|object|false|none|
-|»» task|body|string|true|Globally unique identifier for the task.|
-|»» text|body|string|true|The plain text of the comment to add.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The comment story to create.|
+|» data<span class="param-type"> object</span>|none|
+|»» task<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the task.|
+|»» text<span class="param-type"> string</span><div class="param-required">required</div>|The plain text of the comment to add.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="create-a-comment-on-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created a new story.|[Story](#schemastory)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Story](#schemastory)</span>|Successfully created a new story.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -5836,11 +6904,15 @@ curl -X GET https://app.asana.com/api/1.0/tags \
       "resource_type": "tag",
       "name": "Stuff to buy",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "color": "light-green",
       "workspace": {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace"
       }
     }
   ]
@@ -5855,25 +6927,25 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 
 <h3 id="get-multiple-tags-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace|query|string|false|The workspace to filter tags on.|
-|archived|query|boolean|false|Only return tags whose `archived` field takes on the value of this parameter.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?workspace<span class="param-type"> string</span>|The workspace to filter tags on.|
+|?archived<span class="param-type"> boolean</span>|Only return tags whose `archived` field takes on the value of this parameter.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-multiple-tags-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified set of tags.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the specified set of tags.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -5918,7 +6990,9 @@ curl -X POST https://app.asana.com/api/1.0/tags \
     "name": "Stuff to buy",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "color": "light-green",
@@ -5946,22 +7020,58 @@ Returns the full record of the newly created tag.
 
 <h3 id="create-a-tag-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[TagObject](#schematagobject)|true|The tag to create.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
+|» data<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this tag.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» color<span class="param-type"> string</span>|Color of the tag.|
+|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
 
 <h3 id="create-a-tag-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the newly specified tag.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Tag](#schematag)</span>|Successfully created the newly specified tag.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -5991,7 +7101,9 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
     "name": "Stuff to buy",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "color": "light-green",
@@ -6012,24 +7124,24 @@ Returns the complete tag record for a single tag.
 
 <h3 id="get-a-tag-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|tag_gid|path|string|true|Globally unique identifier for the tag.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/tag_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the tag.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-a-tag-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified tag.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the specified tag.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6059,7 +7171,9 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
     "name": "Stuff to buy",
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "color": "light-green",
@@ -6087,24 +7201,24 @@ Returns the complete updated tag record.
 
 <h3 id="update-a-tag-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|tag_gid|path|string|true|Globally unique identifier for the tag.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/tag_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the tag.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="update-a-tag-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified tag.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Tag](#schematag)</span>|Successfully updated the specified tag.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6134,11 +7248,15 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
       "resource_type": "tag",
       "name": "Stuff to buy",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "color": "light-green",
       "workspace": {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace"
       }
     }
   ]
@@ -6153,24 +7271,24 @@ Get a compact representation of all of the tags the task has.
 
 <h3 id="get-a-task's-tags-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-a-task's-tags-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the tags for the given task.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the tags for the given task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6200,11 +7318,15 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
       "resource_type": "tag",
       "name": "Stuff to buy",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "color": "light-green",
       "workspace": {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace"
       }
     }
   ]
@@ -6219,24 +7341,24 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 
 <h3 id="get-tags-in-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-tags-in-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified set of tags.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the specified set of tags.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6281,11 +7403,15 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
       "resource_type": "tag",
       "name": "Stuff to buy",
       "followers": [
-        ...
+        {
+          ...
+        }
       ],
       "color": "light-green",
       "workspace": {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace"
       }
     }
   ]
@@ -6307,23 +7433,59 @@ Returns the full record of the newly created tag.
 
 <h3 id="create-a-tag-in-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[TagObject](#schematagobject)|true|The tag to create.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
+|» data<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this tag.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» color<span class="param-type"> string</span>|Color of the tag.|
+|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
 
 <h3 id="create-a-tag-in-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified set of tags.|[Tag](#schematag)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the specified set of tags.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6383,18 +7545,18 @@ For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](#
 
 <h3 id="get-multiple-tasks-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|assignee|query|string|false|The assignee to filter tasks on.|
-|project|query|string|false|The project to filter tasks on.|
-|section|query|string|false|The section to filter tasks on.|
-|workspace|query|string|false|The workspace to filter tasks on.|
-|completed_since|query|string(date-time)|false|Only return tasks that are either incomplete or that have been completed since this time.|
-|modified_since|query|string(date-time)|false|Only return tasks that have been modified since the given time.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?assignee<span class="param-type"> string</span>|The assignee to filter tasks on.|
+|?project<span class="param-type"> string</span>|The project to filter tasks on.|
+|?section<span class="param-type"> string</span>|The section to filter tasks on.|
+|?workspace<span class="param-type"> string</span>|The workspace to filter tasks on.|
+|?completed_since<span class="param-type"> string(date-time)</span>|Only return tasks that are either incomplete or that have been completed since this time.|
+|?modified_since<span class="param-type"> string(date-time)</span>|Only return tasks that have been modified since the given time.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
@@ -6418,14 +7580,14 @@ include assigning, renaming, completing, and adding stories.*
 
 <h3 id="get-multiple-tasks-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved requested tasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved requested tasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6495,23 +7657,37 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
       }
     ],
     "dependencies": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "dependents": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -6522,26 +7698,37 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     },
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "memberships": [
       {
-        ...
+        "project": {
+          ...
+        },
+        "section": {
+          ...
+        }
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -6552,13 +7739,16 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "parent": null,
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ],
     "start_on": "2012-03-26",
     "tags": [
       {
-        ...
+        "gid": "59746",
+        "name": "Grade A"
       }
     ],
     "workspace": null
@@ -6580,90 +7770,90 @@ explicitly if you specify `projects` or a `parent` task instead.
 
 <h3 id="create-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The task to create.|
-|» data|body|object|false|The *task* is the basic object around which many operations in Asana are centered.|
-|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»» resource_type|body|string|false|The base type of this resource.|
-|»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at|body|string(date-time)|false|The time at which this resource was created.|
-|»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee|body|any|false|none|
-|»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
-|»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
-|»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|The name of the object.|
-|»»» resource_subtype|body|string|false|The type of the custom field. Must be one of the given values.|
-|»»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the enum option.|
-|»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value|body|any|false|none|
-|»»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
-|»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
-|»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|»»» gid|body|string|false|none|
-|»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|»»» gid|body|string|false|none|
-|»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
-|»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
-|»»» gid|body|string|false|none|
-|»»» data|body|string|false|none|
-|»» followers|body|[string]|false|Array of object Gids.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» html_notes|body|string|false|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»» hearted|body|boolean|false|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|»» hearts|body|[object]|false|*Deprecated - please use likes instead* Array of users who have hearted this task.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» is_rendered_as_separator|body|boolean|false|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
-|»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
-|»» likes|body|[object]|false|Array of users who have liked this task.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» memberships|body|[object]|false|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
-|»»» project|body|object|false|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section|body|object|false|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
-|»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
-|»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
-|»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|»» num_likes|body|integer|false|The number of users who have liked this task.|
-|»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent|body|any|false|none|
-|»» projects|body|[string]|false|Array of object Gids.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» tags|body|[string]|false|Array of object Gids.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» workspace|body|string|false|Gid of an object.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The task to create.|
+|» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» assignee<span class="param-type"> any</span>|none|
+|»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
+|»» completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
+|»» custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> any</span>|none|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
+|»»» gid<span class="param-type"> string</span>|none|
+|»» dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|»»» gid<span class="param-type"> string</span>|none|
+|»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»»» gid<span class="param-type"> string</span>|none|
+|»»» data<span class="param-type"> string</span>|none|
+|»» followers<span class="param-type"> [string]</span>|Array of object Gids.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
+|»» likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|»» num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
+|»» num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
+|»» parent<span class="param-type"> any</span>|none|
+|»» projects<span class="param-type"> [string]</span>|Array of object Gids.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» tags<span class="param-type"> [string]</span>|Array of object Gids.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» workspace<span class="param-type"> string</span>|Gid of an object.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
@@ -6707,14 +7897,14 @@ added or removed from the task.*
 
 <h3 id="create-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created a new task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Task](#schematask)</span>|Successfully created a new task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6750,23 +7940,37 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
       }
     ],
     "dependencies": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "dependents": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -6777,26 +7981,37 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     },
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "memberships": [
       {
-        ...
+        "project": {
+          ...
+        },
+        "section": {
+          ...
+        }
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -6807,13 +8022,16 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "parent": null,
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ],
     "start_on": "2012-03-26",
     "tags": [
       {
-        ...
+        "gid": "59746",
+        "name": "Grade A"
       }
     ],
     "workspace": null
@@ -6829,22 +8047,22 @@ Returns the complete task record for a single task.
 
 <h3 id="get-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the specified task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -6905,23 +8123,37 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
       }
     ],
     "dependencies": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "dependents": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -6932,26 +8164,37 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     },
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "memberships": [
       {
-        ...
+        "project": {
+          ...
+        },
+        "section": {
+          ...
+        }
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -6962,13 +8205,16 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "parent": null,
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ],
     "start_on": "2012-03-26",
     "tags": [
       {
-        ...
+        "gid": "59746",
+        "name": "Grade A"
       }
     ],
     "workspace": null
@@ -6992,91 +8238,91 @@ Returns the complete updated task record.
 
 <h3 id="update-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The task to update.|
-|» data|body|object|false|The *task* is the basic object around which many operations in Asana are centered.|
-|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»» resource_type|body|string|false|The base type of this resource.|
-|»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at|body|string(date-time)|false|The time at which this resource was created.|
-|»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee|body|string|false|Gid of an object.|
-|»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
-|»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
-|»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|The name of the object.|
-|»»» resource_subtype|body|string|false|The type of the custom field. Must be one of the given values.|
-|»»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the enum option.|
-|»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value|body|any|false|none|
-|»»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
-|»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
-|»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|»»» gid|body|string|false|none|
-|»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|»»» gid|body|string|false|none|
-|»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
-|»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
-|»»» gid|body|string|false|none|
-|»»» data|body|string|false|none|
-|»» followers|body|[object]|false|Array of users following this task.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» html_notes|body|string|false|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»» hearted|body|boolean|false|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|»» hearts|body|[object]|false|*Deprecated - please use likes instead* Array of users who have hearted this task.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» is_rendered_as_separator|body|boolean|false|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
-|»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
-|»» likes|body|[object]|false|Array of users who have liked this task.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» memberships|body|[object]|false|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
-|»»» project|body|object|false|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section|body|object|false|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
-|»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
-|»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
-|»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|»» num_likes|body|integer|false|The number of users who have liked this task.|
-|»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent|body|string|false|Gid of an object.|
-|»» projects|body|[object]|false|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» tags|body|[object]|false|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» workspace|body|any|false|none|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The task to update.|
+|» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» assignee<span class="param-type"> string</span>|Gid of an object.|
+|»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
+|»» completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
+|»» custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> any</span>|none|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
+|»»» gid<span class="param-type"> string</span>|none|
+|»» dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|»»» gid<span class="param-type"> string</span>|none|
+|»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»»» gid<span class="param-type"> string</span>|none|
+|»»» data<span class="param-type"> string</span>|none|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this task.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
+|»» likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|»» num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
+|»» num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
+|»» parent<span class="param-type"> string</span>|Gid of an object.|
+|»» projects<span class="param-type"> [object]</span>|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» tags<span class="param-type"> [object]</span>|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» workspace<span class="param-type"> any</span>|none|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
@@ -7120,14 +8366,14 @@ added or removed from the task.*
 
 <h3 id="update-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully updated the specified task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7168,22 +8414,22 @@ Returns an empty data record.
 
 <h3 id="delete-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7249,15 +8495,15 @@ Creates and returns a job that will asynchronously handle the duplication.
 
 <h3 id="duplicate-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|Describes the duplicate's name and the fields that will be duplicated.|
-|» data|body|object|false|none|
-|»» name|body|string|false|The name of the new task.|
-|»» include|body|string|false|The fields that will be duplicated to the new task.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Describes the duplicate's name and the fields that will be duplicated.|
+|» data<span class="param-type"> object</span>|none|
+|»» name<span class="param-type"> string</span>|The name of the new task.|
+|»» include<span class="param-type"> string</span>|The fields that will be duplicated to the new task.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Enumerated Values
 
@@ -7276,14 +8522,14 @@ Creates and returns a job that will asynchronously handle the duplication.
 
 <h3 id="duplicate-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the job to handle duplication.|[Job](#schemajob)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Job](#schemajob)</span>|Successfully created the job to handle duplication.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7325,24 +8571,24 @@ Returns the compact task records for all tasks within the given project, ordered
 
 <h3 id="get-tasks-from-a-project-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-tasks-from-a-project-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested project's tasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the requested project's tasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7384,24 +8630,24 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
 
 <h3 id="get-tasks-from-a-section-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|section_gid|path|string|true|The globally unique identifier for the section.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-tasks-from-a-section-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the section's tasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the section's tasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7443,24 +8689,24 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 
 <h3 id="get-tasks-from-a-tag-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|tag_gid|path|string|true|Globally unique identifier for the tag.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/tag_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the tag.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-tasks-from-a-tag-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the tasks associated with the specified tag.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the tasks associated with the specified tag.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7502,24 +8748,24 @@ Returns a compact representation of all of the subtasks of a task.
 
 <h3 id="get-subtasks-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-subtasks-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified task's subtasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the specified task's subtasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7588,23 +8834,37 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
       }
     ],
     "dependencies": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "dependents": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -7615,26 +8875,37 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     },
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "memberships": [
       {
-        ...
+        "project": {
+          ...
+        },
+        "section": {
+          ...
+        }
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -7645,13 +8916,16 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "parent": null,
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ],
     "start_on": "2012-03-26",
     "tags": [
       {
-        ...
+        "gid": "59746",
+        "name": "Grade A"
       }
     ],
     "workspace": null
@@ -7667,91 +8941,91 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 
 <h3 id="create-a-subtask-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The new subtask to create.|
-|» data|body|object|false|The *task* is the basic object around which many operations in Asana are centered.|
-|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»» resource_type|body|string|false|The base type of this resource.|
-|»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at|body|string(date-time)|false|The time at which this resource was created.|
-|»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee|body|string|false|Gid of an object.|
-|»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
-|»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
-|»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|The name of the object.|
-|»»» resource_subtype|body|string|false|The type of the custom field. Must be one of the given values.|
-|»»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the enum option.|
-|»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value|body|any|false|none|
-|»»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
-|»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
-|»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|»»» gid|body|string|false|none|
-|»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|»»» gid|body|string|false|none|
-|»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
-|»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
-|»»» gid|body|string|false|none|
-|»»» data|body|string|false|none|
-|»» followers|body|[string]|false|Array of object Gids.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» html_notes|body|string|false|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»» hearted|body|boolean|false|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|»» hearts|body|[object]|false|*Deprecated - please use likes instead* Array of users who have hearted this task.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» is_rendered_as_separator|body|boolean|false|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
-|»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
-|»» likes|body|[object]|false|Array of users who have liked this task.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» memberships|body|[object]|false|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
-|»»» project|body|object|false|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section|body|object|false|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
-|»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
-|»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
-|»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|»» num_likes|body|integer|false|The number of users who have liked this task.|
-|»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent|body|any|false|none|
-|»» projects|body|[string]|false|Array of object Gids.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» tags|body|[string]|false|Array of object Gids.|
-|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» workspace|body|string|false|Gid of an object.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The new subtask to create.|
+|» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» assignee<span class="param-type"> string</span>|Gid of an object.|
+|»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
+|»» completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
+|»» custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> any</span>|none|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
+|»»» gid<span class="param-type"> string</span>|none|
+|»» dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|»»» gid<span class="param-type"> string</span>|none|
+|»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»»» gid<span class="param-type"> string</span>|none|
+|»»» data<span class="param-type"> string</span>|none|
+|»» followers<span class="param-type"> [string]</span>|Array of object Gids.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
+|»» likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|»» num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
+|»» num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
+|»» parent<span class="param-type"> any</span>|none|
+|»» projects<span class="param-type"> [string]</span>|Array of object Gids.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» tags<span class="param-type"> [string]</span>|Array of object Gids.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» workspace<span class="param-type"> string</span>|Gid of an object.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
@@ -7795,14 +9069,14 @@ added or removed from the task.*
 
 <h3 id="create-a-subtask-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the specified subtask.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Task](#schematask)</span>|Successfully created the specified subtask.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7851,23 +9125,37 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Bug Task",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          ...
+        ],
+        "enum_value": null,
+        "enabled": true,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
       }
     ],
     "dependencies": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "dependents": [
       {
-        ...
+        "gid": "1234"
       },
       {
-        ...
+        "gid": "4321"
       }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -7878,26 +9166,37 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     },
     "followers": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     ],
     "memberships": [
       {
-        ...
+        "project": {
+          ...
+        },
+        "section": {
+          ...
+        }
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
@@ -7908,13 +9207,16 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "parent": null,
     "projects": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     ],
     "start_on": "2012-03-26",
     "tags": [
       {
-        ...
+        "gid": "59746",
+        "name": "Grade A"
       }
     ],
     "workspace": null
@@ -7930,27 +9232,27 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 
 <h3 id="change-the-parent-of-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The new parent of the subtask.|
-|» data|body|object|false|none|
-|»» parent|body|string|true|The new parent of the task, or `null` for no parent.|
-|»» insert_after|body|string|false|A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.|
-|»» insert_before|body|string|false|A subtask of the parent to insert the task before, or `null` to insert at the end of the list.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The new parent of the subtask.|
+|» data<span class="param-type"> object</span>|none|
+|»» parent<span class="param-type"> string</span><div class="param-required">required</div>|The new parent of the task, or `null` for no parent.|
+|»» insert_after<span class="param-type"> string</span>|A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.|
+|»» insert_before<span class="param-type"> string</span>|A subtask of the parent to insert the task before, or `null` to insert at the end of the list.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="change-the-parent-of-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully changed the parent of the specified subtask.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully changed the parent of the specified subtask.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -7992,24 +9294,24 @@ Returns the compact representations of all of the dependencies of a task.
 
 <h3 id="get-dependencies-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-dependencies-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified task's dependencies.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the specified task's dependencies.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8065,23 +9367,25 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 
 <h3 id="set-dependencies-for-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependencyArray](#schemadependencyarray)|true|The list of tasks to set as dependencies.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to set as dependencies.|
+|» data<span class="param-type"> object</span>|none|
+|»» dependencies<span class="param-type"> [string]</span>|An array of task gids that a task should depend on.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="set-dependencies-for-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully set the specified dependencies on the task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully set the specified dependencies on the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8137,23 +9441,25 @@ Unlinks a set of dependencies from this task.
 
 <h3 id="unlink-dependencies-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependencyArray](#schemadependencyarray)|true|The list of tasks to unlink as dependencies.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to unlink as dependencies.|
+|» data<span class="param-type"> object</span>|none|
+|»» dependencies<span class="param-type"> [string]</span>|An array of task gids that a task should depend on.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="unlink-dependencies-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully unlinked the dependencies from the specified task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully unlinked the dependencies from the specified task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8195,24 +9501,24 @@ Returns the compact representations of all of the dependents of a task.
 
 <h3 id="get-dependents-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-dependents-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified dependents of the task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the specified dependents of the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8268,23 +9574,25 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 
 <h3 id="set-dependents-for-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependentArray](#schemadependentarray)|true|The list of tasks to add as dependents.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to add as dependents.|
+|» data<span class="param-type"> object</span>|none|
+|»» dependents<span class="param-type"> [string]</span>|An array of task gids that are dependents of the given task.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="set-dependents-for-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully set the specified dependents on the given task.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully set the specified dependents on the given task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8340,23 +9648,25 @@ Unlinks a set of dependents from this task.
 
 <h3 id="unlink-dependents-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DependentArray](#schemadependentarray)|true|The list of tasks to remove as dependents.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to remove as dependents.|
+|» data<span class="param-type"> object</span>|none|
+|»» dependents<span class="param-type"> [string]</span>|An array of task gids that are dependents of the given task.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="unlink-dependents-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully unlinked the specified tasks as dependents.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully unlinked the specified tasks as dependents.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8419,28 +9729,28 @@ Returns an empty data block.
 
 <h3 id="add-a-project-to-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The project to add the task to.|
-|» data|body|object|false|none|
-|»» project|body|string|true|The project to add the task to.|
-|»» insert_after|body|string¦null|false|A task in the project to insert the task after, or `null` to insert at the beginning of the list.|
-|»» insert_before|body|string¦null|false|A task in the project to insert the task before, or `null` to insert at the end of the list.|
-|»» section|body|string¦null|false|A section in the project to insert the task into. The task will be inserted at the bottom of the section.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The project to add the task to.|
+|» data<span class="param-type"> object</span>|none|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project to add the task to.|
+|»» insert_after<span class="param-type"> string¦null</span>|A task in the project to insert the task after, or `null` to insert at the beginning of the list.|
+|»» insert_before<span class="param-type"> string¦null</span>|A task in the project to insert the task before, or `null` to insert at the end of the list.|
+|»» section<span class="param-type"> string¦null</span>|A section in the project to insert the task into. The task will be inserted at the bottom of the section.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-a-project-to-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the specified project to the task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified project to the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8490,25 +9800,25 @@ Returns an empty data block.
 
 <h3 id="remove-a-project-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The project to remove the task from.|
-|» data|body|object|false|none|
-|»» project|body|string|true|The project to remove the task from.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The project to remove the task from.|
+|» data<span class="param-type"> object</span>|none|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project to remove the task from.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="remove-a-project-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the specified project from the task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified project from the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8555,25 +9865,25 @@ Adds a tag to a task. Returns an empty data block.
 
 <h3 id="add-a-tag-to-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The tag to add to the task.|
-|» data|body|object|false|none|
-|»» tag|body|string|true|The tag to add to the task.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to add to the task.|
+|» data<span class="param-type"> object</span>|none|
+|»» tag<span class="param-type"> string</span><div class="param-required">required</div>|The tag to add to the task.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-a-tag-to-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the specified tag to the task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified tag to the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8620,25 +9930,25 @@ Removes a tag from a task. Returns an empty data block.
 
 <h3 id="remove-a-tag-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The tag to remove from the task.|
-|» data|body|object|false|none|
-|»» tag|body|string|true|The tag to remove from the task.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to remove from the task.|
+|» data<span class="param-type"> object</span>|none|
+|»» tag<span class="param-type"> string</span><div class="param-required">required</div>|The tag to remove from the task.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="remove-a-tag-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the specified tag from the task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified tag from the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8690,25 +10000,25 @@ Requests to add/remove followers, if successful, will return the complete update
 
 <h3 id="add-followers-to-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The tag to add to the task.|
-|» data|body|object|false|none|
-|»» followers|body|[string]|true|The tag to add to the task.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to add to the task.|
+|» data<span class="param-type"> object</span>|none|
+|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The tag to add to the task.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-followers-to-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the specified tag to the task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified tag to the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8758,25 +10068,25 @@ Removes each of the specified followers from the task if they are following. Ret
 
 <h3 id="remove-followers-from-a-task-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The tag to remove to the task.|
-|» data|body|object|false|none|
-|»» followers|body|[string]|true|The tag to add to the task.|
-|task_gid|path|string|true|The task to operate on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to remove to the task.|
+|» data<span class="param-type"> object</span>|none|
+|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The tag to add to the task.|
+|/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="remove-followers-from-a-task-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the specified tag to the task.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified tag to the task.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8846,66 +10156,66 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 
 <h3 id="search-tasks-in-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|text|query|string|false|Performs full-text search on both task name and description|
-|resource_subtype|query|string|false|Filters results by the task's resource_subtype|
-|assignee.any|query|string|false|none|
-|assignee.not|query|string|false|none|
-|assignee_status|query|string|false|none|
-|projects.any|query|string|false|none|
-|projects.not|query|string|false|none|
-|projects.all|query|string|false|none|
-|sections.any|query|string|false|none|
-|sections.not|query|string|false|none|
-|sections.all|query|string|false|none|
-|tags.any|query|string|false|none|
-|tags.not|query|string|false|none|
-|tags.all|query|string|false|none|
-|teams.any|query|string|false|none|
-|followers.any|query|string|false|none|
-|followers.not|query|string|false|none|
-|created_by.any|query|string|false|none|
-|created_by.not|query|string|false|none|
-|assigned_by.any|query|string|false|none|
-|assigned_by.not|query|string|false|none|
-|liked_by.any|query|string|false|none|
-|liked_by.not|query|string|false|none|
-|commented_on_by.any|query|string|false|none|
-|commented_on_by.not|query|string|false|none|
-|due_on.before|query|string(date)|false|none|
-|due_on.after|query|string(date)|false|none|
-|due_on|query|string(date)|false|none|
-|due_at.before|query|string(date-time)|false|none|
-|due_at.after|query|string(date-time)|false|none|
-|start_on.before|query|string(date)|false|none|
-|start_on.after|query|string(date)|false|none|
-|start_on|query|string(date)|false|none|
-|created_on.before|query|string(date)|false|none|
-|created_on.after|query|string(date)|false|none|
-|created_on|query|string(date)|false|none|
-|created_at.before|query|string(date-time)|false|none|
-|created_at.after|query|string(date-time)|false|none|
-|completed_on.before|query|string(date)|false|none|
-|completed_on.after|query|string(date)|false|none|
-|completed_on|query|string(date)|false|none|
-|completed_at.before|query|string(date-time)|false|none|
-|completed_at.after|query|string(date-time)|false|none|
-|modified_on.before|query|string(date)|false|none|
-|modified_on.after|query|string(date)|false|none|
-|modified_on|query|string(date)|false|none|
-|modified_at.before|query|string(date-time)|false|none|
-|modified_at.after|query|string(date-time)|false|none|
-|is_blocking|query|boolean|false|none|
-|is_blocked|query|boolean|false|none|
-|has_attachment|query|boolean|false|none|
-|completed|query|boolean|false|none|
-|is_subtask|query|boolean|false|none|
-|sort_by|query|string|false|none|
-|sort_ascending|query|boolean|false|none|
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?text<span class="param-type"> string</span>|Performs full-text search on both task name and description|
+|?resource_subtype<span class="param-type"> string</span>|Filters results by the task's resource_subtype|
+|?assignee.any<span class="param-type"> string</span>|none|
+|?assignee.not<span class="param-type"> string</span>|none|
+|?assignee_status<span class="param-type"> string</span>|none|
+|?projects.any<span class="param-type"> string</span>|none|
+|?projects.not<span class="param-type"> string</span>|none|
+|?projects.all<span class="param-type"> string</span>|none|
+|?sections.any<span class="param-type"> string</span>|none|
+|?sections.not<span class="param-type"> string</span>|none|
+|?sections.all<span class="param-type"> string</span>|none|
+|?tags.any<span class="param-type"> string</span>|none|
+|?tags.not<span class="param-type"> string</span>|none|
+|?tags.all<span class="param-type"> string</span>|none|
+|?teams.any<span class="param-type"> string</span>|none|
+|?followers.any<span class="param-type"> string</span>|none|
+|?followers.not<span class="param-type"> string</span>|none|
+|?created_by.any<span class="param-type"> string</span>|none|
+|?created_by.not<span class="param-type"> string</span>|none|
+|?assigned_by.any<span class="param-type"> string</span>|none|
+|?assigned_by.not<span class="param-type"> string</span>|none|
+|?liked_by.any<span class="param-type"> string</span>|none|
+|?liked_by.not<span class="param-type"> string</span>|none|
+|?commented_on_by.any<span class="param-type"> string</span>|none|
+|?commented_on_by.not<span class="param-type"> string</span>|none|
+|?due_on.before<span class="param-type"> string(date)</span>|none|
+|?due_on.after<span class="param-type"> string(date)</span>|none|
+|?due_on<span class="param-type"> string(date)</span>|none|
+|?due_at.before<span class="param-type"> string(date-time)</span>|none|
+|?due_at.after<span class="param-type"> string(date-time)</span>|none|
+|?start_on.before<span class="param-type"> string(date)</span>|none|
+|?start_on.after<span class="param-type"> string(date)</span>|none|
+|?start_on<span class="param-type"> string(date)</span>|none|
+|?created_on.before<span class="param-type"> string(date)</span>|none|
+|?created_on.after<span class="param-type"> string(date)</span>|none|
+|?created_on<span class="param-type"> string(date)</span>|none|
+|?created_at.before<span class="param-type"> string(date-time)</span>|none|
+|?created_at.after<span class="param-type"> string(date-time)</span>|none|
+|?completed_on.before<span class="param-type"> string(date)</span>|none|
+|?completed_on.after<span class="param-type"> string(date)</span>|none|
+|?completed_on<span class="param-type"> string(date)</span>|none|
+|?completed_at.before<span class="param-type"> string(date-time)</span>|none|
+|?completed_at.after<span class="param-type"> string(date-time)</span>|none|
+|?modified_on.before<span class="param-type"> string(date)</span>|none|
+|?modified_on.after<span class="param-type"> string(date)</span>|none|
+|?modified_on<span class="param-type"> string(date)</span>|none|
+|?modified_at.before<span class="param-type"> string(date-time)</span>|none|
+|?modified_at.after<span class="param-type"> string(date-time)</span>|none|
+|?is_blocking<span class="param-type"> boolean</span>|none|
+|?is_blocked<span class="param-type"> boolean</span>|none|
+|?has_attachment<span class="param-type"> boolean</span>|none|
+|?completed<span class="param-type"> boolean</span>|none|
+|?is_subtask<span class="param-type"> boolean</span>|none|
+|?sort_by<span class="param-type"> string</span>|none|
+|?sort_ascending<span class="param-type"> boolean</span>|none|
 
 #### Enumerated Values
 
@@ -8925,14 +10235,14 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 
 <h3 id="search-tasks-in-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the section's tasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the section's tasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -8987,24 +10297,24 @@ Returns the full record for a single team.
 
 <h3 id="get-a-team-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-a-team-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successsfully retrieved the record for a single team.|[Team](#schemateam)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Team](#schemateam)</span>|Successsfully retrieved the record for a single team.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9049,24 +10359,24 @@ Returns the compact records for all teams in the organization visible to the aut
 
 <h3 id="get-teams-in-an-organization-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-teams-in-an-organization-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the team records for all teams in the organization or workspace accessible to the authenticated user.|[Team](#schemateam)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Team](#schemateam)</span>|Returns the team records for all teams in the organization or workspace accessible to the authenticated user.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9111,25 +10421,25 @@ Returns the compact records for all teams to which the given user is assigned.
 
 <h3 id="get-teams-for-a-user-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|organization_gid|query|string|true|The workspace or organization to filter teams on.|
+|Name|Description|
+|---|---|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?organization_gid<span class="param-type"> string</span><div class="param-required">required</div>|The workspace or organization to filter teams on.|
 
 <h3 id="get-teams-for-a-user-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the team records for all teams in the organization or workspace to which the given user is assigned.|[Team](#schemateam)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Team](#schemateam)</span>|Returns the team records for all teams in the organization or workspace to which the given user is assigned.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9171,10 +10481,16 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
       "photo": {
-        ...
+        "image_21x21": "https://...",
+        "image_27x27": "https://...",
+        "image_36x36": "https://...",
+        "image_60x60": "https://...",
+        "image_128x128": "https://..."
       },
       "workspaces": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ]
@@ -9189,23 +10505,25 @@ The user making this call must be a member of the team in order to add others. T
 
 <h3 id="add-a-user-to-a-team-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the team.|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The user to add to the team.|
+|» data<span class="param-type"> object</span>|none|
+|»» user<span class="param-type"> string</span>|none|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-a-user-to-a-team-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the full user record for the added user.|[User](#schemauser)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [User](#schemauser)</span>|Returns the full user record for the added user.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9247,10 +10565,16 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
       "photo": {
-        ...
+        "image_21x21": "https://...",
+        "image_27x27": "https://...",
+        "image_36x36": "https://...",
+        "image_60x60": "https://...",
+        "image_128x128": "https://..."
       },
       "workspaces": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ]
@@ -9265,23 +10589,25 @@ The user making this call must be a member of the team in order to remove themse
 
 <h3 id="remove-a-user-from-a-team-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[UserIdObject](#schemauseridobject)|true|The user to remove from the team.|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The user to remove from the team.|
+|» data<span class="param-type"> object</span>|none|
+|»» user<span class="param-type"> string</span>|none|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="remove-a-user-from-a-team-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns an empty data record|[User](#schemauser)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [User](#schemauser)</span>|Returns an empty data record|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9351,15 +10677,15 @@ data is included in a response.
 
 <h3 id="get-objects-via-typeahead-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|resource_type|query|string|true|The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.|
-|type|query|string|false|*Deprecated: new integrations should prefer the resource_type field.*|
-|query|query|string|false|The string that will be used to search for relevant objects. If an empty string is passed in, the API will currently return an empty result set.|
-|count|query|integer|false|The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?resource_type<span class="param-type"> string</span><div class="param-required">required</div>|The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.|
+|?type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_type field.*|
+|?query<span class="param-type"> string</span>|The string that will be used to search for relevant objects. If an empty string is passed in, the API will currently return an empty result set.|
+|?count<span class="param-type"> integer</span>|The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Enumerated Values
 
@@ -9380,14 +10706,14 @@ data is included in a response.
 
 <h3 id="get-objects-via-typeahead-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved objects via a typeahead search algorithm.|[Asana](#schemaasana)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Asana](#schemaasana)</span>|Successfully retrieved objects via a typeahead search algorithm.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9432,10 +10758,16 @@ curl -X GET https://app.asana.com/api/1.0/users \
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
       "photo": {
-        ...
+        "image_21x21": "https://...",
+        "image_27x27": "https://...",
+        "image_36x36": "https://...",
+        "image_60x60": "https://...",
+        "image_128x128": "https://..."
       },
       "workspaces": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ]
@@ -9451,24 +10783,24 @@ Results are sorted by user ID.
 
 <h3 id="get-multiple-users-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace|query|string|false|The workspace or organization ID to filter users on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|?workspace<span class="param-type"> string</span>|The workspace or organization ID to filter users on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-multiple-users-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested user records.|[User](#schemauser)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [User](#schemauser)</span>|Successfully retrieved the requested user records.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9506,7 +10838,13 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
     },
     "workspaces": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace",
+        "email_domains": [
+          ...
+        ],
+        "is_organization": false
       }
     ]
   }
@@ -9522,22 +10860,22 @@ Results are sorted by user ID.
 
 <h3 id="get-a-user-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-user-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the user specified.|[User](#schemauser)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [User](#schemauser)</span>|Returns the user specified.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9575,13 +10913,13 @@ Results are given in order (The same order as Asana's sidebar).
 
 <h3 id="get-a-user's-favorites-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|resource_type|query|string|true|The resource type of favorites to be returned.|
-|workspace|query|string|true|The workspace in which to get favorites.|
+|Name|Description|
+|---|---|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?resource_type<span class="param-type"> string</span><div class="param-required">required</div>|The resource type of favorites to be returned.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace in which to get favorites.|
 
 #### Enumerated Values
 
@@ -9595,14 +10933,14 @@ Results are given in order (The same order as Asana's sidebar).
 
 <h3 id="get-a-user's-favorites-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the specified user's favorites.|[Asana](#schemaasana)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Asana](#schemaasana)</span>|Returns the specified user's favorites.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9633,10 +10971,16 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
       "photo": {
-        ...
+        "image_21x21": "https://...",
+        "image_27x27": "https://...",
+        "image_36x36": "https://...",
+        "image_60x60": "https://...",
+        "image_128x128": "https://..."
       },
       "workspaces": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ]
@@ -9651,24 +10995,24 @@ Returns the compact records for all users that are members of the team.
 
 <h3 id="get-users-in-a-team-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|team_gid|path|string|true|Globally unique identifier for the team.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-users-in-a-team-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the user records for all the members of the team, including guests and limited access users|[User](#schemauser)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [User](#schemauser)</span>|Returns the user records for all the members of the team, including guests and limited access users|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9699,10 +11043,16 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
       "photo": {
-        ...
+        "image_21x21": "https://...",
+        "image_27x27": "https://...",
+        "image_36x36": "https://...",
+        "image_60x60": "https://...",
+        "image_128x128": "https://..."
       },
       "workspaces": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ]
@@ -9718,24 +11068,24 @@ Results are sorted alphabetically by user names.
 
 <h3 id="get-users-in-a-workspace-or-organization-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-users-in-a-workspace-or-organization-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return the users in the specified workspace or org.|[User](#schemauser)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [User](#schemauser)</span>|Return the users in the specified workspace or org.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9794,14 +11144,14 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 
 <h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|completed_since|query|string|false|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
-|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|?completed_since<span class="param-type"> string</span>|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
+|/user_task_list_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user task list.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 #### Detailed descriptions
 
@@ -9809,14 +11159,14 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 
 <h3 id="get-tasks-from-a-user-task-list-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list's tasks.|[Task](#schematask)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the user task list's tasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9858,22 +11208,22 @@ Returns the full record for a user task list.
 
 <h3 id="get-a-user-task-list-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/user_task_list_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user task list.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-user-task-list-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list.|[UserTaskList](#schemausertasklist)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [UserTaskList](#schemausertasklist)</span>|Successfully retrieved the user task list.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -9915,23 +11265,23 @@ Returns the full record for a user's task list.
 
 <h3 id="get-a-user's-task-list-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|workspace|query|string|true|The workspace in which to get the user task list.|
+|Name|Description|
+|---|---|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace in which to get the user task list.|
 
 <h3 id="get-a-user's-task-list-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user's task list.|[UserTaskList](#schemausertasklist)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [UserTaskList](#schemausertasklist)</span>|Successfully retrieved the user's task list.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10020,25 +11370,25 @@ Get the compact representation of all webhooks your app has registered for the a
 
 <h3 id="get-multiple-webhooks-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-|workspace|query|string|true|The workspace to query for webhooks in.|
-|resource|query|string|false|Only return webhooks for the given resource.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace to query for webhooks in.|
+|?resource<span class="param-type"> string</span>|Only return webhooks for the given resource.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-multiple-webhooks-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested webhooks.|[Webhook](#schemawebhook)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Webhook](#schemawebhook)</span>|Successfully retrieved the requested webhooks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10149,25 +11499,25 @@ HTTP/1.1 201
 
 <h3 id="establish-a-webhook-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The webhook workspace and target.|
-|» data|body|object|false|none|
-|»» resource|body|string|true|A resource ID to subscribe to. The resource can be a task or project.|
-|»» target|body|string(uri)|true|The URL to receive the HTTP POST.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The webhook workspace and target.|
+|» data<span class="param-type"> object</span>|none|
+|»» resource<span class="param-type"> string</span><div class="param-required">required</div>|A resource ID to subscribe to. The resource can be a task or project.|
+|»» target<span class="param-type"> string(uri)</span><div class="param-required">required</div>|The URL to receive the HTTP POST.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="establish-a-webhook-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the requested webhook.|[Webhook](#schemawebhook)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Webhook](#schemawebhook)</span>|Successfully created the requested webhook.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10213,22 +11563,22 @@ Returns the full record for the given webhook.
 
 <h3 id="get-a-webhook-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|webhook_gid|path|string|true|Globally unique identifier for the webhook.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/webhook_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the webhook.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-webhook-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested webhook.|[Webhook](#schemawebhook)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Webhook](#schemawebhook)</span>|Successfully retrieved the requested webhook.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10264,22 +11614,22 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 
 <h3 id="delete-a-webhook-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|webhook_gid|path|string|true|Globally unique identifier for the webhook.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/webhook_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the webhook.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-webhook-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested webhook.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully retrieved the requested webhook.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10337,23 +11687,23 @@ Returns the compact records for all workspaces visible to the authorized user.
 
 <h3 id="get-multiple-workspaces-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-multiple-workspaces-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return all workspaces visible to the authorized user.|[Workspace](#schemaworkspace)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Workspace](#schemaworkspace)</span>|Return all workspaces visible to the authorized user.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10397,22 +11747,22 @@ Returns the full workspace record for a single workspace.
 
 <h3 id="get-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Return the full workspace record.|[Workspace](#schemaworkspace)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Workspace](#schemaworkspace)</span>|Return the full workspace record.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10473,23 +11823,29 @@ Returns the complete, updated workspace record.
 
 <h3 id="update-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[WorkspaceObject](#schemaworkspaceobject)|true|The workspace object with all updated properties.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The workspace object with all updated properties.|
+|» data<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="update-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Update for the workspace was successful.|[Workspace](#schemaworkspace)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Workspace](#schemaworkspace)</span>|Update for the workspace was successful.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10538,7 +11894,13 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
     },
     "workspaces": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace",
+        "email_domains": [
+          ...
+        ],
+        "is_organization": false
       }
     ]
   }
@@ -10554,23 +11916,25 @@ The user can be referenced by their globally unique user ID or their email addre
 
 <h3 id="add-a-user-to-a-workspace-or-organization-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the workspace.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The user to add to the workspace.|
+|» data<span class="param-type"> object</span>|none|
+|»» user<span class="param-type"> string</span>|none|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="add-a-user-to-a-workspace-or-organization-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The user was added successfully to the workspace or organization.|[User](#schemauser)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [User](#schemauser)</span>|The user was added successfully to the workspace or organization.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10619,23 +11983,25 @@ Returns an empty data record.
 
 <h3 id="remove-a-user-from-a-workspace-or-organization-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[UserIdObject](#schemauseridobject)|true|The user to remove from the workspace.|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The user to remove from the workspace.|
+|» data<span class="param-type"> object</span>|none|
+|»» user<span class="param-type"> string</span>|none|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="remove-a-user-from-a-workspace-or-organization-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The user was removed successfully to the workspace or organization.|[Empty](#schemaempty)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|The user was removed successfully to the workspace or organization.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10706,22 +12072,22 @@ Returns the complete workspace record for a single workspace membership.
 
 <h3 id="get-a-workspace-membership-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_membership_path_gid|path|string|true|none|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
+|Name|Description|
+|---|---|
+|/workspace_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-workspace-membership-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested workspace membership.|[WorkspaceMembership](#schemaworkspacemembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [WorkspaceMembership](#schemaworkspacemembership)</span>|Successfully retrieved the requested workspace membership.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10750,10 +12116,14 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/workspace_memberships
       "gid": "12345",
       "resource_type": "workspace_membership",
       "user": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "workspace": {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace"
       }
     }
   ]
@@ -10768,24 +12138,24 @@ Returns the compact workspace membership records for the user.
 
 <h3 id="get-workspace-memberships-for-a-user-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-workspace-memberships-for-a-user-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested user's workspace memberships.|[WorkspaceMembership](#schemaworkspacemembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [WorkspaceMembership](#schemaworkspacemembership)</span>|Successfully retrieved the requested user's workspace memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 
@@ -10814,10 +12184,14 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/workspace_m
       "gid": "12345",
       "resource_type": "workspace_membership",
       "user": {
-        ...
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       },
       "workspace": {
-        ...
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace"
       }
     }
   ]
@@ -10832,20 +12206,20 @@ Returns the compact workspace membership records for the workspace.
 
 <h3 id="get-the-workspace-memberships-for-a-workspace-parameters">Parameters</h3>
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
-|user|query|string(email)|false|The user to filter results on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-the-workspace-memberships-for-a-workspace-responses">Responses</h3>
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested workspace's memberships.|[WorkspaceMembership](#schemaworkspacemembership)|
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [WorkspaceMembership](#schemaworkspacemembership)</span>|Successfully retrieved the requested workspace's memberships.|
 
 </section>
 
@@ -10882,16 +12256,16 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|read-only|The name of the file.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|download_url|string(uri)¦null|false|read-only|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
-|host|string|false|read-only|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
-|parent|any|false|none|none|
-|view_url|string(uri)¦null|false|read-only|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the file.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
+|host<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
+|parent<span class="param-type"> any</span>|none|
+|view_url<span class="param-type"> string(uri)¦null</span>|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
 
 </section>
 
@@ -10916,11 +12290,11 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|read-only|The name of the file.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the file.|
 
 </section>
 
@@ -10956,15 +12330,15 @@ A request object for use in a batch request.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|relative_path|string|true|none|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
-|method|string|true|none|The HTTP method you wish to emulate for the action.|
-|data|object|false|none|For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.|
-|options|object|false|none|Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. “Pretty” JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.|
-|» limit|integer|false|none|Pagination limit for the request.|
-|» offset|integer|false|none|Pagination offset for the request.|
-|» fields|[string]|false|none|The fields to retrieve in the request.|
+|Name|Description|
+|---|---|
+|relative_path<span class="param-type"> string</span>|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
+|method<span class="param-type"> string</span>|The HTTP method you wish to emulate for the action.|
+|data<span class="param-type"> object</span>|For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.|
+|options<span class="param-type"> object</span>|Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. “Pretty” JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.|
+|» limit<span class="param-type"> integer</span>|Pagination limit for the request.|
+|» offset<span class="param-type"> integer</span>|Pagination offset for the request.|
+|» fields<span class="param-type"> [string]</span>|The fields to retrieve in the request.|
 
 #### Enumerated Values
 
@@ -11009,11 +12383,11 @@ A response object returned from a batch request.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|status_code|integer|false|none|The HTTP status code that the invoked endpoint returned.|
-|headers|object|false|none|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
-|body|object|false|none|The JSON body that the invoked endpoint returned.|
+|Name|Description|
+|---|---|
+|status_code<span class="param-type"> integer</span>|The HTTP status code that the invoked endpoint returned.|
+|headers<span class="param-type"> object</span>|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
+|body<span class="param-type"> object</span>|The JSON body that the invoked endpoint returned.|
 
 </section>
 
@@ -11058,26 +12432,26 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
-|resource_subtype|string|false|read-only|The type of the custom field. Must be one of the given values.|
-|type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the enum option.|
-|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|enum_value|any|false|none|none|
-|enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
-|text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-|description|string|false|none|[Opt In](#input-output-options). The description of the custom field.|
-|precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|is_global_to_workspace|boolean|false|read-only|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|has_notifications_enabled|boolean|false|none|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
+|resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|enum_value<span class="param-type"> any</span>|none|
+|enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 
 #### Enumerated Values
 
@@ -11129,22 +12503,22 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
-|resource_subtype|string|false|read-only|The type of the custom field. Must be one of the given values.|
-|type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the enum option.|
-|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|enum_value|any|false|none|none|
-|enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
-|text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
+|resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|enum_value<span class="param-type"> any</span>|none|
+|enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 
 #### Enumerated Values
 
@@ -11183,14 +12557,14 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|project|any|false|none|none|
-|is_important|boolean|false|read-only|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
-|parent|any|false|none|none|
-|custom_field|any|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|project<span class="param-type"> any</span>|none|
+|is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|parent<span class="param-type"> any</span>|none|
+|custom_field<span class="param-type"> any</span>|none|
 
 </section>
 
@@ -11214,10 +12588,10 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
 
 </section>
 
@@ -11254,13 +12628,13 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the enum option.|
-|enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the enum option.|
+|enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 
 </section>
 
@@ -11297,13 +12671,13 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the enum option.|
-|enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the enum option.|
+|enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 
 </section>
 
@@ -11342,12 +12716,12 @@ error.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|errors|[object]|false|none|none|
-|» message|string|false|read-only|Message providing more detail about the error that occurred, if available.|
-|» help|string|false|read-only|Additional information directing developers to resources on how to address and fix the problem, if available.|
-|» phrase|string|false|read-only|*500 errors only*. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
+|Name|Description|
+|---|---|
+|errors<span class="param-type"> [object]</span>|none|
+|» message<span class="param-type"> string</span>|Message providing more detail about the error that occurred, if available.|
+|» help<span class="param-type"> string</span>|Additional information directing developers to resources on how to address and fix the problem, if available.|
+|» phrase<span class="param-type"> string</span>|*500 errors only*. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
 
 </section>
 
@@ -11387,22 +12761,22 @@ observed by an event subscription.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|user|object¦null|false|read-only|The user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the subscriber. For example, if user A subscribes to a task and user B modified it, the event’s user will be user B. Note: Some events are generated by the system, and will have `null` as the user. API consumers should make sure to handle this case.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|resource|object|false|read-only|The resource the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
-|» gid|string|false|none|none|
-|» name|string|false|none|none|
-|type|string|false|read-only|*Deprecated: Refer to the resource_type of the resource.*<br>The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
-|action|string|false|read-only|The type of action taken that triggered the event.|
-|parent|object¦null|false|read-only|For added/removed events, the parent that resource was added to or removed from. The parent will be `null` for other event types.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|created_at|string(date-time)|false|read-only|The timestamp when the event occurred.|
+|Name|Description|
+|---|---|
+|user<span class="param-type"> object¦null</span>|The user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the subscriber. For example, if user A subscribes to a task and user B modified it, the event’s user will be user B. Note: Some events are generated by the system, and will have `null` as the user. API consumers should make sure to handle this case.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|resource<span class="param-type"> object</span>|The resource the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
+|» gid<span class="param-type"> string</span>|none|
+|» name<span class="param-type"> string</span>|none|
+|type<span class="param-type"> string</span>|*Deprecated: Refer to the resource_type of the resource.*<br>The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
+|action<span class="param-type"> string</span>|The type of action taken that triggered the event.|
+|parent<span class="param-type"> object¦null</span>|For added/removed events, the parent that resource was added to or removed from. The parent will be `null` for other event types.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
 
 </section>
 
@@ -11438,20 +12812,20 @@ A *job* is an object representing a process that handles asynchronous work.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|status|string|false|read-only|none|
-|new_project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|new_task|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|status<span class="param-type"> string</span>|none|
+|new_project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
 
 #### Enumerated Values
 
@@ -11491,16 +12865,16 @@ An *organization_export* object represents a request to export the complete data
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
-|state|string|false|read-only|The current state of the export.|
-|organization|object|false|none|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
-|» gid|string|false|none|none|
-|» name|string|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
+|state<span class="param-type"> string</span>|The current state of the export.|
+|organization<span class="param-type"> object</span>|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
+|» gid<span class="param-type"> string</span>|none|
+|» name<span class="param-type"> string</span>|none|
 
 #### Enumerated Values
 
@@ -11555,27 +12929,27 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|object¦null|false|read-only|The user who created this resource.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|color|string|false|none|Color of the portfolio.|
-|custom_field_settings|[object]|false|read-only|Array of custom field settings applied to the portfolio.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» project|any|false|none|none|
-|» is_important|boolean|false|read-only|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
-|» parent|any|false|none|none|
-|» custom_field|any|false|none|none|
-|owner|any|false|none|none|
-|workspace|any|false|none|none|
-|members|any|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|color<span class="param-type"> string</span>|Color of the portfolio.|
+|custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» project<span class="param-type"> any</span>|none|
+|» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|» parent<span class="param-type"> any</span>|none|
+|» custom_field<span class="param-type"> any</span>|none|
+|owner<span class="param-type"> any</span>|none|
+|workspace<span class="param-type"> any</span>|none|
+|members<span class="param-type"> any</span>|none|
 
 #### Enumerated Values
 
@@ -11624,11 +12998,11 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
 
 </section>
 
@@ -11662,18 +13036,18 @@ This object determines if a user is a member of a portfolio.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|portfolio|object|false|none|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
 
 </section>
 
@@ -11702,14 +13076,14 @@ This object determines if a user is a member of a portfolio.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
 </section>
 
@@ -11741,16 +13115,16 @@ This is read-only except for a small group of whitelisted apps.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|fallback|string|false|none|Some fallback text to display if unable to display the full preview.|
-|footer|string|false|none|Text to display in the footer.|
-|header|string|false|none|Text to display in the header.|
-|header_link|string|false|none|Where the header will link to.|
-|html_text|string|false|none|HTML formatted text for the body of the preview.|
-|text|string|false|none|Text for the body of the preview.|
-|title|string|false|none|Text to display as the title.|
-|title_link|string|false|none|Where to title will link to.|
+|Name|Description|
+|---|---|
+|fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
+|footer<span class="param-type"> string</span>|Text to display in the footer.|
+|header<span class="param-type"> string</span>|Text to display in the header.|
+|header_link<span class="param-type"> string</span>|Where the header will link to.|
+|html_text<span class="param-type"> string</span>|HTML formatted text for the body of the preview.|
+|text<span class="param-type"> string</span>|Text for the body of the preview.|
+|title<span class="param-type"> string</span>|Text to display as the title.|
+|title_link<span class="param-type"> string</span>|Where to title will link to.|
 
 </section>
 
@@ -11786,7 +13160,9 @@ This is read-only except for a small group of whitelisted apps.
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
-        ...
+        {
+          ...
+        }
       ],
       "enum_value": null,
       "enabled": true,
@@ -11835,61 +13211,61 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|archived|boolean|false|none|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
-|color|string¦null|false|none|Color of the project.|
-|current_status|object¦null|false|read-only|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
-|» color|string|false|none|none|
-|» text|string|false|none|none|
-|» author|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|custom_fields|[object]|false|read-only|Array of Custom Fields.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|» resource_subtype|string|false|read-only|The type of the custom field. Must be one of the given values.|
-|» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|The name of the enum option.|
-|»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|» enum_value|any|false|none|none|
-|» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
-|» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-|custom_field_settings|[object]|false|read-only|Array of Custom Field Settings (in compact form).|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|default_view|string|false|none|The default view (list, board, calendar, or timeline) of a project.|
-|due_date|string(date-time)¦null|false|none|*Deprecated: new integrations should prefer the due_on field.*|
-|due_on|string(date-time)¦null|false|none|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|followers|[object]|false|read-only|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|html_notes|string|false|none|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*|
-|is_template|boolean|false|none|[Opt In](#input-output-options). Determines if the project is a template.|
-|layout|string|false|read-only|The layout (board or list view) of a project|
-|members|[object]|false|read-only|Array of users who are members of this project.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|modified_at|string(date-time)|false|read-only|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
-|notes|string|false|none|More detailed, free-form textual information associated with the project.|
-|owner|any|false|none|none|
-|public|boolean|false|none|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|section_migration_status|string|false|read-only|*Read-only* The section migration status of this project.|
-|start_on|string(date)¦null|false|none|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|team|any|false|none|none|
-|workspace|any|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
+|color<span class="param-type"> string¦null</span>|Color of the project.|
+|current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
+|» color<span class="param-type"> string</span>|none|
+|» text<span class="param-type"> string</span>|none|
+|» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enum_value<span class="param-type"> any</span>|none|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
+|due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*|
+|is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
+|members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
+|notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|owner<span class="param-type"> any</span>|none|
+|public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
+|section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|team<span class="param-type"> any</span>|none|
+|workspace<span class="param-type"> any</span>|none|
 
 #### Enumerated Values
 
@@ -11955,11 +13331,11 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
 </section>
 
@@ -11994,19 +13370,19 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|write_access|string|false|read-only|Whether the user has full access to the project or has comment-only access.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|write_access<span class="param-type"> string</span>|Whether the user has full access to the project or has comment-only access.|
 
 #### Enumerated Values
 
@@ -12042,14 +13418,14 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
 </section>
 
@@ -12083,19 +13459,19 @@ A *project status* is an update on the progress of a particular project, and is 
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|title|string|false|read-only|The title of the project status update.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|object¦null|false|read-only|The user who created this resource.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|text|string|false|read-only|The text content of the status update.|
-|html-text|string|false|read-only|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
-|color|string|false|read-only|The color associated with the status update.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|title<span class="param-type"> string</span>|The title of the project status update.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|text<span class="param-type"> string</span>|The text content of the status update.|
+|html-text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|color<span class="param-type"> string</span>|The color associated with the status update.|
 
 #### Enumerated Values
 
@@ -12128,11 +13504,11 @@ A *project status* is an update on the progress of a particular project, and is 
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|title|string|false|read-only|The title of the project status update.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|title<span class="param-type"> string</span>|The title of the project status update.|
 
 </section>
 
@@ -12165,16 +13541,16 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|projects|[object]|false|none|none|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|projects<span class="param-type"> [object]</span>|none|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
 </section>
 
@@ -12199,11 +13575,11 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 
 </section>
 
@@ -12239,10 +13615,16 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
       "photo": {
-        ...
+        "image_21x21": "https://...",
+        "image_27x27": "https://...",
+        "image_36x36": "https://...",
+        "image_60x60": "https://...",
+        "image_128x128": "https://..."
       },
       "workspaces": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ],
@@ -12255,10 +13637,16 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
       "photo": {
-        ...
+        "image_21x21": "https://...",
+        "image_27x27": "https://...",
+        "image_36x36": "https://...",
+        "image_60x60": "https://...",
+        "image_128x128": "https://..."
       },
       "workspaces": [
-        ...
+        {
+          ...
+        }
       ]
     }
   ],
@@ -12345,7 +13733,11 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
     "type": "text",
     "enum_options": [
       {
-        ...
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
       }
     ],
     "enum_value": null,
@@ -12398,166 +13790,166 @@ A story represents an activity associated with an object in the Asana system.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|object¦null|false|read-only|The user who created this resource.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
-|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|html_text|string|false|none|[Opt In](#input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>*Note: This field is under active migration—please see our blog<br>post for more information.*|
-|is_edited|boolean|false|read-only|*Conditional*. Whether the text of the story has been edited after creation.|
-|is_pinned|boolean|false|none|*Conditional*. Whether the story should be pinned on the resource.|
-|hearted|boolean|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
-|hearts|[object]|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. Array of users who have hearted this story.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|» email|string(email)|false|read-only|The user’s email address.|
-|» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»» image_21x21|string(uri)|false|none|none|
-|»» image_27x27|string(uri)|false|none|none|
-|»» image_36x36|string(uri)|false|none|none|
-|»» image_60x60|string(uri)|false|none|none|
-|»» image_128x128|string(uri)|false|none|none|
-|» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|The name of the object.|
-|»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|num_hearts|integer|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
-|liked|boolean|false|read-only|*Conditional*. True if the story is liked by the authorized user, false if not.|
-|likes|[object]|false|read-only|*Conditional*. Array of users who have liked this story.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|» email|string(email)|false|read-only|The user’s email address.|
-|» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»» image_21x21|string(uri)|false|none|none|
-|»» image_27x27|string(uri)|false|none|none|
-|»» image_36x36|string(uri)|false|none|none|
-|»» image_60x60|string(uri)|false|none|none|
-|»» image_128x128|string(uri)|false|none|none|
-|» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|The name of the object.|
-|»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|num_likes|integer|false|read-only|*Conditional*. The number of users who have liked this story.|
-|previews|[object]|false|read-only|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
-|» fallback|string|false|none|Some fallback text to display if unable to display the full preview.|
-|» footer|string|false|none|Text to display in the footer.|
-|» header|string|false|none|Text to display in the header.|
-|» header_link|string|false|none|Where the header will link to.|
-|» html_text|string|false|none|HTML formatted text for the body of the preview.|
-|» text|string|false|none|Text for the body of the preview.|
-|» title|string|false|none|Text to display as the title.|
-|» title_link|string|false|none|Where to title will link to.|
-|old_name|string|false|none|*Conditional*'|
-|new_name|string|false|read-only|*Conditional*|
-|old_dates|object|false|read-only|*Conditional*|
-|» start_on|string(date)|false|none|none|
-|» due_at|string(date-time)|false|none|none|
-|» due_on|string(date)|false|none|none|
-|new_dates|object|false|read-only|*Conditional*|
-|» start_on|string(date)|false|none|none|
-|» due_at|string(date-time)|false|none|none|
-|» due_on|string(date)|false|none|none|
-|old_resource_subtype|string|false|read-only|*Conditional*|
-|new_resource_subtype|string|false|read-only|*Conditional*|
-|story|object|false|none|A story represents an activity associated with an object in the Asana system.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|» created_by|object¦null|false|read-only|The user who created this resource.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|» text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
-|» type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|assignee|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|follower|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|old_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|new_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|task|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|tag|object|false|none|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|custom_field|object|false|none|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|» resource_subtype|string|false|read-only|The type of the custom field. Must be one of the given values.|
-|» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|The name of the enum option.|
-|»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|» enum_value|any|false|none|none|
-|» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
-|» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-|old_text_value|string|false|read-only|*Conditional*|
-|new_text_value|string|false|read-only|*Conditional*|
-|old_number_value|integer|false|read-only|*Conditional*|
-|new_number_value|integer|false|read-only|*Conditional*|
-|old_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the enum option.|
-|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|new_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the enum option.|
-|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|duplicate_of|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|duplicated_from|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|dependency|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|source|string|false|read-only|The component of the Asana product the user used to trigger the story.|
-|target|object|false|read-only|The object this story is associated with. Currently may only be a task.|
-|» gid|string|false|none|none|
-|» name|string|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>*Note: This field is under active migration—please see our blog<br>post for more information.*|
+|is_edited<span class="param-type"> boolean</span>|*Conditional*. Whether the text of the story has been edited after creation.|
+|is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|hearted<span class="param-type"> boolean</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
+|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. Array of users who have hearted this story.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» email<span class="param-type"> string(email)</span>|The user’s email address.|
+|» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|»» image_21x21<span class="param-type"> string(uri)</span>|none|
+|»» image_27x27<span class="param-type"> string(uri)</span>|none|
+|»» image_36x36<span class="param-type"> string(uri)</span>|none|
+|»» image_60x60<span class="param-type"> string(uri)</span>|none|
+|»» image_128x128<span class="param-type"> string(uri)</span>|none|
+|» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
+|num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
+|liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
+|likes<span class="param-type"> [object]</span>|*Conditional*. Array of users who have liked this story.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» email<span class="param-type"> string(email)</span>|The user’s email address.|
+|» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|»» image_21x21<span class="param-type"> string(uri)</span>|none|
+|»» image_27x27<span class="param-type"> string(uri)</span>|none|
+|»» image_36x36<span class="param-type"> string(uri)</span>|none|
+|»» image_60x60<span class="param-type"> string(uri)</span>|none|
+|»» image_128x128<span class="param-type"> string(uri)</span>|none|
+|» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
+|num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
+|previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
+|» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
+|» footer<span class="param-type"> string</span>|Text to display in the footer.|
+|» header<span class="param-type"> string</span>|Text to display in the header.|
+|» header_link<span class="param-type"> string</span>|Where the header will link to.|
+|» html_text<span class="param-type"> string</span>|HTML formatted text for the body of the preview.|
+|» text<span class="param-type"> string</span>|Text for the body of the preview.|
+|» title<span class="param-type"> string</span>|Text to display as the title.|
+|» title_link<span class="param-type"> string</span>|Where to title will link to.|
+|old_name<span class="param-type"> string</span>|*Conditional*'|
+|new_name<span class="param-type"> string</span>|*Conditional*|
+|old_dates<span class="param-type"> object</span>|*Conditional*|
+|» start_on<span class="param-type"> string(date)</span>|none|
+|» due_at<span class="param-type"> string(date-time)</span>|none|
+|» due_on<span class="param-type"> string(date)</span>|none|
+|new_dates<span class="param-type"> object</span>|*Conditional*|
+|» start_on<span class="param-type"> string(date)</span>|none|
+|» due_at<span class="param-type"> string(date-time)</span>|none|
+|» due_on<span class="param-type"> string(date)</span>|none|
+|old_resource_subtype<span class="param-type"> string</span>|*Conditional*|
+|new_resource_subtype<span class="param-type"> string</span>|*Conditional*|
+|story<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|follower<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|old_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|new_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|tag<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enum_value<span class="param-type"> any</span>|none|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|old_text_value<span class="param-type"> string</span>|*Conditional*|
+|new_text_value<span class="param-type"> string</span>|*Conditional*|
+|old_number_value<span class="param-type"> integer</span>|*Conditional*|
+|new_number_value<span class="param-type"> integer</span>|*Conditional*|
+|old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|duplicate_of<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|duplicated_from<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|dependency<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|source<span class="param-type"> string</span>|The component of the Asana product the user used to trigger the story.|
+|target<span class="param-type"> object</span>|The object this story is associated with. Currently may only be a task.|
+|» gid<span class="param-type"> string</span>|none|
+|» name<span class="param-type"> string</span>|none|
 
 #### Enumerated Values
 
@@ -12601,18 +13993,18 @@ A story represents an activity associated with an object in the Asana system.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|object¦null|false|read-only|The user who created this resource.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
-|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 
 </section>
 
@@ -12650,20 +14042,20 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|followers|[object]|false|read-only|Array of users following this tag.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|color|string|false|none|Color of the tag.|
-|workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|followers<span class="param-type"> [object]</span>|Array of users following this tag.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|color<span class="param-type"> string</span>|Color of the tag.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
 
 #### Enumerated Values
 
@@ -12711,11 +14103,11 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
 </section>
 
@@ -12746,7 +14138,9 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
-        ...
+        {
+          ...
+        }
       ],
       "enum_value": null,
       "enabled": true,
@@ -12807,10 +14201,14 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
   "memberships": [
     {
       "project": {
-        ...
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
       },
       "section": {
-        ...
+        "gid": "12345",
+        "resource_type": "section",
+        "name": "Next Actions"
       }
     }
   ],
@@ -12843,86 +14241,86 @@ The *task* is the basic object around which many operations in Asana are centere
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
-|assignee|any|false|none|none|
-|assignee_status|string|false|none|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
-|completed|boolean|false|none|True if the task is currently marked complete, false if not.|
-|completed_at|string(date-time)¦null|false|read-only|The time at which this task was completed, or null if the task is incomplete.|
-|custom_fields|[object]|false|read-only|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|» resource_subtype|string|false|read-only|The type of the custom field. Must be one of the given values.|
-|» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|The name of the enum option.|
-|»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|» enum_value|any|false|none|none|
-|» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
-|» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-|» description|string|false|none|[Opt In](#input-output-options). The description of the custom field.|
-|» precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|» is_global_to_workspace|boolean|false|read-only|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|» has_notifications_enabled|boolean|false|none|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|dependencies|[object]|false|read-only|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|» gid|string|false|none|none|
-|dependents|[object]|false|read-only|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|» gid|string|false|none|none|
-|due_at|string(date)¦null|false|none|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
-|due_on|string(date)¦null|false|none|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|external|object|false|none|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
-|» gid|string|false|none|none|
-|» data|string|false|none|none|
-|followers|[object]|false|read-only|Array of users following this task.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|html_notes|string|false|none|[Opt In](#input-output-options). The notes of the text with formatting as HTML.<br>*Note: This field is under active migration—please see our blog post for more information.*|
-|hearted|boolean|false|read-only|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|hearts|[object]|false|read-only|*Deprecated - please use likes instead* Array of users who have hearted this task.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|is_rendered_as_separator|boolean|false|read-only|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
-|liked|boolean|false|read-only|True if the task is liked by the authorized user, false if not.|
-|likes|[object]|false|read-only|Array of users who have liked this task.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|memberships|[object]|false|read-only|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
-|» project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|modified_at|string(date-time)|false|read-only|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
-|notes|string|false|none|More detailed, free-form textual information associated with the task.|
-|num_hearts|integer|false|read-only|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|num_likes|integer|false|read-only|The number of users who have liked this task.|
-|num_subtasks|integer|false|read-only|[Opt In](#input-output-options). The number of subtasks on this task.|
-|parent|any|false|none|none|
-|projects|[object]|false|read-only|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|tags|[object]|false|read-only|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|workspace|any|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
+|assignee<span class="param-type"> any</span>|none|
+|assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
+|completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
+|custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enum_value<span class="param-type"> any</span>|none|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
+|» gid<span class="param-type"> string</span>|none|
+|dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|» gid<span class="param-type"> string</span>|none|
+|due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
+|» gid<span class="param-type"> string</span>|none|
+|» data<span class="param-type"> string</span>|none|
+|followers<span class="param-type"> [object]</span>|Array of users following this task.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.<br>*Note: This field is under active migration—please see our blog post for more information.*|
+|hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
+|likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
+|notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
+|num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
+|parent<span class="param-type"> any</span>|none|
+|projects<span class="param-type"> [object]</span>|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|tags<span class="param-type"> [object]</span>|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|workspace<span class="param-type"> any</span>|none|
 
 #### Enumerated Values
 
@@ -12966,11 +14364,11 @@ The *task* is the basic object around which many operations in Asana are centere
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
 
 </section>
 
@@ -12998,14 +14396,14 @@ A response object returned from the task count endpoint.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|num_tasks|integer|false|none|The number of tasks in a project.|
-|num_incomplete_tasks|integer|false|none|The number of incomplete tasks in a project.|
-|num_completed_tasks|integer|false|none|The number of completed tasks in a project.|
-|num_milestones|integer|false|none|The number of milestones in a project.|
-|num_incomplete_milestones|integer|false|none|The number of incomplete milestones in a project.|
-|num_completed_milestones|integer|false|none|The number of completed milestones in a project.|
+|Name|Description|
+|---|---|
+|num_tasks<span class="param-type"> integer</span>|The number of tasks in a project.|
+|num_incomplete_tasks<span class="param-type"> integer</span>|The number of incomplete tasks in a project.|
+|num_completed_tasks<span class="param-type"> integer</span>|The number of completed tasks in a project.|
+|num_milestones<span class="param-type"> integer</span>|The number of milestones in a project.|
+|num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
+|num_completed_milestones<span class="param-type"> integer</span>|The number of completed milestones in a project.|
 
 </section>
 
@@ -13033,14 +14431,14 @@ A *team* is used to group related projects and people together within an organiz
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
-|description|string|false|none|[Opt In](#input-output-options). The description of the team.|
-|html_description|string|false|none|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://developers.asana.com/docs/#rich-text) for more information.*|
-|organization|any|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
+|description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team.|
+|html_description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://developers.asana.com/docs/#rich-text) for more information.*|
+|organization<span class="param-type"> any</span>|none|
 
 </section>
 
@@ -13065,11 +14463,11 @@ A *team* is used to group related projects and people together within an organiz
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
 
 </section>
 
@@ -13100,7 +14498,7 @@ A *team* is used to group related projects and people together within an organiz
       "resource_type": "workspace",
       "name": "My Company Workspace",
       "email_domains": [
-        ...
+        "asana.com"
       ],
       "is_organization": false
     }
@@ -13113,24 +14511,24 @@ A *user* object represents an account in Asana that can be given access to vario
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|email|string(email)|false|read-only|The user’s email address.|
-|photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|» image_21x21|string(uri)|false|none|none|
-|» image_27x27|string(uri)|false|none|none|
-|» image_36x36|string(uri)|false|none|none|
-|» image_60x60|string(uri)|false|none|none|
-|» image_128x128|string(uri)|false|none|none|
-|workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|email<span class="param-type"> string(email)</span>|The user’s email address.|
+|photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|» image_21x21<span class="param-type"> string(uri)</span>|none|
+|» image_27x27<span class="param-type"> string(uri)</span>|none|
+|» image_36x36<span class="param-type"> string(uri)</span>|none|
+|» image_60x60<span class="param-type"> string(uri)</span>|none|
+|» image_128x128<span class="param-type"> string(uri)</span>|none|
+|workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 
 </section>
 
@@ -13155,11 +14553,11 @@ A *user* object represents an account in Asana that can be given access to vario
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
 </section>
 
@@ -13186,13 +14584,13 @@ A user task list represents the tasks assigned to a particular user. It provides
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
-|owner|any|false|none|none|
-|workspace|any|false|none|none|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
+|owner<span class="param-type"> any</span>|none|
+|workspace<span class="param-type"> any</span>|none|
 
 </section>
 
@@ -13217,11 +14615,11 @@ A generic Asana Object, containing a globally unique identifier.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
 
 </section>
 
@@ -13256,17 +14654,17 @@ In both cases, however, changes are represented as Event objects - refer to the 
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|active|boolean|false|none|If true, the webhook will send events - if false it is considered inactive and will not generate events.|
-|last_failure_at|string(date-time)|false|read-only|The timestamp when the webhook last received an error when sending an event to the target.|
-|last_failure_content|string|false|read-only|The contents of the last error response sent to the webhook when attempting to deliver events to the target.|
-|last_success_at|string(date-time)|false|read-only|The timestamp when the webhook last successfully sent an event to the target.|
-|resource|any|false|none|none|
-|target|string(uri)|false|read-only|The URL to receive the HTTP POST.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|active<span class="param-type"> boolean</span>|If true, the webhook will send events - if false it is considered inactive and will not generate events.|
+|last_failure_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last received an error when sending an event to the target.|
+|last_failure_content<span class="param-type"> string</span>|The contents of the last error response sent to the webhook when attempting to deliver events to the target.|
+|last_success_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last successfully sent an event to the target.|
+|resource<span class="param-type"> any</span>|none|
+|target<span class="param-type"> string(uri)</span>|The URL to receive the HTTP POST.|
 
 </section>
 
@@ -13292,14 +14690,14 @@ In both cases, however, changes are represented as Event objects - refer to the 
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|action|string|false|read-only|The type of action taken that triggered the event.|
-|created_at|string(date-time)|false|read-only|The timestamp when the event occurred.|
-|parent|string¦null|false|read-only|For added/removed events, the parent gid that resource was added to or removed from. The parent will be `null` for other event types.|
-|resource|string|false|read-only|The resource gid the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
-|type|string|false|read-only|The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
-|user|string¦null|false|read-only|The gid of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
+|Name|Description|
+|---|---|
+|action<span class="param-type"> string</span>|The type of action taken that triggered the event.|
+|created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
+|parent<span class="param-type"> string¦null</span>|For added/removed events, the parent gid that resource was added to or removed from. The parent will be `null` for other event types.|
+|resource<span class="param-type"> string</span>|The resource gid the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
+|type<span class="param-type"> string</span>|The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
+|user<span class="param-type"> string¦null</span>|The gid of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
 
 </section>
 
@@ -13328,13 +14726,13 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
-|email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|is_organization|boolean|false|none|Whether the workspace is an *organization*.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
+|email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 
 </section>
 
@@ -13359,11 +14757,11 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
 
 </section>
 
@@ -13407,27 +14805,27 @@ This object determines if a user is a member of a workspace.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The resource type of this resource. The value for this resource is always `workspace_membership`.|
-|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|user_task_list|object|false|none|A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
-|» owner|any|false|none|none|
-|» workspace|any|false|none|none|
-|is_active|boolean|false|read-only|Reflects if this user still a member of the workspace.|
-|is_admin|boolean|false|read-only|Reflects if this user is an admin of the workspace.|
-|is_guest|boolean|false|read-only|Reflects if this user is a guest of the workspace.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The resource type of this resource. The value for this resource is always `workspace_membership`.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|user_task_list<span class="param-type"> object</span>|A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|» owner<span class="param-type"> any</span>|none|
+|» workspace<span class="param-type"> any</span>|none|
+|is_active<span class="param-type"> boolean</span>|Reflects if this user still a member of the workspace.|
+|is_admin<span class="param-type"> boolean</span>|Reflects if this user is an admin of the workspace.|
+|is_guest<span class="param-type"> boolean</span>|Reflects if this user is a guest of the workspace.|
 
 </section>
 
@@ -13461,18 +14859,18 @@ This object determines if a user is a member of a workspace.
 
 ### Properties
 
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The resource type of this resource. The value for this resource is always `workspace_membership`.|
-|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the object.|
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_type<span class="param-type"> string</span>|The resource type of this resource. The value for this resource is always `workspace_membership`.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
 
 </section>
 

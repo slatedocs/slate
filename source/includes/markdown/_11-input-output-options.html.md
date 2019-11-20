@@ -42,10 +42,10 @@ HTTP/1.1 200
 These options can be used in combination in a single request, though some of them may conflict in their impact on
 the response.
 
-| Option | Description | Notes |
+| Option | Description |
 |---|---|---|
-| **pretty** | Provides the response in "pretty" output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging. |  |
-| **fields** | Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as <a href="#paths">paths</a>, described below. | The `gid` of included objects will always be returned, regardless of the field options. |
+| **pretty** | Provides the response in "pretty" output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging. |
+| **fields** | Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as <a href="#paths">paths</a>, described below. <br><br> The `gid` of included objects will always be returned, regardless of the field options. |
 
 <a name="paths"></a>
 **SELECTING FIELDS**

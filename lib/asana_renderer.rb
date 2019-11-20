@@ -23,8 +23,8 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     classes = ''
     on_click = ''
     if friendly_text.match(/^enumerated-values/)
-      classes = 'class="enumerated-values"'
-      on_click = 'onclick="$(this).next().toggle(); $(this).toggleClass(\'expanded\');"'
+      classes = 'class="enumerated-values has-children"'
+      on_click = 'onclick="$(this).next().toggleClass(\'show-row\'); $(this).toggleClass(\'expanded\');"'
       text = text + "<svg class='chevron' viewBox='0 0 40 40'><path d='M23.2,16c0,0.3-0.1,0.7-0.3,0.9l-9,11c-0.5,0.6-1.5,0.7-2.1,0.2s-0.7-1.5-0.2-2.1l8.2-10L11.6,6c-0.5-0.6-0.4-1.6,0.2-2.1s1.6-0.4,2.1,0.2l9,11C23.1,15.3,23.2,15.7,23.2,16z'></path></svg>"
     end
 
@@ -63,7 +63,7 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
       end
 
       if chevrons == 0
-        if content.index("opt_pretty") == 4 || content.index("opt_fields") == 4 || content.index("opt_expand") == 4 || content.index("limit") == 4 || content.index("offset") == 4
+        if content.index("?opt_pretty") == 4 || content.index("?opt_fields") == 4 || content.index("?opt_expand") == 4 || content.index("?limit") == 4 || content.index("?offset") == 4
           result_classes[i] += " hidden-row common-item"
           has_common_params = true
         elsif content.index("400") == 4 || content.index("401") == 4 || content.index("402") == 4 || content.index("403") == 4 || content.index("404") == 4 || content.index("424") == 4 || content.index("500") == 4 || content.index("501") == 4 || content.index("503") == 4 || content.index("504") == 4 || content.index("default<") == 4
@@ -76,11 +76,32 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
       i += 1
     end
 
+    path_rows = Array.new
+    param_rows = Array.new
+    body_rows = Array.new
+    common_rows = Array.new
+
+    # Add classes and sort
     i = 0
     while i < result_rows.length do
       result_rows[i].insert(11, result_classes[i])
+      content = result_rows[i].split('<td>')[2]
+
+      if content.index("/") == 0
+        path_rows[path_rows.length] = result_rows[i]
+      elsif content.index("?") == 0
+        if content.index("?opt_pretty") == 0 || content.index("?opt_fields") == 0 || content.index("?opt_expand") == 0 || content.index("?limit") == 0 || content.index("?offset") == 0
+          common_rows[common_rows.length] = result_rows[i]
+        else
+          param_rows[param_rows.length] = result_rows[i]
+        end
+      else
+        body_rows[body_rows.length] = result_rows[i]
+      end
       i += 1
     end
+
+    result_rows = path_rows.concat(param_rows).concat(body_rows).concat(common_rows)
 
     header.insert(4, "<td></td>")
 

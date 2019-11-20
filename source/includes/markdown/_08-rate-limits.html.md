@@ -55,8 +55,8 @@ In addition to limiting the total number of requests in a given time window, we 
 
 | Request type | Maximum concurrent requests |
 |---|---|
-| Reads (HTTP `GET` method) | 50 |
-| Writes (HTTP `POST`, `PUT`, `PATCH`, and `DELETE` methods combined) | 15 |
+| Reads `GET` | 50 |
+| Writes `POST, PUT, PATCH, DELETE` | 15 |
 
 For example, if you have 50 read requests in-flight and attempt to make another read request, the API will return a `429 Too Many Requests` error. The read and write limits are independent of each other, so the number of read requests you make at one time will have no impact on the number of write requests you can make.
 

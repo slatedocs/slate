@@ -495,6 +495,7 @@ html, body {
       padding: 0;
       margin: 0;
       background-color: white;
+      border-color: #e8ecee;
 
       thead {
         width: 100%;
@@ -506,7 +507,7 @@ html, body {
         font-weight: 500;
         color: #6F7782;
         font-size: 12px;
-        border-bottom: 1px solid #E8ECEE;
+        border-bottom: 1px solid #e8ecee;
         background-color: #f6f8f9;
       }
 
@@ -575,47 +576,67 @@ html, body {
         }
 
         .c1 td:first-child {
-          border-left: 4px solid #e0e6e8;
+          border-left: 4px solid #e8ecee;
         }
 
         .c2 td:first-child {
-          border-left: 8px solid #e0e6e8;
+          border-left: 8px solid #e8ecee;
         }
 
         .c3 td:first-child {
-          border-left: 12px solid #e0e6e8;
+          border-left: 12px solid #e8ecee;
         }
 
         .c4 td:first-child {
-          border-left: 16px solid #e0e6e8;
+          border-left: 16px solid #e8ecee;
         }
 
         .c5 td:first-child {
-          border-left: 20px solid #e0e6e8;
+          border-left: 20px solid #e8ecee;
         }
 
         .c6 td:first-child {
-          border-left: 24px solid #e0e6e8;
+          border-left: 24px solid #e8ecee;
         }
 
         .c7 td:first-child {
-          border-left: 28px solid #e0e6e8;
+          border-left: 28px solid #e8ecee;
         }
 
         .c8 td:first-child {
-          border-left: 32px solid #e0e6e8;
+          border-left: 32px solid #e8ecee;
         }
 
         .c9 td:first-child {
-          border-left: 36px solid #e0e6e8;
+          border-left: 36px solid #e8ecee;
         }
 
         .c10 td:first-child {
-          border-left: 40px solid #e0e6e8;
+          border-left: 40px solid #e8ecee;
         }
 
         tr {
-          border-bottom: 1px solid #E8ECEE;
+          border-bottom: 1px solid #e8ecee;
+
+          .param-type {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin-left: 2px;
+            font-size: 11px;
+            font-weight: normal;
+            letter-spacing: 0.07px;
+            color: #6F7782;
+          }
+
+          .param-required {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;;
+            font-size: 10px;
+            color: #FF5263;
+            letter-spacing: 0.07px;
+            text-transform: uppercase;
+            font-weight: 600;
+            line-height: 16px;
+            margin-top: -2px;
+          }
 
           &:hover {
             background-color: transparent;
@@ -633,9 +654,15 @@ html, body {
             td:nth-child(2) {
               font-family: Consolas, Menlo, monospace;
               color: #FF5263;
+              white-space: nowrap;
               font-size: 13px;
               line-height: 22px;
               font-weight: 400;
+              width: 150px;
+
+              @media (max-width: $tablet-width) {
+                width: auto;
+              }
             }
           }
         }
@@ -654,7 +681,7 @@ html, body {
 
       th {
         padding: 5px 10px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #e8ecee;
         vertical-align: bottom;
       }
 
@@ -663,12 +690,12 @@ html, body {
       }
 
       tr:last-child {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #e8ecee;
       }
 
       tr:not(:last-child) {
         th, td {
-          border-bottom: 1px solid #ddd;
+          border-bottom: 1px solid #e8ecee;
         }
       }
     }
@@ -890,6 +917,10 @@ code, pre {
     pre {
       margin-left: 0;
     }
+
+    .param-type {
+      white-space: normal;
+    }
   }
 }
 
@@ -975,6 +1006,10 @@ pre {
 
   & + .table-holder {
     display: none;
+
+    &.show-row {
+      display: inline-block;
+    }
   }
 }
 
