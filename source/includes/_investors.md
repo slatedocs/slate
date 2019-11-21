@@ -496,13 +496,11 @@ Content-Type: application/json
 Authorization: Basic ...
 
 {
+  "title" : "MISS",
   "firstName" : "firstName",
+  "middleName" : "middleName",
   "lastName" : "lastName",
-  "corporateDetails" : {
-    "companyType" : "companyType",
-    "registrationNumber" : "registrationNumber",
-    "companyName" : "companyName"
-  },
+  "dateOfBirth" : "2000-01-23",
   "address" : {
     "country" : "country",
     "lineTwo" : "lineTwo",
@@ -512,19 +510,11 @@ Authorization: Basic ...
     "lineThree" : "lineThree",
     "region" : "region"
   },
-  "nationalInsuranceNumber" : "nationalInsuranceNumber",
-  "entityType" : "INDIVIDUAL",
-  "employmentDetails" : {
-    "jobTitle" : "jobTitle",
-    "employmentStatus" : "EMPLOYED_FULL_TIME"
-  },
-  "dateOfBirth" : "2000-01-23",
-  "title" : "MISS",
-  "investorDeclarationType" : "RESTRICTED",
   "contactDetails" : {
     "emailAddress" : "emailAddress",
     "telephoneNumber" : "telephoneNumber"
-  }
+  },
+  "nationalInsuranceNumber" : "nationalInsuranceNumber"
 }
 
 HTTP/1.1 200 OK
@@ -571,6 +561,7 @@ Updates an investor.
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       | required |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
+| middleName                          | string | The middle name of the investor.                                                                                                                                                                                        | required |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
 | dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
 | address                             | ref    |                                                                                                                                                                                                                       | required |
@@ -585,15 +576,6 @@ Updates an investor.
 | contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 ||
 | contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    ||
 | nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                                       | optional |
-| employmentDetails                   | ref    |                                                                                                                                                                                                                       | optional |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        ||
-| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> ||
-| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             | optional |
-| investorDeclarationType             | string | must be SOPHISTICATED for an investor with entityType CORPORATE Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                         | optional |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               | optional |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
 ### Response
 | Name                                | Type   | Description                                                                                                                                                                                                           |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
