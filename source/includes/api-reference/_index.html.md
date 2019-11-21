@@ -5480,7 +5480,7 @@ curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
 <code> <span class="post-verb">POST</span> /sections/{section_gid}/addTask</code>
 </p>
 
-Add a task to a specific, existing section. This is remove the task from other sections of the project.
+Add a task to a specific, existing section. This will remove the task from other sections of the project.
 
 The task will be inserted at the top of a section unless an insert_before or insert_after parameter is declared.
 

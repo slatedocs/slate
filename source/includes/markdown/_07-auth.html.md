@@ -348,7 +348,7 @@ the ID token in addition to everything you would normally receive.
 To access additional information about the user in a standardized format, we also expose a
 [user info endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) that can provide the user's name,
 email address, and profile photo. This data is available by making a `GET` request to
-`https://app.asana.com/api/1.0/openid-connect/userinfo` with an OAuth access token that has the `openid` scope.
+`https://app.asana.com/api/1.0/openid_connect/userinfo` with an OAuth access token that has the `openid` scope.
 Depending on the scopes tied to that token, you will receive different pieces of data. Refer to our
 [list of OAuth scopes](#scopes) to determine which additional scopes you need to get the data you want.
 
