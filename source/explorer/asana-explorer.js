@@ -4485,10 +4485,10 @@ var resource = {
             "comment": "The name of the section (i.e. the text displayed as the section header).\n"
         },
         {
-            "name": "project",
-            "type": "Project",
+            "name": "projects",
+            "type": "Array",
             "example_values": [
-                "{ id: 1234, gid: \"1234\", name: 'Bugs' }"
+                "[{ id: 1234, gid: \"1234\", name: 'Bugs' }]"
             ],
             "access": "Read-only",
             "comment": "The project which contains the section.\n"
@@ -6911,7 +6911,7 @@ module.exports = resource;
 /* tslint:disable:eofline */
 var resource = {
     "name": "user_task_list",
-    "comment": "A _user task list_ represents the tasks assigned to a particular user. It provides API access to a user's \"My Tasks\" view in Asana.\n\nA user's \"My Tasks\" represent all of the tasks assigned to that user. It is\nvisually divided into regions based on the task's\n[`assignee_status`](/developers/api-reference/tasks#field-assignee_status)\nfor Asana users to triage their tasks based on when they can address them.\nWhen building an integration it's worth noting that tasks with due dates will\nautomatically move through `assignee_status` states as their due dates\napproach; read up on [task\nauto-promotion](/guide/help/fundamentals/my-tasks#gl-auto-promote) for more\ninfomation.\n",
+    "comment": "A _user task list_ represents the tasks assigned to a particular user. It provides API access to a user's \"My Tasks\" view in Asana.\n\nA user's \"My Tasks\" represent all of the tasks assigned to that user. It is\nvisually divided into regions based on the task's\n[`assignee_status`](/developers/api-reference/tasks#field-assignee_status)\nfor Asana users to triage their tasks based on when they can address them.\nWhen building an integration it's worth noting that tasks with due dates will\nautomatically move through `assignee_status` states as their due dates\napproach; read up on [task\nauto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more\ninfomation.\n",
     "properties": [
         {
             "name": "id",
