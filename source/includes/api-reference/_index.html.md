@@ -10125,22 +10125,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/searc
 </p>
 
 To mirror the functionality of the Asana web app's advanced search feature, the Asana API has a task search endpoint that allows you to build complex filters to find and retrieve the exact data you need.
-#### Custom fields
-| Parameter name | Custom field type | Accepted type |
-|---|---|---|
-| `custom_fields.<id>.is_set` | All | Boolean |
-| `custom_fields.<id>.value` | Text | String |
-| `custom_fields.<id>.value` | Number | Number |
-| `custom_fields.<id>.value` | Enum | Enum option ID |
-| `custom_fields.<id>.starts_with` | Text only | String |
-| `custom_fields.<id>.ends_with` | Text only | String |
-| `custom_fields.<id>.contains` | Text only | String |
-| `custom_fields.<id>.less_than` | Number only | Number |
-| `custom_fields.<id>.greater_than` | Number only | Number |
-
-For example, if the gid of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the gid of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.
-
-Searching for multiple exact matches of a custom field is not supported.
 #### Premium access
 Like the Asana web product's advance search feature, this search endpoint will only be available to premium Asana users. A user is premium if any of the following is true:
 
@@ -10153,6 +10137,22 @@ Search results are not stable; repeating the same query multiple times may retur
 Changes in Asana (regardless of whether they’re made though the web product or the API) are forwarded to our search infrastructure to be indexed. This process can take between 10 and 60 seconds to complete under normal operation, and longer during some production incidents. Making a change to a task that would alter its presence in a particular search query will not be reflected immediately. This is also true of the advanced search feature in the web product.
 #### Rate limits
 You may receive a `429 Too Many Requests` response if you hit any of our [rate limits](https://developers.asana.com/docs/#rate-limits).
+#### Custom field parameters
+| Parameter name | Custom field type | Accepted type |
+|---|---|---|
+| custom_fields.{gid}.is_set | All | Boolean |
+| custom_fields.{gid}.value | Text | String |
+| custom_fields.{gid}.value | Number | Number |
+| custom_fields.{gid}.value | Enum | Enum option ID |
+| custom_fields.{gid}.starts_with | Text only | String |
+| custom_fields.{gid}.ends_with | Text only | String |
+| custom_fields.{gid}.contains | Text only | String |
+| custom_fields.{gid}.less_than | Number only | Number |
+| custom_fields.{gid}.greater_than | Number only | Number |
+
+For example, if the gid of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the gid of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.
+
+Searching for multiple exact matches of a custom field is not supported.
 
 <h3 id="search-tasks-in-a-workspace-parameters">Parameters</h3>
 
@@ -10163,59 +10163,59 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?text<span class="param-type"> string</span>|Performs full-text search on both task name and description|
 |?resource_subtype<span class="param-type"> string</span>|Filters results by the task's resource_subtype|
-|?assignee.any<span class="param-type"> string</span>|none|
-|?assignee.not<span class="param-type"> string</span>|none|
-|?assignee_status<span class="param-type"> string</span>|none|
-|?projects.any<span class="param-type"> string</span>|none|
-|?projects.not<span class="param-type"> string</span>|none|
-|?projects.all<span class="param-type"> string</span>|none|
-|?sections.any<span class="param-type"> string</span>|none|
-|?sections.not<span class="param-type"> string</span>|none|
-|?sections.all<span class="param-type"> string</span>|none|
-|?tags.any<span class="param-type"> string</span>|none|
-|?tags.not<span class="param-type"> string</span>|none|
-|?tags.all<span class="param-type"> string</span>|none|
-|?teams.any<span class="param-type"> string</span>|none|
-|?followers.any<span class="param-type"> string</span>|none|
-|?followers.not<span class="param-type"> string</span>|none|
-|?created_by.any<span class="param-type"> string</span>|none|
-|?created_by.not<span class="param-type"> string</span>|none|
-|?assigned_by.any<span class="param-type"> string</span>|none|
-|?assigned_by.not<span class="param-type"> string</span>|none|
-|?liked_by.any<span class="param-type"> string</span>|none|
-|?liked_by.not<span class="param-type"> string</span>|none|
-|?commented_on_by.any<span class="param-type"> string</span>|none|
-|?commented_on_by.not<span class="param-type"> string</span>|none|
-|?due_on.before<span class="param-type"> string(date)</span>|none|
-|?due_on.after<span class="param-type"> string(date)</span>|none|
-|?due_on<span class="param-type"> string(date)</span>|none|
-|?due_at.before<span class="param-type"> string(date-time)</span>|none|
-|?due_at.after<span class="param-type"> string(date-time)</span>|none|
-|?start_on.before<span class="param-type"> string(date)</span>|none|
-|?start_on.after<span class="param-type"> string(date)</span>|none|
-|?start_on<span class="param-type"> string(date)</span>|none|
-|?created_on.before<span class="param-type"> string(date)</span>|none|
-|?created_on.after<span class="param-type"> string(date)</span>|none|
-|?created_on<span class="param-type"> string(date)</span>|none|
-|?created_at.before<span class="param-type"> string(date-time)</span>|none|
-|?created_at.after<span class="param-type"> string(date-time)</span>|none|
-|?completed_on.before<span class="param-type"> string(date)</span>|none|
-|?completed_on.after<span class="param-type"> string(date)</span>|none|
-|?completed_on<span class="param-type"> string(date)</span>|none|
-|?completed_at.before<span class="param-type"> string(date-time)</span>|none|
-|?completed_at.after<span class="param-type"> string(date-time)</span>|none|
-|?modified_on.before<span class="param-type"> string(date)</span>|none|
-|?modified_on.after<span class="param-type"> string(date)</span>|none|
-|?modified_on<span class="param-type"> string(date)</span>|none|
-|?modified_at.before<span class="param-type"> string(date-time)</span>|none|
-|?modified_at.after<span class="param-type"> string(date-time)</span>|none|
-|?is_blocking<span class="param-type"> boolean</span>|none|
-|?is_blocked<span class="param-type"> boolean</span>|none|
-|?has_attachment<span class="param-type"> boolean</span>|none|
-|?completed<span class="param-type"> boolean</span>|none|
-|?is_subtask<span class="param-type"> boolean</span>|none|
-|?sort_by<span class="param-type"> string</span>|none|
-|?sort_ascending<span class="param-type"> boolean</span>|none|
+|?assignee.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?assignee.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?assignee_status<span class="param-type"> string</span>|One of `inbox`, `today`, `upcoming`, or `later`|
+|?projects.any<span class="param-type"> string</span>|Comma-separated list of project IDs|
+|?projects.not<span class="param-type"> string</span>|Comma-separated list of project IDs|
+|?projects.all<span class="param-type"> string</span>|Comma-separated list of project IDs|
+|?sections.any<span class="param-type"> string</span>|Comma-separated list of section or column IDs|
+|?sections.not<span class="param-type"> string</span>|Comma-separated list of section or column IDs|
+|?sections.all<span class="param-type"> string</span>|Comma-separated list of section or column IDs|
+|?tags.any<span class="param-type"> string</span>|Comma-separated list of tag IDs|
+|?tags.not<span class="param-type"> string</span>|Comma-separated list of tag IDs|
+|?tags.all<span class="param-type"> string</span>|Comma-separated list of tag IDs|
+|?teams.any<span class="param-type"> string</span>|Comma-separated list of team IDs|
+|?followers.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?followers.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?created_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?created_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?assigned_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?assigned_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?liked_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?liked_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?commented_on_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?commented_on_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
+|?due_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?due_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?due_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
+|?due_at.before<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?due_at.after<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?start_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?start_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?start_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
+|?created_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?created_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?created_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
+|?created_at.before<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?created_at.after<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?completed_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?completed_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?completed_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
+|?completed_at.before<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?completed_at.after<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?modified_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?modified_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?modified_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
+|?modified_at.before<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?modified_at.after<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?is_blocking<span class="param-type"> boolean</span>|Filter to incomplete tasks with dependents|
+|?is_blocked<span class="param-type"> boolean</span>|Filter to tasks with incomplete dependencies|
+|?has_attachment<span class="param-type"> boolean</span>|Filter to tasks with attachments|
+|?completed<span class="param-type"> boolean</span>|Filter to completed tasks|
+|?is_subtask<span class="param-type"> boolean</span>|Filter to subtasks|
+|?sort_by<span class="param-type"> string</span>|One of `due_date`, `created_at`, `completed_at`, `likes`, or `modified_at`, defaults to `modified_at`|
+|?sort_ascending<span class="param-type"> boolean</span>|Default `false`|
 
 #### Enumerated Values
 

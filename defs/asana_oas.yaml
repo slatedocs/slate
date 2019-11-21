@@ -7643,16 +7643,22 @@ paths:
           default: milestone
       - name: assignee.any
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: assignee.not
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: assignee_status
         in: query
+        description: >-
+          One of `inbox`, `today`, `upcoming`, or `later`
         schema:
           type: string
           enum:
@@ -7663,118 +7669,164 @@ paths:
         example: later
       - name: projects.any
         in: query
+        description: >-
+          Comma-separated list of project IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: projects.not
         in: query
+        description: >-
+          Comma-separated list of project IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: projects.all
         in: query
+        description: >-
+          Comma-separated list of project IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: sections.any
         in: query
+        description: >-
+          Comma-separated list of section or column IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: sections.not
         in: query
+        description: >-
+          Comma-separated list of section or column IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: sections.all
         in: query
+        description: >-
+          Comma-separated list of section or column IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: tags.any
         in: query
+        description: >-
+          Comma-separated list of tag IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: tags.not
         in: query
+        description: >-
+          Comma-separated list of tag IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: tags.all
         in: query
+        description: >-
+          Comma-separated list of tag IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: teams.any
         in: query
+        description: >-
+          Comma-separated list of team IDs
         schema:
           type: string
         example: 12345,23456,34567
       - name: followers.any
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: followers.not
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: created_by.any
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: created_by.not
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: assigned_by.any
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: assigned_by.not
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: liked_by.any
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: liked_by.not
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: commented_on_by.any
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: commented_on_by.not
         in: query
+        description: >-
+          Comma-separated list of user identifiers
         schema:
           type: string
         example: 12345,23456,34567
       - name: due_on.before
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: due_on.after
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: due_on
         in: query
+        description: >-
+          ISO 8601 date string or `null`
         schema:
           type: string
           format: date
@@ -7782,30 +7834,40 @@ paths:
         example: '2019-09-15'
       - name: due_at.before
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: due_at.after
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: start_on.before
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: start_on.after
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: start_on
         in: query
+        description: >-
+          ISO 8601 date string or `null`
         schema:
           type: string
           format: date
@@ -7813,18 +7875,24 @@ paths:
         example: '2019-09-15'
       - name: created_on.before
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: created_on.after
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: created_on
         in: query
+        description: >-
+          ISO 8601 date string or `null`
         schema:
           type: string
           format: date
@@ -7832,30 +7900,40 @@ paths:
         example: '2019-09-15'
       - name: created_at.before
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: created_at.after
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: completed_on.before
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: completed_on.after
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: completed_on
         in: query
+        description: >-
+          ISO 8601 date string or `null`
         schema:
           type: string
           format: date
@@ -7863,30 +7941,40 @@ paths:
         example: '2019-09-15'
       - name: completed_at.before
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: completed_at.after
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: modified_on.before
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: modified_on.after
         in: query
+        description: >-
+          ISO 8601 date string
         schema:
           type: string
           format: date
         example: '2019-09-15'
       - name: modified_on
         in: query
+        description: >-
+          ISO 8601 date string or `null`
         schema:
           type: string
           format: date
@@ -7894,43 +7982,60 @@ paths:
         example: '2019-09-15'
       - name: modified_at.before
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: modified_at.after
         in: query
+        description: >-
+          ISO 8601 datetime string
         schema:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
       - name: is_blocking
         in: query
+        description: >-
+          Filter to incomplete tasks with dependents
         schema:
           type: boolean
         example: false
       - name: is_blocked
         in: query
+        description: >-
+          Filter to tasks with incomplete dependencies
         schema:
           type: boolean
         example: false
       - name: has_attachment
         in: query
+        description: >-
+          Filter to tasks with attachments
         schema:
           type: boolean
         example: false
       - name: completed
         in: query
+        description: >-
+          Filter to completed tasks
         schema:
           type: boolean
         example: false
       - name: is_subtask
         in: query
+        description: >-
+          Filter to subtasks
         schema:
           type: boolean
         example: false
       - name: sort_by
         in: query
+        description: >-
+          One of `due_date`, `created_at`, `completed_at`, `likes`, or
+          `modified_at`, defaults to `modified_at`
         schema:
           type: string
           enum:
@@ -7943,6 +8048,8 @@ paths:
         example: likes
       - name: sort_ascending
         in: query
+        description: >-
+          Default `false`
         schema:
           type: boolean
           default: false
@@ -7953,42 +8060,6 @@ paths:
         To mirror the functionality of the Asana web app's advanced search feature,
         the Asana API has a task search endpoint that allows you to build complex
         filters to find and retrieve the exact data you need.
-
-        #### Custom fields
-
-        | Parameter name | Custom field type | Accepted type |
-
-        |---|---|---|
-
-        | `custom_fields.<id>.is_set` | All | Boolean |
-
-        | `custom_fields.<id>.value` | Text | String |
-
-        | `custom_fields.<id>.value` | Number | Number |
-
-        | `custom_fields.<id>.value` | Enum | Enum option ID |
-
-        | `custom_fields.<id>.starts_with` | Text only | String |
-
-        | `custom_fields.<id>.ends_with` | Text only | String |
-
-        | `custom_fields.<id>.contains` | Text only | String |
-
-        | `custom_fields.<id>.less_than` | Number only | Number |
-
-        | `custom_fields.<id>.greater_than` | Number only | Number |
-
-
-
-        For example, if the gid of the custom field is 12345, these query parameter
-        to
-        find tasks where it is set would be `custom_fields.12345.is_set=true`. To
-        match
-        an exact value for an enum custom field, use the gid of the desired enum option
-        and not the name of the enum option: `custom_fields.12345.value=67890`.
-
-
-        Searching for multiple exact matches of a custom field is not supported.
 
         #### Premium access
 
@@ -8033,6 +8104,42 @@ paths:
 
         You may receive a `429 Too Many Requests` response if you hit any of our
         [rate limits](https://developers.asana.com/docs/#rate-limits).
+
+        #### Custom field parameters
+
+        | Parameter name | Custom field type | Accepted type |
+
+        |---|---|---|
+
+        | custom_fields.{gid}.is_set | All | Boolean |
+
+        | custom_fields.{gid}.value | Text | String |
+
+        | custom_fields.{gid}.value | Number | Number |
+
+        | custom_fields.{gid}.value | Enum | Enum option ID |
+
+        | custom_fields.{gid}.starts_with | Text only | String |
+
+        | custom_fields.{gid}.ends_with | Text only | String |
+
+        | custom_fields.{gid}.contains | Text only | String |
+
+        | custom_fields.{gid}.less_than | Number only | Number |
+
+        | custom_fields.{gid}.greater_than | Number only | Number |
+
+
+
+        For example, if the gid of the custom field is 12345, these query parameter
+        to
+        find tasks where it is set would be `custom_fields.12345.is_set=true`. To
+        match
+        an exact value for an enum custom field, use the gid of the desired enum option
+        and not the name of the enum option: `custom_fields.12345.value=67890`.
+
+
+        Searching for multiple exact matches of a custom field is not supported.
       tags:
         - Tasks
       operationId: getWorkspaceTasksSearch
