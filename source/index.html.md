@@ -703,6 +703,58 @@ API will return a list of the following structure:
 | **usd_volume**   | DECIMAL                            | Total volume traded in USD between start_date and end_date
 
 
+# Get Trade Limits
+
+Get trade limits for a platform.
+
+## HTTP Request
+`GET https://api.falconx.io/v1/get_trade_limits/<platform>`
+
+## Path Parameters
+
+> Request Sample
+
+```shell
+# substitute placeholders with correct authorization header values
+curl -X GET "https://api.falconx.io/v1/get_trade_limits/browser" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
+```
+
+
+| Parameter         | Type                                | Description
+| ---------         | ----------------------------------- | ------------
+| **platform**   | STRING                         | Platform for trade limits. Possible values: api, browser or margin.
+
+
+## Response Parameters
+
+> Response Sample
+
+```json
+{
+  "gross_limits": {
+    "available": 99774.78,
+    "total": 1000000,
+    "used": 900225.22
+  },
+  "net_limits": {
+    "available": 81711.78,
+    "total": 1000000,
+    "used": 918288.22
+  }
+}
+```
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **gross_limits**        | JSON                            | Gross Limits, if set, for the platform (see [Trade Limits](#trade-limits))|
+| **net_limits**        | JSON                            | Net Limits, if set, for the platform (see [Trade Limits](#trade-limits))|
+
+
 # JSON Structures
 
 ## Token Pair
@@ -732,6 +784,17 @@ The error structure returned by our API will be in the following format:
 | ---------     | ------------------------------    | ------------|
 | **code**     | STRING                            | Error code  
 | **reason**   | STRING                            | Reason for the error
+
+
+## Trade Limits
+
+The trade limits JSON structure format:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **remaining**     | DECIMAL                            | Remaining limit in USD
+| **total**   | DECIMAL                            | Total limit in USD
+| **used**   | DECIMAL                            | Used limit in USD
 
 <!-- The following error codes are supported at the moment:
 
