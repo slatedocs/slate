@@ -244,7 +244,7 @@ Http Status:
 ## `GET /allocations/{AllocationId}`
 
 ```http
-GET /allocations/5dd40510-810e-4a55-a395-04819fd915b9
+GET /allocations/5dd40510-810e-4a55-a395-04819fd915b9 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...

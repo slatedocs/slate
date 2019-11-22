@@ -21,7 +21,7 @@ In Sandbox, `Basic Auth` can be used to help you prototype integrations.
 
 > Create Webhook
 
-```
+```json
 {
     "url": "https://webhook.site/44e66f2d-eaac-4225-86aa-7549f628c5d0"
 }
@@ -36,7 +36,7 @@ You can register a URL to receive webhooks by calling [POST https://api-sandbox.
 
 > Create Investor
 
-```
+```json
 {
     "title": "MS",
     "firstName": "Jane",
@@ -83,7 +83,7 @@ In the sandbox environment, all Investors are considered verified unless the `la
 
 > Bank Transfer Details
 
-```
+```json
 {
     "amount": {
         "amount": 10000.00,
@@ -122,7 +122,7 @@ Once an Investor has a cash balance, the funds can be invested by calling the se
 
 > Investment Product
 
-```
+```json
 {
     "id": "PRODUCT-1",
     "investmentDocument": "https://document.url",
@@ -140,7 +140,7 @@ First register the investment product:
 
 > Payment Destination
 
-```
+```json
 {
     "accountName": "Account name",
     "accountNumber": "123456",
@@ -166,7 +166,7 @@ The following example includes a single investment from a single Investor:
 
 > Settle Investment
 
-```
+```json
 {
     "id": "investment1",
     "investments": [
@@ -195,7 +195,7 @@ The investor's investment can be queried by calling:
 
 > Repaying Investment
 
-```
+```json
 {
     "accountNumber": "123456",
     "reference": "some-ref",
@@ -213,7 +213,7 @@ Once the funds have been sent to this destination and the funds have cleared, ca
 
 > Record Repayment
 
-```
+```json
 {
     "investorRepayments": [
         {
@@ -244,7 +244,7 @@ An Investor can withdraw funds by firstly registering bank account details:
 
 > Register Bank Details
 
-```
+```json
 {
     "accountName": "Jane Doe",
     "accountNumber": "12345678",
@@ -259,7 +259,7 @@ Then the funds can be withdrawn:
 
 > Withdraw Funds
 
-```
+```json
 {
     "amount": {
         "amount": "101234.56",

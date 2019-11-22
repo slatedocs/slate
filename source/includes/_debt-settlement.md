@@ -47,9 +47,9 @@ GET /platformApi/settlement/product HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
+```
 
-
-
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -89,7 +89,9 @@ Authorization: Basic ...
   "isaEligible" : true,
   "id" : "id"
 }
+```
 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -127,7 +129,9 @@ Authorization: Basic ...
   "investmentDocument" : "investmentDocument",
   "isaEligible" : true
 }
+```
 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -159,9 +163,9 @@ GET /platformApi/settlement/payment-destination HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
+```
 
-
-
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -195,7 +199,9 @@ Authorization: Basic ...
   "accountNumber" : "accountNumber",
   "sortCode" : "sortCode"
 }
+```
 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -236,7 +242,9 @@ Authorization: Basic ...
   "accountNumber" : "accountNumber",
   "sortCode" : "sortCode"
 }
+```
 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -295,7 +303,9 @@ Authorization: Basic ...
     "id" : "id"
   } ]
 }
+```
 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -385,7 +395,9 @@ Authorization: Basic ...
     "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)"
   }
 }
+```
 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -430,9 +442,9 @@ GET /platformApi/settlement/repayment/reference HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
+```
 
-
-
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -486,7 +498,9 @@ Authorization: Basic ...
     "type" : "CAPITAL"
   } ]
 }
+```
 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -512,11 +526,13 @@ GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investme
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
+```
 
-
-
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
 
 {
   "investments" : [ {

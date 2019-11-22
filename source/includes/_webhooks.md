@@ -37,6 +37,9 @@ Authorization: Basic ...
   "url" : "url"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 

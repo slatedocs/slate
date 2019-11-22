@@ -27,6 +27,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -64,6 +67,9 @@ Authorization: Basic ...
   "sortCode" : "sortCode"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -95,6 +101,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -132,6 +141,9 @@ Authorization: Basic ...
   "sortCode" : "sortCode"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -201,6 +213,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 ""
@@ -258,6 +273,9 @@ Authorization: Basic ...
   "walletName" : "Housing Project 22"
 }
 
+```
+
+```http 
 HTTP/1.1 202 OK
 Content-Type: application/json
 
@@ -290,6 +308,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -317,6 +338,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -356,6 +380,9 @@ Authorization: Basic ...
   "narrative" : "narrative"
 }
 
+```
+
+```http 
 HTTP/1.1 202 OK
 Content-Type: application/json
 
@@ -382,6 +409,9 @@ Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 

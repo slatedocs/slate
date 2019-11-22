@@ -48,6 +48,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -101,6 +104,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -159,6 +165,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -220,6 +229,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -249,6 +261,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -278,6 +293,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -311,6 +329,9 @@ Authorization: Basic ...
   "sortCode" : "sortCode"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -350,6 +371,9 @@ Authorization: Basic ...
   "sortCode" : "sortCode"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -391,6 +415,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -440,6 +467,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -513,6 +543,9 @@ Authorization: Basic ...
   "paymentType" : "paymentType"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 

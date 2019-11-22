@@ -210,6 +210,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -236,6 +239,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -303,6 +309,9 @@ Authorization: Basic ...
   "accountTypes" : [ { }, { } ]
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -417,6 +426,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -517,6 +529,9 @@ Authorization: Basic ...
   "nationalInsuranceNumber" : "nationalInsuranceNumber"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -618,6 +633,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -666,6 +684,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -698,6 +719,9 @@ Authorization: Basic ...
   } ]
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -725,6 +749,9 @@ Authorization: Basic ...
   "nationalInsuranceNumber" : "nationalInsuranceNumber"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -809,6 +836,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -839,6 +869,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -885,6 +918,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -968,6 +1004,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1014,6 +1053,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1061,6 +1103,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1126,6 +1171,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1190,6 +1238,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1231,6 +1282,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 

@@ -488,6 +488,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -518,6 +521,9 @@ Authorization: Basic ...
   "termsAndConditions" : "termsAndConditions"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -553,6 +559,9 @@ Authorization: Basic ...
   "dateTimeSigned" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -586,6 +595,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -612,6 +624,9 @@ Authorization: Basic ...
   "token" : "token"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -674,6 +689,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -705,6 +723,9 @@ Authorization: Basic ...
   "dateTimeSigned" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -760,6 +781,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -865,6 +889,9 @@ Authorization: Basic ...
   "dateOfBirth" : "2000-01-23"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -906,6 +933,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -985,6 +1015,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1064,6 +1097,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1304,6 +1340,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1357,6 +1396,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1422,6 +1464,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1486,6 +1531,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1513,6 +1561,9 @@ Authorization: Basic ...
   "isaSubscriptionStatus" : "VALID"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1582,6 +1633,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1674,6 +1728,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1755,6 +1812,9 @@ Authorization: Basic ...
 
 ""
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -1994,6 +2054,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2046,6 +2109,9 @@ Authorization: Basic ...
   "investmentType" : "LOAN"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2306,6 +2372,9 @@ Authorization: Basic ...
   "toDateTime" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2561,6 +2630,9 @@ Authorization: Basic ...
   "term" : 1.12
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2824,6 +2896,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -2897,6 +2972,9 @@ Authorization: Basic ...
   "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -3165,6 +3243,9 @@ Authorization: Basic ...
   "dateTimeOfSale" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -3419,6 +3500,9 @@ Authorization: Basic ...
   "dateTimeOfWriteOff" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -3674,6 +3758,9 @@ Authorization: Basic ...
   "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -3934,6 +4021,9 @@ Authorization: Basic ...
   "toDateTime" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4190,6 +4280,9 @@ Authorization: Basic ...
   "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4453,6 +4546,9 @@ Authorization: Basic ...
   "clientTransactionId" : "clientTransactionId"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4495,6 +4591,9 @@ Authorization: Basic ...
   "clientTransactionId" : "clientTransactionId"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4539,6 +4638,9 @@ Authorization: Basic ...
   "clientTransactionId" : "clientTransactionId"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4574,6 +4676,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4621,6 +4726,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4668,6 +4776,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4709,6 +4820,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4755,6 +4869,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4801,6 +4918,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4860,6 +4980,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4894,6 +5017,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -4978,6 +5104,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -5068,6 +5197,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -5101,6 +5233,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 

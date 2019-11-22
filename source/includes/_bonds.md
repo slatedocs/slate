@@ -121,6 +121,9 @@ Authorization: Basic ...
   "name" : "name"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -160,6 +163,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -340,6 +346,9 @@ Authorization: Basic ...
   "productTermId" : "productTermId"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -374,6 +383,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -448,6 +460,9 @@ Authorization: Basic ...
   }
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -538,6 +553,9 @@ Authorization: Basic ...
 
 
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -621,6 +639,9 @@ Authorization: Basic ...
   "accrualDate" : "2000-01-23"
 }
 
+```
+
+```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
 

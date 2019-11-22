@@ -18,6 +18,7 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#settlement-equity-
 | id                        | String    | UUID       | A UUID of the trade.                                                       |
 | quantity                  | Number    | Number     | The number of shares being bought/sold.                                    |
 | instrumentSymbol          | String    | ID/Symbol  | The platform generated unique ID/symbol of the instrument.                 |
+| settlementStatus          | String    | Enum       | Response only.                                                             |
 | price                     | Object    | Object     | The price the instrument is being traded at.                               |
 | price.currency            | String    | ISO 4217   | The currency that `price.amount` is expressed in.                          |
 | price.amount              | Number    | Number     | The cost per share in `price.currency`.                                    |
@@ -49,6 +50,7 @@ Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
+
 {
   "id": "cdfb86c8-1085-43ed-9839-f4c8e7267818",
   "buy": {
@@ -79,7 +81,7 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
     "currency": "GBP"
   },
   "quantity": 1000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
 }
 ```
 ### Description
@@ -114,7 +116,7 @@ Http Status:
 ## `GET /trades/{tradeId}`
 
 ```http
-GET /trades/cdfb86c8-1085-43ed-9839-f4c8e7267818
+GET /trades/cdfb86c8-1085-43ed-9839-f4c8e7267818 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -156,7 +158,7 @@ Content-Type: application/json
     "currency": "GBP"
   },
   "quantity": 1000,
-  "instrumentId": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
 }
 ```
 
