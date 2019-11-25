@@ -2,6 +2,16 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 21 Nov 19 Release NOte - Accesstype
+1. **International Currency Support** - Accesstype can now display and charge payments in multiple currencies. The complete list of currencies supported is available for [Razorpay here](https://razorpay.com/accept-international-payments/) and for [Stripe here](https://stripe.com/docs/currencies#presentment-currencies).
+![Accesstype Multi Currency](../../images/Accesstype_MultiCurrency.png "Accesstype Multi Currency")
+2. **Section based access** - Accesstype now lets you define subscripton plans based on Sections available in your Quintype CMS - **Bold** so that the subscribers get access to only the stories available in the particular section or sections.
+![Accesstype Section Access](../../images/Accesstype_SectionAccess.png "Accesstype Section Access")
+
+
+## 19 Nov 19 Release Note - Accesstype
+1. **Google API upgrade** - Accesstype is now updated to work with the latest GooglePay APIs(previously AndroidPay). 
+
 ## 5 Nov 19 Release Note - Accesstype
 1. **General Settings** - A new settings page with Account Detailsm API Key and Authentication Key. The API Authentication and API Key fields are displayed to Users with the "Owner" role.
 ![Accesstype General Settings](../../images/Accesstype_GeneralSettings.png "Accesstype General Settings")
