@@ -1,4 +1,4 @@
-# Webhooks (v1)
+# Webhooks version 1 (deprecated)
 
 <aside class="warning">
 Please note this version of webhooks is now DEPRECATED.
