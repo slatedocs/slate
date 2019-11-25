@@ -31,7 +31,7 @@ includes:
   - reference/app_webhooks
   - reference/profile_webhooks
   - reference/webhook_events
-  - reference/webhooks
+  - reference/webhooks_v1
   - reference/errors
 
 ---

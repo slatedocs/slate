@@ -1,7 +1,10 @@
 # Webhook events
 
-Events are messages that will be sent to your server as HTTP `POST` requests once you create a webhook subscription
-(and a resource you have access to is updated). They will not contain any personally identifiable information.
+Events are messages that will be sent to your server as HTTP `POST` requests if you create a webhook subscription for
+the type of event and a relevant resource you have access to is updated. 
+Events will not contain any personally identifiable information.
+
+For example, an event may describe a change in the status of a transfer you have made.
 
 To acknowledge that you have successfully processed an event, make sure your server answers with a `2xx`-series HTTP status
 code within 5 seconds. Otherwise, we will consider the delivery attempt as having failed and will later try to resend the
@@ -10,7 +13,16 @@ message.
 We will attempt to redeliver messages at increasing intervals over a two week period. We will try at most 25 times to do this.
 
 
-### Signature header
+## Event HTTP requests
+
+Event HTTP request bodies have a type-specific structure.
+Events using version 2 of our type schema will contain a common base structure with additional event-specific details.
+Each event type is described in detail later in this section.
+
+Event HTTP requests also contain the following custom headers:
+
+
+### Signature header `X-Signature`
 
 > TransferWise public key for production environment:
 
@@ -42,11 +54,24 @@ public boolean verifySignature(String encodedPublicKey, String signature, String
 }
 ```
 
-Each outgoing webhook request is signed. Whilst event payloads do not contain any sensitive information, you may want to
+Each outgoing webhook request is signed.
+Although event payloads do not contain any sensitive information, you may want to
 verify if the request is coming from TransferWise (however this is optional).
 We advise you not to process any requests where signature appears to be forged.
 
-Each `POST` request includes `X-Signature` header, which contains a signature.
+Each `POST` request includes the `X-Signature` header, which contains the message-specific signature.
+
+
+### Delivery ID header `X-Delivery-Id`
+
+Each outgoing notification is assigned a unique delivery UUID.
+
+
+### Test notification header `X-Test-Notification`
+
+This header is present with the value `true` if the notification is a test message.
+
+Test messages can be sent to verify callback URLs when subscriptions are being set up.
 
 
 ## Event payload
@@ -63,7 +88,8 @@ Each `POST` request includes `X-Signature` header, which contains a signature.
 }
 ```
 
-All events share same payload structure. Depending on the `event_type` the only object that will change is `data`.
+All events share same high-level payload structure.
+Depending on the `event_type`, the only object that differs between events is `data`.
 
 Field           | Description                                     | Format
 ---------       | -------                                         | -----------
@@ -73,9 +99,8 @@ event_type      | Type of event, which defines `data` object      | Integer
 schema_version  | The event representation semantic version       | String
 sent_at         | Timestamp when update happened                  | Timestamp
 
-## Event types
 
-### Transfer status change event  (`transfers#state-change`)
+## Transfer status change event
 
 > Example event:
 
@@ -99,13 +124,15 @@ sent_at         | Timestamp when update happened                  | Timestamp
 }
 ```
 
+Event type: `transfers#state-change`
+
 This event will be triggered every time a transfer's status is updated. Each event contains a timestamp.
 As we do not guarantee the order of events, please use `data.occured_at` to reconcile the order. 
 
 If you would like to subscribe to transfer state change events, please use `transfers#state-change`
 when creating your subscription.
 
-#### Schema version `2.0.0` (latest)
+### Schema version `2.0.0` (latest)
 
 Field                       | Description                                   | Format
 ---------                   | -------                                       | -----------
@@ -118,7 +145,7 @@ data.previous_state         | Previous state of the resource, possible values ar
 data.occured_at             | Timestamp when the update happened            | Timestamp
 
 
-### Transfer issue event (`transfers#active-cases`)
+## Transfer issue event
 
 > Example event:
 
@@ -140,11 +167,15 @@ data.occured_at             | Timestamp when the update happened            | Ti
 }
 ```
 
+Event type: `transfers#active-cases`
+
 This event will be triggered every time a transfer's list of active issues is updated.
+Issues indicate potential problems with transfer processing. 
 
-If you would like to subscribe to transfer active issue events, please use `transfers#active-cases` when creating your subscription.
+If you would like to subscribe to transfer active issue events, please use `transfers#active-cases` when creating
+your subscription.
 
-#### Schema version `2.0.0` (latest)
+### Schema version `2.0.0` (latest)
 
 Field                       | Description                                   | Format
 ---------                   | -------                                       | -----------
@@ -155,7 +186,7 @@ data.resource.type          | Type of the resource that was updated         | St
 data.active_cases           | List of ongoing issues related to the transfer| String
 
 
-### Balance deposit event (`balances#credit`)
+## Balance deposit event
 
 > Example event:
 
@@ -180,13 +211,15 @@ data.active_cases           | List of ongoing issues related to the transfer| St
 }
 ```
 
+Event type: `balances#credit`
+
 This event will be triggered every time a balance account is credited.
 
 Please note: This event is not currently delivered to application subscriptions.
 
 If you would like to subscribe to balance credit events, please use `balances#credit` when creating your subscription.
 
-#### Schema version `2.0.0` (latest)
+**Schema version `2.0.0` (latest)**
 
 Field                     | Description                                         | Format
 ---------                 | -------                                             | -----------

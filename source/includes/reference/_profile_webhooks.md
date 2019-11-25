@@ -15,7 +15,8 @@ You can have multiple subscriptions per event type though be mindful you will re
 
 If you will be dealing with multiple profiles in your integration, check out [***application webhooks***](#application-webhooks). You will have to subscribe only once and you will receive updates concerning all resources that were created in your application.
 
-### There's two ways you can manage profile webhooks:
+
+**There are two ways you can manage profile webhooks:**
 
 * via API (read more below) 
 * via user interface (go to your <a href="https://transferwise.com/user/settings#webhooks" target="_blank">settings page</a>)
@@ -56,9 +57,9 @@ curl -X POST "https://api.transferwise.com/v3/profiles/{profileId}/subscriptions
     },
     "created_by": {
         "type": "user",
-        "id": "<your user ID>",
+        "id": "<your user ID>"
     },
-    "created_at": "2008-09-15T15:53:00+00:00Z",
+    "created_at": "2008-09-15T15:53:00Z"
 }
 ```
 
@@ -115,7 +116,7 @@ curl -X DELETE "https://api.transferwise.com/v3/profiles/{profileId}/subscriptio
 **`DELETE https://api.transferwise.com/v3/profiles/{profileId}/subscriptions/{id}`**
 
 
-## Get by id
+## Get by ID
 
 Retrieves a subscription by its identifier.
 
@@ -143,9 +144,9 @@ curl -X GET "https://api.transferwise.com/v3/profiles/{profileId}/subscriptions/
     },
     "created_by": {
         "type": "user",
-        "id": "<your user ID>",
+        "id": "<your user ID>"
     },
-    "created_at": "2008-09-15T15:53:00+00:00Z",
+    "created_at": "2008-09-15T15:53:00Z"
 }
 ```
 

@@ -42,7 +42,6 @@ scope                 |                                               | Text
 
 ## Create
 
-
 > Example Request:
 
 ```shell
@@ -76,7 +75,7 @@ curl -X POST "https://api.transferwise.com/v3/applications/{clientKey}/subscript
     },
     "created_by": {
         "type": "application",
-        "id": "<your client ID>", //clientId and key are not always the same
+        "id": "<your client ID>"  // clientId and key are not always the same
     },
     "created_at": "2019-10-10T13:55:57Z"
 }
@@ -105,8 +104,8 @@ Field                     | Description                                         
 id                        | UUID that uniquely identifies the subscription                          | Text
 name                      | A custom name for your webhook to ease with identification              | Text
 trigger_on                | `transfers#state-change`, `transfers#active-cases` or `balances#credit` | Text
-delivery.version          | The event representation semantic version                                       | Text
-delivery.url              | The URL where your server will be listening for events.       | Text
+delivery.version          | The event representation semantic version                               | Text
+delivery.url              | The URL where your server will be listening for events.                 | Text
 scope.domain              | Scope of this subscription, always "application" in this case           | Text
 scope.id                  | Client key used to create this subscription                             | Text
 created\_by.type          | Creator type. Always application in this case                           | Text
@@ -135,7 +134,7 @@ curl -X DELETE "https://api.transferwise.com/v3/applications/{clientKey}/subscri
 **`DELETE https://api.transferwise.com/v3/applications/{clientKey}/subscriptions/{id}`**
 
 
-## Get by id
+## Get by ID
 
 Retrieves a subscription by its identifier.
 
@@ -163,9 +162,9 @@ curl -X GET "https://api.transferwise.com/v3/applications/{clientKey}/subscripti
     },
     "created_by": {
         "type": "application",
-        "id": "<your client ID>", //clientId and key are not always the same
+        "id": "<your client ID>"  // clientId and key are not always the same
     },
-    "created_at": "2008-09-15T15:53:00+00:00Z",
+    "created_at": "2008-09-15T15:53:00Z"
 }
 ```
 
@@ -176,7 +175,7 @@ curl -X GET "https://api.transferwise.com/v3/applications/{clientKey}/subscripti
 
 ## List
 
-List all your subscriptions
+List all your subscriptions.
 
 > Example Request:
 
