@@ -19,7 +19,7 @@ $(function() {
       if ($(this).hasClass("expanded")) {
         $(this).removeClass("expanded");
         var arr = Array.apply(null, {length: thisLevel + 1}).map(Number.call, Number);
-        $(this).nextUntil('.c'+thisLevel, ':not(.c' + arr.join(',.') + ')').addClass("hidden-row").removeClass("expanded");
+        $(this).nextUntil('.c'+thisLevel, ':not(.c' + arr.join(',.') + ',.common-items-toggle)').addClass("hidden-row").removeClass("expanded");
       } else {
         $(this).addClass("expanded");
         $(this).nextUntil('.c'+thisLevel, '.c' + (thisLevel + 1)).removeClass("hidden-row");

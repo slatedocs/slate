@@ -531,7 +531,7 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
 {
   "data": {
     "name": "Bug Task",
-    "type": "text",
+    "resource_subtype": "text",
     "enum_options": [
       {
         "name": "Low",
@@ -751,7 +751,7 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 {
   "data": {
     "name": "Bug Task",
-    "type": "text",
+    "resource_subtype": "text",
     "enum_options": [
       {
         "name": "Low",
@@ -1209,7 +1209,7 @@ Returns the full record of the updated enum option.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to update|
-|» data<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
@@ -1472,7 +1472,7 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCust
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
 </p>
 
-Removes a custom field setting from a portfolio
+Removes a custom field setting from a portfolio.
 
 <h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
 
@@ -5884,7 +5884,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     },
     "custom_field": {
       "name": "Bug Task",
-      "type": "text",
+      "resource_subtype": "text",
       "enum_options": [
         {
           ...
@@ -7614,7 +7614,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
 {
   "data": {
     "name": "Buy catnip",
-    "assignee": null,
+    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -7628,7 +7628,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "notes": "Mittens really likes the stuff from Humboldt.",
-    "parent": null,
+    "parent": "12345",
     "projects": [
       "12345"
     ],
@@ -7779,7 +7779,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee<span class="param-type"> any</span>|none|
+|»» assignee<span class="param-type"> string</span>|Gid of an object.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
@@ -7841,7 +7841,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |»» num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
 |»» num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent<span class="param-type"> any</span>|none|
+|»» parent<span class="param-type"> string</span>|Gid of an object.|
 |»» projects<span class="param-type"> [string]</span>|Array of object Gids.|
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
