@@ -24,9 +24,9 @@ Getting Started with Asana Docs
 ### How it works
 The OpenAPI spec is located at /defs/asana_oas.json
 
-To generate the markdown from the spec, we use a forked version of [widdershins](https://github.com/rossgrambo/widdershins)
+To generate the markdown from the spec, we use [widdershins](https://github.com/Mermade/widdershins)
 ```shell
-node ../widdershins/widdershins.js --search true --language_tabs 'shell: curl' --omitHeader true --truncationText '"..."' --includes markdown/* --summary defs/asana_oas.yaml --user_templates ./source/templates --maxDepth 3 -o source/includes/api-reference/_index.html.md
+node ../Mermade/widdershins/widdershins.js --search true --language_tabs 'shell: curl' --omitHeader true --includes markdown/* --summary defs/asana_oas.yaml --user_templates ./source/templates -o source/includes/api-reference/_index.html.md
 ```
 
 Then to generate the html from the markdown, we use [slate](https://github.com/lord/slate)
