@@ -144,7 +144,7 @@ Section wrapper must have 100% width of the browser window. You thus have to spl
 Example:
 
 ```html
-<div data-slot-container="1">
+<div data-section-wrapper="1">
     <div data-section="1">
       <div data-slot-container="1">
           <div data-slot=”text”>
