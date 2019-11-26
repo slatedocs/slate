@@ -296,9 +296,8 @@ To filter sku list based on user input keyword, you can pass `query` params in U
 
 ### Query Parameters
 
-| Params               | Type    | Description              |
-| -------------------- | ------- | ------------------------ |
-| authentication_token | header  | Authentication token     |
-| app_company_id       | header  | Company ID               |
-| supplier_id          | integer | filter by supplier       |
-| archived             | boolean | filter archived products |
+| Params               | Type    | Description          |
+| -------------------- | ------- | -------------------- |
+| authentication_token | header  | Authentication token |
+| app_company_id       | header  | Company ID           |
+| supplier_id          | integer | filter by supplier   |
