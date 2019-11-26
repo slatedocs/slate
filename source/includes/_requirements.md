@@ -17,6 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter Requirements with display-ids (separated by commas) |
 name_exact | filter by Requirement name exact match; case sensitive! |
 name_like | filter by Requirement name: case insensitive, phrase can be inside the name |
+relationships | shows entities linked to requirements, should be equal to true  |
 
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
@@ -39,6 +40,11 @@ https://api.practitest.com/api/v2/projects/4566/requirements.json?filter-id=323&
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/requirements.json?display-ids=2,4
+
+# Get all requirements of project #4566 with linked entities
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/requirements.json?relationships=true
 
 ```
 
@@ -136,6 +142,14 @@ This endpoint shows a specific Requirement in your project.
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID.json`
 
 Here's the example of the JSON request and response
+
+Parameters* | Description |
+--------- | ------- |
+relationships | shows entities linked to requirements, should be equal to true  |
+
+* none of the parameters are required.
+
+
 
 ```shell
 curl -H "Content-Type:application/json" \

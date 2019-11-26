@@ -18,12 +18,15 @@ includes:
   - users
   - custom_fields
   - requirements
+  - requirement_traceability
   - tests
+  - test_traceability
   - steps
   - sets
   - instances
   - runs
   - issues
+  - issue_traceability
   - errors
 
 search: true

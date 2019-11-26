@@ -17,6 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter Issues with display-ids (separated by commas) |
 title_exact | filter by Issue name exact match; case sensitive! |
 title_like | filter by Issue name: case insensitive, phrase can be inside the name |
+relationships | shows entities linked to issues, should be equal to true  |
 
 
 
@@ -40,6 +41,11 @@ https://api.practitest.com/api/v2/projects/4566/issues.json?filter-id=323&title_
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/issues.json?display-ids=2,4
+
+# Get all issues with linked entities from project #4566
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/issues.json?relationships=true
 
 ```
 
@@ -135,6 +141,12 @@ This endpoint shows a specific Issue in your project.
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID.json`
 
 Here's the example of the JSON request and response
+
+Parameters* | Description |
+--------- | ------- |
+relationships | shows entities linked to issues, should be equal to true  |
+
+* none of the parameters are required.
 
 ```shell
 curl -H "Content-Type:application/json" \

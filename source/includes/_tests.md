@@ -17,6 +17,7 @@ filter-user-id | if filter uses current_user criteria in it, you should provide 
 display-ids | filter tests with display-ids (separated by commas) |
 name_exact | filter by test name exact match; case sensitive! |
 name_like | filter by test name: case insensitive, phrase can be inside the name |
+relationships | shows entities linked to tests, should be equal to true  |
 
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
@@ -39,6 +40,11 @@ https://api.practitest.com/api/v2/projects/4566/tests.json?filter-id=323&name_li
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/tests.json?display-ids=2,4
+
+# Get all tests with linked entities from project #4566
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/tests.json?relationships=true
 
 ```
 
@@ -146,6 +152,12 @@ This endpoint shows a specific test in your project.
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID.json`
 
 Here's the example of the JSON request and response
+
+Parameters* | Description |
+--------- | ------- |
+relationships | shows entities linked to tests, should be equal to true  |
+
+* none of the parameters are required.
 
 ```shell
 curl -H "Content-Type:application/json" \
