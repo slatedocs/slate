@@ -743,7 +743,7 @@ For example, if page metadata is
 
 ## Bookmarks
 
-Bookmarks allow users to mark URLs to be read later. All Bookmark APIs operate on bookmarks for a single user, and all Bookmark APIs must be authenticated. See [Single Sign On](#single-sign-on-sso) for information on how to create an access token.
+Bookmarks allow users to mark URLs to be read later. All Bookmark APIs operate on bookmarks for a single user, and all Bookmark APIs must be authenticated using a JSON Web Token (JWT access token). See [Generating JWT](#generating-jwt) for information on how to create a JWT access token.
 
 All Bookmark APIs follow the [json:api](https://jsonapi.org) specification.
 
@@ -751,7 +751,7 @@ All Bookmark APIs follow the [json:api](https://jsonapi.org) specification.
 
 ```shell--request
 curl --request POST \
-  --url https://www.metype.com/api/v1/accounts/:account_id/pages/aHR0cDovL3Rlc3QuaG9zdC8/bookmark \
+  --url https://www.metype.com/api/v1/accounts/:account_id/pages/:page_id/bookmark?jwt=<jwt> \
   -H 'Content-Type: application/json' \
   --data-binary '{
     "data": {
@@ -772,6 +772,7 @@ This endpoint can be used to create or update a bookmark. This API returns a 201
 |--|--|--|
 |account_id|integer|Metype account id|
 |page_id|string|Base64 encoded url of the page, encoded with [Web Safe Base 64](http://www.base64url.com)|
+|jwt|string|The JSON Web Token that identifies the user|
 |read_at|timestamp or null|Timestamp the bookmark was read at. This can be set to null if the bookmark is unread|
 |metadata|object|Any additional parameters to be stored|
 
@@ -781,7 +782,7 @@ Please see the 'request' tab on the right for a sample request
 
 ```shell--request
 curl --request GET \
-  --url https://www.metype.com/api/v1/accounts/:account_id/pages/aHR0cDovL3Rlc3QuaG9zdC8/bookmark
+  --url https://www.metype.com/api/v1/accounts/:account_id/pages/:page_id/bookmark?jwt=<jwt>
 ```
 
 ```shell--response
@@ -807,6 +808,7 @@ This endpoint can be used to fetch the bookmark on a given page. This endpoint w
 |--|--|--|
 |account_id|integer|Metype account id|
 |page_id|string|Base64 encoded url of the page, encoded with [Web Safe Base 64](http://www.base64url.com)|
+|jwt|string|The JSON Web Token that identifies the user|
 
 Please see the 'request' and 'response' tabs on the right for a sample request
 
@@ -814,7 +816,7 @@ Please see the 'request' and 'response' tabs on the right for a sample request
 
 ```shell--request
 curl --request DELETE \
-  --url https://www.metype.com/api/v1/accounts/:account_id/pages/aHR0cDovL3Rlc3QuaG9zdC8/bookmark
+  --url https://www.metype.com/api/v1/accounts/:account_id/pages/:page_id/bookmark?jwt=<jwt>
 ```
 
 This endpoint can be used to delete a bookmark on a given page. This endpoint will return a 204. The parameters that can be passed in are as follows:
@@ -823,6 +825,7 @@ This endpoint can be used to delete a bookmark on a given page. This endpoint wi
 |--|--|--|
 |account_id|integer|Metype account id|
 |page_id|string|Base64 encoded url of the page, encoded with [Web Safe Base 64](http://www.base64url.com)|
+|jwt|string|The JSON Web Token that identifies the user|
 
 Please see the 'request' tab on the right for a sample request
 
@@ -830,7 +833,7 @@ Please see the 'request' tab on the right for a sample request
 
 ```shell--request
 curl --request GET \
-  --url https://www.metype.com/api/v1/accounts/:account_id/bookmarks
+  --url https://www.metype.com/api/v1/accounts/:account_id/bookmarks?jwt=<jwt>
 ```
 
 ```shell--response
@@ -855,6 +858,7 @@ This endpoint can be used to fetch all bookmark for a given user. The parameters
 | key | type | use|
 |--|--|--|
 |account_id|integer|Metype account id|
+|jwt|string|The JSON Web Token that identifies the user|
 |status|string|If set to 'read', then only return bookmarks that have been read. If set to 'unread', then only return unread bookmarks. By default, all bookmarks are returned|
 |page|integer|Page of Bookmarks to return|
 
