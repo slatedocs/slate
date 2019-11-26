@@ -389,7 +389,9 @@ curl -X POST https://app.asana.com/api/1.0/batch \
         "options": {
           "limit": 3,
           "fields": [
-            ...
+            "name",
+            "notes",
+            "completed"
           ]
         }
       }
@@ -944,7 +946,11 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
       "type": "text",
       "enum_options": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
         }
       ],
       "enum_value": null,
@@ -2336,17 +2342,35 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
         "color": "green",
         "text": "Everything is great",
         "author": {
-          ...
+          "gid": "12345",
+          "name": "Greg Bizarro"
         }
       },
       "custom_fields": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "name": "Bug Task",
+          "resource_subtype": "text",
+          "type": "text",
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "name": "Low",
+              "enabled": true,
+              "color": "blue"
+            }
+          ],
+          "enum_value": null,
+          "enabled": true,
+          "text_value": "Some Value"
         }
       ],
       "custom_field_settings": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field_setting"
         }
       ],
       "default_view": "calendar",
@@ -2354,7 +2378,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
       "due_on": "2012-03-26",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "html_notes": "These are things we need to purchase.",
@@ -2362,7 +2388,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
       "layout": "list",
       "members": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
@@ -2912,17 +2940,35 @@ curl -X GET https://app.asana.com/api/1.0/projects \
         "color": "green",
         "text": "Everything is great",
         "author": {
-          ...
+          "gid": "12345",
+          "name": "Greg Bizarro"
         }
       },
       "custom_fields": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "name": "Bug Task",
+          "resource_subtype": "text",
+          "type": "text",
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "name": "Low",
+              "enabled": true,
+              "color": "blue"
+            }
+          ],
+          "enum_value": null,
+          "enabled": true,
+          "text_value": "Some Value"
         }
       ],
       "custom_field_settings": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field_setting"
         }
       ],
       "default_view": "calendar",
@@ -2930,7 +2976,9 @@ curl -X GET https://app.asana.com/api/1.0/projects \
       "due_on": "2012-03-26",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "html_notes": "These are things we need to purchase.",
@@ -2938,7 +2986,9 @@ curl -X GET https://app.asana.com/api/1.0/projects \
       "layout": "list",
       "members": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
@@ -3042,7 +3092,13 @@ curl -X POST https://app.asana.com/api/1.0/projects \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -3172,7 +3228,13 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -3311,7 +3373,13 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -3693,17 +3761,35 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
         "color": "green",
         "text": "Everything is great",
         "author": {
-          ...
+          "gid": "12345",
+          "name": "Greg Bizarro"
         }
       },
       "custom_fields": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "name": "Bug Task",
+          "resource_subtype": "text",
+          "type": "text",
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "name": "Low",
+              "enabled": true,
+              "color": "blue"
+            }
+          ],
+          "enum_value": null,
+          "enabled": true,
+          "text_value": "Some Value"
         }
       ],
       "custom_field_settings": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field_setting"
         }
       ],
       "default_view": "calendar",
@@ -3711,7 +3797,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
       "due_on": "2012-03-26",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "html_notes": "These are things we need to purchase.",
@@ -3719,7 +3807,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
       "layout": "list",
       "members": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
@@ -3796,17 +3886,35 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
         "color": "green",
         "text": "Everything is great",
         "author": {
-          ...
+          "gid": "12345",
+          "name": "Greg Bizarro"
         }
       },
       "custom_fields": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "name": "Bug Task",
+          "resource_subtype": "text",
+          "type": "text",
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "name": "Low",
+              "enabled": true,
+              "color": "blue"
+            }
+          ],
+          "enum_value": null,
+          "enabled": true,
+          "text_value": "Some Value"
         }
       ],
       "custom_field_settings": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field_setting"
         }
       ],
       "default_view": "calendar",
@@ -3814,7 +3922,9 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "due_on": "2012-03-26",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "html_notes": "These are things we need to purchase.",
@@ -3822,7 +3932,9 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "layout": "list",
       "members": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
@@ -3935,7 +4047,13 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -4145,17 +4263,35 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
         "color": "green",
         "text": "Everything is great",
         "author": {
-          ...
+          "gid": "12345",
+          "name": "Greg Bizarro"
         }
       },
       "custom_fields": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "name": "Bug Task",
+          "resource_subtype": "text",
+          "type": "text",
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "name": "Low",
+              "enabled": true,
+              "color": "blue"
+            }
+          ],
+          "enum_value": null,
+          "enabled": true,
+          "text_value": "Some Value"
         }
       ],
       "custom_field_settings": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "custom_field_setting"
         }
       ],
       "default_view": "calendar",
@@ -4163,7 +4299,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "due_on": "2012-03-26",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "html_notes": "These are things we need to purchase.",
@@ -4171,7 +4309,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "layout": "list",
       "members": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "modified_at": "2012-02-22T02:06:58.147Z",
@@ -4284,7 +4424,13 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -5322,7 +5468,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
       "created_at": "2012-02-22T02:06:58.147Z",
       "projects": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
         }
       ]
     }
@@ -5645,14 +5793,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       {
         "gid": "12345",
         "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          ...
-        },
-        "workspaces": [
-          ...
-        ]
+        "name": "Greg Sanchez"
       }
     ],
     "num_hearts": 5,
@@ -5661,14 +5802,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       {
         "gid": "12345",
         "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          ...
-        },
-        "workspaces": [
-          ...
-        ]
+        "name": "Greg Sanchez"
       }
     ],
     "num_likes": 5,
@@ -5754,7 +5888,11 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       "type": "text",
       "enum_options": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
         }
       ],
       "enum_value": null,
@@ -5887,7 +6025,9 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "resource_subtype": "text",
       "enum_options": [
         {
-          ...
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
         }
       ],
       "enum_value": null,
@@ -5941,14 +6081,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       {
         "gid": "12345",
         "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          ...
-        },
-        "workspaces": [
-          ...
-        ]
+        "name": "Greg Sanchez"
       }
     ],
     "num_hearts": 5,
@@ -5957,14 +6090,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       {
         "gid": "12345",
         "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          ...
-        },
-        "workspaces": [
-          ...
-        ]
+        "name": "Greg Sanchez"
       }
     ],
     "num_likes": 5,
@@ -6050,7 +6176,11 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "type": "text",
       "enum_options": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
         }
       ],
       "enum_value": null,
@@ -6129,38 +6259,12 @@ Updates the story and returns the full record for the updated story. Only commen
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» email<span class="param-type"> string(email)</span>|The user’s email address.|
-|»»» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»»» image_21x21<span class="param-type"> string(uri)</span>|none|
-|»»»» image_27x27<span class="param-type"> string(uri)</span>|none|
-|»»»» image_36x36<span class="param-type"> string(uri)</span>|none|
-|»»»» image_60x60<span class="param-type"> string(uri)</span>|none|
-|»»»» image_128x128<span class="param-type"> string(uri)</span>|none|
-|»»» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|The name of the object.|
-|»»»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
-|»»»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 |»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*|
 |»» liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
 |»» likes<span class="param-type"> [object]</span>|*Conditional*. Array of users who have liked this story.|
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» email<span class="param-type"> string(email)</span>|The user’s email address.|
-|»»» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»»» image_21x21<span class="param-type"> string(uri)</span>|none|
-|»»»» image_27x27<span class="param-type"> string(uri)</span>|none|
-|»»»» image_36x36<span class="param-type"> string(uri)</span>|none|
-|»»»» image_60x60<span class="param-type"> string(uri)</span>|none|
-|»»»» image_128x128<span class="param-type"> string(uri)</span>|none|
-|»»» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|The name of the object.|
-|»»»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
-|»»»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 |»» num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
 |»» previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.|
 |»»» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
@@ -6295,15 +6399,9 @@ post for more information.*
 
 *Conditional*. Array of users who have hearted this story.
 
-**workspaces**: Workspaces and organizations this user may access.
-Note\: The API will only return workspaces and organizations that also contain the authenticated user.
-
 **num_hearts**: *Deprecated - please use likes instead*
 
 *Conditional*. The number of users who have hearted this story.
-
-**workspaces**: Workspaces and organizations this user may access.
-Note\: The API will only return workspaces and organizations that also contain the authenticated user.
 
 **previews**: *Conditional*. A collection of previews to be displayed in the story.
 
@@ -6458,20 +6556,31 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "hearted": false,
       "hearts": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "num_hearts": 5,
       "liked": false,
       "likes": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "num_likes": 5,
       "previews": [
         {
-          ...
+          "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+          "footer": "Mar 17, 2019 1:25 PM",
+          "header": "Asana for Slack",
+          "header_link": "https://asana.comn/apps/slack",
+          "html_text": "<body>Great! I like this idea.</body>",
+          "text": "Great! I like this idea.",
+          "title": "Greg",
+          "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
         }
       ],
       "old_name": "This was the Old Name",
@@ -6494,7 +6603,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
         "resource_subtype": "comment_added",
         "created_at": "2012-02-22T02:06:58.147Z",
         "created_by": {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         },
         "text": "marked today",
         "type": "comment"
@@ -6541,7 +6652,13 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -6671,14 +6788,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       {
         "gid": "12345",
         "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          ...
-        },
-        "workspaces": [
-          ...
-        ]
+        "name": "Greg Sanchez"
       }
     ],
     "num_hearts": 5,
@@ -6687,14 +6797,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       {
         "gid": "12345",
         "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          ...
-        },
-        "workspaces": [
-          ...
-        ]
+        "name": "Greg Sanchez"
       }
     ],
     "num_likes": 5,
@@ -6780,7 +6883,11 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "type": "text",
       "enum_options": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
         }
       ],
       "enum_value": null,
@@ -6905,7 +7012,9 @@ curl -X GET https://app.asana.com/api/1.0/tags \
       "name": "Stuff to buy",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "color": "light-green",
@@ -7249,7 +7358,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
       "name": "Stuff to buy",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "color": "light-green",
@@ -7319,7 +7430,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
       "name": "Stuff to buy",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "color": "light-green",
@@ -7404,7 +7517,9 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
       "name": "Stuff to buy",
       "followers": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
         }
       ],
       "color": "light-green",
@@ -7663,7 +7778,13 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -7724,10 +7845,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "memberships": [
       {
         "project": {
-          ...
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
         },
         "section": {
-          ...
+          "gid": "12345",
+          "resource_type": "section",
+          "name": "Next Actions"
         }
       }
     ],
@@ -7946,7 +8071,13 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -8007,10 +8138,14 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "memberships": [
       {
         "project": {
-          ...
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
         },
         "section": {
-          ...
+          "gid": "12345",
+          "resource_type": "section",
+          "name": "Next Actions"
         }
       }
     ],
@@ -8129,7 +8264,13 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -8190,10 +8331,14 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "memberships": [
       {
         "project": {
-          ...
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
         },
         "section": {
-          ...
+          "gid": "12345",
+          "resource_type": "section",
+          "name": "Next Actions"
         }
       }
     ],
@@ -8840,7 +8985,13 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -8901,10 +9052,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "memberships": [
       {
         "project": {
-          ...
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
         },
         "section": {
-          ...
+          "gid": "12345",
+          "resource_type": "section",
+          "name": "Next Actions"
         }
       }
     ],
@@ -9131,7 +9286,13 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
-          ...
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
         ],
         "enum_value": null,
         "enabled": true,
@@ -9192,10 +9353,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "memberships": [
       {
         "project": {
-          ...
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
         },
         "section": {
-          ...
+          "gid": "12345",
+          "resource_type": "section",
+          "name": "Next Actions"
         }
       }
     ],
@@ -10489,7 +10654,9 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
       },
       "workspaces": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "workspace",
+          "name": "My Company Workspace"
         }
       ]
     }
@@ -10573,7 +10740,9 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
       },
       "workspaces": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "workspace",
+          "name": "My Company Workspace"
         }
       ]
     }
@@ -10766,7 +10935,9 @@ curl -X GET https://app.asana.com/api/1.0/users \
       },
       "workspaces": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "workspace",
+          "name": "My Company Workspace"
         }
       ]
     }
@@ -10840,11 +11011,7 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
       {
         "gid": "12345",
         "resource_type": "workspace",
-        "name": "My Company Workspace",
-        "email_domains": [
-          ...
-        ],
-        "is_organization": false
+        "name": "My Company Workspace"
       }
     ]
   }
@@ -10979,7 +11146,9 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
       },
       "workspaces": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "workspace",
+          "name": "My Company Workspace"
         }
       ]
     }
@@ -11051,7 +11220,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
       },
       "workspaces": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "workspace",
+          "name": "My Company Workspace"
         }
       ]
     }
@@ -11896,11 +12067,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
       {
         "gid": "12345",
         "resource_type": "workspace",
-        "name": "My Company Workspace",
-        "email_domains": [
-          ...
-        ],
-        "is_organization": false
+        "name": "My Company Workspace"
       }
     ]
   }
@@ -13161,7 +13328,11 @@ This is read-only except for a small group of whitelisted apps.
       "type": "text",
       "enum_options": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
         }
       ],
       "enum_value": null,
@@ -13612,20 +13783,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          ...
-        }
-      ]
+      "name": "Greg Sanchez"
     }
   ],
   "num_hearts": 5,
@@ -13634,20 +13792,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          ...
-        }
-      ]
+      "name": "Greg Sanchez"
     }
   ],
   "num_likes": 5,
@@ -13810,38 +13955,12 @@ A story represents an activity associated with an object in the Asana system.
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» email<span class="param-type"> string(email)</span>|The user’s email address.|
-|» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»» image_21x21<span class="param-type"> string(uri)</span>|none|
-|»» image_27x27<span class="param-type"> string(uri)</span>|none|
-|»» image_36x36<span class="param-type"> string(uri)</span>|none|
-|»» image_60x60<span class="param-type"> string(uri)</span>|none|
-|»» image_128x128<span class="param-type"> string(uri)</span>|none|
-|» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
-|»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
-|»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 |num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
 |liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
 |likes<span class="param-type"> [object]</span>|*Conditional*. Array of users who have liked this story.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» email<span class="param-type"> string(email)</span>|The user’s email address.|
-|» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»» image_21x21<span class="param-type"> string(uri)</span>|none|
-|»» image_27x27<span class="param-type"> string(uri)</span>|none|
-|»» image_36x36<span class="param-type"> string(uri)</span>|none|
-|»» image_60x60<span class="param-type"> string(uri)</span>|none|
-|»» image_128x128<span class="param-type"> string(uri)</span>|none|
-|» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
-|»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
-|»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 |num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
 |previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
 |» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
@@ -14139,7 +14258,11 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
       "type": "text",
       "enum_options": [
         {
-          ...
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
         }
       ],
       "enum_value": null,
@@ -14496,11 +14619,7 @@ A *team* is used to group related projects and people together within an organiz
     {
       "gid": "12345",
       "resource_type": "workspace",
-      "name": "My Company Workspace",
-      "email_domains": [
-        "asana.com"
-      ],
-      "is_organization": false
+      "name": "My Company Workspace"
     }
   ]
 }
@@ -14527,8 +14646,6 @@ A *user* object represents an account in Asana that can be given access to vario
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the object.|
-|» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
-|» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 
 </section>
 
