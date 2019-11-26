@@ -290,11 +290,6 @@ To filter sku list based on user input keyword, you can pass `query` params in U
 
 `/api/v1/products/skus?query=SKU`
 
-### Filter archived skus
-
-If you want to filter archived skus you can pass `archived` params like:
-`/api/v1/products/skus?archived=true`
-
 ### HTTP Request
 
 `GET https://app.procurementexpress.com/api/v1/products/skus`
