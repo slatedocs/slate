@@ -28,9 +28,9 @@ curl -H "Content-Type:application/json" \
 -d '{"data": [{ "id": REQUIREMENT_ID, "type": "requirements" },{ "id": ANOTHER_REQUIREMENT_ID, "type": "requirements" }]}'
 
 ```
-## Add linked requirements to a specific issue
+## Link requirements to a specific issue
 
-This endpoint adds linked requirements to a specific issue
+This endpoint links requirements to a specific issue
 
 ### HTTP Request
 
@@ -97,9 +97,9 @@ curl -H "Content-Type:application/json" \
 -d '{"data": [{ "id": ISSUE_ID, "type": "issues" },{ "id": ANOTHER_ISSUE_ID, "type": "issues" }]}'
 
 ```
-## Add linked issues to a specific issue
+## Link issues to a specific issue
 
-This endpoint adds linked issues to a specific issue
+This endpoint links issues to a specific issue
 
 ### HTTP Request
 

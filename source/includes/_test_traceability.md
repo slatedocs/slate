@@ -28,9 +28,9 @@ curl -H "Content-Type:application/json" \
 -d '{"data": [{ "id": REQUIREMENT_ID, "type": "requirements" },{ "id": ANOTHER_REQUIREMENT_ID, "type": "requirements" }]}'
 
 ```
-## Add linked requirements to a specific test
+## Link requirements to a specific test
 
-This endpoint adds linked requirements to a specific test
+This endpoint links requirements to a specific test
 
 ### HTTP Request
 
