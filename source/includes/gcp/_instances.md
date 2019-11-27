@@ -401,13 +401,24 @@ curl -X POST \
 
 # Request example:
 ```
+Changing the IP to an ephemeral IP, just leave it empty
+```json
+{
+}
+```
+Changing the IP to a new static IP
 
 ```json
 {
-  "id": "6564997542943928188",
-  "externalIp": {
-    "id": "3645738160550100933"
-  }
+  "reserveStaticIP" : true
+}
+```
+
+Changing the IP to an existing IP
+
+```json
+{
+  "shortIP" : "your-ip-name"
 }
 ```
 
@@ -415,10 +426,10 @@ curl -X POST \
 
 Change the static external IP of an existing instance.
 
-Required | &nbsp;
+Optional | &nbsp;
 ------ | -----------
-`externalIp`<br/>*object* | The external ip as an object
-`externalIp.id`<br/>*object* | The external ip's object id
+`shortIP`<br/>*String* | The name of a static external IP in the same region as the instance.
+`reserveStaticIP`<br/>*boolean* | if reserve a new external IP to the instance. Cannot be specified when 'shortIP' is also specified. 
 
 <!-------------------- GET SSH COMMAND -------------------->
 
