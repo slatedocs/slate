@@ -17,6 +17,7 @@ includes:
   - investors
   - investor-payments
   - platform-payments
+  - bulk-payments
   - debt-settlement
   - equity-settlement
   - instruments
@@ -59,6 +60,8 @@ For Managers (platforms) to control money that doesn't yet, or no longer, belong
 * Retrieve and create bank details of beneficiaries
 * Create wallets to hold and move platform controlled money
 * Transfer funds between wallets and beneficiaries.
+
+###[Payments - Bulk API](#bulk-payments)
 
 ###[Debt Settlement API](#settlement-debt)
 The Debt Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:

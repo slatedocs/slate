@@ -7,12 +7,12 @@ The API is currently under construction.
 
 ## Dividends 
 
-The [`POST /corporate-actions/dividends`](/#settlement-equity-post-dividend) endpoint can be used to pay dividends 
+The [`POST /corporate-actions/dividends`](/#settlement-equity-post-corporate-actions-dividends) endpoint can be used to pay dividends 
 to investors that hold shares in an instrument.
  
 Said endpoint references an instrument, and takes a list of all the investors that are shareholders to be paid. 
 
-The call to [`POST /corporate-actions/dividends`](/#settlement-equity-post-dividend) will return a 201 Created response
+The call to [`POST /corporate-actions/dividends`](/#settlement-equity-post-corporate-actions-dividends) will return a 201 Created response
 with a `status` field in the body of 'AWAITING FUNDS'.
 
 ⚠️ Please note that this response only indicates that the dividend instruction has been received. 
@@ -20,7 +20,7 @@ The distribution of the dividend to investors will not occur until the necessary
 
 The response will include a payTo section. Payment should be sent to the bank details specified, including the `payTo.reference`.
 
-Once payment has been made, the [`GET /corporate-actions/dividends/{dividendId}`](/#settlement-equity-get-dividend-by-id) 
+Once payment has been made, the [`GET /corporate-actions/dividends/{dividendId}`](/#settlement-equity-get-corporate-actions-dividends-dividendid) 
 endpoint can be used to see the current status of the dividend instruction.
 
 The status of the money transfer is further broken down at a per investor level. 
@@ -32,7 +32,7 @@ The status of the money transfer is further broken down at a per investor level.
 |-----------------------------|-----------|------------|-----------------------------------------------------------------|
 | id                          | String    | UUID       | The platform generated UUID of the dividend posting.            |
 | instrumentSymbol            | String    | UUID       | The platform generated unique ID/symbol of the instrument.      |
-| status                      | String    | Enum       | Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, PROCESSED. |
+| status                      | String    | Enum       | Response Only. Values: AWAITING_FUNDS, DISTRIBUTING, COMPLETE.  |
 | totalPayout.currency        | String    | ISO 4217   | The currency that the total dividend payment is in.             |
 | totalPayout.amount          | Number    | Number     | The total amount to be paid out.                                |
 | payments[].clientId         | String    | Client ID  | The client ID for the dividend payment.                         |
@@ -140,11 +140,11 @@ using the dividend endpoints:
 
 ### Request
 
-Body: [Dividend Model]((/#settlement-equity-post-dividend))
+Body: [Dividend Model](/#settlement-equity-dividends-model)
 
 ### Response
 
-Body: [Dividend  Model]((/#settlement-equity-post-dividend))
+Body: [Dividend  Model](/#settlement-equity-dividends-model)
 
 
 Http Status: 
@@ -164,6 +164,7 @@ To see the current state of a dividend instruction, this endpoint can be used.
 It will provide two statuses:
 
 (1) An overall `status` of the dividend instruction.
+
 (2) A breakdown of the current `status` of each payment.
 
 
@@ -231,13 +232,13 @@ Body: None
 
 ### Response
 
-Body: [Dividend Model](/#settlement-equity-get-dividend-by-id) 
+Body: [Dividend Model](/#settlement-equity-dividends-model) 
 
 Http Status: 
 
 | Code             | Description                                      | Body       | Content-Type     |
 |------------------|--------------------------------------------------|------------|------------------|
-| 200 Created      | Trade exists and is return in the body           | Trade      | application/json |
+| 200 Created      | Dividend exists and is return in the body        | Dividend   | application/json |
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
-| 404 Not Found    | No trade with this UUID exists                   | None       | n/a              |
+| 404 Not Found    | No dividend with this UUID exists                | None       | n/a              |
