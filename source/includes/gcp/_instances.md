@@ -424,7 +424,7 @@ Change the static external IP of an existing instance.
 Optional | &nbsp;
 ------ | -----------
 `shortIP`<br/>*String* | The name of a static external IP in the same region as the instance.
-`reserveStaticIP`<br/>*boolean* | Specify to reserve a new external IP for the instance
+`reserveStaticIP`<br/>*boolean* | Specify to reserve a new external IP for the instance 
 
 <!-------------------- GET SSH COMMAND -------------------->
 
