@@ -65,6 +65,43 @@ marca | string | Máximo 300 caracteres. __Requerido__
 modelo | string | Máximo 300 caracteres. __Requerido__
 serie | string | Máximo 300 caracteres. __Requerido__
 
+## Reembolso
+
+Datos de una factura o liquidación de compras de reembolso.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo | string | Código del tipo de documento de reembolso equivalente a 41. __Requerido__
+documentos | listado de objeto [Documento](#documento) | Lista de documentos. __Requerido__
+subtotal | float | Sumatoria de los subtotales de los documentos. __Requerido__
+total_impuestos | float | Sumatoria de los totales de impuestos de los documentos. __Requerido__
+total | float | Subtotal más total de impuestos. __Requerido__
+
+## Documento
+Datos de un documento.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+codigo_establecimiento  | string |  3 caracteres. __Requerido__
+codigo_punto_emision  | string |  3 caracteres. __Requerido__
+secuencia  | integer (min. 1 - max. 999999999 ) | Número de secuencia del documento. __Requerido__
+fecha_emision  | string |  Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
+identificacion_proveedor | string | De 5 a 20 caracteres. __Requerido__
+tipo_identificacion_proveedor | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
+impuestos | listado de objeto [impuesto](#impuesto-item) | Impuestos totales del documento. __Requerido__
+numero_autorizacion  | string | Número de autorización del documento. 10, 37 o 49 caracteres. __Requerido__
+pais_origen_proveedor | string | Código  de dos caracteres del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). __Requerido__
+tipo  | string |  Código de [tipos de documentos](#tipos-de-documentos). __Requerido__
+tipo_proveedor  | string | Código de [tipo de proveedor](#tipo-de-proveedor) de reembolso. __Requerido__
+
+
+## Tipo de proveedor
+Tipo | Código
+---- |-----------
+Personal natural |  01
+Sociedad |  02
+
+
 ## Info adicional
 
 Información adicional adjunta al documento. Es utilizada para especificar cualquier detalle

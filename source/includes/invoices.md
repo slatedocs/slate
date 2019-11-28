@@ -101,7 +101,7 @@ curl -v https://link.datil.co/invoices/issue \
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       },
-      "notas": "Depósitado en cuenta corriente"
+      "notas": "Depositado en cuenta corriente"
     }
   ],
   "exportacion": {
@@ -214,7 +214,7 @@ factura = {
     {
       "medio": "cheque",
       "total": 2882.68,
-      "notas": "Depósitado en cuenta corriente",
+      "notas": "Depositado en cuenta corriente",
       "propiedades": {
         "numero": "1234567890",
         "banco": "Banco Pacífico"
@@ -361,7 +361,7 @@ namespace DatilClient {
         {
           ""medio"": ""cheque"",
           ""total"": 2882.68,
-          ""notas"": ""Depósitado en cuenta corriente"",
+          ""notas"": ""Depositado en cuenta corriente"",
           ""propiedades"": {
             ""numero"": ""1234567890"",
             ""banco"": ""Banco Pacífico""
@@ -641,7 +641,7 @@ respuesta = requests.post(
         "numero": "1234567890",
         "banco": "Banco Pacífico"
       },
-      "notas": "Depósitado en cuenta corriente"
+      "notas": "Depositado en cuenta corriente"
     }
   ],
   "exportacion": {
@@ -672,6 +672,393 @@ respuesta = requests.post(
 Retorna un objeto tipo **[factura](#requerimiento)** que incluye un nuevo parámetro `id`,
 el cual identifica de manera única a la factura. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
+
+## Emisión de una factura de reembolso
+
+### Operación
+
+`POST /invoices/issue`
+
+### Requerimiento
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/invoices/issue \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{
+  "ambiente": 1,
+  "tipo_emision": 1,
+  "secuencial": 148,
+  "fecha_emision": "2019-10-28T11:28:56.782Z",
+  "emisor": {
+    "ruc": "0910000000001",
+    "obligado_contabilidad": true,
+    "contribuyente_especial": "12345",
+    "nombre_comercial": "XYZ Corp",
+    "razon_social": "XYZ Corporación S.A.",
+    "direccion": "Av. Primera 234 y calle 5ta",
+    "establecimiento": {
+      "punto_emision": "002",
+      "codigo": "001",
+      "direccion": "Av. Primera 234 y calle 5ta"
+    }
+  },
+  "moneda": "USD",
+  "info_adicional": [{
+    "nombre": "Tiempo de entrega",
+    "valor": "5 días"
+  }],
+  "totales": {
+    "total_sin_impuestos": 300,
+    "impuestos": [{
+      "base_imponible": 300,
+      "valor": 0.00,
+      "codigo": "2",
+      "codigo_porcentaje": "6"
+    }],
+    "importe_total": 300.00,
+    "propina": 0.0,
+    "descuento": 0.0
+  },
+  "comprador": {
+    "email": "juan.perez@xyz.com",
+    "identificacion": "0987654321",
+    "tipo_identificacion": "05",
+    "razon_social": "Juan Pérez",
+    "direccion": "Calle única Numero 987",
+    "telefono": "046029400"
+  },
+  "items": [{
+    "cantidad": 1.0,
+    "codigo_principal": "REEM",
+    "codigo_auxiliar": "",
+    "precio_unitario": 300.00,
+    "descuento": 0,
+    "descripcion": "Reembolso de gastos",
+    "precio_total_sin_impuestos": 300.00,
+    "impuestos": [{
+      "base_imponible": 300.00,
+      "valor": 0.00,
+      "tarifa": 0.00,
+      "codigo": "2",
+      "codigo_porcentaje": "0"
+    }],
+    "descuento": 0.00
+  }],
+  "pagos": [{
+    "medio": "cheque",
+    "total": 300.00,
+    "propiedades": {
+      "numero": "1234567890",
+      "banco": "Banco Pacífico"
+    },
+    "notas": "Depositado en cuenta corriente"
+  }],
+  "reembolso": {
+    "codigo": "41",
+    "documentos": [{
+      "codigo_establecimiento": "002",
+      "codigo_punto_emision": "003",
+      "fecha_emision": "2019-10-28T11:28:56.782Z",
+      "identificacion_proveedor": "1790017478001",
+      "impuestos": [{
+        "base_imponible": 300.00,
+        "codigo": "2",
+        "codigo_porcentaje": "0",
+        "tarifa": 0.00,
+        "valor": 0.00
+      }],
+      "numero_autorizacion": "1234567890",
+      "pais_origen_proveedor": "EC",
+      "secuencia": 2132,
+      "tipo": "01",
+      "tipo_identificacion_proveedor": "04",
+      "tipo_proveedor": "02"
+    }],
+    "subtotal": 300.00,
+    "total": 300.00,
+    "total_impuestos": 0.00
+  }
+}'
+```
+
+```python
+import requests, json
+
+factura = {
+  "ambiente": 1,
+  "tipo_emision": 1,
+  "secuencial": 148,
+  "fecha_emision": "2019-10-28T11:28:56.782Z",
+  "emisor": {
+    "ruc": "0910000000001",
+    "obligado_contabilidad": true,
+    "contribuyente_especial": "12345",
+    "nombre_comercial": "XYZ Corp",
+    "razon_social": "XYZ Corporación S.A.",
+    "direccion": "Av. Primera 234 y calle 5ta",
+    "establecimiento": {
+      "punto_emision": "002",
+      "codigo": "001",
+      "direccion": "Av. Primera 234 y calle 5ta"
+    }
+  },
+  "moneda": "USD",
+  "info_adicional": [{
+    "nombre": "Tiempo de entrega",
+    "valor": "5 días"
+  }],
+  "totales": {
+    "total_sin_impuestos": 300,
+    "impuestos": [{
+      "base_imponible": 300,
+      "valor": 0.00,
+      "codigo": "2",
+      "codigo_porcentaje": "6"
+    }],
+    "importe_total": 300.00,
+    "propina": 0.0,
+    "descuento": 0.0
+  },
+  "comprador": {
+    "email": "juan.perez@xyz.com",
+    "identificacion": "0987654321",
+    "tipo_identificacion": "05",
+    "razon_social": "Juan Pérez",
+    "direccion": "Calle única Numero 987",
+    "telefono": "046029400"
+  },
+  "items": [{
+    "cantidad": 1.0,
+    "codigo_principal": "REEM",
+    "codigo_auxiliar": "",
+    "precio_unitario": 300.00,
+    "descuento": 0,
+    "descripcion": "Reembolso de gastos",
+    "precio_total_sin_impuestos": 300.00,
+    "impuestos": [{
+      "base_imponible": 300.00,
+      "valor": 0.00,
+      "tarifa": 0.00,
+      "codigo": "2",
+      "codigo_porcentaje": "0"
+    }],
+    "descuento": 0.00
+  }],
+  "pagos": [{
+    "medio": "cheque",
+    "total": 300.00,
+    "propiedades": {
+      "numero": "1234567890",
+      "banco": "Banco Pacífico"
+    },
+    "notas": "Depositado en cuenta corriente"
+  }],
+  "reembolso": {
+    "codigo": "41",
+    "documentos": [{
+      "codigo_establecimiento": "002",
+      "codigo_punto_emision": "003",
+      "fecha_emision": "2019-10-28T11:28:56.782Z",
+      "identificacion_proveedor": "1790017478001",
+      "impuestos": [{
+        "base_imponible": 300.00,
+        "codigo": "2",
+        "codigo_porcentaje": "0",
+        "tarifa": 0.00,
+        "valor": 0.00
+      }],
+      "numero_autorizacion": "1234567890",
+      "pais_origen_proveedor": "EC",
+      "secuencia": 2132,
+      "tipo": "01",
+      "tipo_identificacion_proveedor": "04",
+      "tipo_proveedor": "02"
+    }],
+    "subtotal": 300.00,
+    "total": 300.00,
+    "total_impuestos": 0.00
+  }
+}
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/invoices/issue",
+    headers = cabeceras,
+    data = json.dumps(factura))
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      // Este ejemplo utiliza RestSharp
+      // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
+      // copia y pega y presiona enter: Install-Package RestSharp
+
+      var client = new RestClient("https://link.datil.co/");
+      var request = new RestRequest("invoices/issue", Method.POST);
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("X-Password", "<clave-certificado-firma>");
+      request.AddHeader("Content-Type", "application/json");
+      request.RequestFormat = DataFormat.Json;
+
+      var body = (@"{
+        ""ambiente"": 1,
+        ""tipo_emision"": 1,
+        ""secuencial"": 148,
+        ""fecha_emision"": ""2019-10-28T11:28:56.782Z"",
+        ""emisor"": {
+          ""ruc"": ""0910000000001"",
+          ""obligado_contabilidad"": true,
+          ""contribuyente_especial"": ""12345"",
+          ""nombre_comercial"": ""XYZ Corp"",
+          ""razon_social"": ""XYZ Corporación S.A."",
+          ""direccion"": ""Av. Primera 234 y calle 5ta"",
+          ""establecimiento"": {
+            ""punto_emision"": ""002"",
+            ""codigo"": ""001"",
+            ""direccion"": ""Av. Primera 234 y calle 5ta""
+          }
+        },
+        ""moneda"": ""USD"",
+        ""info_adicional"": [{
+          ""nombre"": ""Tiempo de entrega"",
+          ""valor"": ""5 días""
+        }],
+        ""totales"": {
+          ""total_sin_impuestos"": 300,
+          ""impuestos"": [{
+            ""base_imponible"": 300,
+            ""valor"": 0.00,
+            ""codigo"": ""2"",
+            ""codigo_porcentaje"": ""6""
+          }],
+          ""importe_total"": 300.00,
+          ""propina"": 0.0,
+          ""descuento"": 0.0
+        },
+        ""comprador"": {
+          ""email"": ""juan.perez@xyz.com"",
+          ""identificacion"": ""0987654321"",
+          ""tipo_identificacion"": ""05"",
+          ""razon_social"": ""Juan Pérez"",
+          ""direccion"": ""Calle única Numero 987"",
+          ""telefono"": ""046029400""
+        },
+        ""items"": [{
+          ""cantidad"": 1.0,
+          ""codigo_principal"": ""REEM"",
+          ""codigo_auxiliar"": "",
+          ""precio_unitario"": 300.00,
+          ""descuento"": 0,
+          ""descripcion"": ""Reembolso de gastos"",
+          ""precio_total_sin_impuestos"": 300.00,
+          ""impuestos"": [{
+            ""base_imponible"": 300.00,
+            ""valor"": 0.00,
+            ""tarifa"": 0.00,
+            ""codigo"": ""2"",
+            ""codigo_porcentaje"": ""0""
+          }],
+          ""descuento"": 0.00
+        }],
+        ""pagos"": [{
+          ""medio"": ""cheque"",
+          ""total"": 300.00,
+          ""propiedades"": {
+            ""numero"": ""1234567890"",
+            ""banco"": ""Banco Pacífico""
+          },
+          ""notas"": ""Depositado en cuenta corriente""
+        }],
+        ""reembolso"": {
+          ""codigo"": ""41"",
+          ""documentos"": [{
+            ""codigo_establecimiento"": ""002"",
+            ""codigo_punto_emision"": ""003"",
+            ""fecha_emision"": ""2019-10-28T11:28:56.782Z"",
+            ""identificacion_proveedor"": ""1790017478001"",
+            ""impuestos"": [{
+              ""base_imponible"": 300.00,
+              ""codigo"": ""2"",
+              ""codigo_porcentaje"": ""0"",
+              ""tarifa"": 0.00,
+              ""valor"": 0.00
+            }],
+            ""numero_autorizacion"": ""1234567890"",
+            ""pais_origen_proveedor"": ""EC"",
+            ""secuencia"": 2132,
+            ""tipo"": ""01"",
+            ""tipo_identificacion_proveedor"": ""04"",
+            ""tipo_proveedor"": ""02""
+          }],
+          ""subtotal"": 300.00,
+          ""total"": 300.00,
+          ""total_impuestos"": 0.00
+        }
+      }");
+      request.AddParameter("application/json", body, ParameterType.RequestBody);
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+      Console.ReadLine();
+    }
+  }
+}
+```
+
+Para la emisión de una factura de reembolso se debe enviar la información completa del
+comprobante en el cuerpo del requerimiento en formato JSON. El total de ítems de la factura de reembolso debe ser igual al total de los documentos.
+
+Parámetro | Tipo | Descripción
+--------- | ------- | -----------
+secuencial | integer (min. 1 - max. 999999999 ) | Número de secuencia de la factura. __Requerido__
+emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
+fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
+totales | objeto tipo [totales](#totales-reembolso) | Listado de totales. __Requerido__
+comprador | objeto tipo [persona](#persona) | Información del comprador. __Requerido__
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
+items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura. Para facturas de reembolso el impuesto del ítem es No Objeto de Impuesto __Requerido__
+version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
+clave_acceso | string (49 caracteres) | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+info_adicional | Listado de objectos de tipo [información adicional](#info-adicional) | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` [{"nombre":"plan", "valor":"Inicial", "nombre":"vigencia", "valor":"1 mes"}]`
+informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"plan": "Inicial", "vigencia": "1 mes"}` <span style="color: red">__Obsoleto__</span> *utiliza el parámetro info_adicional*
+pagos | Listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura. __Requerido__
+reembolso | objeto tipo [reembolso](#reembolso) | Información de reembolso. __Requerido__
+
+<h3 id="totales-reembolso"> Totales </h3>
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- |-----------
+total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
+descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
+importe_total       | float | Total incluyendo impuestos. __Requerido__
+impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
+
+#### Pagos
+
+Parámetro   | Tipo         | Descripción
+----------- | ------------ | ----------
+fecha       | string       | Fecha de recepción del pago en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). Si no es especificado se utiliza la fecha y hora actual.
+medio       | string       | Código del [tipo de forma de pago](#tipos-de-forma-de-pago). __Requerido__
+total       | float        | Total aplicable a la forma de pago especificada. __Requerido__
+notas       | string (máximo 300 caracteres) | Texto abierto que te permite registrar cualquier nota relacionada al pago.
+propiedades | objeto       | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
 
 ## Consulta de una factura
 
@@ -835,7 +1222,7 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
           "numero": "1234567890",
           "banco": "Banco Pacífico"
         },
-        "notas": "Depósitado en cuenta corriente"
+        "notas": "Depositado en cuenta corriente"
       }
     ],
     "compensaciones": [
@@ -901,6 +1288,214 @@ items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en l
 pagos | listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura.
 credito | Objeto de tipo [credito](#cr-dito) | Información del crédito directo otorgado al cliente.
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+
+## Consulta de una factura de reembolso
+
+Consulta una factura de reembolso para obtener toda la información del comprobante, incluyendo
+el estado del mismo.
+El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica
+el estado actual del comprobante.
+
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión),
+se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
+
+### Operación
+
+`GET /invoices/<invoice-id>`
+
+### Requerimiento
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/invoices/<id-factura> \
+-H "Content-Type: application/json" \
+-H "X-Key: <clave-del-api>" \
+-H "X-Password: <clave-certificado-firma>" \
+```
+
+```python
+import requests
+cabeceras = {'x-key': '<clave-del-api>'}
+respuesta = requests.get(
+    'https://link.datil.co/invoices/<id-factura>',
+    headers = cabeceras)
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      var client = new RestClient("https://link.datil.co/");
+      var idFactura = "<id-factura>";
+      var request = new RestRequest("invoices/" + idFactura, Method.GET);
+      request.AddHeader("X-Key", "<clave-del-api>");
+
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+    }
+  }
+}
+```
+
+Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas consultar.
+
+
+### Respuesta
+
+> #### Respuesta de ejemplo
+
+```json
+{
+  "id": "abcf12343faad06785",
+  "secuencial": 148,
+  "fecha_emision": "2019-10-28T11:28:56.782Z",
+  "version": "1.0.0",
+  "clave_acceso": "1505201501099271255400110011000000000162092727615",
+  "ambiente": 1,
+  "tipo_emision": 1,
+  "emisor": {
+    "ruc": "0910000000001",
+    "obligado_contabilidad": true,
+    "contribuyente_especial": "12345",
+    "nombre_comercial": "XYZ Corp",
+    "razon_social": "XYZ Corporación S.A.",
+    "direccion": "Av. Primera 234 y calle 5ta",
+    "establecimiento": {
+      "punto_emision": "002",
+      "codigo": "001",
+      "direccion": "Av. Primera 234 y calle 5ta"
+    }
+  },
+  "estado": "AUTORIZADO",
+  "correos_enviados": [{
+    "fecha_envio": "2019-10-28T16:36:48.274604",
+    "destinatarios": "juanantonioplaza@datilmedia.com"
+  }],
+  "moneda": "USD",
+  "info_adicional": [{
+    "nombre": "Tiempo de entrega",
+    "valor": "5 días"
+  }],
+  "totales": {
+    "total_sin_impuestos": 300,
+    "impuestos": [{
+      "base_imponible": 300,
+      "valor": 0.00,
+      "codigo": "2",
+      "codigo_porcentaje": "6"
+    }],
+    "importe_total": 300.00,
+    "propina": 0.0,
+    "descuento": 0.0
+  },
+  "envio_sri": {
+      "mensajes": [],
+      "estado": "RECIBIDA",
+      "fecha": ""
+  },
+  "comprador": {
+    "email": "juan.perez@xyz.com",
+    "identificacion": "0987654321",
+    "tipo_identificacion": "05",
+    "razon_social": "Juan Pérez",
+    "direccion": "Calle única Numero 987",
+    "telefono": "046029400"
+  },
+  "items": [{
+    "cantidad": 1.0,
+    "codigo_principal": "REEM",
+    "codigo_auxiliar": "",
+    "precio_unitario": 300.00,
+    "descuento": 0,
+    "descripcion": "Reembolso de gastos",
+    "precio_total_sin_impuestos": 300.00,
+    "impuestos": [{
+      "base_imponible": 300.00,
+      "valor": 0.00,
+      "tarifa": 0.00,
+      "codigo": "2",
+      "codigo_porcentaje": "0"
+    }],
+    "descuento": 0.00
+  }],
+  "pagos": [{
+    "medio": "cheque",
+    "total": 300.00,
+    "propiedades": {
+      "numero": "1234567890",
+      "banco": "Banco Pacífico"
+    },
+    "notas": "Depositado en cuenta corriente"
+  }],
+  "reembolso": {
+    "codigo": "41",
+    "documentos": [{
+      "codigo_establecimiento": "002",
+      "codigo_punto_emision": "003",
+      "fecha_emision": "2019-10-28T11:28:56.782Z",
+      "identificacion_proveedor": "1790017478001",
+      "impuestos": [{
+        "base_imponible": 300.00,
+        "codigo": "2",
+        "codigo_porcentaje": "0",
+        "tarifa": 0.00,
+        "valor": 0.00
+      }],
+      "numero_autorizacion": "1234567890",
+      "pais_origen_proveedor": "EC",
+      "secuencia": 2132,
+      "tipo": "01",
+      "tipo_identificacion_proveedor": "04",
+      "tipo_proveedor": "02"
+    }],
+    "subtotal": 300.00,
+    "total": 300.00,
+    "total_impuestos": 0.00
+  },
+  "autorizacion": {
+    "estado": "AUTORIZADO",
+    "mensajes": [
+      {
+        "identificador": "60",
+        "mensaje": "ESTE PROCESO FUE REALIZADO EN EL AMBIENTE DE PRUEBAS",
+        "tipo": "INFORMATIVO",
+        "informacion_adicional": ""
+      }
+    ],
+    "numero": "1505201516323509927125540010266935227",
+    "fecha": "2019-10-28T16:32:35.000380"
+  }
+}
+```
+
+Parámetro | Tipo | Descripción
+--------- | ------- | -----------
+secuencial | string | Número de secuencia de la factura.
+estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
+fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf).
+clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
+envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
+autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
+ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
+totales | objeto tipo [totales](#totales-reembolso) | Listado de totales.
+comprador | objeto [persona](#persona) | Información del comprador.
+tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
+items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la factura.
+pagos | listado de objetos tipo [pagos](#pagos) | Listado de formas de pago aplicables a la factura.
+version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+reembolso | objeto tipo [reembolso](#reembolso) | Información de reembolso.
+
 
 ## Re-emisión de una factura
 
