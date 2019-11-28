@@ -1647,80 +1647,114 @@ Try it out! `?id=1234` will get you PO with id=1234
 
 ```json
 {
-    "data": [
+  "data": [
+    {
+      "id": 24,
+      "name": "Whiteout",
+      "order_item_id": 193,
+      "purchased_quantity": "10.00",
+      "received_quantity": "5.00",
+      "receive_history": [
         {
-            "id": 28,
-            "name": "Cleaning Service",
-            "order_item_id": 25,
-            "purchased_quantity": "3.00",
-            "received_quantity": "0.00",
-            "receive_history": [
-                {
-                    "received_quantity": "2.00",
-                    "timestamp": "2019-11-05T12:18:16.097000-08:00"
-                },
-                {
-                    "received_quantity": "1.00",
-                    "timestamp": "2019-11-05T12:18:56.147000-08:00"
-                },
-                {
-                    "received_quantity": "0.00",
-                    "timestamp": "2019-11-05T13:07:22.078000-08:00"
-                }
-            ],
-            "purchase_order": {
-                "id": 65,
-                "purchase_order_no": "",
-                "uuid": "7f10446f-7d48-11e7-a713-06649396b11b",
-                "external_id": "9999",
-                "custom_fields": {
-                    "Weight": null,
-                    "New Field": null
-                }
-            },
-            "created_at": "2019-11-05T12:18:16.096980-08:00",
-            "updated_at": "2019-11-05T13:07:22.078795-08:00",
-            "external_id": "9999",
-            "custom_fields": {}
+          "received_quantity": "3.00",
+          "timestamp": "2019-11-28T12:31:57.735000-08:00"
         },
         {
-            "id": 30,
-            "name": "Cleaning Service",
-            "order_item_id": 25,
-            "purchased_quantity": "3.00",
-            "received_quantity": "1.00",
-            "receive_history": [
-                {
-                    "received_quantity": "1.00",
-                    "timestamp": "2019-11-05T13:08:16.609000-08:00"
-                }
-            ],
-            "purchase_order": {
-                "id": 65,
-                "purchase_order_no": "",
-                "uuid": "7f10446f-7d48-11e7-a713-06649396b11b",
-                "external_id": "9999",
-                "custom_fields": {
-                    "Weight": null,
-                    "New Field": null
-                }
-            },
-            "created_at": "2019-11-05T13:08:16.609849-08:00",
-            "updated_at": "2019-11-05T13:08:16.609878-08:00",
-            "external_id": "",
-            "custom_fields": {}
+          "received_quantity": "2.00",
+          "timestamp": "2019-11-28T12:32:17.234000-08:00"
+        },
+        {
+          "received_quantity": "3.00",
+          "timestamp": "2019-11-28T12:32:38.206000-08:00"
+        },
+        {
+          "received_quantity": "2.00",
+          "timestamp": "2019-11-28T12:33:16.307000-08:00"
+        },
+        {
+          "received_quantity": "5.00",
+          "timestamp": "2019-11-28T12:49:25.943000-08:00"
         }
-    ],
-    "metadata": {
-        "pagination": {
-            "count": 2,
-            "next": null,
-            "previous": null,
-            "page_size": 10,
-            "num_pages": 1,
-            "current_page": 1
+      ],
+      "purchase_order": {
+        "id": 52,
+        "purchase_order_no": "",
+        "uuid": "8325e590-3b53-11e7-bfdd-021a9831e76d",
+        "external_id": "9999",
+        "custom_fields": {
+          "Weight": null,
+          "New Field": null
         }
+      },
+      "created_at": "2019-11-28T12:31:57.735536-08:00",
+      "updated_at": "2019-11-28T12:49:25.943330-08:00",
+      "last_synced_info": {
+        "synced_at": "2019-11-28T12:49:10.912734-08:00",
+        "received_quantity": "2.00",
+        "delta": "3.00"
+      },
+      "external_id": "9999",
+      "custom_fields": {}
+    },
+    {
+      "id": 25,
+      "name": "Whiteout",
+      "order_item_id": 193,
+      "purchased_quantity": "10.00",
+      "received_quantity": "1.00",
+      "receive_history": [
+        {
+          "received_quantity": "3.00",
+          "timestamp": "2019-11-28T12:32:00.199000-08:00"
+        },
+        {
+          "received_quantity": "4.00",
+          "timestamp": "2019-11-28T12:32:20.390000-08:00"
+        },
+        {
+          "received_quantity": "3.00",
+          "timestamp": "2019-11-28T12:32:41.805000-08:00"
+        },
+        {
+          "received_quantity": "4.00",
+          "timestamp": "2019-11-28T12:33:18.868000-08:00"
+        },
+        {
+          "received_quantity": "1.00",
+          "timestamp": "2019-11-28T12:49:28.888000-08:00"
+        }
+      ],
+      "purchase_order": {
+        "id": 52,
+        "purchase_order_no": "",
+        "uuid": "8325e590-3b53-11e7-bfdd-021a9831e76d",
+        "external_id": "9999",
+        "custom_fields": {
+          "Weight": null,
+          "New Field": null
+        }
+      },
+      "created_at": "2019-11-28T12:32:00.199650-08:00",
+      "updated_at": "2019-11-28T12:49:28.888547-08:00",
+      "last_synced_info": {
+        "synced_at": "2019-11-28T12:49:08.573131-08:00",
+        "received_quantity": "4.00",
+        "delta": "-3.00"
+      },
+      "external_id": "9999",
+      "custom_fields": {}
     }
+  ],
+  "metadata": {
+    "pagination": {
+      "count": 2,
+      "next": null,
+      "previous": null,
+      "page_size": 10,
+      "num_pages": 1,
+      "current_page": 1
+    }
+  }
 }
 ```
 
