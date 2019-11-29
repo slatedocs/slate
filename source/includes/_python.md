@@ -488,7 +488,9 @@ pip install scout-apm
         <span class="step">2</span>
       </td>
       <td style="padding-top: 15px">
-        <p>Add Scout to your Huey application:</p>
+        <p>If you are using <a href="https://huey.readthedocs.io/en/latest/django.html">Huey's Django integration</a>, you only need to set up the <a href="#django">Django integration. Your Huey instance will be automatically instrumented.</p>
+
+        <p>If you're using Huey outside of the Django integration, add Scout to your Huey instance:</p>
 <pre class="terminal" style="width: initial">
 from huey import SqliteHuey
 <span>from scout_apm.api import Config</span>
