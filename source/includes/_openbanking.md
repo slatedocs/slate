@@ -150,6 +150,18 @@ Using the `access-token` returned from [Creating an Access Token](#open-banking-
 
 The payload of this request will look different depending on whether you're an AISP, PISP or CBPII. For an AISP you'll need to specify a set of permissions describing the access that you wish to gain on behalf of the end user.
 
+### Permissions
+
+For AISPs the list of supported permissions is:
+
+* ReadAccountsBasic
+* ReadAccountsDetail
+* ReadBalances
+* ReadTransactionsBasic
+* ReadTransactionsCredits
+* ReadTransactionsDebits
+* ReadTransactionsDetail
+
 ### Response
 
 The response will be JSON data reflecting the newly created consent object. There are two important return values to highlight here.
