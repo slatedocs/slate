@@ -1448,169 +1448,181 @@ OBJECT_MAP_ID | ID of the object map being deleted
 
 ```json
 {
-    "data": [
-      {
-        "id": 3,
-        "uuid": "58234091-5f3b-4a7d-b696-2e48070cbfa6",
-        "purchase_order_no": "",
-        "transaction_date": "2019-08-16T11:22:24-07:00",
-        "due_date": "2019-08-22T00:24:07-07:00",
-        "total": "12691.90",
-        "line_items": [{
-            "id": 1,
-            "name": "these591",
-            "quantity": "9.00000",
-            "unit_cost": "826.33",
-            "amount": "7436.99",
-            "currency": {
-                "id": 1,
-                "name": "CAD",
-                "rate": "1.000000",
-                "active": 1,
-                "description": "",
-                "base": 0,
-                "external_id": "EX_CURRENCY_1",
-                "custom_fields": {}
-            },
-            "account": {
-                "id": 1,
-                "code": "12345",
-                "description": "TEST",
-                "parent": "",
-                "active": 1,
-                "account_type": "Expense",
-                "external_id": "EX_ACCOUNTCODE_1",
-                "custom_fields": {}
-            },
-            "department": {
-                "id": 1,
-                "name": "Accounting",
-                "branch_id": 1,
-                "active": 1,
-                "external_id": "EX_DEPARTMENT_1",
-                "custom_fields": {}
-            },
-            "location": {
-                "id": 1,
-                "name": "acme",
-                "url": "",
-                "logo": "procurify_logo.jpg",
-                "phone_one": "12312312312",
-                "fax": "",
-                "email": "",
-                "primary_billing_address": {
-                    "id": 1,
-                    "name": "ACME Industries",
-                    "addressLineOne": "12651 Vickers Way",
-                    "city": "Vancouver",
-                    "postalCode": "V6V 1J2",
-                    "state_province": "BC",
-                    "country": "US"
-                },
-                "primary_shipping_address": {
-                    "id": 2,
-                    "name": "Procurify",
-                    "addressLineOne": "12651 Vickers Way",
-                    "city": "Vancouver",
-                    "postalCode": "V6V 1J2",
-                    "state_province": "BC",
-                    "country": "US"
-                },
-                "language": 1,
-                "location_timezone": "America / Vancouver",
-                "active": 1,
-                "external_id": "EX_COMPANYACCOUNT_1",
-                "custom_fields": {}
-            },
-            "catalog_item": {
-                "id": 2,
-                "name": "Fast f$lm know cell.",
-                "unit_type": "",
-                "pref_vendor": "",
-                "account_code": "",
-                "internal_sku": "20940",
-                "active": 1,
-                "description": "",
-                "product_url": "",
-                "currency": "",
-                "price": "694.39675700",
-                "external_id": "EX_CATALOGITEMS_2",
-                "custom_fields": {}
-            },
-            "memo": "Forward conference."
-        }],
-        "vendor": {
-            "id": 2,
-            "name": "Staples",
+  "data": [
+    {
+      "id": 52,
+      "uuid": "8325e590-3b53-11e7-bfdd-021a9831e76d",
+      "purchase_order_no": "",
+      "transaction_date": "2017-05-17T15:52:33-07:00",
+      "due_date": "2017-05-16T23:00:00-07:00",
+      "total": "80.00",
+      "line_items": [
+        {
+          "id": 193,
+          "name": "Whiteout",
+          "quantity": "10.00000",
+          "unit_cost": "8.00",
+          "amount": "80.00",
+          "currency": {
+            "id": 3,
+            "name": "USD",
+            "rate": "1.000000",
             "active": true,
-            "address_line_one": "1852 24th Ave",
-            "address_line_two": "Unit 123",
-            "postal_code": "72715",
-            "city": "New York",
-            "state_province": "NY",
-            "country": "US",
-            "email": "vendoremail@test.com",
-            "alt_email": "vendoraltemail@test.com",
-            "contact": "Joe Smith",
-            "phone": "479-195-8789",
-            "alt_phone": "479-696-4781",
-            "fax": "479-222-5688",
-            "comments": "Please call AR when placing PO to confirm receipt.",
-            "url": "http://www.staples.com/",
-            "payment_term": "Due on Receipt",
-            "shipping_term": "FOB",
-            "external_id": "EX_VENDOR_2",
-            "custom_field": {}
-        },
-        "shipping_address": {
-            "contact_name": "Purchaser 1",
-            "address_line_one": "12651 Vickers Way",
-            "city": "Vancouver",
-            "state_province": "BC",
-            "country": "US",
-            "postal_code": "V6V 1J2"
-        },
-        "shipping_method": {
-            "id": 2,
-            "name": "Canada Post",
-            "description": "Canada Post",
+            "description": "",
+            "base": true,
             "external_id": null,
             "custom_fields": {}
-        },
-        "shipping_term": {
-            "id": 2,
-            "name": "Work To Commence",
-            "description": "Work To Commence",
+          },
+          "account": {
+            "id": 1,
+            "code": "1000",
+            "description": "Supplies",
+            "parent": null,
+            "active": true,
+            "account_type": "Expense",
             "external_id": null,
             "custom_fields": {}
-        },
-        "payment_term": {
-            "id": 11,
-            "name": "Credit Card",
-            "description": "Credit Card",
+          },
+          "department": {
+            "id": 1,
+            "name": "Accounting",
+            "branch_id": 1,
+            "active": true,
             "external_id": null,
             "custom_fields": {}
-        },
-        "subtotal": "319.96",
-        "freight": "0.00",
-        "other": "0.00",
-        "discount": "0.00",
-        "tax": "38.40",
-        "memo": "",
-        "external_id": "",
-        "custom_fields": {}
-      }
-    ],
-    "metadata": {
-        "pagination": {
-            "count": 1,
-            "next": null,
-            "previous": null,
-            "page_size": 10,
-            "num_pages": 1,
-            "current_page": 1
+          },
+          "location": {
+            "id": 1,
+            "name": "Glenn Research Center",
+            "url": "www.nasa.gov/centers/glenn/home/",
+            "phone_one": "(216) 433-4000",
+            "fax": "",
+            "email": "",
+            "primary_billing_address": {
+              "id": 1,
+              "name": "Glenn Research Center",
+              "address_line_one": "21000 Brookpark Rd, Cleveland",
+              "city": "Cleveland",
+              "postal_code": "44135",
+              "state_province": "OH",
+              "country": "USA"
+            },
+            "primary_shipping_address": {
+              "id": 2,
+              "name": "Glenn Research Center",
+              "address_line_one": "21000 Brookpark Rd, Cleveland",
+              "city": "Cleveland",
+              "postal_code": "44135",
+              "state_province": "OH",
+              "country": "USA"
+            },
+            "language": 1,
+            "location_timezone": "America/Vancouver",
+            "active": true,
+            "external_id": null,
+            "custom_fields": {}
+          },
+          "catalog_item": {
+            "id": 4,
+            "name": "Whiteout",
+            "unit_type": "Dozen",
+            "pref_vendor": 6,
+            "account_code": 1,
+            "internal_sku": "29382",
+            "active": true,
+            "description": "",
+            "product_url": null,
+            "currency": 1,
+            "price": "8.00000000",
+            "external_id": null,
+            "custom_fields": {}
+          },
+          "memo": "",
+          "last_approver": {
+            "id": 15,
+            "firstName": "Kathryn",
+            "lastName": "Hire",
+            "email": "kathryn.hire@redshift7.com"
+          },
+          "external_id": null,
+          "custom_fields": {}
         }
+      ],
+      "vendor": {
+        "id": 6,
+        "name": "5 STAR",
+        "active": true,
+        "address_line_one": "55 West Hampton Ave",
+        "address_line_two": "",
+        "postal_code": "JKF 345",
+        "city": "Toronto",
+        "state_province": "Ontario",
+        "country": "Canada",
+        "email": "purchasing@fivestarcanada.com",
+        "alt_email": null,
+        "contact": "Ivan Improve",
+        "phone": "930-456-8700",
+        "alt_phone": "",
+        "fax": "",
+        "comments": "Notebooks and canvas supplier.",
+        "url": "http://fivestarbooks.com/",
+        "payment_term": "n 30",
+        "shipping_term": "FOB",
+        "external_id": null,
+        "custom_fields": {}
+      },
+      "shipping_address": {
+        "contact_name": "Neil Armstrong",
+        "address_line_one": "21000 Brookpark Rd, Cleveland",
+        "city": "Cleveland",
+        "state_province": "OH",
+        "country": "USA",
+        "postal_code": "44135"
+      },
+      "shipping_method": {
+        "id": 5,
+        "name": "FedEX",
+        "description": "FedEX",
+        "external_id": null,
+        "custom_fields": {}
+      },
+      "shipping_term": {
+        "id": 4,
+        "name": "FOB",
+        "description": "FOB",
+        "external_id": null,
+        "custom_fields": {}
+      },
+      "payment_term": {
+        "id": 11,
+        "name": "n 30",
+        "description": "n 30",
+        "external_id": null,
+        "custom_fields": {}
+      },
+      "subtotal": "80.00",
+      "freight": "0.00",
+      "other": "0.00",
+      "discount": "0.00",
+      "tax": "0.00",
+      "memo": "",
+      "external_id": "9999",
+      "custom_fields": {
+        "Weight": null,
+        "New Field": null
+      }
     }
+  ],
+  "metadata": {
+    "pagination": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "page_size": 10,
+      "num_pages": 1,
+      "current_page": 1
+    }
+  }
 }
 ```
 
