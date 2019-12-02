@@ -1170,7 +1170,8 @@
             "description" : "rate at which maker rebate will be calculated"
         },
         "liquidation_penalty_factor": {
-            "type": "string"
+            "type": "string",
+            "description" : "Determines liquidation charge as per the following formula: liquidation_penalty_factor * minimum maintenance margin"
         },
         "contract_type": {
             "type": "string",
@@ -1181,7 +1182,8 @@
             "description" : "Maximum size of contracts in a single order can be placed"
         },
         "basis_factor_max_limit": {
-            "type": "string"
+            "type": "string",
+            "description" : "Maximum allowed value of annualized basis"
         },
         "is_quanto": {
             "type": "boolean",
@@ -1192,10 +1194,12 @@
             "description" : "Method used to calculate funding for given contract. e.g. Fixed or mark price"
         },
         "annualized_funding": {
-            "type": "string"
+            "type": "string",
+            "description" : "Maximum allowed value of funding, expressed as annual rate."
         },
         "price_band": {
-            "type": "string"
+            "type": "string",
+            "description" : "he range around mark price in which trading is allowed. This number is in percentage."
         },
         "underlying_asset" : {
           "$ref" : "#/definitions/Asset"

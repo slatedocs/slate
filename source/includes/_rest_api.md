@@ -1,3 +1,17 @@
+---
+title: Delta Exchange Api
+language_tabs:
+  - python: Python
+  - shell: Shell
+  - ruby: Ruby
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
 
@@ -3342,14 +3356,14 @@ This operation does not require authentication.
 |maintenance_margin_scaling_factor|string|false|none|none|
 |commission_rate|string|false|none|rate at which commission fee will be calculated for a trade in given contract|
 |maker_commission_rate|string|false|none|rate at which maker rebate will be calculated|
-|liquidation_penalty_factor|string|false|none|none|
+|liquidation_penalty_factor|string|false|none|Determines liquidation charge as per the following formula: liquidation_penalty_factor * minimum maintenance margin|
 |contract_type|string|false|none|Type of contracts e.g. futures, perpetual futures,|
 |position_size_limit|integer|false|none|Maximum size of contracts in a single order can be placed|
-|basis_factor_max_limit|string|false|none|none|
+|basis_factor_max_limit|string|false|none|Maximum allowed value of annualized basis|
 |is_quanto|boolean|false|none|Flag which denotes whether future contract is quanto or not|
 |funding_method|string|false|none|Method used to calculate funding for given contract. e.g. Fixed or mark price|
-|annualized_funding|string|false|none|none|
-|price_band|string|false|none|none|
+|annualized_funding|string|false|none|Maximum allowed value of funding, expressed as annual rate.|
+|price_band|string|false|none|he range around mark price in which trading is allowed. This number is in percentage.|
 |underlying_asset|[Asset](#schemaasset)|false|none|none|
 |quoting_asset|[Asset](#schemaasset)|false|none|none|
 |settling_asset|[Asset](#schemaasset)|false|none|none|

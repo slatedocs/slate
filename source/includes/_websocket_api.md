@@ -414,7 +414,7 @@ This channel provides updates on system wide announcements like scheduled mainte
 Private channels require clients to authenticate.
 
 ## Margins
-**margins** Channel provides updates for margin blocked for different assets
+Channel provides updates for margin blocked for different assets, these updates are provided only on change of margin.
 
 ```
 // margin update
@@ -429,7 +429,7 @@ Private channels require clients to authenticate.
 ```
 
 ## Positions
-**positions** Channel provides updates for change in position. Need to pass list of product symbols while subscribing.
+Channel provides updates for change in position. Need to pass list of product symbols while subscribing. these updates are provided only on change of position.
 
 ```
 // Position update
@@ -450,7 +450,8 @@ Private channels require clients to authenticate.
 
 **trading_notifications** channel provides updates of all the private trade notifications.
 
-### orderUpdate
+## orderUpdate
+Channel provides updates when any order is updated for any action such as fill, quantity change.
 
 ```
 // orderUpdate
@@ -469,7 +470,9 @@ Private channels require clients to authenticate.
 }
 ```
 
-### fill
+
+## fill
+Channel provides updates when any order is executed.
 
 ```
 // Fill
@@ -489,7 +492,8 @@ Private channels require clients to authenticate.
 }
 ```
 
-### adl
+## adl
+Channel provides updates when open position get auto deleveraged.
 
 ```
 // ADL
@@ -506,7 +510,8 @@ Private channels require clients to authenticate.
 }
 ```
 
-### self_trade
+## self_trade
+Channel provide updates when any of your order get matched with your open order.
 
 ```
 // Self Trade
@@ -521,7 +526,8 @@ Private channels require clients to authenticate.
 }
 ```
 
-### pnl
+## pnl
+Channel provides pnl updates when any position gets close.
 
 ```
 // PNL
@@ -540,7 +546,8 @@ Private channels require clients to authenticate.
 }
 ```
 
-###liquidation
+## liquidation
+Channel provide updates when any position gets liquidated.
 
 ```
 // Liquidation
@@ -549,7 +556,7 @@ Private channels require clients to authenticate.
     "product_id": 7,
     "type": "liquidation",
     "user_id": 1998,
-    "timestamp": 1542108684,
+    "timestamp": 1542108684000000,
     "side": "buy",              // side of the position which got liquidated
     "size": 180,	        // size of the position which got liquidated, always positive
     "liquidation_price": "0.00145791",
@@ -558,7 +565,8 @@ Private channels require clients to authenticate.
 }
 ```
 
-### stop_trigger
+## stop_trigger
+Channel provide updates when stop order gets triggered.
 
 ```
 // Stop Trigger
@@ -567,14 +575,15 @@ Private channels require clients to authenticate.
     "product_id": 7,
     "user_id": 1998
     "type": "stop_trigger",
-    "timestamp": 1542108684,
+    "timestamp": 1542108684000000,
     "side": "buy",
     "size": 180
 
 }
 ```
 
-### stop_cancel
+## stop_cancel
+Channel provide updates when stop order gets cancelled.
 
 ```
 // Stop Cancel
@@ -583,9 +592,16 @@ Private channels require clients to authenticate.
     "product_id": 7,
     "user_id": 1998
     "type": "stop_cancel",
-    "timestamp": 1542108684,
+    "timestamp": 1542108684000000,
     "side": "buy",
     "message": "",
     "size": 180
 }
+```
+## auto_topup
+Channel provide updates when margin get updated due to auto_topup istrue for that open position.
+
+```
+// Auto Topup
+
 ```
