@@ -1,5 +1,7 @@
 ---
-title: PractiTest API V2
+title: Full API Documentation (Version 2) - PractiTest
+
+description: See all available PractiTest’s API requests, sorted into sections with different methods, instructions and code examples for every request.
 
 language_tabs:
   - curl examples - see 'Code examples' to your left
