@@ -16,6 +16,11 @@ It is recommended that `submit.js` script be added inside the head tag of the HT
 </html>
 ```
 
+> Note:
+> 1. You should either use `form.js` or `submit.js` depending on your use case.
+> 2. `form.js` provides UI form components out of the box with default form fields, whereas `submit.js` gives you flexibility to show/render your own form UI.
+
+
 ### This SDK exposes __two__ methods with `window.Anarock` object:
 
 #### 1. `submitLead` - _window.Anarock.submitLead_
@@ -127,3 +132,4 @@ call this function to send OTP code to the users' phone number for verification
     })
   };
 ```
+
