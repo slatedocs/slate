@@ -194,7 +194,7 @@ The `migrationDetails` allows the platform to provide an existing investor ID wh
 ### Upgrading investors currently using the ISA Administration API
 
 When upgrading from using the Goji ISA Administration API to the Goji Platform API, the `existingClientId` in the 
-`migrationDetails` prompts the system looks for an investor with the `existingClientId` and upgrades the investor. 
+`migrationDetails` prompts the system to upgrade the existing investor with the relevant ID. 
 
 This involves:
 
