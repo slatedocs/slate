@@ -195,8 +195,19 @@ The follow schema is used for every event payload, the example of data is availa
                     "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
                     "mls_number": "1234mls",
                     "price_cents": "100_000",
-                    "property_address": "full_address",
-                    "year_built": "1990"
+                    "year_built": "1990",
+                    "property": {
+                      "id":"5ddc17ffa6bbb19bcadd97b9",
+                      "country":"US",
+                      "latitude":"45",
+                      "longitude":"-45",
+                      "label":"123 Some street",
+                      "number":"123",
+                      "street":"Some street",
+                      "postal_code":"123456",
+                      "state_or_province":"US",
+                      "coordinates":"45;-45"
+                    }
                 }
             },
             "home_buyer": {
@@ -292,14 +303,25 @@ This event is triggered once the user unfavorites or unpins a previously favorit
     "data": {
             "listing": {
                     "id": "listing_1",
-                    "property_address": "full_address",
                     "mls_number": "1234mls",
                     "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
                     "price_cents": "100_000",
                     "bathrooms_count": "1",
                     "bedrooms_count": "1",
                     "year_built": "1990",
-                    "description": "description"
+                    "description": "description",
+                    "property": {
+                      "id":"5ddc17ffa6bbb19bcadd97b9",
+                      "country":"US",
+                      "latitude":"45",
+                      "longitude":"-45",
+                      "label":"123 Some street",
+                      "number":"123",
+                      "street":"Some street",
+                      "postal_code":"123456",
+                      "state_or_province":"US",
+                      "coordinates":"45;-45"
+                    }
                   }
     },
     "event_type": "property_visit_requested",
@@ -323,14 +345,25 @@ This event is triggered once the user clicks on the option to schedule a visit t
     "data": {
             "listing": {
                     "id": "listing_1",
-                    "property_address": "full_address",
                     "mls_number": "1234mls",
                     "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
                     "price_cents": "100_000",
                     "bathrooms_count": "1",
                     "bedrooms_count": "1",
                     "year_built": "1990",
-                    "description": "description"
+                    "description": "description",
+                    "property": {
+                      "id":"5ddc17ffa6bbb19bcadd97b9",
+                      "country":"US",
+                      "latitude":"45",
+                      "longitude":"-45",
+                      "label":"123 Some street",
+                      "number":"123",
+                      "street":"Some street",
+                      "postal_code":"123456",
+                      "state_or_province":"US",
+                      "coordinates":"45;-45"
+                    }
                   }
     },
     "event_type": "listing_favorited",
@@ -353,14 +386,25 @@ This event is triggered once the user favorites or pins a listing
     "data": {
             "listing": {
                     "id": "listing_1",
-                    "property_address": "full_address",
                     "mls_number": "1234mls",
                     "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
                     "price_cents": "100_000",
                     "bathrooms_count": "1",
                     "bedrooms_count": "1",
                     "year_built": "1990",
-                    "description": "description"
+                    "description": "description",
+                    "property": {
+                      "id":"5ddc17ffa6bbb19bcadd97b9",
+                      "country":"US",
+                      "latitude":"45",
+                      "longitude":"-45",
+                      "label":"123 Some street",
+                      "number":"123",
+                      "street":"Some street",
+                      "postal_code":"123456",
+                      "state_or_province":"US",
+                      "coordinates":"45;-45"
+                    }
                   }
     },
     "event_type": "listing_ufavorited",
@@ -421,8 +465,19 @@ This event is triggered once the user has already perfomed a property search and
         "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
         "mls_number": "1234mls",
         "price_cents": "100_000",
-        "property_address": "full_address",
-        "year_built": "1990"
+        "year_built": "1990",
+        "property": {
+          "id":"5ddc17ffa6bbb19bcadd97b9",
+          "country":"US",
+          "latitude":"45",
+          "longitude":"-45",
+          "label":"123 Some street",
+          "number":"123",
+          "street":"Some street",
+          "postal_code":"123456",
+          "state_or_province":"US",
+          "coordinates":"45;-45"
+        }
     }]
 }
 ```
