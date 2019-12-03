@@ -186,12 +186,17 @@ To include the application in your existing page as a JavaScript component, you 
 3). The component will then render when the document's body has fully loaded.
 
 ## Migrating Investors
-If you are upgrading from using the Goji ISA Administration API to the Goji Platform API, then you need to
-migrate existing investors.
 
-This can be performed by onboarding an investor in the usual way and specifying the `migrationDetails`.
+If you are migrating your existing investors over to Goji, then you need to [onboard the investors in the usual way](#investors-post-platformapi-investors) but also specify `migrationDetails` data.
 
-If `migrationDetails` is specified, then the system looks for an investor with the `existingClientId` and upgrades the investor. This involves:
+The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. 
+
+### Upgrading investors currently using the ISA Administration API
+
+When upgrading from using the Goji ISA Administration API to the Goji Platform API, the `existingClientId` in the 
+`migrationDetails` prompts the system looks for an investor with the `existingClientId` and upgrades the investor. 
+
+This involves:
 
 * Generating a new client ID
 * Performing a KYC check
@@ -384,7 +389,9 @@ Creates an investor and triggers a KYC check.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
 | migrationDetails                    | ref    | Optional. Only required if migrating an investor.                                                                                                                                                                     | optional |
-| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated                                                                                                                                                                ||
+| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated which can be useful for referencing any investor should issues occur or indeed must reference any ISA Administration investor's existing ID when applicable  ||
+| migrationDetails.diligenceMigrationOption| string | The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br>`FULL_CHECK`<br>`HISTORICAL_RELIANCE_WITH_MONITORING`<br>`EVENT_BASED_FULL_CHECK`<br>`EVENT_BASED_WITH_MONITORING` ||
+| migrationDetails.previousCheckDate| string | The optional date when the previous diligence checks were performed against the investor if Goji is placing reliance on the historical checks                                                                          ||
 ### Response
 | Name                                | Type   | Description                                                                                                                                                                                                           |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
