@@ -1,6 +1,6 @@
 # Submit Lead JS SDK
 
-Anarock's JavaScript SDK which provides wrapper over sync/push lead API and also supports OTP verification feature to submit OTP verified lead
+JavaScript SDK which provides wrapper over sync/push lead API and also supports OTP verification feature to submit OTP verified lead
 
 It is recommended that `submit.js` script be added inside the head tag of the HTML page as shown below:
 
