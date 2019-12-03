@@ -1,80 +1,51 @@
----
-title: API Reference
-
-language_tabs: # must be one of https://git.io/vQNgJ
-  - php
-  - javascript
-
-toc_footers:
-  - <a href='#'>Contact Anarock team for API KEY</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
-
-search: true
----
-
 # Introduction
 
-Welcome to Anarock!  You can use API for pushing leads from your system to our database.
+Official documentation for Anarock Leads API! You can use this set of APIs for pushing leads to host (passed with request object) database.
 
-Below is a documentation about how to use the API for publishing leads to Anarock databse.
+For any queries mail us at support@anarock.com
 
 # Authentication
 
-> Code for creating hash using time_stamp:
+> Code for creating hash using time_stamp. Hash is required to authenticate proper usage.
 
 ```php
-
-<?php
-
-// the shared secret key here
-$key = 'KEY'; 
+// PHP
+$key = 'KEY'; // the shared secret key here
 $current_time = time();
 $message = (string)$current_time;
 
 // to lowercase hexits
 $hash = hash_hmac('sha256', $message, $key);
-
-
 ```
 
 ```javascript
-
 // NodeJS
-var cryto = require('crypto');
+const cryto = require('crypto');
 
-var key =  'KEY'; // the shared secret key here
-var time_stamp = Math.round((new Date()).getTime() / 1000);
-var message = time_stamp.toString();
+const key =  'KEY'; // the shared secret key here
+const time_stamp = Math.round((new Date()).getTime() / 1000);
+const message = time_stamp.toString();
 
-var hash = crypto.createHmac('sha256', key).update(message);
+const hash = crypto.createHmac('sha256', key).update(message);
 
 // to lowercase hexits
-return hash.digest('hex');
-
+const hashInHex = hash.digest('hex');
 ```
 
 > Make sure to replace `KEY` with your API key.
 
-Anarock uses SHA256 HMAC authentication method. The hash is created using current timestamp and your key as parameters.
+Server uses SHA256 HMAC authentication method. The hash is created using current timestamp and your key as parameters.
 
-You can request key by getting in touch with Anarock team.
+Server expects two keys `hash` and `current_time` to be included in all API requests to server.
 
-Anarock expects the two keys `hash` and `current_time` to be included in all API requests to server.
- 
 ### KEY
 
-These will be provided by your point of contact in ANAROCK team.
+This will be provided by your point of contact in ANAROCK team. Or you can request key by getting in touch with support team at support@anarock.com
 
-<aside class="notice">
-You must replace <code>KEY</code> with your personal API key.
-</aside>
+> You must replace __KEY__ with your personal API key.
 
-<aside class="notice">
-You must test first with <code>staging KEY</code> and then only put in <code>production KEY</code>.
-</aside>
+
+> You must test first with __staging KEY__ and then only put in __production KEY_
 
 
 # Sync Leads
@@ -82,18 +53,16 @@ You must test first with <code>staging KEY</code> and then only put in <code>pro
 ## Post Lead to Anarock Database
 
 ```php
-<?php 
+// PHP
 
 $api_url = 'STAGING OR PRODUCTION URL'; // as mentioned on left under HTTP Request Heading
 
-
-$key = 'KEY'; 
+$key = 'KEY';
 $current_time = time();
 $message = (string)$current_time;
 
 // to lowercase hexits
 $hash = hash_hmac('sha256', $message, $key);
-
 
 // you can use libraries like https://github.com/brick/phonenumber to format numbers before sending
 
@@ -122,13 +91,11 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $server_output = curl_exec ($ch);
 // print_r($server_output);
-
-
-?>
 ```
 
 
 ```javascript
+// Javascript
 const crypto = require('crypto');
 const PhoneNumber = require( 'awesome-phonenumber' );
 const axios = require('axios'); // using axios to make post request, you can use any other method/library you are comfortable with
@@ -152,7 +119,7 @@ return axios({
     current_time: timeStamp,
     hash: hash,
     campaign_id: campaign_id,
-    ... other fields as given in the query parameters section on left section
+    ...other fields as given in the query parameters section
   }
 })
 ```
@@ -170,29 +137,28 @@ return axios({
 }
 ```
 
-This endpoint is used to  posts a lead to ANAROCK database.
+This endpoint is used to post a lead to __HOST__ database.
 
 ### HTTP Request
 
 `staging`
 
-`POST https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+`POST https://lead-webhook.staging.${HOST}/api/v0/CHANNEL_NAME/sync-lead`
 
-``
-
+--
 
 `production`
 
-`POST https://lead.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+`POST https://lead.${HOST}/api/v0/CHANNEL_NAME/sync-lead`
 
 
-<aside class="notice">
-Authentication keys are environment specific. Make sure you are using <code>Staging KEY</code> in <code>Staging API</code> and <code>Production KEY</code> in<code>Production API</code>.
-</aside>
+> Authentication keys are environment specific. Make sure you are using __Staging KEY__ in *Staging* environment and __Production KEY__ in *Production* environment
+
+> example HOST: anarock.com
 
 ### CHANNEL_NAME
 
-This will be provided by your point of contact from ANAROCK team
+This will be provided by your point of contact from ANAROCK support team
 
 ### QUERY PARAMETERS
 
@@ -220,7 +186,7 @@ credit_value | Stirng | - | credit/ cost of the lead. Exmaple: "250"
 is_broker | Boolean | - | whether the lead submitted is of a broker or not
 apartment_types |  String | - | comma separated bhk types where bhk type can be `1bhk/2bhk/3bhk/3+bhk/1rk`) example: "2bhk,3+bhk"
 source | String | - |  `google`, `facebook`, `affiliate`, `emailer`, `linkedin`, `portals`,`twitter`, etc - this field should always contain primary origin or lead
-sub_source | String | - | `google_display`, `google_search`, `facebook_brands`, `facebook_lead_gen`, `affiliate`  - this should identify the type of campaign either branding or performance 
+sub_source | String | - | `google_display`, `google_search`, `facebook_brands`, `facebook_lead_gen`, `affiliate`  - this should identify the type of campaign either branding or performance
 placement |  String | - | `utm_campaign` , `affiliate_name` e.g. taboola, nestoria, polyvalent, times_of_india, `portal_name` e.g. 99acres, magicbricks, housing  - this should tell exact campaign details be it google facebook etc. generally you should pass utm_campaign in this
 extra_details | JSON | - | key-value pair which will contain any extra details for lead e.g. {"utm_medium: "something", "utm_source": "something", "keyword": "targetted keyword on google for the campaign"}
 campaign_id | String | True | The is a unique identifier for the project you are sending the lead for. Should be collected from point of contact in ANAROCK team. Without this lead attribution will be incorrect.
@@ -228,10 +194,7 @@ source_id | Integer | True | This is mandatory field for sending any lead. This 
 sub_source_id | Integer | True | This is mandatory field for sending any lead. This helps categorization of leads based on different sub_sources. Refer to <a href="/leads?#lead-source-and-sub-sources-api"> Lead Source Sub Source API</a>
 
 
-
-<aside class="success">
-Remember — without proper <code>campaign_id</code>, leads will not be attributed to the correct team, Always check with your point of contact that leads are attributed to the desired project only.
-</aside>
+> Remember — without proper __campaign_id__, leads will not be attributed to the correct project team. Always check with your point of contact that leads are attributed to the desired project only.
 
 ### PHONE NUMBER VALIDATION
 
@@ -247,22 +210,23 @@ NodeJS | <a href="https://www.npmjs.com/package/awesome-phonenumber">https://www
 
 
 ```php
-<?php
+// PHP
 // shows that lead is generated from google
 $source_id = 1
 // shows that lead is generated from google GDN.
-$sub_source_id = 8 
+$sub_source_id = 8
 
 $postFields .= "&source_id=".$source_id;
 $postFields .= "&sub_source_id=".$sub_source_id;
 ```
 
 ```javascript
-const source_id : 1 // shows that lead is generated from google
-const sub_source_id : 8 // shows that lead is generated from google GDN.
+// Javascript
+const source_id: 1 // shows that lead is generated from google
+const sub_source_id: 8 // shows that lead is generated from google GDN.
 
 {
-  source_id : 1 
+  source_id: 1,
   sub_source_id: 8
 }
 ```
@@ -271,23 +235,23 @@ Its very important to categorize lead depending upon the source and sub source f
 
 While posting a lead the parameters should also have a source_id and sub_source_id as fields.
 
-The values for which can be accessed from this API. 
+The values for which can be accessed from this API.
 
 ### <a target="_blank" href="https://lead.anarock.com/api/v0/source-metadata">https://lead.anarock.com/api/v0/source-metadata</a>
 
 
-Example - If a lead is been generated from google GDN then 
+Example - If a lead is been generated from google GDN then
 
-<aside class="success">
-Remember — without proper <code>source_id</code> and <code>sub_source_id</code>, leads will not be attributed to the correct sources. If you are running campaign on a new source and it's not present in the API, please contact Anarock team for the same.
-</aside>
+
+> Remember — without proper __source_id__ and __sub_source_id__, leads will not be attributed to the correct sources. If you are running campaign on a new source and it's not present in the API, please contact support team for the same.
+
+> example HOST: anarock.com
 
 # Check Successful Submission
 
 ```php
-<?php
-
-$key = 'KEY'; 
+// PHP
+$key = 'KEY';
 $current_time = time();
 $message = (string)$current_time;
 
@@ -296,7 +260,7 @@ $hash = hash_hmac('sha256', $message, $key);
 
 $phone = 9999999999 // Phone number to test
 
-$api_url = "https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone="+$phone+"&current_time="+$current_time+"&hash="+$hash
+$api_url = "https://lead-webhook.staging.<HOST>/api/v0/CHANNEL_NAME/last-lead-data?phone="+$phone+"&current_time="+$current_time+"&hash="+$hash
 
 $ch = curl_init();
 
@@ -304,25 +268,25 @@ curl_setopt($ch, CURLOPT_URL,$api_url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $server_output = curl_exec ($ch);
 // print_r($server_output);
-
 ```
 
 ```javascript
+// NodeJS
 const crypto = require('crypto');
 const timeStamp = Math.round((new Date()).getTime() / 1000);
 const message = timeStamp.toString()
 const hash = crypto.createHmac('sha256', key).update(message).digest('hex')
 
-const phone = 9999999999 // Phone number to test
+const phone = 9999999999 // valid mobile number
+const host = 'anarock.com' // use correct host url
 
 axios({
   method: "GET",
-  url: `https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=${phone}&current_time=${timeStamp}&hash=${hash}`
+  url: `https://lead-webhook.staging.${host}/api/v0/CHANNEL_NAME/last-lead-data?phone=${phone}&current_time=${timeStamp}&hash=${hash}`
 })
-
 ```
 
-> The API given will returns JSON structured like this:
+> This API will respond with following structured JSON:
 
 ```json
 {
@@ -330,8 +294,8 @@ axios({
   "message":"success",
   "response":{
       "lead_id":194466,
-      "name":"NAME",
-      "email":"EMAIL@SOMETHING.com",
+      "name":"name",
+      "email":"email@something.com",
       "phone":"+9199999999",
       "country_code":"+91",
       "source":null,
@@ -352,17 +316,15 @@ Use the following GET API
 
 `staging`
 
-`https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
+`https://lead-webhook.staging.<HOST>/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
+
+--
 
 `production`
 
-`https://lead.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
+`https://lead.<HOST>/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
 
 
-<aside class="success">
-Please ensure that you are getting the project name intended in the reponse given on the right.
-</aside>
-
-
+> Please ensure that you are getting the project name intended in the reponse given on the right.
 
 
