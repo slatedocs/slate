@@ -398,19 +398,23 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=change_external_ip"
-
+   
 # Request example:
 ```
+Changing the IP to an ephemeral IP, just leave it empty
 ```json
-* Changing the IP to an ephemeral IP, just leave it empty
 { }
+```
 
-# Changing the IP to a new static IP
+Changing the IP to a new static IP
+```json
 {
   "reserveStaticIP" : true
 }
+```
 
-# Changing the IP to an existing IP
+Changing the IP to an existing IP
+```json
 {
   "shortIP" : "your-ip-name"
 }
