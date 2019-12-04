@@ -402,16 +402,15 @@ curl -X POST \
 # Request example:
 ```
 ```json
-Changing the IP to an ephemeral IP, just leave it empty
-{
-}
+* Changing the IP to an ephemeral IP, just leave it empty
+{ }
 
-Changing the IP to a new static IP
+# Changing the IP to a new static IP
 {
   "reserveStaticIP" : true
 }
 
-Changing the IP to an existing IP
+# Changing the IP to an existing IP
 {
   "shortIP" : "your-ip-name"
 }
