@@ -129,11 +129,12 @@ tags:
       * Nested calls to the batch API
   - name: Custom Fields
     description: >-
-      In the Asana application, Tasks can hold user-specified Custom Fields
-      which provide extra information; for example, a priority value or a number
-      representing the time required to complete a Task. This lets a user define
-      the type of information that each Task within a Project can contain in
-      addition to the built-in fields that Asana provides.
+      In the Asana application, Tasks, Projects, and Portfolios can hold
+      user-specified Custom Fields which provide extra information; for example,
+      a priority value or a number representing the time required to complete a
+      Task. This lets a user define the type of information that each Item
+      within a Project or Portfolio can contain in addition to the built-in
+      fields that Asana provides.
 
 
       **Note:** Custom Fields are a premium feature. Integrations which work
@@ -147,12 +148,18 @@ tags:
       The characteristics of Custom Fields are:
 
 
-      * There is metadata that defines the Custom Field. This metadata is shared
-      across an entire organization or workspace.
-      * Projects can have Custom Fields associated with them individually. This
-      is conceptually akin to adding columns in a database or a spreadsheet:
+      * There is metadata that defines the Custom Field. This metadata can be
+      shared across an entire workspace, or be specific to a Project or Portfolio.
+      * Creating a Custom Field Setting on a Project or Portfolio means each direct
+      child will have the custom field. This is conceptually akin to adding
+      columns in a database or a spreadsheet:
       every Task (row) in the Project (table) can contain information for that
-      field, including "blank" values, i.e. `null` data.
+      field, including "blank" values, i.e. `null` data. For Portfolio custom
+      fields, every Project (row) in the Portfolio (table) will contain
+      information for the custom field.
+      * Custom Field Settings only go one child deep. Meaning a custom field
+      setting on a portfolio will give each project the custom field, but not
+      each task within those projects.
       * Tasks have Custom Field _values_ assigned to them.
 
 
@@ -175,7 +182,8 @@ tags:
 
       These Custom Fields are accessible via the API through a number of
       endpoints at the top level (e.g. `/custom_fields` and
-      `/custom_field_settings`) and through calls on Workspaces, Projects, and
+      `/custom_field_settings`) and through calls on Workspaces, Portfolios,
+      Projects, and
       Tasks resources. The API also provides a way to fetch both the metadata
       and data which define each particular Custom Field, so that a client
       application may render proper UI to display or edit the values.
@@ -206,8 +214,8 @@ tags:
       properties:
 
 
-      * `id` - the id of this enum option. Note that this is the id of the
-      _option_ - the Custom Field itself has a separate `id`.
+      * `gid` - the gid of this enum option. Note that this is the gid of the
+      _option_ - the Custom Field itself has a separate `gid`.
       * `name` - the name of the option, e.g. "Choice #1"
       * `enabled` - whether this field is enabled. Disabled fields are not
       available to choose from when disabled, and are visually hidden in the
@@ -224,7 +232,7 @@ tags:
       #### Querying an organization for its Custom Fields
 
 
-      As Custom Fields are shared across the workspace or organization, the
+      For Custom Fields shared across the workspace or organization, the
       Workspace [can be queried](#get-a-workspace-39-s-custom-fields)
       for its list of defined Custom Fields. Like other collection queries, the
       fields will be returned as a compact record; slightly different from most
@@ -249,13 +257,13 @@ tags:
       A mapping between a Custom Field and a Project or Portfolio is handled with a
       [Custom Field Settings](#asana-custom-field-settings) object. This object
       contains a reference for each
-      of the Custom Field and the Project, as well as additional information
-      about the per-Project status of that particular Custom Field, for
+      of the Custom Field and the Project or Porfolio, as well as additional information
+      about the status of that particular Custom Field. For
       instance, `is_important`, which defines whether or not the custom field
-      will appear in the grid (list of tasks) on the Asana application.
+      will appear in the list/grid on the Asana application.
 
 
-      #### Accessing Custom Field values on Tasks
+      #### Accessing Custom Field values on Tasks or Projects
 
 
       The [Tasks](#get-a-task) reference has information on how Custom Fields
@@ -276,6 +284,9 @@ tags:
       Custom Fields can be set just as in the Asana-defined fields on a task via
       POST or PUT requests. You can see an example on the
       [update a task](#update-a-task) endpoint.
+
+
+      Custom Fields on projects follow this same pattern.
 
 
       #### Warning: Program defensively with regards to Custom Field definitions
@@ -2334,9 +2345,8 @@ components:
         is_important:
           description: >-
             `is_important` is used in the Asana web application to determine
-            if this custom field is displayed in the task list (left pane) of
-            a project. A project can have a maximum of 5 custom field settings
-            marked as `is_important`.
+            if this custom field is displayed in the list/grid view of a project
+            or portfolio.
           type: boolean
           readOnly: true
           example: false
@@ -2628,9 +2638,8 @@ components:
               is_important:
                 description: >-
                   `is_important` is used in the Asana web application to determine
-                  if this custom field is displayed in the task list (left pane) of
-                  a project. A project can have a maximum of 5 custom field settings
-                  marked as `is_important`.
+                  if this custom field is displayed in the list/grid view of a project
+                  or portfolio.
                 type: boolean
                 readOnly: true
                 example: false
@@ -3838,9 +3847,8 @@ components:
               is_important:
                 description: >-
                   `is_important` is used in the Asana web application to determine
-                  if this custom field is displayed in the task list (left pane) of
-                  a project. A project can have a maximum of 5 custom field settings
-                  marked as `is_important`.
+                  if this custom field is displayed in the list/grid view of a project
+                  or portfolio.
                 type: boolean
                 readOnly: true
                 example: false
@@ -4305,10 +4313,9 @@ components:
                   is_important:
                     description: >-
                       `is_important` is used in the Asana web application to determine
-                      if this custom field is displayed in the task list (left pane)
-                      of
-                      a project. A project can have a maximum of 5 custom field settings
-                      marked as `is_important`.
+                      if this custom field is displayed in the list/grid view of a
+                      project
+                      or portfolio.
                     type: boolean
                     readOnly: true
                     example: false
@@ -10643,6 +10650,9 @@ components:
           description: >-
             Scheduling status of this task for the user it is assigned to.
             This field can only be set if the assignee is non-null.
+
+            Setting this field to "inbox" or "upcoming" inserts it at the top
+            of the section, while the other options will insert at the bottom.
           type: string
           enum:
             - today
@@ -11409,6 +11419,9 @@ components:
               description: >-
                 Scheduling status of this task for the user it is assigned to.
                 This field can only be set if the assignee is non-null.
+
+                Setting this field to "inbox" or "upcoming" inserts it at the top
+                of the section, while the other options will insert at the bottom.
               type: string
               enum:
                 - today
@@ -15258,6 +15271,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - name: workspace
           in: query
+          required: true
           description: >-
             The workspace or organization to filter portfolios on.
           schema:
@@ -15265,6 +15279,7 @@ paths:
           example: '1331'
         - name: owner
           in: query
+          required: true
           description: The user who owns the portfolio. Currently, API users can only
             get a list of portfolios that they themselves own.
           schema:
@@ -15449,11 +15464,9 @@ paths:
                             description: >-
                               `is_important` is used in the Asana web application
                               to determine
-                              if this custom field is displayed in the task list (left
-                              pane) of
-                              a project. A project can have a maximum of 5 custom
-                              field settings
-                              marked as `is_important`.
+                              if this custom field is displayed in the list/grid view
+                              of a project
+                              or portfolio.
                             type: boolean
                             readOnly: true
                             example: false
@@ -15973,11 +15986,9 @@ paths:
                             description: >-
                               `is_important` is used in the Asana web application
                               to determine
-                              if this custom field is displayed in the task list (left
-                              pane) of
-                              a project. A project can have a maximum of 5 custom
-                              field settings
-                              marked as `is_important`.
+                              if this custom field is displayed in the list/grid view
+                              of a project
+                              or portfolio.
                             type: boolean
                             readOnly: true
                             example: false
@@ -21457,6 +21468,11 @@ paths:
                         Scheduling status of this task for the user it is assigned
                         to.
                         This field can only be set if the assignee is non-null.
+
+                        Setting this field to "inbox" or "upcoming" inserts it at
+                        the top
+                        of the section, while the other options will insert at the
+                        bottom.
                       type: string
                       enum:
                         - today
@@ -22232,6 +22248,11 @@ paths:
                         Scheduling status of this task for the user it is assigned
                         to.
                         This field can only be set if the assignee is non-null.
+
+                        Setting this field to "inbox" or "upcoming" inserts it at
+                        the top
+                        of the section, while the other options will insert at the
+                        bottom.
                       type: string
                       enum:
                         - today
@@ -23346,6 +23367,11 @@ paths:
                         Scheduling status of this task for the user it is assigned
                         to.
                         This field can only be set if the assignee is non-null.
+
+                        Setting this field to "inbox" or "upcoming" inserts it at
+                        the top
+                        of the section, while the other options will insert at the
+                        bottom.
                       type: string
                       enum:
                         - today
@@ -25413,7 +25439,7 @@ paths:
                       type: string
                       example: '12345'
       responses:
-        200:
+        204:
           description: >-
             Returns an empty data record
           content:
@@ -26298,7 +26324,7 @@ paths:
                       type: string
                       example: '12345'
       responses:
-        200:
+        204:
           description: >-
             The user was removed successfully to the workspace or organization.
           content:

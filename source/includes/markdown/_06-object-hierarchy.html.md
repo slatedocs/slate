@@ -11,7 +11,7 @@ Asana is a work tracking and collaboration tool. This guide is designed to give 
 
 #### Tasks
 
-Tasks are the basic unit of action in Asana.  Tasks have many fields including a single assignee, name, notes, followers, likes, and comments. Tasks inherit custom fields from their parent project(s). Custom fields values are set for each individual task.  
+Tasks are the basic unit of action in Asana.  Tasks have many fields including a single assignee, name, notes, followers (aka collaborators), likes, and comments. Tasks inherit custom fields from their parent project(s). Custom fields values are set for each individual task.  
 
 In addition to standard Create / Read / Update / Delete operations, there are a few things to watch out for when working with tasks:
 
@@ -34,6 +34,13 @@ Portfolios are collections of projects (or other portfolios). Custom fields can 
 
 * [Portfolios API documentation](#asana-portfolios)
 * [Portfolios in the Asana Product Guide](https://asana.com/guide/help/premium/portfolios)
+
+#### Sections
+
+A section is a group of tasks within a project. Sections let you divide tasks into categories, workflow stages, priorities, and more.
+
+* [Sections API documentation](#asana-sections)
+* [Sections in the Asana Product Guide](https://asana.com/guide/help/projects/sections)
 
 
 #### Subtasks

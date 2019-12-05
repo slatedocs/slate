@@ -486,13 +486,13 @@ Make multiple requests in parallel to Asana's API.
 <code><a href="#create-a-custom-field"><span class="post-verb">POST</span> <span class=""nn>/custom_fields</span></a><br><a href="#get-a-custom-field"><span class="get-verb">GET</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#update-a-custom-field"><span class="put-verb">PUT</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#delete-a-custom-field"><span class="delete-verb">DELETE</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#get-a-workspace-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/custom_fields</span></a><br><a href="#create-an-enum-option"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options</span></a><br><a href="#reorder-a-custom-field-39-s-enum"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options/insert</span></a><br><a href="#update-an-enum-option"><span class="put-verb">PUT</span> <span class=""nn>/enum_options/{enum_option_gid}</span></a></code>
 </pre>
 
-In the Asana application, Tasks can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Task within a Project can contain in addition to the built-in fields that Asana provides.
+In the Asana application, Tasks, Projects, and Portfolios can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Item within a Project or Portfolio can contain in addition to the built-in fields that Asana provides.
 
 **Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on [access control](#custom-field-access-control).
 
 The characteristics of Custom Fields are:
 
-* There is metadata that defines the Custom Field. This metadata is shared across an entire organization or workspace. * Projects can have Custom Fields associated with them individually. This is conceptually akin to adding columns in a database or a spreadsheet: every Task (row) in the Project (table) can contain information for that field, including "blank" values, i.e. `null` data. * Tasks have Custom Field _values_ assigned to them.
+* There is metadata that defines the Custom Field. This metadata can be shared across an entire workspace, or be specific to a Project or Portfolio. * Creating a Custom Field Setting on a Project or Portfolio means each direct child will have the custom field. This is conceptually akin to adding columns in a database or a spreadsheet: every Task (row) in the Project (table) can contain information for that field, including "blank" values, i.e. `null` data. For Portfolio custom fields, every Project (row) in the Portfolio (table) will contain information for the custom field. * Custom Field Settings only go one child deep. Meaning a custom field setting on a portfolio will give each project the custom field, but not each task within those projects. * Tasks have Custom Field _values_ assigned to them.
 
 A brief example: let's imagine that an organization has defined a Custom Field for "Priority". This field is of `enum` type and can have user-defined values of `Low`, `Medium`, or `High`. This is the field metadata, and it is visible within, and shared across, the entire organization.
 
@@ -500,7 +500,7 @@ A Project is then created in the organization, called "Bugs", and the "Priority"
 
 A new Task is created within "Bugs". This Task, then, has a field named "Priority" which can take on the Custom Field value of one of `[null]`, `Low`, `Medium`, and `High`.
 
-These Custom Fields are accessible via the API through a number of endpoints at the top level (e.g. `/custom_fields` and `/custom_field_settings`) and through calls on Workspaces, Projects, and Tasks resources. The API also provides a way to fetch both the metadata and data which define each particular Custom Field, so that a client application may render proper UI to display or edit the values.
+These Custom Fields are accessible via the API through a number of endpoints at the top level (e.g. `/custom_fields` and `/custom_field_settings`) and through calls on Workspaces, Portfolios, Projects, and Tasks resources. The API also provides a way to fetch both the metadata and data which define each particular Custom Field, so that a client application may render proper UI to display or edit the values.
 
 Custom Field aware integrations need to be aware of the basic types that Custom Fields can adopt. These types are:
 
@@ -512,13 +512,13 @@ Number fields can have an arbitrary `precision` associated with them; for exampl
 
 Enum fields represent a selection from a list of options. On the metadata, they will contain all of the options in an array. Each option has 4 properties:
 
-* `id` - the id of this enum option. Note that this is the id of the _option_ - the Custom Field itself has a separate `id`. * `name` - the name of the option, e.g. "Choice #1" * `enabled` - whether this field is enabled. Disabled fields are not available to choose from when disabled, and are visually hidden in the Asana application, but they remain in the metadata for Custom Field values which were set to the option before the option was disabled. * `color` - a color associated with this choice.
+* `gid` - the gid of this enum option. Note that this is the gid of the _option_ - the Custom Field itself has a separate `gid`. * `name` - the name of the option, e.g. "Choice #1" * `enabled` - whether this field is enabled. Disabled fields are not available to choose from when disabled, and are visually hidden in the Asana application, but they remain in the metadata for Custom Field values which were set to the option before the option was disabled. * `color` - a color associated with this choice.
 
 On the Task's Custom Field value, the enum will have an `enum_value` property which will be the same as one of the choices from the list defined in the Custom Field metadata.
 
 #### Querying an organization for its Custom Fields
 
-As Custom Fields are shared across the workspace or organization, the Workspace [can be queried](#get-a-workspace-39-s-custom-fields) for its list of defined Custom Fields. Like other collection queries, the fields will be returned as a compact record; slightly different from most other compact records is the fact that the compact record for Custom Fields includes `type` as well as `gid` and `name`.
+For Custom Fields shared across the workspace or organization, the Workspace [can be queried](#get-a-workspace-39-s-custom-fields) for its list of defined Custom Fields. Like other collection queries, the fields will be returned as a compact record; slightly different from most other compact records is the fact that the compact record for Custom Fields includes `type` as well as `gid` and `name`.
 
 #### Accessing Custom Field definitions
 
@@ -526,15 +526,17 @@ The [Custom Fields](#get-a-custom-field) reference describes how the metadata wh
 
 #### Associating Custom Fields with a Project or Portfolio
 
-A mapping between a Custom Field and a Project or Portfolio is handled with a [Custom Field Settings](#asana-custom-field-settings) object. This object contains a reference for each of the Custom Field and the Project, as well as additional information about the per-Project status of that particular Custom Field, for instance, `is_important`, which defines whether or not the custom field will appear in the grid (list of tasks) on the Asana application.
+A mapping between a Custom Field and a Project or Portfolio is handled with a [Custom Field Settings](#asana-custom-field-settings) object. This object contains a reference for each of the Custom Field and the Project or Porfolio, as well as additional information about the status of that particular Custom Field. For instance, `is_important`, which defines whether or not the custom field will appear in the list/grid on the Asana application.
 
-#### Accessing Custom Field values on Tasks
+#### Accessing Custom Field values on Tasks or Projects
 
 The [Tasks](#get-a-task) reference has information on how Custom Fields look on Tasks. Custom Fields will return as an array on the property `custom_fields`, and each entry will contain, side-by-side, the compact representation of the Custom Field metadata and a `{typename}_value` property that stores the value set for the Custom Field.
 
 Of particular note is that the top-level `gid` of each entry in the `custom_fields` array is the `gid` of the Custom Field metadata, as it is the compact representation of this metadata. This can be used to refer to the full metadata by making a request to the `/custom_fields/{custom_fields_id}` endpoint as described above.
 
 Custom Fields can be set just as in the Asana-defined fields on a task via POST or PUT requests. You can see an example on the [update a task](#update-a-task) endpoint.
+
+Custom Fields on projects follow this same pattern.
 
 #### Warning: Program defensively with regards to Custom Field definitions
 
@@ -2038,7 +2040,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/portfolios \
+curl -X GET https://app.asana.com/api/1.0/portfolios?workspace=1331&owner=14916 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -2070,8 +2072,8 @@ Returns a list of the portfolios in compact representation that are owned by the
 |---|---|
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
-|?workspace<span class="param-type"> string</span>|The workspace or organization to filter portfolios on.|
-|?owner<span class="param-type"> string</span>|The user who owns the portfolio. Currently, API users can only get a list of portfolios that they themselves own.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace or organization to filter portfolios on.|
+|?owner<span class="param-type"> string</span><div class="param-required">required</div>|The user who owns the portfolio. Currently, API users can only get a list of portfolios that they themselves own.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -2170,7 +2172,7 @@ integrations to create their own starting state on a portfolio.
 |»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
 |»»» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
 |»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -2526,7 +2528,7 @@ Returns the complete updated portfolio record.
 |»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
 |»»» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
 |»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -8618,6 +8620,9 @@ explicitly if you specify `projects` or a `parent` task instead.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 *Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
 
+**assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
+Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
+
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
@@ -9149,6 +9154,9 @@ Returns the complete updated task record.
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 *Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
+
+**assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
+Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -9879,6 +9887,9 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 *Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
+
+**assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
+Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -11428,7 +11439,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
 }
 ```
 
-> 200 Response
+> 204 Response
 
 ```json
 {
@@ -11463,7 +11474,7 @@ The user making this call must be a member of the team in order to remove themse
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [User](#schemauser)</span>|Returns an empty data record|
+|204<span class="param-type"> [User](#schemauser)</span>|Returns an empty data record|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
@@ -12807,7 +12818,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser
 }
 ```
 
-> 200 Response
+> 204 Response
 
 ```json
 {
@@ -12838,7 +12849,7 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|The user was removed successfully to the workspace or organization.|
+|204<span class="param-type"> [Empty](#schemaempty)</span>|The user was removed successfully to the workspace or organization.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
@@ -13480,7 +13491,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
 |parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -13952,7 +13963,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
+|» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
 |» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -15318,7 +15329,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.<br>Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
 |custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
