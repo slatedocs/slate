@@ -351,7 +351,7 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource.
-`shortIP`<br/>*string* | The name of an existing global external IP address assigned to the frontend. This argument is only valid in conjunction with reserveStaticIP being false. If the value is false and shortIP is provided, then the existing external IP address will be assigned. If the value is true, a new external static IP will be reserved and assigned.
+`shortIP`<br/>*string* | The name of an existing regional external IP address assigned to this instance in the same region. This argument is only valid in conjunction with reserveStaticIP being false.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
