@@ -30,9 +30,9 @@ to make API calls.
 ### What is OAuth?
 
 If you're using a library to handle this or already understand OAuth and have
-[registered an OAuth application](#register-an-app), you may want to skip ahead to the [quick reference](#quick-reference).
+[registered an OAuth application](#register-an-application), you may want to skip ahead to the [quick reference](#quick-reference).
 
-1. If you have not already, you will need to [register an application](#register-an-app). Take note of
+1. If you have not already, you will need to [register an application](#register-an-application). Take note of
 the **client ID**, an application's username, and the **client secret**, an application's password (protect it like one)!
 
 2. A user will arrive at your application and click a button that says "Connect with Asana."
@@ -55,8 +55,8 @@ Token for a new Bearer Token. (This can be repeated for as long as the user has 
 We definitely recommend using a library to take care of the nitty-gritty of OAuth, but hopefully this helps demystify
 the process somewhat.
 
-<a name="register-an-app" class="jump-anchor"></a>
-### [Register an Application](#register-an-app)
+<a name="register-an-application" class="jump-anchor"></a>
+### Register an Application
 
 You must first register your application with Asana to receive a client ID and client secret. Fortunately, this process
 is fast and easy: <a href="https://app.asana.com/-/account_api" target="_blank" rel="noopener noreferrer"> visit your Account Settings dialog</a>,
