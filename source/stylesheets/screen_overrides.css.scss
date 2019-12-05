@@ -82,7 +82,7 @@ $darkgreen: #64953f;
     color: $orange;
     line-height: 140%;
     font-weight: bold;
-  } 
+  }
   h1 {
     font-size: 40px;
     border-top: none;
@@ -188,6 +188,8 @@ table.help {
     font-weight: bold;
     font-family: Helvetica, Arial;
     vertical-align: middle;
+    height: auto;
+    line-height: 100%;
   }
   h2 {
     line-height: 50px;
