@@ -4116,101 +4116,30 @@ components:
               type: string
               example: My Company Workspace
         members:
-          type: object
-          properties:
-            data:
-              type: array
-              items:
+          type: array
+          readOnly: true
+          items:
+            description: >-
+              A *user* object represents an account in Asana that can be given
+              access to various workspaces, projects, and tasks.
+            type: object
+            properties:
+              gid:
                 description: >-
-                  A *user* object represents an account in Asana that can be given
-                  access to various workspaces, projects, and tasks.
-                type: object
-                properties:
-                  gid:
-                    description: >-
-                      Globally unique identifier of the object, as a string.
-                    type: string
-                    readOnly: true
-                    example: '12345'
-                  resource_type:
-                    description: The base type of this resource.
-                    type: string
-                    readOnly: true
-                    example: user
-                  name:
-                    description: >-
-                      *Read-only except when same user as requester*. The user’s name.
-                    type: string
-                    example: Greg Sanchez
-                  email:
-                    type: string
-                    format: email
-                    readOnly: true
-                    description: "The user\u2019s email address."
-                    example: gsanchez@example.com
-                  photo:
-                    type: object
-                    nullable: true
-                    properties:
-                      image_21x21:
-                        type: string
-                        format: uri
-                      image_27x27:
-                        type: string
-                        format: uri
-                      image_36x36:
-                        type: string
-                        format: uri
-                      image_60x60:
-                        type: string
-                        format: uri
-                      image_128x128:
-                        type: string
-                        format: uri
-                    readOnly: true
-                    description: >-
-                      A map of the user’s profile photo in various sizes, or null
-                      if no
-                      photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images
-                      are in PNG format.
-                    example:
-                      image_21x21: https://...
-                      image_27x27: https://...
-                      image_36x36: https://...
-                      image_60x60: https://...
-                      image_128x128: https://...
-                  workspaces:
-                    description: >-
-                      Workspaces and organizations this user may access.
-
-                      Note\: The API will only return workspaces and organizations
-                      that
-                      also contain the authenticated user.
-                    readOnly: true
-                    type: array
-                    items:
-                      description: >-
-                        A *workspace* is the highest-level organizational unit in
-                        Asana. All
-                        projects and tasks have an associated workspace.
-                      type: object
-                      properties:
-                        gid:
-                          description: >-
-                            Globally unique identifier of the object, as a string.
-                          type: string
-                          readOnly: true
-                          example: '12345'
-                        resource_type:
-                          description: The base type of this resource.
-                          type: string
-                          readOnly: true
-                          example: workspace
-                        name:
-                          description: The name of the object.
-                          type: string
-                          example: My Company Workspace
-          description: Members of the portfolio
+                  Globally unique identifier of the object, as a string.
+                type: string
+                readOnly: true
+                example: '12345'
+              resource_type:
+                description: The base type of this resource.
+                type: string
+                readOnly: true
+                example: user
+              name:
+                description: >-
+                  *Read-only except when same user as requester*. The user’s name.
+                type: string
+                example: Greg Sanchez
     PortfolioCompact:
       description: >-
         A *portfolio* gives a high-level overview of the status of multiple
@@ -4669,103 +4598,30 @@ components:
                   type: string
                   example: My Company Workspace
             members:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
+              type: array
+              readOnly: true
+              items:
+                description: >-
+                  A *user* object represents an account in Asana that can be given
+                  access to various workspaces, projects, and tasks.
+                type: object
+                properties:
+                  gid:
                     description: >-
-                      A *user* object represents an account in Asana that can be given
-                      access to various workspaces, projects, and tasks.
-                    type: object
-                    properties:
-                      gid:
-                        description: >-
-                          Globally unique identifier of the object, as a string.
-                        type: string
-                        readOnly: true
-                        example: '12345'
-                      resource_type:
-                        description: The base type of this resource.
-                        type: string
-                        readOnly: true
-                        example: user
-                      name:
-                        description: >-
-                          *Read-only except when same user as requester*. The user’s
-                          name.
-                        type: string
-                        example: Greg Sanchez
-                      email:
-                        type: string
-                        format: email
-                        readOnly: true
-                        description: "The user\u2019s email address."
-                        example: gsanchez@example.com
-                      photo:
-                        type: object
-                        nullable: true
-                        properties:
-                          image_21x21:
-                            type: string
-                            format: uri
-                          image_27x27:
-                            type: string
-                            format: uri
-                          image_36x36:
-                            type: string
-                            format: uri
-                          image_60x60:
-                            type: string
-                            format: uri
-                          image_128x128:
-                            type: string
-                            format: uri
-                        readOnly: true
-                        description: >-
-                          A map of the user’s profile photo in various sizes, or null
-                          if no
-                          photo is set. Sizes provided are 21, 27, 36, 60, and 128.
-                          Images
-                          are in PNG format.
-                        example:
-                          image_21x21: https://...
-                          image_27x27: https://...
-                          image_36x36: https://...
-                          image_60x60: https://...
-                          image_128x128: https://...
-                      workspaces:
-                        description: >-
-                          Workspaces and organizations this user may access.
-
-                          Note\: The API will only return workspaces and organizations
-                          that
-                          also contain the authenticated user.
-                        readOnly: true
-                        type: array
-                        items:
-                          description: >-
-                            A *workspace* is the highest-level organizational unit
-                            in Asana. All
-                            projects and tasks have an associated workspace.
-                          type: object
-                          properties:
-                            gid:
-                              description: >-
-                                Globally unique identifier of the object, as a string.
-                              type: string
-                              readOnly: true
-                              example: '12345'
-                            resource_type:
-                              description: The base type of this resource.
-                              type: string
-                              readOnly: true
-                              example: workspace
-                            name:
-                              description: The name of the object.
-                              type: string
-                              example: My Company Workspace
-              description: Members of the portfolio
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: user
+                  name:
+                    description: >-
+                      *Read-only except when same user as requester*. The user’s name.
+                    type: string
+                    example: Greg Sanchez
     PortfolioArray:
       type: object
       properties:
@@ -12764,72 +12620,6 @@ components:
                   *Read-only except when same user as requester*. The user’s name.
                 type: string
                 example: Greg Sanchez
-              email:
-                type: string
-                format: email
-                readOnly: true
-                description: "The user\u2019s email address."
-                example: gsanchez@example.com
-              photo:
-                type: object
-                nullable: true
-                properties:
-                  image_21x21:
-                    type: string
-                    format: uri
-                  image_27x27:
-                    type: string
-                    format: uri
-                  image_36x36:
-                    type: string
-                    format: uri
-                  image_60x60:
-                    type: string
-                    format: uri
-                  image_128x128:
-                    type: string
-                    format: uri
-                readOnly: true
-                description: >-
-                  A map of the user’s profile photo in various sizes, or null if no
-                  photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images
-                  are in PNG format.
-                example:
-                  image_21x21: https://...
-                  image_27x27: https://...
-                  image_36x36: https://...
-                  image_60x60: https://...
-                  image_128x128: https://...
-              workspaces:
-                description: >-
-                  Workspaces and organizations this user may access.
-
-                  Note\: The API will only return workspaces and organizations that
-                  also contain the authenticated user.
-                readOnly: true
-                type: array
-                items:
-                  description: >-
-                    A *workspace* is the highest-level organizational unit in Asana.
-                    All
-                    projects and tasks have an associated workspace.
-                  type: object
-                  properties:
-                    gid:
-                      description: >-
-                        Globally unique identifier of the object, as a string.
-                      type: string
-                      readOnly: true
-                      example: '12345'
-                    resource_type:
-                      description: The base type of this resource.
-                      type: string
-                      readOnly: true
-                      example: workspace
-                    name:
-                      description: The name of the object.
-                      type: string
-                      example: My Company Workspace
     UserIdObject:
       description: A user identification object for specification with the addUser/removeUser
         endpoints.
@@ -15968,105 +15758,16 @@ paths:
                           type: string
                           example: My Company Workspace
                     members:
-                      type: object
-                      properties:
-                        data:
-                          type: array
-                          items:
-                            description: >-
-                              A *user* object represents an account in Asana that
-                              can be given
-                              access to various workspaces, projects, and tasks.
-                            type: object
-                            properties:
-                              gid:
-                                description: >-
-                                  Globally unique identifier of the object, as a string.
-                                type: string
-                                readOnly: true
-                                example: '12345'
-                              resource_type:
-                                description: The base type of this resource.
-                                type: string
-                                readOnly: true
-                                example: user
-                              name:
-                                description: >-
-                                  *Read-only except when same user as requester*.
-                                  The user’s name.
-                                type: string
-                                example: Greg Sanchez
-                              email:
-                                type: string
-                                format: email
-                                readOnly: true
-                                description: "The user\u2019s email address."
-                                example: gsanchez@example.com
-                              photo:
-                                type: object
-                                nullable: true
-                                properties:
-                                  image_21x21:
-                                    type: string
-                                    format: uri
-                                  image_27x27:
-                                    type: string
-                                    format: uri
-                                  image_36x36:
-                                    type: string
-                                    format: uri
-                                  image_60x60:
-                                    type: string
-                                    format: uri
-                                  image_128x128:
-                                    type: string
-                                    format: uri
-                                readOnly: true
-                                description: >-
-                                  A map of the user’s profile photo in various sizes,
-                                  or null if no
-                                  photo is set. Sizes provided are 21, 27, 36, 60,
-                                  and 128. Images
-                                  are in PNG format.
-                                example:
-                                  image_21x21: https://...
-                                  image_27x27: https://...
-                                  image_36x36: https://...
-                                  image_60x60: https://...
-                                  image_128x128: https://...
-                              workspaces:
-                                description: >-
-                                  Workspaces and organizations this user may access.
-
-                                  Note\: The API will only return workspaces and organizations
-                                  that
-                                  also contain the authenticated user.
-                                readOnly: true
-                                type: array
-                                items:
-                                  description: >-
-                                    A *workspace* is the highest-level organizational
-                                    unit in Asana. All
-                                    projects and tasks have an associated workspace.
-                                  type: object
-                                  properties:
-                                    gid:
-                                      description: >-
-                                        Globally unique identifier of the object,
-                                        as a string.
-                                      type: string
-                                      readOnly: true
-                                      example: '12345'
-                                    resource_type:
-                                      description: The base type of this resource.
-                                      type: string
-                                      readOnly: true
-                                      example: workspace
-                                    name:
-                                      description: The name of the object.
-                                      type: string
-                                      example: My Company Workspace
-                      description: Members of the portfolio
+                      type: array
+                      readOnly: false
+                      items:
+                        description: >-
+                          Gid of an object.
+                        type: string
+                      description: >-
+                        Array of object Gids.
+                      example:
+                        - '12345'
       responses:
         201:
           description: Successfully retrieved portfolios.
@@ -16581,105 +16282,16 @@ paths:
                           type: string
                           example: My Company Workspace
                     members:
-                      type: object
-                      properties:
-                        data:
-                          type: array
-                          items:
-                            description: >-
-                              A *user* object represents an account in Asana that
-                              can be given
-                              access to various workspaces, projects, and tasks.
-                            type: object
-                            properties:
-                              gid:
-                                description: >-
-                                  Globally unique identifier of the object, as a string.
-                                type: string
-                                readOnly: true
-                                example: '12345'
-                              resource_type:
-                                description: The base type of this resource.
-                                type: string
-                                readOnly: true
-                                example: user
-                              name:
-                                description: >-
-                                  *Read-only except when same user as requester*.
-                                  The user’s name.
-                                type: string
-                                example: Greg Sanchez
-                              email:
-                                type: string
-                                format: email
-                                readOnly: true
-                                description: "The user\u2019s email address."
-                                example: gsanchez@example.com
-                              photo:
-                                type: object
-                                nullable: true
-                                properties:
-                                  image_21x21:
-                                    type: string
-                                    format: uri
-                                  image_27x27:
-                                    type: string
-                                    format: uri
-                                  image_36x36:
-                                    type: string
-                                    format: uri
-                                  image_60x60:
-                                    type: string
-                                    format: uri
-                                  image_128x128:
-                                    type: string
-                                    format: uri
-                                readOnly: true
-                                description: >-
-                                  A map of the user’s profile photo in various sizes,
-                                  or null if no
-                                  photo is set. Sizes provided are 21, 27, 36, 60,
-                                  and 128. Images
-                                  are in PNG format.
-                                example:
-                                  image_21x21: https://...
-                                  image_27x27: https://...
-                                  image_36x36: https://...
-                                  image_60x60: https://...
-                                  image_128x128: https://...
-                              workspaces:
-                                description: >-
-                                  Workspaces and organizations this user may access.
-
-                                  Note\: The API will only return workspaces and organizations
-                                  that
-                                  also contain the authenticated user.
-                                readOnly: true
-                                type: array
-                                items:
-                                  description: >-
-                                    A *workspace* is the highest-level organizational
-                                    unit in Asana. All
-                                    projects and tasks have an associated workspace.
-                                  type: object
-                                  properties:
-                                    gid:
-                                      description: >-
-                                        Globally unique identifier of the object,
-                                        as a string.
-                                      type: string
-                                      readOnly: true
-                                      example: '12345'
-                                    resource_type:
-                                      description: The base type of this resource.
-                                      type: string
-                                      readOnly: true
-                                      example: workspace
-                                    name:
-                                      description: The name of the object.
-                                      type: string
-                                      example: My Company Workspace
-                      description: Members of the portfolio
+                      type: array
+                      readOnly: false
+                      items:
+                        description: >-
+                          Gid of an object.
+                        type: string
+                      description: >-
+                        Array of object Gids.
+                      example:
+                        - '12345'
       responses:
         200:
           description: Successfully updated the portfolio.

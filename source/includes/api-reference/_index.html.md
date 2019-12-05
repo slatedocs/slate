@@ -2115,13 +2115,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
     "workspace": {
       "name": "My Company Workspace"
     },
-    "members": {
-      "data": [
-        {
-          "name": "Greg Sanchez"
-        }
-      ]
-    }
+    "members": [
+      "12345"
+    ]
   }
 }
 ```
@@ -2211,29 +2207,9 @@ integrations to create their own starting state on a portfolio.
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» members<span class="param-type"> object</span>|Members of the portfolio|
-|»»» data<span class="param-type"> [object]</span>|none|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»»» email<span class="param-type"> string(email)</span>|The user’s email address.|
-|»»»» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»»»» image_21x21<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_27x27<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_36x36<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_60x60<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_128x128<span class="param-type"> string(uri)</span>|none|
-|»»»» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.|
-|»»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» members<span class="param-type"> [string]</span>|Array of object Gids.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**workspaces**: Workspaces and organizations this user may access.
-Note\: The API will only return workspaces and organizations that also contain the authenticated user.
 
 #### Enumerated Values
 
@@ -2364,30 +2340,13 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
-    "members": {
-      "data": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "gid": "12345",
-              "resource_type": "workspace",
-              "name": "My Company Workspace"
-            }
-          ]
-        }
-      ]
-    }
+    "members": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ]
   }
 }
 ```
@@ -2446,13 +2405,9 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
     "workspace": {
       "name": "My Company Workspace"
     },
-    "members": {
-      "data": [
-        {
-          "name": "Greg Sanchez"
-        }
-      ]
-    }
+    "members": [
+      "12345"
+    ]
   }
 }
 ```
@@ -2528,30 +2483,13 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
-    "members": {
-      "data": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "gid": "12345",
-              "resource_type": "workspace",
-              "name": "My Company Workspace"
-            }
-          ]
-        }
-      ]
-    }
+    "members": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ]
   }
 }
 ```
@@ -2625,30 +2563,10 @@ Returns the complete updated portfolio record.
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» members<span class="param-type"> object</span>|Members of the portfolio|
-|»»» data<span class="param-type"> [object]</span>|none|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»»» email<span class="param-type"> string(email)</span>|The user’s email address.|
-|»»»» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»»»» image_21x21<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_27x27<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_36x36<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_60x60<span class="param-type"> string(uri)</span>|none|
-|»»»»» image_128x128<span class="param-type"> string(uri)</span>|none|
-|»»»» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.|
-|»»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» members<span class="param-type"> [string]</span>|Array of object Gids.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**workspaces**: Workspaces and organizations this user may access.
-Note\: The API will only return workspaces and organizations that also contain the authenticated user.
 
 #### Enumerated Values
 
@@ -11447,22 +11365,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "gid": "12345",
-          "resource_type": "workspace",
-          "name": "My Company Workspace"
-        }
-      ]
+      "name": "Greg Sanchez"
     }
   ]
 }
@@ -11533,22 +11436,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "gid": "12345",
-          "resource_type": "workspace",
-          "name": "My Company Workspace"
-        }
-      ]
+      "name": "Greg Sanchez"
     }
   ]
 }
@@ -11728,22 +11616,7 @@ curl -X GET https://app.asana.com/api/1.0/users \
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "gid": "12345",
-          "resource_type": "workspace",
-          "name": "My Company Workspace"
-        }
-      ]
+      "name": "Greg Sanchez"
     }
   ]
 }
@@ -11939,22 +11812,7 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "gid": "12345",
-          "resource_type": "workspace",
-          "name": "My Company Workspace"
-        }
-      ]
+      "name": "Greg Sanchez"
     }
   ]
 }
@@ -12013,22 +11871,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "gid": "12345",
-          "resource_type": "workspace",
-          "name": "My Company Workspace"
-        }
-      ]
+      "name": "Greg Sanchez"
     }
   ]
 }
@@ -14075,30 +13918,13 @@ An *organization_export* object represents a request to export the complete data
     "resource_type": "workspace",
     "name": "My Company Workspace"
   },
-  "members": {
-    "data": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "gid": "12345",
-            "resource_type": "workspace",
-            "name": "My Company Workspace"
-          }
-        ]
-      }
-    ]
-  }
+  "members": [
+    {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  ]
 }
 
 ```
@@ -14163,22 +13989,10 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the object.|
-|members<span class="param-type"> object</span>|Members of the portfolio|
-|» data<span class="param-type"> [object]</span>|none|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» email<span class="param-type"> string(email)</span>|The user’s email address.|
-|»» photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»» image_21x21<span class="param-type"> string(uri)</span>|none|
-|»»» image_27x27<span class="param-type"> string(uri)</span>|none|
-|»»» image_36x36<span class="param-type"> string(uri)</span>|none|
-|»»» image_60x60<span class="param-type"> string(uri)</span>|none|
-|»»» image_128x128<span class="param-type"> string(uri)</span>|none|
-|»» workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|members<span class="param-type"> [object]</span>|none|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
 #### Enumerated Values
 
