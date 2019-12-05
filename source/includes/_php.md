@@ -17,7 +17,7 @@ Source code and issues can be found on our [scout-apm-php](https://github.com/sc
 
 Scout provides instrumentation for Laravel.
 
-### 
+###
 <h3 id="php-some-configuration-required">Some configuration required</h3>
 
 The libraries below require a small number of configuration updates. Click on
@@ -54,7 +54,7 @@ not need to be installed directly.
 </p>
       </td>
     </tr>
-<!--    <tr>
+    <tr style="display:none">
       <td>
         <span class="step">2</span>
       </td>
@@ -69,7 +69,7 @@ Several instruments require the native extension to be included, including timin
 For more information, or to compile manually, the <a href="https://github.com/scoutapp/scout-apm-php-ext">README</a> has additional instructions.
 </p>
       </td>
-    </tr> -->
+    </tr>
     <tr>
       <td>
         <span class="step">2</span>
@@ -254,7 +254,7 @@ amount of time is falling outside our default instrumentation.
 We limit the number of metrics that can be instrumented. Tracking too many
 unique metrics can impact the performance of our UI. Do not dynamically
 generate metric types in your instrumentation as this can quickly exceed our
-rate limits. 
+rate limits.
 
 For high-cardinality details, use tags.
 
