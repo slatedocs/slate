@@ -357,7 +357,7 @@ Creates a new investor and triggers a KYC check.
 
 <aside class="warning">
 
-When migrating existing investors over to the Goji platform, the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) should be used instead.
+When migrating existing investors over to the Goji platform, the dedicated <a href="#investors-post-platformapi-migrate">investor migration endpoint</a> should be used instead.
 
 </aside>
 
