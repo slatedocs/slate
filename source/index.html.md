@@ -56,6 +56,46 @@ You can get your API key and Secret as follows
   - `cancelled`: order is completely or partially cancelled
   - `rejected`: order is rejected (not placed on the exchange
 
+### Margin Orders
+
+* `status`: used to denote the current status of the given margin order. Valid values for status include:
+  - `init`: order is just created, but not placed in the orderbook
+  - `open`: order is successfully placed in the orderbook
+  - `partial_entry`: internal entry order is partially filled
+  - `partial_close`: internal target order is partially closed
+  - `cancelled`: order is completely cancelled
+  - `rejected`: order is rejected (not placed on the exchange)
+  - `close`: order is completely filled
+  - `triggered`: stop varinat order triggered at specified stop price
+  
+
+* `order_type`: used to denote the type of order to be placed. Valid values for order_type includes:
+  - `market_order`: in this order type we don't secify price; it is executed on the market price
+  - `limit_order`: in this order type we specify the price on which order is to be executed
+  - `stop_limit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
+  - `take_profit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
+  
+* 
+Other Terms:  
+  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.  
+  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price. 
+  - `stop_price`: It is used in the Stop Variant order, to specify stop price
+
+### Margin Internal Orders  
+
+* `status` for internal orders: used to denote the type of internal orders. Valid values for order_type includes:  
+  - `initial`: order is just created  
+  - `open`: order is successfully placed in the orderbook  
+  - `partially_filled`: order is partially filled   
+  - `filled`: order is completely filled 
+  - `cancelled`: order is completely cancelled  
+  - `rejected`: order is rejected (not placed on the exchange)  
+  - `partially_cancelled`: order is partially cancelled   
+  - `untriggered`: stop varinat order was not triggered  
+  
+ 
+
+
 # Public endpoints
 
 ## Ticker
@@ -423,7 +463,7 @@ m -> minutes, h -> hours, d -> days, w -> weeks, M -> months
 
 # Authentication
 
-<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timstamp parameter of when the request was generated.</aside>
+<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timestamp parameter of when the request was generated.</aside>
 
 > To authorize, use this code:
 
@@ -824,12 +864,12 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-    "side": "buy",	#Toggle between 'buy' or 'sell'.
-	"order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
-	"market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
-	"price_per_unit": 0.03244, #This parameter is only required for a 'limit_order'
-	"total_quantity": 400, #Replace this with the quantity you want
-	"timestamp": timeStamp
+  "side": "buy",	#Toggle between 'buy' or 'sell'.
+  "order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
+  "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
+  "price_per_unit": 0.03244, #This parameter is only required for a 'limit_order'
+  "total_quantity": 400, #Replace this with the quantity you want
+  "timestamp": timeStamp
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -939,7 +979,7 @@ Use this endpoint to place a new order on the exchange
 ## Create multiple orders
 
 <aside class="notice">
-Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code>
+Multiple ordering API is only supported for CoinDCX INR markets. Set ecode parameter to <code>I</code>
 </aside>
 
 ```ruby
@@ -1118,8 +1158,8 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-    "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", # Enter your Order ID here.
-	"timestamp": timeStamp
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", # Enter your Order ID here.
+  "timestamp": timeStamp
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -1237,7 +1277,8 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"]
+  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"],
+  "timestamp": timeStamp
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -1277,7 +1318,8 @@ secret = "";
 
 
 body = {
-  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"]
+  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"],
+  "timestamp": timeStamp
 }
 
 const payload = new Buffer(JSON.stringify(body)).toString();
@@ -1332,6 +1374,7 @@ Use this endpoint to fetch status of any order
 | Name | Required | Example        | Description        |
 |------|----------|----------------|--------------------|
 | ids  | Yes      | ["id1", "id3"] | Array of order IDs |
+| timestamp | Yes      | 1524211224                     | When was the request generated |
 
 
 
@@ -1480,7 +1523,8 @@ timeStamp = int(round(time.time() * 1000))
 
 body = {
   "from_id": 352622,
-  "limit": 50
+  "limit": 50,
+  "timestamp": timeStamp
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -1517,7 +1561,8 @@ secret = "";
 
 body = {
   "from_id": 352622,
-  "limit": 50
+  "limit": 50,
+  "timestamp": timestamp
 }
 
 const payload = new Buffer(JSON.stringify(body)).toString();
@@ -1566,6 +1611,7 @@ Use this endpoint to fetch trades associated with your account
 |---------|----------|---------|---------------------------------------------------------------------------------------|
 | limit   | No       | 100     | Default 500                                                                           |
 | from_id | No       | 28473   | Trade ID after which you want the data. If not supplied, latest trades would be given |
+| timestamp| Yes | 1524211224 | When was the request generated |
 
 
 
@@ -1590,9 +1636,9 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-	"side": "buy", # Toggle between a 'buy' or 'sell' order.
-    "market": "SNTBTC", # Replace 'SNTBTC' with your desired market pair.
-	"timestamp": timeStamp
+  "side": "buy", # Toggle between a 'buy' or 'sell' order.
+  "market": "SNTBTC", # Replace 'SNTBTC' with your desired market pair.
+  "timestamp": timeStamp
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -1698,9 +1744,9 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-	"side": "buy", # Toggle between a 'buy' or 'sell' order.
-    "market": "SNTBTC", # Replace 'SNTBTC' with your desired market pair.
-	"timestamp": timeStamp
+  "side": "buy", # Toggle between a 'buy' or 'sell' order.
+  "market": "SNTBTC", # Replace 'SNTBTC' with your desired market pair.
+  "timestamp": timeStamp
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -2012,6 +2058,1361 @@ Use this endpoint to cancel an active orders
 
 <!-- ------------------- START Sockets ---------------------- -->
 
+
+
+
+# Margin Order
+<aside class="notice">
+Set ecode parameter to <code>B</code> for all the api calls wherever necessary
+</aside>
+Enum definitions for the purpose of order are as follows:
+
+| Name       | Values                    |
+|------------|---------------------------|
+| side       | buy, sell                 |
+| order_type | market_order, limit_order, stop_limit, take_profit|
+| order_status | init, partial_entry, open, partial_close, close, cancelled, rejected, triggered|
+| timestamp  | 1524211224                |
+| ecode      |    B                      |
+
+## Place Order
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "side": "buy",	
+  "order_type": "limit_order", 
+  "market": "XRPBTC", 
+  "price": 0.000025, 
+  "quantity": 90, 
+  "ecode": 'B', 
+  "leverage": 1.0, 
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/create"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "side": "buy",	
+  "order_type": "limit_order", 
+  "market": "XRPBTC", 
+  "price": 0.000025, 
+  "quantity": 90, 
+  "ecode": 'B', 
+  "leverage": 1, 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/margin/create",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+
+```
+
+> Response:
+
+```json
+[{ 
+  "id": "30b5002f-d9c1-413d-8a8d-0fd32b054c9c",
+  "side": "sell",
+  "status": "init",
+  "market": "XRPBTC",
+  "order_type": "limit_order",
+  "trailing_sl": false,
+  "trail_percent": null,
+  "avg_entry": 0,
+  "avg_exit": 0,
+  "fee": 0.02,
+  "entry_fee": 0,
+  "exit_fee": 0,
+  "active_pos": 0,
+  "exit_pos": 0,
+  "total_pos": 0,
+  "quantity": 200,
+  "price": 0.000026,
+  "sl_price": 0.00005005,
+  "target_price": 0,
+  "stop_price": 0,
+  "pnl": 0,
+  "initial_margin": 0.00520208,
+  "interest": 0.05,
+  "interest_amount": 0,
+  "leverage": 1,
+  "result": null,
+  "created_at": 1568122929782,
+  "updated_at": 1568122929782,
+  "orders":[{ 
+    "id": 164993,
+    "order_type": "limit_order",
+    "status": "initial",
+    "market": "XRPBTC",
+    "side": "sell",
+    "avg_price": 0,
+    "total_quantity": 200,
+    "remaining_quantity": 200,
+    "price_per_unit": 0.000026,
+    "timestamp": 1568122929880.75,
+    "fee": 0.02,
+    "fee_amount": 0,
+    "filled_quantity": 0,
+    "bo_stage": "stage_entry",
+    "cancelled_quantity": 0,
+    "stop_price": 0 
+  }] 
+}]
+```
+
+
+Use this endpoint to place a new order on the exchange.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/create`
+
+### Parameters
+
+| Name           | Type | Required | Example      | Description                                    |
+|----------------|------|----------|--------------|------------------------------------------------|
+| market         | string | Yes      | XRPBTC       | The trading pair                               |
+| quantity       | number | Yes      | 1.101        | Quantity to trade                              |
+| price          | number | No       | 0.082        | Price per unit (not required for market order, mandatory for rest)|
+| leverage       | number | No       | 1            | Borrowed capital to increase the potential returns|
+| side           | string | Yes      | buy          | Specify buy or sell                            |
+| stop_price     | number |  No       | 0.082        | Price to stop the order at(mandatory in case of stop_limit & take_profit)    |
+| order_type     | string |Yes      | market_order | Order Type                                     |
+| trailing_sl    | boolean | No       | true         | To place order with Trailing Stop Loss             |
+| target_price   | number |No       | 0.082        | The price to buy/sell or close the order position   |
+| ecode          | string |Yes      | B            | Exchange code in which the order will be placed|
+| timestamp      | number | Yes      | 1524211224   | When was the request generated                 |
+
+## Cancel Order
+<aside class="notice">Any order with <b>order_status</b> among the following can only be cancelled: <br/>
+init, partial_entry, or triggered</aside>
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", 
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/cancel"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id": "qwd19992-43fd-14e8-b027-bb815bnb14ed", 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/margin/cancel",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+```
+
+> Response:
+
+```json
+{
+  "message": "Cancellation accepted",
+  "status": 200,
+  "code": 200
+}
+
+```
+
+
+Use this endpoint to cancel any order.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/cancel`
+
+### Parameters
+
+| Name  | Type      | Required | Example                              | Description                    |
+|------|-----|----------|--------------------------------------|--------------------------------|
+| id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
+| timestamp | number | Yes      | 1524211224                           | When was the request generated |
+
+
+## Exit
+<aside class="notice">Any order with <b>order_status</b> among the following can only be exited: <br/>
+open or partial_close</aside>
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",  
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/exit"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/margin/exit",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+
+```
+
+> Response:
+
+```json
+{
+  "message": "Order exit accepted", 
+  "status": 200, 
+  "code": 200
+}
+
+```
+
+
+Use this endpoint to exit any order.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/exit`
+
+### Parameters
+
+| Name  | Type      | Required | Example                              | Description                    |
+|------|-----|----------|--------------------------------------|--------------------------------|
+| id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
+| timestamp | number | Yes      | 1524211224                           | When was the request generated |
+
+## Edit Target
+<aside class="notice">You can update target price only if order has 0 or 1 target order. For the multiple open targets refer- <strong><a href="#edit-price-of-target-order">Edit Price of Target Order</a></strong> section</aside>
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id": "8a2f4284-c895-11e8-9e00-5b2c002a6ff4",
+  "target_price": 0.6,
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/edit_target"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id": "8a2f4284-c895-11e8-9e00-5b2c002a6ff4",
+  "target_price": 0.6,
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/margin/edit_target",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response:
+
+```json
+{
+  "message": "Target price updated",
+  "status": 200,
+  "code": 200
+}
+
+```
+
+
+Use this endpoint to edit the target price of any order.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/edit_target`
+
+### Parameters
+
+| Name  | Type | Required | Example                                | Description        |
+|------|----------|----------------------------------------|--------------------|---|
+| id   | string | Yes      | 8a2f4284-c895-11e8-9e00-5b2c002a6ff4 | ID of the order to edit |
+| target_price | number  | Yes       | 0.082        | The new price to buy/sell or close the order position at  |
+| timestamp | number     | Yes      | 1524211224   | When was the request generated     |
+
+
+## Edit Price of Target Order
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id": "", 
+  "target_price": 0.00026, 
+  "itpo_id": "", 
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/edit_price_of_target_order"
+
+headers = {
+  'Content-Type': 'application/json',
+  'X-AUTH-APIKEY': key,
+  'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id": "", 
+  "target_price": 0.00026, 
+  "itpo_id": "", 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/margin/edit_price_of_target_order",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+```
+
+> Response:
+
+```json
+{
+  "message": "Target price updated",
+  "status": 200,
+  "code": 200
+}
+```
+
+
+Use this endpoint to edit price of internal target order.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/edit_price_of_target_order`
+
+### Parameters
+
+| Name  | Type      | Required | Example    | Description                    |
+|------|-----|----------|------------|--------------------------------|
+| id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |                                |
+| target_price   | number |  Yes       | 0.082        | The new price to buy/sell or close the order position at  |
+| itpo_id   | string | Yes      | 164968 |ID of internal order to edit |
+| timestamp | number | Yes      | 1524211224 | When was the request generated |
+
+## Edit SL Price
+<aside class="notice">Only for orders where <b>trailing_sl is false</b></aside>
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id" : "", 
+  "sl_price": 0.06, 
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/edit_sl"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id" : "", 
+  "sl_price": 0.06, 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/margin/edit_sl",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response:
+
+```json
+{
+  "message": "SL price updated",
+  "status": 200,
+  "code": 200
+}
+```
+Use this endpoint to edit stop loss price of a bracket order.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/edit_sl`
+
+### Parameters
+
+| Name  | Type    | Required | Example | Description                                         |
+|------|---|----------|---------|-----------------------------------------------------|
+| id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
+| sl_price| number | Yes      | 0.082         | The price to Stop Loss at|
+| timestamp| number | Yes     | 1524211224    | When was the request generated |
+
+
+## Edit SL Price of Trailing Stop Loss
+<aside class="notice">Only for orders where <b>trailing_sl is true</b></aside>
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id" : "", 
+  "sl_price": 0.06, 
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/edit_trailing_sl"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id" : "", 
+  "sl_price": 0.06, 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/margin/edit_trailing_sl",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response
+
+```json
+{
+  "message": "Trailing SL price updated",
+  "status": 200,
+  "code": 200
+}
+```
+Use this endpoint to edit stop loss price of a trailing stop loss order.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/edit_trailing_sl`
+
+### Parameters
+
+| Name  | Type    | Required | Example | Description                                         |
+|------|---|----------|---------|-----------------------------------------------------|
+| id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
+| sl_price | number      | Yes       | 0.082        | The new price to Stop Loss at                |
+| timestamp| number | Yes     | 1524211224 | When was the request generated |
+
+
+## Add Margin
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id" : "", 
+  "amount": 0.06, 
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/add_margin"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id" : "", 
+  "amount": 0.06, 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/margin/add_margin",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response
+
+```json
+{
+  "message": "Margin added successfully",
+  "status": 200,
+  "code": 200
+}
+```
+Use this endpoint to add a particular amount to your margin order, decreasing the effective leverage.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/add_margin`
+
+### Parameters
+
+| Name  | Type    | Required | Example | Description                                         |
+|------|---|----------|---------|-----------------------------------------------------|
+| id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
+| amount | number | Yes     | 0.06                                     | Amount to add in the margin to decrease effective leverage |
+| timestamp| number | Yes     | 1524211224 | When was the request generated |
+
+## Remove Margin
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id" : "", 
+  "amount": 0.06, initial margin.
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/remove_margin"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id" : "", 
+  "amount": 0.06, 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/margin/remove_margin",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response
+
+```json
+{
+  "message": "Margin removed successfully",
+  "status": 200,
+  "code": 200
+}
+```
+Use this endpoint to remove a particular amount from your Margin order, increasing the effective leverage.
+
+### HTTP Request
+
+`POST /exchange/v1/margin/remove_margin`
+
+### Parameters
+
+| Name  | Type    | Required | Example | Description                                         |
+|------|---|----------|---------|-----------------------------------------------------|
+| id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
+| amount | number | Yes     | 0.06                                     | Amount to remove from the margin to increase effective leverage |
+| timestamp| number | Yes     | 1524211224 | When was the request generated |
+
+
+##  Fetch Orders
+<aside class="notice">This API supports <strong>Pagination</strong> Refer <strong><a href="#pagination">Pagination section</a></strong> for more details</aside>
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "details": true,  
+  "market": "LTCBTC", 
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/margin/fetch_orders"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "details": true,  
+  "market": "LTCBTC", 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/margin/fetch_orders",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+```
+
+> Response:
+
+```json
+[{
+    "id": "30b5002f-d9c1-413d-8a8d-0fd32b054c9c",
+    "side": "sell",
+    "status": "rejected",
+    "market": "XRPBTC",
+    "order_type": "limit_order",
+    "trailing_sl": false,
+    "trail_percent": null,
+    "avg_entry": 0,
+    "avg_exit": 0,
+    "fee": 0.02,
+    "entry_fee": 0,
+    "exit_fee": 0,
+    "active_pos": 0,
+    "exit_pos": 0,
+    "total_pos": 0,
+    "quantity": 200,
+    "price": 0.000026,
+    "sl_price": 0.00005005,
+    "target_price": 0,
+    "stop_price": 0,
+    "pnl": 0,
+    "initial_margin": 0,
+    "interest": 0.05,
+    "interest_amount": 0,
+    "leverage": 1,
+    "result": null,
+    "created_at": 1568122929782,
+    "updated_at": 1568122930404,
+    "orders": [{
+      "id": 164993,
+      "order_type": "limit_order",
+      "status": "rejected",
+      "market": "XRPBTC",
+      "side": "sell",
+      "avg_price": 0,
+      "total_quantity": 200,
+      "remaining_quantity": 200,
+      "price_per_unit": 0.000026,
+      "timestamp": 1568122929880.75,
+      "fee": 0.02,
+      "fee_amount": 0,
+      "filled_quantity": 0,
+      "bo_stage": "stage_entry",
+      "cancelled_quantity": 0,
+      "stop_price": 0
+    }]
+  },
+  {
+    "id": "e45cd26a-32e9-4d20-b230-a8933046f4eb",
+    "side": "sell",
+    "status": "rejected",
+    "market": "XRPBTC",
+    "order_type": "limit_order",
+    "trailing_sl": false,
+    "trail_percent": null,
+    "avg_entry": 0,
+    "avg_exit": 0,
+    "fee": 0.02,
+    "entry_fee": 0,
+    "exit_fee": 0,
+    "active_pos": 0,
+    "exit_pos": 0,
+    "total_pos": 0,
+    "quantity": 200,
+    "price": 0.000026,
+    "sl_price": 0.00005005,
+    "target_price": 0,
+    "stop_price": 0,
+    "pnl": 0,
+    "initial_margin": 0,
+    "interest": 0.05,
+    "interest_amount": 0,
+    "leverage": 1,
+    "result": null,
+    "created_at": 1568122721421,
+    "updated_at": 1568122721905,
+    "orders": [{
+      "id": 164993,
+      "order_type": "limit_order",
+      "status": "rejected",
+      "market": "XRPBTC",
+      "side": "sell",
+      "avg_price": 0,
+      "total_quantity": 200,
+      "remaining_quantity": 200,
+      "price_per_unit": 0.000026,
+      "timestamp": 1568122929880.75,
+      "fee": 0.02,
+      "fee_amount": 0,
+      "filled_quantity": 0,
+      "bo_stage": "stage_entry",
+      "cancelled_quantity": 0,
+      "stop_price": 0
+    }]
+  }
+]
+
+
+```
+
+Use this endpoint to fetch orders and optionally its details which include all buy/sell related orders
+
+### HTTP Request
+
+`POST /exchange/v1/margin/fetch_orders`
+
+### Parameters
+
+| Name  | Type      | Required | Example            | Description                    |
+|------|-----|----------|--------------------|--------------------------------|
+| market         | string | No      | XRPBTC         | The trading pair                |
+| details        | boolean | No      | false          | Whether you want detailed information or not, default: false            |
+| status         | string | No       | open,close | The ID of the order            |
+| timestamp      | number | Yes      | 1524211224    | When was the request generated |
+
+# Pagination
+
+
+Get the pagination details in the response header
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "details": true,  
+  "market": "LTCBTC", 
+  "page": 2,
+  "size": 5,
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/margin/fetch_orders",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+
+```
+
+### Parameters
+| Name  | Description                    |
+|------|--------------------------------|
+page | Page number to fetch. Pagination starts at page 1 |
+size | Number of records per page; Default: 100, Max: 1000 |
+
+> Response Headers
+
+```javascript
+{
+  date: 'Wed, 11 Sep 2019 09:38:19 GMT',
+  'content-type': 'application/json; charset=utf-8',
+  'transfer-encoding': 'chunked',
+  connection: 'close',
+  status: '200 OK',
+  'x-frame-options': 'SAMEORIGIN',
+  'x-xss-protection': '1; mode=block',
+  'x-content-type-options': 'nosniff',
+  'x-pagination': '{"total":29,"total_pages":6,"first_page":false,"last_page":false,"previous_page":1,"next_page":3,"out_of_bounds":false,"offset":5}',
+  .
+  .
+  .
+  .
+}
+```
+
+
+
+
+
 # Sockets
 <!-- <aside class="notice">Sockets are currently available only for the INR market.</aside> -->
 
@@ -2318,6 +3719,110 @@ socket.on("trade-update", (response) => {
   "f": "0.000000009634",
   "e": "I",
   "x": "filled"
+}]
+```
+<!-- ------------------- END Sockets ---------------------- -->
+
+<!--
+
+# API call limits
+We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
+In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second. -->
+
+## Bracket Order Trades
+
+### Definitions
+<ul>
+  <li><strong>Channel:</strong> coindcx</li>
+  <li><strong>Event:</strong> bo-trade-update</li>
+</ul>
+
+### Response
+<ul>
+  <li>id - is client order id / system generated order id</li>
+  <li>side - is whether order is placed to buy or sell</li>
+  <li>status - is current status of the order</li>
+  <li>market - is the trading pair</li>
+  <li>order_type - is the type of order placed</li>
+  <li>trailing_sl - indicates whether order placed is with Trailing Stop Loss</li>
+  <li>avg_entry - is the entry price in base currency</li>
+  <li>avg_exit - is the exit price</li>
+  <li>fee - is the fee charged in percentage</li>
+  <li>entry_fee - is the entry fee</li>
+  <li>exit_fee - is the exit fee</li>
+  <li>active_pos - is the quantity filled</li>
+  <li>total_pos - is the total quantity filled</li>
+  <li>price - is the price at which order was placed</li>
+  <li>sl_price - is the price at which the trader wishes to Stop Loss</li>
+  <li>target_price - is the price at which order position is to be closed</li>
+  <li>stop_price - is used in the Stop Variant order</li>
+  <li>pnl - is the net profit and loss</li>
+  <li>interest - is the interest charged</li>
+  <li>orders - contains the details abput target order</li>
+</ul>
+
+```python
+@sio.on('bo-trade-update')
+def on_message(response):
+    print(response.data)
+```
+
+```javascript
+socket.on("bo-trade-update", (response) => {
+  console.log(response.data);
+});
+```
+
+> Bracket Order Trade update response:
+
+```json
+[{
+  "id": "dbbce8e2-48e6-4aa2-a7af-15463120e241",
+  "side": "sell",
+  "status": "open",
+  "market": "XRPBTC",
+  "order_type": "market_order",
+  "trailing_sl": false,
+  "trail_percent": null,
+  "avg_entry": 0.00003414,
+  "avg_exit": 0,
+  "fee": 0.02,
+  "entry_fee": 4.8e-7,
+  "exit_fee": 0,
+  "active_pos": 70,
+  "exit_pos": 0,
+  "total_pos": 70,
+  "quantity": 70,
+  "price": 0.00003415,
+  "sl_price": 0.00004866,
+  "target_price": 0,
+  "stop_price": 0,
+  "pnl": 0,
+  "initial_margin": 0.0011962062,
+  "interest": 0.05,
+  "interest_amount": 0,
+  "leverage": 2,
+  "result": null,
+  "created_at": 1570620552918,
+  "updated_at": 1570620553456,
+  "orders": [{
+    "id": 165059,
+    "order_type": "market_order",
+    "status": "filled",
+    "market": "XRPBTC",
+    "side": "sell",
+    "avg_price": 0.00003414,
+    "total_quantity": 70,
+    "remaining_quantity": 0,
+    "price_per_unit": 0,
+    "timestamp": 1570620552975.75,
+    "fee": 0.02,
+    "fee_amount": 4.8e-7,
+    "filled_quantity": 70,
+    "bo_stage": "stage_entry",
+    "cancelled_quantity": 0,
+    "stop_price": 0
+  }]
 }]
 ```
 <!-- ------------------- END Sockets ---------------------- -->
