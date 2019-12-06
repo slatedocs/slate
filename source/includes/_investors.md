@@ -38,7 +38,7 @@ If these checks are successful, the ISA is opened immediately and isavailable to
 
 ### Registration
 
-To register an investor, `POST /investors` is called.
+To register an investor, `POST /investors` is called. Note that if the investor is being migrated to the Goji system from an existing record, the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) should be used instead.
 
 The investor must have previously agreed to the terms and conditions which can be accessed by calling `GET /platformApi/terms`.
 
@@ -187,7 +187,7 @@ To include the application in your existing page as a JavaScript component, you 
 
 ## Migrating Investors
 
-If you are migrating your existing investors over to Goji, then you need to [onboard the investors in the usual way](#investors-post-platformapi-investors) but also specify `migrationDetails` data.
+If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) and include `migrationDetails` data.
 
 The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. 
 
@@ -263,6 +263,7 @@ Loads the current ISA declaration.
 | ----------- | ------ | ----------------------------------- |
 | declaration | string | The ISA declaration in HTML format. |
 | version     | string | The version of the ISA declaration. |
+
 ## `POST /platformApi/investors`
 
 ```http
@@ -299,9 +300,6 @@ Authorization: Basic ...
     "nationality" : "CH"
   } ],
   "dateOfBirth" : "2000-01-23",
-  "migrationDetails" : {
-    "existingClientId" : "existingClientId"
-  },
   "title" : "MISS",
   "investorDeclarationType" : "RESTRICTED",
   "contactDetails" : {
@@ -355,7 +353,12 @@ Content-Type: application/json
 }
 ```
 ### Description
-Creates an investor and triggers a KYC check.
+Creates a new investor and triggers a KYC check.
+
+<aside class="warning">
+When migrating existing investors over to the Goji platform, the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) should be used instead.
+</aside>
+
 ### Request
 | Name                                | Type   | Description                                                                                                                                                                                                           | Required |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -388,10 +391,6 @@ Creates an investor and triggers a KYC check.
 | corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
-| migrationDetails                    | ref    | Optional. Only required if migrating an investor.                                                                                                                                                                     | optional |
-| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated which can be useful for referencing any investor should issues occur or indeed must reference any ISA Administration investor's existing ID when applicable  ||
-| migrationDetails.diligenceMigrationOption| string | The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br>`FULL_CHECK`<br>`HISTORICAL_RELIANCE_WITH_MONITORING`<br>`EVENT_BASED_FULL_CHECK`<br>`EVENT_BASED_WITH_MONITORING`<br>`FULL_RELIANCE` ||
-| migrationDetails.previousCheckDate| string | The optional date when the previous diligence checks were performed against the investor if Goji is placing reliance on the historical checks                                                                          ||
 ### Response
 | Name                                | Type   | Description                                                                                                                                                                                                           |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -422,6 +421,167 @@ Creates an investor and triggers a KYC check.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
+
+## `POST /platformApi/migrate`
+
+```http
+
+POST /platformApi/investors HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "lastName" : "lastName",
+  "corporateDetails" : {
+    "companyType" : "companyType",
+    "registrationNumber" : "registrationNumber",
+    "companyName" : "companyName"
+  },
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "entityType" : "INDIVIDUAL",
+  "employmentDetails" : {
+    "jobTitle" : "jobTitle",
+    "employmentStatus" : "EMPLOYED_FULL_TIME"
+  },
+  "nationalities" : [ {
+    "nationality" : "GB"
+  }, {
+    "nationality" : "CH"
+  } ],
+  "dateOfBirth" : "2000-01-23",
+  "migrationDetails" : {
+    "existingClientId" : "existingClientId",
+    "diligenceMigrationOption": "FULL_CHECK",
+    "previousCheckDate": "2000-01-23"
+  },
+  "title" : "MISS",
+  "investorDeclarationType" : "RESTRICTED",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  },
+  "firstName" : "firstName",
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "accountTypes" : [ { }, { } ]
+}
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "lastName" : "lastName",
+  "corporateDetails" : {
+    "companyType" : "companyType",
+    "registrationNumber" : "registrationNumber",
+    "companyName" : "companyName"
+  },
+  "clientId" : "clientId",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "entityType" : "INDIVIDUAL",
+  "employmentDetails" : {
+    "jobTitle" : "jobTitle",
+    "employmentStatus" : "EMPLOYED_FULL_TIME"
+  },
+  "dateOfBirth" : "2000-01-23",
+  "title" : "MISS",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  },
+  "firstName" : "firstName",
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "accountTypes" : "GOJI_INVESTMENT",
+  "investmentDeclarationType" : "RESTRICTED"
+}
+```
+### Description
+Migrates an existing investor onto the Goji system.
+### Request
+| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       | optional |
+| nationalities                       | array  | The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality.                                                             | optional |
+| nationalities[].nationality         | string | The ISO country code. e.g GB.                                                                                                                                                                                         | optional |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
+| address                             | ref    |                                                                                                                                                                                                                       | required |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            ||
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         ||
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  ||
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         ||
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    ||
+| contactDetails                      | ref    |                                                                                                                                                                                                                       | required |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 ||
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    ||
+| nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                                       | optional |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       | optional |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        ||
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> ||
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             | required |
+| investorDeclarationType             | string | All investors must complete a declaration to confirm the kind of investor they are. Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                     | required |
+| accountTypes                        | array  | defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType                                          | optional |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               | optional |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
+| migrationDetails                    | ref    |                                                                                                                                                                                                                       | required |
+| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated which can be useful for referencing any investor should issues occur or indeed must reference any ISA Administration investor's existing ID when applicable    | required |
+| migrationDetails.diligenceMigrationOption| string | The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br>`FULL_CHECK`: Goji will perform a full diligence check<br>`HISTORICAL_RELIANCE_WITH_MONITORING`: Goji will place reliance on previous checks (only when agreed beforehand) and perform ongoing monitoring<br>`EVENT_BASED_FULL_CHECK`: Goji will only perform a full diligence check at the point the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br>`EVENT_BASED_WITH_MONITORING`: Goji will place reliance on previous checks (only when agreed beforehand) but will only commence ongoing monitoring when  the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br>`FULL_RELIANCE`: As agreed beforehand where Goji performs no upfront diligence checks and the platform takes on responsibility here| required |
+| migrationDetails.previousCheckDate| string | The optional date when the previous diligence checks were performed against the investor if Goji is placing reliance on the historical checks                                                                          | optional |
+### Response
+| Name                                | Type   | Description                                                                                                                                                                                                           |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                                      |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    |
+| address                             | ref    |                                                                                                                                                                                                                       |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              |
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
+| contactDetails                      | ref    |                                                                                                                                                                                                                       |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
+| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                                        |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
+| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
+| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
+
 ## `GET /platformApi/investors/{clientId}`
 
 ```http
