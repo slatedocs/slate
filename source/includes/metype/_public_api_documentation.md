@@ -1070,9 +1070,11 @@ curl --request GET \
 
 This endpoint can be used to fetch all contributions for a given user. The parameters that can be passed in are as follows:
 
-| key | type | use|
-|--|--|--|
-|page|integer|Page of Contributions to return (50 per page)|
+| key | type | use| default |
+|--|--|--|--|
+|page|integer|Page of Contributions to return (50 per page)| 1 |
+|per_page|integer|Number of contributions per page| 50 |
+|order|string|`desc` or `asc` | desc - for latest contributions first and vice versa | 'desc' |
 
 Please see the 'request' and 'response' tabs on the right for a sample request
 
