@@ -2,6 +2,8 @@
 
 Deploy and manage your instances.
 
+For information regarding bare metal instances, please see [bare metal instances](#cloudstack-bare-metal-instances).
+
 <!-------------------- LIST INSTANCES -------------------->
 
 #### List instances
@@ -200,7 +202,9 @@ curl -X POST \
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Create an instance in an [environment](#administration-environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
+Create an instance in an [environment](#administration-environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls. 
+
+In order to create [bare metal instances](#cloudstack-bare-metal-instances), please see the [acquire](#cloudstack-acquire-a-bare-metal-instance) operation.
 
 Required | &nbsp;
 ------ | -----------
@@ -289,6 +293,8 @@ curl -X DELETE \
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Destroys an existing instance. The instance needs to be in the *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as [public IPs](#cloudstack-public-ips), [volumes](#cloudstack-volumes) and [snapshots](#cloudstack-snapshots). If the purgeImmediately flag is not true, then it will not completely remove the instance from the [environment](#administration-environments). (i.e. the instance could still be recovered).
+
+In order to destory [bare metal instances](#cloudstack-bare-metal-instances), please see the [release](#cloudstack-release-a-bare-metal-instance) operation.
 
 Optional | &nbsp;
 ------ | -----------
