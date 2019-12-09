@@ -18,6 +18,7 @@ includes:
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
+  - cloudstack/bare_metal_instances
   - cloudstack/templates
   - cloudstack/isos
   - cloudstack/ssh_keys
