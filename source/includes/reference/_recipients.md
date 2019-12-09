@@ -1028,7 +1028,7 @@ Validate New Zealand bank account number
 
 Validate United Arab Emirates BIC code
 
-[https://api.transferwise.com/v1/validators/emirates-bic?bic=AZIZAEAD&iban=AE070331234567890123456](https://api.transferwise.com/v1/validators/emirates-bic?bic=AZIZAEAD&iban=AE070331234567890123456)
+[https://api.transferwise.com/v1/validators/emirates-bic?bic=BOMLAEAD&iban=AE070331234567890123456](https://api.transferwise.com/v1/validators/emirates-bic?bic=BOMLAEAD&iban=AE070331234567890123456)
 
 **CNY**
 
@@ -1040,7 +1040,7 @@ Validate Chinese Union Pay card number
 
 Validate Thailand bank account number
 
-[https://api.transferwise.com/v1/validators/thailand-account-number?accountNumber=9517384260](https://api.transferwise.com/v1/validators/thailand-account-number?accountNumber=9517384260)
+[https://api.transferwise.com/v1/validators/thailand-account-number?bankCode=002&accountNumber=9517384260](https://api.transferwise.com/v1/validators/thailand-account-number?bankCode=002&accountNumber=9517384260)
 
 
 
