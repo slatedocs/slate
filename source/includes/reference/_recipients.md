@@ -2280,6 +2280,78 @@ Recipient type = *'kenya_mobile'*
 Required details: accountNumber - mobile number
 
 
+## Create KRW Recipient
+
+> Example Request (KRW PayGate):
+
+```shell
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipients name>",
+          "currency": "KRW",
+          "type": "south_korean_paygate",
+          "details": {
+           "legalType": "PRIVATE",
+           "bankCode": "BUSAN_032",
+           "accountNumber": "1254693521232",
+           "dateOfBirth" : "yyyy-mm-dd",
+           "email": "<recipients email>"
+           }
+        }'
+```
+
+> Example Request (KRW PayGate to Business):
+
+```shell
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient business name>",
+          "currency": "KRW",
+          "type": "south_korean_paygate_business",
+          "details": {
+           "legalType": "BUSINESS",
+           "bankCode" : "BUSAN_032",
+           "accountNumber": "1254693521232"
+           }
+        }'
+```
+
+
+
+Send payments to South Korea. 
+
+Private and business recipients are supported. 
+
+<br/>
+
+Recipient type = *'south_korean_paygate'*
+
+Required details: bankCode, accountNumber, dateOfBirth, email
+
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+
+<br/>
+
+
+OR 
+
+<br/>
+
+
+Recipient type = *'south_korean_paygate_business'*
+
+Required details: bankCode, accountNumber
+
+
+
 
 ## Create LKR Recipient
 
