@@ -43,15 +43,15 @@ Acquire a bare metal instance in an [environment](#administration-environments).
 Required | &nbsp;
 ------ | -----------
 `name`<br/>*string* | Name of the newly created instance
-`templateId`<br/>*UUID* | The [template](#cloudstack-templates) to use for this instance.
 `computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) will determine the hardware specifications of your instance.
 `networkId`<br/>*UUID* | The [network](#cloudstack-networks) in which the instance will be created. If you don't have a network, it can be created through the [create network](#cloudstack-create-network) api.
 `sshKeyName`<br/>*string* | The name of the [SSH key](#cloudstack-ssh-keys) to use for this instance. If you don't have an SSH key registered, you can do so through this [api](#cloudstack-create-ssh-key).
+`templateId`<br/>*UUID* | The [template](#cloudstack-templates) to use for this instance.
 
 Optional | &nbsp;
 ------ | -----------
-`portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#cloudstack-public-ips), if it can't find one it will [acquire a new public IP](#cloudstack-acquire-a-public-ip).
 `ipAddress`<br/>*string* | Private IPv4 address of this instance, must be within network's CIDR and not collide with other instances on the network.
+`portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#cloudstack-public-ips), if it can't find one it will [acquire a new public IP](#cloudstack-acquire-a-public-ip).
 `userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance.
 
 #### Release a bare metal instance

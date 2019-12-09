@@ -93,11 +93,11 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the compute offering
 `name`<br/>*string* | The name of the compute offering
-`memoryInMB`<br/>*int* | The amount of provisioned memory in MB
-`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#cloudstack-instances)
-`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#cloudstack-create-an-instance)
+`availabilityCount`<br/>*integer* | The number of compute offerings available to acquire. Only present for bare metal compute offerings.
 `availableCpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#cloudstack-create-an-instance). Only present for custom offerings
 `availableMemoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#cloudstack-create-an-instance). Only present for custom offerings
+`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#cloudstack-instances)
+`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#cloudstack-create-an-instance)
 `maxMemoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#cloudstack-instances) created with this offering. Only present for custom offerings.
+`memoryInMB`<br/>*int* | The amount of provisioned memory in MB
 `type`<br/>*enum* | The type of compute offering. Only present for bare metal compute offerings. Value is BareMetal.
-`availabilityCount`<br/>*integer* | The number of compute offerings available to acquire. Only present for bare metal compute offerings.
