@@ -67,33 +67,33 @@ You can get your API key and Secret as follows
   - `rejected`: order is rejected (not placed on the exchange)
   - `close`: order is completely filled
   - `triggered`: stop varinat order triggered at specified stop price
-  
+
 
 * `order_type`: used to denote the type of order to be placed. Valid values for order_type includes:
   - `market_order`: in this order type we don't secify price; it is executed on the market price
   - `limit_order`: in this order type we specify the price on which order is to be executed
   - `stop_limit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
   - `take_profit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
-  
-* 
-Other Terms:  
-  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.  
-  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price. 
+
+*
+Other Terms:
+  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.
+  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price.
   - `stop_price`: It is used in the Stop Variant order, to specify stop price
 
-### Margin Internal Orders  
+### Margin Internal Orders
 
-* `status` for internal orders: used to denote the type of internal orders. Valid values for order_type includes:  
-  - `initial`: order is just created  
-  - `open`: order is successfully placed in the orderbook  
-  - `partially_filled`: order is partially filled   
-  - `filled`: order is completely filled 
-  - `cancelled`: order is completely cancelled  
-  - `rejected`: order is rejected (not placed on the exchange)  
-  - `partially_cancelled`: order is partially cancelled   
-  - `untriggered`: stop varinat order was not triggered  
-  
- 
+* `status` for internal orders: used to denote the type of internal orders. Valid values for order_type includes:
+  - `initial`: order is just created
+  - `open`: order is successfully placed in the orderbook
+  - `partially_filled`: order is partially filled
+  - `filled`: order is completely filled
+  - `cancelled`: order is completely cancelled
+  - `rejected`: order is rejected (not placed on the exchange)
+  - `partially_cancelled`: order is partially cancelled
+  - `untriggered`: stop varinat order was not triggered
+
+
 
 
 # Public endpoints
@@ -1610,7 +1610,7 @@ Use this endpoint to fetch trades associated with your account
 | Name    | Required | Example | Description                                                                           |
 |---------|----------|---------|---------------------------------------------------------------------------------------|
 | limit   | No       | 100     | Default 500                                                                           |
-| from_id | No       | 28473   | Trade ID after which you want the data. If not supplied, latest trades would be given |
+| from_id | No       | 28473   | Trade ID after which you want the data. If not supplied, trades in ascending order will be returned |
 | timestamp| Yes | 1524211224 | When was the request generated |
 
 
@@ -2097,13 +2097,13 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "side": "buy",	
-  "order_type": "limit_order", 
-  "market": "XRPBTC", 
-  "price": 0.000025, 
-  "quantity": 90, 
-  "ecode": 'B', 
-  "leverage": 1.0, 
+  "side": "buy",
+  "order_type": "limit_order",
+  "market": "XRPBTC",
+  "price": 0.000025,
+  "quantity": 90,
+  "ecode": 'B',
+  "leverage": 1.0,
   "timestamp": timeStamp
 }
 
@@ -2142,13 +2142,13 @@ secret = "";
 
 
 body = {
-  "side": "buy",	
-  "order_type": "limit_order", 
-  "market": "XRPBTC", 
-  "price": 0.000025, 
-  "quantity": 90, 
-  "ecode": 'B', 
-  "leverage": 1, 
+  "side": "buy",
+  "order_type": "limit_order",
+  "market": "XRPBTC",
+  "price": 0.000025,
+  "quantity": 90,
+  "ecode": 'B',
+  "leverage": 1,
   "timestamp": timeStamp
 }
 
@@ -2174,7 +2174,7 @@ request.post(options, function(error, response, body) {
 > Response:
 
 ```json
-[{ 
+[{
   "id": "30b5002f-d9c1-413d-8a8d-0fd32b054c9c",
   "side": "sell",
   "status": "init",
@@ -2203,7 +2203,7 @@ request.post(options, function(error, response, body) {
   "result": null,
   "created_at": 1568122929782,
   "updated_at": 1568122929782,
-  "orders":[{ 
+  "orders":[{
     "id": 164993,
     "order_type": "limit_order",
     "status": "initial",
@@ -2219,8 +2219,8 @@ request.post(options, function(error, response, body) {
     "filled_quantity": 0,
     "bo_stage": "stage_entry",
     "cancelled_quantity": 0,
-    "stop_price": 0 
-  }] 
+    "stop_price": 0
+  }]
 }]
 ```
 
@@ -2271,7 +2271,7 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", 
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",
   "timestamp": timeStamp
 }
 
@@ -2312,7 +2312,7 @@ secret = "";
 
 
 body = {
-  "id": "qwd19992-43fd-14e8-b027-bb815bnb14ed", 
+  "id": "qwd19992-43fd-14e8-b027-bb815bnb14ed",
   "timestamp": timeStamp
 }
 
@@ -2384,7 +2384,7 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",  
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",
   "timestamp": timeStamp
 }
 
@@ -2425,7 +2425,7 @@ secret = "";
 
 
 body = {
-  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", 
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",
   "timestamp": timeStamp
 }
 
@@ -2452,8 +2452,8 @@ request.post(options, function(error, response, body) {
 
 ```json
 {
-  "message": "Order exit accepted", 
-  "status": 200, 
+  "message": "Order exit accepted",
+  "status": 200,
   "code": 200
 }
 
@@ -2609,9 +2609,9 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "id": "", 
-  "target_price": 0.00026, 
-  "itpo_id": "", 
+  "id": "",
+  "target_price": 0.00026,
+  "itpo_id": "",
   "timestamp": timeStamp
 }
 
@@ -2652,9 +2652,9 @@ secret = "";
 
 
 body = {
-  "id": "", 
-  "target_price": 0.00026, 
-  "itpo_id": "", 
+  "id": "",
+  "target_price": 0.00026,
+  "itpo_id": "",
   "timestamp": timeStamp
 }
 
@@ -2725,8 +2725,8 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "id" : "", 
-  "sl_price": 0.06, 
+  "id" : "",
+  "sl_price": 0.06,
   "timestamp": timeStamp
 }
 
@@ -2763,8 +2763,8 @@ secret = "";
 
 
 body = {
-  "id" : "", 
-  "sl_price": 0.06, 
+  "id" : "",
+  "sl_price": 0.06,
   "timestamp": timeStamp
 }
 
@@ -2833,8 +2833,8 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "id" : "", 
-  "sl_price": 0.06, 
+  "id" : "",
+  "sl_price": 0.06,
   "timestamp": timeStamp
 }
 
@@ -2871,8 +2871,8 @@ secret = "";
 
 
 body = {
-  "id" : "", 
-  "sl_price": 0.06, 
+  "id" : "",
+  "sl_price": 0.06,
   "timestamp": timeStamp
 }
 
@@ -2939,8 +2939,8 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "id" : "", 
-  "amount": 0.06, 
+  "id" : "",
+  "amount": 0.06,
   "timestamp": timeStamp
 }
 
@@ -2977,8 +2977,8 @@ secret = "";
 
 
 body = {
-  "id" : "", 
-  "amount": 0.06, 
+  "id" : "",
+  "amount": 0.06,
   "timestamp": timeStamp
 }
 
@@ -3044,7 +3044,7 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "id" : "", 
+  "id" : "",
   "amount": 0.06, initial margin.
   "timestamp": timeStamp
 }
@@ -3082,8 +3082,8 @@ secret = "";
 
 
 body = {
-  "id" : "", 
-  "amount": 0.06, 
+  "id" : "",
+  "amount": 0.06,
   "timestamp": timeStamp
 }
 
@@ -3152,8 +3152,8 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "details": true,  
-  "market": "LTCBTC", 
+  "details": true,
+  "market": "LTCBTC",
   "timestamp": timeStamp
 }
 
@@ -3194,8 +3194,8 @@ secret = "";
 
 
 body = {
-  "details": true,  
-  "market": "LTCBTC", 
+  "details": true,
+  "market": "LTCBTC",
   "timestamp": timeStamp
 }
 
@@ -3357,8 +3357,8 @@ secret = "";
 
 
 body = {
-  "details": true,  
-  "market": "LTCBTC", 
+  "details": true,
+  "market": "LTCBTC",
   "page": 2,
   "size": 5,
   "timestamp": timeStamp
