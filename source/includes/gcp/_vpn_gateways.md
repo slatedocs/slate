@@ -4,7 +4,7 @@ With Classic VPN, your on-premises hosts communicate through one or more IPsec V
 
 <!-------------------- LIST VPN GATEWAYS -------------------->
 
-#### List VPN gteways
+#### List VPN gateways
 
 ```shell
 curl -X GET \
@@ -79,8 +79,8 @@ Attributes | &nbsp;
 `description`<br/>*string* | An optional description
 `externalIp`<br/>*string* | The external IP attached to this VPN gateway.
 `forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway
-`id`<br/>*UUID* | Unique identifier for this ressource.
-`name`<br/>*string* | The display name of the address.
+`id`<br/>*UUID* | Unique identifier for this resource.
+`name`<br/>*string* | The display name of the VPN gateway.
 `network`<br/>*string* | URL of the network to which this VPN gateway is attached.
 `region`<br/>*string* | The URL of the region where the VPN gateway is.
 `status`<br/>*string* | The status of the VPN gateway. One of the following: READY, CREATING, FAILED and DELETING.
@@ -157,8 +157,8 @@ Attributes | &nbsp;
 `description`<br/>*string* | An optional description
 `externalIp`<br/>*string* | The external IP attached to this VPN gateway.
 `forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway
-`id`<br/>*UUID* | Unique identifier for this ressource.
-`name`<br/>*string* | The display name of the address.
+`id`<br/>*UUID* | Unique identifier for this resource.
+`name`<br/>*string* | The display name of the VPN gateway.
 `network`<br/>*string* | URL of the network to which this VPN gateway is attached.
 `region`<br/>*string* | The URL of the region where the VPN gateway is.
 `status`<br/>*string* | The status of the VPN gateway. One of the following: READY, CREATING, FAILED and DELETING.
