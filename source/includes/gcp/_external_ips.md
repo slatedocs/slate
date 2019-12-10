@@ -1,4 +1,5 @@
 ### External IPs
+
 External IP address to an instance or a forwarding rule if you need to communicate with the Internet, with resources in another network, or need to communicate with a resource outside of Compute Engine.
 
 <!-------------------- LIST EXTERNAL IPs -------------------->
@@ -12,6 +13,7 @@ curl -X GET \
 
 # The above command returns JSON structured like this:
 ```
+
 ```json
 {
   "data": [
@@ -51,6 +53,7 @@ curl -X GET \
   }
 }
 ```
+
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips</code>
 
 Retrieve a list of all external IPs in a given [environment](#administration-environments)
@@ -74,10 +77,9 @@ Attributes | &nbsp;
 `shortRegion`<br/>*string* | A short version of the region name
 `type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released automatically when an instance is deleted.
 
-
 <!-------------------- RETRIEVE AN EXTERNAL IP -------------------->
 
-#### Retrieve a static IP address
+#### Retrieve a regional static IP address
 
 ```shell
 curl -X GET \
@@ -86,6 +88,7 @@ curl -X GET \
 
 # The above command returns JSON structured like this:
 ```
+
 ```json
 {
   "data": {
@@ -113,6 +116,7 @@ curl -X GET \
 }
 
 ```
+
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips/:id</code>
 
 Retrieve an external IP in a given [environment](#administration-environments). Only for static IPs.
@@ -138,7 +142,7 @@ Attributes | &nbsp;
 
 <!-------------------- RESERVE AN EXTERNAL IP -------------------->
 
-#### Reserve an external IP
+#### Reserve a regional external IP
 
 ```shell
 curl -X POST \
@@ -171,8 +175,8 @@ Optional | &nbsp;
 ------- | -----------
 `instanceId`<br/>*string* | The instance id to attach the new external ip address to
 
-
 <!-------------------- RELEASE AN EXTERNAL IP -------------------->
+
 #### Release a static IP address
 
 ```shell
