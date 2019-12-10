@@ -24615,7 +24615,7 @@ paths:
     post:
       summary: Add followers to a task
       description: >-
-        Adds a tag to a task. Returns an empty data block.
+        Adds followers to a task. Returns an empty data block.
 
         Each task can be associated with zero or more followers in the system.
 
@@ -24625,7 +24625,7 @@ paths:
         - Tasks
       operationId: addFollowerToTask
       requestBody:
-        description: The tag to add to the task.
+        description: The followers to add to the task.
         required: true
         content:
           application/json:
@@ -24636,7 +24636,7 @@ paths:
                   type: object
                   properties:
                     followers:
-                      description: The tag to add to the task.
+                      description: The followers to add to the task.
                       type: array
                       items:
                         type: string
@@ -24648,7 +24648,7 @@ paths:
       responses:
         200:
           description: >-
-            Successfully added the specified tag to the task.
+            Successfully added the specified followers to the task.
           content:
             application/json:
               schema:
@@ -24677,7 +24677,7 @@ paths:
         - Tasks
       operationId: removeFollowerToTask
       requestBody:
-        description: The tag to remove to the task.
+        description: The followers to remove from the task.
         required: true
         content:
           application/json:
@@ -24688,7 +24688,7 @@ paths:
                   type: object
                   properties:
                     followers:
-                      description: The tag to add to the task.
+                      description: The followers to remove from the task.
                       type: array
                       items:
                         type: string
@@ -24700,7 +24700,7 @@ paths:
       responses:
         200:
           description: >-
-            Successfully removed the specified tag to the task.
+            Successfully removed the specified followers from the task.
           content:
             application/json:
               schema:

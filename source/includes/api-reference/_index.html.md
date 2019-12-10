@@ -10880,7 +10880,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addFollowers</code>
 </p>
 
-Adds a tag to a task. Returns an empty data block.
+Adds followers to a task. Returns an empty data block.
 Each task can be associated with zero or more followers in the system.
 Requests to add/remove followers, if successful, will return the complete updated task record, described above.
 
@@ -10888,9 +10888,9 @@ Requests to add/remove followers, if successful, will return the complete update
 
 |Name|Description|
 |---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to add to the task.|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The followers to add to the task.|
 |» data<span class="param-type"> object</span>|none|
-|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The tag to add to the task.|
+|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The followers to add to the task.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10899,7 +10899,7 @@ Requests to add/remove followers, if successful, will return the complete update
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified tag to the task.|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified followers to the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
@@ -10956,9 +10956,9 @@ Removes each of the specified followers from the task if they are following. Ret
 
 |Name|Description|
 |---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to remove to the task.|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The followers to remove from the task.|
 |» data<span class="param-type"> object</span>|none|
-|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The tag to add to the task.|
+|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The followers to remove from the task.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10967,7 +10967,7 @@ Removes each of the specified followers from the task if they are following. Ret
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified tag to the task.|
+|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified followers from the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
