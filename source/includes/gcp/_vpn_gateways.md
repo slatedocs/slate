@@ -202,7 +202,7 @@ Create a new Classic VPN gateway in a given [environment](#administration-enviro
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the external ip
+`name`<br/>*string* | The display name of the VPN gateway
 `shortRegion`<br/>*string* | A short version of the region name
 
 Optional | &nbsp;
@@ -223,7 +223,7 @@ curl -X DELETE \
 
 ```json
 {
-    "externalIpToRelease: ["32.45.23.54"]
+    "externalIpToRelease": ["32.45.23.54"]
 }
 ```
 
