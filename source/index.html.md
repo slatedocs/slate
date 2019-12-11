@@ -2061,6 +2061,378 @@ Use this endpoint to cancel an active orders
 
 
 
+# Lend Order
+
+## Fetch Orders
+<aside class="notice">This API supports <strong>Pagination</strong> Refer <strong><a href="#pagination">Pagination section</a></strong> for more details</aside>
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/funding/fetch_orders"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/funding/fetch_orders",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+```
+
+> Response:
+
+```json
+
+[ { "id": "caa1e032-5763-42a5-9684-587bc1a846d8",
+    "currency_short_name": "BTC",
+    "amount": 0.01,
+    "interest": 0.1,
+    "interest_type": "simple",
+    "duration": 8,
+    "side": "lend",
+    "expiry": 1564666811940,
+    "status": "close",
+    "created_at": 1563975611942,
+    "settled_at": 1565615166177 },
+  { "id": "1212ad3d-8a5b-4965-9d21-151efc0c84d7",
+    "currency_short_name": "BTC",
+    "amount": 0.01,
+    "interest": 0.1,
+    "interest_type": "simple",
+    "duration": 8,
+    "side": "lend",
+    "expiry": 1564666764834,
+    "status": "close",
+    "created_at": 1563975564836,
+    "settled_at": 1563975597184 } ]
+```
+
+Use this endpoint to fetch orders and its details
+
+### HTTP Request
+
+`POST /exchange/v1/funding/fetch_orders`
+
+### Parameters
+
+| Name  | Type      | Required | Example            | Description                    |
+|------|-----|----------|--------------------|--------------------------------|
+| timestamp      | number | Yes      | 1524211224    | When was the request generated |
+
+
+
+
+
+## Lend
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "currency_short_name": "BTC",
+  "duration": 20,
+  "amount": 0.5,
+  "timestamp": timeStamp
+}
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/funding/lend"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "currency_short_name": "BTC",
+  "duration": 20,
+  "amount": 0.5,
+  "timestamp": timeStamp
+},
+
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/funding/lend",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+
+```
+
+> Response:
+
+```json
+
+[ { "id": "df7d9640-29e8-4731-9fc6-ec2f738507e2",
+    "currency_short_name": "XRP",
+    "amount": 11,
+    "interest": 0.05,
+    "interest_type": "simple",
+    "duration": 20,
+    "side": "lend",
+    "expiry": 1576069883995,
+    "status": "open",
+    "created_at": 1574341883998,
+    "settled_at": null } ]
+
+```
+
+Use this endpoint to lend specified currency on the exchange.
+
+### HTTP Request
+
+`POST /exchange/v1/funding/lend`
+
+### Parameters
+
+| Name           | Type | Required | Example      | Description                                    |
+|----------------|------|----------|--------------|------------------------------------------------|
+| currency_short_name         | string | Yes      | XRP      | The lending currency                         |
+| amount       | number | Yes      | 11       | Quantity to lend                            |
+| duration     | number |Yes      | 20           | The Time period for which you want to lend the currency in days|
+| timestamp      | number | Yes      | 1524211224   | When was the request generated                 |
+
+
+
+## Settle
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",  
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/funding/settle"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", 
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/funding/settle",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+
+```
+
+> Response:
+
+```json
+
+[ { "id": "df7d9640-29e8-4731-9fc6-ec2f738507e2",
+    "currency_short_name": "XRP",
+    "amount": 11,
+    "interest": 0.05,
+    "interest_type": "simple",
+    "duration": 20,
+    "side": "lend",
+    "expiry": 1576069883995,
+    "status": "exit",
+    "created_at": 1574341883998,
+    "settled_at": 1574342058493 } ]
+
+
+```
+
+
+Use this endpoint to settle lend order.
+
+### HTTP Request
+
+`POST /exchange/v1/funding/settle`
+
+### Parameters
+
+| Name  | Type      | Required | Example                              | Description                    |
+|------|-----|----------|--------------------------------------|--------------------------------|
+| id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
+| timestamp | number | Yes      | 1524211224                           | When was the request generated |
+
 # Margin Order
 <aside class="notice">
 Set ecode parameter to <code>B</code> for all the api calls wherever necessary
