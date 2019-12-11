@@ -797,9 +797,9 @@ Submit a request for withdrawal.
 
 | Parameter         | Type                                | Description
 | ---------         | ----------------------------------- | ------------
-| **token**   | STRING                         | Token to withdraw. E.g. BTC, ETH
+| **token**   | STRING                         | Token to withdraw. E.g. BTC, ETH.
 | **amount**   | DECIMAL                         | Quantity of token to withdraw.
-| **platform**   | STRING                         | Platform to withdraw from. Possible values: api, browser or margin.
+| **platform**   | STRING                         | Platform to withdraw from. Possible values: api, browser.
 
 
 # JSON Structures
