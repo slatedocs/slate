@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 search: true
 ---
 
-# Introduction
+# Introductions
 Welcome to the FalconX API documentation. The APIs provide developers programmatic access to FalconX services. In case of any questions please contact `support@falconx.io`
 
 # Request For Quote (RFQ)
