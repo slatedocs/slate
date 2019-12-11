@@ -766,17 +766,12 @@ Submit a request for withdrawal.
 
 > Request Sample
 
-```shell
-# substitute placeholders with correct authorization header values
-curl -X POST "https://api.falconx.io/v1/withdraw" \
-      --data-urlencode "token=BTC" \
-      --data-urlencode "amount=1" \
-      --data-urlencode "platform=browser" \
-      -H "FX-ACCESS-SIGN: <signature>" \
-      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
-      -H "FX-ACCESS-KEY: <api_key>" \
-      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
-      -H "Content-Type: application/json"
+```json
+{
+  "token": "BTC", 
+  "amount": "1", 
+  "platform": "browser"
+}
 ```
 
 > Response Sample
