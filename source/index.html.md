@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 search: true
 ---
 
-# Introductions
+# Introduction
 Welcome to the FalconX API documentation. The APIs provide developers programmatic access to FalconX services. In case of any questions please contact `support@falconx.io`
 
 # Request For Quote (RFQ)
@@ -753,6 +753,58 @@ curl -X GET "https://api.falconx.io/v1/get_trade_limits/browser" \
 | ---------     | ------------------------------    | ------------|
 | **gross_limits**        | JSON                            | Gross Limits, if set, for the platform (see [Trade Limits](#trade-limits))|
 | **net_limits**        | JSON                            | Net Limits, if set, for the platform (see [Trade Limits](#trade-limits))|
+
+
+# Request Withdrawal
+
+Submit a request for withdrawal.
+
+## HTTP Request
+`POST https://api.falconx.io/v1/withdraw`
+
+## Query Parameters
+
+> Request Sample
+
+```shell
+# substitute placeholders with correct authorization header values
+curl -X POST "https://api.falconx.io/v1/withdraw" \
+      --data-urlencode "token=BTC" \
+      --data-urlencode "amount=1" \
+      --data-urlencode "platform=browser" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
+```
+
+> Response Sample
+
+```json
+# success response
+{
+    "message": "Withdrawal request submitted successfully",
+    "status": "success"
+}
+
+
+# failure response when requested withdrawal amount is more than the current balance
+{
+    "error": {
+        "code": "INSUFFICIENT_BALANCE_TO_WITHDRAW",
+        "reason": "Withdrawal balance should be less that or equal to the balance in account."
+    },
+    "status": "failure"
+}
+```
+
+
+| Parameter         | Type                                | Description
+| ---------         | ----------------------------------- | ------------
+| **token**   | STRING                         | Token to withdraw. E.g. BTC, ETH
+| **amount**   | DECIMAL                         | Quantity of token to withdraw.
+| **platform**   | STRING                         | Platform to withdraw from. Possible values: api, browser or margin.
 
 
 # JSON Structures
