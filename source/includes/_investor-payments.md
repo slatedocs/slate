@@ -567,3 +567,63 @@ Please note this is a test endpoint and is only available in the sandbox environ
 | paymentReference | string | The reference. Set to ISA if the funds should be credited to the ISA account. | required |
 | paymentType      | string | Should be set to DEPOSIT                                                      | required |
 | clientId         | string | The client ID                                                                 | required |
+
+## `POST /platformApi/investors/{clientId}/fee`
+
+```http
+
+POST /platformApi/investors/{clientId}/fee HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "accountType": "accountType",
+  "amount": {
+    "amount": 2.68,
+    "currency": "currency"
+  },
+  "bankAccountId": "bankAccountId",
+  "reference": "reference"
+}
+
+```
+
+```http 
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+   "accountType": "accountType",
+   "amount": {
+     "amount": 2.68,
+     "currency": "currency"
+   },
+   "bankAccountId": "bankAccountId",
+   "reference": "reference",
+   "status": "status"
+ }
+ 
+```
+### Description
+Extract a fee from a specified investor's account cash balance
+
+### Request
+| Name             | Type   | Description                                                                   | Required |
+| ---------------- | ------ | ----------------------------------------------------------------------------- | -------- |
+| accountType      | string | The client's account to charge. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br> | required |
+| amount           | ref    | The amount to deposit.                                                        | required |
+| amount.amount    | number | The amount.                                                                   ||
+| amount.currency  | string | The ISO 4217 three character codes eg 'GBP'                                   ||
+| bankAccountId    | string | The ID of the bank account details to send the fee to                         | required |
+| reference        | string | The payment reference to be used for the fee transaction                      | required |
+### Response
+| Name             | Type   | Description                                                                   |
+| ---------------- | ------ | ----------------------------------------------------------------------------- |
+| accountType      | string | The client's account being charged.                                           |
+| amount           | ref    | The amount to deposit.                                                        |
+| amount.amount    | number | The amount.                                                                   |
+| amount.currency  | string | The ISO 4217 three character codes eg 'GBP'                                   |
+| bankAccountId    | string | The ID of the bank account details the fees are being sent to                 |
+| reference        | string | The payment reference to be used for the fee transaction                      |
+| status           | string | The status of the fee transfer process. Possible values are: <br>`PENDING`<br>`CLEARED`<br>|
