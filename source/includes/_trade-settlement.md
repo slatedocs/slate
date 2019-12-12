@@ -15,9 +15,10 @@ To retrieve an existing trade, the [`GET /trades/{tradeId}`](#settlement-equity-
 
 | Key                       | JSON Type | Value Type | Value Description                                                          |
 |---------------------------|-----------|------------|----------------------------------------------------------------------------|
-| id                        | String    | UUID       | A UUID of the trade.                                                       |
+| id                        | String    | UUID       | The platform generated unique ID of the trade. Up to 100 characters.       |
 | quantity                  | Number    | Number     | The number of shares being bought/sold.                                    |
 | instrumentSymbol          | String    | ID/Symbol  | The platform generated unique ID/symbol of the instrument.                 |
+| sourceDateTime            | String    | ISO-8601   | The timestamp at which the trade was originally executed on the platform.  |
 | settlementStatus          | String    | Enum       | Response only.                                                             |
 | price                     | Object    | Object     | The price the instrument is being traded at.                               |
 | price.currency            | String    | ISO 4217   | The currency that `price.amount` is expressed in.                          |
@@ -81,7 +82,8 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
     "currency": "GBP"
   },
   "quantity": 1000,
-  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "sourceDateTime":"2019-12-09T10:21:19.453Z"
 }
 ```
 ### Description
@@ -158,7 +160,8 @@ Content-Type: application/json
     "currency": "GBP"
   },
   "quantity": 1000,
-  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "sourceDateTime":"2019-12-09T10:21:19.453Z"
 }
 ```
 
