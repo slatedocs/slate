@@ -264,6 +264,46 @@ Loads the current ISA declaration.
 | declaration | string | The ISA declaration in HTML format. |
 | version     | string | The version of the ISA declaration. |
 
+## `PUT /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement`
+
+```http
+
+GET /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+	"type": "SOPHISTICATED",
+	"dateTimeSigned": "2019-12-13T14:10:30.00Z",
+	"reason": "reason of the change"
+}
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+"SUCCESS"
+```
+### Description
+Loads the current ISA declaration.
+### Request
+| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| type                                | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              | required |
+| dateTimeSigned                      | string | The date the new declaration has been signed                                                                                                                                                                          | required |
+| reason                              | string | The reason of the change                                                                                                                                                                                              | required |
+
 ## `POST /platformApi/investors`
 
 ```http
