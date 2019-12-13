@@ -296,13 +296,13 @@ Content-Type: application/json
 "SUCCESS"
 ```
 ### Description
-Loads the current ISA declaration.
+Update investor investment declaration
 ### Request
-| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
-| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| type                                | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              | required |
-| dateTimeSigned                      | string | The date the new declaration has been signed                                                                                                                                                                          | required |
-| reason                              | string | The reason of the change                                                                                                                                                                                              | required |
+| Name                                | Type   | Value Type  | Description                                                                                                                                                                                                           | Required |
+| ----------------------------------- | ------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| type                                | string | Enum        | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              | required |
+| dateTimeSigned                      | string | ISO-8601    | The date the new declaration has been signed                                                                                                                                                                          | required |
+| reason                              | string | string      | The reason for the change. Up to 300 characters.                                                                                                                                                                      | required |
 
 ## `POST /platformApi/investors`
 
