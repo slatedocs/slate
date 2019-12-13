@@ -23,6 +23,19 @@ If you will be dealing with multiple profiles in your integration, check out [**
 
 ## Create
 
+Create a profile subscription.
+
+### URL validation
+
+**Our system will validate the requested delivery URL before creating a subscription.**
+ 
+A test notification will be sent to the URL and if a `2xx`-series HTTP response is not received then the creation 
+request will be rejected with error code `INVALID_CALLBACK_URL`.
+
+Your notification endpoint must be ready to respond to the test notification.
+Test notifications can be distinguished by the presence of an HTTP request header.
+See the section [Event HTTP requests](#webhook-events-event-http-requests) for more information on request headers.
+
 
 > Example Request:
 

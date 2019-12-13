@@ -192,9 +192,10 @@ redeliver the notification later.
 The API returns the delivery IDs of the notifications that have been successfully queued for sending, which can 
 be correlated with the delivery ID header values for notifications you later receive.
 
+<aside class="notice">
 Please note that this test notification API is only available for application-based subscriptions.
 Profile-based subscriptions do not currently support this testing feature. 
-
+</aside>
 
 > Example Request:
 
