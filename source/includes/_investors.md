@@ -302,7 +302,7 @@ Update investor investment declaration
 | ----------------------------------- | ------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | type                                | string | Enum        | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              | required |
 | dateTimeSigned                      | string | ISO-8601    | The date the new declaration has been signed                                                                                                                                                                          | required |
-| reason                              | string | string      | The reason for the change. Up to 300 characters.                                                                                                                                                                      | required |
+| reason                              | string | string      | The reason for the change. Up to 300 characters.                                                                                                                                                                       | required |
 
 ## `POST /platformApi/investors`
 
