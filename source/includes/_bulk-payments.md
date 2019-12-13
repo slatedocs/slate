@@ -1,9 +1,7 @@
-## <em>Bulk Payments 🚧</em>
+## <em>Bulk Payments</em>
 
 The Bulk Payments API allows an Investment Manager to specify a total amount of funds to distribute amongst their 
-individual investors. 
- 
-The API is currently under construction.
+individual investors.
 
 ## Batch Payments 
 
