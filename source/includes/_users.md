@@ -844,14 +844,14 @@ curl https://app.procurementexpress.com/api/v1/users/get_player'
   -X POST
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
-  -B "onesignal_player_id: player id"
+  -d "onesignal_player_id: player id"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 { 
-  "success": true 
+  "success": true
   "info": "Player ID updated"
 }
 ```
@@ -891,7 +891,7 @@ curl https://app.procurementexpress.com/api/v1/users/remove_player'
   -X PUT
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
-  -B "onesignal_player_id: player id"
+  -d "onesignal_player_id: player id"
 ```
 
 > The above command returns JSON structured like this:
