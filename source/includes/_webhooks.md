@@ -615,7 +615,7 @@ E.g. settles successfully
             "amount": 1000,
             "currency": "GBP"
           },
-          "status": "COMPLETE",
+          "status": "RECEIVED",
           "sourceOfFunds": null
         }
       ],
