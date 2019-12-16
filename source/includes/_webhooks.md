@@ -498,3 +498,134 @@ The following event `type`s will be supported, along with the content as `JSON`.
   "reference" : "string"
 }
 ```
+
+>TRADE_SETTLEMENT
+><br>This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
+E.g. settles successfully
+
+```json
+{
+  "id": "99a41761-6629-47a2-8087-23961b1b059b",
+  "dateTime": "2019-12-16T09:48:59",
+  "type": "TRADE_SETTLEMENT",
+  "content": {
+    "trade": {
+      "id": "14f8c00c-d667-46d6-a08f-cd978f84bb85",
+      "buy": {
+        "investor": {
+          "clientId": "clientId",
+          "accountType": "GIA"
+        },
+        "nominee": null,
+        "fees": [
+          {
+            "symbol": "STAMP_DUTY",
+            "cost": {
+              "currency": "GBP",
+              "amount": 500
+            }
+          }
+        ]
+      },
+      "sell": {
+        "investor": null,
+        "nominee": {
+          "accountType": "ORIGINATOR"
+        },
+        "fees": [
+          
+        ]
+      },
+      "price": {
+        "currency": "GBP",
+        "amount": 300
+      },
+      "quantity": 1000,
+      "instrumentSymbol": "046deba4-0141-428b-9729-1668026c8caf",
+      "settlementStatus": "SETTLED"
+    }
+  }
+}
+```
+
+>DIVIDEND_UPDATE
+><br>This event is fired two times in the lifecycle of a dividend post request. 
+(1) once funds have been received to distribute to investors 'DISTRIBUTING' 
+(2) once distribution of the dividend is 'COMPLETE'
+
+```json
+{
+  "id": "5cd2e950-bfc2-4fe9-a744-ae3483320ab7",
+  "dateTime": "2019-12-16T09:56:51",
+  "type": "DIVIDEND_UPDATE",
+  "content": {
+    "dividend": {
+      "id": "68ee8001-cf85-465b-955e-24a22f89fd04",
+      "instrumentSymbol": "instrument1",
+      "status": "COMPLETE",
+      "totalPayout": {
+        "currency": "GBP",
+        "amount": 100
+      },
+      "payments": [
+        {
+          "clientId": "clientId",
+          "accountType": "GIA",
+          "payment": {
+            "currency": "GBP",
+            "amount": 100
+          },
+          "status": "DISTRIBUTED"
+        }
+      ],
+      "payTo": {
+        "accountName": "name",
+        "accountNumber": "12345678",
+        "sortCode": "001122",
+        "reference": "12345678"
+      }
+    }
+  }
+}
+```
+
+>BATCH_UPDATE
+><br>This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is now complete.
+
+```json
+{
+  "id": "6d9fc50e-de1b-4855-8c03-ae8a6093d91b",
+  "dateTime": "2019-12-16T09:54:23",
+  "type": "BATCH_UPDATE",
+  "content": {
+    "batch": {
+      "originatorId": null,
+      "batchId": "6a17ef7e-8696-4977-8989-4b948780c5db",
+      "type": "MIGRATION",
+      "status": "COMPLETE",
+      "totalPayout": {
+        "amount": 1000,
+        "currency": "GBP"
+      },
+      "payments": [
+        {
+          "clientId": "clientId",
+          "accountType": "GIA",
+          "amount": {
+            "amount": 1000,
+            "currency": "GBP"
+          },
+          "status": "COMPLETE",
+          "sourceOfFunds": null
+        }
+      ],
+      "payTo": {
+        "accountName": "name",
+        "accountNumber": "12345678",
+        "sortCode": "001122",
+        "bankReference": "12345678"
+      }
+    }
+  }
+}
+```
