@@ -1456,6 +1456,12 @@ OBJECT_MAP_ID | ID of the object map being deleted
       "transaction_date": "2017-05-17T15:52:33-07:00",
       "due_date": "2017-05-16T23:00:00-07:00",
       "total": "80.00",
+      "created_by": {
+        "id": 15,
+        "first_name": "Joe",
+        "last_name": "Smith",
+        "email": "joesmith@test.com"
+      },
       "line_items": [
         {
           "id": 193,
@@ -1540,8 +1546,8 @@ OBJECT_MAP_ID | ID of the object map being deleted
           "memo": "",
           "last_approver": {
             "id": 15,
-            "firstName": "Kathryn",
-            "lastName": "Hire",
+            "first_name": "Kathryn",
+            "last_name": "Hire",
             "email": "kathryn.hire@redshift7.com"
           },
           "external_id": null,
