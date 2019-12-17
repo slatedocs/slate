@@ -153,3 +153,4 @@ name | String | Name of Buyer
 phone_number | String | Phone Number of Buyer
 note | String | (Optional) This is note from the Buyer
 result | String | Payment Status of Buyer. Can be either "success" or "failed"
+sender_bank | String | Bank code used by buyer to do payment 
