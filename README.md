@@ -21,18 +21,57 @@ If you find any issues or have any suggestions for our OpenAPI spec. Please crea
 
 Getting Started with Asana Docs
 ------------------------------
+### Prerequisites
+The easiest way to work with the tooling is to install some version managers for some languages used in our toolchain.
+
+For node, we'll use nvm...
+
+```shell
+brew install nvm
+```
+
+... and for Ruby we'll use rbenv
+
+```shell
+brew install rbenv # This is a ruby version manager, which could prove useful in the future. For now we use system.
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile # Init rbenv on every shell
+echo 'export GEM_HOME=$HOME/.gem' >> ~/.bash_profile # Set the ruby gem install to a non-system directory so we don't need sudo
+echo 'export PATH="$GEM_HOME/bin:$PATH"' >> ~/.bash_profile # Needed if any gems have executables associated
+source ~/.bash_profile # Let's pick up those changes.
+gem install bundler # If we don't have bundler, it's basically the de facto standard for dependency management. Install it system-wide
+```
+
+In addition to this repository we're going to clone a sibling repository for a tool called Widdershins that manages the first half of our toolchain. We'll assume it and this repository live in the same directory. We'll clone it and install its prerequisites:
+
+```shell
+pushd .. # To get to parent dir
+git clone git@github.com:Mermade/widdershins.git # Clone the repo
+cd widdershins # To get to where the node requirements are
+nvm use system # If it ain't broke - we might pin this in the future
+npm install # Install requirements
+popd # Done with installation
+```
+
+And then lets get our local version of Ruby up to snuff:
+
+```shell
+rbenv shell system # We'll use system ruby as well, but just like node we might pin it in the future
+bundle install # Install requirements
+```
+
+For the rest of this README assume any commands that we list will be run from the root of this repository.
+
 ### How it works
 The OpenAPI spec is located at /defs/asana_oas.json
 
 To generate the markdown from the spec, we use [widdershins](https://github.com/Mermade/widdershins)
 ```shell
-node ../Mermade/widdershins/widdershins.js --search true --language_tabs 'shell: curl' --omitHeader true --includes markdown/* --summary defs/asana_oas.yaml --user_templates ./source/templates -o source/includes/api-reference/_index.html.md
+node ../widdershins/widdershins.js --search true --language_tabs 'shell: curl' --omitHeader true --includes markdown/* --summary defs/asana_oas.yaml --user_templates ./source/templates -o source/includes/api-reference/_index.html.md
 ```
 
 Then to generate the html from the markdown, we use [slate](https://github.com/lord/slate)
 ```shell
 # either run this to run locally
-bundle install
 bundle exec middleman server
 
 # OR run this to run with vagrant
