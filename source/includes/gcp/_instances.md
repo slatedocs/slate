@@ -329,7 +329,7 @@ Create an instance with an ephemeral IP
   "bootDiskSizeInGb": "10",
   "cpuCount": "2",
   "memoryInGB": "4.5",
-  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514"
 }
 ```
 
