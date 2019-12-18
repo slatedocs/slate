@@ -8,41 +8,51 @@ The API is currently under construction.
 
 Once an instrument has been created, it can then be traded. A trade can be submitted using [`POST /trades`](/#settlement-equity-post-trades).
 
-To retrieve an existing trade, the [`GET /trades/{tradeId}`](#settlement-equity-get-trades-tradeid) endpoint can be used.
+To retrieve an existing trade, the [`GET /trades/{id}`](#settlement-equity-get-trades-id) endpoint can be used.
 
 
 ## Trade Model
 
-| Key                       | JSON Type | Value Type | Value Description                                                          |
-|---------------------------|-----------|------------|----------------------------------------------------------------------------|
-| id                        | String    | UUID       | The platform generated unique ID of the trade. Up to 100 characters.       |
-| quantity                  | Number    | Number     | The number of shares being bought/sold.                                    |
-| instrumentSymbol          | String    | ID/Symbol  | The platform generated unique ID/symbol of the instrument.                 |
-| sourceDateTime            | String    | ISO-8601   | The timestamp at which the trade was originally executed on the platform.  |
-| settlementStatus          | String    | Enum       | Response only.                                                             |
-| price                     | Object    | Object     | The price the instrument is being traded at.                               |
-| price.currency            | String    | ISO 4217   | The currency that `price.amount` is expressed in.                          |
-| price.amount              | Number    | Number     | The cost per share in `price.currency`.                                    |
-| buy                       | Object    | Object     | Represents the buy-side details of a trade                                 |
-| buy.investor              | Object    | Object     | Null for non-investor, or details investor details.                        |
-| buy.investor.clientId     | String    | Client ID  | The client ID of the investor, i.e. PROP-12345.                            |
-| buy.investor.accountType  | String    | Enum       | Values: GIA, ISA.                                                          |
-| buy.nominee               | Object    | Object     | Null when the buyer is not a nominee, else field below.                    |
-| buy.nominee.accountType   | String    | Enum       | The nominee involved in the buy. Values: GOJI, ORIGINATOR.                 |
-| buy.fees[]                | FeeSymbol | FeeSymbol  | Fields below detail a FeeSymbol registered at `POST /instrument`.          |
-| buy.fees[].symbol         | String    | String     | Optional. Fee type symbol registered at `POST /instrument`.                |
-| buy.fees[].cost.currency  | Number    | Number     | The currency of the fee.                                                   |
-| buy.fees[].cost.amount    | Number    | Number     | The amount of the fee in `cost.currency`. (not per share)                  |
-| sell                      | Object    | Object     | Represents the sell-side details of a trade                                |
-| sell.investor             | Object    | Object     | Null for non-investor, or details investor details.                        |
-| sell.investor.clientId    | String    | Client ID  | The client ID of the investor, i.e. PROP-12345.                            |
-| sell.investor.accountType | String    | Enum       | Values: GIA, ISA.                                                          |
-| sell.nominee              | Object    | Object     | Null when the seller is not a nominee, else fields below.                  |
-| sell.nominee.accountType  | String    | Enum       | The nominee involved in the sell. Values: GOJI, ORIGINATOR.                |
-| sell.fees[]               | String    | String     | Fields below detail a FeeSymbol registered at `POST /instrument`.          |
-| sell.fees[].symbol        | FeeSymbol | FeeSymbol  | Optional. Fee type symbol registered at `POST /instrument`.                |
-| sell.fees[].cost.currency | Number    | Number     | The currency of the fee.                                                   |
-| sell.fees[].cost.amount   | Number    | Number     | The amount of the fee in `cost.currency`.                                  |
+### Required Attributes 
+
+| Key                       | JSON Type | Value Type | Value Description                                                                                           |
+|---------------------------|-----------|------------|-------------------------------------------------------------------------------------------------------------|
+| id                        | String    | TradeId    | The platform generated unique ID of the trade. Up to 100 characters.                                        |
+| instrumentSymbol          | String    | ID/Symbol  | The platform generated unique ID/symbol of the instrument.                                                  |
+| quantity                  | Number    | Number     | The number of shares being bought/sold.                                                                     |
+| price                     | Object    | Object     | The price the instrument is being traded at.                                                                |
+| price.amount              | Number    | Number     | The cost per share unit in `price.currency`.                                                                |
+| price.currency            | String    | ISO 4217   | The currency that `price.amount` is expressed in.                                                           |
+| sourceDateTime            | String    | ISO 8601   | The timestamp at which the trade was originally executed on the platform.                                   |
+| buy                       | Object    | Object     | Represents the buy-side details of a trade                                                                  |
+| buy.investor              | Object    | Object     | Set to null for non-investor, or details investor details.                                                  |
+| buy.investor. clientId    | String    | String     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
+| buy.investor. accountType | String    | Enum       | Values: `GIA`, `ISA`.                                                                                       |
+| buy.nominee               | Object    | Object     | Set to null when the buyer is not a nominee, else field below.                                              |
+| buy.nominee. accountType  | String    | Enum       | The nominee involved in the buy. Values: GOJI, ORIGINATOR.                                                  |
+| buy.fees[]                | Array     | List       | Required when fees exist on the instrument being traded that the buyer needs to pay. Otherwise leave empty. |
+| sell                      | Object    | Object     | Represents the sell-side details of a trade                                                                 |
+| sell.investor             | Object    | Object     | Set to null for non-investor, or details investor details.                                                  |
+| sell.investor. clientId   | String    | String     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
+| sell.investor. accountType| String    | Enum       | Values: `GIA`, `ISA`.                                                                                       |
+| sell.nominee              | Object    | Object     | Set to null when the seller is not a nominee, else fields below.                                            |
+| sell.nominee. accountType | String    | Enum       | The nominee involved in the sell. Values: GOJI, ORIGINATOR.                                                 |
+| sell.fees[]               | Array     | List       | Required when fees exist on the instrument being traded that the seller needs to pay. Otherwise leave empty.|
+
+
+### Optional Attributes
+
+| Key                       | JSON Type | Value Type | Value Description                                                             |
+|---------------------------|-----------|------------|-------------------------------------------------------------------------------|
+| buy.fees[]                | Array     | List       | Optional. Fields below detail a `FeeSymbol` registered at `POST /instrument`. |
+| buy.fees[] .symbol        | String    | FeeSymbol  | Fee type symbol registered at `POST /instrument`.                             |
+| buy.fees[] .cost.amount   | Number    | Number     | The amount to be charged associated with a specific `FeeSymbol`               |
+| buy.fees[] .cost.currency | Number    | Number     | The currency that `cost.amount` is expressed in.                              |
+| sell.fees[]               | Array     | List       | Optional. Fields below detail a `FeeSymbol` registered at `POST /instrument`. |
+| sell.fees[] .symbol       | String    | FeeSymbol  | Fee type symbol registered at `POST /instrument`.                             |
+| sell.fees[] .cost.amount  | Number    | Number     | The amount to be charged associated with a specific `FeeSymbol`               |
+| sell.fees[] .cost.currency| Number    | Number     | The currency that `cost.amount` is expressed in.                              |
+| settlementStatus          | String    | Enum       | Response only. Details the current settlement status of a trade.              |
 
 ## `POST /trades`
 ```http
@@ -54,10 +64,17 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
 
 {
   "id": "cdfb86c8-1085-43ed-9839-f4c8e7267818",
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "quantity": 1000,
+  "price": {
+    "amount": 4.99,
+    "currency": "GBP"
+  },
+  "sourceDateTime": "2019-12-09T10:21:19.453Z",
   "buy": {
     "investor": {
       "clientId": "PROP-12345",
-      "accountType": "GIA",
+      "accountType": "GIA"
     },
     "nominee": null,
     "fees": [
@@ -75,15 +92,10 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
     "nominee": {
       "accountType": "ORIGINATOR"
     },
-    "fees": []
-  },
-  "price": {
-    "amount": 4.99,
-    "currency": "GBP"
-  },
-  "quantity": 1000,
-  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
-  "sourceDateTime":"2019-12-09T10:21:19.453Z"
+    "fees": [
+      
+    ]
+  }
 }
 ```
 ### Description
@@ -110,12 +122,12 @@ Http Status:
 
 | HTTP Status Code | Description                                      | Body       | Content-Type     |
 |------------------|--------------------------------------------------|------------|------------------|
-| 201 Created      | Trade      created successfully                  | Trade      | application/json |
+| 201 Created      | Trade created successfully                       | Trade      | application/json |
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 
 
-## `GET /trades/{tradeId}`
+## `GET /trades/{id}`
 
 ```http
 GET /trades/cdfb86c8-1085-43ed-9839-f4c8e7267818 HTTP/1.1
@@ -131,11 +143,18 @@ Content-Type: application/json
 
 {
   "id": "cdfb86c8-1085-43ed-9839-f4c8e7267818",
-  "status": "RECEIVED",
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "quantity": 1000,
+  "price": {
+    "amount": 4.99,
+    "currency": "GBP"
+  },
+  "sourceDateTime": "2019-12-09T10:21:19.453Z",
+  "settlementStatus": "SETTLING",
   "buy": {
     "investor": {
       "clientId": "PROP-12345",
-      "accountType": "GIA",
+      "accountType": "GIA"
     },
     "nominee": null,
     "fees": [
@@ -143,7 +162,7 @@ Content-Type: application/json
         "narrative": "Stamp Duty",
         "cost": {
           "currency": "GBP",
-          "amount": 5.00
+          "amount": 5
         }
       }
     ]
@@ -153,21 +172,16 @@ Content-Type: application/json
     "nominee": {
       "accountType": "ORIGINATOR"
     },
-    "fees": []
-  },
-  "price": {
-    "amount": 4.99,
-    "currency": "GBP"
-  },
-  "quantity": 1000,
-  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
-  "sourceDateTime":"2019-12-09T10:21:19.453Z"
+    "fees": [
+      
+    ]
+  }
 }
 ```
 
 ### Description
 
-Retrieves the details of an existing trade.
+Retrieves the details of an existing trade given trade `id`.
 
 ### Request
 
@@ -181,7 +195,7 @@ Http Status:
 
 | Code             | Description                                      | Body       | Content-Type     |
 |------------------|--------------------------------------------------|------------|------------------|
-| 200 Created      | Trade exists and is return in the body           | Trade      | application/json |
+| 200 OK           | Trade exists and is return in the body           | Trade      | application/json |
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 | 404 Not Found    | No trade with this UUID exists                   | None       | n/a              |
