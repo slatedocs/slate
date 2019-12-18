@@ -110,6 +110,41 @@ curl -X POST \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers"
 ```
 
+```json
+Creating loadbalancer with ephemeral IP
+{
+	"name":"my-loadbalancer-name",
+	"shortBackend": "my-backend-backend",
+	"shortProtocol": "HTTP",
+	"shortPort": "80"
+}
+
+Creating loadbalancer with existing IP
+{
+	"name":"my-loadbalancer-name",
+	"shortBackend": "my-backend-backend",
+	"shortProtocol": "HTTP",
+	"shortPort": "80",
+    "shortIP": "my-ip-name",
+}
+
+Creating loadbalancer with new static IP
+{
+	"name":"my-loadbalancer-name",
+	"shortBackend": "my-backend-backend",
+	"shortProtocol": "HTTP",
+	"shortPort": "80",
+    "reserveStaticIP": true
+}
+
+Creating loadbalancer with HTTPS protocol
+{
+	...
+    "shortPort": "443",
+    "shortCertificate": "my-SSL-certificate"
+}
+```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers</code>
 
 Create a new load balancer
@@ -120,12 +155,12 @@ Required | &nbsp;
 `shortBackend`<br/>*string* | The existing backend serivce that will be attached to this load balancer.
 `shortProtocol`<br/>*string* | The protocol of this resource.
 `shortPort`<br/>*string* | The port number of this resource.
-`shortCertificate`<br/>*string* | The name of the SSL certificate that will be attached to the target proxy if HTTPS is selected. (Required if HTTPS is selected for shortProtocol)
 
 Optional | &nbsp;
 ------- | -----------
 `reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource.
 `shortIP`<br/>*string* | The name of an existing global external IP address assigned to the frontend. This argument is only valid in conjunction with reserveStaticIP being false. If the value is false and shortIP is provided, then the existing external IP address will be assigned. If the value is true, a new external static IP will be reserved and assigned.
+`shortCertificate`<br/>*string* | The name of the SSL certificate that will be attached to the target proxy if HTTPS is selected. (Required if HTTPS is selected for shortProtocol)
 
 <!-------------------- DELETE A LOAD BALANCER -------------------->
 

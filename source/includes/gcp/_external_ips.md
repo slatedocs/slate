@@ -153,14 +153,14 @@ curl -X POST \
 {
   "name": "my-static-ip",
   "shortRegion": "northamerica-northeast1",
-  "instanceId": "5611478403377505138"
+  "shortInstance": "my-instance-name"
 }
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips</code>
 
 Reserve a new external static IP in a given [environment](#administration-environments).
-If `instanceId` is provided the IP will be reserved and attached to this instance.
+If `shortInstance` is provided, the IP will be reserved and attached to this instance.
 
 Required | &nbsp;
 ------- | -----------
@@ -169,7 +169,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`instanceId`<br/>*string* | The instance id to attach the new external ip address to
+`shortInstance`<br/>*string* | The instance name to attach the new external ip address to
 
 
 <!-------------------- RELEASE AN EXTERNAL IP -------------------->

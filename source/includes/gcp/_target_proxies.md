@@ -99,6 +99,8 @@ Retrieve a target proxy in an [environment](#administration-environments).
 
 <!-------------------- CREATE A TARGET PROXY -------------------->
 
+##### Create a target proxy
+
 ```shell
 # Example request: Specifying an existing URL map
 curl -X POST \
