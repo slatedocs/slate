@@ -71,13 +71,14 @@ Retrieve a list of all VPN gateways in an [environment](#administration-environm
 | Attributes                       | &nbsp; |
 | -------------------------------- | ------ |
 | `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format. |
+| `description`<br/>*string*       | An optional description of the address.|
 | `region`<br/>*string*            | The self link of the region |
 | `network`<br/>*string*           | The self link of the network |
-| `status`<br/>*string*            | The status of the this resource |
+| `status`<br/>*string*            | The status of the this resource. One of the following values: CREATING, READY, FAILED, DELETING.|
 | `selfLink`<br/>*string*          | Server-defined URL for the resource. |
 | `forwardingRules`<br/>*List<Objects>*  | The forwarding rules that this resource attached to |
 | `kind`<br/>*string*              | Type of the resource. |
-| `externalIp`<br/>*Object*        | The external IP this resource is attached to |
+| `externalIp`<br/>*Object*        | The [external IP](#gcp-external-ips) this resource is attached to |
 | `tunnelsName`<br/>*List<String>* | The VPN tunnels that attach to this resource |
 | `reserveStaticIP`<br/>*boolean*  | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource. |
 | `id`<br/>*UUID*                  | The id of the backend service. |
@@ -147,13 +148,14 @@ Retrieve a VPN gatewau in an [environment](#administration-environments).
 | Attributes                       | &nbsp; |
 | -------------------------------- | ------ |
 | `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format. |
+| `description`<br/>*string*       | An optional description of the address.|
 | `region`<br/>*string*            | The self link of the region |
 | `network`<br/>*string*           | The self link of the network |
-| `status`<br/>*string*            | The status of the this resource |
+| `status`<br/>*string*            | The status of the this resource. One of the following values: CREATING, READY, FAILED, DELETING.|
 | `selfLink`<br/>*string*          | Server-defined URL for the resource. |
 | `forwardingRules`<br/>*List<Objects>*  | The forwarding rules that this resource attached to |
 | `kind`<br/>*string*              | Type of the resource. |
-| `externalIp`<br/>*Object*        | The external IP this resource is attached to |
+| `externalIp`<br/>*Object*        | The [external IP](#gcp-external-ips) this resource is attached to |
 | `tunnelsName`<br/>*List<String>* | The VPN tunnels that attach to this resource |
 | `reserveStaticIP`<br/>*boolean*  | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource. |
 | `id`<br/>*UUID*                  | The id of the backend service. |
@@ -181,9 +183,9 @@ Create a new VPN gateway
 | Required                         | &nbsp; |
 | -------------------------------- | ------ |
 | `name`<br/>*string*              | Name of the resource. |
-| `shortRegion`<br/>*string*                | A short version of the kind of resource. |
+| `shortRegion`<br/>*string*       | A short version of the kind of resource. |
 
 | Optional                         | &nbsp; |
 | -------------------------------- | ------ |
-| `shortIP`<br/>*string*              | The name of the external IP attached to this resource. |
+| `shortIP`<br/>*string*           | The name of the external IP attached to this resource. |
 | `reserveStaticIP`<br/>*boolean*  | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource. |
