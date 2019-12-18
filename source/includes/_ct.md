@@ -14,6 +14,8 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/add', [
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
+    'address1'          => '155 West 51st Street',
+    'address2'          => 'The Equitable Bldg',
     'business-location' => 'New York, NY',
     'postcode'          => '10020',
     'phone'             => '+1 212-554-1515',
@@ -32,6 +34,8 @@ curl -X POST \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
+ -d 'address-1=155 West 51st Street' \
+ -d 'address-2=The Equitable Bldg' \
  -d 'business-location=New York, NY' \ 
  -d 'phone=+1 212-554-1515' \
  -d 'postcode=10020' \
@@ -48,6 +52,8 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
 parameters.Add("report-name", "Sample Citation Tracker Report");
 parameters.Add("business-name", "Le Bernardin");
+parameters.Add("address-1", "155 West 51st Street");
+parameters.Add("address-2", "The Equitable Bldg");
 parameters.Add("business-location", "NY, New York");
 parameters.Add("phone", "+1 212-554-1515");
 parameters.Add("postcode", "10020");
@@ -84,6 +90,8 @@ expires | <span class="label label-required">Required</span> [See above for how 
 location-id | You can specify location ID or unique reference to create report for a location
 report-name | <span class="label label-required">Required</span>	
 business-name | <span class="label label-required">Required</span>	
+address-1 | <span class="label label-required">Required</span> Street address of where the business is located. 80 characters max.
+address-2 | 80 characters max.
 business-location | <span class="label label-required">Required</span> Town or city name in which business is located.
 old-business-name-1	|
 old-business-name-2	|
@@ -119,6 +127,8 @@ $success = $api->post('/v2/ct/update', [
     'report-id'         => 682,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
+    'address1'          => '155 West 51st Street',
+    'address2'          => 'The Equitable Bldg',
     'business-location' => 'New York, NY',
     'phone'             => '+1 212-554-1515',
     'website'           => 'le-bernardin.com',
@@ -136,6 +146,8 @@ curl -X POST \
  -d 'report-id'=682,
  -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
+ -d 'address-1=155 West 51st Street' \
+ -d 'address-2=The Equitable Bldg' \
  -d 'business-location=New York, NY' \ 
  -d 'phone=+1 212-554-1515' \
  -d 'website=le-bernardin.com' \ 
@@ -151,6 +163,8 @@ var parameters = new api.Parameters();
 parameters.Add("report-id", 682);
 parameters.Add("report-name", "Sample Citation Tracker Report");
 parameters.Add("business-name", "Le Bernardin");
+parameters.Add("address-1", "155 West 51st Street");
+parameters.Add("address-2", "The Equitable Bldg");
 parameters.Add("business-location", "NY, New York");
 parameters.Add("phone", "+1 212-554-1515");
 parameters.Add("website", "le-bernardin.com");
@@ -185,6 +199,8 @@ location-id | You can specify location ID or unique reference to create report f
 report-id | <span class="label label-required">Required</span>	
 report-name |	
 business-name |	
+address-1 | <span class="label label-required">Required</span> Street address of where the business is located. 80 characters max.
+address-2 | 80 characters max.
 business-location | Town or city name in which business is located.
 old-business-name-1	|
 old-business-name-2	|
