@@ -1034,6 +1034,249 @@ Add an ISA account.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
+
+## `GET /platformApi/investors/{clientId}/isa`
+
+```http
+
+GET /platformApi/investors/{clientId}/isa HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Returns details of the investor's ISA if applicable.
+### Response
+| Name                                               | Type   | Description                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                                                                                                                                                                                           |
+| totalIsaBalance.amount                             | number | The amount                                                                                                                                                                                                                                                                              |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                                                                                                                                                                                           |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                                                                                                                                                                                              |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                                                                                                                                                                                                     |
+| totalCashBalance.amount                            | number | The amount                                                                                                                                                                                                                                                                              |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| dateCreated                                        | string | Date the ISA was created                                                                                                                                                                                                                                                                |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                                                                                                                                                                                                        |
+| investments                                        | array  | The list of investments that make up the ISA                                                                                                                                                                                                                                            |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                                                                                                                                                                                                      |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                                                                                                                                                                                          |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported. Possible values are: <br>`LOAN`<br>                                                                                                                                                                                     |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                                                                                                                                                                                          |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                                                                                                                                                                                                       |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                                                                                                                                                                                                |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                                                                                                                                                                                                    |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically.                                                                                                                                                                           |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.                                                                                                                                                                              |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                                                                                                                                                                                            |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                                                                                                                                                                                                  |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                                                                                                                                                                                                      |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                                                                                                                                                                                                    |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                                                                                                                                                                                             |
+| totalInterestReceived                              | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInterestReceived.amount                       | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| totalInvestedBalance                               | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br>`VALID`<br>`INVALID_CROWN_DEPENDENCY`<br>`INVALID_NON_UK`<br>`INVALID_LOCKED_DEATH`<br>`INVALID_LOCKED_BANKRUPTCY`<br>`UNLOCKED`<br>`INVALID_CANCELLED`<br>`INVALID_TAX_YEAR_BREAK`<br> |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                                                                                                                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                                                                                                                                                                                              |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+
 ## `GET /platformApi/investors/{clientId}/accounts/ISA/transferIn/UI`
 
 ```http
