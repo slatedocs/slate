@@ -38,7 +38,7 @@ We highly recommend that you get started with connecting to our sandbox first, b
 
 ### Open Banking Directory
 
-If you're a registered TPP in the Open Banking Directory and you are using Signing and Transport certificates issued by
+If you're a registered TPP in the Open Banking Directory you will probably be using a Signing and a Transport certificates issued by
 Open Banking. At the moment we accept both the old style OB Transport and OB Signing, as well as the eIDAS-like OBWAC and OBSeal certificates. 
 You can easily onboard by providing either of the following things:
 
