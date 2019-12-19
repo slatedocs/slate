@@ -1586,7 +1586,8 @@ Content-Type: application/json
   "id" : "id",
   "isaType" : "isaType",
   "transferDate" : "2000-01-23",
-  "includeCurrentYear" : true
+  "includeCurrentYear" : true,
+  "fundsTransferType": "BANK_TRANSFER"
 } ]
 ```
 ### Description
@@ -1611,6 +1612,7 @@ The `transferDate` is only non-null if the transfer history form has been receiv
 | [].previousYearsAmountType                  | string  | Determines how much prior year subscription should be included in the transfer |
 | [].transferDate                             | string  | The date on which the transfer should occur                                    |
 | [].cashArrived                              | boolean | True if the cash for the Transfer In has arrived                                                            |
+| [].fundsTransferType                        | string  | The funds transfer type. Possible values are: <br>`CHEQUE`<br>`BANK_TRANSFER`<br>|
 
 ## `GET /transferIn/investors/{clientId}/closed`
 
@@ -1654,7 +1656,8 @@ Content-Type: application/json
   "id" : "id",
   "isaType" : "isaType",
   "transferDate" : "2000-01-23",
-  "includeCurrentYear" : true
+  "includeCurrentYear" : true,
+  "fundsTransferType": "BANK_TRANSFER"
 } ]
 ```
 ### Description
@@ -1677,7 +1680,8 @@ Returns an overview of all closed transfers in for a particular investor.
 | [].includeCurrentYear                       | boolean | True if current year subscriptions should be transferred                       |
 | [].previousYearsAmountType                  | string  | Determines how much prior year subscription should be included in the transfer |
 | [].transferDate                             | string  | The date on which the transfer should occur                                    |
-| [].cashArrived                              | boolean | True if the cash for the Transfer In has arrived                                                            |
+| [].cashArrived                              | boolean | True if the cash for the Transfer In has arrived                               |
+| [].fundsTransferType                        | string  | The funds transfer type. Possible values are: <br>`CHEQUE`<br>`BANK_TRANSFER`<br>|
 
 ## `GET /platformApi/transferIn/deposits/{date}`
 
