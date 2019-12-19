@@ -54,7 +54,7 @@ not need to be installed directly.
 </p>
       </td>
     </tr>
-    <tr style="display:none">
+    <tr>
       <td>
         <span class="step">2</span>
       </td>
@@ -72,7 +72,7 @@ For more information, or to compile manually, the <a href="https://github.com/sc
     </tr>
     <tr>
       <td>
-        <span class="step">2</span>
+        <span class="step">3</span>
       </td>
       <td style="padding-top: 15px">
         <p>Configure Scout in your <code>.env</code> file:</p>
@@ -89,7 +89,7 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
       </td>
     </tr>
     <tr>
-      <td><span class="step">3</span></td>
+      <td><span class="step">4</span></td>
       <td style="padding-top: 15px">
         <p>Deploy.</p>
         <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
