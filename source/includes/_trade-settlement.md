@@ -23,7 +23,7 @@ To retrieve an existing trade, the [`GET /trades/{id}`](#settlement-equity-get-t
 | price                     | Object    | Object     | The price the instrument is being traded at.                                                                |
 | price.amount              | Number    | Number     | The cost per share unit in `price.currency`.                                                                |
 | price.currency            | String    | ISO 4217   | The currency that `price.amount` is expressed in.                                                           |
-| sourceDateTime            | String    | ISO 8601   | The timestamp at which the trade was originally executed on the platform.                                   |
+| transactTime              | String    | ISO 8601   | The timestamp at which the trade was originally executed on the platform.                                   |
 | buy                       | Object    | Object     | Represents the buy-side details of a trade                                                                  |
 | buy.investor              | Object    | Object     | Set to null for non-investor, or details investor details.                                                  |
 | buy.investor. clientId    | String    | String     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
@@ -70,7 +70,7 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
     "amount": 4.99,
     "currency": "GBP"
   },
-  "sourceDateTime": "2019-12-09T10:21:19.453Z",
+  "transactTime": "2019-12-09T10:21:19.453Z",
   "buy": {
     "investor": {
       "clientId": "PROP-12345",
@@ -149,7 +149,7 @@ Content-Type: application/json
     "amount": 4.99,
     "currency": "GBP"
   },
-  "sourceDateTime": "2019-12-09T10:21:19.453Z",
+  "transactTime": "2019-12-09T10:21:19.453Z",
   "settlementStatus": "SETTLING",
   "buy": {
     "investor": {
