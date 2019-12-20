@@ -177,7 +177,10 @@ Importing this collection gives you a snapshot of the API at this time. To stay 
 
 ## Triage Bot
 
-> We will use a very basic file structure for the purposes of this guide. Start by making a project directory, moving into it, and running `npm init`.
+>### Let’s start coding!
+
+>Follow along below in the right pane to see the terminal commands 
+and code for this tutorial. We will use a very basic file structure for the purposes of this guide. Start by making a project directory, moving into it, and running `npm init`.
 
 ```shell
 !
@@ -332,7 +335,7 @@ When processes get complex in Asana there can begin to be work about work. This 
 ### What we’re going to build
 In this guide, we will build a simple triage bot that will assign tasks. This is a common Asana use case with support inboxes or request projects. 
 
-If you want to skip ahead and see the code for the triage bot, it’s on Github in the Javascript folder of our devrel-examples repo: https://github.com/Asana/devrel-examples.
+If you want to skip ahead and see the code for the triage bot, it’s on Github in the Javascript folder of our [devrel-examples repo](https://github.com/Asana/devrel-examples).
 
 For this guide, let’s suppose a design team has a requests project where people from the marketing team fill out an [Asana form](https://asana.com/guide/help/premium/forms) to request graphics from the design team. The form creates a task in the design requests project that needs to be assigned to a designer. 
 
@@ -366,27 +369,24 @@ For this guide, we will use the [Asana Node client library](https://github.com/A
 
 Each library has an examples folder in addition to the readme, which can be helpful for getting started. The methods for each resource can be found in the “gen” folder of each client library (e.g. node-asana/lib/resources/gen/).
 
-### Let’s start coding!
+###Now head over to the top of the right pane to start coding your bot ----->
 
-If you haven't already, follow the code and headers in this section. This will walk you through the terminal commands 
-and code with explainations along the way.
-
-### Congratulations! Now go above and beyond
+>### Congratulations! Now go above and beyond
 You’ve created an Asana triage bot. Let’s explore a few ideas on how to make it even better.
 
-### Deploy your app 
+>### Deploy your app 
 While you can run your bot from the command line, that seems like a lot of work to run a bot that’s supposed to eliminate work about work.
 
-One option is to use launchd to automatically execute your script (launchd is like cron but better). Here’s a [tutorial to get you started with launchd](https://medium.com/@chetcorcos/a-simple-launchd-tutorial-9fecfcf2dbb3).
+>One option is to use launchd to automatically execute your script (launchd is like cron but better). Here’s a [tutorial to get you started with launchd](https://medium.com/@chetcorcos/a-simple-launchd-tutorial-9fecfcf2dbb3).
 
-The next step would be to deploy to a hosted server. [Here’s a guide](https://api.slack.com/docs/hosting) exploring some of the popular hosting providers. Hosting your app makes it more resilient and allows you to create more sophisticated apps (e.g. use webhooks).   
+>The next step would be to deploy to a hosted server. [Here’s a guide](https://api.slack.com/docs/hosting) exploring some of the popular hosting providers. Hosting your app makes it more resilient and allows you to create more sophisticated apps (e.g. use webhooks).   
 
-### Use Asana as your config file 
+>### Use Asana as your config file 
 To take your bot’s accessibility to the next level, put your configuration in an Asana task(s) and then have your script read that task(s) for instructions. This allows you (or anyone else) to make config changes without touching any code. For example, if a designer is on vacation, you can easily remove them from the group that gets assigned requests. Similarly, if a designer joins or leaves the team, this change could be easily configured in a task instead of having to change the bot’s code.
 
-To see this approach in the wild, checkout [Ohmega](https://github.com/Asana/ohmega), an automation framework we created. Here’s the [configuration service](https://github.com/Asana/ohmega/blob/master/ohmega/services/configuration_service.py) that reads a tree of tasks for its configuration. 
+>To see this approach in the wild, checkout [Ohmega](https://github.com/Asana/ohmega), an automation framework we created. Here’s the [configuration service](https://github.com/Asana/ohmega/blob/master/ohmega/services/configuration_service.py) that reads a tree of tasks for its configuration. 
 
-### Use webhooks for real-time triaging 
+>### Use webhooks for real-time triaging 
 If you need your bot to react to changes in real time, then you’ll need to use [webhooks](#asana-webhooks). We built a [python webhook inspector](https://github.com/Asana/devrel-examples/tree/master/python/webhooks) to help developers get started using Asana webhooks. 
 
 ---
