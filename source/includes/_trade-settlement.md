@@ -29,14 +29,14 @@ To retrieve an existing trade, the [`GET /trades/{id}`](#settlement-equity-get-t
 | buy.investor. clientId    | String    | String     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
 | buy.investor. accountType | String    | Enum       | Values: `GIA`, `ISA`.                                                                                       |
 | buy.nominee               | Object    | Object     | Set to null when the buyer is not a nominee, else field below.                                              |
-| buy.nominee. accountType  | String    | Enum       | The nominee involved in the buy. Values: GOJI, ORIGINATOR.                                                  |
+| buy.nominee. accountType  | String    | Enum       | The nominee involved in the buy. Value: `ORIGINATOR`.                                                         |
 | buy.fees[]                | Array     | List       | Required when fees exist on the instrument being traded that the buyer needs to pay. Otherwise leave empty. |
 | sell                      | Object    | Object     | Represents the sell-side details of a trade                                                                 |
 | sell.investor             | Object    | Object     | Set to null for non-investor, or details investor details.                                                  |
 | sell.investor. clientId   | String    | String     | The registered clientId of the investor, i.e. PROP-12345.                                                   |
 | sell.investor. accountType| String    | Enum       | Values: `GIA`, `ISA`.                                                                                       |
 | sell.nominee              | Object    | Object     | Set to null when the seller is not a nominee, else fields below.                                            |
-| sell.nominee. accountType | String    | Enum       | The nominee involved in the sell. Values: GOJI, ORIGINATOR.                                                 |
+| sell.nominee. accountType | String    | Enum       | The nominee involved in the sell. Values: `ORIGINATOR`.                                                       |
 | sell.fees[]               | Array     | List       | Required when fees exist on the instrument being traded that the seller needs to pay. Otherwise leave empty.|
 
 

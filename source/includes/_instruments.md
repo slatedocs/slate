@@ -195,16 +195,28 @@ each investor's shares.
 
 ## Allocation Model
 
-| Key                  | JSON Type | Value Type       | Value Description                                               |
-|----------------------|-----------|------------------|-----------------------------------------------------------------|
-| id                   | String    | UUID             | A UUID for this allocation.                                     |
-| quantity             | Number    | Number           | The (whole) number of shares to allocate.                       |
-| instrumentSymbol     | String    | InstrumentSymbol | Platform generated unique ID of the instrument.                 |
-| investor             | Object    | Object           | Null for non-investor allocation, or the fields below.          |
-| investor.clientId    | String    | ClientId         | Either the client ID for the investor.                          |
-| investor.accountType | String    | Enum             | Values: `GIA`, `ISA`.                                           |
-| nominee              | Object    | Object           | Null when not allocating to a nominee, else fields below.       |
-| nominee.accountType  | String    | Enum             | The nominee involved in the alloc. Values: `GOJI`, `ORIGINATOR`.|
+### Required Attributes
+
+All of the following attributes of the Allocation Model are considered 'required' attributes. 
+
+⚠️ In the case of the `investor` and `nominee` attributes specified below however, it may be more apt to call them 'conditional' attributes. 
+
+If an allocation request is specified as being to an `investor`, it cannot simultaneously be to the `nominee` company. 
+
+Please specify either one or the other when sending an allocation instruction.
+
+
+| Key                  | JSON Type | Value Type       | Value Description                                                                                                 |
+|----------------------|-----------|------------------|-------------------------------------------------------------------------------------------------------------------|
+| id                   | String    | UUID             | A platform-generated UUID for this allocation.                                                                    |
+| quantity             | Number    | Number           | The (whole) number of shares to allocate.                                                                         |
+| instrumentSymbol     | String    | InstrumentSymbol | Platform generated unique ID of the instrument.                                                                   |
+| investor             | Object    | Object           | Set to null for non-investor allocations, else populated with the fields below.                                   |
+| investor.clientId    | String    | ClientId         | Either the client ID for the investor. Required if `investor` specified on the allocation.                        |
+| investor.accountType | String    | Enum             | The investor's account to allocate to. Values: `GIA`, `ISA`. Required if `investor` specified on the allocation.  |
+| nominee              | Object    | Object           | Set to null when not allocating to a nominee, else fields below.                                                  |
+| nominee.accountType  | String    | Enum             | The nominee involved in the alloc. Value: `ORIGINATOR`. Required if `nominee` specified on the allocation.        |
+
 
 ## `POST /allocations`
 
