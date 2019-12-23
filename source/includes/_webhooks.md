@@ -629,3 +629,21 @@ E.g. settles successfully
   }
 }
 ```
+
+>ACCOUNT_FEE_PROCESSED
+><br>This is fired when account fees have been processed
+
+```json
+{
+  "investorId": "string",
+  "dateTime": "2017-12-12T14:34:23",
+  "account": "string"
+  "amount" : {
+    "amount": 0.00,
+    "currency": "GBP"
+  },
+  "type": "FEES",
+  "reference": "string",
+  "clearedDateTime": "2017-12-12T14:34:23"
+}
+```
