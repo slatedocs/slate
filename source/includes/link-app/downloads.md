@@ -3,10 +3,25 @@
 
 Integra Dátil a tu sistema en minutos.
 
-### Más reciente (6.2.0)
+### Más reciente (6.2.1)
 
-- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.0_32bit.exe)
-- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.0_64bit.exe)
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.1_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.1_64bit.exe)
+
+#### Notas de la versión
+
+#### <strong>6.2.1</strong><br><small><strong>Diciembre 24, 2019</strong></small>
+
+##### Corregido
+Error al momento de obtener información de una liquidación de compras sin que ésta tenga registrada una máquina fiscal.
+
+### Versiones anteriores
+
+
+#### 6.2.0
+
+- Windows 32 bits
+- Windows 64 bits
 
 #### Notas de la versión
 
@@ -15,7 +30,6 @@ Integra Dátil a tu sistema en minutos.
 ##### Nuevo
 Soporte para Microsoft Access. 
 
-### Versiones anteriores
 
 #### 6.1.0
 
