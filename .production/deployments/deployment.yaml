@@ -1,18 +1,23 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
     io.coinbetter.service: coinbtr-docs
+    app: coinbtr-docs
   name: coinbtr-docs
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: coinbtr-docs
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
         io.coinbetter.service: coinbtr-docs
+        app: coinbtr-docs
     spec:
       containers:
         - image: registry.coinbtr.com/coinbtr-docs:%{{BRANCH}}
