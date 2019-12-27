@@ -583,6 +583,28 @@ child_comments_sort_order | string | `desc` when latest child comments should be
 `parent_comments_limit` value should be equal to `initial_load_comments_limit` that's available in config API.
 
 
+## User data by account
+
+### GET comments
+
+This API gets the comments of a user
+
+```shell--request
+curl --request GET \
+  --url 'https://www.metype.com/api/v1/activity/comments?account_id=<account_id>&jwt=<jwt>'
+```
+
+This endpoint can be used to get comments of a user based on an account or all comments of a user. This API returns a 200 if the operation was sucessful.The parameters that can be passed in are as follows:
+
+| key | type | use |
+|--|--|--|
+|account_id|integer|Metype account id|
+|jwt|string|The JSON Web Token that identifies the user|
+
+* If an `account_id` is passed the check for domain is done
+* This can fetch comments based on JWT or session based on authentication opted by the account.
+
+
 ## Comment reactions
 
 ### POST comment reaction
