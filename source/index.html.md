@@ -9,10 +9,8 @@ search: true
 includes:
   - usecases
   - payouts
-  - third-party-payouts
   - banks
   - affiliates
-  - connected-apps
   - openbanking
   - contact-us
   - full-reference-separator

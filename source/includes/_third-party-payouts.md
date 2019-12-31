@@ -1,5 +1,17 @@
 # Third-Party Payouts Guide
 
+Third-Party Payouts allows marketplaces and financial institutions (banks and payment service providers) to use TransferWise as a payout option for their customers.
+It’s different from Payouts since it doesn’t require your company to be the originator of payments.
+Instead, TransferWise will act as a third-party to your customers when they initiate a payment through your site.  
+
+All the above listed payouts and account automation benefits are also true for third-party payouts service. You can build payment services to your customers on top of TransferWise payment platform that enables your customers to send cross-border payouts to 40+ currencies in 70+ countries.
+
+In addition there will also be a dedicated account manager who will be your primary contact
+to solve all questions and support issues should these arise.
+
+Please note that subscribing to third party payouts service requires your company to complete enhanced due diligence process performed by TransferWise compliance team.
+Please contact our [sales team](https://transferwise.com/gb/business/contact) for more info how to get started.
+
 This guide is an extension to [Payouts Guide](#payouts-guide) and it only outlines small differences between creating regular transfers and creating third party transfers.
 Please read through regular Payouts Guide first.  
 

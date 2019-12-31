@@ -6,6 +6,8 @@ All contributions are welcome and encouraged!
 
 This project is forked from [Slate](https://github.com/lord/slate).
 
+For partner-usecases (third party payments, connected apps) refer to https://transferwise.github.io/api-docs-partners/
+
 ## How to edit the docs?
 
 1. [Run the project locally](#run-the-project-locally)
