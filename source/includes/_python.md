@@ -1338,45 +1338,6 @@ with scout_apm.api.BackgroundTransaction("Foo"):
     print(response.text)
 ```
 
-<h2 id="python-ignoring-transactions">Ignoring Transactions</h2>
-
-If you don't want to track the current transaction, at any point you can call `ignore_transaction()` to ignore it:
-
-```python
-import scout_apm.api
-
-if is_health_check():
-    scout_apm.api.ignore_transaction()
-```
-
-You can use this whether the transaction was started from a built-in integration or custom instrumentation.
-
-You can also ignore a set of URL path prefixes by configuring the `ignore` setting:
-
-```python
-Config.set(
-    ignore=["/health-check/", "/admin/"],
-)
-```
-
-When specifying this as an environment variable, it should be a comma-separated list:
-
-```bash
-export SCOUT_IGNORE='/health-check/,/admin/'
-```
-
-<h3 id="python-renaming-transactions">Renaming Transactions</h3>
-
-If you want to rename the current transaction, call `rename_transaction()` with the new name:
-
-```python
-import scout_apm.api
-
-scout_apm.api.rename_transaction("Controller/" + derive_graphql_name())
-```
-
-You can use this whether the transaction was started from a built-in integration or custom instrumentation.
-
 ### Timing functions and blocks of code
 
 Traces that allocate significant amount of time to `View`, `Job`, or `Template` are good candidates to add custom instrumentation. This indicates a significant amount of time is falling outside our default instrumentation.
@@ -1431,6 +1392,45 @@ Wraps a whole function, timing the execution of specified function within a tran
 def bar():
     # Work
 ```
+
+<h2 id="python-ignoring-transactions">Ignoring Transactions</h2>
+
+If you don't want to track the current transaction, at any point you can call `ignore_transaction()` to ignore it:
+
+```python
+import scout_apm.api
+
+if is_health_check():
+    scout_apm.api.ignore_transaction()
+```
+
+You can use this whether the transaction was started from a built-in integration or custom instrumentation.
+
+You can also ignore a set of URL path prefixes by configuring the `ignore` setting:
+
+```python
+Config.set(
+    ignore=["/health-check/", "/admin/"],
+)
+```
+
+When specifying this as an environment variable, it should be a comma-separated list:
+
+```bash
+export SCOUT_IGNORE='/health-check/,/admin/'
+```
+
+<h3 id="python-renaming-transactions">Renaming Transactions</h3>
+
+If you want to rename the current transaction, call `rename_transaction()` with the new name:
+
+```python
+import scout_apm.api
+
+scout_apm.api.rename_transaction("Controller/" + derive_graphql_name())
+```
+
+You can use this whether the transaction was started from a built-in integration or custom instrumentation.
 
 <h2 id="python-custom-context">Custom Context</h2>
 
