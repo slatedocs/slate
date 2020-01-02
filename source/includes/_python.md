@@ -1338,7 +1338,7 @@ with scout_apm.api.BackgroundTransaction("Foo"):
     print(response.text)
 ```
 
-<h3 id="python-ignoring-transactions">Ignoring Transactions</h3>
+<h2 id="python-ignoring-transactions">Ignoring Transactions</h2>
 
 If you don't want to track the current transaction, at any point you can call `ignore_transaction()` to ignore it:
 
