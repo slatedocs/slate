@@ -23,10 +23,6 @@ The libraries below require a small number of configuration updates. Click on th
 * [Celery](#celery)
 * [Dash](#dash)
 * [Django](#django)
-    * Middleware
-    * Templates (compiling & rendering)
-    * Template blocks
-    * SQL queries
 * [Dramatiq](#dramatiq)
 * [Falcon](#falcon)
 * [Flask](#flask)
