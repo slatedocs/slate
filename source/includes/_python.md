@@ -798,6 +798,23 @@ We typically respond within a couple of hours during the business day.
     </tr>
     <tr>
       <th>
+        ignore
+      </th>
+      <td>
+        A list of (relative) URL path prefixes to avoid collecting metrics for.
+        If specified as an environment variable, it should be a comma-separated
+        list. See <a href="#python-ignoring-transactions">Ignoring
+        Transactions</h4>.
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
         revision_sha
       </th>
       <td>
@@ -1148,7 +1165,7 @@ with scout_apm.api.BackgroundTransaction("Foo"):
     print(response.text)
 ```
 
-### Ignoring Transactions
+<h3 id="python-ignoring-transactions">Ignoring Transactions</h3>
 
 If you don't want to track the current transaction, at any point you can call `ignore_transaction()` to ignore it:
 
@@ -1161,7 +1178,21 @@ if is_health_check():
 
 You can use this whether the transaction was started from a built-in integration or custom instrumentation.
 
-### Renaming Transactions
+You can also ignore a set of URL path prefixes by configuring the `ignore` setting:
+
+```python
+Config.set(
+    ignore=["/health-check/", "/admin/"],
+)
+```
+
+When specifying this as an environment variable, it should be a comma-separated list:
+
+```bash
+export SCOUT_IGNORE='/health-check/,/admin/'
+```
+
+<h3 id="python-renaming-transactions">Renaming Transactions</h3>
 
 If you want to rename the current transaction, call `rename_transaction()` with the new name:
 
