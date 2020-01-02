@@ -34,6 +34,7 @@ The libraries below require a small number of configuration updates. Click on th
 * [Huey](#huey)
 * [Nameko](#nameko)
 * [Pyramid](#pyramid)
+* [RQ](#rq)
 * [SQLAlchemy](#sqlalchemy)
 
 ### Automatically applied
@@ -636,6 +637,108 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
       <td style="padding-top: 15px">
         <p>Deploy.</p>
         <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## RQ
+
+Scout supports RQ 1.0+.
+
+Do the following to instrument your RQ jobs:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+<p>Use the Scout RQ worker class.</p>
+
+<p>If you're using RQ directly, you can pass the <code>--worker-class</code> argument the worker command:</p>
+<pre class="terminal" style="width: initial">
+rq worker <span>--job-class scout_apm.rq.Worker</span> myqueue
+</pre>
+
+<p>If you're using Django-RQ, instead use the <a href="https://github.com/rq/django-rq#custom-job-and-worker-classes">custom worker setting</a> to point to our custom Worker class:</p>
+<pre class="terminal" style="width: initial">
+RQ = {
+    "WORKER_CLASS": "scout_apm.rq.Worker",
+}
+</pre>
+
+<p>If you're using your own <code>Worker</code> sub class already, you can subclass our <code>Worker</code> class:</p>
+
+<pre class="terminal" style="width: initial">
+<span>from scout_apm.rq import Worker</span>
+
+class MyWorker(Worker):
+    # your custom behaviour here
+    pass
+</pre>
+
+<p>Or if you're combining one or more other <code>Worker</code> classes, you can add our mixin class <code>scout_apm.rq.WorkerMixin</code>:</p>
+
+<pre class="terminal" style="width: initial">
+from some.other.rq.extension import CustomWorker
+<span>from scout_apm.rq import WorkerMixin</span>
+
+class MyWorker(WorkerMixin, CustomWorker):
+    pass
+</pre>
+
+  </td>
+</tr>
+
+<tr>
+  <td><span class="step">3</span></td>
+  <td style="padding-top: 15px">
+<p>Configure Scout.</p>
+
+<p>If you're using Django-RQ, ensure you have the <a href="#django">Django integration</a> installed, and this is handled for you.</p>
+
+<p>If you're using RQ directly, create a <a href="https://python-rq.org/docs/workers/#using-a-config-file">config file</a> for it that runs the Scout API's <code>Config.set()</code>:</p>
+
+<pre class="terminal" style="width: initial">
+from scout_apm.api import Config
+  
+Config.set(
+    key="YOUR_SCOUT_KEY",
+    name="Same as Web App Name",
+    monitor=True,
+)
+</pre>
+
+<p>Pass the config file to <code>-c</code> argument to the worker command, as per <a href="https://python-rq.org/docs/workers/#using-a-config-file">the documentation</a>.</p>
+
+<p>If you wish to configure Scout via environment variables, you don't need a config file. Set <code>SCOUT_KEY</code>, <code>SCOUT_NAME</code> and <code>SCOUT_MONITOR</code> instead.</p>
+
+<p>
+  If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+    
+  </td>
+</tr>
+
+    <tr>
+      <td><span class="step">4</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+        <p>Tasks will appear in the "Background Jobs" area of the Scout UI.</p>
       </td>
     </tr>
   </tbody>
