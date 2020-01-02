@@ -20,6 +20,7 @@ Scout provides instrument for most of the popular Python libraries. Instrumentat
 The libraries below require a small number of configuration updates. Click on the respective library for instructions.
 
 * [Bottle](#bottle)
+* [CherryPy](#cherrypy)
 * [Celery](#celery)
 * [Dash](#dash)
 * [Django](#django)
@@ -88,6 +89,71 @@ bottle.install(scout)
 </pre>
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>app.config.update</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## CherryPy
+
+Scout supports CherryPy 18.0.0+.
+
+General instructions for a CherryPy app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Attach the Scout plugin to your app:</p>
+
+<pre class="terminal" style="width: initial">
+import cherrypy
+
+<span>from scout_apm.api import Config
+from scout_apm.cherrypy import ScoutPlugin</span>
+
+class Views(object):
+    @cherrypy.expose
+    def index(self):
+        return "Hi"
+
+app = cherrypy.Application(Views(), "/")
+
+<span>Config.set(
+    key="[AVAILABLE IN THE SCOUT UI]",
+    monitor=True,
+    name="A FRIENDLY NAME FOR YOUR APP",
+)
+scout_plugin = ScoutPlugin(cherrypy.engine)
+scout_plugin.subscribe()</span>
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>Config.set</code>.</p>
 
 <p>
 If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
