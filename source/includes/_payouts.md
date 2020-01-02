@@ -196,6 +196,94 @@ Please note:
 If a request is being made using an IP address that is not in the whitelisted IP addresses,
 the server will respond with a [401 Unauthorized HTTP status code](https://tools.ietf.org/html/rfc7235#page-6).
 
+### Strong customer authentication (SCA)
+
+There are some actions that could require additional authentication. To achieve it we use digital signature scheme,
+which is based on public-key cryptography algorithm: it involves a private key which is a secret available only to user 
+and used to create the signatures, and a public key which could be distributed to another party to allow to verify 
+signatures authenticity.
+
+**Creating keys pair**
+
+> Keys can be generated with [OpenSSL](https://www.openssl.org/) toolkit:
+
+```bash
+$ openssl genrsa -out private.pem 2048
+$ openssl rsa -pubout -in private.pem -out public.pem
+```
+
+Keys should comply with following requirements:
+
+* Cryptographic algorithm is RSA.
+* Key length is at least 2048 bits.
+* Public key is stored in PEM file format and has `.pem` file extension.
+
+**SCA public key management**
+
+Public key management API includes three operations:
+
+> Example of public key file uploading with cURL:
+
+```bash
+$ curl -X POST https://api.sandbox.transferwise.tech/v1/public-keys \
+  -H 'Authorization: Bearer <your api token>' \
+  -F 'file=@/path/to/my_private_key.pem;type=application/x-pem-file'
+```
+> Note, that public key file extensions is `.pem` and content type is `application/x-pem-file`. 
+
+* Uploading new public key using multipart file upload request: 
+
+    **`POST https://api.sandbox.transferwise.tech/v1/public-keys`**
+
+* Listing uploaded keys:
+
+    **`GET https://api.sandbox.transferwise.tech/v1/public-keys`**
+  
+* Deleting the key:
+
+    **`DELETE https://api.sandbox.transferwise.tech/v1/public-keys/<key_id>`**
+
+Please note that to prevent harmful use the number of uploaded public keys is limited.
+
+**Signing the data**
+
+The digital signature algorithm we use is the *SHA1 with RSA* (SHA1 hash of the data is signed with RSA), so you could
+use any implementation you prefer, a few options to name are:
+
+> The shell one-liner to sign some string, encode it with Base64 and output to standard output looks like this:
+
+```bash
+$ printf '<string to sign>' | openssl sha1 -sign <path to private key.pem> | base64 -b 0
+```
+
+* OpenSSL:
+
+    The CLI toolkit command is `openssl sha1 -sign private.pem data.bin`, consult the man pages for additional info.
+    Note that the signature returned by OpenSSL (to standard output in the example above) is in binary format and to 
+    pass the signature over HTTP you will need to encode it to string (we accept the 
+    [Base64](https://en.wikipedia.org/wiki/Base64) encoding (RFC 4648)).
+    
+    There is also an extensive [C API](https://www.openssl.org/docs/manmaster/man3/) you can use if you prefer to.
+
+* Our [reference implementation Java library](https://github.com/transferwise/digital-signatures):
+ 
+  You can use it as a library, as a CLI tool or just as an example of 
+  [Java Security API](https://docs.oracle.com/javase/7/docs/api/java/security/Signature.html) usage.
+  
+**Request SCA workflow**
+
+The digital signature request authentication workflow is:
+
+1. Client makes a request to an endpoint which requires strong authentication.
+2. Request is declined with HTTP status `403 / Unauthorized`, two-factor authentication status `DECLINED` 
+in the `X-2FA-Approval-Result` HTTP header value and one-time token in `X-2FA-Approval` header value.
+3. Client signs the one-time token string with private key corresponding to one of the public keys client uploaded for 
+signature verification.
+4. Client repeats the initial request with one-time token provided in `X-2FA-Approval` header value and token digital 
+signature in `X-Signature` header value.
+5. The signature is verified against public keys client uploaded for his account and if it is valid, initial request
+is fulfilled.
+
 ### TEST and LIVE environments
 
 * You can access the Sandbox API at [https://api.sandbox.transferwise.tech](https://api.sandbox.transferwise.tech)
