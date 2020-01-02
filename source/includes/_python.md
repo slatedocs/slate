@@ -1,6 +1,6 @@
 # Python Agent
 
-Scout's Python agent supports many popular libraries to instrument template rendering, SQL queries, template rendering, and more.
+Scout's Python agent supports many popular libraries to instrument SQL queries, template rendering, HTTP requests and more.
 The package is called `scout-apm` [on PyPI](https://pypi.org/project/scout-apm).
 Source code and issues can be found on our [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
 
