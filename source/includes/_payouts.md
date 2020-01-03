@@ -196,31 +196,39 @@ Please note:
 If a request is being made using an IP address that is not in the whitelisted IP addresses,
 the server will respond with a [401 Unauthorized HTTP status code](https://tools.ietf.org/html/rfc7235#page-6).
 
-### Strong customer authentication (SCA)
+### Strong customer authentication
 
-There are some actions that could require additional authentication. To achieve it we use digital signature scheme,
-which is based on public-key cryptography algorithm: it involves a private key which is a secret available only to user 
-and used to create the signatures, and a public key which could be distributed to another party to allow to verify 
-signatures authenticity.
+There are some actions that require additional authentication.
 
-**Creating keys pair**
+In those cases a 403 is returned together with a one-time token (OTT) value which needs 
+to be signed and the resulting signature included in the retry of the original request.
 
-> Keys can be generated with [OpenSSL](https://www.openssl.org/) toolkit:
+We use a digital signature scheme based on public-key cryptography. It involves creating a
+signature using a private key on the client side and verifying the signature authenticity on
+the server side using the corresponding public key the client has uploaded.
+
+To call the endpoints requiring additional authentication:
+
+* Create a key pair
+* Upload the public key to TransferWise
+* Set up response handling to retry with the signed OTT
+
+**Creating the key pair**
+
+> Keys can be generated with the [OpenSSL](https://www.openssl.org/) toolkit:
 
 ```bash
 $ openssl genrsa -out private.pem 2048
 $ openssl rsa -pubout -in private.pem -out public.pem
 ```
 
-Keys should comply with following requirements:
+The following requirements apply:
 
-* Cryptographic algorithm is RSA.
+* The cryptographic algorithm is RSA.
 * Key length is at least 2048 bits.
-* Public key is stored in PEM file format and has `.pem` file extension.
+* The public key is stored in PEM file format using a `.pem` file extension.
 
-**SCA public key management**
-
-Public key management API includes three operations:
+**Endpoints for managing public keys**
 
 > Example of public key file uploading with cURL:
 
@@ -229,9 +237,9 @@ $ curl -X POST https://api.sandbox.transferwise.tech/v1/public-keys \
   -H 'Authorization: Bearer <your api token>' \
   -F 'file=@/path/to/my_private_key.pem;type=application/x-pem-file'
 ```
-> Note, that public key file extensions is `.pem` and content type is `application/x-pem-file`. 
+> Note, that the public key file extension is `.pem` and content type is `application/x-pem-file`. 
 
-* Uploading new public key using multipart file upload request: 
+* Uploading a public key: 
 
     **`POST https://api.sandbox.transferwise.tech/v1/public-keys`**
 
@@ -239,50 +247,47 @@ $ curl -X POST https://api.sandbox.transferwise.tech/v1/public-keys \
 
     **`GET https://api.sandbox.transferwise.tech/v1/public-keys`**
   
-* Deleting the key:
+* Deleting a key:
 
     **`DELETE https://api.sandbox.transferwise.tech/v1/public-keys/<key_id>`**
 
-Please note that to prevent harmful use the number of uploaded public keys is limited.
+Note that to prevent abuse the number of public keys you can have stored is limited to 5.
 
 **Signing the data**
 
-The digital signature algorithm we use is the *SHA1 with RSA* (SHA1 hash of the data is signed with RSA), so you could
-use any implementation you prefer, a few options to name are:
+The digital signature algorithm we use is *SHA1 with RSA* (SHA1 hash of the data is signed with RSA). There are 
+different ways of creating the required digital signature, for example:
 
-> The shell one-liner to sign some string, encode it with Base64 and output to standard output looks like this:
+> The shell one-liner to sign a string, encode it with Base64 and output to standard output:
 
 ```bash
 $ printf '<string to sign>' | openssl sha1 -sign <path to private key.pem> | base64 -b 0
 ```
 
-* OpenSSL:
+* OpenSSL
 
-    The CLI toolkit command is `openssl sha1 -sign private.pem data.bin`, consult the man pages for additional info.
+    The CLI toolkit command is `openssl sha1 -sign private.pem data.bin` 
+    (consult the openssl man pages for additional info if required).
     Note that the signature returned by OpenSSL (to standard output in the example above) is in binary format and to 
-    pass the signature over HTTP you will need to encode it to string (we accept the 
-    [Base64](https://en.wikipedia.org/wiki/Base64) encoding (RFC 4648)).
+    send it over HTTP it should be encoded to [Base64](https://en.wikipedia.org/wiki/Base64)  (RFC 4648)).
     
-    There is also an extensive [C API](https://www.openssl.org/docs/manmaster/man3/) you can use if you prefer to.
+    There is also an extensive [C API](https://www.openssl.org/docs/manmaster/man3/) available.
 
-* Our [reference implementation Java library](https://github.com/transferwise/digital-signatures):
- 
-  You can use it as a library, as a CLI tool or just as an example of 
-  [Java Security API](https://docs.oracle.com/javase/7/docs/api/java/security/Signature.html) usage.
-  
-**Request SCA workflow**
+* Our [reference implementation Java library](https://github.com/transferwise/digital-signatures)
+   
+**Detailed workflow**
 
-The digital signature request authentication workflow is:
-
-1. Client makes a request to an endpoint which requires strong authentication.
-2. Request is declined with HTTP status `403 / Unauthorized`, two-factor authentication status `DECLINED` 
-in the `X-2FA-Approval-Result` HTTP header value and one-time token in `X-2FA-Approval` header value.
-3. Client signs the one-time token string with private key corresponding to one of the public keys client uploaded for 
+1. Client makes a request which requires strong authentication.
+2. The request is declined with HTTP status `403 / Forbidden` and the following headers 
+  * `X-2FA-Approval-Result`: `DECLINED`
+  * `X-2FA-Approval` containing the one-time token (OTT) value which is what needs to be signed
+3. Client signs the OTT with the private key corresponding to a public key previously uploaded for 
 signature verification.
-4. Client repeats the initial request with one-time token provided in `X-2FA-Approval` header value and token digital 
-signature in `X-Signature` header value.
-5. The signature is verified against public keys client uploaded for his account and if it is valid, initial request
-is fulfilled.
+4. Client repeats the initial request with the OTT provided in the `X-2FA-Approval` header value and the signed OTT in 
+the `X-Signature` header value.  
+
+Note: as the name implies, a one-time token can be used only once. If it was successfully processed then further 
+requests with the same token signature will be rejected.
 
 ### TEST and LIVE environments
 
@@ -712,6 +717,16 @@ You can add new currencies to your account via the user interface: [https://sand
 
 You can then top up your new currencies by converting funds from other currencies.
 
+**NB!**: this endpoint is subject to [additional authentication requirements]
+(#payouts-guide-api-access-strong-customer-authentication). There are scenarios where those could be 
+bypassed, such as:
+
+* the recipient of the transfer is marked as trusted on the website
+* the profile you are sending from is in one of the countries excluded from the requirements
+
+Unless you are sending to a small number of recipients who you trust, it is recommended to 
+implement the referenced measures for your integration.
+
 ### Request
 
 **`POST https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments`**
@@ -1099,6 +1114,10 @@ intervalStart                         | Statement start time in UTC time        
 intervalEnd                           | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
 
 Note that you can also download statements in PDF and CSV formats if you replace statement.json with statement.csv or statement.pdf respectively in the above URL.
+
+**NB!** this endpoint is subject to [additional authentication requirements]
+(#payouts-guide-api-access-strong-customer-authentication). The additional authentication is 
+only required once every 90 days, viewing the statement on the website or in the mobile app counts towards that as well.
 
 ### Response
 
