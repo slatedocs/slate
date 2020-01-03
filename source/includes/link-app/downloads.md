@@ -3,7 +3,22 @@
 
 Integra Dátil a tu sistema en minutos.
 
-### Más reciente (6.2.1)
+### Más reciente (6.2.2)
+
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.2_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.2_64bit.exe)
+
+#### Notas de la versión
+
+#### <strong>6.2.2</strong><br><small><strong>Enero 3, 2020</strong></small>
+
+##### Corregido
+Mejora en información de pagos para compatibilidad con Oracle.
+
+### Versiones anteriores
+
+
+#### 6.2.1
 
 - [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.1_32bit.exe)
 - [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.1_64bit.exe)
