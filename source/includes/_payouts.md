@@ -277,9 +277,103 @@ $ printf '<string to sign>' | openssl sha1 -sign <path to private key.pem> | bas
    
 **Detailed workflow**
 
+> Here is the workflow by example. 
+
+> 1\. Client performs a request:
+
+```bash
+$ curl -X POST 'https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments' \
+       -H 'Content-Type: application/json' \
+       -H 'Authorization: Bearer <your api token>' \
+       -d '{"type": "BALANCE"}'
+```
+
+> 2\. Client receives the response indicating that strong authentication is required:
+
+```
+HTTP/1.1 403 Forbidden
+Date: Fri, 03 Jan 2020 12:34:56 GMT
+Content-Type: application/json;charset=UTF-8
+x-2fa-approval-result: REJECTED
+x-2fa-approval: be2f6579-9426-480b-9cb7-d8f1116cc8b9
+
+{
+    "timestamp": "2020-01-03T12:34:56.789+0000",
+    "status": 403,
+    "error": "Forbidden",
+    "message": "You are forbidden to send this request",
+    "path": "/v3/profiles/{profileId}/transfers/{transferId}/payments"
+}
+```
+
+> 3\. Client signs the one-time token from the response using OpenSSL:
+
+```bash
+$ printf 'be2f6579-9426-480b-9cb7-d8f1116cc8b9' | openssl sha1 -sign private.pem | base64 -b 0
+RjXBO5SpAuMGdgTyqPryOt8AyIKY0t5gHqj36MzR2UwH9SvSY1V1wKIQCqXRvLMLyWBGXDkLvv9JdAni+H87k3hsClRiyfpdzcg3uOP+d/jSagNDSjHixPh4/rWQh+eEhBRo4V+pPBH+r5APtIwFY/fvvdMbZ/QnnmcPHxi/t7uS7+qvRZCC17q47T0ZpSwEK9x+nG/wcJ4S4Yrk0E2yQlLz8F35C+E2gt/KGTt6Tf5z6GonM1H2gJWoHpxuOUomh09b/k3teLjIfEirWmnO2XuOe0oDCUH8i10dokzk+QrM4t/Yv/Rb18JvTeugDAKMydGo7KTgqKGCXZauicX0Ew==
+```
+
+> with `private.pem` private key:
+
+```
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA3qfjPkhbTPKJQqLm+KfHP14wJ2U318Rh/4TV8xLi605xFW7r
+ApzXzLLxBb7zSkBc9wFIEH7wU7/BaFivg440R7ktYR07/QXZi+i0grKbfhEBW1nU
+jkI2eZxT3vE4VIK7Yt2jr84JiCYmjL2b/w1DatXZM9Xoa3j9YHda5cKLOfCCIeTs
+I3beYI9UmSnidYaXpX7q4gfHME+A/1F/19L8jFvX+c7MXapdCdY/NUHXBCJFfBzg
+OBlXbPKhdjtEnx+Hg5Sq/Frsld6dKwF1CDMO96YoeXBdi58JkLL/CLyy1i7UcXTb
+SRy0Gbd3NWSAamWdpJDDg51UR6yRJdXjtnhpdQIDAQABAoIBAGs3/4bzgvvH428y
+UPU2ng0WxyuBY2XEzMgl6H04AAv95xjCI+tLKeQJ22S/8ho0alALzu8aoZJCydj8
+s/Au32AWfRLB6CxMz9i+w4YYiiYn/DZISMIEgoUHUaAPGugfWCsgvf0fw5lLfc7S
+U7d7ZJaiyghbHqP6TFFSyHPRvge0so+8eRvPMxIGdfJR3gagJqKB5JbTGAnQ5Kn2
+eb5flDOobmCfpLDfIYH9u94Yj671xymtNYXwWxic4gA+aqWJKaqkI8JL7bFdjvjn
+Jer5RHeXmY9UZtDhSrZWSEKniw3m02QPpgqhhhPr8xToNA/7G1/P9994fuDKKnRk
+edn3FEECgYEA8iTPuaNGswyx/3zCkOPHHu82CSoWRZQapegN0YoXKsCyEWcHgQJV
+jZlF39OK14+y4PWWPJ3AlkhrchAJbUbgpw0P+G1uiRmXVpqcaEI4xIFd8oSOG+Vr
+s06YZYUrb7C73mi8x3sXdOpmehMYdnSbuxrRXyk0MwpLO2PkC0wXzEUCgYEA62WY
+RuZMAHR4PEZA+sDBG6XzjZGw1QQvF7H6u+JOfgPbRgZ+NnLQ/ZpYiDvrJGqAp1B1
+NIj69zVBN0p7PuRg2v9I4tHlmWC4eyYnVCf3dM6Fhsyb7RC3MHXVNOErxRoHVNqL
+4iywSUnboJyvdyKc7S5wQ5gdM14HogD/i1FHs3ECgYBMuMcsfYRgJOydE82eFN25
+ene3jaNC5ntPB+ig9M0EWcvR4cAp6zBqTh8qnR9Hz5sQ1h+FE0K7GzUYDea+vg9e
+PrBJuXqla/tckF5wVlMgSBEZT1CrnBR02rlEqV4q5GeSP8NYvTKgc8iGc1hz59yT
++xpNuYN1jJRru+m8fp6ntQKBgQDd7Iglv5TDkQqR+MHmJbdpM4lsXIBUM3+aXUc/
+vtm1YDlnyVNQTerOTKdOuP609FuaYfY9sy63xVNYpzWOU40kqiyy+qP1eAQ0xgGq
+C4v2aYXlUh1m4K10WILLOcYkKqfiza+3ad5BGgqfX1jlfpJn4bIhZ9WPygR0LXC+
+jcCFYQKBgQCelF/LIocwZ1ZW/Cx2OqMi/lkI56nLeBl7jRNiBSNIs0deN0cw4sHp
+BN9459NojAKBKJK1pyqajzrHae66V+8/2Zz2/gmTK1dDjznyw6TZmV3QyHTFhUtY
+NI7wvIG9K8gFaoSiGD/OLlLRaGiAdejKBsBx2hK73M58YQsgqIpdIQ==
+-----END RSA PRIVATE KEY-----
+```
+
+> 4\. Client repeats the initial request with the addition of the one-time token and the signature headers:
+
+```bash
+$ curl -X POST 'https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments' \
+       -H 'Content-Type: application/json' \
+       -H 'Authorization: Bearer <your api token>' \
+       -H 'x-2fa-approval: be2f6579-9426-480b-9cb7-d8f1116cc8b9' \
+       -H 'X-Signature: RjXBO5SpAuMGdgTyqPryOt8AyIKY0t5gHqj36MzR2UwH9SvSY1V1wKIQCqXRvLMLyWBGXDkLvv9JdAni+H87k3hsClRiyfpdzcg3uOP+d/jSagNDSjHixPh4/rWQh+eEhBRo4V+pPBH+r5APtIwFY/fvvdMbZ/QnnmcPHxi/t7uS7+qvRZCC17q47T0ZpSwEK9x+nG/wcJ4S4Yrk0E2yQlLz8F35C+E2gt/KGTt6Tf5z6GonM1H2gJWoHpxuOUomh09b/k3teLjIfEirWmnO2XuOe0oDCUH8i10dokzk+QrM4t/Yv/Rb18JvTeugDAKMydGo7KTgqKGCXZauicX0Ew==' \
+       -d '{"type": "BALANCE"}'
+```
+
+> 5\. Client receives the processed response with authentication status `APPROVED`:
+
+```
+HTTP/1.1 200 OK
+Date: Fri, 03 Jan 2020 12:34:56 GMT
+Content-Type: application/json;charset=UTF-8
+x-2fa-approval-result: APPROVED
+
+{
+  "type": "BALANCE",
+  "status": "COMPLETED",
+  "errorCode": null
+}
+```
+
 1. Client makes a request which requires strong authentication.
 2. The request is declined with HTTP status `403 / Forbidden` and the following headers 
-  * `X-2FA-Approval-Result`: `DECLINED`
+  * `X-2FA-Approval-Result`: `REJECTED`
   * `X-2FA-Approval` containing the one-time token (OTT) value which is what needs to be signed
 3. Client signs the OTT with the private key corresponding to a public key previously uploaded for 
 signature verification.
