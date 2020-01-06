@@ -350,9 +350,7 @@ res = requests.get(url, headers=headers, params=data)
 ```
 
 ```shell
-curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/?domains="www.example.com"&domain="example.com"' \
-  -X GET \
-  -H "Content-Type: application/json" \
+curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/?domain='www.example.com'&domain='example.com'' \
   -H "x-api-key: API_KEY" 
 ```
 
@@ -441,7 +439,7 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 
 ### HTTP Request
 
-`GET https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/?domains="www.example.com"&domain="example.com"`
+`GET https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/?domain="www.example.com"&domain="example.com"`
 
 Fetching the scores has the following use cases:
 
