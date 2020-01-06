@@ -235,7 +235,7 @@ The following requirements apply:
 ```bash
 $ curl -X POST https://api.sandbox.transferwise.tech/v1/public-keys \
   -H 'Authorization: Bearer <your api token>' \
-  -F 'file=@/path/to/my_private_key.pem;type=application/x-pem-file'
+  -F 'file=@/path/to/my_public_key.pem;type=application/x-pem-file'
 ```
 > Note, that the public key file extension is `.pem` and content type is `application/x-pem-file`. 
 
