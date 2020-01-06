@@ -2,7 +2,6 @@
 
 With Classic VPN, your on-premises hosts communicate through one or more IPsec VPN tunnels to Compute Engine Virtual Machine (VM) instances in your project's VPC networks.
 
-
 <!-------------------- LIST VPN TUNNELS -------------------->
 
 #### List VPN tunnels
@@ -90,36 +89,35 @@ curl -X GET \
 
 ```json
 {
-  "data":
-    {
-      "creationTimestamp": "2019-12-12T06:34:44.930-08:00",
-      "description": "",
-      "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
-      "targetVpnGateway": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/targetVpnGateways/test-vpn-gw",
-      "vpnGatewayInterface": 0,
-      "peerExternalGatewayInterface": 0,
-      "peerIp": "69.196.164.138",
-      "sharedSecret": "*************",
-      "sharedSecretHash": "AG9FPaFV_aT2jaIN4cdrnDunzHL8",
-      "status": "ESTABLISHED",
-      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/vpnTunnels/vt-epk",
-      "ikeVersion": 2,
-      "detailedStatus": "Tunnel is up and running.",
-      "localTrafficSelector": [
-        "10.128.0.0/20"
-      ],
-      "remoteTrafficSelector": [
-        "10.177.132.0/22"
-      ],
-      "kind": "compute#vpnTunnel",
-      "gcpVpnGateway": {},
-      "shortVpnGateway": "test-vpn-gw",
-      "address": "34.66.131.105",
-      "type": "CLASSIC",
-      "id": "8211895554244865771",
-      "name": "vt-test-epk",
-      "shortRegion": "us-central1"
-    }
+  "data":{
+    "creationTimestamp": "2019-12-12T06:34:44.930-08:00",
+    "description": "",
+    "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
+    "targetVpnGateway": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/targetVpnGateways/test-vpn-gw",
+    "vpnGatewayInterface": 0,
+    "peerExternalGatewayInterface": 0,
+    "peerIp": "69.196.164.138",
+    "sharedSecret": "*************",
+    "sharedSecretHash": "AG9FPaFV_aT2jaIN4cdrnDunzHL8",
+    "status": "ESTABLISHED",
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/vpnTunnels/vt-epk",
+    "ikeVersion": 2,
+    "detailedStatus": "Tunnel is up and running.",
+    "localTrafficSelector": [
+      "10.128.0.0/20"
+    ],
+    "remoteTrafficSelector": [
+      "10.177.132.0/22"
+    ],
+    "kind": "compute#vpnTunnel",
+    "gcpVpnGateway": {},
+    "shortVpnGateway": "test-vpn-gw",
+    "address": "34.66.131.105",
+    "type": "CLASSIC",
+    "id": "8211895554244865771",
+    "name": "vt-test-epk",
+    "shortRegion": "us-central1"
+  }
 }
 ```
 
@@ -161,14 +159,14 @@ curl -X POST \
 
 ```json
 {
-    "name": "test-my-vpn-tunnel",
-    "description": "my VPN tunnel",
-    "targetVpnGateway": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/targetVpnGateways/test-vpn-gw",
-    "peerIP": "69.196.164.138",
-    "ikeVersion": 2,
-    "sharedSecret": "mysecret",
-    "remoteTrafficSelector": "10.128.0.0/20",
-    "localTrafficSelector": ""
+  "name": "test-my-vpn-tunnel",
+  "description": "my VPN tunnel",
+  "targetVpnGateway": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/targetVpnGateways/test-vpn-gw",
+  "peerIP": "69.196.164.138",
+  "ikeVersion": 2,
+  "sharedSecret": "mysecret",
+  "remoteTrafficSelector": "10.128.0.0/20",
+  "localTrafficSelector": ""
 }
 ```
 
@@ -202,10 +200,10 @@ curl -X DELETE \
 
 ```json
 {
-    "vpnGatewayToDelete": "3932849056897469665",
-    "gcpVpnGateway": {
-      "externalIpToRelease": ["32.45.23.54"]
-    }
+  "vpnGatewayToDelete": "3932849056897469665",
+  "gcpVpnGateway": {
+    "externalIpToRelease": ["32.45.23.54"]
+  }
 }
 ```
 

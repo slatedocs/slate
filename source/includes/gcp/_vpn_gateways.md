@@ -94,6 +94,7 @@ curl -X GET \
     "id": "3112849056897469664",
     "name": "test-vpn-gw",
     "shortRegion": "us-central1"
+  }
 }
 ```
 
@@ -130,19 +131,19 @@ curl -X POST \
 
 ```json
 {
-    "name": "test-my-vpn-gw",
-    "description": "my VPN gateway",
-    "shortRegion": "us-east4",
-    "reserveStaticIP": true
+  "name": "test-my-vpn-gw",
+  "description": "my VPN gateway",
+  "shortRegion": "us-east4",
+  "reserveStaticIP": true
 }
 ```
 
 ```json
 {
-    "name": "test-other-vpn-gw",
-    "description": "my other VPN gateway",
-    "shortRegion": "us-east4",
-    "shortIP": "my-vpn-gw-ip"
+  "name": "test-other-vpn-gw",
+  "description": "my other VPN gateway",
+  "shortRegion": "us-east4",
+  "shortIP": "my-vpn-gw-ip"
 }
 ```
 
