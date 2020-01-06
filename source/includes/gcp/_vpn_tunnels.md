@@ -39,56 +39,7 @@ curl -X GET \
         "10.177.132.0/22"
       ],
       "kind": "compute#vpnTunnel",
-      "gcpVpnGateway": {
-        "creationTimestamp": "2019-08-27T06:37:19.149-07:00",
-        "description": "",
-        "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
-        "network": "https://www.googleapis.com/compute/v1/projects/test-area/global/networks/default",
-        "tunnels": [
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/vpnTunnels/vt-epk"
-        ],
-        "status": "READY",
-        "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/targetVpnGateways/test-vpn-gw",
-        "forwardingRules": [
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp",
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp4500",
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp500"
-        ],
-        "kind": "compute#targetVpnGateway",
-        "externalIp": {
-          "creationTimestamp": "2019-08-22T06:58:28.039-07:00",
-          "description": "",
-          "address": "34.66.131.105",
-          "prefixLength": 0,
-          "status": "IN_USE",
-          "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
-          "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/addresses/test-vpn-gw-ip",
-          "users": [
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp",
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp500",
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp4500"
-          ],
-          "networkTier": "PREMIUM",
-          "addressType": "EXTERNAL",
-          "kind": "compute#address",
-          "shortUsers": [
-            "test-vpn-gw-rule-esp",
-            "test-vpn-gw-rule-udp500",
-            "test-vpn-gw-rule-udp4500"
-          ],
-          "type": "STATIC",
-          "id": "7691460107706769771",
-          "name": "test-vpn-gw-ip",
-          "shortRegion": "us-central1"
-        },
-        "tunnelsName": [
-          "vt-test-epk"
-        ],
-        "reserveStaticIP": false,
-        "id": "3112849056897469664",
-        "name": "test-vpn-gw",
-        "shortRegion": "us-central1"
-      },
+      "gcpVpnGateway": {},
       "shortVpnGateway": "test-vpn-gw",
       "address": "34.66.131.105",
       "type": "CLASSIC",
@@ -112,6 +63,7 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description`<br/>*string* | An optional description
 `id`<br/>*UUID* | Unique identifier for this resource
+`gcpVpnGateway`<br/>*Object* | The VPN Gateway associated with this tunnel
 `ikeVersion`<br/>*integer* | IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2
 `localTrafficSelector`<br/>*string* | Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string. Only IPv4 is supported. By default it's the CIDR associated with the region in which the VPN gateway resides.
 `name`<br/>*string* | The display name of the address
@@ -138,7 +90,7 @@ curl -X GET \
 
 ```json
 {
-  "data": 
+  "data":
     {
       "creationTimestamp": "2019-12-12T06:34:44.930-08:00",
       "description": "",
@@ -160,56 +112,7 @@ curl -X GET \
         "10.177.132.0/22"
       ],
       "kind": "compute#vpnTunnel",
-      "gcpVpnGateway": {
-        "creationTimestamp": "2019-08-27T06:37:19.149-07:00",
-        "description": "",
-        "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
-        "network": "https://www.googleapis.com/compute/v1/projects/test-area/global/networks/default",
-        "tunnels": [
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/vpnTunnels/vt-epk"
-        ],
-        "status": "READY",
-        "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/targetVpnGateways/test-vpn-gw",
-        "forwardingRules": [
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp",
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp4500",
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp500"
-        ],
-        "kind": "compute#targetVpnGateway",
-        "externalIp": {
-          "creationTimestamp": "2019-08-22T06:58:28.039-07:00",
-          "description": "",
-          "address": "34.66.131.105",
-          "prefixLength": 0,
-          "status": "IN_USE",
-          "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
-          "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/addresses/test-vpn-gw-ip",
-          "users": [
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp",
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp500",
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp4500"
-          ],
-          "networkTier": "PREMIUM",
-          "addressType": "EXTERNAL",
-          "kind": "compute#address",
-          "shortUsers": [
-            "test-vpn-gw-rule-esp",
-            "test-vpn-gw-rule-udp500",
-            "test-vpn-gw-rule-udp4500"
-          ],
-          "type": "STATIC",
-          "id": "7691460107706769771",
-          "name": "test-vpn-gw-ip",
-          "shortRegion": "us-central1"
-        },
-        "tunnelsName": [
-          "vt-test-epk"
-        ],
-        "reserveStaticIP": false,
-        "id": "3112849056897469664",
-        "name": "test-vpn-gw",
-        "shortRegion": "us-central1"
-      },
+      "gcpVpnGateway": {},
       "shortVpnGateway": "test-vpn-gw",
       "address": "34.66.131.105",
       "type": "CLASSIC",
@@ -229,6 +132,7 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description`<br/>*string* | An optional description
 `id`<br/>*UUID* | Unique identifier for this resource
+`gcpVpnGateway`<br/>*Object* | The VPN Gateway associated with this tunnel
 `ikeVersion`<br/>*integer* | IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2
 `localTrafficSelector`<br/>*string* | Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string. Only IPv4 is supported. By default it's the CIDR associated with the region in which the VPN gateway resides.
 `name`<br/>*string* | The display name of the address
@@ -259,11 +163,11 @@ curl -X POST \
 {
     "name": "test-my-vpn-tunnel",
     "description": "my VPN tunnel",
-    "targetVpnGateway": "http://long/url/to/my-vpn-gw",
-    "peerIP": "",
+    "targetVpnGateway": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/targetVpnGateways/test-vpn-gw",
+    "peerIP": "69.196.164.138",
     "ikeVersion": 2,
     "sharedSecret": "mysecret",
-    "remoteTrafficSelector": "",
+    "remoteTrafficSelector": "10.128.0.0/20",
     "localTrafficSelector": ""
 }
 ```
@@ -300,8 +204,8 @@ curl -X DELETE \
 {
     "vpnGatewayToDelete": "3932849056897469665",
     "gcpVpnGateway": {
-        "externalIpToRelease": ["32.45.23.54"]
-        }
+      "externalIpToRelease": ["32.45.23.54"]
+    }
 }
 ```
 
