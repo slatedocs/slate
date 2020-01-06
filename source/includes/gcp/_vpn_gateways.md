@@ -30,32 +30,7 @@ curl -X GET \
         "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp"
       ],
       "kind": "compute#targetVpnGateway",
-      "externalIp": {
-        "creationTimestamp": "2019-08-22T06:58:28.039-07:00",
-        "description": "",
-        "address": "34.66.131.105",
-        "prefixLength": 0,
-        "status": "IN_USE",
-        "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
-        "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/addresses/test-vpn-gw-ip",
-        "users": [
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp",
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp500",
-          "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp4500"
-        ],
-        "networkTier": "PREMIUM",
-        "addressType": "EXTERNAL",
-        "kind": "compute#address",
-        "shortUsers": [
-          "test-vpn-gw-rule-esp",
-          "test-vpn-gw-rule-udp500",
-          "test-vpn-gw-rule-udp4500"
-        ],
-        "type": "STATIC",
-        "id": "7691460107706769771",
-        "name": "test-vpn-gw-ip",
-        "shortRegion": "us-central1"
-      },
+      "externalIp": {},
       "tunnelsName": [],
       "reserveStaticIP": false,
       "id": "3112849056897469664",
@@ -77,7 +52,7 @@ Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description`<br/>*string* | An optional description
-`externalIp`<br/>*string* | The external IP attached to this VPN gateway.
+`externalIp`<br/>*Object* | The external IP attached to this VPN gateway.
 `forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway
 `id`<br/>*UUID* | Unique identifier for this resource.
 `name`<br/>*string* | The display name of the VPN gateway.
@@ -113,32 +88,7 @@ curl -X GET \
         "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp"
     ],
     "kind": "compute#targetVpnGateway",
-    "externalIp": {
-        "creationTimestamp": "2019-08-22T06:58:28.039-07:00",
-        "description": "",
-        "address": "34.66.131.105",
-        "prefixLength": 0,
-        "status": "IN_USE",
-        "region": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1",
-        "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/addresses/test-vpn-gw-ip",
-        "users": [
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-esp",
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp500",
-            "https://www.googleapis.com/compute/v1/projects/test-area/regions/us-central1/forwardingRules/test-vpn-gw-rule-udp4500"
-        ],
-        "networkTier": "PREMIUM",
-        "addressType": "EXTERNAL",
-        "kind": "compute#address",
-        "shortUsers": [
-            "test-vpn-gw-rule-esp",
-            "test-vpn-gw-rule-udp500",
-            "test-vpn-gw-rule-udp4500"
-        ],
-        "type": "STATIC",
-        "id": "7691460107706769771",
-        "name": "test-vpn-gw-ip",
-        "shortRegion": "us-central1"
-    },
+    "externalIp": {},
     "tunnelsName": [],
     "reserveStaticIP": false,
     "id": "3112849056897469664",
@@ -155,7 +105,7 @@ Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description`<br/>*string* | An optional description
-`externalIp`<br/>*string* | The external IP attached to this VPN gateway.
+`externalIp`<br/>*Object* | The external IP attached to this VPN gateway.
 `forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway
 `id`<br/>*UUID* | Unique identifier for this resource.
 `name`<br/>*string* | The display name of the VPN gateway.
@@ -223,7 +173,7 @@ curl -X DELETE \
 
 ```json
 {
-    "externalIpToRelease": ["32.45.23.54"]
+  "externalIpToRelease": ["32.45.23.54"]
 }
 ```
 
