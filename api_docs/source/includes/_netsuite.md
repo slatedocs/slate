@@ -2142,6 +2142,10 @@ VENDOR_ID | ID of the vendor being deleted
 
 ## Get Logs
 
+### HTTP Request
+
+`GET https://example.procurify.com/api/v3/integrations/netsuite/logs/`
+
 > The above command returns a JSON structured like this:
 
 ```json
