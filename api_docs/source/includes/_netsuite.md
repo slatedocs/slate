@@ -2139,3 +2139,60 @@ VENDOR_ID | ID of the vendor being deleted
 ### HTTP Response Status Code
 
 204 No Content
+
+## Get Logs
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "message": "Sync Error | PO | Internal obj=62 | Error Message",
+      "created_at": "2019-12-10T17:47:00.373867-08:00"
+    },
+    {
+      "id": 2,
+      "message": "Cows are fat",
+      "created_at": "2019-12-10T17:52:37.664801-08:00"
+    },
+    {
+      "id": 3,
+      "message": "Cows are fat",
+      "created_at": "2019-12-10T17:54:07.778353-08:00"
+    },
+    {
+      "id": 4,
+      "message": "Cows are fat",
+      "created_at": "2019-12-10T17:54:32.372771-08:00"
+    },
+    {
+      "id": 5,
+      "message": "Sync Error | PO | Internal obj=62 | Error Message",
+      "created_at": "2019-12-10T17:55:49.134368-08:00"
+    }
+  ],
+  "metadata": {
+    "pagination": {
+      "count": 5,
+      "next": null,
+      "previous": null,
+      "page_size": 10,
+      "num_pages": 1,
+      "current_page": 1
+    }
+  }
+}
+```
+
+### URL Parameters
+
+Parameter   | Values
+------------| -----------
+status      | `success`, `error`
+object_type | `purchaseorder`, `receiptline`, `accountcode`, `vendor`
+
+### HTTP Response Status Code
+
+200 OK
