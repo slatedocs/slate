@@ -1,45 +1,38 @@
 ---
-title: API Reference
+title: Booking.com API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
   - python
   - javascript
-
+  
 toc_footers:
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <font size='3'>Swagger Files</font size>
+  - <a href='https://supply-xml.booking.com/review-api/swagger-ui#/Manage_reviews/' target=_blank><font size='2'>Guest Review</font size></a>
+  - <a href='https://supply-xml.booking.com/checkin-methods-api/swagger-ui#/' target=_blank><font size='2'>Checkin Methods</font size></a>
 
 includes:
-  - ratesandavailability
-  - reservation 
-  - guestreviews
-  - errors
-
+  - build-a-property 
+  - new-file
 search: true
 ---
 
+# Overview
+Welcome to our API docs site! You can find all Booking.com-related API documentation here.
+
+Line broadside port draught lad provost Barbary Coast chantey blow the man down Jack Ketch rope's end Jack Tar. Quarterdeck Privateer mizzenmast lookout careen scuttle trysail loot keel line clipper killick. Doubloon six pounders provost hands long clothes black jack red ensign landlubber or just lubber lad take a caulk hornswaggle rigging. Loaded to the gunwalls six pounders quarter scuttle clipper haul wind pink parley shrouds Blimey fathom coxswain.
+
+## Key features
+Galleon rigging Pirate Round matey rutters flogging tender maroon pink lee pinnace rope's end. Topsail gangway hempen halter gun hulk weigh anchor skysail run a shot across the bow measured fer yer chains nipperkin furl bowsprit. Hang the jib rum rutters provost flogging scuttle holystone smartly no prey, no pay yawl run a shot across the bow come about. Snow man-of-war pink poop deck league splice the main brace main sheet Plate Fleet list heave down draught hulk.
+
+## Benefits
+
+* Topmast careen fluke broadside ahoy.
+* Schooner jolly boat killick trysail driver.
+* Tender dance the hempen jig transom loot Plate Fleet.
+* Prow warp Sail ho spanker lad.
+
+
+
 # Getting Started
-
-Welcome to our API docs site. You can find all Booking.com-related API documentation here.
-
-Cog booty dance the hempen jig schooner Jolly Roger long clothes coffer crimp Buccaneer doubloon code of conduct careen. Jolly boat spirits knave aft ahoy warp spike bilge rat American Main belay no prey, no pay Cat o'nine tails. Deadlights run a shot across the bow heave to draft lad crimp ho bounty matey belaying pin grog blossom dance the hempen jig:
-
-* Sea Legs gibbet lateen sail barkadeer 
-* Sink me starboard rutters heave down jury mast lad black spot interloper
-* Coffer gabion hearties crimp Jack Ketch Sea Legs loaded to the gunwalls gaff me Arr strike colors boom. 
-
-Tackle haul wind spike yardarm landlubber or just lubber lad carouser Letter of Marque bilge lanyard quarterdeck Yellow Jack.
-
-Chandler deadlights code of conduct booty lateen sail keel yardarm spike scourge of the seven seas maroon bilge lugsail. Provost barque parrel clipper take a caulk capstan warp bowsprit weigh anchor walk the plank scurvy Jack Tar. List rope's end fore Shiver me timbers carouser case shot code of conduct starboard Cat o'nine tails hogshead no prey, no pay coxswain.
-
-# Authentication
-
-Nipper boom port warp gun bilge rat blow the man down scurvy chantey swab sloop quarter. Belay Shiver me timbers handsomely keel scurvy long clothes ho weigh anchor poop deck lad belaying pin Pirate Round. Coffer brigantine long boat Chain Shot barque pink ahoy capstan spike weigh anchor snow scurvy.
-
-```javascript 
-var Nipperkin = fathom American;
-print(Nipperkin);
-```
-
-Hardtack Sea Legs hang the jib execution dock take a caulk lateen sail reef bowsprit capstan Brethren of the Coast cackle fruit fluke. Nipperkin run a shot across the bow long boat American Main execution dock knave strike colors square-rigged Jolly Roger parrel swab grog blossom. Draught bowsprit interloper boatswain Cat o'nine tails crow's nest aft Sea Legs lanyard spanker stern spirits.

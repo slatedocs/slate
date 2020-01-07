@@ -90,7 +90,7 @@ html, body {
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
       outline: none;
-      color: rgb(252, 252, 252);
+      color: rgb(17, 19, 19);
       border-radius: 0; /* ios has a default border radius */
     }
 
@@ -124,7 +124,7 @@ html, body {
     }
 
     a {
-      color: $nav-text;
+      color: rgb(252, 252, 252);
       text-decoration: none;
 
       &:hover {
@@ -456,7 +456,6 @@ html, body {
     padding: 3px;
     border-radius: 3px;
     @extend %break-words;
-    @extend %code-font;
   }
 
   pre>code {
@@ -515,7 +514,7 @@ html, body {
 
 .content {
   pre, blockquote {
-    background-color: $code-bg;
+    background-color: rgb(60, 62, 65);
     color: #fff;
 
     margin: 0;

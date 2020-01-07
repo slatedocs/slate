@@ -31,6 +31,7 @@ body {
   display: none;
 }
 
+
 .tocify-wrapper>img {
   margin: 0 auto;
   display: block;
@@ -44,8 +45,7 @@ body {
     @extend %break-words;
     border: 1px solid $print-color;
     border-radius: 5px;
-    font-size: 0.8em;
-  }
+    }
 
   pre {
     code {

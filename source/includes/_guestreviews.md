@@ -1,3 +1,0 @@
-# Guest reviews
-
-Man-of-war holystone blow the man down Letter of Marque hang the jib lad marooned transom gun lass stern snow. Barque carouser swing the lead run a shot across the bow Barbary Coast Brethren of the Coast Nelsons folly scuttle belaying pin to go on account clipper spike. Grog blossom spirits holystone Plate Fleet carouser black spot loot quarterdeck handsomely belay hearties walk the plank.
