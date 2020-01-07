@@ -124,6 +124,31 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -d "request _body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules"
+# Request example:
+```
+```json
+Creating a forwarding rule with ephemeral IP
+{
+  "portRange": "80",
+  "name": "my-forwarding-name",
+  "shortTarget": "my-target-proxy"
+}
+
+Creating a forwarding rule with new static IP
+{
+  "portRange": "80",
+  "name": "my-forwarding-name",	
+  "shortTarget": "my-target-proxy",
+  "reserveStaticIP": true
+}
+
+Creating a forwarding rule with ephemeral IP
+{
+  "portRange": "80",  
+  "name": "my-forwarding-name",
+  "shortTarget": "my-target-proxy",  
+  "shortIPAddress": "my-IP-address"
+}
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules</code>

@@ -294,6 +294,7 @@ curl -X POST \
 ```
 
 ```json
+Create an instance with an existing IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -303,9 +304,32 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
-  "externalIp": {
-    "id": "3645738160550100933"
-  }
+  "shortIP": "my-ip-name"
+}
+
+Create an instance with a new static IP
+{
+  "name": "my-instance",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-a",
+  "bootDiskType": "pd-standard",
+  "bootDiskSizeInGb": "10",
+  "cpuCount": "2",
+  "memoryInGB": "4.5",
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "reserveStaticIP": true
+}
+
+Create an instance with an ephemeral IP
+{
+  "name": "my-instance",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-a",
+  "bootDiskType": "pd-standard",
+  "bootDiskSizeInGb": "10",
+  "cpuCount": "2",
+  "memoryInGB": "4.5",
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514"
 }
 ```
 
@@ -326,7 +350,8 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`externalIp`<br/>*Object* | The external IP to attach to this instance.<br/>__To attach to an existing static IP__, use the syntax given above and replace the `id` value to your own.<br/>__To request a new static IP__, use <code>"externalIp": { "name": "new_static" }</code> as the `externalIp` object.
+`reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource.
+`shortIP`<br/>*string* | The name of an existing regional external IP address assigned to this instance in the same region. This argument is only valid in conjunction with reserveStaticIP being false.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
