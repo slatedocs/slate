@@ -131,7 +131,9 @@ enable_payment_va | false | Whether OY! should enable payment using Bank Virtual
   "name": "Joko Widodo",
   "phone_number": "+6281111111",
   "note": "Mohon dikirim segera",
-  "result": "success"
+  "result": "success",
+  "sender_bank": "008",
+  "payment_method": "Instant Pay"
 }
 ```
 
@@ -152,5 +154,8 @@ nominal | BigDecimal | Amount of payment by the Buyer
 name | String | Name of Buyer
 phone_number | String | Phone Number of Buyer
 note | String | (Optional) This is note from the Buyer
-result | String | Payment Status of Buyer. Can be either "success" or "failed"
+result | String | Payment Status of Buyer. Can be either "success" or "failed" or ""
 sender_bank | String | Bank code used by buyer to do payment 
+payment_method | String | Define what payment method to be used in transaction (`Instant Pay`/`Manual Pay`/`Manual Bank Transfer`)*
+
+*Instant Pay = direct-debit or cc; Manual Pay = virtual account; Manual Bank Transfer = pay using manual transfer
