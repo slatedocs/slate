@@ -154,7 +154,7 @@ nominal | BigDecimal | Amount of payment by the Buyer
 name | String | Name of Buyer
 phone_number | String | Phone Number of Buyer
 note | String | (Optional) This is note from the Buyer
-result | String | Payment Status of Buyer. Can be either "success" or "failed" or ""
+result | String | Payment Status of Buyer. Can be either "success" or "failed" or "processing"
 sender_bank | String | Bank code used by buyer to do payment 
 payment_method | String | Define what payment method to be used in transaction (`Instant Pay`/`Manual Pay`/`Manual Bank Transfer`)*
 
