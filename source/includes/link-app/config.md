@@ -2298,7 +2298,7 @@ CREATE TABLE [liquidaciones_compra].[liquidacion](
     [identificador_proveedor] [VARCHAR](20) NOT NULL,
     [direccion_proveedor] [vARCHAR](300) NULL,
     -- TOTALES
-    [total_sin_impuesto] [DECIMAL](14, 2) NOT NULL,
+    [total_sin_impuestos] [DECIMAL](14, 2) NOT NULL,
     [descuento] [DECIMAL](14, 2) NOT NULL,
     [importe_total] [DECIMAL](14, 2) NOT NULL,
     -- REEMBOLSO
@@ -2316,7 +2316,7 @@ CREATE TABLE [liquidaciones_compra].[item](
     [codigo_auxiliar] [VARCHAR](25)  NULL,
     [descripcion] [VARCHAR](300)  NOT NULL,
     [unidad_medida] [VARCHAR](50) NULL,
-    [cantidad] [DECIMAL](14,2)  NOT NULL,
+    [cantidad] [DECIMAL](14,6)  NOT NULL,
     [precio_unitario] [DECIMAL](18,6)  NOT NULL,
     [descuento] [DECIMAL](14,2)  NULL,
     [precio_total_sin_impuestos] [DECIMAL](14,2)  NOT NULL,
