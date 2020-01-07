@@ -2876,7 +2876,7 @@ Recipient type = *'russiarapida'*
 
 Required details: bankCode, accountNumber, region, recipient address.
 
-You have to provide first, last and patronymic names in Cyrrilic, in order for your transfer to be accepted by the recipient bank.
+You have to provide first, last and patronymic names in Cyrillic, in order for your transfer to be accepted by the recipient bank.
 (unless the recipient is registered at the bank with no patronymic)
 
 You can get list of bank, region and country codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
