@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 2.4.0
+
+*October 19, 2019*
+
+- Move repository from lord/slate to slatedocs/slate
+- Fix documentation to point at new repo link, thanks to [Arun](https://github.com/slash-arun), [Gustavo Gawryszewski](https://github.com/gawry), and [Daniel Korbit](https://github.com/danielkorbit)
+- Update `nokogiri` to 1.10.4
+- Update `ffi` in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jackmack](https://github.com/jakemack)
+- Update `rack` to 2.0.7 in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jackmack](https://github.com/jakemack)
+- Update middleman to `4.3` and relax constraints on middleman related gems, thanks to [jackmack](https://github.com/jakemack)
+- Add sass gem, thanks to [jackmack](https://github.com/jackmack)
+- Activate `asset_cache` in middleman to improve cacheability of static files, thanks to [Sam Gilman](https://github.com/thenengah)
+- Update to using bundler 2 for `Gemfile.lock`, thanks to [jackmack](https://github.com/jakemack)
+
 ## Version 2.3.1
 
 *July 5, 2018*
