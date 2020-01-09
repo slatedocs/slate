@@ -26,15 +26,27 @@ under the License.
 <!doctype html>
 <html>
   <head>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130059683-1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <!-- TW cookie consent banner script -->
+    <script type="application/javascript" src="https://transferwise.com/cookie-consent.js"></script>
 
-        gtag('config', 'UA-16492313-9');
-      </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+      window["ga-disable-UA-16492313-9"] = true;
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-16492313-9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+
+    <!-- Enable GA and when user has given consent -->
+    <script>
+      window.addEventListener("accepttwcookieconsent", function() {
+        window["ga-disable-UA-16492313-9"] = false;
+        gtag('config', 'UA-16492313-9'); // trigger page view
+      });
+    </script>
 
     <base href="/">
     <meta charset="utf-8">
