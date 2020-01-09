@@ -558,6 +558,10 @@ Simulate depositing cash in an investor's account.
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
 
+<aside class="warning">
+Deprecated and replaced with <a href="#payments-manager-post-test-account-topup">the new test payment endpoint</a>.
+</aside>
+
 ### Request
 | Name             | Type   | Description                                                                   | Required |
 | ---------------- | ------ | ----------------------------------------------------------------------------- | -------- |
@@ -567,6 +571,81 @@ Please note this is a test endpoint and is only available in the sandbox environ
 | paymentReference | string | The reference. Set to ISA if the funds should be credited to the ISA account. | required |
 | paymentType      | string | Should be set to DEPOSIT                                                      | required |
 | clientId         | string | The client ID                                                                 | required |
+
+## POST /test/account/topup
+
+### Description
+Simulate depositing cash into any bank account managed on the Goji platform.
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
+```http
+
+POST /test/account/topup HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
+
+{
+    "amount": {
+        "amount": amount,
+        "currency": "GBP"
+    },
+    "accountNumber": "accountNumber",
+    "sortCode": "sortCode",
+    "paymentReference": "PAYMENT_REFERENCE"
+}
+
+```
+
+### Request
+
+| Key                          | Value Type |Description                                                                   |
+|------------------------------|----------- |------------------------------------------------------------------------------|
+| amount                       | Ref        | The amount to deposit.                                                       |
+| amount.amount                | Number     | The amount.                                                                  |
+| amount.currency              | String     | The ISO 4217 three character codes e.g. 'GBP'.                               |
+| accountNumber                | String     | The account number.                                                          |
+| sortCode                     | String     | The sort code.                                                               |
+| paymentReference             | String     | The reference for the batch payment.                                         |
+
+### Response
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+"SUCCESS"
+```
+
+```http
+HTTP/1.1 400 
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "INVALID_DATA",
+            "message": "Payment address not found for accountNumber=12345678, sortCode=123456"
+        }
+    ]
+}
+```
+```http
+HTTP/1.1 400 
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "SYSTEM_ERROR",
+            "message": "An unexpected error has occurred"
+        }
+    ]
+}
+```
 
 ## `POST /platformApi/investors/{clientId}/fee`
 
