@@ -111,46 +111,6 @@ Loads the current set of terms and conditions.
 | termsAndConditions | string | The terms and conditions in HTML format. |
 | version            | string | The version of the terms and conditions. |
 
-## `PUT /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement`
-
-```http
-
-GET /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-
-
-
-```
-
-```http 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-	"type": "SOPHISTICATED",
-	"dateTimeSigned": "2019-12-13T14:10:30.00Z",
-	"reason": "reason of the change"
-}
-
-```
-
-```http 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-"SUCCESS"
-```
-### Description
-Update investor investment declaration
-### Request
-| Name                                | Type   | Value Type  | Description                                                                                                                                                                                                           | Required |
-| ----------------------------------- | ------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| type                                | string | Enum        | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              | required |
-| dateTimeSigned                      | string | ISO-8601    | The date the new declaration has been signed                                                                                                                                                                          | required |
-| reason                              | string | string      | The reason for the change. Up to 300 characters.                                                                                                                                                                       | required |
-
 ## `POST /platformApi/investors`
 
 ```http
@@ -240,7 +200,7 @@ Content-Type: application/json
 }
 ```
 ### Description
-Creates a new investor and triggers a KYC check.
+Creates a new investor and triggers a KYC check when appliable.
 
 <aside class="warning">
 
@@ -252,7 +212,6 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 | Name                                | Type   | Description                                                                                                                                                                                                           | Required |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       | optional |
-| nationality (DEPRECATED)            | string | The nationality of the investor in 2 character ISO country code eg. GB for British. This has been deprecated and replaced by the nationalities field.                                                                 | optional |
 | nationalities                       | array  | The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality.                                                             | optional |
 | nationalities[].nationality         | string | The ISO country code. e.g GB.                                                                                                                                                                                         | optional |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
@@ -518,6 +477,46 @@ Updates an investor.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
+
+## `PUT /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement`
+
+```http
+
+GET /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+	"type": "SOPHISTICATED",
+	"dateTimeSigned": "2019-12-13T14:10:30.00Z",
+	"reason": "reason of the change"
+}
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+"SUCCESS"
+```
+### Description
+Updates the investor's classification.
+### Request
+| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| type                                | string | The investor type declared by the investor. Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                             | required |
+| dateTimeSigned                      | string | The date and time the new declaration was been signed                                                                                                                                                                 | required |
+| reason                              | string | The reason for the change. Up to 300 characters.                                                                                                                                                                      | required |
 
 ## <em>Diligence</em>
 
@@ -1104,7 +1103,7 @@ Returns details of the investor's ISA if applicable.
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                                                                                                                                                                                              |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
 
-## `GET platformApi/investors/{clientId}/isa/subscriptionStatus`
+## `GET /platformApi/investors/{clientId}/isa/subscriptionStatus`
 
 ```http
 
@@ -1146,7 +1145,7 @@ To re-open the ISA, the investor has to [agree to the ISA declaration](#investor
 | ------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | subscriptionStatus | string | Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br>`VALID`<br>`INVALID_CROWN_DEPENDENCY`<br>`INVALID_NON_UK`<br>`INVALID_LOCKED_DEATH`<br>`INVALID_LOCKED_BANKRUPTCY`<br>`UNLOCKED`<br>`INVALID_CANCELLED`<br>`INVALID_TAX_YEAR_BREAK`<br> |
 
-## `PUT platformApi/investors/{investorId}/isa/subscriptionStatus`
+## `PUT /platformApi/investors/{investorId}/isa/subscriptionStatus`
 
 ```http
 
