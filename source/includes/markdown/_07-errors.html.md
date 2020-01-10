@@ -73,6 +73,7 @@ HTTP/1.1 500 Server Error
 | <span>403</span> | **Forbidden** | The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to. |
 | <span>404</span> | **Not Found** | Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist. |
 | <span>429</span> | **Too Many Requests** | You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](#rate-limits) for more information. |
+| <span>451</span> | **Unavailable For Legal Reasons** | This request was blocked for legal reasons, commonly caused by embargoed IP addresses. |
 | <span>500</span> | **Internal Server Error** | There was a problem on Asana's end. |
 
 <br></br>
