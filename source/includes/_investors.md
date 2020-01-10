@@ -24,16 +24,6 @@ Until the customer has been approved, they cannot deposit funds and invest.
 
 ![](/images/investors/images/onboarding-investors-refer.png "")
 
-## Opening an Innovative Finance ISA
-
-An Investor can open an ISA either as part of their initial registration, or as a second step later on.
-
-To open an ISA, the investor has to provide their National Insurance Number and agree to an ISA declaration.
-Once this is completed, Goji will validate the data and check that the investor is eligible for an ISA.
-If these checks are successful, the ISA is opened immediately and isavailable to deposit funds into.
-
-![](/images/investors/images/add-isa.png "")
-
 ## Onboarding investors
 
 ### Registration
@@ -91,119 +81,6 @@ For `ENHANCED_VERIFIED` are required intervention from goji admin. After uploadi
 
 A detailed target operating model will be shared with you as part of the operational onboarding.
 
-## ISA Transfers In
-
-Investors can request to transfer funds from other ISAs they hold with other providers to their Goji ISA.
-
-Investment Managers can embed a javascript widget into their web platform to guide investors through completing the form.
-Once the form is complete, they download and sign the form and return it to Goji. Goji liaises with the existing
-manager to arrange transfer of the funds.
-
-Once the funds are received, they are credited to the investor's accounts and can be invested as normal.
-
-![](/images/investors/images/isa-transfers.png "")
-
-The Goji Transfer In application exposes an ISA transfer in form intended for an investor to complete.
-
-It supports ISA transfers of the following types:
-
-- Cash
-- Stocks and Shares
-- Innovative Finance
-
-### Workflow
-
-1. The investor creates a transfer in request by using the widget that we provide. You should embed this in your site according to the instructions below.
-
-2. Once the form has been completed the investor will download and print the form (or optionally receive it in the mail) and return it to Goji via a PO Box.
-
-3. Goji will liaise with the existing ISA manager to arrange the transfer.
-
-4. Once the funds have been received they will be credited to the investor's ISA balance. An email is sent to the investor and a webhook fired.
-
-5. In the case where the received funds would exceed the current year's allowance, then the surplus will be credited to their standard account.
-
-### Embedding the Transfer In Widget
-
-The Goji Transfer In application is a JavaScript component which can be integrated in a number of ways.
-For each possible way of integrating with the application, you will need to first obtain a one time security token.
-
-#### Obtaining the _uiData_ and the security token
-
-To obtain the application's asset URLs one time security token, make an authenticated request to the following URL:
-
-   `/investors/{clientId}/accounts/ISA/transferIn/uiData`
-
-   The response will be structured like so:
-
-   _(Please note that you should never hard-code the URLs returned since they are subject to change)_
-
-               {
-                 "apiUrl": "https://api.gojip2p.net",
-                 "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",
-                 "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",
-                 "investorId": "<investorId>",
-                 "token": "<oneTimeToken>"
-               }
-
-   With this data you are then able to bootstrap the application using any of the methods outlined below.
-
-  If your front-end application uses Ember, using as an Ember Addon makes sense. Alternatively, the suggested approach would be to
-  embed as a standalone JavaScript component on your existing pages - this enables full control over the application's styling.
-
-#### Application Arguments
-
-Four arguments are required for the application to function fully, these are described below:
-
-- `apiUrl`: [Specified in the _uiData_ response] The API URL the front-end application should use when interacting with the Goji service
-- `investorId`: [Specified in the _uiData_ response] The ID of the active investor
-- `token`: [Specified in the _uiData_ response] The security token used to authenticate the active investor's requests
-- `accountUrl`: The URL used when an investor chooses to return to their account page having successfully completed a transfer in request
-
-#### Using as a Standalone JavaScript Component
-
-To include the application in your existing page as a JavaScript component, you will need to do the following:
-
-1). In the body of your HTML include the following:
-
-    `<div id="goji-application">`
-      `<div data-component="goji-transfer-in"`
-                             `data-attrs='{ "apiUrl": "<uiData.apiUrl>", "accountUrl": "<platform-manage-account-url>",`
-                                           `"investorId": "<uiData.investorId>", "token": "<uiData.token>" }'>`
-      `</div>`
-    `</div>`
-
-2). Extract the JavaScript asset's URL from the request above and include it in your page.
-
-   _Please note: The inclusion of the script import must be made after inclusion of the HTML in the previous step._
-
-   e.g `<script src="{{uiData.scriptSrc}}"></script>`
-
-   Optionally do the same for the CSS file if you wish to have a basic layout.
-
-   e.g `<link rel="stylesheet" href="{{uiData.styleSrc}}">`
-
-3). The component will then render when the document's body has fully loaded.
-
-## Migrating Investors
-
-If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) and include `migrationDetails` data.
-
-The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. 
-
-### Upgrading investors currently using the ISA Administration API
-
-When upgrading from using the Goji ISA Administration API to the Goji Platform API, the `existingClientId` in the 
-`migrationDetails` prompts the system to upgrade the existing investor with the relevant ID. 
-
-This involves:
-
-* Generating a new client ID
-* Performing a KYC check
-* Generating an account number for depositing funds
-
-Any existing ISA data is preserved.
-
 ## `GET /terms`
 
 ```http
@@ -233,36 +110,6 @@ Loads the current set of terms and conditions.
 | ------------------ | ------ | ---------------------------------------- |
 | termsAndConditions | string | The terms and conditions in HTML format. |
 | version            | string | The version of the terms and conditions. |
-## `GET /platformApi/isaDeclaration`
-
-```http
-
-GET /platformApi/isaDeclaration HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-
-
-
-```
-
-```http 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "declaration" : "declaration",
-  "version" : "version"
-}
-
-```
-### Description
-Loads the current ISA declaration.
-### Response
-| Name        | Type   | Description                         |
-| ----------- | ------ | ----------------------------------- |
-| declaration | string | The ISA declaration in HTML format. |
-| version     | string | The version of the ISA declaration. |
 
 ## `PUT /platformApi/investors/{clientId}/updateInvestmentDeclarationAgreement`
 
@@ -433,166 +280,6 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 | corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
-### Response
-| Name                                | Type   | Description                                                                                                                                                                                                           |
-| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                                      |
-| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                                       |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                                        |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    |
-| address                             | ref    |                                                                                                                                                                                                                       |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              |
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
-| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
-| contactDetails                      | ref    |                                                                                                                                                                                                                       |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
-| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                                        |
-| employmentDetails                   | ref    |                                                                                                                                                                                                                       |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
-| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
-| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
-| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
-| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
-
-## `POST /platformApi/migrate`
-
-```http
-
-POST /platformApi/investors HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-
-{
-  "lastName" : "lastName",
-  "corporateDetails" : {
-    "companyType" : "companyType",
-    "registrationNumber" : "registrationNumber",
-    "companyName" : "companyName"
-  },
-  "address" : {
-    "country" : "country",
-    "lineTwo" : "lineTwo",
-    "townCity" : "townCity",
-    "postcode" : "postcode",
-    "lineOne" : "lineOne",
-    "lineThree" : "lineThree",
-    "region" : "region"
-  },
-  "entityType" : "INDIVIDUAL",
-  "employmentDetails" : {
-    "jobTitle" : "jobTitle",
-    "employmentStatus" : "EMPLOYED_FULL_TIME"
-  },
-  "nationalities" : [ {
-    "nationality" : "GB"
-  }, {
-    "nationality" : "CH"
-  } ],
-  "dateOfBirth" : "2000-01-23",
-  "migrationDetails" : {
-    "existingClientId" : "existingClientId",
-    "diligenceMigrationOption": "FULL_CHECK",
-    "previousCheckDate": "2000-01-23"
-  },
-  "title" : "MISS",
-  "investorDeclarationType" : "RESTRICTED",
-  "contactDetails" : {
-    "emailAddress" : "emailAddress",
-    "telephoneNumber" : "telephoneNumber"
-  },
-  "firstName" : "firstName",
-  "nationalInsuranceNumber" : "nationalInsuranceNumber",
-  "accountTypes" : [ { }, { } ]
-}
-
-```
-
-```http 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "lastName" : "lastName",
-  "corporateDetails" : {
-    "companyType" : "companyType",
-    "registrationNumber" : "registrationNumber",
-    "companyName" : "companyName"
-  },
-  "clientId" : "clientId",
-  "address" : {
-    "country" : "country",
-    "lineTwo" : "lineTwo",
-    "townCity" : "townCity",
-    "postcode" : "postcode",
-    "lineOne" : "lineOne",
-    "lineThree" : "lineThree",
-    "region" : "region"
-  },
-  "entityType" : "INDIVIDUAL",
-  "employmentDetails" : {
-    "jobTitle" : "jobTitle",
-    "employmentStatus" : "EMPLOYED_FULL_TIME"
-  },
-  "dateOfBirth" : "2000-01-23",
-  "title" : "MISS",
-  "contactDetails" : {
-    "emailAddress" : "emailAddress",
-    "telephoneNumber" : "telephoneNumber"
-  },
-  "firstName" : "firstName",
-  "nationalInsuranceNumber" : "nationalInsuranceNumber",
-  "accountTypes" : "GOJI_INVESTMENT",
-  "investmentDeclarationType" : "RESTRICTED"
-}
-```
-### Description
-Migrates an existing investor onto the Goji system.
-### Request
-| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
-| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       | optional |
-| nationalities                       | array  | The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality.                                                             | optional |
-| nationalities[].nationality         | string | The ISO country code. e.g GB.                                                                                                                                                                                         | optional |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
-| address                             | ref    |                                                                                                                                                                                                                       | required |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            ||
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         ||
-| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  ||
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         ||
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    ||
-| contactDetails                      | ref    |                                                                                                                                                                                                                       | required |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 ||
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    ||
-| nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                                       | optional |
-| employmentDetails                   | ref    |                                                                                                                                                                                                                       | optional |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        ||
-| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> ||
-| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             | required |
-| investorDeclarationType             | string | All investors must complete a declaration to confirm the kind of investor they are. Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                     | required |
-| accountTypes                        | array  | defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType                                          | optional |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               | optional |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
-| migrationDetails                    | ref    |                                                                                                                                                                                                                       | required |
-| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated which can be useful for referencing any investor should issues occur or indeed must reference any ISA Administration investor's existing ID when applicable    | required |
-| migrationDetails.diligenceMigrationOption| string | The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br>`FULL_CHECK`: Goji will perform a full diligence check<br>`HISTORICAL_RELIANCE_WITH_MONITORING`: Goji will place reliance on previous checks (only when agreed beforehand) and perform ongoing monitoring<br>`EVENT_BASED_FULL_CHECK`: Goji will only perform a full diligence check at the point the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br>`EVENT_BASED_WITH_MONITORING`: Goji will place reliance on previous checks (only when agreed beforehand) but will only commence ongoing monitoring when  the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br>`FULL_RELIANCE`: As agreed beforehand where Goji performs no upfront diligence checks and the platform takes on responsibility here| required |
-| migrationDetails.previousCheckDate| string | The optional date when the previous diligence checks were performed against the investor if Goji is placing reliance on the historical checks                                                                          | optional |
 ### Response
 | Name                                | Type   | Description                                                                                                                                                                                                           |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -831,6 +518,9 @@ Updates an investor.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
 | investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
+
+## <em>Diligence</em>
+
 ## `GET /platformApi/investors/{clientId}/kyc`
 
 ```http
@@ -944,6 +634,143 @@ Add an investor's KYC documents.
 | documents            | array  | The documents.                     | required |
 | documents[].fileName | string | The file name eg passport.pdf.     | required |
 | documents[].data     | string | The file to upload Base64 encoded. | required |
+
+## <em>ISAs</em>
+
+## Opening an Innovative Finance ISA
+
+An Investor can open an ISA either as part of their initial registration, or as a second step later on.
+
+To open an ISA, the investor has to provide their National Insurance Number and agree to an ISA declaration.
+Once this is completed, Goji will validate the data and check that the investor is eligible for an ISA.
+If these checks are successful, the ISA is opened immediately and isavailable to deposit funds into.
+
+![](/images/investors/images/add-isa.png "")
+
+## ISA Transfers In
+
+Investors can request to transfer funds from other ISAs they hold with other providers to their Goji ISA.
+
+Investment Managers can embed a javascript widget into their web platform to guide investors through completing the form.
+Once the form is complete, they download and sign the form and return it to Goji. Goji liaises with the existing
+manager to arrange transfer of the funds.
+
+Once the funds are received, they are credited to the investor's accounts and can be invested as normal.
+
+![](/images/investors/images/isa-transfers.png "")
+
+The Goji Transfer In application exposes an ISA transfer in form intended for an investor to complete.
+
+It supports ISA transfers of the following types:
+
+- Cash
+- Stocks and Shares
+- Innovative Finance
+
+### Workflow
+
+1. The investor creates a transfer in request by using the widget that we provide. You should embed this in your site according to the instructions below.
+
+2. Once the form has been completed the investor will download and print the form (or optionally receive it in the mail) and return it to Goji via a PO Box.
+
+3. Goji will liaise with the existing ISA manager to arrange the transfer.
+
+4. Once the funds have been received they will be credited to the investor's ISA balance. An email is sent to the investor and a webhook fired.
+
+5. In the case where the received funds would exceed the current year's allowance, then the surplus will be credited to their standard account.
+
+### Embedding the Transfer In Widget
+
+The Goji Transfer In application is a JavaScript component which can be integrated in a number of ways.
+For each possible way of integrating with the application, you will need to first obtain a one time security token.
+
+#### Obtaining the _uiData_ and the security token
+
+To obtain the application's asset URLs one time security token, make an authenticated request to the following URL:
+
+   `/investors/{clientId}/accounts/ISA/transferIn/uiData`
+
+   The response will be structured like so:
+
+   _(Please note that you should never hard-code the URLs returned since they are subject to change)_
+
+               {
+                 "apiUrl": "https://api.gojip2p.net",
+                 "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",
+                 "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",
+                 "investorId": "<investorId>",
+                 "token": "<oneTimeToken>"
+               }
+
+   With this data you are then able to bootstrap the application using any of the methods outlined below.
+
+  If your front-end application uses Ember, using as an Ember Addon makes sense. Alternatively, the suggested approach would be to
+  embed as a standalone JavaScript component on your existing pages - this enables full control over the application's styling.
+
+#### Application Arguments
+
+Four arguments are required for the application to function fully, these are described below:
+
+- `apiUrl`: [Specified in the _uiData_ response] The API URL the front-end application should use when interacting with the Goji service
+- `investorId`: [Specified in the _uiData_ response] The ID of the active investor
+- `token`: [Specified in the _uiData_ response] The security token used to authenticate the active investor's requests
+- `accountUrl`: The URL used when an investor chooses to return to their account page having successfully completed a transfer in request
+
+#### Using as a Standalone JavaScript Component
+
+To include the application in your existing page as a JavaScript component, you will need to do the following:
+
+1). In the body of your HTML include the following:
+
+    `<div id="goji-application">`
+      `<div data-component="goji-transfer-in"`
+                             `data-attrs='{ "apiUrl": "<uiData.apiUrl>", "accountUrl": "<platform-manage-account-url>",`
+                                           `"investorId": "<uiData.investorId>", "token": "<uiData.token>" }'>`
+      `</div>`
+    `</div>`
+
+2). Extract the JavaScript asset's URL from the request above and include it in your page.
+
+   _Please note: The inclusion of the script import must be made after inclusion of the HTML in the previous step._
+
+   e.g `<script src="{{uiData.scriptSrc}}"></script>`
+
+   Optionally do the same for the CSS file if you wish to have a basic layout.
+
+   e.g `<link rel="stylesheet" href="{{uiData.styleSrc}}">`
+
+3). The component will then render when the document's body has fully loaded.
+
+## `GET /platformApi/isaDeclaration`
+
+```http
+
+GET /platformApi/isaDeclaration HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "declaration" : "declaration",
+  "version" : "version"
+}
+
+```
+### Description
+Loads the current ISA declaration.
+### Response
+| Name        | Type   | Description                         |
+| ----------- | ------ | ----------------------------------- |
+| declaration | string | The ISA declaration in HTML format. |
+| version     | string | The version of the ISA declaration. |
 
 ## `POST /platformApi/investors/{clientId}/accounts/ISA`
 
@@ -1276,6 +1103,357 @@ Returns details of the investor's ISA if applicable.
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                                                                                                                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                                                                                                                                                                                              |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+
+## `GET platformApi/investors/{clientId}/isa/subscriptionStatus`
+
+```http
+
+GET /platformApi/investors/{clientId}/isa/subscriptionStatus HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "subscriptionStatus" : "VALID"
+}
+```
+### Description
+Used to retrieve the subscription status of an investor's ISA. 
+
+Most useful for checking if the investor has entered a tax year break status whereby subscriptions are no longer allowed until redeclaration has taken place.
+
+#### Tax Year Breaks
+
+A tax year break occurs when an investor has not subscribed for a whole tax year and is therefore required to re-open an ISA before they can make further subscriptions.
+
+For example, Investor A opens an ISA on 1st April 2016 (ie in the 2015/16 tax year) and subscribes £10,000.
+
+The investor does not subscribe between 6th April 2016 and 5th April 2017.
+
+This is considered a tax year break and so the investor will have to re-open their ISA to subscribe in the 2017/18 tax year.
+
+To re-open the ISA, the investor has to [agree to the ISA declaration](#investors-post-platformapi-investors-investorid-declaration-agreement).
+
+### Response
+| Name               | Type   | Description                                                                                                                                                                                                                                                                             |
+| ------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| subscriptionStatus | string | Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br>`VALID`<br>`INVALID_CROWN_DEPENDENCY`<br>`INVALID_NON_UK`<br>`INVALID_LOCKED_DEATH`<br>`INVALID_LOCKED_BANKRUPTCY`<br>`UNLOCKED`<br>`INVALID_CANCELLED`<br>`INVALID_TAX_YEAR_BREAK`<br> |
+
+## `PUT platformApi/investors/{investorId}/isa/subscriptionStatus`
+
+```http
+
+PUT /platformApi/investors/{investorId}/isa/status HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "dateTime" : "2000-01-23T04:56:07.000+00:00",
+  "isaSubscriptionStatus" : "VALID"
+}
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalAmountInvested" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+Updates the status of an investor's ISA. This can aid testing by placing an ISA into an invalid status.
+### Request
+| Name                  | Type   | Description                                                                                                                                                                                                                                        | Required |
+| --------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| dateTime              | string | The date time the residual income payment was received.                                                                                                                                                                                            | required |
+| isaSubscriptionStatus | string | The status to change this ISA to. Possible values are: <br>`VALID`<br>`INVALID_CROWN_DEPENDENCY`<br>`INVALID_NON_UK`<br>`INVALID_LOCKED_DEATH`<br>`INVALID_LOCKED_BANKRUPTCY`<br>`UNLOCKED`<br>`INVALID_CANCELLED`<br>`INVALID_TAX_YEAR_BREAK`<br> | required |
+### Response
+| Name                                 | Type   | Description                                                                   |
+| ------------------------------------ | ------ | ----------------------------------------------------------------------------- |
+| totalCashBalance                     | ref    | The total amount of cash in the ISA that is not currently invested.           |
+| totalCashBalance.amount              | number | The amount                                                                    |
+| totalCashBalance.currency            | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| totalAmountInvested                  | ref    | The total amount of the ISA that is currently invested.                       |
+| totalAmountInvested.amount           | number | The amount                                                                    |
+| totalAmountInvested.currency         | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| totalIsaBalance                      | ref    | The total current balance in the ISA, inclusive of all years.                 |
+| totalIsaBalance.amount               | number | The amount                                                                    |
+| totalIsaBalance.currency             | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| remainingSubscriptionAmount          | ref    | The amount remaining that can be invested in the ISA in the current tax year. |
+| remainingSubscriptionAmount.amount   | number | The amount                                                                    |
+| remainingSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+
+## `POST /platformApi/investors/{investorId}/declaration/agreement`
+
+```http
+
+POST /platformApi/investors/{investorId}/declaration/agreement HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+""
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used to re-enable ISAs in a tax year break status for example.
+
+### Response
+| Name                                               | Type   | Description                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                                                                                                                                                                                           |
+| totalIsaBalance.amount                             | number | The amount                                                                                                                                                                                                                                                                              |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                                                                                                                                                                                           |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                                                                                                                                                                                              |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                                                                                                                                                                                                     |
+| totalCashBalance.amount                            | number | The amount                                                                                                                                                                                                                                                                              |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| dateCreated                                        | string | Date the ISA was created                                                                                                                                                                                                                                                                |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                                                                                                                                                                                                        |
+| investments                                        | array  | The list of investments that make up the ISA                                                                                                                                                                                                                                            |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                                                                                                                                                                                                      |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                                                                                                                                                                                          |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported. Possible values are: <br>`LOAN`<br>                                                                                                                                                                                     |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                                                                                                                                                                                          |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                                                                                                                                                                                                       |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                                                                                                                                                                                                |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                                                                                                                                                                                                    |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically.                                                                                                                                                                           |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.                                                                                                                                                                              |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                                                                                                                                                                                            |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                                                                                                                                                                                                  |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                                                                                                                                                                                                      |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                                                                                                                                                                                                    |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                                                                                                                                                                                             |
+| totalInterestReceived                              | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInterestReceived.amount                       | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| totalInvestedBalance                               | ref    |                                                                                                                                                                                                                                                                                         |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                                                                                                                                                                                              |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA. Possible values are: <br>`VALID`<br>`INVALID_CROWN_DEPENDENCY`<br>`INVALID_NON_UK`<br>`INVALID_LOCKED_DEATH`<br>`INVALID_LOCKED_BANKRUPTCY`<br>`UNLOCKED`<br>`INVALID_CANCELLED`<br>`INVALID_TAX_YEAR_BREAK`<br> |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                                                                                                                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                                                                                                                                                                                              |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                                                                                                                 |
+
 
 ## `GET /platformApi/investors/{clientId}/accounts/ISA/transferIn/UI`
 
@@ -1813,3 +1991,184 @@ Lists all transfers out for all investors.
 | [].amountToTransfer.currency                         | string  | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                                            |
 | [].amountToTransferAlert                             | boolean | True if the amount requested to be transferred cannot be satisfied. If this is true, the transfer cannot be processed until it is resolved.                                                        |
 | [].dateFundsTransferred                              | string  | The date the funds were transferred to the new ISA manager.                                                                                                                                        |
+
+## <em>Migration</em>
+
+## Migrating Investors
+
+If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) and include `migrationDetails` data.
+
+The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. 
+
+### Upgrading investors currently using the ISA Administration API
+
+When upgrading from using the Goji ISA Administration API to the Goji Platform API, the `existingClientId` in the 
+`migrationDetails` prompts the system to upgrade the existing investor with the relevant ID. 
+
+This involves:
+
+* Generating a new client ID
+* Performing a KYC check
+* Generating an account number for depositing funds
+
+Any existing ISA data is preserved.
+
+## `POST /platformApi/migrate`
+
+```http
+
+POST /platformApi/investors HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "lastName" : "lastName",
+  "corporateDetails" : {
+    "companyType" : "companyType",
+    "registrationNumber" : "registrationNumber",
+    "companyName" : "companyName"
+  },
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "entityType" : "INDIVIDUAL",
+  "employmentDetails" : {
+    "jobTitle" : "jobTitle",
+    "employmentStatus" : "EMPLOYED_FULL_TIME"
+  },
+  "nationalities" : [ {
+    "nationality" : "GB"
+  }, {
+    "nationality" : "CH"
+  } ],
+  "dateOfBirth" : "2000-01-23",
+  "migrationDetails" : {
+    "existingClientId" : "existingClientId",
+    "diligenceMigrationOption": "FULL_CHECK",
+    "previousCheckDate": "2000-01-23"
+  },
+  "title" : "MISS",
+  "investorDeclarationType" : "RESTRICTED",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  },
+  "firstName" : "firstName",
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "accountTypes" : [ { }, { } ]
+}
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "lastName" : "lastName",
+  "corporateDetails" : {
+    "companyType" : "companyType",
+    "registrationNumber" : "registrationNumber",
+    "companyName" : "companyName"
+  },
+  "clientId" : "clientId",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "entityType" : "INDIVIDUAL",
+  "employmentDetails" : {
+    "jobTitle" : "jobTitle",
+    "employmentStatus" : "EMPLOYED_FULL_TIME"
+  },
+  "dateOfBirth" : "2000-01-23",
+  "title" : "MISS",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  },
+  "firstName" : "firstName",
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "accountTypes" : "GOJI_INVESTMENT",
+  "investmentDeclarationType" : "RESTRICTED"
+}
+```
+### Description
+Migrates an existing investor onto the Goji system.
+### Request
+| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       | optional |
+| nationalities                       | array  | The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality.                                                             | optional |
+| nationalities[].nationality         | string | The ISO country code. e.g GB.                                                                                                                                                                                         | optional |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
+| address                             | ref    |                                                                                                                                                                                                                       | required |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            ||
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         ||
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  ||
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         ||
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    ||
+| contactDetails                      | ref    |                                                                                                                                                                                                                       | required |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 ||
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    ||
+| nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                                       | optional |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       | optional |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        ||
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> ||
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             | required |
+| investorDeclarationType             | string | All investors must complete a declaration to confirm the kind of investor they are. Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                     | required |
+| accountTypes                        | array  | defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType                                          | optional |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               | optional |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
+| migrationDetails                    | ref    |                                                                                                                                                                                                                       | required |
+| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated which can be useful for referencing any investor should issues occur or indeed must reference any ISA Administration investor's existing ID when applicable    | required |
+| migrationDetails.diligenceMigrationOption| string | The agreed KYC/B check requirements for the investor - Goji will work with the platform to review historical checks and determine what value should be specified. Possible values are: <br>`FULL_CHECK`: Goji will perform a full diligence check<br>`HISTORICAL_RELIANCE_WITH_MONITORING`: Goji will place reliance on previous checks (only when agreed beforehand) and perform ongoing monitoring<br>`EVENT_BASED_FULL_CHECK`: Goji will only perform a full diligence check at the point the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br>`EVENT_BASED_WITH_MONITORING`: Goji will place reliance on previous checks (only when agreed beforehand) but will only commence ongoing monitoring when  the investor becomes active (most applicable for migrated who have a zero portfolio balance and are considered inactive)<br>`FULL_RELIANCE`: As agreed beforehand where Goji performs no upfront diligence checks and the platform takes on responsibility here| required |
+| migrationDetails.previousCheckDate| string | The optional date when the previous diligence checks were performed against the investor if Goji is placing reliance on the historical checks                                                                          | optional |
+### Response
+| Name                                | Type   | Description                                                                                                                                                                                                           |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                                      |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    |
+| address                             | ref    |                                                                                                                                                                                                                       |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              |
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
+| contactDetails                      | ref    |                                                                                                                                                                                                                       |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
+| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                                        |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
+| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
+| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
