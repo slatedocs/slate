@@ -1037,7 +1037,7 @@ transactions[n].amount.value                 | Transaction amount           | De
 transactions[n].amount.currency                 | Transaction currency code             | Text
 transactions[n].totalFees.value                 | Transaction fee amount           | Decimal
 transactions[n].totalFees.currency                 | Transaction fee currency code             | Text
-transactions[n].details.type                 | CARD, CONVERSION, DEPOSIT, TRANSFER, MONEY_ADDED              | Text
+transactions[n].details.type                 | CARD, CONVERSION, DEPOSIT, TRANSFER, MONEY_ADDED, INCOMING_CROSS_BALANCE, OUTGOING_CROSS_BALANCE, DIRECT_DEBIT              | Text
 transactions[n].details.description                 | Human readable explanation about the transaction           | Text
 transactions[n].details.amount.value                 | Amount in original currency (card transactions abroad)              | Decimal
 transactions[n].details.amount.currency                 | Original currency code              | Text
