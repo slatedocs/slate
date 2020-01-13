@@ -1014,6 +1014,18 @@ staging:
   <<: *defaults
 ```
 
+## GraphQL <img src="images/graphql_logo.png" style="float:right;width: 110px;margin-bottom: 10px" />
+If you have a GraphQL endpoint which serves any number of queries, you likely want to have each of those types of queries show up in the Scout UI as different endpoints. You can accomplish this by renaming the transaction during the request like so:
+
+```ruby
+scout_transaction_name = "GraphQL/" + operation_name
+ScoutApm::Transaction.rename(scout_transaction_name)
+```
+
+Where `operation_name` is determined dynamically based on the GraphQL query. E.g. `get_profile`, `find_user`, etc.
+
+Do not generate highly cardinality transaction names, like `ScoutApm::Transaction.rename("GraphQL/foobar_#{current_user.id}")`, as we limit the number of transactions that can be tracked. High-cardinality transaction names can quickly surpass this limit.
+
 <h2 id="ruby-instrumented-libs">Instrumented Libraries</h2>
 
 The following libraries are currently instrumented:
