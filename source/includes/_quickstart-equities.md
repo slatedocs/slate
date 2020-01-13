@@ -16,3 +16,4 @@ For more details on each of these areas
  * [Instruments API](/#settlement-equity-instruments)
  * [Trade Settlement API](/#settlement-equity-trade-settlement)
  * [Corporate Actions API](/#settlement-equity-corporate-actions)
+ * [Asset Reconciliation API](/#settlement-equity-asset-reconciliation)

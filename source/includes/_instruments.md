@@ -327,3 +327,5 @@ Http Status:
 | 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
 | 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
 | 404 Not Found    | No allocation with this UUID exists              | None       | n/a              |
+
+
