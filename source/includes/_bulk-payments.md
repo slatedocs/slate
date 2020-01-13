@@ -262,7 +262,7 @@ Http Status:
 | 404 Not Found    | No batch payment with this UUID exists           | None       | n/a              |
 
 
-## POST /test/account/topup
+## `POST /test/account/topup`
 
 ### Description
 Simulate depositing cash in an investor's account.
@@ -273,17 +273,7 @@ Please note this is a test endpoint and is only available in the sandbox environ
 
 ### Request
 
-| Key                          | Value Type |Description                                                                   |
-|------------------------------|----------- |------------------------------------------------------------------------------|
-| amount                       | Ref        | The amount to deposit.                                                       |
-| amount.amount                | Number     | The amount.                                                                  |
-| amount.currency              | String     | The ISO 4217 three character codes e.g. 'GBP'.                               |
-| accountNumber                | String     | The account number.                                                          |
-| sortCode                     | String     | The sort code.                                                               |
-| paymentReference             | String     | The reference for the batch payment.                                         |
-
-
-```
+```http
 GET /test/account/topup HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
@@ -297,19 +287,50 @@ X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
     },
     "accountNumber": "accountNumber",
     "sortCode": "sortCode",
-    "paymentReference": "PAYMENT_REFERENCE"
+    "paymentReference": "paymentReference"
 }
 ```
 
+| Key                          | Value Type |Description                                                                   |
+|------------------------------|----------- |------------------------------------------------------------------------------|
+| amount                       | Ref        | The amount to deposit.                                                       |
+| amount.amount                | Number     | The amount.                                                                  |
+| amount.currency              | String     | The ISO 4217 three character codes e.g. 'GBP'.                               |
+| accountNumber                | String     | The account number.                                                          |
+| sortCode                     | String     | The sort code.                                                               |
+| paymentReference             | String     | The reference for the payment. Min. 1 to 18 characters.                      |
+
 ### Response
-```
+
+Http Status: 
+
+| Code             | Description                                             |
+|------------------|---------------------------------------------------------|
+| 200 OK           | Payment made successfully.                              |
+| 400 Bad Request  | The request was malformed. See response body.           |
+
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 "SUCCESS"
 ```
 
+```http
+HTTP/1.1 400 
+Content-Type: application/json
+
+{
+    "errors": [
+        {
+            "errorCode": "VALIDATION_FAILURE",
+            "message": "accountNumber must match \"[0-9]{8}\""
+        }
+    ]
+}
 ```
+
+```http
 HTTP/1.1 400 
 Content-Type: application/json
 
@@ -322,7 +343,8 @@ Content-Type: application/json
     ]
 }
 ```
-```
+
+```http
 HTTP/1.1 400 
 Content-Type: application/json
 
