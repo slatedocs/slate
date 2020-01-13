@@ -5,6 +5,7 @@ The SynBioHub API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
+401 | Unauthorized -- This endpoint is reserved for valid users only.
 403 | Forbidden -- The endpoint is hidden for administrators only.
 404 | Not Found -- The specified endpoint could not be found.
 405 | Method Not Allowed -- You tried to access a endpoint with an invalid method.

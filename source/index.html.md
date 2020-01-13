@@ -412,6 +412,7 @@ response = requests.get(
 print(response.status_code)
 print(response.content)
 
+
 ```
 
 ```plaintext
@@ -442,6 +443,68 @@ print(response.status_code)
 print(response.content)
 
 ```
+
+## View/Download Endpoints
+
+## Misc. endpoints
+
+ 
+
+# Documentation
+
+<aside class="success">Note that the X-authorization header is not needed for public objects, but is required for private objects unless stated otherwise.</aside>
+
+## User Endpopints
+
+Endpoints that control user related functions
+
+### Request to login
+Returns a string token to be passed with any call to submit as the `user` parameter. 
+
+This POST request requires email/password and returns a user token needed for viewing private objects and submitting new objects.
+ 
+`POST http://synbiohub.org/login `
+
+```plaintext
+e.g.`curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login`
+```
+
+#### Query Parameters
+Parameter | Description
+--------- | ------- | -----------
+email | the e-mail address of the user to login with
+password | the password of the user
+### Request to logout
+If `user` is currently logged in, this post request will logout the user.
+
+`POST http://synbiohub.org/logout `
+
+```plaintext
+e.g. `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
+```
+
+### 
+
+
+## Plugin Endpoints
+
+## Edit Mutable Fields Endpoints
+
+## Submission Endpoints
+
+## Collection View Endpoints
+
+## Administration Endpoints
+
+## Search Endpoints
+
+## Manage Submission Endpoints
+
+## Update Permissions Endpoints
+
+## Attachment Endpoints
+
+## Download Endpoints
 
 ## View/Download Endpoints
 
