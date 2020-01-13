@@ -74,10 +74,10 @@ At a high level there are three steps to gaining access to an existing TransferW
   <li>Your app redirects the user to TransferWise authorization webpage, which prompts them to login if necessary.<br/>
   </li>
   <li>The user logs in to TransferWise.</li>
-  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your pre-configured url, including a code you can use to generate user tokens. e.g.
+  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your pre-configured url, including a code you can use to generate user tokens and the profile(s) it can be used with. e.g.
 
   `
-  https://www.yourbank.com/?code=[CODE]
+  https://www.yourbank.com/?code=[CODE]&profileId=[PROFILE ID]
   `
   </li>
 </ol>
@@ -117,9 +117,11 @@ Our usual log in screens are presented to the user if they are not already logge
 
 Once a user gives your banking app authorization to connect to TransferWise and access their data, the user is redirected back to your *redirect_url* with a generated code query string value. For example
 
-`https://www.yourbank.com/?code=[CODE]`
+`https://www.yourbank.com/?code=[CODE]&profileId=[PROFILE ID]`
 
 Your website or service can then use this code to obtain the access token to act on behalf of the user account described in the [get user tokens](#bank-integrations-guide-legacy-get-user-tokens) section.
+
+The profileId parameter specifies which profiles this access token can be used with.
 
 If you are building your TransferWise integration as a native mobile phone app then the redirect URL should be able to handle returning the user to the correct place in the app.
 
