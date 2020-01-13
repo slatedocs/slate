@@ -1,0 +1,17 @@
+---
+version: '3.5'
+services:
+
+  slate:
+    image: investments.goji/goji/slate-api-docs:latest
+    build: .
+    ports:
+      - target: 4567
+        published: 4567
+    tty: true
+    volumes:
+    - type: bind
+      source: '${PWD}/source'
+      target: '/usr/local/src/source'
+      read_only: true
+

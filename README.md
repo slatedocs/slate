@@ -23,6 +23,11 @@ bundle exec middleman server
 
 # OR run this to run with vagrant
 vagrant up
+
+# OR run this to run with docker-compose
+docker-compose build
+docker-compose up
+
 ```
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
