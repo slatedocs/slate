@@ -44,7 +44,7 @@ Retrieve a list of all instances in a given [environment](#administration-enviro
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the instance. This is a canonized it from azure which is the form of /subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Compute/virtualMachines/:instanceName 
+`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of /subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Compute/virtualMachines/:instanceName 
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
 `imageOffer`<br/>*string* | The image offer that was used to create the instance
@@ -97,7 +97,7 @@ Retrieve an instance in a given [environment](#administration-environments)
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the instance. This is a canonized it from azure which is the form of /subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName} 
+`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of /subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName} 
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
 `imageOffer`<br/>*string* | The image offer that was used to create the instance
