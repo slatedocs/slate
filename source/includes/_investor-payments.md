@@ -534,7 +534,6 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </aside>
 
 ```http
-
 POST /test/account/topup HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
@@ -548,7 +547,7 @@ X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
     },
     "accountNumber": "accountNumber",
     "sortCode": "sortCode",
-    "paymentReference": "PAYMENT_REFERENCE"
+    "paymentReference": "paymentReference"
 }
 
 ```
