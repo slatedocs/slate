@@ -148,57 +148,6 @@ e.g. `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
 
 ### Request to reset password
 
-
-
-## Plugin Endpoints
-
-## Edit Mutable Fields Endpoints
-
-## Submission Endpoints
-
-### Create a new collection
-
-Create a new collection
-
-`POST <SynBioHub URL>/submit `
-
-```plaintext
-e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
-```
-
-Query Parameters
-
-Parameter | Description
---------- | -----------
-id | a user-defined string identifier for the submission; alphanumeric and underscores only, e.g. `BBa_R0010`
-version |  the version string to associate with the submission, e.g. `1`
-name |  the dcterms name string to assign to the submission
-description | the dcterms description string to assign to the submission
-citations | a list of comma separated pubmed IDs of citations to store with the submission
-overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists
-file | contents of an SBOL2, SBOL1, GenBank, FASTA, ZIP, or COMBINE Archive file
-
-### Add to an existing collection
-
-`POST <SynBioHub URL>/submit `
-
-```plaintext
-e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F rootCollections=<URI> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
-```
-
-## Collection View Endpoints
-
-## Administration Endpoints
-
-### Perform a SPARQL admin query
-Returns the results of the SPARQL admin query in JSON format.
-
-`GET <SynBioHub URL>/admin/sparql?query=<SPARQL query>`
-
-```plaintext
-e.g. ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
-```
-
 ## Search Endpoints
 
 ### Perform a search and return metadata
@@ -378,19 +327,6 @@ print(response.json())
 ```
 
 Returns the results of the SPARQL query in JSON format. 
-## Manage Submission Endpoints
-
-## Update Permissions Endpoints
-
-## Attachment Endpoints
-
-### Attach file to a specified URI
-
-`POST <URI>/attach `
-
-```plaintext
-e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
-```
 
 ## Download Endpoints
 
@@ -444,9 +380,63 @@ print(response.content)
 
 ```
 
-## View/Download Endpoints
+## Submission Endpoints
 
-## Misc. endpoints
+### Create a new collection
+
+Create a new collection
+
+`POST <SynBioHub URL>/submit `
+
+```plaintext
+e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
+```
+
+Query Parameters
+
+Parameter | Description
+--------- | -----------
+id | a user-defined string identifier for the submission; alphanumeric and underscores only, e.g. `BBa_R0010`
+version |  the version string to associate with the submission, e.g. `1`
+name |  the dcterms name string to assign to the submission
+description | the dcterms description string to assign to the submission
+citations | a list of comma separated pubmed IDs of citations to store with the submission
+overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists
+file | contents of an SBOL2, SBOL1, GenBank, FASTA, ZIP, or COMBINE Archive file
+
+### Add to an existing collection
+
+`POST <SynBioHub URL>/submit `
+
+```plaintext
+e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F rootCollections=<URI> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
+```
+
+## Edit Endpoints
+
+## Attachment Endpoints
+
+### Attach file to a specified URI
+
+`POST <URI>/attach `
+
+```plaintext
+e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
+```
+
+
+## Permission Endpoints
+
+### Perform a SPARQL admin query
+Returns the results of the SPARQL admin query in JSON format.
+
+`GET <SynBioHub URL>/admin/sparql?query=<SPARQL query>`
+
+```plaintext
+e.g. ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
+```
+
+## Misc. Endpoints
 
  
 
