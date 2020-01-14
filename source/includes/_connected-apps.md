@@ -31,7 +31,7 @@ At a high level there are three steps to gaining access to an existing TransferW
   <li>Your app redirects the user to TransferWise authorization webpage, which prompts customers to login.<br/>
   </li>
   <li>The user logs in to TransferWise.</li>
-  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your preconfigured url, including a code you can use to generate user tokens and the profile(s) it can be used with. e.g.
+  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your preconfigured url, including a code you can use to generate user tokens and the profile(s) it can be used with, e.g.
   `
   https://www.yourapp.com/?code=[CODE]&profileId=[PROFILE ID]
   `
@@ -69,7 +69,7 @@ Our usual log in screens are presented to the user if they are not already logge
 
 ### 3. The user agrees to grant access and we forward them to your *redirect_url*
 
-Once a user gives your application authorization to connect to TransferWise and access their data, the user is redirected back to your *redirect_url* with a generated code query string value. For example
+Once a user gives your application authorization to connect to TransferWise and access their data, the user is redirected back to your *redirect_url* with a generated code query string value, e.g.
 
 `https://www.yourapp.com/?code=[CODE]&profileId=[PROFILE ID]`
 

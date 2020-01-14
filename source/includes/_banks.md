@@ -74,7 +74,7 @@ At a high level there are three steps to gaining access to an existing TransferW
   <li>Your app redirects the user to TransferWise authorization webpage, which prompts them to login if necessary.<br/>
   </li>
   <li>The user logs in to TransferWise.</li>
-  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your pre-configured url, including a code you can use to generate user tokens and the profile(s) it can be used with. e.g.
+  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your pre-configured url, including a code you can use to generate user tokens and the profile(s) it can be used with, e.g.
 
   `
   https://www.yourbank.com/?code=[CODE]&profileId=[PROFILE ID]
@@ -337,7 +337,7 @@ you should debit the exact source amount from your customer's bank account
 and send the funds to TransferWise’s local bank account via domestic payment. You should send the amount provided in the quote object you created in the first step of the process. The details of this bank account will be shared with you by the TransferWise team helping your integration.
 
 In order for us to link this incoming domestic payment with a corresponding transfer order, we need you to use specific text in the "payment reference" field.
-Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId returns you the correct reference text. e.g. `quote-1456477 P5472304`. We currently drive this behaviour using the second part of this string, starting with _P_, you should use a regular expression to extract this string to send as the reference, e.g. `.*(P\d+)`, taking the second group.
+Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId returns you the correct reference text, e.g. `quote-1456477 P5472304`. We currently drive this behaviour using the second part of this string, starting with _P_, you should use a regular expression to extract this string to send as the reference, e.g. `.*(P\d+)`, taking the second group.
  
 ## Track transfer status
 Please look at [Track transfer status](#payouts-guide-track-transfer-status) under TransferWise Payouts Guide.
