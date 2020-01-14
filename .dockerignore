@@ -1,0 +1,11 @@
+.git
+.github
+.gitignore
+.gitattributes
+.editorconfig
+.idea/
+.vagrant/
+.travis.yml
+
+CHANGELOG.md
+README.md

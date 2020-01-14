@@ -23,6 +23,7 @@ includes:
   - instruments
   - trade-settlement
   - corporate-actions
+  - asset-reconciliation
   - bonds
   - webhooks
   - isaadmin
