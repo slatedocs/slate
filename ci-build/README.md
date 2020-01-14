@@ -1,10 +1,10 @@
 # Deploy to pages with CI
 
-With CI build you can easly create and build you repository documentation without cloning/forking/including slate repository.
+With CI build you can easily create and build your repository documentation without cloning/forking/including slate repository.
 
 ## Getting started (TRAVIS CI and GITHUB)
 
-To use this deployment you will need an account on [Travis CI](https://travis-ci.org/) (100% free for open source projects)
+To use this deployment method you will need an account on [Travis CI](https://travis-ci.org/) (100% free for open source projects)
 
 1. On your `master` branch create a folder named `docs`
 
@@ -14,7 +14,7 @@ To use this deployment you will need an account on [Travis CI](https://travis-ci
 
 4. Add your repository to Travis CI - [Tutorial](https://docs.travis-ci.com/user/tutorial/)
 
-5. Generate and set you GITHUB_TOKEN - [Create a token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) - [Set Env var](https://docs.travis-ci.com/user/environment-variables/)
+5. Generate and set your GITHUB_TOKEN - [Create a token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) - [Set Env var](https://docs.travis-ci.com/user/environment-variables/)
 
 6. Now you are ready to create your pages in the `docs/` folder as you would do in a standard slate fork
 
@@ -22,7 +22,7 @@ To use this deployment you will need an account on [Travis CI](https://travis-ci
 
 
 ### Notes
- - This solution is designed to work only with Github and Travis Ci, no other ci platform is supported. You can always use the `.travis.yml` as the base idea for your own platform
+ - This solution is designed to work only with Github and Travis CI, no other CI platform is supported. You can always use the `.travis.yml` as the base idea for your own platform
  - The push on `gh-pages` branch deletes everything on that branch and leaves only the files built from slate
 
 

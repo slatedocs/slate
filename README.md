@@ -62,7 +62,7 @@ You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
 Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate). 
 
-You can also use CI to build your documentation for you withouth any fork of direct inclusion if this repository. For a working example see `ci-build/` folder.
+You can also use CI to build your documentation for you without any fork or direct inclusion of this repository. For a working example see `ci-build/` folder.
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
