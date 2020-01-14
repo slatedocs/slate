@@ -524,55 +524,7 @@ Transfer cash to another account.
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
 
-## `POST /platformApi/test/payment`
-
-```http
-
-POST /platformApi/test/payment HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-
-{
-  "amount" : {
-    "amount" : 2.68,
-    "currency" : "currency"
-  },
-  "clientId" : "clientId",
-  "paymentReference" : "paymentReference",
-  "paymentType" : "paymentType"
-}
-
-```
-
-```http 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-""
-```
-### Description
-Simulate depositing cash in an investor's account.
-
-<aside class="notice">
-Please note this is a test endpoint and is only available in the sandbox environment.
-</aside>
-
-<aside class="warning">
-Deprecated and replaced with <a href="#payments-manager-post-test-account-topup">the new test payment endpoint</a>.
-</aside>
-
-### Request
-| Name             | Type   | Description                                                                   | Required |
-| ---------------- | ------ | ----------------------------------------------------------------------------- | -------- |
-| amount           | ref    | The amount to deposit.                                                        | required |
-| amount.amount    | number | The amount.                                                                   ||
-| amount.currency  | string | The ISO 4217 three character codes eg 'GBP'                                   ||
-| paymentReference | string | The reference. Set to ISA if the funds should be credited to the ISA account. | required |
-| paymentType      | string | Should be set to DEPOSIT                                                      | required |
-| clientId         | string | The client ID                                                                 | required |
-
-## POST /test/account/topup
+## `POST /test/account/topup`
 
 ### Description
 Simulate depositing cash into any bank account managed on the Goji platform.
