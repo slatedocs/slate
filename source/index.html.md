@@ -82,6 +82,9 @@ includes:
   - gcp/clusters
   - gcp/images
   - gcp/regions
+  - azure
+  - azure/compute
+  - azure/instances
   - masterportal
   - masterportal/applications
 
