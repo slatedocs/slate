@@ -31,9 +31,10 @@ At a high level there are three steps to gaining access to an existing TransferW
   <li>Your app redirects the user to TransferWise authorization webpage, which prompts customers to login.<br/>
   </li>
   <li>The user logs in to TransferWise.</li>
-  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your preconfigured url, including a code you can use to geneate user tokens. e.g.
+  <li>The user agrees to provide access.</li>
+  <li>The user is redirected back to your preconfigured callback URL; including a code you can use to generate user tokens, and the profile(s) that the user token can be used with, e.g.
   `
-  https://www.yourapp.com/?code=[CODE]
+  https://www.yourapp.com/?code=[CODE]&profileId=[PROFILE ID]
   `
   </li>
 </ol>
@@ -69,11 +70,13 @@ Our usual log in screens are presented to the user if they are not already logge
 
 ### 3. The user agrees to grant access and we forward them to your *redirect_url*
 
-Once a user gives your application authorization to connect to TransferWise and access their data, the user is redirected back to your *redirect_url* with a generated code query string value. For example
+Once a user gives your application authorization to connect to TransferWise and access their data, the user is redirected back to your *redirect_url* with a generated code query string value, e.g.
 
-`https://www.yourapp.com/?code=[CODE]`
+`https://www.yourapp.com/?code=[CODE]&profileId=[PROFILE ID]`
 
 Your website or service can then use this code to obtain the access token to act on behalf of the user account described in the [get user tokens](#conncted-apps-guide-get-user-tokens) section.
+
+The profileId parameter specifies which profiles this access token can be used with. 
 
 If you are building your TransferWise integration as a native mobile phone app then the redirect URL should be able to handle returning the user to the correct place in the app.
 

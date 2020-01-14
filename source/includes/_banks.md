@@ -74,10 +74,10 @@ At a high level there are three steps to gaining access to an existing TransferW
   <li>Your app redirects the user to TransferWise authorization webpage, which prompts them to login if necessary.<br/>
   </li>
   <li>The user logs in to TransferWise.</li>
-  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your pre-configured url, including a code you can use to generate user tokens. e.g.
-
+  <li>The user agrees to provide access.</li>
+  <li>The user is redirected back to your preconfigured callback URL; including a code you can use to generate user tokens, and the profile(s) that the user token can be used with, e.g.
   `
-  https://www.yourbank.com/?code=[CODE]
+  https://www.yourbank.com/?code=[CODE]&profileId=[PROFILE ID]
   `
   </li>
 </ol>
@@ -117,9 +117,11 @@ Our usual log in screens are presented to the user if they are not already logge
 
 Once a user gives your banking app authorization to connect to TransferWise and access their data, the user is redirected back to your *redirect_url* with a generated code query string value. For example
 
-`https://www.yourbank.com/?code=[CODE]`
+`https://www.yourbank.com/?code=[CODE]&profileId=[PROFILE ID]`
 
 Your website or service can then use this code to obtain the access token to act on behalf of the user account described in the [get user tokens](#bank-integrations-guide-legacy-get-user-tokens) section.
+
+The profileId parameter specifies which profiles this access token can be used with.
 
 If you are building your TransferWise integration as a native mobile phone app then the redirect URL should be able to handle returning the user to the correct place in the app.
 
@@ -335,7 +337,7 @@ you should debit the exact source amount from your customer's bank account
 and send the funds to TransferWise’s local bank account via domestic payment. You should send the amount provided in the quote object you created in the first step of the process. The details of this bank account will be shared with you by the TransferWise team helping your integration.
 
 In order for us to link this incoming domestic payment with a corresponding transfer order, we need you to use specific text in the "payment reference" field.
-Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId returns you the correct reference text. e.g. `quote-1456477 P5472304`. We currently drive this behaviour using the second part of this string, starting with _P_, you should use a regular expression to extract this string to send as the reference, e.g. `.*(P\d+)`, taking the second group.
+Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId returns you the correct reference text, e.g. `quote-1456477 P5472304`. We currently drive this behaviour using the second part of this string, starting with _P_, you should use a regular expression to extract this string to send as the reference, e.g. `.*(P\d+)`, taking the second group.
  
 ## Track transfer status
 Please look at [Track transfer status](#payouts-guide-track-transfer-status) under TransferWise Payouts Guide.
