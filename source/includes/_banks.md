@@ -74,8 +74,8 @@ At a high level there are three steps to gaining access to an existing TransferW
   <li>Your app redirects the user to TransferWise authorization webpage, which prompts them to login if necessary.<br/>
   </li>
   <li>The user logs in to TransferWise.</li>
-  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your pre-configured url, including a code you can use to generate user tokens and the profile(s) it can be used with, e.g.
-
+  <li>The user agrees to provide access.</li>
+  <li>The user is redirected back to your preconfigured callback URL; including a code you can use to generate user tokens, and the profile(s) that the user token can be used with, e.g.
   `
   https://www.yourbank.com/?code=[CODE]&profileId=[PROFILE ID]
   `
