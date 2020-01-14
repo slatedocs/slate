@@ -14643,43 +14643,104 @@ xxx | yyy
 
 `POST` /api/users/signup
 
+Creates a new master account at the root of the hiearchy. This will automatically also create a matching settings object for the user with default values.
+If type is `staff` the system will also create a matching widget user, a default group, default settings, enable scheduler settings (users', facilities' and providers' settings). Also, provisioning will be imported from sales force, and a single provisioned sales force account will be created. Message templates will be created for the account, too.
+
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/users/signup?q=xyz \
+http://localhost:8002/api/users/signup \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
+		"salesforceId": "123456789012345678",
+		"sendWelcomeEmail": false, 
+		"email": "test@example.com",
+		"password": "xyz",
+		"type": "patient",
+		"updatedBy": "5e18ef045144c34cdf214b2f",
+		"createdBy": "5e18ef045144c34cdf214b2f"
 	}'
 ```
+
+Authorization: public.
+
+Request body param | Description 
+-------------- | ----------- 
+salesforceId | (required) An SFDC Id18 with a length of 18 characters
+sendWelcomeEmail | (optional) Send welcome email right away (currently not working: must be false)
+email | (required) The email address of the new master account
+password | (required) Initial password of the user being created (patients will have it reset to a default password)
+type | (required) Must be either `patient`, `doctor` or `staff`
+updatedBy | ObjectID of the [User](#user) creating the new [User](#user)
+createdBy | ObjectID of the [User](#user) creating the new [User](#user)
+
+Response body param
+-------------- 
+The contents of a [User](#user), initially without the settings.
 
 > The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
-		"x": "y",
-		"y", true,
-		"z": 1
+		"stats": {
+			"counters": {
+				"messagesSentToPatient": 0,
+				"confirmedAppointments": 0,
+				"cancelledAppointments": 0,
+				"offersSent": 0,
+				"offersAccepted": 0,
+				"appointmentOffersReplied": 0
+			},
+			"average": {
+				"appointmentOfferReplyTime": 0
+			},
+			"metadata": {
+				"lastAppointmentAt": null
+			},
+			"oldestAppointment": "2020-01-14T21:37:07.948Z"
+		},
+		"salesforceData": {
+			"provisioning": [],
+			"respectProvisioning": false,
+			"lifeline": "trial"
+		},
+		"twoFactorAuthSecret": {
+			"backupCodes": []
+		},
+		"lastProcessedAt": "2020-01-14T21:37:07.945Z",
+		"_id": "5e1e348bdb6bd71a2dec31f5",
+		"passwordHashAlgorithm": "bcrypt",
+		"roles": [],
+		"doNotContact": false,
+		"groups": [],
+		"deleted": 0,
+		"active": 0,
+		"master": true,
+		"language": "en",
+		"country": "US",
+		"gender": "unknown",
+		"allowedIps": [],
+		"ldapUser": false,
+		"__t": "Patient",
+		"salesforceId": "123456789012345678",
+		"email": "test@example.com",
+		"type": "patient",
+		"createdAt": "2020-01-14T18:47:00.000Z",
+		"updatedBy": "5e18ef045144c34cdf214b2f",
+		"createdBy": "5e18ef045144c34cdf214b2f",
+		"subscribers": [],
+		"outboundContact": [],
+		"passwordUpdatedAt": "2020-01-14T21:37:15.468Z",
+		"contact": [],
+		"updatedAt": "2020-01-14T18:47:00.000Z",
+		"lastLogin": "2020-01-14T21:37:15.468Z",
+		"user": "5e1e348bdb6bd71a2dec31f5",
+		"token": "eyH0eZAiOiKLW1QiLDKhbHciOiJIVzJ1NiK9.eyJpc3NiPiI1ZTGlNzQ4YmRiNmJkNzFhMmRlYzMxZjUiLDJleHAiOjE1NzkyMTA2MzU3MjEsInR5cGUiOiJwYXRpZW50In0.x9sFZa1EPo0gHAJzgkalL3-CVnU94sVl5oUipe9tJjZ",
+		"safeId": "1e0f8127ce6ae969d667bcc0d6523316f8f32f76d6af4a89078da2e358449c7d",
+		"__v": 0
 	}
 ```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
 
 ## Put transfer
 
