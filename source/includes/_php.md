@@ -113,6 +113,7 @@ Not seeing data? Email support@scoutapm.com with:
 * A link to your app within Scout (if applicable)
 * Your PHP version
 * The name of the framework and version you are trying to instrument, e.g. Laravel 5.8
+* <a href="#php-logging">Scout logs</a>
 
 We typically respond within a couple of hours during the business day.
 
@@ -187,6 +188,11 @@ Laravel instruments automatically wire up the framework's logger to the
 agent's logging.
 
 If required, you can override this by changing the container service `log`.
+
+Scout's logging defaults to the same log level as the LoggerInterface provided,
+but that can be set to a stricter level to quiet the agent's logging via the
+`log_level` configuration. The underlying LoggerInterface's level will take
+precedence if it is tighter than the `log_level` configuration.
 
 
 <h2 id="php-custom-instrumentation">Custom Instrumentation</h2>
