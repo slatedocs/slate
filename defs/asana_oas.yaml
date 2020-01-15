@@ -881,6 +881,14 @@ components:
         type: string
       example: '159874'
       x-env-variable: team
+    team_membership_path_gid:
+      name: team_membership_path_gid
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '724362'
+      x-env-variable: team_membership
     user_query_param:
       name: user
       in: query
@@ -1750,6 +1758,7 @@ components:
           readOnly: true
         has_notifications_enabled:
           description: >-
+            *Conditional*. Only relevant for custom fields of type `enum`.
             This flag describes whether a follower of a task with this field
             should receive inbox notifications from changes to this field.
           type: boolean
@@ -2118,6 +2127,7 @@ components:
               readOnly: true
             has_notifications_enabled:
               description: >-
+                *Conditional*. Only relevant for custom fields of type `enum`.
                 This flag describes whether a follower of a task with this field
                 should receive inbox notifications from changes to this field.
               type: boolean
@@ -2563,6 +2573,7 @@ components:
               readOnly: true
             has_notifications_enabled:
               description: >-
+                *Conditional*. Only relevant for custom fields of type `enum`.
                 This flag describes whether a follower of a task with this field
                 should receive inbox notifications from changes to this field.
               type: boolean
@@ -2867,6 +2878,7 @@ components:
                     readOnly: true
                   has_notifications_enabled:
                     description: >-
+                      *Conditional*. Only relevant for custom fields of type `enum`.
                       This flag describes whether a follower of a task with this field
                       should receive inbox notifications from changes to this field.
                     type: boolean
@@ -3590,6 +3602,39 @@ components:
                   description: The name of the object.
                   type: string
                   example: Bug Task
+    Like:
+      type: object
+      description: >-
+        An object to represent a user's like.
+      properties:
+        gid:
+          description: >-
+            Globally unique identifier of the object, as a string.
+          type: string
+          readOnly: true
+          example: '12345'
+        user:
+          description: >-
+            A *user* object represents an account in Asana that can be given
+            access to various workspaces, projects, and tasks.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: user
+            name:
+              description: >-
+                *Read-only except when same user as requester*. The user’s name.
+              type: string
+              example: Greg Sanchez
     OrganizationExport:
       description: >-
         An *organization_export* object represents a request to export the
@@ -3606,7 +3651,7 @@ components:
           description: The base type of this resource.
           type: string
           readOnly: true
-          example: task
+          example: organization_export
         created_at:
           description: The time at which this resource was created.
           type: string
@@ -3670,7 +3715,7 @@ components:
               description: The base type of this resource.
               type: string
               readOnly: true
-              example: task
+              example: organization_export
             created_at:
               description: The time at which this resource was created.
               type: string
@@ -4076,6 +4121,7 @@ components:
                     readOnly: true
                   has_notifications_enabled:
                     description: >-
+                      *Conditional*. Only relevant for custom fields of type `enum`.
                       This flag describes whether a follower of a task with this field
                       should receive inbox notifications from changes to this field.
                     type: boolean
@@ -4125,6 +4171,8 @@ components:
               example: My Company Workspace
         members:
           type: array
+          description: >-
+            Array of users who are members of this portfolio.
           readOnly: true
           items:
             description: >-
@@ -4555,6 +4603,7 @@ components:
                         readOnly: true
                       has_notifications_enabled:
                         description: >-
+                          *Conditional*. Only relevant for custom fields of type `enum`.
                           This flag describes whether a follower of a task with this
                           field
                           should receive inbox notifications from changes to this
@@ -4606,6 +4655,8 @@ components:
                   example: My Company Workspace
             members:
               type: array
+              description: >-
+                Array of users who are members of this portfolio.
               readOnly: true
               items:
                 description: >-
@@ -6863,7 +6914,7 @@ components:
           readOnly: true
           type: string
           example: The project is moving forward according to plan...
-        html-text:
+        html_text:
           description: >-
             [Opt
             In](#input-output-options).
@@ -6970,7 +7021,7 @@ components:
               readOnly: true
               type: string
               example: The project is moving forward according to plan...
-            html-text:
+            html_text:
               description: >-
                 [Opt
                 In](#input-output-options).
@@ -7053,7 +7104,7 @@ components:
                 readOnly: true
                 type: string
                 example: The project is moving forward according to plan...
-              html-text:
+              html_text:
                 description: >-
                   [Opt
                   In](#input-output-options).
@@ -7101,8 +7152,38 @@ components:
           format: date-time
           readOnly: true
           example: '2012-02-22T02:06:58.147Z'
+        project:
+          description: >-
+            A *project* represents a prioritized list of tasks in Asana or a board
+            with columns of tasks represented as cards. It exists in a single
+            workspace or organization and is accessible to a subset of users in
+            that workspace or organization, depending on its permissions.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: project
+            name:
+              description: >-
+                Name of the project. This is generally a short sentence fragment
+                that fits on a line in the UI for maximum readability. However, it
+                can be longer.
+              type: string
+              example: Stuff to buy
+          readOnly: true
         projects:
+          description: >-
+            *Deprecated - please use project instead*
           type: array
+          readOnly: true
           items:
             description: >-
               A *project* represents a prioritized list of tasks in Asana or a board
@@ -7187,8 +7268,39 @@ components:
               format: date-time
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
+            project:
+              description: >-
+                A *project* represents a prioritized list of tasks in Asana or a board
+                with columns of tasks represented as cards. It exists in a single
+                workspace or organization and is accessible to a subset of users in
+                that workspace or organization, depending on its permissions.
+              type: object
+              properties:
+                gid:
+                  description: >-
+                    Globally unique identifier of the object, as a string.
+                  type: string
+                  readOnly: true
+                  example: '12345'
+                resource_type:
+                  description: The base type of this resource.
+                  type: string
+                  readOnly: true
+                  example: project
+                name:
+                  description: >-
+                    Name of the project. This is generally a short sentence fragment
+                    that fits on a line in the UI for maximum readability. However,
+                    it
+                    can be longer.
+                  type: string
+                  example: Stuff to buy
+              readOnly: true
             projects:
+              description: >-
+                *Deprecated - please use project instead*
               type: array
+              readOnly: true
               items:
                 description: >-
                   A *project* represents a prioritized list of tasks in Asana or a
@@ -7253,8 +7365,41 @@ components:
                 format: date-time
                 readOnly: true
                 example: '2012-02-22T02:06:58.147Z'
+              project:
+                description: >-
+                  A *project* represents a prioritized list of tasks in Asana or a
+                  board
+                  with columns of tasks represented as cards. It exists in a single
+                  workspace or organization and is accessible to a subset of users
+                  in
+                  that workspace or organization, depending on its permissions.
+                type: object
+                properties:
+                  gid:
+                    description: >-
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: project
+                  name:
+                    description: >-
+                      Name of the project. This is generally a short sentence fragment
+                      that fits on a line in the UI for maximum readability. However,
+                      it
+                      can be longer.
+                    type: string
+                    example: Stuff to buy
+                readOnly: true
               projects:
+                description: >-
+                  *Deprecated - please use project instead*
                 type: array
+                readOnly: true
                 items:
                   description: >-
                     A *project* represents a prioritized list of tasks in Asana or
@@ -7405,10 +7550,9 @@ components:
             *Conditional*. Array of users who have hearted this story.
           type: array
           items:
-            description: >-
-              A *user* object represents an account in Asana that can be given
-              access to various workspaces, projects, and tasks.
             type: object
+            description: >-
+              An object to represent a user's like.
             properties:
               gid:
                 description: >-
@@ -7416,16 +7560,28 @@ components:
                 type: string
                 readOnly: true
                 example: '12345'
-              resource_type:
-                description: The base type of this resource.
-                type: string
-                readOnly: true
-                example: user
-              name:
+              user:
                 description: >-
-                  *Read-only except when same user as requester*. The user’s name.
-                type: string
-                example: Greg Sanchez
+                  A *user* object represents an account in Asana that can be given
+                  access to various workspaces, projects, and tasks.
+                type: object
+                properties:
+                  gid:
+                    description: >-
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: user
+                  name:
+                    description: >-
+                      *Read-only except when same user as requester*. The user’s name.
+                    type: string
+                    example: Greg Sanchez
           readOnly: true
         num_hearts:
           description: |-
@@ -7444,13 +7600,12 @@ components:
           example: false
         likes:
           description: >-
-            *Conditional*. Array of users who have liked this story.
+            *Conditional*. Array of likes for users who have liked this story.
           type: array
           items:
-            description: >-
-              A *user* object represents an account in Asana that can be given
-              access to various workspaces, projects, and tasks.
             type: object
+            description: >-
+              An object to represent a user's like.
             properties:
               gid:
                 description: >-
@@ -7458,16 +7613,28 @@ components:
                 type: string
                 readOnly: true
                 example: '12345'
-              resource_type:
-                description: The base type of this resource.
-                type: string
-                readOnly: true
-                example: user
-              name:
+              user:
                 description: >-
-                  *Read-only except when same user as requester*. The user’s name.
-                type: string
-                example: Greg Sanchez
+                  A *user* object represents an account in Asana that can be given
+                  access to various workspaces, projects, and tasks.
+                type: object
+                properties:
+                  gid:
+                    description: >-
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: user
+                  name:
+                    description: >-
+                      *Read-only except when same user as requester*. The user’s name.
+                    type: string
+                    example: Greg Sanchez
           readOnly: true
         num_likes:
           description: >-
@@ -8145,6 +8312,18 @@ components:
                 custom field.
               type: string
               example: blue
+        new_approval_status:
+          description: >-
+            *Conditional*
+          type: string
+          readOnly: true
+          example: approved
+        old_approval_status:
+          description: >-
+            *Conditional*
+          type: string
+          readOnly: true
+          example: pending
         duplicate_of:
           description: >-
             The *task* is the basic object around which many operations in Asana
@@ -8213,6 +8392,12 @@ components:
             The component of the Asana product the user used to trigger the
             story.
           type: string
+          enum:
+            - web
+            - email
+            - mobile
+            - api
+            - unknown
           readOnly: true
           example: web
         target:
@@ -8427,10 +8612,9 @@ components:
                 *Conditional*. Array of users who have hearted this story.
               type: array
               items:
-                description: >-
-                  A *user* object represents an account in Asana that can be given
-                  access to various workspaces, projects, and tasks.
                 type: object
+                description: >-
+                  An object to represent a user's like.
                 properties:
                   gid:
                     description: >-
@@ -8438,16 +8622,29 @@ components:
                     type: string
                     readOnly: true
                     example: '12345'
-                  resource_type:
-                    description: The base type of this resource.
-                    type: string
-                    readOnly: true
-                    example: user
-                  name:
+                  user:
                     description: >-
-                      *Read-only except when same user as requester*. The user’s name.
-                    type: string
-                    example: Greg Sanchez
+                      A *user* object represents an account in Asana that can be given
+                      access to various workspaces, projects, and tasks.
+                    type: object
+                    properties:
+                      gid:
+                        description: >-
+                          Globally unique identifier of the object, as a string.
+                        type: string
+                        readOnly: true
+                        example: '12345'
+                      resource_type:
+                        description: The base type of this resource.
+                        type: string
+                        readOnly: true
+                        example: user
+                      name:
+                        description: >-
+                          *Read-only except when same user as requester*. The user’s
+                          name.
+                        type: string
+                        example: Greg Sanchez
               readOnly: true
             num_hearts:
               description: |-
@@ -8466,13 +8663,12 @@ components:
               example: false
             likes:
               description: >-
-                *Conditional*. Array of users who have liked this story.
+                *Conditional*. Array of likes for users who have liked this story.
               type: array
               items:
-                description: >-
-                  A *user* object represents an account in Asana that can be given
-                  access to various workspaces, projects, and tasks.
                 type: object
+                description: >-
+                  An object to represent a user's like.
                 properties:
                   gid:
                     description: >-
@@ -8480,16 +8676,29 @@ components:
                     type: string
                     readOnly: true
                     example: '12345'
-                  resource_type:
-                    description: The base type of this resource.
-                    type: string
-                    readOnly: true
-                    example: user
-                  name:
+                  user:
                     description: >-
-                      *Read-only except when same user as requester*. The user’s name.
-                    type: string
-                    example: Greg Sanchez
+                      A *user* object represents an account in Asana that can be given
+                      access to various workspaces, projects, and tasks.
+                    type: object
+                    properties:
+                      gid:
+                        description: >-
+                          Globally unique identifier of the object, as a string.
+                        type: string
+                        readOnly: true
+                        example: '12345'
+                      resource_type:
+                        description: The base type of this resource.
+                        type: string
+                        readOnly: true
+                        example: user
+                      name:
+                        description: >-
+                          *Read-only except when same user as requester*. The user’s
+                          name.
+                        type: string
+                        example: Greg Sanchez
               readOnly: true
             num_likes:
               description: >-
@@ -9187,6 +9396,18 @@ components:
                     custom field.
                   type: string
                   example: blue
+            new_approval_status:
+              description: >-
+                *Conditional*
+              type: string
+              readOnly: true
+              example: approved
+            old_approval_status:
+              description: >-
+                *Conditional*
+              type: string
+              readOnly: true
+              example: pending
             duplicate_of:
               description: >-
                 The *task* is the basic object around which many operations in Asana
@@ -9255,6 +9476,12 @@ components:
                 The component of the Asana product the user used to trigger the
                 story.
               type: string
+              enum:
+                - web
+                - email
+                - mobile
+                - api
+                - unknown
               readOnly: true
               example: web
             target:
@@ -9395,10 +9622,9 @@ components:
                   *Conditional*. Array of users who have hearted this story.
                 type: array
                 items:
-                  description: >-
-                    A *user* object represents an account in Asana that can be given
-                    access to various workspaces, projects, and tasks.
                   type: object
+                  description: >-
+                    An object to represent a user's like.
                   properties:
                     gid:
                       description: >-
@@ -9406,17 +9632,30 @@ components:
                       type: string
                       readOnly: true
                       example: '12345'
-                    resource_type:
-                      description: The base type of this resource.
-                      type: string
-                      readOnly: true
-                      example: user
-                    name:
+                    user:
                       description: >-
-                        *Read-only except when same user as requester*. The user’s
-                        name.
-                      type: string
-                      example: Greg Sanchez
+                        A *user* object represents an account in Asana that can be
+                        given
+                        access to various workspaces, projects, and tasks.
+                      type: object
+                      properties:
+                        gid:
+                          description: >-
+                            Globally unique identifier of the object, as a string.
+                          type: string
+                          readOnly: true
+                          example: '12345'
+                        resource_type:
+                          description: The base type of this resource.
+                          type: string
+                          readOnly: true
+                          example: user
+                        name:
+                          description: >-
+                            *Read-only except when same user as requester*. The user’s
+                            name.
+                          type: string
+                          example: Greg Sanchez
                 readOnly: true
               num_hearts:
                 description: |-
@@ -9435,13 +9674,12 @@ components:
                 example: false
               likes:
                 description: >-
-                  *Conditional*. Array of users who have liked this story.
+                  *Conditional*. Array of likes for users who have liked this story.
                 type: array
                 items:
-                  description: >-
-                    A *user* object represents an account in Asana that can be given
-                    access to various workspaces, projects, and tasks.
                   type: object
+                  description: >-
+                    An object to represent a user's like.
                   properties:
                     gid:
                       description: >-
@@ -9449,17 +9687,30 @@ components:
                       type: string
                       readOnly: true
                       example: '12345'
-                    resource_type:
-                      description: The base type of this resource.
-                      type: string
-                      readOnly: true
-                      example: user
-                    name:
+                    user:
                       description: >-
-                        *Read-only except when same user as requester*. The user’s
-                        name.
-                      type: string
-                      example: Greg Sanchez
+                        A *user* object represents an account in Asana that can be
+                        given
+                        access to various workspaces, projects, and tasks.
+                      type: object
+                      properties:
+                        gid:
+                          description: >-
+                            Globally unique identifier of the object, as a string.
+                          type: string
+                          readOnly: true
+                          example: '12345'
+                        resource_type:
+                          description: The base type of this resource.
+                          type: string
+                          readOnly: true
+                          example: user
+                        name:
+                          description: >-
+                            *Read-only except when same user as requester*. The user’s
+                            name.
+                          type: string
+                          example: Greg Sanchez
                 readOnly: true
               num_likes:
                 description: >-
@@ -10174,6 +10425,18 @@ components:
                       custom field.
                     type: string
                     example: blue
+              new_approval_status:
+                description: >-
+                  *Conditional*
+                type: string
+                readOnly: true
+                example: approved
+              old_approval_status:
+                description: >-
+                  *Conditional*
+                type: string
+                readOnly: true
+                example: pending
               duplicate_of:
                 description: >-
                   The *task* is the basic object around which many operations in Asana
@@ -10242,6 +10505,12 @@ components:
                   The component of the Asana product the user used to trigger the
                   story.
                 type: string
+                enum:
+                  - web
+                  - email
+                  - mobile
+                  - api
+                  - unknown
                 readOnly: true
                 example: web
               target:
@@ -10622,7 +10891,22 @@ components:
             - default_task
             - milestone
             - section
+            - approval
           example: default_task
+        approval_status:
+          type: string
+          description: >-
+            *Conditional* Reflects the approval status of this task. This
+            field is kept in sync with `completed`, meaning `pending`
+            translates to false while `approved`, `rejected`, and
+            `changes_requested` translate to true. If you set completed
+            to true, this field will set to `approved`.
+          enum:
+            - pending
+            - approved
+            - rejected
+            - changes_requested
+          example: pending
         assignee:
           description: >-
             A *user* object represents an account in Asana that can be given
@@ -10675,6 +10959,28 @@ components:
           readOnly: true
           nullable: true
           example: '2012-02-22T02:06:58.147Z'
+        completed_by:
+          description: >-
+            The user who completed this task.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: user
+            name:
+              description: >-
+                *Read-only except when same user as requester*. The user’s name.
+              type: string
+              example: Greg Sanchez
+          readOnly: true
         custom_fields:
           description: >-
             Array of custom field values applied to the project. These
@@ -10883,6 +11189,7 @@ components:
                 readOnly: true
               has_notifications_enabled:
                 description: >-
+                  *Conditional*. Only relevant for custom fields of type `enum`.
                   This flag describes whether a follower of a task with this field
                   should receive inbox notifications from changes to this field.
                 type: boolean
@@ -11016,10 +11323,9 @@ components:
             hearted this task.
           type: array
           items:
-            description: >-
-              A *user* object represents an account in Asana that can be given
-              access to various workspaces, projects, and tasks.
             type: object
+            description: >-
+              An object to represent a user's like.
             properties:
               gid:
                 description: >-
@@ -11027,16 +11333,28 @@ components:
                 type: string
                 readOnly: true
                 example: '12345'
-              resource_type:
-                description: The base type of this resource.
-                type: string
-                readOnly: true
-                example: user
-              name:
+              user:
                 description: >-
-                  *Read-only except when same user as requester*. The user’s name.
-                type: string
-                example: Greg Sanchez
+                  A *user* object represents an account in Asana that can be given
+                  access to various workspaces, projects, and tasks.
+                type: object
+                properties:
+                  gid:
+                    description: >-
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: user
+                  name:
+                    description: >-
+                      *Read-only except when same user as requester*. The user’s name.
+                    type: string
+                    example: Greg Sanchez
           readOnly: true
         is_rendered_as_separator:
           description: >-
@@ -11060,13 +11378,12 @@ components:
           example: true
           readOnly: true
         likes:
-          description: Array of users who have liked this task.
+          description: Array of likes for users who have liked this task.
           type: array
           items:
-            description: >-
-              A *user* object represents an account in Asana that can be given
-              access to various workspaces, projects, and tasks.
             type: object
+            description: >-
+              An object to represent a user's like.
             properties:
               gid:
                 description: >-
@@ -11074,16 +11391,28 @@ components:
                 type: string
                 readOnly: true
                 example: '12345'
-              resource_type:
-                description: The base type of this resource.
-                type: string
-                readOnly: true
-                example: user
-              name:
+              user:
                 description: >-
-                  *Read-only except when same user as requester*. The user’s name.
-                type: string
-                example: Greg Sanchez
+                  A *user* object represents an account in Asana that can be given
+                  access to various workspaces, projects, and tasks.
+                type: object
+                properties:
+                  gid:
+                    description: >-
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: user
+                  name:
+                    description: >-
+                      *Read-only except when same user as requester*. The user’s name.
+                    type: string
+                    example: Greg Sanchez
           readOnly: true
         memberships:
           description: >-
@@ -11391,7 +11720,22 @@ components:
                 - default_task
                 - milestone
                 - section
+                - approval
               example: default_task
+            approval_status:
+              type: string
+              description: >-
+                *Conditional* Reflects the approval status of this task. This
+                field is kept in sync with `completed`, meaning `pending`
+                translates to false while `approved`, `rejected`, and
+                `changes_requested` translate to true. If you set completed
+                to true, this field will set to `approved`.
+              enum:
+                - pending
+                - approved
+                - rejected
+                - changes_requested
+              example: pending
             assignee:
               description: >-
                 A *user* object represents an account in Asana that can be given
@@ -11444,6 +11788,28 @@ components:
               readOnly: true
               nullable: true
               example: '2012-02-22T02:06:58.147Z'
+            completed_by:
+              description: >-
+                The user who completed this task.
+              type: object
+              properties:
+                gid:
+                  description: >-
+                    Globally unique identifier of the object, as a string.
+                  type: string
+                  readOnly: true
+                  example: '12345'
+                resource_type:
+                  description: The base type of this resource.
+                  type: string
+                  readOnly: true
+                  example: user
+                name:
+                  description: >-
+                    *Read-only except when same user as requester*. The user’s name.
+                  type: string
+                  example: Greg Sanchez
+              readOnly: true
             custom_fields:
               description: >-
                 Array of custom field values applied to the project. These
@@ -11662,6 +12028,7 @@ components:
                     readOnly: true
                   has_notifications_enabled:
                     description: >-
+                      *Conditional*. Only relevant for custom fields of type `enum`.
                       This flag describes whether a follower of a task with this field
                       should receive inbox notifications from changes to this field.
                     type: boolean
@@ -11795,10 +12162,9 @@ components:
                 hearted this task.
               type: array
               items:
-                description: >-
-                  A *user* object represents an account in Asana that can be given
-                  access to various workspaces, projects, and tasks.
                 type: object
+                description: >-
+                  An object to represent a user's like.
                 properties:
                   gid:
                     description: >-
@@ -11806,16 +12172,29 @@ components:
                     type: string
                     readOnly: true
                     example: '12345'
-                  resource_type:
-                    description: The base type of this resource.
-                    type: string
-                    readOnly: true
-                    example: user
-                  name:
+                  user:
                     description: >-
-                      *Read-only except when same user as requester*. The user’s name.
-                    type: string
-                    example: Greg Sanchez
+                      A *user* object represents an account in Asana that can be given
+                      access to various workspaces, projects, and tasks.
+                    type: object
+                    properties:
+                      gid:
+                        description: >-
+                          Globally unique identifier of the object, as a string.
+                        type: string
+                        readOnly: true
+                        example: '12345'
+                      resource_type:
+                        description: The base type of this resource.
+                        type: string
+                        readOnly: true
+                        example: user
+                      name:
+                        description: >-
+                          *Read-only except when same user as requester*. The user’s
+                          name.
+                        type: string
+                        example: Greg Sanchez
               readOnly: true
             is_rendered_as_separator:
               description: >-
@@ -11839,13 +12218,12 @@ components:
               example: true
               readOnly: true
             likes:
-              description: Array of users who have liked this task.
+              description: Array of likes for users who have liked this task.
               type: array
               items:
-                description: >-
-                  A *user* object represents an account in Asana that can be given
-                  access to various workspaces, projects, and tasks.
                 type: object
+                description: >-
+                  An object to represent a user's like.
                 properties:
                   gid:
                     description: >-
@@ -11853,16 +12231,29 @@ components:
                     type: string
                     readOnly: true
                     example: '12345'
-                  resource_type:
-                    description: The base type of this resource.
-                    type: string
-                    readOnly: true
-                    example: user
-                  name:
+                  user:
                     description: >-
-                      *Read-only except when same user as requester*. The user’s name.
-                    type: string
-                    example: Greg Sanchez
+                      A *user* object represents an account in Asana that can be given
+                      access to various workspaces, projects, and tasks.
+                    type: object
+                    properties:
+                      gid:
+                        description: >-
+                          Globally unique identifier of the object, as a string.
+                        type: string
+                        readOnly: true
+                        example: '12345'
+                      resource_type:
+                        description: The base type of this resource.
+                        type: string
+                        readOnly: true
+                        example: user
+                      name:
+                        description: >-
+                          *Read-only except when same user as requester*. The user’s
+                          name.
+                        type: string
+                        example: Greg Sanchez
               readOnly: true
             memberships:
               description: >-
@@ -12406,6 +12797,276 @@ components:
                     description: The name of the object.
                     type: string
                     example: My Company Workspace
+    TeamMembership:
+      description: >-
+        This object represents a user's connection to a team.
+      type: object
+      properties:
+        gid:
+          description: >-
+            Globally unique identifier of the object, as a string.
+          type: string
+          readOnly: true
+          example: '12345'
+        resource_type:
+          description: The base type of this resource.
+          type: string
+          readOnly: true
+          example: team_membership
+        user:
+          description: >-
+            A *user* object represents an account in Asana that can be given
+            access to various workspaces, projects, and tasks.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: user
+            name:
+              description: >-
+                *Read-only except when same user as requester*. The user’s name.
+              type: string
+              example: Greg Sanchez
+        team:
+          description: >-
+            A *team* is used to group related projects and people together within
+            an organization. Each project in an organization is associated with a
+            team.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: team
+            name:
+              description: The name of the object.
+              type: string
+              example: Bug Task
+        is_guest:
+          type: boolean
+          description: >-
+            Describes if the user is a guest in the team.
+          example: false
+    TeamMembershipCompact:
+      description: >-
+        This object represents a user's connection to a team.
+      type: object
+      properties:
+        gid:
+          description: >-
+            Globally unique identifier of the object, as a string.
+          type: string
+          readOnly: true
+          example: '12345'
+        resource_type:
+          description: The base type of this resource.
+          type: string
+          readOnly: true
+          example: team_membership
+        user:
+          description: >-
+            A *user* object represents an account in Asana that can be given
+            access to various workspaces, projects, and tasks.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: user
+            name:
+              description: >-
+                *Read-only except when same user as requester*. The user’s name.
+              type: string
+              example: Greg Sanchez
+        team:
+          description: >-
+            A *team* is used to group related projects and people together within
+            an organization. Each project in an organization is associated with a
+            team.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: team
+            name:
+              description: The name of the object.
+              type: string
+              example: Bug Task
+        is_guest:
+          type: boolean
+          description: >-
+            Describes if the user is a guest in the team.
+          example: false
+    TeamMembershipObject:
+      type: object
+      properties:
+        data:
+          description: >-
+            This object represents a user's connection to a team.
+          type: object
+          properties:
+            gid:
+              description: >-
+                Globally unique identifier of the object, as a string.
+              type: string
+              readOnly: true
+              example: '12345'
+            resource_type:
+              description: The base type of this resource.
+              type: string
+              readOnly: true
+              example: team_membership
+            user:
+              description: >-
+                A *user* object represents an account in Asana that can be given
+                access to various workspaces, projects, and tasks.
+              type: object
+              properties:
+                gid:
+                  description: >-
+                    Globally unique identifier of the object, as a string.
+                  type: string
+                  readOnly: true
+                  example: '12345'
+                resource_type:
+                  description: The base type of this resource.
+                  type: string
+                  readOnly: true
+                  example: user
+                name:
+                  description: >-
+                    *Read-only except when same user as requester*. The user’s name.
+                  type: string
+                  example: Greg Sanchez
+            team:
+              description: >-
+                A *team* is used to group related projects and people together within
+                an organization. Each project in an organization is associated with
+                a
+                team.
+              type: object
+              properties:
+                gid:
+                  description: >-
+                    Globally unique identifier of the object, as a string.
+                  type: string
+                  readOnly: true
+                  example: '12345'
+                resource_type:
+                  description: The base type of this resource.
+                  type: string
+                  readOnly: true
+                  example: team
+                name:
+                  description: The name of the object.
+                  type: string
+                  example: Bug Task
+            is_guest:
+              type: boolean
+              description: >-
+                Describes if the user is a guest in the team.
+              example: false
+    TeamMembershipArray:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            description: >-
+              This object represents a user's connection to a team.
+            type: object
+            properties:
+              gid:
+                description: >-
+                  Globally unique identifier of the object, as a string.
+                type: string
+                readOnly: true
+                example: '12345'
+              resource_type:
+                description: The base type of this resource.
+                type: string
+                readOnly: true
+                example: team_membership
+              user:
+                description: >-
+                  A *user* object represents an account in Asana that can be given
+                  access to various workspaces, projects, and tasks.
+                type: object
+                properties:
+                  gid:
+                    description: >-
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: user
+                  name:
+                    description: >-
+                      *Read-only except when same user as requester*. The user’s name.
+                    type: string
+                    example: Greg Sanchez
+              team:
+                description: >-
+                  A *team* is used to group related projects and people together within
+                  an organization. Each project in an organization is associated with
+                  a
+                  team.
+                type: object
+                properties:
+                  gid:
+                    description: >-
+                      Globally unique identifier of the object, as a string.
+                    type: string
+                    readOnly: true
+                    example: '12345'
+                  resource_type:
+                    description: The base type of this resource.
+                    type: string
+                    readOnly: true
+                    example: team
+                  name:
+                    description: The name of the object.
+                    type: string
+                    example: Bug Task
+              is_guest:
+                type: boolean
+                description: >-
+                  Describes if the user is a guest in the team.
+                example: false
     User:
       description: >-
         A *user* object represents an account in Asana that can be given
@@ -14223,6 +14884,7 @@ paths:
                       readOnly: true
                     has_notifications_enabled:
                       description: >-
+                        *Conditional*. Only relevant for custom fields of type `enum`.
                         This flag describes whether a follower of a task with this
                         field
                         should receive inbox notifications from changes to this field.
@@ -14532,6 +15194,7 @@ paths:
                       readOnly: true
                     has_notifications_enabled:
                       description: >-
+                        *Conditional*. Only relevant for custom fields of type `enum`.
                         This flag describes whether a follower of a task with this
                         field
                         should receive inbox notifications from changes to this field.
@@ -15720,6 +16383,8 @@ paths:
                                 readOnly: true
                               has_notifications_enabled:
                                 description: >-
+                                  *Conditional*. Only relevant for custom fields of
+                                  type `enum`.
                                   This flag describes whether a follower of a task
                                   with this field
                                   should receive inbox notifications from changes
@@ -15772,13 +16437,13 @@ paths:
                           example: My Company Workspace
                     members:
                       type: array
+                      description: >-
+                        Array of object Gids.
                       readOnly: false
                       items:
                         description: >-
                           Gid of an object.
                         type: string
-                      description: >-
-                        Array of object Gids.
                       example:
                         - '12345'
       responses:
@@ -16242,6 +16907,8 @@ paths:
                                 readOnly: true
                               has_notifications_enabled:
                                 description: >-
+                                  *Conditional*. Only relevant for custom fields of
+                                  type `enum`.
                                   This flag describes whether a follower of a task
                                   with this field
                                   should receive inbox notifications from changes
@@ -16294,13 +16961,13 @@ paths:
                           example: My Company Workspace
                     members:
                       type: array
+                      description: >-
+                        Array of object Gids.
                       readOnly: false
                       items:
                         description: >-
                           Gid of an object.
                         type: string
-                      description: >-
-                        Array of object Gids.
                       example:
                         - '12345'
       responses:
@@ -19309,8 +19976,43 @@ paths:
                       format: date-time
                       readOnly: true
                       example: '2012-02-22T02:06:58.147Z'
+                    project:
+                      description: >-
+                        A *project* represents a prioritized list of tasks in Asana
+                        or a board
+                        with columns of tasks represented as cards. It exists in a
+                        single
+                        workspace or organization and is accessible to a subset of
+                        users in
+                        that workspace or organization, depending on its permissions.
+                      type: object
+                      properties:
+                        gid:
+                          description: >-
+                            Globally unique identifier of the object, as a string.
+                          type: string
+                          readOnly: true
+                          example: '12345'
+                        resource_type:
+                          description: The base type of this resource.
+                          type: string
+                          readOnly: true
+                          example: project
+                        name:
+                          description: >-
+                            Name of the project. This is generally a short sentence
+                            fragment
+                            that fits on a line in the UI for maximum readability.
+                            However, it
+                            can be longer.
+                          type: string
+                          example: Stuff to buy
+                      readOnly: true
                     projects:
+                      description: >-
+                        *Deprecated - please use project instead*
                       type: array
+                      readOnly: true
                       items:
                         description: >-
                           A *project* represents a prioritized list of tasks in Asana
@@ -19788,11 +20490,9 @@ paths:
                         *Conditional*. Array of users who have hearted this story.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -19800,17 +20500,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     num_hearts:
                       description: |-
@@ -19829,14 +20542,13 @@ paths:
                       example: false
                     likes:
                       description: >-
-                        *Conditional*. Array of users who have liked this story.
+                        *Conditional*. Array of likes for users who have liked this
+                        story.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -19844,17 +20556,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     num_likes:
                       description: >-
@@ -20613,6 +21338,18 @@ paths:
                             custom field.
                           type: string
                           example: blue
+                    new_approval_status:
+                      description: >-
+                        *Conditional*
+                      type: string
+                      readOnly: true
+                      example: approved
+                    old_approval_status:
+                      description: >-
+                        *Conditional*
+                      type: string
+                      readOnly: true
+                      example: pending
                     duplicate_of:
                       description: >-
                         The *task* is the basic object around which many operations
@@ -20685,6 +21422,12 @@ paths:
                         the
                         story.
                       type: string
+                      enum:
+                        - web
+                        - email
+                        - mobile
+                        - api
+                        - unknown
                       readOnly: true
                       example: web
                     target:
@@ -21454,7 +22197,22 @@ paths:
                         - default_task
                         - milestone
                         - section
+                        - approval
                       example: default_task
+                    approval_status:
+                      type: string
+                      description: >-
+                        *Conditional* Reflects the approval status of this task. This
+                        field is kept in sync with `completed`, meaning `pending`
+                        translates to false while `approved`, `rejected`, and
+                        `changes_requested` translate to true. If you set completed
+                        to true, this field will set to `approved`.
+                      enum:
+                        - pending
+                        - approved
+                        - rejected
+                        - changes_requested
+                      example: pending
                     assignee:
                       description: >-
                         Gid of an object.
@@ -21496,6 +22254,29 @@ paths:
                       readOnly: true
                       nullable: true
                       example: '2012-02-22T02:06:58.147Z'
+                    completed_by:
+                      description: >-
+                        The user who completed this task.
+                      type: object
+                      properties:
+                        gid:
+                          description: >-
+                            Globally unique identifier of the object, as a string.
+                          type: string
+                          readOnly: true
+                          example: '12345'
+                        resource_type:
+                          description: The base type of this resource.
+                          type: string
+                          readOnly: true
+                          example: user
+                        name:
+                          description: >-
+                            *Read-only except when same user as requester*. The user’s
+                            name.
+                          type: string
+                          example: Greg Sanchez
+                      readOnly: true
                     custom_fields:
                       description: >-
                         Array of custom field values applied to the project. These
@@ -21736,6 +22517,8 @@ paths:
                             readOnly: true
                           has_notifications_enabled:
                             description: >-
+                              *Conditional*. Only relevant for custom fields of type
+                              `enum`.
                               This flag describes whether a follower of a task with
                               this field
                               should receive inbox notifications from changes to this
@@ -21870,11 +22653,9 @@ paths:
                         hearted this task.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -21882,17 +22663,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     is_rendered_as_separator:
                       description: >-
@@ -21921,14 +22715,12 @@ paths:
                       example: true
                       readOnly: true
                     likes:
-                      description: Array of users who have liked this task.
+                      description: Array of likes for users who have liked this task.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -21936,17 +22728,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     memberships:
                       description: >-
@@ -22234,7 +23039,22 @@ paths:
                         - default_task
                         - milestone
                         - section
+                        - approval
                       example: default_task
+                    approval_status:
+                      type: string
+                      description: >-
+                        *Conditional* Reflects the approval status of this task. This
+                        field is kept in sync with `completed`, meaning `pending`
+                        translates to false while `approved`, `rejected`, and
+                        `changes_requested` translate to true. If you set completed
+                        to true, this field will set to `approved`.
+                      enum:
+                        - pending
+                        - approved
+                        - rejected
+                        - changes_requested
+                      example: pending
                     assignee:
                       description: >-
                         Gid of an object.
@@ -22276,6 +23096,29 @@ paths:
                       readOnly: true
                       nullable: true
                       example: '2012-02-22T02:06:58.147Z'
+                    completed_by:
+                      description: >-
+                        The user who completed this task.
+                      type: object
+                      properties:
+                        gid:
+                          description: >-
+                            Globally unique identifier of the object, as a string.
+                          type: string
+                          readOnly: true
+                          example: '12345'
+                        resource_type:
+                          description: The base type of this resource.
+                          type: string
+                          readOnly: true
+                          example: user
+                        name:
+                          description: >-
+                            *Read-only except when same user as requester*. The user’s
+                            name.
+                          type: string
+                          example: Greg Sanchez
+                      readOnly: true
                     custom_fields:
                       description: >-
                         Array of custom field values applied to the project. These
@@ -22516,6 +23359,8 @@ paths:
                             readOnly: true
                           has_notifications_enabled:
                             description: >-
+                              *Conditional*. Only relevant for custom fields of type
+                              `enum`.
                               This flag describes whether a follower of a task with
                               this field
                               should receive inbox notifications from changes to this
@@ -22667,11 +23512,9 @@ paths:
                         hearted this task.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -22679,17 +23522,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     is_rendered_as_separator:
                       description: >-
@@ -22718,14 +23574,12 @@ paths:
                       example: true
                       readOnly: true
                     likes:
-                      description: Array of users who have liked this task.
+                      description: Array of likes for users who have liked this task.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -22733,17 +23587,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     memberships:
                       description: >-
@@ -23353,7 +24220,22 @@ paths:
                         - default_task
                         - milestone
                         - section
+                        - approval
                       example: default_task
+                    approval_status:
+                      type: string
+                      description: >-
+                        *Conditional* Reflects the approval status of this task. This
+                        field is kept in sync with `completed`, meaning `pending`
+                        translates to false while `approved`, `rejected`, and
+                        `changes_requested` translate to true. If you set completed
+                        to true, this field will set to `approved`.
+                      enum:
+                        - pending
+                        - approved
+                        - rejected
+                        - changes_requested
+                      example: pending
                     assignee:
                       description: >-
                         Gid of an object.
@@ -23395,6 +24277,29 @@ paths:
                       readOnly: true
                       nullable: true
                       example: '2012-02-22T02:06:58.147Z'
+                    completed_by:
+                      description: >-
+                        The user who completed this task.
+                      type: object
+                      properties:
+                        gid:
+                          description: >-
+                            Globally unique identifier of the object, as a string.
+                          type: string
+                          readOnly: true
+                          example: '12345'
+                        resource_type:
+                          description: The base type of this resource.
+                          type: string
+                          readOnly: true
+                          example: user
+                        name:
+                          description: >-
+                            *Read-only except when same user as requester*. The user’s
+                            name.
+                          type: string
+                          example: Greg Sanchez
+                      readOnly: true
                     custom_fields:
                       description: >-
                         Array of custom field values applied to the project. These
@@ -23635,6 +24540,8 @@ paths:
                             readOnly: true
                           has_notifications_enabled:
                             description: >-
+                              *Conditional*. Only relevant for custom fields of type
+                              `enum`.
                               This flag describes whether a follower of a task with
                               this field
                               should receive inbox notifications from changes to this
@@ -23769,11 +24676,9 @@ paths:
                         hearted this task.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -23781,17 +24686,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     is_rendered_as_separator:
                       description: >-
@@ -23820,14 +24738,12 @@ paths:
                       example: true
                       readOnly: true
                     likes:
-                      description: Array of users who have liked this task.
+                      description: Array of likes for users who have liked this task.
                       type: array
                       items:
-                        description: >-
-                          A *user* object represents an account in Asana that can
-                          be given
-                          access to various workspaces, projects, and tasks.
                         type: object
+                        description: >-
+                          An object to represent a user's like.
                         properties:
                           gid:
                             description: >-
@@ -23835,17 +24751,30 @@ paths:
                             type: string
                             readOnly: true
                             example: '12345'
-                          resource_type:
-                            description: The base type of this resource.
-                            type: string
-                            readOnly: true
-                            example: user
-                          name:
+                          user:
                             description: >-
-                              *Read-only except when same user as requester*. The
-                              user’s name.
-                            type: string
-                            example: Greg Sanchez
+                              A *user* object represents an account in Asana that
+                              can be given
+                              access to various workspaces, projects, and tasks.
+                            type: object
+                            properties:
+                              gid:
+                                description: >-
+                                  Globally unique identifier of the object, as a string.
+                                type: string
+                                readOnly: true
+                                example: '12345'
+                              resource_type:
+                                description: The base type of this resource.
+                                type: string
+                                readOnly: true
+                                example: user
+                              name:
+                                description: >-
+                                  *Read-only except when same user as requester*.
+                                  The user’s name.
+                                type: string
+                                example: Greg Sanchez
                       readOnly: true
                     memberships:
                       description: >-
@@ -25257,6 +26186,162 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /team_memberships/{team_membership_gid}:
+    parameters:
+      - $ref: '#/components/parameters/team_membership_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a team membership
+      description: >-
+        Returns the complete team membership record for a single team membership.
+      tags:
+        - Team Memberships
+      operationId: getTeamMembership
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested team membership.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMembershipObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /team_memberships:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get team memberships
+      description: >-
+        Returns compact team membership records.
+      tags:
+        - Team Memberships
+      operationId: getTeamMemberships
+      parameters:
+        - name: team
+          in: query
+          description: Globally unique identifier for the team.
+          schema:
+            type: string
+          example: '159874'
+        - name: user
+          in: query
+          description: >-
+            Globally unique identifier for the user. This parameter must be
+            used with the workspace parameter.
+          schema:
+            type: string
+          example: '512241'
+        - name: workspace
+          in: query
+          description: >-
+            Globally unique identifier for the workspace. This parameter must be
+            used with the user parameter.
+          schema:
+            type: string
+          example: '31326'
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested team memberships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMembershipArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /teams/{team_gid}/team_memberships:
+    parameters:
+      - $ref: '#/components/parameters/team_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get memberships from a team
+      description: >-
+        Returns the compact team memberships for the team.
+      tags:
+        - Team Memberships
+      operationId: getTeamMembershipsForTeam
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested team's memberships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMembershipArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /users/{user_gid}/team_memberships:
+    parameters:
+      - $ref: '#/components/parameters/user_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get memberships from a user
+      description: >-
+        Returns the compact team membership records for the user.
+      tags:
+        - Team Memberships
+      operationId: getTeamMembershipsForUser
+      parameters:
+        - name: workspace
+          description: >-
+            Globally unique identifier for the workspace.
+          schema:
+            type: string
+          example: '31326'
+          required: true
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested users's memberships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMembershipArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}:
     parameters:
       - $ref: '#/components/parameters/team_path_gid'
@@ -25463,9 +26548,9 @@ paths:
         in: query
         description: >-
           The type of values the typeahead should return. You can choose from one
-          of the following: `custom_field`, `project`, `tag`, `task`, and `user`.
-          Note that unlike in the names of endpoints, the types listed here are
-          in singular form (e.g. `task`). Using multiple types is not yet
+          of the following: `custom_field`, `project`, `portfolio`, `tag`, `task`,
+          and `user`. Note that unlike in the names of endpoints, the types listed
+          here are in singular form (e.g. `task`). Using multiple types is not yet
           supported.
         required: true
         schema:
@@ -25554,7 +26639,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /user_task_list/{user_task_list_gid}:
+  /user_task_lists/{user_task_list_gid}:
     parameters:
       - $ref: '#/components/parameters/user_task_list_path_gid'
       - $ref: '#/components/parameters/pretty'
