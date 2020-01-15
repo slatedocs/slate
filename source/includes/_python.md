@@ -1060,7 +1060,7 @@ We typically respond within a couple of hours during the business day.
         core_agent_permissions
       </th>
       <td>
-        The permission bits to set when creating the directory of the <a href="#core-agent">.
+        The permission bits to set when creating the directory of the <a href="#core-agent">Core Agent</a>.
       </td>
       <td>
         <code>700</code>
