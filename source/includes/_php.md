@@ -169,7 +169,131 @@ We typically respond within a couple of hours during the business day.
       <td><a href="#php-deploy-tracking-config">See docs</a></td>
       <td>No</td>
     </tr>
+
+    <tr>
+      <th>SCOUT_LOG_LEVEL</th>
+      <td>Override the SCOUT log level. Can only be used to quiet the agent,
+      will not override the underlying logger's level</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+
+    <tr>
+      <th>SCOUT_SCM_SUBDIRECTORY</th>
+      <td>The relative path from the base of your Git repo to the directory which contains your application code.</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+
+    <tr>
+      <th>
+        SCOUT_CORE_AGENT_DIR
+      </th>
+      <td>
+        Path to create the directory which will store the <a href="#core-agent">Core Agent</a>.
+      </td>
+      <td>
+        <code>/tmp/scout_apm_core</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        SCOUT_CORE_AGENT_DOWNLOAD
+      </th>
+      <td>
+        Whether to download the <a href="#core-agent">Core Agent</a> automatically, if needed.
+      </td>
+      <td>
+        <code>True</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        SCOUT_CORE_AGENT_LAUNCH
+      </th>
+      <td>
+        Whether to start the <a href="#core-agent">Core Agent</a> automatically, if needed.
+      </td>
+      <td>
+        <code>True</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        SCOUT_CORE_AGENT_PERMISSIONS
+      </th>
+      <td>
+        The permission bits to set when creating the directory of the <a href="#core-agent">Core Agent</a>.
+      </td>
+      <td>
+        <code>700</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        SCOUT_CORE_AGENT_TRIPLE
+      </th>
+      <td>
+        If you are running a MUSL based Linux (such as ArchLinux), you may need
+        to explicitly specify the platform triple. E.g.
+        <code>x86_64-unknown-linux-musl</code>
+      </td>
+      <td>
+        Auto detected
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        SCOUT_CORE_AGENT_LOG_LEVEL
+      </th>
+      <td>
+        The log level of the core agent process. This should be one of:
+        <code>"trace"</code>, <code>"debug"</code>, <code>"info"</code>,
+        <code>"warn"</code>, <code>"error"</code>.
+        <br>
+        <br>
+        This does not affect the log level of the PHP library. To change that,
+        directly configure <code>logging</code> as per <a href="#php-logging">the documentation</a>.
+      </td>
+      <td>
+        <code>"info"</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        SCOUT_CORE_AGENT_LOG_FILE
+      </th>
+      <td>
+        The log file for the core agent process
+      </td>
+      <td>
+        <code>"info"</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+
   </tbody>
+
 </table>
 
 
