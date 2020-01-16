@@ -19,7 +19,7 @@ curl -v https://link.datil.co/debit-notes/issue \
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "fecha_emision":"2019-08-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
     "obligado_contabilidad":true,
@@ -37,17 +37,17 @@ curl -v https://link.datil.co/debit-notes/issue \
     "Tiempo de entrega":"5 días"
   },
   "totales":{
-    "total_sin_impuestos":4359.54,
+    "total_sin_impuestos":120.89,
     "impuestos":[
       {
-        "base_imponible":4359.54,
-        "valor":523.14,
+        "base_imponible":120.89,
+        "valor":14.51,
         "codigo":"2",
         "codigo_porcentaje":"2",
         "tarifa": 12.0
       }
     ],
-    "importe_total":4882.68
+    "importe_total":135.4
   },
   "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
   "numero_documento_modificado": "001-002-000058473",
@@ -76,10 +76,10 @@ nota_debito = {
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "fecha_emision":"2019-02-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
-    "obligado_contabilidad":true,
+    "obligado_contabilidad":True,
     "contribuyente_especial":"12345",
     "nombre_comercial":"XYZ Corp",
     "razon_social":"XYZ Corporación S.A.",
@@ -91,20 +91,20 @@ nota_debito = {
     }
   },
   "informacion_adicional":{
-    "Tiempo de entrega":"5 días"
+    "Tiempo de entrega":u"5 días"
   },
   "totales":{
-    "total_sin_impuestos":4359.54,
+    "total_sin_impuestos":120.89,
     "impuestos":[
       {
-        "base_imponible":4359.54,
-        "valor":523.14,
+        "base_imponible":120.89,
+        "valor":14.51,
         "codigo":"2",
         "codigo_porcentaje":"2",
         "tarifa": 12.0
       }
     ],
-    "importe_total":4882.68
+    "importe_total":135.4
   },
   "fecha_emision_documento_modificado": "2015-02-27T11:28:56.782Z",
   "numero_documento_modificado": "001-002-000058473",
@@ -119,7 +119,7 @@ nota_debito = {
   },
   "items":[
     {
-      "motivo":"Interés por mora",
+      "motivo":u"Interés por mora",
       "valor":120.89
     }
   ]
@@ -145,7 +145,7 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
@@ -177,7 +177,7 @@ namespace DatilClient {
           ""Tiempo de entrega"":""5 días""
         },
         ""totales"":{
-          ""total_sin_impuestos"":4359.54,
+          ""total_sin_impuestos"":120.89,
           ""impuestos"":[
             {
               ""base_imponible"":0.0,
@@ -187,13 +187,13 @@ namespace DatilClient {
               ""tarifa"": 12.0
             },
             {
-              ""base_imponible"":4359.54,
-              ""valor"":523.14,
+              ""base_imponible"":120.89,
+              ""valor"":14.51,
               ""codigo"":""2"",
               ""codigo_porcentaje"":""2""
             }
           ],
-          ""total"":4882.68,
+          ""total"":135.4,
           ""propina"":0.0,
           ""descuento"":0.0
         },
@@ -215,8 +215,8 @@ namespace DatilClient {
             ""precio_total_sin_impuestos"": 4360.22,
             ""impuestos"": [
               {
-                ""base_imponible"":4359.54,
-                ""valor"":523.14,
+                ""base_imponible"":120.89,
+                ""valor"":14.51,
                 ""tarifa"":12.0,
                 ""codigo"":""2"",
                 ""codigo_porcentaje"":""2""
@@ -248,11 +248,12 @@ secuencial | string | Número de secuencia de la nota de débito. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
+comprador | objeto tipo [persona](#persona) | Información del comprador. __Requerido__
 totales | objeto tipo [totales](#totales-nota-debito) | Listado de totales. __Requerido__
 fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 numero_documento_modificado | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
 tipo_documento_modificado | string | Códigos de [tipos de documentos](#tipos-de-documentos). __Requerido__
-motivos | arreglo de objetos tipo [motivo](#motivo) | Motivo o mitivos del débito. Ejm: Interés por mora. __Requerido__
+items | arreglo de objetos tipo [items](#motivos) | Motivos del débito. Ejm: Interés por mora. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
@@ -266,19 +267,23 @@ total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
 importe_total       | float | Total incluyendo impuestos. __Requerido__
 impuestos           | listado de objetos [impuesto](#impuesto-nota-debito) | Impuestos aplicados al total de cargos. __Requerido__
 
+<h4 id="motivos">Items</h4>
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+motivo | string | Motivo por el cuál se hace el débito. __Requerido__
+valor | float | Valor sin impuestos. __Requerido__
+
 <h4 id="impuesto-nota-debito">Impuesto</h4>
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del porcentaje.
-base_imponible | float | Base imponible.
-valor | float | Valor del total.
-tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
+codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
+codigo_porcentaje | string | Código del porcentaje. __Requerido__
+base_imponible | float | Base imponible. __Requerido__
+valor | float | Valor del total. __Requerido__
+tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 __Requerido__
 
-<!--aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside-->
 
 ### Respuesta
 
@@ -310,7 +315,7 @@ Remember — a happy kitten is an authenticated kitten!
     "Tiempo de entrega": "5 días"
   },
   "totales": {
-    "total_sin_impuestos": 4359.54,
+    "total_sin_impuestos": 120.89,
     "impuestos": [
       {
         "base_imponible": 0.0,
@@ -320,14 +325,14 @@ Remember — a happy kitten is an authenticated kitten!
         "tarifa": 0.0
       },
       {
-        "base_imponible": 4359.54,
-        "valor": 523.14,
+        "base_imponible": 120.89,
+        "valor": 14.51,
         "codigo": "2",
         "codigo_porcentaje": "2",
         "tarifa": 12.0
       }
     ],
-    "importe_total": 4882.68,
+    "importe_total": 135.4,
     "propina": 0.0,
     "descuento": 0.0
   },
@@ -349,8 +354,8 @@ Remember — a happy kitten is an authenticated kitten!
       "precio_total_sin_impuestos": 4360.22,
       "impuestos":[
         {
-          "base_imponible": 4359.54,
-          "valor": 523.14,
+          "base_imponible": 120.89,
+          "valor": 14.51,
           "tarifa": 12.0,
           "codigo": "2",
           "codigo_porcentaje": "2"
@@ -366,17 +371,17 @@ Remember — a happy kitten is an authenticated kitten!
 ```
 
 Retorna un objeto tipo **[nota de débito](#requerimiento-nota-credito)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la nota de débito. El campo `clave_acceso` 
+el cual identifica de manera única a la nota de débito. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
 ## Consulta de una nota de débito
 
 Consulta una nota de débito para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
+El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión),
 se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
 
 ### Operación
@@ -539,11 +544,11 @@ fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-totales | objeto tipo [totales](#totales-notas-de-débito) | Listado de totales. 
-comprador | objeto [comprador](#comprador) | Información del comprador. 
+totales | objeto tipo [totales](#totales-notas-de-débito) | Listado de totales.
+comprador | objeto [comprador](#comprador) | Información del comprador.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la nota de débito.
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`

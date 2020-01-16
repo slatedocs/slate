@@ -120,8 +120,8 @@ Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificación) de tipos de identificación __Requerido__
-email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
+email | string | Correo electrónico. Máximo 300 caracteres.
 telefono | string | Teléfono.
 direccion | string | Dirección
 
@@ -143,7 +143,7 @@ PLACA                       | `09`
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva).
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva).
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
 
@@ -153,7 +153,7 @@ valor | float | Valor del total.
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva).
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva).
 base_imponible | float | Base imponible.
 valor | float | Valor del total.
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
@@ -213,8 +213,8 @@ Caso específico de Retenciones en la Comercializadores / Distribuidores de deri
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retención-en-la-factura).  __Requerido__
-codigo_porcentaje | string | Código del [porcentaje del impuesto](#retención-de-iva-presuntivo-y-renta). __Requerido__
+codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retencion-en-la-factura).  __Requerido__
+codigo_porcentaje | string | Código del [porcentaje del impuesto](#retencion-de-iva-presuntivo-y-renta). __Requerido__
 tarifa | float | Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  __Requerido__
 valor | float | Valor del impuesto. Máximo 12 enteros y 2 decimales.  __Requerido__
 

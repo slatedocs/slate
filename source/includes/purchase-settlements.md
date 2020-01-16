@@ -40,12 +40,6 @@ curl -v https://link.datil.co/purchase-settlements/issue \
     "total_sin_impuestos":4359.54,
     "impuestos":[
       {
-        "base_imponible":0.0,
-        "valor":0.0,
-        "codigo":"2",
-        "codigo_porcentaje":"0"
-      },
-      {
         "base_imponible":4359.54,
         "valor":523.14,
         "codigo":"2",
@@ -73,9 +67,9 @@ curl -v https://link.datil.co/purchase-settlements/issue \
       "cantidad":622.0,
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -110,10 +104,10 @@ liquidacion_compras = {
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "fecha_emision":"2019-02-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
-    "obligado_contabilidad":true,
+    "obligado_contabilidad":True,
     "contribuyente_especial":"12345",
     "nombre_comercial":"XYZ Corp",
     "razon_social":"XYZ Corporación S.A.",
@@ -167,7 +161,7 @@ liquidacion_compras = {
       "codigo_auxiliar": "050",
       "precio_unitario": 7.01,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -286,7 +280,7 @@ namespace DatilClient {
             ""codigo_auxiliar"": ""050"",
             ""precio_unitario"": 7.01,
             ""descripcion"": ""Zanahoria granel  50 Kg."",
-            ""precio_total_sin_impuestos"": 4360.22,
+            ""precio_total_sin_impuestos"": 4359.54,
             ""impuestos"": [
               {
                 ""base_imponible"":4359.54,
@@ -305,7 +299,7 @@ namespace DatilClient {
       ],
       ""pagos"": [
         {
-          ""medio"": ""cheque"",
+          ""forma_pago"": ""cheque"",
           ""total"": 4882.68
         }
       ]
@@ -432,7 +426,7 @@ plazo       | string       | Máximo 14 caracteres.
       "codigo_auxiliar": "050",
       "precio_unitario": 7.01,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos":[
         {
           "base_imponible": 4359.54,
@@ -451,7 +445,7 @@ plazo       | string       | Máximo 14 caracteres.
   ],
   "pagos": [
     {
-      "medio": "cheque",
+      "forma_pago": "20",
       "total": 4882.68,
       "unidad_tiempo": "10",
       "plazo": "30"
@@ -464,6 +458,115 @@ Retorna un objeto tipo **[liquidacion](#requerimiento-liquidacion)** que incluye
 el cual identifica de manera única a la liquidación de compras. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
 
+### Emisión a partir de XML
+
+`POST /purchase-settlements/issue/xml`
+
+### Requerimiento a partir de XML
+
+Para la emisión de una liquidación de compra a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON.
+
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+xml                 | string  | Contenido del archivo xml. __Requerido__
+
+
+> #### Requerimiento de ejemplo
+
+
+```shell
+curl -v https://link.datil.co/purchase-settlements/issue/xml \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{"xml" : "<?xml version=\"1.1.0\" encoding=\"UTF-8\"?><liquidacionCompra id=\"comprobante\" version=\"1.1.0\"><infoTributaria><ambiente>1</ambiente><tipoEmision>1</tipoEmision><razonSocial>DATILMEDIA S.A. DE C.V.</razonSocial><nombreComercial>DATILMEDIA S.A.</nombreComercial><ruc>0992712554001</ruc><claveAcceso>1234567890098765432112345678900987654321987654321</claveAcceso><codDoc>03</codDoc><estab>001</estab><ptoEmi>001</ptoEmi><secuencial>000002134</secuencial><dirMatriz>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE</dirMatriz></infoTributaria><infoLiquidacionCompra><fechaEmision>20/10/2019</fechaEmision><dirEstablecimiento>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE 2</dirEstablecimiento><obligadoContabilidad>NO</obligadoContabilidad><tipoIdentificacionProveedor>04</tipoIdentificacionProveedor><razonSocialProveedor>Sistemas XYZ</razonSocialProveedor><identificacionProveedor>0987343992001</identificacionProveedor><totalSinImpuestos>6.00</totalSinImpuestos><totalDescuento>1.50</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><baseImponible>6.00</baseImponible><valor>0.72</valor></totalImpuesto></totalConImpuestos><importeTotal>6.72</importeTotal><moneda>DOLAR</moneda><pagos><pago><formaPago>01</formaPago><total>6.72</total></pago></pagos></infoLiquidacionCompra><detalles><detalle><codigoPrincipal>105AP</codigoPrincipal><descripcion>Aceite Protector</descripcion><cantidad>1.400000</cantidad><precioUnitario>5.357143</precioUnitario><descuento>1.50</descuento><precioTotalSinImpuesto>6.00</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><tarifa>12.00</tarifa><baseImponible>6.00</baseImponible><valor>0.72</valor></impuesto></impuestos></detalle></detalles><infoAdicional><campoAdicional nombre=\"Info\">Adicional</campoAdicional></infoAdicional></liquidacionCompra>"}'
+```
+
+```python
+import requests, json
+
+liquidacion_compra = {
+    "xml" : '''<?xml version="1.1.0" encoding="UTF-8"?>
+<liquidacionCompra id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>1</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>DATILMEDIA S.A.</razonSocial>
+    <nombreComercial>DATILMEDIA S.A.</nombreComercial>
+    <ruc>0992712554001</ruc>
+    <claveAcceso>1234567890098765432112345678900987654321987654321</claveAcceso>
+    <codDoc>03</codDoc>
+    <estab>001</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>000002134</secuencial>
+    <dirMatriz>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE</dirMatriz>
+  </infoTributaria>
+  <infoLiquidacionCompra>
+    <fechaEmision>20/10/2019</fechaEmision>
+    <dirEstablecimiento>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE 2</dirEstablecimiento>
+    <obligadoContabilidad>NO</obligadoContabilidad>
+    <tipoIdentificacionProveedor>04</tipoIdentificacionProveedor>
+    <razonSocialProveedor>Sistemas XYZ</razonSocialProveedor>
+    <identificacionProveedor>0987343992001</identificacionProveedor>
+    <totalSinImpuestos>6.00</totalSinImpuestos>
+    <totalDescuento>1.50</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>2</codigoPorcentaje>
+        <baseImponible>6.00</baseImponible>
+        <valor>0.72</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <importeTotal>6.72</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>01</formaPago>
+        <total>6.72</total>
+      </pago>
+    </pagos>
+  </infoLiquidacionCompra>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>105AP</codigoPrincipal>
+      <descripcion>Aceite Protector</descripcion>
+      <cantidad>1.400000</cantidad>
+      <precioUnitario>5.357143</precioUnitario>
+      <descuento>1.50</descuento>
+      <precioTotalSinImpuesto>6.00</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>2</codigoPorcentaje>
+          <tarifa>12.00</tarifa>
+          <baseImponible>6.00</baseImponible>
+          <valor>0.72</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="Info">Adicional</campoAdicional>
+  </infoAdicional>
+</liquidacionCompra>'''
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/invoices/issue/xml",
+    headers = cabeceras,
+    data = json.dumps(liquidacion_compra))
+```
+
+```csharp
+```
+
+
 ## Consulta de una liquidación de compra
 
 Consulta una liquidación de compra para obtener toda la información del comprobante, incluyendo
@@ -471,7 +574,7 @@ el estado del mismo.
 El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión),
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emision),
 se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
 
 ### Operación
@@ -530,9 +633,9 @@ Reemplaza en la ruta `<purchase-settlement-ID>` por el `id` de la liquidación d
 
 ```json
 {
-    "id": "abcf12343faad06785",
+    "id": "abcf12343faad0678512343faad06785",
     "secuencial": "16",
-    "fecha_emision": "2016-05-15",
+    "fecha_emision": "2019-05-03",
     "version": "1.0.0",
     "clave_acceso": "1505201501099271255400110011000000000162092727615",
     "emisor": {
@@ -551,11 +654,10 @@ Reemplaza en la ruta `<purchase-settlement-ID>` por el `id` de la liquidación d
     "estado": "AUTORIZADO",
     "correos_enviados": [
         {
-            "fecha_envio": "2015-05-15T16:36:48.274604",
-            "destinatarios": "juanantonioplaza@datilmedia.com"
+            "fecha_envio": "2019-05-03T16:36:48.274604",
+            "destinatarios": "cplaza@gye593.com"
         }
     ],
-    "guia_remision": "",
     "moneda": "USD",
     "informacion_adicional": [],
     "ambiente": "1",
@@ -618,8 +720,8 @@ Reemplaza en la ruta `<purchase-settlement-ID>` por el `id` de la liquidación d
     ],  
     "pagos": [
       {
-        "medio": "cheque",
-        "total": 4882.68,
+        "forma_pago": "20",
+        "total": 168.0,
         "unidad_tiempo": "10",
         "plazo": "30"
       }
@@ -646,8 +748,8 @@ secuencial | string | Número de secuencia de la liquidación de compras.
 estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf).
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
-envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
-autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
+envio_sri | objeto tipo [envio sri](#envio-sri) | Información luego de enviar el comprobante.
+autorizacion | objeto tipo [autorizacion sri](#autorizacion-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
 emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
