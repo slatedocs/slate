@@ -430,12 +430,12 @@ exportacion | Objeto de tipo [exportacion](#exportacion) | __Solo__ para factura
 #### Totales
 
 Parámetro           | Tipo                    | Descripción
-------------------- | ----------------------- |-----------
-total_sin_impuestos | float | Total antes de los impuestos. __Requerido__
-descuento_adicional | float | Descuento aplicado al subtotal de la factura expresado en valor monetario.
-descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
-propina             | float | Propina total, llamado también servicio. __Requerido__
-importe_total       | float | Total incluyendo impuestos. __Requerido__
+------------------- | ----------------------- |------------
+total_sin_impuestos | float (hasta 2 cifras decimales) | Total antes de los impuestos. __Requerido__
+descuento_adicional | float (hasta 2 cifras decimales) | Descuento aplicado al subtotal de la factura expresado en valor monetario.
+descuento           | float (hasta 2 cifras decimales) | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
+propina             | float (hasta 2 cifras decimales) | Propina total, llamado también servicio. __Requerido__
+importe_total       | float (hasta 2 cifras decimales) | Total incluyendo impuestos. __Requerido__
 impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
 
 #### Pagos

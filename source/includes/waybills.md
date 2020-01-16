@@ -159,7 +159,7 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
@@ -282,7 +282,7 @@ Parámetro | Tipo | Descripción
 descripcion | string | Descripción del ítem. __Requerido__
 codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
 codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-cantidad | float | Cantidad de items. __Requerido__
+cantidad | float (hasta 6 cifras decimales) | Cantidad de items. __Requerido__
 detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
 
 #### Transportista
@@ -365,17 +365,17 @@ placa | string | Placa del vehículo
 ```
 
 Retorna un objeto tipo **[guía de remisión](#requerimiento-guia-remision)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la guía de remisión. El campo `clave_acceso` 
+el cual identifica de manera única a la guía de remisión. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
 ## Consulta de una guía de remisión
 
 Consulta una guía de remisión para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
+El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión),
 se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
 
 ### Operación

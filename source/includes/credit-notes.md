@@ -72,9 +72,9 @@ curl -v https://link.datil.co/credit-notes/issue \
       "cantidad":622.0,
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -153,9 +153,9 @@ nota_credito = {
       "cantidad":622.0,
       "codigo_principal":"ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos": [
         {
           "base_imponible":4359.54,
@@ -255,9 +255,9 @@ namespace DatilClient {
             ""cantidad"":622.0,
             ""codigo_principal"":""ZNC""
             ""codigo_auxiliar"": ""050"",
-            ""precio_unitario"": 7.01,
+            ""precio_unitario"": 7.008907,
             ""descripcion"": ""Zanahoria granel  50 Kg."",
-            ""precio_total_sin_impuestos"": 4360.22,
+            ""precio_total_sin_impuestos"": 4359.54,
             ""impuestos"": [
               {
                 ""base_imponible"":4359.54,
@@ -289,12 +289,12 @@ comprobante en el cuerpo del requerimiento en formato JSON.
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la nota de crédito. __Requerido__
+secuencial | integer (min. 1 - max. 999999999 ) | Número de secuencia de la nota de crédito. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-comprador | objeto tipo [persona](#persona) | Información del comprador.
+comprador | objeto tipo [persona](#persona) | Información del comprador. __Requerido__
 totales | objeto tipo [totales](#totales-nota-credito) | Listado de totales. __Requerido__
 fecha_emision_documento_modificado | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6). __Requerido__
 numero_documento_modificado | string | Número completo del documento que se está afectando. Normalmente facturas. Ejm: 001-002-010023098 __Requerido__
@@ -378,9 +378,9 @@ Remember — a happy kitten is an authenticated kitten!
       "cantidad": 622.0,
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
-      "precio_unitario": 7.01,
+      "precio_unitario": 7.008907,
       "descripcion": "Zanahoria granel  50 Kg.",
-      "precio_total_sin_impuestos": 4360.22,
+      "precio_total_sin_impuestos": 4359.54,
       "impuestos":[
         {
           "base_imponible": 4359.54,

@@ -10,7 +10,7 @@ Las claves de acceso estarán compuestas de 49 caracteres numéricos, la herrami
 
 Campo | Formato | Longitud
 --------- | ---- |-----------
-Fecha de Emisión| ddmmaaaa| 8
+Fecha de Emisión| DDMMAAAA| 8
 Tipo de Comprobante| Tabla 4| 2
 Número de RUC| 1234567890001| 13
 Tipo de Ambiente| Tabla 5| 1
@@ -154,9 +154,9 @@ Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto)
 codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva).
-base_imponible | float | Base imponible.
-valor | float | Valor del total.
-tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
+base_imponible | float (hasta 2 cifras decimales) | Base imponible.
+valor | float (hasta 2 cifras decimales) | Valor del total.
+tarifa | float (hasta 2 cifras decimales) | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0
 
 
 ## Envío SRI
@@ -196,13 +196,13 @@ Representa un producto o servicio del comercio.
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-descripcion | string | Descripción del ítem. __Requerido__
-codigo_principal | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-codigo_auxiliar | string | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
-cantidad | float | Cantidad de items. __Requerido__
-precio_unitario | float | Precio unitario. __Requerido__
-descuento | float | El descuento es aplicado por cada producto, expresado en valor monetario. __Requerido__
-precio_total_sin_impuestos | float | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario`
+descripcion | string (máximo 300 caracteres) | Descripción del ítem. __Requerido__
+codigo_principal | string (máximo 25 caracteres) | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+codigo_auxiliar | string (máximo 25 caracteres) | Código alfanumérico de uso del comercio. Máximo 25 caracteres.
+cantidad | float (hasta 6 cifras decimales) | Cantidad de items. __Requerido__
+precio_unitario | float (hasta 6 cifras decimales) | Precio unitario. __Requerido__
+descuento | float (hasta 2 cifras decimales) | El descuento es aplicado por cada producto, expresado en valor monetario. __Requerido__
+precio_total_sin_impuestos | float (hasta 2 cifras decimales) | Precio antes de los impuestos. Se obtiene multiplicando la `cantidad` por el `precio_unitario`
 unidad_medida | string | Unidad de medida __Requerido para facturas de exportación__
 impuestos | listado de objetos tipo [impuesto item](#impuesto-item) | Impuestos grabados sobre el producto. __Requerido__
 detalles_adicionales | object | Diccionario de datos de carácter adicional. Ejemplo:<br><code>{"marca": "Ferrari", "chasis": "UANEI832-NAU101"}</code>
@@ -215,8 +215,8 @@ Parámetro | Tipo | Descripción
 --------- | ---- |-----------
 codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retencion-en-la-factura).  __Requerido__
 codigo_porcentaje | string | Código del [porcentaje del impuesto](#retencion-de-iva-presuntivo-y-renta). __Requerido__
-tarifa | float | Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  __Requerido__
-valor | float | Valor del impuesto. Máximo 12 enteros y 2 decimales.  __Requerido__
+tarifa | float (hasta 2 cifras decimales) | Porcentaje actual del impuesto.  __Requerido__
+valor | float (hasta 2 cifras decimales) | Valor del impuesto.  __Requerido__
 
 # Catálogo
 
@@ -315,6 +315,7 @@ Porcentaje Renta | Código
 Documento                | Código
 ------------------------ | ------
 Factura                  | 01
+Liquidación de Compra    | 03
 Nota de Crédito          | 04
 Nota de Débito           | 05
 Guía de Remisión         | 06
