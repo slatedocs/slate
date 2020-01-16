@@ -14,6 +14,8 @@ The following details are concatenated together (without spaces):
 
     `nonce + \n + timestamp`
 
+Where `\n` represents a single linefeed character, hex code `0x10`.
+
 The string is then encrypted using `HMAC-SHA256` using a secret. This secret will either be shared with you as part of the onboarding process, or is obtained from our API when registering your webhook URL.
 The result is then Base64 encoded to produce a string.
 The encrypted string is then UTF-8 URL encoded.
@@ -464,6 +466,25 @@ The following event `type`s will be supported, along with the content as `JSON`.
 ```json
 {
   "companyName" : "string",
+}
+```
+
+>WALLET_FUNDS_RECEIVED
+><br>This is fired whenever funds are received in a wallet.
+
+```json
+{
+  "walletId": "string",
+  "reference": "string",
+  "amount": {
+    "amount": 0.00,
+    "currency": "GBP"
+  },
+  "sourceAccount": {
+    "accountName": "string",
+    "accountNumber": "string",
+    "sortCode": "string"
+  }
 }
 ```
 
