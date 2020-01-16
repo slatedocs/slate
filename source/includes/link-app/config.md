@@ -36,7 +36,7 @@ parámetros de conexión a la base de datos:
 
 Link tiene la capacidad de construir la cadena de conexión para los siguientes
 drivers ODBC: SQL Anywhere 11, Microsoft ODBC for Oracle, Oracle in OraClient11g_home1,
-Microsoft ODBC Driver for Oracle y SQL Server. Si utilizas alguno de estos drivers
+Microsoft ODBC Driver for Oracle, SQL Server y Access ODBC Driver. Si utilizas alguno de estos drivers
 debes especificar los siguientes parámetros:
 
 Parámetros | &nbsp;
@@ -298,7 +298,7 @@ En cada archivo `.ini` cada _query_ está asignado a una variable.
 
 Si aún no ha instalado __Link__, puede crear un archivo `.ini` de respaldo con los queries configurados.
 
-[Ver ejemplos de archivos de configuración](link-app#ejemplos-de-archivos-de-configuraci-n)
+[Ver ejemplos de archivos de configuración](#ejemplos-de-archivos-de-configuracion)
 
 __Nombres de tablas y columnas__
 
@@ -412,7 +412,7 @@ Campo | Tipo | Descripción
 --------- | ------- | -----------
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
 email | string | Correo electrónico. Máximo 300 caracteres. __Requerido__
 telefono | string | Teléfono
 direccion | string | Dirección
@@ -460,7 +460,7 @@ invoice_totals_taxes  = SELECT
 Campo | Tipo | Descripción
 --------- | ------- | -----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva). __Requerido__
 base_imponible | float | Base imponible. __Requerido__
 valor | float | Valor del total. __Requerido__
 
@@ -521,7 +521,7 @@ base_imponible | float | Base imponible. __Requerido__
 valor | float | Valor del total. __Requerido__
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 __Requerido__
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva). __Requerido__
 
 ### Detalles adicionales de items
 
@@ -692,7 +692,7 @@ Obligatorio __solo__ para facturas de exportación
 
 Campo           | Tipo    | Descripción
 ------------------- | ------- | ----------
-incoterm_termino   | string  | Código de 3 letras correspondiente al [Incoterm](http://www.proecuador.gob.ec/exportadores/requisitos-para-exportar/incoterms/) . __Requerido__
+incoterm_termino   | string  | Código de 3 letras correspondiente al [Incoterm](https://en.wikipedia.org/wiki/Incoterms#Rules_for_any_mode_of_transport) . __Requerido__
 incoterm_lugar   | string  | Lugar Incoterm . __Requerido__
 incoterm_total_sin_impuestos   | string  | Total sin impuestos pagado por el incoterm. __Requerido__
 codigo_pais_origen   | string  | Código de dos letras del país origen según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  . __Requerido__
@@ -991,7 +991,7 @@ Campo | Tipo | Descripción
 --------- | ------- | -----------
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
 email | string | Correo electrónico. Máximo 300 caracteres.
 telefono | string | Teléfono
 direccion | string | Dirección
@@ -1035,7 +1035,7 @@ credit_note_totals_taxes  = SELECT
 Campo | Tipo | Descripción
 --------- | ------- | -----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva). __Requerido__
 base_imponible | float | Base imponible. __Requerido__
 valor | float | Valor del total. __Requerido__
 
@@ -1095,7 +1095,7 @@ base_imponible | float | Base imponible. __Requerido__
 valor | float | Valor del total. __Requerido__
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 __Requerido__
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva). __Requerido__
 
 ### Detalles adicionales de items
 
@@ -1391,7 +1391,7 @@ retention_recipient  = SELECT
 Campo | Tipo | Descripción
 --------- | ------- | -----------
 identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 direccion | string | Dirección
 email | string | Correo electrónico. Máximo 300 caracteres.
@@ -1420,8 +1420,8 @@ retention_taxes  = SELECT
 
 Campo | Tipo | Descripción
 --------- | ------- | -----------
-codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retenci-n). __Requerido__
-codigo_porcentaje                | string | [Código del porcentaje](#retenci-n-de-iva) a aplicar dentro del tipo de impuesto __Requerido__
+codigo                           | string | Código de [tipo de impuesto](#tipos-de-impuesto-para-la-retencion). __Requerido__
+codigo_porcentaje                | string | [Código del porcentaje](#retencion-de-iva) a aplicar dentro del tipo de impuesto __Requerido__
 porcentaje | string | Porcentaje a retener __Requerido__
 base_imponible | float | Base imponible. __Requerido__
 valor_retenido | float | Valor retenido. __Requerido__
@@ -1622,7 +1622,7 @@ waybill_shipper  = SELECT
 Campo | Tipo | Descripción
 --------- | ------- | -----------
 identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
 razon_social | string | Razón social. Máximo 300 caracteres. __Requerido__
 direccion | string | Dirección
 email | string | Correo electrónico. Máximo 300 caracteres.
@@ -1661,7 +1661,7 @@ Campo | Tipo | Descripción
 receiver_id | string | Identifica de manera única al destinatario en la guía de remisión. __Requerido__
 razon_social | string | Razón social del destinatario. Máximo 300 caracteres __Requerido__
 identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
 email | string | Correo electrónico del destinatario. Máximo 300 caracteres.
 telefono | string | Teléfono del destinatario
 direccion | string | Dirección del destinatario
@@ -1946,7 +1946,7 @@ purchase_settlement_provider = SELECT
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
 identificacion | string | De 5 a 20 caracteres. __Requerido__
-tipo_identificacion | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
 razon_social | string | Razón social. Máximo 300 caracteres __Requerido__
 direccion | string | Dirección
 
@@ -1990,7 +1990,7 @@ purchase_settlement_totals_taxes = SELECT
 Campo |  Descripción | Valor de ejemplo
 --------- | -----------| ---------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva). __Requerido__
 base_imponible | float | Base imponible. __Requerido__
 valor | float | Valor del total. __Requerido__
 
@@ -2052,7 +2052,7 @@ base_imponible | float | Base imponible. __Requerido__
 valor | float | Valor del total. __Requerido__
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 __Requerido__
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva). __Requerido__
 
 ### Detalles adicionales de items
 
@@ -2209,7 +2209,7 @@ Parámetro           | Tipo                    | Descripción
 codigo | string | Código numérico de 2 caracteres que representa al documento de reembolso. Ejemplo: `01` __Requerido__
 id_documento | int | Identifica de manera única al documento de reemoblso. __Requerido__
 id_proveedor_reembolso | string | Identifica de manera única al proveedor en la liquidación. __Requerido__
-tipo_id_proveedor_reembolso | string | Ver [tabla](#tipo-de-identificaci-n) de tipos de identificación __Requerido__
+tipo_id_proveedor_reembolso | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación __Requerido__
 codigo_pais_pago_proveedor_reembolso | string | Código de dos letras del país del proveedor según [ISO_3166](https://en.wikipedia.org/wiki/ __Requerido__
 tipo_proveedor_reembolso | string | Tipo de proveedor __Requerido__
 secuencia_reembolso | int | Número de secuencia de la factura. __Requerido__
@@ -2238,7 +2238,7 @@ purchase_settlement_reimbursement_tax = SELECT
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- | ----------
 codigo | string | Código del [tipo de impuesto](#tipos-de-impuesto) __Requerido__
-codigo_porcentaje | string | Código del [porcentaje](#c-digo-de-porcentaje-de-iva). __Requerido__
+codigo_porcentaje | string | Código del [porcentaje](#codigo-de-porcentaje-de-iva). __Requerido__
 tarifa | float | Porcentaje actual del impuesto expresado por un número entre 0.0 y 100.0 __Requerido__
 base_imponible | float | Base imponible. __Requerido__
 impuesto_reembolso | float | Valor del impuesto del reembolso
