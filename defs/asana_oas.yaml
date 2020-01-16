@@ -1751,6 +1751,40 @@ components:
             Must be between 0 and 6, inclusive.
           type: integer
           example: 2
+        format:
+          description: >-
+            The format of this custom field.
+          type: string
+          enum:
+            - currency
+            - percentage
+            - custom
+            - none
+          example: custom
+        currency_code:
+          description: >-
+            ISO 4217 currency code to format this custom field. This will be
+            null if the `format` is not `currency`.
+          type: string
+          nullable: true
+          example: EUR
+        custom_label:
+          description: >-
+            This is the string that appears next to the custom field value.
+            This will be null if the `format` is not `custom`.
+          type: string
+          nullable: true
+          example: gold pieces
+        custom_label_position:
+          description: >-
+            Only relevant for custom fields with `custom` format. This depicts
+            where to place the custom label. This will be null if the `format`
+            is not `custom`.
+          type: string
+          enum:
+            - prefix
+            - suffix
+          example: suffix
         is_global_to_workspace:
           description: >-
             This flag describes whether this custom field is available to
@@ -2120,6 +2154,40 @@ components:
                 Must be between 0 and 6, inclusive.
               type: integer
               example: 2
+            format:
+              description: >-
+                The format of this custom field.
+              type: string
+              enum:
+                - currency
+                - percentage
+                - custom
+                - none
+              example: custom
+            currency_code:
+              description: >-
+                ISO 4217 currency code to format this custom field. This will be
+                null if the `format` is not `currency`.
+              type: string
+              nullable: true
+              example: EUR
+            custom_label:
+              description: >-
+                This is the string that appears next to the custom field value.
+                This will be null if the `format` is not `custom`.
+              type: string
+              nullable: true
+              example: gold pieces
+            custom_label_position:
+              description: >-
+                Only relevant for custom fields with `custom` format. This depicts
+                where to place the custom label. This will be null if the `format`
+                is not `custom`.
+              type: string
+              enum:
+                - prefix
+                - suffix
+              example: suffix
             is_global_to_workspace:
               description: >-
                 This flag describes whether this custom field is available to
@@ -2566,6 +2634,40 @@ components:
                 Must be between 0 and 6, inclusive.
               type: integer
               example: 2
+            format:
+              description: >-
+                The format of this custom field.
+              type: string
+              enum:
+                - currency
+                - percentage
+                - custom
+                - none
+              example: custom
+            currency_code:
+              description: >-
+                ISO 4217 currency code to format this custom field. This will be
+                null if the `format` is not `currency`.
+              type: string
+              nullable: true
+              example: EUR
+            custom_label:
+              description: >-
+                This is the string that appears next to the custom field value.
+                This will be null if the `format` is not `custom`.
+              type: string
+              nullable: true
+              example: gold pieces
+            custom_label_position:
+              description: >-
+                Only relevant for custom fields with `custom` format. This depicts
+                where to place the custom label. This will be null if the `format`
+                is not `custom`.
+              type: string
+              enum:
+                - prefix
+                - suffix
+              example: suffix
             is_global_to_workspace:
               description: >-
                 This flag describes whether this custom field is available to
@@ -2871,6 +2973,41 @@ components:
                       Must be between 0 and 6, inclusive.
                     type: integer
                     example: 2
+                  format:
+                    description: >-
+                      The format of this custom field.
+                    type: string
+                    enum:
+                      - currency
+                      - percentage
+                      - custom
+                      - none
+                    example: custom
+                  currency_code:
+                    description: >-
+                      ISO 4217 currency code to format this custom field. This will
+                      be
+                      null if the `format` is not `currency`.
+                    type: string
+                    nullable: true
+                    example: EUR
+                  custom_label:
+                    description: >-
+                      This is the string that appears next to the custom field value.
+                      This will be null if the `format` is not `custom`.
+                    type: string
+                    nullable: true
+                    example: gold pieces
+                  custom_label_position:
+                    description: >-
+                      Only relevant for custom fields with `custom` format. This depicts
+                      where to place the custom label. This will be null if the `format`
+                      is not `custom`.
+                    type: string
+                    enum:
+                      - prefix
+                      - suffix
+                    example: suffix
                   is_global_to_workspace:
                     description: >-
                       This flag describes whether this custom field is available to
@@ -4114,6 +4251,41 @@ components:
                       Must be between 0 and 6, inclusive.
                     type: integer
                     example: 2
+                  format:
+                    description: >-
+                      The format of this custom field.
+                    type: string
+                    enum:
+                      - currency
+                      - percentage
+                      - custom
+                      - none
+                    example: custom
+                  currency_code:
+                    description: >-
+                      ISO 4217 currency code to format this custom field. This will
+                      be
+                      null if the `format` is not `currency`.
+                    type: string
+                    nullable: true
+                    example: EUR
+                  custom_label:
+                    description: >-
+                      This is the string that appears next to the custom field value.
+                      This will be null if the `format` is not `custom`.
+                    type: string
+                    nullable: true
+                    example: gold pieces
+                  custom_label_position:
+                    description: >-
+                      Only relevant for custom fields with `custom` format. This depicts
+                      where to place the custom label. This will be null if the `format`
+                      is not `custom`.
+                    type: string
+                    enum:
+                      - prefix
+                      - suffix
+                    example: suffix
                   is_global_to_workspace:
                     description: >-
                       This flag describes whether this custom field is available to
@@ -4594,6 +4766,44 @@ components:
                           Must be between 0 and 6, inclusive.
                         type: integer
                         example: 2
+                      format:
+                        description: >-
+                          The format of this custom field.
+                        type: string
+                        enum:
+                          - currency
+                          - percentage
+                          - custom
+                          - none
+                        example: custom
+                      currency_code:
+                        description: >-
+                          ISO 4217 currency code to format this custom field. This
+                          will be
+                          null if the `format` is not `currency`.
+                        type: string
+                        nullable: true
+                        example: EUR
+                      custom_label:
+                        description: >-
+                          This is the string that appears next to the custom field
+                          value.
+                          This will be null if the `format` is not `custom`.
+                        type: string
+                        nullable: true
+                        example: gold pieces
+                      custom_label_position:
+                        description: >-
+                          Only relevant for custom fields with `custom` format. This
+                          depicts
+                          where to place the custom label. This will be null if the
+                          `format`
+                          is not `custom`.
+                        type: string
+                        enum:
+                          - prefix
+                          - suffix
+                        example: suffix
                       is_global_to_workspace:
                         description: >-
                           This flag describes whether this custom field is available
@@ -11182,6 +11392,40 @@ components:
                   Must be between 0 and 6, inclusive.
                 type: integer
                 example: 2
+              format:
+                description: >-
+                  The format of this custom field.
+                type: string
+                enum:
+                  - currency
+                  - percentage
+                  - custom
+                  - none
+                example: custom
+              currency_code:
+                description: >-
+                  ISO 4217 currency code to format this custom field. This will be
+                  null if the `format` is not `currency`.
+                type: string
+                nullable: true
+                example: EUR
+              custom_label:
+                description: >-
+                  This is the string that appears next to the custom field value.
+                  This will be null if the `format` is not `custom`.
+                type: string
+                nullable: true
+                example: gold pieces
+              custom_label_position:
+                description: >-
+                  Only relevant for custom fields with `custom` format. This depicts
+                  where to place the custom label. This will be null if the `format`
+                  is not `custom`.
+                type: string
+                enum:
+                  - prefix
+                  - suffix
+                example: suffix
               is_global_to_workspace:
                 description: >-
                   This flag describes whether this custom field is available to
@@ -12021,6 +12265,41 @@ components:
                       Must be between 0 and 6, inclusive.
                     type: integer
                     example: 2
+                  format:
+                    description: >-
+                      The format of this custom field.
+                    type: string
+                    enum:
+                      - currency
+                      - percentage
+                      - custom
+                      - none
+                    example: custom
+                  currency_code:
+                    description: >-
+                      ISO 4217 currency code to format this custom field. This will
+                      be
+                      null if the `format` is not `currency`.
+                    type: string
+                    nullable: true
+                    example: EUR
+                  custom_label:
+                    description: >-
+                      This is the string that appears next to the custom field value.
+                      This will be null if the `format` is not `custom`.
+                    type: string
+                    nullable: true
+                    example: gold pieces
+                  custom_label_position:
+                    description: >-
+                      Only relevant for custom fields with `custom` format. This depicts
+                      where to place the custom label. This will be null if the `format`
+                      is not `custom`.
+                    type: string
+                    enum:
+                      - prefix
+                      - suffix
+                    example: suffix
                   is_global_to_workspace:
                     description: >-
                       This flag describes whether this custom field is available to
@@ -14875,6 +15154,43 @@ paths:
                         Must be between 0 and 6, inclusive.
                       type: integer
                       example: 2
+                    format:
+                      description: >-
+                        The format of this custom field.
+                      type: string
+                      enum:
+                        - currency
+                        - percentage
+                        - custom
+                        - none
+                      example: custom
+                    currency_code:
+                      description: >-
+                        ISO 4217 currency code to format this custom field. This will
+                        be
+                        null if the `format` is not `currency`.
+                      type: string
+                      nullable: true
+                      example: EUR
+                    custom_label:
+                      description: >-
+                        This is the string that appears next to the custom field value.
+                        This will be null if the `format` is not `custom`.
+                      type: string
+                      nullable: true
+                      example: gold pieces
+                    custom_label_position:
+                      description: >-
+                        Only relevant for custom fields with `custom` format. This
+                        depicts
+                        where to place the custom label. This will be null if the
+                        `format`
+                        is not `custom`.
+                      type: string
+                      enum:
+                        - prefix
+                        - suffix
+                      example: suffix
                     is_global_to_workspace:
                       description: >-
                         This flag describes whether this custom field is available
@@ -15185,6 +15501,43 @@ paths:
                         Must be between 0 and 6, inclusive.
                       type: integer
                       example: 2
+                    format:
+                      description: >-
+                        The format of this custom field.
+                      type: string
+                      enum:
+                        - currency
+                        - percentage
+                        - custom
+                        - none
+                      example: custom
+                    currency_code:
+                      description: >-
+                        ISO 4217 currency code to format this custom field. This will
+                        be
+                        null if the `format` is not `currency`.
+                      type: string
+                      nullable: true
+                      example: EUR
+                    custom_label:
+                      description: >-
+                        This is the string that appears next to the custom field value.
+                        This will be null if the `format` is not `custom`.
+                      type: string
+                      nullable: true
+                      example: gold pieces
+                    custom_label_position:
+                      description: >-
+                        Only relevant for custom fields with `custom` format. This
+                        depicts
+                        where to place the custom label. This will be null if the
+                        `format`
+                        is not `custom`.
+                      type: string
+                      enum:
+                        - prefix
+                        - suffix
+                      example: suffix
                     is_global_to_workspace:
                       description: >-
                         This flag describes whether this custom field is available
@@ -16374,6 +16727,44 @@ paths:
                                   Must be between 0 and 6, inclusive.
                                 type: integer
                                 example: 2
+                              format:
+                                description: >-
+                                  The format of this custom field.
+                                type: string
+                                enum:
+                                  - currency
+                                  - percentage
+                                  - custom
+                                  - none
+                                example: custom
+                              currency_code:
+                                description: >-
+                                  ISO 4217 currency code to format this custom field.
+                                  This will be
+                                  null if the `format` is not `currency`.
+                                type: string
+                                nullable: true
+                                example: EUR
+                              custom_label:
+                                description: >-
+                                  This is the string that appears next to the custom
+                                  field value.
+                                  This will be null if the `format` is not `custom`.
+                                type: string
+                                nullable: true
+                                example: gold pieces
+                              custom_label_position:
+                                description: >-
+                                  Only relevant for custom fields with `custom` format.
+                                  This depicts
+                                  where to place the custom label. This will be null
+                                  if the `format`
+                                  is not `custom`.
+                                type: string
+                                enum:
+                                  - prefix
+                                  - suffix
+                                example: suffix
                               is_global_to_workspace:
                                 description: >-
                                   This flag describes whether this custom field is
@@ -16898,6 +17289,44 @@ paths:
                                   Must be between 0 and 6, inclusive.
                                 type: integer
                                 example: 2
+                              format:
+                                description: >-
+                                  The format of this custom field.
+                                type: string
+                                enum:
+                                  - currency
+                                  - percentage
+                                  - custom
+                                  - none
+                                example: custom
+                              currency_code:
+                                description: >-
+                                  ISO 4217 currency code to format this custom field.
+                                  This will be
+                                  null if the `format` is not `currency`.
+                                type: string
+                                nullable: true
+                                example: EUR
+                              custom_label:
+                                description: >-
+                                  This is the string that appears next to the custom
+                                  field value.
+                                  This will be null if the `format` is not `custom`.
+                                type: string
+                                nullable: true
+                                example: gold pieces
+                              custom_label_position:
+                                description: >-
+                                  Only relevant for custom fields with `custom` format.
+                                  This depicts
+                                  where to place the custom label. This will be null
+                                  if the `format`
+                                  is not `custom`.
+                                type: string
+                                enum:
+                                  - prefix
+                                  - suffix
+                                example: suffix
                               is_global_to_workspace:
                                 description: >-
                                   This flag describes whether this custom field is
@@ -22508,6 +22937,44 @@ paths:
                               Must be between 0 and 6, inclusive.
                             type: integer
                             example: 2
+                          format:
+                            description: >-
+                              The format of this custom field.
+                            type: string
+                            enum:
+                              - currency
+                              - percentage
+                              - custom
+                              - none
+                            example: custom
+                          currency_code:
+                            description: >-
+                              ISO 4217 currency code to format this custom field.
+                              This will be
+                              null if the `format` is not `currency`.
+                            type: string
+                            nullable: true
+                            example: EUR
+                          custom_label:
+                            description: >-
+                              This is the string that appears next to the custom field
+                              value.
+                              This will be null if the `format` is not `custom`.
+                            type: string
+                            nullable: true
+                            example: gold pieces
+                          custom_label_position:
+                            description: >-
+                              Only relevant for custom fields with `custom` format.
+                              This depicts
+                              where to place the custom label. This will be null if
+                              the `format`
+                              is not `custom`.
+                            type: string
+                            enum:
+                              - prefix
+                              - suffix
+                            example: suffix
                           is_global_to_workspace:
                             description: >-
                               This flag describes whether this custom field is available
@@ -23350,6 +23817,44 @@ paths:
                               Must be between 0 and 6, inclusive.
                             type: integer
                             example: 2
+                          format:
+                            description: >-
+                              The format of this custom field.
+                            type: string
+                            enum:
+                              - currency
+                              - percentage
+                              - custom
+                              - none
+                            example: custom
+                          currency_code:
+                            description: >-
+                              ISO 4217 currency code to format this custom field.
+                              This will be
+                              null if the `format` is not `currency`.
+                            type: string
+                            nullable: true
+                            example: EUR
+                          custom_label:
+                            description: >-
+                              This is the string that appears next to the custom field
+                              value.
+                              This will be null if the `format` is not `custom`.
+                            type: string
+                            nullable: true
+                            example: gold pieces
+                          custom_label_position:
+                            description: >-
+                              Only relevant for custom fields with `custom` format.
+                              This depicts
+                              where to place the custom label. This will be null if
+                              the `format`
+                              is not `custom`.
+                            type: string
+                            enum:
+                              - prefix
+                              - suffix
+                            example: suffix
                           is_global_to_workspace:
                             description: >-
                               This flag describes whether this custom field is available
@@ -24531,6 +25036,44 @@ paths:
                               Must be between 0 and 6, inclusive.
                             type: integer
                             example: 2
+                          format:
+                            description: >-
+                              The format of this custom field.
+                            type: string
+                            enum:
+                              - currency
+                              - percentage
+                              - custom
+                              - none
+                            example: custom
+                          currency_code:
+                            description: >-
+                              ISO 4217 currency code to format this custom field.
+                              This will be
+                              null if the `format` is not `currency`.
+                            type: string
+                            nullable: true
+                            example: EUR
+                          custom_label:
+                            description: >-
+                              This is the string that appears next to the custom field
+                              value.
+                              This will be null if the `format` is not `custom`.
+                            type: string
+                            nullable: true
+                            example: gold pieces
+                          custom_label_position:
+                            description: >-
+                              Only relevant for custom fields with `custom` format.
+                              This depicts
+                              where to place the custom label. This will be null if
+                              the `format`
+                              is not `custom`.
+                            type: string
+                            enum:
+                              - prefix
+                              - suffix
+                            example: suffix
                           is_global_to_workspace:
                             description: >-
                               This flag describes whether this custom field is available

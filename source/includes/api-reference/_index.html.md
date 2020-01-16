@@ -604,6 +604,10 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "has_notifications_enabled": true,
     "workspace": "1331"
   }
@@ -640,6 +644,10 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -687,6 +695,10 @@ Returns the full record of the newly created custom field.
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace to create a custom field in.|
@@ -705,6 +717,12 @@ Returns the full record of the newly created custom field.
 | type|text|
 | type|enum|
 | type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-custom-field-responses">Responses</h3>
 
@@ -765,6 +783,10 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -845,6 +867,10 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "has_notifications_enabled": true
   }
 }
@@ -880,6 +906,10 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -924,6 +954,10 @@ Returns the complete updated custom field record.
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
@@ -940,6 +974,12 @@ Returns the complete updated custom field record.
 | type|text|
 | type|enum|
 | type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="update-a-custom-field-responses">Responses</h3>
 
@@ -1407,6 +1447,10 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -1505,6 +1549,10 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -2199,6 +2247,10 @@ integrations to create their own starting state on a portfolio.
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» owner<span class="param-type"> object</span>|The current owner of the portfolio.|
@@ -2241,6 +2293,12 @@ integrations to create their own starting state on a portfolio.
 | type|text|
 | type|enum|
 | type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-portfolio-responses">Responses</h3>
 
@@ -2327,6 +2385,10 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
           "text_value": "Some Value",
           "description": "Development team priority",
           "precision": 2,
+          "format": "custom",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
           "is_global_to_workspace": true,
           "has_notifications_enabled": true
         }
@@ -2470,6 +2532,10 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
           "text_value": "Some Value",
           "description": "Development team priority",
           "precision": 2,
+          "format": "custom",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
           "is_global_to_workspace": true,
           "has_notifications_enabled": true
         }
@@ -2555,6 +2621,10 @@ Returns the complete updated portfolio record.
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» owner<span class="param-type"> object</span>|The current owner of the portfolio.|
@@ -2598,6 +2668,12 @@ Returns the complete updated portfolio record.
 | type|text|
 | type|enum|
 | type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="update-a-portfolio-responses">Responses</h3>
 
@@ -8490,6 +8566,10 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -8648,6 +8728,10 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
@@ -8745,6 +8829,12 @@ added or removed from the task.*
 | type|text|
 | type|enum|
 | type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-task-responses">Responses</h3>
 
@@ -8826,6 +8916,10 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -9049,6 +9143,10 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -9209,6 +9307,10 @@ Returns the complete updated task record.
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
@@ -9319,6 +9421,12 @@ added or removed from the task.*
 | type|text|
 | type|enum|
 | type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="update-a-task-responses">Responses</h3>
 
@@ -9826,6 +9934,10 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -9978,6 +10090,10 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
@@ -10079,6 +10195,12 @@ added or removed from the task.*
 | type|text|
 | type|enum|
 | type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-subtask-responses">Responses</h3>
 
@@ -10173,6 +10295,10 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -13748,6 +13874,10 @@ A response object returned from a batch request.
   "text_value": "Some Value",
   "description": "Development team priority",
   "precision": 2,
+  "format": "custom",
+  "currency_code": "EUR",
+  "custom_label": "gold pieces",
+  "custom_label_position": "suffix",
   "is_global_to_workspace": true,
   "has_notifications_enabled": true
 }
@@ -13783,6 +13913,10 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|format<span class="param-type"> string</span>|The format of this custom field.|
+|currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 
@@ -13796,6 +13930,13 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
+|custom_label_position|null|
 
 </section>
 
@@ -13926,6 +14067,10 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -13972,6 +14117,10 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|» format<span class="param-type"> string</span>|The format of this custom field.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 
@@ -13985,6 +14134,12 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 
 </section>
 
@@ -14402,6 +14557,10 @@ An *organization_export* object represents a request to export the complete data
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -14478,6 +14637,10 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |owner<span class="param-type"> object</span>|The current owner of the portfolio.|
@@ -14521,6 +14684,12 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 
 </section>
 
@@ -15738,6 +15907,10 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
       "text_value": "Some Value",
       "description": "Development team priority",
       "precision": 2,
+      "format": "custom",
+      "currency_code": "EUR",
+      "custom_label": "gold pieces",
+      "custom_label_position": "suffix",
       "is_global_to_workspace": true,
       "has_notifications_enabled": true
     }
@@ -15887,6 +16060,10 @@ The *task* is the basic object around which many operations in Asana are centere
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|» format<span class="param-type"> string</span>|The format of this custom field.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. Only relevant for custom fields of type `enum`. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
@@ -15973,6 +16150,12 @@ The *task* is the basic object around which many operations in Asana are centere
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 
 </section>
 
