@@ -315,17 +315,26 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+  "id" : "walletId",
   "bankAccountDetailsId" : "bankAccountDetailsId",
-  "originatorId" : "originatorId"
+  "bankDetails" : {
+    "accountName": "accountName",
+    "accountNumber": "accountNumber",
+    "sortCode": "sortCode"
+  }
 }
 ```
 ### Description
 Wallet Details
 ### Response
-| Name                 | Type   | Description                                   |
-| -------------------- | ------ | --------------------------------------------- |
-| originatorId         | string | The originator ID registered for the wallet . |
-| bankAccountDetailsId | string | The bank account details ID                   |
+| Name                        | Type   | Description                                      |
+| --------------------------- | ------ | ------------------------------------------------ |
+| id                          | string | The ID of the wallet                             |
+| bankAccountDetailsId        | string | The bank account details ID                      |
+| bankDetails                 | ref    | The bank details for the wallet                  |
+| bankDetails.accountName     | string | The account name for use when depositing money   |
+| bankDetails.accountNumber   | string | The account number to use when depositing money  |
+| bankDetails.sortCode        | string | The sort code to use when depositing money       |
 
 ## `GET /platformApi/wallet/{id}/balance`
 
