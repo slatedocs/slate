@@ -11652,6 +11652,293 @@ The user making this call must be a member of the team in order to remove themse
 
 <hr class="full-line">
 <section class="full-section">
+<h1 id="asana-team-memberships">Team Memberships</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="#get-a-team-membership"><span class="get-verb">GET</span> <span class=""nn>/team_memberships/{team_membership_gid}</span></a><br><a href="#get-team-memberships"><span class="get-verb">GET</span> <span class=""nn>/team_memberships</span></a><br><a href="#get-memberships-from-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/team_memberships</span></a><br><a href="#get-memberships-from-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/team_memberships</span></a></code>
+</pre>
+
+This object determines if a user is a member of a team.
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get a team membership
+
+<a id="opIdgetTeamMembership"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/team_memberships/{team_membership_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "team_membership",
+    "user": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Bug Task"
+    },
+    "is_guest": false
+  }
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /team_memberships/{team_membership_gid}</code>
+</p>
+
+Returns the complete team membership record for a single team membership.
+
+<h3 id="get-a-team-membership-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/team_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-team-membership-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested team membership.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get team memberships
+
+<a id="opIdgetTeamMemberships"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/team_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "team_membership",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "team": {
+        "gid": "12345",
+        "resource_type": "team",
+        "name": "Bug Task"
+      },
+      "is_guest": false
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /team_memberships</code>
+</p>
+
+Returns compact team membership records.
+
+<h3 id="get-team-memberships-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?team<span class="param-type"> string</span>|Globally unique identifier for the team.|
+|?user<span class="param-type"> string</span>|Globally unique identifier for the user. This parameter must be used with the workspace parameter.|
+|?workspace<span class="param-type"> string</span>|Globally unique identifier for the workspace. This parameter must be used with the user parameter.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-team-memberships-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested team memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get memberships from a team
+
+<a id="opIdgetTeamMembershipsForTeam"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/team_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "team_membership",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "team": {
+        "gid": "12345",
+        "resource_type": "team",
+        "name": "Bug Task"
+      },
+      "is_guest": false
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /teams/{team_gid}/team_memberships</code>
+</p>
+
+Returns the compact team memberships for the team.
+
+<h3 id="get-memberships-from-a-team-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-memberships-from-a-team-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested team's memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section>
+
+<hr class="half-line">
+<section>
+## Get memberships from a user
+
+<a id="opIdgetTeamMembershipsForUser"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "team_membership",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "team": {
+        "gid": "12345",
+        "resource_type": "team",
+        "name": "Bug Task"
+      },
+      "is_guest": false
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}/team_memberships</code>
+</p>
+
+Returns the compact team membership records for the user.
+
+<h3 id="get-memberships-from-a-user-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|workspace<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-memberships-from-a-user-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested users's memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section>
+
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-typeahead">Typeahead</h1>
 
 <pre class="highlight http tab-http">
@@ -13248,291 +13535,6 @@ Returns the compact workspace membership records for the workspace.
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [WorkspaceMembership](#schemaworkspacemembership)</span>|Successfully retrieved the requested workspace's memberships.|
-
-</section>
-
-<hr class="full-line">
-<section class="full-section">
-<h1 id="asana-team-memberships">Team Memberships</h1>
-
-<pre class="highlight http tab-http">
-<code><a href="#get-a-team-membership"><span class="get-verb">GET</span> <span class=""nn>/team_memberships/{team_membership_gid}</span></a><br><a href="#get-team-memberships"><span class="get-verb">GET</span> <span class=""nn>/team_memberships</span></a><br><a href="#get-memberships-from-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/team_memberships</span></a><br><a href="#get-memberships-from-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/team_memberships</span></a></code>
-</pre>
-
-</section>
-
-<hr class="half-line">
-<section>
-## Get a team membership
-
-<a id="opIdgetTeamMembership"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/team_memberships/{team_membership_gid} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "gid": "12345",
-    "resource_type": "team_membership",
-    "user": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Bug Task"
-    },
-    "is_guest": false
-  }
-}
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /team_memberships/{team_membership_gid}</code>
-</p>
-
-Returns the complete team membership record for a single team membership.
-
-<h3 id="get-a-team-membership-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|/team_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-<h3 id="get-a-team-membership-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested team membership.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section>
-
-<hr class="half-line">
-<section>
-## Get team memberships
-
-<a id="opIdgetTeamMemberships"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/team_memberships \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "team_membership",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "is_guest": false
-    }
-  ]
-}
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /team_memberships</code>
-</p>
-
-Returns compact team membership records.
-
-<h3 id="get-team-memberships-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|?team<span class="param-type"> string</span>|Globally unique identifier for the team.|
-|?user<span class="param-type"> string</span>|Globally unique identifier for the user. This parameter must be used with the workspace parameter.|
-|?workspace<span class="param-type"> string</span>|Globally unique identifier for the workspace. This parameter must be used with the user parameter.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
-|?offset<span class="param-type"> string</span>|Offset token.|
-
-<h3 id="get-team-memberships-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested team memberships.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section>
-
-<hr class="half-line">
-<section>
-## Get memberships from a team
-
-<a id="opIdgetTeamMembershipsForTeam"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/team_memberships \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "team_membership",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "is_guest": false
-    }
-  ]
-}
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /teams/{team_gid}/team_memberships</code>
-</p>
-
-Returns the compact team memberships for the team.
-
-<h3 id="get-memberships-from-a-team-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
-|?offset<span class="param-type"> string</span>|Offset token.|
-
-<h3 id="get-memberships-from-a-team-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested team's memberships.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section>
-
-<hr class="half-line">
-<section>
-## Get memberships from a user
-
-<a id="opIdgetTeamMembershipsForUser"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "team_membership",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "is_guest": false
-    }
-  ]
-}
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /users/{user_gid}/team_memberships</code>
-</p>
-
-Returns the compact team membership records for the user.
-
-<h3 id="get-memberships-from-a-user-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|workspace<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace.|
-|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
-|?offset<span class="param-type"> string</span>|Offset token.|
-
-<h3 id="get-memberships-from-a-user-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested users's memberships.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section>
 

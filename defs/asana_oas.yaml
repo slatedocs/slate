@@ -547,6 +547,9 @@ tags:
     description: >-
       A *team* is used to group related projects and people together within an
       organization. Each project in an organization is associated with a team.
+  - name: Team Memberships
+    description: >-
+      This object determines if a user is a member of a team.
   - name: Typeahead
     description: >-
       The typeahead search API provides search for objects from a single
