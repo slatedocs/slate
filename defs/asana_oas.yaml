@@ -26416,7 +26416,7 @@ paths:
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
-      - name: organization_gid
+      - name: organization
         in: query
         description: The workspace or organization to filter teams on.
         required: true

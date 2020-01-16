@@ -11451,7 +11451,7 @@ Returns the compact records for all teams in the organization visible to the aut
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gid=1331 \
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization=1331 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -11493,7 +11493,7 @@ Returns the compact records for all teams to which the given user is assigned.
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
-|?organization_gid<span class="param-type"> string</span><div class="param-required">required</div>|The workspace or organization to filter teams on.|
+|?organization<span class="param-type"> string</span><div class="param-required">required</div>|The workspace or organization to filter teams on.|
 
 <h3 id="get-teams-for-a-user-responses">Responses</h3>
 
