@@ -286,6 +286,7 @@ Content-Type: application/json
 <aside class="notice">
 Prior to creating a wallet you need to have registered your company as the wallet holder using /wallet/company/registration
 </aside>
+
 ### Description
 Create a wallet
 ### Request
@@ -294,9 +295,9 @@ Create a wallet
 | walletName | string | New wallet name | required |
 
 ### Response
-| Name       | Type   | Description
-| ---------- | ------ | ---------------
-| id | string | The unique identifier for the created wallet
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| id         | string | The unique identifier for the created wallet  |
 
 ## `GET /platformApi/wallet/{id}`
 ```http
@@ -305,8 +306,6 @@ GET /platformApi/wallet/{id} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-
-
 
 ```
 
@@ -336,6 +335,44 @@ Wallet Details
 | bankDetails.accountNumber   | string | The account number to use when depositing money  |
 | bankDetails.sortCode        | string | The sort code to use when depositing money       |
 
+## `GET /platformApi/wallets`
+```http
+
+GET /platformApi/wallets HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "id" : "walletId",
+    "bankAccountDetailsId" : "bankAccountDetailsId",
+    "bankDetails" : {
+      "accountName": "accountName",
+      "accountNumber": "accountNumber",
+      "sortCode": "sortCode"
+    }
+  }
+]
+```
+### Description
+List of wallet details
+### Response
+| Name                        | Type   | Description                                      |
+| --------------------------- | ------ | ------------------------------------------------ |
+| id                          | string | The ID of the wallet                             |
+| bankAccountDetailsId        | string | The bank account details ID                      |
+| bankDetails                 | ref    | The bank details for the wallet                  |
+| bankDetails.accountName     | string | The account name for use when depositing money   |
+| bankDetails.accountNumber   | string | The account number to use when depositing money  |
+| bankDetails.sortCode        | string | The sort code to use when depositing money       |
+
 ## `GET /platformApi/wallet/{id}/balance`
 
 ```http
@@ -344,8 +381,6 @@ GET /platformApi/wallet/{id}/balance HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-
-
 
 ```
 
@@ -400,20 +435,20 @@ Content-Type: application/json
 ### Description
 Create a payment instruction from a wallet
 ### Request
-| Name       | Type   | Description     | Required |
-| ---------- | ------ | --------------- | -------- |
-| destinationBankAccountId | string | The ID of the destination bank account | required |
+| Name                          | Type   | Description                                 | Required |
+| ----------------------------- | ------ | ------------------------------------------- | -------- |
+| destinationBankAccountId      | string | The ID of the destination bank account      | required |
 | amount                        | ref    | The total cash balance.                     | required |
 | amount.amount                 | number | The amount.                                 | required |
 | amount.currency               | string | The ISO 4217 three character codes eg 'GBP' | required |
 | reference                     | string | The bank reference used for the transfer    | required |
-| narrative                     | string | The reason for the wallet transfer          |
+| narrative                     | string | The reason for the wallet transfer          |          |
 
-## `GET /platformApi/wallet/{id}/transactions`
+## `GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}`
 
 ```http
 
-GET /platformApi/wallet/{id}/transactions HTTP/1.1
+GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -442,17 +477,17 @@ Content-Type: application/json
 
 ```
 ### Description
-Retrieve a list of transactions for a given wallet.
+Retrieve a list of transactions for a given wallet for a given year and month.
 ### Response
-| Name                 | Type   | Description                                   |
-| -------------------- | ------ | --------------------------------------------- |
-| id         | string | The id of the transaction |
-| amount                        | ref    | The total cash balance.                     |
-| amount.amount                 | number | The amount.                                 |
-| amount.currency               | string | The ISO 4217 three character codes eg 'GBP' |
-| type                          | string | The type of wallet instruction              |
-| status                        | string | The status of the wallet transfer. PENDING, CLEARED |
-| reference                     | string | The bank reference used for the transfer    |
-| narrative                     | string | The reason for the wallet transfer          |
+| Name                          | Type      | Description                                          |
+| ----------------------------- | --------- | ---------------------------------------------------- |
+| id                            | string    | The id of the transaction                            |
+| amount                        | ref       | The total cash balance.                              |
+| amount.amount                 | number    | The amount.                                          |
+| amount.currency               | string    | The ISO 4217 three character codes eg 'GBP'          |
+| type                          | string    | The type of wallet instruction                       |
+| status                        | string    | The status of the wallet transfer. PENDING, CLEARED  |
+| reference                     | string    | The bank reference used for the transfer             |
+| narrative                     | string    | The reason for the wallet transfer                   |
 | createdDateTime               | date/time | The date / time the transaction was created          |
 | clearedDateTime               | date/time | The date / time the transaction was cleared          |
