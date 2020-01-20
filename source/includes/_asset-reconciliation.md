@@ -1,10 +1,8 @@
-## <em>Asset Reconciliation 🚧</em>
+## <em>Asset Reconciliation </em>
 
 The Asset Reconciliation API allows an Investment Manager to communicate the expected distribution of equity, held by their investors, on a per-instrument basis.
 
 This information will then be used by Goji for reconciliation purposes.
-
-The API is currently under construction.
 
 
 ## Asset Reconciliation Reporting
