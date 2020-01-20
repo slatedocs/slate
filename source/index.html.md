@@ -108,6 +108,8 @@ Remember — Make sure to replace `username` with your account username, given o
 
 ### Query Parameters
 
+Note: Make sure at most only two of the payment method are false
+
 Parameter | Default | Description
 --------- | ------- | -----------
 txid | not set | If set to specific ID, OY! will echo back the transactionID label via the Payment Result Callback (parameter name `txid`)
@@ -118,6 +120,7 @@ show_account | true | If set to true, OY! Bayar webview will show your bank acco
 send_notif | true | Whether OY! should send payment notification to the Buyer via SMS/Push Notif
 enable_payment_cc | false | Whether OY! should enable payment using Credit Card
 enable_payment_va | false | Whether OY! should enable payment using Bank Virtual Accounts
+enable_payment_debit | false | Whether OY! should enable payment using Direct Debit
 
 ## Payment Result Callback
 
