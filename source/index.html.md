@@ -79,6 +79,7 @@ You can upgrade to OY! business partner to remove above limitations, by sending 
 ## Request With Parameters
 
 ```javascript
+// note: at most only two of the payment method are false
 let params = 'open=true';
 params += (txid !== null) ? '&txid='+txid : '';
 params += (amount !== null) ? '&amount='+amount : '';
@@ -86,6 +87,9 @@ params += (description !== null) ? '&description='+encodeURIComponent(descriptio
 params += (show_contact !== null) ? '&show_contact='+show_contact : '';
 params += (show_account !== null) ? '&show_account='+show_account : '';
 params += (send_notif !== null) ? '&send_notif='+send_notif : '';
+params += (enable_payment_cc !== null) ? '&enable_payment_cc'+enable_payment_cc : '';
+params += (enable_payment_va !== null) ? '&enable_payment_va'+enable_payment_va : '';
+params += (enable_payment_debit !== null) ? '&enable_payment_debit'+enable_payment_debit : '';
 
 window.open("https://pay.oyindonesia.com/username?" + params, "_blank"); 
 ```
@@ -93,7 +97,7 @@ window.open("https://pay.oyindonesia.com/username?" + params, "_blank");
 > Sample curl command:
 
 ```shell
-curl -X GET http://pay.oyindonesia.com/username -H 'content-type: application/json' -d '{"txid": "partner000001", "amount": 10000, "description": "Mohon dikirim segera", "show_contact": "true", "show_account": "true", "send_notif": "true", "enable_payment_cc": "false", "enable_payment_va": "false"}'
+curl -X GET http://pay.oyindonesia.com/username -H 'content-type: application/json' -d '{"txid": "partner000001", "amount": 10000, "description": "Mohon dikirim segera", "show_contact": "true", "show_account": "true", "send_notif": "true", "enable_payment_cc": "false", "enable_payment_va": "false", "enable_payment_debit": "true}'
 ```
 
 Open this URL as webview to open OY! Bayar Checkout page, optionally with additional parameters.
@@ -118,9 +122,9 @@ description | not set | If set, description text will be shown the main page of 
 show_contact | true | If set to true, OY! Bayar webview will show Contact Form asking details of the Buyer
 show_account | true | If set to true, OY! Bayar webview will show your bank account number
 send_notif | true | Whether OY! should send payment notification to the Buyer via SMS/Push Notif
-enable_payment_cc | false | Whether OY! should enable payment using Credit Card
-enable_payment_va | false | Whether OY! should enable payment using Bank Virtual Accounts
-enable_payment_debit | false | Whether OY! should enable payment using Direct Debit
+enable_payment_cc | true | Whether OY! should enable payment using Credit Card
+enable_payment_va | true | Whether OY! should enable payment using Bank Virtual Accounts
+enable_payment_debit | true | Whether OY! should enable payment using Direct Debit
 
 ## Payment Result Callback
 
