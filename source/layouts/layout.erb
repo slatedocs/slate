@@ -16,7 +16,7 @@ under the License.
 <% language_tabs = current_page.data.language_tabs || [] %>
 <% page_content = yield %>
 <%
-  skip = 1
+  skip = 3
   if current_page.data.includes
     current_page.data.includes.each do |include|
       page_content += partial("includes/#{include}")
