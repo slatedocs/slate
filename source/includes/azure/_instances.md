@@ -21,9 +21,13 @@ curl -X GET \
       "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server",
       "name": "example-small-server",
       "machineType": "Standard_B1ls",
+      "numberOfCores": 2,
+      "memoryInGB": 1.75,
+      "imagePublisher": "LinuxPublisher",
       "imageOffer": "CoreOS",
       "imageSku": "Alpha",
       "imageVersion": "1000.0.0",
+      "osType": "Linux",
       "displayImage": "CoreOS - Alpha",
       "region": "canadacentral",
       "privateIp": "10.0.0.4",
@@ -47,10 +51,14 @@ Attributes | &nbsp;
 `id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of /subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Compute/virtualMachines/:instanceName 
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
+`numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the marchine type.
+`memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance. This is determined by the marchine type.
+`imagePublisher`<br/>*string* | The publisher of the instance used to create the instance
 `imageOffer`<br/>*string* | The image offer that was used to create the instance
 `imageSku`<br/>*string* | The image SKU that was used to create the instance
 `imageVersion`<br/>*string* | The image version that was used to create the instance
 `displayImage`<br/>*string* | Displayable value of the image information
+`osType`<br/>*string* | The OS type of the instance. This can be either Windows or Linux.
 `region`<br/>*string* | The region in which the instance is located
 `privateIp`<br/>*string* | The private ip address assigned to the instance
 `internalFqdn`<br/>*string* | The internal FQDN assigned to the instance
@@ -78,9 +86,13 @@ curl -X GET \
     "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server",
     "name": "example-small-server",
     "machineType": "Standard_B1s",
+    "numberOfCores": 2,
+    "memoryInGB": 1.75,
+    "imagePublisher": "LinuxPublisher",
     "imageOffer": "CoreOS",
     "imageSku": "Alpha",
     "imageVersion": "1000.0.0",
+    "osType": "Linux",
     "displayImage": "CoreOS - Alpha",
     "region": "canadacentral",
     "privateIp": "10.0.0.4",
@@ -100,9 +112,13 @@ Attributes | &nbsp;
 `id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of /subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName} 
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
+`numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the marchine type.
+`memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance. This is determined by the marchine type.
+`imagePublisher`<br/>*string* | The publisher of the instance used to create the instance
 `imageOffer`<br/>*string* | The image offer that was used to create the instance
 `imageSku`<br/>*string* | The image SKU that was used to create the instance
 `imageVersion`<br/>*string* | The image version that was used to create the instance
+`osType`<br/>*string* | The OS type of the instance. This can be either Windows or Linux.
 `displayImage`<br/>*string* | Displayable value of the image information
 `region`<br/>*string* | The region in which the instance is located
 `privateIp`<br/>*string* | The private ip address assigned to the instance
