@@ -225,7 +225,6 @@ curl -X POST \
 
 ```json
 {
-  "region" : "canadacentral",
   "machineType": "Standard_B1ls"
 }
 ```
@@ -235,21 +234,20 @@ curl -X POST \
 Update the machine type for the existing instance. 
 
 <aside class="notice">
-Each machine type has a predefined number or vCPU, memory and disk limitation and capacity.
-Click on th link to get see the list is machine type detailed for <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes">Windows</a>
+Each machine type has a predefined number of vCPUs, memory, and disk limitation and capacity.
+See the links for detailed information on sizes of <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes">Windows</a>
  and <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes">Linux</a> virtual machines
 </aside>
 <aside class="notice">
-The subscription is limiting the number vm and different machine size you can use. This limitation is setup per region per subscription. Refer to the quota settings in your subscription for more details.
+The subscription is limiting the number VMs and different machine sizes you can use. This limitation is setup per region per subscription. Refer to the quota settings in your subscription for more details.
 </aside>
 
 <aside class="warning">
   Changing the number of vCPUs and memory of a running instance will reboot of that instance.
 </aside>
 
-Optional | &nbsp;
+Required | &nbsp;
 ------ | -----------
-`region`<br/>*string* | The region in which the instance is located
 `machineType`<br/>*string* | The new machine type to assign to the instance
 
 
