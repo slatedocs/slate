@@ -51,8 +51,8 @@ Attributes | &nbsp;
 `id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of /subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Compute/virtualMachines/:instanceName 
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
-`numberOfCores`<br/>*int* | The number of cores provisioned for this instance
-`memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance
+`numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the marchine type.
+`memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance. This is determined by the marchine type.
 `imagePublisher`<br/>*string* | The publisher of the instance used to create the instance
 `imageOffer`<br/>*string* | The image offer that was used to create the instance
 `imageSku`<br/>*string* | The image SKU that was used to create the instance
@@ -112,8 +112,8 @@ Attributes | &nbsp;
 `id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of /subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName} 
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
-`numberOfCores`<br/>*int* | The number of cores provisioned for this instance
-`memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance
+`numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the marchine type.
+`memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance. This is determined by the marchine type.
 `imagePublisher`<br/>*string* | The publisher of the instance used to create the instance
 `imageOffer`<br/>*string* | The image offer that was used to create the instance
 `imageSku`<br/>*string* | The image SKU that was used to create the instance
