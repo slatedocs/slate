@@ -4,7 +4,7 @@
 <section class="full-section">
 <h1 id="{{=data.title_prefix}}">API Reference</h1>
 
-> Scroll down for {{? data.header.language_tabs.length}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
+> Scroll down for {{? data.header.language_tabs.length > 1}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length > 1}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
 
 {{? data.api.info && data.api.info.description}}{{=data.api.info.description}}{{?}}
 
@@ -25,13 +25,7 @@ Base URLs:
 
 {{? data.api.info && data.api.info.termsOfService}}<a href="{{=data.api.info.termsOfService}}">Terms of service</a>{{?}}
 {{? data.api.info && data.api.info.contact}}{{? data.api.info.contact.email}}Email: <a href="mailto:{{=data.api.info.contact.email}}">{{=data.api.info.contact.name || 'Support'}}</a> {{?}}{{? data.api.info.contact.url}}Web: <a href="{{=data.api.info.contact.url}}">{{= data.api.info.contact.name || 'Support'}}</a> {{?}}{{?}}
-{{? data.api.info && data.api.info.license}}{{? data.api.info.license.url}}License: <a href="{{=data.api.info.license.url}}">{{=data.api.info.license.name}}</a>{{??}} License: {{=data.api.info.license.name}}{{?}}{{?}}
-</section>
-
-{{ for (var r in data.resources) { }}
-{{ data.resource = data.resources[r]; }}
-
-<hr class="full-line">
+</section>{{ for (var r in data.resources) { }}{{ data.resource = data.resources[r]; }}<hr class="full-line">
 <section class="full-section">
 <h1 id="{{=data.title_prefix+'-'+data.utils.slugify(r)}}">{{= r}}</h1>
 
@@ -46,42 +40,20 @@ Base URLs:
 <a href="{{=data.resource.externalDocs.url}}">{{=data.resource.externalDocs.description||'External documentation'}}</a>
 {{?}}
 </section>
-
-{{ for (var m in data.resource.methods) { }}
-{{ data.operationUniqueName = m; }}
-{{ data.method = data.resource.methods[m]; }}
-{{ data.operationUniqueSlug = data.method.slug; }}
-{{ data.operation = data.method.operation; }}
-<hr class="half-line">
+{{ for (var m in data.resource.methods) { }}{{ data.operationUniqueName = m; }}{{ data.method = data.resource.methods[m]; }}{{ data.operationUniqueSlug = data.method.slug; }}{{ data.operation = data.method.operation; }}<hr class="half-line">
 <section>
 {{= data.templates.operation(data) }}
-</section>
-{{ } /* of methods */ }}
-{{ } /* of resources */ }}
-
-{{? data.api.components && data.api.components.schemas }}
-
-<hr class="full-line">
+</section>{{ } /* of methods */ }}{{ } /* of resources */ }}{{? data.api.components && data.api.components.schemas }}<hr class="full-line">
 <section class="full-section">
-
 # Schemas
-
-
 </section>
-
-{{ for (var s in data.components.schemas) { }}
-{{ if (s.startsWith('Asana') || s.endsWith('Object') || s.endsWith('Array') || s.endsWith('override')) { continue; } }}
-{{ var origSchema = data.components.schemas[s]; }}
-{{ var schema = data.api.components.schemas[s]; }}
-
-<hr>
+{{ for (var s in data.components.schemas) { }}{{ if (!data.components.schemas['x-docs-schema-whitelist'].includes(s)) { continue; } }}{{ var origSchema = data.components.schemas[s]; }}{{ var schema = data.api.components.schemas[s]; }}<hr>
 <section>
-<h2 id="tocS_{{=s}}">{{=s}}</h2>
-<a id="schema{{=s.toLowerCase()}}"></a>
-<a id="schema_{{=s}}"></a>
-<a id="tocS{{=s.toLowerCase()}}"></a>
-<a id="tocs{{=s.toLowerCase()}}"></a>
-
+<a id="schema{{=s.toLowerCase().replaceAll("response","")}}"></a>
+<a id="schema_{{=s.replaceAll("Response","")}}"></a>
+<a id="tocS{{=s.toLowerCase().replaceAll("response","")}}"></a>
+<a id="tocs{{=s.toLowerCase().replaceAll("response","")}}"></a>
+<h2 id="tocS_{{=s.replaceAll("Response","")}}">{{=s.replaceAll("Response","")}}</h2>
 {{? data.options.yaml }}
 ```yaml
 {{=data.utils.yaml.stringify(data.utils.getSample(schema,data.options,{quiet:true},data.api))}}
@@ -133,11 +105,7 @@ Base URLs:
 {{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
 {{~}}
 
-{{?}}
-
-</section>
-
-{{ } /* of schemas */ }}
+{{?}}</section>{{ } /* of schemas */ }}
 
 {{?}}
 

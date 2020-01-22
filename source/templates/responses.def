@@ -8,7 +8,7 @@
 
 |Status|Description|
 |---|---|
-{{~ data.responses :r}}|{{=r.status}}<span class="param-type"> {{= r.schema.replaceAll(/object/ig, "").replaceAll(/array/ig, "")}}</span>|{{=r.description || 'none'}}|
+{{~ data.responses :r}}|{{=r.status}}<span class="param-type"> {{= r.schema.replaceAll("Response","").replaceAll("response","")}}</span>|{{=r.description || 'none'}}|
 {{~}}
 
 {{ data.responseSchemas = false; }}
@@ -40,9 +40,9 @@ Status Code **{{=response.status}}**
 {{~ blocks :block}}
 {{? block.title }}*{{=block.title}}*
 {{?}}
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-{{~block.rows :p}}|{{= p.displayName.replaceAll('»', '') }}|{{=p.safeType}}|{{=p.required}}|{{=p.restrictions||'none'}}|{{=p.description||'none'}}|
+|Name|Description|
+|---|---|
+{{~block.rows :p}}|{{= p.displayName.replaceAll('»', '') }}<span class="param-type"> {{=p.safeType.replace("EmptyResponse", "")}}</span>|{{=p.description || 'none'}}|
 {{~}}
 {{~}}
 {{?}}
