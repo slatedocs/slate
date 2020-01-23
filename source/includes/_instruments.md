@@ -41,6 +41,7 @@ before they can be used for the following instrument attributes:
 | Key                                             | JSON Type | Value Type       | Value Description                                                                                                    |
 |-------------------------------------------------|-----------|------------------|----------------------------------------------------------------------------------------------------------------------|
 | symbol                                          | String    | InstrumentSymbol | Unique symbol used to identify this instrument. Max 100 characters.                                                  |
+| name                                            | String    | String           | Human readable name of the instrument.                                                                               |
 | assetClass                                      | String    | AssetClass       | Values: EQUITY                                                                                                       |
 | paymentInstructions                             | Object    | Object           | Contains the attributes listed below.                                                                                |
 | paymentInstructions. primaryMarketBankAccountId | String    | BankAccountId    | The BankAccountId to send primary market sale funds to.                                                              |
