@@ -594,6 +594,7 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
@@ -634,6 +635,7 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
@@ -678,6 +680,7 @@ Returns the full record of the newly created custom field.
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -765,6 +768,7 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
@@ -847,6 +851,7 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
@@ -887,6 +892,7 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
@@ -928,6 +934,7 @@ Returns the complete updated custom field record.
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -1074,6 +1081,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value",
       "description": "Development team priority",
       "precision": 2,
@@ -1418,6 +1426,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -1518,6 +1527,7 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -2266,6 +2276,7 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
             "color": "blue"
           },
           "enabled": true,
+          "number_value": 5.2,
           "text_value": "Some Value",
           "description": "Development team priority",
           "precision": 2,
@@ -2335,6 +2346,7 @@ integrations to create their own starting state on a portfolio.
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -2468,6 +2480,7 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
             "color": "blue"
           },
           "enabled": true,
+          "number_value": 5.2,
           "text_value": "Some Value",
           "description": "Development team priority",
           "precision": 2,
@@ -2620,6 +2633,7 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
             "color": "blue"
           },
           "enabled": true,
+          "number_value": 5.2,
           "text_value": "Some Value",
           "description": "Development team priority",
           "precision": 2,
@@ -2687,6 +2701,7 @@ Returns the complete updated portfolio record.
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -3535,6 +3550,7 @@ curl -X POST https://app.asana.com/api/1.0/projects \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -3631,6 +3647,7 @@ Returns the full record of the newly created project.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -3765,6 +3782,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -3945,6 +3963,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -4039,6 +4058,7 @@ Returns the complete updated project record.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -4495,6 +4515,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -4583,6 +4604,7 @@ Returns the full record of the newly created project.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -4812,6 +4834,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -4903,6 +4926,7 @@ Returns the full record of the newly created project.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -6392,6 +6416,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     },
     "old_text_value": "This was the Old Text",
@@ -6637,6 +6662,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     },
     "old_text_value": "This was the Old Text",
@@ -7016,6 +7042,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     },
     "old_text_value": "This was the Old Text",
@@ -7860,6 +7887,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -8012,6 +8040,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -8149,6 +8178,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -8386,6 +8416,7 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -8540,6 +8571,7 @@ Returns the complete updated task record.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -9103,6 +9135,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -9249,6 +9282,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -9400,6 +9434,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -11247,7 +11282,7 @@ data is included in a response.
 |Name|Description|
 |---|---|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
-|?resource_type<span class="param-type"> string</span><div class="param-required">required</div>|The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.|
+|?resource_type<span class="param-type"> string</span><div class="param-required">required</div>|The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `portfolio`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.|
 |?type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_type field.*|
 |?query<span class="param-type"> string</span>|The string that will be used to search for relevant objects. If an empty string is passed in, the API will currently return an empty result set.|
 |?count<span class="param-type"> integer</span>|The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.|
@@ -12937,6 +12972,7 @@ A response object returned from a batch request.
     "color": "blue"
   },
   "enabled": true,
+  "number_value": 5.2,
   "text_value": "Some Value",
   "description": "Development team priority",
   "precision": 2,
@@ -12976,6 +13012,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
@@ -13035,6 +13072,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
     "color": "blue"
   },
   "enabled": true,
+  "number_value": 5.2,
   "text_value": "Some Value"
 }
 
@@ -13066,6 +13104,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 
 #### Enumerated Values
@@ -13125,6 +13164,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
@@ -13175,6 +13215,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
@@ -13535,6 +13576,7 @@ A *job* is an object representing a process that handles asynchronous work.
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
@@ -13615,6 +13657,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
@@ -13832,6 +13875,7 @@ This object determines if a user is a member of a portfolio.
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     }
   ],
@@ -13929,6 +13973,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -14340,6 +14385,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value"
   },
   "old_text_value": "This was the Old Text",
@@ -14500,6 +14546,7 @@ A story represents an activity associated with an object in the Asana system.
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |old_text_value<span class="param-type"> string</span>|*Conditional*|
 |new_text_value<span class="param-type"> string</span>|*Conditional*|
@@ -14739,6 +14786,7 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value",
       "description": "Development team priority",
       "precision": 2,
@@ -14893,6 +14941,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|

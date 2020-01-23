@@ -1489,6 +1489,11 @@ components:
                 *Conditional*. Determines if the custom field is enabled or not.
               type: boolean
               example: true
+            number_value:
+              description: >-
+                *Conditional*. This number is the value of a number custom field.
+              type: float
+              example: 5.2
             text_value:
               description: >-
                 *Conditional*. This string is the value of a text custom field.
@@ -9109,9 +9114,9 @@ paths:
         in: query
         description: >-
           The type of values the typeahead should return. You can choose from one
-          of the following: `custom_field`, `project`, `tag`, `task`, and `user`.
-          Note that unlike in the names of endpoints, the types listed here are
-          in singular form (e.g. `task`). Using multiple types is not yet
+          of the following: `custom_field`, `project`, `portfolio`, `tag`, `task`,
+          and `user`. Note that unlike in the names of endpoints, the types listed
+          here are in singular form (e.g. `task`). Using multiple types is not yet
           supported.
         required: true
         schema:
