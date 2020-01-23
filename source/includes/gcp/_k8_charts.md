@@ -8,7 +8,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts"
+   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 
 # The above command returns JSON structured like this:
 ```
@@ -124,9 +124,14 @@ curl -X GET \
 
 
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts?cluster_id=:cluster_id</code>
 
-Retrieve a list of all releases in a given [environment](#administration-environments)
+Retrieve a list of all charts in a given [environment](#administration-environments)
+
+Mandatory | &nbsp;
+------- | -----------
+`cluster_id` <br/>*string* | The id of the cluster in which to list the charts. 
+
 
 Attributes | &nbsp;
 ------- | -----------
@@ -161,7 +166,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts/stable/aerospike"
+   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts/stable/aerospike?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 
 # The above command returns JSON structured like this:
 ```
@@ -224,9 +229,14 @@ curl -X GET \
 
 
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts/:id?cluster_id=cluster_id</code>
 
-Retrieve a list of all releases in a given [environment](#administration-environments)
+Retrieve a specific chart in a given [environment](#administration-environments)
+
+Mandatory | &nbsp;
+------- | -----------
+`cluster_id` <br/>*string* | The id of the cluster in which to get the chart. 
+
 
 Attributes | &nbsp;
 ------- | -----------
@@ -262,7 +272,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts"
+   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 
 # The above command returns JSON structured like this:
 ```
@@ -286,9 +296,13 @@ curl -X POST \
 
 
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts?cluster_id=:cluster_id</code>
 
-Retrieve a list of all releases in a given [environment](#administration-environments)
+Install a chart in a given [environment](#administration-environments)
+
+Mandatory | &nbsp;
+------- | -----------
+`cluster_id` <br/>*string* | The id of the cluster in which to install the chart. 
 
 Attributes | &nbsp;
 ------- | -----------
