@@ -127,7 +127,7 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
@@ -189,12 +189,12 @@ namespace DatilClient {
 }
 ```
 
-Para la emisión de una nota de crédito se debe enviar la información completa del
+Para la emisión de una retención se debe enviar la información completa del
 comprobante en el cuerpo del requerimiento en formato JSON.
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la nota de crédito. __Requerido__
+secuencial | integer (min. 1 - max. 999999999 ) | Número de secuencia de la retención. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015 __Requerido__
@@ -275,17 +275,17 @@ Remember — a happy kitten is an authenticated kitten!
 ```
 
 Retorna un objeto tipo **[retención](#requerimiento-retencion)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la nota de crédito. El campo `clave_acceso` 
+el cual identifica de manera única a la retención. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
 ## Consulta de un Comprobante de Retención
 
-Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
+Consulta una retención para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
+El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión),
 se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
 
 ### Operación
@@ -335,7 +335,7 @@ namespace DatilClient {
 }
 ```
 
-Reemplaza en la ruta `<receipt-id>` por el `id` de la nota de crédito que necesitas consultar.
+Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas consultar.
 
 ### Respuesta
 
@@ -414,15 +414,15 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la nota de crédito que neces
 
 Parámetro | Tipo | Descripción
 --------- | ------- | -----------
-secuencial | string | Número de secuencia de la nota de crédito.
+secuencial | string | Número de secuencia de la retención.
 estado | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
 items | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
-sujeto | objeto [persona](#persona) | Información del sujeto al que se le retiene. 
+sujeto | objeto [persona](#persona) | Información del sujeto al que se le retiene.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`

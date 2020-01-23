@@ -17,6 +17,7 @@ includes:
   - waybills
   - debit-notes
   - purchase-settlements
+  - edocs
   - common
   - errores
   - webhooks

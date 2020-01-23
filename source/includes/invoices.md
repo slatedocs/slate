@@ -1206,8 +1206,7 @@ se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuest
 ```shell
 curl -v https://link.datil.co/invoices/<id-factura> \
 -H "Content-Type: application/json" \
--H "X-Key: <clave-del-api>" \
--H "X-Password: <clave-certificado-firma>" \
+-H "X-Key: <clave-del-api>"
 ```
 
 ```python
