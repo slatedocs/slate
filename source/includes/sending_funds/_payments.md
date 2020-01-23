@@ -11,31 +11,46 @@ The payments api endpoint is:
 
 ```json
 {
-    "id": 3620,
-    "organization": 1,
-    "amount": "30",
-    "currency": "BXC",
-    "account": "1",
-    "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"},
-    "description": "Per diem payment",
-    "phone_nos": ["+80000000001"],
-    "state": "new",
-    "last_error": null,
-    "rejected_reason": null,
-    "rejected_by": null,
-    "rejected_time": null,
-    "cancelled_reason": null,
-    "cancelled_by": null,
-    "cancelled_time": null,
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
-    "start_date": "2014-11-22T20:57:04.018Z",
-    "remote_transaction_id": null,
-    "send_sms_message": false,
-    "charged_fee": 0
+   "id" : 22744,
+   "cancelled_time" : null,
+   "start_date" : "2016-03-31T08:08:01Z",
+   "modified" : "2018-02-13T06:02:20Z",
+   "phone_nos" : [
+      {
+         "metadata" : null,
+         "amount" : "1200.0000",
+         "last_error" : "Recipient mobile money readiness checks failed.+256773712831",
+         "state" : "error",
+         "contact" : "2978",
+         "batch_id" : 437751,
+         "description" : "Per diem",
+         "phonenumber" : "+256773712831",
+         "payment_id" : 123209
+      }
+   ],
+   "organization" : 4,
+   "author" : 134,
+   "created" : "2016-03-31T08:08:01Z",
+   "send_sms_message" : false,
+   "updated_by" : 134,
+   "rejected_time" : null,
+   "metadata" : {
+      "s_batchpaymentschedule4123" : null
+   },
+   "remote_transaction_id" : null,
+   "cancelled_by" : null,
+   "charged_fee" : 0,
+   "account" : 48,
+   "cancelled_reason" : null,
+   "transactions" : [],
+   "rejected_by" : null,
+   "description" : "Per diem",
+   "currency" : "UGX",
+   "amount" : "1200.00",
+   "rejected_reason" : null,
+   "payment_type" : "money",
+   "last_error" : "Last Error: System error. - Recipient mobile money readiness checks failed.+256773712831",
+   "state" : "processed_with_errors"
 }
 ```
 
@@ -48,7 +63,7 @@ amount | decimal | The payment amount
 currency | string | The 3 letter ISO currency code for the payment. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
 account | long integer | The ID of the account from which the payment is made
 description | string | The payment description
-phone_nos | list | A list of phone numbers that this payment was sent to
+phone_nos | dictionary | A dictionary of phone numbers that this payment was sent to and the amounts sent to each number **New in v5** Before v5, this was a list of phone numbers only
 start_date | string | The date that the payment is scheduled to be delivered, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 metadata | hash | Any custom metadata that was added to the contact object at creation time
 state | string | The payment state. One of: new, validated, approval_needed, approval_requested, approved, rejected, scheduled, processed, processed_with_errors or cancelled
@@ -171,30 +186,46 @@ catch (BeyonicException e){
 
 ```json
 {
-    "id": 3620,
-    "organization": 1,
-    "amount": "30",
-    "currency": "BXC",
-    "account": "1",
-    "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"},
-    "description": "Per diem payment",
-    "phone_nos": ["+80000000001"],
-    "state": "new",
-    "last_error": null,
-    "rejected_reason": null,
-    "rejected_by": null,
-    "rejected_time": null,
-    "cancelled_reason": null,
-    "cancelled_by": null,
-    "cancelled_time": null,
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
-    "start_date": "2014-11-22T20:57:04.018Z",
-    "remote_transaction_id": null,
-    "charged_fee": 0
+   "id" : 22744,
+   "cancelled_time" : null,
+   "start_date" : "2016-03-31T08:08:01Z",
+   "modified" : "2018-02-13T06:02:20Z",
+   "phone_nos" : [
+      {
+         "metadata" : null,
+         "amount" : "1200.0000",
+         "last_error" : "Recipient mobile money readiness checks failed.+256773712831",
+         "state" : "error",
+         "contact" : "2978",
+         "batch_id" : 437751,
+         "description" : "Per diem",
+         "phonenumber" : "+256773712831",
+         "payment_id" : 123209
+      }
+   ],
+   "organization" : 4,
+   "author" : 134,
+   "created" : "2016-03-31T08:08:01Z",
+   "send_sms_message" : false,
+   "updated_by" : 134,
+   "rejected_time" : null,
+   "metadata" : {
+      "s_batchpaymentschedule4123" : null
+   },
+   "remote_transaction_id" : null,
+   "cancelled_by" : null,
+   "charged_fee" : 0,
+   "account" : 48,
+   "cancelled_reason" : null,
+   "transactions" : [],
+   "rejected_by" : null,
+   "description" : "Per diem",
+   "currency" : "UGX",
+   "amount" : "1200.00",
+   "rejected_reason" : null,
+   "payment_type" : "money",
+   "last_error" : "Last Error: System error. - Recipient mobile money readiness checks failed.+256773712831",
+   "state" : "processed_with_errors"
 }
 ```
 
@@ -234,36 +265,105 @@ recipient_data | No | JSON-formatted list of dictionaries | [{'phonenumber': '+2
     * cancelled – for payments that were cancelled. The following fields will have more information: cancelled_reason, cancelled_by and cancelled_time
 
 ## Creating multiple Payments
-
-> Below is a sample request where each recipient has a unique amount value:
-
-```json
-{
-    "currency": "KES",
-    "account": "1",
-    "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"},
-    "recipient_data" : [
-      {"phonenumber":"+254727447101", "first_name":"Jerry", "last_name":"Shikanga", "amount":500, "description":"Per diem payment"},
-      {"phonenumber":"+254739936708", "amount":30000, "description":"Salary for January"}
-    ]
-}
+```shell
+curl -d '{"currency": "BXC", "description": "Test response on mutiples", "callback_url": "https://my.url.com/callback", "payment_type": "money", "account": 1, "recipient_data": "[\\n {\\n  \\"amount\\": 1,\\n \\"phonenumber\\": \\"+80000000001\\",\\n \\"first_name\\": \\"Jerry\\",\\n  \\"last_name\\": \\"Airtel\\",\\n \\"description\\": \\"This is a payment to {first_name}. This desc is in child obj.\\"\\n\\n  },\\n {\\n  \\"phonenumber\\": \\"+80000000002\\",\\n \\"description\\": \\"What the response?\\",\\n  \\"amount\\":5\\n }\\n ]\\n "}' \
+-H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+-H "Content-type : application/json" \
+https://app.beyonic.com/api/payments
 ```
 
-> Below is a sample request where a single amount value is to be applied to each recipient:
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
-```json
-{
-    "amount":500,
-    "currency": "KES",
-    "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"},
-    "description": "Per diem payment",
-    "recipient_data" : [
-      {"phonenumber":"+254727447101", "first_name":"Jerry", "last_name":"Shikanga" },
-      {"phonenumber":"+254739936708" }
-    ]
-}
+recipient_data = [
+                   {phonenumber: "+254727447101",first_name: "Jerry", last_name: "Shikanga", amount: 500, description: "Per diem payment2"},
+                   {phonenumber: "+254739936708", amount: 30000, description:"Salary for January2"}
+                 ]
+                 
+payment = Beyonic::Payment.create(
+    currency: "BXC",
+    description: "Per diem payment",
+    payment_type: "money",
+    callback_url: "https://my.website/payments/callback",
+    metadata: {id: "1234", name: "Lucy"},
+    recipient_data: recipient_data.to_json
+)
+
+p payment  # Examine the returned object
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+$recipient_data = [
+	array("phonenumber" => "+254727447101", "first_name" => "Jerry", "last_name" => "Shikanga", "amount" => 500, "description" => "Per diem payment"),
+	array("phonenumber" => "+254739936708", "amount" => 30000, "description" => "Salary for January")
+
+];
+
+$payment = Beyonic_Payment::create(array(
+  "currency" => "BXC",
+  "description" => "Per diem payment",
+  "payment_type" => "money",
+  "callback_url" => "https://my.website/payments/callback",
+  "metadata" => array("id"=>"1234", "name"=>"Lucy"),
+  "recipient_data" => json_encode($recipient_data)
+));
+
+print_r($payment);  // Examine the returned object
+?>
+```
+
+```python
+import json
+import beyonic
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+recipients = [
+    {"amount":54, "phonenumber":"+80000000001"},
+    {"amount":23, "phonenumber":"+80000000023"},
+]
+payment = beyonic.Payment.create(
+                       currency='BXC',
+                       description='Per diem',
+                       callback_url='https://my.website/payments/callback',
+                       metadata={'id': '1234', 'name': 'Lucy'},
+                       recipient_data=json.dumps(recipients)
+                       )
+
+print payment  # Examine the returned object
+```
+
+```java
+package com.beyonic.samples;
+
+import com.beyonic.models;
+import com.beyonic.exceptions.BeyonicException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+// Multiple payments
+JSONObject recipient1 = new JSONObject();
+recipient1.put("amount", 15);
+recipient1.put("phonenumber", "+80000000001");
+JSONObject recipient2 = new JSONObject();
+recipient2.put("amount", 25);
+recipient2.put("phonenumber", "80000000005");
+recipient2.put("description", "Cool guy benefits");
+JSONArray recipientsArray = new JSONArray();
+recipientsArray.put(recipient1);
+recipientsArray.put(recipient2);
+
+HashMap<String, Object> mutiplePayments = new HashMap<>();
+mutiplePayments.put("recipient_data", recipientsArray.toString());
+mutiplePayments.put("currency", "BXC");
+mutiplePayments.put("description", "Per diem payment");
+mutiplePayments.put("payment_type", "airtime");
+response = new Payment().create(mutiplePayments, null);
+System.out.println(response);
 ```
 
 Beyonic now supports creation of multiple payments via API. When multiple payments are created via one API call, they will all be part of the same payment schedule, making it easier for you to perform bulk operations such as approval. 
@@ -280,6 +380,65 @@ recipient_data should be a list of dictionaries, each containing the following f
 Phonenumber is a mandatory field. 
 Amount can be nullable, but if missing then it must be set in the main payload. In this case each user will be paid the same amount in the payload. If provided in the recipient_data dictionaries then each user will be paid the amounts specified in the recipient_data.
 The rest of the fields are optional.
+
+> The following is a sample response
+
+```json
+{
+   "id" : 22744,
+   "cancelled_time" : null,
+   "start_date" : "2016-03-31T08:08:01Z",
+   "modified" : "2018-02-13T06:02:20Z",
+   "phone_nos" : [
+      {
+         "metadata" : null,
+         "amount" : "1200.0000",
+         "last_error" : "Recipient mobile money readiness checks failed.+256773712831",
+         "state" : "error",
+         "contact" : "2978",
+         "batch_id" : 437751,
+         "description" : "Per diem",
+         "phonenumber" : "+254727447101",
+         "payment_id" : 123209
+      },
+      {
+         "metadata" : null,
+         "amount" : "1200.0000",
+         "last_error" : "Recipient mobile money readiness checks failed.+256773712831",
+         "state" : "error",
+         "contact" : "2978",
+         "batch_id" : 437751,
+         "description" : "Per diem",
+         "phonenumber" : "+254739936708",
+         "payment_id" : 123209
+      }
+   ],
+   "organization" : 4,
+   "author" : 134,
+   "created" : "2016-03-31T08:08:01Z",
+   "send_sms_message" : false,
+   "updated_by" : 134,
+   "rejected_time" : null,
+   "metadata" : {
+      "s_batchpaymentschedule4123" : null
+   },
+   "remote_transaction_id" : null,
+   "cancelled_by" : null,
+   "charged_fee" : 0,
+   "account" : 48,
+   "cancelled_reason" : null,
+   "transactions" : [],
+   "rejected_by" : null,
+   "description" : "Per diem",
+   "currency" : "UGX",
+   "amount" : "1200.00",
+   "rejected_reason" : null,
+   "payment_type" : "money",
+   "last_error" : "Last Error: System error. - Recipient mobile money readiness checks failed.+256773712831",
+   "state" : "processed_with_errors"
+}
+```
+
 
 ## Retrieving a single Payment
 
@@ -337,29 +496,46 @@ System.out.println(response);
 
 ```json
 {
-    "id": 22744,
-    "organization": 4,
-    "amount": "1200.0000",
-    "currency": "BXC",
-    "account": "1",
-    "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"},
-    "description": "Per diem payment",
-    "phone_nos": ["+80000000001"],
-    "state": "new",
-    "last_error": null,
-    "rejected_reason": null,
-    "rejected_by": null,
-    "rejected_time": null,
-    "cancelled_reason": null,
-    "cancelled_by": null,
-    "cancelled_time": null,
-    "created":"2016-03-31T08:08:01Z",
-    "author":134,
-    "modified":"2016-03-31T08:08:45Z",
-    "updated_by":134,
-    "start_date":"2016-03-31T08:08:01Z",
-    "charged_fee": 0
+   "id" : 22744,
+   "cancelled_time" : null,
+   "start_date" : "2016-03-31T08:08:01Z",
+   "modified" : "2018-02-13T06:02:20Z",
+   "phone_nos" : [
+      {
+         "metadata" : null,
+         "amount" : "1200.0000",
+         "last_error" : "Recipient mobile money readiness checks failed.+256773712831",
+         "state" : "error",
+         "contact" : "2978",
+         "batch_id" : 437751,
+         "description" : "Per diem",
+         "phonenumber" : "+256773712831",
+         "payment_id" : 123209
+      }
+   ],
+   "organization" : 4,
+   "author" : 134,
+   "created" : "2016-03-31T08:08:01Z",
+   "send_sms_message" : false,
+   "updated_by" : 134,
+   "rejected_time" : null,
+   "metadata" : {
+      "s_batchpaymentschedule4123" : null
+   },
+   "remote_transaction_id" : null,
+   "cancelled_by" : null,
+   "charged_fee" : 0,
+   "account" : 48,
+   "cancelled_reason" : null,
+   "transactions" : [],
+   "rejected_by" : null,
+   "description" : "Per diem",
+   "currency" : "UGX",
+   "amount" : "1200.00",
+   "rejected_reason" : null,
+   "payment_type" : "money",
+   "last_error" : "Last Error: System error. - Recipient mobile money readiness checks failed.+256773712831",
+   "state" : "processed_with_errors"
 }
 ```
 
