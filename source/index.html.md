@@ -148,14 +148,41 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 {
   "models_scores": [
     {
-      "model": 1,
+      "model": "hate",
       "score": 0.314
     },
     {
-      "model": 2,
-      "score": 0.314
+      "model": "hype",
+      "score": 0.315
     },
-    ...
+    {
+      "model": "bait",
+      "score": 0.316
+    },
+    {
+      "model": "racism",
+      "score": 0.317
+    },
+    {
+      "model": "sexism",
+      "score": 0.317
+    },
+    {
+      "model": "insult",
+      "score": 0.318
+    },
+    {
+      "model": "threat",
+      "score": 0.319
+    },
+    {
+      "model": "toxic",
+      "score": 0.320
+    },
+    {
+      "model": "obscene",
+      "score": 0.320
+    }
   ],
   "combined_score": 0.1414
 }
@@ -167,7 +194,7 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 {
   "models_scores": [
     {
-      "model": 1,
+      "model": "hate",
       "score": 0.314
     },
     ## At this stage only model 1 has finished processing
@@ -391,9 +418,44 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
   "domain": "example.com", 
   "status": "success",
   "score": {
-    "7": 0.22960291996598214,
-    "8": 0.15365486010909035, 
-     ... 
+    "models_scores": [
+      {
+        "model": "hate",
+        "score": 0.314
+      },
+      {
+        "model": "hype",
+        "score": 0.315
+      },
+      {
+        "model": "bait",
+        "score": 0.316
+      },
+      {
+        "model": "racism",
+        "score": 0.317
+      },
+      {
+        "model": "sexism",
+        "score": 0.317
+      },
+      {
+        "model": "insult",
+        "score": 0.318
+      },
+      {
+        "model": "threat",
+        "score": 0.319
+      },
+      {
+        "model": "toxic",
+        "score": 0.320
+      },
+      {
+        "model": "obscene",
+        "score": 0.320
+      }
+    ],
     "URLs": ["https://example.com/feed/", "https://example.com/about/", ...],
     "Example URL": "https://example.com/feed/", 
     "Domain Score": 0.09033065447428551
