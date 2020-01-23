@@ -473,33 +473,6 @@ If `user` is currently logged in, this post request will logout the user.
 e.g. `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
 ```
 
-### 
-
-
-## Plugin Endpoints
-
-## Edit Mutable Fields Endpoints
-
-## Submission Endpoints
-
-## Collection View Endpoints
-
-## Administration Endpoints
-
-## Search Endpoints
-
-## Manage Submission Endpoints
-
-## Update Permissions Endpoints
-
-## Attachment Endpoints
-
-## Download Endpoints
-
-## View/Download Endpoints
-
-## Misc. endpoints
-
 # NGINX configuration
 
 Instructions for managing nginx server blocks can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04#step-three-create-server-block-files-for-each-domain).
