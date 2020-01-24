@@ -283,6 +283,7 @@ To create a new payment, make a POST to the end point above, with the attributes
 * A contact is created for each new phone number you send payments to. This gives you the benefits of the pre-verification checks that are done prior to payment processing.
 * If the contact isn't registered for mobile money, then the payment will not be sent.
 * **Important**: One of the pre-verification checks does a name match check to make sure that the contact name is right. This check can cause your payments to fail if the names that you are sending are not the same as the names in the telecom database. If you want to by-pass this check, go into your settings in your account and uncheck the checkbox that says "Name match affects payment".
+* **Important**: For Kenyan payments, the verification is done using the national id of the contact. if you have the "Name match affects payment" setting turned on and you add national_id and national_id_type in your request, the telecom will use those to verify if you are paying the right recipient.
 * **Important**: The account and currency parameters are both optional but you must provide one of them. If you provide both them then the account's currency must match the currency parameter.
 
 Parameter | Required | Type | Example | Notes
@@ -297,6 +298,8 @@ callback_url | No | String | https://my.website/payments/callback | Callback URL
 metadata | No | JSON-formatted string or dictionary | "{'id':'1234','name':'Lucy'}" | Metadata allows you to add custom attributes to your payments. E.g. You can include a unique ID to identify each payment. Attributes must be key-value pairs. Both the keys and values must be strings. You can add up to 10 attributes. This data will be returned when you retrieve a payment.
 first_name | No | String | John | If this payment is to a new contact, you can include their first name. This name will only be used if the phone number is new.
 last_name | No | String | Doe | If this payment is to a new contact, you can include their last name. This name will only be used if the phone number is new.
+national_id | No | Integer | 1234 | The national id used to register the phone number with the telecom.You can include the national id for new and existing contacts.You must also set the national_id_type field if you include national_id field.
+national_id_type | No | String | passport | Please specify one of the following national_id_type for every national_id added:'passport' for passport type, 'military' for military type or 'national' for national id type.
 recipient_data | No | JSON-formatted list of dictionaries | [{'phonenumber': '+256712321232', 'amount': 500},...] | Used to send multiple payments in one request. See the section: ["Creating multiple Payments"](#create-multiple-payments) Below for more details
 
 **Responses**
@@ -420,6 +423,8 @@ To create a bulk payment, you have to include an extra field called "recipient_d
 recipient_data should be a list of dictionaries, each containing the following fields :
     * first_name, 
     * last_name, 
+    * national_id,
+    * national_id_type,
     * phonenumber, 
     * amount 
     * description
