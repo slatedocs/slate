@@ -86,3 +86,14 @@ Then use this for your callback URLs:
 Beyonic logs notificaiton requests and responses for at least 30 days. These can be viewed by logging into the web portal, and going to "Home" > Company Settings" > "Advanced Settings" > "Notification Endpoints"
 
 By clicking on "Recent Events", you will be able to see events and notification attempts, including the responses that Beyonic is getting from your notification server.
+
+## Testing in Postman
+
+<img src="https://www.getpostman.com/img/v2/logo-glyph.png" alt="Slate: API Documentation Generator" width="15"> [Run in postman](https://app.getpostman.com/run-collection/4ca03f438eaff7e617f9)
+
+A postman collection will be created with sample Beyonic API requests. Create an environment on postman by navigating to New > Environment then create the variables below in the environment
+
+    <aside class="notice">api_url: https://app.beyonic.com/api</aside>
+    <aside class="notice">api_key: Your api token </aside>
+
+Proceed to test the api requests in your postman collection.
