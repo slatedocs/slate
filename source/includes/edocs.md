@@ -62,3 +62,19 @@ url_documento_electronico | url | Esta URL te permite acceder de manera directa 
 autorizacion | Objeto de tipo [autorización SRI](#autorizacion-sri)
 
 > #### Respuesta de ejemplo
+
+{
+    "url_documento_electronico": "https://app.datil.co/ver/be69b7bc64b643718a643caa9a8c3569/xml",
+    "autorizacion": {
+        "fecha": "2020-01-23T15:41:51Z",
+        "estado": "AUTORIZADO",
+        "mensajes": [],
+        "numero": "2301202035679285132400120010020000287082794874518"
+    },
+    "tipo": "01",
+    "url_formato_impresion": "https://app.datil.co/ver/be69b7bc64b643718a643caa9a8c3569/pdf",
+    "clave_acceso": "2301202035679285132400120010020000287082794874518",
+    "estado": "AUTORIZADO",
+    "id": "be69b7bc64b643718a643caa9a8c3569",
+    "ambiente": "2"
+}
