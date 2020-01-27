@@ -164,5 +164,6 @@ note | String | (Optional) This is note from the Buyer
 result | String | Payment Status of Buyer. Can be either "success" or "failed" or "processing"
 sender_bank | String | Bank code used by buyer to do payment 
 payment_method | String | Define what payment method to be used in transaction (`Instant Pay`/`Manual Pay`/`Manual Bank Transfer`)*
+va_number | String | VA number to be used on payment if using Manual Pay
 
 *Instant Pay = direct-debit or cc; Manual Pay = virtual account; Manual Bank Transfer = pay using manual transfer
