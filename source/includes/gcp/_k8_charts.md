@@ -66,58 +66,10 @@ curl -X GET \
         }
       },
       "insecureServer": false
-    },
-    {
-      "id": "stable/airflow",
-      "type": "chart",
-      "attributes": {
-        "name": "airflow",
-        "repo": {
-          "name": "stable",
-          "url": "https://kubernetes-charts.storage.googleapis.com"
-        },
-        "repoUrl": "https://hub.helm.sh/api/chartsvc",
-        "description": "Airflow is a platform to programmatically author, schedule and monitor workflows",
-        "home": "https://airflow.apache.org/",
-        "keywords": [
-          "workflow",
-          "dag"
-        ],
-        "maintainers": [
-          {
-            "name": "gsemet",
-            "email": "gaetan@xeberon.net"
-          }
-        ],
-        "sources": [
-          "https://airflow.apache.org/"
-        ],
-        "icon": ""
-      },
-      "links": {
-        "self": "/v1/charts/stable/airflow"
-      },
-      "relationships": {
-        "latestChartVersion": {
-          "data": {
-            "version": "5.2.5",
-            "digest": "de2c99e9f7b277be11915229381bb11ab68f875379eebdfd450c64d307c9bb29",
-            "urls": [
-              "https://kubernetes-charts.storage.googleapis.com/airflow-5.2.5.tgz"
-            ],
-            "readme": "/v1/assets/stable/airflow/versions/5.2.5/README.md",
-            "values": "/v1/assets/stable/airflow/versions/5.2.5/values.yaml"
-          },
-          "links": {
-            "self": "/v1/charts/stable/airflow/versions/5.2.5"
-          }
-        }
-      },
-      "insecureServer": false
     }
   ],
   "metadata": {
-    "recordCount": 2
+    "recordCount": 1
   }
 }
 ```
