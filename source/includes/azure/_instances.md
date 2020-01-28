@@ -250,6 +250,42 @@ Required | &nbsp;
 ------ | -----------
 `machineType`<br/>*string* | The new machine type to assign to the instance
 
+<!-------------------- RESET PASSWORD -------------------->
+
+#### Reset password
+
+The admin password is used to access Linux or Windows [instances](#azure-instances). 
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=reset_password"
+
+# Request example:
+```
+
+```json
+{
+  "username": "johndoe",
+  "password": "SomePassw0rdVal!d"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=reset_password</code>
+
+Update the administrator username for the existing instance, or insert a new user.
+
+<aside class="warning">
+If the username is different than the admin username, it will insert a new user.
+</aside>
+
+Required | &nbsp;
+------ | -----------
+`username`<br/>*string* | The administrator username of the instance or a new username. It cannot be a reserve user such as admin,root or administrator and must not be more than 20 characters.
+`password`<br/>*string* | The password of the account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special lettes, Upper Case, Lower Case and Numbers.
+
 
 <!-------------------- START AN INSTANCE -------------------->
 
