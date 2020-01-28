@@ -74,9 +74,8 @@ If you see a message in the UI prompting you to upgrade, [follow our Ruby agent 
 
 ##### Timeline view limitations
 
-* Ruby-only
 * No ScoutProf support
-* No support for background jobs
+* No Background job support
 * No DevTrace support
 
 ## Trace Explorer
