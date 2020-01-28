@@ -80,8 +80,15 @@ includes:
   - gcp/ssl_certificates
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
+  - gcp/k8_pods
+  - gcp/k8_releases
+  - gcp/k8_charts
   - gcp/images
   - gcp/regions
+  - kubernetes
+  - kubernetes/k8_pods
+  - kubernetes/k8_releases
+  - kubernetes/k8_charts
   - azure
   - azure/compute
   - azure/instances
