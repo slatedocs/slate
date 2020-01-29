@@ -818,15 +818,6 @@ code, pre {
     @extend %right-col;
 
     &>p { margin: 0; }
-
-    a {
-      color: $code-text;
-      text-decoration: none;
-
-      &:hover {
-        opacity: 0.5;
-      }
-    }
   }
 
   pre {
@@ -838,6 +829,16 @@ code, pre {
     &>code {
       font-size: 12px;
       padding: 0;
+
+      a {
+        color: $code-text;
+        text-decoration: none;
+
+        &:hover {
+          opacity: 0.5;
+          text-decoration: none;
+        }
+      }
     }
   }
 
