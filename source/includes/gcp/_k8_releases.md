@@ -141,7 +141,7 @@ Attributes | &nbsp;
 `version`<br/>*string* | The revision of the release
 `namespace`<br/>*string* | The namespace to which the release is installed
 
-The information is not totally returned in the list. We filter out the manifest portion. We also filter ou  returning the files and the templates of the charts details. This information will be present in the get request for an individual release.
+The information is not totally returned in the list. We filter out the manifest portion. We also filter ou  returning the files and the templates of the charts details. This information will be present in the GET request for an individual release.
 
 ### Get release
 
