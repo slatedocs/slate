@@ -539,6 +539,8 @@ e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F root
 
 ### Attach file to a specified URI
 
+Attach a specified file to a given URI
+
 `POST <URI>/attach `
 
 ```plaintext
