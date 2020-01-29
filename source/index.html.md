@@ -405,6 +405,30 @@ print(response.content)
 
 ```
 
+### Returns metadata for the object with the specified URI
+
+Returns the metadata for the object from the specified URI.
+
+`GET <URI>/metadata`
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/metadata`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_K1479017/1/metadata',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
 ### Returns GenBank for the object with the specified URI
 
 Returns the GenBank for the object from the specified URI.
@@ -453,6 +477,29 @@ print(response.content)
 
 ```
 
+### Returns visualization for the object with the specified URI
+
+Returns the visualization for the object from the specified URI.
+
+`GET <URI>/visualization`
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/visualization`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_K1479017/1/visualization',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
 
 ## Submission Endpoints
 
@@ -491,6 +538,8 @@ e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F root
 ## Attachment Endpoints
 
 ### Attach file to a specified URI
+
+Attach a specified file to a given URI
 
 `POST <URI>/attach `
 
