@@ -186,11 +186,11 @@ Required | &nbsp;
 `imageVersion`<br/>*string* | The image version that was used to create the instance
 `region`<br/>*string* | The region in which the instance is located
 `networkSubnet`<br/>*string* | The subnet that the instance will be part of
-`username`<br/>*string* | The administrator username which will be created on the instance. It cannot be a reserve user such as admin,root or administrator and must not be more than 20 characters.
+`username`<br/>*string* | The administrator username which will be created on the instance. It cannot be a reserve user such as admin, root or administrator and must not be more than 20 characters.
 
 Optional | &nbsp;
 ------- | -----------
-`password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special lettes, Upper Case, Lower Case and Numbers. The password is mandatory if the sshkey is not provided.
+`password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. The password is mandatory if the sshkey is not provided.
 `sshkey`<br/>*string* | The ssh key public portion that will be assigned to the user on the machine. This cannot be used for a Windows based OS.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
@@ -254,7 +254,7 @@ Required | &nbsp;
 
 #### Reset password
 
-The admin password is used to access Linux or Windows [instances](#azure-instances). 
+Reset the administrator password on a Windows or Linux [instances](#azure-instances). 
 
 ```shell
 curl -X POST \
@@ -275,16 +275,14 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=reset_password</code>
 
-Update the administrator username for the existing instance, or insert a new user.
+For Linux instances, reset the credentials of an existing user or create a new user with sudo privileges and reset the SSH configuration.
+For Windows instances, reset the built-in administrator account and reset the Remote Desktop service configuration.
 
-<aside class="warning">
-If the username is different than the admin username, it will insert a new user.
-</aside>
 
 Required | &nbsp;
 ------ | -----------
-`username`<br/>*string* | The administrator username of the instance or a new username. It cannot be a reserve user such as admin,root or administrator and must not be more than 20 characters.
-`password`<br/>*string* | The password of the account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special lettes, Upper Case, Lower Case and Numbers.
+`username`<br/>*string* | The administrator username of the instance or a new username. It cannot be a reserve user such as admin, root or administrator and must not be more than 20 characters.
+`password`<br/>*string* | The password of the account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers.
 
 
 <!-------------------- START AN INSTANCE -------------------->
