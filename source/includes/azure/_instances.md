@@ -186,11 +186,11 @@ Required | &nbsp;
 `imageVersion`<br/>*string* | The image version that was used to create the instance
 `region`<br/>*string* | The region in which the instance is located
 `networkSubnet`<br/>*string* | The subnet that the instance will be part of
-`username`<br/>*string* | The administrator username which will be created on the instance. It cannot be a reserve user such as admin,root or administrator and must not be more than 20 characters.
+`username`<br/>*string* | The administrator username which will be created on the instance. It cannot be a reserve user such as admin, root or administrator and must not be more than 20 characters.
 
 Optional | &nbsp;
 ------- | -----------
-`password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special lettes, Upper Case, Lower Case and Numbers. The password is mandatory if the sshkey is not provided.
+`password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. The password is mandatory if the sshkey is not provided.
 `sshkey`<br/>*string* | The ssh key public portion that will be assigned to the user on the machine. This cannot be used for a Windows based OS.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
@@ -249,6 +249,40 @@ The subscription is limiting the number VMs and different machine sizes you can 
 Required | &nbsp;
 ------ | -----------
 `machineType`<br/>*string* | The new machine type to assign to the instance
+
+<!-------------------- RESET PASSWORD -------------------->
+
+#### Reset password
+
+Reset the administrator password on a Windows or Linux [instances](#azure-instances). 
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=reset_password"
+
+# Request example:
+```
+
+```json
+{
+  "username": "johndoe",
+  "password": "SomePassw0rdVal!d"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=reset_password</code>
+
+For Linux instances, reset the credentials of an existing user or create a new user with sudo privileges and reset the SSH configuration.
+For Windows instances, reset the built-in administrator account and reset the Remote Desktop service configuration.
+
+
+Required | &nbsp;
+------ | -----------
+`username`<br/>*string* | The administrator username of the instance or a new username. It cannot be a reserve user such as admin, root or administrator and must not be more than 20 characters.
+`password`<br/>*string* | The password of the account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers.
 
 
 <!-------------------- START AN INSTANCE -------------------->
