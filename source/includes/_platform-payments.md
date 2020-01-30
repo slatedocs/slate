@@ -320,6 +320,10 @@ Content-Type: application/json
     "accountName": "accountName",
     "accountNumber": "accountNumber",
     "sortCode": "sortCode"
+  },
+  "balance" : {
+    "amount" : 10.45,
+    "currency" : "GBP"
   }
 }
 ```
@@ -334,6 +338,9 @@ Wallet Details
 | bankDetails.accountName     | string | The account name for use when depositing money   |
 | bankDetails.accountNumber   | string | The account number to use when depositing money  |
 | bankDetails.sortCode        | string | The sort code to use when depositing money       |
+| balance                     | ref    | The total cash balance for the wallet            |
+| balance.amount              | number | The amount.                                      |
+| balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
 
 ## `GET /platformApi/wallets`
 ```http
