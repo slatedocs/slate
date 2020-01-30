@@ -33,17 +33,17 @@ Scoring URLs using Factmata API works in two steps:
 
 ## 1. Submitting URL for scoring
    
-    Before a URL can be scored, it needs to be scraped, and then scored by our models.
+    Before a URL can be scored, it needs to be scraped, and then scored by our model_names.
     And hence the URL needs to be submitted first.
 
 ## 2. Fetching the scores
 
     After the URL has been submitted, the results will be available in some time.
 
-    URL Scoring is complete when it has been scored by all models.
+    URL Scoring is complete when it has been scored by all model_names.
 
     During the time between submission and fetching, URL might already have 
-    been scored by some models, while some are still are processing. In this case,
+    been scored by some model_names, while some are still are processing. In this case,
     the user has the option to fetch the partial scores.
 
 
@@ -146,45 +146,54 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 
 ```json
 {
-  "models_scores": [
+  "model_names_scores": [
     {
-      "model": "hate",
+      "model": "7",
+      "model_name": "hate",
       "score": 0.314
     },
     {
-      "model": "hype",
+      "model": "8",
+      "model_name": "hype",
       "score": 0.315
     },
     {
-      "model": "bait",
+      "model": "10",
+      "model_name": "bait",
       "score": 0.316
     },
     {
-      "model": "racism",
+      "model": "11",
+      "model_name": "racism",
       "score": 0.317
     },
     {
-      "model": "sexism",
+      "model": "14",
+      "model_name": "sexism",
       "score": 0.317
     },
     {
-      "model": "insult",
+      "model": "17",
+      "model_name": "insult",
       "score": 0.318
     },
     {
-      "model": "threat",
+      "model": "18",
+      "model_name": "threat",
       "score": 0.319
     },
     {
-      "model": "toxic",
+      "model": "20",
+      "model_name": "toxic",
       "score": 0.320
     },
     {
-      "model": "obscene",
+      "model": "22",
+      "model_name": "obscene",
       "score": 0.320
     }
   ],
-  "combined_score": 0.1414
+  "combined_score": 0.320
 }
 ```
 
@@ -192,12 +201,12 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 
 ```json
 {
-  "models_scores": [
+  "model_names_scores": [
     {
-      "model": "hate",
+      "model_name": "hate",
       "score": 0.314
     },
-    ## At this stage only model 1 has finished processing
+    ## At this stage only model_name 1 has finished processing
   ]
 }
 ```
@@ -221,12 +230,12 @@ Fetching the scores has the following use cases:
 
 ### URL is fully processed 
 
-When the URL is fully processed, all the model scores, as well as the `combined score` are returned.
+When the URL is fully processed, all the model_name scores, as well as the `combined score` are returned.
 
 ### URL is partially processed, `partial_results` is True
 
-The case when GET request is made, but only some models have finished scoring the URL, the user can fetch the scores of the `finished` models using the `partial_results` query parameter.
-When `partial_results` is set to `True`, scores from models that have finished processing are returned.
+The case when GET request is made, but only some model_names have finished scoring the URL, the user can fetch the scores of the `finished` model_names using the `partial_results` query parameter.
+When `partial_results` is set to `True`, scores from model_names that have finished processing are returned.
 
 ### URL is partially processed, `partial_results` is False
 
@@ -245,14 +254,14 @@ Scoring domains using Factmata API works in two steps:
 ## 1. Submitting domains for scoring
    
     Before domains can be scored, they need to be crawled, and the crawled urls need to be
-    scraped, and then the urls are scored by our models. Hence, the domains 
+    scraped, and then the urls are scored by our model_names. Hence, the domains 
     need to be submitted first.
 
 ## 2. Fetching the scores
 
     After the domains have been submitted, the results will be available in some time.
 
-    Domain Scoring is complete when all of the urls have been scored by all models.
+    Domain Scoring is complete when all of the urls have been scored by all model_names.
 
     During the time between submission and fetching, some domains might already have 
     been scored, while other are still processing. In this case,
@@ -418,47 +427,56 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
   "domain": "example.com", 
   "status": "success",
   "score": {
-    "models_scores": [
+    "model_names_scores": [
       {
-        "model": "hate",
+        "model": "7",
+        "model_name": "hate",
         "score": 0.314
       },
       {
-        "model": "hype",
+        "model": "8",
+        "model_name": "hype",
         "score": 0.315
       },
       {
-        "model": "bait",
+        "model": "10",
+        "model_name": "bait",
         "score": 0.316
       },
       {
-        "model": "racism",
+        "model": "11",
+        "model_name": "racism",
         "score": 0.317
       },
       {
-        "model": "sexism",
+        "model": "14",
+        "model_name": "sexism",
         "score": 0.317
       },
       {
-        "model": "insult",
+        "model": "17",
+        "model_name": "insult",
         "score": 0.318
       },
       {
-        "model": "threat",
+        "model": "18",
+        "model_name": "threat",
         "score": 0.319
       },
       {
-        "model": "toxic",
+        "model": "20",
+        "model_name": "toxic",
         "score": 0.320
       },
       {
-        "model": "obscene",
+        "model": "22",
+        "model_name": "obscene",
         "score": 0.320
       }
     ],
     "URLs": ["https://example.com/feed/", "https://example.com/about/", ...],
     "Example URL": "https://example.com/feed/", 
-    "Domain Score": 0.09033065447428551
+    "Domain Score": 0.32
   }, 
   "dt_created": "2019-12-11T14:38:35.246635+00:00",
   "dt_updated": "2019-12-14T07:30:08.748324+00:00"
@@ -507,7 +525,7 @@ Fetching the scores has the following use cases:
 
 ### Domain is successfully processed 
 
-Status `success` and `score` with model scores are returned.
+Status `success` and `score` with model_name scores are returned.
 
 ### Domain is processed with an error
 
