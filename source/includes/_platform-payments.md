@@ -364,6 +364,10 @@ Content-Type: application/json
       "accountName": "accountName",
       "accountNumber": "accountNumber",
       "sortCode": "sortCode"
+    },
+    "balance" : {
+      "amount" : 10.45,
+      "currency" : "GBP"
     }
   }
 ]
@@ -379,6 +383,9 @@ List of wallet details
 | bankDetails.accountName     | string | The account name for use when depositing money   |
 | bankDetails.accountNumber   | string | The account number to use when depositing money  |
 | bankDetails.sortCode        | string | The sort code to use when depositing money       |
+| balance                     | ref    | The total cash balance for the wallet            |
+| balance.amount              | number | The amount.                                      |
+| balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
 
 ## `GET /platformApi/wallet/{id}/balance`
 
@@ -478,23 +485,34 @@ Content-Type: application/json
     "reference": "reference",
     "narrative": "Solicitor Fees",
     "createdDateTime": "2019-01-01T12:33:00Z",
-    "clearedDateTime": "2019-01-01T12:33:30Z"
+    "clearedDateTime": "2019-01-01T12:33:30Z",
+    "associatedBankDetails" : {
+      "accountName": "accountName",
+      "accountNumber": "accountNumber",
+      "sortCode": "sortCode"
+    }
   }
 ]
 
 ```
 ### Description
+
 Retrieve a list of transactions for a given wallet for a given year and month.
+
 ### Response
-| Name                          | Type      | Description                                          |
-| ----------------------------- | --------- | ---------------------------------------------------- |
-| id                            | string    | The id of the transaction                            |
-| amount                        | ref       | The total cash balance.                              |
-| amount.amount                 | number    | The amount.                                          |
-| amount.currency               | string    | The ISO 4217 three character codes eg 'GBP'          |
-| type                          | string    | The type of wallet instruction                       |
-| status                        | string    | The status of the wallet transfer. PENDING, CLEARED  |
-| reference                     | string    | The bank reference used for the transfer             |
-| narrative                     | string    | The reason for the wallet transfer                   |
-| createdDateTime               | date/time | The date / time the transaction was created          |
-| clearedDateTime               | date/time | The date / time the transaction was cleared          |
+| Name                                    | Type      | Description                                          |
+| --------------------------------------- | --------- | ---------------------------------------------------- |
+| id                                      | string    | The id of the transaction                            |
+| amount                                  | ref       | The total cash balance.                              |
+| amount.amount                           | number    | The amount.                                          |
+| amount.currency                         | string    | The ISO 4217 three character codes eg 'GBP'          |
+| type                                    | string    | The type of wallet instruction                       |
+| status                                  | string    | The status of the wallet transfer. PENDING, CLEARED  |
+| reference                               | string    | The bank reference used for the transfer             |
+| narrative                               | string    | The reason for the wallet transfer                   |
+| createdDateTime                         | date/time | The date / time the transaction was created          |
+| clearedDateTime                         | date/time | The date / time the transaction was cleared          |
+| associatedBankDetails                   | ref       | The bank details for the wallet                      |
+| associatedBankDetails.accountName       | string    | The account name related to the transaction          |
+| associatedBankDetails.accountNumber     | string    | The account number related to the transaction        |
+| associatedBankDetails.sortCode          | string    | The sort code related to the transaction             |
