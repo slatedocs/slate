@@ -148,47 +148,47 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 {
   "model_names_scores": [
     {
-      "model": "7",
+      "model": 7,
       "model_name": "hate",
       "score": 0.314
     },
     {
-      "model": "8",
+      "model": 8,
       "model_name": "hype",
       "score": 0.315
     },
     {
-      "model": "10",
+      "model": 10,
       "model_name": "bait",
       "score": 0.316
     },
     {
-      "model": "11",
+      "model": 11,
       "model_name": "racism",
       "score": 0.317
     },
     {
-      "model": "14",
+      "model": 14,
       "model_name": "sexism",
       "score": 0.317
     },
     {
-      "model": "17",
+      "model": 17,
       "model_name": "insult",
       "score": 0.318
     },
     {
-      "model": "18",
+      "model": 18,
       "model_name": "threat",
       "score": 0.319
     },
     {
-      "model": "20",
+      "model": 20,
       "model_name": "toxic",
       "score": 0.320
     },
     {
-      "model": "22",
+      "model": 22,
       "model_name": "obscene",
       "score": 0.320
     }
@@ -429,47 +429,47 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
   "score": {
     "model_names_scores": [
       {
-        "model": "7",
+        "model": 7,
         "model_name": "hate",
         "score": 0.314
       },
       {
-        "model": "8",
+        "model": 8,
         "model_name": "hype",
         "score": 0.315
       },
       {
-        "model": "10",
+        "model": 10,
         "model_name": "bait",
         "score": 0.316
       },
       {
-        "model": "11",
+        "model": 11,
         "model_name": "racism",
         "score": 0.317
       },
       {
-        "model": "14",
+        "model": 14,
         "model_name": "sexism",
         "score": 0.317
       },
       {
-        "model": "17",
+        "model": 17,
         "model_name": "insult",
         "score": 0.318
       },
       {
-        "model": "18",
+        "model": 18,
         "model_name": "threat",
         "score": 0.319
       },
       {
-        "model": "20",
+        "model": 20,
         "model_name": "toxic",
         "score": 0.320
       },
       {
-        "model": "22",
+        "model": 22,
         "model_name": "obscene",
         "score": 0.320
       }
