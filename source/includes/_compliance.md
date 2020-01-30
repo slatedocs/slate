@@ -1,4 +1,26 @@
-# Compliance
+# Compliance and Privacy
+
+## What Data is Collected by the Scout APM Agent?
+
+When you install our APM agent into your application, we instrument your code in order to gather timing and other data. The data collected for all transactions includes:
+
+  * Numeric metrics (timing, object allocations, memory)
+  * Controller (in MVC terms) name and invoked controller function name
+  * Background job name and invoked function name
+  * SQL table and operation (e.g. Users#select)
+
+In addition to collecting general data for every transaction, Scout uses an algorithm to pick out the most interesting transactions. These detailed transactions gather more information about the specifics of the transaction including:
+
+  * URL path
+  * URL parameters
+  * SQL query strings (scrubbed and sanitized before being sent to Scout)
+  * Outgoing HTTP request URLs (of instrumented HTTP libraries)
+  * End user IP (the IP of a user making a request to your web server)
+  * File name and line number of slow functions (used to display a backtrace)
+
+Some of this information can be disabled for detailed transactions. Refer to our configuration section for your language at [https://docs.scoutapm.com](https://docs.scoutapm.com)
+
+In Ruby, you can set `log_level = debug` to inspect the entire payload sent by our agent.
 
 ## HIPAA
 
