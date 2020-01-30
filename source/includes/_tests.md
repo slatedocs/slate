@@ -221,7 +221,9 @@ data/attributes/version | string of test version |
 data/attributes/priority | string of test priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/tags | an array of tags | false |
+data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users)* | false |
 
+* This parameter allows to see changes made via API in history tabs of tests
 
 You can find at the right area an example of the JSON request and response
 
