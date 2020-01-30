@@ -254,7 +254,7 @@ Required | &nbsp;
 
 #### Reset password
 
-Reset the administrator password on a Windows or Linux [instances](#azure-instances). 
+Reset the administrator password on Windows or Linux [instances](#azure-instances). 
 
 ```shell
 curl -X POST \
