@@ -731,6 +731,7 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "url": "https://alaskabar.org/",
                 "orig_url": "https://www.alaskabar.org/",
                 "rank": "1",
+                "unblended_rank": "1",
                 "page": "1",
                 "type": "Organic",
                 "match": "website address",
@@ -739,6 +740,8 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "hash": "32d3f35ad7633a34b2cf93dec7dfdd2455d25f84",
                 "search_url": "https://www.google.com/search?q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th&pws=0",
                 "search_engine": "google",
+                "sub_type": null,
+                "sub_rank": "1",
                 "last": "1"
               }
             ],
@@ -748,6 +751,7 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "url": "http://alaskabar.org/",
                 "orig_url": "http://www.alaskabar.org/",
                 "rank": "1",
+                "unblended_rank": "1",
                 "page": "1",
                 "type": "Places",
                 "match": "website address",
@@ -756,6 +760,8 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "hash": "e008f8d346b2b8f124702d64be0ec1131adba959",
                 "search_url": "https://www.google.com/search?tbm=lcl&q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th",
                 "search_engine": "google-places",
+                "sub_type": null,
+                "sub_rank": "1",
                 "last": "1"
               }
             ],
@@ -765,6 +771,7 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "url": "http://alaskabar.org/",
                 "orig_url": "http://www.alaskabar.org/",
                 "rank": "1",
+                "unblended_rank": "1",
                 "page": "1",
                 "type": "Organic",
                 "match": "website address",
@@ -773,6 +780,8 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "hash": "b9ea2849328aa0794c79a60beb6cee38c2a51a67",
                 "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
                 "search_engine": "yahoo",
+                "sub_type": null,
+                "sub_rank": "1",
                 "last": "1"
               },
               {
@@ -780,6 +789,7 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "url": "https://alaskabar.org/servlet/content/46.html",
                 "orig_url": "https://www.alaskabar.org/servlet/content/46.html",
                 "rank": "6",
+                "unblended_rank": "6",
                 "page": "1",
                 "type": "Organic",
                 "match": "website address",
@@ -788,6 +798,8 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "hash": "e0610efd9a75c627c2f9a8bc1b86680d5064b71d",
                 "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
                 "search_engine": "yahoo",
+                "sub_type": null,
+                "sub_rank": "6",
                 "last": "6"
               }
             ],
@@ -797,6 +809,7 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "url": "",
                 "orig_url": "",
                 "rank": "0",
+                "unblended_rank": "0",
                 "page": "0",
                 "type": "",
                 "match": "",
@@ -804,7 +817,9 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "date": "2016-02-01 19:00:24",
                 "hash": null,
                 "search_url": "https://search.yahoo.com/local/?p=Alaska+Bar+Association",
-                "search_engine": "yahoo-local"
+                "search_engine": "yahoo-local",
+                "sub_type": null,
+                "sub_rank": "0"
               }
             ],
             "bing": [
@@ -813,6 +828,7 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "url": "http://alaskabar.org/",
                 "orig_url": "http://www.alaskabar.org/",
                 "rank": "1",
+                "unblended_rank": "1",
                 "page": "0",
                 "type": "Organic",
                 "match": "website address",
@@ -821,6 +837,8 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "hash": "bbd31c444764b5dd44685b5eae35578bbef68166",
                 "search_url": "http://www.bing.com/search?q=Alaska+Bar+Association&mkt=en-us&count=50",
                 "search_engine": "bing",
+                "sub_type": null,
+                "sub_rank": "0",
                 "last": "1"
               }
             ],
@@ -830,6 +848,7 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "url": "",
                 "orig_url": "",
                 "rank": "0",
+                "unblended_rank": "0",
                 "page": "0",
                 "type": "",
                 "match": "",
@@ -837,7 +856,9 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "date": "2016-02-01 19:00:24",
                 "hash": null,
                 "search_url": "http://www.bing.com/local/default.aspx?q=Alaska+Bar+Association&mkt=en-us&FORM=LLSV",
-                "search_engine": "bing-local"
+                "search_engine": "bing-local",
+                "sub_type": null,
+                "sub_rank": "0"
               }
             ]
           }
