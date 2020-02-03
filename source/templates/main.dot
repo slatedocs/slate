@@ -47,7 +47,7 @@ Base URLs:
 <section class="full-section">
 # Schemas
 </section>
-{{ for (var s in data.components.schemas) { }}{{ if (!data.components.schemas['x-docs-schema-whitelist'].includes(s)) { continue; } }}{{ var origSchema = data.components.schemas[s]; }}{{ var schema = data.api.components.schemas[s]; }}<hr>
+{{ for (var s in data.components.schemas) { }}{{ if (!data.api.info['x-docs-schema-whitelist'].includes(s)) { continue; } }}{{ var origSchema = data.components.schemas[s]; }}{{ var schema = data.api.components.schemas[s]; }}<hr>
 <section>
 <a id="schema{{=s.toLowerCase().replaceAll("response","")}}"></a>
 <a id="schema_{{=s.replaceAll("Response","")}}"></a>

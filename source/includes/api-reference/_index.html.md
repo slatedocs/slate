@@ -364,7 +364,7 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 <section>
 ## Submit parallel requests
 
-<a id="opIdcreateBatchRequestAction"></a>
+<a id="opIdcreateBatchRequest"></a>
 
 > Code samples
 
@@ -680,7 +680,7 @@ Returns the full record of the newly created custom field.
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -934,7 +934,7 @@ Returns the complete updated custom field record.
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -1342,7 +1342,7 @@ Returns the full record of the updated enum option.
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
 |»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
-|/enum_option_gid<span class="param-type"> string</span>|Globally unique identifier for the enum option.|
+|/enum_option_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the enum option.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -1362,7 +1362,7 @@ Returns the full record of the updated enum option.
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a></code>
+<code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
 </pre>
 
 Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
@@ -1569,152 +1569,6 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section><hr class="half-line">
-<section>
-## Add a custom field to a portfolio
-
-<a id="opIdaddCustomFieldSettingForPortfolio"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> Body parameter
-
-```json
-{
-  "data": {
-    "custom_field": "14916",
-    "is_important": true,
-    "insert_before": "1331",
-    "insert_after": "1331"
-  }
-}
-```
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
-</p>
-
-Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
-
-<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
-|» data<span class="param-type"> object</span>|none|
-|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this container.|
-|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
-|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|»» insert_after<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-
-<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> Inline</span>|Successfully added the custom field to the portfolio.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="add-a-custom-field-to-a-portfolio-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
-
-</section><hr class="half-line">
-<section>
-## Remove a custom field from a portfolio
-
-<a id="opIdremoveCustomFieldSettingForPortfolio"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> Body parameter
-
-```json
-{
-  "data": {
-    "custom_field": "14916"
-  }
-}
-```
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
-</p>
-
-Removes a custom field setting from a portfolio.
-
-<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting being removed.|
-|» data<span class="param-type"> object</span>|none|
-|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this portfolio.|
-|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-
-<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> Inline</span>|Successfully removed the custom field from the portfolio.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="remove-a-custom-field-from-a-portfolio-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -2117,7 +1971,7 @@ Status Code **200**
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a></code>
+<code><a href="#get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a></code>
 </pre>
 
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
@@ -2346,7 +2200,7 @@ integrations to create their own starting state on a portfolio.
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -2701,7 +2555,7 @@ Returns the complete updated portfolio record.
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -3034,6 +2888,152 @@ Status Code **200**
 
 </section><hr class="half-line">
 <section>
+## Add a custom field to a portfolio
+
+<a id="opIdaddCustomFieldSettingForPortfolio"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "custom_field": "14916",
+    "is_important": true,
+    "insert_before": "1331",
+    "insert_after": "1331"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
+</p>
+
+Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
+
+<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
+|» data<span class="param-type"> object</span>|none|
+|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this container.|
+|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
+|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_after<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+
+<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully added the custom field to the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="add-a-custom-field-to-a-portfolio-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Remove a custom field from a portfolio
+
+<a id="opIdremoveCustomFieldSettingForPortfolio"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "custom_field": "14916"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
+</p>
+
+Removes a custom field setting from a portfolio.
+
+<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting being removed.|
+|» data<span class="param-type"> object</span>|none|
+|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this portfolio.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+
+<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully removed the custom field from the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="remove-a-custom-field-from-a-portfolio-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
 ## Add users to a portfolio
 
 <a id="opIdaddMembersForPortfolio"></a>
@@ -3297,7 +3297,7 @@ Returns the complete portfolio record for a single portfolio membership.
 
 |Name|Description|
 |---|---|
-|/portfolio_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|/portfolio_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -3379,7 +3379,7 @@ Returns the compact portfolio membership records for the portfolio.
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a></code>
+<code><a href="#get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="#add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="#remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="#remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a></code>
 </pre>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
@@ -3647,7 +3647,7 @@ Returns the full record of the newly created project.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -4058,7 +4058,7 @@ Returns the complete updated project record.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -4604,7 +4604,7 @@ Returns the full record of the newly created project.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -4926,7 +4926,7 @@ Returns the full record of the newly created project.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -5218,6 +5218,222 @@ Status Code **200**
 | num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
 | num_completed_milestones<span class="param-type"> integer</span>|The number of completed milestones in a project.|
 
+</section><hr class="half-line">
+<section>
+## Add users to a project
+
+<a id="opIdaddFollowersForProject"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addFollowers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "followers": "521621,621373"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/addFollowers</code>
+</p>
+
+Adds the specified list of users as followers to the project. Followers are a subset of members, therefore if the users are not already members of the project they will also become members as a result of this operation.
+Returns the updated project record.
+
+<h3 id="add-users-to-a-project-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the followers being added.|
+|» data<span class="param-type"> object</span>|none|
+|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="add-users-to-a-project-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully added followers to the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="add-users-to-a-project-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Remove users from a project
+
+<a id="opIdremoveMembersForProject"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeMembers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "members": "521621,621373"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/removeMembers</code>
+</p>
+
+Removes the specified list of users from members of the project.
+Returns the updated project record.
+
+<h3 id="remove-users-from-a-project-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being removed.|
+|» data<span class="param-type"> object</span>|none|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="remove-users-from-a-project-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully removed the members from the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="remove-users-from-a-project-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Remove followers from a project
+
+<a id="opIdremoveFollowersForProject"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeFollowers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "followers": "521621,621373"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/removeFollowers</code>
+</p>
+
+Removes the specified list of users from following the project, this will not affect project membership status.
+Returns the updated project record.
+
+<h3 id="remove-followers-from-a-project-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the followers being removed.|
+|» data<span class="param-type"> object</span>|none|
+|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="remove-followers-from-a-project-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully removed followers from the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="remove-followers-from-a-project-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
 </section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-project-memberships">Project Memberships</h1>
@@ -5277,7 +5493,7 @@ Returns the complete project record for a single project membership.
 
 |Name|Description|
 |---|---|
-|/project_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|/project_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5415,7 +5631,7 @@ Returns the complete record for a single status update.
 
 |Name|Description|
 |---|---|
-|/project_status_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
+|/project_status_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5494,7 +5710,7 @@ Returns an empty data record.
 
 |Name|Description|
 |---|---|
-|/project_status_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
+|/project_status_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5521,7 +5737,7 @@ Status Code **200**
 <section>
 ## Get statuses from a project
 
-<a id="opIdgetProjectStatuses"></a>
+<a id="opIdgetProjectStatusesForProject"></a>
 
 > Code samples
 
@@ -5589,7 +5805,7 @@ Status Code **200**
 <section>
 ## Create a project status
 
-<a id="opIdcreateProjectStatus"></a>
+<a id="opIdcreateProjectStatusForProject"></a>
 
 > Code samples
 
@@ -6874,7 +7090,7 @@ Returns the compact records for all stories on the task.
 <section>
 ## Create a story on a task
 
-<a id="opIdcreateStory"></a>
+<a id="opIdcreateStoryForTask"></a>
 
 > Code samples
 
@@ -7699,7 +7915,7 @@ Returns the full record of the newly created tag.
 <h1 id="asana-tasks">Tasks</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="#create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="#get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="#get-tasks-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="#get-tasks-from-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="#get-tasks-from-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span></a><br><a href="#get-subtasks-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#set-the-parent-of-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="#get-dependencies-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="#set-dependencies-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="#unlink-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="#get-dependents-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="#set-dependents-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="#unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="#add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="#remove-a-project-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="#add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="#remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="#add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a><br><a href="#search-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
+<code><a href="#get-multiple-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="#create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="#get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="#get-tasks-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="#get-tasks-from-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="#get-tasks-from-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span></a><br><a href="#get-tasks-from-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></a><br><a href="#get-subtasks-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#set-the-parent-of-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="#get-dependencies-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="#set-dependencies-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="#unlink-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="#get-dependents-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="#set-dependents-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="#unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="#add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="#remove-a-project-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="#add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="#remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="#add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a><br><a href="#search-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
 </pre>
 
 The task is the basic object around which many operations in Asana are centered. In the Asana application, multiple tasks populate the middle pane according to some view parameters, and the set of selected tasks determines the more detailed information presented in the details pane.
@@ -7828,6 +8044,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
       "data": "A blob of information"
     },
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
     "notes": "Mittens really likes the stuff from Humboldt.",
     "start_on": "2019-09-14",
     "assignee": "12345",
@@ -8040,7 +8257,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -8057,6 +8274,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
@@ -8357,6 +8575,7 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
       "data": "A blob of information"
     },
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
     "notes": "Mittens really likes the stuff from Humboldt.",
     "start_on": "2019-09-14",
     "assignee": "12345",
@@ -8571,7 +8790,7 @@ Returns the complete updated task record.
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -8588,6 +8807,7 @@ Returns the complete updated task record.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
@@ -8986,6 +9206,71 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 
 </section><hr class="half-line">
 <section>
+## Get tasks from a user task list
+
+<a id="opIdgetTasksForUserTaskList"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
+</p>
+
+Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
+*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
+*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
+*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
+
+<h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?completed_since<span class="param-type"> string</span>|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
+|/user_task_list_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user task list.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+#### Detailed descriptions
+
+**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
+
+<h3 id="get-tasks-from-a-user-task-list-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the user task list's tasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
 ## Get subtasks from a task
 
 <a id="opIdgetSubtasksForTask"></a>
@@ -9076,6 +9361,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
       "data": "A blob of information"
     },
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
     "notes": "Mittens really likes the stuff from Humboldt.",
     "start_on": "2019-09-14",
     "assignee": "12345",
@@ -9282,7 +9568,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -9299,6 +9585,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
@@ -10995,7 +11282,7 @@ Returns the complete team membership record for a single team membership.
 
 |Name|Description|
 |---|---|
-|/team_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|/team_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -11156,7 +11443,7 @@ Returns the compact team memberships for the team.
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships \
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships?workspace=31326 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -11196,7 +11483,7 @@ Returns the compact team membership records for the user.
 
 |Name|Description|
 |---|---|
-|workspace<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace.|
 |/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -11645,7 +11932,7 @@ Results are sorted alphabetically by user names.
 <h1 id="asana-user-task-lists">User Task Lists</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-tasks-from-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></a><br><a href="#get-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}</span></a><br><a href="#get-a-user-39-s-task-list"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span></a></code>
+<code><a href="#get-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}</span></a><br><a href="#get-a-user-39-s-task-list"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span></a></code>
 </pre>
 
 A user task list represents the tasks assigned to a particular user.
@@ -11654,71 +11941,6 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 
 </section>
 <hr class="half-line">
-<section>
-## Get tasks from a user task list
-
-<a id="opIdgetTasksForUserTaskList"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
-  ]
-}
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
-</p>
-
-Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
-*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
-*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
-*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
-
-<h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|?completed_since<span class="param-type"> string</span>|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
-|/user_task_list_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user task list.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
-|?offset<span class="param-type"> string</span>|Offset token.|
-
-#### Detailed descriptions
-
-**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
-
-<h3 id="get-tasks-from-a-user-task-list-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the user task list's tasks.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section><hr class="half-line">
 <section>
 ## Get a user task list
 
@@ -12634,7 +12856,7 @@ Returns the complete workspace record for a single workspace membership.
 
 |Name|Description|
 |---|---|
-|/workspace_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|/workspace_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -13012,7 +13234,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
@@ -13104,7 +13326,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 
 #### Enumerated Values
@@ -13215,7 +13437,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
@@ -13386,6 +13608,20 @@ error.
 An *event* is an object representing a change to a resource that was
 observed by an event subscription.
 
+The event may be triggered by a different `user` than the
+subscriber. For example, if user A subscribes to a task and user B
+modified it, the event’s user will be user B. Note: Some events
+are generated by the system, and will have `null` as the user. API
+consumers should make sure to handle this case.
+
+The `resource` that triggered the event may be different from
+the one that the events were requested for. For example, a
+subscription to a project will contain events for tasks contained
+within the project.
+
+For added/removed events, the `parent` that resource was added to or
+removed from. The parent will be `null` for other event types.
+
 ### Properties
 
 |Name|Description|
@@ -13400,10 +13636,10 @@ observed by an event subscription.
 |» name<span class="param-type"> string</span>|The name of the object.|
 |type<span class="param-type"> string</span>|*Deprecated: Refer to the resource_type of the resource.*<br>The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
 |action<span class="param-type"> string</span>|The type of action taken that triggered the event.|
-|parent<span class="param-type"> object</span>|For added/removed events, the parent that resource was added to or removed from. The parent will be `null` for other event types.|
+|parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the task.|
+|» name<span class="param-type"> string</span>|The name of the object.|
 |created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
 
 </section><hr>
@@ -13657,7 +13893,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
@@ -13973,7 +14209,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -14546,7 +14782,7 @@ A story represents an activity associated with an object in the Asana system.
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |old_text_value<span class="param-type"> string</span>|*Conditional*|
 |new_text_value<span class="param-type"> string</span>|*Conditional*|
@@ -14941,7 +15177,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> float</span>|*Conditional*. This number is the value of a number custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
@@ -14994,7 +15230,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will set to `approved`.|
+|approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
