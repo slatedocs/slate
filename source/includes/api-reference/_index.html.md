@@ -3211,6 +3211,11 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
     {
       "gid": "12345",
       "resource_type": "portfolio_membership",
+      "portfolio": {
+        "gid": "12345",
+        "resource_type": "portfolio",
+        "name": "Bug Portfolio"
+      },
       "user": {
         "gid": "12345",
         "resource_type": "user",
@@ -3273,15 +3278,15 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membe
   "data": {
     "gid": "12345",
     "resource_type": "portfolio_membership",
-    "user": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
     "portfolio": {
       "gid": "12345",
       "resource_type": "portfolio",
       "name": "Bug Portfolio"
+    },
+    "user": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
     }
   }
 }
@@ -3336,6 +3341,11 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_m
     {
       "gid": "12345",
       "resource_type": "portfolio_membership",
+      "portfolio": {
+        "gid": "12345",
+        "resource_type": "portfolio",
+        "name": "Bug Portfolio"
+      },
       "user": {
         "gid": "12345",
         "resource_type": "user",
@@ -13991,15 +14001,15 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 {
   "gid": "12345",
   "resource_type": "portfolio_membership",
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
   "portfolio": {
     "gid": "12345",
     "resource_type": "portfolio",
     "name": "Bug Portfolio"
+  },
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
   }
 }
 
@@ -14013,14 +14023,14 @@ This object determines if a user is a member of a portfolio.
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the portfolio.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
 </section><hr>
 <section>
@@ -14034,6 +14044,11 @@ This object determines if a user is a member of a portfolio.
 {
   "gid": "12345",
   "resource_type": "portfolio_membership",
+  "portfolio": {
+    "gid": "12345",
+    "resource_type": "portfolio",
+    "name": "Bug Portfolio"
+  },
   "user": {
     "gid": "12345",
     "resource_type": "user",
@@ -14051,6 +14066,10 @@ This object determines if a user is a member of a portfolio.
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the portfolio.|
 |user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|

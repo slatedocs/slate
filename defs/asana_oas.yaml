@@ -2063,15 +2063,7 @@ components:
           type: string
           example: 521621,621373
     PortfolioMembershipResponse:
-      allOf:
-        - $ref: '#/components/schemas/PortfolioMembershipBase'
-        - type: object
-          properties:
-            portfolio:
-              description: >-
-                [Opt In](#input-output-options).
-                The portfolio the user is a member of.
-              $ref: '#/components/schemas/PortfolioCompact'
+      $ref: '#/components/schemas/PortfolioMembershipBase'
     PortfolioMembershipBase:
       $ref: '#/components/schemas/PortfolioMembershipCompact'
     PortfolioMembershipCompact:
@@ -2083,6 +2075,11 @@ components:
           x-docs-overrides:
             properties.resource_type.example: portfolio_membership
           properties:
+            portfolio:
+              description: >-
+                [Opt In](#input-output-options).
+                The portfolio the user is a member of.
+              $ref: '#/components/schemas/PortfolioCompact'
             user:
               $ref: '#/components/schemas/UserCompact'
     Preview:
