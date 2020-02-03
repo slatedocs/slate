@@ -143,6 +143,9 @@ Attributes | &nbsp;
 
 The information is not totally returned in the list. We filter out the manifest portion. We also filter ou  returning the files and the templates of the charts details. This information will be present in the GET request for an individual release.
 
+
+<!-------------------- GET RELEASE -------------------->
+
 ### Get release
 
 ```shell
@@ -315,3 +318,60 @@ Attributes | &nbsp;
 `values` <br/>*object* | All values that were used to install the release
 `version`<br/>*string* | The revision of the release
 `namespace`<br/>*string* | The namespace to which the release is installed
+
+
+
+<!-------------------- UPGRADE RELEASE -------------------->
+### Upgrade release
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954?operation=upgrade&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   -d "request_body"
+
+
+# Request example:
+```
+Change to the latest version of a chart
+```json
+{ "upgradeChart":  "stable/aerospike" }
+```
+
+Change to a specific version of a chart
+```json
+{
+  "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
+}
+```
+
+Change the values for the latest version
+```json
+{
+  "upgradeChart" : "stable/aerospike",
+  "values": "---\n\"replicaCount\": 3\n"
+}
+```
+
+# The above command returns JSON structured like this:
+```
+```json
+{
+  "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=upgrade&cluster_id=:cluster_id</code>
+
+Upgrade a release in a given [environment](#administration-environments)
+
+Mandatory | &nbsp;
+------- | -----------
+`cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
+`upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.  
+
+
+Optional | &nbsp;
+------- | -----------
+`values` <br/>*string* | YAML structured text that will overwrite the default values for the upgrade/installation of the chart.
