@@ -354,7 +354,6 @@ Change the values for the latest version
 ```
 
 # The above command returns JSON structured like this:
-```
 ```json
 {
   "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
