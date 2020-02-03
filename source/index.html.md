@@ -330,6 +330,7 @@ Returns the results of the SPARQL query in JSON format.
 
 ## Download Endpoints
 
+
 ### Return source for an attachment with the specified URI
 
 Returns the source for an attachement to the specificified URI
@@ -380,6 +381,126 @@ print(response.content)
 
 ```
 
+### Returns SBOLnr for the object with the specified URI
+
+Returns the SBOLnr for the object from the specified URI.
+
+`GET <URI>/sbolnr`
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbolnr`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_F2620/1/sbolnr',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
+### Returns metadata for the object with the specified URI
+
+Returns the metadata for the object from the specified URI.
+
+`GET <URI>/metadata`
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/metadata`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_K1479017/1/metadata',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
+### Returns GenBank for the object with the specified URI
+
+Returns the GenBank for the object from the specified URI.
+
+`GET <URI>/gb`
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
+### Returns FASTA for the object with the specified URI
+
+Returns the FASTA for the object from the specified URI.
+
+`GET <URI>/fasta`
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
+### Returns visualization for the object with the specified URI
+
+Returns the visualization for the object from the specified URI.
+
+`GET <URI>/visualization`
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/visualization`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_K1479017/1/visualization',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
 ## Submission Endpoints
 
 ### Create a new collection
@@ -417,6 +538,8 @@ e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F root
 ## Attachment Endpoints
 
 ### Attach file to a specified URI
+
+Attach a specified file to a given URI
 
 `POST <URI>/attach `
 
@@ -472,33 +595,6 @@ If `user` is currently logged in, this post request will logout the user.
 ```plaintext
 e.g. `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
 ```
-
-### 
-
-
-## Plugin Endpoints
-
-## Edit Mutable Fields Endpoints
-
-## Submission Endpoints
-
-## Collection View Endpoints
-
-## Administration Endpoints
-
-## Search Endpoints
-
-## Manage Submission Endpoints
-
-## Update Permissions Endpoints
-
-## Attachment Endpoints
-
-## Download Endpoints
-
-## View/Download Endpoints
-
-## Misc. endpoints
 
 # NGINX configuration
 
