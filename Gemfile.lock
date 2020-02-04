@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     activesupport (5.0.7.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -133,4 +133,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   2.0.2
+   2.1.2
