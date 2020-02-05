@@ -3234,9 +3234,6 @@ components:
               items:
                 $ref: '#/components/schemas/AsanaResource'
               readOnly: true
-              example:
-                - gid: '1234'
-                - gid: '4321'
             dependents:
               description: >-
                 [Opt
@@ -3247,9 +3244,6 @@ components:
               items:
                 $ref: '#/components/schemas/AsanaResource'
               readOnly: true
-              example:
-                - gid: '1234'
-                - gid: '4321'
             due_at:
               description: >-
                 Date and time on which this task is due, or null if the task has
@@ -7946,7 +7940,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/TaskCompact'
+                      $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -8074,7 +8068,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/TaskCompact'
+                      $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:

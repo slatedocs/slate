@@ -8200,18 +8200,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     ],
     "dependencies": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "dependents": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "due_at": "2019-09-15T02:06:58.147Z",
@@ -8492,18 +8488,14 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     ],
     "dependencies": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "dependents": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "due_at": "2019-09-15T02:06:58.147Z",
@@ -8731,18 +8723,14 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     ],
     "dependencies": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "dependents": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "due_at": "2019-09-15T02:06:58.147Z",
@@ -9517,18 +9505,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     ],
     "dependencies": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "dependents": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "due_at": "2019-09-15T02:06:58.147Z",
@@ -9817,18 +9801,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     ],
     "dependencies": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "dependents": [
       {
-        "gid": "1234"
-      },
-      {
-        "gid": "4321"
+        "gid": "12345",
+        "resource_type": "task"
       }
     ],
     "due_at": "2019-09-15T02:06:58.147Z",
@@ -10116,11 +10096,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
 ```json
 {
   "data": [
-    {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
+    {}
   ]
 }
 ```
@@ -10146,12 +10122,20 @@ Unlinks a set of dependencies from this task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully unlinked the dependencies from the specified task.|
+|200<span class="param-type"> Inline</span>|Successfully unlinked the dependencies from the specified task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="unlink-dependencies-from-a-task-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [[](#schemaemptyresponse)]</span>|[An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.]|
 
 </section><hr class="half-line">
 <section>
@@ -10317,11 +10301,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
 ```json
 {
   "data": [
-    {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
+    {}
   ]
 }
 ```
@@ -10347,12 +10327,20 @@ Unlinks a set of dependents from this task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully unlinked the specified tasks as dependents.|
+|200<span class="param-type"> Inline</span>|Successfully unlinked the specified tasks as dependents.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="unlink-dependents-from-a-task-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [[](#schemaemptyresponse)]</span>|[An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.]|
 
 </section><hr class="half-line">
 <section>
@@ -15127,18 +15115,14 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
   ],
   "dependencies": [
     {
-      "gid": "1234"
-    },
-    {
-      "gid": "4321"
+      "gid": "12345",
+      "resource_type": "task"
     }
   ],
   "dependents": [
     {
-      "gid": "1234"
-    },
-    {
-      "gid": "4321"
+      "gid": "12345",
+      "resource_type": "task"
     }
   ],
   "due_at": "2019-09-15T02:06:58.147Z",
