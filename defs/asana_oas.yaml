@@ -6402,7 +6402,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
-      summary: Add users to a project
+      summary: Add followers to a project
       description: >-
         Adds the specified list of users as followers to the project. Followers
         are a subset of members, therefore if the users are not already members
