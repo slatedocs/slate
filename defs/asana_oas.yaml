@@ -942,44 +942,24 @@ components:
     user_query_param:
       name: user
       in: query
-      description: The user to filter results on.
+      description: >-
+        A string identifying a user. This can either be the string "me", an email,
+        or the gid of a user.
       schema:
         type: string
-        format: email
       x-env-variable: user
-      examples:
-        gid:
-          summary: A globally unique identifier for the user
-          value: '14641'
-        me:
-          summary: >-
-            The keyword 'me' to indicate the current user making the
-            request.
-          value: me
-        email:
-          summary: An email address for a user
-          value: sashimi@asana.com
+      example: me
     user_path_gid:
       name: user_gid
       in: path
       description: >-
-        Globally unique identifier for the user.
+        A string identifying a user. This can either be the string "me", an email,
+        or the gid of a user.
       required: true
       schema:
         type: string
       x-env-variable: user
-      examples:
-        gid:
-          summary: A globally unique identifier for the user
-          value: 14641
-        me:
-          summary: >-
-            The keyword 'me' to indicate the current user making the
-            request.
-          value: me
-        email:
-          summary: An email address for a user
-          value: sashimi@asana.com
+      example: me
     user_task_list_path_gid:
       name: user_task_list_gid
       in: path
@@ -1903,7 +1883,8 @@ components:
             members:
               type: array
               description: >-
-                Array of object Gids.
+                An array of strings identifying users. These can either be the
+                string "me", an email, or the gid of a user.
               items:
                 type: string
                 description: >-
@@ -2029,7 +2010,8 @@ components:
       properties:
         members:
           description: >-
-            An array of user ids.
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
           type: string
           example: 521621,621373
     RemoveMembersRequest:
@@ -2039,7 +2021,8 @@ components:
       properties:
         members:
           description: >-
-            An array of user ids.
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
           type: string
           example: 521621,621373
     AddFollowersRequest:
@@ -2049,7 +2032,8 @@ components:
       properties:
         followers:
           description: >-
-            An array of user ids.
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
           type: string
           example: 521621,621373
     RemoveFollowersRequest:
@@ -2059,7 +2043,8 @@ components:
       properties:
         followers:
           description: >-
-            An array of user ids.
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
           type: string
           example: 521621,621373
     PortfolioMembershipResponse:
@@ -2989,11 +2974,10 @@ components:
             followers:
               type: array
               description: >-
-                Array of object Gids.
+                An array of strings identifying users. These can either be the
+                string "me", an email, or the gid of a user.
               items:
                 type: string
-                description: >-
-                  Gid of an object.
               example:
                 - '12345'
                 - '42563'
@@ -3135,8 +3119,10 @@ components:
             followers:
               type: array
               description: >-
-                *Create-Only* Array of user gids. In order to change followers on an
-                existing task use `addFollowers` and `removeFollowers`.
+                *Create-Only* An array of strings identifying users. These can
+                either be the string "me", an email, or the gid of a user. In
+                order to change followers on an existing task use `addFollowers`
+                and `removeFollowers`.
               items:
                 type: string
                 description: >-
@@ -3574,7 +3560,9 @@ components:
       type: object
       properties:
         followers:
-          description: The followers to add to the task.
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
           type: array
           items:
             type: string
@@ -3587,7 +3575,9 @@ components:
       type: object
       properties:
         followers:
-          description: The followers to remove from the task.
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
           type: array
           items:
             type: string
@@ -3772,6 +3762,9 @@ components:
         endpoints.
       properties:
         user:
+          description: >-
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
           type: string
           example: '12345'
     TeamRemoveUserRequest:
@@ -3780,6 +3773,9 @@ components:
         endpoints.
       properties:
         user:
+          description: >-
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
           type: string
           example: '12345'
     UserTaskListResponse:
@@ -3999,6 +3995,9 @@ components:
         endpoints.
       properties:
         user:
+          description: >-
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
           type: string
           example: '12345'
     WorkspaceRemoveUserRequest:
@@ -4007,6 +4006,9 @@ components:
         endpoints.
       properties:
         user:
+          description: >-
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
           type: string
           example: '12345'
     WorkspaceMembershipResponse:
@@ -8966,8 +8968,9 @@ paths:
         - name: user
           in: query
           description: >-
-            Globally unique identifier for the user. This parameter must be
-            used with the workspace parameter.
+            A string identifying a user. This can either be the string "me", an
+            email, or the gid of a user.
+            This parameter must be used with the workspace parameter.
           schema:
             type: string
           example: '512241'

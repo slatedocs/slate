@@ -2213,7 +2213,7 @@ integrations to create their own starting state on a portfolio.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
-|»» members<span class="param-type"> [string]</span>|Array of object Gids.|
+|»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -2568,7 +2568,7 @@ Returns the complete updated portfolio record.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
-|»» members<span class="param-type"> [string]</span>|Array of object Gids.|
+|»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -3080,7 +3080,7 @@ Returns the updated portfolio record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being added.|
 |» data<span class="param-type"> object</span>|none|
-|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -3152,7 +3152,7 @@ Returns the updated portfolio record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being removed.|
 |» data<span class="param-type"> object</span>|none|
-|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -3238,7 +3238,7 @@ Returns a list of portfolio memberships in compact representation. You must spec
 |---|---|
 |?portfolio<span class="param-type"> string</span>|The portfolio to filter results on.|
 |?workspace<span class="param-type"> string</span>|The workspace to filter results on.|
-|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -3367,7 +3367,7 @@ Returns the compact portfolio membership records for the portfolio.
 |Name|Description|
 |---|---|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
-|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -5276,7 +5276,7 @@ Returns the updated project record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being added.|
 |» data<span class="param-type"> object</span>|none|
-|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -5348,7 +5348,7 @@ Returns the updated project record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being removed.|
 |» data<span class="param-type"> object</span>|none|
-|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -5420,7 +5420,7 @@ Returns the updated project record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the followers being added.|
 |» data<span class="param-type"> object</span>|none|
-|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -5492,7 +5492,7 @@ Returns the updated project record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the followers being removed.|
 |» data<span class="param-type"> object</span>|none|
-|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -5635,7 +5635,7 @@ Returns the compact project membership records for the project.
 |Name|Description|
 |---|---|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
-|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -7578,7 +7578,7 @@ Returns the full record of the newly created tag.
 |» data<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
-|»» followers<span class="param-type"> [string]</span>|Array of object Gids.|
+|»» followers<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -8366,7 +8366,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» followers<span class="param-type"> [string]</span>|*Create-Only* Array of user gids. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
@@ -8899,7 +8899,7 @@ Returns the complete updated task record.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» followers<span class="param-type"> [string]</span>|*Create-Only* Array of user gids. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
@@ -9677,7 +9677,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» followers<span class="param-type"> [string]</span>|*Create-Only* Array of user gids. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
@@ -10712,7 +10712,7 @@ Requests to add/remove followers, if successful, will return the complete update
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The followers to add to the task.|
 |» data<span class="param-type"> object</span>|none|
-|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The followers to add to the task.|
+|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10786,7 +10786,7 @@ Removes each of the specified followers from the task if they are following. Ret
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The followers to remove from the task.|
 |» data<span class="param-type"> object</span>|none|
-|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|The followers to remove from the task.|
+|»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -11134,7 +11134,7 @@ Returns the compact records for all teams to which the given user is assigned.
 
 |Name|Description|
 |---|---|
-|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -11218,7 +11218,7 @@ The user making this call must be a member of the team in order to add others. T
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to add to the team.|
 |» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
-|»» user<span class="param-type"> string</span>|none|
+|»» user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -11281,7 +11281,7 @@ The user making this call must be a member of the team in order to remove themse
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to remove from the team.|
 |» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
-|»» user<span class="param-type"> string</span>|none|
+|»» user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -11430,7 +11430,7 @@ Returns compact team membership records.
 |Name|Description|
 |---|---|
 |?team<span class="param-type"> string</span>|Globally unique identifier for the team.|
-|?user<span class="param-type"> string</span>|Globally unique identifier for the user. This parameter must be used with the workspace parameter.|
+|?user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user. This parameter must be used with the workspace parameter.|
 |?workspace<span class="param-type"> string</span>|Globally unique identifier for the workspace. This parameter must be used with the user parameter.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -11566,7 +11566,7 @@ Returns the compact team membership records for the user.
 |Name|Description|
 |---|---|
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace.|
-|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -11811,7 +11811,7 @@ Results are sorted by user ID.
 
 |Name|Description|
 |---|---|
-|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -11867,7 +11867,7 @@ Results are given in order (The same order as Asana's sidebar).
 
 |Name|Description|
 |---|---|
-|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?resource_type<span class="param-type"> string</span><div class="param-required">required</div>|The resource type of favorites to be returned.|
@@ -12131,7 +12131,7 @@ Returns the full record for a user's task list.
 
 |Name|Description|
 |---|---|
-|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace in which to get the user task list.|
@@ -12774,7 +12774,7 @@ The user can be referenced by their globally unique user ID or their email addre
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to add to the workspace.|
 |» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
-|»» user<span class="param-type"> string</span>|none|
+|»» user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -12839,7 +12839,7 @@ Returns an empty data record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to remove from the workspace.|
 |» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
-|»» user<span class="param-type"> string</span>|none|
+|»» user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -13002,7 +13002,7 @@ Returns the compact workspace membership records for the user.
 
 |Name|Description|
 |---|---|
-|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -13069,7 +13069,7 @@ Returns the compact workspace membership records for the workspace.
 |Name|Description|
 |---|---|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
-|?user<span class="param-type"> string(email)</span>|The user to filter results on.|
+|?user<span class="param-type"> string</span>|A string identifying a user. This can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
