@@ -45,7 +45,7 @@ curl "https://cloudmc_endpoint/v2/environments" \
       "entryPoint": "sg1"
     },
     "allowExternalMembers": false,
-    "state": "SUCCESS",
+    "state": "PROVISIONED",
     "serviceConnection": {
       "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
       "name": "Compute - Québec"
@@ -66,7 +66,7 @@ Attributes | &nbsp;
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
-`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, SUCCESS, ERROR
+`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
 
@@ -135,7 +135,7 @@ Attributes | &nbsp;
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
-`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, SUCCESS, ERROR
+`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
 <!-------------------- CREATE ENVIRONMENT -------------------->
