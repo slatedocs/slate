@@ -8130,6 +8130,10 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "notes": "Mittens really likes the stuff from Humboldt.",
     "start_on": "2019-09-14",
     "assignee": "12345",
+    "custom_fields": {
+      "5678904321": "On Hold",
+      "4578152156": "Not Started"
+    },
     "followers": [
       "12345"
     ],
@@ -8162,42 +8166,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
       "name": "Greg Sanchez"
     },
     "created_at": "2012-02-22T02:06:58.147Z",
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        },
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true
-      }
-    ],
     "dependencies": [
       {
         "gid": "12345",
@@ -8267,6 +8235,42 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
+        },
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -8324,26 +8328,6 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» format<span class="param-type"> string</span>|The format of this custom field.|
-|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
@@ -8362,6 +8346,8 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» custom_fields<span class="param-type"> object</span>|Object of Custom Field gids to values.|
+|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
@@ -8374,9 +8360,6 @@ explicitly if you specify `projects` or a `parent` task instead.
 
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
-
-**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
-For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -8396,15 +8379,6 @@ The external field allows you to store app-specific metadata on tasks, including
 | assignee_status|later|
 | assignee_status|new|
 | assignee_status|inbox|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
-| format|currency|
-| format|percentage|
-| format|custom|
-| format|none|
-| custom_label_position|prefix|
-| custom_label_position|suffix|
 
 <h3 id="create-a-task-responses">Responses</h3>
 
@@ -8450,42 +8424,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
       "name": "Greg Sanchez"
     },
     "created_at": "2012-02-22T02:06:58.147Z",
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        },
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true
-      }
-    ],
     "dependencies": [
       {
         "gid": "12345",
@@ -8555,6 +8493,42 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
+        },
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -8653,6 +8627,10 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "notes": "Mittens really likes the stuff from Humboldt.",
     "start_on": "2019-09-14",
     "assignee": "12345",
+    "custom_fields": {
+      "5678904321": "On Hold",
+      "4578152156": "Not Started"
+    },
     "followers": [
       "12345"
     ],
@@ -8685,42 +8663,6 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
       "name": "Greg Sanchez"
     },
     "created_at": "2012-02-22T02:06:58.147Z",
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        },
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true
-      }
-    ],
     "dependencies": [
       {
         "gid": "12345",
@@ -8790,6 +8732,42 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
+        },
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -8849,26 +8827,6 @@ Returns the complete updated task record.
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» format<span class="param-type"> string</span>|The format of this custom field.|
-|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
@@ -8887,6 +8845,8 @@ Returns the complete updated task record.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» custom_fields<span class="param-type"> object</span>|Object of Custom Field gids to values.|
+|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
@@ -8900,9 +8860,6 @@ Returns the complete updated task record.
 
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
-
-**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
-For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -8922,15 +8879,6 @@ The external field allows you to store app-specific metadata on tasks, including
 | assignee_status|later|
 | assignee_status|new|
 | assignee_status|inbox|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
-| format|currency|
-| format|percentage|
-| format|custom|
-| format|none|
-| custom_label_position|prefix|
-| custom_label_position|suffix|
 
 <h3 id="update-a-task-responses">Responses</h3>
 
@@ -9435,6 +9383,10 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "notes": "Mittens really likes the stuff from Humboldt.",
     "start_on": "2019-09-14",
     "assignee": "12345",
+    "custom_fields": {
+      "5678904321": "On Hold",
+      "4578152156": "Not Started"
+    },
     "followers": [
       "12345"
     ],
@@ -9467,42 +9419,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
       "name": "Greg Sanchez"
     },
     "created_at": "2012-02-22T02:06:58.147Z",
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        },
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true
-      }
-    ],
     "dependencies": [
       {
         "gid": "12345",
@@ -9572,6 +9488,42 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
+        },
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -9623,26 +9575,6 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» format<span class="param-type"> string</span>|The format of this custom field.|
-|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
@@ -9661,6 +9593,8 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» custom_fields<span class="param-type"> object</span>|Object of Custom Field gids to values.|
+|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
@@ -9674,9 +9608,6 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
-
-**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
-For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -9696,15 +9627,6 @@ The external field allows you to store app-specific metadata on tasks, including
 | assignee_status|later|
 | assignee_status|new|
 | assignee_status|inbox|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
-| format|currency|
-| format|percentage|
-| format|custom|
-| format|none|
-| custom_label_position|prefix|
-| custom_label_position|suffix|
 
 <h3 id="create-a-subtask-responses">Responses</h3>
 
@@ -9763,42 +9685,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
       "name": "Greg Sanchez"
     },
     "created_at": "2012-02-22T02:06:58.147Z",
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        },
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true
-      }
-    ],
     "dependencies": [
       {
         "gid": "12345",
@@ -9868,6 +9754,42 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
+        },
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value",
+        "description": "Development team priority",
+        "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "is_global_to_workspace": true,
+        "has_notifications_enabled": true
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -15077,42 +14999,6 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
     "name": "Greg Sanchez"
   },
   "created_at": "2012-02-22T02:06:58.147Z",
-  "custom_fields": [
-    {
-      "gid": "12345",
-      "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
-      "enum_options": [
-        {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
-      "enum_value": {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      },
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value",
-      "description": "Development team priority",
-      "precision": 2,
-      "format": "custom",
-      "currency_code": "EUR",
-      "custom_label": "gold pieces",
-      "custom_label_position": "suffix",
-      "is_global_to_workspace": true,
-      "has_notifications_enabled": true
-    }
-  ],
   "dependencies": [
     {
       "gid": "12345",
@@ -15182,6 +15068,42 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
+  "custom_fields": [
+    {
+      "gid": "12345",
+      "resource_type": "custom_field",
+      "name": "Status",
+      "resource_subtype": "text",
+      "type": "text",
+      "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
+        }
+      ],
+      "enum_value": {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "name": "Low",
+        "enabled": true,
+        "color": "blue"
+      },
+      "enabled": true,
+      "number_value": 5.2,
+      "text_value": "Some Value",
+      "description": "Development team priority",
+      "precision": 2,
+      "format": "custom",
+      "currency_code": "EUR",
+      "custom_label": "gold pieces",
+      "custom_label_position": "suffix",
+      "is_global_to_workspace": true,
+      "has_notifications_enabled": true
+    }
+  ],
   "followers": [
     {
       "gid": "12345",
@@ -15233,35 +15155,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the custom field.|
-|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
-|» format<span class="param-type"> string</span>|The format of this custom field.|
-|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -15310,6 +15203,35 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the task. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|» format<span class="param-type"> string</span>|The format of this custom field.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |followers<span class="param-type"> [object]</span>|Array of users following this task.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -15340,6 +15262,14 @@ The *task* is the basic object around which many operations in Asana are centere
 |assignee_status|later|
 |assignee_status|new|
 |assignee_status|inbox|
+|resource_subtype|default_task|
+|resource_subtype|milestone|
+|resource_subtype|section|
+|resource_subtype|approval|
+|approval_status|pending|
+|approval_status|approved|
+|approval_status|rejected|
+|approval_status|changes_requested|
 |resource_subtype|text|
 |resource_subtype|enum|
 |resource_subtype|number|
@@ -15352,14 +15282,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |format|none|
 |custom_label_position|prefix|
 |custom_label_position|suffix|
-|resource_subtype|default_task|
-|resource_subtype|milestone|
-|resource_subtype|section|
-|resource_subtype|approval|
-|approval_status|pending|
-|approval_status|approved|
-|approval_status|rejected|
-|approval_status|changes_requested|
 
 </section><hr>
 <section>

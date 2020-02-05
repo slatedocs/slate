@@ -3055,6 +3055,21 @@ components:
               nullable: true
               allOf:
                 - $ref: '#/components/schemas/UserCompact'
+            custom_fields:
+              description: >-
+                Array of custom field values applied to the task. These
+                represent the custom field values recorded on this project for a
+                particular custom field. For example, these custom field values
+                will contain an `enum_value` property for custom fields of type
+                `enum`, a `text_value` property for custom fields of type
+                `text`, and so on. Please note that the `gid` returned on each
+                custom field value *is identical* to the `gid` of the custom field,
+                which allows referencing the custom field metadata through the
+                `/custom_fields/custom_field-gid` endpoint.
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomFieldResponse'
+              readOnly: true
             followers:
               description: Array of users following this task.
               type: array
@@ -3116,6 +3131,16 @@ components:
                 Gid of a user.
               example: '12345'
               nullable: true
+            custom_fields:
+              description: Object of Custom Field gids to values.
+              type: object
+              additionalProperties:
+                type: string
+                description: >-
+                  "{custom_field_gid}" => Value (Can be text, number, etc.)
+              example:
+                5678904321: On Hold
+                4578152156: Not Started
             followers:
               type: array
               description: >-
@@ -3209,21 +3234,6 @@ components:
               format: date-time
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
-            custom_fields:
-              description: >-
-                Array of custom field values applied to the project. These
-                represent the custom field values recorded on this project for a
-                particular custom field. For example, these custom field values
-                will contain an `enum_value` property for custom fields of type
-                `enum`, a `text_value` property for custom fields of type
-                `text`, and so on. Please note that the `gid` returned on each
-                custom field value *is identical* to the `gid` of the custom field,
-                which allows referencing the custom field metadata through the
-                `/custom_fields/custom_field-gid` endpoint.
-              type: array
-              items:
-                $ref: '#/components/schemas/CustomFieldResponse'
-              readOnly: true
             dependencies:
               description: >-
                 [Opt
