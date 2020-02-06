@@ -22,6 +22,7 @@ Tauros provides a simple and practical REST API to help you to automatically per
 
 Before making API calls consider the following:
 
+* Requires enable developer mode on your profile to create Api Key
 * All requests use the `application/json` content type and go over `https`.
 * The base url is `https://api.tauros.io/api/v1`.
 * All requests are `GET` and `POST` requests methods and responses come in a default response json object with the result in the `data` field.
@@ -419,7 +420,9 @@ This API call is used to retrieve your wallets balances, including their deposit
 
 * `pending`: Funds that will be added in your account due to an incoming transfer.
 
-* `frozen`: Frozen funds due to a limit order you have previously placed.
+* `frozen`: Frozen funds due to withdrawal in confirmation 
+
+* `In_orders`: In_orders funds due to a limit order you have previously placed.
 
 
 ### HTTP Request
@@ -1050,11 +1053,11 @@ import io from 'socket.io-client';
 // or
 let io = require('socket.io-client');
 
-const JWT = 'YOUR_JSON_WEB_TOKEN';
+const ApiKey = 'YOUR_API_KEY';
 
 
 // connect to your websocket
-const socket = io.connect(`wss://private-ws.coinbtr.com?token=${JWT}`);
+const socket = io.connect(`wss://private-ws.coinbtr.com?token=${ApiKey}`);
 
 socket.on('connect', () => {
   console.log("connected");
@@ -1076,7 +1079,7 @@ Tauros uses Web-Sockets in order to notify real-time events that occur in your a
 * `private-ws.coinbtr.com` for production environment.
 * `private-ws-staging.coinbtr.com` for staging environment.
 
-We recommend to use [socket.io](https://socket.io) if using JavaScript. Installation:
+We recommend to use [socket.io] client implemetation (https://socket.io) if using JavaScript. Installation:
 
 If using yarn:
 
@@ -1301,3 +1304,63 @@ The `data` field contains an array with the last trades in the following form:
 | v | String | Order value. |
 | s | Integer | Taker side. 1 indicates **BUY**, 0 indicates **SELL**. |
 | t | Integer | UTC timestamp with milliseconds precision. |
+
+#Webhooks
+
+## Notifications
+
+> Messages on this channel look like this:
+
+```javascript
+// Notification standard:
+{
+  "title": "NOTIFICATION_TITLE",
+  "description": "NOTIFICATION_DESCRIPTION"
+  "type": 'TYPE_OF_NOTIFICATION',
+  "date": '2019-02-20T03:05:56.810445Z',
+  "object": OBJECT // Order, Trade or Transfer object
+}
+```
+
+Notifications are sent if some of the following events occur.
+
+Types of notifications:
+
+* Order placed (`OP`)
+* Order filled (`OF`)
+* Order closed (`OC`) ([by the user](#close-an-open-order))
+* New trade (`TD`)
+* New deposit or withdrawal (`TR`)
+
+The `order`, `trade` or `transfer` object is included in the `object` field.
+
+```javascript
+// Order filled  Notification example
+{
+  "title": "Order filled",
+  "description": "Your BUY order has been partially filled"
+  "type": 'OF',
+  "date": '2019-02-20T03:05:56.810445Z',
+  "object": {
+    "amount": "0.0005",
+    "amount_paid": "100",
+    "amount_received": "0.0004995",
+    "closed_at": null,
+    "created_at": "2019-09-23 21:27:06.083978+00:00",
+    "fee_amount_paid": "0.5",
+    "fee_decimal": "0.00100000",
+    "fee_percent": "0.10000000",
+    "filled": "0.0005",
+    "id": 107487,
+    "initial_amount": "0.0010",
+    "initial_value": "200",
+    "is_open": true,
+    "left_coin": "BTC",
+    "market": "BTC-MXN",
+    "price": "200000.00",
+    "right_coin": "MXN",
+    "side": "BUY",
+    "value": "100"
+  }
+}
+```
