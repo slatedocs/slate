@@ -1307,6 +1307,7 @@ The `data` field contains an array with the last trades in the following form:
 
 #Webhooks
 ## What is a webhook
+
 Is a method of augmenting or altering the behavior of a web page, or web application, with custom callbacks. These callbacks may be maintained, modified, and managed by third-party users and developers who may not necessarily be affiliated with the originating website or application.
 
 To configure a webhook you must have validated the developer mode, and have the URL where you want us to send the registered information. If you don't have a callback URL, contact your developer or contact an expert to configure it.
