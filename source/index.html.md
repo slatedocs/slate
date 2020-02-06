@@ -22,7 +22,7 @@ Tauros provides a simple and practical REST API to help you to automatically per
 
 Before making API calls consider the following:
 
-* Requires enable developer mode on your profile to create Api Key
+* Enable the developer mode in your profile to create an Api Key
 * All requests use the `application/json` content type and go over `https`.
 * The base url is `https://api.tauros.io/api/v1`.
 * All requests are `GET` and `POST` requests methods and responses come in a default response json object with the result in the `data` field.
@@ -81,7 +81,7 @@ API key can be obtained by log in to tauros if not 2FA enabled. But withdrawal p
 }
 ``` -->
 
-## Login with 2FA deactivated
+<!-- ## Login with 2FA deactivated
 ```shell
 curl -X POST https://api.tauros.io/api/v2/auth/signin/ \
 -H 'Content-Type: application/json' \
@@ -162,7 +162,7 @@ Json Web Token (JWT) is configured to expire in 30 minutes, after that time, the
       "two_factor":true
     }
 }
-```
+```-->
 
 # Currencies [PUBLIC]
 <aside class="notice">
@@ -243,7 +243,7 @@ This endpoint returns all available currencies in Tauros, cryptocurrencies as we
 None
 
 # Wallet Operations
-<!-- ====================================================================================================== -->
+
 
 ## Get Deposit Address
 
@@ -1079,7 +1079,7 @@ Tauros uses Web-Sockets in order to notify real-time events that occur in your a
 * `private-ws.coinbtr.com` for production environment.
 * `private-ws-staging.coinbtr.com` for staging environment.
 
-We recommend to use [socket.io] client implemetation (https://socket.io) if using JavaScript. Installation:
+You need to use a [socket.io] client implementation (https://socket.io) if using JavaScript. Installation:
 
 If using yarn:
 
@@ -1306,6 +1306,11 @@ The `data` field contains an array with the last trades in the following form:
 | t | Integer | UTC timestamp with milliseconds precision. |
 
 #Webhooks
+## What is a webhook
+
+Is a method of augmenting or altering the behavior of a web page, or web application, with custom callbacks. These callbacks may be maintained, modified, and managed by third-party users and developers who may not necessarily be affiliated with the originating website or application.
+
+To configure a webhook you must have validated the developer mode, and have the URL where you want us to send the registered information. If you don't have a callback URL, contact your developer or contact an expert to configure it.
 
 ## Notifications
 
