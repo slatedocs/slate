@@ -98,6 +98,28 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
   </tbody>
 </table>
 
+<h3 id="php-laravel-code-configuration">Code Based Configuration</h3>
+
+If for any reason you can't use environment based configuration, or it'd simply
+be easier to manage Scout in code, you can configure Scout with a Laravel
+config file.
+
+First create the skeleton configuration file at `config/scout_apm.php`:
+
+<pre>
+php artisan vendor:publish --provider="Scoutapm\Laravel\Providers\ScoutApmServiceProvider"
+</pre>
+
+Then add any keys you want to override to the bottom of the file, following the template.
+The keys should be in lower case, with no prefixed `SCOUT_`. Any keys not
+mentioned will continue to be read from the environment.
+
+<pre>
+$config['name'] = 'Overriden Name';
+</pre>
+
+Finally, deploy and remember update any cached configs.
+
 <h3 id="php-middleware">Middleware</h3>
 
 Scout automatically inserts its middleware into your application on Laravel startup.
