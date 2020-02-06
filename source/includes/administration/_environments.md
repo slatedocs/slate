@@ -11,7 +11,7 @@ Environments allow you to manage resources of a specific service and to manage y
 
 ```shell
 # Retrieve visible environments
-curl "https://cloudmc_endpoint/v1/environments" \
+curl "https://cloudmc_endpoint/v2/environments" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -22,6 +22,21 @@ curl "https://cloudmc_endpoint/v1/environments" \
     "id": "1ee5cd43-8395-4cd5-a20f-0f1e83b7f8bd",
     "name": "cheyenne_mountain",
     "description": "Environment for base at Cheyenne Mountain",
+    "metadata": {
+      "mode": "project"
+    },
+    "defaultRole": {
+      "creationDate": "2020-01-02T16:04:27.000Z",
+      "version": 1,
+      "isSystem": false,
+      "isDefault": false,
+      "deleted": false,
+      "name": "Owner",
+      "alias": "owner",
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "isFixed": true,
+      "defaultScope": "ENV"
+    },
     "membership": "MANY_USERS",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "organization": {
@@ -29,19 +44,12 @@ curl "https://cloudmc_endpoint/v1/environments" \
       "name": "sg1",
       "entryPoint": "sg1"
     },
+    "allowExternalMembers": false,
+    "state": "PROVISIONED",
     "serviceConnection": {
       "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
       "name": "Compute - Québec"
     },
-    "roles": [{
-      "id": "951b768b-e91c-4d20-8b52-d4a2ab5a538a",
-      "name": "Environment Admin",
-      "isDefault": true,
-      "users": [{
-        "id": "9f84a6ce-7be1-4a08-a25b-edc6e57fb7e3",
-        "name": "jack_oneill"
-      }]
-    }]
   }]
 }
 ```
@@ -53,11 +61,13 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the environment
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
+`metadata`<br/>*object* | Additional information about the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
+`allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
+`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
 
 
@@ -78,33 +88,37 @@ curl "https://cloudmc_endpoint/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6de
 ```json
 {
   "data": {
-    "id": "487a2745-bb8a-44bc-adb1-e3b048f6def2",
-    "name": "galactica",
-    "description": "Environment for the Galactica",
+    "id": "1ee5cd43-8395-4cd5-a20f-0f1e83b7f8bd",
+    "name": "cheyenne_mountain",
+    "description": "Environment for base at Cheyenne Mountain",
+    "metadata": {
+      "mode": "project"
+    },
+    "defaultRole": {
+      "creationDate": "2020-01-02T16:04:27.000Z",
+      "version": 1,
+      "isSystem": false,
+      "isDefault": false,
+      "deleted": false,
+      "name": "Owner",
+      "alias": "owner",
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "isFixed": true,
+      "defaultScope": "ENV"
+    },
     "membership": "MANY_USERS",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "organization": {
-      "id": "a3340a89-8f60-407d-8a49-f5cfe81eef8f",
-      "name": "kobol",
-      "entryPoint": "kobol"
+      "id": "a9f93785-0545-4876-8241-3b19b9a86721",
+      "name": "sg1",
+      "entryPoint": "sg1"
     },
+    "allowExternalMembers": false,
+    "state": "PROVISIONING",
     "serviceConnection": {
       "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
       "name": "Compute - Québec"
     },
-    "users": [{
-      "id": "6e84ab70-4c62-4db1-bbd8-343636a34647",
-      "userName": "starbuck"
-    }],
-    "roles": [{
-      "id": "b04b8a7c-6e89-4dba-9734-74d9f1b7be04",
-      "name": "Environment Admin",
-      "isDefault": true,
-      "users": [{
-        "id": "6e84ab70-4c62-4db1-bbd8-343636a34647",
-        "name": "starbuck"
-      }]
-    }]
   }
 }
 ```
@@ -116,17 +130,21 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the environment
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
+`metadata`<br/>*object* | Additional information about the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
-`users`<br/>*Array[[User](#administration-users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
+`allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
+`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
 <!-------------------- CREATE ENVIRONMENT -------------------->
 
 
 ### Create environment
+
+Environments are created asynchronously to the underlying service. When creating an environment any underlying actions performed by the plugin is done asynchronously to the creation of the model, and its progress is reflected in the state of the environment. 
+
 
 `POST /environments`
 
