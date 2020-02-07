@@ -64,7 +64,6 @@ POST /corporate-actions/dividends HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-X-GOJI-REQUEST-ID: 49801f79-5347-4db5-a2b9-59e6cf3e0a22
 
 {
   "id": "627e27b2-75be-4673-ba5a-7f765a8ace89",
@@ -181,7 +180,6 @@ GET /corporate-actions/dividends/627e27b2-75be-4673-ba5a-7f765a8ace89 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
 ```
 
 

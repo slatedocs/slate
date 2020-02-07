@@ -63,7 +63,6 @@ POST /transfers/batch HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-X-GOJI-REQUEST-ID: 49801f79-5347-4db5-a2b9-59e6cf3e0a22
 
 {
   "batchId": "4d8af0f8-26a1-4e06-bb1e-8225d1e36e2b",
@@ -188,7 +187,6 @@ GET /transfers/batch/4d8af0f8-26a1-4e06-bb1e-8225d1e36e2b HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
 ```
 
 
