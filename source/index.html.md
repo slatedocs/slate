@@ -55,16 +55,16 @@ You must replace <code>{USER_TOKEN}</code> with your personal API key.
 
 ```shell
 curl -X POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users/get_token \
-  --data 'email={email}' \
-  --data 'password={password}'
+  --data 'email=<EMAIL>' \
+  --data 'password=<PASSWORD>'
 ```
 
 ```ruby
 require 'rest-client'
 
 payload = {
-  'email': {EMAIL},
-  'password': {PASSWORD}
+  'email': <EMAIL>,
+  'password': <PASSWORD>
 }
 
 url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users/get_token'
@@ -90,8 +90,8 @@ Create a user token with a POST request to the endpoint.
 
 Parameter | Type | Description
 --------- | ---- | -----------
-email | String | Email of the user account
-password | String | Password of the user account
+EMAIL | String | Email of the user account
+PASSWORD | String | Password of the user account
 
 # Gateways
 
@@ -105,6 +105,7 @@ location | string | The address of the location of the Gateway
 mac_address | string | The mac address of the Gateway
 ip_address | string | The ip address of the Gateway
 status | string | The connectivity status of the Gateway
+devices | array | The associated devices of the Gateway
 created_at | datetime | Datetime when the Gateway was created
 updated_at | datetime | Datetime when the Gateway was last updated
 
@@ -139,9 +140,7 @@ RestClient.get(url, headers: headers)
     "ip_address": "192.0.1.234",
     "status": "online",
     "created_at": "2020-01-01T12:34:56.789Z",
-    "updated_at": "2020-01-01T12:34:56.789Z",
-    "auth_token": "{USER_TOKEN}",
-    "hardware_uuid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+    "updated_at": "2020-01-01T12:34:56.789Z"
   }
 ]
 ```
@@ -171,13 +170,11 @@ curl -X POST \
   "ip_address": "192.0.1.234",
   "status": "online",
   "created_at": "2020-01-01T12:34:56.789Z",
-  "updated_at": "2020-01-01T12:34:56.789Z",
-  "auth_token": "{USER_TOKEN}",
-  "hardware_uuid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+  "updated_at": "2020-01-01T12:34:56.789Z"
 }
 ```
 
-This endpoint retrieves a specific gateway.
+This endpoint retrieves a specific gateway and its associated devices.
 
 ### HTTP Request
 
@@ -188,3 +185,18 @@ This endpoint retrieves a specific gateway.
 Parameter | Description
 --------- | -----------
 ID | The ID of the gateway to retrieve
+
+# Devices
+
+## Device Object
+
+Parameter | Type | Description
+--------- | ---- | -----------
+id | uuid | The ID of the Device
+device_type_id | integer | The ID of the Device Type
+gateway_id | string | The ID of the associated Gateway
+manufacturer | string | The manufacturer of the Device
+name | string | The name of the Device
+ieee | string | The IEEE Standard Device Number of the Device
+created_at | datetime | Datetime when the Device was created
+updated_at | datetime | Datetime when the Device was last updated
