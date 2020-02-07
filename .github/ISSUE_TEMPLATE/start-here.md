@@ -1,3 +1,12 @@
+---
+name: Start Here
+about: Help improve Slate!
+title: "✍️ TODO"
+labels: ''
+assignees: ''
+
+---
+
 <!--
 ⚠️  READ THIS BEFORE SUBMITTING ⚠️
 
