@@ -333,28 +333,31 @@ curl -X POST \
 
 # Request example:
 ```
-Change to the latest version of a chart
 ```json
-{ "upgradeChart":  "stable/aerospike" }
+#Change to the latest version of a chart
+{
+  "upgradeChart":  "stable/aerospike" 
+}
 ```
 
-Change to a specific version of a chart
 ```json
+#Change to a specific version of a chart
 {
   "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
 }
 ```
 
-Change the values for the latest version
 ```json
+#Change the values for the latest version
 {
   "upgradeChart" : "stable/aerospike",
   "values": "---\n\"replicaCount\": 3\n"
 }
 ```
 
-# The above command returns JSON structured like this:
+
 ```json
+#The above command returns JSON structured like this:
 {
   "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
   "taskStatus": "SUCCESS"
