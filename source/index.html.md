@@ -9,7 +9,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-  - <span>&copy; 2019 Goji Administration Services Ltd.</span>
+  - <span>&copy; 2020 Goji Administration Services Ltd.</span>
 
 includes:
   - quickstart-settlement
