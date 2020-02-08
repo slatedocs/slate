@@ -92,6 +92,7 @@ includes:
   - azure
   - azure/compute
   - azure/instances
+  - azure/disks
   - masterportal
   - masterportal/applications
 
