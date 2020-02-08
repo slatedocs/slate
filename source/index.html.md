@@ -10,6 +10,7 @@ includes:
   - gateways
   - devices
   - commands
+  - gateway_events
 
 search: true
 ---
