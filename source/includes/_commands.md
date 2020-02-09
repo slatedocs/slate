@@ -27,18 +27,18 @@ updated_at | datetime | Datetime when the Command was last updated
 
 ```shell
 curl -X POST \
-  -u {API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/lock
+  -u ${API_KEY}: \
+  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/lock
 ```
 
 ```ruby
 require 'rest-client'
 
 headers = {
-  'Authorization': 'Token {API_KEY}'
+  'Authorization': 'Token ${API_KEY}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/lock'
+url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/lock'
 
 RestClient.post(url, {}, headers: headers)
 ```
@@ -63,31 +63,30 @@ This endpoint issues a "lock" action to a door lock.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/lock`
+`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/lock`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-GATEWAY_ID | The ID of the associated gateway
 DEVICE_ID | The ID of the device you're commanding
 
 ## Unlock a Door
 
 ```shell
 curl -X POST \
-  -u {API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/unlock
+  -u ${API_KEY}: \
+  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/unlock
 ```
 
 ```ruby
 require 'rest-client'
 
 headers = {
-  'Authorization': 'Token {API_KEY}'
+  'Authorization': 'Token ${API_KEY}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/unlock'
+url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/unlock'
 
 RestClient.post(url, {}, headers: headers)
 ```
@@ -112,35 +111,35 @@ This endpoint issues a "unlock" action to a door lock.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/unlock`
+`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/unlock`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-GATEWAY_ID | The ID of the associated gateway
 DEVICE_ID | The ID of the device you're commanding
 
 ## Set a Pin Code
 
 ```shell
 curl -X POST \
-  -u {API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/set_code
+  -u ${API_KEY}: \
+  -H "Content-Type: application/json" \
+  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code
 ```
 
 ```ruby
 require 'rest-client'
 
 headers = {
-  'Authorization': 'Token {API_KEY}'
+  'Authorization': 'Token ${API_KEY}'
 }
 
 payload = {
   'code': '1111'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/set_code'
+url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code'
 
 RestClient.post(url, payload, headers: headers)
 ```
@@ -165,33 +164,41 @@ RestClient.post(url, payload, headers: headers)
 
 This endpoint issues a "set_code" action to a door lock.
 
+
+
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/set_code`
+`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-GATEWAY_ID | The ID of the associated gateway
 DEVICE_ID | The ID of the device you're commanding
+
+#### Query Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+code | String | Required | 4 to 8 digit number code, leading '0' is okay
+user_id | integer | Optional | ID of Code slot to be programmed in, between 1 - 10
 
 ## Clear All Pin Codes
 
 ```shell
 curl -X POST \
-  -u {API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/clear_all_codes
+  -u ${API_KEY}: \
+  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/clear_all_codes
 ```
 
 ```ruby
 require 'rest-client'
 
 headers = {
-  'Authorization': 'Token {API_KEY}'
+  'Authorization': 'Token ${API_KEY}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/clear_all_codes'
+url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/clear_all_codes'
 
 RestClient.post(url, {}, headers: headers)
 ```
@@ -216,11 +223,10 @@ This endpoint issues a "clear_all_codes" action to a door lock.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/<DEVICE_ID>/clear_all_codes`
+`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/clear_all_codes`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-GATEWAY_ID | The ID of the associated gateway
 DEVICE_ID | The ID of the device you're commanding

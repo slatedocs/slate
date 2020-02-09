@@ -24,7 +24,7 @@ App.connect_server = function() {
   const WebSocket = require('ws');
   App.ws = new WebSocket('ws://ec2-54-89-135-191.compute-1.amazonaws.com:8080/cable', ["actioncable-v1-json", "actioncable-unsupported"]);
 
-  App.param = {channel: "GatewayEventChannel", gateway_id: "<GATEWAY_ID>"};
+  App.param = {channel: "GatewayEventChannel", gateway_id: "${GATEWAY_ID}"};
 
   App.ws.on('open', function open() {
     data = {
