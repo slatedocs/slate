@@ -18,7 +18,8 @@ devices | array | The associated devices of the Gateway
 
 ```shell
 curl -X GET http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways \
-  -H "Authorization: Token {API_KEY}"
+  -u {API_KEY}:
+  -u {API_KEY}:
 ```
 
 ```ruby
@@ -60,7 +61,7 @@ This endpoint retrieves all gateways.
 
 ```shell
 curl -X GET \
-  -H "Authorization: Token {API_KEY}" \
+  -u {API_KEY}: \
   http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>
 ```
 
@@ -119,8 +120,8 @@ GATEWAY_ID | The ID of the gateway to retrieve
 
 ```shell
 curl -X POST \
-  -H "Authorization: Token {API_KEY}" \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/add_new_devices
+  -u {API_KEY}: \
+  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/pair_devices
 ```
 
 ```ruby
@@ -130,7 +131,7 @@ headers = {
   'Authorization': 'Token {API_KEY}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/add_new_devices'
+url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/pair_devices'
 
 RestClient.post(url, headers: headers)
 ```
@@ -160,7 +161,7 @@ Once you issue the request, the Gateway will transition into a `pairing` status.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/add_new_devices`
+`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/pair_devices`
 
 ### URL Parameters
 
