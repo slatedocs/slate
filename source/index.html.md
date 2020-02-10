@@ -26,7 +26,8 @@ SynBioHub includes two projects:
 * An [open source software project](http://github.com/SynBioHub) providing a Web interface for the storing and publishing of synthetic biology designs.
 * A public instance of the aforementioned software project at [synbiohub.org](http://synbiohub.org), allowing users to upload and share designs.
 
-For those familiar with the SBOL Stack, SynBioHub incorporates and extends its functionality.  An SBOL Stack installation is not required for SynBioHub.
+For those familiar with the 
+ Stack, SynBioHub incorporates and extends its functionality.  An SBOL Stack installation is not required for SynBioHub.
 
 
 What can SynBioHub be used for?
@@ -69,49 +70,122 @@ Web Design
 
 # Installation
 
-The recommended way to install SynBioHub is via the Docker image.
+## From Prebuilt Image
 
-SynBioHub has both JavaScript (node.js) and Java components.
+### Install Docker
 
-Prequisites:
+First, install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
-* Linux (only tested with Ubuntu 18.04.01) or macOS
-* A JDK
-* Apache Maven
-* node.js >= 6.10
-* OpenLink Virtuoso 7.x.x
-* rapper (apt install `raptor2-utils`)
-* jq (apt install `jq`)
+Ensure that the Docker daemon is running on your system before continuing. On Mac and Windows, a small whale icon in the system tray indicates Docker is running.
 
-Ubuntu 18.04.01
+On Ubuntu, start docker using: 
 
-1. Install Virtuoso 7 from source at https://github.com/openlink/virtuoso-opensource
+```systemctl start docker```
 
-* Switch to the branch stable/7 before installing.
-* Follow the README on installing virtuoso from source. This involves installing all the dependencies and running build commands.
-* Currently, Virtuoso does not support versions of OpenSSL 1.1.0 and above, or versions of OpenSSL below 1.0.0. When installing the dependency, build from a binary between those versions from https://www.openssl.org/source/.
+### Starting a SynBioHub Instance
 
-2. Set up the Node.js repository
-* Download the Node setup script `curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -`
-* Update your package repositories `apt update`
-3. Install the necessary packages `apt install default-jdk maven raptor2-utils nodejs jq build-essential python`
-4. Clone the SynBioHub repository `git clone https://github.com/SynBioHub/synbiohub`
-5. Change to the SynBioHub directory `cd synbiohub`
-6. Build the Java components with Maven `cd java && mvn package`
-7. Return to the root directory and install the Node dependencies with yarn `cd ../ && yarn install` Make sure that yarn is being used, not 'cmdtest'.
-8. Install nodemon and forever with `npm install nodemon -g && npm install forever -g`
-9. Start virtuoso process `virtuoso-t +configfile /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini -f`
-10. Add SPARQL update rights to the dba user in virtuoso.
+First, pull the docker-compose configuration:: 
 
-* Visit localhost:8890, click conductor on the left hand side, and login with user name dba and password dba.
-* Visit system admin -> user accounts in the menu at the top.
-* Find the accound labled dba and edit.
-* Add SPARQL_UPDATE to roles using the menu at the bottom.
-* If no dba account exists, add one, then add update rights.
+```git clone https://github.com/synbiohub/synbiohub-docker```
 
-11. Start the SynBioHub process `npm start` or npm `run-script dev`
+Then, start SynBioHub with: 
 
- 
+```docker-compose --file ./synbiohub-docker/docker-compose.yml up```
+
+ If you would like to start SynBioHub with [SBOLExplorer](https://github.com/SynBioDex/SBOLExplorer) use the following commands instead: 
+
+
+```sysctl -w vm.max_map_count=262144```
+
+```docker-compose --file ./synbiohub-docker/docker-compose.yml --file ./synbiohub-docker/docker-compose.explorer.yml up``
+
+### Configuring
+
+In a web broswer, visit 
+
+``` http://localhost:7777/ ```
+
+On first startup, you will be taken to the [SynBioHub Setup Page](http://wiki.synbiohub.org/wiki/SynBioHub_Setup_Page), which enables basic setup of the site. After first setup, the [Admin Portal](http://wiki.synbiohub.org/wiki/Admin_Portal) will allow admin users to update their site configuration. 
+
+##### SendGrid email setup
+In order to enable SynBioHub to send account-related emails, you need a [SendGrid](https://sendgrid.com/) account and API key. Once you have created your account, you should click "Settings" in the left bar, then "API Keys". On the resulting page, click the "Create API Key" button in the upper-right corner, and give your new API key a name. You should see the key on the next page. Copy the key and paste it into the "SendGrid API Key" in the Mail page on the SynBioHub admin dashboard. Save the API key in SynBioHub and you are ready to begin sending email. 
+
+### Updating
+
+To update a container, pull the new version and start it. 
+
+```cd synbiohub-docker```
+
+``` git pull ```
+
+``` cd .. ```
+
+``` ## if you are not running SBOL Explorer ```
+
+``` docker-compose --file synbiohub-docker/docker-compose.yml pull synbiohub ```
+
+```docker-compose --file synbiohub-docker/docker-compose.yml up ```
+
+``` ## If you are running SBOL Explorer: ```
+
+``` docker-compose --file synbiohub-docker/docker-compose.yml --file synbiohub-docker/docker-compose.explorer.yml pull synbiohub ```
+
+``` docker-compose --file synbiohub-docker/docker-compose.yml --file synbiohub-docker/docker-compose.explorer.yml up ```
+
+###### PERSISTENT LOGS UPDATE
+
+If you are updating from a version earlier than 1.5.2, then you must execute the following command to setup persistent log files: 
+
+```docker exec -it synbiohub-docker_synbiohub_1 mkdir /mnt/data/logs ```
+
+#### If you are updating from a version of SynBioHub earlier than 1.3.0 to 1.3.0 or later, you must execute the following steps to persist your data between instances! ####
+
+``` docker exec synbiohub cp /opt/synbiohub/synbiohub.sqlite /mnt/data/synbiohub.sqlite ```
+
+``` docker exec synbiohub cp -R /opt/synbiohub/uploads /mnt/data/uploads ```
+
+``` docker exec synbiohub chown synbiohub /mnt/data/synbiohub.sqlite ```
+
+``` docker exec synbiohub chgrp synbiohub /mnt/data/synbiohub.sqlite ```
+
+``` docker exec synbiohub chown -R synbiohub /mnt/data/uploads ```
+
+``` docker exec synbiohub chgrp -R synbiohub /mnt/data/uploads ```
+
+To update to the latest version of SynBioHub, first stop and remove the container: 
+
+``` docker stop synbiohub ```
+
+``` docker rm synbiohub ```
+
+Then pull the latest version: 
+
+``` docker pull synbiohub/synbiohub:1.3.0 ```
+
+Finally, run a new container with the latest image: 
+
+``` docker run -v synbiohub:/mnt -p 7777:7777 --name synbiohub -d synbiohub/synbiohub:1.3.0 ```
+
+## From Source
+
+Follow the instructions on the [GitHub README](https://github.com/synbiohub/synbiohub) to install SynBioHub locally on your system. If you would like SynBioHub to run as a service, you can enable Virtuoso using systemd or open a virtual terminal using tmux or GNU screen and run 
+
+``` sudo /usr/local/bin/virtuoso-t +configfile $YOUR_CONFIG_FILE ```
+
+ You should also run SynBioHub as a system service or using a virtual terminal and the command
+
+``` npm start ```
+
+If you are doing development work, you can start SynBioHub with the command 
+
+``` npm run-script dev ```
+
+which will restart the application with any change to the JavaScript source. 
+
+## Publishing Instance
+
+Nginx is used for the [reference instance](https://synbiohub.org/). [NGINX configuration instructions](http://wiki.synbiohub.org/wiki/NGINX_configuration_instructions) 
+
 
 # Documentation
 
@@ -233,6 +307,27 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections`
 ```
+
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/bsu/bsu_collection/1/subcollections'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+
 Note that the X-authorization header is not needed for public collections, but it is required for private collections.
 
 ### Returns all Collections that are not members of any other Collection
@@ -252,6 +347,27 @@ response = requests.get(
     headers={'Accept': 'text/plain'},
 )
 ```
+
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/igem/igem_collection/1/subCollections'
+
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 Note that the X-authorization header is optional, but if provided, it will also return private root collections for the logged in user.
 
 ### Perform a search and return count of search results
@@ -275,6 +391,25 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'`
 ```
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 Note that the X-authorization header is optional, but if provided, the search count will also include private objects for the logged in user.
 
 
@@ -301,6 +436,25 @@ print(response.status_code)
 print(response.content)
 ```
 
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/Collection/Count'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 Note that you can replace `<ObjectType>` with any object type, such as `ComponentDefinition`, `SequenceAnnotation`, etc.
 
 ### Perform a SPARQL query
@@ -324,6 +478,25 @@ response = requests.get(
 print(response.status_code)
 
 print(response.json())
+```
+
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
 ```
 
 Returns the results of the SPARQL query in JSON format. 
@@ -356,6 +529,25 @@ print(response.content)
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download -O --compressed
 ```
 
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 
 ### Returns SBOL for the object with the specified URI
 
@@ -378,7 +570,25 @@ response = requests.get(
 
 print(response.status_code)
 print(response.content)
+```
 
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/sbol'
+
+const otherPram={
+    headers:{
+	"content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+.then(res => res.buffer()).then(buf => console.log(buf.toString()))
+.catch (error=>console.log(error))
 ```
 
 ### Returns SBOLnr for the object with the specified URI
@@ -405,6 +615,25 @@ print(response.content)
 
 ```
 
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/sbolnr'
+
+const otherPram={
+    headers:{
+	"content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+.then(res => res.buffer()).then(buf => console.log(buf.toString()))
+.catch (error=>console.log(error))
+```
+
 ### Returns metadata for the object with the specified URI
 
 Returns the metadata for the object from the specified URI.
@@ -429,6 +658,26 @@ print(response.content)
 
 ```
 
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/metadata'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+
 ### Returns GenBank for the object with the specified URI
 
 Returns the GenBank for the object from the specified URI.
@@ -451,6 +700,25 @@ response = requests.get(
 print(response.status_code)
 print(response.content)
 
+```
+
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
 ```
 
 ### Returns FASTA for the object with the specified URI
@@ -477,6 +745,25 @@ print(response.content)
 
 ```
 
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 ### Returns visualization for the object with the specified URI
 
 Returns the visualization for the object from the specified URI.
@@ -499,6 +786,25 @@ response = requests.get(
 print(response.status_code)
 print(response.content)
 
+```
+
+```javascript
+
+const fetch = require("node-fetch");
+
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/visualization'
+
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+
+};
+
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
 ```
 
 ## Submission Endpoints
