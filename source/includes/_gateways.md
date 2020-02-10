@@ -21,8 +21,8 @@ devices | array | The associated devices of the Gateway
 
 ```shell
 curl -X GET \
-  -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways
+  -u "${YOUR_API_KEY}:" \
+  "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways"
 ```
 
 ```ruby
@@ -69,8 +69,8 @@ This endpoint retrieves all of your organization's Weaver Gateways.
 
 ```shell
 curl -X GET \
-  -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}
+  -u "${YOUR_API_KEY}:" \
+  "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}"
 ```
 
 ```ruby
@@ -128,8 +128,8 @@ GATEWAY_ID | The ID of the gateway to retrieve
 
 ```shell
 curl -X POST \
-  -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}/pair_devices
+  -u "${YOUR_API_KEY}:" \
+  "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}/pair_devices"
 ```
 
 ```ruby

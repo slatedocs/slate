@@ -16,9 +16,11 @@ Make sure to replace <code>YOUR_API_KEY</code> with your actual API key.
 > To authorize, use this code:
 
 ```shell
-# With curl, you can use -u followed by your API key. Adding `:` after the key will simply tell curl not to ask you for a password.
-curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways \
-  -u ${YOUR_API_KEY}:
+# With curl, you can use -u followed by your API key.
+# Adding `:` after the key will simply tell curl not
+# to ask you for a password.
+curl "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways" \
+  -u "${YOUR_API_KEY}:"
 ```
 
 ```ruby
@@ -40,7 +42,7 @@ RestClient.get(url, headers: headers)
 
 ## Getting Your API Key
 ```shell
-curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users \
+curl "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users" \
   -H "Authorization: Token ${USER_AUTH_TOKEN}" \
   -H "Content-Type: application/json"
 ```
