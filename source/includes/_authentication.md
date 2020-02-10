@@ -1,62 +1,35 @@
-# Authentication
+# AUTHENTICATION
 
-## Get an API Key
+The Weaver API uses API keys to authenticate requests. You can view and manage your API keys in the Weaver Dashboard or by calling your user profile endpoint using your user auth token.
 
-```shell
-curl -X POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users/get_token \
-  --data 'email=${EMAIL}' \
-  --data 'password=${PASSWORD}'
-```
+Authentication to the API is performed via [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username value. You do not need to provide a password.
 
-```ruby
-require 'rest-client'
+Test mode secret keys have the prefix `wk_test_` and live mode secret keys have the prefix `wk_prod_`. We plan to eventually introduce restricted API keys for granular permissions.
 
-payload = {
-  'email': ${EMAIL},
-  'password': ${PASSWORD}
-}
+Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas.
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users/get_token'
+<aside class="notice">
+Make sure to replace <code>${API_KEY}</code> with your actual API key.
+</aside>
 
-RestClient.post(url, payload, headers={})
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "auth_token": "${API_KEY}"
-}
-```
-
-Fetch an API Key with a POST request to the endpoint.
-
-#### HTTP Request
-
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users/get_token`
-
-#### Query Parameters
-
-Parameter | Type | Description
---------- | ---- | -----------
-EMAIL | String | Email of the user account
-PASSWORD | String | Password of the user account
-
-## Authenticating your Requests
 
 > To authorize, use this code:
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
+# With curl, you can use -u followed by your API key. Adding `:` after the key will simply tell curl not to ask you for a password.
+curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways \
   -u ${API_KEY}:
 ```
 
 ```ruby
+# In ruby, we first need to encode the key using Base64 before adding it to the request header
+require 'base64'
 require 'rest-client'
 
+
+token = Base64.strict_encode64("#{API_KEY}:")
 headers = {
-  'Authorization': 'Token ${API_KEY}'
+  'Authorization': token
 }
 
 url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways'
@@ -66,12 +39,42 @@ RestClient.get(url, headers: headers)
 
 > Make sure to replace `${API_KEY}` with your API key.
 
-Weaver uses API keys to allow access to the API. You can retrieve your Weaver API key via [the User Token endpoint below](#create-user-token).
+## Getting Your API Key
+```shell
+curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users \
+  -H "Authorization: Token $USER_AUTH_TOKEN" \
+  -H "Content-Type: application/json"
+```
 
-Weaver expects for the API key to be included in all API requests to the server in a header that looks like the following:
+```ruby
+require 'rest-client'
 
-`Authorization: ${API_KEY}`
 
-<aside class="notice">
-You must replace <code>${API_KEY}</code> with your personal API key.
-</aside>
+headers = {
+  'Authorization': 'Token #{USER_AUTH_TOKEN}'
+}
+
+
+url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users'
+
+RestClient.post(url, payload, headers={})
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 1,
+    "email": "sybohy@gmail.com",
+    "organization": {
+        "name": "Weaver Inc"
+    },
+    "api_key": "wk_prod_BD7ucrLiAEunufV2ujiaP1KM"
+}
+```
+
+Fetch your API Key with a GET request to your user account endpoint.
+
+#### HTTP Request
+
+`GET http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users`
