@@ -230,14 +230,12 @@ X-GOJI-CLIENT-ID: 59425d3d-cf73-44ff-aecb-590cd198a4bc
 
 {
   "id": "5dd40510-810e-4a55-a395-04819fd915b9",
-  "allocation": {
-    "investor": null,
-    "nominee": {
-      "accountType": "ORIGINATOR"
-    }
-  },
   "quantity": 1000000,
-  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "investor": null,
+  "nominee": {
+    "accountType": "ORIGINATOR"
+  }
 }
 ```
 
@@ -247,14 +245,12 @@ Content-Type: application/json
 
 {
   "id": "5dd40510-810e-4a55-a395-04819fd915b9",
-  "allocation": {
-    "investor": null,
-    "nominee": {
-      "accountType": "ORIGINATOR"
-    }
-  },
   "quantity": 1000000,
-  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "investor": null,
+  "nominee": {
+    "accountType": "ORIGINATOR"
+  }
 }
 ```
 
@@ -297,14 +293,12 @@ Content-Type: application/json
 
 {
   "id": "5dd40510-810e-4a55-a395-04819fd915b9",
-  "allocation": {
-    "investor": null,
-    "nominee": {
-      "accountType": "ORIGINATOR"
-    }
-  },
   "quantity": 1000000,
-  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703"
+  "instrumentSymbol": "446ca5fc-4d38-4706-a50b-5b3a64d3f703",
+  "investor": null,
+  "nominee": {
+    "accountType": "ORIGINATOR"
+  }
 }
 ```
 
