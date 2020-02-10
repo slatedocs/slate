@@ -9,7 +9,7 @@ Test mode secret keys have the prefix `wk_test_` and live mode secret keys have 
 Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas.
 
 <aside class="notice">
-Make sure to replace <code>${API_KEY}</code> with your actual API key.
+Make sure to replace <code>YOUR_API_KEY</code> with your actual API key.
 </aside>
 
 
@@ -18,7 +18,7 @@ Make sure to replace <code>${API_KEY}</code> with your actual API key.
 ```shell
 # With curl, you can use -u followed by your API key. Adding `:` after the key will simply tell curl not to ask you for a password.
 curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways \
-  -u ${API_KEY}:
+  -u ${YOUR_API_KEY}:
 ```
 
 ```ruby
@@ -27,7 +27,7 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("#{API_KEY}:")
+token = Base64.strict_encode64("YOUR_API_KEY:")
 headers = {
   'Authorization': token
 }
@@ -37,12 +37,11 @@ url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways'
 RestClient.get(url, headers: headers)
 ```
 
-> Make sure to replace `${API_KEY}` with your API key.
 
 ## Getting Your API Key
 ```shell
 curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users \
-  -H "Authorization: Token $USER_AUTH_TOKEN" \
+  -H "Authorization: Token ${USER_AUTH_TOKEN}" \
   -H "Content-Type: application/json"
 ```
 
@@ -77,4 +76,10 @@ Fetch your API Key with a GET request to your user account endpoint.
 
 #### HTTP Request
 
-`GET http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users`
+`GET /v1/users`
+
+### Header Parameters
+
+Parameter | Description
+--------- | -----------
+USER_AUTH_TOKEN | This is your user authorization token.

@@ -7,14 +7,24 @@ Commands are a special way of encapsulating a request for a device to perform an
 
 ## Command Object
 
+```json
+{
+    "id": "cb41f7cf-b49d-4e8b-856c-5e12d1b8ca48",
+    "status": "pending",
+    "device_id": "9980a513-7a7b-434c-801f-27008fd0fcda",
+    "created_at": "2020-02-10T01:33:19.955Z",
+    "updated_at": "2020-02-10T01:33:19.955Z",
+    "name": "lock",
+    "properties": {}
+}
+```
+
 Parameter | Type | Description
 --------- | ---- | -----------
 id | uuid | The ID of the Command
 status | string | The status of the Command
-gateway_id | uuid | The ID of the associated Gateway
 device_id | uuid | The ID of the Device that performed the Command
-device_ieee | uuid | The IEEE Standard Device Number of the Device that performed the Command
-action | string | The action name for the Command
+name | string | The name for the Command
 properties | object | The properties of the Command
 created_at | datetime | Datetime when the Command was created
 updated_at | datetime | Datetime when the Command was last updated
@@ -67,7 +77,7 @@ As you can see on the right side, a door lock device object will indicate its su
 
 ```shell
 curl -X POST \
-  -u ${API_KEY}: \
+  -u ${YOUR_API_KEY}: \
   http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/lock
 ```
 
@@ -76,7 +86,7 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("#{API_KEY}:")
+token = Base64.strict_encode64("YOUR_API_KEY:")
 headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
@@ -104,7 +114,7 @@ This endpoint issues a "lock" action to a door lock.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/lock`
+`POST /v1/devices/<DEVICE_ID>/lock`
 
 ### URL Parameters
 
@@ -116,7 +126,7 @@ DEVICE_ID | The ID of the device you're commanding
 
 ```shell
 curl -X POST \
-  -u ${API_KEY}: \
+  -u ${YOUR_API_KEY}: \
   http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/unlock
 ```
 
@@ -125,7 +135,7 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("#{API_KEY}:")
+token = Base64.strict_encode64("YOUR_API_KEY:")
 headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
@@ -153,7 +163,7 @@ This endpoint issues a "unlock" action to a door lock.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/unlock`
+`POST /v1/devices/<DEVICE_ID>/unlock`
 
 ### URL Parameters
 
@@ -165,9 +175,9 @@ DEVICE_ID | The ID of the device you're commanding
 
 ```shell
 curl -X POST \
-  -u ${API_KEY}: \
+  -u ${YOUR_API_KEY}: \
   -H "Content-Type: application/json" \
-  -d '{"code": "2222"}' \
+  -d '{"code": "88888888", "user_id": 8}' \
   http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code
 ```
 
@@ -175,11 +185,12 @@ curl -X POST \
 require 'rest-client'
 
 headers = {
-  'Authorization': 'Token ${API_KEY}'
+  'Authorization': 'Token ${YOUR_API_KEY}'
 }
 
 payload = {
-  'code': '2222'
+  'code': '88888888',
+  'user_id': 8
 }
 
 url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/#{DEVICE_ID}/set_code'
@@ -205,11 +216,13 @@ RestClient.post(url, payload, headers: headers)
 
 This endpoint issues a "set_code" action to a door lock.
 
+The Weaver API allows you to set a different code for up to 10 different users. To do set the a code for a specific user, set the `user_id` parameter to a value between 1 to 10. If you do not provide this value, the `user_id` will default to `1`.
+
 
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code`
+`POST /v1/devices/<DEVICE_ID>/set_code`
 
 ### URL Parameters
 
@@ -217,83 +230,19 @@ Parameter | Description
 --------- | -----------
 DEVICE_ID | The ID of the device you're commanding
 
-#### Query Parameters
+### Query Parameters
 
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-code | String | Required | 4 to 8 digit number code, leading '0' is okay
-user_id | integer | Optional | ID of Code slot to be programmed in, between 1 - 10
+Parameter | Type | Required | Default | Description
+--------- | ---- | -------- | ------- | -----------
+code | String | Required | n/a | 4 to 8 digit number code, leading '0' is okay
+user_id | integer | Optional | 1 | ID of Code slot to be programmed in, between 1 - 10
 
-## Set a Pin Code for a Specific User
-
-```shell
-curl -X POST \
-  -u ${API_KEY}: \
-  -H "Content-Type: application/json" \
-  -d '{"code": "88888888", "user_id": 8}' \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code
-```
-
-```ruby
-require 'rest-client'
-
-headers = {
-  'Authorization': 'Token ${API_KEY}'
-}
-
-payload = {
-  'code': '88888888',
-  'user_id': 8
-}
-
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/#{DEVICE_ID}/set_code'
-
-RestClient.post(url, payload, headers: headers)
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "id": "ef79e23b-c440-4a7a-b0e1-702bc9e7cec7",
-    "status": "pending",
-    "device_id": "9980a513-7a7b-434c-801f-27008fd0fcda",
-    "created_at": "2020-02-10T01:24:21.799Z",
-    "updated_at": "2020-02-10T01:24:21.799Z",
-    "name": "set_code",
-    "properties": {
-        "code": "88888888",
-        "user_id": 8
-    }
-}
-```
-
-The Weaver API allows you to set a different code for up to 10 different user. To do so, simply specify the `user_id`. Note that by default, the `user_id` is set to `1`.
-
-
-
-### HTTP Request
-
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-DEVICE_ID | The ID of the device you're commanding
-
-#### Query Parameters
-
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-code | String | Required | 4 to 8 digit number code, leading '0' is okay
-user_id | integer | Optional | ID of Code slot to be programmed in, between 1 - 10
 
 ## Clear All Pin Codes
 
 ```shell
 curl -X POST \
-  -u ${API_KEY}: \
+  -u ${YOUR_API_KEY}: \
   http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/clear_all_codes
 ```
 
@@ -301,7 +250,7 @@ curl -X POST \
 require 'rest-client'
 
 headers = {
-  'Authorization': 'Token ${API_KEY}'
+  'Authorization': 'Token ${YOUR_API_KEY}'
 }
 
 url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/#{DEVICE_ID}/clear_all_codes'
@@ -315,10 +264,8 @@ RestClient.post(url, {}, headers: headers)
 {
   "id": "2222222-2222-2222-2222-22222222222",
   "status": "pending",
-  "gateway_id": "0000000-0000-0000-0000-00000000000",
   "device_id": "1111111-1111-1111-1111-11111111111",
-  "device_ieee": "00:00:00:00:00:00",
-  "action": "clear_all_codes",
+  "name": "clear_all_codes",
   "properties": {},
   "created_at": "2020-01-01T12:34:56.789Z",
   "updated_at": "2020-01-01T12:34:56.789Z"
@@ -329,7 +276,7 @@ This endpoint issues a "clear_all_codes" action to a door lock.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/clear_all_codes`
+`POST /v1/devices/<DEVICE_ID>/clear_all_codes`
 
 ### URL Parameters
 

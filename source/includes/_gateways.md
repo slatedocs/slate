@@ -21,7 +21,7 @@ devices | array | The associated devices of the Gateway
 
 ```shell
 curl -X GET \
-  -u ${API_KEY}: \
+  -u ${YOUR_API_KEY}: \
   http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways
 ```
 
@@ -30,7 +30,7 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("#{API_KEY}:")
+token = Base64.strict_encode64("YOUR_API_KEY:")
 headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
@@ -63,16 +63,14 @@ This endpoint retrieves all of your organization's Weaver Gateways.
 
 ### HTTP Request
 
-`GET http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways`
+`GET /v1/gateways`
 
 ## Get a Specific Gateway Object
 
 ```shell
 curl -X GET \
-  -u ${API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>
-
-
+  -u ${YOUR_API_KEY}: \
+  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}
 ```
 
 ```ruby
@@ -80,12 +78,12 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("#{API_KEY}:")
+token = Base64.strict_encode64("YOUR_API_KEY:")
 headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>'
+url = "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/#{GATEWAY_ID}"
 
 RestClient.get(url, headers: headers)
 ```
@@ -118,7 +116,7 @@ This endpoint retrieves a specific gateway and its associated devices. Note that
 
 ### HTTP Request
 
-`GET http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>`
+`GET /v1/gateways/<GATEWAY_ID>`
 
 ### URL Parameters
 
@@ -130,8 +128,8 @@ GATEWAY_ID | The ID of the gateway to retrieve
 
 ```shell
 curl -X POST \
-  -u {API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/pair_devices
+  -u ${YOUR_API_KEY}: \
+  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}/pair_devices
 ```
 
 ```ruby
@@ -139,12 +137,12 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("#{API_KEY}:")
+token = Base64.strict_encode64("YOUR_API_KEY:")
 headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/pair_devices'
+url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}/pair_devices'
 
 RestClient.post(url, headers: headers)
 ```
@@ -170,7 +168,7 @@ Once you issue the request, the Gateway will transition into a `pairing` status.
 
 ### HTTP Request
 
-`POST http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/<GATEWAY_ID>/pair_devices`
+`POST /v1/gateways/<GATEWAY_ID>/pair_devices`
 
 ### URL Parameters
 
