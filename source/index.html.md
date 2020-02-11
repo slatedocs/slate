@@ -544,3 +544,863 @@ Parameter | Default | Required | Description
 --------- | ------- | -------- | -----------
 domain | None | True | A valid domain string. In case ant of the domains are malformed, request is aborted with status `422`. 
 
+# Opinions
+
+Opinions endpoints provide with the ability to look at the narratives, opinions, themes that emerge in a topic
+with various metrics.
+As well as that, they can compare themes of 2 different topics.
+
+## Authentication
+
+The  API uses JWT tokens to authenticate requests. Login is performed via AWS Cognito. 
+Once the JWT is received via Cognito, it should be passed in every API request via the Authorization 
+header using the Bearer schema.
+
+Example of a request after the authentication
+
+```python
+import requests
+
+url = "https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+<aside class="warning">
+Do not share your API Key in publicly accessible platforms.
+</aside>
+
+
+## Pagination
+All list endpoints give a response in the following format
+
+```json
+{
+  "count": 5,
+  "previous": 1,
+  "next": 3,
+  "result": [
+    {
+      "id": 1,
+      "title": "Avon Hydra Fusion"
+    },
+    {
+      "id": 2,
+      "title": "Avon Hydra"
+    }
+  ]
+}
+```
+
+### Response data
+Name | Type | Description |
+-----| -----| ----------- | -
+count | int | Number of all elements
+previous | int | Number of the previous pages, empty if there is no previous page
+next | int | Number of the next pages, empty if there is no next page
+result | list | List of objects limited by `page_size`
+
+## Query params
+Name | Type | Default | Description |
+-----| -----| ------- | ----------- | -
+page | int | 1 | Page to retrieve. Has to be more than 0
+page_size | int | 20 | Size of the result. Has to be between 1 and 100
+
+## Common errors
+Code | Text | Description |
+-----| ---- | ----------- | -
+401 | {'message': 'Unauthorized'} | API Gateway response when the custom or Amazon Cognito authorizer failed to authenticate the caller.
+403 | {'message': 'Access denied'} | API Gateway response for authorization failure. Access is denied by Amazon Cognito authorizer 
+403 | {'message': 'Expired token'} | API Gateway response for an AWS authentication token expired error 
+403 | {'message': 'Invalid API key'} API Gateway response for an invalid API key submitted for a method requiring an API key
+403 | {'message': 'Invalid signature'} | API Gateway response for an invalid AWS signature error
+403 | {'message': 'Missing authentication token'} | API Gateway response for a missing authentication token error, including the cases when the client attempts to invoke an unsupported API method or resource
+403 | {'message': 'WAF filtered'} | API Gateway response when a request is blocked by AWS WAF
+404 | {'message': 'Object with id $ID not found'} | The wrong id passed to detail endpoint
+
+## Opinion Metrics
+The following table lists the metrics currently generated reported by the ML
+ pipelines and identifies which metrics are available for each product and entity type.
+
+##  Metrics description by Factmata’s product type (Monitoring vs One-off) 
+Name | Brands (Opinion monitoring) | Gov / Media (Opinion Intelligence)
+-----| --------------------------- | -------------------------------- | -
+negative_stance_score | yes | yes
+positive_stance_score | yes | yes
+outlierness_score | yes | yes
+popularity_score | yes | yes
+influencer_score | yes | yes
+propaganda_score | no | yes
+bot_generated_score | no | yes
+threat_score | no | yes
+
+## Metrics by entity type
+Name | Theme | Narrative | Opinion | Opinion Maker | WebContent
+-----| ----- | --------- | ------- | ------------- | ---------- | -
+negative_stance_score | yes | yes | yes | no | no
+positive_stance_score | yes | yes | yes | no | no
+outlierness_score | yes | yes | no | no | no
+popularity_score | yes | yes | yes | no | no
+influencer_score | yes | yes | no | yes | no
+propaganda_score | yes | yes | no | no | yes
+bot_generated_score | yes | yes | yes | no | no
+threat_score | yes | yes | no | no | no
+
+## Metrics description
+Name | Type | Range  
+-----| ---- | ----- | -
+negative_stance_score | float | 0.00 - 1.00
+positive_stance_score | float | 0.00 - 1.00
+outlierness_score | float | 0.00 - 1.00
+popularity_score | yes | 0+
+influencer_score | yes | 0+
+propaganda_score | float | 0.00 - 1.00
+bot_generated_score | float | 0.00 - 1.00
+threat_score | float | 0.00 - 1.00
+
+## API endpoints
+
+## Topics
+
+A topic is a subject for which Factmata generates insights for a customer.
+
+## List topics
+
+
+```python
+import requests
+
+url = "https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+> Response example
+
+```json
+[
+  {
+    "id": 12,
+    "title": "Avon Hydra Fusion",
+    "created_at": "2019-01-01T00:00:00+00:00"
+  }
+]
+```
+
+Returns a list of topics tracked for a customer.
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic`
+
+
+
+
+## Detail topics
+
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/$ID' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+> Response example
+
+```json
+{
+  "id": 12,
+  "title": "Avon Hydra Fusion",
+  "created_at": "2019-01-01T00:00:00+00:00"
+}
+```
+
+Returns a topic by its id.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/:id`
+
+
+
+## Themes
+
+A theme is an aspect of a topic based on opinions that are most interesting or popular.
+
+## List topic themes
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/{topic_id}/theme"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/$THEME_ID/theme' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+> Response example
+
+```json
+[
+  {
+    "id": 1,
+    "title": "cost",
+    "metrics": {
+      "negative_stance_score": 0.32324123,
+      "positive_stance_score": 0.22623175,
+      "outlierness_score": 0.296705679,
+      "popularity_score": 0.56848747,
+      "propaganda_score": 0.48008755,
+      "threat_score": 0.08953477,
+      "num_narratives": 65,
+      "num_opinions": 120
+    },
+    "metrics_by_date": [
+      {
+        "recorded_on": "2018-09-06T00:00:00+00:00",
+        "values": {
+          "negative_stance_score": 0.41308644,
+          "positive_stance_score": 0.48008755,
+          "outlierness_score": 0.254146592,
+          "popularity_score": 0.276934175,
+          "propaganda_score": 0.090985734,
+          "threat_score": 0.07531446
+        }
+      }
+    ],
+    "created_at": "2019-11-01T00:00:00+00:00",
+    "oldest_webcontent_published_at": "2018-01-03T00:00:00+00:00",
+    "newest_webcontent_published_at": "2018-04-23T00:00:00+00:00"
+  }
+]
+```
+
+Returns a list of themes in a topic.
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/:topicId/theme`
+
+
+
+#### Query parameters
+Name | Type | Description  
+-----| ---- | ----------- | -
+created_at_lt | ISO 8601 string | Filter by created_at, less than 
+created_at_gt | ISO 8601 string | Filter by created_at, greater than  
+created_at_lte | ISO 8601 string | Filter by created_at, less than or equal 
+created_at_gte | ISO 8601 string | Filter by created_at, greater than or equal 
+metrics_created_at_lt | ISO 8601 string | Filter metrics list by created_at,  less than
+metrics_created_at_gt | ISO 8601 string | Filter metrics list by created_at,  greater than 
+metrics_created_at_lte | ISO 8601 string | Filter metrics list by created_at,  less than or equal
+metrics_created_at_gte | ISO 8601 string | Filter metrics list by created_at,  greater than or equal
+sort_by | string | Sorting key. The default value is `num_narratives`. Supported values include the ones returned in the metrics array. Items in `metrics_by_date array` are sorted in chronological order based on `recorded_on`.
+
+
+## Detail themes
+
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/theme/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/theme/$ID' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+> Response example
+
+```json
+{
+  "id": 1,
+  "title": "cost",
+  "metrics": {
+    "negative_stance_score": 0.32324123,
+    "positive_stance_score": 0.22623175,
+    "outlierness_score": 0.296705679,
+    "popularity_score": 0.56848747,
+    "propaganda_score": 0.48008755,
+    "threat_score": 0.08953477,
+    "num_narratives": 65,
+    "num_opinions": 120
+  },
+  "metrics_by_date": [
+    {
+      "recorded_on": "2018-09-06T00:00:00+00:00",
+      "values": {
+        "negative_stance_score": 0.41308644,
+        "positive_stance_score": 0.48008755,
+        "outlierness_score": 0.254146592,
+        "popularity_score": 0.276934175,
+        "propaganda_score": 0.090985734,
+        "threat_score": 0.07531446
+      }
+    }
+  ],
+  "created_at": "2019-11-01T00:00:00+00:00",
+  "oldest_webcontent_published_at": "2018-01-03T00:00:00+00:00",
+  "newest_webcontent_published_at": "2018-04-23T00:00:00+00:00"
+}
+```
+
+Return a theme by its id.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/theme/:id`
+
+#### Query parameters
+Name | Type | Description  
+-----| ---- | ----------- | -
+metrics_created_at_lt | ISO 8601 string | Filter metrics list by created_at,  less than
+metrics_created_at_gt | ISO 8601 string | Filter metrics list by created_at,  greater than 
+metrics_created_at_lte | ISO 8601 string | Filter metrics list by created_at,  less than or equal
+metrics_created_at_gte | ISO 8601 string | Filter metrics list by created_at,  greater than or equal
+
+
+## Narratives
+
+A narrative describes the story that emerges in a topic theme.
+
+## List narratives
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/{topic_id}/theme/{theme_id}/narrative"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/$TOPIC_ID/theme/$THEME_ID/narrative' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+> Response example
+
+```json
+[
+  {
+    "id": 8,
+    "title": "Cream based cosmetics",
+    "metrics": {
+      "negative_stance_score": 0.32324123,
+      "positive_stance_score": 0.22623175,
+      "outlierness_score": 0.296705679,
+      "popularity_score": 0.56848747,
+      "propaganda_score": 0.48008755,
+      "threat_score": 0.08953477,
+      "num_opinions": 223
+    },
+    "metrics_by_date": [
+      {
+        "recorded_on": "2018-09-06T00:00:00+00:00",
+        "values": {
+          "negative_stance_score": 0.41308644,
+          "positive_stance_score": 0.48008755,
+          "outlierness_score": 0.254146592,
+          "popularity_score": 0.276934175,
+          "propaganda_score": 0.090985734,
+          "threat_score": 0.07531446
+        }
+      }
+    ],
+    "created_at": "2019-11-01T00:00:00+00:00",
+    "oldest_webcontent_published_at": "2018-01-03T00:00:00+00:00",
+    "newest_webcontent_published_at": "2018-04-23T00:00:00+00:00"
+  }
+]
+```
+
+Returns a list of narratives for a theme.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/:topic_id/theme/:theme_id/narrative`
+
+
+
+#### Query parameters
+Name | Type | Description  
+-----| ---- | ----------- | -
+created_at_lt | ISO 8601 string | Filter by created_at, less than 
+created_at_gt | ISO 8601 string | Filter by created_at, greater than  
+created_at_lte | ISO 8601 string | Filter by created_at, less than or equal 
+created_at_gte | ISO 8601 string | Filter by created_at, greater than or equal 
+metrics_created_at_lt | ISO 8601 string | Filter metrics list by created_at,  less than
+metrics_created_at_gt | ISO 8601 string | Filter metrics list by created_at,  greater than 
+metrics_created_at_lte | ISO 8601 string | Filter metrics list by created_at,  less than or equal
+metrics_created_at_gte | ISO 8601 string | Filter metrics list by created_at,  greater than or equal
+sort_by | string | Sorting key. The default value is `num_opinions`. Supported values include the ones returned in the metrics array. Items in `metrics_by_date array` are sorted in chronological order based on `recorded_on`.
+
+
+## Detail narratives
+
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/$ID' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+> Response example
+
+```json
+{
+  "id": 8,
+  "title": "Cream based cosmetics",
+  "metrics": {
+    "negative_stance_score": 0.32324123,
+    "positive_stance_score": 0.22623175,
+    "outlierness_score": 0.296705679,
+    "popularity_score": 0.56848747,
+    "propaganda_score": 0.48008755,
+    "threat_score": 0.08953477,
+    "num_opinions": 223
+  },
+  "metrics_by_date": [
+    {
+      "recorded_on": "2018-09-06T00:00:00+00:00",
+      "values": {
+        "negative_stance_score": 0.41308644,
+        "positive_stance_score": 0.48008755,
+        "outlierness_score": 0.254146592,
+        "popularity_score": 0.276934175,
+        "propaganda_score": 0.090985734,
+        "threat_score": 0.07531446,
+        "num_opinions": 18
+      }
+    }
+  ],
+  "created_at": "2019-11-01T00:00:00+00:00",
+  "oldest_webcontent_published_at": "2018-01-03T00:00:00+00:00",
+  "newest_webcontent_published_at": "2018-04-23T00:00:00+00:00"
+}
+```
+
+Return a narrative by its id.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/:id`
+
+#### Query parameters
+Name | Type | Description  
+-----| ---- | ----------- | -
+metrics_created_at_lt | ISO 8601 string | Filter metrics list by created_at,  less than
+metrics_created_at_gt | ISO 8601 string | Filter metrics list by created_at,  greater than 
+metrics_created_at_lte | ISO 8601 string | Filter metrics list by created_at,  less than or equal
+metrics_created_at_gte | ISO 8601 string | Filter metrics list by created_at,  greater than or equal
+
+
+## Opinions
+
+An opinion is a claim made for a specific topic. Opinions are grouped within a narrative for a topic.
+
+## List narrative opinions
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/narrative/{narrative_id}/opinion"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/narrative/:id/opinion' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+> Response example
+
+```json
+[
+  {
+    "id": 199,
+    "text": "acquia has a high cost  at 100k annually",
+    "metrics": {
+      "negative_stance_score": 0.41308644,
+      "positive_stance_score": 0.48008755,
+      "bot_generated_score": 0.254146592,
+      "popularity_score": 0.276934175
+    },
+    "created_at": "2019-11-01T00:00:00+00:00",
+    "opinion_makers": [
+      {
+        "id": 8,
+        "url": "https://twitter.com/@raybae689",
+        "influencer_score": 0.32
+      }
+    ],
+    "webcontents": [
+      {
+        "type": "ARTICLE",
+        "download_url": "https://api.factmata.com/v1/downloads/webcontents/53374d64-223d-11ea-978f-2e728ce88125.json",
+        "author": "Roydon Ng",
+        "author_url": "https://twitter.com/RoydonNg",
+        "source": "christiantoday.com.au",
+        "page_url": "https://christiantoday.com.au/news/democracy-cant-save-hong-kong.html",
+        "resolved_page_url": null,
+        "published_at": "2019-10-11T00:00:00+00:00",
+        "metrics": {
+          "propaganda_score": 0.03
+        }
+      }
+    ]
+  },
+]
+```
+
+Returns a list of opinions for a narrative.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/:narrative_id/opinion`
+
+
+#### Query parameters
+Name | Type | Description  
+-----| ---- | ----------- | -
+sort_by | string | Sorting key. The default value is popularity_score. Supported values include the ones returned in the metrics array.
+
+
+## Detail opinions
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/opinion/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/opinion/$ID' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+> Response example
+
+```json
+{
+  "id": 199,
+  "text": "acquia has a high cost  at 100k annually",
+  "metrics": {
+    "negative_stance_score": 0.41308644,
+    "positive_stance_score": 0.48008755,
+    "bot_generated_score": 0.254146592,
+    "popularity_score": 0.276934175
+  },
+  "created_at": "2019-11-01T00:00:00+00:00",
+  "opinion_makers": [
+    {
+      "id": 8,
+      "url": "https://twitter.com/@raybae689",
+      "influencer_score": 0.32
+    },
+  ],
+  "webcontents": [
+    {
+      "type": "ARTICLE",
+      "download_url": "https://api.factmata.com/v1/downloads/webcontents/53374d64-223d-11ea-978f-2e728ce88125.json",
+      "author": "Roydon Ng",
+      "author_url": "https://twitter.com/RoydonNg",
+      "source": "christiantoday.com.au",
+      "page_url": "https://christiantoday.com.au/news/democracy-cant-save-hong-kong.html",
+      "resolved_page_url": null,
+      "published_at": "2019-10-11T00:00:00+00:00",
+      "metrics": {
+        "propaganda_score": 0.03
+      }
+    }
+  ]
+}
+```
+
+Returns an opinion by its ID.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/opinion/:id`
+
+
+## Opinions makers
+
+An opinion maker is a user that makes opinions with a stance towards a specific narrative.
+
+## List opinion makers
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion/{narrative_id}/opinion_maker"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion/$OPINION_ID/opinion_maker' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+> Response example
+
+```json
+[
+  {
+    "id": 8,
+    "url": "https://twitter.com/@raybae689",
+    "influencer_score": 0.32,
+    "created_at": "2019-01-01T00:00:00+00:00"
+  }
+]
+```
+
+Returns a list of opinion makers for an opinion sorted by influencer_score in descending order.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/opinion/:opinion_id/opinion_maker`
+
+
+## Detail opinion markers
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion_maker/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion_maker/$ID' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+> Response example
+
+```json
+{
+  "id": 8,
+  "url": "https://twitter.com/@raybae689",
+  "influencer_score": 0.32,
+  "created_at": "2019-01-01T00:00:00+00:00"
+}
+```
+
+Returns an opinion maker by its id.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/opinion_maker/:id`
+
+## Comparisons
+
+A comparison shows common themes for topics
+
+## List comparisons
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/comparison"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/comparison' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+> Response example
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Avon vs. Neutrogena",
+    "created_at": "2019-01-01T00:00:00+00:00"
+  }
+]
+```
+
+Returns a list of comparisons.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/comparison`
+
+
+## Detail comparisons
+
+```python
+import requests
+
+url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production /v1/intelligence/comparison/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/comparison/$ID' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN" 
+```
+
+> Response example
+
+```json
+{
+  "id": 1,
+  "title": "Avon vs. Neutrogena",
+  "created_at": "2019-01-01T00:00:00+00:00",
+  "topics": [
+    {
+      "id": 12,
+      "title": "Avon Hydra Fusion",
+      "created_at": "2019-01-01T00:00:00+00:00",
+      "themes": [
+        {
+          "id": 1,
+          "title": "cost",
+          "topic_id": 23,
+          "metrics": {
+            "negative_stance_score": 0.32324123,
+            "positive_stance_score": 0.22623175,
+            "outlierness_score": 0.296705679,
+            "popularity_score": 0.56848747,
+            "propaganda_score": 0.48008755,
+            "threat_score": 0.08953477,
+            "num_narratives": 65,
+            "num_opinions": 120
+          },
+          "metrics_by_date": [
+            {
+              "recorded_on": "2018-09-06T00:00:00+00:00",
+              "values": {
+                "negative_stance_score": 0.41308644,
+                "positive_stance_score": 0.48008755,
+                "outlierness_score": 0.254146592,
+                "popularity_score": 0.276934175,
+                "propaganda_score": 0.090985734,
+                "threat_score": 0.07531446
+              }
+            }
+          ],
+          "created_at": "2019-11-01T00:00:00+00:00",
+          "oldest_webcontent_published_at": "2018-01-03T00:00:00+00:00",
+          "newest_webcontent_published_at": "2018-04-23T00:00:00+00:00"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Returns a comparison by its ID.
+
+
+#### HTTP Request
+
+`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/comparison/:id`
+
+#### Query parameters
+Name | Type | Description  
+-----| ---- | ----------- | -
+metrics_created_at_lt | ISO 8601 string | Filter metrics list by created_at,  less than
+metrics_created_at_gt | ISO 8601 string | Filter metrics list by created_at,  greater than 
+metrics_created_at_lte | ISO 8601 string | Filter metrics list by created_at,  less than or equal
+metrics_created_at_gte | ISO 8601 string | Filter metrics list by created_at,  greater than or equal
+
