@@ -16,7 +16,7 @@ $success = $api->post('/v2/lsrc/add', [
 	'schedule'          => 'Adhoc',
 	'search-terms'      => "Restaurant\nfood+nyc\ndelivery+midtown+manhattan",
     'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
-	'search-engines'    => 'google,google-mobile,google-local,bing,bing-local'
+	'search-engines'    => 'google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local'
 ]);
 print_r($success);
 ```
@@ -30,7 +30,7 @@ curl -X POST \
  -d 'schedule=Adhoc' \
  -d $'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
  -d 'website-addresses=["le-bernardin.com","le-bernardin2.com"]' \
- -d 'search-engines=google,google-mobile,google-local,bing,bing-local' \ 
+ -d 'search-engines=google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/add
 ```
 
@@ -42,7 +42,7 @@ parameters.Add("name", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
 parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
 parameters.Add("website-addresses", JsonConvert.SerializeObject("['le-bernardin.com', 'le-bernardin2.com']"));
-parameters.Add("search-engines", "google,google-mobile,google-local,bing,bing-local");
+parameters.Add("search-engines", "google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local");
 
 var success = request.Post("/v2/lsrc/add", parameters);
 ```
@@ -88,7 +88,7 @@ bing-location | Specify a location to perform search from. When set search keywo
 business-names | Newline (\n) separated list of business names
 postcode |	80 characters max. 
 telephone |	
-search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, bing, bing-local. Defaults to all search engines.
+search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local. Defaults to all search engines.
 include-local-directory-results	| Yes or No. Defaults to Yes.
 notify | Yes or No. Defaults to No.
 email-addresses	| Newline (\n) separated list of email addresses
@@ -111,7 +111,7 @@ $success = $api->post('/v2/lsrc/update', [
 	'schedule'          => 'Adhoc',
 	'search-terms'      => "Restaurant\nfood+nyc\ndelivery+midtown+manhattan",
     'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
-	'search-engines'    => 'google,google-mobile,google-local,bing,bing-local'
+	'search-engines'    => 'google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local'
 ]);
 print_r($success);
 ```
@@ -126,7 +126,7 @@ curl -X POST \
  -d 'schedule=Adhoc' \
  -d $'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
  -d 'website-addresses=["le-bernardin.com","le-bernardin2.com"]' \
- -d 'search-engines=google,google-mobile,google-local,bing,bing-local' \ 
+ -d 'search-engines=google,google-mobile,google-local,yahoo,yahoo-local,bing,bing-local' \ 
  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/update
 ```
 
@@ -139,7 +139,7 @@ parameters.Add("name", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
 parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
 parameters.Add("website-addresses", JsonConvert.SerializeObject("['le-bernardin.com', 'le-bernardin2.com']"));
-parameters.Add("search-engines", "google,google-mobile,google-local,bing, bing-local");
+parameters.Add("search-engines", "google,google-mobile,google-local,yahoo,yahoo-local,bing, bing-local");
 
 var success = request.Post("/v2/lsrc/update", parameters);
 ```
@@ -187,7 +187,7 @@ bing-location | Specify a location to perform search from. When set search keywo
 business-names | Newline (\n) separated list of business names
 postcode |	80 characters max. 
 telephone |	
-search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, bing, bing-local.
+search-engines | Comma separated list of search engines. Options are google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local.
 include-local-directory-results	| Yes or No
 notify | Yes or No
 email-addresses | Newline (\n) separated list of email addresses
@@ -417,6 +417,8 @@ var results = request.Get("/v2/lsrc/get", parameters);
             "search_engines":  [
                 "google",
                 "google-local",
+                "yahoo",
+                "yahoo-local",
                 "bing",
                 "bing-local"
             ],
@@ -672,6 +674,8 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
         "search_engines": [
           "google",
           "google-local",
+          "yahoo",
+          "yahoo-local",
           "bing",
           "bing-local"
         ],
@@ -714,6 +718,8 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
         "search_engines": [
           "google",
           "google-places",
+          "yahoo",
+          "yahoo-local",
           "bing",
           "bing-local"
         ],
@@ -757,6 +763,63 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
                 "sub_type": null,
                 "sub_rank": "1",
                 "last": "1"
+              }
+            ],
+            "yahoo": [
+              {
+                "id": "11767",
+                "url": "http://alaskabar.org/",
+                "orig_url": "http://www.alaskabar.org/",
+                "rank": "1",
+                "unblended_rank": "1",
+                "page": "1",
+                "type": "Organic",
+                "match": "website address",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": "b9ea2849328aa0794c79a60beb6cee38c2a51a67",
+                "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
+                "search_engine": "yahoo",
+                "sub_type": null,
+                "sub_rank": "1",
+                "last": "1"
+              },
+              {
+                "id": "11768",
+                "url": "https://alaskabar.org/servlet/content/46.html",
+                "orig_url": "https://www.alaskabar.org/servlet/content/46.html",
+                "rank": "6",
+                "unblended_rank": "6",
+                "page": "1",
+                "type": "Organic",
+                "match": "website address",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": "e0610efd9a75c627c2f9a8bc1b86680d5064b71d",
+                "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
+                "search_engine": "yahoo",
+                "sub_type": null,
+                "sub_rank": "6",
+                "last": "6"
+              }
+            ],
+            "yahoo-local": [
+              {
+                "id": "11769",
+                "url": "",
+                "orig_url": "",
+                "rank": "0",
+                "unblended_rank": "0",
+                "page": "0",
+                "type": "",
+                "match": "",
+                "directory": null,
+                "date": "2016-02-01 19:00:24",
+                "hash": null,
+                "search_url": "https://search.yahoo.com/local/?p=Alaska+Bar+Association",
+                "search_engine": "yahoo-local",
+                "sub_type": null,
+                "sub_rank": "0"
               }
             ],
             "bing": [
@@ -811,6 +874,15 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
               "e008f8d346b2b8f124702d64be0ec1131adba959"
             ]
           },
+          "yahoo": {
+            "Alaska Bar Association": [
+              "b9ea2849328aa0794c79a60beb6cee38c2a51a67",
+              "e0610efd9a75c627c2f9a8bc1b86680d5064b71d"
+            ]
+          },
+          "yahoo-local": {
+            "Alaska Bar Association": []
+          },
           "bing": {
             "Alaska Bar Association": [
               "bbd31c444764b5dd44685b5eae35578bbef68166"
@@ -850,6 +922,20 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
               "search_url": "https://www.google.com/search?tbm=lcl&q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th",
               "search_engine": "google-places"
             },
+            "Alaska Bar Association||yahoo||Organic": {
+              "id": "11767",
+              "url": "http://alaskabar.org/",
+              "orig_url": "http://www.alaskabar.org/",
+              "rank": "1",
+              "page": "1",
+              "type": "Organic",
+              "match": "website address",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": "b9ea2849328aa0794c79a60beb6cee38c2a51a67",
+              "search_url": "http://search.yahoo.com/search?p=Alaska+Bar+Association",
+              "search_engine": "yahoo"
+            },
             "Alaska Bar Association||bing||Organic": {
               "id": "11770",
               "url": "http://alaskabar.org/",
@@ -870,6 +956,20 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
           "Positions 11-20": [],
           "Positions 21-50": [],
           "Positions 51+": {
+            "Alaska Bar Association||yahoo-local||": {
+              "id": "11769",
+              "url": "",
+              "orig_url": "",
+              "rank": "0",
+              "page": "0",
+              "type": "",
+              "match": "",
+              "directory": null,
+              "date": "2016-02-01 19:00:24",
+              "hash": null,
+              "search_url": "https://search.yahoo.com/local/?p=Alaska+Bar+Association",
+              "search_engine": "yahoo-local"
+            },
             "Alaska Bar Association||bing-local||": {
               "id": "11771",
               "url": "",
@@ -905,6 +1005,20 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
             "up": 0,
             "down": 0,
             "no_change": 1,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "yahoo": {
+            "up": 0,
+            "down": 0,
+            "no_change": 2,
+            "gained_hashes": [],
+            "lost_hashes": []
+          },
+          "yahoo-local": {
+            "up": 0,
+            "down": 0,
+            "no_change": 0,
             "gained_hashes": [],
             "lost_hashes": []
           },
