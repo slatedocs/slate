@@ -129,7 +129,7 @@ Attributes | &nbsp;
 `region`<br/>*string* | The regional location in which the disk was instantiated
 `isAttachedToInstance`<br/>*boolean* | An indication of whether the disk has been attached to an Azure instance
 `instanceId`<br/>*string* | The id of the instance to which the disk is attached to. This is a canonized id from azure which is the form of `/subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName}` 
-`instance`<br/>*string* | The name of the instance to which the disk is attahced to _(available only if the disk is attached to an instance)_
+`instance`<br/>*string* | The name of the instance to which the disk is attached to _(available only if the disk is attached to an instance)_
 `state`<br/>*string* | An indication of the _state_ of the disk. Can be one of the following: `Unattached`, `Attached`, `Reserved`, `ActiveSAS`, `ReadyToUpload`, `ActiveUpload`
 `provisioningState`<br/>*string* | An indication of the _provisioning state_ of the disk _(SUCCESS or FAILURE)_
 `creationDate`<br/>*string* | The date in which the disk was created
