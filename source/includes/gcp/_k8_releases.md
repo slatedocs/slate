@@ -332,13 +332,18 @@ curl -X POST \
 
 ```json
 {
-    "data": {
-        "name": "aerospike-1579797954",
-        "version": 8,
-        "namespace": "pspensieri",
-    },
-    "taskId": "13943961-4a2c-4439-b7c9-05113d3b593a",
-    "taskStatus": "SUCCESS"
+  "data": {
+      "name": "aerospike-1579797954",
+      "version": 8,
+      "info": {
+          "deleted": "",
+          "description": "Rollback to 6",
+          "status": "deployed",
+          ...
+      ...
+  },
+  "taskId": "13943961-4a2c-4439-b7c9-05113d3b593a",
+  "taskStatus": "SUCCESS"
 }
 ```
 
@@ -352,9 +357,7 @@ Mandatory | &nbsp;
 
 Attributes | &nbsp;
 ------- | -----------
-`name` <br/>*string* | The name of the release.
-`version` <br/>*string* | The new release revision.
-`namespace` <br/>*string* | The namespace from which the release will be rolled back.
+`data` <br/>*Object* | The release object. See [get release](#get-release) for a description of the release attributes.
 `taskId` <br/>*string* | The task id related to the pod rollback.
 `taskStatus` <br/>*string* | The status of the operation.
 
@@ -438,12 +441,12 @@ curl -X POST \
 ```json
 # The above command returns JSON structured like this
 {
-    "data": {
-        "version": 0,
-        "keepHistory": false
-    },
-    "taskId": "938f11b2-b37d-459e-8cf2-dea05c4d8f63",
-    "taskStatus": "SUCCESS"
+  "data": {
+      "version": 0,
+      "keepHistory": false
+  },
+  "taskId": "938f11b2-b37d-459e-8cf2-dea05c4d8f63",
+  "taskStatus": "SUCCESS"
 }
 ```
 
