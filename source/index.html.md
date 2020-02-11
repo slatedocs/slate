@@ -232,6 +232,20 @@ Returns the metadata associated with the specified key and value.
 
 `GET <SynBioHub URL>/search/<key>=<value>&...&<search string>/?offset=#&limit=# `
 
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/search/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP/?offset=0&limit=50'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 ```python
 import requests
 
@@ -311,23 +325,53 @@ e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://
 ```
 Note that the X-authorization header is not needed for public collections, but it is required for private collections.
 
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/bsu/bsu_collection/1/subcollections'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+
 ### Returns all Collections that are not members of any other Collection
 
 `GET <SynBioHub URL>/rootCollections`
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/igem_collection/1/subCollections
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/igem_collection/1/rootCollections
 ```
 
 ```python
 import requests
 
 response = requests.get(
-    'https://synbiohub.org/public/igem/igem_collection/1/subCollections',
+    'https://synbiohub.org/public/igem/igem_collection/1/rootCollections',
     params={'X-authorization': 'token'},
     headers={'Accept': 'text/plain'},
 )
 ```
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/igem_collection/1/rootCollections'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 Note that the X-authorization header is optional, but if provided, it will also return private root collections for the logged in user.
 
 ### Perform a search and return count of search results
@@ -351,6 +395,21 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'`
 ```
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 Note that the X-authorization header is optional, but if provided, the search count will also include private objects for the logged in user.
 
 
@@ -375,6 +434,21 @@ response = requests.get(
 
 print(response.status_code)
 print(response.content)
+```
+
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/Collection/Count'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
 ```
 
 Note that you can replace `<ObjectType>` with any object type, such as `ComponentDefinition`, `SequenceAnnotation`, etc.
@@ -418,6 +492,20 @@ Returns the source for an attachement to the specificified URI
 
 `GET <URI>/download `
 
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 ```python
 import requests
 
@@ -444,6 +532,20 @@ Returns the SBOL for the object from the specified URI.
 
 `GET <URI>/sbol`
 
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/sbol'
+const otherPram={
+    headers:{
+	"content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+.then(res => res.buffer()).then(buf => console.log(buf.toString()))
+.catch (error=>console.log(error))
+```
+
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbol`
 ```
@@ -467,6 +569,21 @@ print(response.content)
 Returns the SBOLnr for the object from the specified URI.
 
 `GET <URI>/sbolnr`
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/sbolnr'
+const otherPram={
+    headers:{
+	"content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+.then(res => res.buffer()).then(buf => console.log(buf.toString()))
+.catch (error=>console.log(error))
+```
+
 
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbolnr`
@@ -492,6 +609,20 @@ Returns the metadata for the object from the specified URI.
 
 `GET <URI>/metadata`
 
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/metadata'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/metadata`
 ```
@@ -515,6 +646,20 @@ print(response.content)
 Returns the GenBank for the object from the specified URI.
 
 `GET <URI>/gb`
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
 
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb`
@@ -540,6 +685,20 @@ Returns the FASTA for the object from the specified URI.
 
 `GET <URI>/fasta`
 
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta`
 ```
@@ -563,6 +722,20 @@ print(response.content)
 Returns the visualization for the object from the specified URI.
 
 `GET <URI>/visualization`
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/visualization'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
 
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/visualization`
