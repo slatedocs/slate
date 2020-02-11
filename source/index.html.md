@@ -94,6 +94,7 @@ includes:
   - azure/instances
   - azure/networking
   - azure/networks
+  - azure/network_security_groups
   - masterportal
   - masterportal/applications
 
