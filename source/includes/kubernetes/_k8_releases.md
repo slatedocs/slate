@@ -316,9 +316,10 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=rollback"
-```
 
 # The above command returns JSON structured like this:
+```
+
 ```json
 {
     "data": {
@@ -335,6 +336,14 @@ curl -X POST \
 
 Rollback a release in a given [environment](#administration-environments) to the previous revision.
 
+Attributes | &nbsp;
+------- | -----------
+`name` <br/>*string* | The name of the release.
+`version` <br/>*string* | The new release revision.
+`namespace` <br/>*string* | The namespace from which the release will be rolled back.
+`taskId` <br/>*string* | The task id related to the pod rollback.  
+`taskStatus` <br/>*string* | The status of the operation.
+
 <!-------------------- UPGRADE RELEASE -------------------->
 ### Upgrade release
 
@@ -345,25 +354,25 @@ curl -X POST \
    -d "request_body"
 
 
-# Request body example:
+# Request body examples:
 ```
 
 ```json
-#Change to the latest version of a chart
+# Change to the latest version of a chart
 {
   "upgradeChart":  "stable/aerospike" 
 }
 ```
 
 ```json
-#Change to a specific version of a chart
+# Change to a specific version of a chart
 {
   "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
 }
 ```
 
 ```json
-#Change the values for the latest version
+# Change the values for the latest version
 {
   "upgradeChart" : "stable/aerospike",
   "values": "---\n\"replicaCount\": 3\n"
@@ -372,7 +381,7 @@ curl -X POST \
 
 
 ```json
-#The above command returns JSON structured like this:
+# The above command returns JSON structured like this
 {
   "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
   "taskStatus": "SUCCESS"
@@ -392,6 +401,11 @@ Optional | &nbsp;
 ------- | -----------
 `values` <br/>*string* | YAML structured text that will overwrite the default values for the upgrade/installation of the chart.
 
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the pod upgrade.
+`taskStatus` <br/>*string* | The status of the operation.
+
 <!-- UNINSTALL RELEASE -->
 ### Uninstall a release
 
@@ -409,12 +423,8 @@ curl -X POST \
 }
 ```
 
-Optional | &nbsp;
-------- | -----------
-`keepHistory` <br/>*bool* | If true, will keep release history after uninstalling. Defaults to false.
-
-# The above command returns JSON structured like this:
 ```json
+# The above command returns JSON structured like this
 {
     "data": {
         "version": 0,
@@ -425,6 +435,17 @@ Optional | &nbsp;
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=rollback</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=uninstall</code>
 
 Uninstall a release in a given [environment](#administration-environments).
+
+Optional | &nbsp;
+------- | -----------
+`keepHistory` <br/>*bool* | If true, will keep release history after uninstalling. Defaults to false.
+
+Attributes | &nbsp;
+------- | -----------
+`version` <br/>*string* | The uninstalled release's revision. Revision 0 indicated it was uninstalled.
+`keepHistory` <br/>*string* | The *keepHistory* value used when uninstalling the chart.
+`taskId` <br/>*string* | The task id related to the pod uninstall.
+`taskStatus` <br/>*string* | The status of the operation.
