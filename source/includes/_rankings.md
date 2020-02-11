@@ -355,7 +355,6 @@ else
         "status": "Completed",
         "job-id": 564270999
       }
-
     ]
   },
   "statuses": {
