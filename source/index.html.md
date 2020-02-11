@@ -26,8 +26,7 @@ SynBioHub includes two projects:
 * An [open source software project](http://github.com/SynBioHub) providing a Web interface for the storing and publishing of synthetic biology designs.
 * A public instance of the aforementioned software project at [synbiohub.org](http://synbiohub.org), allowing users to upload and share designs.
 
-For those familiar with the 
- Stack, SynBioHub incorporates and extends its functionality.  An SBOL Stack installation is not required for SynBioHub.
+For those familiar with the SBOL Stack, SynBioHub incorporates and extends its functionality.  An SBOL Stack installation is not required for SynBioHub.
 
 
 What can SynBioHub be used for?
@@ -69,6 +68,7 @@ Web Design
 ##### Δ[Macquarie University](https://www.mq.edu.au/) 
 
 # Installation
+
 
 ## From Prebuilt Image
 
@@ -186,6 +186,8 @@ which will restart the application with any change to the JavaScript source.
 
 Nginx is used for the [reference instance](https://synbiohub.org/). [NGINX configuration instructions](http://wiki.synbiohub.org/wiki/NGINX_configuration_instructions) 
 
+
+ 
 
 # Documentation
 
@@ -307,27 +309,6 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections`
 ```
-
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/bsu/bsu_collection/1/subcollections'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
-
 Note that the X-authorization header is not needed for public collections, but it is required for private collections.
 
 ### Returns all Collections that are not members of any other Collection
@@ -347,27 +328,6 @@ response = requests.get(
     headers={'Accept': 'text/plain'},
 )
 ```
-
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/igem/igem_collection/1/subCollections'
-
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
 Note that the X-authorization header is optional, but if provided, it will also return private root collections for the logged in user.
 
 ### Perform a search and return count of search results
@@ -391,25 +351,6 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'`
 ```
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
 Note that the X-authorization header is optional, but if provided, the search count will also include private objects for the logged in user.
 
 
@@ -434,25 +375,6 @@ response = requests.get(
 
 print(response.status_code)
 print(response.content)
-```
-
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/Collection/Count'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
 ```
 
 Note that you can replace `<ObjectType>` with any object type, such as `ComponentDefinition`, `SequenceAnnotation`, etc.
@@ -480,26 +402,12 @@ print(response.status_code)
 print(response.json())
 ```
 
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
 Returns the results of the SPARQL query in JSON format. 
+
+### Find the twins of an object
+Returns the twins for a provided object
+
+```plaintext 
 
 ## Download Endpoints
 
@@ -529,25 +437,6 @@ print(response.content)
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download -O --compressed
 ```
 
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
 
 ### Returns SBOL for the object with the specified URI
 
@@ -570,25 +459,7 @@ response = requests.get(
 
 print(response.status_code)
 print(response.content)
-```
 
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/sbol'
-
-const otherPram={
-    headers:{
-	"content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-.then(res => res.buffer()).then(buf => console.log(buf.toString()))
-.catch (error=>console.log(error))
 ```
 
 ### Returns SBOLnr for the object with the specified URI
@@ -615,25 +486,6 @@ print(response.content)
 
 ```
 
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/sbolnr'
-
-const otherPram={
-    headers:{
-	"content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-.then(res => res.buffer()).then(buf => console.log(buf.toString()))
-.catch (error=>console.log(error))
-```
-
 ### Returns metadata for the object with the specified URI
 
 Returns the metadata for the object from the specified URI.
@@ -658,26 +510,6 @@ print(response.content)
 
 ```
 
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/metadata'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
-
 ### Returns GenBank for the object with the specified URI
 
 Returns the GenBank for the object from the specified URI.
@@ -700,25 +532,6 @@ response = requests.get(
 print(response.status_code)
 print(response.content)
 
-```
-
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
 ```
 
 ### Returns FASTA for the object with the specified URI
@@ -745,25 +558,6 @@ print(response.content)
 
 ```
 
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
 ### Returns visualization for the object with the specified URI
 
 Returns the visualization for the object from the specified URI.
@@ -786,25 +580,6 @@ response = requests.get(
 print(response.status_code)
 print(response.content)
 
-```
-
-```javascript
-
-const fetch = require("node-fetch");
-
-const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/visualization'
-
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-
-};
-
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
 ```
 
 ## Submission Endpoints
