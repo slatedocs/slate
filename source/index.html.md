@@ -323,7 +323,6 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections`
 ```
-Note that the X-authorization header is not needed for public collections, but it is required for private collections.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -498,7 +497,6 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins`
 ```
-Note that the X-authorization header is not needed for public collections, but it is required for private collections.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -534,7 +532,6 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar`
 ```
-Note that the X-authorization header is not needed for public collections, but it is required for private collections.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -567,7 +564,7 @@ print(response.content)
 ```plaintext
 e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses`
 ```
-Note that the X-authorization header is not needed for public collections, but it is required for private collections.
+
 
 ```javascript
 const fetch = require("node-fetch");
