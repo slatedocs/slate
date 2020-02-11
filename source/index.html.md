@@ -93,6 +93,8 @@ includes:
   - azure/compute
   - azure/instances
   - azure/disks
+  - azure/networking
+  - azure/networks
   - masterportal
   - masterportal/applications
 
