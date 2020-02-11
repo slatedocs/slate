@@ -479,9 +479,111 @@ print(response.json())
 Returns the results of the SPARQL query in JSON format. 
 
 ### Find the twins of an object
+
 Returns the twins for a provided object
 
-```plaintext 
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/bsu/BO_5629/1/twins',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins`
+```
+Note that the X-authorization header is not needed for public collections, but it is required for private collections.
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/twins'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+### Find Similar Parts
+
+Find similar parts to the part selected 
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/bsu/BO_5629/1/similar',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar`
+```
+Note that the X-authorization header is not needed for public collections, but it is required for private collections.
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/similar'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+### Find the Uses for a Part
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/bsu/BO_5629/1/uses',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses`
+```
+Note that the X-authorization header is not needed for public collections, but it is required for private collections.
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/uses'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+ 
 
 ## Download Endpoints
 
