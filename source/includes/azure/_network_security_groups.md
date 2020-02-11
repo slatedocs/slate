@@ -46,7 +46,7 @@ Retrieve a list of all network security groups in an [environment](#administrati
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*string* | The id associated to the network security group. This is a canonized id from azure which is the form of /subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networkSecurityGroups/:networkSecurityGroupName
+`id`<br/>*string* | The id associated to the network security group. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networkSecurityGroups/:networkSecurityGroupName`
 `name`<br/>*string* | The name of the network security group.
 `region`<br/>*string* | The region in which the network security group is located
 `provisioningState`<br/>*string* | The provisioning state of the network security group. Possible values are : Succeeded, Updating, Deleting and Failed
