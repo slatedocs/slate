@@ -92,6 +92,7 @@ includes:
   - azure
   - azure/compute
   - azure/instances
+  - azure/regions
   - azure/storage
   - azure/disks
   - azure/networking
