@@ -81,8 +81,8 @@ As you can see on the right side, a door lock device object will indicate its su
 
 ```shell
 curl -X POST \
-  -u ${YOUR_API_KEY}: \
-  https://getweaver.io/v1/devices/${DEVICE_ID}/lock
+  -u "${YOUR_API_KEY}:" \
+  "https://getweaver.io/v1/devices/${DEVICE_ID}/lock"
 ```
 
 ```ruby
@@ -130,8 +130,8 @@ DEVICE_ID | The ID of the device you're commanding
 
 ```shell
 curl -X POST \
-  -u ${YOUR_API_KEY}: \
-  https://getweaver.io/v1/devices/${DEVICE_ID}/unlock
+  -u "${YOUR_API_KEY}:" \
+  "https://getweaver.io/v1/devices/${DEVICE_ID}/unlock"
 ```
 
 ```ruby
@@ -182,7 +182,7 @@ curl -X POST \
   -u "${YOUR_API_KEY}:" \
   -H "Content-Type: application/json" \
   -d '{"code": "88888888", "user_id": 8}' \
-  https://getweaver.io/v1/devices/${DEVICE_ID}/set_code
+  "https://getweaver.io/v1/devices/${DEVICE_ID}/set_code"
 ```
 
 ```ruby
@@ -246,8 +246,8 @@ user_id | integer | Optional | 1 | ID of Code slot to be programmed in, between 
 
 ```shell
 curl -X POST \
-  -u ${YOUR_API_KEY}: \
-  https://getweaver.io/v1/devices/${DEVICE_ID}/clear_all_codes
+  -u "${YOUR_API_KEY}:" \
+  "https://getweaver.io/v1/devices/${DEVICE_ID}/clear_all_codes"
 ```
 
 ```ruby

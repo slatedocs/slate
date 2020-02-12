@@ -19,8 +19,8 @@ If you are running the shell examples, you can simply export your API key in you
 
 ```shell
 # With curl, you can use -u followed by your API key. Adding `:` after the key will simply tell curl not to ask you for a password.
-curl https://getweaver.io/v1/gateways \
-  -u ${YOUR_API_KEY}:
+curl "https://getweaver.io/v1/gateways" \
+  -u "${YOUR_API_KEY}:"
 ```
 
 ```ruby
@@ -42,7 +42,7 @@ RestClient.get(url, headers: headers)
 
 ## Getting Your API Key
 ```shell
-curl https://getweaver.io/v1/users \
+curl "https://getweaver.io/v1/users" \
   -H "Authorization: Token ${USER_AUTH_TOKEN}" \
   -H "Content-Type: application/json"
 ```
