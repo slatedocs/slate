@@ -38,29 +38,30 @@ You can register a URL to receive webhooks by calling [POST https://api-sandbox.
 
 ```json
 {
-    "title": "MS",
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "accountTypes": [
-        "GOJI_INVESTMENT", "ISA"
-    ],
-    "address": {
-        "country": "GBR",
-        "lineOne": "1 The High Street",
-        "lineTwo": "",
-        "lineThree": "",
-        "postcode": "AA1 1AA",
-        "region": "County",
-        "townCity": "Town"
-    },
-    "contactDetails": {
-        "emailAddress": "me@email.com",
-        "telephoneNumber": "01234567890"
-    },
-    "dateOfBirth": "1970-01-01",
-    "entityType": "INDIVIDUAL",
-    "investorDeclarationType": "RESTRICTED",
-    "nationalInsuranceNumber": "JT123456D"
+  "title": "MS",
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "accountTypes": [
+    "GOJI_INVESTMENT",
+    "ISA"
+  ],
+  "address": {
+    "country": "GBR",
+    "lineOne": "1 The High Street",
+    "lineTwo": "",
+    "lineThree": "",
+    "postcode": "AA1 1AA",
+    "region": "County",
+    "townCity": "Town"
+  },
+  "contactDetails": {
+    "emailAddress": "me@email.com",
+    "telephoneNumber": "01234567890"
+  },
+  "dateOfBirth": "1970-01-01",
+  "entityType": "INDIVIDUAL",
+  "investorDeclarationType": "RESTRICTED",
+  "nationalInsuranceNumber": "JT123456D"
 }
 ```
 
@@ -85,13 +86,13 @@ In the sandbox environment, all Investors are considered verified unless the `la
 
 ```json
 {
-    "amount": {
-        "amount": 10000.00,
-        "currency": "GBP"
-    },
-    "clientId": "<client-id>",
-    "paymentReference": "ISA<client-id>",
-    "paymentType": "DEPOSIT"
+  "amount": {
+    "amount": 10000.00,
+    "currency": "GBP"
+  },
+  "clientId": "<client-id>",
+  "paymentReference": "ISA<client-id>",
+  "paymentType": "DEPOSIT"
 }
 ```
 
@@ -124,9 +125,9 @@ Once an Investor has a cash balance, the funds can be invested by calling the se
 
 ```json
 {
-    "id": "PRODUCT-1",
-    "investmentDocument": "https://document.url",
-    "isaEligible": "true"
+  "id": "PRODUCT-1",
+  "investmentDocument": "https://document.url",
+  "isaEligible": "true"
 }
 ```
 
@@ -142,10 +143,10 @@ First register the investment product:
 
 ```json
 {
-    "accountName": "Account name",
-    "accountNumber": "123456",
-    "reference": "Bank ref",
-    "sortCode": "112233"
+  "accountName": "Account name",
+  "accountNumber": "123456",
+  "reference": "Bank ref",
+  "sortCode": "112233"
 }
 ```
 
@@ -168,20 +169,21 @@ The following example includes a single investment from a single Investor:
 
 ```json
 {
-    "id": "investment1",
-    "investments": [
-        {
-            "accountType": "ISA",
-            "amount": {
-                "amount": 10000.00,
-                "currency": "GBP"
-            },
-            "clientId": "<client-id>",
-            "id": "client-investment-1"
-        }
-    ],
-    "paymentDestinationId": "<payment-destination-id>",
-    "productId": "PRODUCT-1"
+  "id": "investment1",
+  "reference": "investment1",
+  "productId": "PRODUCT-1",
+  "bankAccountId": "bankAccountId",
+  "investments": [
+    {
+      "id": "client-investment-1",
+      "clientId": "<client-id>",
+      "accountType": "ISA",
+      "amount": {
+        "amount": 10000.00,
+        "currency": "GBP"
+      }
+    }
+  ]
 }
 ```
 
@@ -197,9 +199,9 @@ The investor's investment can be queried by calling:
 
 ```json
 {
-    "accountNumber": "123456",
-    "reference": "some-ref",
-    "sortCode": "112233"
+  "accountNumber": "123456",
+  "reference": "some-ref",
+  "sortCode": "112233"
 }
 ```
 
@@ -215,21 +217,21 @@ Once the funds have been sent to this destination and the funds have cleared, ca
 
 ```json
 {
-    "investorRepayments": [
-        {
-            "amount": {
-                "amount": 123.45,
-                "currency": "GBP"
-            },
-            "investmentId": "client-investment-1",
-            "tax": {
-                "amount": 0.00,
-                "currency": "GBP"
-            },
-            "type": "INTEREST"
-        }
-    ],
-    "reference": "some-ref"
+  "investorRepayments": [
+    {
+      "amount": {
+        "amount": 123.45,
+        "currency": "GBP"
+      },
+      "investmentId": "client-investment-1",
+      "tax": {
+        "amount": 0.00,
+        "currency": "GBP"
+      },
+      "type": "INTEREST"
+    }
+  ],
+  "reference": "some-ref"
 }
 ```
 
@@ -243,9 +245,9 @@ This will ensure that `£123.45` has been deposited with reference `some-ref` wh
 
 ```json
 {
-    "accountName": "Jane Doe",
-    "accountNumber": "12345678",
-    "sortCode": "112344"
+  "accountName": "Jane Doe",
+  "accountNumber": "12345678",
+  "sortCode": "112344"
 }
 ``` 
 
@@ -253,11 +255,11 @@ This will ensure that `£123.45` has been deposited with reference `some-ref` wh
 
 ```json
 {
-    "amount": {
-        "amount": "101234.56",
-        "currency": "GBP"
-    },
-    "reference": "my withdrawal ref"
+  "amount": {
+    "amount": "101234.56",
+    "currency": "GBP"
+  },
+  "reference": "my withdrawal ref"
 }
 ```
 
