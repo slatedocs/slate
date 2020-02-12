@@ -45,6 +45,8 @@ info:
     - ProjectMembershipCompact
     - ProjectResponse
     - ProjectCompact
+    - ProjectStatusResponse
+    - ProjectStatusCompact
     - SectionResponse
     - SectionCompact
     - StoryResponse
@@ -1872,11 +1874,33 @@ components:
         - $ref: '#/components/schemas/PortfolioBase'
         - type: object
           properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
+            custom_field_settings:
+              description: Array of custom field settings applied to the portfolio.
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomFieldSettingResponse'
             members:
               type: array
               readOnly: true
               items:
                 $ref: '#/components/schemas/UserCompact'
+            owner:
+              $ref: '#/components/schemas/UserCompact'
+            workspace:
+              allOf:
+                - $ref: '#/components/schemas/WorkspaceCompact'
+                - type: object
+                  description: >-
+                    *Create-only*. The workspace or organization that the
+                    portfolio belongs to.
     PortfolioRequest:
       allOf:
         - $ref: '#/components/schemas/PortfolioBase'
@@ -1894,6 +1918,11 @@ components:
               example:
                 - '52164'
                 - '15363'
+            workspace:
+              type: string
+              description: >-
+                Gid of an object.
+              example: '167589'
     PortfolioBase:
       allOf:
         - $ref: '#/components/schemas/PortfolioCompact'
@@ -1922,34 +1951,6 @@ components:
                 - light-purple
                 - light-warm-gray
               example: light-green
-            created_at:
-              description: The time at which this resource was created.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            created_by:
-              readOnly: true
-              allOf:
-                - $ref: '#/components/schemas/UserCompact'
-            custom_field_settings:
-              description: Array of custom field settings applied to the portfolio.
-              readOnly: true
-              type: array
-              items:
-                $ref: '#/components/schemas/CustomFieldSettingResponse'
-            owner:
-              description: The current owner of the portfolio.
-              readOnly: true
-              allOf:
-                - $ref: '#/components/schemas/UserCompact'
-            workspace:
-              allOf:
-                - $ref: '#/components/schemas/WorkspaceCompact'
-                - type: object
-                  description: >-
-                    *Create-only*. The workspace or organization that the
-                    portfolio belongs to.
     PortfolioCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -2467,7 +2468,18 @@ components:
             user:
               $ref: '#/components/schemas/UserCompact'
     ProjectStatusResponse:
-      $ref: '#/components/schemas/ProjectStatusBase'
+      allOf:
+        - $ref: '#/components/schemas/ProjectStatusBase'
+        - type: object
+          properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
     ProjectStatusRequest:
       $ref: '#/components/schemas/ProjectStatusBase'
     ProjectStatusBase:
@@ -2479,14 +2491,6 @@ components:
             - text
             - color
           properties:
-            created_at:
-              description: The time at which this resource was created.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            created_by:
-              $ref: '#/components/schemas/UserCompact'
             project:
               description: Globally unique identifier for the project.
               type: string

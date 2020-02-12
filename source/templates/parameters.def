@@ -2,7 +2,7 @@
 
 |Name|Description|
 |---|---|
-{{~ data.parameters :p}}|{{= p.in === "query" ? "?" : p.in === "path" ? "/" : "" }}{{=p.name}}<span class="param-type"> {{=p.safeType}}</span>{{= p.required ? '<div class="param-required">required</div>' : ''}}|{{=p.shortDesc || 'none'}}|
+{{~ data.parameters :p}}{{? p.restrictions !== "read-only"}}|{{= p.in === "query" ? "?" : p.in === "path" ? "/" : "" }}{{=p.name}}<span class="param-type"> {{=p.safeType}}</span>{{= p.required ? '<div class="param-required">required</div>' : ''}}|{{=p.shortDesc || 'none'}}|{{?}}
 {{~}}
 
 {{? data.longDescs }}
