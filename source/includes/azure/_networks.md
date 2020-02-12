@@ -43,3 +43,38 @@ Attributes | &nbsp;
 `region`<br/>*string* | The region in which the virtual network is located
 `provisioningState`<br/>*string* | The provisioning state of the virtual network. Possible values are : Succeeded, Updating, Deleting and Failed
 `addressSpace`<br/>*list* | List of address space that are covered by this virtual network
+
+
+<!-------------------- CREATE VIRTUAL NETWORKS -------------------->
+
+#### Create virtual networks
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body"
+   "https://cloudmc_endpoint/v1/services/azure/example/networks"
+
+# Request Example:
+```
+```json
+{
+	"name": "simpleNetwork",
+	"region" : "canadaeast",
+	"addressSpace": "10.0.0.0/16",
+	"subnetName": "default",
+	"subnetAddressPrefix": "10.0.0.0/16"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
+
+Create a virtual network in an [environment](#administration-environments)
+
+Attributes | &nbsp;
+---------- | -----
+`name`<br/>*string* | The name of the virtual network
+`region`<br/>*string* | The region in which the virtual network is located
+`addressSpace`<br/>*string* | The first address range (CIDR format) that will be covered by this virtual network
+`subnetName`<br/>*string* | The first subnet name within this virtual network
+`subnetAddressPrefix`<br/>*string* | The first subnet address range (CIDR format) within this virtual network

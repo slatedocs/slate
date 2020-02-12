@@ -2,7 +2,7 @@
 
 A network security group is a group of security rules that allow or deny inbound network traffic to, or outbound network traffic from, several types of Azure resources, including Azure virtual networks.
 
-<!-------------------- LIST VIRTUAL NETWORKS -------------------->
+<!-------------------- LIST NETWORK SECURITY GROUPS -------------------->
 
 #### List network security groups
 
