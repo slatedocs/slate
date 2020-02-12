@@ -8,6 +8,10 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
 
   def header(text, header_level)
     friendly_text = text.gsub(/<[^>]*>/,"").parameterize
+    extra_friendly_text = friendly_text.gsub(/[0-9]*/,"")
+    extra_friendly_text = extra_friendly_text.gsub(/--/,"")
+    extra_friendly_text = extra_friendly_text.gsub(/-s-/,"s-")
+    extra_friendly_text = extra_friendly_text.gsub(/-amp-/,"")
     if friendly_text.strip.length == 0
       # Looks like parameterize removed the whole thing! It removes many unicode
       # characters like Chinese and Russian. To get a unique URL, let's just
@@ -28,7 +32,13 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
       text = text + "<svg class='chevron' viewBox='0 0 40 40'><path d='M23.2,16c0,0.3-0.1,0.7-0.3,0.9l-9,11c-0.5,0.6-1.5,0.7-2.1,0.2s-0.7-1.5-0.2-2.1l8.2-10L11.6,6c-0.5-0.6-0.4-1.6,0.2-2.1s1.6-0.4,2.1,0.2l9,11C23.1,15.3,23.2,15.7,23.2,16z'></path></svg>"
     end
 
-    "<h#{header_level} id='#{friendly_text}' #{classes} #{on_click}>#{text}</h#{header_level}>"
+    extra_friendly_id = ""
+    result = ""
+    if header_level < 4
+      extra_friendly_id = "id='#{extra_friendly_text}' "
+      result = "<a id='#{friendly_text}'></a>"
+    end
+    result + "<h#{header_level} " + extra_friendly_id + "#{classes} #{on_click}>#{text}</h#{header_level}>"
   end
 
   def table(header, body)

@@ -3,6 +3,10 @@
 //= require ./app/_lang
 
 $(function() {
+  var pathname = window.location.pathname;
+  if (pathname.split('/').length > 2) {
+    window.location.hash = pathname.split('/')[3];
+  }
   loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
   setupLanguages($('body').data('languages'));
   $('.content').imagesLoaded( function() {
@@ -41,6 +45,15 @@ $(function() {
         $(this).prevUntil(':not(.common-item)').removeClass("hidden-row");
       }
     }
+  });
+
+  $('a').click(function(event) {
+    var ref = $(this).attr('href');
+    if (ref && ref.startsWith("#")) {
+      window.location.hash = "";
+      $([document.documentElement, document.body]).scrollTop($(ref).offset().top)
+    }
+    return false;
   });
 });
 

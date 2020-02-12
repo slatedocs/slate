@@ -27,7 +27,8 @@ Base URLs:
 {{? data.api.info && data.api.info.contact}}{{? data.api.info.contact.email}}Email: <a href="mailto:{{=data.api.info.contact.email}}">{{=data.api.info.contact.name || 'Support'}}</a> {{?}}{{? data.api.info.contact.url}}Web: <a href="{{=data.api.info.contact.url}}">{{= data.api.info.contact.name || 'Support'}}</a> {{?}}{{?}}
 </section>{{ for (var r in data.resources) { }}{{ data.resource = data.resources[r]; }}<hr class="full-line">
 <section class="full-section">
-<h1 id="{{=data.title_prefix+'-'+data.utils.slugify(r)}}">{{= r}}</h1>
+<a id="asana-{{=data.utils.slugify(r)}}"></a>
+<h1 id="{{=data.utils.slugify(r)}}">{{= r}}</h1>
 
 {{ var first = true; }}
 <pre class="highlight http tab-http">
@@ -53,7 +54,8 @@ Base URLs:
 <a id="schema_{{=s.replaceAll("Response","")}}"></a>
 <a id="tocS{{=s.toLowerCase().replaceAll("response","")}}"></a>
 <a id="tocs{{=s.toLowerCase().replaceAll("response","")}}"></a>
-<h2 id="tocS_{{=s.replaceAll("Response","")}}">{{=s.replaceAll("Response","")}}</h2>
+<a id="tocS_{{=s.replaceAll("Response","")}}"></a>
+<h2 id="{{=s.replaceAll("Response","").replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/([A-Z])([A-Z])(?=[a-z])/g, '$1-$2').toLowerCase()}}">{{=s.replaceAll("Response","")}}</h2>
 {{? data.options.yaml }}
 ```yaml
 {{=data.utils.yaml.stringify(data.utils.getSample(schema,data.options,{quiet:true},data.api))}}
@@ -63,6 +65,7 @@ Base URLs:
 {{?}}
 ```
 
+{{ var enums = []; }}
 {{ var enums = []; }}
 {{ var blocks = data.utils.schemaToArray(origSchema,-1,{trim:true,join:true},data); }}
 {{ for (var block of blocks) {

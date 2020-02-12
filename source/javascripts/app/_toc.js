@@ -38,7 +38,7 @@
       $toc.find(tocLinkSelector).each(function() {
         var targetId = $(this).attr('href');
         if (targetId[0] === "#") {
-          headerHeights[targetId] = $(targetId).offset().top;
+          headerHeights[targetId] = $(targetId).offset().top - 100;
         }
       });
     };
@@ -78,7 +78,7 @@
         $toc.find(tocListSelector).filter(":not(.active)").slideUp(150);
         $toc.find(tocListSelector).filter(".active").slideDown(150);
         if (window.history.replaceState) {
-          window.history.replaceState(null, "", best);
+          window.history.replaceState(null, "", "/docs/" + best.substring(1));
         }
         var thisTitle = $best.data("title")
         if (thisTitle !== undefined && thisTitle.length > 0) {

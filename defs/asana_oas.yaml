@@ -1120,11 +1120,13 @@ components:
           type: string
           readOnly: true
           example: '12345'
+          x-insert-after: false
         resource_type:
           description: The base type of this resource.
           type: string
           readOnly: true
           example: task
+          x-insert-after: gid
     AsanaNamedResource:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
