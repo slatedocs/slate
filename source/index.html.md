@@ -186,18 +186,26 @@ which will restart the application with any change to the JavaScript source.
 
 Nginx is used for the [reference instance](https://synbiohub.org/). [NGINX configuration instructions](http://wiki.synbiohub.org/wiki/NGINX_configuration_instructions) 
 
+## NGINX configuration
+
+Instructions for managing nginx server blocks can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04#step-three-create-server-block-files-for-each-domain).
+
+The server block for a SynBioHub installation listening on port 7777 is [here](http://wiki.synbiohub.org/wiki/NGINX_configuration_instructions).
+
+
+This is most useful when you would like to host SynBioHub on a subdomain alongside other content (using nginx as an HTTP proxy) or using HTTPS. 
+
+
 
  
 
-# Documentation
-
 <aside class="success">Note that the X-authorization header is not needed for public objects, but is required for private objects unless stated otherwise.</aside>
 
-## User Endpopints
+# User Endpopints
 
 Endpoints that control user related functions
 
-### Request to login
+## Request to login
 Returns a string token to be passed with any call to submit as the `user` parameter. 
 
 This POST request requires email/password and returns a user token needed for viewing private objects and submitting new objects.
@@ -213,24 +221,26 @@ Parameter | Description
 --------- | ------- | -----------
 email | the e-mail address of the user to login with
 password | the password of the user
-### Request to logout
-If `user` is currently logged in, this post request will logout the user.
+
+## Request to logout
 
 `POST http://synbiohub.org/logout `
+
+If `user` is currently logged in, this post request will logout the user.
 
 ```plaintext
 e.g. `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
 ```
 
-### Request to reset password
+## Request to reset password
 
-## Search Endpoints
+# Search Endpoints
 
-### Perform a search and return metadata
-
-Returns the metadata associated with the specified key and value.
+## Perform a search and return metadata
 
 `GET <SynBioHub URL>/search/<key>=<value>&...&<search string>/?offset=#&limit=# `
+
+Returns the metadata associated with the specified key and value.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -301,11 +311,11 @@ This endpoint returns JSON metadata of the form
 ]
 ```
 
-### Returns all Collections that are members of the Collection specified by its URI
-
-Returns the collections of members within another collection
+## Returns all Collections that are members of the Collection specified by its URI
 
 `GET <URI>/subCollections`
+
+Returns the collections of members within another collection
 
 ```python
 import requests
@@ -339,7 +349,7 @@ fetch(Url,otherPram)
 ```
 
 
-### Returns all Collections that are not members of any other Collection
+## Returns all Collections that are not members of any other Collection
 
 `GET <SynBioHub URL>/rootCollections`
 
@@ -373,10 +383,11 @@ fetch(Url,otherPram)
 
 Note that the X-authorization header is optional, but if provided, it will also return private root collections for the logged in user.
 
-### Perform a search and return count of search results
-Returns the number of items matching the search result.
+## Perform a search and return count of search results
 
 `GET <SynBioHub URL>/searchCount/<key>=<value>&...&<search string>/?offset=#&limit=# `
+
+Returns the number of items matching the search result.
 
 ```python
 import requests
@@ -412,11 +423,11 @@ fetch(Url,otherPram)
 Note that the X-authorization header is optional, but if provided, the search count will also include private objects for the logged in user.
 
 
-### Count objects
-
-Returns the number of objects within a specified collection
+## Count objects
 
 `GET <SynBioHub URL>/<ObjectType>/count`
+
+Returns the number of objects within a specified collection
 
 ```plaintext
 e.g. curl -X GET https://synbiohub.org/Collection/Count
@@ -452,10 +463,11 @@ fetch(Url,otherPram)
 
 Note that you can replace `<ObjectType>` with any object type, such as `ComponentDefinition`, `SequenceAnnotation`, etc.
 
-### Perform a SPARQL query
-Returns the results of the SPARQL query in JSON format. 
+## Perform a SPARQL query
 
 `GET <SynBioHub URL>/sparql?query=<SPARQL query>`
+
+Returns the results of the SPARQL query in JSON format. 
 
 ```plaintext
 e.g. `curl -X GET -H "Accept: application/json" 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
@@ -475,11 +487,11 @@ print(response.status_code)
 print(response.json())
 ```
 
-Returns the results of the SPARQL query in JSON format. 
+## Find the Twins of a component
 
-### Find the twins of an object
+`GET <SynBioHub URL>/twins`
 
-Returns the twins for a provided object
+Returns other components that have the same sequence.
 
 ```python
 import requests
@@ -512,9 +524,11 @@ fetch(Url,otherPram)
     .catch (error=>console.log(error))
 ```
 
-### Find Similar Parts
+## Find Similar Components
 
-Find similar parts to the part selected 
+`GET <SynBioHub URL>/similar`
+
+Returns other components that have similar sequences.
 
 ```python
 import requests
@@ -546,7 +560,11 @@ fetch(Url,otherPram)
     .then(res => res.buffer()).then(buf => console.log(buf.toString()))
     .catch (error=>console.log(error))
 ```
-### Find the Uses for a Part
+## Find the Uses of an Ojbect
+
+`GET <SynBioHub URL>/uses`
+
+Returns any other object that refers to this object, for example, if this is a component, it will return all other components that use this as a sub-component.
 
 ```python
 import requests
@@ -582,14 +600,14 @@ fetch(Url,otherPram)
 
  
 
-## Download Endpoints
+# Download Endpoints
 
 
-### Return source for an attachment with the specified URI
-
-Returns the source for an attachement to the specificified URI
+## Return source for an attachment with the specified URI
 
 `GET <URI>/download `
+
+Returns the source for an attachement to the specificified URI
 
 ```javascript
 const fetch = require("node-fetch");
@@ -625,11 +643,11 @@ e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://
 ```
 
 
-### Returns SBOL for the object with the specified URI
-
-Returns the SBOL for the object from the specified URI.
+## Returns SBOL for the object with the specified URI
 
 `GET <URI>/sbol`
+
+Returns the SBOL for the object from the specified URI.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -663,11 +681,11 @@ print(response.content)
 
 ```
 
-### Returns SBOLnr for the object with the specified URI
-
-Returns the SBOLnr for the object from the specified URI.
+## Returns SBOLnr for the object with the specified URI
 
 `GET <URI>/sbolnr`
+
+Returns the SBOLnr (SBOL not recursive, i.e. fetches the object without its children) for the object from the specified URI.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -702,9 +720,7 @@ print(response.content)
 
 ```
 
-### Returns metadata for the object with the specified URI
-
-Returns the metadata for the object from the specified URI.
+## Returns metadata for the object with the specified URI
 
 `GET <URI>/metadata`
 
@@ -740,11 +756,13 @@ print(response.content)
 
 ```
 
-### Returns GenBank for the object with the specified URI
+Returns the metadata for the object from the specified URI.
 
-Returns the GenBank for the object from the specified URI.
+## Returns GenBank for the object with the specified URI
 
 `GET <URI>/gb`
+
+Returns the GenBank for the object from the specified URI.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -778,11 +796,11 @@ print(response.content)
 
 ```
 
-### Returns FASTA for the object with the specified URI
-
-Returns the FASTA for the object from the specified URI.
+## Returns FASTA for the object with the specified URI
 
 `GET <URI>/fasta`
+
+Returns the FASTA for the object from the specified URI.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -816,11 +834,11 @@ print(response.content)
 
 ```
 
-### Returns visualization for the object with the specified URI
-
-Returns the visualization for the object from the specified URI.
+## Returns visualization for the object with the specified URI
 
 `GET <URI>/visualization`
+
+Returns the visualization for the object from the specified URI.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -854,13 +872,13 @@ print(response.content)
 
 ```
 
-## Submission Endpoints
+# Submission Endpoints
 
-### Create a new collection
-
-Create a new collection
+## Create a new collection
 
 `POST <SynBioHub URL>/submit `
+
+Create a new collection
 
 ```plaintext
 e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
@@ -878,7 +896,7 @@ citations | a list of comma separated pubmed IDs of citations to store with the 
 overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists
 file | contents of an SBOL2, SBOL1, GenBank, FASTA, ZIP, or COMBINE Archive file
 
-### Add to an existing collection
+## Add to an existing collection
 
 `POST <SynBioHub URL>/submit `
 
@@ -886,78 +904,36 @@ file | contents of an SBOL2, SBOL1, GenBank, FASTA, ZIP, or COMBINE Archive file
 e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F rootCollections=<URI> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
 ```
 
-## Edit Endpoints
+# Edit Endpoints
 
-## Attachment Endpoints
+# Attachment Endpoints
 
-### Attach file to a specified URI
-
-Attach a specified file to a given URI
+## Attach file to a specified URI
 
 `POST <URI>/attach `
+
+Attach a specified file to a given URI
 
 ```plaintext
 e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
 ```
 
 
-## Permission Endpoints
+# Permission Endpoints
 
-### Perform a SPARQL admin query
-Returns the results of the SPARQL admin query in JSON format.
+## Perform a SPARQL admin query
 
 `GET <SynBioHub URL>/admin/sparql?query=<SPARQL query>`
+
+Returns the results of the SPARQL admin query in JSON format.
 
 ```plaintext
 e.g. ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
 ```
 
-## Misc. Endpoints
+# Misc. Endpoints
 
  
-
-# Documentation
-
-<aside class="success">Note that the X-authorization header is not needed for public objects, but is required for private objects unless stated otherwise.</aside>
-
-## User Endpopints
-
-Endpoints that control user related functions
-
-### Request to login
-Returns a string token to be passed with any call to submit as the `user` parameter. 
-
-This POST request requires email/password and returns a user token needed for viewing private objects and submitting new objects.
- 
-`POST http://synbiohub.org/login `
-
-```plaintext
-e.g.`curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login`
-```
-
-#### Query Parameters
-Parameter | Description
---------- | ------- | -----------
-email | the e-mail address of the user to login with
-password | the password of the user
-### Request to logout
-If `user` is currently logged in, this post request will logout the user.
-
-`POST http://synbiohub.org/logout `
-
-```plaintext
-e.g. `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
-```
-
-# NGINX configuration
-
-Instructions for managing nginx server blocks can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04#step-three-create-server-block-files-for-each-domain).
-
-The server block for a SynBioHub installation listening on port 7777 is [here](http://wiki.synbiohub.org/wiki/NGINX_configuration_instructions).
-
-
-This is most useful when you would like to host SynBioHub on a subdomain alongside other content (using nginx as an HTTP proxy) or using HTTPS. 
-
 
 
   
