@@ -1,4 +1,4 @@
-## <em>Instruments 🚧</em>
+## *Instruments*
 
 The Instruments API allows an Investment Manager to:
  

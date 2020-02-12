@@ -63,7 +63,7 @@ Register a webhook url.
 | url   | string | The url as specified in the request. |
 | secret   | string | The webhook secret that should be used to check the validity of webhooks received (see [Webhooks authentication](#webhooks-authentication) for full details). |
 
-## Webhook Types
+## *Webhook Types*
 
 When certain events are triggered in the Goji system, a call can be made to your system to inform you of this event.
 
@@ -82,8 +82,8 @@ The URL to be called is configured as part of the onboarding process.
 The webhook `POST` body will be in the following format.
 The following event `type`s will be supported, along with the content as `JSON`.
 
->INVESTOR_PERSONAL_DETAILS_REGISTERED
-><br>This is fired whenever personal details are registered.
+## INVESTOR_PERSONAL_DETAILS_REGISTERED
+This is fired whenever personal details are registered.
 
 ```json
 {
@@ -97,8 +97,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ````
 
->INVESTOR_CREATED
-><br>This is fired whenever a new investor is registered.
+## INVESTOR_CREATED
+This is fired whenever a new investor is registered.
 
 ```json
 {
@@ -124,8 +124,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->INVESTOR_KYC_STATUS_CHANGE
-><br>This is fired whenever an investor's KYC status changes eg from `REFERRED` to `VERIFIED`.
+## INVESTOR_KYC_STATUS_CHANGE
+This is fired whenever an investor's KYC status changes eg from `REFERRED` to `VERIFIED`.
 
 ```json
 {
@@ -134,8 +134,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->INVESTOR_FUNDS_RECEIVED
-><br>This is fired whenever investor funds are cleared into their account eg for a bank transfer.
+## INVESTOR_FUNDS_RECEIVED
+This is fired whenever investor funds are cleared into their account eg for a bank transfer.
 
 ```json
 {
@@ -154,8 +154,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->ISA_AUTO_REPAIRED
-><br>This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.
+## ISA_AUTO_REPAIRED
+This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.
 
 ```json
 {
@@ -167,8 +167,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->INVESTOR_FUNDS_WITHDRAWN
-><br>This is fired whenever an investor withdraws funds.
+## INVESTOR_FUNDS_WITHDRAWN
+This is fired whenever an investor withdraws funds.
 
 ```json
 {
@@ -182,8 +182,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->INVESTMENT_QUEUED
-><br>This is fired whenever an investment is queued. Bond Management API only.
+## INVESTMENT_QUEUED
+This is fired whenever an investment is queued. Bond Management API only.
 
 ```json
 {
@@ -197,8 +197,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->INVESTMENT_FULFILLED
-><br>This is fired whenever an investment is fulfilled. Bond Management API only.
+## INVESTMENT_FULFILLED
+This is fired whenever an investment is fulfilled. Bond Management API only.
 
 ```json
 {
@@ -207,8 +207,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->TRANSFER_IN_CREATED
-><br>This is fired whenever a transfer in is created.
+## TRANSFER_IN_CREATED
+This is fired whenever a transfer in is created.
 
 ```json
 {
@@ -217,8 +217,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->TRANSFER_OUT_CREATED
-><br>This is fired whenever a transfer out is requested.
+## TRANSFER_OUT_CREATED
+This is fired whenever a transfer out is requested.
 
 ```json
 {
@@ -280,10 +280,11 @@ The following event `type`s will be supported, along with the content as `JSON`.
     },
     "dateOfFirstSubscriptionInCurrentYear": "2017-12-12"
   }
+}
 ```
 
->TRANSFER_OUT_COMPLETED
-><br>This is fired whenever a transfer out is completed.
+## TRANSFER_OUT_COMPLETED
+This is fired whenever a transfer out is completed.
 
 ```json
 {
@@ -345,10 +346,11 @@ The following event `type`s will be supported, along with the content as `JSON`.
     },
     "dateOfFirstSubscriptionInCurrentYear": "2017-12-12"
   }
+}
 ```
 
->TRANSFER_IN_FUNDS_RECEIVED
-><br>This is fired whenever the funds for a transfer in are received.
+## TRANSFER_IN_FUNDS_RECEIVED
+This is fired whenever the funds for a transfer in are received.
 
 ```json
 {
@@ -361,8 +363,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->ISA_PROVISIONALLY_OPENED
-><br>This is fired whenever an ISA is opened.
+## ISA_PROVISIONALLY_OPENED
+This is fired whenever an ISA is opened.
 
 ```json
 {
@@ -370,8 +372,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->INVESTMENT_PAYOUT_EVENT
-><br>This is fired whenever a repayment is distributed to an investor's account. Bond Management API only.
+## INVESTMENT_PAYOUT_EVENT
+This is fired whenever a repayment is distributed to an investor's account. Bond Management API only.
 
 ```json
 {
@@ -394,8 +396,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->FUNDS_REQUESTED
-><br>This is fired whenever repayment funds are requested from the investment manager. Bond Management API only.
+## FUNDS_REQUESTED
+This is fired whenever repayment funds are requested from the investment manager. Bond Management API only.
 
 ```json
 {
@@ -419,8 +421,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->FUNDS_RECEIVED
-><br>This is fired whenever repayment funds are received from the investment manager.
+## FUNDS_RECEIVED
+This is fired whenever repayment funds are received from the investment manager.
 
 ```json
 {
@@ -432,8 +434,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->BANK_ACCOUNT_DETAILS_STATUS_CHANGED
-><br>This is fired whenever a set of bank account details are "ENABLED"/"DISABLED", as displayed by their status.
+## BANK_ACCOUNT_DETAILS_STATUS_CHANGED
+This is fired whenever a set of bank account details are "ENABLED"/"DISABLED", as displayed by their status.
 
 ```json
 {
@@ -445,8 +447,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->WALLET_CREATED
-><br>This is fired whenever a wallet is created.
+## WALLET_CREATED
+This is fired whenever a wallet is created.
 
 ```json
 {
@@ -455,22 +457,13 @@ The following event `type`s will be supported, along with the content as `JSON`.
     "id" : "f5d57a4a-a6cc-4b5f-8ef0-09e09b02de28",
     "accountName" : "string",
     "accountNumber" : "string",
-    "sortCode" : "string",
+    "sortCode" : "string"
   }
 }
 ```
 
->WALLET_REGISTERED
-><br>This is fired whenever setup management of wallet is done.
-
-```json
-{
-  "companyName" : "string",
-}
-```
-
->WALLET_FUNDS_RECEIVED
-><br>This is fired whenever funds are received in a wallet.
+## WALLET_FUNDS_RECEIVED
+This is fired when funds are received into a wallet.
 
 ```json
 {
@@ -489,8 +482,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 ```
 
 
->WALLET_TRANSFER_CLEARED
-><br>This is fired when a wallet transfer is completed. This Webhook is currently not in use.
+## WALLET_TRANSFER_CLEARED
+This is fired when a wallet transfer is completed. This Webhook is currently not in use.
 
 ```json
 {
@@ -499,7 +492,7 @@ The following event `type`s will be supported, along with the content as `JSON`.
     "bankDetails" : {
       "accountName" : "string",
       "accountNumber" : "string",
-      "sortCode" : "string",
+      "sortCode" : "string"
     }
   },
   "sourceWallet" : {
@@ -507,7 +500,7 @@ The following event `type`s will be supported, along with the content as `JSON`.
     "bankDetails" : {
       "accountName" : "string",
       "accountNumber" : "string",
-      "sortCode" : "string",
+      "sortCode" : "string"
     }
   },
   "amount" : {
@@ -520,8 +513,8 @@ The following event `type`s will be supported, along with the content as `JSON`.
 }
 ```
 
->TRADE_SETTLEMENT
-><br>This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
+TRADE_SETTLEMENT
+This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
 E.g. settles successfully
 
 ```json
@@ -569,10 +562,10 @@ E.g. settles successfully
 }
 ```
 
->DIVIDEND_UPDATE
-><br>This event is fired two times in the lifecycle of a dividend post request. 
-(1) once funds have been received to distribute to investors 'DISTRIBUTING' 
-(2) once distribution of the dividend is 'COMPLETE'
+## DIVIDEND_UPDATE
+This event is fired two times in the lifecycle of a dividend post request. 
+1. once funds have been received to distribute to investors 'DISTRIBUTING' 
+2. once distribution of the dividend is 'COMPLETE'
 
 ```json
 {
@@ -610,8 +603,8 @@ E.g. settles successfully
 }
 ```
 
->BATCH_UPDATE
-><br>This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is now complete.
+## BATCH_UPDATE
+This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is now complete.
 
 ```json
 {
@@ -651,14 +644,14 @@ E.g. settles successfully
 }
 ```
 
->ACCOUNT_FEE_PROCESSED
-><br>This is fired when account fees have been processed
+## ACCOUNT_FEE_PROCESSED
+This is fired when account fees have been processed
 
 ```json
 {
   "investorId": "string",
   "dateTime": "2017-12-12T14:34:23",
-  "account": "string"
+  "account": "string",
   "amount" : {
     "amount": 0.00,
     "currency": "GBP"
@@ -666,5 +659,19 @@ E.g. settles successfully
   "type": "FEES",
   "reference": "string",
   "clearedDateTime": "2017-12-12T14:34:23"
+}
+```
+
+## COMPANY_REGISTRATION_UPDATE
+This is fired when the status of the company registration state changes. 
+
+```json
+{
+  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "status": "REGISTERED",
+  "ukCompany": {
+    "number": "00000000",
+    "name": "Fake Company LIMITED"
+  }
 }
 ```

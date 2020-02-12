@@ -1,6 +1,6 @@
 # Payments - Manager
 
-### Testing outbound payments
+## Testing outbound payments
 
 When testing outbound payments in the sandbox environment please make sure you use valid sort codes &
 account numbers as these are validated to ensure they accept faster payments prior to being sent.
@@ -16,6 +16,7 @@ Below are some valid sample details you can use:
 |166051  |  99993193|
 |166051  |  87889196|
 
+## *Managing Payment Destinations*
 
 ## `GET /platformApi/bankAccountDetails`
 ```http
@@ -24,9 +25,6 @@ GET /platformApi/bankAccountDetails HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-
-
-
 ```
 
 ```http 
@@ -98,9 +96,6 @@ GET /platformApi/bankAccountDetails/{id} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-
-
-
 ```
 
 ```http 
@@ -158,151 +153,227 @@ Updates a specific set of stored account details. This will trigger an AML check
 | sortCode      | string | The sort code.      | required |
 | accountName   | string | The account name.   | required |
 
+## *Registering Companies as Wallet Holders*
 
-## `POST /platformApi/wallet/company/registration`
+## `POST /companies🚧`
 ```http
-POST /platformApi/wallet/company/registration HTTP/1.1
+POST /companies HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
 {
-  "profile": {
-    "companyName": "Company Name",
-    "address": {
-      "country": "UK",
-      "poBox": "poBox",
-      "careOf": "careOf",
-      "postalCode": "AB12CD",
-      "locality": "locality",
-      "addressLine1": "addressLine1",
-      "addressLine2": "addressLine2",
-      "region": "region"
-    },
-    "type": "ltd",
-    "companyNumber": "10965535",
-    "sicCodes": [
-      "80900"
-    ]
-  },
-  "officerList": {
-    "items": [
-      {
-        "officerRole": "director",
-        "firstName": "Name",
-        "lastName": "Surename",
-        "emailAddress": "example@example.com",
-        "address": {
-          "country": "UK",
-          "poBox": "poBox",
-          "careOf": "careOf",
-          "postalCode": "AB12CD",
-          "locality": "UK",
-          "addressLine1": "addressLine1",
-          "addressLine2": "addressLine2",
-          "region": "region"
-        },
-        "phoneNumber": "07512345678",
-        "resignedOn": "resignedOn",
-        "dateOfBirth": "1980-01-30",
-        "countryOfResidence": "countryOfResidence",
-        "appointedOn": "1999-01-30",
-        "percentageOwnership": 99
-      }
-    ]
+  "ukCompany": {
+    "number": "00000000",
+    "name": "Fake Company LIMITED"
   }
 }
+```
 
+```http 
+HTTP/1.1 201 Created
+Content-Type: application/json
+{
+  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "status": "PENDING",
+  "ukCompany": {
+    "number": "00000000",
+    "name": "Fake Company LIMITED"
+  }
+}
+```
+### Description
+
+Register a company with the Goji Platform.  This allows the company to own Wallets, and send/receive money through them.
+
+The registration process is asynchronous.  When this API is first called, the `status` returned will be `PENDING`. A 
+`COMPANY_REGISTRATION_UPDATE` webhook will be used to notify completion of the registration.
+
+The registration process is partially manual, so the webhook will be dispatched significantly later than the API call, 
+so do not assume the webhook will arrive shortly after the API call. 
+
+### Request
+| Name              | Type   | Description                                        | Required |
+| ----------------- | ------ | -------------------------------------------------- | -------- |
+| ukCompany.number  | string | The Company Number registered with Companies House.| required |
+| ukCompany.name    | string | Company Name.                                      | required |
+
+### Response
+| Name              | Type   | Description                                        |
+| ----------------- | ------ | -------------------------------------------------- |
+| partyId           | string | The Party ID for this company.                     |
+| status            | string | Enum: PENDING, REGISTERED.                         |
+| ukCompany.number  | string | The Company Number registered with Companies House.|
+| ukCompany.name    | string | Company Name.                                      |
+
+## `GET /companies🚧`
+```http
+GET /companies HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 ```
 
 ```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
-""
+
+[
+  {
+    "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"
+    "ukCompany": {
+      "number": "00000000",
+      "name": "Fake Company LIMITED"
+    }
+  },
+  {
+    "partyId": "COM~0176cb07-30ba-4802-ab4a-b0835222cf5b"
+    "ukCompany": {
+      "number": "00000001",
+      "name": "Other Fake Company LIMITED"
+    }
+  }
+]
 ```
 ### Description
-Register a corporate for wallet management
-### Request
-| Name                                        | Type   | Description                                    | Required |
-| ------------------------------------------- | ------ | ---------------------------------------------- | -------- |
-| profile                                     | ref    |                                                | required |
-| profile.companyName                         | string | Company Name                                   | required |
-| profile.type                                | string | Company Type                                   | required |
-| profile.companyNumber                       | string | Company Number                                 | required |
-| profile.sicCodes                            | array  | Standard industrial classification (sic) codes | required |
-| profile.address                             | ref    |                                                | required |
-| profile.address.addressLine1                | string | Address Line 1                                 | required |
-| profile.address.addressLine2                | string | Address Line 2                                 | required |
-| profile.address.careOf                      | string | Care Of                                        | required |
-| profile.address.country                     | string | Country                                        | required |
-| profile.address.locality                    | string | Locality                                       | required |
-| profile.address.poBox                       | string | Po Box                                         | required |
-| profile.address.postalCode                  | string | Postal Code                                    | required |
-| profile.address.region                      | string | Region                                         | required |
-| officerList                                 | ref    |                                                | required |
-| officerList.items                           | array  | Officers                                       | required |
-| officerList.items.appointedOn               | string |                                                | required |
-| officerList.items.countryOfResidence        | string |                                                | required |
-| officerList.items.dateOfBirth               | string | ISO-8601 format date                           | required |
-| officerList.items.firstName                 | string |                                                | required |
-| officerList.items.lastName                  | string |                                                | required |
-| officerList.items.resignedOn                | string |                                                | |
-| officerList.items.officerRole               | string |                                                | required |
-| officerList.items.emailAddress              | string |                                                | required |
-| officerList.items.phoneNumber               | string |                                                | required |
-| officerList.items.percentageOwnership       | number |                                                | required |
-| officerList.items.address                   | ref    |                                                | required |
-| officerList.items.address.addressLine1      | string | Address Line 1                                 | required |
-| officerList.items.address.addressLine2      | string | Address Line 2                                 | required |
-| officerList.items.address.careOf            | string | Care Of                                        | required |
-| officerList.items.address.country           | string | Country                                        | required |
-| officerList.items.address.locality          | string | Locality                                       | required |
-| officerList.items.address.poBox             | string | Po Box                                         | required |
-| officerList.items.address.postalCode        | string | Postal Code                                    | required |
-| officerList.items.address.region            | string | Region                                         | required |
 
-## `POST /platformApi/wallet`
+Retrieves all companies that have been registered.
+
+### Response
+| Name              | Type   | Description                                        |
+| ----------------- | ------ | -------------------------------------------------- |
+| partyId           | string                                                      |
+| ukCompany.number  | string | The Company Number registered with Companies House.|
+| ukCompany.name    | string | Company Name                                       |
+
+## `GET /companies/{id} 🚧`
+```http
+GET /companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502 HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"
+  "ukCompany": {
+    "number": "00000000",
+    "name": "Fake Company LIMITED"
+  }
+}
+```
+### Description
+
+Retrieve details of a single company.
+
+### Response
+| Name              | Type   | Description                                        |
+| ----------------- | ------ | -------------------------------------------------- |
+| partyId           | string | Party ID for the company                           |
+| ukCompany.number  | string | The Company Number registered with Companies House.|
+| ukCompany.name    | string | Company Name                                       |
+
+## *Managing Wallets*
+
+
+## `POST /wallets 🚧`
 ```http
 
-POST /platformApi/wallet HTTP/1.1
+POST /wallets HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
 {
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "walletName" : "Housing Project 22"
 }
 
 ```
 
 ```http 
-HTTP/1.1 202 OK
+HTTP/1.1 202 Accepted
 Content-Type: application/json
 
 {
-  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213"
+  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "walletName" : "Housing Project 22"
 }
 ```
-<aside class="notice">
-Prior to creating a wallet you need to have registered your company as the wallet holder using /wallet/company/registration
-</aside>
+
+ℹ️ _Prior to creating a Wallet, the company who owns the money in the Wallet must be registered using [`POST /companies`](#payments-manager-post-companies)_
 
 ### Description
-Create a wallet
+Creates a Wallet. The Wallet creation will not happen immediately. The `WALLET_CREATED` webhook will be used to notify
+you of the Wallet creation completing, including the Bank Account Number and Sort Code.
+
 ### Request
-| Name       | Type   | Description     | Required |
-| ---------- | ------ | --------------- | -------- |
-| walletName | string | New wallet name | required |
+| Name         | Type   | Description                           | Required |
+| ------------ | ------ | ------------------------------------- | -------- |
+| ownerPartyId | string | The PartyId that will own the Wallet. | required |
+| walletName   | string | New wallet name                       | required |
 
 ### Response
-| Name       | Type   | Description                                   |
-| ---------- | ------ | --------------------------------------------- |
-| id         | string | The unique identifier for the created wallet  |
+| Name         | Type   | Description                           |
+| ------------ | ------ | ------------------------------------- |
+| id           | string | The unique identifier for the Wallet. |
+| ownerPartyId | string | The PartyId that will own the Wallet. |
+| walletName   | string | Wallet name.                          |
 
-## `GET /platformApi/wallet/{id}`
+
+## `GET /wallets 🚧`
 ```http
 
-GET /platformApi/wallet/{id} HTTP/1.1
+GET /wallets HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "id" : "walletId",
+    "bankAccountDetailsId" : "bankAccountDetailsId",
+    "bankDetails" : {
+      "accountName": "Housing Project 22",
+      "accountNumber": "00000000",
+      "sortCode": "000000"
+    },
+    "balance" : {
+      "currency" : "GBP"
+      "amount" : 10.45
+    }
+  }
+]
+```
+### Description
+List of wallet details
+### Response
+| Name                        | Type   | Description                                      |
+| --------------------------- | ------ | ------------------------------------------------ |
+| id                          | string | The ID of the wallet                             |
+| bankAccountDetailsId        | string | The bank account details ID                      |
+| bankDetails                 | ref    | The bank details for the wallet                  |
+| bankDetails.accountName     | string | The account name for use when depositing money   |
+| bankDetails.accountNumber   | string | The account number to use when depositing money  |
+| bankDetails.sortCode        | string | The sort code to use when depositing money       |
+| balance                     | ref    | The total cash balance for the wallet            |
+| balance.amount              | number | The amount.                                      |
+| balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
+
+## `GET /wallets/{id} 🚧`
+```http
+
+GET /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -314,12 +385,12 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "id" : "walletId",
+  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
   "bankAccountDetailsId" : "bankAccountDetailsId",
   "bankDetails" : {
-    "accountName": "accountName",
-    "accountNumber": "accountNumber",
-    "sortCode": "sortCode"
+    "accountName": "Housing Project 22",
+    "accountNumber": "00000000",
+    "sortCode": "000000"
   },
   "balance" : {
     "amount" : 10.45,
@@ -342,112 +413,36 @@ Wallet Details
 | balance.amount              | number | The amount.                                      |
 | balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
 
-## `GET /platformApi/wallets`
+
+## `POST /wallets/{id}/payment 🚧`
 ```http
 
-GET /platformApi/wallets HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-
-```
-
-```http 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-[
-  {
-    "id" : "walletId",
-    "bankAccountDetailsId" : "bankAccountDetailsId",
-    "bankDetails" : {
-      "accountName": "accountName",
-      "accountNumber": "accountNumber",
-      "sortCode": "sortCode"
-    },
-    "balance" : {
-      "amount" : 10.45,
-      "currency" : "GBP"
-    }
-  }
-]
-```
-### Description
-List of wallet details
-### Response
-| Name                        | Type   | Description                                      |
-| --------------------------- | ------ | ------------------------------------------------ |
-| id                          | string | The ID of the wallet                             |
-| bankAccountDetailsId        | string | The bank account details ID                      |
-| bankDetails                 | ref    | The bank details for the wallet                  |
-| bankDetails.accountName     | string | The account name for use when depositing money   |
-| bankDetails.accountNumber   | string | The account number to use when depositing money  |
-| bankDetails.sortCode        | string | The sort code to use when depositing money       |
-| balance                     | ref    | The total cash balance for the wallet            |
-| balance.amount              | number | The amount.                                      |
-| balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
-
-## `GET /platformApi/wallet/{id}/balance`
-
-```http
-
-GET /platformApi/wallet/{id}/balance HTTP/1.1
-Host: api-sandbox.goji.investments
-Content-Type: application/json
-Authorization: Basic ...
-
-```
-
-```http 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "walletId" : "walletId",
-  "balance" : {
-    "amount" : 10.45,
-    "currency" : "GBP"
-  }
-}
-```
-### Description
-Get the total balance for a wallet
-### Response
-| Name                 | Type   | Description                                   |
-| -------------------- | ------ | --------------------------------------------- |
-| walletId             | string | The ID of the wallet                          |
-| balance              | ref    | The total cash balance for the wallet         |
-| balance.amount       | number | The amount.                                   |
-| balance.currency     | string | The ISO 4217 three character codes eg 'GBP'   |
-
-## `POST /platformApi/wallet/{id}/payment`
-```http
-
-POST /platformApi/wallet/{id}/payment HTTP/1.1
+POST /wallets/{id}/payment HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
 {
-  "destinationBankAccountId" : "walletName",
+  "destinationBankAccountId" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
   "amount" : {
-    "amount" : 10.45,
-    "currency" : "GBP"
+    "currency" : "GBP",
+    "amount" : 10.45
   },
-  "reference" : "reference",
-  "narrative" : "narrative"
+  "reference" : "ABC1234567",
+  "narrative" : "Moving to operating account"
 }
 
 ```
 
 ```http 
-HTTP/1.1 202 OK
+HTTP/1.1 202 Accepted
 Content-Type: application/json
 
-""
 ```
 ### Description
-Create a payment instruction from a wallet
+Create a payment instruction from a wallet.  Before instructing a payment, the destination bank account
+must first be registered using [`POST /platformApi/bankAccountDetails`](/#payments-manager-post-platformapi-bankaccountdetails).
+
 ### Request
 | Name                          | Type   | Description                                 | Required |
 | ----------------------------- | ------ | ------------------------------------------- | -------- |
@@ -458,11 +453,11 @@ Create a payment instruction from a wallet
 | reference                     | string | The bank reference used for the transfer    | required |
 | narrative                     | string | The reason for the wallet transfer          |          |
 
-## `GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month}`
+## `GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧`
 
 ```http
 
-GET /platformApi/wallet/{id}/transactions/year/{year}/month/{month} HTTP/1.1
+GET /wallets/{id}/transactions/year/{year}/month/{month} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
