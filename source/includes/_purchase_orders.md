@@ -149,7 +149,7 @@ and that currency will be attached to the purchase order.
 
 we now have ability to create new Purchase order on behalf of other users. For security purpose, we only allow companyadmin to create purchase orders on behalf of other users. And also that user must be an employee of current company.
 
-To use this feature, you need to pass other user's id in `purchase_order[on_behalf_of]****` params
+To use this feature, you need to pass other user's id in `purchase_order[on_behalf_of]` params
 
 ### HTTP Request
 
