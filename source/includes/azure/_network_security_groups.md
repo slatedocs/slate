@@ -7,7 +7,7 @@ A network security group is a group of security rules that allow or deny inbound
 #### List network security groups
 
 ```shell
-curl -X POST \
+curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/networkSecurityGroups"
 
@@ -37,6 +37,7 @@ curl -X POST \
   "metadata": {
     "recordCount": 1
   }
+}
 ```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkSecurityGroups</code>
