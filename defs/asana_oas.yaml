@@ -1120,11 +1120,13 @@ components:
           type: string
           readOnly: true
           example: '12345'
+          x-insert-after: false
         resource_type:
           description: The base type of this resource.
           type: string
           readOnly: true
           example: task
+          x-insert-after: gid
     AsanaNamedResource:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -1516,8 +1518,8 @@ components:
                 - $ref: '#/components/schemas/CustomFieldResponse'
                 - type: object
                   description: >-
-                    The custom field that is applied to the `parent`. readOnly:
-                    true
+                    The custom field that is applied to the `parent`.
+                  readOnly: true
     CustomFieldSettingBase:
       $ref: '#/components/schemas/CustomFieldSettingCompact'
     CustomFieldSettingCompact:
@@ -1927,7 +1929,9 @@ components:
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
             created_by:
-              $ref: '#/components/schemas/UserCompact'
+              readOnly: true
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
             custom_field_settings:
               description: Array of custom field settings applied to the portfolio.
               readOnly: true

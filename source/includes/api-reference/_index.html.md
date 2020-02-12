@@ -2186,29 +2186,6 @@ integrations to create their own starting state on a portfolio.
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
-|»»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»»» format<span class="param-type"> string</span>|The format of this custom field.|
-|»»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|»»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
@@ -2216,11 +2193,6 @@ integrations to create their own starting state on a portfolio.
 |»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
-For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
 
@@ -2244,15 +2216,6 @@ For percentage format, this may be unintuitive, as a value of 0.25 has a precisi
 | color|light-orange|
 | color|light-purple|
 | color|light-warm-gray|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
-| format|currency|
-| format|percentage|
-| format|custom|
-| format|none|
-| custom_label_position|prefix|
-| custom_label_position|suffix|
 
 <h3 id="create-a-portfolio-responses">Responses</h3>
 
@@ -2541,29 +2504,6 @@ Returns the complete updated portfolio record.
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
-|»»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»»» format<span class="param-type"> string</span>|The format of this custom field.|
-|»»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|»»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
@@ -2572,11 +2512,6 @@ Returns the complete updated portfolio record.
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
-For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
 
@@ -2600,15 +2535,6 @@ For percentage format, this may be unintuitive, as a value of 0.25 has a precisi
 | color|light-orange|
 | color|light-purple|
 | color|light-warm-gray|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
-| format|currency|
-| format|percentage|
-| format|custom|
-| format|none|
-| custom_label_position|prefix|
-| custom_label_position|suffix|
 
 <h3 id="update-a-portfolio-responses">Responses</h3>
 
@@ -3673,7 +3599,6 @@ Returns the full record of the newly created project.
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |»»» name<span class="param-type"> string</span>|The name of the team.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4084,7 +4009,6 @@ Returns the complete updated project record.
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |»»» name<span class="param-type"> string</span>|The name of the team.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -4630,7 +4554,6 @@ Returns the full record of the newly created project.
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |»»» name<span class="param-type"> string</span>|The name of the team.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -4952,7 +4875,6 @@ Returns the full record of the newly created project.
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |»»» name<span class="param-type"> string</span>|The name of the team.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -13410,7 +13332,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
+|custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
@@ -13866,7 +13788,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
+|» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the custom field.|
