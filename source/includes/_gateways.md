@@ -22,7 +22,7 @@ devices | array | The associated devices of the Gateway
 ```shell
 curl -X GET \
   -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways
+  https://getweaver.io/v1/gateways
 ```
 
 ```ruby
@@ -35,7 +35,7 @@ headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways'
+url = 'https://getweaver.io/v1/gateways'
 
 RestClient.get(url, headers: headers)
 ```
@@ -70,7 +70,7 @@ This endpoint retrieves all of your organization's Weaver Gateways.
 ```shell
 curl -X GET \
   -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}
+  https://getweaver.io/v1/gateways/${GATEWAY_ID}
 ```
 
 ```ruby
@@ -83,7 +83,7 @@ headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/#{GATEWAY_ID}"
+url = "https://getweaver.io/v1/gateways/#{GATEWAY_ID}"
 
 RestClient.get(url, headers: headers)
 ```
@@ -129,7 +129,7 @@ GATEWAY_ID | The ID of the gateway to retrieve
 ```shell
 curl -X POST \
   -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}/pair_devices
+  https://getweaver.io/v1/gateways/${GATEWAY_ID}/pair_devices
 ```
 
 ```ruby
@@ -142,7 +142,7 @@ headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways/${GATEWAY_ID}/pair_devices'
+url = 'https://getweaver.io/v1/gateways/${GATEWAY_ID}/pair_devices'
 
 RestClient.post(url, headers: headers)
 ```
@@ -164,7 +164,7 @@ When the end devices join your Weaver Gateway's network, the Gateway will automa
 
 Once you issue the request, the Gateway will transition into a `pairing` status.
 
-<aside class="warning">You cannot add devices using just the REST API. Please refer to the end device's user manual to find the manual pairing instructions.</aside>
+<aside class="">You cannot add devices using just the REST API. Please refer to the end device's user manual to find the manual pairing instructions.</aside>
 
 ### HTTP Request
 

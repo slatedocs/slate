@@ -35,7 +35,11 @@ Each time we issue a command for a specific end device, the Weaver API creates a
 
 ### The Command Lifecycle
 
-You will notice that the `command` object has a `status` field which indicates the state of the command. When a `command` object is created, its initial `status` will be `pending`. This is because in the IoT world, **everything is asynchronous**, meaning that commands can take on the order of seconds, minutes, or even days to complete.
+You will notice that the `command` object has a `status` field which indicates the state of the command.
+
+![Command Lifecycle](https://i.imgur.com/4mvpVVq.jpg)
+
+When a `command` object is created, its initial `status` will be `pending`. This is because in the IoT world, **everything is asynchronous**, meaning that commands can take on the order of seconds, minutes, or even days to complete.
 
 When the Gateway has forwarded the command to the device, the status of the command will automatically update to `received`.
 
@@ -45,7 +49,7 @@ Finally, when the command has been successfully completed by the end device, its
 When you initiate an command, the API will create a command object and return its reference. You can then receive updates on the status of the command either via WebSockets or a predefined HTTP Webhook.
 
 
-# DOOR LOCK COMMANDS
+# DOOR LOCKS
 
 ```json
 {
@@ -78,7 +82,7 @@ As you can see on the right side, a door lock device object will indicate its su
 ```shell
 curl -X POST \
   -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/lock
+  https://getweaver.io/v1/devices/${DEVICE_ID}/lock
 ```
 
 ```ruby
@@ -91,7 +95,7 @@ headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = "http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/#{DEVICE_ID}/lock"
+url = "https://getweaver.io/v1/devices/#{DEVICE_ID}/lock"
 
 RestClient.post(url, {}, headers: headers)
 ```
@@ -127,7 +131,7 @@ DEVICE_ID | The ID of the device you're commanding
 ```shell
 curl -X POST \
   -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/unlock
+  https://getweaver.io/v1/devices/${DEVICE_ID}/unlock
 ```
 
 ```ruby
@@ -140,7 +144,7 @@ headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/#{DEVICE_ID}/unlock'
+url = 'https://getweaver.io/v1/devices/#{DEVICE_ID}/unlock'
 
 RestClient.post(url, {}, headers: headers)
 ```
@@ -178,7 +182,7 @@ curl -X POST \
   -u ${YOUR_API_KEY}: \
   -H "Content-Type: application/json" \
   -d '{"code": "88888888", "user_id": 8}' \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/set_code
+  https://getweaver.io/v1/devices/${DEVICE_ID}/set_code
 ```
 
 ```ruby
@@ -193,7 +197,7 @@ payload = {
   'user_id': 8
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/#{DEVICE_ID}/set_code'
+url = 'https://getweaver.io/v1/devices/#{DEVICE_ID}/set_code'
 
 RestClient.post(url, payload, headers: headers)
 ```
@@ -243,7 +247,7 @@ user_id | integer | Optional | 1 | ID of Code slot to be programmed in, between 
 ```shell
 curl -X POST \
   -u ${YOUR_API_KEY}: \
-  http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/${DEVICE_ID}/clear_all_codes
+  https://getweaver.io/v1/devices/${DEVICE_ID}/clear_all_codes
 ```
 
 ```ruby
@@ -253,7 +257,7 @@ headers = {
   'Authorization': 'Token ${YOUR_API_KEY}'
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/devices/#{DEVICE_ID}/clear_all_codes'
+url = 'https://getweaver.io/v1/devices/#{DEVICE_ID}/clear_all_codes'
 
 RestClient.post(url, {}, headers: headers)
 ```

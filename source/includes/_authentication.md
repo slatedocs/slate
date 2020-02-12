@@ -12,12 +12,14 @@ Your API keys carry many privileges, so be sure to keep them secure! Do not shar
 Make sure to replace <code>YOUR_API_KEY</code> with your actual API key.
 </aside>
 
+If you are running the shell examples, you can simply export your API key in your current terminal session as such: `export YOUR_API_KEY="<your actual API key>"`
+
 
 > To authorize, use this code:
 
 ```shell
 # With curl, you can use -u followed by your API key. Adding `:` after the key will simply tell curl not to ask you for a password.
-curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways \
+curl https://getweaver.io/v1/gateways \
   -u ${YOUR_API_KEY}:
 ```
 
@@ -32,7 +34,7 @@ headers = {
   'Authorization': token
 }
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/gateways'
+url = 'https://getweaver.io/v1/gateways'
 
 RestClient.get(url, headers: headers)
 ```
@@ -40,7 +42,7 @@ RestClient.get(url, headers: headers)
 
 ## Getting Your API Key
 ```shell
-curl http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users \
+curl https://getweaver.io/v1/users \
   -H "Authorization: Token ${USER_AUTH_TOKEN}" \
   -H "Content-Type: application/json"
 ```
@@ -54,7 +56,7 @@ headers = {
 }
 
 
-url = 'http://ec2-54-89-135-191.compute-1.amazonaws.com:8080/v1/users'
+url = 'https://getweaver.io/v1/users'
 
 RestClient.post(url, payload, headers={})
 ```
