@@ -179,7 +179,7 @@ DEVICE_ID | The ID of the device you're commanding
 
 ```shell
 curl -X POST \
-  -u ${YOUR_API_KEY}: \
+  -u "${YOUR_API_KEY}:" \
   -H "Content-Type: application/json" \
   -d '{"code": "88888888", "user_id": 8}' \
   https://getweaver.io/v1/devices/${DEVICE_ID}/set_code
