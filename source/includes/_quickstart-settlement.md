@@ -161,7 +161,11 @@ To ensure the payment is processed correctly, please the following test account 
 `accountNumber: 00004588`
 `sortCode: 203002`
 
-Then settle the investment.
+<aside class="notice">
+Please note that by default the payment destination is disabled and has to be enabled by Goji before it can be used.  
+</aside>
+
+After the payment destination is enabled, settle the investment.
 
 The following example includes a single investment from a single Investor:
 
