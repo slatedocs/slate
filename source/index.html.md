@@ -92,6 +92,8 @@ includes:
   - azure
   - azure/compute
   - azure/instances
+  - azure/storage
+  - azure/disks
   - azure/networking
   - azure/networks
   - azure/network_security_groups

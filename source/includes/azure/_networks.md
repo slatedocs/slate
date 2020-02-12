@@ -38,7 +38,7 @@ Retrieve a list of all virtual networks in an [environment](#administration-envi
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*string* | The id associated to the virtual network.  This is a canonized id from azure which is the form of /subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/virtualNetworks/:networkName
+`id`<br/>*string* | The id associated to the virtual network. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/virtualNetworks/:networkName`
 `name`<br/>*string* | The name of the virtual network
 `region`<br/>*string* | The region in which the virtual network is located
 `provisioningState`<br/>*string* | The provisioning state of the virtual network. Possible values are : Succeeded, Updating, Deleting and Failed
