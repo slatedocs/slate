@@ -7,7 +7,7 @@ A network security group is a group of security rules that allow or deny inbound
 #### List network security groups
 
 ```shell
-curl -X GET \
+curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/networkSecurityGroups"
 
@@ -37,7 +37,6 @@ curl -X GET \
   "metadata": {
     "recordCount": 1
   }
-}
 ```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkSecurityGroups</code>
@@ -56,3 +55,26 @@ Attributes | &nbsp;
 `numberOutbound`<br/>*int* | The number of security rules (default and custom) which are outbound
 `numberAssociatedSubnets`<br/>*int* | The number of subnets associated with this network security group
 `numberAssociatedNetworkInterfaces`<br/>*int* | The number of network interfaces associated with this network security group
+
+<!-------------------- CREATE A NETWORK SECURITY GROUP -------------------->
+
+#### Create a network security group
+
+```shell
+curl --request POST \
+  --url http://cloudmc_endpint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups \
+  --header 'mc-api-key: your_api_key' \
+  --data '{
+	"name": "network-security-group", 
+	"region": "eastus"
+}'
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkSecurityGroups</code>
+
+Create a new network security group.
+
+Required | &nbsp;
+------- | -----------
+`name` <br/>*string* | The name of the network security group. The name cannot exceed 64 characters
+`region`<br/>*string* | The region in which the network security group is located
