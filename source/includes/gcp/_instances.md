@@ -160,7 +160,7 @@ curl -X GET \
   "data": {
     "status": "RUNNING",
     "zone": "https://www.googleapis.com/compute/v1/projects/test-area-oox/zones/northamerica-northeast1-a",
-    "machineType": "https://www.googleapis.com/compute/v1/projects/test-area-oox/zones/northamerica-northeast1-a/machineTypes/f1-micro",
+    "machineType": "https://www.googleapis.com/compute/v1/projects/test-area-oox/zones/northamerica-northeast1-a/machinetypes/f1-micro",
     "cpuPlatform": "Intel Skylake",
     "creationTimestamp": "2019-04-19T12:12:30.756-07:00",
     "deletionProtection": false,

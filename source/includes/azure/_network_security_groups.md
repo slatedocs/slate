@@ -9,7 +9,7 @@ A network security group is a group of security rules that allow or deny inbound
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/networkSecurityGroups"
+   "https://cloudmc_endpoint/v1/services/azure/example/networksecuritygroups"
 
 # Example:
 ```
@@ -17,14 +17,14 @@ curl -X GET \
 {
   "data": [
     {
-      "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group",
+      "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group",
       "name": "sample-network-security-group",
       "region": "canadacentral",
       "provisioningState": "Succeeded",
        "defaultSecurityRules": [
         {
           "name": "SampleRule",
-          "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
+          "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
           "direction": "Inbound"
         }],
       "customSecurityRules": [],
@@ -40,13 +40,13 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkSecurityGroups</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networksecuritygroups</code>
 
 Retrieve a list of all network security groups in an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*string* | The id associated to the network security group. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networkSecurityGroups/:networkSecurityGroupName`
+`id`<br/>*string* | The id associated to the network security group. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName`
 `name`<br/>*string* | The name of the network security group.
 `region`<br/>*string* | The region in which the network security group is located
 `provisioningState`<br/>*string* | The provisioning state of the network security group. Possible values are : Succeeded, Updating, Deleting and Failed
