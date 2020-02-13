@@ -137,6 +137,7 @@ When creating recipient, the following general rules should be applied to "accou
 * Full names for personal recipients.  They must include more than one name, and both first and last name must have more than one character.
 * Business names must be in full, but can be just a single name. The full name cannot be just a single character but can be made up of a set of single characters. e.g. "A" is not permitted but "A 1" or "A1" is permitted.
 * Digits are not allowed, except in business names.
+* Special characters _()'*,. are allowed for personal and business names
 
 These requirements may vary depending of recipient type.
 A GBP example is provided here. You can find other currency examples below.<br/>
