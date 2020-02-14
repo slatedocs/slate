@@ -8,15 +8,15 @@ The themes use the same templating formats as [Symfony's twig templates](http://
  
  Each theme directory must have at least a config.json file and a html directory with the public facing template's for the feature's it supports. All themes should have a `html/message.html.twig` file.  See below for a typical directory structure:
    
-  themes/blank/<br />
-  - - - [config.json](#theme-config-file)<br />
-  - - - [thumbnail.png](#theme-thumbnail)<br />
-  - - - html/ <br />
-  - - - - - - [base.html.twig](#theme-html-files)<br />
-  - - - - - - [email.html.twig](#theme-html-files)<br />
-  - - - - - - [form.html.twig](#theme-html-files)<br />
-  - - - - - - [message.html.twig](#theme-html-files)<br />
-  - - - - - - [page.html.twig](#theme-html-files)<br />
+`themes/blank/`
+- [`config.json`](#theme-config-file)
+- [`thumbnail.png`](#theme-thumbnail)
+- `html/`
+  - [`base.html.twig`](#theme-html-files)
+  - [`email.html.twig`](#theme-html-files)
+  - [`form.html.twig`](#theme-html-files)
+  - [`message.html.twig`](#theme-html-files)
+  - [`page.html.twig`](#theme-html-files)
 
 ## Theme zip package
 
