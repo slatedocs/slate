@@ -20,7 +20,7 @@ search: true
 
 # INTRODUCTION
 
-Welcome to the Weaver API! You can use our API to access the Gateway API endpoints, which can get information on various gateways and connected devices in our database.
+Welcome to the Weaver API! You can use our API to retrieve information on your gateways, their connected devices, and issue commands to them.
 
 ### First, Why Use Weaver?
 
