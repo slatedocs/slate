@@ -11779,6 +11779,7 @@ curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "user_task_list",
+    "name": "My Tasks in My Workspace",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -11841,6 +11842,7 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list?worksp
   "data": {
     "gid": "12345",
     "resource_type": "user_task_list",
+    "name": "My Tasks in My Workspace",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -12647,6 +12649,7 @@ curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membe
     "user_task_list": {
       "gid": "12345",
       "resource_type": "user_task_list",
+      "name": "My Tasks in My Workspace",
       "owner": {
         "gid": "12345",
         "resource_type": "user",
@@ -15464,6 +15467,7 @@ A *user* object represents an account in Asana that can be given access to vario
 {
   "gid": "12345",
   "resource_type": "user_task_list",
+  "name": "My Tasks in My Workspace",
   "owner": {
     "gid": "12345",
     "resource_type": "user",
@@ -15486,6 +15490,7 @@ A user task list represents the tasks assigned to a particular user. It provides
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the user task list.|
 |owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -15507,6 +15512,7 @@ A user task list represents the tasks assigned to a particular user. It provides
 {
   "gid": "12345",
   "resource_type": "user_task_list",
+  "name": "My Tasks in My Workspace",
   "owner": {
     "gid": "12345",
     "resource_type": "user",
@@ -15529,6 +15535,7 @@ A user task list represents the tasks assigned to a particular user. It provides
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the user task list.|
 |owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -15728,6 +15735,7 @@ This object determines if a user is a member of a workspace.
   "user_task_list": {
     "gid": "12345",
     "resource_type": "user_task_list",
+    "name": "My Tasks in My Workspace",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -15765,6 +15773,7 @@ This object determines if a user is a member of a workspace.
 |user_task_list<span class="param-type"> object</span>|A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the user task list.|
 |» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|

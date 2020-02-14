@@ -2164,7 +2164,9 @@ components:
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
             current_status:
-              $ref: '#/components/schemas/ProjectStatusResponse'
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/ProjectStatusResponse'
             custom_fields:
               description: Array of Custom Fields.
               readOnly: true
@@ -3806,6 +3808,10 @@ components:
           x-docs-overrides:
             properties.resource_type.example: user_task_list
           properties:
+            name:
+              description: The name of the user task list.
+              type: string
+              example: My Tasks in My Workspace
             owner:
               description: >-
                 The owner of the user task list, i.e. the person whose My
