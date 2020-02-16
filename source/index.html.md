@@ -918,7 +918,6 @@ Attach a specified file to a given URI
 e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
 ```
 
-
 # Permission Endpoints
 
 ## Perform a SPARQL admin query
@@ -930,6 +929,54 @@ Returns the results of the SPARQL admin query in JSON format.
 ```plaintext
 e.g. ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
 ```
+
+# Plugins
+
+### Rationale 
+
+It should be possible for someone running a SynBioHub instance to configure plugins to extend the functionality of SynBioHub without altering the main codebase. 
+
+
+### Goals
+SynBioHub administrators should be able to:
+Add processing steps to the submission pipeline
+Add rendering steps construct pages
+
+
+### Implementation
+Plugins and SynBioHub will communicate using HTTP. The end user’s browser will not communicate with the plugin server.
+
+To execute a plugin, SynBioHub will send an HTTP POST request to the plugin’s execute endpoint. The body of the request will contain a JSON object containing:
+complete_sbol: the single-use URL for the complete object to operate on
+shallow_sbol: the single-use URL for a summarized or truncated view of the object
+top_level: the top-level URL of the SBOL object
+instanceUrl: the top-level URL of the SBOL object 
+size: a number representing an estimate of the size of the object, probably triple count
+
+These pages needn’t be ready immediately upon responding to the SynBioHub plugin request. It should respond with an HTTP 503 error and the Retry-After header set to the number of seconds SynBioHub should wait before retrying.
+
+### Submission
+Intake plugins should interpret the complete_data object, which may not be in SBOL, and return a page containing SBOL. This page needn’t be ready immediately upon responding to the SynBioHub plugin request.
+
+### Curation
+Intake plugins should interpret the complete_data object, which will be in SBOL, and return a page containing SBOL. This page needn’t be ready immediately upon responding to the SynBioHub plugin request.
+
+### Download
+The response of download plugins should be a URL where the representation of the part can be downloaded. This page needn’t be ready immediately upon responding to the SynBioHub plugin request.
+
+### Rendering
+The response of rendering plugins should be HTML which will be displayed on the top-level page. Rendering responses may be cached to improve performance.
+
+
+### Plugin Specification
+Plugins must provide two endpoints, /status and /run. 
+
+### Status endpoint
+The status endpoint should listen for HTTP GET requests and return an HTTP 200 OK and (optionally) a short message if the plugin service is ready to handle requests. Otherwise, an HTTP error code and short error message should be returned. 
+
+### Run endpoint
+The run endpoint should function as described above in the Implementation section. 
+
 
 # Misc. Endpoints
 
