@@ -29,6 +29,7 @@ The libraries below require a small number of configuration updates. Click on th
 * [Flask](#flask)
 * [Flask SQLAlchemy](#flask-sqlalchemy)
 * [Huey](#huey)
+* [Hug](#hug)
 * [Nameko](#nameko)
 * [Pyramid](#pyramid)
 * [RQ](#rq)
@@ -582,6 +583,71 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
         <p>Deploy.</p>
         <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
         <p>Tasks will appear in the "Background Jobs" area of the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Hug
+
+Scout supports Hug 2.5.1+. Hug is based on Falcon so a Falcon version supported by [our integration](#falcon) is also needed.
+
+General instructions for a Hug app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure Scout inside your Hug app:</p>
+
+<pre class="terminal" style="width: initial">
+from scout_apm.hug import integrate_scout
+
+# Setup your Hug endpoints as usual
+
+
+@hug.get("/")
+def home():
+    return "Welcome home."
+
+
+<span># Integrate scout with the Hug application for this module
+integrate_scout(
+    __name__,
+    config={
+        "key": "[AVAILABLE IN THE SCOUT UI]",
+        "monitor": True,
+        "name": "A FRIENDLY NAME FOR YOUR APP",
+    },
+)
+</span></pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the entries in <code>config</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
       </td>
     </tr>
   </tbody>
