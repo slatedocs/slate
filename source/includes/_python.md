@@ -42,8 +42,7 @@ The libraries below are automatically detected by the agent during the startup p
 * Jinja2
 * PyMongo
 * Redis
-* Requests
-* UrlLib3
+* UrlLib3 (used by the popular Requests)
 
 You can instrument your own code or other libraries via [custom instrumentation](#python-custom-instrumentation). You can suggest additional libraries you'd like Scout to instrument [on GitHub](https://github.com/scoutapp/scout_apm_python/issues).
 
@@ -1500,7 +1499,7 @@ Config.set(revision_sha=os.popen("git rev-parse HEAD").read().strip())  # if the
 
 * Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
 * If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
-œ
+
 ## Ignoring Transactions
 
 You can ignore transactions two ways:
