@@ -1002,6 +1002,21 @@ We typically respond within a couple of hours during the business day.
     </tr>
     <tr>
       <th>
+        shutdown_timeout_seconds
+      </th>
+      <td>
+        Maximum amount of time, in seconds, to spend at flushing outstanding events to the core agent at shutdown.
+        Set to 0 to disable.
+      </td>
+      <td>
+        2.0
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
         scm_subdirectory
       </th>
       <td>
