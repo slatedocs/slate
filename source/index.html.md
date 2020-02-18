@@ -101,7 +101,7 @@ Then, start SynBioHub with:
 
 ### Configuring
 
-In a web broswer, visit 
+In a web browser, visit 
 
 ``` http://localhost:7777/ ```
 
@@ -201,7 +201,7 @@ This is most useful when you would like to host SynBioHub on a subdomain alongsi
 
 <aside class="success">Note that the X-authorization header is not needed for public objects, but is required for private objects unless stated otherwise.</aside>
 
-# User Endpopints
+# User Endpoints
 
 Endpoints that control user related functions
 
@@ -291,7 +291,7 @@ namespace/tag=value | A full namespace with tag separated by appropriate delimit
 
 After the key/value pairs, an optional search string can be provided that will be used to search for partial matches in the displayId, name, or description fields.
 
-Finally, the URL can end with an offest and limit parameter.
+Finally, the URL can end with an offset and limit parameter.
 
 
 
@@ -560,7 +560,7 @@ fetch(Url,otherPram)
     .then(res => res.buffer()).then(buf => console.log(buf.toString()))
     .catch (error=>console.log(error))
 ```
-## Find the Uses of an Ojbect
+## Find the Uses of an Object
 
 `GET <SynBioHub URL>/uses`
 
@@ -607,7 +607,7 @@ fetch(Url,otherPram)
 
 `GET <URI>/download `
 
-Returns the source for an attachement to the specificified URI
+Returns the source for an attachment to the specified URI
 
 ```javascript
 const fetch = require("node-fetch");
@@ -905,6 +905,8 @@ e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F root
 ```
 
 # Edit Endpoints
+
+
 
 # Attachment Endpoints
 
