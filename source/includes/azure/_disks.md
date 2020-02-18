@@ -152,4 +152,4 @@ Attributes | &nbsp;
 `region`<br/>*string* | The azure region in which the disk is to be created. See list of regions [here](https://azure.microsoft.com/en-ca/global-infrastructure/regions/)
 `sizeGb`<br/>*string* | The size of the disk
 `iops`<br/>*string* | The number of read/write operations per second on the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
-`throughput`<br/>*string* | The throughput of the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
+`throughputInMBps`<br/>*string* | The throughput of the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
