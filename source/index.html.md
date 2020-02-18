@@ -906,11 +906,124 @@ e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F root
 
 # Edit Endpoints
 
+## Remove Collection
+
+`GET <URI>/removeCollection `
+
+Removes the specified collection.
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/removeCollection'
+const otherPram={
+    headers:{
+	"content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+.then(res => res.buffer()).then(buf => console.log(buf.toString()))
+.catch (error=>console.log(error))
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/removeCollection`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_F2620/1/removeCollection',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
+## Remove SBOL from URI
+
+`GET <URI>/remove `
+
+Removes the specified collection.
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/remove'
+const otherPram={
+    headers:{
+	"content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+.then(res => res.buffer()).then(buf => console.log(buf.toString()))
+.catch (error=>console.log(error))
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_F2620/1/remove',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
+## Replace SBOL from URI, but leave references to the object
+
+`GET <URI>/replace `
+
+Removes the specified collection.
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/replace'
+const otherPram={
+    headers:{
+	"content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+.then(res => res.buffer()).then(buf => console.log(buf.toString()))
+.catch (error=>console.log(error))
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove`
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_F2620/1/replace',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
 
 
 # Attachment Endpoints
 
-## Attach file to a specified URI
+## Attach file to a Specified URI
 
 `POST <URI>/attach `
 
