@@ -1,6 +1,6 @@
 ### Subnets 
 
-A subnet is a child of a virutal network. It is an subset of a network in which IP addresses point to the same group. 
+A subnet is a child of a virtual network. It is an subset of a network in which IP addresses point to the same group. 
 
 <!-------------------- LIST SUBNETS -------------------->
 
@@ -24,7 +24,7 @@ curl -X GET \
       "totalNumberIps": 251,
       "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet",
       "region": "eastus",
-      "name": "exampple-subnet"
+      "name": "example-subnet"
     }
   ],
   "metadata": {
