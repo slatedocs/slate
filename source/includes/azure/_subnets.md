@@ -1,6 +1,6 @@
 ### Subnets 
 
-A subnet is a child of a virtual network. It is an subset of a network in which IP addresses point to the same group. 
+A subnet is a child of a virtual network. It is a subset of a network in which IP addresses point to the same group. 
 
 <!-------------------- LIST SUBNETS -------------------->
 
