@@ -95,7 +95,7 @@ region | <span class="label label-required">Required</span> 100 characters max
 city | <span class="label label-required">Required</span> 100 characters max
 postcode | <span class="label label-required">Required</span> 80 characters max
 telephone | <span class="label label-required">Required</span> 20 characters max
-location-reference | An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
+location-reference | <span class="label label-required">Required</span> An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 contact-first-name | 20 characters max
 contact-last-name | 20 characters max
 contact-mobile | 20 characters max
@@ -208,7 +208,7 @@ region | 100 characters max
 city | 100 characters max
 postcode | 80 characters max
 telephone | 20 characters max
-location-reference | An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
+location-reference | <span class="label label-required">Required</span> An arbitrary unique reference you can use to identify a location. This may correspond to a unique value used within your system and can be useful when importing or exporting data. 50 characters max.
 contact-first-name | 20 characters max
 contact-last-name | 20 characters max
 contact-mobile | 20 characters max
