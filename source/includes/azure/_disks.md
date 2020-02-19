@@ -74,11 +74,10 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9ee-55c1-4b1d-969b-6b6a1f27be64/resourceGroups/azure-conn-system-test_env/providers/Microsoft.Compute/disks/the-goat-disk"
+   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
 
 # The above command returns JSON structured like this:
 ```
-
 ```json
 {
   "id": "/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_e93bd2519aac4c0cbe27c49aa928525e",
@@ -119,3 +118,51 @@ Attributes | &nbsp;
 `throughputInMBps`<br/>*long* | The bandwidth allowed for this disk; only settable for UltraSSD disks. MBps means millions of bytes per second - MB here uses the ISO notation, of powers of 10.
 `dataDisk`<br/>*boolean* | Indication of whether the disk is a `DATA` disk. If `false` then it's an `OS` disk
 `isAttachedToInstance`<br/>*boolean* | An indication of whether the disk has been attached to an Azure instance
+
+
+<!-------------------- CREATE A DISK -------------------->
+
+#### Create a disk
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body"
+   "https://cloudmc_endpoint/v1/services/azure/example/disks"
+
+# Request Example:
+```
+```json
+{
+  "name":"ad_root_smean",
+  "region":"northeurope",
+  "type":"ultrassd_lrs",
+  "sizeGb":"200",
+  "iops": "40",
+  "throughputInMBps": "200"
+}
+```
+```shell
+# Response Example
+```
+```json
+{
+  "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks</code>
+
+_(Use the [task API](#tasks) to get the status of the operation)_
+
+Create a disk in an [environment](#administration-environments)
+
+Attributes | &nbsp;
+---------- | -----
+`name`<br/>*string* | The name of the azure disk. Supported characters for the name are `a-z`, `A-Z`, `0-9` and `_`; The maximum name length is 80 characters
+`region`<br/>*string* | The azure region in which the disk is to be created. See list of regions [here](https://azure.microsoft.com/en-ca/global-infrastructure/regions/)
+`type`<br/>*string* | The managed disk type. Can be one of the following:<br>`premium_lrs`, `standard_lrs`, `standardssd_lrs`, `ultrassd_lrs`
+`sizeGb`<br/>*string* | The size of the disk
+`iops`<br/>*string* | The number of read/write operations per second on the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
+`throughputInMBps`<br/>*string* | The throughput of the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
