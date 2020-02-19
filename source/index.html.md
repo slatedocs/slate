@@ -213,7 +213,7 @@ This POST request requires email/password and returns a user token needed for vi
 `POST http://synbiohub.org/login `
 
 ```plaintext
-e.g.`curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login`
+`curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login`
 ```
 
 #### Query Parameters
@@ -229,7 +229,7 @@ password | the password of the user
 If `user` is currently logged in, this post request will logout the user.
 
 ```plaintext
-e.g. `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
+`curl -X POST -H "Accept: test/plain" localhost:7777/logout`
 ```
 
 ## Request to reset password
@@ -270,7 +270,7 @@ print(response.content)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/search/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP/?offset=0&limit=50'
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/search/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP/?offset=0&limit=50'
 ```
 
 Note that the X-authorization header is optional, but if provided, the search will also return private objects for the logged in user.
@@ -855,7 +855,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/visualization`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/visualization`
 ```
 
 ```python
@@ -874,14 +874,16 @@ print(response.content)
 
 # Submission Endpoints
 
-## Create a new collection
+## Submit
 
 `POST <SynBioHub URL>/submit `
 
-Create a new collection
+Create a new collection including the elements within a file or adds to a preexisting collection using the elements within a file.
+
+
 
 ```plaintext
-e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
+ `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
 ```
 
 Query Parameters
@@ -893,18 +895,9 @@ version |  the version string to associate with the submission, e.g. `1`
 name |  the dcterms name string to assign to the submission
 description | the dcterms description string to assign to the submission
 citations | a list of comma separated pubmed IDs of citations to store with the submission
-overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists
-file | contents of an SBOL2, SBOL1, GenBank, FASTA, ZIP, or COMBINE Archive file
-
-## Add to an existing collection
-
-`POST <SynBioHub URL>/submit `
-
-```plaintext
-e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F rootCollections=<URI> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
-```
-
-# Edit Endpoints
+overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists, '2' to merge and prevent if submission exists, '3' to merge and overwrite matching URIS
+file | contents of an SBOL2, SBOL1, GenBank, FASTA, GFF3, ZIP, or COMBINE Archive file
+rootCollections | If submtitting the contents into the file, provide the previous parameters, otherwise, only provide a URI into rootCollections to append into an existing collection
 
 ## Remove Collection
 
@@ -944,11 +937,11 @@ print(response.content)
 
 ```
 
-## Remove SBOL from URI
+## Remove Object
 
-`GET <URI>/remove `
+`GET <URI>/remove`
 
-Removes the specified collection.
+Remove the object specifiedfrom URI, and the references to that object.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -982,11 +975,11 @@ print(response.content)
 
 ```
 
-## Replace SBOL from URI, but leave references to the object
+## Replace Object
 
 `GET <URI>/replace `
 
-Removes the specified collection.
+Remove the object specifiedfrom URI, but leave references to the object in tact.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -1003,7 +996,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove
 ```
 
 ```python
@@ -1021,6 +1014,11 @@ print(response.content)
 ```
 
 
+# Edit Endpoints
+
+
+
+
 # Attachment Endpoints
 
 ## Attach file to a Specified URI
@@ -1030,10 +1028,16 @@ print(response.content)
 Attach a specified file to a given URI
 
 ```plaintext
-e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
+curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
 ```
 
-# Permission Endpoints
+## Attach URL to a Specfied URI
+
+`POST <URI>/attachURL `
+
+Attach a specified URL to a given URI
+
+# Administration Endpoints
 
 ## Perform a SPARQL admin query
 
@@ -1042,7 +1046,7 @@ e.g. `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'fil
 Returns the results of the SPARQL admin query in JSON format.
 
 ```plaintext
-e.g. ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
+ ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
 ```
 
 # Plugins
@@ -1091,10 +1095,6 @@ The status endpoint should listen for HTTP GET requests and return an HTTP 200 O
 
 ### Run endpoint
 The run endpoint should function as described above in the Implementation section. 
-
-
-# Misc. Endpoints
-
  
 
 
