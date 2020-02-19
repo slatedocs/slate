@@ -1356,6 +1356,8 @@ components:
                 For percentage format, this may be unintuitive, as a value of 0.25
                 has a precision of 0, while a value of 0.251 has a precision of 1.
                 This is due to 0.25 being displayed as 25%.
+
+                The identifier format will always have a precision of 0.
               type: integer
               example: 2
             format:
@@ -1364,6 +1366,7 @@ components:
               type: string
               enum:
                 - currency
+                - identifier
                 - percentage
                 - custom
                 - none

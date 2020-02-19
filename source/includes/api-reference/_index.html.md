@@ -699,6 +699,7 @@ Returns the full record of the newly created custom field.
 
 **precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
 For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
+The identifier format will always have a precision of 0.
 
 #### Enumerated Values
 
@@ -707,6 +708,7 @@ For percentage format, this may be unintuitive, as a value of 0.25 has a precisi
 | custom_label_position|prefix|
 | custom_label_position|suffix|
 | format|currency|
+| format|identifier|
 | format|percentage|
 | format|custom|
 | format|none|
@@ -952,6 +954,7 @@ Returns the complete updated custom field record.
 
 **precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
 For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
+The identifier format will always have a precision of 0.
 
 #### Enumerated Values
 
@@ -960,6 +963,7 @@ For percentage format, this may be unintuitive, as a value of 0.25 has a precisi
 | custom_label_position|prefix|
 | custom_label_position|suffix|
 | format|currency|
+| format|identifier|
 | format|percentage|
 | format|custom|
 | format|none|
@@ -13137,7 +13141,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |name<span class="param-type"> string</span>|The name of the custom field.|
 |number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
 |resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
@@ -13149,6 +13153,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |custom_label_position|prefix|
 |custom_label_position|suffix|
 |format|currency|
+|format|identifier|
 |format|percentage|
 |format|custom|
 |format|none|
@@ -13278,7 +13283,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
@@ -13299,6 +13304,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |custom_label_position|prefix|
 |custom_label_position|suffix|
 |format|currency|
+|format|identifier|
 |format|percentage|
 |format|custom|
 |format|none|
@@ -13823,7 +13829,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
 |»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
@@ -13874,6 +13880,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |custom_label_position|prefix|
 |custom_label_position|suffix|
 |format|currency|
+|format|identifier|
 |format|percentage|
 |format|custom|
 |format|none|
@@ -15163,7 +15170,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
@@ -15208,6 +15215,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |custom_label_position|prefix|
 |custom_label_position|suffix|
 |format|currency|
+|format|identifier|
 |format|percentage|
 |format|custom|
 |format|none|
