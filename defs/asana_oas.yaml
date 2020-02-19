@@ -2509,8 +2509,8 @@ components:
                 The text content of the status update with formatting as HTML.
               type: string
               example: >-
-                '&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving
-                forward according to plan...&lt;/body&gt;'
+                <body>The project <strong>is</strong> moving forward according to
+                plan...</body>
             color:
               description: The color associated with the status update.
               type: string

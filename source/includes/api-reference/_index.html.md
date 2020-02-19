@@ -3387,7 +3387,7 @@ curl -X POST https://app.asana.com/api/1.0/projects \
       "created_by": {
         "name": "Greg Sanchez"
       },
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -3426,7 +3426,7 @@ curl -X POST https://app.asana.com/api/1.0/projects \
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
       "color": "green",
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "project": "123456",
       "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
@@ -3657,7 +3657,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
       "color": "green",
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "project": "123456",
       "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
@@ -3799,7 +3799,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
       "created_by": {
         "name": "Greg Sanchez"
       },
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -3838,7 +3838,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
       "color": "green",
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "project": "123456",
       "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
@@ -4350,7 +4350,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "created_by": {
         "name": "Greg Sanchez"
       },
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -4389,7 +4389,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
       "color": "green",
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "project": "123456",
       "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
@@ -4668,7 +4668,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "created_by": {
         "name": "Greg Sanchez"
       },
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -4707,7 +4707,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
       "color": "green",
-      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
       "project": "123456",
       "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
@@ -5586,7 +5586,7 @@ curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} 
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
     "color": "green",
-    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
     "project": "123456",
     "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
@@ -5763,7 +5763,7 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
 {
   "data": {
     "color": "green",
-    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
     "text": "The project is moving forward according to plan...",
     "title": "Status Update - Jun 15"
   }
@@ -5779,7 +5779,7 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
     "color": "green",
-    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
     "project": "123456",
     "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
@@ -14018,7 +14018,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
     "color": "green",
-    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
     "project": "123456",
     "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
@@ -14269,7 +14269,7 @@ A *project status* is an update on the progress of a particular project, and is 
   "resource_type": "project_status",
   "title": "Status Update - Jun 15",
   "color": "green",
-  "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+  "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
   "project": "123456",
   "text": "The project is moving forward according to plan...",
   "created_at": "2012-02-22T02:06:58.147Z",
