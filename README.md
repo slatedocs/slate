@@ -1,4 +1,4 @@
-### SynBioHub API documentation
+### SynBioHub Documentation
 
 Live at https://synbiohub.github.io/api-docs/
 
