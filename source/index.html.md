@@ -2,9 +2,6 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
@@ -19,221 +16,173 @@ search: true
 
 # Introduction
 
-Welcome to the Emjpm API! You can use our API to access Emjpm API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Bienvenue dans la documentation de l'api Emjpm à destination des logitiels métier, vous trouverez ici des guides et des documentations vous permetant de commencer aussi rapidement que possible.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Demande d'accès à l'api
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Pour utiliser API Emjpm en production (https://api-emjpm.fabrique.social.gouv.fr), vous devez obtenir un client_id et un client_token de production. Pour ce faire, veuillez remplir une demande d'autorisation sur notre [page dédié](https://emjpm.fabrique.social.gouv.fr/application/token-request)
 
-# Authentication
+# Environnement de test
 
-> To authorize, use this code:
+Vous trouverez ci-dessous de quoi exécuter des requêtes HTTP sur l'environnement API emjpm de test (https://test-api-emjpm.fabrique.social.gouv.fr). Lors du développement de votre solution logicielle, nous vous recommandons d'utiliser cet environnement.
 
-```ruby
-require 'Emjpm'
+L'environnement de test est fonctionnellement identique à l'environnement de production.
 
-api = Emjpm::APIClient.authorize!('meowmeowmeow')
-```
+Le client_id et le client_token à utiliser sont des client_id et des client_token de test.
+Les données retournées sont des données de test.
 
-```python
-import Emjpm
+### Token de test
+Voici la liste des tokens d'API de tests.
 
-api = Emjpm.authorize('meowmeowmeow')
-```
+| client_id  | client_token  |
+|---|---|
+| 1  | test  |
+| 2  | test  |
+| 3  | test  |
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+# Application de test
 
-```javascript
-const Emjpm = require('Emjpm');
+Afin de faciliter les tests nous avons mis à disposition une application de test à cet [url](https://emjpm-editor-demo.netlify.com/)
 
-let api = Emjpm.authorize('meowmeowmeow');
-```
+vous pourrez y trouve un formulaire ou vous pourrez renseigner vos identifiants de test ainsi que d'autre information pour que vous puissiez effectuer des test sans avoir besoin de coder
 
-> Make sure to replace `meowmeowmeow` with your API key.
+le code source de l'application de test est trouvable ici sur [github](https://github.com/SocialGouv/emjpm-editor-app) si vous en avez besoin.
 
-Emjpm uses API keys to allow access to the API. You can register a new Emjpm API key at our [developer portal](http://example.com/developers).
+### Compte de test
 
-Emjpm expects for the API key to be included in all API requests to the server in a header that looks like the following:
+afin de vous connecter à des comptes de test voici des identifiants de test 
 
-`Authorization: meowmeowmeow`
+| email  | mot de passe  |
+|---|---|
+| individuel-1302@justice.fr  | emjpm2019  |
+| service-131@justice.fr  | emjpm2019  |
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
-# Kittens
 
-## Get All Kittens
+# Comment passer de l'environnement de test à l'environnement de production
+Lors de votre passage en production :
 
-```ruby
-require 'Emjpm'
+remplacez l'URL de test-api-emjpm.fabrique.social.gouv.fr à https://api-emjpm.fabrique.social.gouv.fr
+remplacez votre client_id et votre client_token de test par ceux obtenues suite à votre demande d'autorisation
 
-api = Emjpm::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+# Authentication d'un utilisateur
 
-```python
-import Emjpm
-
-api = Emjpm.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+> pour authoriser votre application à accèder à un compte utilisateur veuillez rediriger sur l'url emjpm construite de la façon suivante:
 
 ```javascript
-const Emjpm = require('Emjpm');
+// url de redirection de test
+const emjpmAuthTestUrl = `https://test-api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=${votre client_id de test}&client_token=${votre client_token de test}&redirect_url=${url de redirection vers votre application}`;
 
-let api = Emjpm.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+// exemple avec des informations de test
+const finalUrl = "https://test-api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=1&client_token=abcd&redirect_url=http://exemple.com"
+
+// url de redirection de production
+const emjpmAuthTestUrl = `https://api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=${votre client_id de prod}&client_token=${votre client_token de prod}&redirect_url=${url de redirection vers votre application}`;
+
+// exemple avec des informations de prod
+const finalUrl = "https://api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=1&client_token=abcd&redirect_url=http://exemple.com"
+```
+> Soyez sur de remplacer les informations d'exemple avec les votres
+
+> Une fois la redirection vers votre application faite vous receverez un token utilisateur sous la forme suivante
+
+```js
+
+const exampleUrl = "https://emjpm-editor-demo.netlify.com/?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tLyIsInVpZCI6InJhdTRLZm9WdmVpQ1R4bUZvQTBIbEJ6dDZnSjRoMFVYNVBnUHN1R2tEdDJjMEF4dnE1RENsVmZ0RFh0NWF1U0x1bmlBb3lpWUlQOXdRWTI2OVlaVTVRNVlyTFpTMDFpTjNKZlVveUxKTGhLQUJ1Z0NXY3FGQnduS1FFaDk0RlBPIiwidXNlcklkIjoxMzAyLCJlZGl0b3JJZCI6IjEiLCJlZGl0b3JUb2tlbiI6Imc1dmc0bXV1NDZzIiwiaWF0IjoxNTgyMTA2MTk4LCJzdWIiOiJyYXU0S2ZvVnZlaUNUeG1Gb0EwSGxCenQ2Z0o0aDBVWDVQZ1BzdUdrRHQyYzBBeHZxNURDbFZmdERYdDVhdVNMdW5pQW95aVlJUDl3UVkyNjlZWlU1UTVZckxaUzAxaU4zSmZVb3lMSkxoS0FCdWdDV2NxRkJ3bktRRWg5NEZQTyJ9.kOfoNKyBXPqkPzATRxtkbFGpJp38q57HlTbNOAzx_Gsjs1lYQUj3yNNXyS3VEB6bVbd7YEJ1DYS1fpXdSUauBFjKawOPvZ0St1vdDlkVhsHyCsiKE_8LtcgQ-rIVqWhgsuBh_YE-ybxq5YamGutcWtvcNBVhb526C1sjJry0bghM7FeK9WsQ2T70W3s4MIzjks9txDw1q55I86VJXK72xsqmjQnjufNukze9EqPmO0iIxTFRX9uZ4vaA0HO7xW1fcsXduyd3Qy1SkoUjdP0hJ94wxPb2HFApZUpWwIPuOqm4bmuopl1mANx0ncIXKizzq05-9q4ynfyra-E3iSaKqw"
+
+// soit le token suivant 
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w
 ```
 
-> The above command returns JSON structured like this:
+
+
+Emjpm utilise un système d'oauth pour identifier les utilisateurs donnent accès à leur compte aux logitiels métiers, pour se faire il suffit de faire une redirection depuis votre application jusqu'à la page d'authorisation utilisateur, la page à besoin de 3 paramètres
+
+* `client_id` : votre client_id
+* `client_token`: votre client_token
+* `redirect_url`: l'url de redirection vers votre application
+
+une fois l'authorisation accepté par l'utilisateur, nous le redirigerons vers votre application en donnant en paramamètre le token de l'utilisateur qui vous est lié.
+
+ce token vous permettra par la suite de passer des requetes sur l'api Emjpm relative à cet utilisateur et votre application.
+
+Si l'utilisateur révoque les droits d'accès à votre logitiel métier dans son compte Emjpm, alors vous n'aurez plus accès à ses informations.
+
+### Redirection
+
+exemple 
+
+`https://test-api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=1&client_token=abcd&redirect_url=http://exemple.com`
+
+# Mesures
+
+## Get mesures
+
+```javascript
+const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
+const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures?status=Mesure en cours"
+
+const response = await fetch(emjpmApiMesuresUrl, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+```
+
+> La requete ci dessus retourne un body contenant le JSON structuré comme ceci:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+   "mesures":[
+      {
+         "id":87243,
+         "code_postal":null,
+         "ville":"Paris",
+         "etablissement":null,
+         "mandataire_id":877,
+         "created_at":"2019-10-21T09:57:36.723Z",
+         "annee":"2000",
+         "type":"Tutelle aux biens et à la personne",
+         "date_ouverture":"2019-01-08T00:00:00.000Z",
+         "residence":"En établissement",
+         "civilite":"H",
+         "status":"Mesure en cours",
+         "extinction":null,
+         "etablissement_id":null,
+         "ti_id":null,
+         "numero_dossier":null,
+         "cabinet":null,
+         "reason_extinction":null,
+         "numero_rg":null,
+         "department_id":71,
+         "antenne_id":null,
+         "service_id":null,
+         "is_urgent":false,
+         "judgment_date":null,
+         "latitude":null,
+         "longitude":null
+      }
+   ]
+}
 ```
 
 This endpoint retrieves all kittens.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+url de test
+`GET https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures`
+
+url de production
+`GET https://api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Default | valeurs | obligatoire
+--------- | ------- | ----------- | -----------
+status | false | "Mesure en cours", "Mesure en attente" | oui
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Attention — Une requete sur cet API ne peut être fait que grace au token d'authorisation utilisateur
 </aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'Emjpm'
-
-api = Emjpm::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import Emjpm
-
-api = Emjpm.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const Emjpm = require('Emjpm');
-
-let api = Emjpm.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'Emjpm'
-
-api = Emjpm::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import Emjpm
-
-api = Emjpm.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const Emjpm = require('Emjpm');
-
-let api = Emjpm.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 
