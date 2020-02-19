@@ -74,7 +74,7 @@ name | <span class="label label-required">Required</span>
 schedule | Adhoc, Weekly or Monthly - defaults to Adhoc
 day-of-week | Relevant to Weekly schedule only. Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday. Defaults to Tuesday.
 day-of-month | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month). Defaults to 1
-location-id |	
+location_id |	<span class="label label-required">Required</span>	
 white-label-profile-id | (branding-profile-id is also supported but deprecated)
 tags | Comma separated list of tags
 search-terms | <span class="label label-required">Required</span> Newline (\n) separated list of search terms.
@@ -173,7 +173,7 @@ name |
 schedule | Adhoc, Weekly or Monthly
 day-of-week | Relevant to Weekly schedule only. Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday.
 day-of-month | One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).
-location-id |	
+location_id |	<span class="label label-required">Required</span>	
 white-label-profile-id | (branding-profile-id is also supported but deprecated)
 tags | Comma separated list of tags
 search-terms | Newline (\n) separated list of search terms

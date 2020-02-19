@@ -158,7 +158,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-name | <span class="label label-required">Required</span>
-location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
+location_id | <span class="label label-required">Required</span> Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-names | <span class="label label-required">Required</span> Supply only one business name as a JSON string. For example, ["Greens Restaurant"].
 website-address | <span class="label label-required">Required</span> The address for your business website. 256 characters max. 
@@ -324,7 +324,7 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-id | <span class="label label-required">Required</span>
 report-name |
-location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
+location_id | <span class="label label-required">Required</span> Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-names | Supply only one business name as a JSON string. For example, ["Greens Restaurant"].
 website-address | The address for your business website. 256 characters max. 

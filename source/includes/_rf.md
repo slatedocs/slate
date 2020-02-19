@@ -135,7 +135,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-name | <span class="label label-required">Required</span>
-location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
+location_id | <span class="label label-required">Required</span> Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business-name | <span class="label label-required">Required</span>
 contact-telephone | <span class="label label-required">Required</span>
@@ -257,6 +257,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+location_id | <span class="label label-required">Required</span>
 report-name |
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 schedule | D (Daily), W (Weekly) or M (Monthly). You to purchase an add on before you can use daily reporting. Defaults to M (Monthly).

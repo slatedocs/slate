@@ -144,7 +144,7 @@ Parameter | Notes
 api-key	| <span class="label label-required">Required</span>	
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-location_id |		
+location_id |	<span class="label label-required">Required</span>	
 business_name | <span class="label label-required">Required</span>	
 campaign_name | <span class="label label-required">Required</span>	
 website_address	| <span class="label label-required">Required</span>	
@@ -307,6 +307,7 @@ Parameter | Notes
 api-key	| <span class="label label-required">Required</span>	
 sig	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires	| <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
+location_id |	<span class="label label-required">Required</span>
 business_name | 	
 campaign_name | 	
 website_address	| 		

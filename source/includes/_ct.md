@@ -87,7 +87,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>	
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-location-id | You can specify location ID or unique reference to create report for a location
+location-id | <span class="label label-required">Required</span> You can specify location ID or unique reference to create report for a location
 report-name | <span class="label label-required">Required</span>	
 business-name | <span class="label label-required">Required</span>	
 address-1 | <span class="label label-required">Required</span> Street address of where the business is located. 80 characters max.
@@ -195,7 +195,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>	
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-location-id | You can specify location ID or unique reference to create report for a location.
+location-id | <span class="label label-required">Required</span> You can specify location ID or unique reference to create report for a location.
 report-id | <span class="label label-required">Required</span>	
 report-name |	
 business-name |	

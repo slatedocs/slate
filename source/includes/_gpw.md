@@ -119,7 +119,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report_name | <span class="label label-required">Required</span>
-location_id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
+location_id | <span class="label label-required">Required</span> Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business_names | <span class="label label-required">Required</span> Supply one business name. For example, Greens Restaurant.
 schedule | <span class="label label-required">Required</span> One of Adhoc or Monthly
@@ -225,7 +225,7 @@ sig | <span class="label label-required">Required</span> [See above for how to g
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 report-ID | <span class="label label-required">Required</span>
 report_name |
-location_id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
+location_id | <span class="label label-required">Required</span> Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white_label_profile_id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
 business_names |  Supply one business name. For example, Greens Restaurant.
 schedule |  One of Adhoc or Monthly
