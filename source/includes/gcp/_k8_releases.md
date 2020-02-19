@@ -319,7 +319,47 @@ Attributes | &nbsp;
 `version`<br/>*string* | The revision of the release
 `namespace`<br/>*string* | The namespace to which the release is installed
 
+<!-- ROLLBACK RELEASE -->
+#### Rollback release to previous revision
 
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=rollback&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+
+# The above command returns JSON structured like this:
+```
+
+```json
+{
+  "data": {
+      "name": "aerospike-1579797954",
+      "version": 8,
+      "info": {
+          "deleted": "",
+          "description": "Rollback to 6",
+          "status": "deployed",
+          ...
+      ...
+  },
+  "taskId": "13943961-4a2c-4439-b7c9-05113d3b593a",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=rollback&cluster_id=:cluster_id</code>
+
+Rollback a release in a given [environment](#administration-environments) to the previous revision.
+
+Mandatory | &nbsp;
+------- | -----------
+`cluster_id` <br/>*string* | The id of the cluster in which to rollback the release.
+
+Attributes | &nbsp;
+------- | -----------
+`data` <br/>*Object* | The release object. See [get release](#get-release) for a description of the release attributes.
+`taskId` <br/>*string* | The task id related to the pod rollback.
+`taskStatus` <br/>*string* | The status of the operation.
 
 <!-------------------- UPGRADE RELEASE -------------------->
 #### Upgrade release
@@ -331,33 +371,32 @@ curl -X POST \
    -d "request_body"
 
 
-# Request example:
+# Request body examples:
 ```
 ```json
-#Change to the latest version of a chart
+# Change to the latest version of a chart
 {
   "upgradeChart":  "stable/aerospike" 
 }
 ```
 
 ```json
-#Change to a specific version of a chart
+# Change to a specific version of a chart
 {
   "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
 }
 ```
 
 ```json
-#Change the values for the latest version
+# Change the values for the latest version
 {
   "upgradeChart" : "stable/aerospike",
   "values": "---\n\"replicaCount\": 3\n"
 }
 ```
 
-
 ```json
-#The above command returns JSON structured like this:
+# The above command returns JSON structured like this
 {
   "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
   "taskStatus": "SUCCESS"
@@ -370,10 +409,62 @@ Upgrade a release in a given [environment](#administration-environments)
 
 Mandatory | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
+`cluster_id` <br/>*string* | The id of the cluster in which to upgrade the release. 
 `upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.  
-
 
 Optional | &nbsp;
 ------- | -----------
 `values` <br/>*string* | YAML structured text that will overwrite the default values for the upgrade/installation of the chart.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the pod upgrade.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-- UNINSTALL RELEASE -->
+#### Uninstall a release
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=uninstall&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   -d "request_body"
+
+# Request body example
+```
+```json
+{
+   "keepHistory": true
+}
+```
+
+```json
+# The above command returns JSON structured like this
+{
+  "data": {
+      "version": 0,
+      "keepHistory": false
+  },
+  "taskId": "938f11b2-b37d-459e-8cf2-dea05c4d8f63",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=uninstall&cluster_id=:cluster_id</code>
+
+Uninstall a release in a given [environment](#administration-environments).
+
+Mandatory | &nbsp;
+------- | -----------
+`cluster_id` <br/>*string* | The id of the cluster in which to uninstall the release.
+
+Optional | &nbsp;
+------- | -----------
+`keepHistory` <br/>*bool* | If true, will keep release history after uninstalling. Defaults to false.
+
+Attributes | &nbsp;
+------- | -----------
+`version` <br/>*string* | The uninstalled release's revision. Revision 0 indicated it was uninstalled.
+`keepHistory` <br/>*string* | The *keepHistory* value used when uninstalling the chart.
+`taskId` <br/>*string* | The task id related to the pod uninstall.
+`taskStatus` <br/>*string* | The status of the operation.
