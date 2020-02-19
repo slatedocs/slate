@@ -7941,6 +7941,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
 ```json
 {
   "data": {
+    "approval_status": "pending",
     "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
@@ -7985,6 +7986,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
+    "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -8057,7 +8059,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "num_subtasks": 3,
     "resource_subtype": "default_task",
     "start_on": "2019-09-14",
-    "approval_status": "pending",
     "assignee": {
       "gid": "12345",
       "resource_type": "user",
@@ -8151,6 +8152,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The task to create.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
@@ -8202,6 +8204,10 @@ The external field allows you to store app-specific metadata on tasks, including
 
 |Parameter|Value|
 |---|---|
+| approval_status|pending|
+| approval_status|approved|
+| approval_status|rejected|
+| approval_status|changes_requested|
 | assignee_status|today|
 | assignee_status|upcoming|
 | assignee_status|later|
@@ -8243,6 +8249,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
+    "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -8315,7 +8322,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "num_subtasks": 3,
     "resource_subtype": "default_task",
     "start_on": "2019-09-14",
-    "approval_status": "pending",
     "assignee": {
       "gid": "12345",
       "resource_type": "user",
@@ -8438,6 +8444,7 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
 ```json
 {
   "data": {
+    "approval_status": "pending",
     "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
@@ -8482,6 +8489,7 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
+    "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -8554,7 +8562,6 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "num_subtasks": 3,
     "resource_subtype": "default_task",
     "start_on": "2019-09-14",
-    "approval_status": "pending",
     "assignee": {
       "gid": "12345",
       "resource_type": "user",
@@ -8650,6 +8657,7 @@ Returns the complete updated task record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The task to update.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
@@ -8702,6 +8710,10 @@ The external field allows you to store app-specific metadata on tasks, including
 
 |Parameter|Value|
 |---|---|
+| approval_status|pending|
+| approval_status|approved|
+| approval_status|rejected|
+| approval_status|changes_requested|
 | assignee_status|today|
 | assignee_status|upcoming|
 | assignee_status|later|
@@ -9194,6 +9206,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
 ```json
 {
   "data": {
+    "approval_status": "pending",
     "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
@@ -9238,6 +9251,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
+    "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -9310,7 +9324,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "num_subtasks": 3,
     "resource_subtype": "default_task",
     "start_on": "2019-09-14",
-    "approval_status": "pending",
     "assignee": {
       "gid": "12345",
       "resource_type": "user",
@@ -9398,6 +9411,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new subtask to create.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
@@ -9450,6 +9464,10 @@ The external field allows you to store app-specific metadata on tasks, including
 
 |Parameter|Value|
 |---|---|
+| approval_status|pending|
+| approval_status|approved|
+| approval_status|rejected|
+| approval_status|changes_requested|
 | assignee_status|today|
 | assignee_status|upcoming|
 | assignee_status|later|
@@ -9504,6 +9522,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
+    "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -9576,7 +9595,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "num_subtasks": 3,
     "resource_subtype": "default_task",
     "start_on": "2019-09-14",
-    "approval_status": "pending",
     "assignee": {
       "gid": "12345",
       "resource_type": "user",
@@ -14932,6 +14950,7 @@ The *task* is the basic object around which many operations in Asana are centere
   "gid": "12345",
   "resource_type": "task",
   "name": "Buy catnip",
+  "approval_status": "pending",
   "assignee_status": "upcoming",
   "completed": false,
   "completed_at": "2012-02-22T02:06:58.147Z",
@@ -15004,7 +15023,6 @@ The *task* is the basic object around which many operations in Asana are centere
   "num_subtasks": 3,
   "resource_subtype": "default_task",
   "start_on": "2019-09-14",
-  "approval_status": "pending",
   "assignee": {
     "gid": "12345",
     "resource_type": "user",
@@ -15089,6 +15107,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.<br>Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
@@ -15140,7 +15159,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -15199,6 +15217,10 @@ The *task* is the basic object around which many operations in Asana are centere
 
 |Property|Value|
 |---|---|
+|approval_status|pending|
+|approval_status|approved|
+|approval_status|rejected|
+|approval_status|changes_requested|
 |assignee_status|today|
 |assignee_status|upcoming|
 |assignee_status|later|
@@ -15208,10 +15230,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_subtype|milestone|
 |resource_subtype|section|
 |resource_subtype|approval|
-|approval_status|pending|
-|approval_status|approved|
-|approval_status|rejected|
-|approval_status|changes_requested|
 |custom_label_position|prefix|
 |custom_label_position|suffix|
 |format|currency|

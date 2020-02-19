@@ -3050,20 +3050,6 @@ components:
         - $ref: '#/components/schemas/TaskBase'
         - type: object
           properties:
-            approval_status:
-              type: string
-              description: >-
-                *Conditional* Reflects the approval status of this task. This
-                field is kept in sync with `completed`, meaning `pending`
-                translates to false while `approved`, `rejected`, and
-                `changes_requested` translate to true. If you set completed
-                to true, this field will be set to `approved`.
-              enum:
-                - pending
-                - approved
-                - rejected
-                - changes_requested
-              example: pending
             assignee:
               nullable: true
               allOf:
@@ -3210,6 +3196,20 @@ components:
         - $ref: '#/components/schemas/TaskCompact'
         - type: object
           properties:
+            approval_status:
+              type: string
+              description: >-
+                *Conditional* Reflects the approval status of this task. This
+                field is kept in sync with `completed`, meaning `pending`
+                translates to false while `approved`, `rejected`, and
+                `changes_requested` translate to true. If you set completed
+                to true, this field will be set to `approved`.
+              enum:
+                - pending
+                - approved
+                - rejected
+                - changes_requested
+              example: pending
             assignee_status:
               description: >-
                 Scheduling status of this task for the user it is assigned to.
