@@ -134,22 +134,35 @@ curl -X POST \
 ```
 ```json
 {
-  "name":"ad_root_vme",
-  "type":"premium_lrs",
-  "region":"australiaeast",
-	"sizeGb":"20"
+  "name":"ad_root_smean",
+  "region":"northeurope",
+  "type":"ultrassd_lrs",
+  "sizeGb":"200",
+  "iops": "40",
+  "throughputInMBps": "200"
+}
+```
+```shell
+# Response Example
+```
+```json
+{
+  "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",
+  "taskStatus": "PENDING"
 }
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks</code>
+
+_(Use the [task API](#tasks) to get the status of the operation)_
 
 Create a disk in an [environment](#administration-environments)
 
 Attributes | &nbsp;
 ---------- | -----
 `name`<br/>*string* | The name of the azure disk. Supported characters for the name are `a-z`, `A-Z`, `0-9` and `_`; The maximum name length is 80 characters
-`type`<br/>*string* | The managed disk type. Can be one of the following:<br>`premium_lrs`, `standard_lrs`, `standardssd_lrs`, `ultrassd_lrs`
 `region`<br/>*string* | The azure region in which the disk is to be created. See list of regions [here](https://azure.microsoft.com/en-ca/global-infrastructure/regions/)
+`type`<br/>*string* | The managed disk type. Can be one of the following:<br>`premium_lrs`, `standard_lrs`, `standardssd_lrs`, `ultrassd_lrs`
 `sizeGb`<br/>*string* | The size of the disk
 `iops`<br/>*string* | The number of read/write operations per second on the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
 `throughputInMBps`<br/>*string* | The throughput of the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
