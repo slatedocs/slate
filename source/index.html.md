@@ -4,6 +4,7 @@ title: Help Docs ~ Scout APM
 includes:
   - ruby
   - elixir
+  - nodejs
   - python
   - php
   - core_agent
@@ -63,6 +64,16 @@ Browse through the sidebar, search, [email us](mailto:support@scoutapm.com), or 
       View our docs for installing, configuring, and troubleshooting the Scout PHP agent.
     </p>
   </div>
+
+  <div>
+    <h3>
+        <img src="images/nodejs.png" alt="nodejs" />
+        <a href="#nodejs-agent">NodeJS Agent</a></h3>
+    </h3>
+    <p>
+      View our docs for installing, configuring, and troubleshooting the Scout NodeJS agent.
+    </p>
+  </div>
 </div>
 
 
@@ -74,7 +85,7 @@ Here's an overview of the key functionality in our application monitoring servic
 
 ### Agents
 
-We support Ruby on Rails, Elixir, Python, and PHP apps.
+We support Ruby on Rails, Elixir, NodeJS, Python, and PHP apps.
 
 Our agent is designed to run in production environments and has low overhead. Every minute, the agent transmits metrics to our service over SSL. 
 
