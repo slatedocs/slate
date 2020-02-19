@@ -3131,7 +3131,9 @@ components:
               example: '12345'
               nullable: true
             custom_fields:
-              description: Object of Custom Field gids to values.
+              description: >-
+                An object where each key is a Custom Field gid and each value is
+                an enum gid, string, or number.
               type: object
               additionalProperties:
                 type: string
