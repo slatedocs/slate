@@ -18,10 +18,16 @@ Through this API you can either query account information, if you're an Account 
 
 ## Prerequisites
 
-> Well-Known Open Banking URL
+> Well-Known Open Banking URL in Sandbox
 
 ```shell
 https://sandbox.transferwise.tech/openbanking/.well-known/openid-configuration
+```
+
+> Well-Known Open Banking URL in Production
+
+```shell
+https://transferwise.com/openbanking/.well-known/openid-configuration
 ```
 
 There's a couple of things you should be aware of in order to connect to the TransferWise Open Banking API:
