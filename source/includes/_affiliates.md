@@ -126,3 +126,5 @@ This can vary quite a lot for different currency routes. For example transfers o
 This endpoint allows you to find out the estimated delivery time for each currency route.
 
 See more at [Get Temporary Quote](#quotes-get-temporary-quote)
+
+<br /><br /><br /><br /><br /><br /><br /><br />
