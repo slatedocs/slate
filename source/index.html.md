@@ -205,7 +205,8 @@ This is most useful when you would like to host SynBioHub on a subdomain alongsi
 
 Endpoints that control user related functions
 
-## Request to login
+## Login
+
 Returns a string token to be passed with any call to submit as the `user` parameter. 
 
 This POST request requires email/password and returns a user token needed for viewing private objects and submitting new objects.
@@ -222,7 +223,7 @@ Parameter | Description
 email | the e-mail address of the user to login with
 password | the password of the user
 
-## Request to logout
+## Logout
 
 `POST http://synbiohub.org/logout `
 
@@ -232,11 +233,9 @@ If `user` is currently logged in, this post request will logout the user.
 `curl -X POST -H "Accept: test/plain" localhost:7777/logout`
 ```
 
-## Request to reset password
-
 # Search Endpoints
 
-## Perform a search and return metadata
+## Search Metadata
 
 `GET <SynBioHub URL>/search/<key>=<value>&...&<search string>/?offset=#&limit=# `
 
@@ -311,7 +310,7 @@ This endpoint returns JSON metadata of the form
 ]
 ```
 
-## Returns all Collections that are members of the Collection specified by its URI
+## Search Subcollections
 
 `GET <URI>/subCollections`
 
@@ -349,7 +348,7 @@ fetch(Url,otherPram)
 ```
 
 
-## Returns all Collections that are not members of any other Collection
+## Search Rootcollections
 
 `GET <SynBioHub URL>/rootCollections`
 
@@ -383,7 +382,119 @@ fetch(Url,otherPram)
 
 Note that the X-authorization header is optional, but if provided, it will also return private root collections for the logged in user.
 
-## Perform a search and return count of search results
+## Search Twins
+
+`GET <SynBioHub URL>/twins`
+
+Returns other components that have the same sequence.
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/bsu/BO_5629/1/twins',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins`
+```
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/twins'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+## Search Similar 
+
+`GET <SynBioHub URL>/similar`
+
+Returns other components that have similar sequences.
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/bsu/BO_5629/1/similar',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar`
+```
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/similar'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+## Search Uses
+
+`GET <SynBioHub URL>/uses`
+
+Returns any other object that refers to this object, for example, if this is a component, it will return all other components that use this as a sub-component.
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/bsu/BO_5629/1/uses',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+```
+
+```plaintext
+e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses`
+```
+
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/uses'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+
+## Count Search Results
 
 `GET <SynBioHub URL>/searchCount/<key>=<value>&...&<search string>/?offset=#&limit=# `
 
@@ -463,7 +574,7 @@ fetch(Url,otherPram)
 
 Note that you can replace `<ObjectType>` with any object type, such as `ComponentDefinition`, `SequenceAnnotation`, etc.
 
-## Perform a SPARQL query
+## SPARQL Query
 
 `GET <SynBioHub URL>/sparql?query=<SPARQL query>`
 
@@ -486,124 +597,12 @@ print(response.status_code)
 
 print(response.json())
 ```
-
-## Find the Twins of a component
-
-`GET <SynBioHub URL>/twins`
-
-Returns other components that have the same sequence.
-
-```python
-import requests
-
-response = requests.get(
-    'https://synbiohub.org/public/bsu/BO_5629/1/twins',
-    params={'X-authorization': 'token'},
-    headers={'Accept': 'text/plain'},
-)
-
-print(response.status_code)
-print(response.content)
-```
-
-```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins`
-```
-
-```javascript
-const fetch = require("node-fetch");
-const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/twins'
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-};
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
-## Find Similar Components
-
-`GET <SynBioHub URL>/similar`
-
-Returns other components that have similar sequences.
-
-```python
-import requests
-
-response = requests.get(
-    'https://synbiohub.org/public/bsu/BO_5629/1/similar',
-    params={'X-authorization': 'token'},
-    headers={'Accept': 'text/plain'},
-)
-
-print(response.status_code)
-print(response.content)
-```
-
-```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar`
-```
-
-```javascript
-const fetch = require("node-fetch");
-const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/similar'
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-};
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-## Find the Uses of an Object
-
-`GET <SynBioHub URL>/uses`
-
-Returns any other object that refers to this object, for example, if this is a component, it will return all other components that use this as a sub-component.
-
-```python
-import requests
-
-response = requests.get(
-    'https://synbiohub.org/public/bsu/BO_5629/1/uses',
-    params={'X-authorization': 'token'},
-    headers={'Accept': 'text/plain'},
-)
-
-print(response.status_code)
-print(response.content)
-```
-
-```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses`
-```
-
-
-```javascript
-const fetch = require("node-fetch");
-const Url = 'https://synbiohub.org/public/bsu/BO_5629/1/uses'
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-};
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
  
 
 # Download Endpoints
 
 
-## Return source for an attachment with the specified URI
+## Download Attachment
 
 `GET <URI>/download `
 
@@ -643,7 +642,7 @@ e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://
 ```
 
 
-## Returns SBOL for the object with the specified URI
+## Download SBOL
 
 `GET <URI>/sbol`
 
@@ -681,7 +680,7 @@ print(response.content)
 
 ```
 
-## Returns SBOLnr for the object with the specified URI
+## Download SBOLnr
 
 `GET <URI>/sbolnr`
 
@@ -720,7 +719,7 @@ print(response.content)
 
 ```
 
-## Returns metadata for the object with the specified URI
+## Download Metadata
 
 `GET <URI>/metadata`
 
@@ -758,7 +757,7 @@ print(response.content)
 
 Returns the metadata for the object from the specified URI.
 
-## Returns GenBank for the object with the specified URI
+## Download GenBank
 
 `GET <URI>/gb`
 
@@ -796,7 +795,7 @@ print(response.content)
 
 ```
 
-## Returns FASTA for the object with the specified URI
+## Download FASTA
 
 `GET <URI>/fasta`
 
@@ -834,7 +833,7 @@ print(response.content)
 
 ```
 
-## Returns visualization for the object with the specified URI
+## Download Visualization
 
 `GET <URI>/visualization`
 
@@ -1017,11 +1016,9 @@ print(response.content)
 # Edit Endpoints
 
 
-
-
 # Attachment Endpoints
 
-## Attach file to a Specified URI
+## Attach File
 
 `POST <URI>/attach `
 
@@ -1031,7 +1028,7 @@ Attach a specified file to a given URI
 curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
 ```
 
-## Attach URL to a Specfied URI
+## Attach URL
 
 `POST <URI>/attachURL `
 
@@ -1039,7 +1036,7 @@ Attach a specified URL to a given URI
 
 # Administration Endpoints
 
-## Perform a SPARQL admin query
+## SPARQL Admin Query
 
 `GET <SynBioHub URL>/admin/sparql?query=<SPARQL query>`
 
