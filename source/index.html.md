@@ -105,7 +105,7 @@ In a web browser, visit
 
 ``` http://localhost:7777/ ```
 
-On first startup, you will be taken to the [SynBioHub Setup Page](http://wiki.synbiohub.org/wiki/SynBioHub_Setup_Page), which enables basic setup of the site. After first setup, the [Admin Portal](http://wiki.synbiohub.org/wiki/Admin_Portal) will allow admin users to update their site configuration. 
+On the first startup, you will be taken to the [SynBioHub Setup Page](http://wiki.synbiohub.org/wiki/SynBioHub_Setup_Page), which enables basic setup of the site. After the first setup, the [Admin Portal](http://wiki.synbiohub.org/wiki/Admin_Portal) will allow admin users to update their site configuration. 
 
 ##### SendGrid email setup
 In order to enable SynBioHub to send account-related emails, you need a [SendGrid](https://sendgrid.com/) account and API key. Once you have created your account, you should click "Settings" in the left bar, then "API Keys". On the resulting page, click the "Create API Key" button in the upper-right corner, and give your new API key a name. You should see the key on the next page. Copy the key and paste it into the "SendGrid API Key" in the Mail page on the SynBioHub admin dashboard. Save the API key in SynBioHub and you are ready to begin sending email. 
@@ -348,7 +348,7 @@ fetch(Url,otherPram)
 ```
 
 
-## Search Rootcollections
+## Search Root Collections
 
 `GET <SynBioHub URL>/rootCollections`
 
@@ -877,7 +877,7 @@ print(response.content)
 
 `POST <SynBioHub URL>/submit `
 
-Create a new collection including the elements within a file or adds to a preexisting collection using the elements within a file.
+Create a new collection including the elements within a file or add to a preexisting collection using the elements within a file.
 
 
 
@@ -896,7 +896,7 @@ description | the dcterms description string to assign to the submission
 citations | a list of comma separated pubmed IDs of citations to store with the submission
 overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists, '2' to merge and prevent if submission exists, '3' to merge and overwrite matching URIS
 file | contents of an SBOL2, SBOL1, GenBank, FASTA, GFF3, ZIP, or COMBINE Archive file
-rootCollections | If submtitting the contents into the file, provide the previous parameters, otherwise, only provide a URI into rootCollections to append into an existing collection
+rootCollections | If submitting the contents into the file, provide the previous parameters, otherwise, only provide a URI into rootCollections to append into an existing collection
 
 ## Remove Collection
 
@@ -940,7 +940,7 @@ print(response.content)
 
 `GET <URI>/remove`
 
-Remove the object specifiedfrom URI, and the references to that object.
+Remove the object specified from URI, and the references to that object.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -978,7 +978,7 @@ print(response.content)
 
 `GET <URI>/replace `
 
-Remove the object specifiedfrom URI, but leave references to the object in tact.
+Remove the object specified from URI, but leave references to the object in tact.
 
 ```javascript
 const fetch = require("node-fetch");
