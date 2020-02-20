@@ -9,7 +9,7 @@ A security rule in Azure is a filter which controls both inbound and outbound tr
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/securityrules?security_group_id=:securitygroupid"
+   "https://cloudmc_endpoint/v1/services/azure/example/securityrules"
 
 # Example:
 ```
@@ -17,26 +17,10 @@ curl -X GET \
 {
   "data": [
     {
-        "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
-        "name": "SampleRule",
-        "priority": 120,
-        "direction": "Inbound",
-        "access": "Allow",
-        "protocol": "*",
-        "sourcePortRanges": [],
-        "sourceAddressPrefixes": [],
-        "destinationPortRanges": [
-            "8080"
-        ],
-        "destinationAddressPrefixes": [
-            "10.0.0.0/24"
-        ]
-    },
-    {
-      "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound2",
-      "name": "SampleOutbound",
+      "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
+      "name": "SampleRule",
       "priority": 110,
-      "direction": "Outbound",
+      "direction": "Inbound",
       "access": "Deny",
       "protocol": "Udp",
       "sourcePortRanges": [
@@ -55,17 +39,18 @@ curl -X GET \
     }
   ],
   "metadata": {
-    "recordCount": 2
+    "recordCount": 1
   }
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules?security_group_id=<a href="#azure-network-security-groups">:security_group_id</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules</code>
 
-Retrieve a list of all security rules in an [network security group](#azure-network-security-groups)
+Retrieve a list of all security rules in an [environment](#administration-environments).
 
 Query parameters | &nbsp;
 ---------- | -----
+`security_group_id`<br/>*String* | The id of the [network security group](#azure-network-security-groups) in which we want to fetch the list of security rules.
 `direction`<br/>*string* | Filter on the list of security rules. Either `Inbound` or `Outbound`. No value will passed will return a list with both included.
 
 Attributes | &nbsp;
