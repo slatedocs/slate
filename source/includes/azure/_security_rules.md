@@ -66,7 +66,7 @@ Retrieve a list of all security rules in an [network security group](#azure-netw
 
 Query parameters | &nbsp;
 ---------- | -----
-`direction`<br/>*string* | Filter on the list of security rules. Either `Inbound` or `Outbound`. 
+`direction`<br/>*string* | Filter on the list of security rules. Either `Inbound` or `Outbound`. No value will passed will return a list with both included.
 
 Attributes | &nbsp;
 ---------- | -----
@@ -76,7 +76,7 @@ Attributes | &nbsp;
 `direction`<br/> *string* | Either `Inbound` or `Outbound`.
 `access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
 `protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
-`sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule.
-`sourceAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses.
-`destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule.
-`destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses.
+`sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`sourceAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
