@@ -210,6 +210,7 @@ $data = array(
     'companyname' => 'test',
     'companyemail' => 'test@company.com',
     'companycity' => 'Raleigh',
+    'overwriteWithBlank' => true
 );
 
 $company = $companyApi->create($data);
@@ -226,6 +227,7 @@ Name|Description
 ----|-----------
 companyname|Company name is the only required field. Other company fields can be sent with a value
 isPublished|A value of 0 or 1
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 
@@ -272,6 +274,7 @@ Name|Description
 ----|-----------
 companyname|Company name is the only required field. Other company fields can be sent with a value
 isPublished|A value of 0 or 1
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 
