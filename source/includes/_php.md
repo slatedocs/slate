@@ -1,8 +1,9 @@
 # PHP Agent
 
 Scout's PHP agent supports many popular libraries to instrument middleware, request times, SQL queries, and more.
-The base package is called `scoutapp/scout-apm-php`, and Laravel instrumentation
-is in the `scoutapp/scout-apm-laravel`. See our install instructions for more details..
+The base package is called `scoutapp/scout-apm-php`, Laravel instrumentation
+is in the `scoutapp/scout-apm-laravel`, and Symfony instrumentation in `scoutapp/scout-apm-symfony-bundle`. See our
+install instructions for more details..
 
 Source code and issues can be found on our [scout-apm-php](https://github.com/scoutapp/scout-apm-php) GitHub repository.
 
@@ -15,7 +16,7 @@ Source code and issues can be found on our [scout-apm-php](https://github.com/sc
 
 <h2 id="php-instrumented-libraries">Instrumented Libraries</h2>
 
-Scout provides instrumentation for Laravel.
+Scout provides instrumentation for Laravel, and Symfony.
 
 ###
 <h3 id="php-some-configuration-required">Some configuration required</h3>
@@ -27,6 +28,12 @@ the respective library for instructions.
     * Middleware
     * Controllers
     * SQL queries
+    * Job queues
+    * Blade rendering
+* [Symfony](#symfony)
+    * Controllers
+    * SQL queries (Doctrine)
+    * Twig rendering
 
 You can instrument your own code or other libraries via [custom instrumentation](#php-custom-instrumentation).
 You can suggest additional libraries you'd like Scout to instrument
@@ -127,6 +134,104 @@ Scout automatically inserts its middleware into your application on Laravel star
 It adds one at the very start of the middleware stack, and one at the end,
 allowing it to profile your middleware and controllers.
 
+
+## Symfony
+
+Scout supports Symfony 4+.
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scoutapp/scout-apm-symfony-bundle</code> bundle:</p>
+<pre style="width:500px">
+composer require scoutapp/scout-apm-symfony-bundle
+</pre>
+<p>
+Note that the <code>scout-apm-php</code> package will automatically be included. It does
+not need to be installed directly.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scoutapm</code> php extension (optional, recommended):</p>
+<pre style="width:500px">
+sudo pecl install scoutapm
+</pre>
+<p>
+Several instruments require the native extension to be included, including timing of <code>libcurl</code> and <code>file_get_contents</code>.
+
+For more information, or to compile manually, the <a href="https://github.com/scoutapp/scout-apm-php-ext">README</a> has additional instructions.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure Scout in your <code>config/packages/scoutapm.xml</code> file:</p>
+
+<pre style="width:500px">
+&lt;?xml version="1.0" ?&gt;
+
+&lt;container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:scoutapm="http://example.org/schema/dic/scout_apm"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd"&gt;
+
+    &lt;scoutapm:config&gt;
+        &lt;scoutapm:scoutapm
+            name="my application name..."
+            key="%env(SCOUT_KEY)%"
+            monitor="true"
+        /&gt;
+    &lt;/scoutapm:config&gt;
+&lt;/container&gt;
+</pre>
+
+<p>
+It is recommended not to commit the Scout APM key to version control. Instead, configure via environment variables,
+e.g. in `.env.local`:
+</p>
+
+<pre style="width:500px">
+SCOUT_KEY=your_scout_key_here
+</pre>
+
+<p>Since the configuration XML above uses <code>%env(SCOUT_KEY)%</code> this will be pulled in automatically.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">4</span></td>
+      <td style="padding-top: 15px">
+        <p>Add the bundle to `config/bundles.php`.</p>
+<pre style="width:500px">
+&lt;?php
+
+return [
+    // ... other bundles...
+    Scoutapm\ScoutApmBundle\ScoutApmBundle::class => ['all' => true],
+];
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">5</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="php-troubleshooting">Troubleshooting</h2>
 
@@ -308,6 +413,20 @@ We typically respond within a couple of hours during the business day.
       </td>
       <td>
         <code>"info"</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        SCOUT_DISABLED_INSTRUMENTS
+      </th>
+      <td>
+        A string containing a JSON array of instruments that Scout should not install.
+      </td>
+      <td>
+        <code>[]</code>
       </td>
       <td>
         No
