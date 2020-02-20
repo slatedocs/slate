@@ -50,7 +50,7 @@ Retrieve a list of all security rules in an [environment](#administration-enviro
 
 Query parameters | &nbsp;
 ---------- | -----
-`security_group_id`<br/>*String* | The id of the [network security group](#azure-network-security-groups) in which we want to fetch the list of security rules.
+`security_group_id`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to fetch the list of security rules.
 `direction`<br/>*string* | Filter on the list of security rules. Either `Inbound` or `Outbound`. No value will passed will return a list with both included.
 
 Attributes | &nbsp;
