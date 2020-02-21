@@ -1645,9 +1645,6 @@ This endpoint retrieves a list of purchase orders with specific status.
 Value       | Description
 ----------- | -----------
 pending     | Get all records that need to be processed in NS (a combination of new/updated/deleted)
-new         | Get all new records that need to be created
-updated     | Get all updated records previously created
-deleted     | Get all entries that need to be deleted because of 0 quantity
 synced      | Get all synced records previously successfully synced
 error       | Get all records that encountered an error during its most recent sync
 
@@ -1789,9 +1786,6 @@ This endpoint retrieves a list of item receipt lines with specific status.
 Value       | Description
 ----------- | -----------
 pending     | Get all records that need to be processed in NS (a combination of new/updated/deleted)
-new         | Get all new records that need to be created
-updated     | Get all updated records previously created
-deleted     | Get all entries that need to be deleted because of 0 quantity
 synced      | Get all synced records previously successfully synced
 error       | Get all records that encountered an error during its most recent sync
 
