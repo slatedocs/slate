@@ -3709,7 +3709,7 @@ Use this endpoint to fetch orders and optionally its details which include all b
 | timestamp      | number | Yes      | 1524211224    | When was the request generated |
 
 
-##  About Order
+##  Query Order
 
 ```ruby
 
@@ -3851,7 +3851,7 @@ request.post(options, function(error, response, body) {
 
 ```
 
-Use this endpoint to fetch information about specific order and optionally its details which include all buy/sell related orders
+Use this endpoint to query specific order and optionally its details which include all buy/sell related orders
 
 ### HTTP Request
 
