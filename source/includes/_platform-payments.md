@@ -171,7 +171,7 @@ Authorization: Basic ...
 ```
 
 ```http 
-HTTP/1.1 201 Created
+HTTP/1.1 202 Accepted
 Content-Type: application/json
 {
   "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
@@ -235,6 +235,7 @@ Content-Type: application/json
   }
 ]
 ```
+
 ### Description
 
 Retrieves all companies that have been registered.
@@ -282,7 +283,6 @@ Retrieve details of a single company.
 
 ## `POST /wallets 🚧`
 ```http
-
 POST /wallets HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
@@ -292,7 +292,6 @@ Authorization: Basic ...
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "walletName" : "Housing Project 22"
 }
-
 ```
 
 ```http 
@@ -306,7 +305,9 @@ Content-Type: application/json
 }
 ```
 
-ℹ️ _Prior to creating a Wallet, the company who owns the money in the Wallet must be registered using [`POST /companies`](#payments-manager-post-companies)_
+<aside class="notice">
+Prior to creating a Wallet, the Company who owns the money in the Wallet must be <a href="#payments-manager-post-companies">registered</a>.
+</aside>
 
 ### Description
 Creates a Wallet. The Wallet creation will not happen immediately. The `WALLET_CREATED` webhook will be used to notify
@@ -328,7 +329,6 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 
 ## `GET /wallets 🚧`
 ```http
-
 GET /wallets HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
@@ -341,7 +341,9 @@ Content-Type: application/json
 
 [
   {
-    "id" : "walletId",
+    "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+    "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+    "walletName" : "Housing Project 22",
     "bankAccountDetailsId" : "bankAccountDetailsId",
     "bankDetails" : {
       "accountName": "Housing Project 22",
@@ -356,11 +358,14 @@ Content-Type: application/json
 ]
 ```
 ### Description
-List of wallet details
+Retrieve all Wallet details.
+
 ### Response
 | Name                        | Type   | Description                                      |
 | --------------------------- | ------ | ------------------------------------------------ |
 | id                          | string | The ID of the wallet                             |
+| ownerPartyId                | string | The PartyId that will own the Wallet.            |
+| walletName                  | string | Wallet name.                                     |
 | bankAccountDetailsId        | string | The bank account details ID                      |
 | bankDetails                 | ref    | The bank details for the wallet                  |
 | bankDetails.accountName     | string | The account name for use when depositing money   |
@@ -372,12 +377,10 @@ List of wallet details
 
 ## `GET /wallets/{id} 🚧`
 ```http
-
 GET /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-
 ```
 
 ```http 
@@ -385,25 +388,31 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
-  "bankAccountDetailsId" : "bankAccountDetailsId",
-  "bankDetails" : {
+  "id": "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "walletName": "Housing Project 22",
+  "bankAccountDetailsId": "bankAccountDetailsId",
+  "bankDetails": {
     "accountName": "Housing Project 22",
     "accountNumber": "00000000",
     "sortCode": "000000"
   },
-  "balance" : {
-    "amount" : 10.45,
-    "currency" : "GBP"
+  "balance": {
+    "amount": 10.45,
+    "currency": "GBP"
   }
 }
 ```
+
 ### Description
-Wallet Details
+Retrieve details of a single Wallet.
+
 ### Response
 | Name                        | Type   | Description                                      |
 | --------------------------- | ------ | ------------------------------------------------ |
 | id                          | string | The ID of the wallet                             |
+| ownerPartyId                | string | The PartyId that will own the Wallet.            |
+| walletName                  | string | Wallet name.                                     |
 | bankAccountDetailsId        | string | The bank account details ID                      |
 | bankDetails                 | ref    | The bank details for the wallet                  |
 | bankDetails.accountName     | string | The account name for use when depositing money   |
@@ -413,11 +422,9 @@ Wallet Details
 | balance.amount              | number | The amount.                                      |
 | balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
 
-
 ## `POST /wallets/{id}/payment 🚧`
 ```http
-
-POST /wallets/{id}/payment HTTP/1.1
+POST /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/payment HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -431,17 +438,20 @@ Authorization: Basic ...
   "reference" : "ABC1234567",
   "narrative" : "Moving to operating account"
 }
-
 ```
 
 ```http 
 HTTP/1.1 202 Accepted
 Content-Type: application/json
-
 ```
+
 ### Description
-Create a payment instruction from a wallet.  Before instructing a payment, the destination bank account
-must first be registered using [`POST /platformApi/bankAccountDetails`](/#payments-manager-post-platformapi-bankaccountdetails).
+
+<aside class="notice">
+Before instructing a payment, the destination bank account must first be <a href="#payments-manager-post-platformapi-bankaccountdetails">registered</a>.
+</aside>
+
+Create a payment instruction from a Wallet.
 
 ### Request
 | Name                          | Type   | Description                                 | Required |
@@ -456,12 +466,10 @@ must first be registered using [`POST /platformApi/bankAccountDetails`](/#paymen
 ## `GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧`
 
 ```http
-
-GET /wallets/{id}/transactions/year/{year}/month/{month} HTTP/1.1
+GET /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/transactions/year/2020/month/1 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
-
 ```
 
 ```http 
@@ -488,11 +496,11 @@ Content-Type: application/json
     }
   }
 ]
-
 ```
+
 ### Description
 
-Retrieve a list of transactions for a given wallet for a given year and month.
+Retrieve a list of transactions for a given Wallet for a given year and month.
 
 ### Response
 | Name                                    | Type      | Description                                          |
