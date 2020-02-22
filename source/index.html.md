@@ -3851,7 +3851,7 @@ request.post(options, function(error, response, body) {
 
 ```
 
-Use this endpoint to query specific order and optionally its details which include all buy/sell related orders
+Use this endpoint to query specific order and optionally its details.
 
 ### HTTP Request
 
