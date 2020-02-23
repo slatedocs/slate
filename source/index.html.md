@@ -24,7 +24,7 @@ Before making API calls consider the following:
 
 * Enable the developer mode in your profile to create an Api Key
 * All requests use the `application/json` content type and go over `https`.
-* The base url is `https://api.staging.tauros.io/api/v1` fo staging environment and `https://api.tauros.io/api/v1` for production.
+* The base url is `https://api.staging.tauros.io/api/v1` for staging environment and `https://api.tauros.io/api/v1` for production.
 * All requests are `GET` and `POST` requests methods and responses come in a default response json object with the result in the `data` field.
 * Check the `success` flag to ensure that your API call succeeded.
 * If something goes wrong look at the `msg` field. There you will find the error description.
