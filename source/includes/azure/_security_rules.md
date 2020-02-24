@@ -70,7 +70,7 @@ Attributes | &nbsp;
 
 ```shell
 curl --request GET \
-  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-ldawson-system-ldawson-azure-test/providers/Microsoft.Network/networkSecurityGroups/coldawson-test/securityRules/securityRule1 \
+  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group/securityRules/securityRule1 \
   --header 'mc-api-key: your_api_key'
   ```
   <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
@@ -85,7 +85,7 @@ Query parameters | &nbsp;
 
 ```shell
 curl --request DELETE \
-  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-ldawson-system-ldawson-azure-test/providers/Microsoft.Network/networkSecurityGroups/coldawson-test/securityRules/securityRule1 \
+  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/sample-network-security-group/securityRules/securityRule1 \
   --header 'mc-api-key: your_api_key'
   ```
 
