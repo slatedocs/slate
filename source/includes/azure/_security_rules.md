@@ -75,11 +75,7 @@ curl --request GET \
   ```
   <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
 
-Get a specific security rule by group id and rule id.
-
-Query parameters | &nbsp;
----------- | -----
-`security_group_id`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to fetch the security rule.
+Get a specific security rule by rule id.
 
 #### Delete a security rule
 
@@ -92,7 +88,3 @@ curl --request DELETE \
   <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
 
 Delete an existing security rule.
-
-Query parameters | &nbsp;
----------- | -----
-`security_group_id`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to delete the security rule.
