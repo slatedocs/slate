@@ -113,7 +113,95 @@ exemple
 
 # Mesures
 
-## Get mesures
+## L'objet mesure
+
+> L'objet mesure
+
+```javascript
+{
+  annee: "1983",
+  antenne_id: null,
+  civilite: "H",
+  code_postal: "75015",
+  ville: "paris",
+  latitude: "45.8383",
+  longitude: "1.01181",
+  date_ouverture: "2020-02-20",
+  department_id: "75",
+  numero_dossier: "123123123",
+  numero_rg: "RGXXXX123",
+  residence: "En établissement",
+  ti_id: global.ti.id,
+  type: "Curatelle renforcée aux biens et à la personne"
+  status: "Mesure en cours"
+}
+```
+
+### Attributs
+
+**id** `number`
+
+ID de la mesure.
+
+**annee** `number`
+
+Année de naissance de la personne.
+
+**civilite** `string`
+
+Civilité de la personne, les valeurs possibles sont "H" et "F".
+
+**code_postal** `string`
+
+Code postal de la personne.
+
+**ville** `string`
+
+Ville de la personne.
+
+**latitude** `float`
+
+Latitude de la personne.
+
+**longitude** `float`
+
+Longitude de la personne.
+
+**date_ouverture** `date`
+
+Date d'ouverture de la mesure.
+
+**department_id** `number`
+
+ID du département de la mesure.
+
+**numero_dossier** `string`
+
+Numéro de dossier de la mesure.
+
+**numero_rg** `string`
+
+Numéro RG de la mesure.
+
+**residence** `string`
+
+Résidence de la personne.
+
+**ti_id** `number`
+
+ID du tribunal de la mesure.
+
+**status** `string`
+
+Status de la mesure, les valeurs possibles sont "Eteindre mesure" et "Mesure en cours".
+
+**antenne_id** `number`
+
+ID de l'antenne du service.
+
+## Lister toutes les mesures
+
+> GET /api/v2/editors/mesures
 
 ```javascript
 const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
@@ -126,7 +214,7 @@ const response = await fetch(emjpmApiMesuresUrl, {
 });
 ```
 
-> La requete ci dessus retourne un body contenant le JSON structuré comme ceci:
+> RESPONSE
 
 ```json
 {
@@ -163,22 +251,359 @@ const response = await fetch(emjpmApiMesuresUrl, {
 }
 ```
 
-This endpoint retrieves all kittens.
+Retourne la liste de toutes les mesures associées à l'utilisateur.
+Les mesures retournées sont triées, avec la mesure la plus récente apparaissant en premier.
 
-### HTTP Request
+### Paramètres
 
-url de test
-`GET https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures`
+**status** (optionnel)
 
-url de production
-`GET https://api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures`
+Retourne uniquement les mesures ayant ce status. Les valeurs possibles sont "Mesure en cours", "Mesure en attente".
 
-### Query Parameters
+### Retours
 
-Parameter | Default | valeurs | obligatoire
---------- | ------- | ----------- | -----------
-status | false | "Mesure en cours", "Mesure en attente" | oui
+## Récupérer une mesure
 
-<aside class="success">
-Attention — Une requete sur cet API ne peut être fait que grace au token d'authorisation utilisateur
-</aside>
+> GET /api/v2/editors/mesures/:id
+
+```javascript
+const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
+const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures/1"
+
+const response = await fetch(emjpmApiMesuresUrl, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+```
+
+> REPONSE
+
+```json
+{
+   "id":87243,
+   "code_postal":null,
+   "ville":"Paris",
+   "etablissement":null,
+   "mandataire_id":877,
+   "created_at":"2019-10-21T09:57:36.723Z",
+   "annee":"2000",
+   "type":"Tutelle aux biens et à la personne",
+   "date_ouverture":"2019-01-08T00:00:00.000Z",
+   "residence":"En établissement",
+   "civilite":"H",
+   "status":"Mesure en cours",
+   "extinction":null,
+   "etablissement_id":null,
+   "ti_id":null,
+   "numero_dossier":null,
+   "cabinet":null,
+   "reason_extinction":null,
+   "numero_rg":null,
+   "department_id":71,
+   "antenne_id":null,
+   "service_id":null,
+   "is_urgent":false,
+   "judgment_date":null,
+   "latitude":null,
+   "longitude":null
+}
+```
+
+Récupère la mesure associée à l'ID passé.
+
+### Retours
+
+Retourne l'objet [mesure](/?javascript#l-39-objet-mesure).
+Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
+
+## Créer une mesure
+
+> POST /api/v2/editors/mesures
+
+```javascript
+const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
+const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures en cours"
+
+const response = await fetch(emjpmApiMesuresUrl, {
+  method: "post",
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+```
+
+> REPONSE
+
+```json
+{
+   "id":87243,
+   "code_postal":null,
+   "ville":"Paris",
+   "etablissement":null,
+   "mandataire_id":877,
+   "created_at":"2019-10-21T09:57:36.723Z",
+   "annee":"2000",
+   "type":"Tutelle aux biens et à la personne",
+   "date_ouverture":"2019-01-08T00:00:00.000Z",
+   "residence":"En établissement",
+   "civilite":"H",
+   "status":"Mesure en cours",
+   "extinction":null,
+   "etablissement_id":null,
+   "ti_id":null,
+   "numero_dossier":null,
+   "cabinet":null,
+   "reason_extinction":null,
+   "numero_rg":null,
+   "department_id":71,
+   "antenne_id":null,
+   "service_id":null,
+   "is_urgent":false,
+   "judgment_date":null,
+   "latitude":null,
+   "longitude":null
+}
+```
+
+Créer une mesure avec les paramètres passés.
+Tous les paramètres sont obligatoires sauf indiqué par `(optionnel)`.
+
+### Paramètres
+
+**annee** `number`
+
+Année de naissance de la personne.
+
+**civilite** `string`
+
+Civilité de la personne, les valeurs possibles sont "H" et "F".
+
+**code_postal** `string`
+
+Code postal de la personne.
+
+**ville** `string`
+
+Ville de la personne.
+
+**latitude** `float`
+
+Latitude de la personne.
+
+**longitude** `float`
+
+Longitude de la personne.
+
+**date_ouverture** `date`
+
+Date d'ouverture de la mesure.
+
+**department_id** `number`
+
+ID du département de la mesure.
+
+**numero_dossier** `string`
+
+Numéro de dossier de la mesure.
+
+**numero_rg** `string`
+
+Numéro RG de la mesure.
+
+**residence** `string`
+
+Résidence de la personne.
+
+**ti_id** `number`
+
+ID du tribunal de la mesure.
+
+**status** `string`
+
+Status de la mesure, les valeurs possibles sont "Eteindre mesure" et "Mesure en cours".
+
+**antenne_id** `number` `optionnel`
+
+ID de l'antenne du service.
+
+### Retours
+
+Retourne l'objet [mesure](/?javascript#l-39-objet-mesure).
+Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
+
+## Modifier une mesure
+
+> PUT /api/v2/editors/mesures/:id
+
+```javascript
+const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
+const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures/1"
+
+const response = await fetch(emjpmApiMesuresUrl, {
+  method: "put",
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+```
+
+> REPONSE
+
+```json
+{
+   "id":87243,
+   "code_postal":null,
+   "ville":"Paris",
+   "etablissement":null,
+   "mandataire_id":877,
+   "created_at":"2019-10-21T09:57:36.723Z",
+   "annee":"2000",
+   "type":"Tutelle aux biens et à la personne",
+   "date_ouverture":"2019-01-08T00:00:00.000Z",
+   "residence":"En établissement",
+   "civilite":"H",
+   "status":"Mesure en cours",
+   "extinction":null,
+   "etablissement_id":null,
+   "ti_id":null,
+   "numero_dossier":null,
+   "cabinet":null,
+   "reason_extinction":null,
+   "numero_rg":null,
+   "department_id":71,
+   "antenne_id":null,
+   "service_id":null,
+   "is_urgent":false,
+   "judgment_date":null,
+   "latitude":null,
+   "longitude":null
+}
+```
+
+Modifie la mesure avec les paramètres passés.
+Tous les paramètres non passées resteront inchangés.
+Cette requête accepte quasiment les mêmes paramètres que pour la création d'une mesure.
+
+### Paramètres
+
+**annee** `number`
+
+Année de naissance de la personne.
+
+**civilite** `string`
+
+Civilité de la personne, les valeurs possibles sont "H" et "F".
+
+**code_postal** `string`
+
+Code postal de la personne.
+
+**ville** `string`
+
+Ville de la personne.
+
+**latitude** `float`
+
+Latitude de la personne.
+
+**longitude** `float`
+
+Longitude de la personne.
+
+**date_ouverture** `date`
+
+Date d'ouverture de la mesure.
+
+**department_id** `number`
+
+ID du département de la mesure.
+
+**numero_dossier** `string`
+
+Numéro de dossier de la mesure.
+
+**numero_rg** `string`
+
+Numéro RG de la mesure.
+
+**residence** `string`
+
+Résidence de la personne.
+
+**ti_id** `number`
+
+ID du tribunal de la mesure.
+
+**status** `string`
+
+Status de la mesure, les valeurs possibles sont "Eteindre mesure" et "Mesure en cours".
+
+**antenne_id** `number`
+
+ID de l'antenne du service.
+
+### Retours
+
+Retourne l'objet [mesure](/?javascript#l-39-objet-mesure).
+Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
+
+## Supprimer une mesure
+
+> DELETE /api/v2/editors/mesures/:id
+
+```javascript
+const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
+const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/v2/editors/mesures/1"
+
+const response = await fetch(emjpmApiMesuresUrl, {
+  method: "delete",
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+```
+
+> REPONSE
+
+```json
+{
+   "mesures":[
+      {
+         "id":87243,
+         "code_postal":null,
+         "ville":"Paris",
+         "etablissement":null,
+         "mandataire_id":877,
+         "created_at":"2019-10-21T09:57:36.723Z",
+         "annee":"2000",
+         "type":"Tutelle aux biens et à la personne",
+         "date_ouverture":"2019-01-08T00:00:00.000Z",
+         "residence":"En établissement",
+         "civilite":"H",
+         "status":"Mesure en cours",
+         "extinction":null,
+         "etablissement_id":null,
+         "ti_id":null,
+         "numero_dossier":null,
+         "cabinet":null,
+         "reason_extinction":null,
+         "numero_rg":null,
+         "department_id":71,
+         "antenne_id":null,
+         "service_id":null,
+         "is_urgent":false,
+         "judgment_date":null,
+         "latitude":null,
+         "longitude":null
+      }
+   ]
+}
+```
+
+Supprime la mesure associé à l'ID passé.
+
+### Retours
+
+Retourne l'objet [mesure](/?javascript#l-39-objet-mesure) supprimé.
+Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
