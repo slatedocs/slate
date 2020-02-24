@@ -65,3 +65,34 @@ Attributes | &nbsp;
 `sourceAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
 `destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
 `destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+
+#### Get a security rule
+
+```shell 
+curl --request GET \
+  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-ldawson-system-ldawson-azure-test/providers/Microsoft.Network/networkSecurityGroups/coldawson-test/securityRules/securityRule1 \
+  --header 'mc-api-key: your_api_key'
+  ```
+  <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
+
+Get a specific security rule by group id and rule id.
+
+Query parameters | &nbsp;
+---------- | -----
+`security_group_id`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to fetch the security rule.
+
+#### Delete a security rule
+
+```shell 
+curl --request DELETE \
+  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/ \
+  --header 'mc-api-key: your_api_key'
+  ```
+
+  <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
+
+Delete an existing security rule.
+
+Query parameters | &nbsp;
+---------- | -----
+`security_group_id`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to delete the security rule.
