@@ -2134,7 +2134,7 @@ VENDOR_ID | ID of the vendor being deleted
 
 204 No Content
 
-## Get Logs
+## Get Logs<code class='get'>GET</code>
 
 ### HTTP Request
 
@@ -2147,29 +2147,60 @@ VENDOR_ID | ID of the vendor being deleted
   "data": [
     {
       "id": 1,
-      "message": "Sync Error | PO | Internal obj=62 | Error Message",
+      "sync_status": "Info",
+      "is_incoming": False,
+      "object_details": {
+        "id": 10,
+        "content_type": 60,
+        "external_id": "external-account-code-10",
+        "uuid": "",
+        "identifiter": "account_code_1 - description",
+        "message": "Sync Complete",
+      },
       "created_at": "2019-12-10T17:47:00.373867-08:00"
     },
     {
       "id": 2,
-      "message": "Cows are fat",
-      "created_at": "2019-12-10T17:52:37.664801-08:00"
+      "sync_status": "Info",
+      "is_incoming": False,
+      "object_details": {
+        "id": 20,
+        "content_type": 21,
+        "external_id": "external-vendor-20",
+        "uuid": "",
+        "identifiter": "Vendor 1",
+        "message": "Sync Complete",
+      },
+      "created_at": "2019-12-10T17:47:00.373867-08:00"
     },
     {
       "id": 3,
-      "message": "Cows are fat",
-      "created_at": "2019-12-10T17:54:07.778353-08:00"
+      "sync_status": "Error",
+      "is_incoming": False,
+      "object_details": {
+        "id": 30,
+        "content_type": 23,
+        "external_id": "external-po-30",
+        "uuid": "6bfcf0610fd211eaa1e506ca8f09037c",
+        "identifiter": "PF30",
+        "message": "You have entered an Invalid Field Value 2 for the following field: location.",
+      },
+      "created_at": "2019-12-10T17:47:00.373867-08:00"
     },
     {
       "id": 4,
-      "message": "Cows are fat",
-      "created_at": "2019-12-10T17:54:32.372771-08:00"
+      "sync_status": "Error",
+      "is_incoming": False,
+      "object_details": {
+        "id": 40,
+        "content_type": 280,
+        "external_id": "external-reciept-item-40",
+        "uuid": "6bfcf0610fd211eaa1e506ca8f09037c",
+        "identifiter": "PF30",
+        "message": "You can not initialize itemreceipt: invalid reference 42111.",
+      },
+      "created_at": "2019-12-10T17:47:00.373867-08:00"
     },
-    {
-      "id": 5,
-      "message": "Sync Error | PO | Internal obj=62 | Error Message",
-      "created_at": "2019-12-10T17:55:49.134368-08:00"
-    }
   ],
   "metadata": {
     "pagination": {
@@ -2194,3 +2225,4 @@ object_type | `purchaseorder`, `receiptline`, `accountcode`, `vendor`
 ### HTTP Response Status Code
 
 200 OK
+
