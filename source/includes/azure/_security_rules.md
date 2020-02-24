@@ -68,7 +68,7 @@ Attributes | &nbsp;
 
 #### Get a security rule
 
-```shell 
+```shell
 curl --request GET \
   --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-ldawson-system-ldawson-azure-test/providers/Microsoft.Network/networkSecurityGroups/coldawson-test/securityRules/securityRule1 \
   --header 'mc-api-key: your_api_key'
@@ -83,9 +83,9 @@ Query parameters | &nbsp;
 
 #### Delete a security rule
 
-```shell 
+```shell
 curl --request DELETE \
-  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/ \
+  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-ldawson-system-ldawson-azure-test/providers/Microsoft.Network/networkSecurityGroups/coldawson-test/securityRules/securityRule1 \
   --header 'mc-api-key: your_api_key'
   ```
 
