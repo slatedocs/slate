@@ -243,7 +243,7 @@ You will need the `Environments update` permission to execute this operation.
 
 `DELETE /environments/:id`
 
-Purge an environment and its underlying resources asynchronously. If such purge operation fail for the first time, the service account of this environment would be updated to `ERROR_PURGING`. It would force purge an environment an `ERROR_PURGING` sercice account.
+Purge an environment and its underlying resources asynchronously. If such purge operation fail for the first time, the service account of this environment would be updated to `ERROR_PURGING`. If the purging an environment with `ERROR_PURGING` service account, it would force purge the environment.
 
 ```shell
 # Delete an environment
