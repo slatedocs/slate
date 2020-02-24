@@ -19,7 +19,7 @@ Bienvenue dans la documentation de l'api Emjpm à destination des logitiels mét
 
 # Demande d'accès à l'api
 
-Pour utiliser API Emjpm en production (https://api-emjpm.fabrique.social.gouv.fr), vous devez obtenir un client_id et un client_token de production. Pour ce faire, veuillez remplir une demande d'autorisation sur notre [page dédié](https://emjpm.fabrique.social.gouv.fr/application/token-request)
+Pour utiliser API Emjpm en production (https://api-emjpm.fabrique.social.gouv.fr), vous devez obtenir un editor_id et un editor_token de production. Pour ce faire, veuillez remplir une demande d'autorisation sur notre [page dédié](https://emjpm.fabrique.social.gouv.fr/application/token-request)
 
 # Environnement de test
 
@@ -27,13 +27,13 @@ Vous trouverez ci-dessous de quoi exécuter des requêtes HTTP sur l'environneme
 
 L'environnement de test est fonctionnellement identique à l'environnement de production.
 
-Le client_id et le client_token à utiliser sont des client_id et des client_token de test.
+Le editor_id et le editor_token à utiliser sont des editor_id et des editor_token de test.
 Les données retournées sont des données de test.
 
 ### Token de test
 Voici la liste des tokens d'API de tests.
 
-| client_id  | client_token  |
+| editor_id  | editor_token  |
 |---|---|
 | 1  | test  |
 | 2  | test  |
@@ -62,7 +62,7 @@ afin de vous connecter à des comptes de test voici des identifiants de test
 Lors de votre passage en production :
 
 remplacez l'URL de test-api-emjpm.fabrique.social.gouv.fr à https://api-emjpm.fabrique.social.gouv.fr
-remplacez votre client_id et votre client_token de test par ceux obtenues suite à votre demande d'autorisation
+remplacez votre editor_id et votre editor_token de test par ceux obtenues suite à votre demande d'autorisation
 
 # Authentication d'un utilisateur
 
@@ -70,16 +70,16 @@ remplacez votre client_id et votre client_token de test par ceux obtenues suite 
 
 ```javascript
 // url de redirection de test
-const emjpmAuthTestUrl = `https://test-api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=${votre client_id de test}&client_token=${votre client_token de test}&redirect_url=${url de redirection vers votre application}`;
+const emjpmAuthTestUrl = `https://api-apitest-emjpm.dev.fabrique.social.gouv.fr/application/authorization?editor_id=${votre editor_id de test}&editor_token=${votre editor_token de test}&redirect_url=${url de redirection vers votre application}`;
 
 // exemple avec des informations de test
-const finalUrl = "https://test-api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=1&client_token=abcd&redirect_url=http://exemple.com"
+const finalUrl = "https://api-apitest-emjpm.dev.fabrique.social.gouv.fr/application/authorization?editor_id=1&editor_token=abcd&redirect_url=http://exemple.com"
 
 // url de redirection de production
-const emjpmAuthTestUrl = `https://api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=${votre client_id de prod}&client_token=${votre client_token de prod}&redirect_url=${url de redirection vers votre application}`;
+const emjpmAuthTestUrl = `https://api-emjpm.fabrique.social.gouv.fr/application/authorization?editor_id=${votre editor_id de prod}&editor_token=${votre editor_token de prod}&redirect_url=${url de redirection vers votre application}`;
 
 // exemple avec des informations de prod
-const finalUrl = "https://api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=1&client_token=abcd&redirect_url=http://exemple.com"
+const finalUrl = "https://api-emjpm.fabrique.social.gouv.fr/application/authorization?editor_id=1&editor_token=abcd&redirect_url=http://exemple.com"
 ```
 > Soyez sur de remplacer les informations d'exemple avec les votres
 
@@ -97,8 +97,8 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1
 
 Emjpm utilise un système d'oauth pour identifier les utilisateurs donnent accès à leur compte aux logitiels métiers, pour se faire il suffit de faire une redirection depuis votre application jusqu'à la page d'authorisation utilisateur, la page à besoin de 3 paramètres
 
-* `client_id` : votre client_id
-* `client_token`: votre client_token
+* `editor_id` : votre editor_id
+* `editor_token`: votre editor_token
 * `redirect_url`: l'url de redirection vers votre application
 
 une fois l'authorisation accepté par l'utilisateur, nous le redirigerons vers votre application en donnant en paramamètre le token de l'utilisateur qui vous est lié.
@@ -111,7 +111,7 @@ Si l'utilisateur révoque les droits d'accès à votre logitiel métier dans son
 
 exemple 
 
-`https://test-api-emjpm.fabrique.social.gouv.fr/application/authorization?client_id=1&client_token=abcd&redirect_url=http://exemple.com`
+`https://api-apitest-emjpm.dev.fabrique.social.gouv.fr/application/authorization?editor_id=1&editor_token=abcd&redirect_url=http://exemple.com`
 
 # Mesures
 
