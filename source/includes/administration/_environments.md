@@ -80,7 +80,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible environment
 
-curl "https://cloudmc_endpoint/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
+curl "https://cloudmc_endpoint/v2/environments/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -143,15 +143,14 @@ Attributes | &nbsp;
 
 ### Create environment
 
-Environments are created asynchronously to the underlying service. When creating an environment any underlying actions performed by the plugin is done asynchronously to the creation of the model, and its progress is reflected in the state of the environment. 
-
-
 `POST /environments`
+
+Environments are created asynchronously to the underlying service. When creating an environment any underlying actions performed by the plugin is done asynchronously to the creation of the model, and its progress is reflected in the state of the environment. 
 
 ```shell
 # Create an environment
 
-curl -X POST "https://cloudmc_endpoint/v1/environments" \
+curl -X POST "https://cloudmc_endpoint/v2/environments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -206,7 +205,7 @@ The responses' `data` field contains the updated [environment](#administration-e
 
 ```shell
 # Update an environment
-curl -X POST "https://cloudmc_endpoint/v1/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
+curl -X POST "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -244,10 +243,12 @@ You will need the `Environments update` permission to execute this operation.
 
 `DELETE /environments/:id`
 
+Purge an environment and its underlying resources asynchronously. If such purge operation fail for the first time, the service account of this environment would be updated to `ERROR_PURGING`. It would force purge an environment an `ERROR_PURGING` sercice account.
+
 ```shell
 # Delete an environment
 
-curl "https://cloudmc_endpoint/v1/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
+curl "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
