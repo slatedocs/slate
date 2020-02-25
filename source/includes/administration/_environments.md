@@ -66,7 +66,7 @@ Attributes | &nbsp;
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
-`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR
+`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR_PROVISIONING, PURGED, PURGING, ERROR_PURGING, and PENDING.
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
 
@@ -135,7 +135,7 @@ Attributes | &nbsp;
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
-`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR
+`state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR_PROVISIONING, PURGED, PURGING, ERROR_PURGING, and PENDING.
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
 <!-------------------- CREATE ENVIRONMENT -------------------->
@@ -177,21 +177,63 @@ curl -X POST "https://cloudmc_endpoint/v2/environments" \
   }]
 }
 ```
+```shell
+# Response body example
+```
+```json
+{
+  "data": {
+    "defaultRole": {
+      "creationDate": "2019-09-04T19:40:11.000Z",
+      "version": 1,
+      "isSystem": false,
+      "isDefault": false,
+      "deleted": false,
+      "name": "Owner",
+      "alias": "owner",
+      "id": "9f4d940d-708d-4784-98bd-926195691e34",
+      "isFixed": true,
+      "defaultScope": "ENV"
+    },
+    "membership": "MANY_USERS",
+    "deleted": false,
+    "organization": {
+      "name": "organization-name",
+      "id": "52fd201e-aa82-4a27-86b3-ea9650a7fb1e",
+      "entryPoint": "system"
+    },
+    "name": "environment-name",
+    "id": "a83e131f-4114-432b-a3fb-fd4c58907860",
+    "allowExternalMembers": false,
+    "state": "PENDING",
+    "serviceConnection": {
+      "id": "95ed7fa3-6f51-405e-b2c3-de43f20de2c3"
+    }
+  },
+  "taskId": "a82113b9-7f76-4354-ae27-b18b0204d50f",
+  "status": "PENDING"
+}
+```
 
 Create a new environment in a specific service and organization. You will need the `Environments create` permission to execute this operation.
 
 Required | &nbsp;
 -------- | -----------
 `name`<br/>*string* | The name of the new environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
-`description`<br/>*string* | The description of the new environment.
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
 
 Optional | &nbsp;
 -------- | -----------
+`description`<br/>*string* | The description of the new environment.
 `organization`<br/>*[Organization](#administration-organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
 `membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
 `roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
+Response | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+`data`<br/>*[Environment](#administration-environments)* | The information about the created environment
 
 The responses' `data` field contains the updated [environment](#administration-environments).
 
@@ -243,7 +285,9 @@ You will need the `Environments update` permission to execute this operation.
 
 `DELETE /environments/:id`
 
-Purge an environment and its underlying resources asynchronously. If such purge operation fail for the first time, the service account of this environment would be updated to `ERROR_PURGING`. Purging an environment with `ERROR_PURGING` service account would force purge the environment.
+Environments are deleted asynchronously on the underlying service. The environment model will only be deleted if the environment is deleted sucessfully in the underlying service. 
+
+If deleting an environment fails in the underlying service, subsequent delete attempts are considered a "force delete". A force delete entails attempting deleting the environment from the underlying service and then deleting the environment model regardless of the response from the underlying service. 
 
 ```shell
 # Delete an environment
@@ -251,13 +295,27 @@ Purge an environment and its underlying resources asynchronously. If such purge 
 curl "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
+# Response body example
 ```
 
 Delete a specific environment. You will need a [role](#administration-roles) with the `Delete an existing environment	` permission to execute this operation.
 
+```json
+{
+  "taskId": "1ac94e11-a8cf-45d9-ba0c-6bd7f797a8a4",
+  "taskStatus": "PENDING"
+}
+```
+
+Attributes | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+
 <aside class="warning">
   <strong>Be careful:</strong> This will destroy all the resources in your environment.
 </aside>
+
 
 ### List members
 
