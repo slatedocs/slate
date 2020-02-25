@@ -15,23 +15,50 @@ search: true
 
 # Introduction
 
-Bienvenue dans la documentation de l'api Emjpm à destination des logiciels métiers, vous trouverez ici des guides et des documentations vous permetant de commencer aussi rapidement que possible.
+Bienvenue dans la documentation de l'API eMJPM à destination des logiciels métiers, vous trouverez ici des guides et des documentations vous permettant de commencer aussi rapidement que possible.
 
-# Demande d'accès à l'api
+L'API eMJPM est organisée en REST, elle retourne des réponses encodées en JSON,
+et utilise des verbes, des codes de réponses, et des méchanismes d'authentification HTTP standard.
 
-Pour utiliser API Emjpm en production (https://api-emjpm.fabrique.social.gouv.fr), vous devez obtenir un editor_id et un editor_token de production. Pour ce faire, veuillez remplir une demande d'autorisation sur notre [page dédié](https://emjpm.fabrique.social.gouv.fr/application/token-request)
+### Environnements
 
-# Environnement de test
+**Test**  [https://test-api-emjpm.fabrique.social.gouv.fr](https://test-api-emjpm.fabrique.social.gouv.fr)
 
-Vous trouverez ci-dessous de quoi exécuter des requêtes HTTP sur l'environnement API emjpm de test (https://test-api-emjpm.fabrique.social.gouv.fr). Lors du développement de votre solution logicielle, nous vous recommandons d'utiliser cet environnement.
+**Production** [https://api-emjpm.fabrique.social.gouv.fr](https://api-emjpm.fabrique.social.gouv.fr)
+
+Lors du développement de votre solution logicielle, nous vous recommandons d'utiliser l'environnement de test
+
+[https://test-api-emjpm.fabrique.social.gouv.fr](https://test-api-emjpm.fabrique.social.gouv.fr)
+
+remplacez votre editor_id et votre editor_token de test par ceux obtenues suite à votre demande d'autorisation
 
 L'environnement de test est fonctionnellement identique à l'environnement de production.
 
-Le editor_id et le editor_token à utiliser sont des editor_id et des editor_token de test.
-Les données retournées sont des données de test.
+### Application de test
 
-### Token de test
-Voici la liste des tokens d'API de tests.
+Afin de faciliter les tests, une application exemple est mis à disposition
+
+[https://emjpm-editor-demo.netlify.com](https://emjpm-editor-demo.netlify.com)
+
+(Source [https://github.com/SocialGouv/emjpm-editor-app](https://github.com/SocialGouv/emjpm-editor-app))
+
+L'application implémente une demande de token configurable via l'interface,
+et des appels à l'API `/mesures` avec autorisation, vous permettant de tester
+des identifiants et des retours d'API rapidement sans code.
+
+### Comptes / Tokens de test
+
+Des comptes et tokens de test sont mis à disposition,
+[https://test-api-emjpm.fabrique.social.gouv.fr](https://test-api-emjpm.fabrique.social.gouv.fr),
+
+List des comptes utilisateur :
+
+| email  | mot de passe  |
+|---|---|
+| individuel-1302@justice.fr  | emjpm2019  |
+| service-131@justice.fr  | emjpm2019  |
+
+Liste des tokens d'API :
 
 | editor_id  | editor_token  |
 |---|---|
@@ -39,30 +66,7 @@ Voici la liste des tokens d'API de tests.
 | 2  | test  |
 | 3  | test  |
 
-# Application de test
-
-Afin de faciliter les tests nous avons mis à disposition une application de test à cet [url](https://emjpm-editor-demo.netlify.com/) vous pourrez y trouve un formulaire ou vous pourrez renseigner vos identifiants de test ainsi que d'autre information pour que vous puissiez effectuer des test sans avoir besoin de coder
-
-le code source de l'application de test est trouvable ici sur [github](https://github.com/SocialGouv/emjpm-editor-app) si vous en avez besoin.
-
-### Compte de test
-
-afin de vous connecter à des comptes de test voici des identifiants de test
-
-| email  | mot de passe  |
-|---|---|
-| individuel-1302@justice.fr  | emjpm2019  |
-| service-131@justice.fr  | emjpm2019  |
-
-
-
-# Comment passer de l'environnement de test à l'environnement de production
-Lors de votre passage en production :
-
-remplacez l'URL de test-api-emjpm.fabrique.social.gouv.fr à https://api-emjpm.fabrique.social.gouv.fr
-remplacez votre editor_id et votre editor_token de test par ceux obtenues suite à votre demande d'autorisation
-
-# Authentication d'un utilisateur
+# Authentification
 
 > pour authoriser votre application à accèder à un compte utilisateur veuillez rediriger sur l'url emjpm construite de la façon suivante:
 
@@ -91,19 +95,24 @@ const exampleUrl = "https://emjpm-editor-demo.netlify.com/?token=eyJhbGciOiJSUzI
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w
 ```
 
+L'API eMJPM utilise des tokens pour authentifier les requêtes via le méchanisme HTTP Bearer.
 
+Pour utiliser l'API eMJPM en production (https://api-emjpm.fabrique.social.gouv.fr), vous devez obtenir un editor_id et un editor_token de production. Pour ce faire, veuillez remplir une demande d'autorisation sur notre [page dédié](https://emjpm.fabrique.social.gouv.fr/application/token-request).
 
-Emjpm utilise un système d'oauth pour identifier les utilisateurs donnent accès à leur compte aux logiciels métiers, pour se faire il suffit de faire une redirection depuis votre application jusqu'à la page d'authorisation utilisateur, la page à besoin de 3 paramètres
+### Etapes
+
+eMJPM utilise un système d'oauth pour identifier les utilisateurs donnant accès à leur compte aux logiciels métiers.
+Pour se faire il suffit de faire une redirection depuis votre application jusqu'à la page d'authorisation utilisateur, la page à besoin de 3 paramètres
 
 * `editor_id` : votre editor_id
 * `editor_token`: votre editor_token
 * `redirect_url`: l'url de redirection vers votre application
 
-une fois l'authorisation accepté par l'utilisateur, nous le redirigerons vers votre application en donnant en paramamètre le token de l'utilisateur qui vous est lié.
+une fois l'autorisation accepté par l'utilisateur, nous le redirigerons vers votre application en donnant en paramamètre le token de l'utilisateur qui vous est lié.
 
 ce token vous permettra par la suite de passer des requetes sur l'api Emjpm relative à cet utilisateur et votre application.
 
-Si l'utilisateur révoque les droits d'accès à votre logiciel métier dans son compte Emjpm, alors vous n'aurez plus accès à ses informations.
+L'utilisateur peut révoquer l'accès d'un logiciel métier à son compte eMJPM.
 
 ### Redirection
 
