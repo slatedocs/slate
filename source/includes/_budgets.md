@@ -86,21 +86,21 @@ date format for `start_date` and `end_date`. Please find date format in [Company
 
 ### Query Parameters
 
-| Param                                | Type    | required | Description                                                        |
-| ------------------------------------ | ------- | -------- | ------------------------------------------------------------------ |
-| authentication_token                 | header  | required | Authentication token                                               |
-| app_company_id                       | header  | required | registered company id                                              |
-| budget[amount]                       | double  | required | Budget Amount                                                      |
-| budget[name]                         | string  | required | Budget Name                                                        |
-| budget[cost_code]                    | string  | optional | Budget cost code                                                   |
-| budget[cost_type]                    | string  | optional | Budget cost type                                                   |
-| budget[currency_id]                  | integer | required | Budget currency                                                    |
-| budget[creator_id]                   | integer | required | Budget creator                                                     |
-| budget[allow_anyone_to_approve_a_po] | boolean | optional | Allow anyone to approve a PO?                                      |
-| budget[start_date]                   | date    | optional | Budget start date                                                  |
-| budget[end_date]                     | date    | optional | Budget end date                                                    |
-| budget[approver_ids]                 | Array   | optional | Array of approver ids                                              |
-| budget[department_ids]               | Array   | optional | Array of department ids                                            |
+| Param                                | Type    | required | Description                   |
+| ------------------------------------ | ------- | -------- | ----------------------------- |
+| authentication_token                 | header  | required | Authentication token          |
+| app_company_id                       | header  | required | registered company id         |
+| budget[amount]                       | double  | required | Budget Amount                 |
+| budget[name]                         | string  | required | Budget Name                   |
+| budget[cost_code]                    | string  | optional | Budget cost code              |
+| budget[cost_type]                    | string  | optional | Budget cost type              |
+| budget[currency_id]                  | integer | required | Budget currency               |
+| budget[creator_id]                   | integer | required | Budget creator                |
+| budget[allow_anyone_to_approve_a_po] | boolean | optional | Allow anyone to approve a PO? |
+| budget[start_date]                   | date    | optional | Budget start date             |
+| budget[end_date]                     | date    | optional | Budget end date               |
+| budget[approver_ids]                 | Array   | optional | Array of approver ids         |
+| budget[department_ids]               | Array   | optional | Array of department ids       |
 
 ## GET All Budgets
 
@@ -194,6 +194,11 @@ Returns a list of Budgets.
 
 you can pass `department_id` query params to filter budgets by departments like:
 `/api/v1/budgets?department_id=1`
+
+### Filter by archived
+
+Return list of archived budgets by passing `archived` queryParams with value `true`.
+Example: `/api/v1/budgets?archived=true`. Default list are active budget lists.
 
 ### HTTP Request
 
