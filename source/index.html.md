@@ -14,6 +14,7 @@ toc_footers:
 includes:
   - quickstart-settlement
   - quickstart-equities
+  - quickstart-wallets
   - investors
   - investor-payments
   - platform-payments
@@ -42,34 +43,34 @@ To make use of the Goji platform you will want to use one or more of the APIs de
 ###[Investors API](#investors)
 The Investors API can:
 
-* Onboard Investors
-* Conduct KYC checks (normally automatically)
-* Open general/ISA accounts for your Investors
-* Retrieve and update Investor data
+- Onboard Investors
+- Conduct KYC checks (normally automatically)
+- Open general/ISA accounts for your Investors
+- Retrieve and update Investor data
 
 ###[Payments - Investors API](#payments-investors)
 For Investors who have passed KYC checks, the Payments API can:
 
-* Retrieve Investors bank details
-* Retrieve Investors balance information
-* Transfer funds between accounts
-* Execute withdrawals
+- Retrieve Investors bank details
+- Retrieve Investors balance information
+- Transfer funds between accounts
+- Execute withdrawals
 
 ###[Payments - Manager API](#payments-manager)
 For Managers (platforms) to control money that doesn't yet, or no longer, belongs to the investor:
 
-* Retrieve and create bank details of beneficiaries
-* Create wallets to hold and move platform controlled money
-* Transfer funds between wallets and beneficiaries.
+- Retrieve and create bank details of beneficiaries
+- Create wallets to hold and move platform controlled money
+- Transfer funds between wallets and beneficiaries.
 
 ###[Payments - Bulk API](#bulk-payments)
 
 ###[Debt Settlement API](#settlement-debt)
 The Debt Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:
 
-* P2P loans
-* Bonds
-* etc.
+- P2P loans
+- Bonds
+- etc.
 
 This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.
 
@@ -84,9 +85,9 @@ Most platforms do not require this module. Please speak to the Goji integrations
 
 The Goji Platform supports issuing:
 
-* Fixed term bonds
-* Fixed rate bonds (debt based securities)
-The Bond management API allows you to configure these products, determine who has invested in each bond and when repayments are due.
+- Fixed term bonds
+- Fixed rate bonds (debt based securities)
+  The Bond management API allows you to configure these products, determine who has invested in each bond and when repayments are due.
 
 ###[Webhooks API](#webhooks)
 Many events in the Goji platform publish events which can be consumed as a webhook.
@@ -156,7 +157,6 @@ The encrypted string is then UTF-8 URL encoded.
 
 > Java and C# examples provided - click on the tabs above
 
-
 ```java
   public String hashSignature(String signatureToHash, String apiSecret) {
     try {
@@ -210,16 +210,18 @@ Assuming a secret key of `abcd1234`, this will produce a signature equal to:
 which is then URL encoded to `q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D`
 
 ##Versioning
+
 ```java
 >If Jackson is being used, the following class level annotation can be added:
 @JsonIgnoreProperties(ignoreUnknown = true)
 ```
+
 Whenever a breaking change needs to be made to any of the following, a new version of the URL will be made available:
 
-* URL format
-* Mandatory query parameters
-* Breaking change in structure of request body
-* Breaking change in structure of response body
+- URL format
+- Mandatory query parameters
+- Breaking change in structure of request body
+- Breaking change in structure of response body
 
 The version of the endpoint to use is specified in a header named version e.g. `version : 2`
 If no version header is specified, version one of the endpoint will be used.
@@ -227,17 +229,17 @@ If an invalid version header is specified, a `404` response code will be returne
 
 A breaking change to the request or response body is defined as the following:
 
-* Renaming a field
-* Changing the type of a field e.g. from string to decimal
-* Changing the format of a field e.g. changing a date format representation
-* Removing a field
-* Restructuring the request/response object
+- Renaming a field
+- Changing the type of a field e.g. from string to decimal
+- Changing the format of a field e.g. changing a date format representation
+- Removing a field
+- Restructuring the request/response object
 
 The following changes are not considered breaking changes:
 
-* Adding a new field to a response object
-* Adding a new, optional field to a request object
-* Adding a new, optional query parameter to a URL
+- Adding a new field to a response object
+- Adding a new, optional field to a request object
+- Adding a new, optional query parameter to a URL
 
 It is therefore important that clients of the API are liberal in the way they parse response objects such that new fields do not cause the process to fail.
 
@@ -265,7 +267,6 @@ To enable DKIM, create a `TXT` record for `mandrill._domainkey.yourdomain.com` (
 
 Some DNS providers require that semicolons be escaped. If your provider requires escaping, use this value instead.
 
-
 ###SPF
 
 `v=spf1 include:spf.mandrillapp.com ?all`
@@ -278,4 +279,3 @@ If you already have a `TXT` record with SPF information, you'll need to add Mand
 Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to [techsupport@goji.investments](mailto:techsupport@goji.investments)
 
 # Quickstart Guides
-
