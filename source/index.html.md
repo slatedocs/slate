@@ -187,7 +187,7 @@ API will return a list of [Token Pair](#token-pair) JSON structure.
 
 # Get Quote
 
-Client sends request to get quote to this endpoint. The response contains the timestamp until which the quote is valid. Only a valid quote can be executed.
+Client sends request to get quote to this endpoint. The response contains the timestamp until which the quote is valid. Only a valid quote can be executed. We allow token quantity upto three decimal places.
 
 ## HTTP Request
 `POST https://api.falconx.io/v1/quotes`
@@ -849,3 +849,67 @@ The trade limits JSON structure format:
 | ---------     | -----------|
 | **ERR_1**     | Error due to error 1  
 | **ERR_2**     | Error due to error 2      -->       
+
+
+# Customer Trading Limits
+
+## Rate Limits
+
+> Response Sample
+
+```json
+{
+    "rate_limit_per_minute": 42,
+    "rate_limit_per_hour": "None",
+    "rate_limit_per_hour": "None"
+}
+```
+
+The trading rate limit for each customer will be returned by our API in the following format:
+
+| Parameter                   | Type                              | Description |
+| ---------                   | ------------------------------    | ------------|
+| **rate_limit_per_minute**   | INTEGER                           | Limit on no. of trades per minute
+| **rate_limit_per_hour**     | INTEGER                           | Limit on no. of trades per hour
+| **rate_limit_per_day**      | INTEGER                           | Limit on no. of trades per day     
+
+HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
+
+
+## Trade Size Limits
+
+> Response Sample
+
+```json
+{
+    "api": [
+      {
+        "base_token": "BTC",
+        "quote_token": "USD",
+        "min_trade_size": 20,
+        "max_trade_size": 300
+      }
+    ],
+    "browser": [
+      {
+        "base_token": "ETH",
+        "quote_token": "USDT",
+        "min_trade_size": 50,
+        "max_trade_size": 250
+      }
+    ]
+}
+```
+
+The minimum and maximum trade size limit for each customer will be returned by our API in the following format:
+
+| Parameter                      | Type                              | Description |
+| ---------                      | ------------------------------    | ------------|
+| **base_token**                 | STR                               | Base Token
+| **quote_token**                | STR                               | Quote Token
+| **midas_min_trade_limit**      | INTEGER                           | Minimum allowed trades through browser    
+| **midas_max_trade_limit**      | INTEGER                           | Maximum allowed trades through browser
+| **api_min_trade_limit**        | INTEGER                           | Minimum allowed trades through api
+| **api_max_trade**              | INTEGER                           | Maximum allowed trades through api      
+
+HTTP Request at : `GET https://api.falconx.io/v1/trade_sizes`
