@@ -293,7 +293,7 @@ The person resource was newly created from this successful request.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/860197" \
+curl "https://api.affinity.co/persons/860197" \
   -u :<API-KEY> \
   -d emails[]="allison@example.com" \
   -d emails[]="allison@gmail.com" \
