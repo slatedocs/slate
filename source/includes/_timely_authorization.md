@@ -1,19 +1,20 @@
 # Introduction
 
-Welcome! Timely API helps you integrate your application with Timely. Following are the list of API’s available. For any help or support email support@timelyapp.com
+Welcome! This document provides a full list of all Timely APIs currently available, so you can start integrating Timely with your favorite applications.
+Got questions? Please send them to support@timelyapp.com.
 
 # Authentication
 
 OAuth2 Authentication: http://tools.ietf.org/html/rfc6749
 
-Create a OAuth Application (only available to the Admin User):
+Create an OAuth Application (only available to the Admin User): 
 https://timelyapp.com/:account_id/oauth_applications
 
 Enter your application name and the redirect_url to your application.
 
 Acquire the Application Id and Secret.
 
-> Base URL for all API's is:
+>The base URL for all APIs is: 
 https://api.timelyapp.com/1.1
 
 
@@ -26,7 +27,7 @@ Timely's OAuth implementation supports the standard authorization code grant typ
 ## OAuth Code
 
 ```
-Example Request: (try this in web browser)
+Example Request: (try this in your web browser)
 https://api.timelyapp.com/1.1/oauth/authorize?response_type=code
 &redirect_uri=your_redirect_uri&client_id=your_client_id
 ```

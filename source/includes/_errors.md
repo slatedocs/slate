@@ -51,11 +51,10 @@
 }
 ```
 
-Timely uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided.
+Timely uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed due to the information provided.
 Codes in the 5xx range indicate an error with Timely's servers.
 
-Accessing unauthorized to another project, account, or trying to create or delete objects that are not under our control will result in errors.
-
+Unauthorized access to projects and accounts, or trying to create or delete objects that are not under our control, will result in errors.
 
 The Timely API uses the following error codes:
 
@@ -63,9 +62,9 @@ The Timely API uses the following error codes:
 | Error Code                  	| Meaning                                                                       	|
 |-----------------------------	|-------------------------------------------------------------------------------	|
 | 400 - Bad Request           	| Your request is invalid                                                       	|
-| 401 - Unauthorized          	| Access with wrong authentication token                                        	|
-| 403 - Forbidden             	| The entity requested is hidden for unauthorized access                        	|
+| 401 - Unauthorized          	| Wrong authentication token was used                                        	    |
+| 403 - Forbidden             	| The entity requested is hidden from unauthorized access                        	|
 | 404 - Not Found             	| The specified entity could not be found                                       	|
-| 422 - Unprocessable Entity  	| Server understands the content type, but it was unable to process the request 	|
-| 500 - Internal Server Error 	| We had a problem with our server. Try again later.                            	|
+| 422 - Unprocessable Entity  	| The server understands the content type, but was unable to process the request 	|
+| 500 - Internal Server Error 	| We’re experiencing a problem with our server. Try again later.                  |
 
