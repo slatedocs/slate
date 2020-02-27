@@ -26,14 +26,14 @@ curl -X GET \
       "sourcePortRanges": [
         "1024"
       ],
-      "sourceAddressPrefixes": [
+      "sources": [
         "0.0.0.1",
         "10.0.0.0/32"
       ],
       "destinationPortRanges": [
         "8080"
       ],
-      "destinationAddressPrefixes": [
+      "destinations": [
         "10.0.0.0/16"
       ],
     }
@@ -55,13 +55,70 @@ Query parameters | &nbsp;
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*string* | The id associated to the network security group. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName`
-`name`<br/>*string* | The name of the network security group.
+`id`<br/>*string* | The id associated to the security rule. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/securityrules/:securityRuleName`
+`name`<br/>*string* | The name of the security rule.
 `priority`<br/> *int* | Rules are processed in priority order; the lower the number, the higher the priority. Values are between 100 and 4096.
 `direction`<br/> *string* | Either `Inbound` or `Outbound`.
 `access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
 `protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
 `sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
-`sourceAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`sources`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
 `destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
-`destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`destinations`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+
+<!-------------------- CREATE A SECURITY RULE -------------------->
+
+#### Create a security rule
+
+```shell
+curl -X POST \
+  --H "MC-Api-Key: your_api_key" \
+  --H "security_group_id: existing_security_group" \
+  --d "request_body"
+    "https://cloudmc_endpoint/v1/services/azure/example/securityrules"
+  
+# Request Example:
+```
+```json
+{
+  "name": "SampleRule",
+  "priority": 110,
+  "direction": "Inbound",
+  "access": "Deny",
+  "protocol": "Udp",
+  "sourcePortRanges": [
+    "1024"
+  ],
+  "sourceAddressPrefixes": [
+    "0.0.0.1",
+    "10.0.0.0/32"
+  ],
+  "destinationPortRanges": [
+    "8080"
+  ],
+  "destinationAddressPrefixes": [
+    "10.0.0.0/16"
+  ]
+}
+```
+
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules</code>
+
+Create a new network security rule in an existing security group.
+
+Required | &nbsp;
+------- | -----------
+`name`<br/>*string* | The name of the security rule.
+`priority`<br/> *int* | Rules are processed in priority order; the lower the number, the higher the priority. Values are between 100 and 4096.
+`direction`<br/> *string* | Either `Inbound` or `Outbound`.
+`access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
+`protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
+
+
+Optional | &nbsp;
+------- | -----------
+`sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`sources`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`destinations`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
