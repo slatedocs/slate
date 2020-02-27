@@ -55,8 +55,8 @@ Query parameters | &nbsp;
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*string* | The id associated to the network security group. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName`
-`name`<br/>*string* | The name of the network security group.
+`id`<br/>*string* | The id associated to the security rule. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName/defaultSecurityRules/:securityRuleName` if it is a default rule or `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName/securityRule/:securityRuleName` if it is a custom rule.
+`name`<br/>*string* | The name of the security rule.
 `priority`<br/> *int* | Rules are processed in priority order; the lower the number, the higher the priority. Values are between 100 and 4096.
 `direction`<br/> *string* | Either `Inbound` or `Outbound`.
 `access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
@@ -66,16 +66,55 @@ Attributes | &nbsp;
 `destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
 `destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
 
-#### Get a security rule
+<!-------------------- GET A SECURITY RULE -------------------->
+
+#### Retrieve a security rule
 
 ```shell
 curl --request GET \
-  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group/securityRules/securityRule1 \
+  --url https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/networkSecurityGroups/:example-securityGroup/securityRules/example-securityRule \
   --header 'mc-api-key: your_api_key'
-  ```
+  
+# Example:
+```
+```json
+{
+  "data": {
+    "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
+    "name": "SampleRuleInBound",
+    "priority": 65001,
+    "direction": "Inbound",
+    "access": "Allow",
+    "protocol": "*",
+    "sourcePortRanges": [],
+    "destinationPortRanges": [],
+    "destinationAddressPrefixes": [],
+    "sourceAddressPrefixes": [
+      "AzureLoadBalancer"
+    ],
+    "securityGroupId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group"
+  }
+}
+```
   <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
 
-Get a specific security rule by rule id.
+Retrieve a specific security rule by rule id.
+
+Attributes | &nbsp;
+---------- | -----
+`id`<br/>*string* | The id associated to the security rule. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName/defaultSecurityRules/:securityRuleName` if the rule is a default security rule or `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName/securityRules/:securityRuleName` if the rule is a custom rule.
+`name`<br/>*string* | The name of the security rule.
+`priority`<br/> *int* | The priority of the security rule.
+`direction`<br/> *string* | Either `Inbound` or `Outbound`.
+`access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
+`protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
+`sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`sourceAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`securityGroupId`<br/> *String* | The id of the network security group to which the rule belongs.
+
+<!-------------------- DELETE A SECURITY RULE -------------------->
 
 #### Delete a security rule
 
@@ -83,7 +122,7 @@ Get a specific security rule by rule id.
 curl --request DELETE \
   --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/sample-network-security-group/securityRules/securityRule1 \
   --header 'mc-api-key: your_api_key'
-  ```
+ ```
 
   <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
 
