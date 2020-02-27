@@ -56,7 +56,6 @@ Query parameters | &nbsp;
 
 Attributes | &nbsp;
 ---------- | -----
-
 `id`<br/>*string* | The id associated to the security rule. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName/defaultSecurityRules/:securityRuleName` if it is a default rule or `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/networksecuritygroups/:networkSecurityGroupName/securityRule/:securityRuleName` if it is a custom rule.
 `name`<br/>*string* | The name of the security rule.
 `priority`<br/> *int* | Rules are processed in priority order; the lower the number, the higher the priority. Values are between 100 and 4096.
@@ -124,15 +123,15 @@ Attributes | &nbsp;
 
 ```shell
 curl -X POST \
-  --H "MC-Api-Key: your_api_key" \
-  --H "security_group_id: existing_security_group" \
-  --d "request_body"
+  -H "MC-Api-Key: your_api_key" \
+  -d "request_body"
     "https://cloudmc_endpoint/v1/services/azure/example/securityrules"
   
 # Request Example:
 ```
 ```json
 {
+  "securityGroupId": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group",
   "name": "SampleRule",
   "priority": 110,
   "direction": "Inbound",
@@ -158,18 +157,14 @@ curl -X POST \
 
 Create a new network security rule in an existing security group.
 
-Query parameters | &nbsp;
----------- | -----
-`security_group_id`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to create the security rule.
-
 Required | &nbsp;
 ------- | -----------
+`securityGroupId`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to create the security rule.
 `name`<br/>*string* | The name of the security rule.
 `priority`<br/> *int* | Rules are processed in priority order; the lower the number, the higher the priority. Values are between 100 and 4096.
 `direction`<br/> *string* | Either `Inbound` or `Outbound`.
 `access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
 `protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
-
 
 Optional | &nbsp;
 ------- | -----------
