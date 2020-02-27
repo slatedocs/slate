@@ -22,13 +22,13 @@ et utilise des verbes, des codes de réponses, et des méchanismes d'authentific
 
 ### Environnements
 
-**Test**  [https://test-api-emjpm.fabrique.social.gouv.fr](https://test-api-emjpm.fabrique.social.gouv.fr)
+**Test**  [https://api-apitest-emjpm.dev.fabrique.social.gouv.fr](https://api-apitest-emjpm.dev.fabrique.social.gouv.fr)
 
 **Production** [https://api-emjpm.fabrique.social.gouv.fr](https://api-emjpm.fabrique.social.gouv.fr)
 
 Lors du développement de votre solution logicielle, nous vous recommandons d'utiliser l'environnement de test
 
-[https://test-api-emjpm.fabrique.social.gouv.fr](https://test-api-emjpm.fabrique.social.gouv.fr)
+[https://api-apitest-emjpm.dev.fabrique.social.gouv.fr](https://api-apitest-emjpm.dev.fabrique.social.gouv.fr)
 
 remplacez votre editor_id et votre editor_token de test par ceux obtenues suite à votre demande d'autorisation
 
@@ -49,7 +49,7 @@ des identifiants et des retours d'API rapidement sans code.
 ### Comptes / Tokens de test
 
 Des comptes et tokens de test sont mis à disposition,
-[https://test-api-emjpm.fabrique.social.gouv.fr](https://test-api-emjpm.fabrique.social.gouv.fr),
+[https://api-apitest-emjpm.dev.fabrique.social.gouv.fr](https://api-apitest-emjpm.dev.fabrique.social.gouv.fr),
 
 List des comptes utilisateur :
 
