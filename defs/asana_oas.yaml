@@ -2232,13 +2232,6 @@ components:
                 Determines if the project is a template.
               type: boolean
               example: false
-            layout:
-              description: The layout (board or list view) of a project
-              type: string
-              enum:
-                - list
-                - board
-              readOnly: true
             members:
               description: Array of users who are members of this project.
               type: array

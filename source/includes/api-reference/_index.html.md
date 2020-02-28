@@ -3486,7 +3486,6 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "layout": "list",
     "members": [
       {
         "gid": "12345",
@@ -3717,7 +3716,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "layout": "list",
     "members": [
       {
         "gid": "12345",
@@ -3898,7 +3896,6 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "layout": "list",
     "members": [
       {
         "gid": "12345",
@@ -4449,7 +4446,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "layout": "list",
     "members": [
       {
         "gid": "12345",
@@ -4767,7 +4763,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "layout": "list",
     "members": [
       {
         "gid": "12345",
@@ -14096,7 +14091,6 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   ],
   "html_notes": "These are things we need to purchase.",
   "is_template": false,
-  "layout": "list",
   "members": [
     {
       "gid": "12345",
@@ -14186,7 +14180,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*|
 |is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
 |members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -14244,8 +14237,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |default_view|board|
 |default_view|calendar|
 |default_view|timeline|
-|layout|list|
-|layout|board|
 |section_migration_status|not_migrated|
 |section_migration_status|in_progress|
 |section_migration_status|completed|
