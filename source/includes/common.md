@@ -337,6 +337,19 @@ Tarjeta de crédito | tarjeta_credito
 Otros | otros
 Endoso de títulos | endoso_titulos
 
+## Tipos de forma de pago del SRI
+
+Forma de pago            | Código
+------------------------ | ------
+Sin utilización del sistema financiero | 01
+Compensación de deudas | 15
+Tarjeta de débito | 16
+Dinero electrónico | 17
+Tarjeta prepago | 18
+Tarjeta de crédito | 19
+Otros con utilización del sistema financiero | 20
+Endoso de títulos | 21
+
 ## Equivalencia entre formas de pago Dátil y formas de pago del SRI
 
 Forma de pago Dátil      | Código | Forma de pago SRI      | Código
