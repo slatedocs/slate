@@ -145,7 +145,7 @@ Attributes | &nbsp;
 
 `POST /environments`
 
-Environments are created asynchronously to the underlying service. When creating an environment any underlying actions performed by the plugin is done asynchronously to the creation of the model, and its progress is reflected in the state of the environment. 
+Environments are created asynchronously on the underlying service. When creating an environment any underlying actions performed by the plugin is done asynchronously to the creation of the model, and its progress is reflected in the state of the environment. 
 
 ```shell
 # Create an environment
@@ -243,6 +243,8 @@ The responses' `data` field contains the updated [environment](#administration-e
 
 ### Update environment
 
+Environments are updated asynchronously on the underlying service. When updating an environment any underlying actions performed by the plugin is done asynchronously to the update of the model. The state of the environment will remain the PROVISIONED state. The task returned in the response can be used to track the progress of the asynchronous update. 
+
 `PUT /environments/:id`
 
 ```shell
@@ -256,17 +258,55 @@ curl -X POST "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-2
 ```
 ```json
 {
-  "name": "skynet-beta",
-  "description": "Environment for the Skynet project",
-  "roles": [{
-    "id": "f9dea588-d7ab-4f42-b6e6-4b85f273f3db",
-    "users": [{
-      "id": "07e02355-d05b-47cf-860d-f69cf0432276"
-    }]
-  }]
+  "name": "skynet-beta-v2",
+  "description": "Environment for the Skynet project (updated)",
 }
 ```
 
+# Response body example
+```
+```json
+{
+  "data": {
+    "metadata": {
+      "mode": "project"
+    },
+    "defaultRole": {
+      "creationDate": "2020-01-02T16:04:27.000Z",
+      "version": 1,
+      "isSystem": false,
+      "isDefault": false,
+      "deleted": false,
+      "name": "Owner",
+      "alias": "owner",
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "isFixed": true,
+      "defaultScope": "ENV"
+    },
+    "description": "Environment for the Skynet project (updated)",
+    "membership": "MANY_USERS",
+    "creationDate": "2020-02-27T16:23:20.000Z",
+    "deleted": false,
+    "organization": {
+      "name": "System",
+      "id": "f6ece376-de9e-45d5-8719-82a279664ea9",
+      "entryPoint": "system"
+    },
+    "name": "skynet-beta-v2",
+    "id": "d77de7ad-274e-4ec9-8776-8d748b0671fd",
+    "allowExternalMembers": false,
+    "state": "PROVISIONED",
+    "serviceConnection": {
+      "serviceCode": "acs-dev-1",
+      "name": "acs-dev-1",
+      "id": "8901494c-01ee-4d6b-bd12-cd5347127039",
+      "type": "cloudstack"
+    }
+  },
+  "taskId": "105cddf8-4507-4131-87eb-fe383bbd882b",
+  "taskStatus": "PENDING"
+}
+```
 
 Optional | &nbsp;
 -------- | -----------
