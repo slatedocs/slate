@@ -140,14 +140,14 @@ curl -X POST \
   "sourcePortRanges": [
     "1024"
   ],
-  "sourceAddressPrefixes": [
+  "sources": [
     "0.0.0.1",
     "10.0.0.0/32"
   ],
   "destinationPortRanges": [
     "8080"
   ],
-  "destinationAddressPrefixes": [
+  "destinations": [
     "10.0.0.0/16"
   ]
 }
