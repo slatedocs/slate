@@ -31,7 +31,8 @@ curl -X GET \
       "location": "us-central1-a",
       "creationTimestamp": "2019-07-08T14:59:19+00:00",
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/your-first-cluster-1",
-      "name": "your-first-cluster-1"
+      "name": "your-first-cluster-1",
+      "caCert": "LS0tLS1CRUdJS0K"
     }
   ],
   "metadata": {
@@ -49,6 +50,7 @@ Attributes | &nbsp;
 `status` <br/> *string* | The status of the cluster
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster
+`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 
 
 <!-------------------- RETRIEVE A CLUSTER -------------------->
 
@@ -70,7 +72,8 @@ curl -X GET \
       "location": "us-central1-a",
       "creationTimestamp": "2019-07-08T18:45:16+00:00",
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1",
-      "name": "standard-cluster-1"
+      "name": "standard-cluster-1",
+      "caCert": "LS0tLS1CRUdJS0K"
     }
 }
 ```
@@ -84,3 +87,4 @@ Attributes | &nbsp;
 `status` <br/> *string* | The status of the cluster
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster
+`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 
