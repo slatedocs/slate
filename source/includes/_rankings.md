@@ -91,15 +91,6 @@ searches.Add(new RankingsSearch()
     urls = new List<string>() { "le-bernardin.com" },
     business_names = new List<string>() { "Le Bernardin" }
 });
-searches.Add(new RankingsSearch()
-{
-    search_engine = "yahoo",
-    country = "USA",
-    google_location = "New York, NY",
-    search_term = "restaurant new york",
-    urls = new List<string>() { "le-bernardin.com" },
-    business_names = new List<string>() { "Le Bernardin" }
-});
 
 
 api Api = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
@@ -366,159 +357,7 @@ else
         },
         "status": "Completed",
         "job-id": 564270999
-      },
-      {
-        "results": [
-          {
-            "identifier": "yahoo",
-            "site": "Yahoo! Search",
-            "site-url": "http://www.yahoo.com",
-            "search-url": "http://search.yahoo.com/search?p=apos+therapy+new+york",
-            "search-term": "apos therapy new york",
-            "results": [],
-            "result-types": [
-              "Organic",
-              "Local",
-              "Directory"
-            ],
-            "http-error": false,
-            "error-type": "None",
-            "serp-screenshots": [
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/60f6391ac2751102165e4f6b7b360c97e8a63bc1.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/712b2c7d35f59309e36f8bdc79dab76b04695388.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/dace1c14755c4b1467e36cfce7a96af86604a785.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/2c381e008d53e0d02ec4d11cc03e29e5b618a236.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/f754b72bd373673cd6e4010519413d28ec22a1ab.png"
-            ]
-          }
-        ],
-        "payload": {
-          "queue-attempts": 1,
-          "http-codes": [
-            0
-          ],
-          "source": 3,
-          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-          "search-engine": "yahoo",
-          "options": {
-            "urls": [
-              "www.thecenternyc.com"
-            ],
-            "business-names": [
-              "The center for chiropractic & pt",
-              "the center for chiropractic decomperssion"
-            ],
-            "search-term": "apos therapy new york",
-            "postcode": "10001",
-            "telephone": "646-606-2580",
-            "country": "USA",
-            "google-location": "",
-            "bing-location": "",
-            "include-name-only-matches": true,
-            "num-search-pages": 5,
-            "debug": false,
-            "listings": false,
-            "screenshots-enabled": true,
-            "include-intermediate-html": false,
-            "append-location": false
-          },
-          "position": 0
-        },
-        "status": "Completed",
-        "job-id": 564271014
-      },
-      {
-        "results": [
-          {
-            "identifier": "yahoo",
-            "site": "Yahoo! Search",
-            "site-url": "http://www.yahoo.com",
-            "search-url": "http://search.yahoo.com/search?p=redcord+therapy+manhattan",
-            "search-term": "redcord therapy manhattan",
-            "results": [
-              {
-                "url": "http://thecenternyc.com/redcord-physical-therapy-manhattan/",
-                "orig_url": "http://www.thecenternyc.com/redcord-physical-therapy-manhattan/",
-                "title": "Redcord Physical Therapy Manhattan | Chiropractor...",
-                "ludocid": "",
-                "rank": 3,
-                "sub_rank": null,
-                "page": 1,
-                "type": "Organic",
-                "match": [
-                  "website address"
-                ],
-                "matched_url": "www.thecenternyc.com",
-                "serp-screenshot-url": "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7609663e9087a81b92015e1c9af025257ae4be62.png"
-              },
-              {
-                "url": "http://thecenternyc.com/redcord-manhattan/",
-                "orig_url": "http://www.thecenternyc.com/redcord-manhattan/",
-                "title": "Redcord Manhattan Archives >> The Center...",
-                "ludocid": "",
-                "rank": 5,
-                "sub_rank": null,
-                "page": 1,
-                "type": "Organic",
-                "match": [
-                  "website address"
-                ],
-                "matched_url": "www.thecenternyc.com",
-                "serp-screenshot-url": "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7609663e9087a81b92015e1c9af025257ae4be62.png"
-              }
-            ],
-            "result-types": [
-              "Organic",
-              "Local",
-              "Directory"
-            ],
-            "http-error": false,
-            "error-type": "None",
-            "serp-screenshots": [
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/7609663e9087a81b92015e1c9af025257ae4be62.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/09424d6d44a145c86aa72c2948414d6bc220969b.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/54938f2561fea42cb97af038e85d3b8ec41d8a4c.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/2256d2c5362c6a7745f82f76bd28801322f902fa.png",
-              "https://seo-serp-screenshots.s3.amazonaws.com/2016/10/14/14/11ae9ee7f549d89e2248d97bf6cf3764d997e047.png"
-            ]
-          }
-        ],
-        "payload": {
-          "queue-attempts": 1,
-          "http-codes": [
-            0
-          ],
-          "source": 3,
-          "api-key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-          "search-engine": "yahoo",
-          "options": {
-            "urls": [
-              "www.thecenternyc.com"
-            ],
-            "business-names": [
-              "The center for chiropractic & pt",
-              "the center for chiropractic decomperssion"
-            ],
-            "search-term": "redcord therapy manhattan",
-            "postcode": "10001",
-            "telephone": "646-606-2580",
-            "country": "USA",
-            "google-location": "",
-            "bing-location": "",
-            "include-name-only-matches": true,
-            "num-search-pages": 5,
-            "debug": false,
-            "listings": false,
-            "screenshots-enabled": true,
-            "include-intermediate-html": false,
-            "append-location": false
-          },
-          "position": 0
-        },
-        "status": "Completed",
-        "job-id": 564271015
       }
-
     ]
   },
   "statuses": {
@@ -528,7 +367,7 @@ else
 }
 ```
 
-This API method allows you to retrieve search ranking (and listing data) from the major search engines and their local variants, namely Google, Google Maps, Yahoo!, Yahoo! Local, Bing and Bing Maps. It works for the USA, United Kingdom, Canada and Australia. The only exception is in Australia where Yahoo! Local is not supported.
+This API method allows you to retrieve search ranking (and listing data) from the major search engines and their local variants, namely Google, Google Maps, Bing and Bing Maps. It works for the USA, United Kingdom, Canada and Australia.
 
 This method needs to be used in conjunction with the [batch methods](#batches) described above.
 
@@ -542,7 +381,7 @@ Parameter | Notes
 --------- | -----
 api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
-search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local.
+search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, bing, bing-local.
 country | <span class="label label-required">Required</span> Determines which country specific variant of the specified search engine to use. As defined in "Supported Countries"(#supported-countries) table below.
 google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location](#check-location) method.
 bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location](#check-location) method.
@@ -729,7 +568,7 @@ Parameter | Notes
 --------- | -----
 api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
-search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, yahoo, yahoo-local, bing, bing-local.
+search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, bing, bing-local.
 country | <span class="label label-required">Required</span> Determines which country specific variant of the specified search engine to use. As defined in "Supported Countries"(#supported-countries) table below.
 google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location](#check-location) method.
 bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location](#check-location) method.
