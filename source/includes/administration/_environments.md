@@ -169,6 +169,7 @@ curl -X POST "https://cloudmc_endpoint/v2/environments" \
     "id": "7f0fa906-490a-467b-bc44-e2382d43015e"
   }
 }
+```
 
 Required | &nbsp;
 -------- | -----------
