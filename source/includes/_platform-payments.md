@@ -445,6 +445,20 @@ HTTP/1.1 202 Accepted
 Content-Type: application/json
 ```
 
+```http 
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "errors": [
+    {
+      "errorCode": "INVALID_DATA",
+      "message": "Instruction must include a reference."
+    }
+  ]
+}
+```
+
 ### Description
 
 <aside class="notice">
@@ -462,6 +476,17 @@ Create a payment instruction from a Wallet.
 | amount.currency               | string | The ISO 4217 three character codes eg 'GBP' | required |
 | reference                     | string | The bank reference used for the transfer    | required |
 | narrative                     | string | The reason for the wallet transfer          |          |
+
+### Possible Error codes
+
+| Error Code           | Message                                                                                     |
+| -------------------- | --------------------------------------------------------------------------------------------|
+| INVALID_DATA         | Bank account with bankAccountId=03946a54-6b4f-4bae-897d-6ee2baf0e848 does not exist.        |
+| INVALID_DATA         | Destination bank account details are not yet enabled.                                       |
+| INVALID_DATA         | Instruction must include a reference.                                                       |
+| INVALID_DATA         | Payment reference must be below 18 characters long.                                         |
+| INVALID_AMOUNT       | Instruction must include a positive non-zero amount.                                        |
+| INSUFFICIENT_BALANCE | Insufficient balance to perform an outbound payment of amount: £10.45. Current balance: £0. |
 
 ## `GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧`
 
