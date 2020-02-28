@@ -188,7 +188,7 @@ Response | &nbsp;
 `taskStatus`<br/>*string* | The status of the task
 `data`<br/>*[Environment](#administration-environments)* | The information about the created environment
 
-```
+
 ```shell
 # Response body example
 ```
