@@ -487,7 +487,7 @@ This is fired when funds are received into a wallet.
 ## WALLET_TRANSFER_CLEARED
 <aside class="warning">
 This Webhook is currently not in use.
-<aside class="warning">
+</aside>
 
 This is fired when a wallet transfer is completed.
 
