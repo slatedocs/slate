@@ -167,15 +167,26 @@ curl -X POST "https://cloudmc_endpoint/v2/environments" \
   },
   "serviceConnection": {
     "id": "7f0fa906-490a-467b-bc44-e2382d43015e"
-  },
-  "roles": [{
-    "name": "Environment Admin",
-    "isDefault": true,
-    "users": [{
-      "id": "73b17dab-1705-45f1-84e2-997e2af5641b"
-    }]
-  }]
+  }
 }
+
+Required | &nbsp;
+-------- | -----------
+`name`<br/>*string* | The name of the new environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
+
+Optional | &nbsp;
+-------- | -----------
+`description`<br/>*string* | The description of the new environment.
+`organization`<br/>*[Organization](#administration-organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
+`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
+
+Response | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+`data`<br/>*[Environment](#administration-environments)* | The information about the created environment
+
 ```
 ```shell
 # Response body example
@@ -215,28 +226,6 @@ curl -X POST "https://cloudmc_endpoint/v2/environments" \
 }
 ```
 
-Create a new environment in a specific service and organization. You will need the `Environments create` permission to execute this operation.
-
-Required | &nbsp;
--------- | -----------
-`name`<br/>*string* | The name of the new environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
-
-Optional | &nbsp;
--------- | -----------
-`description`<br/>*string* | The description of the new environment.
-`organization`<br/>*[Organization](#administration-organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
-`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
-`roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
-
-Response | &nbsp;
----------- | -----------
-`taskId`<br/>*UUID* | The id of the task
-`taskStatus`<br/>*string* | The status of the task
-`data`<br/>*[Environment](#administration-environments)* | The information about the created environment
-
-The responses' `data` field contains the updated [environment](#administration-environments).
-
 
 <!-------------------- UPDATE ENVIRONMENT -------------------->
 
@@ -263,6 +252,20 @@ curl -X POST "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-2
 }
 ```
 
+
+Optional | &nbsp;
+-------- | -----------
+`name`<br/>*string* | The updated name of the environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
+`description`<br/>*string* | The updated description of the environment
+`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
+
+Response | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+`data`<br/>*[Environment](#administration-environments)* | The information about the updated environment
+
+```shell
 # Response body example
 ```
 ```json
@@ -307,13 +310,6 @@ curl -X POST "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-2
   "taskStatus": "PENDING"
 }
 ```
-
-Optional | &nbsp;
--------- | -----------
-`name`<br/>*string* | The updated name of the environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
-`description`<br/>*string* | The updated description of the environment
-`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
-`roles`<br/>*Array[[Role](#administration-roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
 You will need the `Environments update` permission to execute this operation.
