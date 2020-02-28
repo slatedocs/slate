@@ -17,25 +17,26 @@ curl -X GET \
 {
   "data": [
     {
-      "id": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
+      "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
       "name": "SampleRule",
-      "priority": 110,
       "direction": "Inbound",
       "access": "Deny",
+      "priority": 110,
       "protocol": "Udp",
       "sourcePortRanges": [
         "1024"
       ],
-      "sourceAddressPrefixes": [
+      "sources": [
         "0.0.0.1",
         "10.0.0.0/32"
       ],
       "destinationPortRanges": [
         "8080"
       ],
-      "destinationAddressPrefixes": [
+      "destinations": [
         "10.0.0.0/16"
       ],
+      "securityGroupId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group"
     }
   ],
   "metadata": {
@@ -62,29 +63,30 @@ Attributes | &nbsp;
 `access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
 `protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
 `sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
-`sourceAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`sources`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
 `destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
-`destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`destinations`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`securityGroupId`<br/> *String* | The id of the network security group to which the rule belongs.
 
 <!-------------------- GET A SECURITY RULE -------------------->
 
 #### Retrieve a security rule
 
 ```shell
-curl --request GET \
-  --url https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/networkSecurityGroups/:example-securityGroup/securityRules/example-securityRule \
-  --header 'mc-api-key: your_api_key'
+curl -X GET \
+  -H 'mc-api-key: your_api_key' \
+  "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/:example-securityGroup/securityRules/example-securityRule"
   
 # Example:
 ```
 ```json
 {
   "data": {
-    "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
+    "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
     "name": "SampleRuleInBound",
-    "priority": 65001,
     "direction": "Inbound",
     "access": "Allow",
+    "priority": 65001,
     "protocol": "*",
     "sourcePortRanges": [],
     "destinationPortRanges": [],
@@ -96,6 +98,7 @@ curl --request GET \
   }
 }
 ```
+
   <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
 
 Retrieve a specific security rule by rule id.
@@ -109,19 +112,75 @@ Attributes | &nbsp;
 `access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
 `protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
 `sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`sources`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
 `destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
-`destinationAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
-`sourceAddressPrefixes`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`destinations`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
 `securityGroupId`<br/> *String* | The id of the network security group to which the rule belongs.
+
+<!-------------------- CREATE A SECURITY RULE -------------------->
+
+#### Create a security rule
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+  -d "request_body"
+    "https://cloudmc_endpoint/v1/services/azure/example/securityrules"
+  
+# Request Example:
+```
+```json
+{
+  "securityGroupId": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group",
+  "name": "SampleRule",
+  "priority": 110,
+  "direction": "Inbound",
+  "access": "Deny",
+  "protocol": "Udp",
+  "sourcePortRanges": [
+    "1024"
+  ],
+  "sources": [
+    "0.0.0.1",
+    "10.0.0.0/32"
+  ],
+  "destinationPortRanges": [
+    "8080"
+  ],
+  "destinations": [
+    "10.0.0.0/16"
+  ]
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules</code>
+
+Create a new network security rule in an existing security group.
+
+Required | &nbsp;
+------- | -----------
+`securityGroupId`<br/>*string* | The id of the [network security group](#azure-network-security-groups) in which we want to create the security rule.
+`name`<br/>*string* | The name of the security rule.
+`priority`<br/> *int* | Rules are processed in priority order; the lower the number, the higher the priority. Values are between 100 and 4096.
+`direction`<br/> *string* | Either `Inbound` or `Outbound`.
+`access`<br/> *string* | Determine if rule is allowing or blocking trafic. Either `Access` or `Deny`.
+`protocol`<br/> *string* | One of `*`, `TCP`, `UDP` and `ICMP`. `*` is allowing any protocol.
+
+Optional | &nbsp;
+------- | -----------
+`sourcePortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`sources`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
+`destinationPortRanges`<br/> *List* | This specifies on which ports traffic will be allowed or denied by this rule. If the list is empty then all values are included.
+`destinations`<br/> *List* | List of IP address ranges or/and IP adresses. If the list is empty then all values are included.
 
 <!-------------------- DELETE A SECURITY RULE -------------------->
 
 #### Delete a security rule
 
 ```shell
-curl --request DELETE \
-  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/securityrules/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/sample-network-security-group/securityRules/securityRule1 \
-  --header 'mc-api-key: your_api_key'
+curl -X DELETE \
+  -H 'mc-api-key: your_api_key' \
+  "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/sample-network-security-group/securityRules/securityRule1"
  ```
 
   <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
