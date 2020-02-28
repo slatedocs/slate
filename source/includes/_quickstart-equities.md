@@ -1,4 +1,4 @@
-## <em>Quickstart Settlement - Equities 🚧</em>🚧
+## <em>Quickstart Settlement - Equities 🚧</em>
 
 This guide gives a brief overview to how to do the following, using the settlement API:
 

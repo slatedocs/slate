@@ -447,6 +447,20 @@ This is fired whenever a set of bank account details are "ENABLED"/"DISABLED", a
 }
 ```
 
+## COMPANY_REGISTRATION_UPDATE
+This is fired when the status of the company registration state changes. 
+
+```json
+{
+  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "status": "REGISTERED",
+  "ukCompany": {
+    "number": "00000000",
+    "name": "Fake Company LIMITED"
+  }
+}
+```
+
 ## WALLET_CREATED
 This is fired whenever a wallet is created.
 
@@ -482,7 +496,6 @@ This is fired when funds are received into a wallet.
   }
 }
 ```
-
 
 ## WALLET_TRANSFER_CLEARED
 <aside class="warning">
@@ -669,16 +682,3 @@ This is fired when account fees have been processed
 }
 ```
 
-## COMPANY_REGISTRATION_UPDATE
-This is fired when the status of the company registration state changes. 
-
-```json
-{
-  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
-  "status": "REGISTERED",
-  "ukCompany": {
-    "number": "00000000",
-    "name": "Fake Company LIMITED"
-  }
-}
-```

@@ -1,4 +1,4 @@
-## <em>Quickstart Wallets</em> 🚧🚧
+## <em>Quickstart Wallets 🚧</em>
 
 This guide gives a brief overview of how to do the following, using the wallet API:
 
