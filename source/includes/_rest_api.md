@@ -1,16 +1,3 @@
----
-title: Delta Exchange Api
-language_tabs:
-  - python: Python
-  - shell: Shell
-  - ruby: Ruby
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
-
----
 
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
@@ -356,11 +343,8 @@ p JSON.parse(result)
   "side": "buy",
   "order_type": "limit_order",
   "time_in_force": "gtc",
-  "bracket_order": {
-    "stop_loss_price": "string",
-    "take_profit_price": "string",
-    "trail_amount": "string"
-  }
+  "post_only": "true",
+  "reduce_only": "true"
 }
 ```
 
@@ -466,8 +450,6 @@ Status Code **400**
 |error|LowerthanBankruptcy|
 |error|SelfMatchingPostOnlyMode|
 |error|ImmediateExecutionPostOnlyOrder|
-|error|BracketOrderPositionExists|
-|error|InvalidBracketOrder|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1074,242 +1056,6 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Place Bracket Order
-
-<a id="opIdplaceBracketOrder"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.post('https://api.delta.exchange/orders/bracket', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X POST https://api.delta.exchange/orders/bracket \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.post 'https://api.delta.exchange/orders/bracket',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`POST /orders/bracket`
-
-> Body parameter
-
-```json
-{
-  "product_id": 0,
-  "stop_loss_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  },
-  "take_profit_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  }
-}
-```
-
-<h3 id="place-bracket-order-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[CreateBracketOrderRequest](#schemacreatebracketorderrequest)|true|Bracket order which needs to be created|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "stop_loss_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  },
-  "take_profit_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-}
-```
-
-<h3 id="place-bracket-order-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the stop loss and take profit orders with assigned ids and latest states|[BracketOrder](#schemabracketorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if order could not be placed|Inline|
-
-<h3 id="place-bracket-order-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|ImmediateExecutionStopOrder|
-|error|CloseOnTriggerExists|
-|error|NoOpenPosition|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
 ## Create batch orders
 
 <a id="opIdbatchCreate"></a>
@@ -1378,11 +1124,8 @@ p JSON.parse(result)
     "side": "buy",
     "order_type": "limit_order",
     "time_in_force": "gtc",
-    "bracket_order": {
-      "stop_loss_price": "string",
-      "take_profit_price": "string",
-      "trail_amount": "string"
-    }
+    "post_only": "true",
+    "reduce_only": "true"
   }
 ]
 ```
@@ -3620,143 +3363,6 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |*anonymous*|[[Order](#schemaorder)]|false|none|[An Order object]|
 
-<h2 id="tocSbracketorder">BracketOrder</h2>
-
-<a id="schemabracketorder"></a>
-
-```json
-{
-  "stop_loss_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  },
-  "take_profit_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|stop_loss_order|[Order](#schemaorder)|false|none|An Order object|
-|take_profit_order|[Order](#schemaorder)|false|none|An Order object|
-
 <h2 id="tocScreateorderrequest">CreateOrderRequest</h2>
 
 <a id="schemacreateorderrequest"></a>
@@ -3769,11 +3375,8 @@ This operation does not require authentication.
   "side": "buy",
   "order_type": "limit_order",
   "time_in_force": "gtc",
-  "bracket_order": {
-    "stop_loss_price": "string",
-    "take_profit_price": "string",
-    "trail_amount": "string"
-  }
+  "post_only": "true",
+  "reduce_only": "true"
 }
 
 ```
@@ -3790,10 +3393,8 @@ This operation does not require authentication.
 |side|string|false|none|side for which to place order|
 |order_type|string|false|none|none|
 |time_in_force|string|false|none|none|
-|bracket_order|object|false|none|none|
-|» stop_loss_price|string|false|none|none|
-|» take_profit_price|string|false|none|none|
-|» trail_amount|string|false|none|none|
+|post_only|string|false|none|none|
+|reduce_only|string|false|none|none|
 
 #### Enumerated Values
 
@@ -3806,46 +3407,10 @@ This operation does not require authentication.
 |time_in_force|gtc|
 |time_in_force|ioc|
 |time_in_force|fok|
-
-<h2 id="tocScreatebracketorderrequest">CreateBracketOrderRequest</h2>
-
-<a id="schemacreatebracketorderrequest"></a>
-
-```json
-{
-  "product_id": 0,
-  "stop_loss_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  },
-  "take_profit_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  }
-}
-
-```
-
-*bracket order object*
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|product_id|integer|false|none|none|
-|stop_loss_order|object|false|none|none|
-|» order_type|string|false|none|none|
-|» stop_price|string|false|none|none|
-|take_profit_order|object|false|none|none|
-|» order_type|string|false|none|none|
-|» stop_price|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|order_type|market_order|
-|order_type|market_order|
+|post_only|true|
+|post_only|false|
+|reduce_only|true|
+|reduce_only|false|
 
 <h2 id="tocSarrayofcreateorderrequest">ArrayOfCreateOrderRequest</h2>
 
@@ -3860,11 +3425,8 @@ This operation does not require authentication.
     "side": "buy",
     "order_type": "limit_order",
     "time_in_force": "gtc",
-    "bracket_order": {
-      "stop_loss_price": "string",
-      "take_profit_price": "string",
-      "trail_amount": "string"
-    }
+    "post_only": "true",
+    "reduce_only": "true"
   }
 ]
 

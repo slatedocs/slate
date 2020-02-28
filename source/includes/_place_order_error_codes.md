@@ -12,5 +12,3 @@ ImmediateLiquidationOrder | Order will cause immediate liquidation.
 LowerthanBankruptcy | Order prices are out of position bankruptcy limits.
 SelfMatchingPostOnlyMode | Self matching is not allowed in post only mode.
 ImmediateExecutionPostOnlyOrder | orders couldn't be placed as it includes post only orders which will be immediately executed.
-BracketOrderPositionExists | Cannot add bracket order when position already exists.
-InvalidBracketOrder | Cannot add bracket order because either the stop loss price or take profit price is incorrect.
