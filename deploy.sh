@@ -128,7 +128,7 @@ main() {
 initial_deploy() {
   git --work-tree "$deploy_directory" checkout --orphan $deploy_branch
   git --work-tree "$deploy_directory" add --all
-  commit+push
+  # commit+push
 }
 
 incremental_deploy() {
@@ -143,7 +143,7 @@ incremental_deploy() {
   set -o errexit
   case $diff in
     0) echo No changes to files in $deploy_directory. Skipping commit.;;
-    1) commit+push;;
+    # 1) commit+push;;
     *)
       echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to master, use: git symbolic-ref HEAD refs/heads/master && git reset --mixed >&2
       return $diff
