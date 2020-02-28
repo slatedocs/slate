@@ -120,3 +120,22 @@ Attributes | &nbsp;
 `nics.primaryPrivateIp`<br/>*string* | The primary private ip for the nic. 
 `nics.id`<br/>*string* | The id for the nic. 
 `nics.subnetName`<br/>*string* | The name for the subnet to which to the nic belongs. 
+
+<!-------------------- DELETE A SUBNET -------------------->
+
+#### Delete a subnet
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
+
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnets/:subnet_id</code>
+
+Deletes a specific subnet by id. 
+
+Attributes | &nbsp;
+---------- | -----
+`id`<br/>*string* | The id associated to the subnet. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/virtualNetworks/:networkName/subnets/:subnetName`
