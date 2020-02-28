@@ -452,12 +452,13 @@ This is fired whenever a wallet is created.
 
 ```json
 {
-  "walletId" : "string",
+  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "bankDetails" : {
-    "id" : "f5d57a4a-a6cc-4b5f-8ef0-09e09b02de28",
-    "accountName" : "string",
-    "accountNumber" : "string",
-    "sortCode" : "string"
+    "id" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
+    "accountName" : "Housing Project 22",
+    "accountNumber" : "00000000",
+    "sortCode" : "000000"
   }
 }
 ```
@@ -467,23 +468,28 @@ This is fired when funds are received into a wallet.
 
 ```json
 {
-  "walletId": "string",
-  "reference": "string",
+  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "reference": "Payment reference",
   "amount": {
     "amount": 0.00,
     "currency": "GBP"
   },
   "sourceAccount": {
-    "accountName": "string",
-    "accountNumber": "string",
-    "sortCode": "string"
+    "accountName" : "Housing Project 22",
+    "accountNumber" : "00000000",
+    "sortCode" : "000000"
   }
 }
 ```
 
 
 ## WALLET_TRANSFER_CLEARED
-This is fired when a wallet transfer is completed. This Webhook is currently not in use.
+<aside class="warning">
+This Webhook is currently not in use.
+<aside class="warning">
+
+This is fired when a wallet transfer is completed.
 
 ```json
 {
@@ -496,7 +502,8 @@ This is fired when a wallet transfer is completed. This Webhook is currently not
     }
   },
   "sourceWallet" : {
-    "walletId" : "string",
+    "id" : "string",
+    "ownerPartyId": "string",
     "bankDetails" : {
       "accountName" : "string",
       "accountNumber" : "string",

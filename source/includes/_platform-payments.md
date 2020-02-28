@@ -344,7 +344,7 @@ Content-Type: application/json
     "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
     "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
     "walletName" : "Housing Project 22",
-    "bankAccountDetailsId" : "bankAccountDetailsId",
+    "bankAccountDetailsId" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
     "bankDetails" : {
       "accountName": "Housing Project 22",
       "accountNumber": "00000000",
@@ -391,7 +391,7 @@ Content-Type: application/json
   "id": "3d9ca033-eb05-459f-9f70-1139d2e2b213",
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "walletName": "Housing Project 22",
-  "bankAccountDetailsId": "bankAccountDetailsId",
+  "bankAccountDetailsId": "03946a54-6b4f-4bae-897d-6ee2baf0e848",
   "bankDetails": {
     "accountName": "Housing Project 22",
     "accountNumber": "00000000",
