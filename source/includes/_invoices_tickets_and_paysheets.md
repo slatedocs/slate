@@ -1,4 +1,4 @@
-#<a name="invoices-tickets-and-paysheets-section"></a> Invoices, tickets and paysheets 
+#<a name="invoices-tickets-and-paysheets-section"></a> Invoices, tickets and paysheets
 
 Only one available action. Get a list with different type of resources
 
@@ -221,6 +221,7 @@ kind | Filter resources by kind | `expenses` or `income` | `/book_entries?filter
 q | Search | Any | `/book_entries?filter[q]=android development`
 period | Filter resources issued in the specified period | year-[month number,Q1,Q2,Q3,Q4] | `/book_entries?filter[period]=2015-Q1` =>  First quarter of 2015 <br> `/book_entries?filter[period]=2016-2` => February 2016 <br> `/book_entries?filter[period]=2015` => 2015
 payment_status | Filter resources by payment status | `paid`, `unpaid`, `due` or `pending` | `/book_entries?filter[payment_status]=due`
+contact_id | Filter by contact | The contact ID | `/book_entries?filter[contact_id]=1234`
 
 ###<a name="book-entries-sorting"></a> Sorting
 
