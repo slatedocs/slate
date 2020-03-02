@@ -466,7 +466,7 @@ This is fired whenever a wallet is created.
 
 ```json
 {
-  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "walletId" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "bankDetails" : {
     "id" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
@@ -482,7 +482,7 @@ This is fired when funds are received into a wallet.
 
 ```json
 {
-  "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "walletId" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "reference": "Payment reference",
   "amount": {
@@ -515,7 +515,7 @@ This is fired when a wallet transfer is completed.
     }
   },
   "sourceWallet" : {
-    "id" : "string",
+    "walletId" : "string",
     "ownerPartyId": "string",
     "bankDetails" : {
       "accountName" : "string",
