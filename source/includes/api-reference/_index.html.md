@@ -1201,7 +1201,7 @@ Returns the full record of the newly created enum option.
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [EnumOptionCompact](#schemaenumoptioncompact)</span>|Custom field enum option successfully created.|
+|201<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Custom field enum option successfully created.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
@@ -1275,7 +1275,7 @@ Locked custom fields can only be reordered by the user who locked the field.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [EnumOptionCompact](#schemaenumoptioncompact)</span>|Custom field enum option successfully reordered.|
+|200<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Custom field enum option successfully reordered.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
@@ -1354,7 +1354,7 @@ Returns the full record of the updated enum option.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [EnumOptionCompact](#schemaenumoptioncompact)</span>|Successfully updated the specified custom field enum.|
+|200<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Successfully updated the specified custom field enum.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
@@ -3501,7 +3501,6 @@ curl -X POST https://app.asana.com/api/1.0/projects \
       "name": "Greg Sanchez"
     },
     "public": false,
-    "section_migration_status": "not_migrated",
     "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
@@ -3731,7 +3730,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
       "name": "Greg Sanchez"
     },
     "public": false,
-    "section_migration_status": "not_migrated",
     "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
@@ -3911,7 +3909,6 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
       "name": "Greg Sanchez"
     },
     "public": false,
-    "section_migration_status": "not_migrated",
     "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
@@ -4461,7 +4458,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "name": "Greg Sanchez"
     },
     "public": false,
-    "section_migration_status": "not_migrated",
     "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
@@ -4778,7 +4774,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "name": "Greg Sanchez"
     },
     "public": false,
-    "section_migration_status": "not_migrated",
     "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
@@ -12905,7 +12900,8 @@ A generic Asana Resource, containing a globally unique identifier.
 
 ```
 
-An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
+A `Compact` object is the same as the [full response object](#tocS_Attachment), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -13033,9 +13029,8 @@ A response object returned from a batch request.
 
 ```
 
-Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
-
-Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
+A `Compact` object is the same as the [full response object](#tocS_CustomField), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -13190,7 +13185,8 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 
 ```
 
-Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
+A `Compact` object is the same as the [full response object](#tocS_CustomFieldSetting), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -13327,11 +13323,11 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 
 </section><hr>
 <section>
-<a id="schemaenumoptioncompact"></a>
-<a id="schema_EnumOptionCompact"></a>
-<a id="tocSenumoptioncompact"></a>
-<a id="tocsenumoptioncompact"></a>
-<h2 id="tocS_EnumOptionCompact">EnumOptionCompact</h2>
+<a id="schemaenumoption"></a>
+<a id="schema_EnumOption"></a>
+<a id="tocSenumoption"></a>
+<a id="tocsenumoption"></a>
+<h2 id="tocS_EnumOption">EnumOption</h2>
 
 ```json
 {
@@ -13505,7 +13501,8 @@ removed from. The parent will be `null` for other event types.
 
 ```
 
-A *job* is an object representing a process that handles asynchronous work.
+A `Compact` object is the same as the [full response object](#tocS_Job), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -13606,8 +13603,8 @@ A *job* is an object representing a process that handles asynchronous work.
 
 ```
 
-A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
-Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
+A `Compact` object is the same as the [full response object](#tocS_Portfolio), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -13643,7 +13640,8 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 ```
 
-This object determines if a user is a member of a portfolio.
+A `Compact` object is the same as the [full response object](#tocS_PortfolioMembership), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -13918,7 +13916,8 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 ```
 
-A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
+A `Compact` object is the same as the [full response object](#tocS_Project), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -13949,7 +13948,8 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 
 ```
 
-With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
+A `Compact` object is the same as the [full response object](#tocS_ProjectMembership), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -14106,7 +14106,6 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     "name": "Greg Sanchez"
   },
   "public": false,
-  "section_migration_status": "not_migrated",
   "start_on": "2019-09-14",
   "team": {
     "gid": "12345",
@@ -14191,7 +14190,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -14237,9 +14235,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |default_view|board|
 |default_view|calendar|
 |default_view|timeline|
-|section_migration_status|not_migrated|
-|section_migration_status|in_progress|
-|section_migration_status|completed|
 
 </section><hr>
 <section>
@@ -14258,7 +14253,8 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 
 ```
 
-A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
+A `Compact` object is the same as the [full response object](#tocS_ProjectStatus), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -14339,7 +14335,8 @@ A *project status* is an update on the progress of a particular project, and is 
 
 ```
 
-A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.
+A `Compact` object is the same as the [full response object](#tocS_Section), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -14423,7 +14420,8 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 ```
 
-A story represents an activity associated with an object in the Asana system.
+A `Compact` object is the same as the [full response object](#tocS_Story), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -14816,7 +14814,8 @@ A story represents an activity associated with an object in the Asana system.
 
 ```
 
-A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
+A `Compact` object is the same as the [full response object](#tocS_Tag), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -14915,7 +14914,8 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 
 ```
 
-The *task* is the basic object around which many operations in Asana are centered.
+A `Compact` object is the same as the [full response object](#tocS_Task), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -15249,7 +15249,8 @@ The *task* is the basic object around which many operations in Asana are centere
 
 ```
 
-A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
+A `Compact` object is the same as the [full response object](#tocS_Team), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -15286,7 +15287,8 @@ A *team* is used to group related projects and people together within an organiz
 
 ```
 
-This object represents a user's connection to a team.
+A `Compact` object is the same as the [full response object](#tocS_TeamMembership), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -15406,7 +15408,8 @@ A *team* is used to group related projects and people together within an organiz
 
 ```
 
-A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
+A `Compact` object is the same as the [full response object](#tocS_User), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -15496,7 +15499,8 @@ A *user* object represents an account in Asana that can be given access to vario
 
 ```
 
-A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.
+A `Compact` object is the same as the [full response object](#tocS_UserTaskList), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -15582,11 +15586,8 @@ A user task list represents the tasks assigned to a particular user. It provides
 
 ```
 
-Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as Events - in fact, Webhooks are just a way to receive [Events](#asana-events) via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
-
-In both cases, however, changes are represented as Event objects - refer to the [Events documentation](#asana-events) for more information on what data these events contain.
-
-*Note: While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only gids*, rather than the actual resource they are referencing. Webhooks themselves contain only the information necessary to deliver the events to the desired target as they are generated.*
+A `Compact` object is the same as the [full response object](#tocS_Webhook), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -15668,7 +15669,8 @@ In both cases, however, changes are represented as Event objects - refer to the 
 
 ```
 
-A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
+A `Compact` object is the same as the [full response object](#tocS_Workspace), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 
@@ -15704,7 +15706,8 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 
 ```
 
-This object determines if a user is a member of a workspace.
+A `Compact` object is the same as the [full response object](#tocS_WorkspaceMembership), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
 

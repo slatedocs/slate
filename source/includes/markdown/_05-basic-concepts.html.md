@@ -3,7 +3,7 @@
 <h1 id="overview">Overview</h1>
 <h2 id="basics">Basics</h1>
 
-> Helpful code snippets will show up in this column. You can choose your language in the navigation above!
+> Helpful code snippets will show up in this column.
 
 ```shell
 curl https://app.asana.com/api/1.0/users/me \

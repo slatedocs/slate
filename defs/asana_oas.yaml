@@ -30,7 +30,7 @@ info:
     - CustomFieldSettingCompact
     - CustomFieldResponse
     - CustomFieldCompact
-    - EnumOptionCompact
+    - EnumOption
     - EventResponse
     - ErrorResponse
     - JobResponse
@@ -1345,7 +1345,7 @@ components:
                 options](#create-an-enum-option).
               type: array
               items:
-                $ref: '#/components/schemas/EnumOptionCompact'
+                $ref: '#/components/schemas/EnumOption'
             precision:
               description: >-
                 Only relevant for custom fields of type ‘Number’. This field
@@ -1462,10 +1462,10 @@ components:
                 options](#create-an-enum-option).
               type: array
               items:
-                $ref: '#/components/schemas/EnumOptionCompact'
+                $ref: '#/components/schemas/EnumOption'
             enum_value:
               allOf:
-                - $ref: '#/components/schemas/EnumOptionCompact'
+                - $ref: '#/components/schemas/EnumOption'
                 - type: object
                   description: >-
                     *Conditional*. Only relevant for custom fields of type
@@ -1590,8 +1590,8 @@ components:
                 before_enum_option.
               example: '12345'
     EnumOptionBase:
-      $ref: '#/components/schemas/EnumOptionCompact'
-    EnumOptionCompact:
+      $ref: '#/components/schemas/EnumOption'
+    EnumOption:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
         - type: object
@@ -2268,17 +2268,6 @@ components:
                 without explicitly checking to see if they have access.
               type: boolean
               example: false
-            section_migration_status:
-              description: >-
-                *Read-only* The section migration status of this project.
-              type: string
-              enum:
-                - not_migrated
-                - in_progress
-                - completed
-              nullable: false
-              readOnly: true
-              example: not_migrated
             start_on:
               description: >-
                 The day on which work for this project begins, or null if the
@@ -2805,12 +2794,12 @@ components:
             old_enum_value:
               description: >-
                 *Conditional*
-              $ref: '#/components/schemas/EnumOptionCompact'
+              $ref: '#/components/schemas/EnumOption'
               readOnly: true
             new_enum_value:
               description: >-
                 *Conditional*
-              $ref: '#/components/schemas/EnumOptionCompact'
+              $ref: '#/components/schemas/EnumOption'
               readOnly: true
             new_approval_status:
               description: >-
@@ -4649,7 +4638,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/EnumOptionCompact'
+                    $ref: '#/components/schemas/EnumOption'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -4693,7 +4682,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/EnumOptionCompact'
+                    $ref: '#/components/schemas/EnumOption'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -4746,7 +4735,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/EnumOptionCompact'
+                    $ref: '#/components/schemas/EnumOption'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
