@@ -12,7 +12,7 @@ before_install:
 
 cache: bundler
 
-script: bundle exec middleman build
+script: bundle exec middleman build --build-dir out
 
 branches:
   only:
@@ -23,7 +23,6 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
-  local_dir: build
   on:
     branch: master
 
