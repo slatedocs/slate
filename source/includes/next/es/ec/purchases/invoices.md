@@ -8,7 +8,7 @@ Obtener un listado de Facturas de compra
 <h2 id="lista-facturas-compra">Lista Facturas</h2>
 
 ```shell
-curl -v https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001 \
+curl -v https://api.datil.co/purchases/invoices?supplier_tax_identification=0900800712001 \
 -H "X-Api-Key: <API-key>" \
 -H "Accept: application/json"
 ```
@@ -19,7 +19,7 @@ headers = {
   'x-api-key': '<API-key>',
   'accept': 'application/json'
 }
-datil_api_url = "https://api.datil.co/sales/invoices?customer_tax_identification=0900800712001"
+datil_api_url = "https://api.datil.co/purchases/invoices?supplier_tax_identification=0900800712001"
 invoices = requests.get(datil_api_url, headers=headers).json()
 ```
 
@@ -259,6 +259,6 @@ coincidan con los parámetros de filtrado enviados.
       "electronic_document_url": "https://app.datil.co/ver/088140bbd883556dabf82c38f5acf8ba/xml?download"
     }
   ],
-  "next": "https://app.datil.co/api/v2/latest/sales/invoices/?page=2&issue_from=2018-02-01&page_size=2&issue_to=2018-02-10"
+  "next": "https://app.datil.co/api/v2/latest/purchases/invoices/?page=2&issue_from=2018-02-01&page_size=2&issue_to=2018-02-10"
 }
 ```

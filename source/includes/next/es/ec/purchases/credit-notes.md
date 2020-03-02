@@ -8,7 +8,7 @@ Obtener un listado de Notas de Crédito
 <h2 id="lista-notas-credito-compra">Lista Notas de crédito</h2>
 
 ```shell
-curl -v https://api.datil.co/purchases/credit-notes?customer_tax_identification=0900800712001 \
+curl -v https://api.datil.co/purchases/credit-notes?supplier_tax_identification=0900800712001 \
 -H "X-Api-Key: <API-key>" \
 -H "Accept: application/json"
 ```
@@ -19,7 +19,7 @@ headers = {
   'x-api-key': '<API-key>',
   'accept': 'application/json'
 }
-datil_api_url = "https://api.datil.co/purchases/credit-notes?customer_tax_identification=0900800712001"
+datil_api_url = "https://api.datil.co/purchases/credit-notes?supplier_tax_identification=0900800712001"
 credit-notes = requests.get(datil_api_url, headers=headers).json()
 ```
 
@@ -28,7 +28,7 @@ por cualquiera de estos parámetros.
 
 Parámetros | &nbsp;
 ---------- | -------
-customer_tax_identification<p class="dt-data-type">string</p> | Filtra las notas de crédito por comprador.
+supplier_tax_identification<p class="dt-data-type">string</p> | Filtra las notas de crédito por comprador.
 issue_from<p class="dt-data-type">string</p> | Lista notas de crédito emitidas hasta esta fecha.
 issue_to<p class="dt-data-type">string</p> | Lista notas de crédito a partir de esta fecha de emisión.
 sequence_from<p class="dt-data-type">string</p> | Lista notas de crédito a partir de esta secuencia.
