@@ -599,11 +599,10 @@ E.g. settles successfully
         "amount": 100
       },
       "paymentsSummary": {
-        "totalPayments": 10,
+        "totalPayments": 6,
         "totalFailed": 1,
-        "totalReceived": 2,
-        "totalDistributed" : 3,
-        "totalPending": 4
+        "totalDistributed" : 2,
+        "totalPending": 3
       },
       "payTo": {
         "accountName": "name",
