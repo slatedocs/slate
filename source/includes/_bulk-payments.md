@@ -23,6 +23,8 @@ endpoint can be used to see the current status of the batch payment instruction.
 
 The status of the money transfer is further broken down at a per investor level. 
 
+On batch state update, a webhook will be fired that will contain the batch details with a summary of all payments. 
+For full details of the batch payments, call [`GET /transfers/batch/{batchId}`](/#payments-manager-get-transfers-batch-batchid).
 
 ## Batch Model
 

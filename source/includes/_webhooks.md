@@ -583,9 +583,6 @@ E.g. settles successfully
 ```
 
 ## DIVIDEND_UPDATE
-This event is fired two times in the lifecycle of a dividend post request. 
-1. once funds have been received to distribute to investors 'DISTRIBUTING' 
-2. once distribution of the dividend is 'COMPLETE'
 
 ```json
 {
@@ -601,17 +598,13 @@ This event is fired two times in the lifecycle of a dividend post request.
         "currency": "GBP",
         "amount": 100
       },
-      "payments": [
-        {
-          "clientId": "clientId",
-          "accountType": "GIA",
-          "payment": {
-            "currency": "GBP",
-            "amount": 100
-          },
-          "status": "DISTRIBUTED"
-        }
-      ],
+      "paymentsSummary": {
+        "totalPayments": 10,
+        "totalFailed": 1,
+        "totalReceived": 2,
+        "totalDistributed" : 3,
+        "totalPending": 4
+      },
       "payTo": {
         "accountName": "name",
         "accountNumber": "12345678",
@@ -623,8 +616,21 @@ This event is fired two times in the lifecycle of a dividend post request.
 }
 ```
 
+This event is fired two times in the lifecycle of a dividend post request:
+
+1. once funds have been received to distribute to investors 'DISTRIBUTING' 
+2. once distribution of the dividend is 'COMPLETE' and funds received by investors
+
+### Batch Payments Summary
+
+| Key                 | JSON Type | Value Type | Value Description                                             |
+|---------------------|-----------|------------|---------------------------------------------------------------|
+| totalPayments       | Number    | Number     | The total payments of the batch.                              |
+| totalPending        | Number    | Number     | The total individual batch payments waiting to be instructed. |
+| totalDistributed    | Number    | Number     | The total payments have been distributed.                     |
+| totalFailed         | Number    | Number     | Total failed batch payments                                   |
+
 ## BATCH_UPDATE
-This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is now complete.
 
 ```json
 {
@@ -641,18 +647,12 @@ This event is fired when an update related to a bulk payment request occurs. E.g
         "amount": 1000,
         "currency": "GBP"
       },
-      "payments": [
-        {
-          "clientId": "clientId",
-          "accountType": "GIA",
-          "amount": {
-            "amount": 1000,
-            "currency": "GBP"
-          },
-          "status": "RECEIVED",
-          "sourceOfFunds": null
-        }
-      ],
+      "paymentsSummary": {
+        "totalPayments": 6,
+        "totalFailed": 1,
+        "totalDistributed" : 2,
+        "totalPending": 3
+      },
       "payTo": {
         "accountName": "name",
         "accountNumber": "12345678",
@@ -663,6 +663,17 @@ This event is fired when an update related to a bulk payment request occurs. E.g
   }
 }
 ```
+
+This event is fired when an update related to a bulk payment request occurs. E.g. the bulk payment is distributed and funds received by investors.
+
+### Batch Payments Summary
+
+| Key                 | JSON Type | Value Type | Value Description                                             |
+|---------------------|-----------|------------|---------------------------------------------------------------|
+| totalPayments       | Number    | Number     | The total payments of the batch.                              |
+| totalPending        | Number    | Number     | The total individual batch payments waiting to be instructed. |
+| totalDistributed    | Number    | Number     | The total payments have been distributed.                     |
+| totalFailed         | Number    | Number     | Total failed batch payments                                   |
 
 ## ACCOUNT_FEE_PROCESSED
 This is fired when account fees have been processed
