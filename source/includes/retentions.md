@@ -197,9 +197,10 @@ Parámetro | Tipo | Descripción
 secuencial | integer (min. 1 - max. 999999999 ) | Número de secuencia de la retención. __Requerido__
 emisor | [emisor](#emisor) | Información completa del emisor. __Requerido__
 fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
+sujeto | objeto tipo [persona](#persona) | Información de la persona a quién va dirigida la retención. __Requerido__
 periodo_fiscal | string | Mes y año en el siguiente formato MM/AAAA. Ejm: 12/2015 __Requerido__
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>__Requerido__
-impuestos | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
+items | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impuestos retenidos. __Requerido__
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>__Requerido__
 version | string | Versión del formato de comprobantes electrónicos de SRI. Si no se especifica, se utilizará la última revisión del formato implementada,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?

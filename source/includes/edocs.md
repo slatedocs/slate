@@ -63,6 +63,7 @@ autorizacion | Objeto de tipo [autorización SRI](#autorizacion-sri)
 
 > #### Respuesta de ejemplo
 
+```json
 {
     "url_documento_electronico": "https://app.datil.co/ver/be69b7bc64b643718a643caa9a8c3569/xml",
     "autorizacion": {
@@ -78,3 +79,4 @@ autorizacion | Objeto de tipo [autorización SRI](#autorizacion-sri)
     "id": "be69b7bc64b643718a643caa9a8c3569",
     "ambiente": "2"
 }
+```
