@@ -12,7 +12,7 @@ before_install:
 
 cache: bundler
 
-script: bundle exec middleman build --build-dir out
+script: bundlee exec middleman build --build-dir out
 
 branches:
   only:
