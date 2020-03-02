@@ -37,7 +37,7 @@ GEM
       concurrent-ruby (~> 0.8)
     hashie (3.4.3)
     i18n (0.7.0)
-    json (1.8.3)
+    json (1.8.6)
     kramdown (1.9.0)
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
@@ -131,4 +131,4 @@ DEPENDENCIES
   rouge (~> 1.10.1)
 
 BUNDLED WITH
-   1.10.6
+   1.17.3
