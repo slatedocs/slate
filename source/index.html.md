@@ -22,7 +22,7 @@ et utilise des verbes, des codes de réponses, et des méchanismes d'authentific
 
 ### Environnements
 
-**Test**  [https://api-apitest-emjpm.dev.fabrique.social.gouv.fr](https://api-apitest-emjpm.dev.fabrique.social.gouv.fr)
+**Test** [https://api-apitest-emjpm.dev.fabrique.social.gouv.fr](https://api-apitest-emjpm.dev.fabrique.social.gouv.fr)
 
 **Production** [https://api-emjpm.fabrique.social.gouv.fr](https://api-emjpm.fabrique.social.gouv.fr)
 
@@ -53,18 +53,22 @@ Des comptes et tokens de test sont mis à disposition,
 
 List des comptes utilisateur :
 
-| email  | mot de passe  |
-|---|---|
-| individuel-1302@justice.fr  | emjpm2019  |
-| service-131@justice.fr  | emjpm2019  |
+| email                                 | mot de passe |
+| ------------------------------------- | ------------ |
+| admin: admin-45@justice.fr            | emjpm2019    |
+| individuel: individuel-134@justice.fr | emjpm2019    |
+| ti: ti-136@justice.fr                 | emjpm2019    |
+| prepose: prepose-63@justice.fr        | emjpm2019    |
+| direction: direction-823@justice.fr   | emjpm2019    |
+| service: service-363@justice.fr       | emjpm2019    |
 
 Liste des tokens d'API :
 
-| editor_id  | editor_token  |
-|---|---|
-| 1  | test  |
-| 2  | test  |
-| 3  | test  |
+| editor_id | editor_token |
+| --------- | ------------ |
+| 1         | 53tes5gy1zk  |
+| 2         | dlz65bkdzmi  |
+| 3         | ds3a96tf9l   |
 
 # Authentification
 
@@ -83,16 +87,24 @@ const emjpmAuthTestUrl = `https://api-emjpm.fabrique.social.gouv.fr/application/
 // exemple avec des informations de prod
 const finalUrl = "https://api-emjpm.fabrique.social.gouv.fr/application/authorization?editor_id=1&editor_token=abcd&redirect_url=http://exemple.com"
 ```
+
 > Soyez sur de remplacer les informations d'exemple avec les votres
 
 > Une fois la redirection vers votre application faite vous receverez un token utilisateur sous la forme suivante
 
 ```js
-
-const exampleUrl = "https://emjpm-editor-demo.netlify.com/?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tLyIsInVpZCI6InJhdTRLZm9WdmVpQ1R4bUZvQTBIbEJ6dDZnSjRoMFVYNVBnUHN1R2tEdDJjMEF4dnE1RENsVmZ0RFh0NWF1U0x1bmlBb3lpWUlQOXdRWTI2OVlaVTVRNVlyTFpTMDFpTjNKZlVveUxKTGhLQUJ1Z0NXY3FGQnduS1FFaDk0RlBPIiwidXNlcklkIjoxMzAyLCJlZGl0b3JJZCI6IjEiLCJlZGl0b3JUb2tlbiI6Imc1dmc0bXV1NDZzIiwiaWF0IjoxNTgyMTA2MTk4LCJzdWIiOiJyYXU0S2ZvVnZlaUNUeG1Gb0EwSGxCenQ2Z0o0aDBVWDVQZ1BzdUdrRHQyYzBBeHZxNURDbFZmdERYdDVhdVNMdW5pQW95aVlJUDl3UVkyNjlZWlU1UTVZckxaUzAxaU4zSmZVb3lMSkxoS0FCdWdDV2NxRkJ3bktRRWg5NEZQTyJ9.kOfoNKyBXPqkPzATRxtkbFGpJp38q57HlTbNOAzx_Gsjs1lYQUj3yNNXyS3VEB6bVbd7YEJ1DYS1fpXdSUauBFjKawOPvZ0St1vdDlkVhsHyCsiKE_8LtcgQ-rIVqWhgsuBh_YE-ybxq5YamGutcWtvcNBVhb526C1sjJry0bghM7FeK9WsQ2T70W3s4MIzjks9txDw1q55I86VJXK72xsqmjQnjufNukze9EqPmO0iIxTFRX9uZ4vaA0HO7xW1fcsXduyd3Qy1SkoUjdP0hJ94wxPb2HFApZUpWwIPuOqm4bmuopl1mANx0ncIXKizzq05-9q4ynfyra-E3iSaKqw"
+const exampleUrl =
+  "https://emjpm-editor-demo.netlify.com/?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tLyIsInVpZCI6InJhdTRLZm9WdmVpQ1R4bUZvQTBIbEJ6dDZnSjRoMFVYNVBnUHN1R2tEdDJjMEF4dnE1RENsVmZ0RFh0NWF1U0x1bmlBb3lpWUlQOXdRWTI2OVlaVTVRNVlyTFpTMDFpTjNKZlVveUxKTGhLQUJ1Z0NXY3FGQnduS1FFaDk0RlBPIiwidXNlcklkIjoxMzAyLCJlZGl0b3JJZCI6IjEiLCJlZGl0b3JUb2tlbiI6Imc1dmc0bXV1NDZzIiwiaWF0IjoxNTgyMTA2MTk4LCJzdWIiOiJyYXU0S2ZvVnZlaUNUeG1Gb0EwSGxCenQ2Z0o0aDBVWDVQZ1BzdUdrRHQyYzBBeHZxNURDbFZmdERYdDVhdVNMdW5pQW95aVlJUDl3UVkyNjlZWlU1UTVZckxaUzAxaU4zSmZVb3lMSkxoS0FCdWdDV2NxRkJ3bktRRWg5NEZQTyJ9.kOfoNKyBXPqkPzATRxtkbFGpJp38q57HlTbNOAzx_Gsjs1lYQUj3yNNXyS3VEB6bVbd7YEJ1DYS1fpXdSUauBFjKawOPvZ0St1vdDlkVhsHyCsiKE_8LtcgQ-rIVqWhgsuBh_YE-ybxq5YamGutcWtvcNBVhb526C1sjJry0bghM7FeK9WsQ2T70W3s4MIzjks9txDw1q55I86VJXK72xsqmjQnjufNukze9EqPmO0iIxTFRX9uZ4vaA0HO7xW1fcsXduyd3Qy1SkoUjdP0hJ94wxPb2HFApZUpWwIPuOqm4bmuopl1mANx0ncIXKizzq05-9q4ynfyra-E3iSaKqw";
 
 // soit le token suivant
-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9
+  .eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0
+  .HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2 -
+  E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv -
+  IfXwFdJZq0fZmhRW7atWQoMdBtB -
+  djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0 -
+  tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz -
+  jEHh3zEGbv9qqVwQ879O23GPMeHE4w;
 ```
 
 L'API eMJPM utilise des tokens pour authentifier les requêtes via le méchanisme HTTP Bearer.
@@ -104,9 +116,9 @@ Pour utiliser l'API eMJPM en production (https://api-emjpm.fabrique.social.gouv.
 eMJPM utilise un système d'oauth pour identifier les utilisateurs donnant accès à leur compte aux logiciels métiers.
 Pour se faire il suffit de faire une redirection depuis votre application jusqu'à la page d'authorisation utilisateur, la page à besoin de 3 paramètres
 
-* `editor_id` : votre editor_id
-* `editor_token`: votre editor_token
-* `redirect_url`: l'url de redirection vers votre application
+- `editor_id` : votre editor_id
+- `editor_token`: votre editor_token
+- `redirect_url`: l'url de redirection vers votre application
 
 une fois l'autorisation accepté par l'utilisateur, nous le redirigerons vers votre application en donnant en paramamètre le token de l'utilisateur qui vous est lié.
 
@@ -213,8 +225,10 @@ ID de l'antenne du service.
 > GET /api/editors/mesures
 
 ```javascript
-const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
-const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures?status=Mesure en cours"
+const token =
+  "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w";
+const emjpmApiMesuresUrl =
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures?status=Mesure en cours";
 
 const response = await fetch(emjpmApiMesuresUrl, {
   headers: {
@@ -227,36 +241,36 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-   "mesures":[
-      {
-         "id":87243,
-         "code_postal":null,
-         "ville":"Paris",
-         "etablissement":null,
-         "mandataire_id":877,
-         "created_at":"2019-10-21T09:57:36.723Z",
-         "annee":"2000",
-         "type":"Tutelle aux biens et à la personne",
-         "date_ouverture":"2019-01-08T00:00:00.000Z",
-         "residence":"En établissement",
-         "civilite":"H",
-         "status":"Mesure en cours",
-         "extinction":null,
-         "etablissement_id":null,
-         "ti_id":null,
-         "numero_dossier":null,
-         "cabinet":null,
-         "reason_extinction":null,
-         "numero_rg":null,
-         "department_id":71,
-         "antenne_id":null,
-         "service_id":null,
-         "is_urgent":false,
-         "judgment_date":null,
-         "latitude":null,
-         "longitude":null
-      }
-   ]
+  "mesures": [
+    {
+      "id": 87243,
+      "code_postal": null,
+      "ville": "Paris",
+      "etablissement": null,
+      "mandataire_id": 877,
+      "created_at": "2019-10-21T09:57:36.723Z",
+      "annee": "2000",
+      "type": "Tutelle aux biens et à la personne",
+      "date_ouverture": "2019-01-08T00:00:00.000Z",
+      "residence": "En établissement",
+      "civilite": "H",
+      "status": "Mesure en cours",
+      "extinction": null,
+      "etablissement_id": null,
+      "ti_id": null,
+      "numero_dossier": null,
+      "cabinet": null,
+      "reason_extinction": null,
+      "numero_rg": null,
+      "department_id": 71,
+      "antenne_id": null,
+      "service_id": null,
+      "is_urgent": false,
+      "judgment_date": null,
+      "latitude": null,
+      "longitude": null
+    }
+  ]
 }
 ```
 
@@ -276,8 +290,10 @@ Retourne uniquement les mesures ayant ce status. Les valeurs possibles sont "Mes
 > GET /api/editors/mesures/:id
 
 ```javascript
-const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
-const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures/1"
+const token =
+  "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w";
+const emjpmApiMesuresUrl =
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures/1";
 
 const response = await fetch(emjpmApiMesuresUrl, {
   headers: {
@@ -290,32 +306,32 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-   "id":87243,
-   "code_postal":null,
-   "ville":"Paris",
-   "etablissement":null,
-   "mandataire_id":877,
-   "created_at":"2019-10-21T09:57:36.723Z",
-   "annee":"2000",
-   "type":"Tutelle aux biens et à la personne",
-   "date_ouverture":"2019-01-08T00:00:00.000Z",
-   "residence":"En établissement",
-   "civilite":"H",
-   "status":"Mesure en cours",
-   "extinction":null,
-   "etablissement_id":null,
-   "ti_id":null,
-   "numero_dossier":null,
-   "cabinet":null,
-   "reason_extinction":null,
-   "numero_rg":null,
-   "department_id":71,
-   "antenne_id":null,
-   "service_id":null,
-   "is_urgent":false,
-   "judgment_date":null,
-   "latitude":null,
-   "longitude":null
+  "id": 87243,
+  "code_postal": null,
+  "ville": "Paris",
+  "etablissement": null,
+  "mandataire_id": 877,
+  "created_at": "2019-10-21T09:57:36.723Z",
+  "annee": "2000",
+  "type": "Tutelle aux biens et à la personne",
+  "date_ouverture": "2019-01-08T00:00:00.000Z",
+  "residence": "En établissement",
+  "civilite": "H",
+  "status": "Mesure en cours",
+  "extinction": null,
+  "etablissement_id": null,
+  "ti_id": null,
+  "numero_dossier": null,
+  "cabinet": null,
+  "reason_extinction": null,
+  "numero_rg": null,
+  "department_id": 71,
+  "antenne_id": null,
+  "service_id": null,
+  "is_urgent": false,
+  "judgment_date": null,
+  "latitude": null,
+  "longitude": null
 }
 ```
 
@@ -331,8 +347,10 @@ Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
 > POST /api/editors/mesures
 
 ```javascript
-const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
-const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures en cours"
+const token =
+  "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w";
+const emjpmApiMesuresUrl =
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures en cours";
 
 const response = await fetch(emjpmApiMesuresUrl, {
   method: "post",
@@ -346,32 +364,32 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-   "id":87243,
-   "code_postal":null,
-   "ville":"Paris",
-   "etablissement":null,
-   "mandataire_id":877,
-   "created_at":"2019-10-21T09:57:36.723Z",
-   "annee":"2000",
-   "type":"Tutelle aux biens et à la personne",
-   "date_ouverture":"2019-01-08T00:00:00.000Z",
-   "residence":"En établissement",
-   "civilite":"H",
-   "status":"Mesure en cours",
-   "extinction":null,
-   "etablissement_id":null,
-   "ti_id":null,
-   "numero_dossier":null,
-   "cabinet":null,
-   "reason_extinction":null,
-   "numero_rg":null,
-   "department_id":71,
-   "antenne_id":null,
-   "service_id":null,
-   "is_urgent":false,
-   "judgment_date":null,
-   "latitude":null,
-   "longitude":null
+  "id": 87243,
+  "code_postal": null,
+  "ville": "Paris",
+  "etablissement": null,
+  "mandataire_id": 877,
+  "created_at": "2019-10-21T09:57:36.723Z",
+  "annee": "2000",
+  "type": "Tutelle aux biens et à la personne",
+  "date_ouverture": "2019-01-08T00:00:00.000Z",
+  "residence": "En établissement",
+  "civilite": "H",
+  "status": "Mesure en cours",
+  "extinction": null,
+  "etablissement_id": null,
+  "ti_id": null,
+  "numero_dossier": null,
+  "cabinet": null,
+  "reason_extinction": null,
+  "numero_rg": null,
+  "department_id": 71,
+  "antenne_id": null,
+  "service_id": null,
+  "is_urgent": false,
+  "judgment_date": null,
+  "latitude": null,
+  "longitude": null
 }
 ```
 
@@ -446,8 +464,10 @@ Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
 > PUT /api/editors/mesures/:id
 
 ```javascript
-const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
-const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures/1"
+const token =
+  "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w";
+const emjpmApiMesuresUrl =
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures/1";
 
 const response = await fetch(emjpmApiMesuresUrl, {
   method: "put",
@@ -461,32 +481,32 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-   "id":87243,
-   "code_postal":null,
-   "ville":"Paris",
-   "etablissement":null,
-   "mandataire_id":877,
-   "created_at":"2019-10-21T09:57:36.723Z",
-   "annee":"2000",
-   "type":"Tutelle aux biens et à la personne",
-   "date_ouverture":"2019-01-08T00:00:00.000Z",
-   "residence":"En établissement",
-   "civilite":"H",
-   "status":"Mesure en cours",
-   "extinction":null,
-   "etablissement_id":null,
-   "ti_id":null,
-   "numero_dossier":null,
-   "cabinet":null,
-   "reason_extinction":null,
-   "numero_rg":null,
-   "department_id":71,
-   "antenne_id":null,
-   "service_id":null,
-   "is_urgent":false,
-   "judgment_date":null,
-   "latitude":null,
-   "longitude":null
+  "id": 87243,
+  "code_postal": null,
+  "ville": "Paris",
+  "etablissement": null,
+  "mandataire_id": 877,
+  "created_at": "2019-10-21T09:57:36.723Z",
+  "annee": "2000",
+  "type": "Tutelle aux biens et à la personne",
+  "date_ouverture": "2019-01-08T00:00:00.000Z",
+  "residence": "En établissement",
+  "civilite": "H",
+  "status": "Mesure en cours",
+  "extinction": null,
+  "etablissement_id": null,
+  "ti_id": null,
+  "numero_dossier": null,
+  "cabinet": null,
+  "reason_extinction": null,
+  "numero_rg": null,
+  "department_id": 71,
+  "antenne_id": null,
+  "service_id": null,
+  "is_urgent": false,
+  "judgment_date": null,
+  "latitude": null,
+  "longitude": null
 }
 ```
 
@@ -562,8 +582,10 @@ Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
 > DELETE /api/editors/mesures/:id
 
 ```javascript
-const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w"
-const emjpmApiMesuresUrl = "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures/1"
+const token =
+  "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w";
+const emjpmApiMesuresUrl =
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures/1";
 
 const response = await fetch(emjpmApiMesuresUrl, {
   method: "delete",
@@ -577,36 +599,36 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-   "mesures":[
-      {
-         "id":87243,
-         "code_postal":null,
-         "ville":"Paris",
-         "etablissement":null,
-         "mandataire_id":877,
-         "created_at":"2019-10-21T09:57:36.723Z",
-         "annee":"2000",
-         "type":"Tutelle aux biens et à la personne",
-         "date_ouverture":"2019-01-08T00:00:00.000Z",
-         "residence":"En établissement",
-         "civilite":"H",
-         "status":"Mesure en cours",
-         "extinction":null,
-         "etablissement_id":null,
-         "ti_id":null,
-         "numero_dossier":null,
-         "cabinet":null,
-         "reason_extinction":null,
-         "numero_rg":null,
-         "department_id":71,
-         "antenne_id":null,
-         "service_id":null,
-         "is_urgent":false,
-         "judgment_date":null,
-         "latitude":null,
-         "longitude":null
-      }
-   ]
+  "mesures": [
+    {
+      "id": 87243,
+      "code_postal": null,
+      "ville": "Paris",
+      "etablissement": null,
+      "mandataire_id": 877,
+      "created_at": "2019-10-21T09:57:36.723Z",
+      "annee": "2000",
+      "type": "Tutelle aux biens et à la personne",
+      "date_ouverture": "2019-01-08T00:00:00.000Z",
+      "residence": "En établissement",
+      "civilite": "H",
+      "status": "Mesure en cours",
+      "extinction": null,
+      "etablissement_id": null,
+      "ti_id": null,
+      "numero_dossier": null,
+      "cabinet": null,
+      "reason_extinction": null,
+      "numero_rg": null,
+      "department_id": 71,
+      "antenne_id": null,
+      "service_id": null,
+      "is_urgent": false,
+      "judgment_date": null,
+      "latitude": null,
+      "longitude": null
+    }
+  ]
 }
 ```
 
