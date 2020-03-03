@@ -599,10 +599,11 @@ E.g. settles successfully
         "amount": 100
       },
       "paymentsSummary": {
-        "totalPayments": 6,
+        "totalPayments": 10,
         "totalFailed": 1,
         "totalDistributed" : 2,
-        "totalPending": 3
+        "totalPending": 3,
+        "totalReceived": 4
       },
       "payTo": {
         "accountName": "name",
@@ -628,6 +629,7 @@ This event is fired two times in the lifecycle of a dividend post request:
 | totalPending        | Number    | Number     | The total individual batch payments waiting to be instructed. |
 | totalDistributed    | Number    | Number     | The total payments have been distributed.                     |
 | totalFailed         | Number    | Number     | Total failed batch payments                                   |
+| totalReceived       | Number    | Number     | Total batch payments has been received by the investors.      |
 
 ## BATCH_UPDATE
 
@@ -647,10 +649,11 @@ This event is fired two times in the lifecycle of a dividend post request:
         "currency": "GBP"
       },
       "paymentsSummary": {
-        "totalPayments": 6,
+        "totalPayments": 10,
         "totalFailed": 1,
         "totalDistributed" : 2,
-        "totalPending": 3
+        "totalPending": 3,
+        "totalReceived": 4
       },
       "payTo": {
         "accountName": "name",
@@ -673,6 +676,7 @@ This event is fired when an update related to a bulk payment request occurs. E.g
 | totalPending        | Number    | Number     | The total individual batch payments waiting to be instructed. |
 | totalDistributed    | Number    | Number     | The total payments have been distributed.                     |
 | totalFailed         | Number    | Number     | Total failed batch payments                                   |
+| totalReceived       | Number    | Number     | Total batch payments has been received by the investors.      |
 
 ## ACCOUNT_FEE_PROCESSED
 This is fired when account fees have been processed
