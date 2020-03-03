@@ -1071,6 +1071,21 @@ Returns the results of the SPARQL admin query in JSON format.
  ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
 ```
 
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'application/json'},
+)
+
+print(response.status_code)
+
+print(response.json())
+```
+
 # Plugins
 
 ### Rationale 
