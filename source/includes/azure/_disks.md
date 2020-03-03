@@ -119,7 +119,6 @@ Attributes | &nbsp;
 `dataDisk`<br/>*boolean* | Indication of whether the disk is a `DATA` disk. If `false` then it's an `OS` disk
 `isAttachedToInstance`<br/>*boolean* | An indication of whether the disk has been attached to an Azure instance
 
-
 <!-------------------- CREATE A DISK -------------------->
 
 #### Create a disk
@@ -166,3 +165,18 @@ Attributes | &nbsp;
 `sizeGb`<br/>*string* | The size of the disk
 `iops`<br/>*string* | The number of read/write operations per second on the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
 `throughputInMBps`<br/>*string* | The throughput of the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
+
+
+<!-------------------- DELETE A DISK -------------------->
+
+#### Delete a disk
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id</code>
+
+Destroy an existing disk. A disk can only be deleted if it's not attached to an [instance](#azure-instances).
