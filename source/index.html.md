@@ -105,7 +105,7 @@ In a web browser, visit
 
 ``` http://localhost:7777/ ```
 
-On the first startup, you will be taken to the [SynBioHub Setup Page](http://wiki.synbiohub.org/wiki/SynBioHub_Setup_Page), which enables basic setup of the site. After the first setup, the [Admin Portal](http://wiki.synbiohub.org/wiki/Admin_Portal) will allow admin users to update their site configuration. 
+On the first startup, you will be taken to the SynBioHub Setup Page, which enables basic setup of the site. After the first setup, the Admin Portal will allow admin users to update their site configuration. 
 
 ##### SendGrid email setup
 In order to enable SynBioHub to send account-related emails, you need a [SendGrid](https://sendgrid.com/) account and API key. Once you have created your account, you should click "Settings" in the left bar, then "API Keys". On the resulting page, click the "Create API Key" button in the upper-right corner, and give your new API key a name. You should see the key on the next page. Copy the key and paste it into the "SendGrid API Key" in the Mail page on the SynBioHub admin dashboard. Save the API key in SynBioHub and you are ready to begin sending email. 
@@ -234,6 +234,10 @@ If `user` is currently logged in, this post request will logout the user.
 ```
 
 # Search Endpoints
+
+The following endpoints are used to search within SynBioHub.
+
+<aside class="success">Note that the X-authorization header is not needed, but if specified, search will return information about both public and private objects.</aside>
 
 ## Search Metadata
 
@@ -601,6 +605,9 @@ print(response.json())
 
 # Download Endpoints
 
+The following endpoints are for downloading content from SynBioHub in various fomats.
+
+<aside class="success">Note that the X-authorization header is needed for downloading from private objects.</aside>
 
 ## Download Attachment
 
@@ -873,6 +880,8 @@ print(response.content)
 
 # Submission Endpoints
 
+<aside class="success">Note that the X-authorization header is requireed for all submission endpoints.</aside>
+
 ## Submit
 
 `POST <SynBioHub URL>/submit `
@@ -895,8 +904,11 @@ name |  the dcterms name string to assign to the submission
 description | the dcterms description string to assign to the submission
 citations | a list of comma separated pubmed IDs of citations to store with the submission
 overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists, '2' to merge and prevent if submission exists, '3' to merge and overwrite matching URIS
+0 creating a new collection that doens't exist. 1 if it does'nt exit
 file | contents of an SBOL2, SBOL1, GenBank, FASTA, GFF3, ZIP, or COMBINE Archive file
-rootCollections | If submitting the contents into the file, provide the previous parameters, otherwise, only provide a URI into rootCollections to append into an existing collection
+rootCollections | If creating a collection, provide the id, viersion ,name , descripton, citations. Overwrite merge of 0 or 1. If 
+
+If submitting the contents into the file, provide the previous parameters, otherwise, only provide a URI into rootCollections to append into an existing collection
 
 ## Remove Collection
 
