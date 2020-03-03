@@ -859,9 +859,11 @@ The trade limits JSON structure format:
 
 ```json
 {
-    "rate_limit_per_minute": 42,
-    "rate_limit_per_hour": "None",
-    "rate_limit_per_hour": "None"
+  "num_quotes_limit": {
+    "per_hour": 60, 
+    "per_minute": 24, 
+    "per_second": 5
+  }
 }
 ```
 
@@ -869,9 +871,9 @@ The trading rate limit for each customer will be returned by our API in the foll
 
 | Parameter                   | Type                              | Description |
 | ---------                   | ------------------------------    | ------------|
-| **rate_limit_per_minute**   | INTEGER                           | Limit on no. of trades per minute
-| **rate_limit_per_hour**     | INTEGER                           | Limit on no. of trades per hour
-| **rate_limit_per_day**      | INTEGER                           | Limit on no. of trades per day     
+| **per_hour**   | INTEGER                           | Limit on no. of trades per hour
+| **per_minute**     | INTEGER                           | Limit on no. of trades per minute
+| **per_second**      | INTEGER                           | Limit on no. of trades per second     
 
 HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
 
@@ -881,35 +883,40 @@ HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
 > Response Sample
 
 ```json
-{
-    "api": [
-      {
-        "base_token": "BTC",
-        "quote_token": "USD",
-        "min_trade_size": 20,
-        "max_trade_size": 300
-      }
-    ],
-    "browser": [
-      {
-        "base_token": "ETH",
-        "quote_token": "USDT",
-        "min_trade_size": 50,
-        "max_trade_size": 250
-      }
-    ]
-}
+[
+  {
+    "platform": "browser", 
+    "token_pair": {
+      "base_token": "BTC", 
+      "quote_token": "USD"
+    }, 
+    "trade_size_limits_in_quote_token": {
+      "max": 50.00000000, 
+      "min": 1.00000000
+    }
+  }, 
+  {
+    "platform": "api", 
+    "token_pair": {
+      "base_token": "ETH", 
+      "quote_token": "USD"
+    }, 
+    "trade_size_limits_in_quote_token": {
+      "max": 50.00000000, 
+      "min": 1.00000000
+    }
+  }
+]
 ```
 
 The minimum and maximum trade size limit for each customer will be returned by our API in the following format:
 
 | Parameter                      | Type                              | Description |
 | ---------                      | ------------------------------    | ------------|
+| **platform**                   | STR                               | Trading Platform (API or Browser)
 | **base_token**                 | STR                               | Base Token
 | **quote_token**                | STR                               | Quote Token
-| **midas_min_trade_limit**      | INTEGER                           | Minimum allowed trades through browser    
-| **midas_max_trade_limit**      | INTEGER                           | Maximum allowed trades through browser
-| **api_min_trade_limit**        | INTEGER                           | Minimum allowed trades through api
-| **api_max_trade**              | INTEGER                           | Maximum allowed trades through api      
+| **min**                        | DECIMAL                           | Minimum allowed trades through given platform   
+| **max**                        | DECIMAL                           | Maximum allowed trades through given platform
 
 HTTP Request at : `GET https://api.falconx.io/v1/trade_sizes`
