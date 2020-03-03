@@ -184,24 +184,37 @@ which will restart the application with any change to the JavaScript source.
 
 ## Publishing Instance
 
-Nginx is used for the [reference instance](https://synbiohub.org/). [NGINX configuration instructions](http://wiki.synbiohub.org/wiki/NGINX_configuration_instructions) 
-
+Nginx is used for the [reference instance](https://synbiohub.org/).
 ## NGINX configuration
 
 Instructions for managing nginx server blocks can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04#step-three-create-server-block-files-for-each-domain).
 
-The server block for a SynBioHub installation listening on port 7777 is [here](http://wiki.synbiohub.org/wiki/NGINX_configuration_instructions).
+The server block for a SynBioHub installation listening on port 7777 is to the right 
 
+```
+client_max_body_size 800m;
+proxy_connect_timeout 6000;
+proxy_send_timeout 6000;
+proxy_read_timeout 6000;
+send_timeout 6000;
+server {
+        listen 80;
+        server_name _;
 
+        location / {
+                proxy_set_header X-Real-IP  $remote_addr;
+                proxy_set_header X-Forwarded-Server $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $host;
+                proxy_pass http://127.0.0.1:7777$request_uri;
+        }
+}
+```
 This is most useful when you would like to host SynBioHub on a subdomain alongside other content (using nginx as an HTTP proxy) or using HTTPS. 
 
-
-
- 
+# User Endpoints
 
 <aside class="success">Note that the X-authorization header is not needed for public objects, but is required for private objects unless stated otherwise.</aside>
-
-# User Endpoints
 
 Endpoints that control user related functions
 
