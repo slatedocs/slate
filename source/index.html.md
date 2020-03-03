@@ -299,11 +299,11 @@ The key/value pair can be one of the following:
 
 Key/value pair | Description
 --------- | -----------
-objectType=value | The type of object to search for (e.g. objectType=ComponentDefinition&)
-sbolTag=value |  A tag in the SBOL namespace to search for (e.g. role=<http://identifiers.org/so/SO:0000316>&)
-collection=value | Matches objects that are members of the specified collection (e.g., collection=<http://synbiohub.org/public/igem/igem_collection>&)
-dcterms:tag=value | A tag in the dcterms namespace to search for (e.g. dcterms:title='pLac'&) - note this requires an exact match
-namespace/tag=value | A full namespace with tag separated by appropriate delimiter (e.g. <http://sbols.org/v2#role>=<http://identifiers.org/so/SO:0000316>&)
+objectType=value | The type of object to search for ( objectType=ComponentDefinition&)
+sbolTag=value |  A tag in the SBOL namespace to search for ( role=<http://identifiers.org/so/SO:0000316>&)
+collection=value | Matches objects that are members of the specified collection (, collection=<http://synbiohub.org/public/igem/igem_collection>&)
+dcterms:tag=value | A tag in the dcterms namespace to search for ( dcterms:title='pLac'&) - note this requires an exact match
+namespace/tag=value | A full namespace with tag separated by appropriate delimiter ( <http://sbols.org/v2#role>=<http://identifiers.org/so/SO:0000316>&)
 
 After the key/value pairs, an optional search string can be provided that will be used to search for partial matches in the displayId, name, or description fields.
 
@@ -347,7 +347,7 @@ print(response.content)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections`
 ```
 
 ```javascript
@@ -370,7 +370,7 @@ fetch(Url,otherPram)
 `GET <SynBioHub URL>/rootCollections`
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/igem_collection/1/rootCollections
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/igem_collection/1/rootCollections
 ```
 
 ```python
@@ -419,7 +419,7 @@ print(response.content)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins`
 ```
 
 ```javascript
@@ -456,7 +456,7 @@ print(response.content)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar`
 ```
 
 ```javascript
@@ -492,7 +492,7 @@ print(response.content)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses`
 ```
 
 
@@ -531,7 +531,7 @@ print(response.content)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'`
 ```
 
 ```javascript
@@ -558,7 +558,7 @@ Note that the X-authorization header is optional, but if provided, the search co
 Returns the number of objects within a specified collection
 
 ```plaintext
-e.g. curl -X GET https://synbiohub.org/Collection/Count
+ curl -X GET https://synbiohub.org/Collection/Count
 ```
 
 ```python
@@ -598,7 +598,7 @@ Note that you can replace `<ObjectType>` with any object type, such as `Componen
 Returns the results of the SPARQL query in JSON format. 
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: application/json" 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
+ `curl -X GET -H "Accept: application/json" 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
 ```
 
 ```python
@@ -658,7 +658,7 @@ print(response.content)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download -O --compressed
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download -O --compressed
 ```
 
 
@@ -683,7 +683,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbol`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbol`
 ```
 
 ```python
@@ -722,7 +722,7 @@ fetch(Url,otherPram)
 
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbolnr`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbolnr`
 ```
 
 ```python
@@ -758,7 +758,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/metadata`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/metadata`
 ```
 
 ```python
@@ -798,7 +798,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb`
 ```
 
 ```python
@@ -836,7 +836,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta`
 ```
 
 ```python
@@ -911,8 +911,8 @@ Query Parameters
 
 Parameter | Description
 --------- | -----------
-id | a user-defined string identifier for the submission; alphanumeric and underscores only, e.g. `BBa_R0010`
-version |  the version string to associate with the submission, e.g. `1`
+id | a user-defined string identifier for the submission; alphanumeric and underscores only,  `BBa_R0010`
+version |  the version string to associate with the submission,  `1`
 name |  the dcterms name string to assign to the submission
 description | the dcterms description string to assign to the submission
 citations | a list of comma separated pubmed IDs of citations to store with the submission
@@ -944,7 +944,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/removeCollection`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/removeCollection`
 ```
 
 ```python
@@ -982,7 +982,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
-e.g. `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove`
+ `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove`
 ```
 
 ```python
