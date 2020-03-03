@@ -97,7 +97,9 @@ includes:
   - azure/disks
   - azure/networking
   - azure/networks
+  - azure/subnets
   - azure/network_security_groups
+  - azure/security_rules
   - masterportal
   - masterportal/applications
 
