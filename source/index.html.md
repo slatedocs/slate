@@ -700,7 +700,7 @@ print(response.content)
 
 ```
 
-## Download SBOLnr
+## Download SBOL Non-Recursive
 
 `GET <URI>/sbolnr`
 
@@ -1039,6 +1039,12 @@ print(response.content)
 
 
 # Edit Endpoints
+
+## Edit Mutable Descriptions
+
+```plaintext
+curl -X POST -H "Accept: text/plan" -H "X-authorization:<>" -d "uri=<>&value=<>" http://synbiohub.org/updateMutableDescription
+```
 
 
 # Attachment Endpoints
