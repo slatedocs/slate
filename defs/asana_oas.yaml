@@ -1467,6 +1467,7 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EnumOption'
                 - type: object
+                  readOnly: true
                   description: >-
                     *Conditional*. Only relevant for custom fields of type
                     `enum`. This object is the chosen value of an enum custom
