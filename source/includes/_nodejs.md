@@ -23,6 +23,28 @@ Scout provides instrumentation for:
 - [Mustache](https://github.com/janl/mustache.js)
 - [EJS](https://www.npmjs.com/package/ejs)
 
+For all integrations, `scout` should be required as early as possible:
+
+```javascript
+const scout = require("@scout_apm/scout-apm");
+```
+
+Requiring `scout` before other dependencies ensures that it is set up for use with your other dependencies. For example Postgres (or some library that depends on `pg`):
+
+```javascript
+const scout = require("@scout_apm/scout-apm");
+const pg = require("pg");
+```
+
+In a [Typescript](https://www.typescriptlang.org/) project, if you do not import *all* of `scout`, you will need to run `setupRequireIntegrations` with the packages you want to set up:
+
+```javascript
+import { setupRequireIntegrations } from "@scout_apm/scout-apm"; // alternatively, `import "@scout_apm/scout-apm";`
+setupRequireIntegrations(["pg"]);
+
+import { Client } from "pg";
+```
+
 <h3 id="nodejs-some-configuration-required">Some configuration required</h3>
 
 The libraries below require a small number of configuration updates. Click on
@@ -337,7 +359,7 @@ You can extend Scout to trace transactions outside our officially supported libr
 Asynchronous functionality can be marked as a transaction with code similar to the following:
 
 ```javascript
-scout.transaction("transaction-name", (finishTransaction) => {
+scout.api.WebTransaction.run("transaction-name", (finishTransaction) => {
    yourAsyncFunction()
    .then(() => finishTransaction())
    .catch(err => {
@@ -350,7 +372,7 @@ scout.transaction("transaction-name", (finishTransaction) => {
 For Asynchronous functionality in a callback-passing style:
 
 ```javascript
-scout.transaction("transaction-name", (finishTransaction) => {
+scout.api.WebTransaction.run("transaction-name", (finishTransaction) => {
    yourCallbackStyleAsyncFunction((err) => {
     if (err) {
       // error handling code goes here
@@ -365,7 +387,7 @@ scout.transaction("transaction-name", (finishTransaction) => {
 Synchronous functionality can be marked as transactions with code similar to the following:
 
 ```javascript
-scout.transactionSync("sync-transaction-name", () => {
+scout.api.WebTransaction.runSync("sync-transaction-name", () => {
   yourSyncFunction();
 });
 ```
@@ -408,7 +430,8 @@ Scout distinguishes between two types of transactions:
   "Background Jobs" area of the UI.
 
 ```javascript
-scout.transaction("GET /users", () => { ... your code ... });
+scout.api.WebTransaction.run("GET /users", () => { ... your code ... });
+scout.api.BackgroundTransaction.run("your-bg-transaction", () => { ... your code ... });
 ```
 
 <h3 id="nodejs-timing-blocks">Timing functions and blocks of code</h3>
@@ -425,16 +448,16 @@ Asynchronous functionality may be instrumented with code similar to the followin
 
 ```javascript
 // NOTE: The transaction is *implicit* inside of express route handlers, if you are using the express middleware
-scout.transaction("transaction-name", (finishTransaction) => {
+scout.api.WebTransaction.run("transaction-name", (finishTransaction) => {
   // Start the first instrumentation
-  const first = scout.instrument("instrument-name", (finishInstrument) => {
+  const first = scout.api.instrument("instrument-name", (finishInstrument) => {
     // instrument code
     return yourAsyncFunction()
         .then(() => finishInstrument());
   });
 
   // Start the second instrumentation
-  scout.instrument("instrument-name", (finishInstrument) => {
+  scout.api.instrument("instrument-name", (finishInstrument) => {
     // instrument code
     return yourAsyncFunction()
         .then(() => finishInstrument());
@@ -450,9 +473,9 @@ For Asynchronous functionality in a callback-passing style:
 
 ```javascript
 // NOTE: The transaction is *implicit* inside of express route handlers, if you are using the express middleware
-scout.transaction("transaction-name", (finishTransaction) => {
+scout.api.WebTransaction.run("transaction-name", (finishTransaction) => {
   // Start the first instrumentation
-  const first = scout.instrument("first-instrumentation", (finishFirst) => {
+  const first = scout.api.instrument("first-instrumentation", (finishFirst) => {
     // instrument code
     yourCallbackStyleAsyncFunction((err) => {
       if (err) {
@@ -463,7 +486,7 @@ scout.transaction("transaction-name", (finishTransaction) => {
       finishFirst();
 
       // Start a second instrumentation
-      const second = scout.instrument("second-instrumentation", (finishSecond) => {
+      const second = scout.api.instrument("second-instrumentation", (finishSecond) => {
         // instrument code
         yourCallbackStyleAsyncFunction((err) => {
           if (err) {
@@ -485,12 +508,12 @@ Synchronous functionality can be instrumented with code similar to the following
 
 ```javascript
 // NOTE: The transaction is *implicit* inside of express route handlers, if you are using the express middleware
-scout.transactionSync("sync-transaction-name", (finishTransaction) => {
-  scout.instrumentSync("first-instrumentation", () => {
+scout.api.WebTransaction.runSync("sync-transaction-name", (finishTransaction) => {
+  scout.api.instrumentSync("first-instrumentation", () => {
     yourSyncFunction();
   });
 
-  scout.instrumentSync("second-instrumentation", () => {
+  scout.api.instrumentSync("second-instrumentation", () => {
     yourSyncFunction();
   });
 });
@@ -527,8 +550,8 @@ const scout = require("@scout_apm/scout-apm");
 app.use(scout.expressMiddleware({ ... }));
 
 // Pseudo-code for the replaced handler
-scout.transaction("Controller/GET /", finishTransaction => { // transaction name format is `<kind>/<name>`
-  scout.instrument("Controller/GET /", finishSpan => { // instrumentation name format is `<kind>/<name>`
+scout.api.WebTransaction.run("Controller/GET /", finishTransaction => { // transaction name format is `<kind>/<name>`
+  scout.api.instrument("Controller/GET /", finishSpan => { // instrumentation name format is `<kind>/<name>`
     // the handler code
   });
 });
@@ -549,6 +572,34 @@ scout.transaction("Controller/GET /", finishTransaction => { // transaction name
   can be any json-able structure. High-cardinality fields like a user ID are
   permitted.
 
+<h2 id="nodejs-ignoring-transactions">Ignoring Transactions</h2>
+
+If you don't want to track the current transaction, at any point you can call `scout.api.ignoreTransaction()` to ignore it:
+
+```javascript
+const scout = require("@scout_apm/scout-apm");
+
+if (isHealthCheck) {
+  scout.api.ignoreTransaction_transaction()
+}
+```
+
+You can use this whether the transaction was started from a built-in integration or custom instrumentation.
+
+You can also ignore a set of URL path prefixes by configuring the `ignore` setting in your `ScoutConfiguration`:
+
+```javascript
+scout.buildScoutConfiguration({
+  ignore: ["/health-check/", "/admin/"],
+});
+```
+
+When specifying this as an environment variable, it should be a comma-separated list:
+
+```bash
+export SCOUT_IGNORE='/health-check/,/admin/'
+```
+
 <h2 id="nodejs-custom-context">Custom Context</h2>
 
 [Context](#context) lets you see the key attributes of requests. For example,
@@ -564,11 +615,8 @@ It's simple to add [custom context](#context) to your app:
 ```javascript
 // Express only: Add context inside a handler function
 app.get("/", (req, req) => {
-  req.scout.request.addContext("Key", "Value");
+  scout.api.addContext("Key", "Value"); // returns a Promise
 })
-
-// or if you have access to a request instance:
-request.addContext("Key", "Value");
 ```
 
 
