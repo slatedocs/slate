@@ -1176,7 +1176,7 @@ We typically respond within a couple of hours during the business day.
         To change that, directly configure the python <code>logging</code> module as per <a href="#python-logging">the below documentation</a>.
         <br>
         <br>
-        Prior to version 2.6.0, this was called `log_level`. That name now works as an alias, but is deprecated and will log a warning.
+        Prior to version 2.6.0, this was called `log_level`. That name now works as an alias, and takes precedence.
       </td>
       <td>
         <code>"info"</code>
