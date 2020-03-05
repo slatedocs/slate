@@ -137,6 +137,8 @@ This is fired whenever an investor's KYC status changes eg from `REFERRED` to `V
 ## INVESTOR_FUNDS_RECEIVED
 This is fired whenever investor funds are cleared into their account eg for a bank transfer.
 
+NOTE: The batch payments will not trigger this event but instead will trigger a `BATCH_UPDATE` event once all payments have been received. 
+
 ```json
 {
   "clientId": "string",
@@ -150,7 +152,8 @@ This is fired whenever investor funds are cleared into their account eg for a ba
       "accountNumber": "string",
       "sortCode": "string"
   },
-  "accountType": "string"
+  "accountType": "string",
+  "sourceType": "string"
 }
 ```
 
