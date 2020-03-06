@@ -228,45 +228,29 @@ The following requirements apply:
 * Key length is at least 2048 bits.
 * The public key is stored in PEM file format using a `.pem` file extension.
 
-**Endpoints for managing public keys**
+**Managing uploaded public keys**
 
-> Example of public key file uploading with cURL:
+The public keys management page can be accessed from the Public keys section of the Settings page in your TransferWise
+account.
 
-```bash
-$ curl -X POST https://api.sandbox.transferwise.tech/v1/public-keys \
-  -H 'Authorization: Bearer <your api token>' \
-  -F 'file=@/path/to/my_public_key.pem;type=application/x-pem-file'
-```
-> Note, that the public key file extension is `.pem` and content type is `application/x-pem-file`. 
-
-* Uploading a public key: 
-
-    **`POST https://api.sandbox.transferwise.tech/v1/public-keys`**
-
-* Listing uploaded keys:
-
-    **`GET https://api.sandbox.transferwise.tech/v1/public-keys`**
-  
-* Deleting a key:
-
-    **`DELETE https://api.sandbox.transferwise.tech/v1/public-keys/<key_id>`**
+While adding a new public key you'll be prompted for 2FA.
 
 Note that to prevent abuse the number of public keys you can have stored is limited to 5.
 
 **Signing the data**
 
-The digital signature algorithm we use is *SHA1 with RSA* (SHA1 hash of the data is signed with RSA). There are 
+The digital signature algorithm we use is *SHA256 with RSA* (SHA256 hash of the data is signed with RSA). There are 
 different ways of creating the required digital signature, for example:
 
-> The shell one-liner to sign a string, encode it with Base64 and output to standard output:
+> The shell one-liner to sign a string, encode it with Base64 and print to standard output:
 
 ```bash
-$ printf '<string to sign>' | openssl sha1 -sign <path to private key.pem> | base64 -b 0
+$ printf '<string to sign>' | openssl sha256 -sign <path to private key.pem> | base64 -b 0
 ```
 
 * OpenSSL
 
-    The CLI toolkit command is `openssl sha1 -sign private.pem data.bin` 
+    The CLI toolkit command is `openssl sha256 -sign private.pem data.bin` 
     (consult the openssl man pages for additional info if required).
     Note that the signature returned by OpenSSL (to standard output in the example above) is in binary format and to 
     send it over HTTP it should be encoded to [Base64](https://en.wikipedia.org/wiki/Base64)  (RFC 4648)).
@@ -309,8 +293,8 @@ x-2fa-approval: be2f6579-9426-480b-9cb7-d8f1116cc8b9
 > 3\. Client signs the one-time token from the response using OpenSSL:
 
 ```bash
-$ printf 'be2f6579-9426-480b-9cb7-d8f1116cc8b9' | openssl sha1 -sign private.pem | base64 -b 0
-RjXBO5SpAuMGdgTyqPryOt8AyIKY0t5gHqj36MzR2UwH9SvSY1V1wKIQCqXRvLMLyWBGXDkLvv9JdAni+H87k3hsClRiyfpdzcg3uOP+d/jSagNDSjHixPh4/rWQh+eEhBRo4V+pPBH+r5APtIwFY/fvvdMbZ/QnnmcPHxi/t7uS7+qvRZCC17q47T0ZpSwEK9x+nG/wcJ4S4Yrk0E2yQlLz8F35C+E2gt/KGTt6Tf5z6GonM1H2gJWoHpxuOUomh09b/k3teLjIfEirWmnO2XuOe0oDCUH8i10dokzk+QrM4t/Yv/Rb18JvTeugDAKMydGo7KTgqKGCXZauicX0Ew==
+$ printf 'be2f6579-9426-480b-9cb7-d8f1116cc8b9' | openssl sha256 -sign private.pem | base64 -b 0
+1ZCN1MIDdmonOJvNQvsCxRHMXihsqZ/xNvybhb3oYNQgRkyj2P0hCVVaWUbr313LicFGwRTW8kcxTwvpXQdeurGtcN2zGoweVTopI06dmJ8vQMfTkrqjMZG3UUX0EcU+tJaDlBemvS7gv2aNGyHDMiRPZOZRPA6TH0LPJvLdVRMsEbXrbj8HqEopczmf1jChRxftmg2XoeQUMhhlOiSjSbJmlyAIegioI40/BTii+Q7f/HWZqk6N2vmHWPomwHQMz8Hy6frLYJb5tchjg/i+RRvZjEVbUH53QfG8Tbmx4JM/wN1LYeR8rebSdGEpLOd8QRcjuDur54qHNWXvKRM8aQ==
 ```
 
 > with `private.pem` private key:
