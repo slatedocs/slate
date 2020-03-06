@@ -184,7 +184,7 @@ Destroy an existing disk. A disk can only be deleted if it's not attached to an 
 
 <!-------------------- DETACH A DISK -------------------->
 
-#### Detach a disk from an instance
+#### Detach a disk
 ```shell
 curl -X POST \
    -H "Content-Type: application/json" \
@@ -196,4 +196,4 @@ curl -X POST \
 ```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=detach</code>
 
-Detach an existing disk from a given [instance](#gcp-instances).
+Detach an existing disk from a given [instance](#azure-instances).
