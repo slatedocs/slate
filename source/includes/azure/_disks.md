@@ -166,6 +166,54 @@ Attributes | &nbsp;
 `iops`<br/>*string* | The number of read/write operations per second on the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
 `throughputInMBps`<br/>*string* | The throughput of the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
 
+<!-------------------- Edit A DISK -------------------->
+
+#### Edit a disk
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body"
+   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
+
+# Request Example:
+```
+```json
+{
+  "type":"standardssd_lrs",
+  "sizeGb":"200",
+}
+```
+```json
+{
+  "iops": "40",
+  "throughputInMBps": "200"
+}
+```
+```shell
+# Response Example
+```
+```json
+{
+  "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id</code>
+
+_(Use the [task API](#tasks) to get the status of the operation)_
+
+Edit a disk in an [environment](#administration-environments)
+
+Optional | &nbsp;
+---------- | -----
+`type`<br/>*string* | The managed disk type. Can only be one of the following:<br>`premium_lrs`, `standard_lrs`, `standardssd_lrs`<br>_Updating the type of an `Ultra` disk is not allowed_<br>_Updating the type to `ultrassd_lrs` is also not allowed_
+`sizeGb`<br/>*string* | The size of the disk<br>_Disk size can only be increased during an update_<br>_Updating the disk size of Ultra disks are not allowed_
+`iops`<br/>*string* | The number of read/write operations per second on the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
+`throughputInMBps`<br/>*string* | The throughput of the disk<br>_`(Only supported for disks of type ultrassd_lrs)`_
+
+**Note:** _If the disk is attached to an instance, then the attached instance will be deallocated (removed from the host hypervisor) before the disk update and will be restored back to its original power state._
 
 <!-------------------- DELETE A DISK -------------------->
 
