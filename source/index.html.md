@@ -187,7 +187,7 @@ API will return a list of [Token Pair](#token-pair) JSON structure.
 
 # Get Quote
 
-Client sends request to get quote to this endpoint. The response contains the timestamp until which the quote is valid. Only a valid quote can be executed. We allow token quantity upto three decimal places.
+Client sends request to get quote to this endpoint. The response contains the timestamp until which the quote is valid. Only a valid quote can be executed.
 
 ## HTTP Request
 `POST https://api.falconx.io/v1/quotes`
@@ -214,7 +214,7 @@ Client sends request to get quote to this endpoint. The response contains the ti
 | Parameter  | Type                                | Description |
 | ---------  | ----------------------------------- | ------------|
 | **token_pair** | JSON                                | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
-| **quantity**   | JSON                                | Requested quantity (See [Quantity](#quantity)) |
+| **quantity**   | JSON                                | Requested quantity upto 3 decimal places (See [Quantity](#quantity)) |
 | **side**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
 
 
@@ -867,13 +867,13 @@ The trade limits JSON structure format:
 }
 ```
 
-The trading rate limit for each customer will be returned by our API in the following format:
+Rate limit for quoting will be returned in  the following format:
 
 | Parameter                   | Type                              | Description |
 | ---------                   | ------------------------------    | ------------|
-| **per_hour**   | INTEGER                           | Limit on no. of trades per hour
-| **per_minute**     | INTEGER                           | Limit on no. of trades per minute
-| **per_second**      | INTEGER                           | Limit on no. of trades per second     
+| **per_hour**   | INTEGER                           | Limit on no. of quotes per hour
+| **per_minute**     | INTEGER                           | Limit on no. of quotes per minute
+| **per_second**      | INTEGER                           | Limit on no. of quote per second     
 
 HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
 
@@ -891,8 +891,8 @@ HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
       "quote_token": "USD"
     }, 
     "trade_size_limits_in_quote_token": {
-      "max": 50.00000000, 
-      "min": 1.00000000
+      "max": 500000.00, 
+      "min": 4000.00
     }
   }, 
   {
@@ -902,21 +902,21 @@ HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
       "quote_token": "USD"
     }, 
     "trade_size_limits_in_quote_token": {
-      "max": 50.00000000, 
-      "min": 1.00000000
+      "max": 500000.00, 
+      "min": 1000.00
     }
   }
 ]
 ```
 
-The minimum and maximum trade size limit for each customer will be returned by our API in the following format:
+The API will return the minimum and maximum trade size for a token pair in the following format:
 
 | Parameter                      | Type                              | Description |
 | ---------                      | ------------------------------    | ------------|
 | **platform**                   | STR                               | Trading Platform (API or Browser)
 | **base_token**                 | STR                               | Base Token
 | **quote_token**                | STR                               | Quote Token
-| **min**                        | DECIMAL                           | Minimum allowed trades through given platform   
-| **max**                        | DECIMAL                           | Maximum allowed trades through given platform
+| **min**                        | DECIMAL                           | Minimum allowed trade size in terms of quote token
+| **max**                        | DECIMAL                           | Maximum allowed trade size in terms of quote token
 
 HTTP Request at : `GET https://api.falconx.io/v1/trade_sizes`
