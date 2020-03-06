@@ -871,9 +871,9 @@ Rate limit for quoting will be returned in  the following format:
 
 | Parameter                   | Type                              | Description |
 | ---------                   | ------------------------------    | ------------|
-| **per_hour**   | INTEGER                           | Limit on no. of quotes per hour
-| **per_minute**     | INTEGER                           | Limit on no. of quotes per minute
-| **per_second**      | INTEGER                           | Limit on no. of quote per second     
+| **per_hour**   | INTEGER                           | Limit on no. of quote requests per hour
+| **per_minute**     | INTEGER                           | Limit on no. of quote requests per minute
+| **per_second**      | INTEGER                           | Limit on no. of quote requests per second     
 
 HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
 
