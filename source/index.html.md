@@ -54,7 +54,7 @@ To score a URL, it first needs to be submitted.
 ```python
 import requests
 
-url = "https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url"
+url = "https://api.factmata.com/api/v0.1/score/url"
 
 data = {
   'url': 'www.example.com/some-page'
@@ -66,7 +66,7 @@ res = requests.post(url, headers=headers, json=data)
 ```
 
 ```shell
-curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url?url=https://example.com/page' \
+curl 'https://api.factmata.com/api/v0.1/score/url?url=https://example.com/page' \
   -X POST \
   -H "Content-Type: application/json" \
   -H "x-api-key: API_KEY" 
@@ -92,7 +92,7 @@ STATUS: 200
 
 ### HTTP Request
 
-`POST https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url/?url=www.example.com/some-page`
+`POST https://api.factmata.com/api/v0.1/score/url/?url=www.example.com/some-page`
 
 ### Request Payload
 
@@ -121,7 +121,7 @@ using this API.
 ```python
 import requests
 
-url = "https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url/"
+url = "https://api.factmata.com/api/v0.1/score/url/"
 
 data = {
   'url': 'www.example.com/some-page'
@@ -135,7 +135,7 @@ res = requests.get(url, headers=headers, params=data)
 ```
 
 ```shell
-curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url?url=https://example.com/page' \
+curl 'https://api.factmata.com/api/v0.1/score/url?url=https://example.com/page' \
   -X GET \
   -H "Content-Type: application/json" \
   -H "x-api-key: API_KEY" 
@@ -224,7 +224,7 @@ STATUS: 202
 
 ### HTTP Request
 
-`GET https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url/?url=www.example.com/some-page&partial_results=False`
+`GET https://api.factmata.com/api/v0.1/score/url/?url=www.example.com/some-page&partial_results=False`
 
 Fetching the scores has the following use cases:
 
@@ -275,7 +275,7 @@ To score domains, they first needs to be submitted.
 ```python
 import requests
 
-url = "https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain"
+url = "https://api.factmata.com/api/v0.1/score/domain"
 
 data = {
   'domain': [
@@ -292,7 +292,7 @@ res = requests.post(url, headers=headers, json=data)
 ```
 
 ```shell
-curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain' \
+curl 'https://api.factmata.com/api/v0.1/score/domain' \
   --data '{"domain": ["www.example.com", "example.com"], "threshold": 5, "crawl_number": 100}' \
   -X POST \
   -H "Content-Type: application/json" \
@@ -328,7 +328,7 @@ STATUS: 406
 
 ### HTTP Request
 
-`POST https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/
+`POST https://api.factmata.com/api/v0.1/score/domain/
 
 ### Request Payload
 
@@ -369,7 +369,7 @@ using this API.
 ```python
 import requests
 
-url = "https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/"
+url = "https://api.factmata.com/api/v0.1/score/domain/"
 
 data = {
   'domain': [
@@ -386,7 +386,7 @@ res = requests.get(url, headers=headers, params=data)
 ```
 
 ```shell
-curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/?domain='www.example.com'&domain='example.com'' \
+curl 'https://api.factmata.com/api/v0.1/score/domain/?domain='www.example.com'&domain='example.com'' \
   -H "x-api-key: API_KEY" 
 ```
 
@@ -395,7 +395,7 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 ```python
 import requests
 
-url = "https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/"
+url = "https://api.factmata.com/api/v0.1/score/domain/"
 
 data = {
   'domain': [
@@ -413,7 +413,7 @@ res = requests.post(url, headers=headers, params=data)
 ```
 
 ```shell
-curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/' \
+curl 'https://api.factmata.com/api/v0.1/score/domain/' \
   --data '{"domain": ["www.example.com", "example.com"], "report": true}' \
   -X POST \
   -H "Content-Type: application/json" \
@@ -519,7 +519,7 @@ curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1
 
 ### HTTP Request
 
-`GET https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/domain/?domain="www.example.com"&domain="example.com"`
+`GET https://api.factmata.com/api/v0.1/score/domain/?domain="www.example.com"&domain="example.com"`
 
 Fetching the scores has the following use cases:
 
