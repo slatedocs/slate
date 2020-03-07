@@ -293,7 +293,8 @@ $data = array(
     'firstname' => 'Jim',
     'lastname'  => 'Contact',
     'email'     => 'jim@his-site.com',
-    'ipAddress' => $_SERVER['REMOTE_ADDR']
+    'ipAddress' => $_SERVER['REMOTE_ADDR'],
+    'overwriteWithBlank' => true,
 );
 
 $contact = $contactApi->create($data);
@@ -312,6 +313,7 @@ Name|Description
 ipAddress|IP address to associate with the contact
 lastActive|Date/time in UTC; preferablly in the format of Y-m-d H:m:i but if that format fails, the string will be sent through PHP's strtotime then formatted
 owner|ID of a Mautic user to assign this contact to
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 
@@ -328,7 +330,7 @@ Same as [Get Contact](#get-contact).
 $id   = 1;
 $data = array(
     'email'     => 'jim-new-address@his-site.com',
-    'ipAddress' => $_SERVER['REMOTE_ADDR']
+    'ipAddress' => $_SERVER['REMOTE_ADDR'],    
 );
 
 // Create new a contact of ID 1 is not found?
@@ -359,6 +361,7 @@ Name|Description
 ipAddress|IP address to associate with the contact
 lastActive|Date/time in UTC; preferably in the format of Y-m-d H:m:i but if that format fails, the string will be sent through PHP's strtotime then formatted
 owner|ID of a Mautic user to assign this contact to
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 
