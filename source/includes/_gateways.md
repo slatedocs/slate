@@ -12,17 +12,16 @@ You can query the API for a list of all your gateways, as well as an individual 
 Parameter | Type | Description
 --------- | ---- | -----------
 id | uuid | The ID of the Gateway
-location | string | The address of the location of the Gateway
-ip_address | string | The ip address of the Gateway
-status | string | The connectivity status of the Gateway
 devices | array | The associated devices of the Gateway
+name | string | The name of the Gateway
+status | string | The connectivity status of the Gateway
 
 ## Get All Gateways
 
 ```shell
 curl -X GET \
   -u "${YOUR_API_KEY}:" \
-  "https://getweaver.io/v1/gateways"
+  "https://api.getweaver.io/v1/gateways"
 ```
 
 ```ruby
@@ -35,7 +34,7 @@ headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = 'https://getweaver.io/v1/gateways'
+url = 'https://api.getweaver.io/v1/gateways'
 
 RestClient.get(url, headers: headers)
 ```
@@ -46,15 +45,22 @@ RestClient.get(url, headers: headers)
 [
     {
         "id": "486044af-5b15-436e-a356-d5f28c28f22a",
-        "location": "650 Valencia St, San Francisco CA",
-        "status": "online",
-        "ip_address": "198.27.188.234"
+        "devices": [
+           {
+               "id": "70354027-dcfa-48aa-acb1-9b79fd56b485",
+               "name": "Kwikset914 5c:a1:0",
+               "manufacturer": "Kwikset",
+               "model": "914"
+           }
+        ],
+        "name": "650 Valencia",
+        "status": "online"
     },
     {
         "id": "1996c71c-09e6-454a-9d0b-efc214231907",
-        "location": "538 Folsom St, San Francisco CA",
-        "status": "offline",
-        "ip_address": "112.27.158.932"
+        "devices": [],
+        "name": "538 Folsom - Unit 20",
+        "status": "offline"
     }
 ]
 ```
@@ -70,7 +76,7 @@ This endpoint retrieves all of your organization's Weaver Gateways.
 ```shell
 curl -X GET \
   -u "${YOUR_API_KEY}:" \
-  "https://getweaver.io/v1/gateways/${GATEWAY_ID}"
+  "https://api.getweaver.io/v1/gateways/${GATEWAY_ID}"
 ```
 
 ```ruby
@@ -83,7 +89,7 @@ headers = {
   'Authorization': 'Token #{USER_AUTH_TOKEN}'
 }
 
-url = "https://getweaver.io/v1/gateways/#{GATEWAY_ID}"
+url = "https://api.getweaver.io/v1/gateways/#{GATEWAY_ID}"
 
 RestClient.get(url, headers: headers)
 ```
@@ -93,82 +99,24 @@ RestClient.get(url, headers: headers)
 ```json
 {
     "id": "486044af-5b15-436e-a356-d5f28c28f22a",
-    "location": "1495 Valencia St, San Francisco CA",
-    "status": "online",
-    "ip_address": "198.27.188.234",
     "devices": [
-        {
-            "id": "9980a513-7a7b-434c-801f-27008fd0fcda",
-            "manufacturer": "Kwikset",
-            "name": "SMARTCODE_DEADBOLT_10",
-            "supported_commands": [
-                "unlock",
-                "lock",
-                "clear_all_codes",
-                "set_code"
-            ]
-        }
-    ]
+       {
+           "id": "70354027-dcfa-48aa-acb1-9b79fd56b485",
+           "name": "Kwikset914 5c:a1:0",
+           "manufacturer": "Kwikset",
+           "model": "914"
+       }
+    ],
+    "name": "650 Valencia",
+    "status": "online"
 }
 ```
 
-This endpoint retrieves a specific gateway and its associated devices. Note that each listed device will also list its supported commands. Please refer to the command section to see how to issue commands to a device
+This endpoint retrieves a specific gateway and its associated devices.
 
 ### HTTP Request
 
 `GET /v1/gateways/<GATEWAY_ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-GATEWAY_ID | The ID of the gateway to retrieve
-
-## Pair New Device to Gateway
-
-```shell
-curl -X POST \
-  -u "${YOUR_API_KEY}:" \
-  "https://getweaver.io/v1/gateways/${GATEWAY_ID}/pair_devices"
-```
-
-```ruby
-require 'base64'
-require 'rest-client'
-
-
-token = Base64.strict_encode64("YOUR_API_KEY:")
-headers = {
-  'Authorization': 'Token #{USER_AUTH_TOKEN}'
-}
-
-url = 'https://getweaver.io/v1/gateways/${GATEWAY_ID}/pair_devices'
-
-RestClient.post(url, headers: headers)
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "id": "1996c71c-09e6-454a-9d0b-efc214231907",
-    "location": "538 Folsom St, San Francisco CA",
-    "status": "online",
-    "ip_address": "112.27.158.932"
-}
-```
-
-To connect a device to a gateway, you need to put the gateway into pairing mode and manually add the end devices.
-
-When the end devices join your Weaver Gateway's network, the Gateway will automatically register them to the Weaver API.
-
-Once you issue the request, the Gateway will transition into a `pairing` status.
-
-<aside class="">You cannot add devices using just the REST API. Please refer to the end device's user manual to find the manual pairing instructions.</aside>
-
-### HTTP Request
-
-`POST /v1/gateways/<GATEWAY_ID>/pair_devices`
 
 ### URL Parameters
 
