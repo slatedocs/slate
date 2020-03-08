@@ -226,10 +226,15 @@ DEVICE_ID | The ID of the device you're commanding
 
 ### Query Parameters
 
-Parameter | Type | Required | Default | Description
---------- | ---- | -------- | ------- | -----------
-code | String | Required | n/a | 4 to 8 digit number code, leading '0' is okay
-slot_id | integer | Optional | 1 | ID of Code slot to be programmed in, between 1 - 10
+Parameter | Type | Description
+--------- | ---- | -----------
+code | String | Code to be programmed
+slot_id | integer | ID of the Code slot to be programmed in
+
+<aside class="notice">
+Please refer to the Device's Action object for details on each input's
+validation requirements.
+</aside>
 
 
 ## Clear a Pin Code
@@ -290,6 +295,11 @@ DEVICE_ID | The ID of the device you're commanding
 
 ### Query Parameters
 
-Parameter | Type | Required | Default | Description
---------- | ---- | -------- | ------- | -----------
-slot_id | integer | Optional | 1 | ID of Code slot to be programmed in, between 1 - 10
+Parameter | Type | Description
+--------- | ---- | -----------
+slot_id | integer | ID of Code slot to be programmed in
+
+<aside class="notice">
+Please refer to the Device's Action object for details on each input's
+validation requirements.
+</aside>
