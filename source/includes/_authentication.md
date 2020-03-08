@@ -29,9 +29,9 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("YOUR_API_KEY:")
+token = Base64.strict_encode64("#{YOUR_API_KEY}:")
 headers = {
-  'Authorization': token
+  "Authorization": "Basic #{token}"
 }
 
 url = 'https://api.getweaver.io/v1/gateways'
