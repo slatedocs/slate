@@ -1,4 +1,5 @@
 
+
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
 
@@ -891,7 +892,7 @@ p JSON.parse(result)
   "id": 0,
   "product_id": 0,
   "limit_price": "string",
-  "unfilled_size": 0
+  "size": 0
 }
 ```
 
@@ -1527,6 +1528,85 @@ Status Code **400**
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Edit batch orders
+
+<a id="opIdbatchEdit"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.put('https://api.delta.exchange/orders/batch', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/orders/batch \
+  -H 'Content-Type: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json'
+}
+
+result = RestClient.put 'https://api.delta.exchange/orders/batch',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /orders/batch`
+
+batch order edit 
+
+> Body parameter
+
+```json
+{
+  "product_id": 0,
+  "orders": [
+    {
+      "id": 0,
+      "size": 0,
+      "limit_price": "string",
+      "product_id": 0
+    }
+  ]
+}
+```
+
+<h3 id="edit-batch-orders-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[EditBatchOrders](#schemaeditbatchorders)|true|none|
+
+<h3 id="edit-batch-orders-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+
+<aside class="success">
+This operation does not require authentication.
 </aside>
 
 ## Delele batch orders
@@ -3934,7 +4014,7 @@ This operation does not require authentication.
   "id": 0,
   "product_id": 0,
   "limit_price": "string",
-  "unfilled_size": 0
+  "size": 0
 }
 
 ```
@@ -3948,7 +4028,7 @@ This operation does not require authentication.
 |id|integer|false|none|none|
 |product_id|integer|false|none|none|
 |limit_price|string|false|none|none|
-|unfilled_size|integer|false|none|Remaining total unfilled size after editing order|
+|size|integer|false|none|total size after editing order|
 
 <h2 id="tocSarrayofeditorderrequest">ArrayOfEditOrderRequest</h2>
 
@@ -3960,7 +4040,7 @@ This operation does not require authentication.
     "id": 0,
     "product_id": 0,
     "limit_price": "string",
-    "unfilled_size": 0
+    "size": 0
   }
 ]
 
@@ -4750,4 +4830,53 @@ This operation does not require authentication.
 |state|string|false|none|state of withdrawal request|
 |transaction_meta|string|false|none|Amount to be Withdrawn|
 |user_id|integer(int64)|false|none|User id|
+
+<h2 id="tocSeditbatchorders">EditBatchOrders</h2>
+
+<a id="schemaeditbatchorders"></a>
+
+```json
+{
+  "product_id": 0,
+  "orders": [
+    {
+      "id": 0,
+      "size": 0,
+      "limit_price": "string",
+      "product_id": 0
+    }
+  ]
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|product_id|integer(int32)|true|none|none|
+|orders|[[BatchOrders](#schemabatchorders)]|true|none|none|
+
+<h2 id="tocSbatchorders">BatchOrders</h2>
+
+<a id="schemabatchorders"></a>
+
+```json
+{
+  "id": 0,
+  "size": 0,
+  "limit_price": "string",
+  "product_id": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer(int32)|true|none|Order id to be edited|
+|size|integer(int32)|true|none|none|
+|limit_price|string|true|none|none|
+|product_id|integer(int32)|true|none|none|
 

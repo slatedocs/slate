@@ -426,6 +426,36 @@
           }
         }
       },
+      "put": {
+        "description": "batch order edit ",
+        "summary": "Edit batch orders",
+        "tags" : [ "Orders" ],
+        "operationId": "batchEdit",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orders",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditBatchOrders"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
       "delete": {
         "tags": [ "Orders" ],
         "summary": "Delele batch orders",
@@ -1399,9 +1429,9 @@
         "limit_price": {
           "type": "string" 
         },
-        "unfilled_size": {
+        "size": {
           "type": "integer",
-          "description": "Remaining total unfilled size after editing order"
+          "description": "total size after editing order"
         }
       }
     },
@@ -1786,6 +1816,53 @@
           "description" : "User id"
         }
       }
+    },
+    "EditBatchOrders" : {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "orders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BatchOrders"
+          }
+        }
+      },
+      "required": [
+        "product_id",
+        "orders"
+      ]
+    },
+    "BatchOrders" : {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description" : "Order id to be edited"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit_price": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id",
+        "size",
+        "limit_price",
+        "product_id"
+      ]
     }
+
   }
 }
