@@ -191,22 +191,28 @@ pip install scout-apm
         <span class="step">2</span>
       </td>
       <td style="padding-top: 15px">
-        <p>Configure Scout in your <code>settings.py</code> file:</p>
+        <p>Configure Scout in your Celery application file:</p>
+
 <pre class="terminal" style="width: initial">
 <span>import scout_apm.celery</span>
 <span>from scout_apm.api import Config</span>
 from celery import Celery
 
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
+
 <span>
+# If you are using app.config_from_object() to point to your Django settings
+# and have configured Scout there, this is not necessary:
 Config.set(
     key="[AVAILABLE IN THE SCOUT UI]",
     name="Same as Web App Name",
     monitor=True,
 )
 </span>
-<span>scout_apm.celery.install()</span>
+<span>scout_apm.celery.install(app)</span>
 </pre>
+
+The `app` argument is optional and was added in version 2.12.0, but you should provide it for complete instrumentation.
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of calling <code>Config.set</code>.</p>
 
