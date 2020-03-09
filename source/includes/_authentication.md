@@ -19,7 +19,7 @@ If you are running the shell examples, you can simply export your API key in you
 
 ```shell
 # With curl, you can use -u followed by your API key. Adding `:` after the key will simply tell curl not to ask you for a password.
-curl "https://getweaver.io/v1/gateways" \
+curl "https://api.getweaver.io/v1/gateways" \
   -u "${YOUR_API_KEY}:"
 ```
 
@@ -29,59 +29,12 @@ require 'base64'
 require 'rest-client'
 
 
-token = Base64.strict_encode64("YOUR_API_KEY:")
+token = Base64.strict_encode64("#{YOUR_API_KEY}:")
 headers = {
-  'Authorization': token
+  "Authorization": "Basic #{token}"
 }
 
-url = 'https://getweaver.io/v1/gateways'
+url = 'https://api.getweaver.io/v1/gateways'
 
 RestClient.get(url, headers: headers)
 ```
-
-
-## Getting Your API Key
-```shell
-curl "https://getweaver.io/v1/users" \
-  -H "Authorization: Token ${USER_AUTH_TOKEN}" \
-  -H "Content-Type: application/json"
-```
-
-```ruby
-require 'rest-client'
-
-
-headers = {
-  'Authorization': 'Token #{USER_AUTH_TOKEN}'
-}
-
-
-url = 'https://getweaver.io/v1/users'
-
-RestClient.post(url, payload, headers={})
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "id": 1,
-    "email": "sybohy@gmail.com",
-    "organization": {
-        "name": "Weaver Inc"
-    },
-    "api_key": "wk_prod_BD7ucrLiAEunufV2ujiaP1KM"
-}
-```
-
-Fetch your API Key with a GET request to your user account endpoint.
-
-#### HTTP Request
-
-`GET /v1/users`
-
-### Header Parameters
-
-Parameter | Description
---------- | -----------
-USER_AUTH_TOKEN | This is your user authorization token.

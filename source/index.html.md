@@ -8,9 +8,11 @@ language_tabs: # must be one of https://git.io/vQNgJ
 includes:
   - authentication
   - gateways
+  - gateway_actions
   - devices
-  - commands
-  - gateway_events
+  - device_actions
+  - door_locks
+  - action_requests
 
 search: true
 ---
