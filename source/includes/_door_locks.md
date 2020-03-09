@@ -168,7 +168,7 @@ DEVICE_ID | The ID of the device you're commanding
 curl -X POST \
   -u "${YOUR_API_KEY}:" \
   -H "Content-Type: application/json" \
-  -d '{"code": "88888888", "slot_id": 8}' \
+  -d '{"data": {"code": "8888", "slot_id": 8}}' \
   "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/set_code"
 ```
 
@@ -181,8 +181,10 @@ headers = {
 }
 
 payload = {
-  'code': '88888888',
-  'slot_id': 8
+  'data': {
+    'code': '8888',
+    'slot_id': 8
+  }
 }
 
 url = 'https://api.getweaver.io/v1/devices/#{DEVICE_ID}/actions/set_code'
@@ -201,7 +203,7 @@ RestClient.post(url, payload, headers: headers)
     "updated_at": "2020-02-10T01:33:19.955Z",
     "data": {
         "set_code": {
-            "code": "88888888",
+            "code": "8888",
             "slot_id": 8
         }
     }
@@ -243,7 +245,7 @@ validation requirements.
 curl -X POST \
   -u "${YOUR_API_KEY}:" \
   -H "Content-Type: application/json" \
-  -d '{"slot_id": 8}' \
+  -d '{data: {"slot_id": 8}}' \
   "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/clear_code"
 ```
 
@@ -256,7 +258,9 @@ headers = {
 }
 
 payload = {
-  'slot_id': 8
+  'data': {
+    'slot_id': 8
+  }
 }
 
 url = 'https://api.getweaver.io/v1/devices/#{DEVICE_ID}/actions/clear_code'
