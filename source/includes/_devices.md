@@ -14,19 +14,16 @@ End devices are any end device such as a sensor, a door locks, a light, a thermo
     "name": "Kwikset914 5c:a1:0",
     "actions": {
         "lock": {
-            "method_name": "handle_lock",
             "title": "Lock",
             "description": "Locks the Door Lock",
             "inputs": null
         },
         "unlock": {
-            "method_name": "handle_unlock",
             "title": "Unlock",
             "description": "Unlocks the Door Lock",
             "inputs": null
         },
         "set_code": {
-            "method_name": "handle_set_code",
             "title": "Set Code",
             "description": "Set User Code for the Door Lock",
             "inputs": {
@@ -45,7 +42,6 @@ End devices are any end device such as a sensor, a door locks, a light, a thermo
             }
         },
         "clear_code": {
-            "method_name": "handle_clear_code",
             "title": "Clear Code",
             "description": "Clear a User Code for the Door Lock",
             "inputs": {
