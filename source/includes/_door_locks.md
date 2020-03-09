@@ -245,7 +245,7 @@ validation requirements.
 curl -X POST \
   -u "${YOUR_API_KEY}:" \
   -H "Content-Type: application/json" \
-  -d '{data: {"slot_id": 8}}' \
+  -d '{"data": {"slot_id": 8}}' \
   "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/clear_code"
 ```
 
