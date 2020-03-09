@@ -1109,6 +1109,23 @@ We typically respond within a couple of hours during the business day.
     </tr>
     <tr>
       <th>
+        core_agent_config_file
+      </th>
+      <td>
+        Point to a configuration file for the <a href="#core-agent">Core Agent</a>.
+        This may be useful for debugging your setup with files provided by Scout APM staff.
+        <br>
+        <br>
+        Prior to version 2.13.0, this was called <strong>config_file</strong>. That name now works as an alias, and takes precedence to allow old configuration to continue to work.
+      </td>
+      <td>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
         core_agent_download
       </th>
       <td>
@@ -1137,6 +1154,49 @@ We typically respond within a couple of hours during the business day.
     </tr>
     <tr>
       <th>
+        core_agent_log_file
+      </th>
+      <td>
+        The log file for the <a href="#core-agent">Core Agent</a> to write its logs to.
+        If not set, it won't be written.
+        <br>
+        <br>
+        This does not affect the logging configuration of the Python library.
+        To change that, directly configure the python <code>logging</code> module as per <a href="#python-logging">the below documentation</a>.
+        <br>
+        <br>
+        Prior to version 2.13.0, this was called <strong>log_file</strong>. That name now works as an alias, and takes precedence to allow old configuration to continue to work.
+      </td>
+      <td>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_log_level
+      </th>
+      <td>
+        The log level of the <a href="#core-agent">Core Agent</a>.
+        This should be one of: <code>"trace"</code>, <code>"debug"</code>, <code>"info"</code>, <code>"warn"</code>, <code>"error"</code>.
+        <br>
+        <br>
+        This does not affect the log level of the Python library.
+        To change that, directly configure the python <code>logging</code> module as per <a href="#python-logging">the below documentation</a>.
+        <br>
+        <br>
+        Prior to version 2.6.0, this was called <strong>log_level</strong>. That name now works as an alias, and takes precedence to allow old configuration to continue to work.
+      </td>
+      <td>
+        <code>"info"</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
         core_agent_permissions
       </th>
       <td>
@@ -1151,10 +1211,14 @@ We typically respond within a couple of hours during the business day.
     </tr>
     <tr>
       <th>
-        core_agent_triple
+        core_agent_socket_path
       </th>
       <td>
-        If you are running a MUSL based Linux (such as ArchLinux), you may need to explicitly specify the platform triple. E.g. <code>x86_64-unknown-linux-musl</code>
+        The path to the socket to connect to the <a href="#core-agent">Core Agent</a>, passed to it when launching.
+        This does not normally need to be set, as it can be automatically derived to live in the same directoy as the core agent.
+        <br>
+        <br>
+        Prior to version 2.13.0, this was called <strong>socket_path</strong>. That name now works as an alias, and takes precedence to allow old configuration to continue to work.
       </td>
       <td>
         Auto detected
@@ -1165,21 +1229,13 @@ We typically respond within a couple of hours during the business day.
     </tr>
     <tr>
       <th>
-        core_agent_log_level
+        core_agent_triple
       </th>
       <td>
-        The log level of the core agent process.
-        This should be one of: <code>"trace"</code>, <code>"debug"</code>, <code>"info"</code>, <code>"warn"</code>, <code>"error"</code>.
-        <br>
-        <br>
-        This does not affect the log level of the Python library.
-        To change that, directly configure the python <code>logging</code> module as per <a href="#python-logging">the below documentation</a>.
-        <br>
-        <br>
-        Prior to version 2.6.0, this was called `log_level`. That name now works as an alias, and takes precedence.
+        If you are running a MUSL based Linux (such as ArchLinux), you may need to explicitly specify the platform triple. E.g. <code>x86_64-unknown-linux-musl</code>
       </td>
       <td>
-        <code>"info"</code>
+        Auto detected
       </td>
       <td>
         No
