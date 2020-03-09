@@ -228,3 +228,20 @@ curl -X DELETE \
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id</code>
 
 Destroy an existing disk. A disk can only be deleted if it's not attached to an [instance](#azure-instances).
+
+
+<!-------------------- DETACH A DISK -------------------->
+
+#### Detach a disk
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4?operation=detach"
+
+# Request should look like this
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=detach</code>
+
+Detach an existing disk from a given [instance](#azure-instances).
