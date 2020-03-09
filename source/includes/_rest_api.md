@@ -1539,7 +1539,11 @@ To perform this operation, you must be sign the request using your api key and s
 ```python
 import requests
 headers = {
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
 }
 
 r = requests.put('https://api.delta.exchange/orders/batch', params={
@@ -1553,7 +1557,11 @@ print r.json()
 ```shell
 # You can also use wget
 curl -X PUT https://api.delta.exchange/orders/batch \
-  -H 'Content-Type: application/json'
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
 
 ```
 
@@ -1562,7 +1570,11 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Content-Type' => 'application/json'
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
 }
 
 result = RestClient.put 'https://api.delta.exchange/orders/batch',
@@ -1599,14 +1611,47 @@ batch order edit
 |---|---|---|---|---|
 |body|body|[EditBatchOrders](#schemaeditbatchorders)|true|none|
 
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "error": "InsufficientMargin",
+  "message": "string"
+}
+```
+
 <h3 id="edit-batch-orders-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be edited|Inline|
 
-<aside class="success">
-This operation does not require authentication.
+<h3 id="edit-batch-orders-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» error|string|false|none|none|
+|» message|string|false|none|A more verbose error message|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|error|InsufficientMargin|
+|error|OrderSizeExceededAvailable|
+|error|OrderExceedsSizeLimit|
+|error|OrderLeverageNotSet|
+|error|InvalidProduct|
+|error|ImmediateLiquidationOrder|
+|error|LowerthanBankruptcy|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
 ## Delele batch orders
@@ -4855,11 +4900,11 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |product_id|integer(int32)|true|none|none|
-|orders|[[BatchOrders](#schemabatchorders)]|true|none|none|
+|orders|[[BatchEditOrders](#schemabatcheditorders)]|true|none|none|
 
-<h2 id="tocSbatchorders">BatchOrders</h2>
+<h2 id="tocSbatcheditorders">BatchEditOrders</h2>
 
-<a id="schemabatchorders"></a>
+<a id="schemabatcheditorders"></a>
 
 ```json
 {

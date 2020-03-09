@@ -438,6 +438,11 @@
         "consumes": [
           "application/json"
         ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],  
         "parameters": [
           {
             "name": "orders",
@@ -453,6 +458,23 @@
           "200": {
             "description": "",
             "headers": {}
+          },
+          "400": {
+            "description": "returns error if orders couldnt be edited",
+            "schema":{
+              "type": "object",
+              "properties":{
+                "error":{
+                  "type": "string",
+                  "enum": ["InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy"]
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A more verbose error message"
+                }
+              }
+
+            }
           }
         }
       },
@@ -1827,7 +1849,7 @@
         "orders": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/BatchOrders"
+            "$ref": "#/definitions/BatchEditOrders"
           }
         }
       },
@@ -1836,7 +1858,7 @@
         "orders"
       ]
     },
-    "BatchOrders" : {
+    "BatchEditOrders" : {
       "type": "object",
       "properties": {
         "id": {
