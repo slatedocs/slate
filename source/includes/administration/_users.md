@@ -213,7 +213,7 @@ Create a user in a specific organization.
 
 Users are created asynchronously on the underlying service(s) and progress is reflected in the state of the user's service connection(s).
 
-There's two different types of [role](#administration-roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment.
+There are two different types of [roles](#administration-roles) a user can be assigned. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine his access rights in that environment.
 
 You will need the `Create a new user` permission to execute this operation.
 
