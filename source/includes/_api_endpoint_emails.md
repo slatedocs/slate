@@ -419,6 +419,8 @@ $email = $emailApi->sendToContact($emailId, $contactId);
 ```
 Send a predefined email to existing contact.
 
+Assets can be referenced for attaching documents (either ids of existing assets or ids returned by the [Create Asset](https://github.com/mautic/developer-documentation/blob/master/source/includes/_api_endpoint_assets.md#create-asset)).
+
 #### HTTP Request
 
 `POST /emails/ID/contact/CONTACT_ID/send`
@@ -428,6 +430,7 @@ Send a predefined email to existing contact.
 Name|Type|Description
 ----|----|-----------
 tokens|array|Array of tokens in email
+assetAttachments|array|Array of asset ids
 
 #### Response
 
