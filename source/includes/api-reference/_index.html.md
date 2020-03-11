@@ -7110,7 +7110,6 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
 |?workspace<span class="param-type"> string</span>|The workspace to filter tags on.|
-|?archived<span class="param-type"> boolean</span>|Only return tags whose `archived` field takes on the value of this parameter.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 

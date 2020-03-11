@@ -6985,14 +6985,6 @@ paths:
           schema:
             type: string
           example: '1331'
-        - name: archived
-          in: query
-          description: >-
-            Only return tags whose `archived` field takes on the value of
-            this parameter.
-          schema:
-            type: boolean
-            default: false
       responses:
         200:
           description: Successfully retrieved the specified set of tags.
