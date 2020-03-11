@@ -16,6 +16,7 @@ curl "https://cloudmc_endpoint/v2/users" \
 
 # Response body example
 ```
+
 ```json
 {
   "data":[{
@@ -30,6 +31,22 @@ curl "https://cloudmc_endpoint/v2/users" \
       "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
       "name": "Canadiens"
     },
+    "serviceConnections": [
+      {
+        "serviceCode": "cs-acs-dev2",
+        "name": "cs-acs-dev2",
+        "id": "7430e95f-6029-444f-9677-9d2d54007138",
+        "state": "PROVISIONING",
+        "type": "cloudstack"
+      },
+      {
+        "serviceCode": "cs-acs-dev1",
+        "name": "cs-acs-dev1",
+        "id": "9000c02b-cb33-4e4e-8d7b-f834f48e8fb9",
+        "state": "PROVISIONED",
+        "type": "cloudstack"
+      }
+    ],
     "roles": [
       {
         "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8",
@@ -52,14 +69,15 @@ Retrieve information about users you have access to. If you want access to other
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the user
-`userName`<br/>*string* | The username of the user
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
+`email`<br/>*string* | The email of the user
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
-`email`<br/>*string* | The email of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
-`status`<br/>*string* | The current status of the user.
 `organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
+`status`<br/>*string* | The current status of the user.
+`userName`<br/>*string* | The username of the user
 
 
 <!-------------------- GET USER -------------------->
@@ -76,6 +94,7 @@ curl "https://cloudmc_endpoint/v2/users/fdf60a19-980d-4380-acab-914485111305" \
 
 # Response body example
 ```
+
 ```json
 {
   "data":{
@@ -101,6 +120,22 @@ curl "https://cloudmc_endpoint/v2/users/fdf60a19-980d-4380-acab-914485111305" \
       "id": "55724a36-4817-4cd3-927e-57d8a8b41eb8",
       "name": "hobbiton"
     }],
+    "serviceConnections": [
+      {
+        "serviceCode": "cs-acs-dev2",
+        "name": "cs-acs-dev2",
+        "id": "7430e95f-6029-444f-9677-9d2d54007138",
+        "state": "PROVISIONED",
+        "type": "cloudstack"
+      },
+      {
+        "serviceCode": "cs-acs-dev1",
+        "name": "cs-acs-dev1",
+        "id": "9000c02b-cb33-4e4e-8d7b-f834f48e8fb9",
+        "state": "ERROR_PROVISIONING",
+        "type": "cloudstack"
+      }
+    ],
     "roles": [
       {
         "id": "5f0a4f20-3537-4bcd-81fe-2b74fd4c07e0",
@@ -123,20 +158,19 @@ Retrieve information about a specific user. If you want access to other users in
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the user
-`userName`<br/>*string* | The username of the user
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
+`email`<br/>*string* | The email of the user
+`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
-`email`<br/>*string* | The email of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
-`status`<br/>*string* | The current status of the user.
-`primaryRoleBinding`<br/>*RoleBinding* | The primary role assigned to this user. This role will always be a fixed role.
 `organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
-`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
+`primaryRoleBinding`<br/>*RoleBinding* | The primary role assigned to this user. This role will always be a fixed role.
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
-
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
+`status`<br/>*string* | The current status of the user.
+`userName`<br/>*string* | The username of the user
 
 <!-------------------- CREATE USER -------------------->
-
 
 ### Create user
 
@@ -152,6 +186,7 @@ curl -X POST "https://cloudmc_endpoint/v2/users" \
 
 # Request body example
 ```
+
 ```json
 {
   "userName": "vader42",
@@ -174,7 +209,13 @@ curl -X POST "https://cloudmc_endpoint/v2/users" \
 }
 ```
 
-Create a user in a specific organization. There's two different types of [role](#administration-roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need the `Create a new user` permission to execute this operation.
+Create a user in a specific organization.
+
+Users are created asynchronously on the underlying service(s) and progress is reflected in the state of the user's service connection(s).
+
+There are two different types of [roles](#administration-roles) a user can be assigned. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine his access rights in that environment.
+
+You will need the `Create a new user` permission to execute this operation.
 
 Required | &nbsp;
 -------- | -----------
@@ -189,13 +230,56 @@ Optional | &nbsp;
 `organization`</br>*[Organization](#administration-organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
 
-##### Returns
+Response | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+`data`<br/>*[user](#administration-users)* | The information about the created user
 
-The responses' `data` field contains the created [user](#administration-users) with it's `id`.
+```shell
+# Response body example
+```
 
+```json
+{
+  "data": {
+    "id": "c1ad55a9-0301-4925-bedc-106d31a73047",
+    "userName": "bkenobi",
+    "email": "bkenobi@gmail.com",
+    "firstName": "Ben",
+    "lastName": "Kenobi",
+    "canResendUserCreationEmail": true,
+    "deleted": false,
+    "failedLoginCount": 0,
+    "isBusinessContact": false,
+    "isTechnicalContact": false,
+    "locale": "en",
+    "loginCount": 0,
+    "receivesEmailNotifications": false,
+    "serviceConnections": [],
+    "status": "ACTIVE",
+    "tfaEnabled": false,
+    "version": 1,
+    "organization": {
+      "id": "bdb2d571-2878-462c-8162-9a034d5ab602",
+      "name": "System"
+    },
+    "primaryRoleBinding": {
+      "id": "013b40ca-9837-4233-b28e-09f5828958e5",
+      "role": {
+        "isSystem": true,
+        "name": "guest",
+        "id": "ad6b03cc-b9f3-48ae-9406-2ad168afbe01",
+        "isFixed": true
+      }
+    }
+  },
+  "taskId": "633a85e5-447b-41db-a9a2-da986325955c",
+  "taskStatus": "PENDING"
+}
+```
 
 <!-------------------- UPDATE USER -------------------->
-
 
 ### Update user
 
