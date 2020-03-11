@@ -425,6 +425,16 @@ curl -X POST "https://cloudmc_endpoint/v2/environments/[environment-id]/members"
 }
 ```
 
+```shell
+# Response body example
+```
+```json
+{
+  "taskId": "a82113b9-7f76-4354-ae27-b18b0204d50f",
+  "status": "PENDING"
+}
+```
+
 Required | &nbsp;
 -------- | -----------
 `user.id`<br/>*UUID* | The user that will be added to the environment.
