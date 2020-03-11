@@ -3380,18 +3380,15 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
-    "owner": {
-      "name": "Greg Sanchez"
-    },
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "team": {
-      "name": "Marketing"
-    }
+    "team": "12345"
   }
 }
 ```
@@ -3442,13 +3439,6 @@ curl -X POST https://app.asana.com/api/1.0/projects \
             "name": "Low"
           }
         ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "color": "blue",
-          "enabled": true,
-          "name": "Low"
-        },
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -3459,13 +3449,6 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "members": [
@@ -3477,22 +3460,29 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
+    "public": false,
+    "start_on": "2019-09-14",
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "owner": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "public": false,
-    "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
     }
   }
 }
@@ -3529,33 +3519,20 @@ Returns the full record of the newly created project.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
-*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
 
 #### Enumerated Values
 
@@ -3582,9 +3559,6 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -3663,13 +3637,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
             "name": "Low"
           }
         ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "color": "blue",
-          "enabled": true,
-          "name": "Low"
-        },
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -3680,13 +3647,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "members": [
@@ -3698,22 +3658,29 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
+    "public": false,
+    "start_on": "2019-09-14",
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "owner": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "public": false,
-    "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
     }
   }
 }
@@ -3780,18 +3747,15 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
-    "owner": {
-      "name": "Greg Sanchez"
-    },
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "team": {
-      "name": "Marketing"
-    }
+    "team": "12345"
   }
 }
 ```
@@ -3842,13 +3806,6 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
             "name": "Low"
           }
         ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "color": "blue",
-          "enabled": true,
-          "name": "Low"
-        },
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -3859,13 +3816,6 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "members": [
@@ -3877,22 +3827,29 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
+    "public": false,
+    "start_on": "2019-09-14",
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "owner": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "public": false,
-    "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
     }
   }
 }
@@ -3927,34 +3884,21 @@ Returns the complete updated project record.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
-*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
 
 #### Enumerated Values
 
@@ -3981,9 +3925,6 @@ Returns the complete updated project record.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -4321,18 +4262,15 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
-    "owner": {
-      "name": "Greg Sanchez"
-    },
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "team": {
-      "name": "Marketing"
-    }
+    "team": "12345"
   }
 }
 ```
@@ -4383,13 +4321,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
             "name": "Low"
           }
         ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "color": "blue",
-          "enabled": true,
-          "name": "Low"
-        },
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -4400,13 +4331,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "members": [
@@ -4418,22 +4342,29 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
+    "public": false,
+    "start_on": "2019-09-14",
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "owner": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "public": false,
-    "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
     }
   }
 }
@@ -4462,34 +4393,21 @@ Returns the full record of the newly created project.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
-*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
 
 #### Enumerated Values
 
@@ -4516,9 +4434,6 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -4629,18 +4544,15 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
-    "owner": {
-      "name": "Greg Sanchez"
-    },
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "team": {
-      "name": "Marketing"
-    }
+    "team": "12345"
   }
 }
 ```
@@ -4691,13 +4603,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
             "name": "Low"
           }
         ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "color": "blue",
-          "enabled": true,
-          "name": "Low"
-        },
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -4708,13 +4613,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "members": [
@@ -4726,22 +4624,29 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
+    "public": false,
+    "start_on": "2019-09-14",
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "owner": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "public": false,
-    "start_on": "2019-09-14",
     "team": {
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
     }
   }
 }
@@ -4773,34 +4678,21 @@ Returns the full record of the newly created project.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
-*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
 
 #### Enumerated Values
 
@@ -4827,9 +4719,6 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -6378,13 +6267,6 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
           "name": "Low"
         }
       ],
-      "enum_value": {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "color": "blue",
-        "enabled": true,
-        "name": "Low"
-      },
       "name": "Status",
       "number_value": 5.2,
       "resource_subtype": "text",
@@ -6624,13 +6506,6 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
           "name": "Low"
         }
       ],
-      "enum_value": {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "color": "blue",
-        "enabled": true,
-        "name": "Low"
-      },
       "name": "Status",
       "number_value": 5.2,
       "resource_subtype": "text",
@@ -6795,11 +6670,6 @@ Updates the story and returns the full record for the updated story. Only commen
 |/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**html_text**: [Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.
-*Note: This field is under active migration—please see our blog post for more information.*
 
 <h3 id="update-a-story-responses">Responses</h3>
 
@@ -7004,13 +6874,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
           "name": "Low"
         }
       ],
-      "enum_value": {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "color": "blue",
-        "enabled": true,
-        "name": "Low"
-      },
       "name": "Status",
       "number_value": 5.2,
       "resource_subtype": "text",
@@ -7179,11 +7042,6 @@ Returns the full record for the new story added to the task.
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**html_text**: [Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.
-*Note: This field is under active migration—please see our blog post for more information.*
 
 <h3 id="create-a-story-on-a-task-responses">Responses</h3>
 
@@ -7718,7 +7576,6 @@ Returns the full record of the newly created tag.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
 |» data<span class="param-type"> [TagResponse](#schematagresponse)</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
@@ -7909,6 +7766,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "projects": [
       "12345"
     ],
+    "resource_subtype": "default_task",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -8105,20 +7963,13 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -8133,8 +7984,8 @@ Setting this field to "inbox" or "upcoming" inserts it at the top of the section
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
-**html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
-*Note: This field is under active migration—please see our blog post for more information.*
+**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
+The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -8152,6 +8003,10 @@ The external field allows you to store app-specific metadata on tasks, including
 | assignee_status|later|
 | assignee_status|new|
 | assignee_status|inbox|
+| resource_subtype|default_task|
+| resource_subtype|milestone|
+| resource_subtype|section|
+| resource_subtype|approval|
 
 <h3 id="create-a-task-responses">Responses</h3>
 
@@ -8411,6 +8266,7 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "projects": [
       "12345"
     ],
+    "resource_subtype": "default_task",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -8609,20 +8465,13 @@ Returns the complete updated task record.
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -8638,8 +8487,8 @@ Setting this field to "inbox" or "upcoming" inserts it at the top of the section
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
-**html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
-*Note: This field is under active migration—please see our blog post for more information.*
+**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
+The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -8657,6 +8506,10 @@ The external field allows you to store app-specific metadata on tasks, including
 | assignee_status|later|
 | assignee_status|new|
 | assignee_status|inbox|
+| resource_subtype|default_task|
+| resource_subtype|milestone|
+| resource_subtype|section|
+| resource_subtype|approval|
 
 <h3 id="update-a-task-responses">Responses</h3>
 
@@ -9172,6 +9025,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "projects": [
       "12345"
     ],
+    "resource_subtype": "default_task",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -9362,20 +9216,13 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -9391,8 +9238,8 @@ Setting this field to "inbox" or "upcoming" inserts it at the top of the section
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
-**html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
-*Note: This field is under active migration—please see our blog post for more information.*
+**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
+The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -9410,6 +9257,10 @@ The external field allows you to store app-specific metadata on tasks, including
 | assignee_status|later|
 | assignee_status|new|
 | assignee_status|inbox|
+| resource_subtype|default_task|
+| resource_subtype|milestone|
+| resource_subtype|section|
+| resource_subtype|approval|
 
 <h3 id="create-a-subtask-responses">Responses</h3>
 
@@ -12963,13 +12814,6 @@ A response object returned from a batch request.
       "name": "Low"
     }
   ],
-  "enum_value": {
-    "gid": "12345",
-    "resource_type": "enum_option",
-    "color": "blue",
-    "enabled": true,
-    "name": "Low"
-  },
   "name": "Status",
   "number_value": 5.2,
   "resource_subtype": "text",
@@ -12990,12 +12834,6 @@ A `Compact` object is the same as the [full response object](#tocS_CustomField),
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|» name<span class="param-type"> string</span>|The name of the enum option.|
-|enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -14015,13 +13853,6 @@ With the introduction of “comment-only” projects in Asana, a user’s member
           "name": "Low"
         }
       ],
-      "enum_value": {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "color": "blue",
-        "enabled": true,
-        "name": "Low"
-      },
       "name": "Status",
       "number_value": 5.2,
       "resource_subtype": "text",
@@ -14032,13 +13863,6 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   "default_view": "calendar",
   "due_date": "2019-09-15",
   "due_on": "2019-09-15",
-  "followers": [
-    {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  ],
   "html_notes": "These are things we need to purchase.",
   "is_template": false,
   "members": [
@@ -14050,22 +13874,29 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
   "notes": "These are things we need to purchase.",
+  "public": false,
+  "start_on": "2019-09-14",
+  "workspace": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  },
+  "followers": [
+    {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  ],
   "owner": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "public": false,
-  "start_on": "2019-09-14",
   "team": {
     "gid": "12345",
     "resource_type": "team",
     "name": "Marketing"
-  },
-  "workspace": {
-    "gid": "12345",
-    "resource_type": "workspace",
-    "name": "My Company Workspace"
   }
 }
 
@@ -14109,12 +13940,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
-|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
@@ -14123,11 +13948,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*|
+|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
 |members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -14135,20 +13956,24 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
 |notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the team.|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
+|followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
 
 #### Enumerated Values
 
@@ -14429,13 +14254,6 @@ A `Compact` object is the same as the [full response object](#tocS_Story), but w
         "name": "Low"
       }
     ],
-    "enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "color": "blue",
-      "enabled": true,
-      "name": "Low"
-    },
     "name": "Status",
     "number_value": 5.2,
     "resource_subtype": "text",
@@ -14596,7 +14414,7 @@ A story represents an activity associated with an object in the Asana system.
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.<br>*Note: This field is under active migration—please see our blog post for more information.*|
+|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -14607,12 +14425,6 @@ A story represents an activity associated with an object in the Asana system.
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -15072,8 +14884,8 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.<br>*Note: This field is under active migration—please see our blog post for more information.*|
-|is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.|
 |liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this task.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
@@ -15095,7 +14907,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -15335,7 +15147,7 @@ A *team* is used to group related projects and people together within an organiz
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the team.|
 |description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team.|
-|html_description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://developers.asana.com/docs/#rich-text) for more information.*|
+|html_description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team with formatting as HTML.|
 |organization<span class="param-type"> object</span>|The organization/workspace the team belongs to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
