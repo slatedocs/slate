@@ -75,7 +75,7 @@ Attributes | &nbsp;
 `lastName`<br/>*string* | The last name of the user
 `organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
-`serviceConnection`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
 `status`<br/>*string* | The current status of the user.
 `userName`<br/>*string* | The username of the user
 
@@ -166,7 +166,7 @@ Attributes | &nbsp;
 `organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
 `primaryRoleBinding`<br/>*RoleBinding* | The primary role assigned to this user. This role will always be a fixed role.
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
-`serviceConnection`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
 `status`<br/>*string* | The current status of the user.
 `userName`<br/>*string* | The username of the user
 
