@@ -230,10 +230,11 @@ The following requirements apply:
 
 **Managing uploaded public keys**
 
-The public keys management page can be accessed from the Public keys section of the Settings page in your TransferWise
-account.
+The public keys management page can be accessed via Manage public keys button in API tokens section 
+of the Settings page in your TransferWise account.
 
-While adding a new public key you'll be prompted for 2FA.
+Since public key upload itself has to be protected from unauthorized use, you will be prompted for 2FA during 
+this process.
 
 Note that to prevent abuse the number of public keys you can have stored is limited to 5.
 
