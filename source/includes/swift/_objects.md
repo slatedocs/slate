@@ -140,12 +140,12 @@ Attributes | &nbsp;
 `lastModified`<br/>*string* | The last date that the file was modified.
 
 
-<!-------------------- Download AN OBJECT -------------------->
+<!-------------------- DOWNLOAD AN OBJECT -------------------->
 
-#### Upload a object (To complete)
+#### Download an object (To complete)
 
 ```shell
-curl -X POST \
+curl -X GET \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
@@ -160,9 +160,10 @@ curl -X POST \
   "isPublic": true
 }
 ```
+
 <!-------------------- UPLOAD AN OBJECT -------------------->
 
-#### Upload a object (To complete)
+#### Upload an object (To complete)
 
 ```shell
 curl -X POST \
@@ -180,7 +181,6 @@ curl -X POST \
   "isPublic": true
 }
 ```
-
 <!-------------------- DELETE AN OBJECT -------------------->
 
 #### Delete an object (To complete)
