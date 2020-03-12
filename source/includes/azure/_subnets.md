@@ -121,6 +121,41 @@ Attributes | &nbsp;
 `nics.id`<br/>*string* | The id for the nic. 
 `nics.subnetName`<br/>*string* | The name for the subnet to which to the nic belongs. 
 
+<!-------------------- CREATE A SUBNET -------------------->
+
+#### Create a subnet
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/azure/example/subnets"
+
+# Request example:
+```
+
+```json
+{
+  "name": "default",
+  "addressPrefix": "10.0.1.0/24",
+  "parentNetworkId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnets</code>
+
+Create a new subnet.
+
+Required | &nbsp;
+------- | -----------
+`name` <br/>*string* | The name of the subnet. The name cannot exceed 80 characters.
+`addressPrefix` <br/>*string* | The portion of the parent network's address space (IPV4 CIDR format) allocated to the subnet. The range cannot overlap with other subnets. The smallest range you can specify is /29.
+`parentNetworkId` <br/>*string* | The subnet's parent network id.
+
+Optional | &nbsp;
+------- | -----------
+`networkSecurityGroupName` <br/>*string* | The name of an existing network security group to be associated with the subnet. The security group must exist in the same subscription and location as the virtual network.
+
 <!-------------------- DELETE A SUBNET -------------------->
 
 #### Delete a subnet

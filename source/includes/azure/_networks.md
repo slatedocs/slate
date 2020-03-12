@@ -75,6 +75,6 @@ Attributes | &nbsp;
 ---------- | -----
 `name`<br/>*string* | The name of the virtual network
 `region`<br/>*string* | The region in which the virtual network is located
-`addressSpace`<br/>*string* | The first address range (CIDR format) that will be covered by this virtual network
+`addressSpace`<br/>*string* | The first address range (IPV4 CIDR format) that will be covered by this virtual network
 `subnetName`<br/>*string* | The first subnet name within this virtual network
-`subnetAddressPrefix`<br/>*string* | The first subnet address range (CIDR format) within this virtual network
+`subnetAddressPrefix`<br/>*string* | The first subnet address range (IPV4 CIDR format) within this virtual network
