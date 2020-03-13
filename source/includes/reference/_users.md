@@ -171,7 +171,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_c
      -H "Content-Type: application/json" \
      -d '{ 
           "email": <user email>,
-          "registrationCode": <registration code>
+          "registrationCode": <registration code>,
+          "language":"PT"
         }'
 ```
 
@@ -298,7 +299,7 @@ Field                   | Description                   | Format
 ---------               | -------                       | -----------
 email                   | New user's email address      | Email
 registrationCode        | Randomly generated registration code that is unique to this user. At least 32 characters long. <br/>You need to store registration code to obtain access token on behalf of this <br/>newly created user in next step. <br/>Please apply the same security standards to handling registration code as if it was a password.  | Text, min length is 32 chars
-
+language (Optional)     | User default language for UI and email communication. <br/>Allowed values EN, US, PT, ES, FR, DE, IT, JA, RU, PL, HU, TR, RO, NL, HK. Default value EN.   | Text, 2 chars
 ### Response
 Field                   | Description               | Format
 ---------               | -------                   | -----------
