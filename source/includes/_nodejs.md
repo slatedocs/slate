@@ -77,6 +77,26 @@ $ yarn add @scout_apm/scout-apm
         <span class="step">2</span>
       </td>
       <td style="padding-top: 15px">
+        <p>Add to Express Middleware:</p>
+        <pre style="width:500px">
+const express = require("express");
+
+// Require scout-apm after express, but before all other requires.
+const scout = require("@scout_apm/scout-apm");
+
+// Initialize your express application
+const app = express();
+
+// Enable the app-wide scout middleware
+app.use(scout.expressMiddleware());
+        </pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td style="padding-top: 15px">
         <p>Configure Scout via ENV variables:</p>
 <pre style="width:500px">
 export SCOUT_MONITOR=true
@@ -90,35 +110,14 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
       </td>
     </tr>
     <tr>
-      <td><span class="step">3</span></td>
+      <td><span class="step">4</span></td>
       <td style="padding-top: 15px">
         <p>Deploy.</p>
-        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+        <p>It takes just a few minutes for your data to first appear within the Scout UI.</p>
       </td>
     </tr>
   </tbody>
 </table>
-
-<h3 id="nodejs-middleware">Middleware</h3>
-
-Scout's Express middleware can be used by adding it to your application:
-
-```javascript
-const express = require("express");
-const scout = require("@scout_apm/scout-apm");
-
-// Initialize your express application
-const app = express();
-
-// Enable the app-wide scout middleware
-app.use(scout.expressMiddleware({
-  config: {
-    monitor: true, // enable monitoring
-    name: "<application name>",
-    key: "<scout key>",
-  },
-}));
-```
 
 <h2 id="nodejs-troubleshooting">Troubleshooting</h2>
 
