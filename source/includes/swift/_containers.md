@@ -54,17 +54,17 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets</code>
 
-Retrieve a list of all containers in a given [environment](#administration-environments)
+Retrieve a list of all containers in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the container 
-`name` <br/>*string* | The name of the container
-`isPublic`<br/>*boolean* | Specifies if the container is public or not
+`id` <br/>*string* | The id of the container.
+`name` <br/>*string* | The name of the container.
+`isPublic`<br/>*boolean* | Specifies if the container is public or not.
 `displaySize`<br/>*Object* | Object containing the information to display the size in the UI.
-`size`<br/>*string* | The size in bytes of the container
-`objectCount`<br/>*string* | The number of object which are part of the container
-`accessType`<br/>*string* | The access type of the container. It can either be public or private
+`size`<br/>*string* | The size in bytes of the container.
+`objectCount`<br/>*string* | The number of object which are part of the container.
+`accessType`<br/>*string* | The access type of the container. It can either be public or private.
 `locked`<br/>*string* | Identify if the container is locked or not.
 `storePolicy`<br/>*string* | The store policy applying to the container.
 
@@ -100,18 +100,18 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets/:id</code>
 
-Retrieve a container in a given [environment](#administration-environments)
+Retrieve a container in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the container 
-`name` <br/>*string* | The name of the container
-`isPublic`<br/>*boolean* | Specifies if the container is public or not
+`id` <br/>*string* | The id of the container.
+`name` <br/>*string* | The name of the container.
+`isPublic`<br/>*boolean* | Specifies if the container is public or not.
 `displaySize`<br/>*Object* | Object containing the information to display the size in the UI.
-`size`<br/>*string* | The size in bytes of the container
-`objectCount`<br/>*string* | The number of object which are part of the container
-`accessType`<br/>*string* | The access type of the container. It can either be public or private
-`locked`<br/>*string* | Identify if the container is locked or not.
+`size`<br/>*string* | The size in bytes of the container.
+`objectCount`<br/>*string* | The number of object which are part of the container.
+`accessType`<br/>*string* | The access type of the container. It can either be public or private.
+`locked`<br/>*boolean* | Identify if the container is locked or not.
 `storePolicy`<br/>*string* | The store policy applying to the container.
 
 <!-------------------- CREATE A CONTAINER -------------------->
@@ -137,11 +137,11 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets</code>
 
-Create a new container
+Create a new container.
 
 Required | &nbsp;∂===
 ------- | -----------
-`name` <br/>*string* | The name of the container. It cannot exceed 256 characters and cannot contain '/'
+`name` <br/>*string* | The name of the container. It cannot exceed 256 characters and cannot contain '/'.
 
 Optional | &nbsp;
 ------- | -----------
@@ -159,7 +159,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets/:id</code>
 
-Delete an existing container
+Delete an existing container.
 
 <!-------------------- RENAME CONTAINER -------------------->
 
@@ -186,11 +186,10 @@ curl -X POST \
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets/:id?operation=rename</code>
 
 <aside class="notice">
-Renaming does not exists in SWIFT. It consists of a creation of a new container, a copy of all objects in this new container and the delete of the old container.
-The operation time will depend on the number of files and their respective size.
+Renaming does not exist in SWIFT. It instead consists of the creation of a new container, a copy of all objects into this new container, and the deletion of the old container.
 </aside>
 
 Required | &nbsp;
 ------ | -----------
-`name`<br/>*string* | The new name of the container
+`name`<br/>*string* | The new name of the container.
 
