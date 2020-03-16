@@ -102,6 +102,8 @@ includes:
   - azure/security_rules
   - masterportal
   - masterportal/applications
+  - swift
+  - swift/containers
 
 search: true
 ---
