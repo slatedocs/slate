@@ -27,6 +27,8 @@ We can track source for given models. This will help us identify which device ha
 
 `app_source` header params needs to be pass to set source for those models, and it will accept one of given values
 
+> NOTE: Please pass source header params in each and every api endpoints you call. That way, if some behavior change in our API, we might not change it depending on source, to keep it backward compitable.
+
 | Database value | source value           | comment                         |
 | -------------- | ---------------------- | ------------------------------- |
 | 0              | website                | default value                   |
@@ -36,3 +38,4 @@ We can track source for given models. This will help us identify which device ha
 | 4              | mobile_android_offline | android device but offline mode |
 | 5              | mobile_ios_offline     | ios device but offline mode     |
 | 6              | push_cart              | Push Cart chrome extension      |
+| 7              | zapier                 | Zapier app                      |
