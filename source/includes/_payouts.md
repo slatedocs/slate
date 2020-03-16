@@ -200,8 +200,9 @@ the server will respond with a [401 Unauthorized HTTP status code](https://tools
 
 There are some actions that require additional authentication.
 
-In those cases a 403 is returned together with a one-time token (OTT) value which needs 
-to be signed and the resulting signature included in the retry of the original request.
+In those cases a [403 Forbidden HTTP status code](https://tools.ietf.org/html/rfc7231#section-6.5.3) is returned 
+together with a one-time token (OTT) value which needs to be signed and the resulting signature included in the retry 
+of the original request.
 
 We use a digital signature scheme based on public-key cryptography. It involves creating a
 signature using a private key on the client side and verifying the signature authenticity on
@@ -209,7 +210,7 @@ the server side using the corresponding public key the client has uploaded.
 
 To call the endpoints requiring additional authentication:
 
-* Create a key pair
+* Create public and private key pair
 * Upload the public key to TransferWise
 * Set up response handling to retry with the signed OTT
 
@@ -224,24 +225,24 @@ $ openssl rsa -pubout -in private.pem -out public.pem
 
 The following requirements apply:
 
-* The cryptographic algorithm is RSA.
-* Key length is at least 2048 bits.
-* The public key is stored in PEM file format using a `.pem` file extension.
+* The cryptographic algorithm has to be RSA
+* The key length has to be at least 2048 bits
+* The public key should be stored in PEM file format using a `.pem` file extension
 
 **Managing uploaded public keys**
 
-The public keys management page can be accessed via Manage public keys button in API tokens section 
-of the Settings page in your TransferWise account.
+The public keys management page can be accessed via Manage public keys button under the API tokens section 
+of your TransferWise account settings.
 
 Since public key upload itself has to be protected from unauthorized use, you will be prompted for 2FA during 
 this process.
 
-Note that to prevent abuse the number of public keys you can have stored is limited to 5.
+Please note that to prevent abuse, the maximum number of public keys you can store at any point of time is limited to 5.
 
 **Signing the data**
 
-The digital signature algorithm we use is *SHA256 with RSA* (SHA256 hash of the data is signed with RSA). There are 
-different ways of creating the required digital signature, for example:
+We will only accept the signatures created with *SHA256 with RSA* (SHA256 hash of the data is signed with RSA) algorithm.
+There are different ways of creating the required digital signature, for example:
 
 > The shell one-liner to sign a string, encode it with Base64 and print to standard output:
 
@@ -262,7 +263,7 @@ $ printf '<string to sign>' | openssl sha256 -sign <path to private key.pem> | b
    
 **Detailed workflow**
 
-> Here is the workflow by example. 
+> Here is a step-by-step workflow with example commands.
 
 > 1\. Client performs a request:
 
@@ -357,13 +358,13 @@ x-2fa-approval-result: APPROVED
 ```
 
 1. Client makes a request which requires strong authentication.
-2. The request is declined with HTTP status `403 / Forbidden` and the following headers 
+2. The request is declined with HTTP status `403 / Forbidden` with the following response headers 
   * `X-2FA-Approval-Result`: `REJECTED`
   * `X-2FA-Approval` containing the one-time token (OTT) value which is what needs to be signed
 3. Client signs the OTT with the private key corresponding to a public key previously uploaded for 
 signature verification.
-4. Client repeats the initial request with the OTT provided in the `X-2FA-Approval` header value and the signed OTT in 
-the `X-Signature` header value.  
+4. Client repeats the initial request with the OTT provided in the `X-2FA-Approval` request header and the signed OTT in 
+the `X-Signature` request header.  
 
 Note: as the name implies, a one-time token can be used only once. If it was successfully processed then further 
 requests with the same token signature will be rejected.
@@ -796,7 +797,7 @@ You can add new currencies to your account via the user interface: [https://sand
 
 You can then top up your new currencies by converting funds from other currencies.
 
-**NB!**: this endpoint is subject to [additional authentication requirements]
+**NB!**: This endpoint is subject to [additional authentication requirements]
 (#payouts-guide-api-access-strong-customer-authentication). There are scenarios where those could be 
 bypassed, such as:
 
@@ -1194,7 +1195,7 @@ intervalEnd                           | Statement start time in UTC time        
 
 Note that you can also download statements in PDF and CSV formats if you replace statement.json with statement.csv or statement.pdf respectively in the above URL.
 
-**NB!** this endpoint is subject to [additional authentication requirements]
+**NB!** This endpoint is subject to [additional authentication requirements]
 (#payouts-guide-api-access-strong-customer-authentication). The additional authentication is 
 only required once every 90 days, viewing the statement on the website or in the mobile app counts towards that as well.
 
