@@ -89,7 +89,7 @@ Attributes | &nbsp;
 `isNode`<br/>*boolean* | The access type of the container. It can either be public or private.
 `bucketName`<br/>*string* | The name of the bucket that the object is part of.
 `displaySize`<br/>*object* | Object containing the information to display the size in the UI.
-`contentType`<br/>*string* | The mime type corresponding to the content of the file.
+`contentType`<br/>*string* | The MIME type corresponding to the content of the file.
 `lastModified`<br/>*string* | The last date that the file was modified.
 
 <!-------------------- RETRIEVE AN OBJECT -------------------->
@@ -141,7 +141,7 @@ Attributes | &nbsp;
 `isNode`<br/>*boolean* | The access type of the container. It can either be public or private.
 `bucketName`<br/>*string* | The name of the bucket that the object is part of.
 `displaySize`<br/>*object* | Object containing the information to display the size in the UI.
-`contentType`<br/>*string* | The mime type corresponding to the content of the file.
+`contentType`<br/>*string* | The MIME type corresponding to the content of the file.
 `lastModified`<br/>*string* | The last date that the file was modified.
 
 
