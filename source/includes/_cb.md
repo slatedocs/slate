@@ -16,7 +16,7 @@ Most recently, the Foundation named Maguy Le Coze as Outstanding.';
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/cb/create', [
-    'location_id'		 		 => 1,
+    'location_id'		 => 1,
     'campaign_name'              => 'Le Bernardin Citation Builder',
     'business_name'              => 'Le Bernardin',
     'website_address'            => 'le-bernardin.com',
@@ -218,7 +218,7 @@ use BrightLocal\Api;
 $campaignId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v2/cb/' .$campaignId, [
-    'location_id'		 		 => 1,
+    'location_id'		 => 1,
     'campaign_name'              => 'Le Bernardin Citation Builder',
     'business_name'              => 'Le Bernardin',
     'website_address'            => 'le-bernardin.com',
