@@ -53,7 +53,8 @@ Attributes | &nbsp;
 
 Additional Attributes: Network filter included | &nbsp;
 ---------- | -----
-`networkSecurityGroupName` <br/>*string* | The name of the network security group for the subnet, if it it exists. 
+`networkSecurityGroupId`<br>*string* | The id of the network security group for the subnet, if it exists. 
+`networkSecurityGroupName` <br/>*string* | The name of the network security group for the subnet, if it exists. 
 `nics`<br/> *list* | A list of nics associated to the subnet. 
 `nics.name`<br/>*string* | The name of the nic.
 `nics.primaryPrivateIp`<br/>*string* | The primary private ip for the nic. 
@@ -107,6 +108,7 @@ Retrieve a specific subnet by id.
 
 Attributes | &nbsp;
 ---------- | -----
+`addressPrefix`<br/>*string* | The IPv4 CIDR representing the address range for the subnet.
 `id`<br/>*string* | The id associated to the subnet. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/virtualNetworks/:networkName/subnets/:subnetName`
 `parentNetworkId` <br/>*string* | The id for the parent network. 
 `name`<br/>*string* | The name of the subnet.
@@ -114,6 +116,7 @@ Attributes | &nbsp;
 `allocatedAddresses`<br/>*int* | The number of allocated addresses in the subnet.
 `availableAddresses`<br/>*int* | The number of available ip addresses in the subnet.
 `totalNumberIps`<br/>*int* | The total number of ip addresses in the address space of the subnet.
+`networkSecurityGroupId`<br>*string* | The id of the network security group for the subnet, if it exists.
 `networkSecurityGroupName` <br/>*string* | The name of the network security group for the subnet, if it it exists. 
 `nics`<br/> *list* | A list of nics associated to the subnet. 
 `nics.name`<br/>*string* | The name of the nic.
@@ -154,7 +157,34 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`networkSecurityGroupName` <br/>*string* | The name of an existing network security group to be associated with the subnet. The security group must exist in the same subscription and location as the virtual network.
+`networkSecurityGroupId`<br>*string* | The id for the network security group you want to associate the subnet to, can be `NONE`.
+
+<!-------------------- UPDATE A SUBNET -------------------->
+
+#### Update a Subnet
+
+```shell
+curl -X PUT \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
+
+# Request should look like this
+```
+```json
+{
+  "addressPrefix":"This is my updated template description"
+}
+```
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnets/:subnet_id</code>
+
+Update a subnet. 
+
+Optional | &nbsp;
+-------- | ------
+`addressPrefix`<br/>*string* | The portion of the parent network's address space (IPV4 CIDR format) allocated to the subnet. The range cannot overlap with other subnets. The smallest range you can specify is /29. Can only be updated if it is contained within the range of the parent network and if no resources are attached to the subnet.
+`networkSecurityGroupId`<br>*string* | The id for the network security group you want to associate the subnet to, `NONE` if you want to detach the current network security group.
 
 <!-------------------- DELETE A SUBNET -------------------->
 
