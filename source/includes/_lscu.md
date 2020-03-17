@@ -12,7 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v4/lscu', [
-    'location_id'				=> 1,
+    'location_id'		=> 1,
     'report-name'               => 'Sample Local Search Audit Report',
     'business-names'            => ["Le Bernardin"],
     'website-address'           => "le-bernardin.com",
@@ -199,7 +199,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v4/lscu', [
-    'location_id'				=> 1,
+    'location_id'		=> 1,
     'report-id'                 => '1',
     'postcode'                  => '10019',
     'telephone'                 => '+1 212-554-1515',
