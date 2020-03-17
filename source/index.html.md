@@ -227,7 +227,7 @@ This POST request requires email/password and returns a user token needed for vi
 `POST http://synbiohub.org/login `
 
 ```plaintext
-`curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login`
+curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login
 ```
 
 #### Query Parameters
@@ -243,7 +243,7 @@ password | the password of the user
 If `user` is currently logged in, this post request will logout the user.
 
 ```plaintext
-`curl -X POST -H "Accept: test/plain" localhost:7777/logout`
+curl -X POST -H "Accept: test/plain" localhost:7777/logout
 ```
 
 # Search Endpoints
@@ -286,7 +286,7 @@ print(response.content)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/search/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP/?offset=0&limit=50'
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/search/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP/?offset=0&limit=50
 ```
 
 Note that the X-authorization header is optional, but if provided, the search will also return private objects for the logged in user.
@@ -347,7 +347,7 @@ print(response.content)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections
 ```
 
 ```javascript
@@ -370,7 +370,7 @@ fetch(Url,otherPram)
 `GET <SynBioHub URL>/rootCollections`
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/igem_collection/1/rootCollections
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/igem_collection/1/rootCollections
 ```
 
 ```python
@@ -419,7 +419,7 @@ print(response.content)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/twins
 ```
 
 ```javascript
@@ -456,7 +456,7 @@ print(response.content)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/similar
 ```
 
 ```javascript
@@ -492,7 +492,7 @@ print(response.content)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses
 ```
 
 
@@ -531,7 +531,7 @@ print(response.content)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
 ```
 
 ```javascript
@@ -558,7 +558,7 @@ Note that the X-authorization header is optional, but if provided, the search co
 Returns the number of objects within a specified collection
 
 ```plaintext
- curl -X GET https://synbiohub.org/Collection/Count
+curl -X GET https://synbiohub.org/Collection/Count
 ```
 
 ```python
@@ -598,7 +598,7 @@ Note that you can replace `<ObjectType>` with any object type, such as `Componen
 Returns the results of the SPARQL query in JSON format. 
 
 ```plaintext
- `curl -X GET -H "Accept: application/json" 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
+curl -X GET -H "Accept: application/json" 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D
 ```
 
 ```python
@@ -658,7 +658,7 @@ print(response.content)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download -O --compressed
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/test/attachment_00009TGVMsfEoCdMeRzHrU/1/download -O --compressed
 ```
 
 
@@ -683,7 +683,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbol`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbol
 ```
 
 ```python
@@ -722,7 +722,7 @@ fetch(Url,otherPram)
 
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbolnr`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/sbolnr
 ```
 
 ```python
@@ -758,7 +758,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/metadata`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/metadata
 ```
 
 ```python
@@ -798,7 +798,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gb
 ```
 
 ```python
@@ -836,7 +836,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.fasta
 ```
 
 ```python
@@ -874,7 +874,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/visualization`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/visualization
 ```
 
 ```python
@@ -904,7 +904,7 @@ Create a new collection including the elements within a file or add to a preexis
 
 
 ```plaintext
- `curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
+curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
 ```
 
 Query Parameters
@@ -944,7 +944,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/removeCollection`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/removeCollection
 ```
 
 ```python
@@ -982,7 +982,7 @@ fetch(Url,otherPram)
 ```
 
 ```plaintext
- `curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove`
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_F2620/1/remove
 ```
 
 ```python
@@ -1084,7 +1084,7 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" htt
 
 ## Make Public Collection
 
-`POST <URI>//user/:userId/:collectionId/:displayId/:version/makePublic`
+`POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
 
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" http://synbiohub.org/user/:userId/:collectionId/:displayId/:version/remove/:field
@@ -1118,7 +1118,7 @@ Attach a specified URL to a given URI
 Returns the results of the SPARQL admin query in JSON format.
 
 ```plaintext
- ` curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
+curl -X GET -H "Accept: application/json" 'https://synbiohub.org/admin/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D
 ```
 
 
