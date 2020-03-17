@@ -1087,7 +1087,7 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" htt
 `POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
 
 ```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" http://synbiohub.org/user/:userId/:collectionId/:displayId/:version/remove/:field
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" /user/:userId/:collectionId/:displayId/:version/makePublic
 ```
 
 
