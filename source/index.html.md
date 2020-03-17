@@ -1042,8 +1042,52 @@ print(response.content)
 
 ## Edit Mutable Descriptions
 
+`POST <URI>/updateMutableDescription `
+
+
 ```plaintext
-curl -X POST -H "Accept: text/plan" -H "X-authorization:<>" -d "uri=<>&value=<>" http://synbiohub.org/updateMutableDescription
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "uri=<>&value=<>" http://synbiohub.org/updateMutableDescription
+```
+
+## Add Field
+
+`POST <URI>/user/:userId/:collectionId/:displayId/:version/add/:field `
+
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "object=<>" http://synbiohub.org/user/:userId/:collectionId/:displayId/:version/add/:field
+```
+
+## Remove Field
+
+`POST <URI>/user/:userId/:collectionId/:displayId/:version/remove/:field `
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "object=<>" http://synbiohub.org/user/:userId/:collectionId/:displayId/:version/remove/:field
+```
+
+## Add Owner
+
+`POST <URI>/public/:collectionId/:displayId/:version/addOwner`
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "user=<>&uri=<>" http://synbiohub.org/public/:collectionId/:displayId/:version/addOwner
+```
+
+## Remove Owner
+
+`POST <URI>/public/:collectionId/:displayId/:version/removeOwner/:username`
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" http://synbiohub.org/public/:collectionId/:displayId/:version/removeOwner/:username
+```
+
+## Make Public Collection
+
+`POST <URI>//user/:userId/:collectionId/:displayId/:version/makePublic`
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" http://synbiohub.org/user/:userId/:collectionId/:displayId/:version/remove/:field
 ```
 
 
