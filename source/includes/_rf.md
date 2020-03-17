@@ -12,6 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v4/rf/add', [
+    'location_id'		=> 1,
     'report-name'       => 'Le Bernardin', 
 	'business-name'     => 'Le Bernardin',
 	'contact-telephone' => '+1 212-554-1515',
@@ -29,6 +30,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'location_id=1' \
  -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'contact-telephone=+1 212-554-1515' \
@@ -44,6 +46,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location_id", 1);
 parameters.Add("report-name", "Sample Citation Tracker Report");
 parameters.Add("business-name", "Le Bernardin");            
 parameters.Add("contact-telephone", "+1 212-554-1515");
@@ -167,6 +170,7 @@ use BrightLocal\Api;
 $reportId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $success = $api->put('/v4/rf/' .$reportId, [
+     -d 'location_id=1' \
      -d 'report-name=Le Bernardin' \
      -d 'business-name=Le Bernardin' \
      -d 'contact-telephone=+1 212-554-1515' \
@@ -179,6 +183,7 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'location_id=1' \
  -d 'report_name=Le Bernardin' \
  -d 'business_names=Le Bernardin' \
  -d 'schedule=Adhoc' \
@@ -191,6 +196,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var reportId = 1;
 var parameters = new api.Parameters();
+parameters.Add("location_id", 1);
 parameters.Add("business-name", "Le Bernardin");
 parameters.Add("contact-telephone", "+1 212-554-1515");
  

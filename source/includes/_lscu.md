@@ -12,6 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v4/lscu', [
+    'location_id'				=> 1,
     'report-name'               => 'Sample Local Search Audit Report',
     'business-names'            => ["Le Bernardin"],
     'website-address'           => "le-bernardin.com",
@@ -34,6 +35,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'location_id=1' \
  -d 'report-name=Sample Local Search Audit Report' \
  -d 'business-names=["Le Bernardin"]' \
  -d 'address1=155 West 51st Street' \ 
@@ -53,6 +55,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location_id", 1);
 parameters.Add("report-name", "Sample Local Search Audit Report");
 parameters.Add("business-names", JsonConvert.SerializeObject("['Le Bernardin']"));
 parameters.Add("website-address", "le-bernardin.com");
@@ -196,6 +199,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v4/lscu', [
+    'location_id'				=> 1,
     'report-id'                 => '1',
     'postcode'                  => '10019',
     'telephone'                 => '+1 212-554-1515',
@@ -212,6 +216,7 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'location_id=1' \
  -d 'report-id=1' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515'
@@ -226,6 +231,7 @@ curl -X PUT \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location_id", "1");
 parameters.Add("report-id", "1");
 parameters.Add("postcode", "10019");
 parameters.Add("telephone", "+1 212-554-1515");

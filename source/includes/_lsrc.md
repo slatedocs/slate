@@ -12,6 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/lsrc/add', [
+    'location_id'	    => 1,
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
 	'search-terms'      => "Restaurant\nfood+nyc\ndelivery+midtown+manhattan",
@@ -26,6 +27,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'location_id=1' \
  -d 'name=Le Bernardin' \
  -d 'schedule=Adhoc' \
  -d $'search-terms=Restaurant\nfood+nyc\ndelivery+midtown+manhattan' \ 
@@ -38,6 +40,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location_id", 1);
 parameters.Add("name", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
 parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
@@ -106,6 +109,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/lsrc/update', [
+    'location_id'		=> 1,
     'campaign-id'       => 9907,
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
@@ -121,6 +125,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'location_id=1' \
  -d 'campaign-id=9907' \
  -d 'name=Le Bernardin' \
  -d 'schedule=Adhoc' \
@@ -134,6 +139,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location_id", "1");
 parameters.Add("campaign-id", "9907");
 parameters.Add("name", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
