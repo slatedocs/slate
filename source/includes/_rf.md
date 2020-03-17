@@ -12,7 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v4/rf/add', [
-    'location_id'		=> 1,
+    'location_id'	=> 1,
     'report-name'       => 'Le Bernardin', 
 	'business-name'     => 'Le Bernardin',
 	'contact-telephone' => '+1 212-554-1515',
