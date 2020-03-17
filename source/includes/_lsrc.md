@@ -109,7 +109,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/lsrc/update', [
-    'location_id'		=> 1,
+    'location_id'	=> 1,
     'campaign-id'       => 9907,
     'name'              => 'Le Bernardin',
 	'schedule'          => 'Adhoc',
