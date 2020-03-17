@@ -12,7 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/add', [
-    'location-id'		=> 1,
+    'location-id'	=> 1,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
     'address1'          => '155 West 51st Street',
@@ -127,7 +127,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/update', [
-    'location-id'		=> 1,
+    'location-id'	=> 1,
     'report-id'         => 682,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
