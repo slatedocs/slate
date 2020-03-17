@@ -64,7 +64,7 @@ Retrieve a list of all the disks in a given [environment](#administration-enviro
 Attributes | &nbsp;
 ------- | -----------
 `data`<br/>*array* | A list of Azure disks. _(See ["Retrieve an Azure disk"](#azure-retrieve-an-azure-disk) API for the strucutre of each disk object)_
-`metadata`<br/>*object* | Consists of the meta information related to the returned disk list. The attribute `recordCount` contains the number of disks returned. 
+`metadata`<br/>*object* | Consists of the meta information related to the returned disk list. The attribute `recordCount` contains the number of disks returned.
 
 
 <!-------------------- RETRIEVE A DISK -------------------->
@@ -108,7 +108,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The display name of the disk
 `type`<br/>*string* | The managed disk type. Can be one of the following: `premium_lrs` _(Premium SSD)_, `standard_lrs` _(Standard HDD)_, `standardssd_lrs` _(Standard SSD)_ or `ultrassd_lrs` _(Ultra SSD)_
 `region`<br/>*string* | The regional location in which the disk was instantiated
-`instanceId`<br/>*string* | The id of the instance to which the disk is attached to. This is a canonized id from azure which is the form of `/subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName}` 
+`instanceId`<br/>*string* | The id of the instance to which the disk is attached to. This is a canonized id from azure which is the form of `/subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName}`
 `instance`<br/>*string* | The name of the instance to which the disk is attached to _(available only if the disk is attached to an instance)_
 `state`<br/>*string* | An indication of the _state_ of the disk. Can be one of the following: `Unattached`, `Attached`, `Reserved`, `ActiveSAS`, `ReadyToUpload`, `ActiveUpload`
 `provisioningState`<br/>*string* | An indication of the _provisioning state_ of the disk _(SUCCESS or FAILURE)_
@@ -245,3 +245,53 @@ curl -X POST \
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=detach</code>
 
 Detach an existing disk from a given [instance](#azure-instances).
+
+<!-------------------- ATTACH A DISK -------------------->
+
+#### Attach a disk
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4?operation=attach"
+
+# Request should look like this
+```
+```shell
+# Request Example:
+```
+
+```json
+{
+  "instanceId" : "/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/cool-instance",
+}
+```
+```shell
+# Request Example 2:
+```
+
+```json
+{
+  "instanceId" : "/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/cool-instance",
+  "lun" : 10
+}
+```
+
+```shell
+# Response Example
+```
+```json
+{
+  "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=attach</code>
+
+Attach a disk to an instance
+
+Optional | &nbsp;
+---------- | -----
+LUN: `lun`<br/>*Integer* | The logic unit number of a disk. Can only be between 1 and 63 inclusive. If the LUN is not specified it will default to the first available LUN for that instance.
