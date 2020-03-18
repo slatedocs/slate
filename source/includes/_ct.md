@@ -12,6 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/add', [
+    'location-id'	=> 1,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
     'address1'          => '155 West 51st Street',
@@ -32,6 +33,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'location-id=1' \
  -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'address-1=155 West 51st Street' \
@@ -50,6 +52,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location-id", 1);
 parameters.Add("report-name", "Sample Citation Tracker Report");
 parameters.Add("business-name", "Le Bernardin");
 parameters.Add("address-1", "155 West 51st Street");
@@ -124,6 +127,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/ct/update', [
+    'location-id'	=> 1,
     'report-id'         => 682,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
@@ -143,6 +147,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'location-id'=1,
  -d 'report-id'=682,
  -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
@@ -160,6 +165,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location-id", 1);
 parameters.Add("report-id", 682);
 parameters.Add("report-name", "Sample Citation Tracker Report");
 parameters.Add("business-name", "Le Bernardin");

@@ -12,6 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v4/gpw/add', [
+    'location_id'	 => 1,
     'report_name'    => 'Le Bernardin', 
 	'business_names' => 'Le Bernardin',
 	'schedule'       => 'Adhoc',
@@ -34,6 +35,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
+ -d 'location_id=1' \
  -d 'report_name=Le Bernardin' \
  -d 'business_names=Le Bernardin' \
  -d 'schedule=Adhoc' \
@@ -54,6 +56,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
+parameters.Add("location_id", 1);
 parameters.Add("report_name", "Sample SEO Check-Up Report");
 parameters.Add("business_names", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
@@ -151,6 +154,7 @@ use BrightLocal\Api;
 $reportId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $success = $api->put('/v4/gpw/' .$reportId, [
+    'location_id'	=> 1,
     'business-name'     => 'Le Bernardin',
     'contact-telephone' => '+1 212-554-1515'
 ]);
@@ -162,6 +166,7 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
+ -d 'location_id=1' \
  -d 'report_name=Le Bernardin' \
  -d 'business_names=Le Bernardin' \
  -d 'schedule=Adhoc' \
@@ -174,6 +179,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var reportId = 1;
 var parameters = new api.Parameters();
+parameters.Add("location_id", 1);
 parameters.Add("report_name", "Sample SEO Check-Up Report");
 parameters.Add("business_names", "Le Bernardin");
 parameters.Add("schedule", "Adhoc");
