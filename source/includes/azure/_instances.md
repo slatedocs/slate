@@ -319,7 +319,7 @@ curl -X POST \
 
 <!-------------------- ATTACH A DISK -------------------->
 
-#### Attach a disk
+#### Attach a disk (instance side)
 ```shell
 curl -X POST \
    -H "Content-Type: application/json" \

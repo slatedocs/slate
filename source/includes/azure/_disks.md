@@ -248,7 +248,7 @@ Detach an existing disk from a given [instance](#azure-instances).
 
 <!-------------------- ATTACH A DISK -------------------->
 
-#### Attach a disk
+#### Attach a disk (disk side)
 ```shell
 curl -X POST \
    -H "Content-Type: application/json" \
