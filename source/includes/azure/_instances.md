@@ -325,7 +325,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/instances/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/vm1?operation=attach"
+ "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
 
 # Request should look like this
 ```
@@ -336,7 +336,7 @@ curl -X POST \
 ```json
 {
   "diskToAttach" : "/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/disktest1",
-  "diskLun": "10"
+  "diskLun": 10
 }
 ```
 
@@ -356,5 +356,5 @@ curl -X POST \
 
 Required | &nbsp;
 ------ | -----------
-Disk ID: `diskToAttach` <br/>*String* | The Id of the disk that you want to be attached to the instance.
-LUN: `diskLun`<br/>*Integer* | The logic unit number of a disk. Can only be between 1 and 63 inclusive.
+`diskToAttach` <br/>*String* | The Id of the disk that you want to be attached to the instance.
+`diskLun`<br/>*Integer* | The logic unit number of a disk. Can only be between 1 and 63 inclusive.
