@@ -329,7 +329,8 @@ print(response.content)
 ```
 
 ```plaintext
-curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP
+
 ```
 
 ```javascript
@@ -349,20 +350,29 @@ fetch(Url,otherPram)
 ## Search Root Collections
 
 `GET <SynBioHub URL>/rootCollections
-
 `
 
 Returns all root collections.
 
+
 ```plaintext
+
 curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/rootCollections
 
-[...,{"uri":"https://synbiohub.org/public/igem/igem_collection/1",
-"name":"iGEM Parts Registry",
-"description":"The iGEM Registry is a growing collection of genetic parts that can be mixed and matched to build synthetic biology devices and systems.  As part of the synthetic biology community's efforts to make biology easier to engineer, it provides a source of genetic parts to iGEM teams and academic labs.",
-"displayId":"igem_collection",
-"version":"1"},
-...]
+This endpoint returns JSON metadata of the form:
+
+[
+	...,
+	{
+	"uri":"https://synbiohub.org/public/igem/igem_collection/1",
+	"name":"iGEM Parts Registry",
+	"description":"The iGEM Registry is a growing collection of genetic parts that can be mixed and matched to build synthetic biology devices and systems.  As part of the synthetic biology community's efforts to make biology easier to engineer, it provides a source of genetic parts to iGEM teams and academic labs.",
+	"displayId":"igem_collection",
+	"version":"1"
+	},
+	...
+]
+
 ```
 
 ```python
@@ -411,6 +421,17 @@ print(response.content)
 
 ```plaintext
 curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/bsu_collection/1/subcollections
+
+This endpoint returns JSON metadata of the form:
+[
+	{
+		"uri":"https://synbiohub.org/public/bsu/SpaRK_collection/1",
+		"name":"SpaRK","description":"SpaRK",
+		"displayId":"SpaRK_collection",
+		"version":"1"
+	}
+
+]
 ```
 
 ```javascript
@@ -426,9 +447,6 @@ fetch(Url,otherPram)
     .then(res => res.buffer()).then(buf => console.log(buf.toString()))
     .catch (error=>console.log(error))
 ```
-
-
-
 
 
 ## Search Twins
@@ -527,6 +545,20 @@ print(response.content)
 
 ```plaintext
 curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/bsu/BO_5629/1/uses
+
+This endpoint returns JSON metadata of the form:
+
+[
+	{
+		"type":"http://sbols.org/v2#Collection",
+		"uri":"https://synbiohub.org/public/bsu/bsu_collection/1",
+		"name":"Bacillus subtilis Collection",
+		"description":"This collection includes information about promoters, operators, CDSs and proteins from Bacillus subtilis. Functional interactions such as transcriptional activation and repression, protein production and various protein-protein interactions are also included.",
+		"displayId":"bsu_collection",
+		"version":"1"
+	}
+]
+
 ```
 
 
@@ -594,7 +626,17 @@ Note that you can replace `<ObjectType>` with any object type, such as `Componen
 Returns the results of the SPARQL query in JSON format. 
 
 ```plaintext
-curl -X GET -H "Accept: application/json" 'https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D
+curl -X GET -H "Accept: application/json" https://synbiohub.org/sparql?query=select%20%3Fs%20%3Fp%20%3Fo%20where%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D
+
+This endpoint returns JSON metadata of the form:
+
+[...
+	{ 
+		"s": { "type": "uri", "value": "https://synbiohub.org/public/igem/BBa_K1732001/annotation2443059/range2443059/1" }	, 
+		"p": { "type": "uri", "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" }	, 
+		"o": { "type": "uri", "value": "http://sbols.org/v2#Range" }
+	}
+...]
 ```
 
 ```python
