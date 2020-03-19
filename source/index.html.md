@@ -892,6 +892,44 @@ print(response.content)
 
 ```
 
+## Download GFF3 
+
+`GET <URI>/gff`
+
+Returns the object from the specified URI in GFF3 format.
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gff'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+```plaintext
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gff
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/BBa_K1479017/1/BBa_K1479017.gff',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+
+```
+
 ## Download Visualization
 
 `GET <URI>/visualization`
