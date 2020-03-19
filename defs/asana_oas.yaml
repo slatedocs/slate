@@ -30,7 +30,7 @@ info:
     - CustomFieldSettingCompact
     - CustomFieldResponse
     - CustomFieldCompact
-    - EnumOptionCompact
+    - EnumOption
     - EventResponse
     - ErrorResponse
     - JobResponse
@@ -1373,7 +1373,18 @@ components:
               name: Hello, world!
               notes: How are you today?
     CustomFieldResponse:
-      $ref: '#/components/schemas/CustomFieldBase'
+      allOf:
+        - $ref: '#/components/schemas/CustomFieldBase'
+        - type: object
+          properties:
+            enum_value:
+              allOf:
+                - $ref: '#/components/schemas/EnumOption'
+                - type: object
+                  description: >-
+                    *Conditional*. Only relevant for custom fields of type
+                    `enum`. This object is the chosen value of an enum custom
+                    field.
     CustomFieldRequest:
       allOf:
         - $ref: '#/components/schemas/CustomFieldBase'
@@ -1407,7 +1418,7 @@ components:
                 options](#create-an-enum-option).
               type: array
               items:
-                $ref: '#/components/schemas/EnumOptionCompact'
+                $ref: '#/components/schemas/EnumOption'
             precision:
               description: >-
                 Only relevant for custom fields of type ‘Number’. This field
@@ -1418,6 +1429,8 @@ components:
                 For percentage format, this may be unintuitive, as a value of 0.25
                 has a precision of 0, while a value of 0.251 has a precision of 1.
                 This is due to 0.25 being displayed as 25%.
+
+                The identifier format will always have a precision of 0.
               type: integer
               example: 2
             format:
@@ -1426,6 +1439,7 @@ components:
               type: string
               enum:
                 - currency
+                - identifier
                 - percentage
                 - custom
                 - none
@@ -1521,15 +1535,7 @@ components:
                 options](#create-an-enum-option).
               type: array
               items:
-                $ref: '#/components/schemas/EnumOptionCompact'
-            enum_value:
-              allOf:
-                - $ref: '#/components/schemas/EnumOptionCompact'
-                - type: object
-                  description: >-
-                    *Conditional*. Only relevant for custom fields of type
-                    `enum`. This object is the chosen value of an enum custom
-                    field.
+                $ref: '#/components/schemas/EnumOption'
             enabled:
               description: >-
                 *Conditional*. Determines if the custom field is enabled or not.
@@ -1649,8 +1655,8 @@ components:
                 before_enum_option.
               example: '12345'
     EnumOptionBase:
-      $ref: '#/components/schemas/EnumOptionCompact'
-    EnumOptionCompact:
+      $ref: '#/components/schemas/EnumOption'
+    EnumOption:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
         - type: object
@@ -2272,9 +2278,57 @@ components:
           type: string
           example: https://asana.slack.com/archives/ABCDEFG/12345678
     ProjectResponse:
-      $ref: '#/components/schemas/ProjectBase'
+      allOf:
+        - $ref: '#/components/schemas/ProjectBase'
+        - type: object
+          properties:
+            followers:
+              description: >-
+                Array of users following this project. Followers are a subset of
+                members who receive all notifications for a project, the default
+                notification setting when adding members to a project in-product.
+              type: array
+              items:
+                $ref: '#/components/schemas/UserCompact'
+              readOnly: true
+            owner:
+              description: >-
+                The current owner of the project, may be null.
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
+            team:
+              allOf:
+                - $ref: '#/components/schemas/TeamCompact'
+                - type: object
+                  description: >-
+                    *Create-only*. The team that this project is shared with.
+                    This field only exists for projects in organizations.
     ProjectRequest:
-      $ref: '#/components/schemas/ProjectBase'
+      allOf:
+        - $ref: '#/components/schemas/ProjectBase'
+        - type: object
+          properties:
+            followers:
+              description: >-
+                *Create-only*. Comma separated string of users. Followers are a subset
+                of
+                members who receive all notifications for a project, the default
+                notification setting when adding members to a project in-product.
+              type: string
+              example: 12345,23456
+            owner:
+              description: >-
+                The current owner of the project, may be null.
+              nullable: true
+              type: string
+              example: '12345'
+            team:
+              description: >-
+                *Create-only*. The team that this project is shared with.
+                This field only exists for projects in organizations.
+              type: string
+              example: '12345'
     ProjectBase:
       allOf:
         - $ref: '#/components/schemas/ProjectCompact'
@@ -2358,23 +2412,10 @@ components:
               nullable: true
               format: date-time
               example: '2019-09-15'
-            followers:
-              description: >-
-                Array of users following this project. Followers are a subset of
-                members who receive all notifications for a project, the default
-                notification setting when adding members to a project in-product.
-              type: array
-              items:
-                $ref: '#/components/schemas/UserCompact'
-              readOnly: true
             html_notes:
               description: >-
                 [Opt In](#input-output-options).
                 The notes of the project with formatting as HTML.
-
-                *Note: This field is under active migration—please see our [blog
-                post] (https://developers.asana.com/docs/#rich-text) for more
-                information.*
               type: string
               example: These are things we need to purchase.
             is_template:
@@ -2406,12 +2447,6 @@ components:
                 project.
               type: string
               example: These are things we need to purchase.
-            owner:
-              description: >-
-                The current owner of the project, may be null.
-              nullable: true
-              allOf:
-                - $ref: '#/components/schemas/UserCompact'
             public:
               description: >-
                 True if the project is public to the organization. If false, do
@@ -2429,13 +2464,6 @@ components:
               nullable: true
               format: date
               example: '2019-09-14'
-            team:
-              allOf:
-                - $ref: '#/components/schemas/TeamCompact'
-                - type: object
-                  description: >-
-                    *Create-only*. The team that this project is shared with.
-                    This field only exists for projects in organizations.
             workspace:
               allOf:
                 - $ref: '#/components/schemas/WorkspaceCompact'
@@ -2645,8 +2673,8 @@ components:
                 The text content of the status update with formatting as HTML.
               type: string
               example: >-
-                '&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving
-                forward according to plan...&lt;/body&gt;'
+                <body>The project <strong>is</strong> moving forward according to
+                plan...</body>
             color:
               description: The color associated with the status update.
               type: string
@@ -2945,12 +2973,12 @@ components:
             old_enum_value:
               description: >-
                 *Conditional*
-              $ref: '#/components/schemas/EnumOptionCompact'
+              $ref: '#/components/schemas/EnumOption'
               readOnly: true
             new_enum_value:
               description: >-
                 *Conditional*
-              $ref: '#/components/schemas/EnumOptionCompact'
+              $ref: '#/components/schemas/EnumOption'
               readOnly: true
             new_approval_status:
               description: >-
@@ -3021,9 +3049,6 @@ components:
                 [Opt In](#input-output-options).
                 HTML formatted text for a comment. This will not include the name
                 of the creator.
-
-                *Note: This field is under active migration—please see our blog
-                post for more information.*
               type: string
               example: <body>This is a comment.<body>
             is_pinned:
@@ -3183,20 +3208,6 @@ components:
         - $ref: '#/components/schemas/TaskBase'
         - type: object
           properties:
-            approval_status:
-              type: string
-              description: >-
-                *Conditional* Reflects the approval status of this task. This
-                field is kept in sync with `completed`, meaning `pending`
-                translates to false while `approved`, `rejected`, and
-                `changes_requested` translate to true. If you set completed
-                to true, this field will be set to `approved`.
-              enum:
-                - pending
-                - approved
-                - rejected
-                - changes_requested
-              example: pending
             assignee:
               nullable: true
               allOf:
@@ -3343,6 +3354,20 @@ components:
         - $ref: '#/components/schemas/TaskCompact'
         - type: object
           properties:
+            approval_status:
+              type: string
+              description: >-
+                *Conditional* Reflects the approval status of this task. This
+                field is kept in sync with `completed`, meaning `pending`
+                translates to false while `approved`, `rejected`, and
+                `changes_requested` translate to true. If you set completed
+                to true, this field will be set to `approved`.
+              enum:
+                - pending
+                - approved
+                - rejected
+                - changes_requested
+              example: pending
             assignee_status:
               description: >-
                 Scheduling status of this task for the user it is assigned to.
@@ -3373,6 +3398,7 @@ components:
               nullable: true
               example: '2012-02-22T02:06:58.147Z'
             completed_by:
+              readOnly: true
               $ref: '#/components/schemas/UserCompact'
             created_at:
               description: The time at which this resource was created.
@@ -3448,9 +3474,6 @@ components:
                 [Opt
                 In](#input-output-options).
                 The notes of the text with formatting as HTML.
-
-                *Note: This field is under active migration—please see our blog
-                post for more information.*
               type: string
               example: >-
                 <body>Mittens <em>really</em> likes the stuff from
@@ -3478,10 +3501,7 @@ components:
                 [sections](#asana-sections) without being true
                 `section` objects. If a `task` object is rendered this way in any
                 context it will have the property `is_rendered_as_separator` set
-                to `true`.<br /><br />*Note: Until the default behavior for our
-                API changes integrations must [opt in to the `new_sections` change]
-                (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951)
-                to modify the `is_rendered_as_separator` property.*
+                to `true`.
               type: boolean
               example: false
               readOnly: true
@@ -3559,7 +3579,6 @@ components:
               readOnly: true
             resource_subtype:
               type: string
-              readOnly: true
               description: >-
                 The subtype of this resource. Different subtypes retain many of
                 the same fields and behavior, but may render differently in Asana
@@ -3567,11 +3586,6 @@ components:
 
                 The resource_subtype `milestone` represent a single moment in
                 time. This means tasks with this subtype cannot have a start_date.
-
-                *Note: The resource_subtype of `section` is under active
-                migration—please see our [forum
-                post](https://forum.asana.com/t/sections-are-dead-long-live-sections)
-                for more information.*
               enum:
                 - default_task
                 - milestone
@@ -3781,10 +3795,6 @@ components:
                 [Opt
                 In](#input-output-options).
                 The description of the team with formatting as HTML.
-
-                *Note: This field is under active migration—please see our [blog
-                post](https://developers.asana.com/docs/#rich-text) for more
-                information.*
               type: string
               example: >-
                 <body><em>All</em> developers should be members of this
@@ -4791,7 +4801,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/EnumOptionCompact'
+                    $ref: '#/components/schemas/EnumOption'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -4835,7 +4845,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/EnumOptionCompact'
+                    $ref: '#/components/schemas/EnumOption'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -4888,7 +4898,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/EnumOptionCompact'
+                    $ref: '#/components/schemas/EnumOption'
         400:
           $ref: '#/components/responses/BadRequest'
         401:

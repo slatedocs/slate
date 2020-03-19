@@ -10,8 +10,6 @@
 <body>All these new tasks are <em>really</em> getting disorganized, so <a data-asana-gid="4168112"/> just made the new <a data-asana-gid="5732985"/> project to help keep them organized. <strong>Everyone</strong> should start using the <a data-asana-gid="6489418" data-asana-project="5732985"/> when adding new tasks there.</body>
 ```
 
-**Note: In preparation for our [upcoming migration to string IDs](https://community.asana.com/t/new-rich-text-and-mentions/28362) (referred to as `gid`s in the API) this new feature uses only `gid`s and not `id`s. Read more about it in our [community post](https://community.asana.com/t/new-rich-text-and-mentions/28362).**
-
 The web product offers a number of rich formatting features when writing task notes, comments, project descriptions, and project status updates. These features include bold, italic, underlined, and monospaced text, as well as bulleted and numbered lists. Additionally, users can "@-mention" other users, tasks, projects, and many other objects within Asana to create links.
 
 The rich text field name for an object is equivalent to it's plain text field name prefixed with `html_`. The following object types in Asana support rich text:
@@ -95,8 +93,9 @@ Because of this, the API will return additional attributes in `<a>` tags to conv
 | <nobr>Attribute<img width=150/></nobr> | Meaning |
 |-------------------------|---------|
 | `data-asana-accessible` | Boolean, representing whether or not the linked object is accessible to the current user. If the resource is inaccessible, no other `data-asana-*` attributes will be included in the tag. |
+| `data-asana-dynamic`    | Boolean, represents if contents of the `a` tag is the canonical name of the object in Asana. If you want to set custom text that links to an Asana object, set `data-asana-dynamic="false"` when creating the tag. |
 | `data-asana-type`       | The type of the referenced object. One of `user`, `task`, `project`, `tag`, `conversation`, `status_update`, `team`, or `search`. |
-| `data-asana-gid`         | The GID of the referenced object. If the referenced object is a user, this is the user's GID.  | 
+| `data-asana-gid`        | The GID of the referenced object. If the referenced object is a user, this is the user's GID.  | 
 | `data-asana-project`    | If the type of the referenced object is a task, and the link references that task in a particular project, this is the GID of that project. |
 | `data-asana-tag`        | If the type of the referenced object is a task, and the link references that task in a particular tag, this is the GID of that tag. |
 
@@ -104,19 +103,19 @@ Here are some examples of how this behavior manifests:
 
 - Suppose a user with a name of "Tim" and a user GID of `"53421"` is @-mentioned. This will create a link to their "My Tasks" which is a project with a GID of `"56789"`
   - The raw link generated in Asana will be `https://app.asana.com/0/56789/list`.
-  - The `<a>` tag returned in the API will be `<a href="https://app.asana.com/0/56789/list" data-asana-accessible="true" data-asana-type="user" data-asana-gid="54321">Tim</a>`.
+  - The `<a>` tag returned in the API will be `<a href="https://app.asana.com/0/56789/list" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="user" data-asana-gid="54321">Tim</a>`.
 - Suppose a link to a task with name "Buy milk" and GID `"1234"` being viewed in a project with GID `"5678"` is copied from the address bar and pasted into a comment.
   - The raw link generated in Asana will be `https://app.asana.com/0/5678/1234`.
-  - The `<a>` tag returned in the API will be `<a href="https://app.asana.com/0/5678/1234" data-asana-accessible="true" data-asana-type="task" data-asana-gid="1234" data-asana-project="5678">Buy milk</a>`
+  - The `<a>` tag returned in the API will be `<a href="https://app.asana.com/0/5678/1234" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="task" data-asana-gid="1234" data-asana-project="5678">Buy milk</a>`
 - Suppose another user @-mentions a project with GID `"5678"` that is private and not visible to you in the web product.
   - The raw link generated in Asana will be `https://app.asana.com/0/5678/list`.
-  - The `<a>` tag returned in the API will be `<a href="https://app.asana.com/0/5678/list" data-asana-accessible="false">Private Link</a>`
+  - The `<a>` tag returned in the API will be `<a href="https://app.asana.com/0/5678/list" data-asana-accessible="false" data-asana-dynamic="true">Private Link</a>`
   
 Here's an example of what a complete rich comment might look like in the API:
 
 
 `
-<body>All these new tasks are <em>really</em> getting disorganized, so <a href="https://app.asana.com/0/4168466/list" data-asana-accessible="true" data-asana-type="user" data-asana-gid="4168112">Tim Bizzaro</a> just made the new <a href="https://app.asana.com/0/5732985/list" data-asana-accessible="true" data-asana-type="project" data-asana-gid="5732985">Work Requests</a> project to help keep them organized. <strong>Everyone</strong> should start using the <a href="https://app.asana.com/0/5732985/6489418" data-asana-accessible="true" data-asana-type="task" data-asana-gid="6489418" data-asana-project="5732985">Request template</a> when adding new tasks there.</body>
+<body>All these new tasks are <em>really</em> getting disorganized, so <a href="https://app.asana.com/0/4168466/list" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="user" data-asana-gid="4168112">Tim Bizzaro</a> just made the new <a href="https://app.asana.com/0/5732985/list" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="project" data-asana-gid="5732985">Work Requests</a> project to help keep them organized. <strong>Everyone</strong> should start using the <a href="https://app.asana.com/0/5732985/6489418" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="task" data-asana-gid="6489418" data-asana-project="5732985">Request template</a> when adding new tasks there.</body>
 `
 
 <a name="writing"></a>
@@ -124,7 +123,9 @@ Here's an example of what a complete rich comment might look like in the API:
 
 When writing rich text to the API, you must provide similarly structured, valid XML. The text must be wrapped in a `<body>` tag, all tags must be closed, balanced, and match the case of supported tags, and attributes must be quoted. Invalid XML, as well as unsupported tags, will be rejected with a `400 Bad Request` error. Only `<a>` tags support attributes, and any attributes on other tags will be similarly rejected.
 
-For `<a>` tags specifically, to make it easier to create @-mentions through the API, we only require that you provide the GID of the object you wish to reference. If you have access to that object, the API will automatically generate the appropriate `href` and other attributes for you. For example, to create a link to a task with GID `"123"`, you can send the tag `<a data-asana-gid="123"/>` which will then be expanded to `<a href="https://app.asana.com/0/0/123/f" data-asana-accessible="true" data-asana-type="task" data-asana-gid="123">Task Name</a>`. You can also generate a link to a task in a specific project or tag by including a `data-asana-project` or `data-asana-tag` attribute in the `<a>` tag. All other attributes, as well as the contents of the tag, are ignored.
+For `<a>` tags specifically, to make it easier to create @-mentions through the API, we only require that you provide the GID of the object you wish to reference. If you have access to that object, the API will automatically generate the appropriate `href` and other attributes for you. For example, to create a link to a task with GID `"123"`, you can send the tag `<a data-asana-gid="123"/>` which will then be expanded to `<a href="https://app.asana.com/0/0/123/f" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="task" data-asana-gid="123">Task Name</a>`. You can also generate a link to a task in a specific project or tag by including a `data-asana-project` or `data-asana-tag` attribute in the `<a>` tag. All other attributes, as well as the contents of the tag, are ignored. 
+
+To keep the contents of your tag and make a custom vanity link, include the property `data-asana-dynamic="true"` when setting the contents of the tag. You would send `<a data-asana-gid="123" data-asana-dynamic="false">This is some custom text!</a>` and receive `<a data-asana-accessible="true" data-asana-dynamic="false" data-asana-type="task" data-asana-gid="123">This is some custom text!</a>`
 
 If you do not have access to the referenced object when you try to create a link, the API will not generate an `href` for you, but will instead look for an `href` you provide. This allows you to write back `<a>` tags unmodified even if you do not have access to the resource. If you do not have access to the referenced object and no `href` is provided, your request will be rejected with a `400 Bad Request` error. Similarly, if you provide neither a GID nor a valid `href`, the request will be rejected with the same error.
 

@@ -16,7 +16,8 @@ npm install asana
 
 For use in the Node server-side JavaScript runtime.
 
-**Links:** [GitHub](https://github.com/Asana/node-asana/)
+* [Node Quick Start](#node-hello-world)
+* [GitHub](https://github.com/Asana/node-asana/)
 
 **Installation:** Install with npm
 
@@ -31,7 +32,8 @@ For use in the Node server-side JavaScript runtime.
 
 This is built from the Node library above, so you get the exact same interface.
 
-**Links:** [GitHub](https://github.com/Asana/node-asana/)
+* [Node Quick Start](#node-hello-world)
+* [GitHub](https://github.com/Asana/node-asana/)
 
 **Installation:** Visit the [releases](https://github.com/Asana/node-asana/releases) page to download the latest full or minified JS bundle, then include the script in your web page.
 
@@ -44,7 +46,8 @@ This is built from the Node library above, so you get the exact same interface.
 pip install asana
 ```
 
-**Links:** [GitHub](https://github.com/Asana/python-asana/)
+* [Python Quick Start](#python-hello-world)
+* [GitHub](https://github.com/Asana/python-asana/)
 
 **Installation:** Install with pip
 
@@ -57,7 +60,8 @@ pip install asana
 gem install asana
 ```
 
-**Links:** [GitHub](https://github.com/Asana/ruby-asana/)
+* [Ruby Quick Start](#ruby-hello-world)
+* [GitHub](https://github.com/Asana/ruby-asana/)
 
 **Installation:** Install with gem
 
@@ -73,7 +77,7 @@ gem install asana
   <version>0.6.0</version>
 </dependency>
 ```
-**Links:** [GitHub](https://github.com/Asana/java-asana/)
+* [GitHub](https://github.com/Asana/java-asana/)
 
 **Installation:** If you use [Maven](https://maven.apache.org/) for dependency management simply include the following in your pom.xml.
 
@@ -89,7 +93,7 @@ gem install asana
 }
 ```
 
-**Links:** [GitHub](https://github.com/Asana/php-asana/)
+* [GitHub](https://github.com/Asana/php-asana/)
 
 **Installation:** If you use [Composer](https://getcomposer.org/) to manage dependencies you can include the
 "asana/asana" package as a dependency.

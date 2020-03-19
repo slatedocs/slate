@@ -77,7 +77,12 @@ Base URLs:
 }}
 
 {{~ blocks :block}}
+{{?s.toLowerCase().endsWith("compact")}}
+A `Compact` object is the same as the [full response object](#tocS_{{=s.replaceAll("Compact","")}}), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+{{??}}
 {{? block.title }}{{= block.title}}{{= '\n\n'}}{{?}}
+{{?}}
 {{? block.externalDocs}}
 <a href="{{=block.externalDocs.url}}">{{=block.externalDocs.description||'External documentation'}}</a>
 {{?}}

@@ -14,7 +14,7 @@ Whenever possible, the Asana API aims to preserve backwards compatibility for it
 
 If a breaking change is required, the API team will provide a number of resources to help our developers get through the change:
 
-- We will communicate early, and through a variety of channels. We recommend that you subscribe to our developer newsletter and join the [developers community forum](https://community.asana.com/c/developersAPI).
+- We will communicate early, and through a variety of channels. We recommend that you join the [developers community forum](https://community.asana.com/c/developersAPI) to learn about changes to the API.
 - We will provide a clear description of the change, how it affects your requests, and a migration plan to follow to transition through the deprecation.
 - We will designate a deprecation period during which you will be able to choose between both old and new behavior from the API, allowing you to test out the change without having to put your entire app at risk.
 
