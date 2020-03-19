@@ -325,7 +325,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
- "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
+ "https://cloudmc_endpoint/v1/services/azure-conn/test_env/instances/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
 
 # Request should look like this
 ```
