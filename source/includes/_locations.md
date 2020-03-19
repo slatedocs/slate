@@ -13,6 +13,7 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v1/clients-and-locations/locations/', [
     'name'                 => 'Le Bernardin',
+    'location-reference'   => 'LE-BERNARDIN-10019',
     'url'                  => 'le-bernardin.com',
     'business-category-id' =>  605,
     'country'              => 'USA', // 3 letter iso code
@@ -32,6 +33,7 @@ curl -X POST \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
+ -d 'location-reference=LE-BERNARDIN-10019' \
  -d 'url=le-bernardin.com' \
  -d 'business-category-id=605' \ 
  -d 'country=USA' \
@@ -49,6 +51,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
 parameters.Add("name", "Le Bernardin");
+parameters.Add("location-reference", "LE-BERNARDIN-10019");
 parameters.Add("url", "http://le-bernardin.com");
 parameters.Add("business-category-id", "605");
 parameters.Add("country", "USA"); // 3 Letter iso code
@@ -128,6 +131,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
     'name'                	 		=> 'Le Bernardin',
     'url'                  			=> 'le-bernardin.com',
+    'location-reference'			=> 'LE-BERNADIN-10019',
     'business-category-id' 			=>  605,
     'country'              			=> 'USA', // 3 letter iso code
     'address1'             			=> '155 West 51st Street',
@@ -146,6 +150,7 @@ curl -X PUT \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
+ -d 'location-reference=LE-BERNADIN-10019' \
  -d 'url=le-bernardin.com' \
  -d 'business-category-id=605' \ 
  -d 'country=USA' \
@@ -164,6 +169,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var locationId = 1;
 var parameters = new api.Parameters();
 parameters.Add("name", "Le Bernardin");
+parameters.Add("location-reference", "LE-BERNADIN-10019");
 parameters.Add("url", "http://le-bernardin.com");
 parameters.Add("business-category-id", "605");
 parameters.Add("country", "USA"); // 3 Letter iso code
