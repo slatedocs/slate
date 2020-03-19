@@ -64,7 +64,7 @@ For the rest of this README assume any commands that we list will be run from th
 ### How it works
 The OpenAPI spec is located at /defs/asana_oas.json
 
-To generate the markdown from the spec, we use [widdershins](https://github.com/Mermade/widdershins)
+To generate the markdown from the spec, we use a forked [widdershins](https://github.com/rossgrambo/widdershins)
 ```shell
 node ../widdershins/widdershins.js --search true --language_tabs 'shell: curl' --omitHeader true --includes markdown/* --summary defs/asana_oas.yaml --user_templates ./source/templates -o source/includes/api-reference/_index.html.md
 ```
@@ -77,6 +77,8 @@ bundle exec middleman server
 # OR run this to run with vagrant
 vagrant up
 ```
+
+*Why did we fork widdershins?* For our use case, we needed things like denormalizing and dereferencing. We tried doing this to the spec & using an unforked widdershins, but as we progressed with client library generation, it made more sense to keep a clean spec and do this doc-specific editing in the tooling. A potential future is pulling out this logic to a "openapi spec transformer" to prep the spec for widdershins, but there will be a trade-offs to consider.
 
 ### Editing styles
 Make changes in source/stylesheets/**\_variables.scss** because the changes here will be valid with future versions of Slate.

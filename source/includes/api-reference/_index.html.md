@@ -4,7 +4,7 @@
 <section class="full-section">
 <h1 id="asana">API Reference</h1>
 
-> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+> Scroll down for example requests and responses.
 
 This is the interface for interacting with the [Asana Platform](https://developers.asana.com). Our API reference is generated from our [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
 
@@ -14,10 +14,7 @@ Base URLs:
 
 <a href="https://asana.com/terms">Terms of service</a>
 Web: <a href="https://asana.com/support">Asana Support</a> 
-License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-attachments">Attachments</h1>
 
@@ -28,7 +25,6 @@ License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get an attachment
@@ -87,7 +83,7 @@ Get the full record for a single attachment.
 |200<span class="param-type"> [Attachment](#schemaattachment)</span>|Successfully retrieved the record for a single attachment.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|402<span class="param-type"> None</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |424<span class="param-type"> [Error](#schemaerror)</span>|You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](https://developers.asana.com/docs/#rate-limits) for more information.|
@@ -96,9 +92,7 @@ Get the full record for a single attachment.
 |503<span class="param-type"> [Error](#schemaerror)</span>|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|
 |504<span class="param-type"> [Error](#schemaerror)</span>|This request took too long to complete.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete an attachment
 
@@ -142,16 +136,22 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified attachment.|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified attachment.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-an-attachment-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Get attachments for a task
 
@@ -201,20 +201,18 @@ Returns the compact records for all attachments on the task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Attachment](#schemaattachment)</span>|Successfully retrieved the compact records for all attachments on the task.|
+|200<span class="param-type"> [AttachmentCompact](#schemaattachmentcompact)</span>|Successfully retrieved the compact records for all attachments on the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Upload an attachment
 
-<a id="opIduploadAttachmentToTask"></a>
+<a id="opIdcreateAttachmentForTask"></a>
 
 > Code samples
 
@@ -282,6 +280,7 @@ in order for the server to reliably and properly handle the request.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The file you want to upload.|
+|» file<span class="param-type"> string(binary)</span>|none|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -312,9 +311,7 @@ appending the content type to the file path: `—form
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-batch-api">Batch API</h1>
 
@@ -363,12 +360,11 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 * Nested calls to the batch API
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Submit parallel requests
 
-<a id="opIdbatchRequest"></a>
+<a id="opIdcreateBatchRequest"></a>
 
 > Code samples
 
@@ -442,8 +438,8 @@ Make multiple requests in parallel to Asana's API.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The requests to batch together via the Batch API.|
-|» data<span class="param-type"> object</span>|none|
-|»» actions<span class="param-type"> [[BatchRequest](#schemabatchrequest)]</span>|[A request object for use in a batch request.]|
+|» data<span class="param-type"> object</span>|A request object for use in a batch request.|
+|»» actions<span class="param-type"> [object]</span>|none|
 |»»» relative_path<span class="param-type"> string</span><div class="param-required">required</div>|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
 |»»» method<span class="param-type"> string</span><div class="param-required">required</div>|The HTTP method you wish to emulate for the action.|
 |»»» data<span class="param-type"> object</span>|For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.|
@@ -469,16 +465,14 @@ Make multiple requests in parallel to Asana's API.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [BatchResult](#schemabatchresult)</span>|Successfully completed the requested batch API operations.|
+|200<span class="param-type"> [Batch](#schemabatch)</span>|Successfully completed the requested batch API operations.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-custom-fields">Custom Fields</h1>
 
@@ -563,7 +557,6 @@ Note that the API enforces the same operations on disabled Custom Field values a
 Custom Fields are a complex feature of the Asana platform, and their access in the Asana application and in the API vary based on the status of the user and project. When building your application, it's best to be defensive and not assume the given user will have read or write access to a custom field, and fail gracefully when this occurs.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Create a custom field
@@ -586,7 +579,7 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
 ```json
 {
   "data": {
-    "name": "Bug Task",
+    "name": "Status",
     "resource_subtype": "text",
     "enum_options": [
       {
@@ -601,9 +594,14 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "has_notifications_enabled": true,
     "workspace": "1331"
   }
@@ -617,7 +615,7 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Bug Task",
+    "name": "Status",
     "resource_subtype": "text",
     "type": "text",
     "enum_options": [
@@ -637,9 +635,14 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -666,34 +669,36 @@ Returns the full record of the newly created custom field.
 |---|---|
 |body<span class="param-type"> object</span>|The custom field object to create.|
 |» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace to create a custom field in.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» workspace<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The workspace to create a custom field in.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
+
+#### Detailed descriptions
+
+**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
 
@@ -702,9 +707,12 @@ Returns the full record of the newly created custom field.
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-custom-field-responses">Responses</h3>
 
@@ -717,9 +725,7 @@ Returns the full record of the newly created custom field.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a custom field
 
@@ -742,7 +748,7 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Bug Task",
+    "name": "Status",
     "resource_subtype": "text",
     "type": "text",
     "enum_options": [
@@ -762,9 +768,14 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -803,9 +814,7 @@ type-specific custom field definitions.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a custom field
 
@@ -827,7 +836,7 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 ```json
 {
   "data": {
-    "name": "Bug Task",
+    "name": "Status",
     "resource_subtype": "text",
     "enum_options": [
       {
@@ -842,10 +851,16 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
-    "has_notifications_enabled": true
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
+    "has_notifications_enabled": true,
+    "workspace": "1331"
   }
 }
 ```
@@ -857,7 +872,7 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Bug Task",
+    "name": "Status",
     "resource_subtype": "text",
     "type": "text",
     "enum_options": [
@@ -877,9 +892,14 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -903,32 +923,35 @@ Returns the complete updated custom field record.
 |---|---|
 |body<span class="param-type"> object</span>|The custom field object with all updated properties.|
 |» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» workspace<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The workspace to create a custom field in.|
 |/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
 
@@ -937,9 +960,12 @@ Returns the complete updated custom field record.
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="update-a-custom-field-responses">Responses</h3>
 
@@ -952,9 +978,7 @@ Returns the complete updated custom field record.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete a custom field
 
@@ -998,20 +1022,26 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|The custom field was successfully deleted.|
+|200<span class="param-type"> Inline</span>|The custom field was successfully deleted.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-custom-field-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Get a workspace's custom fields
 
-<a id="opIdgetCustomFieldsInWorkspace"></a>
+<a id="opIdgetCustomFieldsForWorkspace"></a>
 
 > Code samples
 
@@ -1031,7 +1061,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
     {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Bug Task",
+      "name": "Status",
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
@@ -1051,7 +1081,16 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
         "color": "blue"
       },
       "enabled": true,
-      "text_value": "Some Value"
+      "number_value": 5.2,
+      "text_value": "Some Value",
+      "description": "Development team priority",
+      "precision": 2,
+      "format": "custom",
+      "currency_code": "EUR",
+      "custom_label": "gold pieces",
+      "custom_label_position": "suffix",
+      "is_global_to_workspace": true,
+      "has_notifications_enabled": true
     }
   ]
 }
@@ -1084,13 +1123,11 @@ Returns a list of the compact representation of all of the custom fields in a wo
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create an enum option
 
-<a id="opIdaddEnumOption"></a>
+<a id="opIdcreateEnumOptionForCustomField"></a>
 
 > Code samples
 
@@ -1145,8 +1182,6 @@ Returns the full record of the newly created enum option.
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to create.|
 |» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -1162,20 +1197,18 @@ Returns the full record of the newly created enum option.
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Custom field enum option successfully created.|
+|201<span class="param-type"> [EnumOptionCompact](#schemaenumoptioncompact)</span>|Custom field enum option successfully created.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Reorder a custom field's enum
 
-<a id="opIdreorderEnumOption"></a>
+<a id="opIdinsertEnumOptionForCustomField"></a>
 
 > Code samples
 
@@ -1193,9 +1226,6 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 ```json
 {
   "data": {
-    "name": "Low",
-    "enabled": true,
-    "color": "blue",
     "enum_option": "97285",
     "before_enum_option": "12345",
     "after_enum_option": "12345"
@@ -1229,12 +1259,7 @@ Locked custom fields can only be reordered by the user who locked the field.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to create.|
-|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» data<span class="param-type"> object</span>|none|
 |»» enum_option<span class="param-type"> string</span><div class="param-required">required</div>|The gid of the enum option to relocate.|
 |»» before_enum_option<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
 |»» after_enum_option<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
@@ -1246,16 +1271,14 @@ Locked custom fields can only be reordered by the user who locked the field.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Custom field enum option successfully reordered.|
+|200<span class="param-type"> [EnumOptionCompact](#schemaenumoptioncompact)</span>|Custom field enum option successfully reordered.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update an enum option
 
@@ -1279,7 +1302,9 @@ curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
   "data": {
     "name": "Low",
     "enabled": true,
-    "color": "blue"
+    "color": "blue",
+    "insert_before": "12345",
+    "insert_after": "12345"
   }
 }
 ```
@@ -1312,12 +1337,12 @@ Returns the full record of the updated enum option.
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to update|
 |» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|/enum_option_gid<span class="param-type"> string</span>|Globally unique identifier for the enum option.|
+|»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|/enum_option_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the enum option.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -1325,27 +1350,24 @@ Returns the full record of the updated enum option.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [EnumOption](#schemaenumoption)</span>|Successfully updated the specified custom field enum.|
+|200<span class="param-type"> [EnumOptionCompact](#schemaenumoptioncompact)</span>|Successfully updated the specified custom field enum.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a></code>
+<code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
 </pre>
 
 Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a project's custom fields
@@ -1384,7 +1406,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
       "custom_field": {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -1404,9 +1426,14 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -1442,9 +1469,7 @@ Returns a list of all of the custom fields settings on a project, in compact for
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a portfolio's custom fields
 
@@ -1482,7 +1507,7 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
       "custom_field": {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -1502,9 +1527,14 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -1540,137 +1570,7 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
-<section>
-## Add a custom field to a portfolio
-
-<a id="opIdportfolio.addCustomFieldSetting"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> Body parameter
-
-```json
-{
-  "custom_field": "14916",
-  "is_important": true,
-  "insert_before": "1331",
-  "insert_after": "1331"
-}
-```
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
-</p>
-
-Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
-
-<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
-|» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this portfolio.|
-|» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this portfolio (for instance, to display in the list view of items in the portfolio).|
-|» insert_before<span class="param-type"> string</span>|An id of a Custom Field Setting on this portfolio, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|» insert_after<span class="param-type"> string</span>|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-
-<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the custom field to the portfolio.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section>
-
-<hr class="half-line">
-<section>
-## Remove a custom field from a portfolio
-
-<a id="opIdportfolio.removeCustomFieldSetting"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> Body parameter
-
-```json
-{
-  "custom_field": "14916"
-}
-```
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
-</p>
-
-Removes a custom field setting from a portfolio.
-
-<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting being removed.|
-|» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this portfolio.|
-|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-
-<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the custom field from the portfolio.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-events">Events</h1>
 
@@ -1693,7 +1593,6 @@ When you receive a `412 Precondition Failed` error, it means that the sync token
 Sync tokens always expire after 24 hours, but may expire sooner, depending on load on the service.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get events on a resource
@@ -1723,6 +1622,7 @@ curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
       },
       "resource": {
         "gid": "12345",
+        "resource_type": "task",
         "name": "Bug Task"
       },
       "type": "task",
@@ -1749,6 +1649,11 @@ token was created.
 A GET request to the endpoint /[path_to_resource]/events can be made in
 lieu of including the resource ID in the data for the request.
 
+*Note: The resource returned will be the resource that triggered the
+event. This may be different from the one that the events were requested
+for. For example, a subscription to a project will contain events for
+tasks contained within the project.*
+
 <h3 id="get-events-on-a-resource-parameters">Parameters</h3>
 
 |Name|Description|
@@ -1774,9 +1679,7 @@ lieu of including the resource ID in the data for the request.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-jobs">Jobs</h1>
 
@@ -1789,7 +1692,6 @@ Jobs are created when an endpoint requests an action that will be handled asynch
 Only the creator of the duplication process can access the duplication status of the new object.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a job by id
@@ -1812,7 +1714,7 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
+    "resource_type": "job",
     "resource_subtype": "duplicate_task",
     "status": "in_progress",
     "new_project": {
@@ -1854,9 +1756,7 @@ Returns the full record for a job.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-organization-exports">Organization Exports</h1>
 
@@ -1879,7 +1779,6 @@ To export an Organization using this API:
 *Note: These endpoints are only available to [Service Accounts](https://asana.com/guide/help/premium/service-accounts) of an [Enterprise](https://asana.com/enterprise) Organization.*
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Create an organization export request
@@ -1913,13 +1812,14 @@ curl -X POST https://app.asana.com/api/1.0/organization_exports \
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
+    "resource_type": "organization_export",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
     "state": "started",
     "organization": {
-      "gid": "14916",
-      "name": "My Workspace"
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
     }
   }
 }
@@ -1936,7 +1836,7 @@ This method creates a request to export an Organization. Asana will complete the
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The organization to export.|
-|» data<span class="param-type"> object</span>|none|
+|» data<span class="param-type"> object</span>|An *organization_export* request starts a job to export the complete data of the given Organization.|
 |»» organization<span class="param-type"> string</span>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -1947,16 +1847,40 @@ This method creates a request to export an Organization. Asana will complete the
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [OrganizationExport](#schemaorganizationexport)</span>|Successfully created organization export request.|
+|201<span class="param-type"> Inline</span>|Successfully created organization export request.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="create-an-organization-export-request-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **201**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [OrganizationExportResponse](#schemaorganizationexportresponse)</span>|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+| download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
+| state<span class="param-type"> string</span>|The current state of the export.|
+| organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the workspace.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|state|pending|
+|state|started|
+|state|finished|
+|state|error|
+
+</section><hr class="half-line">
 <section>
 ## Get details on an org export request
 
@@ -1978,13 +1902,14 @@ curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_exp
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
+    "resource_type": "organization_export",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
     "state": "started",
     "organization": {
-      "gid": "14916",
-      "name": "My Workspace"
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
     }
   }
 }
@@ -2008,28 +1933,51 @@ Returns details of a previously-requested Organization export.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [OrganizationExport](#schemaorganizationexport)</span>|Successfully retrieved organization export object.|
+|200<span class="param-type"> Inline</span>|Successfully retrieved organization export object.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="get-details-on-an-org-export-request-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [OrganizationExportResponse](#schemaorganizationexportresponse)</span>|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+| download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
+| state<span class="param-type"> string</span>|The current state of the export.|
+| organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the workspace.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|state|pending|
+|state|started|
+|state|finished|
+|state|error|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a></code>
+<code><a href="#get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a></code>
 </pre>
 
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple portfolios
@@ -2054,7 +2002,7 @@ curl -X GET https://app.asana.com/api/1.0/portfolios?workspace=1331&owner=14916 
     {
       "gid": "12345",
       "resource_type": "portfolio",
-      "name": "Bug Task"
+      "name": "Bug Portfolio"
     }
   ]
 }
@@ -2081,16 +2029,14 @@ Returns a list of the portfolios in compact representation that are owned by the
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully retrieved portfolios.|
+|200<span class="param-type"> [PortfolioCompact](#schemaportfoliocompact)</span>|Successfully retrieved portfolios.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a portfolio
 
@@ -2112,13 +2058,20 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
 ```json
 {
   "data": {
-    "name": "Bug Task",
+    "name": "Bug Portfolio",
     "color": "light-green",
+    "created_by": {
+      "name": "Greg Sanchez"
+    },
+    "owner": {
+      "name": "Greg Sanchez"
+    },
     "workspace": {
       "name": "My Company Workspace"
     },
     "members": [
-      "12345"
+      "52164",
+      "15363"
     ]
   }
 }
@@ -2128,13 +2081,86 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
 
 ```json
 {
-  "data": [
-    {
+  "data": {
+    "gid": "12345",
+    "resource_type": "portfolio",
+    "name": "Bug Portfolio",
+    "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
       "gid": "12345",
-      "resource_type": "portfolio",
-      "name": "Bug Task"
-    }
-  ]
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "custom_field_settings": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field_setting",
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "name": "Status",
+          "resource_subtype": "text",
+          "type": "text",
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "name": "Low",
+              "enabled": true,
+              "color": "blue"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          },
+          "enabled": true,
+          "number_value": 5.2,
+          "text_value": "Some Value",
+          "description": "Development team priority",
+          "precision": 2,
+          "format": "custom",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "is_global_to_workspace": true,
+          "has_notifications_enabled": true
+        }
+      }
+    ],
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "members": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ]
+  }
 }
 ```
 
@@ -2156,62 +2182,45 @@ integrations to create their own starting state on a portfolio.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The portfolio to create.|
 |» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» name<span class="param-type"> string</span>|The name of the portfolio.|
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
-|»» custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
-|»»» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» owner<span class="param-type"> object</span>|The current owner of the portfolio.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |»» members<span class="param-type"> [string]</span>|Array of object Gids.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
 
@@ -2238,24 +2247,25 @@ integrations to create their own starting state on a portfolio.
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-portfolio-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully retrieved portfolios.|
+|201<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully created portfolio.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a portfolio
 
@@ -2278,14 +2288,14 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "portfolio",
-    "name": "Bug Task",
+    "name": "Bug Portfolio",
+    "color": "light-green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "color": "light-green",
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -2304,7 +2314,7 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
         "custom_field": {
           "gid": "12345",
           "resource_type": "custom_field",
-          "name": "Bug Task",
+          "name": "Status",
           "resource_subtype": "text",
           "type": "text",
           "enum_options": [
@@ -2324,9 +2334,14 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
             "color": "blue"
           },
           "enabled": true,
+          "number_value": 5.2,
           "text_value": "Some Value",
           "description": "Development team priority",
           "precision": 2,
+          "format": "custom",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
           "is_global_to_workspace": true,
           "has_notifications_enabled": true
         }
@@ -2378,13 +2393,11 @@ Returns the complete portfolio record for a single portfolio.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a portfolio
 
-<a id="opIdupdateportfolio"></a>
+<a id="opIdupdatePortfolio"></a>
 
 > Code samples
 
@@ -2402,13 +2415,20 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 ```json
 {
   "data": {
-    "name": "Bug Task",
+    "name": "Bug Portfolio",
     "color": "light-green",
+    "created_by": {
+      "name": "Greg Sanchez"
+    },
+    "owner": {
+      "name": "Greg Sanchez"
+    },
     "workspace": {
       "name": "My Company Workspace"
     },
     "members": [
-      "12345"
+      "52164",
+      "15363"
     ]
   }
 }
@@ -2421,14 +2441,14 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "portfolio",
-    "name": "Bug Task",
+    "name": "Bug Portfolio",
+    "color": "light-green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "color": "light-green",
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -2447,7 +2467,7 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
         "custom_field": {
           "gid": "12345",
           "resource_type": "custom_field",
-          "name": "Bug Task",
+          "name": "Status",
           "resource_subtype": "text",
           "type": "text",
           "enum_options": [
@@ -2467,9 +2487,14 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
             "color": "blue"
           },
           "enabled": true,
+          "number_value": 5.2,
           "text_value": "Some Value",
           "description": "Development team priority",
           "precision": 2,
+          "format": "custom",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
           "is_global_to_workspace": true,
           "has_notifications_enabled": true
         }
@@ -2512,63 +2537,46 @@ Returns the complete updated portfolio record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the portfolio.|
 |» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» name<span class="param-type"> string</span>|The name of the portfolio.|
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
-|»» custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
-|»»» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» owner<span class="param-type"> object</span>|The current owner of the portfolio.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |»» members<span class="param-type"> [string]</span>|Array of object Gids.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
 
@@ -2595,9 +2603,12 @@ Returns the complete updated portfolio record.
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="update-a-portfolio-responses">Responses</h3>
 
@@ -2610,9 +2621,7 @@ Returns the complete updated portfolio record.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete a portfolio
 
@@ -2657,20 +2666,26 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified portfolio.|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified portfolio.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-portfolio-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Get portfolio items
 
-<a id="opIdgetPortfolioItems"></a>
+<a id="opIdgetItemsForPortfolio"></a>
 
 > Code samples
 
@@ -2690,91 +2705,7 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
     {
       "gid": "12345",
       "resource_type": "project",
-      "name": "Stuff to buy",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "archived": false,
-      "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "gid": "12345",
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          },
-          "enabled": true,
-          "text_value": "Some Value"
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field_setting"
-        }
-      ],
-      "default_view": "calendar",
-      "due_date": "2019-09-15",
-      "due_on": "2019-09-15",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "html_notes": "These are things we need to purchase.",
-      "is_template": false,
-      "layout": "list",
-      "members": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "These are things we need to purchase.",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "section_migration_status": "not_migrated",
-      "start_on": "2019-09-14",
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -2800,20 +2731,18 @@ Get a list of the items in compact form in a portfolio.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the requested portfolio's items.|
+|200<span class="param-type"> [ProjectCompact](#schemaprojectcompact)</span>|Successfully retrieved the requested portfolio's items.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Add a portfolio item
 
-<a id="opIdaddPortfolioItem"></a>
+<a id="opIdaddItemForPortfolio"></a>
 
 > Code samples
 
@@ -2830,9 +2759,11 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem \
 
 ```json
 {
-  "item": "1331",
-  "insert_before": "1331",
-  "insert_after": "1331"
+  "data": {
+    "item": "1331",
+    "insert_before": "1331",
+    "insert_after": "1331"
+  }
 }
 ```
 
@@ -2856,9 +2787,10 @@ Returns an empty data block.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the item being inserted.|
-|» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to add to the portfolio.|
-|» insert_before<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
-|» insert_after<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|» data<span class="param-type"> object</span>|none|
+|»» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to add to the portfolio.|
+|»» insert_before<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_after<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -2867,20 +2799,26 @@ Returns an empty data block.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the item to the portfolio.|
+|200<span class="param-type"> Inline</span>|Successfully added the item to the portfolio.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="add-a-portfolio-item-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Remove a portfolio item
 
-<a id="opIdremovePortfolioItem"></a>
+<a id="opIdremoveItemForPortfolio"></a>
 
 > Code samples
 
@@ -2897,7 +2835,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem
 
 ```json
 {
-  "item": "1331"
+  "data": {
+    "item": "1331"
+  }
 }
 ```
 
@@ -2921,7 +2861,8 @@ Returns an empty data block.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the item being removed.|
-|» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to remove from the portfolio.|
+|» data<span class="param-type"> object</span>|none|
+|»» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to remove from the portfolio.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -2930,20 +2871,172 @@ Returns an empty data block.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the item from the portfolio.|
+|200<span class="param-type"> Inline</span>|Successfully removed the item from the portfolio.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-a-portfolio-item-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Add a custom field to a portfolio
+
+<a id="opIdaddCustomFieldSettingForPortfolio"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "custom_field": "14916",
+    "is_important": true,
+    "insert_before": "1331",
+    "insert_after": "1331"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
+</p>
+
+Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
+
+<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
+|» data<span class="param-type"> object</span>|none|
+|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this container.|
+|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
+|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_after<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+
+<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully added the custom field to the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="add-a-custom-field-to-a-portfolio-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Remove a custom field from a portfolio
+
+<a id="opIdremoveCustomFieldSettingForPortfolio"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "custom_field": "14916"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
+</p>
+
+Removes a custom field setting from a portfolio.
+
+<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting being removed.|
+|» data<span class="param-type"> object</span>|none|
+|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this portfolio.|
+|/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+
+<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully removed the custom field from the portfolio.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="remove-a-custom-field-from-a-portfolio-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Add users to a portfolio
 
-<a id="opIdaddPortfolioMembers"></a>
+<a id="opIdaddMembersForPortfolio"></a>
 
 > Code samples
 
@@ -2960,7 +3053,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers
 
 ```json
 {
-  "members": "521621,621373"
+  "data": {
+    "members": "521621,621373"
+  }
 }
 ```
 
@@ -2984,7 +3079,8 @@ Returns the updated portfolio record.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being added.|
-|» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|» data<span class="param-type"> object</span>|none|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -2993,20 +3089,26 @@ Returns the updated portfolio record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added members to the portfolio.|
+|200<span class="param-type"> Inline</span>|Successfully added members to the portfolio.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="add-users-to-a-portfolio-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Remove users from a portfolio
 
-<a id="opIdremovePortfolioMembers"></a>
+<a id="opIdremoveMembersForPortfolio"></a>
 
 > Code samples
 
@@ -3023,7 +3125,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMemb
 
 ```json
 {
-  "members": "521621,621373"
+  "data": {
+    "members": "521621,621373"
+  }
 }
 ```
 
@@ -3047,7 +3151,8 @@ Returns the updated portfolio record.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being removed.|
-|» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|» data<span class="param-type"> object</span>|none|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -3056,16 +3161,22 @@ Returns the updated portfolio record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the members from the portfolio.|
+|200<span class="param-type"> Inline</span>|Successfully removed the members from the portfolio.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-users-from-a-portfolio-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
 
@@ -3076,7 +3187,6 @@ Returns the updated portfolio record.
 This object determines if a user is a member of a portfolio.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple portfolio memberships
@@ -3100,8 +3210,17 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
   "data": [
     {
       "gid": "12345",
-      "resource_type": "portfolio",
-      "name": "Bug Task"
+      "resource_type": "portfolio_membership",
+      "portfolio": {
+        "gid": "12345",
+        "resource_type": "portfolio",
+        "name": "Bug Portfolio"
+      },
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ]
 }
@@ -3129,16 +3248,14 @@ Returns a list of portfolio memberships in compact representation. You must spec
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Portfolio](#schemaportfolio)</span>|Successfully retrieved portfolio memberships.|
+|200<span class="param-type"> [PortfolioMembershipCompact](#schemaportfoliomembershipcompact)</span>|Successfully retrieved portfolio memberships.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a portfolio membership
 
@@ -3161,15 +3278,15 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membe
   "data": {
     "gid": "12345",
     "resource_type": "portfolio_membership",
+    "portfolio": {
+      "gid": "12345",
+      "resource_type": "portfolio",
+      "name": "Bug Portfolio"
+    },
     "user": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
-    },
-    "portfolio": {
-      "gid": "12345",
-      "resource_type": "portfolio",
-      "name": "Bug Task"
     }
   }
 }
@@ -3185,7 +3302,7 @@ Returns the complete portfolio record for a single portfolio membership.
 
 |Name|Description|
 |---|---|
-|/portfolio_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|/portfolio_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -3200,9 +3317,7 @@ Returns the complete portfolio record for a single portfolio membership.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get memberships from a portfolio
 
@@ -3226,6 +3341,11 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_m
     {
       "gid": "12345",
       "resource_type": "portfolio_membership",
+      "portfolio": {
+        "gid": "12345",
+        "resource_type": "portfolio",
+        "name": "Bug Portfolio"
+      },
       "user": {
         "gid": "12345",
         "resource_type": "user",
@@ -3257,21 +3377,19 @@ Returns the compact portfolio membership records for the portfolio.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [PortfolioMembership](#schemaportfoliomembership)</span>|Successfully retrieved the requested portfolio's memberships.|
+|200<span class="param-type"> [PortfolioMembershipCompact](#schemaportfoliomembershipcompact)</span>|Successfully retrieved the requested portfolio's memberships.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a></code>
+<code><a href="#get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="#add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="#remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="#remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a></code>
 </pre>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
@@ -3281,7 +3399,6 @@ Projects in organizations are shared with a single team. You cannot currently ch
 Followers of a project are a subset of the members of that project. Followers of a project will receive all updates including tasks created, added and removed from that project. Members of the project have access to and will receive status updates of the project. Adding followers to a project will add them as members if they are not already, removing followers from a project will not affect membership.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple projects
@@ -3306,91 +3423,7 @@ curl -X GET https://app.asana.com/api/1.0/projects \
     {
       "gid": "12345",
       "resource_type": "project",
-      "name": "Stuff to buy",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "archived": false,
-      "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "gid": "12345",
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          },
-          "enabled": true,
-          "text_value": "Some Value"
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field_setting"
-        }
-      ],
-      "default_view": "calendar",
-      "due_date": "2019-09-15",
-      "due_on": "2019-09-15",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "html_notes": "These are things we need to purchase.",
-      "is_template": false,
-      "layout": "list",
-      "members": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "These are things we need to purchase.",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "section_migration_status": "not_migrated",
-      "start_on": "2019-09-14",
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -3418,16 +3451,14 @@ Returns the compact project records for some filtered set of projects. Use one o
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved projects.|
+|200<span class="param-type"> [ProjectCompact](#schemaprojectcompact)</span>|Successfully retrieved projects.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a project
 
@@ -3449,10 +3480,32 @@ curl -X POST https://app.asana.com/api/1.0/projects \
 ```json
 {
   "data": {
-    "name": "Bug Project",
-    "notes": "For tracking pesky bugs.",
-    "workspace": "1331",
-    "team": "14916"
+    "name": "Stuff to buy",
+    "archived": false,
+    "color": "light-green",
+    "current_status": {
+      "title": "Status Update - Jun 15",
+      "created_by": {
+        "name": "Greg Sanchez"
+      },
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
+    },
+    "default_view": "calendar",
+    "due_date": "2019-09-15",
+    "due_on": "2019-09-15",
+    "html_notes": "These are things we need to purchase.",
+    "is_template": false,
+    "notes": "These are things we need to purchase.",
+    "owner": {
+      "name": "Greg Sanchez"
+    },
+    "public": false,
+    "start_on": "2019-09-14",
+    "team": {
+      "name": "Marketing"
+    }
   }
 }
 ```
@@ -3465,22 +3518,29 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     "gid": "12345",
     "resource_type": "project",
     "name": "Stuff to buy",
-    "created_at": "2012-02-22T02:06:58.147Z",
     "archived": false,
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
-      "color": "green",
-      "text": "Everything is great",
-      "author": {
+      "gid": "12345",
+      "resource_type": "project_status",
+      "title": "Status Update - Jun 15",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "created_by": {
         "gid": "12345",
-        "name": "Greg Bizarro"
-      }
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "project": "123456",
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
     },
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -3500,6 +3560,7 @@ curl -X POST https://app.asana.com/api/1.0/projects \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -3542,7 +3603,7 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     "team": {
       "gid": "12345",
       "resource_type": "team",
-      "name": "Bug Task"
+      "name": "Marketing"
     },
     "workspace": {
       "gid": "12345",
@@ -3574,13 +3635,85 @@ Returns the full record of the newly created project.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project to create.|
-|» data<span class="param-type"> object</span>|none|
-|»» name<span class="param-type"> string</span>|The name of the project.|
-|»» notes<span class="param-type"> string</span>|The description of the project.|
-|»» workspace<span class="param-type"> string</span>|The workspace or organization to create the project in.|
-|»» team<span class="param-type"> string</span>|If creating in an organization, the specific team to create the project in.|
+|» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
+|»» color<span class="param-type"> string¦null</span>|Color of the project.|
+|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
+|»»» name<span class="param-type"> string</span>|The name of the custom field.|
+|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
+*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
+| color|green|
+| color|yellow|
+| color|red|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
+| default_view|list|
+| default_view|board|
+| default_view|calendar|
+| default_view|timeline|
 
 <h3 id="create-a-project-responses">Responses</h3>
 
@@ -3593,9 +3726,7 @@ Returns the full record of the newly created project.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a project
 
@@ -3619,22 +3750,29 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
     "gid": "12345",
     "resource_type": "project",
     "name": "Stuff to buy",
-    "created_at": "2012-02-22T02:06:58.147Z",
     "archived": false,
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
-      "color": "green",
-      "text": "Everything is great",
-      "author": {
+      "gid": "12345",
+      "resource_type": "project_status",
+      "title": "Status Update - Jun 15",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "created_by": {
         "gid": "12345",
-        "name": "Greg Bizarro"
-      }
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "project": "123456",
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
     },
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -3654,6 +3792,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -3696,7 +3835,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
     "team": {
       "gid": "12345",
       "resource_type": "team",
-      "name": "Bug Task"
+      "name": "Marketing"
     },
     "workspace": {
       "gid": "12345",
@@ -3732,9 +3871,7 @@ Returns the complete project record for a single project.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a project
 
@@ -3759,6 +3896,15 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
+    "current_status": {
+      "title": "Status Update - Jun 15",
+      "created_by": {
+        "name": "Greg Sanchez"
+      },
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
+    },
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
@@ -3771,7 +3917,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "public": false,
     "start_on": "2019-09-14",
     "team": {
-      "name": "Bug Task"
+      "name": "Marketing"
     }
   }
 }
@@ -3785,22 +3931,29 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "gid": "12345",
     "resource_type": "project",
     "name": "Stuff to buy",
-    "created_at": "2012-02-22T02:06:58.147Z",
     "archived": false,
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
-      "color": "green",
-      "text": "Everything is great",
-      "author": {
+      "gid": "12345",
+      "resource_type": "project_status",
+      "title": "Status Update - Jun 15",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "created_by": {
         "gid": "12345",
-        "name": "Greg Bizarro"
-      }
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "project": "123456",
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
     },
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -3820,6 +3973,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -3862,7 +4016,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "team": {
       "gid": "12345",
       "resource_type": "team",
-      "name": "Bug Task"
+      "name": "Marketing"
     },
     "workspace": {
       "gid": "12345",
@@ -3893,73 +4047,44 @@ Returns the complete updated project record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the project.|
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
-|»»» color<span class="param-type"> string</span>|none|
-|»»» text<span class="param-type"> string</span>|none|
-|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
+|»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|»» layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
-|»» members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|»» owner<span class="param-type"> object¦null</span>|The current owner of the project, may be null.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»» section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -3968,9 +4093,6 @@ Returns the complete updated project record.
 
 **html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
 *Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
-
-**modified_at**: The time at which this project was last modified.
-*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*
 
 #### Enumerated Values
 
@@ -4000,18 +4122,10 @@ Returns the complete updated project record.
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
 | default_view|timeline|
-| layout|list|
-| layout|board|
-| section_migration_status|not_migrated|
-| section_migration_status|in_progress|
-| section_migration_status|completed|
 
 <h3 id="update-a-project-responses">Responses</h3>
 
@@ -4024,9 +4138,7 @@ Returns the complete updated project record.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete a project
 
@@ -4071,16 +4183,22 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified project.|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified project.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-project-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Duplicate a project
 
@@ -4123,7 +4241,7 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
+    "resource_type": "job",
     "resource_subtype": "duplicate_task",
     "status": "in_progress",
     "new_project": {
@@ -4190,13 +4308,11 @@ Creates and returns a job that will asynchronously handle the duplication.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get projects a task is in
 
-<a id="opIdgetTaskProjects"></a>
+<a id="opIdgetProjectsForTask"></a>
 
 > Code samples
 
@@ -4216,91 +4332,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
     {
       "gid": "12345",
       "resource_type": "project",
-      "name": "Stuff to buy",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "archived": false,
-      "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "gid": "12345",
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          },
-          "enabled": true,
-          "text_value": "Some Value"
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field_setting"
-        }
-      ],
-      "default_view": "calendar",
-      "due_date": "2019-09-15",
-      "due_on": "2019-09-15",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "html_notes": "These are things we need to purchase.",
-      "is_template": false,
-      "layout": "list",
-      "members": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "These are things we need to purchase.",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "section_migration_status": "not_migrated",
-      "start_on": "2019-09-14",
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -4326,20 +4358,18 @@ Returns a compact representation of all of the projects the task is in.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the projects for the given task.|
+|200<span class="param-type"> [ProjectCompact](#schemaprojectcompact)</span>|Successfully retrieved the projects for the given task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a team's projects
 
-<a id="opIdgetProjectsInTeam"></a>
+<a id="opIdgetProjectsForTeam"></a>
 
 > Code samples
 
@@ -4359,91 +4389,7 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     {
       "gid": "12345",
       "resource_type": "project",
-      "name": "Stuff to buy",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "archived": false,
-      "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "gid": "12345",
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          },
-          "enabled": true,
-          "text_value": "Some Value"
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field_setting"
-        }
-      ],
-      "default_view": "calendar",
-      "due_date": "2019-09-15",
-      "due_on": "2019-09-15",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "html_notes": "These are things we need to purchase.",
-      "is_template": false,
-      "layout": "list",
-      "members": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "These are things we need to purchase.",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "section_migration_status": "not_migrated",
-      "start_on": "2019-09-14",
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -4470,20 +4416,18 @@ Returns the compact project records for all projects in the team.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the requested team's projects.|
+|200<span class="param-type"> [ProjectCompact](#schemaprojectcompact)</span>|Successfully retrieved the requested team's projects.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a project in a team
 
-<a id="opIdcreateProjectsWithTeam"></a>
+<a id="opIdcreateProjectForTeam"></a>
 
 > Code samples
 
@@ -4504,6 +4448,15 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
+    "current_status": {
+      "title": "Status Update - Jun 15",
+      "created_by": {
+        "name": "Greg Sanchez"
+      },
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
+    },
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
@@ -4516,7 +4469,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "public": false,
     "start_on": "2019-09-14",
     "team": {
-      "name": "Bug Task"
+      "name": "Marketing"
     }
   }
 }
@@ -4530,22 +4483,29 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "gid": "12345",
     "resource_type": "project",
     "name": "Stuff to buy",
-    "created_at": "2012-02-22T02:06:58.147Z",
     "archived": false,
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
-      "color": "green",
-      "text": "Everything is great",
-      "author": {
+      "gid": "12345",
+      "resource_type": "project_status",
+      "title": "Status Update - Jun 15",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "created_by": {
         "gid": "12345",
-        "name": "Greg Bizarro"
-      }
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "project": "123456",
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
     },
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -4565,6 +4525,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -4607,7 +4568,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "team": {
       "gid": "12345",
       "resource_type": "team",
-      "name": "Bug Task"
+      "name": "Marketing"
     },
     "workspace": {
       "gid": "12345",
@@ -4632,73 +4593,44 @@ Returns the full record of the newly created project.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new project to create.|
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
-|»»» color<span class="param-type"> string</span>|none|
-|»»» text<span class="param-type"> string</span>|none|
-|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
+|»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|»» layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
-|»» members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|»» owner<span class="param-type"> object¦null</span>|The current owner of the project, may be null.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»» section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -4707,9 +4639,6 @@ Returns the full record of the newly created project.
 
 **html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
 *Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
-
-**modified_at**: The time at which this project was last modified.
-*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*
 
 #### Enumerated Values
 
@@ -4739,18 +4668,10 @@ Returns the full record of the newly created project.
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
 | default_view|timeline|
-| layout|list|
-| layout|board|
-| section_migration_status|not_migrated|
-| section_migration_status|in_progress|
-| section_migration_status|completed|
 
 <h3 id="create-a-project-in-a-team-responses">Responses</h3>
 
@@ -4763,13 +4684,11 @@ Returns the full record of the newly created project.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get all projects in a workspace
 
-<a id="opIdgetProjectsInWorkspace"></a>
+<a id="opIdgetProjectsForWorkspace"></a>
 
 > Code samples
 
@@ -4789,91 +4708,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     {
       "gid": "12345",
       "resource_type": "project",
-      "name": "Stuff to buy",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "archived": false,
-      "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "gid": "12345",
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          },
-          "enabled": true,
-          "text_value": "Some Value"
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "gid": "12345",
-          "resource_type": "custom_field_setting"
-        }
-      ],
-      "default_view": "calendar",
-      "due_date": "2019-09-15",
-      "due_on": "2019-09-15",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "html_notes": "These are things we need to purchase.",
-      "is_template": false,
-      "layout": "list",
-      "members": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "These are things we need to purchase.",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "section_migration_status": "not_migrated",
-      "start_on": "2019-09-14",
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Bug Task"
-      },
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -4900,20 +4735,18 @@ Returns the compact project records for all projects in the workspace.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Project](#schemaproject)</span>|Successfully retrieved the requested workspace's projects.|
+|200<span class="param-type"> [ProjectCompact](#schemaprojectcompact)</span>|Successfully retrieved the requested workspace's projects.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a project in a workspace
 
-<a id="opIdcreateProjectsInWorkspace"></a>
+<a id="opIdcreateProjectForWorkspace"></a>
 
 > Code samples
 
@@ -4934,6 +4767,15 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
+    "current_status": {
+      "title": "Status Update - Jun 15",
+      "created_by": {
+        "name": "Greg Sanchez"
+      },
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
+    },
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
@@ -4946,7 +4788,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "public": false,
     "start_on": "2019-09-14",
     "team": {
-      "name": "Bug Task"
+      "name": "Marketing"
     }
   }
 }
@@ -4960,22 +4802,29 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "gid": "12345",
     "resource_type": "project",
     "name": "Stuff to buy",
-    "created_at": "2012-02-22T02:06:58.147Z",
     "archived": false,
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
-      "color": "green",
-      "text": "Everything is great",
-      "author": {
+      "gid": "12345",
+      "resource_type": "project_status",
+      "title": "Status Update - Jun 15",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "created_by": {
         "gid": "12345",
-        "name": "Greg Bizarro"
-      }
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "project": "123456",
+      "text": "The project is moving forward according to plan...",
+      "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
     },
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -4995,6 +4844,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value"
       }
     ],
@@ -5037,7 +4887,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "team": {
       "gid": "12345",
       "resource_type": "team",
-      "name": "Bug Task"
+      "name": "Marketing"
     },
     "workspace": {
       "gid": "12345",
@@ -5065,73 +4915,44 @@ Returns the full record of the newly created project.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new project to create.|
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
-|»»» color<span class="param-type"> string</span>|none|
-|»»» text<span class="param-type"> string</span>|none|
-|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
+|»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|»» layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
-|»» members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|»» owner<span class="param-type"> object¦null</span>|The current owner of the project, may be null.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»» section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»» team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -5140,9 +4961,6 @@ Returns the full record of the newly created project.
 
 **html_notes**: [Opt In](#input-output-options). The notes of the project with formatting as HTML.
 *Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*
-
-**modified_at**: The time at which this project was last modified.
-*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*
 
 #### Enumerated Values
 
@@ -5172,18 +4990,10 @@ Returns the full record of the newly created project.
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
 | default_view|timeline|
-| layout|list|
-| layout|board|
-| section_migration_status|not_migrated|
-| section_migration_status|in_progress|
-| section_migration_status|completed|
 
 <h3 id="create-a-project-in-a-workspace-responses">Responses</h3>
 
@@ -5196,22 +5006,34 @@ Returns the full record of the newly created project.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Add a custom field to a project
 
-<a id="opIdproject.addCustomFieldSetting"></a>
+<a id="opIdaddCustomFieldSettingForProject"></a>
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting?custom_field=14916 \
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting \
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "custom_field": "14916",
+    "is_important": true,
+    "insert_before": "1331",
+    "insert_after": "1331"
+  }
+}
 ```
 
 > 200 Response
@@ -5232,40 +5054,59 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 
 |Name|Description|
 |---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
+|» data<span class="param-type"> object</span>|none|
+|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this container.|
+|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
+|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_after<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
-|?custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this project.|
-|?is_important<span class="param-type"> boolean</span>|Whether this field should be considered "important" to this project. This may cause it to be displayed more prominently, for example in the task grid.|
-|?insert_before<span class="param-type"> string</span>|An id of a Custom Field Setting on this project, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|?insert_after<span class="param-type"> string</span>|An id of a Custom Field Setting on this project, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 
 <h3 id="add-a-custom-field-to-a-project-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the custom field to the project.|
+|200<span class="param-type"> Inline</span>|Successfully added the custom field to the project.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="add-a-custom-field-to-a-project-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Remove a custom field from a project
 
-<a id="opIdproject.removeCustomFieldSetting"></a>
+<a id="opIdremoveCustomFieldSettingForProject"></a>
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting?custom_field=14916 \
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting \
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "custom_field": "14916"
+  }
+}
 ```
 
 > 200 Response
@@ -5286,28 +5127,36 @@ Removes a custom field setting from a project.
 
 |Name|Description|
 |---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting being removed.|
+|» data<span class="param-type"> object</span>|none|
+|»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this portfolio.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
-|?custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to remove from this project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 
 <h3 id="remove-a-custom-field-from-a-project-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the custom field from the project.|
+|200<span class="param-type"> Inline</span>|Successfully removed the custom field from the project.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-a-custom-field-from-a-project-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Get task count of a project
 
-<a id="opIdgetProjectTaskCounts"></a>
+<a id="opIdgetTaskCountsForProject"></a>
 
 > Code samples
 
@@ -5358,16 +5207,244 @@ Milestones are just tasks, so they are included in the `num_tasks`, `num_incompl
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [TaskCount](#schemataskcount)</span>|Successfully retrieved the requested project's task counts.|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the requested project's task counts.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="get-task-count-of-a-project-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [TaskCountResponse](#schemataskcountresponse)</span>|A response object returned from the task count endpoint.|
+| num_tasks<span class="param-type"> integer</span>|The number of tasks in a project.|
+| num_incomplete_tasks<span class="param-type"> integer</span>|The number of incomplete tasks in a project.|
+| num_completed_tasks<span class="param-type"> integer</span>|The number of completed tasks in a project.|
+| num_milestones<span class="param-type"> integer</span>|The number of milestones in a project.|
+| num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
+| num_completed_milestones<span class="param-type"> integer</span>|The number of completed milestones in a project.|
+
+</section><hr class="half-line">
+<section>
+## Add users to a project
+
+<a id="opIdaddFollowersForProject"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addFollowers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "followers": "521621,621373"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/addFollowers</code>
+</p>
+
+Adds the specified list of users as followers to the project. Followers are a subset of members, therefore if the users are not already members of the project they will also become members as a result of this operation.
+Returns the updated project record.
+
+<h3 id="add-users-to-a-project-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the followers being added.|
+|» data<span class="param-type"> object</span>|none|
+|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="add-users-to-a-project-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully added followers to the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="add-users-to-a-project-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Remove users from a project
+
+<a id="opIdremoveMembersForProject"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeMembers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "members": "521621,621373"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/removeMembers</code>
+</p>
+
+Removes the specified list of users from members of the project.
+Returns the updated project record.
+
+<h3 id="remove-users-from-a-project-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the members being removed.|
+|» data<span class="param-type"> object</span>|none|
+|»» members<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="remove-users-from-a-project-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully removed the members from the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="remove-users-from-a-project-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Remove followers from a project
+
+<a id="opIdremoveFollowersForProject"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeFollowers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "followers": "521621,621373"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/removeFollowers</code>
+</p>
+
+Removes the specified list of users from following the project, this will not affect project membership status.
+Returns the updated project record.
+
+<h3 id="remove-followers-from-a-project-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the followers being removed.|
+|» data<span class="param-type"> object</span>|none|
+|»» followers<span class="param-type"> string</span><div class="param-required">required</div>|An array of user ids.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="remove-followers-from-a-project-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully removed followers from the project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="remove-followers-from-a-project-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-project-memberships">Project Memberships</h1>
 
@@ -5378,7 +5455,6 @@ Milestones are just tasks, so they are included in the `num_tasks`, `num_incompl
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a project membership
@@ -5427,7 +5503,7 @@ Returns the complete project record for a single project membership.
 
 |Name|Description|
 |---|---|
-|/project_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|/project_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5442,9 +5518,7 @@ Returns the complete project record for a single project membership.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get memberships from a project
 
@@ -5499,16 +5573,14 @@ Returns the compact project membership records for the project.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [ProjectMembership](#schemaprojectmembership)</span>|Successfully retrieved the requested project's memberships.|
+|200<span class="param-type"> [ProjectMembershipCompact](#schemaprojectmembershipcompact)</span>|Successfully retrieved the requested project's memberships.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-project-statuses">Project Statuses</h1>
 
@@ -5521,12 +5593,11 @@ A *project status* is an update on the progress of a particular project, and is 
 Project statuses can be created and deleted, but not modified.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a project status
 
-<a id="opIdgetProductStatus"></a>
+<a id="opIdgetProjectStatus"></a>
 
 > Code samples
 
@@ -5552,8 +5623,9 @@ curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} 
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "project": "123456",
     "text": "The project is moving forward according to plan...",
-    "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
     "color": "green"
   }
 }
@@ -5569,26 +5641,54 @@ Returns the complete record for a single status update.
 
 |Name|Description|
 |---|---|
-|/project_status_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
+|/project_status_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="get-a-project-status-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [ProjectStatus](#schemaprojectstatus)</span>|Successfully retrieved the specified project's status updates.|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the specified project's status updates.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="get-a-project-status-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [ProjectStatusResponse](#schemaprojectstatusresponse)</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| title<span class="param-type"> string</span>|The title of the project status update.|
+| created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+| created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| project<span class="param-type"> string</span>|Globally unique identifier for the project.|
+| text<span class="param-type"> string</span>|The text content of the status update.|
+| html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+| color<span class="param-type"> string</span>|The color associated with the status update.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|color|green|
+|color|yellow|
+|color|red|
+
+</section><hr class="half-line">
 <section>
 ## Delete a project status
 
-<a id="opIddeleteProductStatus"></a>
+<a id="opIddeleteProjectStatus"></a>
 
 > Code samples
 
@@ -5620,26 +5720,34 @@ Returns an empty data record.
 
 |Name|Description|
 |---|---|
-|/project_status_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
+|/project_status_gid<span class="param-type"> string</span><div class="param-required">required</div>|The project status update to get.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 <h3 id="delete-a-project-status-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified product status.|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified project status.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-project-status-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Get statuses from a project
 
-<a id="opIdgetProductStatuses"></a>
+<a id="opIdgetProjectStatusesForProject"></a>
 
 > Code samples
 
@@ -5659,16 +5767,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuse
     {
       "gid": "12345",
       "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "text": "The project is moving forward according to plan...",
-      "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
-      "color": "green"
+      "title": "Status Update - Jun 15"
     }
   ]
 }
@@ -5694,20 +5793,29 @@ Returns the compact project status update records for all updates on the project
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [ProjectStatus](#schemaprojectstatus)</span>|Successfully retrieved the specified project's status updates.|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the specified project's status updates.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="get-statuses-from-a-project-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [[ProjectStatusCompact](#schemaprojectstatuscompact)]</span>|[A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.]|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| title<span class="param-type"> string</span>|The title of the project status update.|
+
+</section><hr class="half-line">
 <section>
 ## Create a project status
 
-<a id="opIdcreateProjectStatus"></a>
+<a id="opIdcreateProjectStatusForProject"></a>
 
 > Code samples
 
@@ -5725,8 +5833,12 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
 ```json
 {
   "data": {
-    "project": "123456",
-    "text": "The project is on track to ship next month!",
+    "title": "Status Update - Jun 15",
+    "created_by": {
+      "name": "Greg Sanchez"
+    },
+    "text": "The project is moving forward according to plan...",
+    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
     "color": "green"
   }
 }
@@ -5746,8 +5858,9 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "project": "123456",
     "text": "The project is moving forward according to plan...",
-    "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
     "color": "green"
   }
 }
@@ -5765,11 +5878,16 @@ Returns the full record of the newly created project status update.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project status to create.|
-|» data<span class="param-type"> object</span>|none|
-|»» project<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
-|»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text of the project status update.|
-|»» color<span class="param-type"> any</span><div class="param-required">required</div>|The color to associate with the status update.|
+|» data<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Enumerated Values
 
@@ -5783,21 +5901,47 @@ Returns the full record of the newly created project status update.
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [ProjectStatus](#schemaprojectstatus)</span>|Successfully created a new story.|
+|201<span class="param-type"> Inline</span>|Successfully created a new story.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="create-a-project-status-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **201**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [ProjectStatusResponse](#schemaprojectstatusresponse)</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| title<span class="param-type"> string</span>|The title of the project status update.|
+| created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+| created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| project<span class="param-type"> string</span>|Globally unique identifier for the project.|
+| text<span class="param-type"> string</span>|The text content of the status update.|
+| html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+| color<span class="param-type"> string</span>|The color associated with the status update.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|color|green|
+|color|yellow|
+|color|red|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-sections">Sections</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#update-a-section"><span class="put-verb">PUT</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#delete-a-section"><span class="delete-verb">DELETE</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#get-sections-in-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#create-a-section-in-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#add-task-to-section"><span class="post-verb">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span></a><br><a href="#move-sections"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span></a></code>
+<code><a href="#get-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#update-a-section"><span class="put-verb">PUT</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#delete-a-section"><span class="delete-verb">DELETE</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#get-sections-in-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#create-a-section-in-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#add-task-to-section"><span class="post-verb">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span></a><br><a href="#move-or-insert-sections"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span></a></code>
 </pre>
 
 A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.
@@ -5807,7 +5951,6 @@ Sections are largely a shared idiom in Asana’s API for both list and board vie
 The ‘memberships’ property when [getting a task](#get-a-task) will return the information for the section or the column under ‘section’ in the response.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a section
@@ -5833,6 +5976,11 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
     "resource_type": "section",
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
     "projects": [
       {
         "gid": "12345",
@@ -5869,9 +6017,7 @@ Returns the complete record for a single section.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a section
 
@@ -5893,12 +6039,8 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
 ```json
 {
   "data": {
-    "name": "Next Actions",
-    "projects": [
-      {
-        "name": "Stuff to buy"
-      }
-    ]
+    "project": "13579",
+    "name": "Next Actions"
   }
 }
 ```
@@ -5912,6 +6054,11 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
     "resource_type": "section",
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
     "projects": [
       {
         "gid": "12345",
@@ -5943,15 +6090,9 @@ Returns the complete updated section record.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
-|» data<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»» projects<span class="param-type"> [object]</span>|none|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|» data<span class="param-type"> object</span>|none|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
+|»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
 |/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -5967,9 +6108,7 @@ Returns the complete updated section record.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete a section
 
@@ -6018,20 +6157,26 @@ Returns an empty data block.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified section.|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified section.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-section-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Get sections in a project
 
-<a id="opIdgetSectionsInProject"></a>
+<a id="opIdgetSectionsForProject"></a>
 
 > Code samples
 
@@ -6051,15 +6196,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
     {
       "gid": "12345",
       "resource_type": "section",
-      "name": "Next Actions",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "projects": [
-        {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ]
+      "name": "Next Actions"
     }
   ]
 }
@@ -6085,20 +6222,18 @@ Returns the compact records for all sections in the specified project.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Section](#schemasection)</span>|Successfully retrieved sections in project.|
+|200<span class="param-type"> [SectionCompact](#schemasectioncompact)</span>|Successfully retrieved sections in project.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a section in a project
 
-<a id="opIdcreateSectionInProject"></a>
+<a id="opIdcreateSectionForProject"></a>
 
 > Code samples
 
@@ -6131,6 +6266,11 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
     "resource_type": "section",
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
     "projects": [
       {
         "gid": "12345",
@@ -6155,7 +6295,7 @@ Returns the full record of the newly created section.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
 |» data<span class="param-type"> object</span>|none|
-|»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project to create the section in|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -6172,13 +6312,11 @@ Returns the full record of the newly created section.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Add task to section
 
-<a id="opIdaddTaskToSection"></a>
+<a id="opIdaddTaskForSection"></a>
 
 > Code samples
 
@@ -6238,20 +6376,26 @@ This does not work for separators (tasks with the resource_subtype of section).
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the task.|
+|200<span class="param-type"> Inline</span>|Successfully added the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="add-task-to-section-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
-## Move sections
+## Move or Insert sections
 
-<a id="opIdmoveSection"></a>
+<a id="opIdinsertSectionForProject"></a>
 
 > Code samples
 
@@ -6294,12 +6438,9 @@ Move sections relative to each other in a board view. One of
 
 Sections cannot be moved between projects.
 
-At this point in time, moving sections is not supported in list views,
-only board views.
-
 Returns an empty data block.
 
-<h3 id="move-sections-parameters">Parameters</h3>
+<h3 id="move-or-insert-sections-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
@@ -6313,25 +6454,31 @@ Returns an empty data block.
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
-<h3 id="move-sections-responses">Responses</h3>
+<h3 id="move-or-insert-sections-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully moved the specified section.|
+|200<span class="param-type"> Inline</span>|Successfully moved the specified section.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="move-or-insert-sections-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-stories">Stories</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-story"><span class="get-verb">GET</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#update-a-story"><span class="put-verb">PUT</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#delete-a-story"><span class="delete-verb">DELETE</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#get-stories-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="#create-a-comment-on-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span></a></code>
+<code><a href="#get-a-story"><span class="get-verb">GET</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#update-a-story"><span class="put-verb">PUT</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#delete-a-story"><span class="delete-verb">DELETE</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#get-stories-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="#create-a-story-on-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span></a></code>
 </pre>
 
 *See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924) for more info on when conditional fields are returned.*
@@ -6339,7 +6486,6 @@ Returns an empty data block.
 A *story* represents an activity associated with an object in the Asana system. Stories are generated by the system whenever users take actions such as creating or assigning tasks, or moving tasks between projects. *Comments* are also a form of user-generated story.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a story
@@ -6363,24 +6509,27 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "text": "marked today",
+    "resource_subtype": "comment_added",
+    "text": "This is a comment.",
     "type": "comment",
-    "html_text": "Get whatever Sashimi has.",
-    "is_edited": false,
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
+    "is_edited": false,
     "hearted": false,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "num_hearts": 5,
@@ -6388,8 +6537,11 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "num_likes": 5,
@@ -6422,13 +6574,13 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
     "story": {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "resource_subtype": "comment_added",
       "text": "marked today",
       "type": "comment"
     },
@@ -6470,7 +6622,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
     "custom_field": {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Bug Task",
+      "name": "Status",
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
@@ -6490,6 +6642,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     },
     "old_text_value": "This was the Old Text",
@@ -6510,6 +6663,8 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       "enabled": true,
       "color": "blue"
     },
+    "new_approval_status": "approved",
+    "old_approval_status": "pending",
     "duplicate_of": {
       "gid": "12345",
       "resource_type": "task",
@@ -6561,9 +6716,7 @@ Returns the full record for a single story.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a story
 
@@ -6585,71 +6738,12 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
 ```json
 {
   "data": {
-    "text": "marked today",
-    "html_text": "Get whatever Sashimi has.",
-    "is_pinned": false,
-    "old_name": "This was the Old Name",
-    "story": {
-      "text": "marked today"
-    },
-    "assignee": {
+    "created_by": {
       "name": "Greg Sanchez"
     },
-    "follower": {
-      "name": "Greg Sanchez"
-    },
-    "old_section": {
-      "name": "Next Actions"
-    },
-    "new_section": {
-      "name": "Next Actions"
-    },
-    "task": {
-      "name": "Bug Task"
-    },
-    "project": {
-      "name": "Stuff to buy"
-    },
-    "tag": {
-      "name": "Stuff to buy"
-    },
-    "custom_field": {
-      "name": "Bug Task",
-      "resource_subtype": "text",
-      "enum_options": [
-        {
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
-      "enum_value": {
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      },
-      "enabled": true,
-      "text_value": "Some Value"
-    },
-    "old_enum_value": {
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_enum_value": {
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "duplicate_of": {
-      "name": "Bug Task"
-    },
-    "duplicated_from": {
-      "name": "Bug Task"
-    },
-    "dependency": {
-      "name": "Bug Task"
-    }
+    "text": "This is a comment.",
+    "html_text": "<body>This is a comment.<body>",
+    "is_pinned": false
   }
 }
 ```
@@ -6661,24 +6755,27 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "text": "marked today",
+    "resource_subtype": "comment_added",
+    "text": "This is a comment.",
     "type": "comment",
-    "html_text": "Get whatever Sashimi has.",
-    "is_edited": false,
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
+    "is_edited": false,
     "hearted": false,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "num_hearts": 5,
@@ -6686,8 +6783,11 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "num_likes": 5,
@@ -6720,13 +6820,13 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     "story": {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "resource_subtype": "comment_added",
       "text": "marked today",
       "type": "comment"
     },
@@ -6768,7 +6868,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     "custom_field": {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Bug Task",
+      "name": "Status",
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
@@ -6788,6 +6888,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     },
     "old_text_value": "This was the Old Text",
@@ -6808,6 +6909,8 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "enabled": true,
       "color": "blue"
     },
+    "new_approval_status": "approved",
+    "old_approval_status": "pending",
     "duplicate_of": {
       "gid": "12345",
       "resource_type": "task",
@@ -6844,220 +6947,19 @@ Updates the story and returns the full record for the updated story. Only commen
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The comment story to update.|
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.|
-|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options).|
-|»» is_edited<span class="param-type"> boolean</span>|*Conditional*. Whether the text of the story has been edited after creation.|
+|»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
-|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use likes instead*|
-|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead*|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*|
-|»» liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
-|»» likes<span class="param-type"> [object]</span>|*Conditional*. Array of users who have liked this story.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
-|»» previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.|
-|»»» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
-|»»» footer<span class="param-type"> string</span>|Text to display in the footer.|
-|»»» header<span class="param-type"> string</span>|Text to display in the header.|
-|»»» header_link<span class="param-type"> string</span>|Where the header will link to.|
-|»»» html_text<span class="param-type"> string</span>|HTML formatted text for the body of the preview.|
-|»»» text<span class="param-type"> string</span>|Text for the body of the preview.|
-|»»» title<span class="param-type"> string</span>|Text to display as the title.|
-|»»» title_link<span class="param-type"> string</span>|Where to title will link to.|
-|»» old_name<span class="param-type"> string</span>|*Conditional*'|
-|»» new_name<span class="param-type"> string</span>|*Conditional*|
-|»» old_dates<span class="param-type"> object</span>|*Conditional*|
-|»»» start_on<span class="param-type"> string(date)</span>|none|
-|»»» due_at<span class="param-type"> string(date-time)</span>|none|
-|»»» due_on<span class="param-type"> string(date)</span>|none|
-|»» new_dates<span class="param-type"> object</span>|*Conditional*|
-|»»» start_on<span class="param-type"> string(date)</span>|none|
-|»»» due_at<span class="param-type"> string(date-time)</span>|none|
-|»»» due_on<span class="param-type"> string(date)</span>|none|
-|»» old_resource_subtype<span class="param-type"> string</span>|*Conditional*|
-|»» new_resource_subtype<span class="param-type"> string</span>|*Conditional*|
-|»» story<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»»» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|»» assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» follower<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» old_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» new_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» tag<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» old_text_value<span class="param-type"> string</span>|*Conditional*|
-|»» new_text_value<span class="param-type"> string</span>|*Conditional*|
-|»» old_number_value<span class="param-type"> integer</span>|*Conditional*|
-|»» new_number_value<span class="param-type"> integer</span>|*Conditional*|
-|»» old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» duplicate_of<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» duplicated_from<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» dependency<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» source<span class="param-type"> string</span>|The component of the Asana product the user used to trigger the story.|
-|»» target<span class="param-type"> object</span>|The object this story is associated with. Currently may only be a task.|
-|»»» gid<span class="param-type"> string</span>|none|
-|»»» name<span class="param-type"> string</span>|none|
 |/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
-**text**: *Create-only*. Human-readable text for the story or comment.
-This will not include the name of the creator.
-*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*
-Use the `resource_subtype` property to discover the action that created the story.
-
-**html_text**: [Opt In](#input-output-options).
-HTML formatted text for a comment. This will not include the name
-of the creator.
-
-*Note: This field is under active migration—please see our blog
-post for more information.*
-
-**hearted**: *Deprecated - please use likes instead*
-
-*Conditional*. True if the story is hearted by the authorized user, false if not.
-
-**hearts**: *Deprecated - please use likes instead*
-
-*Conditional*. Array of users who have hearted this story.
-
-**num_hearts**: *Deprecated - please use likes instead*
-
-*Conditional*. The number of users who have hearted this story.
-
-**previews**: *Conditional*. A collection of previews to be displayed in the story.
-
-*Note: This property only exists for comment stories.*
-
-**text**: *Create-only*. Human-readable text for the story or comment.
-This will not include the name of the creator.
-*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*
-Use the `resource_subtype` property to discover the action that created the story.
-
-**custom_field**: Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
-
-Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
-
-**old_enum_value**: Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
-
-You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
-
-**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.
-
-On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.
-
-Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.
-
-An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
-
-**new_enum_value**: Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
-
-You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
-
-**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.
-
-On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.
-
-Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.
-
-An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+**html_text**: [Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.
+*Note: This field is under active migration—please see our blog post for more information.*
 
 <h3 id="update-a-story-responses">Responses</h3>
 
@@ -7070,9 +6972,7 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete a story
 
@@ -7100,7 +7000,7 @@ curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
 <code> <span class="delete-verb">DELETE</span> /stories/{story_gid}</code>
 </p>
 
-Deletes a story. A user can only delete stories they have created. Returns an empty data record.
+Deletes a story. A user can only delete stories they have created.
 
 Returns an empty data record.
 
@@ -7116,20 +7016,26 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified story.|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified story.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-story-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Get stories from a task
 
-<a id="opIdgetTaskStories"></a>
+<a id="opIdgetStoriesForTask"></a>
 
 > Code samples
 
@@ -7149,173 +7055,15 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "resource_subtype": "comment_added",
       "text": "marked today",
-      "type": "comment",
-      "html_text": "Get whatever Sashimi has.",
-      "is_edited": false,
-      "is_pinned": false,
-      "hearted": false,
-      "hearts": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "num_hearts": 5,
-      "liked": false,
-      "likes": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "num_likes": 5,
-      "previews": [
-        {
-          "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-          "footer": "Mar 17, 2019 1:25 PM",
-          "header": "Asana for Slack",
-          "header_link": "https://asana.comn/apps/slack",
-          "html_text": "<body>Great! I like this idea.</body>",
-          "text": "Great! I like this idea.",
-          "title": "Greg",
-          "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
-        }
-      ],
-      "old_name": "This was the Old Name",
-      "new_name": "This is the New Name",
-      "old_dates": {
-        "start_on": "2019-09-14",
-        "due_at": "2019-09-15T02:06:58.158Z",
-        "due_on": "2019-09-15"
-      },
-      "new_dates": {
-        "start_on": "2019-09-14",
-        "due_at": "2019-09-15T02:06:58.158Z",
-        "due_on": "2019-09-15"
-      },
-      "old_resource_subtype": "default_task",
-      "new_resource_subtype": "milestone",
-      "story": {
-        "gid": "12345",
-        "resource_type": "story",
-        "resource_subtype": "comment_added",
-        "created_at": "2012-02-22T02:06:58.147Z",
-        "created_by": {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        },
-        "text": "marked today",
-        "type": "comment"
-      },
-      "assignee": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "follower": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "old_section": {
-        "gid": "12345",
-        "resource_type": "section",
-        "name": "Next Actions"
-      },
-      "new_section": {
-        "gid": "12345",
-        "resource_type": "section",
-        "name": "Next Actions"
-      },
-      "task": {
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "project": {
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      },
-      "tag": {
-        "gid": "12345",
-        "resource_type": "tag",
-        "name": "Stuff to buy"
-      },
-      "custom_field": {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Bug Task",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        },
-        "enabled": true,
-        "text_value": "Some Value"
-      },
-      "old_text_value": "This was the Old Text",
-      "new_text_value": "This is the New Text",
-      "old_number_value": 1,
-      "new_number_value": 2,
-      "old_enum_value": {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      },
-      "new_enum_value": {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      },
-      "duplicate_of": {
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "duplicated_from": {
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "dependency": {
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "source": "web",
-      "target": {
-        "gid": "1234",
-        "name": "Bug Task"
-      }
+      "type": "comment"
     }
   ]
 }
@@ -7341,20 +7089,18 @@ Returns the compact records for all stories on the task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Story](#schemastory)</span>|Successfully retrieved the specified task's stories.|
+|200<span class="param-type"> [StoryCompact](#schemastorycompact)</span>|Successfully retrieved the specified task's stories.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
-## Create a comment on a task
+## Create a story on a task
 
-<a id="opIdcreateCommentStory"></a>
+<a id="opIdcreateStoryForTask"></a>
 
 > Code samples
 
@@ -7372,8 +7118,12 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
 ```json
 {
   "data": {
-    "task": "123456",
-    "text": "This is a comment."
+    "created_by": {
+      "name": "Greg Sanchez"
+    },
+    "text": "This is a comment.",
+    "html_text": "<body>This is a comment.<body>",
+    "is_pinned": false
   }
 }
 ```
@@ -7385,24 +7135,27 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   "data": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "text": "marked today",
+    "resource_subtype": "comment_added",
+    "text": "This is a comment.",
     "type": "comment",
-    "html_text": "Get whatever Sashimi has.",
-    "is_edited": false,
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
+    "is_edited": false,
     "hearted": false,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "num_hearts": 5,
@@ -7410,8 +7163,11 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "num_likes": 5,
@@ -7444,13 +7200,13 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     "story": {
       "gid": "12345",
       "resource_type": "story",
-      "resource_subtype": "comment_added",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "resource_subtype": "comment_added",
       "text": "marked today",
       "type": "comment"
     },
@@ -7492,7 +7248,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     "custom_field": {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Bug Task",
+      "name": "Status",
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
@@ -7512,6 +7268,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     },
     "old_text_value": "This was the Old Text",
@@ -7532,6 +7289,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "enabled": true,
       "color": "blue"
     },
+    "new_approval_status": "approved",
+    "old_approval_status": "pending",
     "duplicate_of": {
       "gid": "12345",
       "resource_type": "task",
@@ -7560,25 +7319,33 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/stories</code>
 </p>
 
-Adds a comment to a task. The comment will be authored by the currently
-authenticated user, and timestamped when the server receives the
-request.
+Adds a story to a task. This endpoint currently only allows for comment
+stories to be created. The comment will be authored by the currently
+authenticated user, and timestamped when the server receives the request.
 
 Returns the full record for the new story added to the task.
 
-<h3 id="create-a-comment-on-a-task-parameters">Parameters</h3>
+<h3 id="create-a-story-on-a-task-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|The comment story to create.|
-|» data<span class="param-type"> object</span>|none|
-|»» task<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the task.|
-|»» text<span class="param-type"> string</span><div class="param-required">required</div>|The plain text of the comment to add.|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The story to create.|
+|» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
+|»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
-<h3 id="create-a-comment-on-a-task-responses">Responses</h3>
+#### Detailed descriptions
+
+**html_text**: [Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.
+*Note: This field is under active migration—please see our blog post for more information.*
+
+<h3 id="create-a-story-on-a-task-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
@@ -7589,9 +7356,7 @@ Returns the full record for the new story added to the task.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-tags">Tags</h1>
 
@@ -7604,12 +7369,11 @@ A tag is a label that can be attached to any task in Asana. It exists in a singl
 Tags have some metadata associated with them, but it is possible that we will simplify them in the future so it is not encouraged to rely too heavily on it. Unlike projects, tags do not provide any ordering on the tasks they are associated with.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple tags
 
-<a id="opIdqueryTags"></a>
+<a id="opIdgetTags"></a>
 
 > Code samples
 
@@ -7629,20 +7393,7 @@ curl -X GET https://app.asana.com/api/1.0/tags \
     {
       "gid": "12345",
       "resource_type": "tag",
-      "name": "Stuff to buy",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "color": "light-green",
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -7669,16 +7420,14 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the specified set of tags.|
+|200<span class="param-type"> [TagCompact](#schematagcompact)</span>|Successfully retrieved the specified set of tags.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a tag
 
@@ -7702,9 +7451,11 @@ curl -X POST https://app.asana.com/api/1.0/tags \
   "data": {
     "name": "Stuff to buy",
     "color": "light-green",
-    "workspace": {
-      "name": "My Company Workspace"
-    }
+    "followers": [
+      "12345",
+      "42563"
+    ],
+    "workspace": "12345"
   }
 }
 ```
@@ -7717,6 +7468,7 @@ curl -X POST https://app.asana.com/api/1.0/tags \
     "gid": "12345",
     "resource_type": "tag",
     "name": "Stuff to buy",
+    "color": "light-green",
     "followers": [
       {
         "gid": "12345",
@@ -7724,7 +7476,6 @@ curl -X POST https://app.asana.com/api/1.0/tags \
         "name": "Greg Sanchez"
       }
     ],
-    "color": "light-green",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -7753,18 +7504,10 @@ Returns the full record of the newly created tag.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
 |» data<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this tag.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
-|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» followers<span class="param-type"> [string]</span>|Array of object Gids.|
+|»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -7802,9 +7545,7 @@ Returns the full record of the newly created tag.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a tag
 
@@ -7828,6 +7569,7 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
     "gid": "12345",
     "resource_type": "tag",
     "name": "Stuff to buy",
+    "color": "light-green",
     "followers": [
       {
         "gid": "12345",
@@ -7835,7 +7577,6 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
         "name": "Greg Sanchez"
       }
     ],
-    "color": "light-green",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -7872,9 +7613,7 @@ Returns the complete tag record for a single tag.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a tag
 
@@ -7898,6 +7637,7 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
     "gid": "12345",
     "resource_type": "tag",
     "name": "Stuff to buy",
+    "color": "light-green",
     "followers": [
       {
         "gid": "12345",
@@ -7905,7 +7645,6 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
         "name": "Greg Sanchez"
       }
     ],
-    "color": "light-green",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -7949,13 +7688,11 @@ Returns the complete updated tag record.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a task's tags
 
-<a id="opIdgetTaskTags"></a>
+<a id="opIdgetTagsForTask"></a>
 
 > Code samples
 
@@ -7975,20 +7712,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
     {
       "gid": "12345",
       "resource_type": "tag",
-      "name": "Stuff to buy",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "color": "light-green",
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -8014,20 +7738,18 @@ Get a compact representation of all of the tags the task has.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the tags for the given task.|
+|200<span class="param-type"> [TagCompact](#schematagcompact)</span>|Successfully retrieved the tags for the given task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get tags in a workspace
 
-<a id="opIdqueryAllTagsInWorkspace"></a>
+<a id="opIdgetTagsForWorkspace"></a>
 
 > Code samples
 
@@ -8047,20 +7769,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
     {
       "gid": "12345",
       "resource_type": "tag",
-      "name": "Stuff to buy",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "color": "light-green",
-      "workspace": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Stuff to buy"
     }
   ]
 }
@@ -8086,20 +7795,18 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the specified set of tags.|
+|200<span class="param-type"> [TagCompact](#schematagcompact)</span>|Successfully retrieved the specified set of tags.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a tag in a workspace
 
-<a id="opIdcreateTagInWorkspace"></a>
+<a id="opIdcreateTagForWorkspace"></a>
 
 > Code samples
 
@@ -8126,30 +7833,28 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
 }
 ```
 
-> 200 Response
+> 201 Response
 
 ```json
 {
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "tag",
-      "name": "Stuff to buy",
-      "followers": [
-        {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "color": "light-green",
-      "workspace": {
+  "data": {
+    "gid": "12345",
+    "resource_type": "tag",
+    "name": "Stuff to buy",
+    "color": "light-green",
+    "followers": [
+      {
         "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
+    ],
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
     }
-  ]
+  }
 }
 ```
 
@@ -8171,19 +7876,12 @@ Returns the full record of the newly created tag.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
-|» data<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» data<span class="param-type"> [TagResponse](#schematagresponse)</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this tag.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -8215,21 +7913,19 @@ Returns the full record of the newly created tag.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Tag](#schematag)</span>|Successfully retrieved the specified set of tags.|
+|201<span class="param-type"> [Tag](#schematag)</span>|Successfully created the newly specified tag.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-tasks">Tasks</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-multiple-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="#create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="#get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="#get-tasks-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="#get-tasks-from-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="#get-tasks-from-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span></a><br><a href="#get-subtasks-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#change-the-parent-of-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="#get-dependencies-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="#set-dependencies-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="#unlink-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="#get-dependents-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="#set-dependents-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="#unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="#add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="#remove-a-project-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="#add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="#remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="#add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a><br><a href="#search-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
+<code><a href="#get-multiple-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="#create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="#get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="#get-tasks-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="#get-tasks-from-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="#get-tasks-from-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span></a><br><a href="#get-tasks-from-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></a><br><a href="#get-subtasks-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#set-the-parent-of-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="#get-dependencies-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="#set-dependencies-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="#unlink-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="#get-dependents-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="#set-dependents-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="#unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="#add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="#remove-a-project-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="#add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="#remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="#add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a><br><a href="#search-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
 </pre>
 
 The task is the basic object around which many operations in Asana are centered. In the Asana application, multiple tasks populate the middle pane according to some view parameters, and the set of selected tasks determines the more detailed information presented in the details pane.
@@ -8239,12 +7935,11 @@ Sections are unique in that they will be included in the *memberships* field of 
 [Queries](#get-a-set-of-tasks) return a compact representation of each object which is typically the id and name fields. Interested in a specific set of fields or all of the fields? Use [field selectors](#input-output-options) to manipulate what data is included in a response.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple tasks
 
-<a id="opIdqueryTasks"></a>
+<a id="opIdgetTasks"></a>
 
 > Code samples
 
@@ -8317,16 +8012,14 @@ include assigning, renaming, completing, and adding stories.*
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved requested tasks.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved requested tasks.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a task
 
@@ -8349,25 +8042,29 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
 {
   "data": {
     "name": "Buy catnip",
-    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
+    "completed_by": {
+      "name": "Greg Sanchez"
+    },
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
       "gid": "my_gid",
       "data": "A blob of information"
     },
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
+    "notes": "Mittens really likes the stuff from Humboldt.",
+    "start_on": "2019-09-14",
+    "assignee": "12345",
     "followers": [
       "12345"
     ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": "12345",
     "projects": [
       "12345"
     ],
-    "start_on": "2019-09-14",
     "tags": [
       "12345"
     ],
@@ -8384,21 +8081,20 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "resource_subtype": "default_task",
-    "assignee": {
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "assignee_status": "upcoming",
-    "completed": false,
-    "completed_at": "2012-02-22T02:06:58.147Z",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -8418,9 +8114,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -8447,20 +8148,16 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
       "gid": "my_gid",
       "data": "A blob of information"
     },
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "is_rendered_as_separator": false,
@@ -8468,8 +8165,11 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "memberships": [
@@ -8491,6 +8191,21 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "num_hearts": 5,
     "num_likes": 5,
     "num_subtasks": 3,
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
+    "approval_status": "pending",
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "parent": {
       "gid": "12345",
       "resource_type": "task",
@@ -8503,7 +8218,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
         "name": "Stuff to buy"
       }
     ],
-    "start_on": "2019-09-14",
     "tags": [
       {
         "gid": "59746",
@@ -8537,103 +8251,70 @@ explicitly if you specify `projects` or a `parent` task instead.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The task to create.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee<span class="param-type"> string¦null</span>|Gid of an object.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
-|»» completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|»»» gid<span class="param-type"> string</span>|none|
-|»» dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|»»» gid<span class="param-type"> string</span>|none|
+|»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
 |»»» gid<span class="param-type"> string</span>|none|
 |»»» data<span class="param-type"> string</span>|none|
-|»» followers<span class="param-type"> [string]</span>|Array of object Gids.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»» likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
-|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|»» num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
-|»» num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent<span class="param-type"> string¦null</span>|Gid of an object.|
-|»» projects<span class="param-type"> [string]</span>|Array of object Gids.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» tags<span class="param-type"> [string]</span>|Array of object Gids.|
-|»» workspace<span class="param-type"> string</span>|Gid of an object.|
+|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» followers<span class="param-type"> [string]</span>|*Create-Only* Array of user gids. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
+|»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
-**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
-The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
-*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
-
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
+
+**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
 **html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
 *Note: This field is under active migration—please see our blog post for more information.*
-
-**modified_at**: The time at which this task was last modified.
-
-*Note: This does not currently reflect any changes in
-associations such as projects or comments that may have been
-added or removed from the task.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -8642,9 +8323,6 @@ added or removed from the task.*
 
 |Parameter|Value|
 |---|---|
-| resource_subtype|default_task|
-| resource_subtype|milestone|
-| resource_subtype|section|
 | assignee_status|today|
 | assignee_status|upcoming|
 | assignee_status|later|
@@ -8653,9 +8331,12 @@ added or removed from the task.*
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-task-responses">Responses</h3>
 
@@ -8668,9 +8349,7 @@ added or removed from the task.*
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a task
 
@@ -8694,21 +8373,20 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "resource_subtype": "default_task",
-    "assignee": {
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "assignee_status": "upcoming",
-    "completed": false,
-    "completed_at": "2012-02-22T02:06:58.147Z",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -8728,9 +8406,14 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -8757,20 +8440,16 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
       "gid": "my_gid",
       "data": "A blob of information"
     },
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "is_rendered_as_separator": false,
@@ -8778,8 +8457,11 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "memberships": [
@@ -8801,6 +8483,21 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "num_hearts": 5,
     "num_likes": 5,
     "num_subtasks": 3,
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
+    "approval_status": "pending",
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "parent": {
       "gid": "12345",
       "resource_type": "task",
@@ -8813,7 +8510,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
         "name": "Stuff to buy"
       }
     ],
-    "start_on": "2019-09-14",
     "tags": [
       {
         "gid": "59746",
@@ -8854,9 +8550,7 @@ Returns the complete task record for a single task.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a task
 
@@ -8879,9 +8573,11 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
 {
   "data": {
     "name": "Buy catnip",
-    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
+    "completed_by": {
+      "name": "Greg Sanchez"
+    },
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
@@ -8889,9 +8585,21 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
       "data": "A blob of information"
     },
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
     "notes": "Mittens really likes the stuff from Humboldt.",
+    "start_on": "2019-09-14",
+    "assignee": "12345",
+    "followers": [
+      "12345"
+    ],
     "parent": "12345",
-    "start_on": "2019-09-14"
+    "projects": [
+      "12345"
+    ],
+    "tags": [
+      "12345"
+    ],
+    "workspace": "12345"
   }
 }
 ```
@@ -8904,21 +8612,20 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "resource_subtype": "default_task",
-    "assignee": {
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "assignee_status": "upcoming",
-    "completed": false,
-    "completed_at": "2012-02-22T02:06:58.147Z",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -8938,9 +8645,14 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -8967,20 +8679,16 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
       "gid": "my_gid",
       "data": "A blob of information"
     },
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "is_rendered_as_separator": false,
@@ -8988,8 +8696,11 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "memberships": [
@@ -9011,6 +8722,21 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "num_hearts": 5,
     "num_likes": 5,
     "num_subtasks": 3,
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
+    "approval_status": "pending",
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "parent": {
       "gid": "12345",
       "resource_type": "task",
@@ -9023,7 +8749,6 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
         "name": "Stuff to buy"
       }
     ],
-    "start_on": "2019-09-14",
     "tags": [
       {
         "gid": "59746",
@@ -9059,116 +8784,71 @@ Returns the complete updated task record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The task to update.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee<span class="param-type"> string¦null</span>|Gid of an object.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
-|»» completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|»»» gid<span class="param-type"> string</span>|none|
-|»» dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|»»» gid<span class="param-type"> string</span>|none|
+|»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
 |»»» gid<span class="param-type"> string</span>|none|
 |»»» data<span class="param-type"> string</span>|none|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this task.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»» likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
-|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|»» num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
-|»» num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent<span class="param-type"> string¦null</span>|Gid of an object.|
-|»» projects<span class="param-type"> [object]</span>|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» tags<span class="param-type"> [object]</span>|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» workspace<span class="param-type"> object</span>|*Create-only*. The workspace this task is associated with. Once created, task cannot be moved to a different workspace. This attribute can only be specified at creation time.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» followers<span class="param-type"> [string]</span>|*Create-Only* Array of user gids. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
+|»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
-**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
-The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
-*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
-
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
+
+**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
 **html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
 *Note: This field is under active migration—please see our blog post for more information.*
-
-**modified_at**: The time at which this task was last modified.
-
-*Note: This does not currently reflect any changes in
-associations such as projects or comments that may have been
-added or removed from the task.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -9177,9 +8857,6 @@ added or removed from the task.*
 
 |Parameter|Value|
 |---|---|
-| resource_subtype|default_task|
-| resource_subtype|milestone|
-| resource_subtype|section|
 | assignee_status|today|
 | assignee_status|upcoming|
 | assignee_status|later|
@@ -9188,9 +8865,12 @@ added or removed from the task.*
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="update-a-task-responses">Responses</h3>
 
@@ -9203,9 +8883,7 @@ added or removed from the task.*
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete a task
 
@@ -9252,16 +8930,22 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully deleted the specified task.|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-task-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Duplicate a task
 
@@ -9298,7 +8982,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
+    "resource_type": "job",
     "resource_subtype": "duplicate_task",
     "status": "in_progress",
     "new_project": {
@@ -9359,13 +9043,11 @@ Creates and returns a job that will asynchronously handle the duplication.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get tasks from a project
 
-<a id="opIdgetProjectTasks"></a>
+<a id="opIdgetTasksForProject"></a>
 
 > Code samples
 
@@ -9411,20 +9093,18 @@ Returns the compact task records for all tasks within the given project, ordered
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the requested project's tasks.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the requested project's tasks.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get tasks from a section
 
-<a id="opIdgetSectionTasks"></a>
+<a id="opIdgetTasksForSection"></a>
 
 > Code samples
 
@@ -9470,20 +9150,18 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the section's tasks.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the section's tasks.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get tasks from a tag
 
-<a id="opIdgetTagTasks"></a>
+<a id="opIdgetTasksForTag"></a>
 
 > Code samples
 
@@ -9529,20 +9207,83 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the tasks associated with the specified tag.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the tasks associated with the specified tag.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+</section><hr class="half-line">
+<section>
+## Get tasks from a user task list
 
-<hr class="half-line">
+<a id="opIdgetTasksForUserTaskList"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
+</p>
+
+Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
+*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
+*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
+*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
+
+<h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?completed_since<span class="param-type"> string</span>|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
+|/user_task_list_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user task list.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+#### Detailed descriptions
+
+**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
+
+<h3 id="get-tasks-from-a-user-task-list-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the user task list's tasks.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
 <section>
 ## Get subtasks from a task
 
-<a id="opIdgetSubTasks"></a>
+<a id="opIdgetSubtasksForTask"></a>
 
 > Code samples
 
@@ -9588,20 +9329,18 @@ Returns a compact representation of all of the subtasks of a task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the specified task's subtasks.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the specified task's subtasks.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Create a subtask
 
-<a id="opIdcreateSubtask"></a>
+<a id="opIdcreateSubtaskForTask"></a>
 
 > Code samples
 
@@ -9620,24 +9359,29 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
 {
   "data": {
     "name": "Buy catnip",
-    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
+    "completed_by": {
+      "name": "Greg Sanchez"
+    },
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
       "gid": "my_gid",
       "data": "A blob of information"
     },
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
+    "notes": "Mittens really likes the stuff from Humboldt.",
+    "start_on": "2019-09-14",
+    "assignee": "12345",
     "followers": [
       "12345"
     ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "notes": "Mittens really likes the stuff from Humboldt.",
+    "parent": "12345",
     "projects": [
       "12345"
     ],
-    "start_on": "2019-09-14",
     "tags": [
       "12345"
     ],
@@ -9654,21 +9398,20 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "resource_subtype": "default_task",
-    "assignee": {
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "assignee_status": "upcoming",
-    "completed": false,
-    "completed_at": "2012-02-22T02:06:58.147Z",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -9688,9 +9431,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -9717,20 +9465,16 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
       "gid": "my_gid",
       "data": "A blob of information"
     },
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "is_rendered_as_separator": false,
@@ -9738,8 +9482,11 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "memberships": [
@@ -9761,6 +9508,21 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "num_hearts": 5,
     "num_likes": 5,
     "num_subtasks": 3,
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
+    "approval_status": "pending",
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "parent": {
       "gid": "12345",
       "resource_type": "task",
@@ -9773,7 +9535,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
         "name": "Stuff to buy"
       }
     ],
-    "start_on": "2019-09-14",
     "tags": [
       {
         "gid": "59746",
@@ -9801,107 +9562,71 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new subtask to create.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee<span class="param-type"> string¦null</span>|Gid of an object.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
-|»» completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
+|»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|»»» gid<span class="param-type"> string</span>|none|
-|»» dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|»»» gid<span class="param-type"> string</span>|none|
+|»»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
 |»»» gid<span class="param-type"> string</span>|none|
 |»»» data<span class="param-type"> string</span>|none|
-|»» followers<span class="param-type"> [string]</span>|Array of object Gids.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»» hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|»» hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»» likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
-|»» num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|»» num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
-|»» num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent<span class="param-type"> object¦null</span>|The parent of this task, or `null` if this is not a subtask. This property cannot be modified using a PUT request but you can change it with the `setParent` endpoint. You can create subtasks by using the subtasks endpoint.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the object.|
-|»» projects<span class="param-type"> [string]</span>|Array of object Gids.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» tags<span class="param-type"> [string]</span>|Array of object Gids.|
-|»» workspace<span class="param-type"> string</span>|Gid of an object.|
+|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» followers<span class="param-type"> [string]</span>|*Create-Only* Array of user gids. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
+|»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
-**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
-The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
-*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
-
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
+
+**precision**: Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
 **html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
 *Note: This field is under active migration—please see our blog post for more information.*
-
-**modified_at**: The time at which this task was last modified.
-
-*Note: This does not currently reflect any changes in
-associations such as projects or comments that may have been
-added or removed from the task.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -9910,9 +9635,6 @@ added or removed from the task.*
 
 |Parameter|Value|
 |---|---|
-| resource_subtype|default_task|
-| resource_subtype|milestone|
-| resource_subtype|section|
 | assignee_status|today|
 | assignee_status|upcoming|
 | assignee_status|later|
@@ -9921,9 +9643,12 @@ added or removed from the task.*
 | resource_subtype|text|
 | resource_subtype|enum|
 | resource_subtype|number|
-| type|text|
-| type|enum|
-| type|number|
+| format|currency|
+| format|percentage|
+| format|custom|
+| format|none|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 
 <h3 id="create-a-subtask-responses">Responses</h3>
 
@@ -9936,13 +9661,11 @@ added or removed from the task.*
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
-## Change the parent of a task
+## Set the parent of a task
 
-<a id="opIdchangeSubtaskParent"></a>
+<a id="opIdsetParentForTask"></a>
 
 > Code samples
 
@@ -9975,21 +9698,20 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "gid": "12345",
     "resource_type": "task",
     "name": "Buy catnip",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "resource_subtype": "default_task",
-    "assignee": {
+    "assignee_status": "upcoming",
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "assignee_status": "upcoming",
-    "completed": false,
-    "completed_at": "2012-02-22T02:06:58.147Z",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -10009,9 +9731,14 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -10038,20 +9765,16 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
       "gid": "my_gid",
       "data": "A blob of information"
     },
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "is_rendered_as_separator": false,
@@ -10059,8 +9782,11 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "likes": [
       {
         "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
       }
     ],
     "memberships": [
@@ -10082,6 +9808,21 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "num_hearts": 5,
     "num_likes": 5,
     "num_subtasks": 3,
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
+    "approval_status": "pending",
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "parent": {
       "gid": "12345",
       "resource_type": "task",
@@ -10094,7 +9835,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
         "name": "Stuff to buy"
       }
     ],
-    "start_on": "2019-09-14",
     "tags": [
       {
         "gid": "59746",
@@ -10116,7 +9856,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
 
 parent, or no parent task at all. Returns an empty data block. When using `insert_before` and `insert_after`, at most one of those two options can be specified, and they must already be subtasks of the parent.
 
-<h3 id="change-the-parent-of-a-task-parameters">Parameters</h3>
+<h3 id="set-the-parent-of-a-task-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
@@ -10129,7 +9869,7 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
-<h3 id="change-the-parent-of-a-task-responses">Responses</h3>
+<h3 id="set-the-parent-of-a-task-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
@@ -10140,13 +9880,11 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get dependencies from a task
 
-<a id="opIdgetTaskDependencies"></a>
+<a id="opIdgetDependenciesForTask"></a>
 
 > Code samples
 
@@ -10192,20 +9930,18 @@ Returns the compact representations of all of the dependencies of a task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the specified task's dependencies.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the specified task's dependencies.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Set dependencies for a task
 
-<a id="opIdaddTaskDependencies"></a>
+<a id="opIdaddDependenciesForTask"></a>
 
 > Code samples
 
@@ -10257,7 +9993,7 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to set as dependencies.|
 |» data<span class="param-type"> object</span>|none|
-|»» dependencies<span class="param-type"> [string]</span>|An array of task gids that a task should depend on.|
+|»» dependencies<span class="param-type"> [string]</span>|An array of task gids that a task depends on.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10266,20 +10002,18 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully set the specified dependencies on the task.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully set the specified dependencies on the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Unlink dependencies from a task
 
-<a id="opIdremoveTaskDependencies"></a>
+<a id="opIdremoveDependenciesForTask"></a>
 
 > Code samples
 
@@ -10331,7 +10065,7 @@ Unlinks a set of dependencies from this task.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to unlink as dependencies.|
 |» data<span class="param-type"> object</span>|none|
-|»» dependencies<span class="param-type"> [string]</span>|An array of task gids that a task should depend on.|
+|»» dependencies<span class="param-type"> [string]</span>|An array of task gids that a task depends on.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10340,20 +10074,18 @@ Unlinks a set of dependencies from this task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully unlinked the dependencies from the specified task.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully unlinked the dependencies from the specified task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get dependents from a task
 
-<a id="opIdgetTaskDependents"></a>
+<a id="opIdgetDependentsForTask"></a>
 
 > Code samples
 
@@ -10399,20 +10131,18 @@ Returns the compact representations of all of the dependents of a task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the specified dependents of the task.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the specified dependents of the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Set dependents for a task
 
-<a id="opIdaddTaskDependents"></a>
+<a id="opIdaddDependentsForTask"></a>
 
 > Code samples
 
@@ -10463,7 +10193,7 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to add as dependents.|
-|» data<span class="param-type"> object</span>|none|
+|» data<span class="param-type"> object</span>|A set of dependent tasks.|
 |»» dependents<span class="param-type"> [string]</span>|An array of task gids that are dependents of the given task.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -10473,20 +10203,18 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully set the specified dependents on the given task.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully set the specified dependents on the given task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Unlink dependents from a task
 
-<a id="opIdremoveTaskDependents"></a>
+<a id="opIdremoveDependentsForTask"></a>
 
 > Code samples
 
@@ -10537,7 +10265,7 @@ Unlinks a set of dependents from this task.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The list of tasks to remove as dependents.|
-|» data<span class="param-type"> object</span>|none|
+|» data<span class="param-type"> object</span>|A set of dependent tasks.|
 |»» dependents<span class="param-type"> [string]</span>|An array of task gids that are dependents of the given task.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -10547,20 +10275,18 @@ Unlinks a set of dependents from this task.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully unlinked the specified tasks as dependents.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully unlinked the specified tasks as dependents.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Add a project to a task
 
-<a id="opIdaddProjectToTask"></a>
+<a id="opIdaddProjectForTask"></a>
 
 > Code samples
 
@@ -10631,20 +10357,26 @@ Returns an empty data block.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified project to the task.|
+|200<span class="param-type"> Inline</span>|Successfully added the specified project to the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="add-a-project-to-a-task-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Remove a project from a task
 
-<a id="opIdremoveProjectFromTask"></a>
+<a id="opIdremoveProjectForTask"></a>
 
 > Code samples
 
@@ -10699,20 +10431,26 @@ Returns an empty data block.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified project from the task.|
+|200<span class="param-type"> Inline</span>|Successfully removed the specified project from the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-a-project-from-a-task-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Add a tag to a task
 
-<a id="opIdaddTagToTask"></a>
+<a id="opIdaddTagForTask"></a>
 
 > Code samples
 
@@ -10764,20 +10502,26 @@ Adds a tag to a task. Returns an empty data block.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified tag to the task.|
+|200<span class="param-type"> Inline</span>|Successfully added the specified tag to the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="add-a-tag-to-a-task-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Remove a tag from a task
 
-<a id="opIdremoveTagFromTask"></a>
+<a id="opIdremoveTagForTask"></a>
 
 > Code samples
 
@@ -10829,20 +10573,26 @@ Removes a tag from a task. Returns an empty data block.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified tag from the task.|
+|200<span class="param-type"> Inline</span>|Successfully removed the specified tag from the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-a-tag-from-a-task-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Add followers to a task
 
-<a id="opIdaddFollowerToTask"></a>
+<a id="opIdaddFollowersForTask"></a>
 
 > Code samples
 
@@ -10899,20 +10649,26 @@ Requests to add/remove followers, if successful, will return the complete update
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully added the specified followers to the task.|
+|200<span class="param-type"> Inline</span>|Successfully added the specified followers to the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="add-followers-to-a-task-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Remove followers from a task
 
-<a id="opIdremoveFollowerToTask"></a>
+<a id="opIdremoveFollowerForTask"></a>
 
 > Code samples
 
@@ -10967,20 +10723,26 @@ Removes each of the specified followers from the task if they are following. Ret
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully removed the specified followers from the task.|
+|200<span class="param-type"> Inline</span>|Successfully removed the specified followers from the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-followers-from-a-task-responseschema">Response Schema</h3>
 
-<hr class="half-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
 <section>
 ## Search tasks in a workspace
 
-<a id="opIdgetWorkspaceTasksSearch"></a>
+<a id="opIdsearchTasksForWorkspace"></a>
 
 > Code samples
 
@@ -11123,16 +10885,14 @@ Searching for multiple exact matches of a custom field is not supported.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the section's tasks.|
+|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the section's tasks.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-teams">Teams</h1>
 
@@ -11143,7 +10903,6 @@ Searching for multiple exact matches of a custom field is not supported.
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a team
@@ -11167,7 +10926,7 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "team",
-    "name": "Bug Task",
+    "name": "Marketing",
     "description": "All developers should be members of this team.",
     "html_description": "<body><em>All</em> developers should be members of this team.</body>",
     "organization": {
@@ -11206,13 +10965,11 @@ Returns the full record for a single team.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get teams in an organization
 
-<a id="opIdgetAllTeams"></a>
+<a id="opIdgetTeamsForOrganization"></a>
 
 > Code samples
 
@@ -11232,14 +10989,7 @@ curl -X GET https://app.asana.com/api/1.0/organizations/{workspace_gid}/teams \
     {
       "gid": "12345",
       "resource_type": "team",
-      "name": "Bug Task",
-      "description": "All developers should be members of this team.",
-      "html_description": "<body><em>All</em> developers should be members of this team.</body>",
-      "organization": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Marketing"
     }
   ]
 }
@@ -11265,16 +11015,14 @@ Returns the compact records for all teams in the organization visible to the aut
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Team](#schemateam)</span>|Returns the team records for all teams in the organization or workspace accessible to the authenticated user.|
+|200<span class="param-type"> [TeamCompact](#schemateamcompact)</span>|Returns the team records for all teams in the organization or workspace accessible to the authenticated user.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get teams for a user
 
@@ -11284,7 +11032,7 @@ Returns the compact records for all teams in the organization visible to the aut
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gid=1331 \
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization=1331 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -11298,14 +11046,7 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gi
     {
       "gid": "12345",
       "resource_type": "team",
-      "name": "Bug Task",
-      "description": "All developers should be members of this team.",
-      "html_description": "<body><em>All</em> developers should be members of this team.</body>",
-      "organization": {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
+      "name": "Marketing"
     }
   ]
 }
@@ -11326,26 +11067,24 @@ Returns the compact records for all teams to which the given user is assigned.
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
-|?organization_gid<span class="param-type"> string</span><div class="param-required">required</div>|The workspace or organization to filter teams on.|
+|?organization<span class="param-type"> string</span><div class="param-required">required</div>|The workspace or organization to filter teams on.|
 
 <h3 id="get-teams-for-a-user-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Team](#schemateam)</span>|Returns the team records for all teams in the organization or workspace to which the given user is assigned.|
+|200<span class="param-type"> [TeamCompact](#schemateamcompact)</span>|Returns the team records for all teams in the organization or workspace to which the given user is assigned.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Add a user to a team
 
-<a id="opIdaddUserToTeam"></a>
+<a id="opIdaddUserForTeam"></a>
 
 > Code samples
 
@@ -11372,13 +11111,26 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
 
 ```json
 {
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  ]
+  "data": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez",
+    "email": "gsanchez@example.com",
+    "photo": {
+      "image_21x21": "https://...",
+      "image_27x27": "https://...",
+      "image_36x36": "https://...",
+      "image_60x60": "https://...",
+      "image_128x128": "https://..."
+    },
+    "workspaces": [
+      {
+        "gid": "12345",
+        "resource_type": "workspace",
+        "name": "My Company Workspace"
+      }
+    ]
+  }
 }
 ```
 
@@ -11393,7 +11145,7 @@ The user making this call must be a member of the team in order to add others. T
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to add to the team.|
-|» data<span class="param-type"> object</span>|none|
+|» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
 |»» user<span class="param-type"> string</span>|none|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -11410,13 +11162,11 @@ The user making this call must be a member of the team in order to add others. T
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Remove a user from a team
 
-<a id="opIdremoveUserFromTeam"></a>
+<a id="opIdremoveUserForTeam"></a>
 
 > Code samples
 
@@ -11443,13 +11193,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
 
 ```json
 {
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  ]
+  "data": {}
 }
 ```
 
@@ -11464,7 +11208,7 @@ The user making this call must be a member of the team in order to remove themse
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to remove from the team.|
-|» data<span class="param-type"> object</span>|none|
+|» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
 |»» user<span class="param-type"> string</span>|none|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -11474,16 +11218,300 @@ The user making this call must be a member of the team in order to remove themse
 
 |Status|Description|
 |---|---|
-|204<span class="param-type"> [User](#schemauser)</span>|Returns an empty data record|
+|204<span class="param-type"> Inline</span>|Returns an empty data record|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-a-user-from-a-team-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **204**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="full-line">
+<section class="full-section">
+<h1 id="asana-team-memberships">Team Memberships</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="#get-a-team-membership"><span class="get-verb">GET</span> <span class=""nn>/team_memberships/{team_membership_gid}</span></a><br><a href="#get-team-memberships"><span class="get-verb">GET</span> <span class=""nn>/team_memberships</span></a><br><a href="#get-memberships-from-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/team_memberships</span></a><br><a href="#get-memberships-from-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/team_memberships</span></a></code>
+</pre>
+
+This object determines if a user is a member of a team.
+
+</section>
+<hr class="half-line">
+<section>
+## Get a team membership
+
+<a id="opIdgetTeamMembership"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/team_memberships/{team_membership_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "team_membership",
+    "user": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "is_guest": false
+  }
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /team_memberships/{team_membership_gid}</code>
+</p>
+
+Returns the complete team membership record for a single team membership.
+
+<h3 id="get-a-team-membership-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/team_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-team-membership-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully retrieved the requested team membership.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Get team memberships
+
+<a id="opIdgetTeamMemberships"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/team_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "team_membership",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "team": {
+        "gid": "12345",
+        "resource_type": "team",
+        "name": "Marketing"
+      },
+      "is_guest": false
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /team_memberships</code>
+</p>
+
+Returns compact team membership records.
+
+<h3 id="get-team-memberships-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?team<span class="param-type"> string</span>|Globally unique identifier for the team.|
+|?user<span class="param-type"> string</span>|Globally unique identifier for the user. This parameter must be used with the workspace parameter.|
+|?workspace<span class="param-type"> string</span>|Globally unique identifier for the workspace. This parameter must be used with the user parameter.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-team-memberships-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembershipCompact](#schemateammembershipcompact)</span>|Successfully retrieved the requested team memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Get memberships from a team
+
+<a id="opIdgetTeamMembershipsForTeam"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/team_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "team_membership",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "team": {
+        "gid": "12345",
+        "resource_type": "team",
+        "name": "Marketing"
+      },
+      "is_guest": false
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /teams/{team_gid}/team_memberships</code>
+</p>
+
+Returns the compact team memberships for the team.
+
+<h3 id="get-memberships-from-a-team-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-memberships-from-a-team-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembershipCompact](#schemateammembershipcompact)</span>|Successfully retrieved the requested team's memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Get memberships from a user
+
+<a id="opIdgetTeamMembershipsForUser"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships?workspace=31326 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "team_membership",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "team": {
+        "gid": "12345",
+        "resource_type": "team",
+        "name": "Marketing"
+      },
+      "is_guest": false
+    }
+  ]
+}
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}/team_memberships</code>
+</p>
+
+Returns the compact team membership records for the user.
+
+<h3 id="get-memberships-from-a-user-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace.|
+|/user_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-memberships-from-a-user-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamMembershipCompact](#schemateammembershipcompact)</span>|Successfully retrieved the requested users's memberships.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-typeahead">Typeahead</h1>
 
@@ -11494,12 +11522,11 @@ The user making this call must be a member of the team in order to remove themse
 The typeahead search API provides search for objects from a single workspace.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get objects via typeahead
 
-<a id="opIdgetTypeahead"></a>
+<a id="opIdtypeaheadForWorkspace"></a>
 
 > Code samples
 
@@ -11552,7 +11579,7 @@ data is included in a response.
 |Name|Description|
 |---|---|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
-|?resource_type<span class="param-type"> string</span><div class="param-required">required</div>|The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.|
+|?resource_type<span class="param-type"> string</span><div class="param-required">required</div>|The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `portfolio`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.|
 |?type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_type field.*|
 |?query<span class="param-type"> string</span>|The string that will be used to search for relevant objects. If an empty string is passed in, the API will currently return an empty result set.|
 |?count<span class="param-type"> integer</span>|The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.|
@@ -11580,16 +11607,14 @@ data is included in a response.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Asana](#schemaasana)</span>|Successfully retrieved objects via a typeahead search algorithm.|
+|200<span class="param-type"> [AsanaNamedResource](#schemaasananamedresource)</span>|Successfully retrieved objects via a typeahead search algorithm.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-users">Users</h1>
 
@@ -11602,12 +11627,11 @@ A user object represents an account in Asana that can be given access to various
 Like other objects in the system, users are referred to by numerical IDs. However, the special string identifier `me` can be used anywhere a user ID is accepted, to refer to the current authenticated user.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple users
 
-<a id="opIdgetAllUsers"></a>
+<a id="opIdgetUsers"></a>
 
 > Code samples
 
@@ -11654,16 +11678,14 @@ Results are sorted by user ID.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [User](#schemauser)</span>|Successfully retrieved the requested user records.|
+|200<span class="param-type"> [UserCompact](#schemausercompact)</span>|Successfully retrieved the requested user records.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a user
 
@@ -11732,13 +11754,11 @@ Results are sorted by user ID.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a user's favorites
 
-<a id="opIdgetUserFavorites"></a>
+<a id="opIdgetFavoritesForUser"></a>
 
 > Code samples
 
@@ -11754,8 +11774,13 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_ty
 
 ```json
 {
-  "gid": "12345",
-  "resource_type": "task"
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  ]
 }
 ```
 
@@ -11790,16 +11815,14 @@ Results are given in order (The same order as Asana's sidebar).
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Asana](#schemaasana)</span>|Returns the specified user's favorites.|
+|200<span class="param-type"> [AsanaNamedResource](#schemaasananamedresource)</span>|Returns the specified user's favorites.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get users in a team
 
@@ -11849,20 +11872,18 @@ Returns the compact records for all users that are members of the team.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [User](#schemauser)</span>|Returns the user records for all the members of the team, including guests and limited access users|
+|200<span class="param-type"> [UserCompact](#schemausercompact)</span>|Returns the user records for all the members of the team, including guests and limited access users|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get users in a workspace or organization
 
-<a id="opIdgetUsersInWorkspace"></a>
+<a id="opIdgetUsersForWorkspace"></a>
 
 > Code samples
 
@@ -11909,21 +11930,19 @@ Results are sorted alphabetically by user names.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [User](#schemauser)</span>|Return the users in the specified workspace or org.|
+|200<span class="param-type"> [UserCompact](#schemausercompact)</span>|Return the users in the specified workspace or org.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-user-task-lists">User Task Lists</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-tasks-from-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></a><br><a href="#get-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_list/{user_task_list_gid}</span></a><br><a href="#get-a-user-39-s-task-list"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span></a></code>
+<code><a href="#get-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}</span></a><br><a href="#get-a-user-39-s-task-list"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span></a></code>
 </pre>
 
 A user task list represents the tasks assigned to a particular user.
@@ -11931,74 +11950,6 @@ A user task list represents the tasks assigned to a particular user.
 A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](#tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
 
 </section>
-
-<hr class="half-line">
-<section>
-## Get tasks from a user task list
-
-<a id="opIdgetUserTaskListTasks"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
-  ]
-}
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
-</p>
-
-Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
-*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
-*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
-*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
-
-<h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|?completed_since<span class="param-type"> string</span>|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
-|/user_task_list_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the user task list.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
-|?offset<span class="param-type"> string</span>|Offset token.|
-
-#### Detailed descriptions
-
-**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
-
-<h3 id="get-tasks-from-a-user-task-list-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [Task](#schematask)</span>|Successfully retrieved the user task list's tasks.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section>
-
 <hr class="half-line">
 <section>
 ## Get a user task list
@@ -12009,7 +11960,7 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid} \
+curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -12021,8 +11972,7 @@ curl -X GET https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid} \
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task",
+    "resource_type": "user_task_list",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -12038,7 +11988,7 @@ curl -X GET https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid} \
 ```
 
 <p>
-<code> <span class="get-verb">GET</span> /user_task_list/{user_task_list_gid}</code>
+<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}</code>
 </p>
 
 Returns the full record for a user task list.
@@ -12062,13 +12012,11 @@ Returns the full record for a user task list.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a user's task list
 
-<a id="opIdgetUsersTaskList"></a>
+<a id="opIdgetUserTaskListForUser"></a>
 
 > Code samples
 
@@ -12086,8 +12034,7 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list?worksp
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task",
+    "resource_type": "user_task_list",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -12128,9 +12075,7 @@ Returns the full record for a user's task list.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-webhooks">Webhooks</h1>
 
@@ -12170,7 +12115,6 @@ Note that events are "skinny" - we expect consumers who desire syncing data to m
 If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect it to take no longer than approximately an hour after they come back before the paused delivery resumes. However, if we are unable to deliver a message for 24 hours the webhook will be deactivated.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple webhooks
@@ -12194,18 +12138,18 @@ curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
   "data": [
     {
       "gid": "12345",
-      "resource_type": "task",
-      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_type": "webhook",
       "active": false,
-      "last_failure_at": "2012-02-22T02:06:58.147Z",
-      "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-      "last_success_at": "2012-02-22T02:06:58.147Z",
       "resource": {
         "gid": "12345",
         "resource_type": "task",
         "name": "Bug Task"
       },
-      "target": "https://example.com/receive-webhook/7654"
+      "target": "https://example.com/receive-webhook/7654",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "last_failure_at": "2012-02-22T02:06:58.147Z",
+      "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+      "last_success_at": "2012-02-22T02:06:58.147Z"
     }
   ]
 }
@@ -12239,9 +12183,7 @@ Get the compact representation of all webhooks your app has registered for the a
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Establish a webhook
 
@@ -12275,18 +12217,18 @@ curl -X POST https://app.asana.com/api/1.0/webhooks \
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
-    "created_at": "2012-02-22T02:06:58.147Z",
+    "resource_type": "webhook",
     "active": false,
-    "last_failure_at": "2012-02-22T02:06:58.147Z",
-    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-    "last_success_at": "2012-02-22T02:06:58.147Z",
     "resource": {
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task"
     },
-    "target": "https://example.com/receive-webhook/7654"
+    "target": "https://example.com/receive-webhook/7654",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+    "last_success_at": "2012-02-22T02:06:58.147Z"
   }
 }
 ```
@@ -12372,9 +12314,7 @@ HTTP/1.1 201
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a webhook
 
@@ -12396,18 +12336,18 @@ curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
-    "created_at": "2012-02-22T02:06:58.147Z",
+    "resource_type": "webhook",
     "active": false,
-    "last_failure_at": "2012-02-22T02:06:58.147Z",
-    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-    "last_success_at": "2012-02-22T02:06:58.147Z",
     "resource": {
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task"
     },
-    "target": "https://example.com/receive-webhook/7654"
+    "target": "https://example.com/receive-webhook/7654",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+    "last_success_at": "2012-02-22T02:06:58.147Z"
   }
 }
 ```
@@ -12437,9 +12377,7 @@ Returns the full record for the given webhook.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Delete a webhook
 
@@ -12481,16 +12419,22 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Empty](#schemaempty)</span>|Successfully retrieved the requested webhook.|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the requested webhook.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="delete-a-webhook-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-workspaces">Workspaces</h1>
 
@@ -12505,12 +12449,11 @@ An *organization* is a special kind of workspace that represents a company. In a
 Over time, we intend to migrate most workspaces into organizations and to release more organization-specific functionality. We may eventually deprecate using workspace-based APIs for organizations. Currently, and until after some reasonable grace period following any further announcements, you can still reference organizations in any `workspace` parameter.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get multiple workspaces
 
-<a id="opIdgetAllWorkspaces"></a>
+<a id="opIdgetWorkspaces"></a>
 
 > Code samples
 
@@ -12555,16 +12498,14 @@ Returns the compact records for all workspaces visible to the authorized user.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Workspace](#schemaworkspace)</span>|Return all workspaces visible to the authorized user.|
+|200<span class="param-type"> [WorkspaceCompact](#schemaworkspacecompact)</span>|Return all workspaces visible to the authorized user.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get a workspace
 
@@ -12621,9 +12562,7 @@ Returns the full workspace record for a single workspace.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Update a workspace
 
@@ -12645,11 +12584,7 @@ curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
 ```json
 {
   "data": {
-    "name": "My Company Workspace",
-    "email_domains": [
-      "asana.com"
-    ],
-    "is_organization": false
+    "name": "My Company Workspace"
   }
 }
 ```
@@ -12684,11 +12619,7 @@ Returns the complete, updated workspace record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The workspace object with all updated properties.|
 |» data<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
-|»» email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
-|»» is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
+|»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -12704,13 +12635,11 @@ Returns the complete, updated workspace record.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Add a user to a workspace or organization
 
-<a id="opIdaddUserToWorkspace"></a>
+<a id="opIdaddUserForWorkspace"></a>
 
 > Code samples
 
@@ -12772,7 +12701,7 @@ The user can be referenced by their globally unique user ID or their email addre
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to add to the workspace.|
-|» data<span class="param-type"> object</span>|none|
+|» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
 |»» user<span class="param-type"> string</span>|none|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -12789,13 +12718,11 @@ The user can be referenced by their globally unique user ID or their email addre
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Remove a user from a workspace or organization
 
-<a id="opIdremoveUserToWorkspace"></a>
+<a id="opIdremoveUserForWorkspace"></a>
 
 > Code samples
 
@@ -12839,7 +12766,7 @@ Returns an empty data record.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The user to remove from the workspace.|
-|» data<span class="param-type"> object</span>|none|
+|» data<span class="param-type"> object</span>|A user identification object for specification with the addUser/removeUser endpoints.|
 |»» user<span class="param-type"> string</span>|none|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -12849,16 +12776,22 @@ Returns an empty data record.
 
 |Status|Description|
 |---|---|
-|204<span class="param-type"> [Empty](#schemaempty)</span>|The user was removed successfully to the workspace or organization.|
+|204<span class="param-type"> Inline</span>|The user was removed successfully to the workspace or organization.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
+<h3 id="remove-a-user-from-a-workspace-or-organization-responseschema">Response Schema</h3>
 
-<hr class="full-line">
+Status Code **204**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="full-line">
 <section class="full-section">
 <h1 id="asana-workspace-memberships">Workspace Memberships</h1>
 
@@ -12869,7 +12802,6 @@ Returns an empty data record.
 This object determines if a user is a member of a workspace.
 
 </section>
-
 <hr class="half-line">
 <section>
 ## Get a workspace membership
@@ -12905,8 +12837,7 @@ curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membe
     },
     "user_task_list": {
       "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task",
+      "resource_type": "user_task_list",
       "owner": {
         "gid": "12345",
         "resource_type": "user",
@@ -12935,7 +12866,7 @@ Returns the complete workspace record for a single workspace membership.
 
 |Name|Description|
 |---|---|
-|/workspace_membership_path_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
+|/workspace_membership_gid<span class="param-type"> string</span><div class="param-required">required</div>|none|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -12950,9 +12881,7 @@ Returns the complete workspace record for a single workspace membership.
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get workspace memberships for a user
 
@@ -13011,16 +12940,14 @@ Returns the compact workspace membership records for the user.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [WorkspaceMembership](#schemaworkspacemembership)</span>|Successfully retrieved the requested user's workspace memberships.|
+|200<span class="param-type"> [WorkspaceMembershipCompact](#schemaworkspacemembershipcompact)</span>|Successfully retrieved the requested user's workspace memberships.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
-</section>
-
-<hr class="half-line">
+</section><hr class="half-line">
 <section>
 ## Get the workspace memberships for a workspace
 
@@ -13080,24 +13007,71 @@ Returns the compact workspace membership records for the workspace.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [WorkspaceMembership](#schemaworkspacemembership)</span>|Successfully retrieved the requested workspace's memberships.|
+|200<span class="param-type"> [WorkspaceMembershipCompact](#schemaworkspacemembershipcompact)</span>|Successfully retrieved the requested workspace's memberships.|
 
-</section>
-
-<hr class="full-line">
+</section><hr class="full-line">
 <section class="full-section">
-
 # Schemas
-
 </section>
-
 <hr>
 <section>
-<h2 id="tocS_Attachment">Attachment</h2>
+<a id="schemaasanaresource"></a>
+<a id="schema_AsanaResource"></a>
+<a id="tocSasanaresource"></a>
+<a id="tocsasanaresource"></a>
+<h2 id="tocS_AsanaResource">AsanaResource</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "task"
+}
+
+```
+
+A generic Asana Resource, containing a globally unique identifier.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+
+</section><hr>
+<section>
+<a id="schemaasananamedresource"></a>
+<a id="schema_AsanaNamedResource"></a>
+<a id="tocSasananamedresource"></a>
+<a id="tocsasananamedresource"></a>
+<h2 id="tocS_AsanaNamedResource">AsanaNamedResource</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "task",
+  "name": "Bug Task"
+}
+
+```
+
+A generic Asana Resource, containing a globally unique identifier.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the object.|
+
+</section><hr>
+<section>
 <a id="schemaattachment"></a>
 <a id="schema_Attachment"></a>
 <a id="tocSattachment"></a>
 <a id="tocsattachment"></a>
+<h2 id="tocS_Attachment">Attachment</h2>
 
 ```json
 {
@@ -13123,27 +13097,25 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
 |host<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
 |parent<span class="param-type"> object</span>|The task this attachment is attached to.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 |view_url<span class="param-type"> string(uri)¦null</span>|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_AttachmentCompact">AttachmentCompact</h2>
 <a id="schemaattachmentcompact"></a>
 <a id="schema_AttachmentCompact"></a>
 <a id="tocSattachmentcompact"></a>
 <a id="tocsattachmentcompact"></a>
+<h2 id="tocS_AttachmentCompact">AttachmentCompact</h2>
 
 ```json
 {
@@ -13160,74 +13132,17 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_BatchRequest">BatchRequest</h2>
-<a id="schemabatchrequest"></a>
-<a id="schema_BatchRequest"></a>
-<a id="tocSbatchrequest"></a>
-<a id="tocsbatchrequest"></a>
-
-```json
-{
-  "relative_path": "/tasks/123",
-  "method": "get",
-  "data": {
-    "assignee": "me",
-    "workspace": "1337"
-  },
-  "options": {
-    "limit": 3,
-    "fields": [
-      "name",
-      "notes",
-      "completed"
-    ]
-  }
-}
-
-```
-
-A request object for use in a batch request.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|relative_path<span class="param-type"> string</span>|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
-|method<span class="param-type"> string</span>|The HTTP method you wish to emulate for the action.|
-|data<span class="param-type"> object</span>|For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.|
-|options<span class="param-type"> object</span>|Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. “Pretty” JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.|
-|» limit<span class="param-type"> integer</span>|Pagination limit for the request.|
-|» offset<span class="param-type"> integer</span>|Pagination offset for the request.|
-|» fields<span class="param-type"> [string]</span>|The fields to retrieve in the request.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|method|get|
-|method|post|
-|method|put|
-|method|delete|
-|method|patch|
-|method|head|
-
-</section>
-
-<hr>
-<section>
-<h2 id="tocS_BatchResult">BatchResult</h2>
-<a id="schemabatchresult"></a>
-<a id="schema_BatchResult"></a>
-<a id="tocSbatchresult"></a>
-<a id="tocsbatchresult"></a>
+<a id="schemabatch"></a>
+<a id="schema_Batch"></a>
+<a id="tocSbatch"></a>
+<a id="tocsbatch"></a>
+<h2 id="tocS_Batch">Batch</h2>
 
 ```json
 {
@@ -13257,21 +13172,19 @@ A response object returned from a batch request.
 |headers<span class="param-type"> object</span>|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
 |body<span class="param-type"> object</span>|The JSON body that the invoked endpoint returned.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_CustomField">CustomField</h2>
 <a id="schemacustomfield"></a>
 <a id="schema_CustomField"></a>
 <a id="tocScustomfield"></a>
 <a id="tocscustomfield"></a>
+<h2 id="tocS_CustomField">CustomField</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "custom_field",
-  "name": "Bug Task",
+  "name": "Status",
   "resource_subtype": "text",
   "type": "text",
   "enum_options": [
@@ -13291,9 +13204,14 @@ A response object returned from a batch request.
     "color": "blue"
   },
   "enabled": true,
+  "number_value": 5.2,
   "text_value": "Some Value",
   "description": "Development team priority",
   "precision": 2,
+  "format": "custom",
+  "currency_code": "EUR",
+  "custom_label": "gold pieces",
+  "custom_label_position": "suffix",
   "is_global_to_workspace": true,
   "has_notifications_enabled": true
 }
@@ -13308,29 +13226,34 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the custom field.|
 |resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|format<span class="param-type"> string</span>|The format of this custom field.|
+|currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 
 #### Enumerated Values
 
@@ -13342,22 +13265,26 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_CustomFieldCompact">CustomFieldCompact</h2>
 <a id="schemacustomfieldcompact"></a>
 <a id="schema_CustomFieldCompact"></a>
 <a id="tocScustomfieldcompact"></a>
 <a id="tocscustomfieldcompact"></a>
+<h2 id="tocS_CustomFieldCompact">CustomFieldCompact</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "custom_field",
-  "name": "Bug Task",
+  "name": "Status",
   "resource_subtype": "text",
   "type": "text",
   "enum_options": [
@@ -13377,6 +13304,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
     "color": "blue"
   },
   "enabled": true,
+  "number_value": 5.2,
   "text_value": "Some Value"
 }
 
@@ -13390,24 +13318,25 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the custom field.|
 |resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 
 #### Enumerated Values
@@ -13421,15 +13350,13 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |type|enum|
 |type|number|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
 <a id="schemacustomfieldsetting"></a>
 <a id="schema_CustomFieldSetting"></a>
 <a id="tocScustomfieldsetting"></a>
 <a id="tocscustomfieldsetting"></a>
+<h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
 
 ```json
 {
@@ -13449,7 +13376,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
   "custom_field": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Bug Task",
+    "name": "Status",
     "resource_subtype": "text",
     "type": "text",
     "enum_options": [
@@ -13469,9 +13396,14 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "format": "custom",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
     "is_global_to_workspace": true,
     "has_notifications_enabled": true
   }
@@ -13485,41 +13417,46 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
 |parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|» format<span class="param-type"> string</span>|The format of this custom field.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 
 #### Enumerated Values
 
@@ -13531,16 +13468,20 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_CustomFieldSettingCompact">CustomFieldSettingCompact</h2>
 <a id="schemacustomfieldsettingcompact"></a>
 <a id="schema_CustomFieldSettingCompact"></a>
 <a id="tocScustomfieldsettingcompact"></a>
 <a id="tocscustomfieldsettingcompact"></a>
+<h2 id="tocS_CustomFieldSettingCompact">CustomFieldSettingCompact</h2>
 
 ```json
 {
@@ -13556,61 +13497,16 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_EnumOption">EnumOption</h2>
-<a id="schemaenumoption"></a>
-<a id="schema_EnumOption"></a>
-<a id="tocSenumoption"></a>
-<a id="tocsenumoption"></a>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "enum_option",
-  "name": "Low",
-  "enabled": true,
-  "color": "blue"
-}
-
-```
-
-Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
-
-You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
-
-**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.
-
-On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.
-
-Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.
-
-An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the enum option.|
-|enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-
-</section>
-
-<hr>
-<section>
-<h2 id="tocS_EnumOptionCompact">EnumOptionCompact</h2>
 <a id="schemaenumoptioncompact"></a>
 <a id="schema_EnumOptionCompact"></a>
 <a id="tocSenumoptioncompact"></a>
 <a id="tocsenumoptioncompact"></a>
+<h2 id="tocS_EnumOptionCompact">EnumOptionCompact</h2>
 
 ```json
 {
@@ -13639,21 +13535,19 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the enum option.|
 |enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Error">Error</h2>
 <a id="schemaerror"></a>
 <a id="schema_Error"></a>
 <a id="tocSerror"></a>
 <a id="tocserror"></a>
+<h2 id="tocS_Error">Error</h2>
 
 ```json
 {
@@ -13689,15 +13583,13 @@ error.
 |» help<span class="param-type"> string</span>|Additional information directing developers to resources on how to address and fix the problem, if available.|
 |» phrase<span class="param-type"> string</span>|*500 errors only*. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Event">Event</h2>
 <a id="schemaevent"></a>
 <a id="schema_Event"></a>
 <a id="tocSevent"></a>
 <a id="tocsevent"></a>
+<h2 id="tocS_Event">Event</h2>
 
 ```json
 {
@@ -13708,6 +13600,7 @@ error.
   },
   "resource": {
     "gid": "12345",
+    "resource_type": "task",
     "name": "Bug Task"
   },
   "type": "task",
@@ -13725,39 +13618,52 @@ error.
 An *event* is an object representing a change to a resource that was
 observed by an event subscription.
 
+The event may be triggered by a different `user` than the
+subscriber. For example, if user A subscribes to a task and user B
+modified it, the event’s user will be user B. Note: Some events
+are generated by the system, and will have `null` as the user. API
+consumers should make sure to handle this case.
+
+The `resource` that triggered the event may be different from
+the one that the events were requested for. For example, a
+subscription to a project will contain events for tasks contained
+within the project.
+
+For added/removed events, the `parent` that resource was added to or
+removed from. The parent will be `null` for other event types.
+
 ### Properties
 
 |Name|Description|
 |---|---|
-|user<span class="param-type"> object¦null</span>|The user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the subscriber. For example, if user A subscribes to a task and user B modified it, the event’s user will be user B. Note: Some events are generated by the system, and will have `null` as the user. API consumers should make sure to handle this case.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|resource<span class="param-type"> object</span>|The resource the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
-|» gid<span class="param-type"> string</span>|none|
-|» name<span class="param-type"> string</span>|none|
+|resource<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
 |type<span class="param-type"> string</span>|*Deprecated: Refer to the resource_type of the resource.*<br>The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
 |action<span class="param-type"> string</span>|The type of action taken that triggered the event.|
-|parent<span class="param-type"> object¦null</span>|For added/removed events, the parent that resource was added to or removed from. The parent will be `null` for other event types.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the object.|
 |created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Job">Job</h2>
 <a id="schemajob"></a>
 <a id="schema_Job"></a>
 <a id="tocSjob"></a>
 <a id="tocsjob"></a>
+<h2 id="tocS_Job">Job</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "task",
+  "resource_type": "job",
   "resource_subtype": "duplicate_task",
   "status": "in_progress",
   "new_project": {
@@ -13780,18 +13686,18 @@ A *job* is an object representing a process that handles asynchronous work.
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |status<span class="param-type"> string</span>|none|
 |new_project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 
 #### Enumerated Values
 
@@ -13802,77 +13708,82 @@ A *job* is an object representing a process that handles asynchronous work.
 |status|completed|
 |status|failed|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_OrganizationExport">OrganizationExport</h2>
-<a id="schemaorganizationexport"></a>
-<a id="schema_OrganizationExport"></a>
-<a id="tocSorganizationexport"></a>
-<a id="tocsorganizationexport"></a>
+<a id="schemajobcompact"></a>
+<a id="schema_JobCompact"></a>
+<a id="tocSjobcompact"></a>
+<a id="tocsjobcompact"></a>
+<h2 id="tocS_JobCompact">JobCompact</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "task",
-  "created_at": "2012-02-22T02:06:58.147Z",
-  "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
-  "state": "started",
-  "organization": {
-    "gid": "14916",
-    "name": "My Workspace"
+  "resource_type": "job",
+  "resource_subtype": "duplicate_task",
+  "status": "in_progress",
+  "new_project": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  },
+  "new_task": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
   }
 }
 
 ```
 
-An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
+A *job* is an object representing a process that handles asynchronous work.
 
 ### Properties
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
-|state<span class="param-type"> string</span>|The current state of the export.|
-|organization<span class="param-type"> object</span>|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
-|» gid<span class="param-type"> string</span>|none|
-|» name<span class="param-type"> string</span>|none|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|status<span class="param-type"> string</span>|none|
+|new_project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|state|pending|
-|state|started|
-|state|finished|
-|state|error|
+|status|not_started|
+|status|in_progress|
+|status|completed|
+|status|failed|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Portfolio">Portfolio</h2>
 <a id="schemaportfolio"></a>
 <a id="schema_Portfolio"></a>
 <a id="tocSportfolio"></a>
 <a id="tocsportfolio"></a>
+<h2 id="tocS_Portfolio">Portfolio</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "portfolio",
-  "name": "Bug Task",
+  "name": "Bug Portfolio",
+  "color": "light-green",
   "created_at": "2012-02-22T02:06:58.147Z",
   "created_by": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "color": "light-green",
   "custom_field_settings": [
     {
       "gid": "12345",
@@ -13891,7 +13802,7 @@ An *organization_export* object represents a request to export the complete data
       "custom_field": {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Bug Task",
+        "name": "Status",
         "resource_subtype": "text",
         "type": "text",
         "enum_options": [
@@ -13911,9 +13822,14 @@ An *organization_export* object represents a request to export the complete data
           "color": "blue"
         },
         "enabled": true,
+        "number_value": 5.2,
         "text_value": "Some Value",
         "description": "Development team priority",
         "precision": 2,
+        "format": "custom",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
         "is_global_to_workspace": true,
         "has_notifications_enabled": true
       }
@@ -13947,61 +13863,66 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the portfolio.|
+|color<span class="param-type"> string</span>|Color of the portfolio.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|color<span class="param-type"> string</span>|Color of the portfolio.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
 |» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`. readOnly: true|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|owner<span class="param-type"> object</span>|The current owner of the portfolio.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 |members<span class="param-type"> [object]</span>|none|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
@@ -14033,22 +13954,26 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_PortfolioCompact">PortfolioCompact</h2>
 <a id="schemaportfoliocompact"></a>
 <a id="schema_PortfolioCompact"></a>
 <a id="tocSportfoliocompact"></a>
 <a id="tocsportfoliocompact"></a>
+<h2 id="tocS_PortfolioCompact">PortfolioCompact</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "portfolio",
-  "name": "Bug Task"
+  "name": "Bug Portfolio"
 }
 
 ```
@@ -14060,33 +13985,31 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the portfolio.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_PortfolioMembership">PortfolioMembership</h2>
 <a id="schemaportfoliomembership"></a>
 <a id="schema_PortfolioMembership"></a>
 <a id="tocSportfoliomembership"></a>
 <a id="tocsportfoliomembership"></a>
+<h2 id="tocS_PortfolioMembership">PortfolioMembership</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "portfolio_membership",
+  "portfolio": {
+    "gid": "12345",
+    "resource_type": "portfolio",
+    "name": "Bug Portfolio"
+  },
   "user": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
-  },
-  "portfolio": {
-    "gid": "12345",
-    "resource_type": "portfolio",
-    "name": "Bug Task"
   }
 }
 
@@ -14098,31 +14021,34 @@ This object determines if a user is a member of a portfolio.
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the portfolio.|
 |user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_PortfolioMembershipCompact">PortfolioMembershipCompact</h2>
 <a id="schemaportfoliomembershipcompact"></a>
 <a id="schema_PortfolioMembershipCompact"></a>
 <a id="tocSportfoliomembershipcompact"></a>
 <a id="tocsportfoliomembershipcompact"></a>
+<h2 id="tocS_PortfolioMembershipCompact">PortfolioMembershipCompact</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "portfolio_membership",
+  "portfolio": {
+    "gid": "12345",
+    "resource_type": "portfolio",
+    "name": "Bug Portfolio"
+  },
   "user": {
     "gid": "12345",
     "resource_type": "user",
@@ -14138,85 +14064,53 @@ This object determines if a user is a member of a portfolio.
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the portfolio.|
 |user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Preview">Preview</h2>
-<a id="schemapreview"></a>
-<a id="schema_Preview"></a>
-<a id="tocSpreview"></a>
-<a id="tocspreview"></a>
-
-```json
-{
-  "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-  "footer": "Mar 17, 2019 1:25 PM",
-  "header": "Asana for Slack",
-  "header_link": "https://asana.comn/apps/slack",
-  "html_text": "<body>Great! I like this idea.</body>",
-  "text": "Great! I like this idea.",
-  "title": "Greg",
-  "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
-}
-
-```
-
-A collection of rich text that will be displayed as a preview to another app.
-
-This is read-only except for a small group of whitelisted apps.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
-|footer<span class="param-type"> string</span>|Text to display in the footer.|
-|header<span class="param-type"> string</span>|Text to display in the header.|
-|header_link<span class="param-type"> string</span>|Where the header will link to.|
-|html_text<span class="param-type"> string</span>|HTML formatted text for the body of the preview.|
-|text<span class="param-type"> string</span>|Text for the body of the preview.|
-|title<span class="param-type"> string</span>|Text to display as the title.|
-|title_link<span class="param-type"> string</span>|Where to title will link to.|
-
-</section>
-
-<hr>
-<section>
-<h2 id="tocS_Project">Project</h2>
 <a id="schemaproject"></a>
 <a id="schema_Project"></a>
 <a id="tocSproject"></a>
 <a id="tocsproject"></a>
+<h2 id="tocS_Project">Project</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "project",
   "name": "Stuff to buy",
-  "created_at": "2012-02-22T02:06:58.147Z",
   "archived": false,
   "color": "light-green",
+  "created_at": "2012-02-22T02:06:58.147Z",
   "current_status": {
-    "color": "green",
-    "text": "Everything is great",
-    "author": {
+    "gid": "12345",
+    "resource_type": "project_status",
+    "title": "Status Update - Jun 15",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
       "gid": "12345",
-      "name": "Greg Bizarro"
-    }
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "project": "123456",
+    "text": "The project is moving forward according to plan...",
+    "html_text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "color": "green"
   },
   "custom_fields": [
     {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Bug Task",
+      "name": "Status",
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
@@ -14236,6 +14130,7 @@ This is read-only except for a small group of whitelisted apps.
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value"
     }
   ],
@@ -14278,7 +14173,7 @@ This is read-only except for a small group of whitelisted apps.
   "team": {
     "gid": "12345",
     "resource_type": "team",
-    "name": "Bug Task"
+    "name": "Marketing"
   },
   "workspace": {
     "gid": "12345",
@@ -14295,73 +14190,80 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |color<span class="param-type"> string¦null</span>|Color of the project.|
-|current_status<span class="param-type"> object¦null</span>|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
-|» color<span class="param-type"> string</span>|none|
-|» text<span class="param-type"> string</span>|none|
-|» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» title<span class="param-type"> string</span>|The title of the project status update.|
+|» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» project<span class="param-type"> string</span>|Globally unique identifier for the project.|
+|» text<span class="param-type"> string</span>|The text content of the status update.|
+|» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|» color<span class="param-type"> string</span>|The color associated with the status update.|
 |custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*|
 |is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
 |layout<span class="param-type"> string</span>|The layout (board or list view) of a project|
 |members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
 |notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|owner<span class="param-type"> object¦null</span>|The current owner of the project, may be null.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |section_migration_status<span class="param-type"> string</span>|*Read-only* The section migration status of this project.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the team.|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
 #### Enumerated Values
 
@@ -14404,15 +14306,13 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |section_migration_status|in_progress|
 |section_migration_status|completed|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_ProjectCompact">ProjectCompact</h2>
 <a id="schemaprojectcompact"></a>
 <a id="schema_ProjectCompact"></a>
 <a id="tocSprojectcompact"></a>
 <a id="tocsprojectcompact"></a>
+<h2 id="tocS_ProjectCompact">ProjectCompact</h2>
 
 ```json
 {
@@ -14429,19 +14329,17 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_ProjectMembership">ProjectMembership</h2>
 <a id="schemaprojectmembership"></a>
 <a id="schema_ProjectMembership"></a>
 <a id="tocSprojectmembership"></a>
 <a id="tocsprojectmembership"></a>
+<h2 id="tocS_ProjectMembership">ProjectMembership</h2>
 
 ```json
 {
@@ -14468,14 +14366,14 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |write_access<span class="param-type"> string</span>|Whether the user has full access to the project or has comment-only access.|
@@ -14487,15 +14385,13 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 |write_access|full_write|
 |write_access|comment_only|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_ProjectMembershipCompact">ProjectMembershipCompact</h2>
 <a id="schemaprojectmembershipcompact"></a>
 <a id="schema_ProjectMembershipCompact"></a>
 <a id="tocSprojectmembershipcompact"></a>
 <a id="tocsprojectmembershipcompact"></a>
+<h2 id="tocS_ProjectMembershipCompact">ProjectMembershipCompact</h2>
 
 ```json
 {
@@ -14516,105 +14412,20 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_ProjectStatus">ProjectStatus</h2>
-<a id="schemaprojectstatus"></a>
-<a id="schema_ProjectStatus"></a>
-<a id="tocSprojectstatus"></a>
-<a id="tocsprojectstatus"></a>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "project_status",
-  "title": "Status Update - Jun 15",
-  "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "text": "The project is moving forward according to plan...",
-  "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
-  "color": "green"
-}
-
-```
-
-A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|title<span class="param-type"> string</span>|The title of the project status update.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|text<span class="param-type"> string</span>|The text content of the status update.|
-|html-text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
-|color<span class="param-type"> string</span>|The color associated with the status update.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|color|green|
-|color|yellow|
-|color|red|
-
-</section>
-
-<hr>
-<section>
-<h2 id="tocS_ProjectStatusCompact">ProjectStatusCompact</h2>
-<a id="schemaprojectstatuscompact"></a>
-<a id="schema_ProjectStatusCompact"></a>
-<a id="tocSprojectstatuscompact"></a>
-<a id="tocsprojectstatuscompact"></a>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "project_status",
-  "title": "Status Update - Jun 15"
-}
-
-```
-
-A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|title<span class="param-type"> string</span>|The title of the project status update.|
-
-</section>
-
-<hr>
-<section>
-<h2 id="tocS_Section">Section</h2>
 <a id="schemasection"></a>
 <a id="schema_Section"></a>
 <a id="tocSsection"></a>
 <a id="tocssection"></a>
+<h2 id="tocS_Section">Section</h2>
 
 ```json
 {
@@ -14622,6 +14433,11 @@ A *project status* is an update on the progress of a particular project, and is 
   "resource_type": "section",
   "name": "Next Actions",
   "created_at": "2012-02-22T02:06:58.147Z",
+  "project": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  },
   "projects": [
     {
       "gid": "12345",
@@ -14639,24 +14455,26 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|projects<span class="param-type"> [object]</span>|none|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|projects<span class="param-type"> [object]</span>|*Deprecated - please use project instead*|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_SectionCompact">SectionCompact</h2>
 <a id="schemasectioncompact"></a>
 <a id="schema_SectionCompact"></a>
 <a id="tocSsectioncompact"></a>
 <a id="tocssectioncompact"></a>
+<h2 id="tocS_SectionCompact">SectionCompact</h2>
 
 ```json
 {
@@ -14673,42 +14491,43 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Story">Story</h2>
 <a id="schemastory"></a>
 <a id="schema_Story"></a>
 <a id="tocSstory"></a>
 <a id="tocsstory"></a>
+<h2 id="tocS_Story">Story</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "story",
-  "resource_subtype": "comment_added",
   "created_at": "2012-02-22T02:06:58.147Z",
   "created_by": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "text": "marked today",
+  "resource_subtype": "comment_added",
+  "text": "This is a comment.",
   "type": "comment",
-  "html_text": "Get whatever Sashimi has.",
-  "is_edited": false,
+  "html_text": "<body>This is a comment.<body>",
   "is_pinned": false,
+  "is_edited": false,
   "hearted": false,
   "hearts": [
     {
       "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ],
   "num_hearts": 5,
@@ -14716,8 +14535,11 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
   "likes": [
     {
       "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ],
   "num_likes": 5,
@@ -14750,13 +14572,13 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
   "story": {
     "gid": "12345",
     "resource_type": "story",
-    "resource_subtype": "comment_added",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "resource_subtype": "comment_added",
     "text": "marked today",
     "type": "comment"
   },
@@ -14798,7 +14620,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
   "custom_field": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Bug Task",
+    "name": "Status",
     "resource_subtype": "text",
     "type": "text",
     "enum_options": [
@@ -14818,6 +14640,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
       "color": "blue"
     },
     "enabled": true,
+    "number_value": 5.2,
     "text_value": "Some Value"
   },
   "old_text_value": "This was the Old Text",
@@ -14838,6 +14661,8 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
     "enabled": true,
     "color": "blue"
   },
+  "new_approval_status": "approved",
+  "old_approval_status": "pending",
   "duplicate_of": {
     "gid": "12345",
     "resource_type": "task",
@@ -14868,30 +14693,34 @@ A story represents an activity associated with an object in the Asana system.
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>*Note: This field is under active migration—please see our blog<br>post for more information.*|
-|is_edited<span class="param-type"> boolean</span>|*Conditional*. Whether the text of the story has been edited after creation.|
+|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.<br>*Note: This field is under active migration—please see our blog post for more information.*|
 |is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
-|hearted<span class="param-type"> boolean</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
-|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. Array of users who have hearted this story.|
+|is_edited<span class="param-type"> boolean</span>|*Conditional*. Whether the text of the story has been edited after creation.|
+|hearted<span class="param-type"> boolean</span>|*Deprecated - please use likes instead*<br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
+|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. Array of likes for users who have hearted this story.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
 |liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
-|likes<span class="param-type"> [object]</span>|*Conditional*. Array of users who have liked this story.|
+|likes<span class="param-type"> [object]</span>|*Conditional*. Array of likes for users who have liked this story.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
 |previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
 |» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
@@ -14915,92 +14744,95 @@ A story represents an activity associated with an object in the Asana system.
 |old_resource_subtype<span class="param-type"> string</span>|*Conditional*|
 |new_resource_subtype<span class="param-type"> string</span>|*Conditional*|
 |story<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|» created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» text<span class="param-type"> string</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |follower<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |old_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |new_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 |project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |tag<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |old_text_value<span class="param-type"> string</span>|*Conditional*|
 |new_text_value<span class="param-type"> string</span>|*Conditional*|
 |old_number_value<span class="param-type"> integer</span>|*Conditional*|
 |new_number_value<span class="param-type"> integer</span>|*Conditional*|
 |old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|new_approval_status<span class="param-type"> string</span>|*Conditional*|
+|old_approval_status<span class="param-type"> string</span>|*Conditional*|
 |duplicate_of<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 |duplicated_from<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 |dependency<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 |source<span class="param-type"> string</span>|The component of the Asana product the user used to trigger the story.|
 |target<span class="param-type"> object</span>|The object this story is associated with. Currently may only be a task.|
 |» gid<span class="param-type"> string</span>|none|
@@ -15016,28 +14848,31 @@ A story represents an activity associated with an object in the Asana system.
 |type|text|
 |type|enum|
 |type|number|
+|source|web|
+|source|email|
+|source|mobile|
+|source|api|
+|source|unknown|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_StoryCompact">StoryCompact</h2>
 <a id="schemastorycompact"></a>
 <a id="schema_StoryCompact"></a>
 <a id="tocSstorycompact"></a>
 <a id="tocsstorycompact"></a>
+<h2 id="tocS_StoryCompact">StoryCompact</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "story",
-  "resource_subtype": "comment_added",
   "created_at": "2012-02-22T02:06:58.147Z",
   "created_by": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
+  "resource_subtype": "comment_added",
   "text": "marked today",
   "type": "comment"
 }
@@ -15050,32 +14885,31 @@ A story represents an activity associated with an object in the Asana system.
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|created_by<span class="param-type"> object¦null</span>|The user who created this resource.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|text<span class="param-type"> any</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|text<span class="param-type"> string</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
 |type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Tag">Tag</h2>
 <a id="schematag"></a>
 <a id="schema_Tag"></a>
 <a id="tocStag"></a>
 <a id="tocstag"></a>
+<h2 id="tocS_Tag">Tag</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "tag",
   "name": "Stuff to buy",
+  "color": "light-green",
   "followers": [
     {
       "gid": "12345",
@@ -15083,7 +14917,6 @@ A story represents an activity associated with an object in the Asana system.
       "name": "Greg Sanchez"
     }
   ],
-  "color": "light-green",
   "workspace": {
     "gid": "12345",
     "resource_type": "workspace",
@@ -15099,18 +14932,18 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|color<span class="param-type"> string</span>|Color of the tag.|
 |followers<span class="param-type"> [object]</span>|Array of users following this tag.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|color<span class="param-type"> string</span>|Color of the tag.|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
 #### Enumerated Values
 
@@ -15135,15 +14968,13 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |color|light-purple|
 |color|light-warm-gray|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_TagCompact">TagCompact</h2>
 <a id="schematagcompact"></a>
 <a id="schema_TagCompact"></a>
 <a id="tocStagcompact"></a>
 <a id="tocstagcompact"></a>
+<h2 id="tocS_TagCompact">TagCompact</h2>
 
 ```json
 {
@@ -15160,40 +14991,37 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Task">Task</h2>
 <a id="schematask"></a>
 <a id="schema_Task"></a>
 <a id="tocStask"></a>
 <a id="tocstask"></a>
+<h2 id="tocS_Task">Task</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "task",
   "name": "Buy catnip",
-  "created_at": "2012-02-22T02:06:58.147Z",
-  "resource_subtype": "default_task",
-  "assignee": {
+  "assignee_status": "upcoming",
+  "completed": false,
+  "completed_at": "2012-02-22T02:06:58.147Z",
+  "completed_by": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "assignee_status": "upcoming",
-  "completed": false,
-  "completed_at": "2012-02-22T02:06:58.147Z",
+  "created_at": "2012-02-22T02:06:58.147Z",
   "custom_fields": [
     {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Bug Task",
+      "name": "Status",
       "resource_subtype": "text",
       "type": "text",
       "enum_options": [
@@ -15213,9 +15041,14 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
         "color": "blue"
       },
       "enabled": true,
+      "number_value": 5.2,
       "text_value": "Some Value",
       "description": "Development team priority",
       "precision": 2,
+      "format": "custom",
+      "currency_code": "EUR",
+      "custom_label": "gold pieces",
+      "custom_label_position": "suffix",
       "is_global_to_workspace": true,
       "has_notifications_enabled": true
     }
@@ -15242,20 +15075,16 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
     "gid": "my_gid",
     "data": "A blob of information"
   },
-  "followers": [
-    {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  ],
   "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
   "hearted": true,
   "hearts": [
     {
       "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ],
   "is_rendered_as_separator": false,
@@ -15263,8 +15092,11 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
   "likes": [
     {
       "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ],
   "memberships": [
@@ -15286,6 +15118,21 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
   "num_hearts": 5,
   "num_likes": 5,
   "num_subtasks": 3,
+  "resource_subtype": "default_task",
+  "start_on": "2019-09-14",
+  "approval_status": "pending",
+  "assignee": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "followers": [
+    {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  ],
   "parent": {
     "gid": "12345",
     "resource_type": "task",
@@ -15298,7 +15145,6 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
       "name": "Stuff to buy"
     }
   ],
-  "start_on": "2019-09-14",
   "tags": [
     {
       "gid": "59746",
@@ -15320,74 +15166,80 @@ The *task* is the basic object around which many operations in Asana are centere
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
-|assignee<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.<br>Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
-|custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|» format<span class="param-type"> string</span>|The format of this custom field.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|» has_notifications_enabled<span class="param-type"> boolean</span>|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
-|» gid<span class="param-type"> string</span>|none|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
-|» gid<span class="param-type"> string</span>|none|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
 |» gid<span class="param-type"> string</span>|none|
 |» data<span class="param-type"> string</span>|none|
-|followers<span class="param-type"> [object]</span>|Array of users following this task.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.<br>*Note: This field is under active migration—please see our blog post for more information.*|
 |hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
-|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of likes for users who have hearted this task.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
 |liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|likes<span class="param-type"> [object]</span>|Array of users who have liked this task.|
+|likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this task.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |memberships<span class="param-type"> [object]</span>|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
 |» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
@@ -15395,31 +15247,38 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
-|parent<span class="param-type"> object¦null</span>|The parent of this task, or `null` if this is not a subtask. This property cannot be modified using a PUT request but you can change it with the `setParent` endpoint. You can create subtasks by using the subtasks endpoint.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
+|assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|followers<span class="param-type"> [object]</span>|Array of users following this task.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|parent<span class="param-type"> object¦null</span>|The parent of this task, or `null` if this is not a subtask. This property cannot be modified using a PUT request but you can change it with the `setParent` endpoint. You can create subtasks by using the subtasks endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the task.|
 |projects<span class="param-type"> [object]</span>|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|tags<span class="param-type"> [object]</span>|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|tags<span class="param-type"> [object]</span>|Array of tags associated with this task. In order to change tags on an existing task use `addTag` and `removeTag`.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace this task is associated with. Once created, task cannot be moved to a different workspace. This attribute can only be specified at creation time.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|resource_subtype|default_task|
-|resource_subtype|milestone|
-|resource_subtype|section|
 |assignee_status|today|
 |assignee_status|upcoming|
 |assignee_status|later|
@@ -15431,16 +15290,28 @@ The *task* is the basic object around which many operations in Asana are centere
 |type|text|
 |type|enum|
 |type|number|
+|format|currency|
+|format|percentage|
+|format|custom|
+|format|none|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
+|resource_subtype|default_task|
+|resource_subtype|milestone|
+|resource_subtype|section|
+|resource_subtype|approval|
+|approval_status|pending|
+|approval_status|approved|
+|approval_status|rejected|
+|approval_status|changes_requested|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_TaskCompact">TaskCompact</h2>
 <a id="schemataskcompact"></a>
 <a id="schema_TaskCompact"></a>
 <a id="tocStaskcompact"></a>
 <a id="tocstaskcompact"></a>
+<h2 id="tocS_TaskCompact">TaskCompact</h2>
 
 ```json
 {
@@ -15457,60 +15328,23 @@ The *task* is the basic object around which many operations in Asana are centere
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the task.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_TaskCount">TaskCount</h2>
-<a id="schemataskcount"></a>
-<a id="schema_TaskCount"></a>
-<a id="tocStaskcount"></a>
-<a id="tocstaskcount"></a>
-
-```json
-{
-  "num_tasks": 200,
-  "num_incomplete_tasks": 50,
-  "num_completed_tasks": 150,
-  "num_milestones": 10,
-  "num_incomplete_milestones": 7,
-  "num_completed_milestones": 3
-}
-
-```
-
-A response object returned from the task count endpoint.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|num_tasks<span class="param-type"> integer</span>|The number of tasks in a project.|
-|num_incomplete_tasks<span class="param-type"> integer</span>|The number of incomplete tasks in a project.|
-|num_completed_tasks<span class="param-type"> integer</span>|The number of completed tasks in a project.|
-|num_milestones<span class="param-type"> integer</span>|The number of milestones in a project.|
-|num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
-|num_completed_milestones<span class="param-type"> integer</span>|The number of completed milestones in a project.|
-
-</section>
-
-<hr>
-<section>
-<h2 id="tocS_Team">Team</h2>
 <a id="schemateam"></a>
 <a id="schema_Team"></a>
 <a id="tocSteam"></a>
 <a id="tocsteam"></a>
+<h2 id="tocS_Team">Team</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "team",
-  "name": "Bug Task",
+  "name": "Marketing",
   "description": "All developers should be members of this team.",
   "html_description": "<body><em>All</em> developers should be members of this team.</body>",
   "organization": {
@@ -15528,31 +15362,29 @@ A *team* is used to group related projects and people together within an organiz
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the team.|
 |description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team.|
 |html_description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://developers.asana.com/docs/#rich-text) for more information.*|
 |organization<span class="param-type"> object</span>|The organization/workspace the team belongs to.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_TeamCompact">TeamCompact</h2>
 <a id="schemateamcompact"></a>
 <a id="schema_TeamCompact"></a>
 <a id="tocSteamcompact"></a>
 <a id="tocsteamcompact"></a>
+<h2 id="tocS_TeamCompact">TeamCompact</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "team",
-  "name": "Bug Task"
+  "name": "Marketing"
 }
 
 ```
@@ -15563,19 +15395,107 @@ A *team* is used to group related projects and people together within an organiz
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the team.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_User">User</h2>
+<a id="schemateammembership"></a>
+<a id="schema_TeamMembership"></a>
+<a id="tocSteammembership"></a>
+<a id="tocsteammembership"></a>
+<h2 id="tocS_TeamMembership">TeamMembership</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "team_membership",
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
+  },
+  "is_guest": false
+}
+
+```
+
+This object represents a user's connection to a team.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
+|is_guest<span class="param-type"> boolean</span>|Describes if the user is a guest in the team.|
+
+</section><hr>
+<section>
+<a id="schemateammembershipcompact"></a>
+<a id="schema_TeamMembershipCompact"></a>
+<a id="tocSteammembershipcompact"></a>
+<a id="tocsteammembershipcompact"></a>
+<h2 id="tocS_TeamMembershipCompact">TeamMembershipCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "team_membership",
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
+  },
+  "is_guest": false
+}
+
+```
+
+This object represents a user's connection to a team.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
+|is_guest<span class="param-type"> boolean</span>|Describes if the user is a guest in the team.|
+
+</section><hr>
+<section>
 <a id="schemauser"></a>
 <a id="schema_User"></a>
 <a id="tocSuser"></a>
 <a id="tocsuser"></a>
+<h2 id="tocS_User">User</h2>
 
 ```json
 {
@@ -15607,10 +15527,10 @@ A *user* object represents an account in Asana that can be given access to vario
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|email<span class="param-type"> string(email)</span>|The user’s email address.|
+|email<span class="param-type"> string(email)</span>|The user's email address.|
 |photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
 |» image_21x21<span class="param-type"> string(uri)</span>|none|
 |» image_27x27<span class="param-type"> string(uri)</span>|none|
@@ -15618,19 +15538,17 @@ A *user* object represents an account in Asana that can be given access to vario
 |» image_60x60<span class="param-type"> string(uri)</span>|none|
 |» image_128x128<span class="param-type"> string(uri)</span>|none|
 |workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_UserCompact">UserCompact</h2>
 <a id="schemausercompact"></a>
 <a id="schema_UserCompact"></a>
 <a id="tocSusercompact"></a>
 <a id="tocsusercompact"></a>
+<h2 id="tocS_UserCompact">UserCompact</h2>
 
 ```json
 {
@@ -15647,25 +15565,22 @@ A *user* object represents an account in Asana that can be given access to vario
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_UserTaskList">UserTaskList</h2>
 <a id="schemausertasklist"></a>
 <a id="schema_UserTaskList"></a>
 <a id="tocSusertasklist"></a>
 <a id="tocsusertasklist"></a>
+<h2 id="tocS_UserTaskList">UserTaskList</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "task",
-  "name": "Bug Task",
+  "resource_type": "user_task_list",
   "owner": {
     "gid": "12345",
     "resource_type": "user",
@@ -15686,66 +15601,123 @@ A user task list represents the tasks assigned to a particular user. It provides
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
-|owner<span class="param-type"> object</span>|The owner of the user task list, i.e. the person whose My Tasks is represented by this resource.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|workspace<span class="param-type"> object</span>|The workspace in which the user task list is located.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_UserTaskListCompact">UserTaskListCompact</h2>
 <a id="schemausertasklistcompact"></a>
 <a id="schema_UserTaskListCompact"></a>
 <a id="tocSusertasklistcompact"></a>
 <a id="tocsusertasklistcompact"></a>
+<h2 id="tocS_UserTaskListCompact">UserTaskListCompact</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "task",
-  "name": "Bug Task"
+  "resource_type": "user_task_list",
+  "owner": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "workspace": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  }
 }
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.
 
 ### Properties
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_Webhook">Webhook</h2>
 <a id="schemawebhook"></a>
 <a id="schema_Webhook"></a>
 <a id="tocSwebhook"></a>
 <a id="tocswebhook"></a>
+<h2 id="tocS_Webhook">Webhook</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "task",
-  "created_at": "2012-02-22T02:06:58.147Z",
+  "resource_type": "webhook",
   "active": false,
+  "resource": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "target": "https://example.com/receive-webhook/7654",
+  "created_at": "2012-02-22T02:06:58.147Z",
   "last_failure_at": "2012-02-22T02:06:58.147Z",
   "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-  "last_success_at": "2012-02-22T02:06:58.147Z",
+  "last_success_at": "2012-02-22T02:06:58.147Z"
+}
+
+```
+
+Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as Events - in fact, Webhooks are just a way to receive [Events](#asana-events) via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
+
+In both cases, however, changes are represented as Event objects - refer to the [Events documentation](#asana-events) for more information on what data these events contain.
+
+*Note: While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only gids*, rather than the actual resource they are referencing. Webhooks themselves contain only the information necessary to deliver the events to the desired target as they are generated.*
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|active<span class="param-type"> boolean</span>|If true, the webhook will send events - if false it is considered inactive and will not generate events.|
+|resource<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|target<span class="param-type"> string(uri)</span>|The URL to receive the HTTP POST.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|last_failure_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last received an error when sending an event to the target.|
+|last_failure_content<span class="param-type"> string</span>|The contents of the last error response sent to the webhook when attempting to deliver events to the target.|
+|last_success_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last successfully sent an event to the target.|
+
+</section><hr>
+<section>
+<a id="schemawebhookcompact"></a>
+<a id="schema_WebhookCompact"></a>
+<a id="tocSwebhookcompact"></a>
+<a id="tocswebhookcompact"></a>
+<h2 id="tocS_WebhookCompact">WebhookCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "webhook",
+  "active": false,
   "resource": {
     "gid": "12345",
     "resource_type": "task",
@@ -15766,61 +15738,22 @@ In both cases, however, changes are represented as Event objects - refer to the 
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |active<span class="param-type"> boolean</span>|If true, the webhook will send events - if false it is considered inactive and will not generate events.|
-|last_failure_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last received an error when sending an event to the target.|
-|last_failure_content<span class="param-type"> string</span>|The contents of the last error response sent to the webhook when attempting to deliver events to the target.|
-|last_success_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last successfully sent an event to the target.|
-|resource<span class="param-type"> object</span>|The resource the webhook is subscribed to.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|resource<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the object.|
 |target<span class="param-type"> string(uri)</span>|The URL to receive the HTTP POST.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_WebhookEvent">WebhookEvent</h2>
-<a id="schemawebhookevent"></a>
-<a id="schema_WebhookEvent"></a>
-<a id="tocSwebhookevent"></a>
-<a id="tocswebhookevent"></a>
-
-```json
-{
-  "action": "changed",
-  "created_at": "2012-02-22T02:06:58.147Z",
-  "parent": "12345",
-  "resource": "32154",
-  "type": "task",
-  "user": "321654987"
-}
-
-```
-
-### Properties
-
-|Name|Description|
-|---|---|
-|action<span class="param-type"> string</span>|The type of action taken that triggered the event.|
-|created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
-|parent<span class="param-type"> string¦null</span>|For added/removed events, the parent gid that resource was added to or removed from. The parent will be `null` for other event types.|
-|resource<span class="param-type"> string</span>|The resource gid the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
-|type<span class="param-type"> string</span>|The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
-|user<span class="param-type"> string¦null</span>|The gid of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
-
-</section>
-
-<hr>
-<section>
-<h2 id="tocS_Workspace">Workspace</h2>
 <a id="schemaworkspace"></a>
 <a id="schema_Workspace"></a>
 <a id="tocSworkspace"></a>
 <a id="tocsworkspace"></a>
+<h2 id="tocS_Workspace">Workspace</h2>
 
 ```json
 {
@@ -15841,21 +15774,19 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the workspace.|
 |email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
 |is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_WorkspaceCompact">WorkspaceCompact</h2>
 <a id="schemaworkspacecompact"></a>
 <a id="schema_WorkspaceCompact"></a>
 <a id="tocSworkspacecompact"></a>
 <a id="tocsworkspacecompact"></a>
+<h2 id="tocS_WorkspaceCompact">WorkspaceCompact</h2>
 
 ```json
 {
@@ -15872,19 +15803,17 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the object.|
+|name<span class="param-type"> string</span>|The name of the workspace.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_WorkspaceMembership">WorkspaceMembership</h2>
 <a id="schemaworkspacemembership"></a>
 <a id="schema_WorkspaceMembership"></a>
 <a id="tocSworkspacemembership"></a>
 <a id="tocsworkspacemembership"></a>
+<h2 id="tocS_WorkspaceMembership">WorkspaceMembership</h2>
 
 ```json
 {
@@ -15902,8 +15831,7 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
   },
   "user_task_list": {
     "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task",
+    "resource_type": "user_task_list",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -15928,41 +15856,38 @@ This object determines if a user is a member of a workspace.
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|resource_type<span class="param-type"> string</span>|The resource type of this resource. The value for this resource is always `workspace_membership`.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 |user_task_list<span class="param-type"> object</span>|A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
-|» owner<span class="param-type"> object</span>|The owner of the user task list, i.e. the person whose My Tasks is represented by this resource.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» workspace<span class="param-type"> object</span>|The workspace in which the user task list is located.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the object.|
+|»» name<span class="param-type"> string</span>|The name of the workspace.|
 |is_active<span class="param-type"> boolean</span>|Reflects if this user still a member of the workspace.|
 |is_admin<span class="param-type"> boolean</span>|Reflects if this user is an admin of the workspace.|
 |is_guest<span class="param-type"> boolean</span>|Reflects if this user is a guest of the workspace.|
 
-</section>
-
-<hr>
+</section><hr>
 <section>
-<h2 id="tocS_WorkspaceMembershipCompact">WorkspaceMembershipCompact</h2>
 <a id="schemaworkspacemembershipcompact"></a>
 <a id="schema_WorkspaceMembershipCompact"></a>
 <a id="tocSworkspacemembershipcompact"></a>
 <a id="tocsworkspacemembershipcompact"></a>
+<h2 id="tocS_WorkspaceMembershipCompact">WorkspaceMembershipCompact</h2>
 
 ```json
 {
@@ -15988,16 +15913,16 @@ This object determines if a user is a member of a workspace.
 
 |Name|Description|
 |---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|resource_type<span class="param-type"> string</span>|The resource type of this resource. The value for this resource is always `workspace_membership`.|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
 </section>
 
