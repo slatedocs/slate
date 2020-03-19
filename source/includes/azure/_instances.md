@@ -48,7 +48,7 @@ Retrieve a list of all instances in a given [environment](#administration-enviro
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Compute/virtualMachines/:instanceName 
+`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Compute/virtualMachines/:instanceName
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
 `numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the machine type.
@@ -109,7 +109,7 @@ Retrieve an instance in a given [environment](#administration-environments)
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName}` 
+`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName}`
 `name` <br/>*string* | The name of the instance
 `machineType`<br/>*string* | The type of machine assigned for this instance
 `numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the machine type.
@@ -231,7 +231,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=resize</code>
 
-Update the machine type for the existing instance. 
+Update the machine type for the existing instance.
 
 <aside class="notice">
 Each machine type has a predefined number of vCPUs, memory, and disk limitation and capacity.
@@ -254,7 +254,7 @@ Required | &nbsp;
 
 #### Reset password
 
-Reset the administrator password on Windows or Linux [instances](#azure-instances). 
+Reset the administrator password on Windows or Linux [instances](#azure-instances).
 
 ```shell
 curl -X POST \
@@ -314,4 +314,47 @@ curl -X POST \
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
 
- Stop an existing instance. The instance must be in either the power state *PowerState/running* or *PowerState/starting* status for this operation to work. 
+ Stop an existing instance. The instance must be in either the power state *PowerState/running* or *PowerState/starting* status for this operation to work.
+
+
+<!-------------------- ATTACH A DISK -------------------->
+
+#### Attach a disk (instance side)
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+ "https://cloudmc_endpoint/v1/services/azure-conn/test_env/instances/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
+
+# Request should look like this
+```
+```shell
+# Request Example:
+```
+
+```json
+{
+  "diskToAttach" : "/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/disktest1",
+  "diskLun": 10
+}
+```
+
+
+```shell
+# Response Example
+```
+```json
+{
+  "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=attach_disk</code>
+
+
+Required | &nbsp;
+------ | -----------
+`diskToAttach` <br/>*String* | The Id of the disk that you want to be attached to the instance.
+`diskLun`<br/>*Integer* | The logic unit number of a disk. Can only be between 1 and 63 inclusive.
