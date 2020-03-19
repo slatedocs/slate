@@ -652,13 +652,27 @@ print(response.status_code)
 
 print(response.json())
 ```
- 
+
+# Management Endpoints 
+
+The following endpoints are for managing one's submissions.
+
+## Make Public Collection
+
+Makes the specified collection public
+
+`POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" https://synbiohub.org/ user/:userId/:collectionId/:displayId/:version/makePublic
+```
+
 
 # Download Endpoints
 
-The following endpoints are for downloading content from SynBioHub in various fomats.
+The following endpoints are for downloading content from SynBioHub in various formats.
 
-<aside class="success">Note that the X-authorization header is needed for downloading imformation about private objects.</aside>
+<aside class="success">Note that the X-authorization header is needed for downloading information about private objects.</aside>
 
 ## Download Attachment
 
@@ -820,7 +834,7 @@ Returns the metadata for the object from the specified URI.
 
 `GET <URI>/gb`
 
-Returns the object from the specified URI in GenBakn format.
+Returns the object from the specified URI in GenBank format.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -993,7 +1007,7 @@ overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission 
 file | contents of an SBOL2, SBOL1, GenBank, FASTA, GFF3, ZIP, or COMBINE Archive file
 rootCollections | the URI of the collection to be submitted into
 
-If creating a collection, provide the id, version, name, descripton, citations, and optionally a file. In this case, overwrite_merge should be 0 or 1. If submitting the contents into an existing collection, otherwise, only provide a URI for the rootCollections that you are submitting into and the file that you are submitting.
+If creating a collection, provide the id, version, name, description, citations, and optionally a file. In this case, overwrite_merge should be 0 or 1. If submitting the contents into an existing collection, otherwise, only provide a URI for the rootCollections that you are submitting into and the file that you are submitting.
 
 ## Remove Collection
 
@@ -1108,18 +1122,6 @@ print(response.status_code)
 print(response.content)
 
 ```
-
-## Make Public Collection
-
-Makes the specified collection public
-
-`POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
-
-```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" https://synbiohub.org/ user/:userId/:collectionId/:displayId/:version/makePublic
-```
-
-
 
 # Edit Endpoints
 
