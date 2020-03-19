@@ -22,3 +22,7 @@ build/
 _yardoc
 doc/
 .idea/
+
+# Local cache files for vim
+*.swp
+*.swo
