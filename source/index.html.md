@@ -43,7 +43,7 @@ SynBioHub
 * [Dr Goksel Misirli](http://homepages.cs.ncl.ac.uk/goksel.misirli)*
 * [Prof. Anil Wipat](http://homepages.cs.ncl.ac.uk/anil.wipat/)*
 * [Zach Zundel](http://www.async.ece.utah.edu/people/students/zach-zundel/)†
-* James Scholz†
+* [James Scholz](https://www.async.ece.utah.edu/~scholz/)†
 
 SBOL Stack
 
@@ -182,9 +182,6 @@ If you are doing development work, you can start SynBioHub with the command
 
 which will restart the application with any change to the JavaScript source. 
 
-## Publishing Instance
-
-Nginx is used for the [reference instance](https://synbiohub.org/).
 ## NGINX configuration
 
 Instructions for managing nginx server blocks can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04#step-three-create-server-block-files-for-each-domain).
@@ -214,23 +211,19 @@ This is most useful when you would like to host SynBioHub on a subdomain alongsi
 
 # User Endpoints
 
-<aside class="success">Note that the X-authorization header is not needed for public objects, but is required for private objects unless stated otherwise.</aside>
-
 Endpoints that control user related functions
 
 ## Login
 
-Returns a string token to be passed with any call to submit as the `user` parameter. 
+`POST http://synbiohub.org/login ` 
 
-This POST request requires email/password and returns a user token needed for viewing private objects and submitting new objects.
- 
-`POST http://synbiohub.org/login `
+This POST request requires email/password and returns a user token that should be passed in the X-authorization header to view private objects and submit new objects, etc. 
+
 
 ```plaintext
 curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login
 ```
 
-#### Query Parameters
 Parameter | Description
 --------- | ------- | -----------
 email | the e-mail address of the user to login with
@@ -238,12 +231,14 @@ password | the password of the user
 
 ## Logout
 
+This post request logs out the user specified in the X-authorization header.
+
 `POST http://synbiohub.org/logout `
 
 If `user` is currently logged in, this post request will logout the user.
 
 ```plaintext
-curl -X POST -H "Accept: test/plain" localhost:7777/logout
+curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" localhost:7777/logout
 ```
 
 # Search Endpoints
@@ -254,9 +249,7 @@ The following endpoints are used to search within SynBioHub.
 
 ## Search Metadata
 
-`GET <SynBioHub URL>/search/<key>=<value>&...&<search string>/?offset=#&limit=# `
-
-Returns the metadata associated with the specified key and value.
+`GET <SynBioHub URL>/search/<key>=<value>&...&<search string>/?offset=#&limit=#`
 
 ```javascript
 const fetch = require("node-fetch");
@@ -287,31 +280,6 @@ print(response.content)
 
 ```plaintext
 curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/search/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP/?offset=0&limit=50
-```
-
-Note that the X-authorization header is optional, but if provided, the search will also return private objects for the logged in user.
-
-Before URL encoding, the URL is composed of a series of search criteria of the form:
-
-key=value& 
-
-The key/value pair can be one of the following: 
-
-Key/value pair | Description
---------- | -----------
-objectType=value | The type of object to search for ( objectType=ComponentDefinition&)
-sbolTag=value |  A tag in the SBOL namespace to search for ( role=<http://identifiers.org/so/SO:0000316>&)
-collection=value | Matches objects that are members of the specified collection (, collection=<http://synbiohub.org/public/igem/igem_collection>&)
-dcterms:tag=value | A tag in the dcterms namespace to search for ( dcterms:title='pLac'&) - note this requires an exact match
-namespace/tag=value | A full namespace with tag separated by appropriate delimiter ( <http://sbols.org/v2#role>=<http://identifiers.org/so/SO:0000316>&)
-
-After the key/value pairs, an optional search string can be provided that will be used to search for partial matches in the displayId, name, or description fields.
-
-Finally, the URL can end with an offset and limit parameter.
-
-
-
-```plaintext
 
 This endpoint returns JSON metadata of the form 
 [
@@ -327,11 +295,106 @@ This endpoint returns JSON metadata of the form
 ]
 ```
 
+Returns the metadata for the object from the specified search query. The search query is composed of a series of key value pairs as described below:
+
+Key/value pair | Description
+--------- | -----------
+objectType=value | The type of object to search for ( objectType=ComponentDefinition)
+sbolTag=value |  A tag in the SBOL namespace to search for ( role=<http://identifiers.org/so/SO:0000316>)
+collection=value | Matches objects that are members of the specified collection (collection=<http://synbiohub.org/public/igem/igem_collection>)
+dcterms:tag=value | A tag in the dcterms namespace to search for ( dcterms:title='pLac'&) - note this requires an exact match
+namespace/tag=value | A full namespace with tag separated by appropriate delimiter ( <http://sbols.org/v2#role>=<http://identifiers.org/so/SO:0000316>)
+
+After the key/value pairs, an optional search string can be provided that will be used to search for partial matches in the displayId, name, or description fields.
+
+Finally, the URL can end with an offset and limit parameter.
+
+## Count Search Results
+
+`GET <SynBioHub URL>/searchCount/<key>=<value>&...&<search string>/?offset=#&limit=# `
+
+Returns the number of items matching the search result.
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+
+print(response.status_code)
+print(response.content)
+```
+
+```plaintext
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
+```
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+## Search Root Collections
+
+`GET <SynBioHub URL>/rootCollections
+
+`
+
+Returns all root collections.
+
+```plaintext
+curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/rootCollections
+
+[...,{"uri":"https://synbiohub.org/public/igem/igem_collection/1",
+"name":"iGEM Parts Registry",
+"description":"The iGEM Registry is a growing collection of genetic parts that can be mixed and matched to build synthetic biology devices and systems.  As part of the synthetic biology community's efforts to make biology easier to engineer, it provides a source of genetic parts to iGEM teams and academic labs.",
+"displayId":"igem_collection",
+"version":"1"},
+...]
+```
+
+```python
+import requests
+
+response = requests.get(
+    'https://synbiohub.org/public/igem/igem_collection/1/rootCollections',
+    params={'X-authorization': 'token'},
+    headers={'Accept': 'text/plain'},
+)
+```
+
+```javascript
+const fetch = require("node-fetch");
+const Url = 'https://synbiohub.org/public/igem/igem_collection/1/rootCollections'
+const otherPram={
+    headers:{
+        "content-type" : "text/plain; charset=UTF-8"
+    },
+    method:"GET"
+};
+fetch(Url,otherPram)
+    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
+    .catch (error=>console.log(error))
+```
+
+
 ## Search Subcollections
 
 `GET <URI>/subCollections`
 
-Returns the collections of members within another collection
+Returns the collections that are members of another collection.
 
 ```python
 import requests
@@ -365,39 +428,8 @@ fetch(Url,otherPram)
 ```
 
 
-## Search Root Collections
 
-`GET <SynBioHub URL>/rootCollections`
 
-```plaintext
-curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbiohub.org/public/igem/igem_collection/1/rootCollections
-```
-
-```python
-import requests
-
-response = requests.get(
-    'https://synbiohub.org/public/igem/igem_collection/1/rootCollections',
-    params={'X-authorization': 'token'},
-    headers={'Accept': 'text/plain'},
-)
-```
-
-```javascript
-const fetch = require("node-fetch");
-const Url = 'https://synbiohub.org/public/igem/igem_collection/1/rootCollections'
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-};
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
-Note that the X-authorization header is optional, but if provided, it will also return private root collections for the logged in user.
 
 ## Search Twins
 
@@ -441,6 +473,8 @@ fetch(Url,otherPram)
 `GET <SynBioHub URL>/similar`
 
 Returns other components that have similar sequences.
+
+Note that this endpoint only works if SBOLExplorer is activated.
 
 ```python
 import requests
@@ -511,51 +545,13 @@ fetch(Url,otherPram)
 ```
 
 
-## Count Search Results
-
-`GET <SynBioHub URL>/searchCount/<key>=<value>&...&<search string>/?offset=#&limit=# `
-
-Returns the number of items matching the search result.
-
-```python
-import requests
-
-response = requests.get(
-    'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP',
-    params={'X-authorization': 'token'},
-    headers={'Accept': 'text/plain'},
-)
-
-print(response.status_code)
-print(response.content)
-```
-
-```plaintext
-curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
-```
-
-```javascript
-const fetch = require("node-fetch");
-const Url = 'https://synbiohub.org/searchCount/objectType%3DComponentDefinition%26role%3D%3Chttp%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000316%3E%26GFP'
-const otherPram={
-    headers:{
-        "content-type" : "text/plain; charset=UTF-8"
-    },
-    method:"GET"
-};
-fetch(Url,otherPram)
-    .then(res => res.buffer()).then(buf => console.log(buf.toString()))
-    .catch (error=>console.log(error))
-```
-
-Note that the X-authorization header is optional, but if provided, the search count will also include private objects for the logged in user.
 
 
 ## Count objects
 
 `GET <SynBioHub URL>/<ObjectType>/count`
 
-Returns the number of objects within a specified collection
+Returns the number of objects within a specified object type.
 
 ```plaintext
 curl -X GET https://synbiohub.org/Collection/Count
@@ -620,7 +616,7 @@ print(response.json())
 
 The following endpoints are for downloading content from SynBioHub in various fomats.
 
-<aside class="success">Note that the X-authorization header is needed for downloading from private objects.</aside>
+<aside class="success">Note that the X-authorization header is needed for downloading imformation about private objects.</aside>
 
 ## Download Attachment
 
@@ -666,7 +662,7 @@ curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbio
 
 `GET <URI>/sbol`
 
-Returns the SBOL for the object from the specified URI.
+Returns the object from the specified URI in SBOL format.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -700,11 +696,11 @@ print(response.content)
 
 ```
 
-## Download SBOL Non-Recursive
+## Download Non-Recursive SBOL 
 
 `GET <URI>/sbolnr`
 
-Returns the SBOLnr (SBOL not recursive, i.e. fetches the object without its children) for the object from the specified URI.
+Returns the object from the specified URI in SBOL format non-recursively ( i.e. fetches the object without its children.)
 
 ```javascript
 const fetch = require("node-fetch");
@@ -777,11 +773,12 @@ print(response.content)
 
 Returns the metadata for the object from the specified URI.
 
+
 ## Download GenBank
 
 `GET <URI>/gb`
 
-Returns the GenBank for the object from the specified URI.
+Returns the object from the specified URI in GenBakn format.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -819,7 +816,7 @@ print(response.content)
 
 `GET <URI>/fasta`
 
-Returns the FASTA for the object from the specified URI.
+Returns the object from the specified URI in FASTA format.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -893,7 +890,7 @@ print(response.content)
 
 # Submission Endpoints
 
-<aside class="success">Note that the X-authorization header is requireed for all submission endpoints.</aside>
+<aside class="success">Note that the X-authorization header is required for all submission endpoints.</aside>
 
 ## Submit
 
@@ -901,33 +898,28 @@ print(response.content)
 
 Create a new collection including the elements within a file or add to a preexisting collection using the elements within a file.
 
-
-
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F id=<id> -F version=<version> -F name=<name> -F description=<description> -F citations=<citations> -F overwrite_merge=<overwrite_merge> -F file=@<filename> https://synbiohub.org/submit
 ```
 
-Query Parameters
-
 Parameter | Description
 --------- | -----------
-id | a user-defined string identifier for the submission; alphanumeric and underscores only,  `BBa_R0010`
-version |  the version string to associate with the submission,  `1`
-name |  the dcterms name string to assign to the submission
-description | the dcterms description string to assign to the submission
+id | a user-defined string identifier for the submission; alphanumeric and underscores only,  (ex.`BBa_R0010`)
+version |  the version string to associate with the submission,  (ex. `1`)
+name |  the name string to assign to the submission
+description | the description string to assign to the submission
 citations | a list of comma separated pubmed IDs of citations to store with the submission
-overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists, '2' to merge and prevent if submission exists, '3' to merge and overwrite matching URIS
-0 creating a new collection that doens't exist. 1 if it does'nt exit
+overwrite_merge | '0' prevent if submission exists, '1' overwrite if submission exists, '2' to merge and prevent if submission exists, '3' to merge and overwrite matching URIs
 file | contents of an SBOL2, SBOL1, GenBank, FASTA, GFF3, ZIP, or COMBINE Archive file
-rootCollections | If creating a collection, provide the id, viersion ,name , descripton, citations. Overwrite merge of 0 or 1. If 
+rootCollections | the URI of the collection to be submitted into
 
-If submitting the contents into the file, provide the previous parameters, otherwise, only provide a URI into rootCollections to append into an existing collection
+If creating a collection, provide the id, version, name, descripton, citations, and optionally a file. In this case, overwrite_merge should be 0 or 1. If submitting the contents into an existing collection, otherwise, only provide a URI for the rootCollections that you are submitting into and the file that you are submitting.
 
 ## Remove Collection
 
 `GET <URI>/removeCollection `
 
-Removes the specified collection.
+Removes the collection specified by the URI.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -965,7 +957,7 @@ print(response.content)
 
 `GET <URI>/remove`
 
-Remove the object specified from URI, and the references to that object.
+Remove the object specified by the URI, and the references to that object.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -1003,7 +995,7 @@ print(response.content)
 
 `GET <URI>/replace `
 
-Remove the object specified from URI, but leave references to the object in tact.
+Remove the object specified from URI, but leave references to the object.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -1037,6 +1029,17 @@ print(response.content)
 
 ```
 
+## Make Public Collection
+
+Makes the specified collection public
+
+`POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" https://synbiohub.org/ user/:userId/:collectionId/:displayId/:version/makePublic
+```
+
+
 
 # Edit Endpoints
 
@@ -1045,34 +1048,12 @@ print(response.content)
 `POST <URI>/updateMutableDescription `
 
 
+
+
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "uri=<>&value=<>" http://synbiohub.org/updateMutableDescription
 ```
 
-## Add Field
-
-`POST <URI>/user/:userId/:collectionId/:displayId/:version/add/:field `
-
-
-```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "object=<>" http://synbiohub.org/user/:userId/:collectionId/:displayId/:version/add/:field
-```
-
-## Remove Field
-
-`POST <URI>/user/:userId/:collectionId/:displayId/:version/remove/:field `
-
-```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "object=<>" http://synbiohub.org/user/:userId/:collectionId/:displayId/:version/remove/:field
-```
-
-## Add Owner
-
-`POST <URI>/public/:collectionId/:displayId/:version/addOwner`
-
-```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "user=<>&uri=<>" http://synbiohub.org/public/:collectionId/:displayId/:version/addOwner
-```
 
 ## Remove Owner
 
@@ -1082,13 +1063,6 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "user=<>&uri=<>"
 curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" http://synbiohub.org/public/:collectionId/:displayId/:version/removeOwner/:username
 ```
 
-## Make Public Collection
-
-`POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
-
-```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" /user/:userId/:collectionId/:displayId/:version/makePublic
-```
 
 
 # Attachment Endpoints
