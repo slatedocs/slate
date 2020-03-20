@@ -567,7 +567,7 @@ Fetches Total balances for all tokens combined over all Platforms.
 
 ```shell
 # substitute placeholders with correct authorization header values
-curl -X GET "https://api.falconx.io/v1/total_balance" \
+curl -X GET "https://api.falconx.io/v1/balances/total" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
       -H "FX-ACCESS-KEY: <api_key>" \
@@ -575,7 +575,7 @@ curl -X GET "https://api.falconx.io/v1/total_balance" \
       -H "Content-Type: application/json"
 ```
 
-`GET https://api.falconx.io/v1/total_balance`
+`GET https://api.falconx.io/v1/balances/total`
 
 
 
