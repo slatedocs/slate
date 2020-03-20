@@ -561,7 +561,7 @@ Example of a request after the authentication
 ```python
 import requests
 
-url = "https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic"
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/topic"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -570,7 +570,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic' \
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/topic' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -679,7 +679,7 @@ A topic is a subject for which Factmata generates insights for a customer.
 ```python
 import requests
 
-url = "https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic"
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/topic"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -688,7 +688,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic' \
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/topic' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -709,7 +709,7 @@ Returns a list of topics tracked for a customer.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/topic`
 
 
 
@@ -720,7 +720,7 @@ Returns a list of topics tracked for a customer.
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/{id}"
+url = f"https://api-gw.production.factmata.com/api/v1/intelligence/topic/{id}"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -729,7 +729,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/$ID' \
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/topic/$ID' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -749,7 +749,7 @@ Returns a topic by its id.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/:id`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/topic/:id`
 
 
 
@@ -762,7 +762,7 @@ A theme is an aspect of a topic based on opinions that are most interesting or p
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/{topic_id}/theme"
+url = f"https://api-gw.production.factmata.com/v1/intelligence/topic/{topic_id}/theme"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -771,7 +771,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/$THEME_ID/theme' \
+curl 'https://api-gw.production.factmata.com/v1/intelligence/topic/$THEME_ID/theme' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -816,7 +816,7 @@ Returns a list of themes in a topic.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/:topicId/theme`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/topic/:topicId/theme`
 
 
 
@@ -840,7 +840,7 @@ sort_by | string | Sorting key. The default value is `num_narratives`. Supported
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/theme/{id}"
+url = f"https://api-gw.production.factmata.com/api/v1/intelligence/theme/{id}"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -849,7 +849,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/theme/$ID' \
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/theme/$ID' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -894,7 +894,7 @@ Return a theme by its id.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/theme/:id`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/theme/:id`
 
 #### Query parameters
 Name | Type | Description  
@@ -914,7 +914,7 @@ A narrative describes the story that emerges in a topic theme.
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/{topic_id}/theme/{theme_id}/narrative"
+url = f"https://api-gw.production.factmata.com/v1/intelligence/topic/{topic_id}/theme/{theme_id}/narrative"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -923,7 +923,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/topic/$TOPIC_ID/theme/$THEME_ID/narrative' \
+curl 'https://api-gw.production.factmata.com/v1/intelligence/topic/$TOPIC_ID/theme/$THEME_ID/narrative' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -968,7 +968,7 @@ Returns a list of narratives for a theme.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/topic/:topic_id/theme/:theme_id/narrative`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/topic/:topic_id/theme/:theme_id/narrative`
 
 
 
@@ -992,7 +992,7 @@ sort_by | string | Sorting key. The default value is `num_opinions`. Supported v
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/{id}"
+url = f"https://api-gw.production.factmata.com/api/v1/intelligence/narrative/{id}"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -1001,7 +1001,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/$ID' \
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/narrative/$ID' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -1046,7 +1046,7 @@ Return a narrative by its id.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/:id`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/narrative/:id`
 
 #### Query parameters
 Name | Type | Description  
@@ -1066,7 +1066,7 @@ An opinion is a claim made for a specific topic. Opinions are grouped within a n
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/narrative/{narrative_id}/opinion"
+url = f"https://api-gw.production.factmata.com/v1/intelligence/narrative/{narrative_id}/opinion"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -1075,7 +1075,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/narrative/:id/opinion' \
+curl 'https://api-gw.production.factmata.com/v1/intelligence/narrative/:id/opinion' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -1124,7 +1124,7 @@ Returns a list of opinions for a narrative.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/narrative/:narrative_id/opinion`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/narrative/:narrative_id/opinion`
 
 
 #### Query parameters
@@ -1138,7 +1138,7 @@ sort_by | string | Sorting key. The default value is popularity_score. Supported
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/opinion/{id}"
+url = f"https://api-gw.production.factmata.com/v1/opinion/{id}"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -1147,7 +1147,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/opinion/$ID' \
+curl 'https://api-gw.production.factmata.com/api/v1/opinion/$ID' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -1195,7 +1195,7 @@ Returns an opinion by its ID.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/opinion/:id`
+`GET https://api-gw.production.factmata.com/api/v1/opinion/:id`
 
 
 ## Opinions makers
@@ -1207,7 +1207,7 @@ An opinion maker is a user that makes opinions with a stance towards a specific 
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion/{narrative_id}/opinion_maker"
+url = f"https://api-gw.production.factmata.com/v1/intelligence/opinion/{narrative_id}/opinion_maker"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -1216,7 +1216,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion/$OPINION_ID/opinion_maker' \
+curl 'https://api-gw.production.factmata.com/v1/intelligence/opinion/$OPINION_ID/opinion_maker' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -1238,7 +1238,7 @@ Returns a list of opinion makers for an opinion sorted by influencer_score in de
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/opinion/:opinion_id/opinion_maker`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/opinion/:opinion_id/opinion_maker`
 
 
 ## Detail opinion markers
@@ -1246,7 +1246,7 @@ Returns a list of opinion makers for an opinion sorted by influencer_score in de
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion_maker/{id}"
+url = f"https://api-gw.production.factmata.com/v1/intelligence/opinion_maker/{id}"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -1255,7 +1255,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/opinion_maker/$ID' \
+curl 'https://api-gw.production.factmata.com/v1/intelligence/opinion_maker/$ID' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -1276,7 +1276,7 @@ Returns an opinion maker by its id.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/opinion_maker/:id`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/opinion_maker/:id`
 
 ## Comparisons
 
@@ -1287,7 +1287,7 @@ A comparison shows common themes for topics
 ```python
 import requests
 
-url = f"https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/comparison"
+url = f"https://api-gw.production.factmata.com/v1/intelligence/comparison"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -1296,7 +1296,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/comparison' \
+curl 'https://api-gw.production.factmata.com/v1/intelligence/comparison' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -1317,7 +1317,7 @@ Returns a list of comparisons.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/comparison`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/comparison`
 
 
 ## Detail comparisons
@@ -1334,7 +1334,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/v1/intelligence/comparison/$ID' \
+curl 'https://api-gw.production.factmata.com/v1/intelligence/comparison/$ID' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -1394,7 +1394,7 @@ Returns a comparison by its ID.
 
 #### HTTP Request
 
-`GET https://3gg17c8hfh.execute-api.eu-west-1.amazonaws.com/production/api/v1/intelligence/comparison/:id`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/comparison/:id`
 
 #### Query parameters
 Name | Type | Description  
