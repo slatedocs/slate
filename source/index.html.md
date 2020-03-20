@@ -43,6 +43,54 @@ A successful response is indicated by HTTP status code 200 and may contain an op
 | 404         | Resource Not Found|
 | 500         | Internal Server Error – We had a problem with our server|
 
+### FalconX API Errors
+| Error Code | Reason |
+| ---------- | ------ |
+| ZERO_QUANTITY | You cannot request a quantity of zero. |
+| KILL_SWITCH_ENABLED | We have enabled our global kill switch. We are not accepting any requests for quotes or execution at this time. |
+| QUOTE_NOT_AVAILABLE | Our partners were unable to provide a quote. |
+| PARTNER_FAILURE | Our partners failed to return a quote. |
+| THIN_ORDERBOOK | Our partners' orderbooks were too thin to provide you a quote. |
+| MAX_USD_SIZE_LIMIT | You have surpassed the maximum value in USD for which we can provide a quote at this time. |
+| PARTNER_TIMEOUT | The request to our partners timed out. |
+| INTERNAL_ERROR | Our internal server returned an error. |
+| QUANTITY_TOO_SMALL | The quantity you requested is below our platform's minimum trading limit. |
+| QUANTITY_TOO_BIG | The quantity you requested is above our platform's maximum trading limit. |
+| QUOTE_EXPIRED | The trade was not executed because the quote expired. |
+| ACCOUNT_DISABLED | Your account has not yet been approved for trading. |
+| ACCOUNT_READ_ONLY | Your account has read-only permission, but does not have permission to trade. |
+| INVALID_QUOTE_ID | The given quote ID is invalid. |
+| INSUFFICIENT_BALANCE | You do not have sufficient balance to execute this trade. |
+| RETRY_ERROR | You cannot execute the same quote twice. The provided quote is under process or already executed. |
+| PERMISSION_DENIED | You have insufficient permission to access the quote. |
+| MARKET_NOT_ALLOWED | You do not have access to the requested market. |
+| MIN_TRADE_LIMIT_BREACH | The trade was not executed because the quantity you requested is less than the minimum allowed. |
+| MAX_TRADE_LIMIT_BREACH | The trade was not executed because the quantity you requested is greater than the maximum allowed. |
+| MIN_QUOTE_LIMIT_BREACH | Requested quote size is less than the minimum allowed. |
+| MAX_QUOTE_LIMIT_BREACH | Requested quote size is greater than the minimum allowed. |
+| NO_QUALIFIED_LIQUIDITY_VENUES_AVAILABLE | No qualified liquidity venues were available to serve your quote. |
+| TRADE_NOT_FILLED | Your trade was not executed. |
+| MAX_NET_BREACHED | Your trade was not executed because you hit your max net outstanding limit. |
+| MAX_GROSS_BREACHED | Your trade was not executed because you hit your max gross outstanding limit. |
+| QUOTE_EXPIRED_MARKET_VOLATILITY | Your trade was not executed because the quote expired early due to market volatility. |
+| UNAUTHORIZED | You are not authorized to access this resource. |
+| NO_VALID_EXECUTABLE_QUOTE | Your trade was not executed because it was no longer a valid executable quote. The quote was expired early due to market volatility. |
+| EXECUTION_PENDING | Trade execution is in progress. |
+| PER_SECOND_RATE_LIMIT | Number of requests per second exceeded the per second rate limit. |
+| PER_MINUTE_RATE_LIMIT | Number of requests per minute exceeded the per minute rate limit. |
+| PER_HOUR_RATE_LIMIT | Number of requests per hour exceeded the per hour rate limit. |
+| API_KEY_DISABLED | Your API Key is pending approval by FalconX. |
+| REQUEST_IP_RESTRICTED | Your IP is not whitelisted to access our APIs. |
+| WHITELISTED_API_ENDPOINT | Your account does not have access to this endpoint. |
+| INVALID_DATE_FORMAT | The input requires an ISO date format. |
+| INSUFFICIENT_PARAMETERS_PROVIDED | The number of parameters provided are insufficient. |
+| START_DATE_AFTER_END_DATE | The start date cannot be after end date. |
+| INSUFFICIENT_BALANCE_TO_WITHDRAW | Withdrawal balance should be less than or equal to the balance in account. |
+| INVALID_WITHDRAWAL_AMOUNT | Requested withdrawal amount is invalid. |
+| QUOTE_STATUS_NOT_SUCCESS | The quote was not selected for execution because the quote failed. |
+| SYNTHETIC_QUOTE | The quote was not selected for execution because it is a synthetic quote. |
+| QUOTE_EXPIRED_FOR_SIDE | The quote was not selected for execution because it was expired for the side being executed. |
+| VENUE_DISABLED_FOR_SIDE | The quote was not selected for execution because venue was disabled for the side being executed. |
 
 # Authentication
 
