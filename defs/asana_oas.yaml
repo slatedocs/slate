@@ -63,6 +63,7 @@ info:
     - UserTaskListCompact
     - UserResponse
     - UserCompact
+    - WebhookFilter
     - WebhookResponse
     - WebhookCompact
     - WorkspaceMembershipResponse
@@ -303,7 +304,8 @@ tags:
       #### Associating Custom Fields with a Project or Portfolio
 
 
-      A mapping between a Custom Field and a Project or Portfolio is handled with a
+      A mapping between a Custom Field and a Project or Portfolio is handled with
+      a
       [Custom Field Settings](#asana-custom-field-settings) object. This object
       contains a reference for each
       of the Custom Field and the Project or Porfolio, as well as additional information
@@ -628,30 +630,55 @@ tags:
       for more information.
   - name: Webhooks
     description: >-
-      Webhooks allow an application to be notified of changes. This is in
-      addition to the ability to fetch those changes directly as
-      [Events](#asana-events) - in fact, Webhooks are just a way to receive
-      Events via HTTP POST at the time they occur instead of polling for them.
-      For services accessible via HTTP this is often vastly more convenient, and
-      if events are not too frequent can be significantly more efficient.
+      Webhooks allow an application to be notified of changes in Asana. They
+      are intended to provide an efficient way for integrations which react to
+      changes of state in Asana to take action only when something has actually
+      changed.
 
 
-      In both cases, however, changes are represented as Event objects - refer
-      to the [Events documentation](#asana-events) for more information on what
-      data these events contain.
+      This is similar to our [Events](#asana-events) resource, but webhooks
+      "push" events via HTTP `POST` rather than expecting integrations to
+      repeatedly "poll" for them. For services that are already accessible on
+      the Internet this is often more convenient and efficient.
 
 
-      **NOTE:** While Webhooks send arrays of Event objects to their target, the
-      Event objects themselves contain *only IDs*, rather than the actual
-      resource they are referencing. So while a normal event you receive via GET
-      /events would look like an [Event](#tocS_Event). In a Webhook payload you
-      will instead receive a [WebhookEvent](#tocS_WebhookEvent) (a simplified
-      version of the event object).
+      However, webhooks _require_ a server to be accessible over the internet at
+      all times to receive the event. For most simple integrations, Events
+      provide much of the same benefits while using a significantly simpler
+      implementation which does not require maintaining an internet-accessible
+      server.
 
 
-      [Webhooks](#tocS_Webhook) themselves contain only the information
-      necessary to deliver the events to the desired target as they are
-      generated.
+      #### The webhook "handshake"
+
+      In order to ensure that the receiving server is available to receive
+      incoming events from a webhook Asana will `POST` to the requested target
+      endpoint during the webhook creation request. In other words, the
+      outgoing webhook creation request will wait to return until another full
+      `POST` request from Asana's servers to the target has been completed, *then*
+      the
+      webhook creation request can return with a successful response.
+
+
+      *Note: this means that your server must be able to handle being blocked on
+      the outgoing create request while still being able to receive and handle an
+      incoming request. A common reason that webhook handshakes fail is that
+      servers are not able to asynchronously handle the handshake request.*
+
+
+      Included in the webhook handshake is a HTTP header called
+      `X-Hook-Secret`.  To successfully complete the handshake the receiving
+      server should echo back the same header with the same value and a `200
+      OK` or `204 No Content` response code.
+
+
+      The purpose of this header is to provide a shared secret that both Asana
+      and the receiving server both store--this is the only time it will be
+      transmitted. In future webhook events Asana will use this key to compute
+      a signature over the webhook callback request's body which can be used to
+      verify that the incoming request was genuine (details below). We strongly
+      recommend that you take advantage of this security feature and reject
+      webhooks that have an invalid signature.
 
 
       #### Receiving Events
@@ -659,30 +686,65 @@ tags:
 
       Because multiple events often happen in short succession, a webhook
       payload is designed to be able to transmit multiple events at once. The
-      exact model of events is described in the
-      [Events documentation](#asana-events).
+      schema of these events is described in [Event](#tocS_Event).
 
 
       The HTTP POST that the target receives contains:
 
 
        * An `X-Hook-Signature` header, which allows verifying that the payload
-       is genuine.  The signature is a SHA256 HMAC using the shared secret
-       (transmitted during the handshake) of the request body. Verification is
-       **strongly recommended**, as it would otherwise be possible for an
-       attacker to POST a malicious payload to the same endpoint. If the target
-       endpoint can be kept secret this risk is mitigated somewhat, of course.
+       is genuine.  The signature is a SHA256 HMAC signature computed on the
+       request body using the shared secret transmitted during the handshake.
+       Verification is **strongly recommended**, as it would otherwise be
+       possible for an attacker to POST a malicious payload to the same
+       endpoint.
        * A JSON body with a single key, `events`, containing an array of the
-       events that have occurred since the last webhook delivery. Note that this
-       list may be empty, as periodically we may send a "heartbeat" webhook to
-       verify that the endpoint is available.
+       events that have occurred since the last webhook delivery. (Note that this
+       list may be empty, as periodically we send a "heartbeat" webhook to
+       verify that the endpoint is still available.)
 
 
-      Note that events are "skinny" - we expect consumers who desire syncing
-      data to make additional calls to the API to retrieve the latest state.
-      Because the data may have already changed by the time we send the event,
-      it would be misleading to send a snapshot of the data along with the
-      event.
+      Note that events are "skinny" and contain only some basic details of the
+      change, not the whole resource. We expect integrations to make additional
+      calls to the API to retrieve the latest state from Asana.
+
+
+      #### Filtering
+
+      Webhook events will "propagate up" from contained objects through to
+      parent objects--for instance, changes to comments will be sent to
+      webhooks on the parent task and to ones on the task's projects. In this
+      way a webhook on a project will be notified of all changes that occur in
+      all of its tasks, subtasks of those tasks, and comments on those tasks
+      and subtasks.
+
+
+      This can be a lot of data, some of which might not be relevant to a
+      particular integration, so Asana's webhooks have a filtering feature
+      which allows integrations to specify only the types of changes that they
+      care about. By specifying the list of
+      [WebhookFilter](#tocS_WebhookFilter)s on webhook creation an integration
+      can select just the subset of events it wants to receive.  When filters
+      are specified on the webhook events will only be delivered if they pass
+      any of the filters specified when creating the webhook.
+
+
+      To reduce the volume of data to transfer, webhooks created on teams and
+      workspaces *must* specify filters. In addition, the set of event filters
+      that can be placed on a team-level or workspace-level webhook is more
+      limited than filters for webhooks that are created on lower-level
+      resources:
+
+
+       * Webhook events from tasks, subtasks, and stories won't be propagated
+       to these higher-level webhooks, so all changes on these resources are
+       automatically filtered out.
+       * Webhook events from `project` resources can be filtered for these
+      `action`s: `added`, `removed`, `deleted`, `undeleted`, and `changed`.
+       * Webhook events from `team_membership` resources can be filtered to
+       `action`s `added` and `removed`.
+       * Webhook events from `workspace_membership` resources can be filtered
+       to `added` and `removed`.
 
 
       #### Error Handling and Retry
@@ -1639,8 +1701,7 @@ components:
               type: string
               example: Low
             enabled:
-              description: "The color of the enum option. Defaults to \u2018none\u2019\
-              ."
+              description: The color of the enum option. Defaults to ‘none’.
               type: boolean
               example: true
             color:
@@ -1725,7 +1786,8 @@ components:
     EventResponse:
       description: |-
         An *event* is an object representing a change to a resource that was
-        observed by an event subscription.
+        observed by an event subscription or delivered asynchronously to
+        the target location of an active webhook.
 
         The event may be triggered by a different `user` than the
         subscriber. For example, if user A subscribes to a task and user B
@@ -1733,42 +1795,133 @@ components:
         are generated by the system, and will have `null` as the user. API
         consumers should make sure to handle this case.
 
-        The `resource` that triggered the event may be different from
-        the one that the events were requested for. For example, a
-        subscription to a project will contain events for tasks contained
-        within the project.
+        The `resource` that triggered the event may be different from the one
+        that the events were requested for or the webhook is subscribed to. For
+        example, a subscription to a project will contain events for tasks
+        contained within the project.
 
-        For added/removed events, the `parent` that resource was added to or
-        removed from. The parent will be `null` for other event types.
+        **Note:** pay close attention to the relationship between the fields
+        `Event.action` and `Event.change.action`.
+        `Event.action` represents the action taken on the resource
+        itself, and `Event.change.action` represents how the information
+        within the resource's fields have been modified.
+
+        For instance, consider these scenarios:
+
+
+        * When at task is added to a project, `Event.action` will be
+        `added`, `Event.parent` will be on object with the `id` and
+        `type` of the project, and there will be no `change` field.
+
+
+        * When an assignee is set on the task, `Event.parent` will be
+        `null`, `Event.action` will be `changed`,
+        `Event.change.action` will be `changed`, and `changed_value` will
+        be an object with the user's `id` and `type`.
+
+
+        * When a collaborator is added to the task, `Event.parent` will
+        be `null`, `Event.action` will be `changed`,
+        `Event.change.action` will be `added`, and `added_value` will be
+        an object with the user's `id` and `type`.
       type: object
       properties:
         user:
-          $ref: '#/components/schemas/UserCompact'
+          allOf:
+            - $ref: '#/components/schemas/UserCompact'
+            - description: >-
+                The user who triggered the event.
         resource:
-          $ref: '#/components/schemas/AsanaNamedResource'
+          allOf:
+            - $ref: '#/components/schemas/AsanaNamedResource'
+            - description: >-
+                The resource which has triggered the event by being modified in
+                some way.
         type:
-          description: |-
+          description: >-
             *Deprecated: Refer to the resource_type of the resource.*
             The type of the resource that generated the event.
-
-            *Note: Currently, only tasks, projects and stories generate
-            events.*
           type: string
           readOnly: true
           example: task
         action:
-          description: The type of action taken that triggered the event.
+          description: >-
+            The type of action taken on the **resource** that triggered the
+            event.  This can be one of `changed`, `added`, `removed`, `deleted`,
+            or `undeleted` depending on the nature of the event.
           type: string
           readOnly: true
           example: changed
         parent:
-          $ref: '#/components/schemas/AsanaNamedResource'
+          allOf:
+            - $ref: '#/components/schemas/AsanaNamedResource'
+            - description: >-
+                For added/removed events, the parent object that resource was
+                added to or removed from. The parent will be `null` for other
+                event types.
         created_at:
           description: The timestamp when the event occurred.
           type: string
           format: date-time
           readOnly: true
           example: '2012-02-22T02:06:58.147Z'
+        change:
+          type: object
+          description: >-
+            Information about the type of change that has occurred. This field
+            is only present when the value of the property `action`, describing
+            the action taken on the **resource**, is `changed`.
+          readOnly: true
+          properties:
+            field:
+              description: The name of the field that has changed in the resource.
+              type: string
+              readOnly: true
+              example: assignee
+            action:
+              description: >-
+                The type of action taken on the **field** which has been
+                changed.  This can be one of `changed`, `added`, or `removed`
+                depending on the nature of the change.
+              type: string
+              readOnly: true
+              example: changed
+            new_value:
+              description: >-
+                *Conditional.* This property is only present when the
+                **field's** `action` is `changed` and the `new_value` is an
+                Asana resource. This will be only the `gid` and `resource_type`
+                of the resource when the events come from webhooks; this will
+                be the compact representation (and can have fields expanded
+                with [opt_fields](#input-output-options)) when using the
+                [Events](#asana-events) resource.
+              example:
+                gid: '12345'
+                resource_type: user
+            added_value:
+              description: >-
+                *Conditional.* This property is only present when the
+                **field's** `action` is `added` and the `added_value` is an
+                Asana resource. This will be only the `gid` and `resource_type`
+                of the resource when the events come from webhooks; this will
+                be the compact representation (and can have fields expanded
+                with [opt_fields](#input-output-options)) when using the
+                [Events](#asana-events) resource.
+              example:
+                gid: '12345'
+                resource_type: user
+            removed_value:
+              description: >-
+                *Conditional.* This property is only present when the
+                **field's** `action` is `removed` and the `removed_value` is an
+                Asana resource. This will be only the `gid` and `resource_type`
+                of the resource when the events come from webhooks; this will
+                be the compact representation (and can have fields expanded
+                with [opt_fields](#input-output-options)) when using the
+                [Events](#asana-events) resource. 
+              example:
+                gid: '12345'
+                resource_type: user
     JobResponse:
       $ref: '#/components/schemas/JobBase'
     JobBase:
@@ -1778,7 +1931,8 @@ components:
         - $ref: '#/components/schemas/AsanaResource'
         - type: object
           description: >-
-            A *job* is an object representing a process that handles asynchronous work.
+            A *job* is an object representing a process that handles asynchronous
+            work.
           x-docs-overrides:
             properties.resource_type.example: job
           properties:
@@ -3135,9 +3289,7 @@ components:
               example: '12345'
               nullable: true
             custom_fields:
-              description: >-
-                An object where each key is a Custom Field gid and each value is
-                an enum gid, string, or number.
+              description: Object of Custom Field gids to values.
               type: object
               additionalProperties:
                 type: string
@@ -3852,20 +4004,50 @@ components:
               format: date-time
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
+            filters:
+              description: >-
+                Whitelist of filters to apply to events from this webhook. If a
+                webhook event passes any of the filters the event will be
+                delivered; otherwise no event will be sent to the receiving server.  
+              type: array
+              items:
+                allOf:
+                  - $ref: '#/components/schemas/WebhookFilter'
+                  - description: A set of filters to specify a whitelist for what
+                      types of events will be delivered.
+                  - type: object
     WebhookRequest:
       type: object
       properties:
         resource:
           description: >-
-            A resource ID to subscribe to. The resource can be
-            a task or project.
+            A resource ID to subscribe to. Many Asana resources are valid to create
+            webhooks on, but higher-level resources require filters.
           type: string
           example: '12345'
         target:
-          description: The URL to receive the HTTP POST.
+          description: >-
+            The URL to receive the HTTP POST. The full URL will be used to
+            deliver events from this webhook (including parameters) which allows
+            encoding of application-specific state when the webhook is created.
           type: string
           format: uri
-          example: https://example.com/receive-webhook/7654
+          example: >-
+            https://example.com/receive-webhook/7654?app_specific_param=app_specific_value
+        filters:
+          type: array
+          description: >-
+            An array of WebhookFilter objects to specify a whitelist of filters
+            to apply to events from this webhook. If a webhook event passes any
+            of the filters the event will be delivered; otherwise no event will
+            be sent to the receiving server.
+          items:
+            allOf:
+              - $ref: '#/components/schemas/WebhookFilter'
+              - description: >-
+                  A set of filters to specify a whitelist for what types of
+                  events will be delivered.
+              - type: object
       required:
         - resource
         - target
@@ -3874,25 +4056,11 @@ components:
         - $ref: '#/components/schemas/AsanaResource'
         - type: object
           description: >-
-            Webhooks allow an application to be notified of changes. This is in
-            addition to the ability to fetch those changes directly as Events - in
-            fact, Webhooks are just a way to receive
-            [Events](#asana-events) via HTTP
-            POST at the time they occur instead of polling for them. For services
-            accessible via HTTP this is often vastly more convenient, and if
-            events are not too frequent can be significantly more efficient.
-
-
-            In both cases, however, changes are represented as Event objects -
-            refer to the [Events documentation](#asana-events)
-            for more information on what data these events contain.
-
-
-            *Note: While Webhooks send arrays of Event objects to their target,
-            the Event objects themselves contain *only gids*, rather than the
-            actual resource they are referencing. Webhooks themselves contain only
-            the information necessary to deliver the events to the desired target
-            as they are generated.*
+            Webhook objects represent the state of an active subscription for a
+            server to be updated with information from Asana. This schema
+            represents the subscription itself, not the objects that are sent to
+            the server. For information on those please refer to the
+            [Event](#tocS_Event) schema.  
           x-docs-overrides:
             properties.resource_type.example: webhook
           properties:
@@ -3911,61 +4079,49 @@ components:
               format: uri
               readOnly: true
               example: https://example.com/receive-webhook/7654
-    WebhookEvent:
+    WebhookFilter:
       type: object
+      description: >-
+        A WebhookFilter can be passed on creation of a webhook in order to filter
+        the types of actions that trigger delivery of an
+        [Event](#tocS_Event)
       properties:
-        action:
-          description: The type of action taken that triggered the event.
+        resource_type:
           type: string
-          readOnly: true
-          example: changed
-        created_at:
-          description: The timestamp when the event occurred.
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2012-02-22T02:06:58.147Z'
-        parent:
           description: >-
-            For added/removed events, the parent gid that resource was added to or
-            removed from. The parent will be `null` for other event types.
-          type: string
-          readOnly: true
-          nullable: true
-          example: '12345'
-        resource:
-          description: |-
-            The resource gid the event occurred on.
-
-            *Note: The resource that triggered the event may be different from
-            the one that the events were requested for. For example, a
-            subscription to a project will contain events for tasks contained
-            within the project.*
-          type: string
-          readOnly: true
-          example: '32154'
-        type:
-          description: |-
-            The type of the resource that generated the event.
-
-            *Note: Currently, only tasks, projects and stories generate
-            events.*
-          type: string
-          readOnly: true
+            The type of the resource which created the event when modified; for
+            example, to filter to changes on regular tasks this field should be
+            set to `task`.
           example: task
-        user:
-          description: |-
-            The gid of the user who triggered the event.
-
-            *Note: The event may be triggered by a different user than the
-            subscriber. For example, if user A subscribes to a task and user B
-            modified it, the event’s user will be user B. Note: Some events are
-            generated by the system, and will have `null` as the user. API
-            consumers should make sure to handle this case.*
+        resource_subtype:
+          description: >-
+            The resource subtype of the resource that the filter applies to. This
+            should be set to the same value as is returned on the
+            `resource_subtype` field on the resources themselves.
           type: string
-          readOnly: true
-          nullable: true
-          example: '321654987'
+          example: milestone
+        action:
+          type: string
+          description: >-
+            The type of change on the **resource** to pass through the filter.
+            For more information refer to `Event.action` in the
+            [Event](#tocS_Event) schema. This can be one of
+            `changed`, `added`, `removed`, `deleted`, and `undeleted` depending
+            on the nature of what has occurred on the resource.
+          example: changed
+        fields:
+          type: array
+          description: >-
+            *Conditional.* A whitelist of fields for events which will pass the
+            filter when the resource is changed. These can be any combination of
+            the fields on the resources themselves. This field is only valid for
+            `action` of type `changed`
+          items:
+            type: string
+          example:
+            - due_at
+            - due_on
+            - dependencies
     WorkspaceResponse:
       allOf:
         - $ref: '#/components/schemas/WorkspaceBase'
@@ -9753,20 +9909,21 @@ paths:
         Establish a webhook
       description: |-
         Establishing a webhook is a two-part process. First, a simple HTTP POST
-        similar to any other resource creation. Since you could have multiple
-        webhooks we recommend specifying a unique local id for each target.
+        request initiates the creation similar to creating any other resource.
 
-        Next comes the confirmation handshake. When a webhook is created, we will
-        send a test POST to the target with an `X-Hook-Secret` header as
-        described in the [Resthooks Security
-        documentation](http://resthooks.org/docs/security/). The target must
-        respond with a `200 OK` and a matching `X-Hook-Secret` header to confirm
-        that this webhook subscription is indeed expected.
+        Next, in the middle of this request comes the confirmation handshake.
+        When a webhook is created, we will send a test POST to the target with an
+        `X-Hook-Secret` header. The target must respond with a `200 OK` or `204
+        No Content` and a matching `X-Hook-Secret` header to confirm that this
+        webhook subscription is indeed expected. We strongly recommend storing
+        this secret to be used to verify future webhook event signatures.
 
-        If you do not acknowledge the webhook’s confirmation handshake it will
-        fail to setup, and you will receive an error in response to your attempt
-        to create it. This means you need to be able to receive and complete the
-        webhook *while* the POST request is in-flight.
+        The POST request to create the webhook will then return with the status
+        of the request. If you do not acknowledge the webhook’s confirmation
+        handshake it will fail to setup, and you will receive an error in
+        response to your attempt to create it. This means you need to be able to
+        receive and complete the webhook *while* the POST request is in-flight
+        (in other words, have a server that can handle requests asynchronously).
 
         ```
         # Request
