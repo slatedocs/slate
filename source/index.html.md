@@ -18,8 +18,13 @@ You can view code examples in the dark area to the right.
 
 # Authentication
 
-An API Token must be passed in inside the headers with every request.  To obtain your API Token contact us at support@sellerchamp.com
+An API Token must be passed in inside the headers with every request.  You can generate your API Token by logging into SellerChamp.com and navigating to Settings -> API Settings.  Click the 'Generate API Key' button to generate your API Token.
 
+<img src='images/api_settings_1.png' />
+<br/>
+<img src='images/api_settings_2.png' />
+
+<br/>
 Pass it as the header-key 'Token'.
 
 # Marketplace Accounts
@@ -473,7 +478,7 @@ curl -X GET \
 
 Name | Data Type | Description
 --------------- | ------------- | ---------------------------------------
-marketplace_account_type | String (optional) | Returns the products belonging to this marketplace_account_id
+marketplace_account_id | String (optional) | Returns the products belonging to this marketplace_account_id
 
 
 > The above command returns JSON structured like this:
