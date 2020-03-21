@@ -16,7 +16,7 @@
     "description" : "Get Asset List"
   }, {
     "name" : "Products",
-    "description" : "Get Product List, 24hr Ticker"
+    "description" : "Get Product List"
   }, {
     "name" : "Orders",
     "description" : "Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage"
@@ -53,18 +53,34 @@
         }
       }
     },
-    "/products" : {
-      "get" : {
-        "tags" : [ "Products" ],
-        "summary" : "Get live products",
-        "operationId" : "getProducts",
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "200" : {
-            "description" : "List of live products",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfProducts"
-            }
+    "v2/products": {
+      "get": {
+        "description": "Get live products",
+        "summary": "Get futures products",
+        "tags": [
+          "Products"
+        ],
+        "operationId": "Getfuturesproducts",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
           }
         }
       }
