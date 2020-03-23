@@ -556,6 +556,56 @@ API will return a list of the following structure:
 | **platform** | STRING | Platform for balance. Possible values: `api`, `browser` or `margin`
 
 
+# Get Total Balances
+
+
+Fetches total balances for all tokens combined over all platforms.
+
+## HTTP Request
+
+> Request Sample
+
+```shell
+# substitute placeholders with correct authorization header values
+curl -X GET "https://api.falconx.io/v1/balances/total" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
+```
+
+`GET https://api.falconx.io/v1/balances/total`
+
+
+
+## Response Parameters
+
+> Response Sample
+
+```json
+[
+  {
+    "token": "BTC",
+    "total_balance": 10,
+  },
+  {
+    "token": "ETH",
+    "total_balance": 100,
+  }
+]
+
+```
+
+
+API will return a list of the following structure:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **token**     | STRING                            | Token symbol  
+| **total_balance**   | DECIMAL                           | Total Balance for that token
+
+
 # Get Transfers
 
 Get deposits / withdrawals between the given time range. Time range should be provided in ISO 8601 date format.
