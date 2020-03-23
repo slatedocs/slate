@@ -1,5 +1,5 @@
 ---
-title: SynBioHub HTTP API
+title: SynBioHub API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - plaintext: shell
