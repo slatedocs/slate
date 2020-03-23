@@ -559,7 +559,7 @@ API will return a list of the following structure:
 # Get Total Balances
 
 
-Fetches Total balances for all tokens combined over all Platforms.
+Fetches total balances for all tokens combined over all platforms.
 
 ## HTTP Request
 
