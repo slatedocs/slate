@@ -544,11 +544,10 @@ Parameter | Default | Required | Description
 --------- | ------- | -------- | -----------
 domain | None | True | A valid domain string. In case ant of the domains are malformed, request is aborted with status `422`. 
 
-# Opinions
+# Intelligence
 
-Opinions endpoints provide with the ability to look at the narratives, opinions, themes that emerge in a topic
-with various metrics.
-As well as that, they can compare themes of 2 different topics.
+Intelligence API provides users with insights on topics of their choice. Users are provided with opinions, narratives and themes that emerge on a topic and with metrics denoting stance.
+The endpoints enable obtaining insights for individual topic, as well comparing a number of topics (no upper limit on the number of topics to be compared).
 
 ## Authentication
 
@@ -628,11 +627,10 @@ Code | Text | Description |
 404 | {'message': 'Object with id $ID not found'} | The wrong id passed to detail endpoint
 
 ## Opinion Metrics
-The following table lists the metrics currently generated reported by the ML
- pipelines and identifies which metrics are available for each product and entity type.
+The following table lists the current metrics and their availability per the type of product proposition.
 
-##  Metrics description by Factmata’s product type (Monitoring vs One-off) 
-Name | Brands (Opinion monitoring) | Gov / Media (Opinion Intelligence)
+##  Metrics by Factmata’s product proposition
+Name | Brands proposition | Fake news proposition
 -----| --------------------------- | -------------------------------- | -
 negative_stance_score | yes | yes
 positive_stance_score | yes | yes
@@ -705,7 +703,7 @@ curl 'https://api-gw.production.factmata.com/api/v1/intelligence/topic' \
 ]
 ```
 
-Returns a list of topics tracked for a customer.
+Returns a list of topics analyzed for a customer.
 
 #### HTTP Request
 
