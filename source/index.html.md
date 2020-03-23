@@ -231,11 +231,10 @@ password | the password of the user
 
 ## Logout
 
-This post request logs out the user specified in the X-authorization header.
-
 `POST http://synbiohub.org/logout `
 
-If `user` is currently logged in, this post request will logout the user.
+This post request logs out the user specified in the X-authorization header.
+
 
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" localhost:7777/logout
@@ -579,11 +578,11 @@ fetch(Url,otherPram)
 
 
 
-## Count objects
+## Count Objects
 
 `GET <SynBioHub URL>/<ObjectType>/count`
 
-Returns the number of objects within a specified object type.
+Returns the number of objects with a specified object type.
 
 ```plaintext
 curl -X GET https://synbiohub.org/Collection/Count
