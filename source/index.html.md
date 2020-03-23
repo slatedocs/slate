@@ -23,7 +23,7 @@ What is SynBioHub?
 
 SynBioHub includes two projects:
 
-* An [open source software project](http://github.com/SynBioHub) providing a Web interface for the storing and publishing of synthetic biology designs.
+* An [open source software project](http://github.com/SynBioHub) providing a web interface for the storing and publishing of synthetic biology designs.
 * A public instance of the aforementioned software project at [synbiohub.org](http://synbiohub.org), allowing users to upload and share designs.
 
 For those familiar with the SBOL Stack, SynBioHub incorporates and extends its functionality.  An SBOL Stack installation is not required for SynBioHub.
