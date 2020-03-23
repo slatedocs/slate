@@ -214,7 +214,7 @@ Client sends request to get quote to this endpoint. The response contains the ti
 | Parameter  | Type                                | Description |
 | ---------  | ----------------------------------- | ------------|
 | **token_pair** | JSON                                | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
-| **quantity**   | JSON                                | Requested quantity (See [Quantity](#quantity)) |
+| **quantity**   | JSON                                | Requested quantity upto 3 decimal places (See [Quantity](#quantity)) |
 | **side**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
 
 
@@ -899,3 +899,74 @@ The trade limits JSON structure format:
 | ---------     | -----------|
 | **ERR_1**     | Error due to error 1  
 | **ERR_2**     | Error due to error 2      -->       
+
+
+# Customer Trading Limits
+
+## Rate Limits
+
+> Response Sample
+
+```json
+{
+  "num_quotes_limit": {
+    "per_hour": 60, 
+    "per_minute": 24, 
+    "per_second": 5
+  }
+}
+```
+
+Rate limit for quoting will be returned in  the following format:
+
+| Parameter                   | Type                              | Description |
+| ---------                   | ------------------------------    | ------------|
+| **per_hour**   | INTEGER                           | Limit on no. of quote requests per hour
+| **per_minute**     | INTEGER                           | Limit on no. of quote requests per minute
+| **per_second**      | INTEGER                           | Limit on no. of quote requests per second     
+
+HTTP Request at : `GET https://api.falconx.io/v1/rate_limit`
+
+
+## Trade Size Limits
+
+> Response Sample
+
+```json
+[
+  {
+    "platform": "browser", 
+    "token_pair": {
+      "base_token": "BTC", 
+      "quote_token": "USD"
+    }, 
+    "trade_size_limits_in_quote_token": {
+      "max": 500000.00, 
+      "min": 4000.00
+    }
+  }, 
+  {
+    "platform": "api", 
+    "token_pair": {
+      "base_token": "ETH", 
+      "quote_token": "USD"
+    }, 
+    "trade_size_limits_in_quote_token": {
+      "max": 500000.00, 
+      "min": 1000.00
+    }
+  }
+]
+```
+
+The API will return the minimum and maximum trade size for a token pair in the following format:
+
+| Parameter                      | Type                              | Description |
+| ---------                      | ------------------------------    | ------------|
+| **platform**                   | STRING                               | Trading Platform (API or Browser)
+| **base_token**                 | STRING                               | Base Token
+| **quote_token**                | STRING                            | Quote Token
+| **min**                        | DECIMAL                           | Minimum allowed trade size in terms of quote token
+| **max**                        | DECIMAL                           | Maximum allowed trade size in terms of quote token
+
+HTTP Request at : `GET https://api.falconx.io/v1/trade_sizes`
