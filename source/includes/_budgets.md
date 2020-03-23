@@ -127,65 +127,73 @@ curl 'https://app.procurementexpress.com/api/v1/budgets'
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "company_id": 1,
-    "name": "Advocacy",
-    "amount": "50000.0",
-    "cost_code": "2017",
-    "cost_type": null,
-    "archived": false,
-    "currency_id": 1,
-    "base_amount": "50000.0",
-    "base_rate": "1.0",
-    "allow_anyone_to_approve_a_po": false,
-    "start_date": 1483401600,
-    "end_date": 1519862400,
-    "summary": "Advocacy : 2017",
-    "creator_id": 1,
-    "department_ids": [],
-    "approver_ids": []
-  },
-  {
-    "id": 2,
-    "company_id": 1,
-    "name": "Audit And Accountancy Fees",
-    "amount": "9000.0",
-    "cost_code": "2017",
-    "cost_type": null,
-    "archived": false,
-    "currency_id": 1,
-    "base_amount": "9000.0",
-    "base_rate": "1.0",
-    "allow_anyone_to_approve_a_po": false,
-    "start_date": 1483401600,
-    "end_date": 1519862400,
-    "summary": "Audit And Accountancy Fees : 2017",
-    "creator_id": 1,
-    "department_ids": [],
-    "approver_ids": []
-  },
-  {
-    "id": 3,
-    "company_id": 1,
-    "name": "Board Expenses",
-    "amount": "100.0",
-    "cost_code": "2017",
-    "cost_type": null,
-    "archived": false,
-    "currency_id": 1,
-    "base_amount": "100.0",
-    "base_rate": "1.0",
-    "allow_anyone_to_approve_a_po": false,
-    "start_date": 1483401600,
-    "end_date": 1519862400,
-    "summary": "Board Expenses : 2017",
-    "creator_id": 1,
-    "department_ids": [],
-    "approver_ids": []
+{
+  "budgets": [
+    {
+      "id": 1,
+      "company_id": 1,
+      "name": "Advocacy",
+      "amount": "50000.0",
+      "cost_code": "2017",
+      "cost_type": null,
+      "archived": false,
+      "currency_id": 1,
+      "base_amount": "50000.0",
+      "base_rate": "1.0",
+      "allow_anyone_to_approve_a_po": false,
+      "start_date": 1483401600,
+      "end_date": 1519862400,
+      "summary": "Advocacy : 2017",
+      "creator_id": 1,
+      "department_ids": [],
+      "approver_ids": []
+    },
+    {
+      "id": 2,
+      "company_id": 1,
+      "name": "Audit And Accountancy Fees",
+      "amount": "9000.0",
+      "cost_code": "2017",
+      "cost_type": null,
+      "archived": false,
+      "currency_id": 1,
+      "base_amount": "9000.0",
+      "base_rate": "1.0",
+      "allow_anyone_to_approve_a_po": false,
+      "start_date": 1483401600,
+      "end_date": 1519862400,
+      "summary": "Audit And Accountancy Fees : 2017",
+      "creator_id": 1,
+      "department_ids": [],
+      "approver_ids": []
+    },
+    {
+      "id": 3,
+      "company_id": 1,
+      "name": "Board Expenses",
+      "amount": "100.0",
+      "cost_code": "2017",
+      "cost_type": null,
+      "archived": false,
+      "currency_id": 1,
+      "base_amount": "100.0",
+      "base_rate": "1.0",
+      "allow_anyone_to_approve_a_po": false,
+      "start_date": 1483401600,
+      "end_date": 1519862400,
+      "summary": "Board Expenses : 2017",
+      "creator_id": 1,
+      "department_ids": [],
+      "approver_ids": []
+    }
+  ],
+  "meta": {
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null,
+    "total_pages": 3,
+    "total_count": 50
   }
-]
 ```
 
 Returns a list of Budgets.
@@ -195,6 +203,10 @@ Returns a list of Budgets.
 you can pass `department_id` query params to filter budgets by departments like:
 `/api/v1/budgets?department_id=1`
 
+### Pagination
+
+Budget listing api results are paginated so that we don't load all budgets at once. You can send `page` params to load other records e.g: `/api/v1/budgets?page=2`. You can also see meta key in the response you get, that will return informations like `current_page`, `next_page`, `previous_page`, `total_pages`, and `total_count` to help your write your own logic for pagination.
+
 ### Filter by archived
 
 Return list of archived budgets by passing `archived` queryParams with value `true`.
@@ -202,7 +214,7 @@ Example: `/api/v1/budgets?archived=true`. Default list are active budget lists.
 
 ### HTTP Request
 
-`GET https://app.procurementexpress.com/api/v1/budgets`
+`GET https://app.procurementexpress.com/api/v1/budgets?page=1&archived=false`
 
 ### Query Parameters
 
