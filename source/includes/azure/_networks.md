@@ -38,7 +38,7 @@ Retrieve a list of all virtual networks in an [environment](#administration-envi
 
 Optional query parameters | &nbsp;
 ---------- | -----
-`subnetList`<br/>*boolean* | If it is set to true, it will return the subnet information as well in the list. 
+`subnetList`<br/>*boolean* | If set to true, it will also include the subnet information in the list. 
 
 
 Attributes | &nbsp;
