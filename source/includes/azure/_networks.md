@@ -36,6 +36,11 @@ curl -X GET \
 
 Retrieve a list of all virtual networks in an [environment](#administration-environments)
 
+Optional query parameters | &nbsp;
+---------- | -----
+`subnetList`<br/>*boolean* | If set to true, it will also include the subnet information in the list. 
+
+
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*string* | The id associated to the virtual network. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/virtualNetworks/:networkName`
