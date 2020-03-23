@@ -152,7 +152,7 @@ Create an instance using ssh key authentication
   "imageSku": "Stable",
   "imageVersion": "1010.5.0",
   "region": "canadacentral",
-  "networkSubnet": "10.0.0.0/22",
+  "subnet": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/virtualNetworks/vn_example_lud/subnets/default",
   "username": "johndoe",
   "sshkey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCguvgDRuUF/wijOJCNmYlQHujCmUHl/i0Ubos4nHy5uCBdn1LGF+PG3TpJqO1LUWqpHaPl4yN7bpsdXyq6a9nxe0C1bQ4FK6P5qm0X320uvqv34jwTPsIbnhw9I317df+xJyXXsL/P5vS4ULPMC5UZjWm4BYe7did4zmXXhA/zmLY6cUg19sZp5r5SUQcf5xHAqO3cQVZwzBhBMwroflZZ59zNpxy+xXPBqC3IdusF2yTDW7bwCQHESUOsd9XhwrzCB+1wETKjLpk0wkWj8G2j1pkKGRpv60QcG85lbZvQAg54v3HYD7fVJCaz9gJJoiyRBnqQ6XVxam5bZgiMKa0J johndoe@machine.local"
 }
@@ -166,7 +166,7 @@ Create an instance using password authentication
   "imageSku": "Stable",
   "imageVersion": "1010.5.0",
   "region": "canadacentral",
-  "networkSubnet": "10.0.0.0/22",
+  "subnet": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/virtualNetworks/vn_example_lud/subnets/default",
   "username": "johndoe",
   "password": "SomePassw0rdVal!d"
 }
@@ -185,7 +185,7 @@ Required | &nbsp;
 `imageSku`<br/>*string* | The image SKU that was used to create the instance
 `imageVersion`<br/>*string* | The image version that was used to create the instance
 `region`<br/>*string* | The region in which the instance is located
-`networkSubnet`<br/>*string* | The subnet that the instance will be part of
+`subnet`<br/>*string* | The subnet id that the instance will be part of
 `username`<br/>*string* | The administrator username which will be created on the instance. It cannot be a reserve user such as admin, root or administrator and must not be more than 20 characters.
 
 Optional | &nbsp;
