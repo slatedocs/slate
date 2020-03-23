@@ -913,9 +913,9 @@ The API will return the minimum and maximum trade size for a token pair in the f
 
 | Parameter                      | Type                              | Description |
 | ---------                      | ------------------------------    | ------------|
-| **platform**                   | STR                               | Trading Platform (API or Browser)
-| **base_token**                 | STR                               | Base Token
-| **quote_token**                | STR                               | Quote Token
+| **platform**                   | STRING                               | Trading Platform (API or Browser)
+| **base_token**                 | STRING                               | Base Token
+| **quote_token**                | STRING                            | Quote Token
 | **min**                        | DECIMAL                           | Minimum allowed trade size in terms of quote token
 | **max**                        | DECIMAL                           | Maximum allowed trade size in terms of quote token
 
