@@ -31,7 +31,7 @@ For those familiar with the SBOL Stack, SynBioHub incorporates and extends its f
 
 What can SynBioHub be used for?
 
-SynBioHub can be used to publish a library of synthetic parts and designs as a service, to share designs with collaborators, and to store designs of biological systems locally. Data in SynBioHub can be accessed via the HTTP API or Java API, where it can then be integrated into CAD tools for building genetic designs. SynBioHub contains an interface for users to upload new biological data to the database, to visualize DNA parts, to perform queries to access desired parts, and to download SBOL, GenBank or FASTA data.
+SynBioHub can be used to publish a library of synthetic parts and designs as a service, to share designs with collaborators, and to store designs of biological systems locally. Data in SynBioHub can be accessed via the HTTP API, Java API, or Python API where it can then be integrated into CAD tools for building genetic designs. SynBioHub contains an interface for users to upload new biological data to the database, to visualize DNA parts, to perform queries to access desired parts, and to download SBOL, GenBank, FASTA, etc.
 
 
 ### Contributors
@@ -656,15 +656,8 @@ print(response.json())
 
 The following endpoints are for managing one's submissions.
 
-## Make Public Collection
 
-Makes the specified collection public
 
-`POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
-
-```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" https://synbiohub.org/ user/:userId/:collectionId/:displayId/:version/makePublic
-```
 
 
 # Download Endpoints
@@ -715,7 +708,8 @@ curl -X GET -H "Accept: text/plain" -H "X-authorization: <token>" https://synbio
 
 ## Download SBOL
 
-`GET <URI>/sbol`
+`GET <URI>/sbol` OR
+`GET <URI>`
 
 Returns the object from the specified URI in SBOL format.
 
@@ -1007,6 +1001,18 @@ file | contents of an SBOL2, SBOL1, GenBank, FASTA, GFF3, ZIP, or COMBINE Archiv
 rootCollections | the URI of the collection to be submitted into
 
 If creating a collection, provide the id, version, name, description, citations, and optionally a file. In this case, overwrite_merge should be 0 or 1. If submitting the contents into an existing collection, otherwise, only provide a URI for the rootCollections that you are submitting into and the file that you are submitting.
+
+## Make Public Collection
+
+Makes the specified collection public
+
+`POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" https://synbiohub.org/ user/:userId/:collectionId/:displayId/:version/makePublic
+```
+
+works curl -X POST -H "Accept: text/plain" -H "X-authorization:fb4ede73-c8bb-4b1e-bc73-d1fccbf140f2" -d "id=bruh&version=1&name=&description=&citations=&tabState=new" http://localhost:7777/user/testuser/bruh/bruh_collection/1/makePublic
 
 ## Remove Collection
 
