@@ -47,7 +47,7 @@ A successful response is indicated by HTTP status code 200 and may contain an op
 | Error Code | Reason |
 | ---------- | ------ |
 | ZERO_QUANTITY | You cannot request a quantity of zero. |
-| KILL_SWITCH_ENABLED | We have enabled our global kill switch. We are not accepting any requests for quotes or execution at this time. |
+| TRADING_DISABLED | All trading has been disabled at FalconX at this time and we are not currently accepting quote or execution requests. |
 | QUOTE_NOT_AVAILABLE | Our partners were unable to provide a quote. |
 | PARTNER_FAILURE | Our partners failed to return a quote. |
 | THIN_ORDERBOOK | Our partners' orderbooks were too thin to provide you a quote. |
