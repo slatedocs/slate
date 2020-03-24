@@ -7916,9 +7916,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TaskCompact'
+                    $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
