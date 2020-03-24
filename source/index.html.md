@@ -636,7 +636,7 @@ Theme - a prominent aspect of a topic based on opinions that are the most intere
 
 Narrative - describes the story that emerges in a topic theme (e.g. narratives under the theme ‘flavour’ could be ‘plain taste’, ‘chalky flavour’). Narratives are automatically created clusters of opinions.
 
-Opinion - a claim made on a specific topic (e.g. 'The new range has a horrible chalky taste.’ Opinions are automatically extracted from the data and are then grouped into narratives.
+Opinion - a claim made on a specific topic (e.g. 'The new range has a horrible chalky taste’). Opinions are automatically extracted from the data and are then grouped into narratives.
 
 Opinion Maker - author of the opinion. Automatically extracted from the data.
 
