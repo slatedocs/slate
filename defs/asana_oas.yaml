@@ -2282,6 +2282,12 @@ components:
         - $ref: '#/components/schemas/ProjectBase'
         - type: object
           properties:
+            custom_fields:
+              description: Array of Custom Fields.
+              readOnly: true
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomFieldCompact'
             followers:
               description: >-
                 Array of users following this project. Followers are a subset of
@@ -2309,6 +2315,18 @@ components:
         - $ref: '#/components/schemas/ProjectBase'
         - type: object
           properties:
+            custom_fields:
+              description: >-
+                An object where each key is a Custom Field gid and each value is
+                an enum gid, string, or number.
+              type: object
+              additionalProperties:
+                type: string
+                description: >-
+                  "{custom_field_gid}" => Value (Can be text, number, etc.)
+              example:
+                5678904321: On Hold
+                4578152156: Not Started
             followers:
               description: >-
                 *Create-only*. Comma separated string of users. Followers are a subset
@@ -2375,12 +2393,6 @@ components:
               nullable: true
               allOf:
                 - $ref: '#/components/schemas/ProjectStatusResponse'
-            custom_fields:
-              description: Array of Custom Fields.
-              readOnly: true
-              type: array
-              items:
-                $ref: '#/components/schemas/CustomFieldCompact'
             custom_field_settings:
               description: Array of Custom Field Settings (in compact form).
               readOnly: true
@@ -3289,7 +3301,9 @@ components:
               example: '12345'
               nullable: true
             custom_fields:
-              description: Object of Custom Field gids to values.
+              description: >-
+                An object where each key is a Custom Field gid and each value is
+                an enum gid, string, or number.
               type: object
               additionalProperties:
                 type: string
@@ -8060,9 +8074,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TaskCompact'
+                    $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:

@@ -3402,6 +3402,10 @@ curl -X POST https://app.asana.com/api/1.0/projects \
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
+    "custom_fields": {
+      "5678904321": "On Hold",
+      "4578152156": "Not Started"
+    },
     "followers": "12345,23456",
     "owner": "12345",
     "team": "12345"
@@ -3435,27 +3439,6 @@ curl -X POST https://app.asana.com/api/1.0/projects \
         "name": "Greg Sanchez"
       }
     },
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value"
-      }
-    ],
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -3483,6 +3466,27 @@ curl -X POST https://app.asana.com/api/1.0/projects \
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value"
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -3536,15 +3540,6 @@ Returns the full record of the newly created project.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
@@ -3555,6 +3550,8 @@ Returns the full record of the newly created project.
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
+|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
@@ -3586,9 +3583,6 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -3647,27 +3641,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
         "name": "Greg Sanchez"
       }
     },
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value"
-      }
-    ],
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -3695,6 +3668,27 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value"
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -3783,6 +3777,10 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
+    "custom_fields": {
+      "5678904321": "On Hold",
+      "4578152156": "Not Started"
+    },
     "followers": "12345,23456",
     "owner": "12345",
     "team": "12345"
@@ -3816,27 +3814,6 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
         "name": "Greg Sanchez"
       }
     },
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value"
-      }
-    ],
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -3864,6 +3841,27 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value"
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -3915,15 +3913,6 @@ Returns the complete updated project record.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
@@ -3934,6 +3923,8 @@ Returns the complete updated project record.
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
+|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
@@ -3966,9 +3957,6 @@ Returns the complete updated project record.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -4312,6 +4300,10 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
+    "custom_fields": {
+      "5678904321": "On Hold",
+      "4578152156": "Not Started"
+    },
     "followers": "12345,23456",
     "owner": "12345",
     "team": "12345"
@@ -4345,27 +4337,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
         "name": "Greg Sanchez"
       }
     },
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value"
-      }
-    ],
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -4393,6 +4364,27 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value"
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -4438,15 +4430,6 @@ Returns the full record of the newly created project.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
@@ -4457,6 +4440,8 @@ Returns the full record of the newly created project.
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
+|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
@@ -4489,9 +4474,6 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -4608,6 +4590,10 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
+    "custom_fields": {
+      "5678904321": "On Hold",
+      "4578152156": "Not Started"
+    },
     "followers": "12345,23456",
     "owner": "12345",
     "team": "12345"
@@ -4641,27 +4627,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
         "name": "Greg Sanchez"
       }
     },
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value"
-      }
-    ],
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -4689,6 +4654,27 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "name": "Status",
+        "resource_subtype": "text",
+        "type": "text",
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "name": "Low",
+            "enabled": true,
+            "color": "blue"
+          }
+        ],
+        "enabled": true,
+        "number_value": 5.2,
+        "text_value": "Some Value"
+      }
+    ],
     "followers": [
       {
         "gid": "12345",
@@ -4737,15 +4723,6 @@ Returns the full record of the newly created project.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
@@ -4756,6 +4733,8 @@ Returns the full record of the newly created project.
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
+|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
@@ -4788,9 +4767,6 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -8047,7 +8023,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» custom_fields<span class="param-type"> object</span>|Object of Custom Field gids to values.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
@@ -8558,7 +8534,7 @@ Returns the complete updated task record.
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» custom_fields<span class="param-type"> object</span>|Object of Custom Field gids to values.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
@@ -9318,7 +9294,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» custom_fields<span class="param-type"> object</span>|Object of Custom Field gids to values.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
@@ -9678,13 +9654,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
 
 ```json
 {
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    }
-  ]
+  "data": {}
 }
 ```
 
@@ -9709,12 +9679,20 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully set the specified dependencies on the task.|
+|200<span class="param-type"> Inline</span>|Successfully set the specified dependencies on the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="set-dependencies-for-a-task-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
 
 </section><hr class="half-line">
 <section>
@@ -13937,27 +13915,6 @@ A `Compact` object is the same as the [full response object](#tocS_PortfolioMemb
       "name": "Greg Sanchez"
     }
   },
-  "custom_fields": [
-    {
-      "gid": "12345",
-      "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
-      "enum_options": [
-        {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value"
-    }
-  ],
   "custom_field_settings": [
     {
       "gid": "12345",
@@ -13985,6 +13942,27 @@ A `Compact` object is the same as the [full response object](#tocS_PortfolioMemb
     "resource_type": "workspace",
     "name": "My Company Workspace"
   },
+  "custom_fields": [
+    {
+      "gid": "12345",
+      "resource_type": "custom_field",
+      "name": "Status",
+      "resource_subtype": "text",
+      "type": "text",
+      "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "name": "Low",
+          "enabled": true,
+          "color": "blue"
+        }
+      ],
+      "enabled": true,
+      "number_value": 5.2,
+      "text_value": "Some Value"
+    }
+  ],
   "followers": [
     {
       "gid": "12345",
@@ -14031,21 +14009,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the custom field.|
-|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -14066,6 +14029,21 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
+|custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -14104,16 +14082,16 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |color|green|
 |color|yellow|
 |color|red|
+|default_view|list|
+|default_view|board|
+|default_view|calendar|
+|default_view|timeline|
 |resource_subtype|text|
 |resource_subtype|enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
 |type|number|
-|default_view|list|
-|default_view|board|
-|default_view|calendar|
-|default_view|timeline|
 
 </section><hr>
 <section>
