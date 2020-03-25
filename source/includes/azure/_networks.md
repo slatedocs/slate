@@ -83,3 +83,4 @@ Attributes | &nbsp;
 `addressSpace`<br/>*string* | The first address range (IPV4 CIDR format) that will be covered by this virtual network
 `subnetName`<br/>*string* | The first subnet name within this virtual network
 `subnetAddressPrefix`<br/>*string* | The first subnet address range (IPV4 CIDR format) within this virtual network
+`networkSecurityGroupId`<br>*string* | The id of the network security group for the subnet, can also enter NONE or omit the field.
