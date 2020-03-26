@@ -555,6 +555,8 @@ The  API uses JWT tokens to authenticate requests. Login is performed via AWS Co
 Once the JWT is received via Cognito, it should be passed in every API request via the Authorization 
 header using the Bearer schema.
 
+The NodeJS script for issuing JWT tokens from the CLI can be found in [this repository](https://github.com/factmata/cognito-jwt-token).
+
 Example of a request after the authentication
 
 ```python
