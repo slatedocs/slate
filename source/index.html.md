@@ -556,13 +556,18 @@ Once the JWT is received via Cognito, it should be passed in every API request v
 header using the Bearer schema.
 
 The NodeJS script for issuing JWT tokens from the CLI can be found in [this repository](https://github.com/factmata/cognito-jwt-token).
+The JWT_TOKEN env variable can be set using the script from the repo above.
+
+```shell
+export JWT_TOKEN=`node issue_token.js`
+```
 
 Example of a request after the authentication
 
 ```python
 import requests
 
-url = "https://api-gw.production.factmata.com/api/v1/intelligence/topic"
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/report"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -571,7 +576,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://api-gw.production.factmata.com/api/v1/intelligence/topic' \
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/report' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -705,6 +710,212 @@ threat_score | yes | yes | no | no | no
 
 ## API endpoints
 
+## Reports
+
+Report - a set of insights on a particular topics (e.g. Insights Report on protein powders).
+
+## List reports
+```python
+import requests
+
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/report"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/report' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN"
+
+```
+
+> Response example
+
+```json
+[
+  {
+    "id": 1,
+    "type": "insights",
+    "name": "Report 1",
+    "created_at": "2019-01-01T00:00:00+00:00",
+    "updated_at": "2019-01-01T00:00:00+00:00"
+  },
+  {
+    "id": 2,
+    "type": "comparison",
+    "name": "Report 2",
+    "created_at": "2019-01-01T00:00:00+00:00",
+    "updated_at": "2019-01-01T00:00:00+00:00"
+  }
+]
+```
+
+Returns a list of reports tracked for a customer.
+
+#### HTTP Request
+
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/report`
+
+## Detail reports
+```python
+import requests
+
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/report/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/report/$ID' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN"
+
+```
+
+> Response example
+
+```json
+{
+  "id": 1,
+  "type": "insights",
+  "name": "Report 1",
+  "created_at": "2019-01-01T00:00:00+00:00",
+  "updated_at": "2019-01-01T00:00:00+00:00"
+}
+```
+
+Returns a report by its id.
+
+#### HTTP Request
+
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/report/:id`
+
+## Report version
+
+A report version represents different versions of the same report and the data (topic, narratives) that belong to the specific version.
+
+## List versions
+```python
+import requests
+
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/report/{id}/version"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.get(url, headers=headers)
+```
+
+```shell
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/report/$ID/version' \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN"
+
+```
+
+> Response example
+
+```json
+[
+   {
+      "id":1,
+      "name":"Version 1",
+      "created_at": "2019-01-01T00:00:00+00:00",
+      "updated_at": "2019-01-01T00:00:00+00:00"
+   },
+   {
+      "id":2,
+      "name":"Version 2",
+      "created_at": "2019-01-01T00:00:00+00:00",
+      "updated_at": "2019-01-01T00:00:00+00:00"
+   }
+]
+```
+
+Returns a list of version tracked for a report.
+
+#### HTTP Request
+
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/report/:id/version`
+
+## Copy version
+```python
+import requests
+
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/report/{id}/version"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.post(url, headers=headers)
+```
+
+```shell
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/report/$ID/version' \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN"
+
+```
+
+> Response example
+
+```json
+{
+  "id":2
+}
+```
+
+Make a copy of a report by creating a new version with all of the data copied.
+
+#### HTTP Request
+
+`POST https://api-gw.production.factmata.com/api/v1/intelligence/report/:id/version`
+
+## Update report version
+```python
+import requests
+
+url = "https://api-gw.production.factmata.com/api/v1/intelligece/version/{id}"
+
+headers = {
+  'X-API-KEY': f'Bearer {JWT_TOKEN}'
+}
+res = requests.post(url, headers=headers)
+```
+
+```shell
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/version/$ID' \
+  -X PATCH \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: Bearer $JWT_TOKEN"
+
+```
+
+> Response example
+
+```json
+{
+  "id":2,
+  "name":"Version 2",
+  "created_at": "2019-01-01T00:00:00+00:00",
+  "updated_at": "2019-01-01T00:00:00+00:00"
+}
+```
+
+
+
+#### HTTP Request
+
+`PATCH https://api-gw.production.factmata.com/api/v1/intelligence/version/:id`
+
 ## Topics
 
 Topic - the subject for which Factmata generates insights for a customer, e.g. an industry (e.g. Protein powders), a brand (e.g. Avon), a product (J&J Baby Shampoo) or an event (e.g. Coronavirus outbreak). The topic is defined by the customer. Customer can obtain insights on individual topic (Insights Report) as well as compare multiple topics (Insights Comparison Report).
@@ -716,7 +927,7 @@ Topic - the subject for which Factmata generates insights for a customer, e.g. a
 ```python
 import requests
 
-url = "https://api-gw.production.factmata.com/api/v1/intelligence/topic"
+url = "https://api-gw.production.factmata.com/api/v1/intelligence/report/{report_id}/version/{report_version_id}/topic"
 
 headers = {
   'X-API-KEY': f'Bearer {JWT_TOKEN}'
@@ -725,7 +936,7 @@ res = requests.get(url, headers=headers)
 ```
 
 ```shell
-curl 'https://api-gw.production.factmata.com/api/v1/intelligence/topic' \
+curl 'https://api-gw.production.factmata.com/api/v1/intelligence/report/$REPORT_ID/version/$REPORT_VERSION_ID/topic' \
   -H "Content-Type: application/json" \
   -H "X-API-KEY: Bearer $JWT_TOKEN" 
 ```
@@ -746,7 +957,7 @@ Returns a list of topics analyzed for a customer.
 
 #### HTTP Request
 
-`GET https://api-gw.production.factmata.com/api/v1/intelligence/topic`
+`GET https://api-gw.production.factmata.com/api/v1/intelligence/report/<int:report_id>/version/<int:report_version_id>/topic`
 
 
 
