@@ -66,3 +66,61 @@ For accessing list specific fields on a list, see the [Specific List](#get-a-spe
 | 5     | Location        | This type enables you to add a smart Google Maps location as a value. Eg: Address                                                                                                             |
 | 6     | Text            | This type enables you to add a long text block as a value. Eg: Summary                                                                                                                        |
 | 7     | Ranked Dropdown | This type allows you to add values in a particular order as well as assign colors to them. This is the equivalent of a pick list. Eg: Status, Priority, Ranking                               |
+
+## Get fields
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/fields" \
+  -u :<API-KEY> \
+  -d with_modified_names=true \
+```
+
+> Example Response
+
+```json
+[
+  {
+    "id":1234,
+    "name":"[Deals] Amount",
+    "list_id":11,
+    "value_type":3,
+    "allows_multiple":false,
+    "track_changes":true,
+    "dropdown_options":[]
+  },
+  {
+    "id":5678,
+    "name":"[Events] Amount",
+    "list_id":16,
+    "value_type":3,
+    "allows_multiple":false,
+    "track_changes":true,
+    "dropdown_options":[]
+  },
+  ...
+]
+```
+
+`GET /fields`
+
+Returns all fields based on the parameters provided.
+
+Pass the `list_id` to only fetch fields that are specific to that list. Otherwise, all global and list specific fields will be returned.
+
+Pass the `value_type` to fetch fields of specific value types. Otherwise, all fields of any type will be returned.
+
+Pass the `with_modified_names` flag to return the fields such that the names have the list name prepended to them in the format `[List Name] Field Name` (i.e. `[Deals] Status`).
+
+### Query Parameters
+
+| Parameter           | Type    | Required | Description                                                                |
+| ------------------- | ------- | -------- | -------------------------------------------------------------------------- |
+| list_id             | integer | false    | An unique identifier of the list whose fields are to be retrieved.         |
+| value_type          | integer | false    | The value type of the fields that are to be retrieved.                     |
+| with_modified_names | boolean | false    | When true, field names will return in the format `[List Name] Field Name`. |
+
+### Returns
+
+An array of all the fields requested.
