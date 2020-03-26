@@ -652,14 +652,6 @@ print(response.status_code)
 print(response.json())
 ```
 
-# Management Endpoints 
-
-The following endpoints are for managing one's submissions.
-
-
-
-
-
 # Download Endpoints
 
 The following endpoints are for downloading content from SynBioHub in various formats.
@@ -1009,10 +1001,8 @@ Makes the specified collection public
 `POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
 
 ```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "id=<>&version=<>&name=<>&description=<>&citations=<>" https://synbiohub.org/ user/:userId/:collectionId/:displayId/:version/makePublic
+curl -X POST -H "Accept: text/plain" -H "X-authorization:fb4ede73-c8bb-4b1e-bc73-d1fccbf140f2" -d "id=bruh&version=1&name=&description=&citations=&tabState=new" http://localhost:7777/user/testuser/bruh/bruh_collection/1/makePublic
 ```
-
-works curl -X POST -H "Accept: text/plain" -H "X-authorization:fb4ede73-c8bb-4b1e-bc73-d1fccbf140f2" -d "id=bruh&version=1&name=&description=&citations=&tabState=new" http://localhost:7777/user/testuser/bruh/bruh_collection/1/makePublic
 
 ## Remove Collection
 
@@ -1133,6 +1123,8 @@ print(response.content)
 ## Edit Mutable Descriptions
 
 `POST <URI>/updateMutableDescription `
+
+Edits the description of a part. 
 
 
 
