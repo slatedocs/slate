@@ -329,23 +329,45 @@ Optional | &nbsp;
 
 The responses' `data` field contains the updated [user](#administration-users).
 
-
 <!-------------------- DELETE USER -------------------->
-
 
 ### Delete user
 
 `DELETE /users/:id`
 
+Users are deleted asynchronously on the underlying services.
+
+The user model's status will be set to `DISABLED` prior to attempting the delete operation. This will prevent the user from login in or making API calls.
+
+The user model will be deleted only when the user is removed from all environments AND from all underlying services.
+
+If removing a user from an environment fails, no attempt will be made to delete the user model. This does not affect other attempts at removing the user from a different environment or deleting the user from a different service.
+
+If deleting a user fails, subsequent delete attempts will be considered as a "force delete". A force delete entails reattempting to delete the user as explained above and then deleting the user model regardless of the response from the underlying services.
+
+Delete a specific user. You will need the `Delete an existing user` permission to execute this operation.
+
 ```shell
 # Delete a user
 curl "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
    -X DELETE -H "MC-Api-Key: your_api_key"
-
 ```
 
-Delete a specific user. You will need the `Delete an existing user` permission to execute this operation.
+Response                  | &nbsp;
+--------------------------|-----------------------
+`taskId`<br/>*UUID*       | The id of the task
+`taskStatus`<br/>*string* | The status of the task
 
+```shell
+# Response body example
+```
+
+```json
+{
+  "taskId": "cd921b44-ca9f-4f6b-b184-f952e5ab010a",
+  "taskStatus": "PENDING"
+}
+```
 
 <!-------------------- UNLOCK USER -------------------->
 
