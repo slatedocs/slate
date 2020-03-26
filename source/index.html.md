@@ -39,7 +39,7 @@ A successful response is indicated by HTTP status code 200 and may contain an op
 ### FalconX API Errors
 | Error Code | Reason |
 | ---------- | ------ |
-| ZERO_QUANTITY | You cannot request a quantity of zero. |
+| ZERO_QUANTITY_t | You cannot request a quantity of zero. |
 | TRADING_DISABLED | All trading has been disabled at FalconX at this time and we are not currently accepting quote or execution requests. |
 | QUOTE_NOT_AVAILABLE | Our partners were unable to provide a quote. |
 | PARTNER_FAILURE | Our partners failed to return a quote. |
