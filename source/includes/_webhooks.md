@@ -381,7 +381,8 @@ This is fired whenever a repayment is distributed to an investor's account. Bond
 ```json
 {
   "investmentPayouts" : [ {
-    "investorId" : "string",
+    "investorId (DEPRECATED)" : "string (DEPRECATED)",
+    "clientId" : "string",
     "investmentId" : "string",
     "account" : "string",
     "amount" : {
