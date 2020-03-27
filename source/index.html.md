@@ -45,7 +45,6 @@ A successful response is indicated by HTTP status code 200 and may contain an op
 | PARTNER_FAILURE | Our partners failed to return a quote. |
 | THIN_ORDERBOOK | Our partners' orderbooks were too thin to provide you a quote. |
 | MAX_USD_SIZE_LIMIT | You have surpassed the maximum value in USD for which we can provide a quote at this time. |
-| PARTNER_TIMEOUT | The request to our partners timed out. |
 | INTERNAL_ERROR | Our internal server returned an error. |
 | QUANTITY_TOO_SMALL | The quantity you requested is below our platform's minimum trading limit. |
 | QUANTITY_TOO_BIG | The quantity you requested is above our platform's maximum trading limit. |
@@ -61,7 +60,6 @@ A successful response is indicated by HTTP status code 200 and may contain an op
 | MAX_TRADE_LIMIT_BREACH | The trade was not executed because the quantity you requested is greater than the maximum allowed. |
 | MIN_QUOTE_LIMIT_BREACH | Requested quote size is less than the minimum allowed. |
 | MAX_QUOTE_LIMIT_BREACH | Requested quote size is greater than the minimum allowed. |
-| NO_QUALIFIED_LIQUIDITY_VENUES_AVAILABLE | No qualified liquidity venues were available to serve your quote. |
 | TRADE_NOT_FILLED | Your trade was not executed. |
 | MAX_NET_BREACHED | Your trade was not executed because you hit your max net outstanding limit. |
 | MAX_GROSS_BREACHED | Your trade was not executed because you hit your max gross outstanding limit. |
@@ -80,10 +78,6 @@ A successful response is indicated by HTTP status code 200 and may contain an op
 | START_DATE_AFTER_END_DATE | The start date cannot be after end date. |
 | INSUFFICIENT_BALANCE_TO_WITHDRAW | Withdrawal balance should be less than or equal to the balance in account. |
 | INVALID_WITHDRAWAL_AMOUNT | Requested withdrawal amount is invalid. |
-| QUOTE_STATUS_NOT_SUCCESS | The quote was not selected for execution because the quote failed. |
-| SYNTHETIC_QUOTE | The quote was not selected for execution because it is a synthetic quote. |
-| QUOTE_EXPIRED_FOR_SIDE | The quote was not selected for execution because it was expired for the side being executed. |
-| VENUE_DISABLED_FOR_SIDE | The quote was not selected for execution because venue was disabled for the side being executed. |
 
 # Authentication
 
