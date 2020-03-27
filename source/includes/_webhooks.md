@@ -686,7 +686,7 @@ This is fired when account fees have been processed
 
 ```json
 {
-  "investorId": "string",
+  "clientId": "string",
   "dateTime": "2017-12-12T14:34:23",
   "account": "string",
   "amount" : {
