@@ -1004,6 +1004,7 @@ Makes the specified collection public
 curl -X POST -H "Accept: text/plain" -H "X-authorization:fb4ede73-c8bb-4b1e-bc73-d1fccbf140f2" -d "id=bruh&version=1&name=&description=&citations=&tabState=new" http://localhost:7777/user/testuser/bruh/bruh_collection/1/makePublic
 ```
 
+
 ## Remove Collection
 
 `GET <URI>/removeCollection `
