@@ -198,7 +198,11 @@ the server will respond with a [401 Unauthorized HTTP status code](https://tools
 
 ### Strong customer authentication
 
-There are some actions that require additional authentication.
+**NB** The following will be enforced starting from September 1, 2020. Please see the testing section 
+below on how to prepare your integration.
+
+There are some actions such as funding a transfer from your balance or viewing the statement that require additional 
+authentication.
 
 In those cases a [403 Forbidden HTTP status code](https://tools.ietf.org/html/rfc7231#section-6.5.3) is returned 
 together with a one-time token (OTT) value which needs to be signed and the resulting signature included in the retry 
@@ -210,7 +214,7 @@ the server side using the corresponding public key the client has uploaded.
 
 To call the endpoints requiring additional authentication:
 
-* Create public and private key pair
+* Create a key pair consisting of a public and a private key
 * Upload the public key to TransferWise
 * Set up response handling to retry with the signed OTT
 
@@ -231,13 +235,12 @@ The following requirements apply:
 
 **Managing uploaded public keys**
 
-The public keys management page can be accessed via Manage public keys button under the API tokens section 
+The public keys management page can be accessed via the "Manage public keys" button under the API tokens section 
 of your TransferWise account settings.
 
-Since public key upload itself has to be protected from unauthorized use, you will be prompted for 2FA during 
-this process.
+You will be prompted to perform 2FA when uploading new public keys.
 
-Please note that to prevent abuse, the maximum number of public keys you can store at any point of time is limited to 5.
+The maximum number of public keys you can store is limited to 5.
 
 **Signing the data**
 
@@ -368,6 +371,10 @@ the `X-Signature` request header.
 
 Note: as the name implies, a one-time token can be used only once. If it was successfully processed then further 
 requests with the same token signature will be rejected.
+
+### Testing ###
+By default in our [sandbox environment](https://api.sandbox.transferwise.tech) strong customer authentication is 
+disabled. You can enable it for your account on the [public keys management page](https://api.sandbox.transferwise.tech/public-keys).
 
 ### TEST and LIVE environments
 
