@@ -1001,7 +1001,9 @@ secret = ""
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
 
-body = {"orders":[
+body = {
+    "orders": [
+    {
     "side": "buy",  #Toggle between 'buy' or 'sell'.
     "order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
     "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
@@ -1009,8 +1011,8 @@ body = {"orders":[
     "total_quantity": 400, #Replace this with the quantity you want
     "timestamp": timeStamp,
     "ecode": "I"
-  ],
-  [
+  },
+  {
     "side": "buy",  #Toggle between 'buy' or 'sell'.
     "order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
     "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
@@ -1018,6 +1020,7 @@ body = {"orders":[
     "total_quantity": 400, #Replace this with the quantity you want
     "timestamp": timeStamp,
     "ecode": "I"
+    }
   ]
 }
 
