@@ -1002,8 +1002,8 @@ secret = ""
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-    "orders": [
-    {
+  "orders": [
+  {
     "side": "buy",  #Toggle between 'buy' or 'sell'.
     "order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
     "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
