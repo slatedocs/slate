@@ -356,7 +356,7 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
       "frequency": 300,
       "mains_freq": 60,
       "samples": {
-        "lead_I": [
+        "leadI": [
           397,
           -262,
           -426,
@@ -378,8 +378,14 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
           -62,
           322,
           ...     
-        ]
-      }
+        ],
+        "leadII": [...],
+        "leadIII": [...],
+        "AVR": [...],
+        "AVL": [...],
+        "AVF: [...]
+      }, 
+      "numLeads": 6
     },
     "enhanced": {
       "frequency": 300,
@@ -407,8 +413,14 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
           -62,
           322,
           ...     
-        ]
-      }
+        ],
+        "leadII": [...],
+        "leadIII": [...],
+        "AVR": [...],
+        "AVL": [...],
+        "AVF: [...]
+      }, 
+      "numLeads": 6
     }
   }
 }
