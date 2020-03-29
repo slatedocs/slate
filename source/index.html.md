@@ -383,7 +383,7 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
         "leadIII": [...],
         "AVR": [...],
         "AVL": [...],
-        "AVF: [...]
+        "AVF": [...]
       }, 
       "numLeads": 6
     },
@@ -418,7 +418,7 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
         "leadIII": [...],
         "AVR": [...],
         "AVL": [...],
-        "AVF: [...]
+        "AVF": [...]
       }, 
       "numLeads": 6
     }
