@@ -36,6 +36,7 @@ curl -X GET "https://api.sandbox.transferwise.tech/v1/simulation/transfers/{tran
 You can simulate payment processing by changing transfer statuses using these endpoints. 
 
 This feature is limited to sandbox only.
+Please note, simulation doesn't work with email transfers.
 
 
 ### Request
