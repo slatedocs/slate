@@ -335,7 +335,7 @@ curl -X POST \
 
 ```json
 {
-  "diskToAttach" : "/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/disktest1",
+  "diskToAttach" : "disktest1",
   "diskLun": 10
 }
 ```

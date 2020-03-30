@@ -264,7 +264,7 @@ curl -X POST \
 
 ```json
 {
-  "instanceId" : "/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/cool-instance",
+  "instance" : "cool-instance",
 }
 ```
 ```shell
@@ -273,7 +273,7 @@ curl -X POST \
 
 ```json
 {
-  "instanceId" : "/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/cool-instance",
+  "instance" : "cool-instance",
   "lun" : 10
 }
 ```
