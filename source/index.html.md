@@ -69,7 +69,6 @@ Web Design
 
 # Installation
 
-
 ## From Prebuilt Image
 
 ### Install Docker
@@ -662,7 +661,7 @@ The following endpoints are for downloading content from SynBioHub in various fo
 
 `GET <URI>/download `
 
-Returns the source for an attachment to the specified URI
+Returns the source for an attachment to the specified URI.
 
 ```javascript
 const fetch = require("node-fetch");
@@ -780,6 +779,8 @@ print(response.content)
 
 `GET <URI>/metadata`
 
+Returns the metadata for the object from the specified URI.
+
 ```javascript
 const fetch = require("node-fetch");
 const Url = 'https://synbiohub.org/public/igem/BBa_K1479017/1/metadata'
@@ -811,9 +812,6 @@ print(response.status_code)
 print(response.content)
 
 ```
-
-Returns the metadata for the object from the specified URI.
-
 
 ## Download GenBank
 
@@ -996,9 +994,9 @@ If creating a collection, provide the id, version, name, description, citations,
 
 ## Make Public Collection
 
-Makes the specified collection public
-
 `POST <URI>/user/:userId/:collectionId/:displayId/:version/makePublic`
+
+Makes the specified collection public.
 
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization:fb4ede73-c8bb-4b1e-bc73-d1fccbf140f2" -d "id=bruh&version=1&name=&description=&citations=&tabState=new" http://localhost:7777/user/testuser/bruh/bruh_collection/1/makePublic
@@ -1119,6 +1117,26 @@ print(response.content)
 
 ```
 
+# Permission Endpoints
+
+Change the permission of a part.
+
+## Add Owner
+
+`POST <URI>/public/:collectionId/:displayId/:version/addOwner`
+
+Adds an owner to a part.
+
+## Remove Owner
+
+`POST <URI>/public/:collectionId/:displayId/:version/removeOwner/:username`
+
+Removes an owner from a part.
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" http://synbiohub.org/public/:collectionId/:displayId/:version/removeOwner/:username
+```
+
 # Edit Endpoints
 
 ## Edit Mutable Descriptions
@@ -1127,23 +1145,26 @@ print(response.content)
 
 Edits the description of a part. 
 
-
-
-
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "uri=<>&value=<>" http://synbiohub.org/updateMutableDescription
 ```
+## Edit Mutable Notes
 
+`POST <URI>/updateMutableNotes`
 
-## Remove Owner
+Edits the notes of a part.
 
-`POST <URI>/public/:collectionId/:displayId/:version/removeOwner/:username`
+## Edit Mutable Source
 
-```plaintext
-curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" http://synbiohub.org/public/:collectionId/:displayId/:version/removeOwner/:username
-```
+`POST <URI>/updateMutableSource`
 
+Edits the source of a part.
 
+## Edit Citations
+
+`POST <URI>/updateCitations`
+
+Edits the citations of a part.
 
 # Attachment Endpoints
 
@@ -1151,7 +1172,7 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" htt
 
 `POST <URI>/attach `
 
-Attach a specified file to a given URI
+Attach a specified file to a given URI.
 
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<filename>' https://synbiohub.org/user/MyUserName/test/test_collection/1/attach
@@ -1161,7 +1182,7 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<fi
 
 `POST <URI>/attachURL `
 
-Attach a specified URL to a given URI
+Attach a specified URL to a given URI.
 
 # Administration Endpoints
 
