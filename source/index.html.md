@@ -100,6 +100,7 @@ includes:
   - azure/subnets
   - azure/network_security_groups
   - azure/security_rules
+  - azure/public_ip_addresses
   - masterportal
   - masterportal/applications
   - swift
