@@ -1,4 +1,4 @@
-#Open Banking API
+#Open Banking
 
 > Base Open Banking URL in Sandbox
 
@@ -11,6 +11,8 @@ https://openbanking.sandbox.transferwise.tech
 ```shell
 https://openbanking.transferwise.com
 ```
+
+**The TransferWise Open Banking API is aimed for Financially Regulated Third Party Providers who can prove their regulatory status either by being a member of the [Open Banking Directory](https://www.openbanking.org.uk/providers/directory/) or possessing an [eIDAS Certificate](#open-banking-sandbox-access). Third Parties or individuals who do not meet these requirements are welcome to check out our [Public API](#transferwise-api).** 
 
 The TransferWise Open Banking API is a collection of RESTful APIs that enable Third Party Providers (TPPs) to access account information, initiate payments and confirm availability of funds on behalf of TransferWise customers. The API implementation follows the [Open Banking UK standard](https://standards.openbanking.org.uk/api-specifications/), and TransferWise is a registered member of the [Open Banking Directory](https://www.openbanking.org.uk/providers/directory/).
 
@@ -34,7 +36,7 @@ There's a couple of things you should be aware of in order to connect to the Tra
 
 * Being a registered TPP under the Open Banking Directory will ease the integration process.
 * We are using [mutualTLS](https://tools.ietf.org/html/draft-ietf-oauth-mtls-17) as the means for authentication. Moreover, the `CN` of your client certificate is expected to match the `clientId` under which you are registered. 
-* You need to register your client, before you'll be able to call any of the APIs. Check out the [Sandbox Access](#open-banking-api-sandbox-access) first.
+* You need to register your client, before you'll be able to call any of the APIs. Check out the [Sandbox Access](#open-banking-sandbox-access) first.
 
 For a detailed description of requirements and supported algorithms please check out the Well-Known Open Banking URL.
 
@@ -45,13 +47,11 @@ We highly recommend that you get started with connecting to our sandbox first, b
 ### Open Banking Directory
 
 If you're a registered TPP in the Open Banking Directory you will probably be using a Signing and a Transport certificates issued by
-Open Banking. At the moment we accept both the old style OB Transport and OB Signing, as well as the eIDAS-like OBWAC and OBSeal certificates. 
-You can easily onboard by providing either of the following things:
+Open Banking. At the moment we accept the old style OB Transport and OB Signing certificates.
 
-* You can generate and send us a Software Statement Assertion (SSA) from the Open Banking Directory.  
-* Alternatively, you can also just send us your Open Banking Organization ID together with the Software Statement ID that you wish to use.
+**You can easily onboard by providing a Software Statement Assertion (SSA) generated in the Open Banking Directory.**
 
-In either case, please make sure to have your list of **Redirect Uri**-s correctly configured in your Software Statement, otherwise you'll not be able to go through the whole flow.
+Please make sure to have your list of **Redirect Uri**-s correctly configured in your Software Statement, otherwise you'll not be able to go through the whole flow.
 
 ### eIDAS Certificates
 
@@ -68,7 +68,7 @@ You do **NOT** need to create an API Token via the web interface in case you're 
 
 ## Sandbox Test Flow
 
-After you've successfully applied for the [Sandbox Access](#open-banking-api-sandbox-access) and you've set up a [Sandbox Test User](#open-banking-api-sandbox-test-user) you are ready to test the Open Banking flow.
+After you've successfully applied for the [Sandbox Access](#open-banking-sandbox-access) and you've set up a [Sandbox Test User](#open-banking-sandbox-test-user) you are ready to test the Open Banking flow.
 For the purpose of this test flow let's assume that your TPP is an AISP and it's registered with the following details
 
 Client ID    | Redirect URI                   | Authorized Scopes
@@ -150,7 +150,7 @@ curl -X POST \
 
 **`POST https://openbanking.sandbox.transferwise.tech/open-banking/v3.1/aisp/account-access-consents`**
 
-Using the `access-token` returned from [Creating an Access Token](#open-banking-api-1-create-an-access-token) you can create a new consent object. Use the authorization header:
+Using the `access-token` returned from [Creating an Access Token](#open-banking-1-create-an-access-token) you can create a new consent object. Use the authorization header:
 
 `Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx` 
 
@@ -265,7 +265,7 @@ You can take a look at the example JWT request object on the right. Please note 
 
 Once the TPP redirects the user browser to the Authorization Endpoint the following things will happen in order:
 
-1. User Login (use the username and password from the [Test User Registration](#open-banking-api-sandbox-test-user))
+1. User Login (use the username and password from the [Test User Registration](#open-banking-sandbox-test-user))
 2. Pass 2FA challenge (User the code `111111` in sandbox)
 3. Select profile you wish to give access to (Business or Personal)
 4. Review and Authorize Consent 
@@ -370,7 +370,7 @@ curl -X GET \
 }
 ```
 
-With the `access-token` from [Authorization Code Flow](#open-banking-api-4-exchange-authorization-code-for-access-token) used in the Authorization header, you'll be able to query the data endpoints.
+With the `access-token` from [Authorization Code Flow](#open-banking-4-exchange-authorization-code-for-access-token) used in the Authorization header, you'll be able to query the data endpoints.
 
 `Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx`
 
