@@ -42,7 +42,7 @@ Retrieve a list of all public IP addresses in a given [environment](#administrat
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the inspublic IP address. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Network/publicIPAddresses/:publicIpName
+`id` <br/>*string* | The id of the public IP address. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Network/publicIPAddresses/:publicIpName
 `name` <br/>*string* | The name of the public IP address
 `state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`
 `ipAddress` <br/>*string* | The IP address of the public IP. If the public IP has never been associated before, then you won't have an ip address yet.
@@ -88,7 +88,7 @@ Retrieve a public IP address in a given [environment](#administration-environmen
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the inspublic IP address. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Network/publicIPAddresses/:publicIpName
+`id` <br/>*string* | The id of the public IP address. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Network/publicIPAddresses/:publicIpName
 `name` <br/>*string* | The name of the public IP address
 `state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`
 `ipAddress` <br/>*string* | The IP address of the public IP. If the public IP has never been associated before, then you won't have an ip address yet.
