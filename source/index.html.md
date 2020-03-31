@@ -969,6 +969,8 @@ print(response.content)
 
 <aside class="success">Note that the X-authorization header is required for all submission endpoints.</aside>
 
+The following endpoints are for managing submissions on SynBioHub.
+
 ## Submit
 
 `POST <SynBioHub URL>/submit `
@@ -1119,11 +1121,11 @@ print(response.content)
 
 # Permission Endpoints
 
-Change the permission of a part.
+The following endpoints are for managing permissions on SynBioHub.
 
 ## Add Owner
 
-`POST <URI>/public/:collectionId/:displayId/:version/addOwner`
+`POST <URI>/addOwner`
 
 Adds an owner to a part.
 
@@ -1139,11 +1141,15 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "userUri=<>" htt
 
 # Edit Endpoints
 
+<aside class="success">Note that the X-authorization header is required for all edit endpoints.</aside>
+
+These endpoints allow you to edit various fields in for a 
+
 ## Edit Mutable Descriptions
 
 `POST <URI>/updateMutableDescription `
 
-Edits the description of a part. 
+Edit the mutable description of a part. 
 
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "uri=<>&value=<>" http://synbiohub.org/updateMutableDescription
@@ -1152,21 +1158,25 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization:<>" -d "uri=<>&value=<>
 
 `POST <URI>/updateMutableNotes`
 
-Edits the notes of a part.
+Edit the mutable notes of a part.
 
 ## Edit Mutable Source
 
 `POST <URI>/updateMutableSource`
 
-Edits the source of a part.
+Edit the mutable source of a part.
 
 ## Edit Citations
 
 `POST <URI>/updateCitations`
 
-Edits the citations of a part.
+Edit the citations of a part.
 
 # Attachment Endpoints
+
+<aside class="success">Note that the X-authorization header is required for all attachment endpoints.</aside>
+
+The following endpoints are for creating attachments on SynBioHub.
 
 ## Attach File
 
@@ -1185,6 +1195,8 @@ curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" -F 'file=@<fi
 Attach a specified URL to a given URI.
 
 # Administration Endpoints
+
+<aside class="success">Note that the X-authorization header is required for all administration endpoints.</aside>
 
 ## SPARQL Admin Query
 
