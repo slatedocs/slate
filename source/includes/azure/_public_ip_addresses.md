@@ -1,10 +1,10 @@
-### Instances
+### Public IP addresses
 
 Deploy and manage your public ip addresses.
 
-<!-------------------- LIST INSTANCES -------------------->
+<!-------------------- LIST PUBLIC IPS -------------------->
 
-#### List instances
+#### List public IP addresses
 
 ```shell
 curl -X GET \
@@ -53,14 +53,14 @@ Attributes | &nbsp;
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`
 `ipVersion` <br/>*string* |  IP version of the public IP address. Possible values: `IPV4`, `IPV6`
 
-<!-------------------- RETRIEVE AN INSTANCE -------------------->
+<!-------------------- RETRIEVE A PUBLIC IP -------------------->
 
-#### Retrieve an instance
+#### Retrieve a public ip address
 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server"
+   "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
 
 # The above command returns JSON structured like this:
 ```
@@ -82,7 +82,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
 Retrieve a public IP address in a given [environment](#administration-environments)
 
