@@ -196,7 +196,7 @@ Please note:
 If a request is being made using an IP address that is not in the whitelisted IP addresses,
 the server will respond with a [401 Unauthorized HTTP status code](https://tools.ietf.org/html/rfc7235#page-6).
 
-### Strong customer authentication
+## Strong customer authentication
 
 **NB** The following will be enforced starting from September 1, 2020. Please see the testing section 
 below on how to prepare your integration.
