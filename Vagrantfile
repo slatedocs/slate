@@ -1,14 +1,19 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.network :forwarded_port, guest: 4567, host: 4567
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+  end
 
   config.vm.provision "bootstrap",
     type: "shell",
     inline: <<-SHELL
+      sudo apt-add-repository ppa:brightbox/ruby-ng
       sudo apt-get update
-      sudo apt-get install -yq ruby2.0 ruby2.0-dev pkg-config build-essential nodejs git libxml2-dev libxslt-dev
+      sudo apt-get install -yq ruby2.4 ruby2.4-dev
+      sudo apt-get install -yq pkg-config build-essential nodejs git libxml2-dev libxslt-dev
       sudo apt-get autoremove -yq
-      gem2.0 install --no-ri --no-rdoc bundler
+      gem2.4 install --no-ri --no-rdoc bundler
     SHELL
 
   # add the local user git config to the vm
@@ -34,6 +39,6 @@ Vagrant.configure(2) do |config|
       echo "Starting up middleman at http://localhost:4567"
       echo "If it does not come up, check the ~/middleman.log file for any error messages"
       cd /vagrant
-      bundle exec middleman server --force-polling -l 1 &> ~/middleman.log &
+      bundle exec middleman server --watcher-force-polling --watcher-latency=1 &> ~/middleman.log &
     SHELL
 end
