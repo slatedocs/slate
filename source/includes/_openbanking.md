@@ -47,13 +47,11 @@ We highly recommend that you get started with connecting to our sandbox first, b
 ### Open Banking Directory
 
 If you're a registered TPP in the Open Banking Directory you will probably be using a Signing and a Transport certificates issued by
-Open Banking. At the moment we accept both the old style OB Transport and OB Signing, as well as the eIDAS-like OBWAC and OBSeal certificates. 
-You can easily onboard by providing either of the following things:
+Open Banking. At the moment we accept the old style OB Transport and OB Signing certificates.
 
-* You can generate and send us a Software Statement Assertion (SSA) from the Open Banking Directory.  
-* Alternatively, you can also just send us your Open Banking Organization ID together with the Software Statement ID that you wish to use.
+**You can easily onboard by providing a Software Statement Assertion (SSA) generated in the Open Banking Directory.**
 
-In either case, please make sure to have your list of **Redirect Uri**-s correctly configured in your Software Statement, otherwise you'll not be able to go through the whole flow.
+Please make sure to have your list of **Redirect Uri**-s correctly configured in your Software Statement, otherwise you'll not be able to go through the whole flow.
 
 ### eIDAS Certificates
 
