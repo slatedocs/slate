@@ -183,6 +183,16 @@ Returns a list of contact companies available to the user. This list is not filt
 
 `GET /companies`
 
+** Query Parameters **
+
+Name|Description
+----|-----------
+search|String or search command to filter entities by.
+start|Starting row for the entities returned. Defaults to 0.
+limit|Limit number of entities to return. Defaults to the system configuration for pagination (30).
+orderBy|Column to sort by. Can use any column listed in the response.
+orderByDir|Sort direction: asc or desc.
+
 #### Response
 
 `Expected Response Code: 200`
