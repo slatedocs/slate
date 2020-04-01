@@ -53,7 +53,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `appliance_part_type_replacement_linker` created by specifying its `appliance_part_type_replacement_linker_id` in the request url:
+> We can retrieve the `appliance_part_type_replacement_linker` created by specifying its `appliance_part_type_replacement_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'

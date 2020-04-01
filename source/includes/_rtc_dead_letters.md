@@ -9,9 +9,9 @@ Field | Description
 __rtc_dead_letter_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each rtc_dead_letter.
 __queue_name__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(not-null)</font> | 
 __payload__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
-__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["discarded", "replayed"]</font>
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["replayed", "discarded"]</font>
 __status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__replay_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["failure", "success"]</font>
+__replay_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["success", "failure"]</font>
 __replay_status_text__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __replay_status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at

@@ -1,24 +1,34 @@
-## <u>USB Diagnostic Tool Entity Linker</u>
-Indicates which entities have access to a USB Diagnostic Tool.
+## <u>Usb Diag Tool Entity Linker</u>
+Indicates which entities have access to a USB diagnostic tool
 
 
 ### <u>The usb_diag_tool_entity_linker object</u>
 
 Field | Description
 ------:|:------------
-__usb_diag_tool_entity_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each linker object.
-__entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(unique)</font> | Identifies the entity associated with the USB Diagnostic Tool
+__usb_diag_tool_entity_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each usb_diag_tool_entity_linker.
+__<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
+__created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
+__modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
+
+<br>
+
+Relationship | Description
+-------------:|:------------
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
 
 <hr>
 <br>
 
-> An example POST request. Note that `usb_diag_tool_entity_linker_id`, `created_at`, `modified_at`, `created_by` and `modified_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+> An example POST request. Note that `usb_diag_tool_entity_linker_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
 
 ```python
     url = "https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker"
     data = json.dumps({
-        "entity_id": 2
-    })
+		"entity_id": 1,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -29,19 +39,18 @@ __entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(uni
     r.json()
 
     >>> {
-        "created_at": "2018-04-24T10:21:46.619244",
-        "created_by": "ci.system@bboxx.co.uk",
-        "entity_id": 2,
-        "modified_at": null,
-        "modified_by": null,
-        "usb_diag_tool_entity_linker_id": 6
-    }
+		"usb_diag_tool_entity_linker_id": 1
+		"entity_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
-    > We can retrieve the `usb_diag_tool_entity_linker` created by specifying its `usb_diag_tool_entity_linker_id` in the request url:
+> We can retrieve the `usb_diag_tool_entity_linker` created by specifying its `usb_diag_tool_entity_linker_id` in the request url:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker/6'
+    url = 'https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -51,16 +60,15 @@ __entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(uni
 
     r.json()
     >>> {
-        "created_at": "2018-04-24T10:21:46.619244",
-        "created_by": "ci.system@bboxx.co.uk",
-        "entity_id": 2,
-        "modified_at": null,
-        "modified_by": null,
-        "usb_diag_tool_entity_linker_id": 6
-}
+		"usb_diag_tool_entity_linker_id": 1
+		"entity_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
 ```
 
-> We can retrieve all `usb_diag_tool_entity_linkers` by omitting the `usb_diag_tool_entity_linker_id`:
+> We can retrieve all `usb_diag_tool_entity_linker` by omitting the `usb_diag_tool_entity_linker_id`:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker'
@@ -89,10 +97,10 @@ __entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(uni
 > We can edit the newly created `usb_diag_tool_entity_linker` with a `PUT` request:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker/6'
+    url = 'https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker/1'
     data = json.dumps({
-        "entity_id": 55
-    })
+		"entity_id": 2,
+		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.put(url=url, data=data, headers=headers)
@@ -102,20 +110,19 @@ __entity_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(uni
 
     r.json()
     >>> {
-        "created_at": "2018-04-24T10:21:46.619244",
-        "created_by": "ci.system@bboxx.co.uk",
-        "entity_id": 55,
-        "modified_at": "2018-04-24T10:29:31.555402",
-        "modified_by": "ci.system@bboxx.co.uk",
-        "usb_diag_tool_entity_linker_id": 6
-    }
+		"usb_diag_tool_entity_linker_id": 1
+		"entity_id": 2,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
 ```
 > Note that the `modified_at` field has been updated accordingly.
 
 > If a user has `SYSTEM` permissions they can delete the `usb_diag_tool_entity_linker`
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker/6'
+    url = 'https://smartapi.bboxx.co.uk/v1/usb_diag_tool_entity_linker/1'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)
@@ -157,7 +164,7 @@ response | `200`
  ----:|:---
 endpoint | `/v1/usb_diag_tool_entity_linker/<usb_diag_tool_entity_linker_id>`
 method | `PUT`
-url_params | `usb_diag_tool_entity_linker_id` of the `usb_diag_tool_entity_linker` you wish to edit
+url_params | `usb_diag_tool_entity_linker_id` of the usb_diag_tool_entity_linker you wish to edit
 query params | <font color="DarkGray">N/A</font>
 body | JSON-formatted dictionary of the columns that you wish to alter
 permissions | <font color="Crimson">__`SYSTEM`__</font>

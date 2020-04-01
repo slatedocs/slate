@@ -59,7 +59,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `product_software_linker` created by specifying its `product_software_linker_id` in the request url:
+> We can retrieve the `product_software_linker` created by specifying its `product_software_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/product_software_linker/1'

@@ -50,7 +50,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `sim_provider_network_linker` created by specifying its `sim_provider_network_linker_id` in the request url:
+> We can retrieve the `sim_provider_network_linker` created by specifying its `sim_provider_network_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/sim_provider_network_linker/1'

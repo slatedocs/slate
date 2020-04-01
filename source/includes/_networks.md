@@ -53,7 +53,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `network` created by specifying its `mccmnc` in the request url:
+> We can retrieve the `network` created by specifying its `mccmnc` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/networks/1'

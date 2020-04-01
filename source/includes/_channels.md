@@ -44,7 +44,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `channel` created by specifying its `name` in the request url:
+> We can retrieve the `channel` created by specifying its `name` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/channels/1'

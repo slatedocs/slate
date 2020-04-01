@@ -10,7 +10,7 @@ __appliance_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crims
 __category__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(unique)</font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__erp_code__ <br><font color="DarkGray">_varchar(6)_</font> <font color="Crimson">(unique)</font> | 
+__erp_code__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson">(unique)</font> | 
 __tracked__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
@@ -37,7 +37,7 @@ __actions__ | The associated actions
 		"category": "test",
 		"name": "test",
 		"description": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"tracked": True,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
@@ -54,7 +54,7 @@ __actions__ | The associated actions
 		"category": "test",
 		"name": "test",
 		"description": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"tracked": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
@@ -62,7 +62,7 @@ __actions__ | The associated actions
 	}
 ```
 
-    > We can retrieve the `appliance_type` created by specifying its `appliance_type_id` in the request url:
+> We can retrieve the `appliance_type` created by specifying its `appliance_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/appliance_types/1'
@@ -79,7 +79,7 @@ __actions__ | The associated actions
 		"category": "test",
 		"name": "test",
 		"description": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"tracked": True,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
@@ -121,7 +121,7 @@ __actions__ | The associated actions
 		"category": "changed",
 		"name": "changed",
 		"description": "changed",
-		"erp_code": YY9999,
+		"erp_code": Unknown column type,
 		"tracked": False,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
@@ -137,7 +137,7 @@ __actions__ | The associated actions
 		"category": "changed",
 		"name": "changed",
 		"description": "changed",
-		"erp_code": YY9999,
+		"erp_code": Unknown column type,
 		"tracked": False,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"

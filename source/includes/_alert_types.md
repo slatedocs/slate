@@ -17,6 +17,7 @@ __severity__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></
 __analysis_frequency__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __cooling_off_period__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __active__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__label__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -51,6 +52,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 		"analysis_frequency": "2000-01-01 00:00:00",
 		"cooling_off_period": "2000-01-01 00:00:00",
 		"active": True,
+		"label": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -73,13 +75,14 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 		"analysis_frequency": "2000-01-01 00:00:00",
 		"cooling_off_period": "2000-01-01 00:00:00",
 		"active": True,
+		"label": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `alert_type` created by specifying its `alert_type_id` in the request url:
+> We can retrieve the `alert_type` created by specifying its `alert_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/alert_types/1'
@@ -103,6 +106,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 		"analysis_frequency": "2000-01-01 00:00:00",
 		"cooling_off_period": "2000-01-01 00:00:00",
 		"active": True,
+		"label": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -150,6 +154,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 		"analysis_frequency": "2016-07-01 12:34:45",
 		"cooling_off_period": "2016-07-01 12:34:45",
 		"active": False,
+		"label": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -171,6 +176,7 @@ __alert_type_state_type_linker__ | The associated alert_type_state_type_linker
 		"analysis_frequency": "2016-07-01 12:34:45",
 		"cooling_off_period": "2016-07-01 12:34:45",
 		"active": False,
+		"label": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

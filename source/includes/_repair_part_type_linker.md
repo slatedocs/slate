@@ -8,7 +8,8 @@ Field | Description
 ------:|:------------
 __repair_part_type_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each repair_part_type_linker.
 __<a href="/#repair">repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__<a href="/#old-part-type">old_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#old-part-type">old_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#new-part">new_part_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#new-part-type">new_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __requested_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __replaced_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
@@ -34,6 +35,7 @@ Relationship | Description
     data = json.dumps({
 		"repair_id": 1,
 		"old_part_type_id": 1,
+		"new_part_id": 1,
 		"new_part_type_id": 1,
 		"requested_date": "2000-01-01 00:00:00",
 		"replaced_date": "2000-01-01 00:00:00",
@@ -52,6 +54,7 @@ Relationship | Description
 		"repair_part_type_linker_id": 1
 		"repair_id": 1,
 		"old_part_type_id": 1,
+		"new_part_id": 1,
 		"new_part_type_id": 1,
 		"requested_date": "2000-01-01 00:00:00",
 		"replaced_date": "2000-01-01 00:00:00",
@@ -62,7 +65,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `repair_part_type_linker` created by specifying its `repair_part_type_linker_id` in the request url:
+> We can retrieve the `repair_part_type_linker` created by specifying its `repair_part_type_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/repair_part_type_linker/1'
@@ -78,6 +81,7 @@ Relationship | Description
 		"repair_part_type_linker_id": 1
 		"repair_id": 1,
 		"old_part_type_id": 1,
+		"new_part_id": 1,
 		"new_part_type_id": 1,
 		"requested_date": "2000-01-01 00:00:00",
 		"replaced_date": "2000-01-01 00:00:00",
@@ -121,6 +125,7 @@ Relationship | Description
     data = json.dumps({
 		"repair_id": 2,
 		"old_part_type_id": 2,
+		"new_part_id": 2,
 		"new_part_type_id": 2,
 		"requested_date": "2016-07-01 12:34:45",
 		"replaced_date": "2016-07-01 12:34:45",
@@ -138,6 +143,7 @@ Relationship | Description
 		"repair_part_type_linker_id": 1
 		"repair_id": 2,
 		"old_part_type_id": 2,
+		"new_part_id": 2,
 		"new_part_type_id": 2,
 		"requested_date": "2016-07-01 12:34:45",
 		"replaced_date": "2016-07-01 12:34:45",

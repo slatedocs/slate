@@ -61,7 +61,7 @@ __shops__ | The associated shops
 	}
 ```
 
-    > We can retrieve the `hub` created by specifying its `hub_id` in the request url:
+> We can retrieve the `hub` created by specifying its `hub_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/hubs/1'

@@ -50,7 +50,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `action_type_product_type_linker` created by specifying its `action_type_product_type_linker_id` in the request url:
+> We can retrieve the `action_type_product_type_linker` created by specifying its `action_type_product_type_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/action_type_product_type_linker/1'

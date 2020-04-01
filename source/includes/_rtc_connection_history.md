@@ -1,5 +1,5 @@
 ## <u>Rtc Connection History</u>
-Contains a history of RTC messages sent to each unit.
+Contains a history of each RTC unit's connection status changes
 
 
 ### <u>The rtc_connection_history object</u>
@@ -8,9 +8,9 @@ Field | Description
 ------:|:------------
 __rtc_connection_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each rtc_connection_history.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__connection_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["offline", "online"]</font>
+__connection_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["online", "offline"]</font>
 __connection_status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
-__connection_status_reason__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["low-battery-voltage", "sleep-mode", "unknown", "user-request", "inactivity", "message-received"]</font>
+__connection_status_reason__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["message-received", "sleep-mode", "unknown", "inactivity", "user-request", "low-battery-voltage"]</font>
 __connection_status_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __latest_message_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at

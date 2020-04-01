@@ -56,7 +56,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `analysis_history` created by specifying its `analysis_history_id` in the request url:
+> We can retrieve the `analysis_history` created by specifying its `analysis_history_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/analysis_history/1'

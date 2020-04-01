@@ -9,9 +9,9 @@ Field | Description
 __rtc_message_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each rtc_message_history.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __message_reference__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__message__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__message_bin__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __message_sent_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
-__delivery_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["failed", "delivered"]</font>
+__delivery_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["delivered", "failed"]</font>
 __delivery_status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __delivery_status_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __message_json__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 

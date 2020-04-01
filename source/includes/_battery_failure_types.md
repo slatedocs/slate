@@ -51,7 +51,7 @@ __failure_type_linkers__ | The associated failure_type_linkers
 	}
 ```
 
-    > We can retrieve the `battery_failure_type` created by specifying its `battery_failure_type_id` in the request url:
+> We can retrieve the `battery_failure_type` created by specifying its `battery_failure_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/battery_failure_types/1'

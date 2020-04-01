@@ -14,7 +14,10 @@ __measured_battery_capacity__ <br><font color="DarkGray">_float_</font> <font co
 __process__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["Repair and Return", "Replaced", "Repossessed", "Broken on Arrival"]</font>
 __pending_status__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 
 __workflow_name__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__workflow_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__workflow_state_id__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__context__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
+__latest_workflow_event_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
+__outcome__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -46,7 +49,10 @@ __battery_failure__ | The associated battery_failure
 		"process": "test",
 		"pending_status": True,
 		"workflow_name": "test",
-		"workflow_state": "test",
+		"workflow_state_id": "test",
+		"context": Unknown column type,
+		"latest_workflow_event_id": 1,
+		"outcome": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -66,14 +72,17 @@ __battery_failure__ | The associated battery_failure
 		"process": "test",
 		"pending_status": True,
 		"workflow_name": "test",
-		"workflow_state": "test",
+		"workflow_state_id": "test",
+		"context": Unknown column type,
+		"latest_workflow_event_id": 1,
+		"outcome": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `repair` created by specifying its `repair_id` in the request url:
+> We can retrieve the `repair` created by specifying its `repair_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/repairs/1'
@@ -94,7 +103,10 @@ __battery_failure__ | The associated battery_failure
 		"process": "test",
 		"pending_status": True,
 		"workflow_name": "test",
-		"workflow_state": "test",
+		"workflow_state_id": "test",
+		"context": Unknown column type,
+		"latest_workflow_event_id": 1,
+		"outcome": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -139,7 +151,10 @@ __battery_failure__ | The associated battery_failure
 		"process": "changed",
 		"pending_status": False,
 		"workflow_name": "changed",
-		"workflow_state": "changed",
+		"workflow_state_id": "changed",
+		"context": Unknown column type,
+		"latest_workflow_event_id": 2,
+		"outcome": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -158,7 +173,10 @@ __battery_failure__ | The associated battery_failure
 		"process": "changed",
 		"pending_status": False,
 		"workflow_name": "changed",
-		"workflow_state": "changed",
+		"workflow_state_id": "changed",
+		"context": Unknown column type,
+		"latest_workflow_event_id": 2,
+		"outcome": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

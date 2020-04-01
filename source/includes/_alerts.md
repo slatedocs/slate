@@ -16,7 +16,7 @@ __dismissal_reason__ <br><font color="DarkGray">_string_</font> <font color="Cri
 __<a href="/#repair">repair_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __extra_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __customer_contact_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__customer_contact_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["phone", "sms"]</font>
+__customer_contact_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["sms", "visit", "phone"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -74,7 +74,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `alert` created by specifying its `alert_id` in the request url:
+> We can retrieve the `alert` created by specifying its `alert_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/alerts/1'

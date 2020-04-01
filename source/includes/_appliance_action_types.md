@@ -52,7 +52,7 @@ __repair_action_type_linker__ | The associated repair_action_type_linker
 	}
 ```
 
-    > We can retrieve the `appliance_action_type` created by specifying its `appliance_action_type_id` in the request url:
+> We can retrieve the `appliance_action_type` created by specifying its `appliance_action_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/appliance_action_types/1'

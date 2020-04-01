@@ -8,8 +8,9 @@ Field | Description
 ------:|:------------
 __product_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_type.
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
-__erp_code__ <br><font color="DarkGray">_varchar(6)_</font> <font color="Crimson"></font> | 
+__erp_code__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
+__credit_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["gas", "time"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -37,8 +38,9 @@ __part_type_replacements__ | The associated part_type_replacements
     url = "https://smartapi.bboxx.co.uk/v1/product_types"
     data = json.dumps({
 		"name": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"parameter_types": [1,2,3],
+		"credit_type": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -52,15 +54,16 @@ __part_type_replacements__ | The associated part_type_replacements
     >>> {
 		"product_type_id": 1
 		"name": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"parameter_types": [1,2,3],
+		"credit_type": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `product_type` created by specifying its `product_type_id` in the request url:
+> We can retrieve the `product_type` created by specifying its `product_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/product_types/1'
@@ -75,8 +78,9 @@ __part_type_replacements__ | The associated part_type_replacements
     >>> {
 		"product_type_id": 1
 		"name": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"parameter_types": [1,2,3],
+		"credit_type": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -115,8 +119,9 @@ __part_type_replacements__ | The associated part_type_replacements
     url = 'https://smartapi.bboxx.co.uk/v1/product_types/1'
     data = json.dumps({
 		"name": "changed",
-		"erp_code": YY9999,
+		"erp_code": Unknown column type,
 		"parameter_types": [1,2,3,4,5,6],
+		"credit_type": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -129,8 +134,9 @@ __part_type_replacements__ | The associated part_type_replacements
     >>> {
 		"product_type_id": 1
 		"name": "changed",
-		"erp_code": YY9999,
+		"erp_code": Unknown column type,
 		"parameter_types": [1,2,3,4,5,6],
+		"credit_type": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

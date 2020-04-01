@@ -48,7 +48,7 @@ __part_types__ | The associated part_types
 	}
 ```
 
-    > We can retrieve the `part_type_category` created by specifying its `part_type_category_id` in the request url:
+> We can retrieve the `part_type_category` created by specifying its `part_type_category_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/part_type_categories/1'

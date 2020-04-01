@@ -8,8 +8,8 @@ Field | Description
 ------:|:------------
 __parameter_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each parameter_type.
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
-__data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["int", "float", "bool", "string", "datetime"]</font>
-__validation_rules__ <br><font color="DarkGray">_json_</font> <font color="Crimson"></font> | 
+__data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["datetime", "bool", "int", "float", "string"]</font>
+__validation_rules__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __units__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __repeatable__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
@@ -24,7 +24,6 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __product_parameters__ | The associated product_parameters
-__part_parameters__ | The associated part_parameters
 
 
 <hr>
@@ -37,7 +36,7 @@ __part_parameters__ | The associated part_parameters
     data = json.dumps({
 		"name": "test",
 		"data_type": "test",
-		"validation_rules": {},
+		"validation_rules": Unknown column type,
 		"description": "test",
 		"units": "test",
 		"repeatable": True,
@@ -56,7 +55,7 @@ __part_parameters__ | The associated part_parameters
 		"parameter_type_id": 1
 		"name": "test",
 		"data_type": "test",
-		"validation_rules": {},
+		"validation_rules": Unknown column type,
 		"description": "test",
 		"units": "test",
 		"repeatable": True,
@@ -67,7 +66,7 @@ __part_parameters__ | The associated part_parameters
 	}
 ```
 
-    > We can retrieve the `parameter_type` created by specifying its `parameter_type_id` in the request url:
+> We can retrieve the `parameter_type` created by specifying its `parameter_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/parameter_types/1'
@@ -83,7 +82,7 @@ __part_parameters__ | The associated part_parameters
 		"parameter_type_id": 1
 		"name": "test",
 		"data_type": "test",
-		"validation_rules": {},
+		"validation_rules": Unknown column type,
 		"description": "test",
 		"units": "test",
 		"repeatable": True,
@@ -127,7 +126,7 @@ __part_parameters__ | The associated part_parameters
     data = json.dumps({
 		"name": "changed",
 		"data_type": "changed",
-		"validation_rules": {},
+		"validation_rules": Unknown column type,
 		"description": "changed",
 		"units": "changed",
 		"repeatable": False,
@@ -145,7 +144,7 @@ __part_parameters__ | The associated part_parameters
 		"parameter_type_id": 1
 		"name": "changed",
 		"data_type": "changed",
-		"validation_rules": {},
+		"validation_rules": Unknown column type,
 		"description": "changed",
 		"units": "changed",
 		"repeatable": False,

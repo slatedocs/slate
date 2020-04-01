@@ -50,7 +50,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `alert_type_entity_anti_linker` created by specifying its `alert_type_entity_anti_linker_id` in the request url:
+> We can retrieve the `alert_type_entity_anti_linker` created by specifying its `alert_type_entity_anti_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/alert_type_entity_anti_linker/1'

@@ -12,18 +12,14 @@ includes:
   - introduction
 
   - schema
-  - action_type_product_type_linker
   - action_types
-  - alert_type_anomaly_type_linker
+  - action_type_product_type_linker
+  - alerts
+  - alert_types
   - alert_type_entity_anti_linker
   - alert_type_product_type_linker
   - alert_type_state_type_linker
-  - alert_types
-  - alerts
   - analysis_history
-  - anomalies
-  - anomaly_type_product_type_linker
-  - anomaly_types
   - appliance_action_type_appliance_type_linker
   - appliance_action_types
   - appliance_part_type_replacement_linker
@@ -32,64 +28,73 @@ includes:
   - appliance_repair_appliance_part_type_linker
   - appliance_repair_appliance_symptom_linker
   - appliance_repairs
+  - appliances
   - appliance_symptom_appliance_type_linker
   - appliance_symptoms
   - appliance_types
-  - appliances
+  - balances
   - battery_failure_battery_failure_type_linker
-  - battery_failure_types
   - battery_failures
+  - battery_failure_types
+  - battery_test_results
   - channels
   - connections
-  - customer_entity_linker
-  - customer_product_history
-  - customers
-  - duration_payment_tokens
+  - default_energy_limits
   - enable_history
   - entities
+  - factory_logs
+  - final_balances
+  - home2_stock_preparation_trackings
   - hubs
+  - influx_shard_datas
   - latest_softwares
   - networks
-  - parameter_types
   - parameters
-  - part_parameters
+  - parameter_types
   - part_product_linker
+  - parts
   - part_type_categories
   - part_type_product_type_linker
   - part_type_replacement_linker
   - part_types
-  - parts
-  - product_entity_linker
+  - payment_commands
   - product_notes
   - product_parameters
-  - product_software_linker
-  - product_type_software_version_type_linker
-  - product_types
+  - product_parts
+  - product_product_group_linker
   - products
+  - product_software_linker
+  - product_types
+  - product_type_software_version_type_linker
   - repair_action_type_linker
   - repair_part_type_linker
+  - repair_product_linker
+  - repairs
   - repair_symptom_type_linker
   - repair_workflow_events
-  - repairs
+  - repair_workflow_history
+  - repair_workflow_states
   - rtc_connection_history
+  - rtc_dead_letter
   - rtc_dead_letters
+  - rtc_fallback_message_history
   - rtc_message_history
+  - rtc_mo_message_history
   - serials
   - shops
   - sim_part_type_sim_provider_linker
   - sim_provider_network_linker
   - sim_providers
-  - sms_history
+  - sms_histories
   - software_version_types
-  - state_types
   - states
+  - state_types
   - subscribers
   - symptom_type_product_type_linker
   - symptom_types
-  - tamper_enable_history
-  - test_jig_test_result
-  - test_jig_entity_linker
   - test_bench_entity_linker
+  - test_jig_entity_linker
+  - test_jig_test_results
   - usb_diag_tool_entity_linker
 
   - product_actions
@@ -137,7 +142,7 @@ includes:
   - list_current_states
   - irt_input_specifications
   - irt_event_specifications
-  
+
   - rtc_dead_letter_actions
   - rtc_import_mo_dead_letters
   - rtc_import_mt_reply_dead_letters

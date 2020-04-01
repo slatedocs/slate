@@ -47,7 +47,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `sim_provider` created by specifying its `sim_provider_id` in the request url:
+> We can retrieve the `sim_provider` created by specifying its `sim_provider_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/sim_providers/1'

@@ -11,6 +11,7 @@ __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-n
 __bboxx_company_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __tariff__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __financier__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 
+__geic__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(unique)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -22,6 +23,7 @@ Relationship | Description
 -------------:|:------------
 __hubs__ | The associated hubs
 __product_entity_linker__ | The associated product_entity_linker
+__battery_type_energy_limits__ | The associated battery_type_energy_limits
 
 
 <hr>
@@ -36,6 +38,7 @@ __product_entity_linker__ | The associated product_entity_linker
 		"bboxx_company_flag": True,
 		"tariff": "test",
 		"financier": True,
+		"geic": "test",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -52,13 +55,14 @@ __product_entity_linker__ | The associated product_entity_linker
 		"bboxx_company_flag": True,
 		"tariff": "test",
 		"financier": True,
+		"geic": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `entity` created by specifying its `entity_id` in the request url:
+> We can retrieve the `entity` created by specifying its `entity_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/entities/1'
@@ -76,6 +80,7 @@ __product_entity_linker__ | The associated product_entity_linker
 		"bboxx_company_flag": True,
 		"tariff": "test",
 		"financier": True,
+		"geic": "test",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -117,6 +122,7 @@ __product_entity_linker__ | The associated product_entity_linker
 		"bboxx_company_flag": False,
 		"tariff": "changed",
 		"financier": False,
+		"geic": "changed",
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -132,6 +138,7 @@ __product_entity_linker__ | The associated product_entity_linker
 		"bboxx_company_flag": False,
 		"tariff": "changed",
 		"financier": False,
+		"geic": "changed",
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

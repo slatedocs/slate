@@ -50,7 +50,7 @@ Relationship | Description
 	}
 ```
 
-    > We can retrieve the `battery_failure_battery_failure_type_linker` created by specifying its `battery_failure_battery_failure_type_linker_id` in the request url:
+> We can retrieve the `battery_failure_battery_failure_type_linker` created by specifying its `battery_failure_battery_failure_type_linker_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/battery_failure_battery_failure_type_linker/1'

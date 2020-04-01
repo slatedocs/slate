@@ -1,5 +1,5 @@
 ## <u>Product</u>
-Lists the products in the SMARTSolar System
+Lists all the products in the SMARTSolar Backend.
 
 
 ### <u>The product object</u>
@@ -8,7 +8,6 @@ Field | Description
 ------:|:------------
 __product_imei__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">__(primary key)__</font> | 
 __analysis_timestamp__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__capacity_limit__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __current_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __desired_enable_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
 __disable_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
@@ -19,16 +18,20 @@ __iccid__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"
 __latest_connection_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latest_connection_location_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __<a href="/#latest-state">latest_state_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
+__<a href="/#latest-enable-history">latest_enable_history_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#product-type">product_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __serial_number__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
 __<a href="/#shop">shop_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
 __<a href="/#software-l">software_lock</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(foreign-key)</font> | 
-__rtc_network_name__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["Test-SIM-Provider", "Aeris", "Wireless-Logic"]</font>
+__rtc_network_name__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["Wireless-Logic", "Test-SIM-Provider", "Aeris", "Eseye"]</font>
 __ip_address__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson"></font> | 
 __latest_rtc_connection_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson"></font> | 
 __latest_rtc_mo_status_report_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __latest_rtc_mt_status_update_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __rtc_enabled_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__assembler__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
+__gps_lat__ <br><font color="DarkGray">_float_</font> <font color="Crimson"></font> | 
+__gps_lon__ <br><font color="DarkGray">_float_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -41,6 +44,7 @@ Relationship | Description
 __connections__ | The associated connections
 __notes__ | The associated notes
 __part_product_linker__ | The associated part_product_linker
+__product_product_group_linker__ | The associated product_product_group_linker
 __product_entity_linker__ | The associated product_entity_linker
 __product_software_linker__ | The associated product_software_linker
 __enable_history_rel__ | The associated enable_history_rel
@@ -52,6 +56,10 @@ __analysis_histories__ | The associated analysis_histories
 __rtc_message_history__ | The associated rtc_message_history
 __rtc_connection_history__ | The associated rtc_connection_history
 __battery_failure__ | The associated battery_failure
+__migration_history__ | The associated migration_history
+__payment_command__ | The associated payment_command
+__balance__ | The associated balance
+__final_balance__ | The associated final_balance
 
 
 <hr>
@@ -74,7 +82,6 @@ __battery_failure__ | The associated battery_failure
     >>> {
 		"product_imei": 1
 		"analysis_timestamp": "2000-01-01 00:00:00",
-		"capacity_limit": "test",
 		"current_enable_flag": True,
 		"desired_enable_flag": True,
 		"disable_date": "2000-01-01 00:00:00",
@@ -85,6 +92,7 @@ __battery_failure__ | The associated battery_failure
 		"latest_connection_id": 1,
 		"latest_connection_location_id": 1,
 		"latest_state_id": 1,
+		"latest_enable_history_id": 1,
 		"product_type_id": 1,
 		"serial_number": "test",
 		"shop_id": 1,
@@ -95,6 +103,9 @@ __battery_failure__ | The associated battery_failure
 		"latest_rtc_mo_status_report_time": "2000-01-01 00:00:00",
 		"latest_rtc_mt_status_update_time": "2000-01-01 00:00:00",
 		"rtc_enabled_flag": True,
+		"assembler": "test",
+		"gps_lat": 1.0,
+		"gps_lon": 1.0,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -133,7 +144,6 @@ __battery_failure__ | The associated battery_failure
     url = 'https://smartapi.bboxx.co.uk/v1/products/1'
     data = json.dumps({
 		"analysis_timestamp": "2016-07-01 12:34:45",
-		"capacity_limit": "changed",
 		"current_enable_flag": False,
 		"desired_enable_flag": False,
 		"disable_date": "2016-07-01 12:34:45",
@@ -144,6 +154,7 @@ __battery_failure__ | The associated battery_failure
 		"latest_connection_id": 2,
 		"latest_connection_location_id": 2,
 		"latest_state_id": 2,
+		"latest_enable_history_id": 2,
 		"product_type_id": 2,
 		"serial_number": "changed",
 		"shop_id": 2,
@@ -154,6 +165,9 @@ __battery_failure__ | The associated battery_failure
 		"latest_rtc_mo_status_report_time": "2016-07-01 12:34:45",
 		"latest_rtc_mt_status_update_time": "2016-07-01 12:34:45",
 		"rtc_enabled_flag": False,
+		"assembler": "changed",
+		"gps_lat": 2.0,
+		"gps_lon": 2.0,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -166,7 +180,6 @@ __battery_failure__ | The associated battery_failure
     >>> {
 		"product_imei": 1
 		"analysis_timestamp": "2016-07-01 12:34:45",
-		"capacity_limit": "changed",
 		"current_enable_flag": False,
 		"desired_enable_flag": False,
 		"disable_date": "2016-07-01 12:34:45",
@@ -177,6 +190,7 @@ __battery_failure__ | The associated battery_failure
 		"latest_connection_id": 2,
 		"latest_connection_location_id": 2,
 		"latest_state_id": 2,
+		"latest_enable_history_id": 2,
 		"product_type_id": 2,
 		"serial_number": "changed",
 		"shop_id": 2,
@@ -187,6 +201,9 @@ __battery_failure__ | The associated battery_failure
 		"latest_rtc_mo_status_report_time": "2016-07-01 12:34:45",
 		"latest_rtc_mt_status_update_time": "2016-07-01 12:34:45",
 		"rtc_enabled_flag": False,
+		"assembler": "changed",
+		"gps_lat": 2.0,
+		"gps_lon": 2.0,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

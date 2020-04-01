@@ -8,8 +8,8 @@ Field | Description
 ------:|:------------
 __enable_history_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each enable_history.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__prev_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["pending_enabled", "pending_disabled", "init", "enabled", "disabled"]</font>
-__current_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["pending_enabled", "pending_disabled", "init", "enabled", "disabled"]</font>
+__prev_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["pending_disabled", "pending_enabled", "disabled", "init", "enabled"]</font>
+__current_enable_state__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["pending_disabled", "pending_enabled", "disabled", "init", "enabled"]</font>
 __user__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at

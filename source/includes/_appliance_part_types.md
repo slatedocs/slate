@@ -9,7 +9,7 @@ Field | Description
 __appliance_part_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each appliance_part_type.
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
-__erp_code__ <br><font color="DarkGray">_varchar(6)_</font> <font color="Crimson"></font> | 
+__erp_code__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -32,7 +32,7 @@ __appliance_repair_appliance_type_linker__ | The associated appliance_repair_app
     data = json.dumps({
 		"name": "test",
 		"description": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -47,14 +47,14 @@ __appliance_repair_appliance_type_linker__ | The associated appliance_repair_app
 		"appliance_part_type_id": 1
 		"name": "test",
 		"description": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `appliance_part_type` created by specifying its `appliance_part_type_id` in the request url:
+> We can retrieve the `appliance_part_type` created by specifying its `appliance_part_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/appliance_part_types/1'
@@ -70,7 +70,7 @@ __appliance_repair_appliance_type_linker__ | The associated appliance_repair_app
 		"appliance_part_type_id": 1
 		"name": "test",
 		"description": "test",
-		"erp_code": "XX0001",
+		"erp_code": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -110,7 +110,7 @@ __appliance_repair_appliance_type_linker__ | The associated appliance_repair_app
     data = json.dumps({
 		"name": "changed",
 		"description": "changed",
-		"erp_code": YY9999,
+		"erp_code": Unknown column type,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -124,7 +124,7 @@ __appliance_repair_appliance_type_linker__ | The associated appliance_repair_app
 		"appliance_part_type_id": 1
 		"name": "changed",
 		"description": "changed",
-		"erp_code": YY9999,
+		"erp_code": Unknown column type,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

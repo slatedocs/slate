@@ -51,7 +51,7 @@ __appliance_repairs__ | The associated appliance_repairs
 	}
 ```
 
-    > We can retrieve the `appliance` created by specifying its `appliance_id` in the request url:
+> We can retrieve the `appliance` created by specifying its `appliance_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/appliances/1'

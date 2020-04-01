@@ -7,12 +7,12 @@ Contains details of the parameter settings of every product.
 Field | Description
 ------:|:------------
 __product_parameter_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_parameter.
+__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__<a href="/#parameter-type">parameter_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["pending", "active", "expired", "removed"]</font>
 __value__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
-__<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["active", "removed", "expired", "pending"]</font>
-__<a href="/#parameter-type">parameter_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -32,12 +32,12 @@ Relationship | Description
 ```python
     url = "https://smartapi.bboxx.co.uk/v1/product_parameters"
     data = json.dumps({
+		"product_imei": "000000000000000",
+		"parameter_type_id": 1,
+		"status": "test",
 		"value": "test",
 		"date_added": "2000-01-01 00:00:00",
 		"date_removed": "2000-01-01 00:00:00",
-		"product_imei": "000000000000000",
-		"status": "test",
-		"parameter_type_id": 1,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -50,19 +50,19 @@ Relationship | Description
 
     >>> {
 		"product_parameter_id": 1
+		"product_imei": "000000000000000",
+		"parameter_type_id": 1,
+		"status": "test",
 		"value": "test",
 		"date_added": "2000-01-01 00:00:00",
 		"date_removed": "2000-01-01 00:00:00",
-		"product_imei": "000000000000000",
-		"status": "test",
-		"parameter_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
 	}
 ```
 
-    > We can retrieve the `product_parameter` created by specifying its `product_parameter_id` in the request url:
+> We can retrieve the `product_parameter` created by specifying its `product_parameter_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/product_parameters/1'
@@ -76,12 +76,12 @@ Relationship | Description
     r.json()
     >>> {
 		"product_parameter_id": 1
+		"product_imei": "000000000000000",
+		"parameter_type_id": 1,
+		"status": "test",
 		"value": "test",
 		"date_added": "2000-01-01 00:00:00",
 		"date_removed": "2000-01-01 00:00:00",
-		"product_imei": "000000000000000",
-		"status": "test",
-		"parameter_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": None
@@ -119,12 +119,12 @@ Relationship | Description
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/product_parameters/1'
     data = json.dumps({
+		"product_imei": "999999999999999",
+		"parameter_type_id": 2,
+		"status": "changed",
 		"value": "changed",
 		"date_added": "2016-07-01 12:34:45",
 		"date_removed": "2016-07-01 12:34:45",
-		"product_imei": "999999999999999",
-		"status": "changed",
-		"parameter_type_id": 2,
 		})
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
@@ -136,12 +136,12 @@ Relationship | Description
     r.json()
     >>> {
 		"product_parameter_id": 1
+		"product_imei": "999999999999999",
+		"parameter_type_id": 2,
+		"status": "changed",
 		"value": "changed",
 		"date_added": "2016-07-01 12:34:45",
 		"date_removed": "2016-07-01 12:34:45",
-		"product_imei": "999999999999999",
-		"status": "changed",
-		"parameter_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"
 		"created_by": "test.user@bboxx.co.uk"
 		"modified_at": 2016-07-07 12:34:45

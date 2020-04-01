@@ -19,6 +19,7 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __states__ | The associated states
+__energy_limit_states__ | The associated energy_limit_states
 
 
 <hr>
@@ -51,7 +52,7 @@ __states__ | The associated states
 	}
 ```
 
-    > We can retrieve the `state_type` created by specifying its `state_type_id` in the request url:
+> We can retrieve the `state_type` created by specifying its `state_type_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/state_types/1'

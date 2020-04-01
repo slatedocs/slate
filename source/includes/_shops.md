@@ -60,7 +60,7 @@ __products__ | The associated products
 	}
 ```
 
-    > We can retrieve the `shop` created by specifying its `shop_id` in the request url:
+> We can retrieve the `shop` created by specifying its `shop_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/shops/1'

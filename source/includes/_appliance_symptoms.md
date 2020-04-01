@@ -52,7 +52,7 @@ __appliance_repair_appliance_symptom_linker__ | The associated appliance_repair_
 	}
 ```
 
-    > We can retrieve the `appliance_symptom` created by specifying its `appliance_symptom_id` in the request url:
+> We can retrieve the `appliance_symptom` created by specifying its `appliance_symptom_id` in the request url:
 
 ```python
     url = 'https://smartapi.bboxx.co.uk/v1/appliance_symptoms/1'
