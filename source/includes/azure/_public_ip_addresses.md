@@ -98,3 +98,18 @@ Attributes | &nbsp;
 `fqn` <br/>*string* | The fqdn which points to the public IP.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
 `ipVersion` <br/>*string* |  IP version of the public IP address. Possible values: `IPV4`, `IPV6`.
+
+
+<!-------------------- DELETE A PUBLIC IP -------------------->
+
+#### Delete a public IP address
+
+```shell 
+curl --request DELETE \
+  --url http://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip \
+  --header 'mc-api-key: your_api_key'
+  ```
+
+  <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
+
+  Delete an existing public IP address
