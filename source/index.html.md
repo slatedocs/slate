@@ -517,6 +517,32 @@ Responds to `GET` requests to `/v1/screening/recordings` and returns an array of
 
 `start` The cursor used to return recordings after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
 
+## Set QT Analysis Measurements
+
+> Example Request
+
+```shell
+curl --request POST https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a/qt \
+ -u 7863674b-1919-432b-90d5-838fb8207d3f: \
+ --header 'Content-Type: application/json' \
+ --data '{"qt": 1.45,"rr": 1.21,"qtcb": -5.12,"qtcf": 145}'
+```
+
+> Example Response
+
+```json
+{
+    "recordingID": "3wde1eem9vy4y1a0rv3y98u2a",
+    "qt": 1.45,
+    "rr": 1.21,
+    "qtcb": -5.12,
+    "qtcf": 145,
+    "measurementID": "IOyFM8PTUW7DEw2UAircc1pfvsh2rxdd"
+}
+```
+
+Responds to `POST` requests to `/v1/recordings/:recordingId/qt` and returns the created qt measurement object.
+
 ## Recordings Object
 
 Name        | Type    | Description
@@ -527,6 +553,8 @@ pageInfo    | object  | Pagination information
 startCursor | string  | The cursor for the first recording in the page
 endCursor   | string  | the cursor for the last recording in the page
 hasNextPage | bool    | True if there is another page of data
+
+
 
 # Kardia Mobile Users
 
@@ -570,6 +598,17 @@ Webhooks are a system of automated notifications indicating that an event has oc
 * New recordings
 * Patient connections
 * Patient disconnects
+* New QT Analysis Requests
+
+The Kardia server will send a post to your set url with the following body:
+> Example Body
+
+```json
+{
+  "eventType":   "qtAnalysis",
+  "recordingId": "123recordingIDTest",
+}
+```
 
 ## Set callback URL
 
@@ -597,6 +636,43 @@ Lets you assign a callback URL for POST notifications. Make sure to assign a pub
 
 ```shell
 curl https://api.kardia.com/v1/callback \
+  -u YOUR-API-KEY:
+```
+
+> Example Response
+
+```json
+{
+  "url": "https://www.example.com/webhooks",
+}
+```
+
+## Set QT Analysis Callback URL
+
+> Example Request
+
+```shell
+curl -X PUT https://api.kardia.com/v1/qtCallback \
+  -u YOUR-API-KEY: \
+  -d url=https://www.example.com/webhooks
+```
+
+> Example Response
+
+```json
+{
+  "url": "https://www.example.com/webhooks",
+}
+```
+
+Lets you assign a callback URL for POST notifications. Make sure to assign a publicly accessible URL for your callback service. Responds to `PUT` requests to `/v1/qtCallback`.
+
+## Get QT Analysis Callback URL
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/qtCallback \
   -u YOUR-API-KEY:
 ```
 
