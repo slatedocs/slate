@@ -132,12 +132,14 @@ curl -X GET \
 
 Create a public IP address in a given [environment](#administration-environments)
 
-
-Attributes | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `name` <br/>*string* | The name of the public IP address.
 `region` <br/>*string* | The region where the public IP address is located.
+
+Optional | &nbsp;
+------- | -----------
 `sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`. Default value is `BASIC`.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`. Default value is `DYNAMIC` for SKU `BASIC`, and `STATIC` for SKU `STANDARD`.
 `idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes. Default value is 4 minutes.
-`domainName` <br/>*string* | The subdomain part of the fqdn. Optional.
+`domainName` <br/>*string* | The subdomain part of the fqdn.
