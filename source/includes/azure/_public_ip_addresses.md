@@ -26,6 +26,7 @@ curl -X GET \
       "domainName": "somepublicip",
       "fqdn": "somepublicip.eastus.cloudapp.azure.com",
       "sku": "BASIC",
+      "idleTimeout": 7,
       "allocationMethod": "DYNAMIC",
       "ipVersion": "IPV4"
     }
@@ -50,6 +51,7 @@ Attributes | &nbsp;
 `sku`  <br /> *string* | The sku of the public IP.
 `domainName` <br/>*string* | The subdomain part of the fqdn. This is only present if one is defined.
 `fqn` <br/>*string* | The fqdn which points to the public IP.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
 `ipVersion` <br/>*string* |  IP version of the public IP address. Possible values: `IPV4`, `IPV6`.
 
@@ -76,6 +78,7 @@ curl -X GET \
     "domainName": "somepublicip",
     "fqdn": "somepublicip.eastus.cloudapp.azure.com",
     "sku": "BASIC",
+    "idleTimeout": 7,
     "allocationMethod": "DYNAMIC",
     "ipVersion": "IPV4"
   }
@@ -96,5 +99,45 @@ Attributes | &nbsp;
 `sku`  <br /> *string* | The sku of the public IP.
 `domainName` <br/>*string* | The subdomain part of the fqdn. This is only present if one is defined.
 `fqn` <br/>*string* | The fqdn which points to the public IP.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
 `ipVersion` <br/>*string* |  IP version of the public IP address. Possible values: `IPV4`, `IPV6`.
+
+
+<!-------------------- CREATE A PUBLIC IP -------------------->
+
+#### Create a public ip address
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body"
+   "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses"
+
+# Request Example:
+```
+
+```json
+{
+	"name":"samplePublicIP",
+	"region" : "canadacentral",
+	"sku": "BASIC",
+	"allocationMethod" : "DYNAMIC",
+	"idleTimeout" : 30,
+	"domainName" : "samplePublicIP"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
+
+Create a public IP address in a given [environment](#administration-environments)
+
+
+Attributes | &nbsp;
+------- | -----------
+`name` <br/>*string* | The name of the public IP address.
+`region` <br/>*string* | The region where the public IP address is located.
+`sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`. Default value is `BASIC`.
+`allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`. Default value for SKU `BASIC` is `DYNAMIC` and `STATIC` for SKU `STANDARD`.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes. Default value is 4 minutes.
+`domainName` <br/>*string* | The subdomain part of the fqdn. Optional.
