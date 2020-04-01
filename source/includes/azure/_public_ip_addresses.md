@@ -47,7 +47,7 @@ Attributes | &nbsp;
 `state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`.
 `ipAddress` <br/>*string* | The IP address of the public IP. If the public IP has never been associated before, then you won't have an ip address yet.
 `region` <br/>*string* | The region where the public IP address is located.
-`sku`  <br /> *string* | The sku of the public IP.
+`sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`.
 `domainName` <br/>*string* | The subdomain part of the fqdn. This is only present if one is defined.
 `fqn` <br/>*string* | The fqdn which points to the public IP.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
@@ -93,7 +93,7 @@ Attributes | &nbsp;
 `state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`.
 `ipAddress` <br/>*string* | The IP address of the public IP. If the public IP has never been associated before, then you won't have an ip address yet.
 `region` <br/>*string* | The region where the public IP address is located.
-`sku`  <br /> *string* | The sku of the public IP.
+`sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`.
 `domainName` <br/>*string* | The subdomain part of the fqdn. This is only present if one is defined.
 `fqn` <br/>*string* | The fqdn which points to the public IP.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
