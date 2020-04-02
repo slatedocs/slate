@@ -128,7 +128,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses</code>
 
 Create a public IP address in a given [environment](#administration-environments)
 
