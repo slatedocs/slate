@@ -15,9 +15,45 @@ search: true
 
 # Introduction
 
--- Introduction --
+Welcome to the Factmata Moderation API!
 
-Welcome to the Factmata API!
+The API provides access to Factmata's Moderation - a risk scoring system. The system helps publishers and brands ensure they associate with safe inventory, and UGC platforms and publisher networks to flag more suspicious content for trust and safety teams. It enables avoiding unwanted ad placements, fines, user complaints, reputation damage and more. 
+
+The system provides provides a risk score based on a number of fine-grained models.
+
+
+## Models
+Id | Name | Description |
+-- | ---| -----| -
+8 |Political Bias | Detects strongly biased political language |
+7 |Hate speech | Detects demeaning and abusive language based on people's group identity |
+14 |Sexism | Detects demeaning and abusive language based on people's gender identity|
+11 |Racism |Detects demeaning and abusive language targeted towards a particular ethnicity| 
+20 |Toxicity | Detects language which insults, threatens, attacks any individual or group with the purpose of humiliating, degrading or excluding that person or group |
+22 |Obscenity | Detects obscene and profane language | 
+17 |Insult | Detects scornful remarks directed towards an individual |
+18 |Threat | Detects a wish or intention for pain, injury, or violence against an individual or group | 
+10 |Clickbait | Detects headlines which at the expense of being informative, are designed to entice readers into clicking the accompanying link| 
+
+
+Submitted content is scored by each of the models. The API does not allow to score content on just a selection of the available models.
+
+Model's scores range from 0.00 to 1.00 and represent model's confidence. The higher the score the bigger probability of the content being risky. The scores are not directly comparable between the individual models, i.e. 0.75 for hate speech does't have the same significance as 0.75 for clickbait. 
+
+Besides providing a score per each of the models, the API also returns a combined risk score. The score represents an overall risk level of the scored content and consists of a weighted average of all the individual scores.
+
+
+## Content type
+The system scores any type of textual content on the Internet: articles, blog posts, forum comments, etc. It works for text only and exclusively for English-language content (see the section 'Coming next' for other languages). 
+
+The API enables:
+- scoring URLs: provides risk score for an individual URL, e.g. https://www.bbc.co.uk/news/92170379
+- scoring domains: provides risk score for an entire domain, e.g. https://www.bbc.co.uk
+
+
+## Volume and latency
+The API can support up to 20,000 URLs a day.
+
 
 # Authorization
 
@@ -31,20 +67,20 @@ Do not share you API Key in publicly accessible platforms.
 
 Scoring URLs using Factmata API works in two steps:
 
-## 1. Submitting URL for scoring
+## Submitting URL for scoring
    
-    Before a URL can be scored, it needs to be scraped, and then scored by our model_names.
-    And hence the URL needs to be submitted first.
+    First, a URL needs to be submitted so the content can be scraped. The URL is scored by all the models in the Moderation pipeline once the content has been scraped.
+    
 
-## 2. Fetching the scores
+## Fetching the scores
 
     After the URL has been submitted, the results will be available in some time.
 
-    URL Scoring is complete when it has been scored by all model_names.
+    URL Scoring is completed when the text has been scored by all the models.
 
     During the time between submission and fetching, URL might already have 
-    been scored by some model_names, while some are still are processing. In this case,
-    the user has the option to fetch the partial scores.
+    been scored by some models, while some are still being processed. In such case,
+    the user has the option to fetch partial scores.
 
 
 ## Submit an URL for scoring
@@ -72,7 +108,7 @@ curl 'https://api.factmata.com/api/v0.1/score/url?url=https://example.com/page' 
   -H "x-api-key: API_KEY" 
 ```
 
-> When the URL is successfully submitted for processing, the following response is returned
+> When the URL is successfully submitted for processing, the following response is returned.
 
 ```json
 STATUS: 202
@@ -81,7 +117,7 @@ STATUS: 202
 {"answer": "Request Sent Successfully"}
 ```
 
-> If the URL is already being processed, the following response is returned
+> If the URL is already being processed, the following response is returned.
 
 ```json
 STATUS: 200
@@ -101,7 +137,7 @@ Parameter | Description
 url | A valid URL string. This parameter is `required`. In case the URL is malformed or absent, request is aborted with status `422`. If the URL has already been submitted for scoring, status `200` is returned.
 
 <aside class="notice">
-URL once submitted once, does not need to be submitted again
+URL once submitted once, does not need to be submitted again.
 </aside>
 
 <aside class="notice">
