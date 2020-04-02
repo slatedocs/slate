@@ -109,7 +109,7 @@ Attributes | &nbsp;
 #### Create a public ip address
 
 ```shell
-curl -X GET \
+curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses"
