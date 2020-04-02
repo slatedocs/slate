@@ -1,16 +1,20 @@
-FROM ruby:2.5.1
+FROM ruby:2.5-alpine
 
-RUN apt-get update && apt-get install -y nodejs \
-&& apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk --no-cache add \
+        g++ \
+        gcc \
+        libc-dev \
+        make \
+        nodejs \
+    && gem install bundler
 
-COPY ./Gemfile /usr/src/app/
-COPY ./Gemfile.lock /usr/src/app/
-WORKDIR /usr/src/app
+WORKDIR /srv/slate
+
+COPY . /srv/slate
 
 RUN bundle install
 
-COPY . /usr/src/app
-VOLUME /usr/src/app/source
+VOLUME /srv/slate/source
 
 EXPOSE 4567
 
