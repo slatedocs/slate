@@ -15,4 +15,5 @@ The different sections of the Documentation are as follows:
 * [RTC Dead Letter Actions](#rtc-dead-letter-actions) - Endpoints that can be used to perform actions on RTC Dead Letter messages. .
 * [Custom Endpoints](#custom-endpoints) - A listing of other endpoints available to a user not specifically relating to an individual product.
 * [Notifications (Webhooks)](#notifications-web-hooks) - Information of how to receive data and updates from the SMARTSolar API
+* [DCM](#dcm-device-credit-management) - Information about Device Credit Management
 * [Using the API](#using-the-api) - Information about the general use of the API including authentication, filtering and data formats.

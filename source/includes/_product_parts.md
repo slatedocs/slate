@@ -143,10 +143,19 @@ The format of the data returned by this endpoint is a dictionary where the keys 
 
 Where `{part_data}` is a dictionary as follows:
 
-<code>{         "part_id": { id },         "part_type_id": {type_id },         "serial_number": { serial },
-"part_product_linker": { linker dict }         "part_type": { part_type_dict }         "replacement_part_types": [ list-
-of-replacement-part_type-objects ]         "created_at": { timestamp },         "created_by": { user },
-"modified_at": { timestamp },   }</code>
+<code>
+{
+  "part_id": id
+  "part_type_id": type_id
+  "serial_number":serial,
+  "part_product_linker": linker dict
+  "part_type": part_type_dict
+  "replacement_part_types": [list-of-replacement-part_type-objects]
+  "created_at": timestamp
+  "created_by": user
+  "modified_at": timestamp
+}
+</code>
 
 You can see an example of the full object in the code snippet to the right.
 

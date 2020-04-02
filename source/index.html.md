@@ -159,6 +159,8 @@ includes:
   - dismiss_alert
   - pub_sub
 
+  - dcm
+
   - using_the_api
   - authentication_and_permissions
   - unit_connections
