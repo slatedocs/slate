@@ -137,7 +137,15 @@ This is fired whenever an investor's KYC status changes eg from `REFERRED` to `V
 ## INVESTOR_FUNDS_RECEIVED
 This is fired whenever investor funds are cleared into their account eg for a bank transfer.
 
-NOTE: The batch payments will not trigger this event but instead will trigger a `BATCH_UPDATE` event once all payments have been received. 
+<aside class="notice">
+If using the batch payments api this event will not trigger but instead a `BATCH_UPDATE` event will be generated once all payments have been received.
+</aside>
+
+<aside class="notice">
+If redirected = true, the accountType will reflect which account the money has been credited to. The intendedAccountType will
+contain details of where the investor wished to deposit. This scenario is most likely when depositing into an ISA and the ISA subscription
+status is preventing deposits.
+</aside>
 
 ```json
 {
@@ -152,6 +160,9 @@ NOTE: The batch payments will not trigger this event but instead will trigger a 
       "accountNumber": "string",
       "sortCode": "string"
   },
+  "accountType": "string",
+  "redirected": boolean
+  "intendedAccountType": "string",
   "accountType": "string",
   "sourceType": "string"
 }
