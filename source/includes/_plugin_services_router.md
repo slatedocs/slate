@@ -28,6 +28,6 @@ $url  = $view['router']->url('plugin_helloworld_admin'); // result is http://you
 
 * Service name: `router`
 * Class: `Symfony\Bundle\FrameworkBundle\Routing\Router`
-* Docs: [http://symfony.com/doc/2.8/book/routing.html#generating-urls](http://symfony.com/doc/2.8/book/routing.html#generating-urls)
+* Docs: [https://symfony.com/doc/2.8/routing.html#generating-urls](https://symfony.com/doc/2.8/routing.html#generating-urls)
 
 For views, use the `$view['router']` helper. The difference with the [template helper](#router-helper) is that `url()` or `path()` is used instead of `generateUrl()` of the `router` service.
