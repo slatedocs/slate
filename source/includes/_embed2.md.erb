@@ -1,0 +1,35 @@
+# Embed 2 API
+
+Embed 2 is a small JavaScript application that embeds your Ada Chat bot into your web page.
+
+## Audience
+
+This document is intended for bot specialists and developers with working knowledge of HTML. For some of the advanced setup, basic knowledge of JavaScript is required. The document also assumes you have a hosted web page that you have write access to.
+
+## Quick Start
+
+### 1. Turn on your bot
+The first step towards adding your Ada Chat Bot to your web page is to turn on the Web Chat integration in your Settings > Platforms page.
+
+<%= image_tag "images/turn-on-bot.png" %>
+
+### 2. Embed script
+
+```html
+<script
+  async
+  id="__ada"
+  data-handle="<YOUR-BOT-HANDLE>"
+  src="https://static.ada.support/embed2.js"
+></script>
+```
+> 💡 Be sure to replace `<YOUR-BOT-HANDLE>` with your own bot handle. It's usually the name of your company.
+
+Once you have your website all ready-to-go, find the page where you'd like to embed the Ada Chat bot. This will be a .html file (or equivalent). Here you will need to paste the following above the closing </body> tag. Be sure to replace the example data-handle with your own.
+
+### 3. That's it! 🎉
+You should now see a small question mark button on the bottom right corner of your page. Clicking the button will toggle the Web Chat in and out of view.
+
+[You can see see a working example here.](https://jsfiddle.net/avj0fdL3/)
+
+## API Reference
