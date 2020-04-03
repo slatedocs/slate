@@ -17,7 +17,6 @@ The first step towards adding your Ada Chat Bot to your web page is to turn on t
 
 ```html
 <script
-  async
   id="__ada"
   data-handle="<YOUR-BOT-HANDLE>"
   src="https://static.ada.support/embed2.js"
@@ -25,11 +24,21 @@ The first step towards adding your Ada Chat Bot to your web page is to turn on t
 ```
 > 💡 Be sure to replace `<YOUR-BOT-HANDLE>` with your own bot handle. It's usually the name of your company.
 
-Once you have your website all ready-to-go, find the page where you'd like to embed the Ada Chat bot. This will be a .html file (or equivalent). Here you will need to paste the following above the closing </body> tag. Be sure to replace the example data-handle with your own.
+Once you have your website all ready-to-go, find the page where you'd like to embed the Ada Chat bot. This will be a .html file (or equivalent). Here you will need to paste the following into the `<head>` tag.
 
 ### 3. That's it! 🎉
 You should now see a small question mark button on the bottom right corner of your page. Clicking the button will toggle the Web Chat in and out of view.
 
 [You can see see a working example here.](https://jsfiddle.net/avj0fdL3/)
 
+## Advanced Setup
+
+
+
 ## API Reference
+
+Embed 2 supports numerous settings and methods to help you customize the look and behaviour of your bot. Settings are set in the `adaSettings` object when you embed your script. They determine intrinsic properties like bot style and behaviour. Conversely, methods can be called at any point in time to toggle Chat, update user meta data, and more.
+
+### Settings
+
+### Mehtods
