@@ -98,9 +98,10 @@ final class HelloWorldEvents
 
 namespace MauticPlugin\HelloWorldBundle\Event;
 
+use Symfony\Component\EventDispatcher\Event;
 use MauticPlugin\HelloWorldBundle\Entity\World;
 
-class ArmageddonEvent 
+class ArmageddonEvent extends Event
 {
     /** @var World  */
     protected $world;
