@@ -1,0 +1,83 @@
+# Introduction
+
+This section contains basic concepts such as Authentication and Authorization.
+Eventtia 2.0 API is mostly compliant with the [JSON API v1.0 specification](http://jsonapi.org/).
+
+
+## Authentication via Username and Password
+
+> To authenticate, use this code:
+
+```shell
+# Get your token for further authorization
+curl "https://core.eventtia.com/v1/sessions" \
+  -H 'Content-Type: application/json' \
+  -X POST -d '{"email":"email@example.org", "password":"myPassword"}'
+```
+
+```javascript
+// Get your token for further authorization
+fetch("https://core.eventtia.com/v1/sessions", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: {
+    email: "email@example.org",
+    password: "myPassword"
+  }
+})
+```
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjbGFzcyI6IlVzZXIiLCJhdXRoZW50aWNhdGlvbl9rZXkiOiJ0ZXN0QGV2ZW50dGlhLmNvbSVyaSI6InRlc3QtZXZlbnQiLCJleHAiOjE1MjAzNTY1MDB9.s0m351gn4tuRe4sdF_qw3rTleleWh4TTTt35f1n4lLy"}
+```
+
+> Example of a 404 response:
+
+```http
+HTTP/1.1 404 Not Found
+{"message":"Incorrect email or password."}
+```
+
+You can get an authorization token for a User with this endpoint. Tokens issued by Eventtia are valid for 90 days.
+
+### HTTP Request
+
+`POST /v1/sessions`
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string | The User's email.
+password | string | The User's password.
+
+
+## Authorization
+
+> When you make a request to any protected endpoint, add the token in the Authorization header
+
+```shell
+# Send your token in the Authorization header
+curl "<api endpoint>" \
+  -H "Authorization: <your token>" \
+  ...
+```
+
+```javascript
+// Send your token in the Authorization header
+fetch("<api endpoint>", {
+  headers: {
+    'Authorization': '<your token>',
+  },
+  ...
+})
+```
+
+> Make sure you replace `<your token>` with the JWT you get when you authenticate.
+
+Eventtia uses JSON Web Tokens for authorization. Tokens issued by Eventtia are valid for 90 days.
