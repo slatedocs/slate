@@ -69,7 +69,7 @@ When SMARTSolar receives the <a href="#final-balance">FinalBalance</a> it will s
 Zero-ing is an asynchronous process. The initial response to the `zero-command` is immediate but the `FinalBalance` is updated in a separate message at a later time often much later.
 
 ### Voiding Commands
-After a `zero-command` (or `force-reset`) all previously `payment-commands` for a unit are set to `VOID=True`. This allows SMARTSolar to ignore these commands and treat the unit as though it has been completely reset without losing the history of the `payment_commands` that have been supplied. You can see which commands are `VOID` by accessing the `
+After a `zero-command` (or `force-reset`) all previous `payment-commands` for the unit have `VOID` set to `True`. This allows SMARTSolar to ignore these commands and treat the unit as though it has been completely reset without losing the history of the `payment_commands` that have been supplied. You can see which commands are `VOID` by accessing the `
 "void"` column (boolean) of the `payment_command` table.
 
 
