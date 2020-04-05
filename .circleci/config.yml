@@ -10,6 +10,7 @@ jobs:
     - run: sudo gem install bundler -v 1.15.4
     - run: bundle install
     - run: bundle exec middleman build --clean
+    - run: aws configure set s3.signature_version s3v4
     - run: aws s3 sync build/ s3://lumahealth-api-docs
 workflows:
   version: 2
