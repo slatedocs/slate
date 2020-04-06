@@ -150,10 +150,10 @@ Optional | &nbsp;
 #### Update a public ip address
 
 ```shell
-curl -X POST \
+curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
-   "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses//subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip?operation=update"
+   "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses//subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
 
 # Request Example:
 ```
@@ -166,12 +166,12 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id?operation=update</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
 Update a public IP address in a given [environment](#administration-environments)
 
 Attribute | &nbsp;
 ------- | -----------
-`allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`. Not providing will no change it.
-`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes. Not providing will keep the value.
+`allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`. Not providing it will keep the actual value. Cannot be change for Standard SKU public IP address.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes. Not providing it will keep the actual value.
 `domainName` <br/>*string* | The subdomain part of the fqdn. If it is empty or not provided, the entry will be removed from the DNS.
