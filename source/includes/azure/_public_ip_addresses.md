@@ -51,7 +51,7 @@ Attributes | &nbsp;
 `sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`.
 `domainName` <br/>*string* | The subdomain part of the fqdn. This is only present if one is defined.
 `fqn` <br/>*string* | The fqdn which points to the public IP.
-`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. It can be between 4 and 30 minutes.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
 `ipVersion` <br/>*string* |  IP version of the public IP address. Possible values: `IPV4`, `IPV6`.
 
@@ -99,7 +99,7 @@ Attributes | &nbsp;
 `sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`.
 `domainName` <br/>*string* | The subdomain part of the fqdn. This is only present if one is defined.
 `fqn` <br/>*string* | The fqdn which points to the public IP.
-`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. It can be between 4 and 30 minutes.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
 `ipVersion` <br/>*string* |  IP version of the public IP address. Possible values: `IPV4`, `IPV6`.
 
@@ -141,7 +141,7 @@ Optional | &nbsp;
 ------- | -----------
 `sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`. Default value is `BASIC`.
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`. Default value is `DYNAMIC` for SKU `BASIC`, and `STATIC` for SKU `STANDARD`.
-`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes. Default value is 4 minutes.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. It can be between 4 and 30 minutes. Default value is 4 minutes.
 `domainName` <br/>*string* | The subdomain part of the fqdn.
 
 
@@ -173,5 +173,5 @@ Update a public IP address in a given [environment](#administration-environments
 Attribute | &nbsp;
 ------- | -----------
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`. Not providing it will keep the actual value. Cannot be change for Standard SKU public IP address.
-`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes. Not providing it will keep the actual value.
+`idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. It can be between 4 and 30 minutes. Not providing it will keep the actual value.
 `domainName` <br/>*string* | The subdomain part of the fqdn. If it is empty or not provided, the entry will be removed from the DNS.
