@@ -106,7 +106,7 @@ Attributes | &nbsp;
 
 ```shell 
 curl --request DELETE \
-  --url http://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip \
+  --url http://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip \
   --header 'mc-api-key: your_api_key'
   ```
 
