@@ -110,6 +110,6 @@ curl --request DELETE \
   --header 'mc-api-key: your_api_key'
   ```
 
-  <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
-  Delete an existing public IP address
+Delete an existing public IP address.
