@@ -177,7 +177,7 @@ Contiene la información y el estado de la fase de autorización del comprobante
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- |-----------
 mensajes | listado de objeto [mensaje SRI](#mensajes-de-respuesta-sri) | Listado de mensajes.
-estado   | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`
+estado   | string | Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `PRE-AUTORIZADO`
 numero   | string | Número de autorización.
 fecha    | string | Fecha en la que se otorgó la autorización en formato AAAA-MM-DDHoraZonaHoraria, definido en el estándar [ISO8601](http://tools.ietf.org/html/rfc3339#section-5.6).
 

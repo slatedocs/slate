@@ -55,7 +55,7 @@ Parámetro    | Tipo    | Descripción
 ------------ | ------- | -----------
 id           | string  | El id del documento consultado
 tipo         | string  | Código que representa el tipo de documento. Revisa [aquí](#tipos-de-documentos) el código que corresponde a cada tipo de documento
-estado       | string  | Estado de autorización del comprobante. Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`
+estado       | string  | Estado de autorización del comprobante. Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`, `ERROR`
 clave_acceso | string  | Clave de acceso del documento.
 url_formato_impresion | url | Esta URL te permite acceder de manera directa al formato de impresión (RIDE) del comprobante
 url_documento_electronico | url | Esta URL te permite acceder de manera directa al documento electrónico (XML)
