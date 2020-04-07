@@ -196,7 +196,6 @@ Optional | &nbsp;
 `password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. The password is mandatory if the sshkey is not provided.
 `sshkey`<br/>*string* | The ssh key public portion that will be assigned to the user on the machine. This cannot be used for a Windows based OS.
 `publicIpAddressId`<br/>*string* | The fully qualified id of the public IP address to associate to the instance.
-"
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
