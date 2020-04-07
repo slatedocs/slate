@@ -1,5 +1,5 @@
 ---
-title: Delta Exchange Api
+title: Delta Exchange Api V2
 language_tabs:
   - python: Python
   - shell: Shell
@@ -20,7 +20,7 @@ REST API ENDPOINT URL
 - Production - https://api.delta.exchange
 - Testnet - https://testnet-api.delta.exchange
 
-<h1 id="delta-exchange-api-default">Default</h1>
+<h1 id="delta-exchange-api-v2-default">Default</h1>
 
 ## deprecated__orders_bracket
 
@@ -66,13 +66,74 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
-<h1 id="delta-exchange-api-assets">Assets</h1>
+## Get spot indices
+
+<a id="opIddelta-exchange-api-v2-v2Getspotindices"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Authorization': 'Bearer {token}'
+}
+
+r = requests.get('https://api.delta.exchange/v2/spot_indices', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/spot_indices \
+  -H 'Authorization: Bearer {token}'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Authorization' => 'Bearer {token}'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/spot_indices',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /v2/spot_indices`
+
+<h3 id="get-spot-indices-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|Authorization|header|string|false|none|
+
+<h3 id="get-spot-indices-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-assets">Assets</h1>
 
 Get Asset List
 
 ## Get list of all assets
 
-<a id="opIddelta-exchange-api-getAssets"></a>
+<a id="opIddelta-exchange-api-v2-getAssets"></a>
 
 > Code samples
 
@@ -139,23 +200,23 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
-<h1 id="delta-exchange-api-products">Products</h1>
+<h1 id="delta-exchange-api-v2-products">Products</h1>
 
-Get Product List, 24hr Ticker
+Get Product List
 
-## Get live products
+## Get futures products
 
-<a id="opIddelta-exchange-api-getProducts"></a>
+<a id="opIddelta-exchange-api-v2-Getfuturesproducts"></a>
 
 > Code samples
 
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Content-Type': 'string'
 }
 
-r = requests.get('https://api.delta.exchange/products', params={
+r = requests.get('https://api.delta.exchange/v2/products', params={
 
 }, headers = headers)
 
@@ -165,8 +226,8 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/products \
-  -H 'Accept: application/json'
+curl -X GET https://api.delta.exchange/v2/products \
+  -H 'Content-Type: string'
 
 ```
 
@@ -175,10 +236,10 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Content-Type' => 'string'
 }
 
-result = RestClient.get 'https://api.delta.exchange/products',
+result = RestClient.get 'https://api.delta.exchange/v2/products',
   params: {
   }, headers: headers
 
@@ -186,68 +247,21 @@ p JSON.parse(result)
 
 ```
 
-`GET /products`
+`GET v2/products`
 
-> Example responses
+Get live products
 
-> 200 Response
+<h3 id="get-futures-products-parameters">Parameters</h3>
 
-```json
-[
-  {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
-  }
-]
-```
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|Content-Type|header|string|true|none|
 
-<h3 id="get-live-products-responses">Responses</h3>
+<h3 id="get-futures-products-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live products|[ArrayOfProducts](#schemaarrayofproducts)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
 
 <aside class="success">
 This operation does not require authentication.
@@ -255,7 +269,7 @@ This operation does not require authentication.
 
 ## Get 24hr ticker
 
-<a id="opIddelta-exchange-api-get24hrTicker"></a>
+<a id="opIddelta-exchange-api-v2-get24hrTicker"></a>
 
 > Code samples
 
@@ -331,13 +345,13 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
-<h1 id="delta-exchange-api-orders">Orders</h1>
+<h1 id="delta-exchange-api-v2-orders">Orders</h1>
 
 Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage
 
 ## Place Order
 
-<a id="opIddelta-exchange-api-placeOrder"></a>
+<a id="opIddelta-exchange-api-v2-placeOrder"></a>
 
 > Code samples
 
@@ -523,7 +537,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Cancel Order
 
-<a id="opIddelta-exchange-api-cancelOrder"></a>
+<a id="opIddelta-exchange-api-v2-cancelOrder"></a>
 
 > Code samples
 
@@ -688,161 +702,9 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Get Orders
-
-<a id="opIddelta-exchange-api-getOrders"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/orders', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/orders \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/orders',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /orders`
-
-<h3 id="get-orders-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_id|query|integer|false|get orders for a particular product id|
-|state|query|string|false|get orders with a particular state|
-|stop_order_type|query|string|false|get stop orders with stop_order_type|
-|page_num|query|integer|false|page number for pagination|
-|page_size|query|integer|false|page size for pagination|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|state|open|
-|state|closed|
-|state|cancelled|
-|stop_order_type|stop_loss_order|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-]
-```
-
-<h3 id="get-orders-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of orders as per the query|[ArrayOfOrders](#schemaarrayoforders)|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
 ## Edit Order
 
-<a id="opIddelta-exchange-api-editOrder"></a>
+<a id="opIddelta-exchange-api-v2-editOrder"></a>
 
 > Code samples
 
@@ -1015,9 +877,74 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Get Orders - V2
+
+<a id="opIddelta-exchange-api-v2-getOrders"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Authorization': 'Bearer {token}'
+}
+
+r = requests.get('https://api.delta.exchange/v2/orders', params={
+  'user_id': '0',  'product_ids': 'string'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/orders?user_id=0&product_ids=string \
+  -H 'Authorization: Bearer {token}'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Authorization' => 'Bearer {token}'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/orders',
+  params: {
+  'user_id' => 'integer(int32)',
+'product_ids' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /v2/orders`
+
+<h3 id="get-orders---v2-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|Authorization|header|string|false|none|
+|user_id|query|integer(int32)|true|none|
+|product_ids|query|string|true|none|
+
+<h3 id="get-orders---v2-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
 ## Cancel all open orders
 
-<a id="opIddelta-exchange-api-cancelAllOrders"></a>
+<a id="opIddelta-exchange-api-v2-cancelAllOrders"></a>
 
 > Code samples
 
@@ -1124,7 +1051,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Place Bracket Order __DEPRECATED__
 
-<a id="opIddelta-exchange-api-placeBracketOrder"></a>
+<a id="opIddelta-exchange-api-v2-placeBracketOrder"></a>
 
 > Code samples
 
@@ -1360,7 +1287,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Create batch orders
 
-<a id="opIddelta-exchange-api-batchCreate"></a>
+<a id="opIddelta-exchange-api-v2-batchCreate"></a>
 
 > Code samples
 
@@ -1544,7 +1471,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Edit batch orders
 
-<a id="opIddelta-exchange-api-batchEdit"></a>
+<a id="opIddelta-exchange-api-v2-batchEdit"></a>
 
 > Code samples
 
@@ -1668,7 +1595,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Delele batch orders
 
-<a id="opIddelta-exchange-api-batchDelete"></a>
+<a id="opIddelta-exchange-api-v2-batchDelete"></a>
 
 > Code samples
 
@@ -1837,7 +1764,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Change order leverage
 
-<a id="opIddelta-exchange-api-changeOrderLeverage"></a>
+<a id="opIddelta-exchange-api-v2-changeOrderLeverage"></a>
 
 > Code samples
 
@@ -1942,7 +1869,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Get order leverage
 
-<a id="opIddelta-exchange-api-getOrderLeverage"></a>
+<a id="opIddelta-exchange-api-v2-getOrderLeverage"></a>
 
 > Code samples
 
@@ -2015,13 +1942,13 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-positions">Positions</h1>
+<h1 id="delta-exchange-api-v2-positions">Positions</h1>
 
 Get Open positions, Change Position Margin, Close Position
 
 ## Get open positions
 
-<a id="opIddelta-exchange-api-getPositions"></a>
+<a id="opIddelta-exchange-api-v2-getPositions"></a>
 
 > Code samples
 
@@ -2149,7 +2076,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Add/Remove position margin
 
-<a id="opIddelta-exchange-api-changePositionMargin"></a>
+<a id="opIddelta-exchange-api-v2-changePositionMargin"></a>
 
 > Code samples
 
@@ -2312,13 +2239,13 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-trade-history">Trade History</h1>
+<h1 id="delta-exchange-api-v2-trade-history">Trade History</h1>
 
 Get Orders History, Get Fill History
 
 ## Get order history (cancelled and closed)
 
-<a id="opIddelta-exchange-api-getOrderHistory"></a>
+<a id="opIddelta-exchange-api-v2-getOrderHistory"></a>
 
 > Code samples
 
@@ -2456,23 +2383,20 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Get fills
+## GET user fills by filters
 
-<a id="opIddelta-exchange-api-getFills"></a>
+<a id="opIddelta-exchange-api-v2-GETuserfillsbyfilters"></a>
 
 > Code samples
 
 ```python
 import requests
 headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
+  'Authorization': 'Bearer {token}'
 }
 
-r = requests.get('https://api.delta.exchange/fills', params={
-
+r = requests.get('https://api.delta.exchange/v2/fills', params={
+  'user_id': '0',  'product_ids': 'string',  'contract_types': 'string',  'start_time': '0',  'end_time': '0'
 }, headers = headers)
 
 print r.json()
@@ -2481,11 +2405,8 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/fills \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
+curl -X GET https://api.delta.exchange/v2/fills?user_id=0&product_ids=string&contract_types=string&start_time=0&end_time=0 \
+  -H 'Authorization: Bearer {token}'
 
 ```
 
@@ -2494,113 +2415,52 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
+  'Authorization' => 'Bearer {token}'
 }
 
-result = RestClient.get 'https://api.delta.exchange/fills',
+result = RestClient.get 'https://api.delta.exchange/v2/fills',
   params: {
-  }, headers: headers
+  'user_id' => 'integer(int32)',
+'product_ids' => 'string',
+'contract_types' => 'string',
+'start_time' => 'integer(int64)',
+'end_time' => 'integer(int64)'
+}, headers: headers
 
 p JSON.parse(result)
 
 ```
 
-`GET /fills`
+`GET /v2/fills`
 
-<h3 id="get-fills-parameters">Parameters</h3>
+<h3 id="get-user-fills-by-filters-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_id|query|integer|false|product id for fill query|
-|start_time|query|integer|false|Start time for the fill query|
-|end_time|query|integer|false|End time for the fill query|
-|page_num|query|integer|false|page number for pagination|
-|page_size|query|integer|false|page size for pagination|
+|Authorization|header|string|false|none|
+|user_id|query|integer(int32)|true|none|
+|product_ids|query|string|true|none|
+|contract_types|query|string|true|none|
+|start_time|query|integer(int64)|true|none|
+|end_time|query|integer(int64)|true|none|
 
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "id": 0,
-    "size": 0,
-    "side": "buy",
-    "price": "string",
-    "role": "taker",
-    "commission": "string",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-]
-```
-
-<h3 id="get-fills-responses">Responses</h3>
+<h3 id="get-user-fills-by-filters-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of Fills|[ArrayOfFills](#schemaarrayoffills)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
 
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+<aside class="success">
+This operation does not require authentication.
 </aside>
 
-<h1 id="delta-exchange-api-orderbook">Orderbook</h1>
+<h1 id="delta-exchange-api-v2-orderbook">Orderbook</h1>
 
 L2Orderbook
 
 ## Get L2 orderbook
 
-<a id="opIddelta-exchange-api-getL2Orderbook"></a>
+<a id="opIddelta-exchange-api-v2-getL2Orderbook"></a>
 
 > Code samples
 
@@ -2692,13 +2552,13 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
-<h1 id="delta-exchange-api-wallet">Wallet</h1>
+<h1 id="delta-exchange-api-v2-wallet">Wallet</h1>
 
 Get balances, Get transaction history
 
 ## Get Wallet Balances
 
-<a id="opIddelta-exchange-api-getWalletBalances"></a>
+<a id="opIddelta-exchange-api-v2-getWalletBalances"></a>
 
 > Code samples
 
@@ -2783,7 +2643,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Get Wallet transactions
 
-<a id="opIddelta-exchange-api-getWalletTransactions"></a>
+<a id="opIddelta-exchange-api-v2-getWalletTransactions"></a>
 
 > Code samples
 
@@ -2923,7 +2783,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Download Wallet transactions
 
-<a id="opIddelta-exchange-api-downloadWalletTransactions"></a>
+<a id="opIddelta-exchange-api-v2-downloadWalletTransactions"></a>
 
 > Code samples
 
@@ -3061,7 +2921,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Raise withdrawals request
 
-<a id="opIddelta-exchange-api-raiseWithdrawalRequest"></a>
+<a id="opIddelta-exchange-api-v2-raiseWithdrawalRequest"></a>
 
 > Code samples
 
@@ -3179,7 +3039,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Cancel withdrawals request
 
-<a id="opIddelta-exchange-api-cancelWithdrawalRequest"></a>
+<a id="opIddelta-exchange-api-v2-cancelWithdrawalRequest"></a>
 
 > Code samples
 
@@ -3291,11 +3151,11 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-ohlc-candles">OHLC Candles</h1>
+<h1 id="delta-exchange-api-v2-ohlc-candles">OHLC Candles</h1>
 
 ## Get OHLC candles
 
-<a id="opIddelta-exchange-api-getCandles"></a>
+<a id="opIddelta-exchange-api-v2-getCandles"></a>
 
 > Code samples
 

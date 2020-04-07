@@ -214,7 +214,8 @@ if [[ $1 = --source-only ]]; then
 elif [[ $1 = --push-only ]]; then
   main "$@"
 elif [[ $1 = --gen-widdershins ]]; then
-  widdershins --search true --language_tabs 'python:Python' 'shell:Shell' 'ruby:Ruby' --user_templates widdershins_templates/openapi3  --customApiKeyValue '****'  --summary swagger.json -o source/includes/_rest_api.md
+  widdershins --search true --language_tabs 'python:Python' 'shell:Shell' 'ruby:Ruby' --user_templates widdershins_templates/openapi3  --customApiKeyValue '****'  --summary swagger_v1.json -o source/includes/_rest_api.md
+  widdershins --search true --language_tabs 'python:Python' 'shell:Shell' 'ruby:Ruby' --user_templates widdershins_templates/openapi3  --customApiKeyValue '****'  --summary swagger_v2.json -o source/includes/v2/_rest_api.md
 else
   run_build
   main "$@"

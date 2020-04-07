@@ -5,17 +5,7 @@ language_tabs:
   - shell: Shell
   - ruby: Ruby
 toc_footers: []
-includes:
 
-  - general_information
-  - authentication
-  - rate_limits
-  - types
-  - place_order_error_codes
-  - rest_api
-  - errors
-  - rest_clients
-  - websocket_api
 search: true
 highlight_theme: darkula
 headingLevel: 2
@@ -28,3 +18,14 @@ Welcome to the Delta Exchange API! You can use this API to place orders on Delta
 We have language bindings in Shell, Python, Ruby and Nodejs! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+
+<%= partial "includes/_general_information" %>
+<%= partial "includes/_authentication" %>
+<%= partial "includes/_rate_limits" %>
+<%= partial "includes/_types" %>
+<%= partial "includes/_place_order_error_codes" %>
+<%= partial "includes/_rest_api" %>
+<%= partial "includes/v2/_rest_api" %>
+<%= partial "includes/_errors" %>
+<%= partial "includes/_rest_clients" %>
+<%= partial "includes/_websocket_api" %>
