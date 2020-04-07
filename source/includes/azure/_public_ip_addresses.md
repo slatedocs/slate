@@ -143,6 +143,33 @@ Optional | &nbsp;
 `idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. It can be between 4 and 30 minutes. Default value is 4 minutes.
 `domainName` <br/>*string* | The subdomain part of the fqdn.
 
+<!-------------------- ASSOCIATE A PUBLIC IP -------------------->
+
+#### Associate a public ip address
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body"
+   "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses?operation=associate"
+
+# Request Example:
+```
+
+```json
+{
+	"networkInterfaceId": "subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkInterfaces/nic68108672c3b"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses?operation=associate</code>
+
+Associate a public IP address in a given [environment](#administration-environments) to a network interface
+
+Required | &nbsp;
+------- | -----------
+`networkInterfaceId` <br/>*string* | Id of the network interface associated to an instance. Th network interface must be in the same region as the public IP address. 
+
 
 <!-------------------- DELETE A PUBLIC IP -------------------->
 
