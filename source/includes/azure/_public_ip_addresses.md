@@ -103,7 +103,6 @@ Attributes | &nbsp;
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`.
 `ipVersion` <br/>*string* |  IP version of the public IP address. Possible values: `IPV4`, `IPV6`.
 
-
 <!-------------------- CREATE A PUBLIC IP -------------------->
 
 #### Create a public ip address
@@ -143,3 +142,18 @@ Optional | &nbsp;
 `allocationMethod` <br/>*string* | Allocation method of the public IP address. Possible values: `DYNAMIC`, `STATIC`. Default value is `DYNAMIC` for SKU `BASIC`, and `STATIC` for SKU `STANDARD`.
 `idleTimeout` <br/>*integer* | The number of minutes for the idleTimeout. I can be between 4 and 30 minutes. Default value is 4 minutes.
 `domainName` <br/>*string* | The subdomain part of the fqdn.
+
+
+<!-------------------- DELETE A PUBLIC IP -------------------->
+
+#### Delete a public IP address
+
+```shell 
+curl --request DELETE \
+  --url http://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip \
+  --header 'mc-api-key: your_api_key'
+  ```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
+
+Delete an existing public IP address.
