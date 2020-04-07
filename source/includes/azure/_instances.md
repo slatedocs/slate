@@ -33,7 +33,8 @@ curl -X GET \
       "privateIp": "10.0.0.4",
       "macAddress": "00-0D-3A-84-0B-EF",
       "powerState": "PowerState/running",
-      "displayPowerState": "running"
+      "displayPowerState": "running",
+      "networkInterfaceId": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkInterfaces/nic3244866cf2f"
     }
   ],
   "metadata": {
@@ -66,7 +67,7 @@ Attributes | &nbsp;
 `publicIp`<br/>*string* | The public ip address assigned to the instance
 `powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
 `displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
-
+`networkInterfaceId`<br/>*string* | The fully qualified id of the primary network interface associate to the instance
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -98,7 +99,8 @@ curl -X GET \
     "privateIp": "10.0.0.4",
     "macAddress": "00-0D-3A-0B-F2-96",
     "powerState": "PowerState/running",
-    "displayPowerState": "running"
+    "displayPowerState": "running",
+    "networkInterfaceId": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkInterfaces/nic3244866cf2f"
   }
 }
 ```
@@ -127,6 +129,7 @@ Attributes | &nbsp;
 `publicIp`<br/>*string* | The public ip address assigned to the instance
 `powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
 `displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
+`networkInterfaceId`<br/>*string* | The fully qualified id of the primary network interface associate to the instance
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
@@ -192,6 +195,8 @@ Optional | &nbsp;
 ------- | -----------
 `password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. The password is mandatory if the sshkey is not provided.
 `sshkey`<br/>*string* | The ssh key public portion that will be assigned to the user on the machine. This cannot be used for a Windows based OS.
+`publicIpAddressId`<br/>*string* | The fully qualified id of the public IP address to associate to the instance.
+"
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
