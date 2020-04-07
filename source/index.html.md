@@ -223,6 +223,36 @@ This POST request requires email/password and returns a user token that should b
 curl -X POST -H "Accept: text/plain" -d "email=<email>&password=<password>" https://synbiohub.org/login
 ```
 
+```python
+import requests
+
+url = 'https://synbiohub.org/login'
+myobj = {'email': 'test@user.synbiohub',
+         'password' : 'test'}
+headers ={'Accept' : 'text/plain'}
+
+x = requests.post(url, data = myobj, headers = headers)
+
+print(x.content)
+```
+
+```javascript
+const fetch = require("node-fetch");
+const { URLSearchParams } = require('url');
+var url ='https://synbiohub.org/login';
+var headers = {
+    "Accept": "text/plain",
+}
+
+const params = new URLSearchParams();
+params.append('email', 'test@user.synbiohub');
+params.append('password', 'test');
+
+fetch(url, { method: 'POST', headers: headers, body: params})
+    .then(res => res.text())
+    .then(body => console.log(body));
+```
+
 Parameter | Description
 --------- | ------- | -----------
 email | the e-mail address of the user to login with
@@ -238,6 +268,37 @@ This post request logs out the user specified in the X-authorization header.
 ```plaintext
 curl -X POST -H "Accept: text/plain" -H "X-authorization: <token>" localhost:7777/logout
 ```
+
+```python
+import requests
+
+url = 'https://synbiohub.org/logout'
+myobj = {'email': 'test@user.synbiohub',
+         'password' : 'test'}
+headers ={'Accept' : 'text/plain'}
+
+x = requests.post(url, data = myobj, headers = headers)
+
+print(x.status_code)
+```
+
+```javascript
+const fetch = require("node-fetch");
+const { URLSearchParams } = require('url');
+var url ='https://synbiohub.org/logout';
+var headers = {
+    "Accept": "text/plain",
+}
+
+const params = new URLSearchParams();
+params.append('email', 'test@user.synbiohub');
+params.append('password', 'test');
+
+fetch(url, { method: 'POST', headers: headers, body: params})
+    .then(res => res.text())
+    .then(body => console.log(body));
+```
+
 
 # Search Endpoints
 
@@ -1128,6 +1189,10 @@ The following endpoints are for managing permissions on SynBioHub.
 `POST <URI>/addOwner`
 
 Adds an owner to a part.
+
+```plaintext
+curl -X POST -H "Accept: text/plain" -H "X-authorization:59763b66-ce63-471b-ac1e-2cfcb9926bb0" -d "user=dockertestuser&uri=http://localhost:7777/user/testuser/bruh/bruh_collection/1/addOwner" http://localhost:7777/user/testuser/bruh/bruh_collection/1/addOwner
+```
 
 ## Remove Owner
 
