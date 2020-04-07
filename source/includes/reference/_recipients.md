@@ -2085,27 +2085,6 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
       }'
 ```
 
-> Example Request (ILS Local Bank Code):
-
-```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
-     -H "Authorization: Bearer <your api token>" \
-     -H "Content-Type: application/json" \
-     -d '{ 
-          "profile": <your profile id>,
-          "accountHolderName": "<recipient name>",
-          "currency": "ILS",
-          "type": "israeli_bank_code",
-          "details": {
-           "legalType": "PRIVATE",
-           "bankCode": "054",
-           "branchCode": "001",
-           "accountNumber": "123456789"
-           }
-        }'
-```
-
-
 
 
 Send payments to Israel. 
@@ -2117,22 +2096,6 @@ Private and business recipients are supported.
 Recipient type = *'israeli_local'*
 
 Required details: IBAN
-
-<br/>
-
-
-OR 
-
-<br/>
-
-
-Recipient type = *'israeli_bank_code'*
-
-Required details: bankCode, branchCode, accountNumber
-
-Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
-
-You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
