@@ -837,6 +837,11 @@ curl -X GET "https://api.falconx.io/v1/get_trade_limits/browser" \
     "available": 81711.78,
     "total": 1000000,
     "used": 918288.22
+  },
+  "equity_limits": {
+    "available": 92711.63,
+    "total": 1000000,
+    "used": 907288.37
   }
 }
 ```
