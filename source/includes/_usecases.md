@@ -28,7 +28,7 @@ You can:
 <ul> 
   <li>Power your cross-border and domestic payouts with a single API integration.</li>
   <li>Pay out directly to bank accounts or email recipients.</li>
-  <li>Monitor payments received to your TransferWise local bank details (AUD, EUR, GBP, NZD, USD).</li> 
+  <li>Monitor payments received to your TransferWise local bank details (AUD, EUR, GBP, NZD, USD, PLN).</li> 
   <li>Get statements for balance reconciliation and accounting purposes.</li>
   <li>Fully automate transfer creation and track statuses.</li>
   <li>Always get the mid-market exchange and our low cost transparent fees.</li>
@@ -94,8 +94,13 @@ The [Affiliates Integration Guide](#affiliates-integration-guide) helps you get 
 
 ## Receive Money
 
-You can receive money to the local bank details that come with your TransferWise account (AUD, EUR, GBP, NZD and USD) and reconcile these incoming payments via the API.
+You can receive money to the local bank details that come with your TransferWise account (USD, EUR, GBP, USD, NZD and PLN) and reconcile these incoming payments via the API.
 
+You’re also able to create a webhook subscription to receive information about incoming payments to your server. Here’s more information about the [webhooks](#webhook-events).
+
+Please note that we’re don't send any information over the webhooks that might contain Personally identifiable information (PII) about the sender (including the payment reference).
+
+To reconcile incoming payments you might also need to match the information received via webhooks with the information that can be obtained from the [statements](#borderless-accounts-get-account-statement). 
 ## Checkout flows
 
 We currently don’t offer the option to build TransferWise into your checkout flow as a payment option to receive money. Note though that TransferWise can be added as a payout option on your site for beneficiaries to choose to receive their payout through to an email address, directly to a bank account or any other mechanism we support in our standard product.
