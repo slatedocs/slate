@@ -38,6 +38,10 @@ includes:
   - workout_summaries/show
   - workout_summaries/create
 
+  - webhooks/overview
+  - webhooks/settings
+  - webhooks/workout_summary
+  
   - workout_types
   - errors
 

@@ -17,3 +17,4 @@ profile_read	| Access your user profile data
 profile_write	| Update your user profile data
 workouts_read	| Access your workout history 
 workouts_write	| Update your workout history
+offline_data    | Receive data even when the app is closed
