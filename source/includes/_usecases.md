@@ -96,9 +96,9 @@ The [Affiliates Integration Guide](#affiliates-integration-guide) helps you get 
 
 You can receive money to the local bank details that come with your TransferWise account (USD, EUR, GBP, USD, NZD and PLN) and reconcile these incoming payments via the API.
 
-You’re also able to create a webhook subscription to receive information about incoming payments to your server. Here’s more information about the [webhooks](#webhook-events).
+You’re also able to create a webhook subscription to receive event callbacks to your server when payments are received. Here’s more information about the [webhooks](#webhook-events).
 
-Please note that we’re don't send any information over the webhooks that might contain Personally identifiable information (PII) about the sender (including the payment reference).
+Please note that we don't send any information over webhook calls that might contain personally identifiable information (PII) about the sender (including the payment reference).
 
 To reconcile incoming payments you might also need to match the information received via webhooks with the information that can be obtained from the [statements](#borderless-accounts-get-account-statement). 
 ## Checkout flows
