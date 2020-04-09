@@ -34,7 +34,13 @@ curl -X GET \
       "macAddress": "00-0D-3A-84-0B-EF",
       "powerState": "PowerState/running",
       "displayPowerState": "running",
-      "networkInterfaceId": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkInterfaces/nic3244866cf2f"
+      "networkInterfaces": [
+        {
+          "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkInterfaces/nicexample",
+          "name": "nicexample",
+          "primary": true
+        }
+      ],
     }
   ],
   "metadata": {
@@ -67,7 +73,8 @@ Attributes | &nbsp;
 `publicIp`<br/>*string* | The public ip address assigned to the instance
 `powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
 `displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
-`networkInterfaceId`<br/>*string* | The fully qualified id of the primary network interface associate to the instance
+`networkInterfaces`<br/>*list* | A list of network interfaces of the instance. Contains fields: `id`, `name`, `primary`
+
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -100,7 +107,13 @@ curl -X GET \
     "macAddress": "00-0D-3A-0B-F2-96",
     "powerState": "PowerState/running",
     "displayPowerState": "running",
-    "networkInterfaceId": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkInterfaces/nic3244866cf2f"
+    "networkInterfaces": [
+      {
+        "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkInterfaces/nicexample",
+        "name": "nicexample",
+        "primary": true
+      }
+    ],
   }
 }
 ```
@@ -129,7 +142,7 @@ Attributes | &nbsp;
 `publicIp`<br/>*string* | The public ip address assigned to the instance
 `powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
 `displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
-`networkInterfaceId`<br/>*string* | The fully qualified id of the primary network interface associate to the instance
+`networkInterfaces`<br/>*list* | A list of network interfaces of the instance. Contains fields: `id`, `name`, `primary`
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
