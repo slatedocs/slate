@@ -472,6 +472,10 @@ You will need to either be owner on the environment or have the `Environments: O
 
 ### Remove member
 
+Members of environment are deleted asynchronously on the underlying service. The environment member will only be deleted if the member is deleted sucessfully in the underlying environment service. 
+
+If deleting an member fails in the underlying environment service, subsequent delete attempts are considered a "force delete". A force delete entails attempting deleting the member from the underlying environment service and then deleting the member model regardless of the response from the underlying service. 
+
 `DELETE /environments/:env_id/members/:user_id`
 
 ```shell
@@ -491,6 +495,11 @@ curl -X DELETE "https://cloudmc_endpoint/v2/environments/[environment-id]/member
   "status": "PENDING"
 }
 ```
+
+Attributes | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
 
 You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
 
