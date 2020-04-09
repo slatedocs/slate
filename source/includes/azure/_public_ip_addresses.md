@@ -45,7 +45,7 @@ Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id of the public IP address. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Network/publicIPAddresses/:publicIpName.
 `name` <br/>*string* | The name of the public IP address.
-`state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`.
+`state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`, `UPDATING`, `DELETING`.
 `ipAddress` <br/>*string* | The IP address of the public IP. If the public IP has never been associated before, then you won't have an ip address yet.
 `region` <br/>*string* | The region where the public IP address is located.
 `sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`.
@@ -93,7 +93,7 @@ Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id of the public IP address. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Network/publicIPAddresses/:publicIpName.
 `name` <br/>*string* | The name of the public IP address.
-`state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`.
+`state` <br/>*string* | The state of the public IP address. Possible state: `ATTACHED`, `DETACHED`, `UPDATING`, `DELETING`.
 `ipAddress` <br/>*string* | The IP address of the public IP. If the public IP has never been associated before, then you won't have an ip address yet.
 `region` <br/>*string* | The region where the public IP address is located.
 `sku`  <br /> *string* | The sku of the public IP. Possible values: `BASIC`, `STANDARD`.
