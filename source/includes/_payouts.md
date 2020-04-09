@@ -198,7 +198,7 @@ the server will respond with a [401 Unauthorized HTTP status code](https://tools
 
 ## Strong customer authentication
 
-**NB** The following will be enforced starting from September 1, 2020. Please see the testing section 
+**NB** The following will be enforced starting from October 1, 2020. Please see the testing section 
 below on how to prepare your integration.
 
 There are some actions such as funding a transfer from your balance or viewing the statement that require additional 
