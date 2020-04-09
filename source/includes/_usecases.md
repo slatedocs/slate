@@ -94,7 +94,7 @@ The [Affiliates Integration Guide](#affiliates-integration-guide) helps you get 
 
 ## Receive Money
 
-You can receive money to the local bank details that come with your TransferWise account (USD, EUR, GBP, NZD and PLN) and reconcile these incoming payments via the API.
+You can receive money to the local bank details that come with your TransferWise account (USD, EUR, GBP, AUD, NZD and PLN) and reconcile these incoming payments via the API.
 
 You’re also able to create a webhook subscription to receive event callbacks to your server when payments are received. Here’s more information about the [webhooks](#webhook-events).
 
