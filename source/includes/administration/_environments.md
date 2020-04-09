@@ -482,6 +482,16 @@ curl -X DELETE "https://cloudmc_endpoint/v2/environments/[environment-id]/member
 
 ```
 
+```shell
+# Response body example
+```
+```json
+{
+  "taskId": "a82113b9-7f76-4354-ae27-b18b0204d50f",
+  "status": "PENDING"
+}
+```
+
 You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
 
 ### Default environment membership
