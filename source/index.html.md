@@ -961,6 +961,10 @@ request.post(options, function(error, response, body) {
 
 Use this endpoint to place a new order on the exchange
 
+<aside class="notice">
+You can only have a maximum of <strong>25 open orders</strong> at a time for one specific market
+</aside>
+
 ### HTTP Request
 
 `POST /exchange/v1/orders/create`
