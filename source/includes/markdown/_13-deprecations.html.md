@@ -79,18 +79,6 @@ The latest version of our [official client libraries](#official-client-libraries
 <a name="active-deprecations" class="jump-anchor"></a>
 ### Active deprecations
 
-Here is a table of recent, ongoing, and upcoming deprecations, including their header names, links to resources, and relevant dates where available. If dates are available, the next date to occur for that change is bolded.
-
-| Deprecation | Header name | Start date | Activation date | End date |
-|-------------|-------------|------------|-----------------|----------|
-| [Security headers](https://asa.na/api-sh) | `security_headers` | 2018-08-03 | 2018-09-28 | 2018-11-15 |
-| [New rich text](https://asa.na/api-rich-text) | `new_rich_text` | 2018-08-07 | 2018-10-15 | 2018-12-17 |
-| [New task subtypes](https://asa.na/api-task-subtypes) | `new_task_subtypes` | 2018-10-01 | **See [1]** | 1 mo. after activation |
-| [New sections](https://asa.na/api-sections) | `new_sections` | 2019-01-28 | **See [2]** | **See [2]** |
-| [String IDs](https://asa.na/api-string-ids) | `string_ids` | 2019-02-12 | 2019-08-13 | 2020-02-11 |
-
-**[1]** The activation date for this change will be one month after the public launch of the new task subtype. The end date for this change will be two months after the public launch.
-
-**[2]** This migration is happening simultaneously with the rollout of a change to the Asana web app, and so the timeline for it is subject to change with ongoing development of the web app. Refer to the [deprecation details](https://asa.na/api-sections) for the most current information.
+There are currently no active deprecations.
 
 </section>
