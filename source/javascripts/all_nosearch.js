@@ -5,7 +5,7 @@
 $(function() {
   var pathname = window.location.pathname;
   if (pathname.split('/').length > 2) {
-    window.location.hash = pathname.split('/')[3];
+    window.location.hash = pathname.split('/')[2];
   }
   loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
   setupLanguages($('body').data('languages'));
