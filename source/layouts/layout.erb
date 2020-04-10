@@ -112,9 +112,9 @@ under the License.
     <link href="/stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
     <% if current_page.data.search %>
-      <script src="../javascripts/all.js"></script>
+      <script src="/javascripts/all.js"></script>
     <% else %>
-      <script src="../javascripts/all_nosearch.js"></script>
+      <script src="/javascripts/all_nosearch.js"></script>
     <% end %>
   </head>
 
@@ -133,7 +133,7 @@ under the License.
     </a>
     <div class="toc-wrapper">
       <a href="#overview">
-        <%= image_tag "logo.png", class: 'logo' %>
+        <img src="../images/logo.png" class="logo" alt="Logo" />
       </a>
       <div class="beta-feedback-holder">
         <span class="beta-indicator">BETA</span><a class="feedback-link" href="https://form.asana.com?hash=c439d6062b165442b3d40383ab2f95cac08176b5b8ced11cf47817743a704728&id=1137609721785458" target="_blank">Send Feedback</a>
