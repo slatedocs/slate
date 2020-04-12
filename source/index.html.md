@@ -568,69 +568,56 @@ product_id | String (optional) | The ID for the product to fetch.
 ```json
 {
     "product": {
-        "id": "5e73df57584085c9820002fe",
-        "marketplace_account_id": "5d50c6735840854a3900002c",
-        "sku": "S127K7Z8YH4Q",
-        "asin": "B07NLMXG57",
-        "upc": "732994293105",
-        "title": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-        "description": "Disclaimer: If no size is seen above and there is only one size in the listing, the size can be found here ---> Shoe Size: 8.5 Medium US Womens",
-        "quantity_available": 2,
-        "quantity_listed": 1,
-        "marketplace_status": "active",
-        "marketplace_id": "110510555780",
+        "id": "5e9316fb07b620137a000144",
+        "marketplace_account_id": "5e2fb23d07b62074fe000011",
+        "sku": "QVC3-026",
+        "asin": null,
+        "upc": null,
+        "title": "Bethlehem Lights 8.5\" Metallic Scroll Aqua, Red,",
+        "quantity_available": 0,
+        "quantity_listed": 0,
+        "retail_price": 0,
+        "marketplace_status": "inactive",
+        "marketplace_id": null,
         "item_condition": "new",
-        "inventory_locations": [
+        "description": "Soothe your senses. Enjoy the calming sounds of flowing water along with alluring ambient light from this Bethlehem Lights AquaFlame candle. The flameless wick and five-hour timer provide worry-free enjoyment. From Bethlehem Lights.",
+        "features": [
+            "Embossed scroll AquaFlame water fountain and flameless candle",
+            "Five ambient LED lights",
+            "Five-hour timer",
+            "Requires included adapter or 3 D batteries",
+            " not included",
+            "Indoor use only",
+            "Measures approximately 8-1/2\"H x 5\"Diam"
+        ],
+        "features_html": null,
+        "item_specifics": [
             {
-                "location": "A1",
-                "quantity_available": 2,
-                "awaiting_pick": 0,
-                "priority": 1,
-                "delete_if_empty": true
+                "name": "Color",
+                "value": "Red"
             }
         ],
-        "product_images": [
-            {
-                "id": "5e73df8a584085c98200030a",
-                "product_id": "5e73df57584085c9820002fe",
-                "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-                "position": 1,
-                "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/41GAMTpSarL.jpg",
-                "small_image_url": null,
-                "medium_image_url": null,
-                "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/41GAMTpSarL.jpg"
-            },
-            {
-                "id": "5e73df8a584085c98200030b",
-                "product_id": "5e73df57584085c9820002fe",
-                "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-                "position": 1,
-                "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/31LKUpz0yTL.jpg",
-                "small_image_url": null,
-                "medium_image_url": null,
-                "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/31LKUpz0yTL.jpg"
-            },
-            {
-                "id": "5e73df8a584085c98200030c",
-                "product_id": "5e73df57584085c9820002fe",
-                "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-                "position": 1,
-                "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/41TCMfP2uGL.jpg",
-                "small_image_url": null,
-                "medium_image_url": null,
-                "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/41TCMfP2uGL.jpg"
-            },
-            {
-                "id": "5e73df8a584085c98200030d",
-                "product_id": "5e73df57584085c9820002fe",
-                "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-                "position": 1,
-                "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/31-nGA7ezgL.jpg",
-                "small_image_url": null,
-                "medium_image_url": null,
-                "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/31-nGA7ezgL.jpg"
-            }
-        ]
+        "item_category": "Travel > Travel Accessories > Locks",
+        "item_category_hierarchy": "Travel > Travel Accessories > Locks",
+        "item_category_id": "164796",
+        "brand": "Bethlehem Lights",
+        "color": null,
+        "mpn": null,
+        "weight_in_pounds": null,
+        "package_weight_in_pounds": null,
+        "item_dimensions": {
+            "unit": "inches",
+            "length": 10.0,
+            "width": 12.0,
+            "height": 6.0
+        },
+        "package_dimensions": {
+            "unit": null,
+            "length": null,
+            "width": null,
+            "height": null
+        },
+        "inventory_locations": []
     }
 }
 ```
