@@ -37,13 +37,13 @@ updated_at | datetime | Datetime when the Action Request was last updated
 
 ## Understanding Action Requests
 
-Each time we issue an action request for a specific end device, the Weaver API creates an `ActionRequest` object and returns its reference. It also forwards the action request to the specific device via the Weaver Gateway.
+Each time we issue an action request for a specific end device, the Seam API creates an `ActionRequest` object and returns its reference. It also forwards the action request to the specific device via the Seam Gateway.
 
 ### The Action Request Lifecycle
 
 You will notice that the `ActionRequest` object has a `status` field which indicates the state of the action.
 
-![Action Request Lifecycle](https://i.imgur.com/WMETML2.jpg)
+![Action Request Lifecycle](https://ik.imagekit.io/vgfzjbrn7/action-request-diagram.jpg)
 
 When an `action_request` object is created, its initial `status` will be `initialized`. This is because in the IoT world, **everything is asynchronous**, meaning that action_requests can take on the order of seconds, minutes, or even days to complete.
 

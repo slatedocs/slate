@@ -51,7 +51,7 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <%= image_tag "logo.png", class: 'logo' %>
+      <%= image_tag "https://ik.imagekit.io/vgfzjbrn7/tr:w-200/doc_header_logo.png", class: 'logo' %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -63,7 +63,7 @@ under the License.
           <% end %>
         </div>
       <% end %>
-      
+
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>

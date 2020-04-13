@@ -1,6 +1,6 @@
 # AUTHENTICATION
 
-The Weaver API uses API keys to authenticate requests. You can view and manage your API keys in the Weaver Dashboard or by calling your user profile endpoint using your user auth token.
+The Seam API uses API keys to authenticate requests. You can view and manage your API keys in the Seam Dashboard or by calling your user profile endpoint using your user auth token.
 
 Authentication to the API is performed via [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username value. You do not need to provide a password.
 
@@ -19,7 +19,7 @@ If you are running the shell examples, you can simply export your API key in you
 
 ```shell
 # With curl, you can use -u followed by your API key. Adding `:` after the key will simply tell curl not to ask you for a password.
-curl "https://api.getweaver.io/v1/gateways" \
+curl "https://api.getseam.com/v1/gateways" \
   -u "${YOUR_API_KEY}:"
 ```
 
@@ -34,7 +34,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = 'https://api.getweaver.io/v1/gateways'
+url = 'https://api.getseam.com/v1/gateways'
 
 RestClient.get(url, headers: headers)
 ```

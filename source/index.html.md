@@ -1,5 +1,5 @@
 ---
-title: Weaver API Reference
+title: Seam API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -17,14 +17,14 @@ includes:
 search: true
 ---
 
-![Weaver Documentation Header](https://i.imgur.com/yw6JEsa.png)
+![Seam Documentation Header](https://ik.imagekit.io/vgfzjbrn7/doc_background_black.jpg)
 
 
 # INTRODUCTION
 
-Welcome to the Weaver API! You can use our API to retrieve information on your gateways, their connected devices, and issue commands to them.
+Welcome to the Seam API! You can use our API to retrieve information on your gateways, their connected devices, and issue commands to them.
 
-### First, Why Use Weaver?
+### First, Why Use Seam?
 
 In the gilded age of IoT, one could reasonably ask why do we need yet another API? Well, it turns that despite all the progress in the past few years, doing things with IoT devices is still really hard.
 
@@ -42,25 +42,25 @@ Second, odds are you want to control your IoT devices remotely. Aside from conve
 Obviously, firewalls are good (and please don't poke holes in them), but it also means that any legitimate remote requests you make to unlock a door or turn on the heater will end in `/dev/null`.
 
 #### Making IoT Great Again!
-We started Weaver to make building applications that interact with IoT devices as easy as possible. We spent years wrestling with many of these problems and wished that there could be a simple API that would abstract it all away.
+We started Seam to make building applications that interact with IoT devices as easy as possible. We spent years wrestling with many of these problems and wished that there could be a simple API that would abstract it all away.
 
-The following guide is intended to walk you through the core ideas behind weaver, such as making authenticated API requests, device commands, and listening for events.
+The following guide is intended to walk you through the core ideas behind Seam, such as making authenticated API requests, device commands, and listening for events.
 
 
 ## Let's Start by Defining Some Key Terminology...
 
-![Weaver overview](https://i.imgur.com/jrJsrqN.jpg)
+![Seam overview](https://ik.imagekit.io/vgfzjbrn7/architecture-diagram.jpg)
 
-Above is an end to end overview diagram of Weaver. Let's define each term.
+Above is an end to end overview diagram of Seam. Let's define each term.
 
 ##### YOUR APP
-This is You! You can send requests to the Weaver REST API and receive responses from that API, as well as status updates from either Webhooks or Websockets.
+This is You! You can send requests to the Seam REST API and receive responses from that API, as well as status updates from either Webhooks or Websockets.
 
-##### WEAVER API
+##### Seam API
 This is the REST API that your application can query. This API is accessible from anywhere and takes simple commands and forwards them to the gateway.
 
-##### WEAVER GATEWAY
-This is the hardware hub that's provided by Weaver. It resides on your local area network (LAN) and creates a link to the outside world via a secure connection to the Weaver API. Its job is to take simple commands and translate them to lower-level mesh protocol commands that end devices can understand.
+##### Seam GATEWAY
+This is the hardware hub that's provided by Seam. It resides on your local area network (LAN) and creates a link to the outside world via a secure connection to the Seam API. Its job is to take simple commands and translate them to lower-level mesh protocol commands that end devices can understand.
 
 ##### END DEVICES
 This is a generic term we'll be using and which refers to any connected device or sensor, such as door locks, lights, noise sensors thermostats...etc.

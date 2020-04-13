@@ -50,7 +50,7 @@
 ```
 
 
-Door locks are currently the only device type supported by the Weaver API.
+Door locks are currently the only device type supported by the Seam API.
 
 At the moment, the API supports 4 basic commands:
 
@@ -67,7 +67,7 @@ As you can see on the right side, a door lock device object will indicate its su
 ```shell
 curl -X POST \
   -u "${YOUR_API_KEY}:" \
-  "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/lock"
+  "https://api.getseam.com/v1/devices/${DEVICE_ID}/actions/lock"
 ```
 
 ```ruby
@@ -80,7 +80,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = "https://api.getweaver.io/v1/devices/#{DEVICE_ID}/actions/lock"
+url = "https://api.getseam.com/v1/devices/#{DEVICE_ID}/actions/lock"
 
 RestClient.post(url, {}, headers: headers)
 ```
@@ -117,7 +117,7 @@ DEVICE_ID | The ID of the device you're commanding
 ```shell
 curl -X POST \
   -u "${YOUR_API_KEY}:" \
-  "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/unlock"
+  "https://api.getseam.com/v1/devices/${DEVICE_ID}/actions/unlock"
 ```
 
 ```ruby
@@ -130,7 +130,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = 'https://api.getweaver.io/v1/devices/#{DEVICE_ID}/actions/unlock'
+url = 'https://api.getseam.com/v1/devices/#{DEVICE_ID}/actions/unlock'
 
 RestClient.post(url, {}, headers: headers)
 ```
@@ -169,7 +169,7 @@ curl -X POST \
   -u "${YOUR_API_KEY}:" \
   -H "Content-Type: application/json" \
   -d '{"data": {"code": "8888", "slot_id": 8}}' \
-  "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/set_code"
+  "https://api.getseam.com/v1/devices/${DEVICE_ID}/actions/set_code"
 ```
 
 ```ruby
@@ -187,7 +187,7 @@ payload = {
   }
 }
 
-url = 'https://api.getweaver.io/v1/devices/#{DEVICE_ID}/actions/set_code'
+url = 'https://api.getseam.com/v1/devices/#{DEVICE_ID}/actions/set_code'
 
 RestClient.post(url, payload, headers: headers)
 ```
@@ -212,7 +212,7 @@ RestClient.post(url, payload, headers: headers)
 
 This endpoint issues a "set_code" action to a door lock.
 
-The Weaver API allows you to set a different code for up to 10 different users. To do set the a code for a specific user, set the `slot_id` parameter to a value between 1 to 10. If you do not provide this value, the `slot_id` will default to `1`.
+The Seam API allows you to set a different code for up to 10 different users. To do set the a code for a specific user, set the `slot_id` parameter to a value between 1 to 10. If you do not provide this value, the `slot_id` will default to `1`.
 
 
 
@@ -246,7 +246,7 @@ curl -X POST \
   -u "${YOUR_API_KEY}:" \
   -H "Content-Type: application/json" \
   -d '{"data": {"slot_id": 8}}' \
-  "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/clear_code"
+  "https://api.getseam.com/v1/devices/${DEVICE_ID}/actions/clear_code"
 ```
 
 ```ruby
@@ -263,7 +263,7 @@ payload = {
   }
 }
 
-url = 'https://api.getweaver.io/v1/devices/#{DEVICE_ID}/actions/clear_code'
+url = 'https://api.getseam.com/v1/devices/#{DEVICE_ID}/actions/clear_code'
 
 RestClient.post(url, payload, headers: headers)
 ```

@@ -1,8 +1,8 @@
 # GATEWAYS
 
-Weaver Gateways are the resource representing the hardware hub that's provided by Weaver.
+Seam Gateways are the resource representing the hardware hub that's provided by Seam.
 
-The hardware resides on your local area network (LAN) and creates a link to the outside world via a secure connection to the Weaver API. Its job is to take simple commands and translate them to lower-level mesh protocol commands that end devices can understand.
+The hardware resides on your local area network (LAN) and creates a link to the outside world via a secure connection to the Seam API. Its job is to take simple commands and translate them to lower-level mesh protocol commands that end devices can understand.
 
 You can query the API for a list of all your gateways, as well as an individual gateway to see its attributes and associated end devices.
 
@@ -21,7 +21,7 @@ status | string | The connectivity status of the Gateway
 ```shell
 curl -X GET \
   -u "${YOUR_API_KEY}:" \
-  "https://api.getweaver.io/v1/gateways"
+  "https://api.getseam.com/v1/gateways"
 ```
 
 ```ruby
@@ -34,7 +34,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = 'https://api.getweaver.io/v1/gateways'
+url = 'https://api.getseam.com/v1/gateways'
 
 RestClient.get(url, headers: headers)
 ```
@@ -65,7 +65,7 @@ RestClient.get(url, headers: headers)
 ]
 ```
 
-This endpoint retrieves all of your organization's Weaver Gateways.
+This endpoint retrieves all of your organization's Seam Gateways.
 
 ### HTTP Request
 
@@ -76,7 +76,7 @@ This endpoint retrieves all of your organization's Weaver Gateways.
 ```shell
 curl -X GET \
   -u "${YOUR_API_KEY}:" \
-  "https://api.getweaver.io/v1/gateways/${GATEWAY_ID}"
+  "https://api.getseam.com/v1/gateways/${GATEWAY_ID}"
 ```
 
 ```ruby
@@ -89,7 +89,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = "https://api.getweaver.io/v1/gateways/#{GATEWAY_ID}"
+url = "https://api.getseam.com/v1/gateways/#{GATEWAY_ID}"
 
 RestClient.get(url, headers: headers)
 ```
