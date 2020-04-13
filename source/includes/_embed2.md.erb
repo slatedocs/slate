@@ -97,6 +97,9 @@ When set enables the Chat drawer open / close state to persist across windows an
 We recommend enabling this feature if your bot uses Ada Glass.
 </aside>
 
+#### `domain?: string`
+Can be used to change the subdomain. Unless directed by an Ada team member, you will not need to change this value.
+
 #### `embedStyles:? string`
 The embedStyles option can be used to override default styles inside Embed2 elements. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature.
 
@@ -104,8 +107,14 @@ The embedStyles option can be used to override default styles inside Embed2 elem
 Setting custom styles based on Embed2 elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
 </aside>
 
+#### `eventCallbacks?: { [eventName: string]: (jsEvent: object) => void }`
+Used in conjunction with Custom JavaScript Event Blocks to trigger specified callbacks as part of a conversation. Requires the `custom_javascript_event_block` feature flag to be turned on.
+
 #### `greeting?: string`
 This can be used to customize the greeting messages that new users see. This is useful for setting page-specific greetings across your app. The greeting should correspond to the ID of the Answer you would like to use. The ID can be found in the URL of the corresponding Answer in the dashboard.
+
+#### `handle:? string`
+Can be used to specify the bot handle if one is not specified in the script `data-handle` attribute.
 
 #### `hideMask?: boolean`
 When set to `true`, this will prevent the default mask from appearing over top of your site's content when opened on desktop.
@@ -135,6 +144,9 @@ Used to pass meta information about a `chatter`. This can be useful for tracking
 <aside class="notice">
 Meta field keys should not include whitespace, emojis, special characters or periods.
 </aside>
+
+#### `lazy?: boolean`
+When `true`, this will prevent the bot from loading until the `adaEmbed.start(...)` method is called.
 
 #### `parentElement?: string | HTMLElement`
 
