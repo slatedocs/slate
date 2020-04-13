@@ -8,7 +8,7 @@ Gateway Actions represent the capabilities of a Gateway.
 ```shell
 curl -X POST \
   -u "${YOUR_API_KEY}:" \
-  "https://api.getweaver.io/v1/gateways/${GATEWAY_ID}/actions/pair_devices"
+  "https://api.getseam.com/v1/gateways/${GATEWAY_ID}/actions/pair_devices"
 ```
 
 ```ruby
@@ -21,7 +21,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = 'https://api.getweaver.io/v1/gateways/${GATEWAY_ID}/actions/pair_devices'
+url = 'https://api.getseam.com/v1/gateways/${GATEWAY_ID}/actions/pair_devices'
 
 RestClient.post(url, headers: headers)
 ```
@@ -39,7 +39,7 @@ RestClient.post(url, headers: headers)
 
 To connect a device to a gateway, you need to put the gateway into pairing mode and manually add the end devices.
 
-When the end devices join your Weaver Gateway's network, the Gateway will automatically register them to the Weaver API.
+When the end devices join your Seam Gateway's network, the Gateway will automatically register them to the Seam API.
 
 Once you issue the request, the Gateway will transition into a `pairing` status.
 

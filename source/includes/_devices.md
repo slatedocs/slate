@@ -1,6 +1,6 @@
 # DEVICES
 
-End devices are any end device such as a sensor, a door locks, a light, a thermostats...etc. Most of these devices are battery-powered and therefore low-powered. As a result, they usually speak a mesh network protocol that Weaver abstracts away for you through clean API endpoints.
+End devices are any end device such as a sensor, a door locks, a light, a thermostats...etc. Most of these devices are battery-powered and therefore low-powered. As a result, they usually speak a mesh network protocol that Seam abstracts away for you through clean API endpoints.
 
 
 ## Device Object
@@ -69,7 +69,7 @@ actions | object | The list of supported actions by this device
 ```shell
 curl -X GET \
   -u "${YOUR_API_KEY}:" \
-  "https://api.getweaver.io/v1/devices/${DEVICE_ID}"
+  "https://api.getseam.com/v1/devices/${DEVICE_ID}"
 ```
 
 ```ruby
@@ -82,7 +82,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = "https://api.getweaver.io/v1/devices/#{DEVICE_ID}"
+url = "https://api.getseam.com/v1/devices/#{DEVICE_ID}"
 
 RestClient.get(url, headers: headers)
 ```

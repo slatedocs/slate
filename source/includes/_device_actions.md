@@ -42,7 +42,7 @@ inputs | object | An input object with: a title for the input, a description of 
 ```shell
 curl -X POST \
   -u "${YOUR_API_KEY}:" \
-  "https://api.getweaver.io/v1/devices/${DEVICE_ID}/actions/${ACTION_NAME}"
+  "https://api.getseam.com/v1/devices/${DEVICE_ID}/actions/${ACTION_NAME}"
 ```
 
 ```ruby
@@ -55,7 +55,7 @@ headers = {
   "Authorization": "Basic #{token}"
 }
 
-url = "https://api.getweaver.io/v1/devices/#{DEVICE_ID}/actions/#{ACTION_NAME}"
+url = "https://api.getseam.com/v1/devices/#{DEVICE_ID}/actions/#{ACTION_NAME}"
 
 payload = {
 }
