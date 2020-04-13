@@ -1918,7 +1918,7 @@ components:
                 of the resource when the events come from webhooks; this will
                 be the compact representation (and can have fields expanded
                 with [opt_fields](#input-output-options)) when using the
-                [Events](#asana-events) resource. 
+                [Events](#asana-events) resource.
               example:
                 gid: '12345'
                 resource_type: user
@@ -2310,6 +2310,45 @@ components:
                   description: >-
                     *Create-only*. The team that this project is shared with.
                     This field only exists for projects in organizations.
+            icon:
+              description: >-
+                The icon for a project.
+              type: string
+              nullable: true
+              enum:
+                - list
+                - board
+                - timeline
+                - calendar
+                - rocket
+                - people
+                - graph
+                - star
+                - bug
+                - light_bulb
+                - globe
+                - gear
+                - notebook
+                - computer
+                - check
+                - target
+                - html
+                - megaphone
+                - chat_bubbles
+                - briefcase
+                - page_layout
+                - mountain_flag
+                - puzzle
+                - presentation
+                - line_and_symbols
+                - speed_dial
+                - ribbon
+                - shoe
+                - shopping_basket
+                - map
+                - ticket
+                - coins
+              example: chat_bubbles
     ProjectRequest:
       allOf:
         - $ref: '#/components/schemas/ProjectBase'
@@ -2669,11 +2708,15 @@ components:
             - text
             - color
           properties:
-            project:
-              description: Globally unique identifier for the project.
-              type: string
-              example: '123456'
-              readOnly: true
+            author:
+              $ref: '#/components/schemas/UserCompact'
+            modified_at:
+              description: >-
+                The time at which this project status was last modified.
+
+                *Note: This does not currently reflect any changes in
+                associations such as comments that may have been added or
+                removed from the project status.*
             text:
               description: The text content of the status update.
               type: string
@@ -3062,7 +3105,7 @@ components:
                 HTML formatted text for a comment. This will not include the name
                 of the creator.
               type: string
-              example: <body>This is a comment.<body>
+              example: <body>This is a comment.</body>
             is_pinned:
               description: >-
                 *Conditional*. Whether the story should be pinned on the
@@ -4022,7 +4065,7 @@ components:
               description: >-
                 Whitelist of filters to apply to events from this webhook. If a
                 webhook event passes any of the filters the event will be
-                delivered; otherwise no event will be sent to the receiving server.  
+                delivered; otherwise no event will be sent to the receiving server.
               type: array
               items:
                 allOf:
@@ -4074,7 +4117,7 @@ components:
             server to be updated with information from Asana. This schema
             represents the subscription itself, not the objects that are sent to
             the server. For information on those please refer to the
-            [Event](#tocS_Event) schema.  
+            [Event](#tocS_Event) schema.
           x-docs-overrides:
             properties.resource_type.example: webhook
           properties:
