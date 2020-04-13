@@ -1,6 +1,6 @@
-# Embed 2
+# Embed2
 
-Embed 2 is a small JavaScript application that embeds your Ada Chat bot into your web page.
+Embed2 is a small JavaScript application that embeds your Ada Chat bot into your web page.
 
 ## Audience
 
@@ -39,8 +39,39 @@ You should now see a small question mark button on the bottom right corner of yo
 
 ## API Reference
 
-Embed 2 supports numerous settings and methods to help you customize the look and behaviour of your bot. Settings are set in the `adaSettings` object when you embed your script. They determine intrinsic properties like bot style and behaviour. Conversely, methods can be called at any point in time to toggle Chat, update user meta data, and more.
+Embed2 supports numerous settings and methods to help you customize the look and behaviour of your bot. Settings are set in the `adaSettings` object when you embed your script. They determine intrinsic properties like bot style and behaviour. Conversely, methods can be called at any point in time to toggle Chat, update user meta data, and more.
 
 ### Settings
+Settings are set on the window object as `window.adaSettings = { ... }`. Alternatively, they can be passed directly do `adaEmbed.start({ ... })` for advanced configurations. A full list of available settings is provided below:
 
-### Mehtods
+#### `adaReadyCallback?(params: { isRolledOut: boolean }): void`
+
+```html
+  <script type="text/javascript">
+    window.adaSettings = {
+      adaReadyCallback: ({ isRolledOut }) => {
+        console.log("Ada Embed is done setting up. Chat support is now available.");
+      },
+      // ...The rest of your settings here
+    }
+  </script>
+```
+Specifies a callback function to be called when Embed2 has finished setting up. This is especially useful when Embed2 is loaded asynchronously.
+
+#### `analyticsCallback?(analytics: MessagePayload): void;`
+
+```html
+  <script type="text/javascript">
+    window.adaSettings = {
+      analyticsCallback: (event) => {
+        // Here is where you can forward this event to Adobe (or elsewhere)
+        console.log(event);
+      },
+      // ...The rest of your settings here
+    }
+  </script>
+```
+
+Can be used to pass back data analytics. Make sure you have `analyticsCallback` feature enabled on your bot - you can check this with your account manager.
+
+### Methods
