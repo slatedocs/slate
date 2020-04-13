@@ -16,7 +16,8 @@ Base URLs:
 Web: <a href="https://asana.com/support">Asana Support</a> 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-attachments">Attachments</h1>
+<a id="asana-attachments"></a>
+<h1 id="attachments">Attachments</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-an-attachment"><span class="get-verb">GET</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="#delete-an-attachment"><span class="delete-verb">DELETE</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="#get-attachments-for-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a><br><a href="#upload-an-attachment"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a></code>
@@ -313,7 +314,8 @@ appending the content type to the file path: `—form
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-batch-api">Batch API</h1>
+<a id="asana-batch-api"></a>
+<h1 id="batch-api">Batch API</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#submit-parallel-requests"><span class="post-verb">POST</span> <span class=""nn>/batch</span></a></code>
@@ -384,20 +386,20 @@ curl -X POST https://app.asana.com/api/1.0/batch \
   "data": {
     "actions": [
       {
-        "relative_path": "/tasks/123",
-        "method": "get",
         "data": {
           "assignee": "me",
           "workspace": "1337"
         },
+        "method": "get",
         "options": {
-          "limit": 3,
           "fields": [
             "name",
             "notes",
             "completed"
-          ]
-        }
+          ],
+          "limit": 3
+        },
+        "relative_path": "/tasks/123"
       }
     ]
   }
@@ -410,18 +412,18 @@ curl -X POST https://app.asana.com/api/1.0/batch \
 {
   "data": [
     {
-      "status_code": 200,
-      "headers": {
-        "location": "/tasks/1234"
-      },
       "body": {
         "data": {
-          "gid": "1967",
           "completed": false,
+          "gid": "1967",
           "name": "Hello, world!",
           "notes": "How are you today?"
         }
-      }
+      },
+      "headers": {
+        "location": "/tasks/1234"
+      },
+      "status_code": 200
     }
   ]
 }
@@ -440,13 +442,13 @@ Make multiple requests in parallel to Asana's API.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The requests to batch together via the Batch API.|
 |» data<span class="param-type"> object</span>|A request object for use in a batch request.|
 |»» actions<span class="param-type"> [object]</span>|none|
-|»»» relative_path<span class="param-type"> string</span><div class="param-required">required</div>|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
-|»»» method<span class="param-type"> string</span><div class="param-required">required</div>|The HTTP method you wish to emulate for the action.|
 |»»» data<span class="param-type"> object</span>|For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.|
+|»»» method<span class="param-type"> string</span><div class="param-required">required</div>|The HTTP method you wish to emulate for the action.|
 |»»» options<span class="param-type"> object</span>|Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. “Pretty” JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.|
+|»»»» fields<span class="param-type"> [string]</span>|The fields to retrieve in the request.|
 |»»»» limit<span class="param-type"> integer</span>|Pagination limit for the request.|
 |»»»» offset<span class="param-type"> integer</span>|Pagination offset for the request.|
-|»»»» fields<span class="param-type"> [string]</span>|The fields to retrieve in the request.|
+|»»» relative_path<span class="param-type"> string</span><div class="param-required">required</div>|The path of the desired endpoint relative to the API’s base URL. Query parameters are not accepted here; put them in `data` instead.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -474,7 +476,8 @@ Make multiple requests in parallel to Asana's API.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-custom-fields">Custom Fields</h1>
+<a id="asana-custom-fields"></a>
+<h1 id="custom-fields">Custom Fields</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#create-a-custom-field"><span class="post-verb">POST</span> <span class=""nn>/custom_fields</span></a><br><a href="#get-a-custom-field"><span class="get-verb">GET</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#update-a-custom-field"><span class="put-verb">PUT</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#delete-a-custom-field"><span class="delete-verb">DELETE</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#get-a-workspace-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/custom_fields</span></a><br><a href="#create-an-enum-option"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options</span></a><br><a href="#reorder-a-custom-field-39-s-enum"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options/insert</span></a><br><a href="#update-an-enum-option"><span class="put-verb">PUT</span> <span class=""nn>/enum_options/{enum_option_gid}</span></a></code>
@@ -579,25 +582,25 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
 ```json
 {
   "data": {
-    "name": "Status",
-    "resource_subtype": "text",
-    "enum_options": [
-      {
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
-    ],
-    "enabled": true,
-    "number_value": 5.2,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "format": "custom",
     "currency_code": "EUR",
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
+    "description": "Development team priority",
+    "enabled": true,
+    "enum_options": [
+      {
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
+    "format": "custom",
     "has_notifications_enabled": true,
+    "name": "Status",
+    "number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "text",
+    "text_value": "Some Value",
     "workspace": "1331"
   }
 }
@@ -610,36 +613,36 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Status",
-    "resource_subtype": "text",
-    "type": "text",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
+    "description": "Development team priority",
+    "enabled": true,
     "enum_options": [
       {
         "gid": "12345",
         "resource_type": "enum_option",
-        "name": "Low",
+        "color": "blue",
         "enabled": true,
-        "color": "blue"
+        "name": "Low"
       }
     ],
-    "enabled": true,
-    "number_value": 5.2,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "format": "custom",
-    "currency_code": "EUR",
-    "custom_label": "gold pieces",
-    "custom_label_position": "suffix",
-    "is_global_to_workspace": true,
-    "has_notifications_enabled": true,
     "enum_value": {
       "gid": "12345",
       "resource_type": "enum_option",
-      "name": "Low",
+      "color": "blue",
       "enabled": true,
-      "color": "blue"
-    }
+      "name": "Low"
+    },
+    "format": "custom",
+    "has_notifications_enabled": true,
+    "is_global_to_workspace": true,
+    "name": "Status",
+    "number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "text",
+    "text_value": "Some Value",
+    "type": "text"
   }
 }
 ```
@@ -664,22 +667,22 @@ Returns the full record of the newly created custom field.
 |---|---|
 |body<span class="param-type"> object</span>|The custom field object to create.|
 |» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
-|»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» workspace<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The workspace to create a custom field in.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -696,16 +699,16 @@ The identifier format will always have a precision of 0.
 
 |Parameter|Value|
 |---|---|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 | format|currency|
 | format|identifier|
 | format|percentage|
 | format|custom|
 | format|none|
-| custom_label_position|prefix|
-| custom_label_position|suffix|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
 
 <h3 id="create-a-custom-field-responses">Responses</h3>
 
@@ -741,36 +744,36 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Status",
-    "resource_subtype": "text",
-    "type": "text",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
+    "description": "Development team priority",
+    "enabled": true,
     "enum_options": [
       {
         "gid": "12345",
         "resource_type": "enum_option",
-        "name": "Low",
+        "color": "blue",
         "enabled": true,
-        "color": "blue"
+        "name": "Low"
       }
     ],
-    "enabled": true,
-    "number_value": 5.2,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "format": "custom",
-    "currency_code": "EUR",
-    "custom_label": "gold pieces",
-    "custom_label_position": "suffix",
-    "is_global_to_workspace": true,
-    "has_notifications_enabled": true,
     "enum_value": {
       "gid": "12345",
       "resource_type": "enum_option",
-      "name": "Low",
+      "color": "blue",
       "enabled": true,
-      "color": "blue"
-    }
+      "name": "Low"
+    },
+    "format": "custom",
+    "has_notifications_enabled": true,
+    "is_global_to_workspace": true,
+    "name": "Status",
+    "number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "text",
+    "text_value": "Some Value",
+    "type": "text"
   }
 }
 ```
@@ -829,25 +832,25 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 ```json
 {
   "data": {
-    "name": "Status",
-    "resource_subtype": "text",
-    "enum_options": [
-      {
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
-    ],
-    "enabled": true,
-    "number_value": 5.2,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "format": "custom",
     "currency_code": "EUR",
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
+    "description": "Development team priority",
+    "enabled": true,
+    "enum_options": [
+      {
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
+    "format": "custom",
     "has_notifications_enabled": true,
+    "name": "Status",
+    "number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "text",
+    "text_value": "Some Value",
     "workspace": "1331"
   }
 }
@@ -860,36 +863,36 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
-    "name": "Status",
-    "resource_subtype": "text",
-    "type": "text",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
+    "description": "Development team priority",
+    "enabled": true,
     "enum_options": [
       {
         "gid": "12345",
         "resource_type": "enum_option",
-        "name": "Low",
+        "color": "blue",
         "enabled": true,
-        "color": "blue"
+        "name": "Low"
       }
     ],
-    "enabled": true,
-    "number_value": 5.2,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "format": "custom",
-    "currency_code": "EUR",
-    "custom_label": "gold pieces",
-    "custom_label_position": "suffix",
-    "is_global_to_workspace": true,
-    "has_notifications_enabled": true,
     "enum_value": {
       "gid": "12345",
       "resource_type": "enum_option",
-      "name": "Low",
+      "color": "blue",
       "enabled": true,
-      "color": "blue"
-    }
+      "name": "Low"
+    },
+    "format": "custom",
+    "has_notifications_enabled": true,
+    "is_global_to_workspace": true,
+    "name": "Status",
+    "number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "text",
+    "text_value": "Some Value",
+    "type": "text"
   }
 }
 ```
@@ -911,22 +914,22 @@ Returns the complete updated custom field record.
 |---|---|
 |body<span class="param-type"> object</span>|The custom field object with all updated properties.|
 |» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
-|»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |»» workspace<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The workspace to create a custom field in.|
 |/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -942,16 +945,16 @@ The identifier format will always have a precision of 0.
 
 |Parameter|Value|
 |---|---|
-| resource_subtype|text|
-| resource_subtype|enum|
-| resource_subtype|number|
+| custom_label_position|prefix|
+| custom_label_position|suffix|
 | format|currency|
 | format|identifier|
 | format|percentage|
 | format|custom|
 | format|none|
-| custom_label_position|prefix|
-| custom_label_position|suffix|
+| resource_subtype|text|
+| resource_subtype|enum|
+| resource_subtype|number|
 
 <h3 id="update-a-custom-field-responses">Responses</h3>
 
@@ -1047,36 +1050,36 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
     {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
+      "currency_code": "EUR",
+      "custom_label": "gold pieces",
+      "custom_label_position": "suffix",
+      "description": "Development team priority",
+      "enabled": true,
       "enum_options": [
         {
           "gid": "12345",
           "resource_type": "enum_option",
-          "name": "Low",
+          "color": "blue",
           "enabled": true,
-          "color": "blue"
+          "name": "Low"
         }
       ],
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value",
-      "description": "Development team priority",
-      "precision": 2,
-      "format": "custom",
-      "currency_code": "EUR",
-      "custom_label": "gold pieces",
-      "custom_label_position": "suffix",
-      "is_global_to_workspace": true,
-      "has_notifications_enabled": true,
       "enum_value": {
         "gid": "12345",
         "resource_type": "enum_option",
-        "name": "Low",
+        "color": "blue",
         "enabled": true,
-        "color": "blue"
-      }
+        "name": "Low"
+      },
+      "format": "custom",
+      "has_notifications_enabled": true,
+      "is_global_to_workspace": true,
+      "name": "Status",
+      "number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "text",
+      "text_value": "Some Value",
+      "type": "text"
     }
   ]
 }
@@ -1131,11 +1134,11 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 ```json
 {
   "data": {
-    "name": "Low",
-    "enabled": true,
     "color": "blue",
+    "enabled": true,
+    "insert_after": "12345",
     "insert_before": "12345",
-    "insert_after": "12345"
+    "name": "Low"
   }
 }
 ```
@@ -1147,9 +1150,9 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
   "data": {
     "gid": "12345",
     "resource_type": "enum_option",
-    "name": "Low",
+    "color": "blue",
     "enabled": true,
-    "color": "blue"
+    "name": "Low"
   }
 }
 ```
@@ -1168,11 +1171,11 @@ Returns the full record of the newly created enum option.
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to create.|
 |» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
 |/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -1212,9 +1215,9 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 ```json
 {
   "data": {
-    "enum_option": "97285",
+    "after_enum_option": "12345",
     "before_enum_option": "12345",
-    "after_enum_option": "12345"
+    "enum_option": "97285"
   }
 }
 ```
@@ -1226,9 +1229,9 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
   "data": {
     "gid": "12345",
     "resource_type": "enum_option",
-    "name": "Low",
+    "color": "blue",
     "enabled": true,
-    "color": "blue"
+    "name": "Low"
   }
 }
 ```
@@ -1246,9 +1249,9 @@ Locked custom fields can only be reordered by the user who locked the field.
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to create.|
 |» data<span class="param-type"> object</span>|none|
-|»» enum_option<span class="param-type"> string</span><div class="param-required">required</div>|The gid of the enum option to relocate.|
-|»» before_enum_option<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
 |»» after_enum_option<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|»» before_enum_option<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» enum_option<span class="param-type"> string</span><div class="param-required">required</div>|The gid of the enum option to relocate.|
 |/custom_field_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the custom field.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -1286,11 +1289,11 @@ curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
 ```json
 {
   "data": {
-    "name": "Low",
-    "enabled": true,
     "color": "blue",
+    "enabled": true,
+    "insert_after": "12345",
     "insert_before": "12345",
-    "insert_after": "12345"
+    "name": "Low"
   }
 }
 ```
@@ -1302,9 +1305,9 @@ curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "enum_option",
-    "name": "Low",
+    "color": "blue",
     "enabled": true,
-    "color": "blue"
+    "name": "Low"
   }
 }
 ```
@@ -1323,11 +1326,11 @@ Returns the full record of the updated enum option.
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to update|
 |» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
 |/enum_option_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the enum option.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -1345,7 +1348,8 @@ Returns the full record of the updated enum option.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-custom-field-settings">Custom Field Settings</h1>
+<a id="asana-custom-field-settings"></a>
+<h1 id="custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
@@ -1378,10 +1382,39 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
     {
       "gid": "12345",
       "resource_type": "custom_field_setting",
-      "project": {
+      "custom_field": {
         "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
+        "resource_type": "custom_field",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       },
       "is_important": false,
       "parent": {
@@ -1389,39 +1422,10 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
         "resource_type": "project",
         "name": "Stuff to buy"
       },
-      "custom_field": {
+      "project": {
         "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     }
   ]
@@ -1479,10 +1483,39 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
     {
       "gid": "12345",
       "resource_type": "custom_field_setting",
-      "project": {
+      "custom_field": {
         "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
+        "resource_type": "custom_field",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       },
       "is_important": false,
       "parent": {
@@ -1490,39 +1523,10 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
         "resource_type": "project",
         "name": "Stuff to buy"
       },
-      "custom_field": {
+      "project": {
         "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     }
   ]
@@ -1558,7 +1562,8 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-events">Events</h1>
+<a id="asana-events"></a>
+<h1 id="events">Events</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-events-on-a-resource"><span class="get-verb">GET</span> <span class=""nn>/events</span></a></code>
@@ -1601,32 +1606,15 @@ curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
 {
   "data": [
     {
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "resource": {
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "type": "task",
       "action": "changed",
-      "parent": {
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "created_at": "2012-02-22T02:06:58.147Z",
       "change": {
-        "field": "assignee",
         "action": "changed",
-        "new_value": {
+        "added_value": {
           "gid": "12345",
           "resource_type": "user"
         },
-        "added_value": {
+        "field": "assignee",
+        "new_value": {
           "gid": "12345",
           "resource_type": "user"
         },
@@ -1634,6 +1622,23 @@ curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
           "gid": "12345",
           "resource_type": "user"
         }
+      },
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "parent": {
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Bug Task"
+      },
+      "resource": {
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Bug Task"
+      },
+      "type": "task",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
       }
     }
   ],
@@ -1683,7 +1688,8 @@ tasks contained within the project.*
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-jobs">Jobs</h1>
+<a id="asana-jobs"></a>
+<h1 id="jobs">Jobs</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-job-by-id"><span class="get-verb">GET</span> <span class=""nn>/jobs/{job_gid}</span></a></code>
@@ -1717,8 +1723,6 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "job",
-    "resource_subtype": "duplicate_task",
-    "status": "in_progress",
     "new_project": {
       "gid": "12345",
       "resource_type": "project",
@@ -1728,7 +1732,9 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task"
-    }
+    },
+    "resource_subtype": "duplicate_task",
+    "status": "in_progress"
   }
 }
 ```
@@ -1760,7 +1766,8 @@ Returns the full record for a job.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-organization-exports">Organization Exports</h1>
+<a id="asana-organization-exports"></a>
+<h1 id="organization-exports">Organization Exports</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#create-an-organization-export-request"><span class="post-verb">POST</span> <span class=""nn>/organization_exports</span></a><br><a href="#get-details-on-an-org-export-request"><span class="get-verb">GET</span> <span class=""nn>/organization_exports/{organization_export_gid}</span></a></code>
@@ -1817,12 +1824,12 @@ curl -X POST https://app.asana.com/api/1.0/organization_exports \
     "resource_type": "organization_export",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
-    "state": "started",
     "organization": {
       "gid": "12345",
       "resource_type": "workspace",
       "name": "My Company Workspace"
-    }
+    },
+    "state": "started"
   }
 }
 ```
@@ -1867,11 +1874,11 @@ Status Code **201**
 | resource_type<span class="param-type"> string</span>|The base type of this resource.|
 | created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 | download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
-| state<span class="param-type"> string</span>|The current state of the export.|
 | organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 | gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 | resource_type<span class="param-type"> string</span>|The base type of this resource.|
 | name<span class="param-type"> string</span>|The name of the workspace.|
+| state<span class="param-type"> string</span>|The current state of the export.|
 
 #### Enumerated Values
 
@@ -1907,12 +1914,12 @@ curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_exp
     "resource_type": "organization_export",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
-    "state": "started",
     "organization": {
       "gid": "12345",
       "resource_type": "workspace",
       "name": "My Company Workspace"
-    }
+    },
+    "state": "started"
   }
 }
 ```
@@ -1953,11 +1960,11 @@ Status Code **200**
 | resource_type<span class="param-type"> string</span>|The base type of this resource.|
 | created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 | download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
-| state<span class="param-type"> string</span>|The current state of the export.|
 | organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 | gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 | resource_type<span class="param-type"> string</span>|The base type of this resource.|
 | name<span class="param-type"> string</span>|The name of the workspace.|
+| state<span class="param-type"> string</span>|The current state of the export.|
 
 #### Enumerated Values
 
@@ -1970,7 +1977,8 @@ Status Code **200**
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-portfolios">Portfolios</h1>
+<a id="asana-portfolios"></a>
+<h1 id="portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a></code>
@@ -2060,12 +2068,12 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
 ```json
 {
   "data": {
-    "name": "Bug Portfolio",
     "color": "light-green",
     "members": [
       "52164",
       "15363"
     ],
+    "name": "Bug Portfolio",
     "workspace": "167589"
   }
 }
@@ -2090,10 +2098,39 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
       {
         "gid": "12345",
         "resource_type": "custom_field_setting",
-        "project": {
+        "custom_field": {
           "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
+          "resource_type": "custom_field",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
         },
         "is_important": false,
         "parent": {
@@ -2101,39 +2138,10 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
           "resource_type": "project",
           "name": "Stuff to buy"
         },
-        "custom_field": {
+        "project": {
           "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Status",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enabled": true,
-          "number_value": 5.2,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2,
-          "format": "custom",
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "is_global_to_workspace": true,
-          "has_notifications_enabled": true,
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
+          "resource_type": "project",
+          "name": "Stuff to buy"
         }
       }
     ],
@@ -2176,9 +2184,9 @@ integrations to create their own starting state on a portfolio.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The portfolio to create.|
 |» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
-|»» name<span class="param-type"> string</span>|The name of the portfolio.|
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
+|»» name<span class="param-type"> string</span>|The name of the portfolio.|
 |»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -2252,10 +2260,39 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
       {
         "gid": "12345",
         "resource_type": "custom_field_setting",
-        "project": {
+        "custom_field": {
           "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
+          "resource_type": "custom_field",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
         },
         "is_important": false,
         "parent": {
@@ -2263,39 +2300,10 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
           "resource_type": "project",
           "name": "Stuff to buy"
         },
-        "custom_field": {
+        "project": {
           "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Status",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enabled": true,
-          "number_value": 5.2,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2,
-          "format": "custom",
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "is_global_to_workspace": true,
-          "has_notifications_enabled": true,
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
+          "resource_type": "project",
+          "name": "Stuff to buy"
         }
       }
     ],
@@ -2367,12 +2375,12 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 ```json
 {
   "data": {
-    "name": "Bug Portfolio",
     "color": "light-green",
     "members": [
       "52164",
       "15363"
     ],
+    "name": "Bug Portfolio",
     "workspace": "167589"
   }
 }
@@ -2397,10 +2405,39 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
       {
         "gid": "12345",
         "resource_type": "custom_field_setting",
-        "project": {
+        "custom_field": {
           "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
+          "resource_type": "custom_field",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
         },
         "is_important": false,
         "parent": {
@@ -2408,39 +2445,10 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
           "resource_type": "project",
           "name": "Stuff to buy"
         },
-        "custom_field": {
+        "project": {
           "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Status",
-          "resource_subtype": "text",
-          "type": "text",
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enabled": true,
-          "number_value": 5.2,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2,
-          "format": "custom",
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "is_global_to_workspace": true,
-          "has_notifications_enabled": true,
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
+          "resource_type": "project",
+          "name": "Stuff to buy"
         }
       }
     ],
@@ -2481,9 +2489,9 @@ Returns the complete updated portfolio record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the portfolio.|
 |» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
-|»» name<span class="param-type"> string</span>|The name of the portfolio.|
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
+|»» name<span class="param-type"> string</span>|The name of the portfolio.|
 |»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -2662,9 +2670,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem \
 ```json
 {
   "data": {
-    "item": "1331",
+    "insert_after": "1331",
     "insert_before": "1331",
-    "insert_after": "1331"
+    "item": "1331"
   }
 }
 ```
@@ -2690,9 +2698,9 @@ Returns an empty data block.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the item being inserted.|
 |» data<span class="param-type"> object</span>|none|
-|»» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to add to the portfolio.|
-|»» insert_before<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 |»» insert_after<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_before<span class="param-type"> string</span>|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» item<span class="param-type"> string</span><div class="param-required">required</div>|The item to add to the portfolio.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -2811,9 +2819,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomF
 {
   "data": {
     "custom_field": "14916",
-    "is_important": true,
+    "insert_after": "1331",
     "insert_before": "1331",
-    "insert_after": "1331"
+    "is_important": true
   }
 }
 ```
@@ -2839,9 +2847,9 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
 |» data<span class="param-type"> object</span>|none|
 |»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this container.|
-|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
-|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |»» insert_after<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 
@@ -3080,7 +3088,8 @@ Status Code **200**
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
+<a id="asana-portfolio-memberships"></a>
+<h1 id="portfolio-memberships">Portfolio Memberships</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-portfolio-memberships"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships</span></a><br><a href="#get-a-portfolio-membership"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships/{portfolio_membership_gid}</span></a><br><a href="#get-memberships-from-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/portfolio_memberships</span></a></code>
@@ -3288,7 +3297,8 @@ Returns the compact portfolio membership records for the portfolio.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-projects">Projects</h1>
+<a id="asana-projects"></a>
+<h1 id="projects">Projects</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="#add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addMembers</span></a><br><a href="#remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="#add-followers-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a></code>
@@ -3382,32 +3392,36 @@ curl -X POST https://app.asana.com/api/1.0/projects \
 ```json
 {
   "data": {
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "current_status": {
-      "title": "Status Update - Jun 15",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "name": "Greg Sanchez"
+      },
       "color": "green",
       "created_by": {
         "name": "Greg Sanchez"
-      }
+      },
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
+    },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
     },
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "custom_fields": {
-      "5678904321": "On Hold",
-      "4578152156": "Not Started"
-    },
-    "followers": "12345,23456",
-    "owner": "12345",
     "team": "12345"
   }
 }
@@ -3428,10 +3442,15 @@ curl -X POST https://app.asana.com/api/1.0/projects \
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
-      "project": "123456",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
@@ -3470,21 +3489,21 @@ curl -X POST https://app.asana.com/api/1.0/projects \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
+        "name": "Status",
         "number_value": 5.2,
-        "text_value": "Some Value"
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -3494,6 +3513,7 @@ curl -X POST https://app.asana.com/api/1.0/projects \
         "name": "Greg Sanchez"
       }
     ],
+    "icon": "chat_bubbles",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -3530,33 +3550,38 @@ Returns the full record of the newly created project.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project to create.|
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
 |»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**modified_at**: The time at which this project status was last modified.
+*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -3630,10 +3655,15 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
-      "project": "123456",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
@@ -3672,21 +3702,21 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
+        "name": "Status",
         "number_value": 5.2,
-        "text_value": "Some Value"
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -3696,6 +3726,7 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
         "name": "Greg Sanchez"
       }
     ],
+    "icon": "chat_bubbles",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -3757,32 +3788,36 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
 ```json
 {
   "data": {
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "current_status": {
-      "title": "Status Update - Jun 15",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "name": "Greg Sanchez"
+      },
       "color": "green",
       "created_by": {
         "name": "Greg Sanchez"
-      }
+      },
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
+    },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
     },
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "custom_fields": {
-      "5678904321": "On Hold",
-      "4578152156": "Not Started"
-    },
-    "followers": "12345,23456",
-    "owner": "12345",
     "team": "12345"
   }
 }
@@ -3803,10 +3838,15 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
-      "project": "123456",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
@@ -3845,21 +3885,21 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
+        "name": "Status",
         "number_value": 5.2,
-        "text_value": "Some Value"
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -3869,6 +3909,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
         "name": "Greg Sanchez"
       }
     ],
+    "icon": "chat_bubbles",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -3903,34 +3944,39 @@ Returns the complete updated project record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the project.|
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
 |»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**modified_at**: The time at which this project status was last modified.
+*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -4055,17 +4101,17 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
 ```json
 {
   "data": {
-    "name": "New Project Name",
-    "team": "12345",
     "include": [
       "members",
       "task_notes"
     ],
+    "name": "New Project Name",
     "schedule_dates": {
-      "should_skip_weekends": true,
       "due_on": "2019-05-21",
+      "should_skip_weekends": true,
       "start_on": "2019-05-21"
-    }
+    },
+    "team": "12345"
   }
 }
 ```
@@ -4077,8 +4123,6 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
   "data": {
     "gid": "12345",
     "resource_type": "job",
-    "resource_subtype": "duplicate_task",
-    "status": "in_progress",
     "new_project": {
       "gid": "12345",
       "resource_type": "project",
@@ -4088,7 +4132,9 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task"
-    }
+    },
+    "resource_subtype": "duplicate_task",
+    "status": "in_progress"
   }
 }
 ```
@@ -4105,13 +4151,13 @@ Creates and returns a job that will asynchronously handle the duplication.
 |---|---|
 |body<span class="param-type"> object</span>|Describes the duplicate's name and the elements that will be duplicated.|
 |» data<span class="param-type"> object</span>|none|
-|»» name<span class="param-type"> string</span><div class="param-required">required</div>|The name of the new project.|
-|»» team<span class="param-type"> string</span>|Sets the team of the new project. If team is not defined, the new project will be in the same team as the the original project.|
 |»» include<span class="param-type"> string</span>|The elements that will be duplicated to the new project. Tasks are always included.|
+|»» name<span class="param-type"> string</span><div class="param-required">required</div>|The name of the new project.|
 |»» schedule_dates<span class="param-type"> object</span>|A dictionary of options to auto-shift dates. `task_dates` must be included to use this option. Requires either `start_on` or `due_on`, but not both.|
-|»»» should_skip_weekends<span class="param-type"> boolean</span><div class="param-required">required</div>|Determines if the auto-shifted dates should skip weekends.|
 |»»» due_on<span class="param-type"> string</span>|Sets the last due date in the duplicated project to the given date. The rest of the due dates will be offset by the same amount as the due dates in the original project.|
+|»»» should_skip_weekends<span class="param-type"> boolean</span><div class="param-required">required</div>|Determines if the auto-shifted dates should skip weekends.|
 |»»» start_on<span class="param-type"> string</span>|Sets the first start date in the duplicated project to the given date. The rest of the start dates will be offset by the same amount as the start dates in the original project.|
+|»» team<span class="param-type"> string</span>|Sets the team of the new project. If team is not defined, the new project will be in the same team as the the original project.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -4280,32 +4326,36 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
 ```json
 {
   "data": {
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "current_status": {
-      "title": "Status Update - Jun 15",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "name": "Greg Sanchez"
+      },
       "color": "green",
       "created_by": {
         "name": "Greg Sanchez"
-      }
+      },
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
+    },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
     },
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "custom_fields": {
-      "5678904321": "On Hold",
-      "4578152156": "Not Started"
-    },
-    "followers": "12345,23456",
-    "owner": "12345",
     "team": "12345"
   }
 }
@@ -4326,10 +4376,15 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
-      "project": "123456",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
@@ -4368,21 +4423,21 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
+        "name": "Status",
         "number_value": 5.2,
-        "text_value": "Some Value"
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -4392,6 +4447,7 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
         "name": "Greg Sanchez"
       }
     ],
+    "icon": "chat_bubbles",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -4420,34 +4476,39 @@ Returns the full record of the newly created project.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new project to create.|
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
 |»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**modified_at**: The time at which this project status was last modified.
+*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -4570,32 +4631,36 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
 ```json
 {
   "data": {
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "current_status": {
-      "title": "Status Update - Jun 15",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "name": "Greg Sanchez"
+      },
       "color": "green",
       "created_by": {
         "name": "Greg Sanchez"
-      }
+      },
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
+    },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
     },
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
+    "followers": "12345,23456",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
+    "owner": "12345",
     "public": false,
     "start_on": "2019-09-14",
-    "custom_fields": {
-      "5678904321": "On Hold",
-      "4578152156": "Not Started"
-    },
-    "followers": "12345,23456",
-    "owner": "12345",
     "team": "12345"
   }
 }
@@ -4616,10 +4681,15 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
-      "project": "123456",
-      "text": "The project is moving forward according to plan...",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "author": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": null,
+      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
@@ -4658,21 +4728,21 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
+        "name": "Status",
         "number_value": 5.2,
-        "text_value": "Some Value"
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -4682,6 +4752,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
         "name": "Greg Sanchez"
       }
     ],
+    "icon": "chat_bubbles",
     "owner": {
       "gid": "12345",
       "resource_type": "user",
@@ -4713,34 +4784,39 @@ Returns the full record of the newly created project.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new project to create.|
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
 |»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**modified_at**: The time at which this project status was last modified.
+*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -4806,9 +4882,9 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomField
 {
   "data": {
     "custom_field": "14916",
-    "is_important": true,
+    "insert_after": "1331",
     "insert_before": "1331",
-    "insert_after": "1331"
+    "is_important": true
   }
 }
 ```
@@ -4834,9 +4910,9 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Information about the custom field setting.|
 |» data<span class="param-type"> object</span>|none|
 |»» custom_field<span class="param-type"> string</span><div class="param-required">required</div>|The custom field to associate with this container.|
-|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
-|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |»» insert_after<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_before<span class="param-type"> string</span>|A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» is_important<span class="param-type"> boolean</span>|Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 
@@ -4950,12 +5026,12 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/task_counts \
 ```json
 {
   "data": {
-    "num_tasks": 200,
-    "num_incomplete_tasks": 50,
+    "num_completed_milestones": 3,
     "num_completed_tasks": 150,
-    "num_milestones": 10,
     "num_incomplete_milestones": 7,
-    "num_completed_milestones": 3
+    "num_incomplete_tasks": 50,
+    "num_milestones": 10,
+    "num_tasks": 200
   }
 }
 ```
@@ -4998,12 +5074,12 @@ Status Code **200**
 |Name|Description|
 |---|---|
 | data<span class="param-type"> [TaskCountResponse](#schemataskcountresponse)</span>|A response object returned from the task count endpoint.|
-| num_tasks<span class="param-type"> integer</span>|The number of tasks in a project.|
-| num_incomplete_tasks<span class="param-type"> integer</span>|The number of incomplete tasks in a project.|
-| num_completed_tasks<span class="param-type"> integer</span>|The number of completed tasks in a project.|
-| num_milestones<span class="param-type"> integer</span>|The number of milestones in a project.|
-| num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
 | num_completed_milestones<span class="param-type"> integer</span>|The number of completed milestones in a project.|
+| num_completed_tasks<span class="param-type"> integer</span>|The number of completed tasks in a project.|
+| num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
+| num_incomplete_tasks<span class="param-type"> integer</span>|The number of incomplete tasks in a project.|
+| num_milestones<span class="param-type"> integer</span>|The number of milestones in a project.|
+| num_tasks<span class="param-type"> integer</span>|The number of tasks in a project.|
 
 </section><hr class="half-line">
 <section>
@@ -5295,7 +5371,8 @@ Status Code **200**
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-project-memberships">Project Memberships</h1>
+<a id="asana-project-memberships"></a>
+<h1 id="project-memberships">Project Memberships</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-project-membership"><span class="get-verb">GET</span> <span class=""nn>/project_memberships/{project_membership_gid}</span></a><br><a href="#get-memberships-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_memberships</span></a></code>
@@ -5431,7 +5508,8 @@ Returns the compact project membership records for the project.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-project-statuses">Project Statuses</h1>
+<a id="asana-project-statuses"></a>
+<h1 id="project-statuses">Project Statuses</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-project-status"><span class="get-verb">GET</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a><br><a href="#delete-a-project-status"><span class="delete-verb">DELETE</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a><br><a href="#get-statuses-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="#create-a-project-status"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a></code>
@@ -5466,10 +5544,15 @@ curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} 
     "gid": "12345",
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
-    "project": "123456",
-    "text": "The project is moving forward according to plan...",
-    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "author": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "color": "green",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "modified_at": null,
+    "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -5643,10 +5726,14 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
 ```json
 {
   "data": {
-    "title": "Status Update - Jun 15",
-    "text": "The project is moving forward according to plan...",
+    "author": {
+      "name": "Greg Sanchez"
+    },
+    "color": "green",
     "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-    "color": "green"
+    "modified_at": null,
+    "text": "The project is moving forward according to plan...",
+    "title": "Status Update - Jun 15"
   }
 }
 ```
@@ -5659,10 +5746,15 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
     "gid": "12345",
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
-    "project": "123456",
-    "text": "The project is moving forward according to plan...",
-    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "author": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "color": "green",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "modified_at": null,
+    "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -5686,13 +5778,21 @@ Returns the full record of the newly created project status update.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project status to create.|
 |» data<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
-|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
+|»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»» title<span class="param-type"> string</span>|The title of the project status update.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**modified_at**: The time at which this project status was last modified.
+*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -5715,7 +5815,8 @@ Returns the full record of the newly created project status update.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-sections">Sections</h1>
+<a id="asana-sections"></a>
+<h1 id="sections">Sections</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#update-a-section"><span class="put-verb">PUT</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#delete-a-section"><span class="delete-verb">DELETE</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#get-sections-in-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#create-a-section-in-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#add-task-to-section"><span class="post-verb">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span></a><br><a href="#move-or-insert-sections"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span></a></code>
@@ -5816,8 +5917,8 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
 ```json
 {
   "data": {
-    "project": "13579",
-    "name": "Next Actions"
+    "name": "Next Actions",
+    "project": "13579"
   }
 }
 ```
@@ -5868,8 +5969,8 @@ Returns the complete updated section record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
 |» data<span class="param-type"> object</span>|none|
-|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -6028,8 +6129,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
 ```json
 {
   "data": {
-    "project": "13579",
-    "name": "Next Actions"
+    "name": "Next Actions",
+    "project": "13579"
   }
 }
 ```
@@ -6072,8 +6173,8 @@ Returns the full record of the newly created section.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
 |» data<span class="param-type"> object</span>|none|
-|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -6111,9 +6212,9 @@ curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
 ```json
 {
   "data": {
-    "task": "123456",
+    "insert_after": "987654",
     "insert_before": "86420",
-    "insert_after": "987654"
+    "task": "123456"
   }
 }
 ```
@@ -6142,9 +6243,9 @@ This does not work for separators (tasks with the resource_subtype of section).
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The task and optionally the insert location.|
 |» data<span class="param-type"> object</span>|none|
-|»» task<span class="param-type"> string</span><div class="param-required">required</div>|The task to add to this section.|
-|»» insert_before<span class="param-type"> string</span>|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
 |»» insert_after<span class="param-type"> string</span>|An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.|
+|»» insert_before<span class="param-type"> string</span>|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
+|»» task<span class="param-type"> string</span><div class="param-required">required</div>|The task to add to this section.|
 |/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -6190,10 +6291,10 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/inser
 ```json
 {
   "data": {
-    "project": "123456",
-    "section": "321654",
+    "after_section": "987654",
     "before_section": "86420",
-    "after_section": "987654"
+    "project": "123456",
+    "section": "321654"
   }
 }
 ```
@@ -6223,10 +6324,10 @@ Returns an empty data block.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The section's move action.|
 |» data<span class="param-type"> object</span>|none|
+|»» after_section<span class="param-type"> string</span>|Insert the given section immediately after the section specified by this parameter.|
+|»» before_section<span class="param-type"> string</span>|Insert the given section immediately before the section specified by this parameter.|
 |»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project in which to reorder the given section.|
 |»» section<span class="param-type"> string</span><div class="param-required">required</div>|The section to reorder.|
-|»» before_section<span class="param-type"> string</span>|Insert the given section immediately before the section specified by this parameter.|
-|»» after_section<span class="param-type"> string</span>|Insert the given section immediately after the section specified by this parameter.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -6252,7 +6353,8 @@ Status Code **200**
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-stories">Stories</h1>
+<a id="asana-stories"></a>
+<h1 id="stories">Stories</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-story"><span class="get-verb">GET</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#update-a-story"><span class="put-verb">PUT</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#delete-a-story"><span class="delete-verb">DELETE</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#get-stories-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="#create-a-story-on-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span></a></code>
@@ -6295,9 +6397,52 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
     "resource_subtype": "comment_added",
     "text": "This is a comment.",
     "type": "comment",
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
-    "is_edited": false,
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "custom_field": {
+      "gid": "12345",
+      "resource_type": "custom_field",
+      "enabled": true,
+      "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
+      "name": "Status",
+      "number_value": 5.2,
+      "resource_subtype": "text",
+      "text_value": "Some Value",
+      "type": "text"
+    },
+    "dependency": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "duplicate_of": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "duplicated_from": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "follower": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "hearted": false,
     "hearts": [
       {
@@ -6309,7 +6454,7 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
         }
       }
     ],
-    "num_hearts": 5,
+    "is_edited": false,
     "liked": false,
     "likes": [
       {
@@ -6321,7 +6466,52 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
         }
       }
     ],
+    "new_approval_status": "approved",
+    "new_dates": {
+      "due_at": "2019-09-15T02:06:58.158Z",
+      "due_on": "2019-09-15",
+      "start_on": "2019-09-14"
+    },
+    "new_enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "new_name": "This is the New Name",
+    "new_number_value": 2,
+    "new_resource_subtype": "milestone",
+    "new_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
+    },
+    "new_text_value": "This is the New Text",
+    "num_hearts": 5,
     "num_likes": 5,
+    "old_approval_status": "pending",
+    "old_dates": {
+      "due_at": "2019-09-15T02:06:58.158Z",
+      "due_on": "2019-09-15",
+      "start_on": "2019-09-14"
+    },
+    "old_enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "old_name": "This was the Old Name",
+    "old_number_value": 1,
+    "old_resource_subtype": "default_task",
+    "old_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
+    },
+    "old_text_value": "This was the Old Text",
     "previews": [
       {
         "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
@@ -6334,20 +6524,12 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
         "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
       }
     ],
-    "old_name": "This was the Old Name",
-    "new_name": "This is the New Name",
-    "old_dates": {
-      "start_on": "2019-09-14",
-      "due_at": "2019-09-15T02:06:58.158Z",
-      "due_on": "2019-09-15"
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
     },
-    "new_dates": {
-      "start_on": "2019-09-14",
-      "due_at": "2019-09-15T02:06:58.158Z",
-      "due_on": "2019-09-15"
-    },
-    "old_resource_subtype": "default_task",
-    "new_resource_subtype": "milestone",
+    "source": "web",
     "story": {
       "gid": "12345",
       "resource_type": "story",
@@ -6361,98 +6543,18 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
       "text": "marked today",
       "type": "comment"
     },
-    "assignee": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "follower": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "old_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
-    "new_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
-    "task": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "project": {
-      "gid": "12345",
-      "resource_type": "project",
-      "name": "Stuff to buy"
-    },
     "tag": {
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy"
     },
-    "custom_field": {
-      "gid": "12345",
-      "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
-      "enum_options": [
-        {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value"
-    },
-    "old_text_value": "This was the Old Text",
-    "new_text_value": "This is the New Text",
-    "old_number_value": 1,
-    "new_number_value": 2,
-    "old_enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_approval_status": "approved",
-    "old_approval_status": "pending",
-    "duplicate_of": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "duplicated_from": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "dependency": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "source": "web",
     "target": {
       "gid": "1234",
+      "name": "Bug Task"
+    },
+    "task": {
+      "gid": "12345",
+      "resource_type": "task",
       "name": "Bug Task"
     }
   }
@@ -6511,9 +6613,9 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     "created_by": {
       "name": "Greg Sanchez"
     },
-    "text": "This is a comment.",
-    "html_text": "<body>This is a comment.<body>",
-    "is_pinned": false
+    "html_text": "<body>This is a comment.</body>",
+    "is_pinned": false,
+    "text": "This is a comment."
   }
 }
 ```
@@ -6534,9 +6636,52 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
     "resource_subtype": "comment_added",
     "text": "This is a comment.",
     "type": "comment",
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
-    "is_edited": false,
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "custom_field": {
+      "gid": "12345",
+      "resource_type": "custom_field",
+      "enabled": true,
+      "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
+      "name": "Status",
+      "number_value": 5.2,
+      "resource_subtype": "text",
+      "text_value": "Some Value",
+      "type": "text"
+    },
+    "dependency": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "duplicate_of": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "duplicated_from": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "follower": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "hearted": false,
     "hearts": [
       {
@@ -6548,7 +6693,7 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
         }
       }
     ],
-    "num_hearts": 5,
+    "is_edited": false,
     "liked": false,
     "likes": [
       {
@@ -6560,7 +6705,52 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
         }
       }
     ],
+    "new_approval_status": "approved",
+    "new_dates": {
+      "due_at": "2019-09-15T02:06:58.158Z",
+      "due_on": "2019-09-15",
+      "start_on": "2019-09-14"
+    },
+    "new_enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "new_name": "This is the New Name",
+    "new_number_value": 2,
+    "new_resource_subtype": "milestone",
+    "new_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
+    },
+    "new_text_value": "This is the New Text",
+    "num_hearts": 5,
     "num_likes": 5,
+    "old_approval_status": "pending",
+    "old_dates": {
+      "due_at": "2019-09-15T02:06:58.158Z",
+      "due_on": "2019-09-15",
+      "start_on": "2019-09-14"
+    },
+    "old_enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "old_name": "This was the Old Name",
+    "old_number_value": 1,
+    "old_resource_subtype": "default_task",
+    "old_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
+    },
+    "old_text_value": "This was the Old Text",
     "previews": [
       {
         "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
@@ -6573,20 +6763,12 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
         "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
       }
     ],
-    "old_name": "This was the Old Name",
-    "new_name": "This is the New Name",
-    "old_dates": {
-      "start_on": "2019-09-14",
-      "due_at": "2019-09-15T02:06:58.158Z",
-      "due_on": "2019-09-15"
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
     },
-    "new_dates": {
-      "start_on": "2019-09-14",
-      "due_at": "2019-09-15T02:06:58.158Z",
-      "due_on": "2019-09-15"
-    },
-    "old_resource_subtype": "default_task",
-    "new_resource_subtype": "milestone",
+    "source": "web",
     "story": {
       "gid": "12345",
       "resource_type": "story",
@@ -6600,98 +6782,18 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
       "text": "marked today",
       "type": "comment"
     },
-    "assignee": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "follower": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "old_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
-    "new_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
-    "task": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "project": {
-      "gid": "12345",
-      "resource_type": "project",
-      "name": "Stuff to buy"
-    },
     "tag": {
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy"
     },
-    "custom_field": {
-      "gid": "12345",
-      "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
-      "enum_options": [
-        {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value"
-    },
-    "old_text_value": "This was the Old Text",
-    "new_text_value": "This is the New Text",
-    "old_number_value": 1,
-    "new_number_value": 2,
-    "old_enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_approval_status": "approved",
-    "old_approval_status": "pending",
-    "duplicate_of": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "duplicated_from": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "dependency": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "source": "web",
     "target": {
       "gid": "1234",
+      "name": "Bug Task"
+    },
+    "task": {
+      "gid": "12345",
+      "resource_type": "task",
       "name": "Bug Task"
     }
   }
@@ -6712,9 +6814,9 @@ Updates the story and returns the full record for the updated story. Only commen
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
 |»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -6879,9 +6981,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     "created_by": {
       "name": "Greg Sanchez"
     },
-    "text": "This is a comment.",
-    "html_text": "<body>This is a comment.<body>",
-    "is_pinned": false
+    "html_text": "<body>This is a comment.</body>",
+    "is_pinned": false,
+    "text": "This is a comment."
   }
 }
 ```
@@ -6902,9 +7004,52 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
     "resource_subtype": "comment_added",
     "text": "This is a comment.",
     "type": "comment",
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
-    "is_edited": false,
+    "assignee": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "custom_field": {
+      "gid": "12345",
+      "resource_type": "custom_field",
+      "enabled": true,
+      "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
+      "name": "Status",
+      "number_value": 5.2,
+      "resource_subtype": "text",
+      "text_value": "Some Value",
+      "type": "text"
+    },
+    "dependency": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "duplicate_of": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "duplicated_from": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "follower": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "hearted": false,
     "hearts": [
       {
@@ -6916,7 +7061,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
         }
       }
     ],
-    "num_hearts": 5,
+    "is_edited": false,
     "liked": false,
     "likes": [
       {
@@ -6928,7 +7073,52 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
         }
       }
     ],
+    "new_approval_status": "approved",
+    "new_dates": {
+      "due_at": "2019-09-15T02:06:58.158Z",
+      "due_on": "2019-09-15",
+      "start_on": "2019-09-14"
+    },
+    "new_enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "new_name": "This is the New Name",
+    "new_number_value": 2,
+    "new_resource_subtype": "milestone",
+    "new_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
+    },
+    "new_text_value": "This is the New Text",
+    "num_hearts": 5,
     "num_likes": 5,
+    "old_approval_status": "pending",
+    "old_dates": {
+      "due_at": "2019-09-15T02:06:58.158Z",
+      "due_on": "2019-09-15",
+      "start_on": "2019-09-14"
+    },
+    "old_enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "old_name": "This was the Old Name",
+    "old_number_value": 1,
+    "old_resource_subtype": "default_task",
+    "old_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
+    },
+    "old_text_value": "This was the Old Text",
     "previews": [
       {
         "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
@@ -6941,20 +7131,12 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
         "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
       }
     ],
-    "old_name": "This was the Old Name",
-    "new_name": "This is the New Name",
-    "old_dates": {
-      "start_on": "2019-09-14",
-      "due_at": "2019-09-15T02:06:58.158Z",
-      "due_on": "2019-09-15"
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
     },
-    "new_dates": {
-      "start_on": "2019-09-14",
-      "due_at": "2019-09-15T02:06:58.158Z",
-      "due_on": "2019-09-15"
-    },
-    "old_resource_subtype": "default_task",
-    "new_resource_subtype": "milestone",
+    "source": "web",
     "story": {
       "gid": "12345",
       "resource_type": "story",
@@ -6968,98 +7150,18 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
       "text": "marked today",
       "type": "comment"
     },
-    "assignee": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "follower": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "old_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
-    "new_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
-    "task": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "project": {
-      "gid": "12345",
-      "resource_type": "project",
-      "name": "Stuff to buy"
-    },
     "tag": {
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy"
     },
-    "custom_field": {
-      "gid": "12345",
-      "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
-      "enum_options": [
-        {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value"
-    },
-    "old_text_value": "This was the Old Text",
-    "new_text_value": "This is the New Text",
-    "old_number_value": 1,
-    "new_number_value": 2,
-    "old_enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_approval_status": "approved",
-    "old_approval_status": "pending",
-    "duplicate_of": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "duplicated_from": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "dependency": {
-      "gid": "12345",
-      "resource_type": "task",
-      "name": "Bug Task"
-    },
-    "source": "web",
     "target": {
       "gid": "1234",
+      "name": "Bug Task"
+    },
+    "task": {
+      "gid": "12345",
+      "resource_type": "task",
       "name": "Bug Task"
     }
   }
@@ -7084,9 +7186,9 @@ Returns the full record for the new story added to the task.
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
 |»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -7104,7 +7206,8 @@ Returns the full record for the new story added to the task.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-tags">Tags</h1>
+<a id="asana-tags"></a>
+<h1 id="tags">Tags</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-tags"><span class="get-verb">GET</span> <span class=""nn>/tags</span></a><br><a href="#create-a-tag"><span class="post-verb">POST</span> <span class=""nn>/tags</span></a><br><a href="#get-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="#update-a-tag"><span class="put-verb">PUT</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="#get-a-task-39-s-tags"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span></a><br><a href="#get-tags-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a><br><a href="#create-a-tag-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a></code>
@@ -7194,12 +7297,12 @@ curl -X POST https://app.asana.com/api/1.0/tags \
 ```json
 {
   "data": {
-    "name": "Stuff to buy",
     "color": "light-green",
     "followers": [
       "12345",
       "42563"
     ],
+    "name": "Stuff to buy",
     "workspace": "12345"
   }
 }
@@ -7212,7 +7315,6 @@ curl -X POST https://app.asana.com/api/1.0/tags \
   "data": {
     "gid": "12345",
     "resource_type": "tag",
-    "name": "Stuff to buy",
     "color": "light-green",
     "followers": [
       {
@@ -7221,6 +7323,7 @@ curl -X POST https://app.asana.com/api/1.0/tags \
         "name": "Greg Sanchez"
       }
     ],
+    "name": "Stuff to buy",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -7249,9 +7352,9 @@ Returns the full record of the newly created tag.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
 |» data<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
 |»» followers<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
+|»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -7313,7 +7416,6 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "tag",
-    "name": "Stuff to buy",
     "color": "light-green",
     "followers": [
       {
@@ -7322,6 +7424,7 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
         "name": "Greg Sanchez"
       }
     ],
+    "name": "Stuff to buy",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -7381,7 +7484,6 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
   "data": {
     "gid": "12345",
     "resource_type": "tag",
-    "name": "Stuff to buy",
     "color": "light-green",
     "followers": [
       {
@@ -7390,6 +7492,7 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
         "name": "Greg Sanchez"
       }
     ],
+    "name": "Stuff to buy",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -7569,8 +7672,8 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
 ```json
 {
   "data": {
-    "name": "Stuff to buy",
     "color": "light-green",
+    "name": "Stuff to buy",
     "workspace": {
       "name": "My Company Workspace"
     }
@@ -7585,7 +7688,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   "data": {
     "gid": "12345",
     "resource_type": "tag",
-    "name": "Stuff to buy",
     "color": "light-green",
     "followers": [
       {
@@ -7594,6 +7696,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
         "name": "Greg Sanchez"
       }
     ],
+    "name": "Stuff to buy",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -7622,9 +7725,8 @@ Returns the full record of the newly created tag.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
 |» data<span class="param-type"> [TagResponse](#schematagresponse)</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
@@ -7667,7 +7769,8 @@ Returns the full record of the newly created tag.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-tasks">Tasks</h1>
+<a id="asana-tasks"></a>
+<h1 id="tasks">Tasks</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="#create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="#get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="#get-tasks-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="#get-tasks-from-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="#get-tasks-from-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span></a><br><a href="#get-tasks-from-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></a><br><a href="#get-subtasks-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#set-the-parent-of-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="#get-dependencies-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="#set-dependencies-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="#unlink-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="#get-dependents-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="#set-dependents-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="#unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="#add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="#remove-a-project-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="#add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="#remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="#add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a><br><a href="#search-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
@@ -7786,36 +7889,36 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
 ```json
 {
   "data": {
-    "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
     },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
+    },
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
-    },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "liked": true,
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "resource_subtype": "default_task",
-    "start_on": "2019-09-14",
-    "assignee": "12345",
-    "custom_fields": {
-      "5678904321": "On Hold",
-      "4578152156": "Not Started"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
     "followers": [
       "12345"
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
+    "name": "Buy catnip",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": "12345",
     "projects": [
       "12345"
     ],
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
     "tags": [
       "12345"
     ],
@@ -7857,10 +7960,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
@@ -7872,6 +7974,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
         }
       }
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
@@ -7914,36 +8017,36 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
         "enum_value": {
           "gid": "12345",
           "resource_type": "enum_option",
-          "name": "Low",
+          "color": "blue",
           "enabled": true,
-          "color": "blue"
-        }
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -7998,36 +8101,27 @@ explicitly if you specify `projects` or a `parent` task instead.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The task to create.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
+|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
-|»»» gid<span class="param-type"> string</span>|none|
 |»»» data<span class="param-type"> string</span>|none|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
-|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
+|»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
+|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -8125,10 +8219,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
@@ -8140,6 +8233,7 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
         }
       }
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
@@ -8182,36 +8276,36 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
         "enum_value": {
           "gid": "12345",
           "resource_type": "enum_option",
-          "name": "Low",
+          "color": "blue",
           "enabled": true,
-          "color": "blue"
-        }
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -8295,36 +8389,36 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
 ```json
 {
   "data": {
-    "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
     },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
+    },
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
-    },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "liked": true,
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "resource_subtype": "default_task",
-    "start_on": "2019-09-14",
-    "assignee": "12345",
-    "custom_fields": {
-      "5678904321": "On Hold",
-      "4578152156": "Not Started"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
     "followers": [
       "12345"
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
+    "name": "Buy catnip",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": "12345",
     "projects": [
       "12345"
     ],
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
     "tags": [
       "12345"
     ],
@@ -8366,10 +8460,9 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
@@ -8381,6 +8474,7 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
         }
       }
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
@@ -8423,36 +8517,36 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
         "enum_value": {
           "gid": "12345",
           "resource_type": "enum_option",
-          "name": "Low",
+          "color": "blue",
           "enabled": true,
-          "color": "blue"
-        }
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -8509,36 +8603,27 @@ Returns the complete updated task record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The task to update.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
+|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
-|»»» gid<span class="param-type"> string</span>|none|
 |»»» data<span class="param-type"> string</span>|none|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
-|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
+|»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
+|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
@@ -8672,11 +8757,11 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
 ```json
 {
   "data": {
-    "name": "New Task Name",
     "include": [
       "notes",
       "assignee"
-    ]
+    ],
+    "name": "New Task Name"
   }
 }
 ```
@@ -8688,8 +8773,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
   "data": {
     "gid": "12345",
     "resource_type": "job",
-    "resource_subtype": "duplicate_task",
-    "status": "in_progress",
     "new_project": {
       "gid": "12345",
       "resource_type": "project",
@@ -8699,7 +8782,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task"
-    }
+    },
+    "resource_subtype": "duplicate_task",
+    "status": "in_progress"
   }
 }
 ```
@@ -8716,8 +8801,8 @@ Creates and returns a job that will asynchronously handle the duplication.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Describes the duplicate's name and the fields that will be duplicated.|
 |» data<span class="param-type"> object</span>|none|
-|»» name<span class="param-type"> string</span>|The name of the new task.|
 |»» include<span class="param-type"> string</span>|The fields that will be duplicated to the new task.|
+|»» name<span class="param-type"> string</span>|The name of the new task.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -9063,36 +9148,36 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
 ```json
 {
   "data": {
-    "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
     },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
+    },
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
-    },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "liked": true,
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "resource_subtype": "default_task",
-    "start_on": "2019-09-14",
-    "assignee": "12345",
-    "custom_fields": {
-      "5678904321": "On Hold",
-      "4578152156": "Not Started"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
     "followers": [
       "12345"
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "liked": true,
+    "name": "Buy catnip",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": "12345",
     "projects": [
       "12345"
     ],
+    "resource_subtype": "default_task",
+    "start_on": "2019-09-14",
     "tags": [
       "12345"
     ],
@@ -9134,10 +9219,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
@@ -9149,6 +9233,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
         }
       }
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
@@ -9191,36 +9276,36 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
         "enum_value": {
           "gid": "12345",
           "resource_type": "enum_option",
-          "name": "Low",
+          "color": "blue",
           "enabled": true,
-          "color": "blue"
-        }
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -9269,36 +9354,27 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new subtask to create.|
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
+|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
 |»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
-|»»» gid<span class="param-type"> string</span>|none|
 |»»» data<span class="param-type"> string</span>|none|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
-|»»» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
-|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»»» **additionalProperties**<span class="param-type"> string</span>|"{custom_field_gid}" => Value (Can be text, number, etc.)|
+|»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
+|»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
+|»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
@@ -9370,9 +9446,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
 ```json
 {
   "data": {
-    "parent": "987654",
     "insert_after": "null",
-    "insert_before": "124816"
+    "insert_before": "124816",
+    "parent": "987654"
   }
 }
 ```
@@ -9410,10 +9486,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
     "due_at": "2019-09-15T02:06:58.147Z",
     "due_on": "2019-09-15",
     "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
+      "data": "A blob of information",
+      "gid": "my_gid"
     },
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
       {
@@ -9425,6 +9500,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
         }
       }
     ],
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
@@ -9467,36 +9543,36 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
       {
         "gid": "12345",
         "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
         "enum_options": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
-            "name": "Low",
+            "color": "blue",
             "enabled": true,
-            "color": "blue"
+            "name": "Low"
           }
         ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
         "enum_value": {
           "gid": "12345",
           "resource_type": "enum_option",
-          "name": "Low",
+          "color": "blue",
           "enabled": true,
-          "color": "blue"
-        }
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       }
     ],
     "followers": [
@@ -9545,9 +9621,9 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The new parent of the subtask.|
 |» data<span class="param-type"> object</span>|none|
-|»» parent<span class="param-type"> string</span><div class="param-required">required</div>|The new parent of the task, or `null` for no parent.|
 |»» insert_after<span class="param-type"> string</span>|A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.|
 |»» insert_before<span class="param-type"> string</span>|A subtask of the parent to insert the task before, or `null` to insert at the end of the list.|
+|»» parent<span class="param-type"> string</span><div class="param-required">required</div>|The new parent of the task, or `null` for no parent.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -9997,9 +10073,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
 ```json
 {
   "data": {
-    "project": "13579",
     "insert_after": "124816",
     "insert_before": "432134",
+    "project": "13579",
     "section": "987654"
   }
 }
@@ -10038,9 +10114,9 @@ Returns an empty data block.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project to add the task to.|
 |» data<span class="param-type"> object</span>|none|
-|»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project to add the task to.|
 |»» insert_after<span class="param-type"> string¦null</span>|A task in the project to insert the task after, or `null` to insert at the beginning of the list.|
 |»» insert_before<span class="param-type"> string¦null</span>|A task in the project to insert the task before, or `null` to insert at the end of the list.|
+|»» project<span class="param-type"> string</span><div class="param-required">required</div>|The project to add the task to.|
 |»» section<span class="param-type"> string¦null</span>|A section in the project to insert the task into. The task will be inserted at the bottom of the section.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -10587,7 +10663,8 @@ Searching for multiple exact matches of a custom field is not supported.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-teams">Teams</h1>
+<a id="asana-teams"></a>
+<h1 id="teams">Teams</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="#get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{workspace_gid}/teams</span></a><br><a href="#get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="#add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="#remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
@@ -10810,11 +10887,11 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
     "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
     "photo": {
+      "image_128x128": "https://...",
       "image_21x21": "https://...",
       "image_27x27": "https://...",
       "image_36x36": "https://...",
-      "image_60x60": "https://...",
-      "image_128x128": "https://..."
+      "image_60x60": "https://..."
     },
     "workspaces": [
       {
@@ -10928,7 +11005,8 @@ Status Code **204**
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-team-memberships">Team Memberships</h1>
+<a id="asana-team-memberships"></a>
+<h1 id="team-memberships">Team Memberships</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-team-membership"><span class="get-verb">GET</span> <span class=""nn>/team_memberships/{team_membership_gid}</span></a><br><a href="#get-team-memberships"><span class="get-verb">GET</span> <span class=""nn>/team_memberships</span></a><br><a href="#get-memberships-from-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/team_memberships</span></a><br><a href="#get-memberships-from-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/team_memberships</span></a></code>
@@ -10960,17 +11038,17 @@ curl -X GET https://app.asana.com/api/1.0/team_memberships/{team_membership_gid}
   "data": {
     "gid": "12345",
     "resource_type": "team_membership",
-    "user": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
+    "is_guest": false,
     "team": {
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
     },
-    "is_guest": false
+    "user": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
   }
 }
 ```
@@ -11024,17 +11102,17 @@ curl -X GET https://app.asana.com/api/1.0/team_memberships \
     {
       "gid": "12345",
       "resource_type": "team_membership",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
+      "is_guest": false,
       "team": {
         "gid": "12345",
         "resource_type": "team",
         "name": "Marketing"
       },
-      "is_guest": false
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ]
 }
@@ -11093,17 +11171,17 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/team_memberships \
     {
       "gid": "12345",
       "resource_type": "team_membership",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
+      "is_guest": false,
       "team": {
         "gid": "12345",
         "resource_type": "team",
         "name": "Marketing"
       },
-      "is_guest": false
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ]
 }
@@ -11160,17 +11238,17 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships?work
     {
       "gid": "12345",
       "resource_type": "team_membership",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
+      "is_guest": false,
       "team": {
         "gid": "12345",
         "resource_type": "team",
         "name": "Marketing"
       },
-      "is_guest": false
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
     }
   ]
 }
@@ -11206,7 +11284,8 @@ Returns the compact team membership records for the user.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-typeahead">Typeahead</h1>
+<a id="asana-typeahead"></a>
+<h1 id="typeahead">Typeahead</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-objects-via-typeahead"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/typeahead</span></a></code>
@@ -11309,7 +11388,8 @@ data is included in a response.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-users">Users</h1>
+<a id="asana-users"></a>
+<h1 id="users">Users</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-users"><span class="get-verb">GET</span> <span class=""nn>/users</span></a><br><a href="#get-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}</span></a><br><a href="#get-a-user-39-s-favorites"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/favorites</span></a><br><a href="#get-users-in-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/users</span></a><br><a href="#get-users-in-a-workspace-or-organization"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/users</span></a></code>
@@ -11404,11 +11484,11 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
     "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
     "photo": {
+      "image_128x128": "https://...",
       "image_21x21": "https://...",
       "image_27x27": "https://...",
       "image_36x36": "https://...",
-      "image_60x60": "https://...",
-      "image_128x128": "https://..."
+      "image_60x60": "https://..."
     },
     "workspaces": [
       {
@@ -11632,7 +11712,8 @@ Results are sorted alphabetically by user names.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-user-task-lists">User Task Lists</h1>
+<a id="asana-user-task-lists"></a>
+<h1 id="user-task-lists">User Task Lists</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}</span></a><br><a href="#get-a-user-39-s-task-list"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span></a></code>
@@ -11772,7 +11853,8 @@ Returns the full record for a user's task list.
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-webhooks">Webhooks</h1>
+<a id="asana-webhooks"></a>
+<h1 id="webhooks">Webhooks</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-webhooks"><span class="get-verb">GET</span> <span class=""nn>/webhooks</span></a><br><a href="#establish-a-webhook"><span class="post-verb">POST</span> <span class=""nn>/webhooks</span></a><br><a href="#get-a-webhook"><span class="get-verb">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="#delete-a-webhook"><span class="delete-verb">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></a></code>
@@ -11866,21 +11948,21 @@ curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
       },
       "target": "https://example.com/receive-webhook/7654",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "last_failure_at": "2012-02-22T02:06:58.147Z",
-      "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-      "last_success_at": "2012-02-22T02:06:58.147Z",
       "filters": [
         {
-          "resource_type": "task",
-          "resource_subtype": "milestone",
           "action": "changed",
           "fields": [
             "due_at",
             "due_on",
             "dependencies"
-          ]
+          ],
+          "resource_subtype": "milestone",
+          "resource_type": "task"
         }
-      ]
+      ],
+      "last_failure_at": "2012-02-22T02:06:58.147Z",
+      "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+      "last_success_at": "2012-02-22T02:06:58.147Z"
     }
   ]
 }
@@ -11936,20 +12018,20 @@ curl -X POST https://app.asana.com/api/1.0/webhooks \
 ```json
 {
   "data": {
-    "resource": "12345",
-    "target": "https://example.com/receive-webhook/7654?app_specific_param=app_specific_value",
     "filters": [
       {
-        "resource_type": "task",
-        "resource_subtype": "milestone",
         "action": "changed",
         "fields": [
           "due_at",
           "due_on",
           "dependencies"
-        ]
+        ],
+        "resource_subtype": "milestone",
+        "resource_type": "task"
       }
-    ]
+    ],
+    "resource": "12345",
+    "target": "https://example.com/receive-webhook/7654?app_specific_param=app_specific_value"
   }
 }
 ```
@@ -11969,21 +12051,21 @@ curl -X POST https://app.asana.com/api/1.0/webhooks \
     },
     "target": "https://example.com/receive-webhook/7654",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "last_failure_at": "2012-02-22T02:06:58.147Z",
-    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-    "last_success_at": "2012-02-22T02:06:58.147Z",
     "filters": [
       {
-        "resource_type": "task",
-        "resource_subtype": "milestone",
         "action": "changed",
         "fields": [
           "due_at",
           "due_on",
           "dependencies"
-        ]
+        ],
+        "resource_subtype": "milestone",
+        "resource_type": "task"
       }
-    ]
+    ],
+    "last_failure_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+    "last_success_at": "2012-02-22T02:06:58.147Z"
   }
 }
 ```
@@ -12054,13 +12136,13 @@ HTTP/1.1 201
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The webhook workspace and target.|
 |» data<span class="param-type"> object</span>|none|
-|»» resource<span class="param-type"> string</span><div class="param-required">required</div>|A resource ID to subscribe to. Many Asana resources are valid to create webhooks on, but higher-level resources require filters.|
-|»» target<span class="param-type"> string(uri)</span><div class="param-required">required</div>|The URL to receive the HTTP POST. The full URL will be used to deliver events from this webhook (including parameters) which allows encoding of application-specific state when the webhook is created.|
 |»» filters<span class="param-type"> [object]</span>|An array of WebhookFilter objects to specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered; otherwise no event will be sent to the receiving server.|
-|»»» resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
-|»»» resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
 |»»» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](#tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
 |»»» fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
+|»»» resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
+|»»» resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
+|»» resource<span class="param-type"> string</span><div class="param-required">required</div>|A resource ID to subscribe to. Many Asana resources are valid to create webhooks on, but higher-level resources require filters.|
+|»» target<span class="param-type"> string(uri)</span><div class="param-required">required</div>|The URL to receive the HTTP POST. The full URL will be used to deliver events from this webhook (including parameters) which allows encoding of application-specific state when the webhook is created.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -12106,21 +12188,21 @@ curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
     },
     "target": "https://example.com/receive-webhook/7654",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "last_failure_at": "2012-02-22T02:06:58.147Z",
-    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-    "last_success_at": "2012-02-22T02:06:58.147Z",
     "filters": [
       {
-        "resource_type": "task",
-        "resource_subtype": "milestone",
         "action": "changed",
         "fields": [
           "due_at",
           "due_on",
           "dependencies"
-        ]
+        ],
+        "resource_subtype": "milestone",
+        "resource_type": "task"
       }
-    ]
+    ],
+    "last_failure_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+    "last_success_at": "2012-02-22T02:06:58.147Z"
   }
 }
 ```
@@ -12209,7 +12291,8 @@ Status Code **200**
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-workspaces">Workspaces</h1>
+<a id="asana-workspaces"></a>
+<h1 id="workspaces">Workspaces</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-multiple-workspaces"><span class="get-verb">GET</span> <span class=""nn>/workspaces</span></a><br><a href="#get-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="#update-a-workspace"><span class="put-verb">PUT</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="#add-a-user-to-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/addUser</span></a><br><a href="#remove-a-user-from-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/removeUser</span></a></code>
@@ -12445,11 +12528,11 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
     "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
     "photo": {
+      "image_128x128": "https://...",
       "image_21x21": "https://...",
       "image_27x27": "https://...",
       "image_36x36": "https://...",
-      "image_60x60": "https://...",
-      "image_128x128": "https://..."
+      "image_60x60": "https://..."
     },
     "workspaces": [
       {
@@ -12566,7 +12649,8 @@ Status Code **204**
 
 </section><hr class="full-line">
 <section class="full-section">
-<h1 id="asana-workspace-memberships">Workspace Memberships</h1>
+<a id="asana-workspace-memberships"></a>
+<h1 id="workspace-memberships">Workspace Memberships</h1>
 
 <pre class="highlight http tab-http">
 <code><a href="#get-a-workspace-membership"><span class="get-verb">GET</span> <span class=""nn>/workspace_memberships/{workspace_membership_gid}</span></a><br><a href="#get-workspace-memberships-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/workspace_memberships</span></a><br><a href="#get-the-workspace-memberships-for-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/workspace_memberships</span></a></code>
@@ -12608,6 +12692,9 @@ curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membe
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "is_active": true,
+    "is_admin": true,
+    "is_guest": true,
     "user_task_list": {
       "gid": "12345",
       "resource_type": "user_task_list",
@@ -12622,10 +12709,7 @@ curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membe
         "resource_type": "workspace",
         "name": "My Company Workspace"
       }
-    },
-    "is_active": true,
-    "is_admin": true,
-    "is_guest": true
+    }
   }
 }
 ```
@@ -12789,36 +12873,12 @@ Returns the compact workspace membership records for the workspace.
 </section>
 <hr>
 <section>
-<a id="schemaasanaresource"></a>
-<a id="schema_AsanaResource"></a>
-<a id="tocSasanaresource"></a>
-<a id="tocsasanaresource"></a>
-<h2 id="tocS_AsanaResource">AsanaResource</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "task"
-}
-
-```
-
-A generic Asana Resource, containing a globally unique identifier.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-
-</section><hr>
-<section>
 <a id="schemaasananamedresource"></a>
 <a id="schema_AsanaNamedResource"></a>
 <a id="tocSasananamedresource"></a>
 <a id="tocsasananamedresource"></a>
-<h2 id="tocS_AsanaNamedResource">AsanaNamedResource</h2>
+<a id="tocS_AsanaNamedResource"></a>
+<h2 id="asana-named-resource">AsanaNamedResource</h2>
 
 ```json
 {
@@ -12841,11 +12901,67 @@ A generic Asana Resource, containing a globally unique identifier.
 
 </section><hr>
 <section>
+<a id="schemaasanaresource"></a>
+<a id="schema_AsanaResource"></a>
+<a id="tocSasanaresource"></a>
+<a id="tocsasanaresource"></a>
+<a id="tocS_AsanaResource"></a>
+<h2 id="asana-resource">AsanaResource</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "task"
+}
+
+```
+
+A generic Asana Resource, containing a globally unique identifier.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+
+</section><hr>
+<section>
+<a id="schemaattachmentcompact"></a>
+<a id="schema_AttachmentCompact"></a>
+<a id="tocSattachmentcompact"></a>
+<a id="tocsattachmentcompact"></a>
+<a id="tocS_AttachmentCompact"></a>
+<h2 id="attachment-compact">AttachmentCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "attachment",
+  "name": "Screenshot.png"
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_Attachment), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the file.|
+
+</section><hr>
+<section>
 <a id="schemaattachment"></a>
 <a id="schema_Attachment"></a>
 <a id="tocSattachment"></a>
 <a id="tocsattachment"></a>
-<h2 id="tocS_Attachment">Attachment</h2>
+<a id="tocS_Attachment"></a>
+<h2 id="attachment">Attachment</h2>
 
 ```json
 {
@@ -12885,54 +13001,27 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 </section><hr>
 <section>
-<a id="schemaattachmentcompact"></a>
-<a id="schema_AttachmentCompact"></a>
-<a id="tocSattachmentcompact"></a>
-<a id="tocsattachmentcompact"></a>
-<h2 id="tocS_AttachmentCompact">AttachmentCompact</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "attachment",
-  "name": "Screenshot.png"
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_Attachment), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the file.|
-
-</section><hr>
-<section>
 <a id="schemabatch"></a>
 <a id="schema_Batch"></a>
 <a id="tocSbatch"></a>
 <a id="tocsbatch"></a>
-<h2 id="tocS_Batch">Batch</h2>
+<a id="tocS_Batch"></a>
+<h2 id="batch">Batch</h2>
 
 ```json
 {
-  "status_code": 200,
-  "headers": {
-    "location": "/tasks/1234"
-  },
   "body": {
     "data": {
-      "gid": "1967",
       "completed": false,
+      "gid": "1967",
       "name": "Hello, world!",
       "notes": "How are you today?"
     }
-  }
+  },
+  "headers": {
+    "location": "/tasks/1234"
+  },
+  "status_code": 200
 }
 
 ```
@@ -12943,9 +13032,74 @@ A response object returned from a batch request.
 
 |Name|Description|
 |---|---|
-|status_code<span class="param-type"> integer</span>|The HTTP status code that the invoked endpoint returned.|
-|headers<span class="param-type"> object</span>|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
 |body<span class="param-type"> object</span>|The JSON body that the invoked endpoint returned.|
+|headers<span class="param-type"> object</span>|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
+|status_code<span class="param-type"> integer</span>|The HTTP status code that the invoked endpoint returned.|
+
+</section><hr>
+<section>
+<a id="schemacustomfieldcompact"></a>
+<a id="schema_CustomFieldCompact"></a>
+<a id="tocScustomfieldcompact"></a>
+<a id="tocscustomfieldcompact"></a>
+<a id="tocS_CustomFieldCompact"></a>
+<h2 id="custom-field-compact">CustomFieldCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "custom_field",
+  "enabled": true,
+  "enum_options": [
+    {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    }
+  ],
+  "name": "Status",
+  "number_value": 5.2,
+  "resource_subtype": "text",
+  "text_value": "Some Value",
+  "type": "text"
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_CustomField), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|name<span class="param-type"> string</span>|The name of the custom field.|
+|number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|resource_subtype|text|
+|resource_subtype|enum|
+|resource_subtype|number|
+|type|text|
+|type|enum|
+|type|number|
 
 </section><hr>
 <section>
@@ -12953,42 +13107,43 @@ A response object returned from a batch request.
 <a id="schema_CustomField"></a>
 <a id="tocScustomfield"></a>
 <a id="tocscustomfield"></a>
-<h2 id="tocS_CustomField">CustomField</h2>
+<a id="tocS_CustomField"></a>
+<h2 id="custom-field">CustomField</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "custom_field",
-  "name": "Status",
-  "resource_subtype": "text",
-  "type": "text",
+  "currency_code": "EUR",
+  "custom_label": "gold pieces",
+  "custom_label_position": "suffix",
+  "description": "Development team priority",
+  "enabled": true,
   "enum_options": [
     {
       "gid": "12345",
       "resource_type": "enum_option",
-      "name": "Low",
+      "color": "blue",
       "enabled": true,
-      "color": "blue"
+      "name": "Low"
     }
   ],
-  "enabled": true,
-  "number_value": 5.2,
-  "text_value": "Some Value",
-  "description": "Development team priority",
-  "precision": 2,
-  "format": "custom",
-  "currency_code": "EUR",
-  "custom_label": "gold pieces",
-  "custom_label_position": "suffix",
-  "is_global_to_workspace": true,
-  "has_notifications_enabled": true,
   "enum_value": {
     "gid": "12345",
     "resource_type": "enum_option",
-    "name": "Low",
+    "color": "blue",
     "enabled": true,
-    "color": "blue"
-  }
+    "name": "Low"
+  },
+  "format": "custom",
+  "has_notifications_enabled": true,
+  "is_global_to_workspace": true,
+  "name": "Status",
+  "number_value": 5.2,
+  "precision": 2,
+  "resource_subtype": "text",
+  "text_value": "Some Value",
+  "type": "text"
 }
 
 ```
@@ -13003,240 +13158,50 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the custom field.|
-|resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the enum option.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
-|format<span class="param-type"> string</span>|The format of this custom field.|
 |currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the enum option.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|resource_subtype|text|
-|resource_subtype|enum|
-|resource_subtype|number|
-|type|text|
-|type|enum|
-|type|number|
-|format|currency|
-|format|identifier|
-|format|percentage|
-|format|custom|
-|format|none|
-|custom_label_position|prefix|
-|custom_label_position|suffix|
-
-</section><hr>
-<section>
-<a id="schemacustomfieldcompact"></a>
-<a id="schema_CustomFieldCompact"></a>
-<a id="tocScustomfieldcompact"></a>
-<a id="tocscustomfieldcompact"></a>
-<h2 id="tocS_CustomFieldCompact">CustomFieldCompact</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "custom_field",
-  "name": "Status",
-  "resource_subtype": "text",
-  "type": "text",
-  "enum_options": [
-    {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    }
-  ],
-  "enabled": true,
-  "number_value": 5.2,
-  "text_value": "Some Value"
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_CustomField), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the custom field.|
-|resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the enum option.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|format<span class="param-type"> string</span>|The format of this custom field.|
+|has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|name<span class="param-type"> string</span>|The name of the custom field.|
 |number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
+|resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|resource_subtype|text|
-|resource_subtype|enum|
-|resource_subtype|number|
-|type|text|
-|type|enum|
-|type|number|
-
-</section><hr>
-<section>
-<a id="schemacustomfieldsetting"></a>
-<a id="schema_CustomFieldSetting"></a>
-<a id="tocScustomfieldsetting"></a>
-<a id="tocscustomfieldsetting"></a>
-<h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "custom_field_setting",
-  "project": {
-    "gid": "12345",
-    "resource_type": "project",
-    "name": "Stuff to buy"
-  },
-  "is_important": false,
-  "parent": {
-    "gid": "12345",
-    "resource_type": "project",
-    "name": "Stuff to buy"
-  },
-  "custom_field": {
-    "gid": "12345",
-    "resource_type": "custom_field",
-    "name": "Status",
-    "resource_subtype": "text",
-    "type": "text",
-    "enum_options": [
-      {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
-    ],
-    "enabled": true,
-    "number_value": 5.2,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "format": "custom",
-    "currency_code": "EUR",
-    "custom_label": "gold pieces",
-    "custom_label_position": "suffix",
-    "is_global_to_workspace": true,
-    "has_notifications_enabled": true,
-    "enum_value": {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    }
-  }
-}
-
-```
-
-Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
-|parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the custom field.|
-|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
-|» format<span class="param-type"> string</span>|The format of this custom field.|
-|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|resource_subtype|text|
-|resource_subtype|enum|
-|resource_subtype|number|
-|type|text|
-|type|enum|
-|type|number|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 |format|currency|
 |format|identifier|
 |format|percentage|
 |format|custom|
 |format|none|
-|custom_label_position|prefix|
-|custom_label_position|suffix|
+|resource_subtype|text|
+|resource_subtype|enum|
+|resource_subtype|number|
+|type|text|
+|type|enum|
+|type|number|
 
 </section><hr>
 <section>
@@ -13244,7 +13209,8 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 <a id="schema_CustomFieldSettingCompact"></a>
 <a id="tocScustomfieldsettingcompact"></a>
 <a id="tocscustomfieldsettingcompact"></a>
-<h2 id="tocS_CustomFieldSettingCompact">CustomFieldSettingCompact</h2>
+<a id="tocS_CustomFieldSettingCompact"></a>
+<h2 id="custom-field-setting-compact">CustomFieldSettingCompact</h2>
 
 ```json
 {
@@ -13266,19 +13232,147 @@ A `Compact` object is the same as the [full response object](#tocS_CustomFieldSe
 
 </section><hr>
 <section>
+<a id="schemacustomfieldsetting"></a>
+<a id="schema_CustomFieldSetting"></a>
+<a id="tocScustomfieldsetting"></a>
+<a id="tocscustomfieldsetting"></a>
+<a id="tocS_CustomFieldSetting"></a>
+<h2 id="custom-field-setting">CustomFieldSetting</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "custom_field_setting",
+  "custom_field": {
+    "gid": "12345",
+    "resource_type": "custom_field",
+    "currency_code": "EUR",
+    "custom_label": "gold pieces",
+    "custom_label_position": "suffix",
+    "description": "Development team priority",
+    "enabled": true,
+    "enum_options": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
+    "enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "format": "custom",
+    "has_notifications_enabled": true,
+    "is_global_to_workspace": true,
+    "name": "Status",
+    "number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "text",
+    "text_value": "Some Value",
+    "type": "text"
+  },
+  "is_important": false,
+  "parent": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  },
+  "project": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  }
+}
+
+```
+
+Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» format<span class="param-type"> string</span>|The format of this custom field.|
+|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
+|parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
+|format|currency|
+|format|identifier|
+|format|percentage|
+|format|custom|
+|format|none|
+|resource_subtype|text|
+|resource_subtype|enum|
+|resource_subtype|number|
+|type|text|
+|type|enum|
+|type|number|
+
+</section><hr>
+<section>
 <a id="schemaenumoption"></a>
 <a id="schema_EnumOption"></a>
 <a id="tocSenumoption"></a>
 <a id="tocsenumoption"></a>
-<h2 id="tocS_EnumOption">EnumOption</h2>
+<a id="tocS_EnumOption"></a>
+<h2 id="enum-option">EnumOption</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "enum_option",
-  "name": "Low",
+  "color": "blue",
   "enabled": true,
-  "color": "blue"
+  "name": "Low"
 }
 
 ```
@@ -13301,9 +13395,9 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the enum option.|
-|enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|name<span class="param-type"> string</span>|The name of the enum option.|
 
 </section><hr>
 <section>
@@ -13311,14 +13405,15 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 <a id="schema_Error"></a>
 <a id="tocSerror"></a>
 <a id="tocserror"></a>
-<h2 id="tocS_Error">Error</h2>
+<a id="tocS_Error"></a>
+<h2 id="error">Error</h2>
 
 ```json
 {
   "errors": [
     {
-      "message": "project: Missing input",
       "help": "For more information on API status codes and how to handle them, read the docs on errors: https://asana.github.io/developer-docs/#errors'",
+      "message": "project: Missing input",
       "phrase": "6 sad squid snuggle softly"
     }
   ]
@@ -13343,8 +13438,8 @@ error.
 |Name|Description|
 |---|---|
 |errors<span class="param-type"> [object]</span>|none|
-|» message<span class="param-type"> string</span>|Message providing more detail about the error that occurred, if available.|
 |» help<span class="param-type"> string</span>|Additional information directing developers to resources on how to address and fix the problem, if available.|
+|» message<span class="param-type"> string</span>|Message providing more detail about the error that occurred, if available.|
 |» phrase<span class="param-type"> string</span>|*500 errors only*. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
 
 </section><hr>
@@ -13353,36 +13448,20 @@ error.
 <a id="schema_Event"></a>
 <a id="tocSevent"></a>
 <a id="tocsevent"></a>
-<h2 id="tocS_Event">Event</h2>
+<a id="tocS_Event"></a>
+<h2 id="event">Event</h2>
 
 ```json
 {
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "resource": {
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
-  },
-  "type": "task",
   "action": "changed",
-  "parent": {
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
-  },
-  "created_at": "2012-02-22T02:06:58.147Z",
   "change": {
-    "field": "assignee",
     "action": "changed",
-    "new_value": {
+    "added_value": {
       "gid": "12345",
       "resource_type": "user"
     },
-    "added_value": {
+    "field": "assignee",
+    "new_value": {
       "gid": "12345",
       "resource_type": "user"
     },
@@ -13390,6 +13469,23 @@ error.
       "gid": "12345",
       "resource_type": "user"
     }
+  },
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "parent": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "resource": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "type": "task",
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
   }
 }
 
@@ -13436,83 +13532,27 @@ an object with the user's `id` and `type`.
 
 |Name|Description|
 |---|---|
-|user<span class="param-type"> object</span>|The user who triggered the event.|
+|action<span class="param-type"> string</span>|The type of action taken on the **resource** that triggered the event.  This can be one of `changed`, `added`, `removed`, `deleted`, or `undeleted` depending on the nature of the event.|
+|change<span class="param-type"> object</span>|Information about the type of change that has occurred. This field is only present when the value of the property `action`, describing the action taken on the **resource**, is `changed`.|
+|» action<span class="param-type"> string</span>|The type of action taken on the **field** which has been changed.  This can be one of `changed`, `added`, or `removed` depending on the nature of the change.|
+|» added_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `added` and the `added_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
+|» field<span class="param-type"> string</span>|The name of the field that has changed in the resource.|
+|» new_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `changed` and the `new_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
+|» removed_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `removed` and the `removed_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
+|created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
+|parent<span class="param-type"> object</span>|For added/removed events, the parent object that resource was added to or removed from. The parent will be `null` for other event types.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» name<span class="param-type"> string</span>|The name of the object.|
 |resource<span class="param-type"> object</span>|The resource which has triggered the event by being modified in some way.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the object.|
 |type<span class="param-type"> string</span>|*Deprecated: Refer to the resource_type of the resource.* The type of the resource that generated the event.|
-|action<span class="param-type"> string</span>|The type of action taken on the **resource** that triggered the event.  This can be one of `changed`, `added`, `removed`, `deleted`, or `undeleted` depending on the nature of the event.|
-|parent<span class="param-type"> object</span>|For added/removed events, the parent object that resource was added to or removed from. The parent will be `null` for other event types.|
+|user<span class="param-type"> object</span>|The user who triggered the event.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
-|created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
-|change<span class="param-type"> object</span>|Information about the type of change that has occurred. This field is only present when the value of the property `action`, describing the action taken on the **resource**, is `changed`.|
-|» field<span class="param-type"> string</span>|The name of the field that has changed in the resource.|
-|» action<span class="param-type"> string</span>|The type of action taken on the **field** which has been changed.  This can be one of `changed`, `added`, or `removed` depending on the nature of the change.|
-|» new_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `changed` and the `new_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
-|» added_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `added` and the `added_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
-|» removed_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `removed` and the `removed_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
-
-</section><hr>
-<section>
-<a id="schemajob"></a>
-<a id="schema_Job"></a>
-<a id="tocSjob"></a>
-<a id="tocsjob"></a>
-<h2 id="tocS_Job">Job</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "job",
-  "resource_subtype": "duplicate_task",
-  "status": "in_progress",
-  "new_project": {
-    "gid": "12345",
-    "resource_type": "project",
-    "name": "Stuff to buy"
-  },
-  "new_task": {
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
-  }
-}
-
-```
-
-A *job* is an object representing a process that handles asynchronous work.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|status<span class="param-type"> string</span>|none|
-|new_project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the task.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|status|not_started|
-|status|in_progress|
-|status|completed|
-|status|failed|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
 </section><hr>
 <section>
@@ -13520,14 +13560,13 @@ A *job* is an object representing a process that handles asynchronous work.
 <a id="schema_JobCompact"></a>
 <a id="tocSjobcompact"></a>
 <a id="tocsjobcompact"></a>
-<h2 id="tocS_JobCompact">JobCompact</h2>
+<a id="tocS_JobCompact"></a>
+<h2 id="job-compact">JobCompact</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "job",
-  "resource_subtype": "duplicate_task",
-  "status": "in_progress",
   "new_project": {
     "gid": "12345",
     "resource_type": "project",
@@ -13537,7 +13576,9 @@ A *job* is an object representing a process that handles asynchronous work.
     "gid": "12345",
     "resource_type": "task",
     "name": "Bug Task"
-  }
+  },
+  "resource_subtype": "duplicate_task",
+  "status": "in_progress"
 }
 
 ```
@@ -13551,8 +13592,6 @@ A `Compact` object is the same as the [full response object](#tocS_Job), but wit
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|status<span class="param-type"> string</span>|none|
 |new_project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -13561,6 +13600,8 @@ A `Compact` object is the same as the [full response object](#tocS_Job), but wit
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the task.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|status<span class="param-type"> string</span>|none|
 
 #### Enumerated Values
 
@@ -13573,11 +13614,187 @@ A `Compact` object is the same as the [full response object](#tocS_Job), but wit
 
 </section><hr>
 <section>
+<a id="schemajob"></a>
+<a id="schema_Job"></a>
+<a id="tocSjob"></a>
+<a id="tocsjob"></a>
+<a id="tocS_Job"></a>
+<h2 id="job">Job</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "job",
+  "new_project": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  },
+  "new_task": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "resource_subtype": "duplicate_task",
+  "status": "in_progress"
+}
+
+```
+
+A *job* is an object representing a process that handles asynchronous work.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|new_project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the task.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|status<span class="param-type"> string</span>|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|status|not_started|
+|status|in_progress|
+|status|completed|
+|status|failed|
+
+</section><hr>
+<section>
+<a id="schemaportfoliocompact"></a>
+<a id="schema_PortfolioCompact"></a>
+<a id="tocSportfoliocompact"></a>
+<a id="tocsportfoliocompact"></a>
+<a id="tocS_PortfolioCompact"></a>
+<h2 id="portfolio-compact">PortfolioCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "portfolio",
+  "name": "Bug Portfolio"
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_Portfolio), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the portfolio.|
+
+</section><hr>
+<section>
+<a id="schemaportfoliomembershipcompact"></a>
+<a id="schema_PortfolioMembershipCompact"></a>
+<a id="tocSportfoliomembershipcompact"></a>
+<a id="tocsportfoliomembershipcompact"></a>
+<a id="tocS_PortfolioMembershipCompact"></a>
+<h2 id="portfolio-membership-compact">PortfolioMembershipCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "portfolio_membership",
+  "portfolio": {
+    "gid": "12345",
+    "resource_type": "portfolio",
+    "name": "Bug Portfolio"
+  },
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  }
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_PortfolioMembership), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the portfolio.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+
+</section><hr>
+<section>
+<a id="schemaportfoliomembership"></a>
+<a id="schema_PortfolioMembership"></a>
+<a id="tocSportfoliomembership"></a>
+<a id="tocsportfoliomembership"></a>
+<a id="tocS_PortfolioMembership"></a>
+<h2 id="portfolio-membership">PortfolioMembership</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "portfolio_membership",
+  "portfolio": {
+    "gid": "12345",
+    "resource_type": "portfolio",
+    "name": "Bug Portfolio"
+  },
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  }
+}
+
+```
+
+This object determines if a user is a member of a portfolio.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the portfolio.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+
+</section><hr>
+<section>
 <a id="schemaportfolio"></a>
 <a id="schema_Portfolio"></a>
 <a id="tocSportfolio"></a>
 <a id="tocsportfolio"></a>
-<h2 id="tocS_Portfolio">Portfolio</h2>
+<a id="tocS_Portfolio"></a>
+<h2 id="portfolio">Portfolio</h2>
 
 ```json
 {
@@ -13595,10 +13812,39 @@ A `Compact` object is the same as the [full response object](#tocS_Job), but wit
     {
       "gid": "12345",
       "resource_type": "custom_field_setting",
-      "project": {
+      "custom_field": {
         "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
+        "resource_type": "custom_field",
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "enabled": true,
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
       },
       "is_important": false,
       "parent": {
@@ -13606,39 +13852,10 @@ A `Compact` object is the same as the [full response object](#tocS_Job), but wit
         "resource_type": "project",
         "name": "Stuff to buy"
       },
-      "custom_field": {
+      "project": {
         "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Status",
-        "resource_subtype": "text",
-        "type": "text",
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enabled": true,
-        "number_value": 5.2,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2,
-        "format": "custom",
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "is_global_to_workspace": true,
-        "has_notifications_enabled": true,
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
+        "resource_type": "project",
+        "name": "Stuff to buy"
       }
     }
   ],
@@ -13682,44 +13899,44 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
+|» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
+|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
 |» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
+|» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
-|»» format<span class="param-type"> string</span>|The format of this custom field.|
-|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |members<span class="param-type"> [object]</span>|none|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -13755,337 +13972,13 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |color|light-orange|
 |color|light-purple|
 |color|light-warm-gray|
-|resource_subtype|text|
-|resource_subtype|enum|
-|resource_subtype|number|
-|type|text|
-|type|enum|
-|type|number|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
 |format|currency|
 |format|identifier|
 |format|percentage|
 |format|custom|
 |format|none|
-|custom_label_position|prefix|
-|custom_label_position|suffix|
-
-</section><hr>
-<section>
-<a id="schemaportfoliocompact"></a>
-<a id="schema_PortfolioCompact"></a>
-<a id="tocSportfoliocompact"></a>
-<a id="tocsportfoliocompact"></a>
-<h2 id="tocS_PortfolioCompact">PortfolioCompact</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "portfolio",
-  "name": "Bug Portfolio"
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_Portfolio), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the portfolio.|
-
-</section><hr>
-<section>
-<a id="schemaportfoliomembership"></a>
-<a id="schema_PortfolioMembership"></a>
-<a id="tocSportfoliomembership"></a>
-<a id="tocsportfoliomembership"></a>
-<h2 id="tocS_PortfolioMembership">PortfolioMembership</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "portfolio_membership",
-  "portfolio": {
-    "gid": "12345",
-    "resource_type": "portfolio",
-    "name": "Bug Portfolio"
-  },
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  }
-}
-
-```
-
-This object determines if a user is a member of a portfolio.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the portfolio.|
-|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-
-</section><hr>
-<section>
-<a id="schemaportfoliomembershipcompact"></a>
-<a id="schema_PortfolioMembershipCompact"></a>
-<a id="tocSportfoliomembershipcompact"></a>
-<a id="tocsportfoliomembershipcompact"></a>
-<h2 id="tocS_PortfolioMembershipCompact">PortfolioMembershipCompact</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "portfolio_membership",
-  "portfolio": {
-    "gid": "12345",
-    "resource_type": "portfolio",
-    "name": "Bug Portfolio"
-  },
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  }
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_PortfolioMembership), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the portfolio.|
-|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-
-</section><hr>
-<section>
-<a id="schemaproject"></a>
-<a id="schema_Project"></a>
-<a id="tocSproject"></a>
-<a id="tocsproject"></a>
-<h2 id="tocS_Project">Project</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "project",
-  "name": "Stuff to buy",
-  "archived": false,
-  "color": "light-green",
-  "created_at": "2012-02-22T02:06:58.147Z",
-  "current_status": {
-    "gid": "12345",
-    "resource_type": "project_status",
-    "title": "Status Update - Jun 15",
-    "project": "123456",
-    "text": "The project is moving forward according to plan...",
-    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-    "color": "green",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  },
-  "custom_field_settings": [
-    {
-      "gid": "12345",
-      "resource_type": "custom_field_setting"
-    }
-  ],
-  "default_view": "calendar",
-  "due_date": "2019-09-15",
-  "due_on": "2019-09-15",
-  "html_notes": "These are things we need to purchase.",
-  "is_template": false,
-  "members": [
-    {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  ],
-  "modified_at": "2012-02-22T02:06:58.147Z",
-  "notes": "These are things we need to purchase.",
-  "public": false,
-  "start_on": "2019-09-14",
-  "workspace": {
-    "gid": "12345",
-    "resource_type": "workspace",
-    "name": "My Company Workspace"
-  },
-  "custom_fields": [
-    {
-      "gid": "12345",
-      "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
-      "enum_options": [
-        {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value"
-    }
-  ],
-  "followers": [
-    {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  ],
-  "owner": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "team": {
-    "gid": "12345",
-    "resource_type": "team",
-    "name": "Marketing"
-  }
-}
-
-```
-
-A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
-|color<span class="param-type"> string¦null</span>|Color of the project.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» title<span class="param-type"> string</span>|The title of the project status update.|
-|» project<span class="param-type"> string</span>|Globally unique identifier for the project.|
-|» text<span class="param-type"> string</span>|The text content of the status update.|
-|» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
-|» color<span class="param-type"> string</span>|The color associated with the status update.|
-|» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
-|due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
-|due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
-|is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
-|members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
-|notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
-|public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the workspace.|
-|custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the custom field.|
-|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the team.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
-|color|green|
-|color|yellow|
-|color|red|
-|default_view|list|
-|default_view|board|
-|default_view|calendar|
-|default_view|timeline|
 |resource_subtype|text|
 |resource_subtype|enum|
 |resource_subtype|number|
@@ -14099,7 +13992,8 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 <a id="schema_ProjectCompact"></a>
 <a id="tocSprojectcompact"></a>
 <a id="tocsprojectcompact"></a>
-<h2 id="tocS_ProjectCompact">ProjectCompact</h2>
+<a id="tocS_ProjectCompact"></a>
+<h2 id="project-compact">ProjectCompact</h2>
 
 ```json
 {
@@ -14123,11 +14017,48 @@ A `Compact` object is the same as the [full response object](#tocS_Project), but
 
 </section><hr>
 <section>
+<a id="schemaprojectmembershipcompact"></a>
+<a id="schema_ProjectMembershipCompact"></a>
+<a id="tocSprojectmembershipcompact"></a>
+<a id="tocsprojectmembershipcompact"></a>
+<a id="tocS_ProjectMembershipCompact"></a>
+<h2 id="project-membership-compact">ProjectMembershipCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "project_membership",
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  }
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_ProjectMembership), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+
+</section><hr>
+<section>
 <a id="schemaprojectmembership"></a>
 <a id="schema_ProjectMembership"></a>
 <a id="tocSprojectmembership"></a>
 <a id="tocsprojectmembership"></a>
-<h2 id="tocS_ProjectMembership">ProjectMembership</h2>
+<a id="tocS_ProjectMembership"></a>
+<h2 id="project-membership">ProjectMembership</h2>
 
 ```json
 {
@@ -14175,67 +14106,112 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 </section><hr>
 <section>
-<a id="schemaprojectmembershipcompact"></a>
-<a id="schema_ProjectMembershipCompact"></a>
-<a id="tocSprojectmembershipcompact"></a>
-<a id="tocsprojectmembershipcompact"></a>
-<h2 id="tocS_ProjectMembershipCompact">ProjectMembershipCompact</h2>
+<a id="schemaproject"></a>
+<a id="schema_Project"></a>
+<a id="tocSproject"></a>
+<a id="tocsproject"></a>
+<a id="tocS_Project"></a>
+<h2 id="project">Project</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "project_membership",
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  }
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_ProjectMembership), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-
-</section><hr>
-<section>
-<a id="schemaprojectstatus"></a>
-<a id="schema_ProjectStatus"></a>
-<a id="tocSprojectstatus"></a>
-<a id="tocsprojectstatus"></a>
-<h2 id="tocS_ProjectStatus">ProjectStatus</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "project_status",
-  "title": "Status Update - Jun 15",
-  "project": "123456",
-  "text": "The project is moving forward according to plan...",
-  "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-  "color": "green",
+  "resource_type": "project",
+  "name": "Stuff to buy",
+  "archived": false,
+  "color": "light-green",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": {
+  "current_status": {
+    "gid": "12345",
+    "resource_type": "project_status",
+    "title": "Status Update - Jun 15",
+    "author": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "color": "green",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "modified_at": null,
+    "text": "The project is moving forward according to plan...",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  },
+  "custom_field_settings": [
+    {
+      "gid": "12345",
+      "resource_type": "custom_field_setting"
+    }
+  ],
+  "default_view": "calendar",
+  "due_date": "2019-09-15",
+  "due_on": "2019-09-15",
+  "html_notes": "These are things we need to purchase.",
+  "is_template": false,
+  "members": [
+    {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  ],
+  "modified_at": "2012-02-22T02:06:58.147Z",
+  "notes": "These are things we need to purchase.",
+  "public": false,
+  "start_on": "2019-09-14",
+  "workspace": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  },
+  "custom_fields": [
+    {
+      "gid": "12345",
+      "resource_type": "custom_field",
+      "enabled": true,
+      "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
+      "name": "Status",
+      "number_value": 5.2,
+      "resource_subtype": "text",
+      "text_value": "Some Value",
+      "type": "text"
+    }
+  ],
+  "followers": [
+    {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  ],
+  "icon": "chat_bubbles",
+  "owner": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
+  },
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
   }
 }
 
 ```
 
-A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
+A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
 
 ### Properties
 
@@ -14243,24 +14219,143 @@ A *project status* is an update on the progress of a particular project, and is 
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|title<span class="param-type"> string</span>|The title of the project status update.|
-|project<span class="param-type"> string</span>|Globally unique identifier for the project.|
-|text<span class="param-type"> string</span>|The text content of the status update.|
-|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
-|color<span class="param-type"> string</span>|The color associated with the status update.|
+|name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
+|color<span class="param-type"> string¦null</span>|Color of the project.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» title<span class="param-type"> string</span>|The title of the project status update.|
+|» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» color<span class="param-type"> string</span>|The color associated with the status update.|
+|» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
+|» text<span class="param-type"> string</span>|The text content of the status update.|
+|» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
+|due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
+|is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
+|notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
+|custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|icon<span class="param-type"> string¦null</span>|The icon for a project.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
+|color|dark-pink|
+|color|dark-green|
+|color|dark-blue|
+|color|dark-red|
+|color|dark-teal|
+|color|dark-brown|
+|color|dark-orange|
+|color|dark-purple|
+|color|dark-warm-gray|
+|color|light-pink|
+|color|light-green|
+|color|light-blue|
+|color|light-red|
+|color|light-teal|
+|color|light-brown|
+|color|light-orange|
+|color|light-purple|
+|color|light-warm-gray|
 |color|green|
 |color|yellow|
 |color|red|
+|default_view|list|
+|default_view|board|
+|default_view|calendar|
+|default_view|timeline|
+|resource_subtype|text|
+|resource_subtype|enum|
+|resource_subtype|number|
+|type|text|
+|type|enum|
+|type|number|
+|icon|list|
+|icon|board|
+|icon|timeline|
+|icon|calendar|
+|icon|rocket|
+|icon|people|
+|icon|graph|
+|icon|star|
+|icon|bug|
+|icon|light_bulb|
+|icon|globe|
+|icon|gear|
+|icon|notebook|
+|icon|computer|
+|icon|check|
+|icon|target|
+|icon|html|
+|icon|megaphone|
+|icon|chat_bubbles|
+|icon|briefcase|
+|icon|page_layout|
+|icon|mountain_flag|
+|icon|puzzle|
+|icon|presentation|
+|icon|line_and_symbols|
+|icon|speed_dial|
+|icon|ribbon|
+|icon|shoe|
+|icon|shopping_basket|
+|icon|map|
+|icon|ticket|
+|icon|coins|
 
 </section><hr>
 <section>
@@ -14268,7 +14363,8 @@ A *project status* is an update on the progress of a particular project, and is 
 <a id="schema_ProjectStatusCompact"></a>
 <a id="tocSprojectstatuscompact"></a>
 <a id="tocsprojectstatuscompact"></a>
-<h2 id="tocS_ProjectStatusCompact">ProjectStatusCompact</h2>
+<a id="tocS_ProjectStatusCompact"></a>
+<h2 id="project-status-compact">ProjectStatusCompact</h2>
 
 ```json
 {
@@ -14292,11 +14388,105 @@ A `Compact` object is the same as the [full response object](#tocS_ProjectStatus
 
 </section><hr>
 <section>
+<a id="schemaprojectstatus"></a>
+<a id="schema_ProjectStatus"></a>
+<a id="tocSprojectstatus"></a>
+<a id="tocsprojectstatus"></a>
+<a id="tocS_ProjectStatus"></a>
+<h2 id="project-status">ProjectStatus</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "project_status",
+  "title": "Status Update - Jun 15",
+  "author": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "color": "green",
+  "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+  "modified_at": null,
+  "text": "The project is moving forward according to plan...",
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  }
+}
+
+```
+
+A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|title<span class="param-type"> string</span>|The title of the project status update.|
+|author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|color<span class="param-type"> string</span>|The color associated with the status update.|
+|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
+|text<span class="param-type"> string</span>|The text content of the status update.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|color|green|
+|color|yellow|
+|color|red|
+
+</section><hr>
+<section>
+<a id="schemasectioncompact"></a>
+<a id="schema_SectionCompact"></a>
+<a id="tocSsectioncompact"></a>
+<a id="tocssectioncompact"></a>
+<a id="tocS_SectionCompact"></a>
+<h2 id="section-compact">SectionCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "section",
+  "name": "Next Actions"
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_Section), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+
+</section><hr>
+<section>
 <a id="schemasection"></a>
 <a id="schema_Section"></a>
 <a id="tocSsection"></a>
 <a id="tocssection"></a>
-<h2 id="tocS_Section">Section</h2>
+<a id="tocS_Section"></a>
+<h2 id="section">Section</h2>
 
 ```json
 {
@@ -14341,385 +14531,12 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 </section><hr>
 <section>
-<a id="schemasectioncompact"></a>
-<a id="schema_SectionCompact"></a>
-<a id="tocSsectioncompact"></a>
-<a id="tocssectioncompact"></a>
-<h2 id="tocS_SectionCompact">SectionCompact</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "section",
-  "name": "Next Actions"
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_Section), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-
-</section><hr>
-<section>
-<a id="schemastory"></a>
-<a id="schema_Story"></a>
-<a id="tocSstory"></a>
-<a id="tocsstory"></a>
-<h2 id="tocS_Story">Story</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "story",
-  "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "resource_subtype": "comment_added",
-  "text": "This is a comment.",
-  "type": "comment",
-  "html_text": "<body>This is a comment.<body>",
-  "is_pinned": false,
-  "is_edited": false,
-  "hearted": false,
-  "hearts": [
-    {
-      "gid": "12345",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    }
-  ],
-  "num_hearts": 5,
-  "liked": false,
-  "likes": [
-    {
-      "gid": "12345",
-      "user": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    }
-  ],
-  "num_likes": 5,
-  "previews": [
-    {
-      "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-      "footer": "Mar 17, 2019 1:25 PM",
-      "header": "Asana for Slack",
-      "header_link": "https://asana.comn/apps/slack",
-      "html_text": "<body>Great! I like this idea.</body>",
-      "text": "Great! I like this idea.",
-      "title": "Greg",
-      "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
-    }
-  ],
-  "old_name": "This was the Old Name",
-  "new_name": "This is the New Name",
-  "old_dates": {
-    "start_on": "2019-09-14",
-    "due_at": "2019-09-15T02:06:58.158Z",
-    "due_on": "2019-09-15"
-  },
-  "new_dates": {
-    "start_on": "2019-09-14",
-    "due_at": "2019-09-15T02:06:58.158Z",
-    "due_on": "2019-09-15"
-  },
-  "old_resource_subtype": "default_task",
-  "new_resource_subtype": "milestone",
-  "story": {
-    "gid": "12345",
-    "resource_type": "story",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "resource_subtype": "comment_added",
-    "text": "marked today",
-    "type": "comment"
-  },
-  "assignee": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "follower": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "old_section": {
-    "gid": "12345",
-    "resource_type": "section",
-    "name": "Next Actions"
-  },
-  "new_section": {
-    "gid": "12345",
-    "resource_type": "section",
-    "name": "Next Actions"
-  },
-  "task": {
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
-  },
-  "project": {
-    "gid": "12345",
-    "resource_type": "project",
-    "name": "Stuff to buy"
-  },
-  "tag": {
-    "gid": "12345",
-    "resource_type": "tag",
-    "name": "Stuff to buy"
-  },
-  "custom_field": {
-    "gid": "12345",
-    "resource_type": "custom_field",
-    "name": "Status",
-    "resource_subtype": "text",
-    "type": "text",
-    "enum_options": [
-      {
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
-    ],
-    "enabled": true,
-    "number_value": 5.2,
-    "text_value": "Some Value"
-  },
-  "old_text_value": "This was the Old Text",
-  "new_text_value": "This is the New Text",
-  "old_number_value": 1,
-  "new_number_value": 2,
-  "old_enum_value": {
-    "gid": "12345",
-    "resource_type": "enum_option",
-    "name": "Low",
-    "enabled": true,
-    "color": "blue"
-  },
-  "new_enum_value": {
-    "gid": "12345",
-    "resource_type": "enum_option",
-    "name": "Low",
-    "enabled": true,
-    "color": "blue"
-  },
-  "new_approval_status": "approved",
-  "old_approval_status": "pending",
-  "duplicate_of": {
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
-  },
-  "duplicated_from": {
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
-  },
-  "dependency": {
-    "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
-  },
-  "source": "web",
-  "target": {
-    "gid": "1234",
-    "name": "Bug Task"
-  }
-}
-
-```
-
-A story represents an activity associated with an object in the Asana system.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
-|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
-|is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
-|is_edited<span class="param-type"> boolean</span>|*Conditional*. Whether the text of the story has been edited after creation.|
-|hearted<span class="param-type"> boolean</span>|*Deprecated - please use likes instead*<br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
-|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. Array of likes for users who have hearted this story.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
-|liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
-|likes<span class="param-type"> [object]</span>|*Conditional*. Array of likes for users who have liked this story.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
-|previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
-|» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
-|» footer<span class="param-type"> string</span>|Text to display in the footer.|
-|» header<span class="param-type"> string</span>|Text to display in the header.|
-|» header_link<span class="param-type"> string</span>|Where the header will link to.|
-|» html_text<span class="param-type"> string</span>|HTML formatted text for the body of the preview.|
-|» text<span class="param-type"> string</span>|Text for the body of the preview.|
-|» title<span class="param-type"> string</span>|Text to display as the title.|
-|» title_link<span class="param-type"> string</span>|Where to title will link to.|
-|old_name<span class="param-type"> string</span>|*Conditional*'|
-|new_name<span class="param-type"> string</span>|*Conditional*|
-|old_dates<span class="param-type"> object</span>|*Conditional*|
-|» start_on<span class="param-type"> string(date)</span>|none|
-|» due_at<span class="param-type"> string(date-time)</span>|none|
-|» due_on<span class="param-type"> string(date)</span>|none|
-|new_dates<span class="param-type"> object</span>|*Conditional*|
-|» start_on<span class="param-type"> string(date)</span>|none|
-|» due_at<span class="param-type"> string(date-time)</span>|none|
-|» due_on<span class="param-type"> string(date)</span>|none|
-|old_resource_subtype<span class="param-type"> string</span>|*Conditional*|
-|new_resource_subtype<span class="param-type"> string</span>|*Conditional*|
-|story<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|» text<span class="param-type"> string</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|follower<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|old_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|new_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
-|task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the task.|
-|project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|tag<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the custom field.|
-|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|old_text_value<span class="param-type"> string</span>|*Conditional*|
-|new_text_value<span class="param-type"> string</span>|*Conditional*|
-|old_number_value<span class="param-type"> integer</span>|*Conditional*|
-|new_number_value<span class="param-type"> integer</span>|*Conditional*|
-|old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the enum option.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the enum option.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|new_approval_status<span class="param-type"> string</span>|*Conditional*|
-|old_approval_status<span class="param-type"> string</span>|*Conditional*|
-|duplicate_of<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the task.|
-|duplicated_from<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the task.|
-|dependency<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the task.|
-|source<span class="param-type"> string</span>|The component of the Asana product the user used to trigger the story.|
-|target<span class="param-type"> object</span>|The object this story is associated with. Currently may only be a task.|
-|» gid<span class="param-type"> string</span>|none|
-|» name<span class="param-type"> string</span>|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|resource_subtype|text|
-|resource_subtype|enum|
-|resource_subtype|number|
-|type|text|
-|type|enum|
-|type|number|
-|source|web|
-|source|email|
-|source|mobile|
-|source|api|
-|source|unknown|
-
-</section><hr>
-<section>
 <a id="schemastorycompact"></a>
 <a id="schema_StoryCompact"></a>
 <a id="tocSstorycompact"></a>
 <a id="tocsstorycompact"></a>
-<h2 id="tocS_StoryCompact">StoryCompact</h2>
+<a id="tocS_StoryCompact"></a>
+<h2 id="story-compact">StoryCompact</h2>
 
 ```json
 {
@@ -14758,17 +14575,393 @@ A `Compact` object is the same as the [full response object](#tocS_Story), but w
 
 </section><hr>
 <section>
-<a id="schematag"></a>
-<a id="schema_Tag"></a>
-<a id="tocStag"></a>
-<a id="tocstag"></a>
-<h2 id="tocS_Tag">Tag</h2>
+<a id="schemastory"></a>
+<a id="schema_Story"></a>
+<a id="tocSstory"></a>
+<a id="tocsstory"></a>
+<a id="tocS_Story"></a>
+<h2 id="story">Story</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "story",
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "resource_subtype": "comment_added",
+  "text": "This is a comment.",
+  "type": "comment",
+  "html_text": "<body>This is a comment.</body>",
+  "is_pinned": false,
+  "assignee": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "custom_field": {
+    "gid": "12345",
+    "resource_type": "custom_field",
+    "enabled": true,
+    "enum_options": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
+    "name": "Status",
+    "number_value": 5.2,
+    "resource_subtype": "text",
+    "text_value": "Some Value",
+    "type": "text"
+  },
+  "dependency": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "duplicate_of": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "duplicated_from": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "follower": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "hearted": false,
+  "hearts": [
+    {
+      "gid": "12345",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ],
+  "is_edited": false,
+  "liked": false,
+  "likes": [
+    {
+      "gid": "12345",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ],
+  "new_approval_status": "approved",
+  "new_dates": {
+    "due_at": "2019-09-15T02:06:58.158Z",
+    "due_on": "2019-09-15",
+    "start_on": "2019-09-14"
+  },
+  "new_enum_value": {
+    "gid": "12345",
+    "resource_type": "enum_option",
+    "color": "blue",
+    "enabled": true,
+    "name": "Low"
+  },
+  "new_name": "This is the New Name",
+  "new_number_value": 2,
+  "new_resource_subtype": "milestone",
+  "new_section": {
+    "gid": "12345",
+    "resource_type": "section",
+    "name": "Next Actions"
+  },
+  "new_text_value": "This is the New Text",
+  "num_hearts": 5,
+  "num_likes": 5,
+  "old_approval_status": "pending",
+  "old_dates": {
+    "due_at": "2019-09-15T02:06:58.158Z",
+    "due_on": "2019-09-15",
+    "start_on": "2019-09-14"
+  },
+  "old_enum_value": {
+    "gid": "12345",
+    "resource_type": "enum_option",
+    "color": "blue",
+    "enabled": true,
+    "name": "Low"
+  },
+  "old_name": "This was the Old Name",
+  "old_number_value": 1,
+  "old_resource_subtype": "default_task",
+  "old_section": {
+    "gid": "12345",
+    "resource_type": "section",
+    "name": "Next Actions"
+  },
+  "old_text_value": "This was the Old Text",
+  "previews": [
+    {
+      "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+      "footer": "Mar 17, 2019 1:25 PM",
+      "header": "Asana for Slack",
+      "header_link": "https://asana.comn/apps/slack",
+      "html_text": "<body>Great! I like this idea.</body>",
+      "text": "Great! I like this idea.",
+      "title": "Greg",
+      "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
+    }
+  ],
+  "project": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  },
+  "source": "web",
+  "story": {
+    "gid": "12345",
+    "resource_type": "story",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "resource_subtype": "comment_added",
+    "text": "marked today",
+    "type": "comment"
+  },
+  "tag": {
+    "gid": "12345",
+    "resource_type": "tag",
+    "name": "Stuff to buy"
+  },
+  "target": {
+    "gid": "1234",
+    "name": "Bug Task"
+  },
+  "task": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  }
+}
+
+```
+
+A story represents an activity associated with an object in the Asana system.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
+|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
+|is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|dependency<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the task.|
+|duplicate_of<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the task.|
+|duplicated_from<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the task.|
+|follower<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|hearted<span class="param-type"> boolean</span>|*Deprecated - please use likes instead*<br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
+|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. Array of likes for users who have hearted this story.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|is_edited<span class="param-type"> boolean</span>|*Conditional*. Whether the text of the story has been edited after creation.|
+|liked<span class="param-type"> boolean</span>|*Conditional*. True if the story is liked by the authorized user, false if not.|
+|likes<span class="param-type"> [object]</span>|*Conditional*. Array of likes for users who have liked this story.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|new_approval_status<span class="param-type"> string</span>|*Conditional*|
+|new_dates<span class="param-type"> object</span>|*Conditional*|
+|» due_at<span class="param-type"> string(date-time)</span>|none|
+|» due_on<span class="param-type"> string(date)</span>|none|
+|» start_on<span class="param-type"> string(date)</span>|none|
+|new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|new_name<span class="param-type"> string</span>|*Conditional*|
+|new_number_value<span class="param-type"> integer</span>|*Conditional*|
+|new_resource_subtype<span class="param-type"> string</span>|*Conditional*|
+|new_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|new_text_value<span class="param-type"> string</span>|*Conditional*|
+|num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
+|num_likes<span class="param-type"> integer</span>|*Conditional*. The number of users who have liked this story.|
+|old_approval_status<span class="param-type"> string</span>|*Conditional*|
+|old_dates<span class="param-type"> object</span>|*Conditional*|
+|» due_at<span class="param-type"> string(date-time)</span>|none|
+|» due_on<span class="param-type"> string(date)</span>|none|
+|» start_on<span class="param-type"> string(date)</span>|none|
+|old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|old_name<span class="param-type"> string</span>|*Conditional*'|
+|old_number_value<span class="param-type"> integer</span>|*Conditional*|
+|old_resource_subtype<span class="param-type"> string</span>|*Conditional*|
+|old_section<span class="param-type"> object</span>|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
+|old_text_value<span class="param-type"> string</span>|*Conditional*|
+|previews<span class="param-type"> [object]</span>|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
+|» fallback<span class="param-type"> string</span>|Some fallback text to display if unable to display the full preview.|
+|» footer<span class="param-type"> string</span>|Text to display in the footer.|
+|» header<span class="param-type"> string</span>|Text to display in the header.|
+|» header_link<span class="param-type"> string</span>|Where the header will link to.|
+|» html_text<span class="param-type"> string</span>|HTML formatted text for the body of the preview.|
+|» text<span class="param-type"> string</span>|Text for the body of the preview.|
+|» title<span class="param-type"> string</span>|Text to display as the title.|
+|» title_link<span class="param-type"> string</span>|Where to title will link to.|
+|project<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|source<span class="param-type"> string</span>|The component of the Asana product the user used to trigger the story.|
+|story<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» text<span class="param-type"> string</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|tag<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|target<span class="param-type"> object</span>|The object this story is associated with. Currently may only be a task.|
+|» gid<span class="param-type"> string</span>|none|
+|» name<span class="param-type"> string</span>|none|
+|task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the task.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|resource_subtype|text|
+|resource_subtype|enum|
+|resource_subtype|number|
+|type|text|
+|type|enum|
+|type|number|
+|source|web|
+|source|email|
+|source|mobile|
+|source|api|
+|source|unknown|
+
+</section><hr>
+<section>
+<a id="schematagcompact"></a>
+<a id="schema_TagCompact"></a>
+<a id="tocStagcompact"></a>
+<a id="tocstagcompact"></a>
+<a id="tocS_TagCompact"></a>
+<h2 id="tag-compact">TagCompact</h2>
 
 ```json
 {
   "gid": "12345",
   "resource_type": "tag",
-  "name": "Stuff to buy",
+  "name": "Stuff to buy"
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_Tag), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+
+</section><hr>
+<section>
+<a id="schematag"></a>
+<a id="schema_Tag"></a>
+<a id="tocStag"></a>
+<a id="tocstag"></a>
+<a id="tocS_Tag"></a>
+<h2 id="tag">Tag</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "tag",
   "color": "light-green",
   "followers": [
     {
@@ -14777,6 +14970,7 @@ A `Compact` object is the same as the [full response object](#tocS_Story), but w
       "name": "Greg Sanchez"
     }
   ],
+  "name": "Stuff to buy",
   "workspace": {
     "gid": "12345",
     "resource_type": "workspace",
@@ -14794,12 +14988,12 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |color<span class="param-type"> string</span>|Color of the tag.|
 |followers<span class="param-type"> [object]</span>|Array of users following this tag.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -14830,22 +15024,23 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 
 </section><hr>
 <section>
-<a id="schematagcompact"></a>
-<a id="schema_TagCompact"></a>
-<a id="tocStagcompact"></a>
-<a id="tocstagcompact"></a>
-<h2 id="tocS_TagCompact">TagCompact</h2>
+<a id="schemataskcompact"></a>
+<a id="schema_TaskCompact"></a>
+<a id="tocStaskcompact"></a>
+<a id="tocstaskcompact"></a>
+<a id="tocS_TaskCompact"></a>
+<h2 id="task-compact">TaskCompact</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "tag",
-  "name": "Stuff to buy"
+  "resource_type": "task",
+  "name": "Bug Task"
 }
 
 ```
 
-A `Compact` object is the same as the [full response object](#tocS_Tag), but with less fields included by default. See
+A `Compact` object is the same as the [full response object](#tocS_Task), but with less fields included by default. See
 [Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
@@ -14854,7 +15049,7 @@ A `Compact` object is the same as the [full response object](#tocS_Tag), but wit
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|name<span class="param-type"> string</span>|The name of the task.|
 
 </section><hr>
 <section>
@@ -14862,7 +15057,8 @@ A `Compact` object is the same as the [full response object](#tocS_Tag), but wit
 <a id="schema_Task"></a>
 <a id="tocStask"></a>
 <a id="tocstask"></a>
-<h2 id="tocS_Task">Task</h2>
+<a id="tocS_Task"></a>
+<h2 id="task">Task</h2>
 
 ```json
 {
@@ -14894,10 +15090,9 @@ A `Compact` object is the same as the [full response object](#tocS_Tag), but wit
   "due_at": "2019-09-15T02:06:58.147Z",
   "due_on": "2019-09-15",
   "external": {
-    "gid": "my_gid",
-    "data": "A blob of information"
+    "data": "A blob of information",
+    "gid": "my_gid"
   },
-  "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
   "hearted": true,
   "hearts": [
     {
@@ -14909,6 +15104,7 @@ A `Compact` object is the same as the [full response object](#tocS_Tag), but wit
       }
     }
   ],
+  "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
   "is_rendered_as_separator": false,
   "liked": true,
   "likes": [
@@ -14951,36 +15147,36 @@ A `Compact` object is the same as the [full response object](#tocS_Tag), but wit
     {
       "gid": "12345",
       "resource_type": "custom_field",
-      "name": "Status",
-      "resource_subtype": "text",
-      "type": "text",
+      "currency_code": "EUR",
+      "custom_label": "gold pieces",
+      "custom_label_position": "suffix",
+      "description": "Development team priority",
+      "enabled": true,
       "enum_options": [
         {
           "gid": "12345",
           "resource_type": "enum_option",
-          "name": "Low",
+          "color": "blue",
           "enabled": true,
-          "color": "blue"
+          "name": "Low"
         }
       ],
-      "enabled": true,
-      "number_value": 5.2,
-      "text_value": "Some Value",
-      "description": "Development team priority",
-      "precision": 2,
-      "format": "custom",
-      "currency_code": "EUR",
-      "custom_label": "gold pieces",
-      "custom_label_position": "suffix",
-      "is_global_to_workspace": true,
-      "has_notifications_enabled": true,
       "enum_value": {
         "gid": "12345",
         "resource_type": "enum_option",
-        "name": "Low",
+        "color": "blue",
         "enabled": true,
-        "color": "blue"
-      }
+        "name": "Low"
+      },
+      "format": "custom",
+      "has_notifications_enabled": true,
+      "is_global_to_workspace": true,
+      "name": "Status",
+      "number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "text",
+      "text_value": "Some Value",
+      "type": "text"
     }
   ],
   "followers": [
@@ -15044,9 +15240,8 @@ The *task* is the basic object around which many operations in Asana are centere
 |due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
-|» gid<span class="param-type"> string</span>|none|
 |» data<span class="param-type"> string</span>|none|
-|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|» gid<span class="param-type"> string</span>|none|
 |hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
 |hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of likes for users who have hearted this task.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
@@ -15054,6 +15249,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.|
 |liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this task.|
@@ -15085,32 +15281,32 @@ The *task* is the basic object around which many operations in Asana are centere
 |custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the task. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the custom field.|
-|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
-|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
-|» format<span class="param-type"> string</span>|The format of this custom field.|
 |» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» format<span class="param-type"> string</span>|The format of this custom field.|
+|» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|» name<span class="param-type"> string</span>|The name of the custom field.|
+|» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
 |followers<span class="param-type"> [object]</span>|Array of users following this task.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -15149,38 +15345,39 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_subtype|milestone|
 |resource_subtype|section|
 |resource_subtype|approval|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
+|format|currency|
+|format|identifier|
+|format|percentage|
+|format|custom|
+|format|none|
 |resource_subtype|text|
 |resource_subtype|enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
 |type|number|
-|format|currency|
-|format|identifier|
-|format|percentage|
-|format|custom|
-|format|none|
-|custom_label_position|prefix|
-|custom_label_position|suffix|
 
 </section><hr>
 <section>
-<a id="schemataskcompact"></a>
-<a id="schema_TaskCompact"></a>
-<a id="tocStaskcompact"></a>
-<a id="tocstaskcompact"></a>
-<h2 id="tocS_TaskCompact">TaskCompact</h2>
+<a id="schemateamcompact"></a>
+<a id="schema_TeamCompact"></a>
+<a id="tocSteamcompact"></a>
+<a id="tocsteamcompact"></a>
+<a id="tocS_TeamCompact"></a>
+<h2 id="team-compact">TeamCompact</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "task",
-  "name": "Bug Task"
+  "resource_type": "team",
+  "name": "Marketing"
 }
 
 ```
 
-A `Compact` object is the same as the [full response object](#tocS_Task), but with less fields included by default. See
+A `Compact` object is the same as the [full response object](#tocS_Team), but with less fields included by default. See
 [Input/Output Options](#input-output-options) to include more fields.
 
 ### Properties
@@ -15189,7 +15386,100 @@ A `Compact` object is the same as the [full response object](#tocS_Task), but wi
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the task.|
+|name<span class="param-type"> string</span>|The name of the team.|
+
+</section><hr>
+<section>
+<a id="schemateammembershipcompact"></a>
+<a id="schema_TeamMembershipCompact"></a>
+<a id="tocSteammembershipcompact"></a>
+<a id="tocsteammembershipcompact"></a>
+<a id="tocS_TeamMembershipCompact"></a>
+<h2 id="team-membership-compact">TeamMembershipCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "team_membership",
+  "is_guest": false,
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
+  },
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  }
+}
+
+```
+
+A `Compact` object is the same as the [full response object](#tocS_TeamMembership), but with less fields included by default. See
+[Input/Output Options](#input-output-options) to include more fields.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|is_guest<span class="param-type"> boolean</span>|Describes if the user is a guest in the team.|
+|team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+
+</section><hr>
+<section>
+<a id="schemateammembership"></a>
+<a id="schema_TeamMembership"></a>
+<a id="tocSteammembership"></a>
+<a id="tocsteammembership"></a>
+<a id="tocS_TeamMembership"></a>
+<h2 id="team-membership">TeamMembership</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "team_membership",
+  "is_guest": false,
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
+  },
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  }
+}
+
+```
+
+This object represents a user's connection to a team.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|is_guest<span class="param-type"> boolean</span>|Describes if the user is a guest in the team.|
+|team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 
 </section><hr>
 <section>
@@ -15197,7 +15487,8 @@ A `Compact` object is the same as the [full response object](#tocS_Task), but wi
 <a id="schema_Team"></a>
 <a id="tocSteam"></a>
 <a id="tocsteam"></a>
-<h2 id="tocS_Team">Team</h2>
+<a id="tocS_Team"></a>
+<h2 id="team">Team</h2>
 
 ```json
 {
@@ -15233,183 +15524,12 @@ A *team* is used to group related projects and people together within an organiz
 
 </section><hr>
 <section>
-<a id="schemateamcompact"></a>
-<a id="schema_TeamCompact"></a>
-<a id="tocSteamcompact"></a>
-<a id="tocsteamcompact"></a>
-<h2 id="tocS_TeamCompact">TeamCompact</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "team",
-  "name": "Marketing"
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_Team), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the team.|
-
-</section><hr>
-<section>
-<a id="schemateammembership"></a>
-<a id="schema_TeamMembership"></a>
-<a id="tocSteammembership"></a>
-<a id="tocsteammembership"></a>
-<h2 id="tocS_TeamMembership">TeamMembership</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "team_membership",
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "team": {
-    "gid": "12345",
-    "resource_type": "team",
-    "name": "Marketing"
-  },
-  "is_guest": false
-}
-
-```
-
-This object represents a user's connection to a team.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the team.|
-|is_guest<span class="param-type"> boolean</span>|Describes if the user is a guest in the team.|
-
-</section><hr>
-<section>
-<a id="schemateammembershipcompact"></a>
-<a id="schema_TeamMembershipCompact"></a>
-<a id="tocSteammembershipcompact"></a>
-<a id="tocsteammembershipcompact"></a>
-<h2 id="tocS_TeamMembershipCompact">TeamMembershipCompact</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "team_membership",
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "team": {
-    "gid": "12345",
-    "resource_type": "team",
-    "name": "Marketing"
-  },
-  "is_guest": false
-}
-
-```
-
-A `Compact` object is the same as the [full response object](#tocS_TeamMembership), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the team.|
-|is_guest<span class="param-type"> boolean</span>|Describes if the user is a guest in the team.|
-
-</section><hr>
-<section>
-<a id="schemauser"></a>
-<a id="schema_User"></a>
-<a id="tocSuser"></a>
-<a id="tocsuser"></a>
-<h2 id="tocS_User">User</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "user",
-  "name": "Greg Sanchez",
-  "email": "gsanchez@example.com",
-  "photo": {
-    "image_21x21": "https://...",
-    "image_27x27": "https://...",
-    "image_36x36": "https://...",
-    "image_60x60": "https://...",
-    "image_128x128": "https://..."
-  },
-  "workspaces": [
-    {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    }
-  ]
-}
-
-```
-
-A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|email<span class="param-type"> string(email)</span>|The user's email address.|
-|photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|» image_21x21<span class="param-type"> string(uri)</span>|none|
-|» image_27x27<span class="param-type"> string(uri)</span>|none|
-|» image_36x36<span class="param-type"> string(uri)</span>|none|
-|» image_60x60<span class="param-type"> string(uri)</span>|none|
-|» image_128x128<span class="param-type"> string(uri)</span>|none|
-|workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the workspace.|
-
-</section><hr>
-<section>
 <a id="schemausercompact"></a>
 <a id="schema_UserCompact"></a>
 <a id="tocSusercompact"></a>
 <a id="tocsusercompact"></a>
-<h2 id="tocS_UserCompact">UserCompact</h2>
+<a id="tocS_UserCompact"></a>
+<h2 id="user-compact">UserCompact</h2>
 
 ```json
 {
@@ -15433,32 +15553,38 @@ A `Compact` object is the same as the [full response object](#tocS_User), but wi
 
 </section><hr>
 <section>
-<a id="schemausertasklist"></a>
-<a id="schema_UserTaskList"></a>
-<a id="tocSusertasklist"></a>
-<a id="tocsusertasklist"></a>
-<h2 id="tocS_UserTaskList">UserTaskList</h2>
+<a id="schemauser"></a>
+<a id="schema_User"></a>
+<a id="tocSuser"></a>
+<a id="tocsuser"></a>
+<a id="tocS_User"></a>
+<h2 id="user">User</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "user_task_list",
-  "name": "My Tasks in My Workspace",
-  "owner": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
+  "resource_type": "user",
+  "name": "Greg Sanchez",
+  "email": "gsanchez@example.com",
+  "photo": {
+    "image_128x128": "https://...",
+    "image_21x21": "https://...",
+    "image_27x27": "https://...",
+    "image_36x36": "https://...",
+    "image_60x60": "https://..."
   },
-  "workspace": {
-    "gid": "12345",
-    "resource_type": "workspace",
-    "name": "My Company Workspace"
-  }
+  "workspaces": [
+    {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
+  ]
 }
 
 ```
 
-A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.
+A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
 
 ### Properties
 
@@ -15466,12 +15592,15 @@ A user task list represents the tasks assigned to a particular user. It provides
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the user task list.|
-|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|email<span class="param-type"> string(email)</span>|The user's email address.|
+|photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|» image_128x128<span class="param-type"> string(uri)</span>|none|
+|» image_21x21<span class="param-type"> string(uri)</span>|none|
+|» image_27x27<span class="param-type"> string(uri)</span>|none|
+|» image_36x36<span class="param-type"> string(uri)</span>|none|
+|» image_60x60<span class="param-type"> string(uri)</span>|none|
+|workspaces<span class="param-type"> [object]</span>|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
@@ -15482,7 +15611,8 @@ A user task list represents the tasks assigned to a particular user. It provides
 <a id="schema_UserTaskListCompact"></a>
 <a id="tocSusertasklistcompact"></a>
 <a id="tocsusertasklistcompact"></a>
-<h2 id="tocS_UserTaskListCompact">UserTaskListCompact</h2>
+<a id="tocS_UserTaskListCompact"></a>
+<h2 id="user-task-list-compact">UserTaskListCompact</h2>
 
 ```json
 {
@@ -15524,44 +15654,33 @@ A `Compact` object is the same as the [full response object](#tocS_UserTaskList)
 
 </section><hr>
 <section>
-<a id="schemawebhook"></a>
-<a id="schema_Webhook"></a>
-<a id="tocSwebhook"></a>
-<a id="tocswebhook"></a>
-<h2 id="tocS_Webhook">Webhook</h2>
+<a id="schemausertasklist"></a>
+<a id="schema_UserTaskList"></a>
+<a id="tocSusertasklist"></a>
+<a id="tocsusertasklist"></a>
+<a id="tocS_UserTaskList"></a>
+<h2 id="user-task-list">UserTaskList</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "webhook",
-  "active": false,
-  "resource": {
+  "resource_type": "user_task_list",
+  "name": "My Tasks in My Workspace",
+  "owner": {
     "gid": "12345",
-    "resource_type": "task",
-    "name": "Bug Task"
+    "resource_type": "user",
+    "name": "Greg Sanchez"
   },
-  "target": "https://example.com/receive-webhook/7654",
-  "created_at": "2012-02-22T02:06:58.147Z",
-  "last_failure_at": "2012-02-22T02:06:58.147Z",
-  "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
-  "last_success_at": "2012-02-22T02:06:58.147Z",
-  "filters": [
-    {
-      "resource_type": "task",
-      "resource_subtype": "milestone",
-      "action": "changed",
-      "fields": [
-        "due_at",
-        "due_on",
-        "dependencies"
-      ]
-    }
-  ]
+  "workspace": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  }
 }
 
 ```
 
-Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [Event](#tocS_Event) schema.  
+A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.
 
 ### Properties
 
@@ -15569,21 +15688,15 @@ Webhook objects represent the state of an active subscription for a server to be
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|active<span class="param-type"> boolean</span>|If true, the webhook will send events - if false it is considered inactive and will not generate events.|
-|resource<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|name<span class="param-type"> string</span>|The name of the user task list.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the object.|
-|target<span class="param-type"> string(uri)</span>|The URL to receive the HTTP POST.|
-|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|last_failure_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last received an error when sending an event to the target.|
-|last_failure_content<span class="param-type"> string</span>|The contents of the last error response sent to the webhook when attempting to deliver events to the target.|
-|last_success_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last successfully sent an event to the target.|
-|filters<span class="param-type"> [object]</span>|Whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered; otherwise no event will be sent to the receiving server.|
-|» resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
-|» resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
-|» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](#tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
-|» fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
 </section><hr>
 <section>
@@ -15591,7 +15704,8 @@ Webhook objects represent the state of an active subscription for a server to be
 <a id="schema_WebhookCompact"></a>
 <a id="tocSwebhookcompact"></a>
 <a id="tocswebhookcompact"></a>
-<h2 id="tocS_WebhookCompact">WebhookCompact</h2>
+<a id="tocS_WebhookCompact"></a>
+<h2 id="webhook-compact">WebhookCompact</h2>
 
 ```json
 {
@@ -15630,18 +15744,19 @@ A `Compact` object is the same as the [full response object](#tocS_Webhook), but
 <a id="schema_WebhookFilter"></a>
 <a id="tocSwebhookfilter"></a>
 <a id="tocswebhookfilter"></a>
-<h2 id="tocS_WebhookFilter">WebhookFilter</h2>
+<a id="tocS_WebhookFilter"></a>
+<h2 id="webhook-filter">WebhookFilter</h2>
 
 ```json
 {
-  "resource_type": "task",
-  "resource_subtype": "milestone",
   "action": "changed",
   "fields": [
     "due_at",
     "due_on",
     "dependencies"
-  ]
+  ],
+  "resource_subtype": "milestone",
+  "resource_type": "task"
 }
 
 ```
@@ -15652,33 +15767,52 @@ A WebhookFilter can be passed on creation of a webhook in order to filter the ty
 
 |Name|Description|
 |---|---|
-|resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
-|resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
 |action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](#tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
 |fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
+|resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
+|resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
 
 </section><hr>
 <section>
-<a id="schemaworkspace"></a>
-<a id="schema_Workspace"></a>
-<a id="tocSworkspace"></a>
-<a id="tocsworkspace"></a>
-<h2 id="tocS_Workspace">Workspace</h2>
+<a id="schemawebhook"></a>
+<a id="schema_Webhook"></a>
+<a id="tocSwebhook"></a>
+<a id="tocswebhook"></a>
+<a id="tocS_Webhook"></a>
+<h2 id="webhook">Webhook</h2>
 
 ```json
 {
   "gid": "12345",
-  "resource_type": "workspace",
-  "name": "My Company Workspace",
-  "email_domains": [
-    "asana.com"
+  "resource_type": "webhook",
+  "active": false,
+  "resource": {
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  },
+  "target": "https://example.com/receive-webhook/7654",
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "filters": [
+    {
+      "action": "changed",
+      "fields": [
+        "due_at",
+        "due_on",
+        "dependencies"
+      ],
+      "resource_subtype": "milestone",
+      "resource_type": "task"
+    }
   ],
-  "is_organization": false
+  "last_failure_at": "2012-02-22T02:06:58.147Z",
+  "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+  "last_success_at": "2012-02-22T02:06:58.147Z"
 }
 
 ```
 
-A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
+Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [Event](#tocS_Event) schema.
 
 ### Properties
 
@@ -15686,9 +15820,21 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the workspace.|
-|email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
-|is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
+|active<span class="param-type"> boolean</span>|If true, the webhook will send events - if false it is considered inactive and will not generate events.|
+|resource<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the object.|
+|target<span class="param-type"> string(uri)</span>|The URL to receive the HTTP POST.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|filters<span class="param-type"> [object]</span>|Whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered; otherwise no event will be sent to the receiving server.|
+|» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](#tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
+|» fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
+|» resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
+|» resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
+|last_failure_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last received an error when sending an event to the target.|
+|last_failure_content<span class="param-type"> string</span>|The contents of the last error response sent to the webhook when attempting to deliver events to the target.|
+|last_success_at<span class="param-type"> string(date-time)</span>|The timestamp when the webhook last successfully sent an event to the target.|
 
 </section><hr>
 <section>
@@ -15696,7 +15842,8 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 <a id="schema_WorkspaceCompact"></a>
 <a id="tocSworkspacecompact"></a>
 <a id="tocsworkspacecompact"></a>
-<h2 id="tocS_WorkspaceCompact">WorkspaceCompact</h2>
+<a id="tocS_WorkspaceCompact"></a>
+<h2 id="workspace-compact">WorkspaceCompact</h2>
 
 ```json
 {
@@ -15720,87 +15867,12 @@ A `Compact` object is the same as the [full response object](#tocS_Workspace), b
 
 </section><hr>
 <section>
-<a id="schemaworkspacemembership"></a>
-<a id="schema_WorkspaceMembership"></a>
-<a id="tocSworkspacemembership"></a>
-<a id="tocsworkspacemembership"></a>
-<h2 id="tocS_WorkspaceMembership">WorkspaceMembership</h2>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "workspace_membership",
-  "user": {
-    "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez"
-  },
-  "workspace": {
-    "gid": "12345",
-    "resource_type": "workspace",
-    "name": "My Company Workspace"
-  },
-  "user_task_list": {
-    "gid": "12345",
-    "resource_type": "user_task_list",
-    "name": "My Tasks in My Workspace",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    }
-  },
-  "is_active": true,
-  "is_admin": true,
-  "is_guest": true
-}
-
-```
-
-This object determines if a user is a member of a workspace.
-
-### Properties
-
-|Name|Description|
-|---|---|
-|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the workspace.|
-|user_task_list<span class="param-type"> object</span>|A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the user task list.|
-|» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the workspace.|
-|is_active<span class="param-type"> boolean</span>|Reflects if this user still a member of the workspace.|
-|is_admin<span class="param-type"> boolean</span>|Reflects if this user is an admin of the workspace.|
-|is_guest<span class="param-type"> boolean</span>|Reflects if this user is a guest of the workspace.|
-
-</section><hr>
-<section>
 <a id="schemaworkspacemembershipcompact"></a>
 <a id="schema_WorkspaceMembershipCompact"></a>
 <a id="tocSworkspacemembershipcompact"></a>
 <a id="tocsworkspacemembershipcompact"></a>
-<h2 id="tocS_WorkspaceMembershipCompact">WorkspaceMembershipCompact</h2>
+<a id="tocS_WorkspaceMembershipCompact"></a>
+<h2 id="workspace-membership-compact">WorkspaceMembershipCompact</h2>
 
 ```json
 {
@@ -15837,6 +15909,117 @@ A `Compact` object is the same as the [full response object](#tocS_WorkspaceMemb
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
+
+</section><hr>
+<section>
+<a id="schemaworkspacemembership"></a>
+<a id="schema_WorkspaceMembership"></a>
+<a id="tocSworkspacemembership"></a>
+<a id="tocsworkspacemembership"></a>
+<a id="tocS_WorkspaceMembership"></a>
+<h2 id="workspace-membership">WorkspaceMembership</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "workspace_membership",
+  "user": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "workspace": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  },
+  "is_active": true,
+  "is_admin": true,
+  "is_guest": true,
+  "user_task_list": {
+    "gid": "12345",
+    "resource_type": "user_task_list",
+    "name": "My Tasks in My Workspace",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
+  }
+}
+
+```
+
+This object determines if a user is a member of a workspace.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
+|is_active<span class="param-type"> boolean</span>|Reflects if this user still a member of the workspace.|
+|is_admin<span class="param-type"> boolean</span>|Reflects if this user is an admin of the workspace.|
+|is_guest<span class="param-type"> boolean</span>|Reflects if this user is a guest of the workspace.|
+|user_task_list<span class="param-type"> object</span>|A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the user task list.|
+|» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|The name of the workspace.|
+
+</section><hr>
+<section>
+<a id="schemaworkspace"></a>
+<a id="schema_Workspace"></a>
+<a id="tocSworkspace"></a>
+<a id="tocsworkspace"></a>
+<a id="tocS_Workspace"></a>
+<h2 id="workspace">Workspace</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "workspace",
+  "name": "My Company Workspace",
+  "email_domains": [
+    "asana.com"
+  ],
+  "is_organization": false
+}
+
+```
+
+A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the workspace.|
+|email_domains<span class="param-type"> [string]</span>|The email domains that are associated with this workspace.|
+|is_organization<span class="param-type"> boolean</span>|Whether the workspace is an *organization*.|
 
 </section>
 
