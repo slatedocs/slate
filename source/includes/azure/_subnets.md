@@ -19,6 +19,7 @@ curl -X GET \
     {
       "addressPrefix": "10.1.2.0/24",
       "parentNetworkId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet",
+      "parentNetworkName": ":example-vnet",
       "allocatedIpAddresses": 3,
       "availableAddresses": 248,
       "totalNumberIps": 251,
@@ -45,6 +46,7 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*string* | The id associated to the subnet. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/virtualNetworks/:networkName/subnets/:subnetName`
 `parentNetworkId` <br/>*string* | The id for the parent network. 
+`parentNetworkName` <br/>*string* | The name for the parent network.
 `name`<br/>*string* | The name of the subnet.
 `region`<br/>*string* | The region in which the parent of the subnet is located. 
 `allocatedAddresses`<br/>*int* | The number of allocated addresses in the subnet.
@@ -60,6 +62,7 @@ Additional Attributes: Network filter included | &nbsp;
 `nics.primaryPrivateIp`<br/>*string* | The primary private ip for the nic. 
 `nics.id`<br/>*string* | The id for the nic. 
 `nics.subnetName`<br/>*string* | The name for the subnet to which to the nic belongs. 
+`nics.networkName`<br/>*string* | The name for the network to which to the nic belongs. 
 
 
 <!-------------------- GET A SUBNET -------------------->
@@ -75,29 +78,26 @@ curl -X GET \
 ```
 ```json
 {
-  "data": [
-    {
-      "addressPrefix": "10.1.2.0/24",
-      "parentNetworkId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet",
-      "allocatedIpAddresses": 3,
-      "availableAddresses": 248,
-      "totalNumberIps": 251,
-      "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet",
-      "region": "eastus",
-      "name": "example-subnet",
-      "networkSecurityGroupName": "test-rg",
-      "nics": [
-        {
-          "name": "sample-nic",
-          "subnetName": "example-subnet",
-          "primaryPrivateIp": "10.1.2.4",
-          "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/networkInterfaces/virtualNetworks/sample-nic"
-        }
-      ],
-    }
-  ],
-  "metadata": {
-    "recordCount": 1
+  "data": {
+    "addressPrefix": "10.1.2.0/24",
+    "parentNetworkId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet",
+    "parentNetworkName": ":example-vnet",
+    "allocatedIpAddresses": 3,
+    "availableAddresses": 248,
+    "totalNumberIps": 251,
+    "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet",
+    "region": "eastus",
+    "name": "example-subnet",
+    "networkSecurityGroupName": "test-rg",
+    "nics": [
+      {
+        "name": "sample-nic",
+        "subnetName": "example-subnet",
+        "subnetName": ":example-vnet",
+        "primaryPrivateIp": "10.1.2.4",
+        "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/networkInterfaces/virtualNetworks/sample-nic"
+      }
+    ]
   }
 }
 ```
@@ -111,6 +111,7 @@ Attributes | &nbsp;
 `addressPrefix`<br/>*string* | The IPv4 CIDR representing the address range for the subnet.
 `id`<br/>*string* | The id associated to the subnet. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/Microsoft.Network/virtualNetworks/:networkName/subnets/:subnetName`
 `parentNetworkId` <br/>*string* | The id for the parent network. 
+`parentNetworkName` <br/>*string* | The name for the parent network.
 `name`<br/>*string* | The name of the subnet.
 `region`<br/>*string* | The region in which the parent of the subnet is located. 
 `allocatedAddresses`<br/>*int* | The number of allocated addresses in the subnet.
@@ -123,6 +124,7 @@ Attributes | &nbsp;
 `nics.primaryPrivateIp`<br/>*string* | The primary private ip for the nic. 
 `nics.id`<br/>*string* | The id for the nic. 
 `nics.subnetName`<br/>*string* | The name for the subnet to which to the nic belongs. 
+`nics.networkName`<br/>*string* | The name for the network to which to the nic belongs. 
 
 <!-------------------- CREATE A SUBNET -------------------->
 

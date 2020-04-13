@@ -32,6 +32,12 @@ curl -X GET \
       "region": "canadacentral",
       "privateIp": "10.0.0.4",
       "macAddress": "00-0D-3A-84-0B-EF",
+      "subnetName": "default",
+      "networkName": "vn_root_qyg",
+      "supportsPremiumIO": true,
+      "supportsUltraIO": false,
+      "attachableDiskSlots": 2,
+      "usedLuns": [1],
       "powerState": "PowerState/running",
       "displayPowerState": "running",
       "networkInterfaces": [
@@ -70,6 +76,12 @@ Attributes | &nbsp;
 `privateIp`<br/>*string* | The private ip address assigned to the instance
 `internalFqdn`<br/>*string* | The internal FQDN assigned to the instance
 `macAddress`<br/>*string* | The MAC address assigned to the instance
+`subnetName`<br/>*string* | The name of the subnet that the instance is part of
+`networkName`<br/>*string* | The name of the network that the instance is part of
+`supportsPremiumIO`<br/>*boolean* | If the instance supports Premium IO. This is fixed by the machine type.
+`supportsUltraIO`<br/>*boolean* | If the instance supports Ultra IO. This is fixed by the machine type.
+`attachableDiskSlots`<br/>*integer* | The number of data disk that can be attached to the instance. This is fixed by the machine type.
+`usedLuns`<br/>*array* | An array of all the LUNs already used for the data disks.
 `publicIp`<br/>*string* | The public ip address assigned to the instance
 `powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
 `displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
@@ -105,6 +117,12 @@ curl -X GET \
     "region": "canadacentral",
     "privateIp": "10.0.0.4",
     "macAddress": "00-0D-3A-0B-F2-96",
+    "subnetName": "default",
+    "networkName": "vn_root_qyg",
+    "supportsPremiumIO": true,
+    "supportsUltraIO": false,
+    "attachableDiskSlots": 2,
+    "usedLuns": [],
     "powerState": "PowerState/running",
     "displayPowerState": "running",
     "networkInterfaces": [
@@ -139,6 +157,12 @@ Attributes | &nbsp;
 `privateIp`<br/>*string* | The private ip address assigned to the instance
 `internalFqdn`<br/>*string* | The internal FQDN assigned to the instance
 `macAddress`<br/>*string* | The MAC address assigned to the instance
+`subnetName`<br/>*string* | The name of the subnet that the instance is part of
+`networkName`<br/>*string* | The name of the network that the instance is part of
+`supportsPremiumIO`<br/>*boolean* | If the instance supports Premium IO. This is fixed by the machine type.
+`supportsUltraIO`<br/>*boolean* | If the instance supports Ultra IO. This is fixed by the machine type.
+`attachableDiskSlots`<br/>*integer* | The number of data disk that can be attached to the instance. This is fixed by the machine type.
+`usedLuns`<br/>*array* | An array of all the LUNs already used for the data disks.
 `publicIp`<br/>*string* | The public ip address assigned to the instance
 `powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
 `displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
