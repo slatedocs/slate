@@ -47,31 +47,89 @@ Settings are set on the window object as `window.adaSettings = { ... }`. Alterna
 #### `adaReadyCallback?(params: { isRolledOut: boolean }): void`
 
 ```html
-  <script type="text/javascript">
-    window.adaSettings = {
-      adaReadyCallback: ({ isRolledOut }) => {
-        console.log("Ada Embed is done setting up. Chat support is now available.");
-      },
-      // ...The rest of your settings here
-    }
-  </script>
+<script type="text/javascript">
+  window.adaSettings = {
+    adaReadyCallback: ({ isRolledOut }) => {
+      console.log("Ada Embed is done setting up. Chat support is now available.");
+    },
+    // ...The rest of your settings here
+  }
+</script>
 ```
 Specifies a callback function to be called when Embed2 has finished setting up. This is especially useful when Embed2 is loaded asynchronously.
 
-#### `analyticsCallback?(analytics: MessagePayload): void;`
+#### `analyticsCallback?(analytics: MessagePayload): void`
 
 ```html
-  <script type="text/javascript">
-    window.adaSettings = {
-      analyticsCallback: (event) => {
-        // Here is where you can forward this event to Adobe (or elsewhere)
-        console.log(event);
-      },
-      // ...The rest of your settings here
-    }
-  </script>
+<script type="text/javascript">
+  window.adaSettings = {
+    analyticsCallback: (event) => {
+      // Here is where you can forward this event to Adobe (or elsewhere)
+      console.log(event);
+    },
+    // ...The rest of your settings here
+  }
+</script>
 ```
 
 Can be used to pass back data analytics. Make sure you have `analyticsCallback` feature enabled on your bot - you can check this with your account manager.
+
+> Example event:
+
+```js
+{
+  chatter_id: "5d9f84b2a35763fc71cb7bf",
+  session_id: "59f84b22c4683df7c38bf69",
+  answer_name: "Greeting",
+  event_name: "answer presented",
+  authenticated: false
+}
+```
+
+#### `chatterTokenCallback?(chatter: string): void`
+
+```html
+<script type="text/javascript">
+  window.adaSettings = {
+    chatterTokenCallback: (chatter) => {
+      console.log("Do something with chatter token: ", chatter)
+    },
+    // ...The rest of your settings here
+  }
+</script>
+```
+
+Specifies a callback for when the `chatter` token has been set in Chat.
+
+#### `cluster?: string`
+
+```html
+<script type="text/javascript">
+  window.adaSettings = {
+    cluster: "ca",
+    // ...The rest of your settings here
+  }
+</script>
+```
+
+Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
+
+#### `crossWindowPersistence?: boolean`
+
+```html
+<script type="text/javascript">
+  window.adaSettings = {
+    crossWindowPersistence: true,
+    // ...The rest of your settings here
+  }
+</script>
+```
+
+When set enables the Chat drawer open / close state to persist across windows and page refreshes using the `Window.sessionStorage` API. When the browser is closed the state is forgotten.
+
+<aside class="notice">
+We recommend enabling this feature if your bot uses Ada Glass.
+</aside>
+
 
 ### Methods
