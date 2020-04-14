@@ -309,21 +309,19 @@ curl -X POST \
 
 ```json
 {
-  "username": "johndoe",
   "password": "SomePassw0rdVal!d"
 }
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=reset_password</code>
 
-For Linux instances, reset the credentials of an existing user or create a new user with sudo privileges and reset the SSH configuration.
-For Windows instances, reset the built-in administrator account and reset the Remote Desktop service configuration.
+For Linux instances, reset the administrator account.
+For Windows instances, reset the administrator account and reset the Remote Desktop service configuration.
 
 
-Required | &nbsp;
+Optional | &nbsp;
 ------ | -----------
-`username`<br/>*string* | The administrator username of the instance or a new username. It cannot be a reserve user such as admin, root or administrator and must not be more than 20 characters.
-`password`<br/>*string* | The password of the account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers.
+`password`<br/>*string* | The password of the administator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. If not provided, a new password is generated.
 
 
 <!-------------------- START AN INSTANCE -------------------->
