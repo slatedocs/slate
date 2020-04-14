@@ -61,31 +61,31 @@ Retrieve a list of all instances in a given [environment](#administration-enviro
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Compute/virtualMachines/:instanceName
-`name` <br/>*string* | The name of the instance
-`machineType`<br/>*string* | The type of machine assigned for this instance
+`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/:subscriptionid/resourceGroups/:resourcegroup/providers/`Microsoft.Compute/virtualMachines/:instanceName.
+`name` <br/>*string* | The name of the instance.
+`machineType`<br/>*string* | The type of machine assigned for this instance.
 `numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the machine type.
 `memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance. This is determined by the machine type.
-`imagePublisher`<br/>*string* | The publisher of the instance used to create the instance
-`imageOffer`<br/>*string* | The image offer that was used to create the instance
-`imageSku`<br/>*string* | The image SKU that was used to create the instance
-`imageVersion`<br/>*string* | The image version that was used to create the instance
-`displayImage`<br/>*string* | Displayable value of the image information
+`imagePublisher`<br/>*string* | The publisher of the instance used to create the instance.
+`imageOffer`<br/>*string* | The image offer that was used to create the instance.
+`imageSku`<br/>*string* | The image SKU that was used to create the instance.
+`imageVersion`<br/>*string* | The image version that was used to create the instance.
+`displayImage`<br/>*string* | Displayable value of the image information.
 `osType`<br/>*string* | The OS type of the instance. This can be either Windows or Linux.
-`region`<br/>*string* | The region in which the instance is located
-`privateIp`<br/>*string* | The private ip address assigned to the instance
-`internalFqdn`<br/>*string* | The internal FQDN assigned to the instance
-`macAddress`<br/>*string* | The MAC address assigned to the instance
-`subnetName`<br/>*string* | The name of the subnet that the instance is part of
-`networkName`<br/>*string* | The name of the network that the instance is part of
-`supportsPremiumIO`<br/>*boolean* | If the instance supports Premium IO. This is fixed by the machine type.
-`supportsUltraIO`<br/>*boolean* | If the instance supports Ultra IO. This is fixed by the machine type.
-`attachableDiskSlots`<br/>*integer* | The number of data disk that can be attached to the instance. This is fixed by the machine type.
-`usedLuns`<br/>*array* | An array of all the LUNs already used for the data disks.
-`publicIp`<br/>*string* | The public ip address assigned to the instance
-`powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
-`displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
-`networkInterfaces`<br/>*list* | A list of network interfaces of the instance. Contains fields: `id`, `name`, `primary`
+`region`<br/>*string* | The region in which the instance is located.
+`privateIp`<br/>*string* | The private ip address assigned to the instance.
+`internalFqdn`<br/>*string* | The internal FQDN assigned to the instance.
+`macAddress`<br/>*string* | The MAC address assigned to the instance.
+`subnetName`<br/>*string* | The name of the subnet that the instance is part of.
+`networkName`<br/>*string* | The name of the network that the instance is part of.
+`supportsPremiumIO`<br/>*boolean* | If the instance supports Premium disks. This is fixed by the machine type.
+`supportsUltraIO`<br/>*boolean* | If the instance supports Ultra disks. This is fixed by the machine type.
+`attachableDiskSlots`<br/>*integer* | The number of managed disks that can be attached to the instance. This is fixed by the machine type.
+`usedLuns`<br/>*array* | An array of all the LUNs associated with the managed disks attached to this instance.
+`publicIp`<br/>*string* | The public ip address assigned to the instance.
+`powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown.
+`displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown.
+`networkInterfaces`<br/>*list* | A list of network interfaces of the instance. Contains fields: `id`, `name`, `primary`.
 
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
@@ -142,31 +142,31 @@ Retrieve an instance in a given [environment](#administration-environments)
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName}`
-`name` <br/>*string* | The name of the instance
-`machineType`<br/>*string* | The type of machine assigned for this instance
+`id` <br/>*string* | The id of the instance. This is a canonized id from azure which is the form of `/subscriptions/${subscriptionid}/resourceGroups/${resourcegroup}/providers/Microsoft.Compute/virtualMachines/${instanceName}`.
+`name` <br/>*string* | The name of the instance.
+`machineType`<br/>*string* | The type of machine assigned for this instance.
 `numberOfCores`<br/>*int* | The number of cores provisioned for this instance. This is determined by the machine type.
 `memoryInGB`<br/>*int* | The number of memory in GB provisioned for this instance. This is determined by the machine type.
-`imagePublisher`<br/>*string* | The publisher of the instance used to create the instance
-`imageOffer`<br/>*string* | The image offer that was used to create the instance
-`imageSku`<br/>*string* | The image SKU that was used to create the instance
-`imageVersion`<br/>*string* | The image version that was used to create the instance
+`imagePublisher`<br/>*string* | The publisher of the instance used to create the instance.
+`imageOffer`<br/>*string* | The image offer that was used to create the instance.
+`imageSku`<br/>*string* | The image SKU that was used to create the instance.
+`imageVersion`<br/>*string* | The image version that was used to create the instance.
 `osType`<br/>*string* | The OS type of the instance. This can be either Windows or Linux.
-`displayImage`<br/>*string* | Displayable value of the image information
-`region`<br/>*string* | The region in which the instance is located
-`privateIp`<br/>*string* | The private ip address assigned to the instance
-`internalFqdn`<br/>*string* | The internal FQDN assigned to the instance
-`macAddress`<br/>*string* | The MAC address assigned to the instance
-`subnetName`<br/>*string* | The name of the subnet that the instance is part of
-`networkName`<br/>*string* | The name of the network that the instance is part of
-`supportsPremiumIO`<br/>*boolean* | If the instance supports Premium IO. This is fixed by the machine type.
-`supportsUltraIO`<br/>*boolean* | If the instance supports Ultra IO. This is fixed by the machine type.
-`attachableDiskSlots`<br/>*integer* | The number of data disk that can be attached to the instance. This is fixed by the machine type.
-`usedLuns`<br/>*array* | An array of all the LUNs already used for the data disks.
-`publicIp`<br/>*string* | The public ip address assigned to the instance
-`powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown
-`displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown
-`networkInterfaces`<br/>*list* | A list of network interfaces of the instance. Contains fields: `id`, `name`, `primary`
+`displayImage`<br/>*string* | Displayable value of the image information.
+`region`<br/>*string* | The region in which the instance is located.
+`privateIp`<br/>*string* | The private ip address assigned to the instance.
+`internalFqdn`<br/>*string* | The internal FQDN assigned to the instance.
+`macAddress`<br/>*string* | The MAC address assigned to the instance.
+`subnetName`<br/>*string* | The name of the subnet that the instance is part of.
+`networkName`<br/>*string* | The name of the network that the instance is part of.
+`supportsPremiumIO`<br/>*boolean* | If the instance supports Premium disks. This is fixed by the machine type.
+`supportsUltraIO`<br/>*boolean* | If the instance supports Ultra disks. This is fixed by the machine type.
+`attachableDiskSlots`<br/>*integer* | The number of managed disks that can be attached to the instance. This is fixed by the machine type.
+`usedLuns`<br/>*array* | An array of all the LUNs associated with the managed disks attached to this instance.
+`publicIp`<br/>*string* | The public ip address assigned to the instance.
+`powerState`<br/>*string* | The status of the instance. One of the following values:    PowerState/running, PowerState/deallocating, PowerState/deallocated, PowerState/starting, PowerState/stopped, PowerState/stopping and PowerState/unknown.
+`displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown.
+`networkInterfaces`<br/>*list* | A list of network interfaces of the instance. Contains fields: `id`, `name`, `primary`.
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
@@ -218,14 +218,14 @@ Create a new instance
 
 Required | &nbsp;
 ------- | -----------
-`name` <br/>*string* | The name of the instance. The name cannot exceed 64 characters
-`machineType`<br/>*string* | The type of machine assigned for this instance
-`imagePublisher`<br/>*string* | The image publisher from which the image is selected
-`imageOffer`<br/>*string* | The image offer that was used to create the instance
-`imageSku`<br/>*string* | The image SKU that was used to create the instance
-`imageVersion`<br/>*string* | The image version that was used to create the instance
-`region`<br/>*string* | The region in which the instance is located
-`subnet`<br/>*string* | The subnet id that the instance will be part of
+`name` <br/>*string* | The name of the instance. The name cannot exceed 64 characters.
+`machineType`<br/>*string* | The type of machine assigned for this instance.
+`imagePublisher`<br/>*string* | The image publisher from which the image is selected.
+`imageOffer`<br/>*string* | The image offer that was used to create the instance.
+`imageSku`<br/>*string* | The image SKU that was used to create the instance.
+`imageVersion`<br/>*string* | The image version that was used to create the instance.
+`region`<br/>*string* | The region in which the instance is located.
+`subnet`<br/>*string* | The subnet id that the instance will be part of.
 `username`<br/>*string* | The administrator username which will be created on the instance. It cannot be a reserve user such as admin, root or administrator and must not be more than 20 characters.
 
 Optional | &nbsp;
@@ -289,7 +289,7 @@ The subscription is limiting the number VMs and different machine sizes you can 
 
 Required | &nbsp;
 ------ | -----------
-`machineType`<br/>*string* | The new machine type to assign to the instance
+`machineType`<br/>*string* | The new machine type to assign to the instance.
 
 <!-------------------- RESET PASSWORD -------------------->
 
