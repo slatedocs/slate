@@ -36,9 +36,35 @@ You should now see a small question mark button on the bottom right corner of yo
 
 ## Advanced Setup
 
+In some situations, the quick setup above may be too simplistic. You may want to delay instantiation of Embed2 until a certain event, your application might be a Single-Page App and you need more control, or perhaps you don't want to bind your settings to the window object. Whatever the reason, Embed2 ships with additional features to help you get setup.
+
+### Lazy Mode
+
+```html
+<script
+  id="__ada"
+  data-lazy
+  data-handle="<YOUR-BOT-HANDLE>"
+  src="https://static.ada.support/embed2.js"
+></script>
+```
+
+```js
+window.adaEmbed.start({
+  handle: "my-bot",
+  metaFields: {
+    username: "Ada Lovelace",
+    phone_number: "123-456-7890"
+  },
+  chatterTokenCallback: (chatter) => console.log(chatter)
+});
+```
+
+Lazy mode can be configured to delay Embed2 instantiation. To put Embed2 in lazy mode, add the attribute `data-lazy` to the Embed2 script.
+
+When you are ready to instantiate Embed2, call the `start` action. You can pass any settings you would normally set in `window.adaSettings` here.
 
 ## API Reference
-
 Embed2 supports numerous settings and actions to help you customize the look and behaviour of your bot. Settings are set in the `adaSettings` object when you embed your script. They determine intrinsic properties like bot style and behaviour. Conversely, actions can be called at any point in time to toggle Chat, update user meta data, and more.
 
 ### Settings
