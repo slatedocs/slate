@@ -63,6 +63,8 @@ curl -X GET https://app.asana.com/api/1.0/attachments/{attachment_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /attachments/{attachment_gid}</code>
 </p>
@@ -116,6 +118,8 @@ curl -X DELETE https://app.asana.com/api/1.0/attachments/{attachment_gid} \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="delete-verb">DELETE</span> /attachments/{attachment_gid}</code>
@@ -181,6 +185,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/attachments</code>
@@ -253,6 +259,8 @@ file: string
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/attachments</code>
@@ -428,6 +436,8 @@ curl -X POST https://app.asana.com/api/1.0/batch \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /batch</code>
@@ -668,6 +678,8 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /custom_fields</code>
 </p>
@@ -799,6 +811,8 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /custom_fields/{custom_field_gid}</code>
 </p>
@@ -918,6 +932,8 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="put-verb">PUT</span> /custom_fields/{custom_field_gid}</code>
 </p>
@@ -1011,6 +1027,8 @@ curl -X DELETE https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="delete-verb">DELETE</span> /custom_fields/{custom_field_gid}</code>
@@ -1106,6 +1124,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/custom_fields</code>
 </p>
@@ -1177,6 +1197,8 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options</code>
@@ -1257,6 +1279,8 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options/insert</code>
 </p>
@@ -1332,6 +1356,8 @@ curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="put-verb">PUT</span> /enum_options/{enum_option_gid}</code>
@@ -1453,6 +1479,8 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/custom_field_settings</code>
 </p>
@@ -1553,6 +1581,8 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/custom_field_settings</code>
@@ -1667,6 +1697,8 @@ curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /events</code>
 </p>
@@ -1759,6 +1791,8 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /jobs/{job_gid}</code>
@@ -1855,6 +1889,8 @@ curl -X POST https://app.asana.com/api/1.0/organization_exports \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /organization_exports</code>
 </p>
@@ -1944,6 +1980,8 @@ curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_exp
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /organization_exports/{organization_export_gid}</code>
@@ -2038,6 +2076,8 @@ curl -X GET https://app.asana.com/api/1.0/portfolios?workspace=1331&owner=14916 
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /portfolios</code>
@@ -2186,6 +2226,8 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /portfolios</code>
@@ -2349,6 +2391,8 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}</code>
 </p>
@@ -2494,6 +2538,8 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="put-verb">PUT</span> /portfolios/{portfolio_gid}</code>
 </p>
@@ -2576,6 +2622,8 @@ curl -X DELETE https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="delete-verb">DELETE</span> /portfolios/{portfolio_gid}</code>
 </p>
@@ -2642,6 +2690,8 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/items</code>
 </p>
@@ -2705,6 +2755,8 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addItem</code>
@@ -2779,6 +2831,8 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeItem</code>
@@ -2855,6 +2909,8 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomF
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
 </p>
@@ -2928,6 +2984,8 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCust
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
 </p>
@@ -2997,6 +3055,8 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addMembers</code>
@@ -3069,6 +3129,8 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMemb
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeMembers</code>
@@ -3158,6 +3220,8 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /portfolio_memberships</code>
 </p>
@@ -3224,6 +3288,8 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membe
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /portfolio_memberships/{portfolio_membership_gid}</code>
 </p>
@@ -3287,6 +3353,8 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_m
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/portfolio_memberships</code>
@@ -3361,6 +3429,8 @@ curl -X GET https://app.asana.com/api/1.0/projects \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /projects</code>
@@ -3548,6 +3618,8 @@ curl -X POST https://app.asana.com/api/1.0/projects \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /projects</code>
@@ -3762,6 +3834,8 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}</code>
 </p>
@@ -3945,6 +4019,8 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="put-verb">PUT</span> /projects/{project_gid}</code>
 </p>
@@ -4064,6 +4140,8 @@ curl -X DELETE https://app.asana.com/api/1.0/projects/{project_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="delete-verb">DELETE</span> /projects/{project_gid}</code>
 </p>
@@ -4160,6 +4238,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/duplicate</code>
 </p>
@@ -4240,6 +4320,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/projects</code>
 </p>
@@ -4296,6 +4378,8 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/projects</code>
@@ -4483,6 +4567,8 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /teams/{team_gid}/projects</code>
 </p>
@@ -4601,6 +4687,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/projects</code>
@@ -4788,6 +4876,8 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/projects</code>
 </p>
@@ -4918,6 +5008,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomField
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/addCustomFieldSetting</code>
 </p>
@@ -4991,6 +5083,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFi
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/removeCustomFieldSetting</code>
 </p>
@@ -5056,6 +5150,8 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/task_counts \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/task_counts</code>
@@ -5137,6 +5233,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addMembers \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/addMembers</code>
 </p>
@@ -5208,6 +5306,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeMembers 
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/removeMembers</code>
@@ -5281,6 +5381,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addFollowers \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/addFollowers</code>
 </p>
@@ -5352,6 +5454,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeFollower
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/removeFollowers</code>
@@ -5440,6 +5544,8 @@ curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_membershi
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /project_memberships/{project_membership_gid}</code>
 </p>
@@ -5498,6 +5604,8 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_members
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/project_memberships</code>
@@ -5584,6 +5692,8 @@ curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} 
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /project_statuses/{project_status_gid}</code>
 </p>
@@ -5632,6 +5742,8 @@ curl -X DELETE https://app.asana.com/api/1.0/project_statuses/{project_status_gi
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="delete-verb">DELETE</span> /project_statuses/{project_status_gid}</code>
@@ -5697,6 +5809,8 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuse
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/project_statuses</code>
@@ -5785,6 +5899,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/project_statuses</code>
@@ -5891,6 +6007,8 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /sections/{section_gid}</code>
 </p>
@@ -5969,6 +6087,8 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="put-verb">PUT</span> /sections/{section_gid}</code>
 </p>
@@ -6030,6 +6150,8 @@ curl -X DELETE https://app.asana.com/api/1.0/sections/{section_gid} \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="delete-verb">DELETE</span> /sections/{section_gid}</code>
@@ -6100,6 +6222,8 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/sections</code>
@@ -6181,6 +6305,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/sections</code>
 </p>
@@ -6247,6 +6373,8 @@ curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /sections/{section_gid}/addTask</code>
@@ -6327,6 +6455,8 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/inser
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/sections/insert</code>
@@ -6582,6 +6712,8 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /stories/{story_gid}</code>
 </p>
@@ -6821,6 +6953,8 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="put-verb">PUT</span> /stories/{story_gid}</code>
 </p>
@@ -6876,6 +7010,8 @@ curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="delete-verb">DELETE</span> /stories/{story_gid}</code>
@@ -6949,6 +7085,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/stories</code>
@@ -7189,6 +7327,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/stories</code>
 </p>
@@ -7268,6 +7408,8 @@ curl -X GET https://app.asana.com/api/1.0/tags \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /tags</code>
@@ -7353,6 +7495,8 @@ curl -X POST https://app.asana.com/api/1.0/tags \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tags</code>
@@ -7455,6 +7599,8 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /tags/{tag_gid}</code>
 </p>
@@ -7523,6 +7669,8 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="put-verb">PUT</span> /tags/{tag_gid}</code>
 </p>
@@ -7587,6 +7735,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/tags</code>
 </p>
@@ -7643,6 +7793,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/tags</code>
@@ -7726,6 +7878,8 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/tags</code>
@@ -7833,6 +7987,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /tasks</code>
@@ -8104,6 +8260,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks</code>
 </p>
@@ -8363,6 +8521,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}</code>
 </p>
@@ -8604,6 +8764,8 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="put-verb">PUT</span> /tasks/{task_gid}</code>
 </p>
@@ -8718,6 +8880,8 @@ curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="delete-verb">DELETE</span> /tasks/{task_gid}</code>
 </p>
@@ -8810,6 +8974,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/duplicate</code>
 </p>
@@ -8884,6 +9050,8 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/tasks</code>
 </p>
@@ -8940,6 +9108,8 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /sections/{section_gid}/tasks</code>
@@ -8998,6 +9168,8 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /tags/{tag_gid}/tasks</code>
 </p>
@@ -9054,6 +9226,8 @@ curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/t
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
@@ -9119,6 +9293,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/subtasks</code>
@@ -9362,6 +9538,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/subtasks</code>
@@ -9630,6 +9808,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/setParent</code>
 </p>
@@ -9689,6 +9869,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependencies</code>
@@ -9754,6 +9936,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependencies</code>
@@ -9831,6 +10015,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependencies</code>
 </p>
@@ -9896,6 +10082,8 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependents</code>
@@ -9968,6 +10156,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependents</code>
 </p>
@@ -10035,6 +10225,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependents</code>
@@ -10109,6 +10301,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addProject</code>
@@ -10197,6 +10391,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeProject</code>
 </p>
@@ -10271,6 +10467,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addTag</code>
 </p>
@@ -10341,6 +10539,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeTag</code>
@@ -10415,6 +10615,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addFollowers</code>
@@ -10492,6 +10694,8 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeFollowers</code>
 </p>
@@ -10557,6 +10761,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/searc
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/tasks/search</code>
@@ -10729,6 +10935,8 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /teams/{team_gid}</code>
 </p>
@@ -10786,6 +10994,8 @@ curl -X GET https://app.asana.com/api/1.0/organizations/{workspace_gid}/teams \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /organizations/{workspace_gid}/teams</code>
 </p>
@@ -10842,6 +11052,8 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization=13
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}/teams</code>
@@ -10925,6 +11137,8 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /teams/{team_gid}/addUser</code>
 </p>
@@ -10987,6 +11201,8 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /teams/{team_gid}/removeUser</code>
@@ -11074,6 +11290,8 @@ curl -X GET https://app.asana.com/api/1.0/team_memberships/{team_membership_gid}
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /team_memberships/{team_membership_gid}</code>
 </p>
@@ -11138,6 +11356,8 @@ curl -X GET https://app.asana.com/api/1.0/team_memberships \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /team_memberships</code>
@@ -11208,6 +11428,8 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/team_memberships \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/team_memberships</code>
 </p>
@@ -11274,6 +11496,8 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships?work
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}/team_memberships</code>
@@ -11344,6 +11568,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?r
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/typeahead</code>
@@ -11451,6 +11677,8 @@ curl -X GET https://app.asana.com/api/1.0/users \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /users</code>
 </p>
@@ -11522,6 +11750,8 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}</code>
 </p>
@@ -11577,6 +11807,8 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_ty
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}/favorites</code>
@@ -11646,6 +11878,8 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/users</code>
 </p>
@@ -11702,6 +11936,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/users</code>
@@ -11783,6 +12019,8 @@ curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}</code>
 </p>
@@ -11845,6 +12083,8 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list?worksp
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}/user_task_list</code>
@@ -11989,6 +12229,8 @@ curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /webhooks</code>
 </p>
@@ -12090,6 +12332,8 @@ curl -X POST https://app.asana.com/api/1.0/webhooks \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /webhooks</code>
@@ -12228,6 +12472,8 @@ curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /webhooks/{webhook_gid}</code>
 </p>
@@ -12276,6 +12522,8 @@ curl -X DELETE https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="delete-verb">DELETE</span> /webhooks/{webhook_gid}</code>
@@ -12356,6 +12604,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /workspaces</code>
 </p>
@@ -12413,6 +12663,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}</code>
@@ -12481,6 +12733,8 @@ curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   }
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="put-verb">PUT</span> /workspaces/{workspace_gid}</code>
@@ -12566,6 +12820,8 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/addUser</code>
 </p>
@@ -12629,6 +12885,8 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser
   "data": {}
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/removeUser</code>
@@ -12735,6 +12993,8 @@ curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membe
 }
 ```
 
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="get-verb">GET</span> /workspace_memberships/{workspace_membership_gid}</code>
 </p>
@@ -12798,6 +13058,8 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/workspace_memberships
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}/workspace_memberships</code>
@@ -12864,6 +13126,8 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/workspace_m
   ]
 }
 ```
+
+> See [Input/Output Options](#input-output-options) to include more fields in your response.
 
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/workspace_memberships</code>
