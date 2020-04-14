@@ -52,8 +52,9 @@ $(function() {
     if (ref && ref.startsWith("#")) {
       window.location.hash = "";
       $([document.documentElement, document.body]).scrollTop($(ref).offset().top)
+      event.preventDefault();
+      return false;
     }
-    return false;
   });
 });
 

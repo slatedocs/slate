@@ -199,17 +199,17 @@ tags:
 
 
       * There is metadata that defines the Custom Field. This metadata can be
-      shared across an entire workspace, or be specific to a Project or Portfolio.
+        shared across an entire workspace, or be specific to a Project or Portfolio.
       * Creating a Custom Field Setting on a Project or Portfolio means each direct
-      child will have the custom field. This is conceptually akin to adding
-      columns in a database or a spreadsheet:
-      every Task (row) in the Project (table) can contain information for that
-      field, including "blank" values, i.e. `null` data. For Portfolio custom
-      fields, every Project (row) in the Portfolio (table) will contain
-      information for the custom field.
+        child will have the custom field. This is conceptually akin to adding
+        columns in a database or a spreadsheet:
+        every Task (row) in the Project (table) can contain information for that
+        field, including "blank" values, i.e. `null` data. For Portfolio custom
+        fields, every Project (row) in the Portfolio (table) will contain
+        information for the custom field.
       * Custom Field Settings only go one child deep. Meaning a custom field
-      setting on a portfolio will give each project the custom field, but not
-      each task within those projects.
+        setting on a portfolio will give each project the custom field, but not
+        each task within those projects.
       * Tasks have Custom Field _values_ assigned to them.
 
 
@@ -244,7 +244,9 @@ tags:
 
 
       * `text` - an arbitrary, relatively short string of text
+
       * `number` - a number with a defined level of precision
+
       * `enum` - a selection from a defined list of options
 
 
@@ -265,12 +267,13 @@ tags:
 
 
       * `gid` - the gid of this enum option. Note that this is the gid of the
-      _option_ - the Custom Field itself has a separate `gid`.
+        _option_ - the Custom Field itself has a separate `gid`.
       * `name` - the name of the option, e.g. "Choice #1"
+
       * `enabled` - whether this field is enabled. Disabled fields are not
-      available to choose from when disabled, and are visually hidden in the
-      Asana application, but they remain in the metadata for Custom Field values
-      which were set to the option before the option was disabled.
+        available to choose from when disabled, and are visually hidden in the
+        Asana application, but they remain in the metadata for Custom Field values
+        which were set to the option before the option was disabled.
       * `color` - a color associated with this choice.
 
 

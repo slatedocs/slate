@@ -489,7 +489,19 @@ In the Asana application, Tasks, Projects, and Portfolios can hold user-specifie
 
 The characteristics of Custom Fields are:
 
-* There is metadata that defines the Custom Field. This metadata can be shared across an entire workspace, or be specific to a Project or Portfolio. * Creating a Custom Field Setting on a Project or Portfolio means each direct child will have the custom field. This is conceptually akin to adding columns in a database or a spreadsheet: every Task (row) in the Project (table) can contain information for that field, including "blank" values, i.e. `null` data. For Portfolio custom fields, every Project (row) in the Portfolio (table) will contain information for the custom field. * Custom Field Settings only go one child deep. Meaning a custom field setting on a portfolio will give each project the custom field, but not each task within those projects. * Tasks have Custom Field _values_ assigned to them.
+* There is metadata that defines the Custom Field. This metadata can be
+  shared across an entire workspace, or be specific to a Project or Portfolio.
+* Creating a Custom Field Setting on a Project or Portfolio means each direct
+  child will have the custom field. This is conceptually akin to adding
+  columns in a database or a spreadsheet:
+  every Task (row) in the Project (table) can contain information for that
+  field, including "blank" values, i.e. `null` data. For Portfolio custom
+  fields, every Project (row) in the Portfolio (table) will contain
+  information for the custom field.
+* Custom Field Settings only go one child deep. Meaning a custom field
+  setting on a portfolio will give each project the custom field, but not
+  each task within those projects.
+* Tasks have Custom Field _values_ assigned to them.
 
 A brief example: let's imagine that an organization has defined a Custom Field for "Priority". This field is of `enum` type and can have user-defined values of `Low`, `Medium`, or `High`. This is the field metadata, and it is visible within, and shared across, the entire organization.
 
@@ -501,7 +513,9 @@ These Custom Fields are accessible via the API through a number of endpoints at 
 
 Custom Field aware integrations need to be aware of the basic types that Custom Fields can adopt. These types are:
 
-* `text` - an arbitrary, relatively short string of text * `number` - a number with a defined level of precision * `enum` - a selection from a defined list of options
+* `text` - an arbitrary, relatively short string of text
+* `number` - a number with a defined level of precision
+* `enum` - a selection from a defined list of options
 
 Text fields are currently limited to 1024 characters. On Tasks, their Custom Field value will have a `text_value` property to represent this field.
 
@@ -509,7 +523,14 @@ Number fields can have an arbitrary `precision` associated with them; for exampl
 
 Enum fields represent a selection from a list of options. On the metadata, they will contain all of the options in an array. Each option has 4 properties:
 
-* `gid` - the gid of this enum option. Note that this is the gid of the _option_ - the Custom Field itself has a separate `gid`. * `name` - the name of the option, e.g. "Choice #1" * `enabled` - whether this field is enabled. Disabled fields are not available to choose from when disabled, and are visually hidden in the Asana application, but they remain in the metadata for Custom Field values which were set to the option before the option was disabled. * `color` - a color associated with this choice.
+* `gid` - the gid of this enum option. Note that this is the gid of the
+  _option_ - the Custom Field itself has a separate `gid`.
+* `name` - the name of the option, e.g. "Choice #1"
+* `enabled` - whether this field is enabled. Disabled fields are not
+  available to choose from when disabled, and are visually hidden in the
+  Asana application, but they remain in the metadata for Custom Field values
+  which were set to the option before the option was disabled.
+* `color` - a color associated with this choice.
 
 On the Task's Custom Field value, the enum will have an `enum_value` property which will be the same as one of the choices from the list defined in the Custom Field metadata.
 
