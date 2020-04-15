@@ -11,7 +11,7 @@ Retrieves a list of organizations visible to the caller. In most cases, only the
 
 ```shell
 # Retrieve visible organizations
-curl "https://cloudmc_endpoint/v1/organizations" \
+curl "https://cloudmc_endpoint/v2/organizations" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -81,7 +81,7 @@ Retrieve an organization's details
 
 ```shell
 # Retrieve an organization
-curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://cloudmc_endpoint/v2/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -153,7 +153,7 @@ The task id returned in response below will also track the completion of the asy
 
 ```shell
 # Create an organization
-curl -X POST "https://cloudmc_endpoint/v1/organizations" \
+curl -X POST "https://cloudmc_endpoint/v2/organizations" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
