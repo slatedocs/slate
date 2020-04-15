@@ -519,8 +519,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -536,7 +537,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/create"
 
@@ -635,8 +636,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp
 timeStamp = int(round(time.time() * 1000))
@@ -647,7 +649,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/users/balances"
 
@@ -739,8 +741,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp
 timeStamp = int(round(time.time() * 1000))
@@ -751,7 +754,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/users/info"
 
@@ -857,8 +860,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -874,7 +878,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/create"
 
@@ -999,8 +1003,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1030,7 +1035,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/create_multiple"
 
@@ -1158,8 +1163,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1171,7 +1177,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/status"
 
@@ -1277,8 +1283,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1290,7 +1297,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/status_multiple"
 
@@ -1399,8 +1406,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1413,7 +1421,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/active_orders"
 
@@ -1637,8 +1645,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1651,7 +1660,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/active_orders_count"
 
@@ -1745,8 +1754,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1759,7 +1769,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/cancel_all"
 
@@ -1862,8 +1872,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1874,7 +1885,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/cancel_by_ids"
 
@@ -1965,8 +1976,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1978,7 +1990,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/cancel"
 
@@ -2087,8 +2099,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2099,7 +2112,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/funding/fetch_orders"
 
@@ -2214,8 +2227,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2228,7 +2242,7 @@ body = {
 }
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/funding/lend"
 
@@ -2337,8 +2351,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2350,7 +2365,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/funding/settle"
 
@@ -2470,8 +2485,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2489,7 +2505,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/create"
 
@@ -2644,8 +2660,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2657,7 +2674,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/cancel"
 
@@ -2757,8 +2774,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2770,7 +2788,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/exit"
 
@@ -2869,8 +2887,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2883,7 +2902,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/edit_target"
 
@@ -2982,8 +3001,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2997,7 +3017,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/edit_price_of_target_order"
 
@@ -3098,8 +3118,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3112,7 +3133,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/edit_sl"
 
@@ -3206,8 +3227,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3220,7 +3242,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/edit_trailing_sl"
 
@@ -3312,8 +3334,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3326,7 +3349,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/add_margin"
 
@@ -3417,8 +3440,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3431,7 +3455,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/remove_margin"
 
@@ -3525,8 +3549,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3539,7 +3564,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/fetch_orders"
 
@@ -3732,8 +3757,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3746,7 +3772,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/margin/order"
 
@@ -4108,12 +4134,13 @@ sio = socketio.Client()
 
 sio.connect(socketEndpoint, transports = 'websocket')
 
-secret = 'secret'
-key = 'key'
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
-body={"channel":"coindcx"}
-json_body=json.dumps(body, separators = (',', ':'))
-signature=hmac.new(secret, json_body, digestmod=hashlib.sha256).hexdigest()
+body = {"channel":"coindcx"}
+json_body = json.dumps(body, separators = (',', ':'))
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 # Join channel
 sio.emit('join', { 'channelName': 'coindcx', 'authSignature': signature, 'apiKey' : key })
