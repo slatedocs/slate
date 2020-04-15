@@ -192,7 +192,7 @@ Response | &nbsp;
 ---------- | -----------
 `taskId`<br/>*UUID* | The id of the task
 `taskStatus`<br/>*string* | The status of the task
-`data`<br/>*[Environment](#administration-organizations)* | The information about the created organization
+`data`<br/>*[Organization](#administration-organizations)* | The information about the created organization
 
 
 ```shell
@@ -280,7 +280,7 @@ Response | &nbsp;
 ---------- | -----------
 `taskId`<br/>*UUID* | The id of the task
 `taskStatus`<br/>*string* | The status of the task
-`data`<br/>*[Environment](#administration-organizations)* | The information about the updated organization
+`data`<br/>*[Organization](#administration-organizations)* | The information about the updated organization
 
 
 ```shell
