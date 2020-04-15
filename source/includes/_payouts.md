@@ -196,6 +196,186 @@ Please note:
 If a request is being made using an IP address that is not in the whitelisted IP addresses,
 the server will respond with a [401 Unauthorized HTTP status code](https://tools.ietf.org/html/rfc7235#page-6).
 
+## Strong customer authentication
+
+**NB** The following will be enforced starting from October 1, 2020. Please see the testing section 
+below on how to prepare your integration.
+
+There are some actions such as funding a transfer from your balance or viewing the statement that require additional 
+authentication.
+
+In those cases a [403 Forbidden HTTP status code](https://tools.ietf.org/html/rfc7231#section-6.5.3) is returned 
+together with a one-time token (OTT) value which needs to be signed and the resulting signature included in the retry 
+of the original request.
+
+We use a digital signature scheme based on public-key cryptography. It involves creating a
+signature using a private key on the client side and verifying the signature authenticity on
+the server side using the corresponding public key the client has uploaded.
+
+To call the endpoints requiring additional authentication:
+
+* Create a key pair consisting of a public and a private key
+* Upload the public key to TransferWise
+* Set up response handling to retry with the signed OTT
+
+**Creating the key pair**
+
+> Keys can be generated with the [OpenSSL](https://www.openssl.org/) toolkit:
+
+```bash
+$ openssl genrsa -out private.pem 2048
+$ openssl rsa -pubout -in private.pem -out public.pem
+```
+
+The following requirements apply:
+
+* The cryptographic algorithm has to be RSA
+* The key length has to be at least 2048 bits
+* The public key should be stored in PEM file format using a `.pem` file extension
+
+**Managing uploaded public keys**
+
+The public keys management page can be accessed via the "Manage public keys" button under the API tokens section 
+of your TransferWise account settings.
+
+You will be prompted to perform 2FA when uploading new public keys.
+
+The maximum number of public keys you can store is limited to 5.
+
+**Signing the data**
+
+We will only accept the signatures created with *SHA256 with RSA* (SHA256 hash of the data is signed with RSA) algorithm.
+There are different ways of creating the required digital signature, for example:
+
+> The shell one-liner to sign a string, encode it with Base64 and print to standard output:
+
+```bash
+$ printf '<string to sign>' | openssl sha256 -sign <path to private key.pem> | base64 -b 0
+```
+
+* OpenSSL
+
+    The CLI toolkit command is `openssl sha256 -sign private.pem data.bin` 
+    (consult the openssl man pages for additional info if required).
+    Note that the signature returned by OpenSSL (to standard output in the example above) is in binary format and to 
+    send it over HTTP it should be encoded to [Base64](https://en.wikipedia.org/wiki/Base64)  (RFC 4648)).
+    
+    There is also an extensive [C API](https://www.openssl.org/docs/manmaster/man3/) available.
+
+* Our [reference implementation Java library](https://github.com/transferwise/digital-signatures)
+   
+**Detailed workflow**
+
+> Here is a step-by-step workflow with example commands.
+
+> 1\. Client performs a request:
+
+```bash
+$ curl -X POST 'https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments' \
+       -H 'Content-Type: application/json' \
+       -H 'Authorization: Bearer <your api token>' \
+       -d '{"type": "BALANCE"}'
+```
+
+> 2\. Client receives the response indicating that strong authentication is required:
+
+```
+HTTP/1.1 403 Forbidden
+Date: Fri, 03 Jan 2020 12:34:56 GMT
+Content-Type: application/json;charset=UTF-8
+x-2fa-approval-result: REJECTED
+x-2fa-approval: be2f6579-9426-480b-9cb7-d8f1116cc8b9
+
+{
+    "timestamp": "2020-01-03T12:34:56.789+0000",
+    "status": 403,
+    "error": "Forbidden",
+    "message": "You are forbidden to send this request",
+    "path": "/v3/profiles/{profileId}/transfers/{transferId}/payments"
+}
+```
+
+> 3\. Client signs the one-time token from the response using OpenSSL:
+
+```bash
+$ printf 'be2f6579-9426-480b-9cb7-d8f1116cc8b9' | openssl sha256 -sign private.pem | base64 -b 0
+1ZCN1MIDdmonOJvNQvsCxRHMXihsqZ/xNvybhb3oYNQgRkyj2P0hCVVaWUbr313LicFGwRTW8kcxTwvpXQdeurGtcN2zGoweVTopI06dmJ8vQMfTkrqjMZG3UUX0EcU+tJaDlBemvS7gv2aNGyHDMiRPZOZRPA6TH0LPJvLdVRMsEbXrbj8HqEopczmf1jChRxftmg2XoeQUMhhlOiSjSbJmlyAIegioI40/BTii+Q7f/HWZqk6N2vmHWPomwHQMz8Hy6frLYJb5tchjg/i+RRvZjEVbUH53QfG8Tbmx4JM/wN1LYeR8rebSdGEpLOd8QRcjuDur54qHNWXvKRM8aQ==
+```
+
+> with `private.pem` private key:
+
+```
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA3qfjPkhbTPKJQqLm+KfHP14wJ2U318Rh/4TV8xLi605xFW7r
+ApzXzLLxBb7zSkBc9wFIEH7wU7/BaFivg440R7ktYR07/QXZi+i0grKbfhEBW1nU
+jkI2eZxT3vE4VIK7Yt2jr84JiCYmjL2b/w1DatXZM9Xoa3j9YHda5cKLOfCCIeTs
+I3beYI9UmSnidYaXpX7q4gfHME+A/1F/19L8jFvX+c7MXapdCdY/NUHXBCJFfBzg
+OBlXbPKhdjtEnx+Hg5Sq/Frsld6dKwF1CDMO96YoeXBdi58JkLL/CLyy1i7UcXTb
+SRy0Gbd3NWSAamWdpJDDg51UR6yRJdXjtnhpdQIDAQABAoIBAGs3/4bzgvvH428y
+UPU2ng0WxyuBY2XEzMgl6H04AAv95xjCI+tLKeQJ22S/8ho0alALzu8aoZJCydj8
+s/Au32AWfRLB6CxMz9i+w4YYiiYn/DZISMIEgoUHUaAPGugfWCsgvf0fw5lLfc7S
+U7d7ZJaiyghbHqP6TFFSyHPRvge0so+8eRvPMxIGdfJR3gagJqKB5JbTGAnQ5Kn2
+eb5flDOobmCfpLDfIYH9u94Yj671xymtNYXwWxic4gA+aqWJKaqkI8JL7bFdjvjn
+Jer5RHeXmY9UZtDhSrZWSEKniw3m02QPpgqhhhPr8xToNA/7G1/P9994fuDKKnRk
+edn3FEECgYEA8iTPuaNGswyx/3zCkOPHHu82CSoWRZQapegN0YoXKsCyEWcHgQJV
+jZlF39OK14+y4PWWPJ3AlkhrchAJbUbgpw0P+G1uiRmXVpqcaEI4xIFd8oSOG+Vr
+s06YZYUrb7C73mi8x3sXdOpmehMYdnSbuxrRXyk0MwpLO2PkC0wXzEUCgYEA62WY
+RuZMAHR4PEZA+sDBG6XzjZGw1QQvF7H6u+JOfgPbRgZ+NnLQ/ZpYiDvrJGqAp1B1
+NIj69zVBN0p7PuRg2v9I4tHlmWC4eyYnVCf3dM6Fhsyb7RC3MHXVNOErxRoHVNqL
+4iywSUnboJyvdyKc7S5wQ5gdM14HogD/i1FHs3ECgYBMuMcsfYRgJOydE82eFN25
+ene3jaNC5ntPB+ig9M0EWcvR4cAp6zBqTh8qnR9Hz5sQ1h+FE0K7GzUYDea+vg9e
+PrBJuXqla/tckF5wVlMgSBEZT1CrnBR02rlEqV4q5GeSP8NYvTKgc8iGc1hz59yT
++xpNuYN1jJRru+m8fp6ntQKBgQDd7Iglv5TDkQqR+MHmJbdpM4lsXIBUM3+aXUc/
+vtm1YDlnyVNQTerOTKdOuP609FuaYfY9sy63xVNYpzWOU40kqiyy+qP1eAQ0xgGq
+C4v2aYXlUh1m4K10WILLOcYkKqfiza+3ad5BGgqfX1jlfpJn4bIhZ9WPygR0LXC+
+jcCFYQKBgQCelF/LIocwZ1ZW/Cx2OqMi/lkI56nLeBl7jRNiBSNIs0deN0cw4sHp
+BN9459NojAKBKJK1pyqajzrHae66V+8/2Zz2/gmTK1dDjznyw6TZmV3QyHTFhUtY
+NI7wvIG9K8gFaoSiGD/OLlLRaGiAdejKBsBx2hK73M58YQsgqIpdIQ==
+-----END RSA PRIVATE KEY-----
+```
+
+> 4\. Client repeats the initial request with the addition of the one-time token and the signature headers:
+
+```bash
+$ curl -X POST 'https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments' \
+       -H 'Content-Type: application/json' \
+       -H 'Authorization: Bearer <your api token>' \
+       -H 'x-2fa-approval: be2f6579-9426-480b-9cb7-d8f1116cc8b9' \
+       -H 'X-Signature: RjXBO5SpAuMGdgTyqPryOt8AyIKY0t5gHqj36MzR2UwH9SvSY1V1wKIQCqXRvLMLyWBGXDkLvv9JdAni+H87k3hsClRiyfpdzcg3uOP+d/jSagNDSjHixPh4/rWQh+eEhBRo4V+pPBH+r5APtIwFY/fvvdMbZ/QnnmcPHxi/t7uS7+qvRZCC17q47T0ZpSwEK9x+nG/wcJ4S4Yrk0E2yQlLz8F35C+E2gt/KGTt6Tf5z6GonM1H2gJWoHpxuOUomh09b/k3teLjIfEirWmnO2XuOe0oDCUH8i10dokzk+QrM4t/Yv/Rb18JvTeugDAKMydGo7KTgqKGCXZauicX0Ew==' \
+       -d '{"type": "BALANCE"}'
+```
+
+> 5\. Client receives the processed response with authentication status `APPROVED`:
+
+```
+HTTP/1.1 200 OK
+Date: Fri, 03 Jan 2020 12:34:56 GMT
+Content-Type: application/json;charset=UTF-8
+x-2fa-approval-result: APPROVED
+
+{
+  "type": "BALANCE",
+  "status": "COMPLETED",
+  "errorCode": null
+}
+```
+
+1. Client makes a request which requires strong authentication.
+2. The request is declined with HTTP status `403 / Forbidden` with the following response headers 
+  * `X-2FA-Approval-Result`: `REJECTED`
+  * `X-2FA-Approval` containing the one-time token (OTT) value which is what needs to be signed
+3. Client signs the OTT with the private key corresponding to a public key previously uploaded for 
+signature verification.
+4. Client repeats the initial request with the OTT provided in the `X-2FA-Approval` request header and the signed OTT in 
+the `X-Signature` request header.  
+
+Note: as the name implies, a one-time token can be used only once. If it was successfully processed then further 
+requests with the same token signature will be rejected.
+
+### Testing ###
+By default in our [sandbox environment](https://api.sandbox.transferwise.tech) strong customer authentication is 
+disabled. You can enable it for your account on the [public keys management page](https://api.sandbox.transferwise.tech/public-keys).
+
 ### TEST and LIVE environments
 
 * You can access the Sandbox API at [https://api.sandbox.transferwise.tech](https://api.sandbox.transferwise.tech)
@@ -624,6 +804,16 @@ You can add new currencies to your account via the user interface: [https://sand
 
 You can then top up your new currencies by converting funds from other currencies.
 
+**NB!**: This endpoint is subject to [additional authentication requirements]
+(#payouts-guide-api-access-strong-customer-authentication). There are scenarios where those could be 
+bypassed, such as:
+
+* the recipient of the transfer is marked as trusted on the website
+* the profile you are sending from is in one of the countries excluded from the requirements
+
+Unless you are sending to a small number of recipients who you trust, it is recommended to 
+implement the referenced measures for your integration.
+
 ### Request
 
 **`POST https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments`**
@@ -1011,6 +1201,10 @@ intervalStart                         | Statement start time in UTC time        
 intervalEnd                           | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
 
 Note that you can also download statements in PDF and CSV formats if you replace statement.json with statement.csv or statement.pdf respectively in the above URL.
+
+**NB!** This endpoint is subject to [additional authentication requirements]
+(#payouts-guide-api-access-strong-customer-authentication). The additional authentication is 
+only required once every 90 days, viewing the statement on the website or in the mobile app counts towards that as well.
 
 ### Response
 
