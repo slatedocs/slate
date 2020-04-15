@@ -805,7 +805,7 @@ You can add new currencies to your account via the user interface: [https://sand
 You can then top up your new currencies by converting funds from other currencies.
 
 **NB!**: This endpoint is subject to [additional authentication requirements]
-(#payouts-guide-api-access-strong-customer-authentication). There are scenarios where those could be 
+(#payouts-guide-strong-customer-authentication). There are scenarios where those could be 
 bypassed, such as:
 
 * the recipient of the transfer is marked as trusted on the website
@@ -1203,7 +1203,7 @@ intervalEnd                           | Statement start time in UTC time        
 Note that you can also download statements in PDF and CSV formats if you replace statement.json with statement.csv or statement.pdf respectively in the above URL.
 
 **NB!** This endpoint is subject to [additional authentication requirements]
-(#payouts-guide-api-access-strong-customer-authentication). The additional authentication is 
+(#payouts-guide-strong-customer-authentication). The additional authentication is 
 only required once every 90 days, viewing the statement on the website or in the mobile app counts towards that as well.
 
 ### Response
