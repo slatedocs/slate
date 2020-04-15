@@ -1522,8 +1522,9 @@ import time
 import requests
 
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
-key = ""
-secret = ""
+key = "XXXX"
+secret = "YYYY"
+secret_bytes = bytes(secret, encoding='utf-8')
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1536,7 +1537,7 @@ body = {
 
 json_body = json.dumps(body, separators = (',', ':'))
 
-signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
 
 url = "https://api.coindcx.com/exchange/v1/orders/trade_history"
 
