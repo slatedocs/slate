@@ -777,7 +777,7 @@ for current authentication_token.
 
 You can sort requests by column with `asc` and `desc` directions.
 Example if you want to sort requests in `asc` order by `created_at` column then:
-`GET https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests?sort=created_at&direction=asc`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders?requests=true&sort=created_at&direction=asc`
 
 ### Pagination
 
@@ -792,7 +792,7 @@ You can also search for your pending requests using `search` params example `/ap
 
 ### HTTP Request
 
-`GET https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders?requests=true`
 
 ### URL Parameters
 
