@@ -147,9 +147,9 @@ Attributes | &nbsp;
 
 Creates a new organization as a sub-organization of the caller's organization, or a sub-organization of the specified `parent` or at the top level if the calling user has an unscoped permission. The caller requires the `Organizations create` permission.
 
-Any service connections that are supplied in the request will be assigned to the organization asynchronously, The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
+Any service connections that are supplied in the request will be assigned to the organization asynchronously. The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
 
-The task id returned in response below will also track the completion of the asynchronous assignation of connections to this organization. 
+The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization. 
 
 ```shell
 # Create an organization
@@ -238,9 +238,9 @@ Response | &nbsp;
 ### Update organization
 `PUT /organizations/:id`
 
-Update an organization. It's parent organization cannot be changed. Any service connections that are supplied in the request will be assigned to the organization asynchronously, The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
+Update an organization. It's parent organization cannot be changed. Any service connections that are supplied in the request will be assigned to the organization asynchronously. The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
 
-The task id returned in response below will also track the completion of the asynchronous assignation of connections to this organization. 
+The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization. 
 
 
 ```shell
