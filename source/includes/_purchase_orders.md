@@ -710,7 +710,7 @@ them in JSON format.
 require 'rest-client'
 
 RestClient.get(
-  'https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests',
+  'https://app.procurementexpress.com/api/v1/purchase_orders?requests=true',
   headers = {
     authentication_token: 'your token',
     app_company_id: 1
@@ -719,7 +719,7 @@ RestClient.get(
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests'
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders?requests=true'
   -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
@@ -785,6 +785,10 @@ You can send `page` params to load paginated records e.g: `/api/v1/purchase_orde
 You can also see `meta` key in the response you get, that will return
 informations like `current_page`, `next_page`, `previous_page`, `total_pages`,
 and `total_count` to help your write your own logic of pagination.
+
+### Search
+
+You can also search for your pending requests using `search` params example `/api/v1/purchase_orders?search=your search keyword`. It will perform full-text search and return matching results.
 
 ### HTTP Request
 
@@ -1216,7 +1220,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/generate_pdf'
 
 ```json
 {
-    "pdf_link": "https://rubberstamp-exports.s3.amazonaws.com/PO-Pending-28062019164608-tech%20test.pdf"
+  "pdf_link": "https://rubberstamp-exports.s3.amazonaws.com/PO-Pending-28062019164608-tech%20test.pdf"
 }
 ```
 
