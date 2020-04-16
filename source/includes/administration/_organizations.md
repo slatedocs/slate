@@ -11,7 +11,7 @@ Retrieves a list of organizations visible to the caller. In most cases, only the
 
 ```shell
 # Retrieve visible organizations
-curl "https://cloudmc_endpoint/v1/organizations" \
+curl "https://cloudmc_endpoint/v2/organizations" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -43,7 +43,8 @@ curl "https://cloudmc_endpoint/v1/organizations" \
          "serviceConnections":[
             {
                "id":"11607a49-9691-40fe-8022-2e148bc0d720",
-               "serviceCode":"compute-qc"
+               "serviceCode":"compute-qc",
+               "state": "PROVISIONED",
             }
          ],
          "users": [
@@ -80,7 +81,7 @@ Retrieve an organization's details
 
 ```shell
 # Retrieve an organization
-curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://cloudmc_endpoint/v2/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -111,7 +112,8 @@ curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c
       "serviceConnections": [
          {
             "id":"11607a49-9691-40fe-8022-2e148bc0d720",
-            "serviceCode":"compute-qc"
+            "serviceCode":"compute-qc",
+            "state": "PROVISIONED",
          }
       ],
       "users": [
@@ -143,11 +145,15 @@ Attributes | &nbsp;
 
 `POST /organizations`
 
-Creates a new organization as a sub-organization of the caller's organization, or a sub-organization of the specified `parent`. The caller requires the `Organizations create` permission.
+Creates a new organization as a sub-organization of the caller's organization, or a sub-organization of the specified `parent` or at the top level if the calling user has an unscoped permission. The caller requires the `Organizations create` permission.
+
+Any service connections that are supplied in the request will be assigned to the organization asynchronously. The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
+
+The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization. 
 
 ```shell
 # Create an organization
-curl -X POST "https://cloudmc_endpoint/v1/organizations" \
+curl -X POST "https://cloudmc_endpoint/v2/organizations" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -182,11 +188,60 @@ Optional | &nbsp;
 
 The responses' `data` field contains the created [organization](#administration-organizations) with it's `id`.
 
+Response | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+`data`<br/>*[Organization](#administration-organizations)* | The information about the created organization
+
+
+```shell
+# Response body example
+```
+```json
+{
+  "data": {
+    "lineage": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
+    "quotas": [
+      {
+        "name": "Unlimited",
+        "id": "09244b06-5b89-43fe-b972-016a590eeb38",
+        "serviceConnection": {
+          "id": "8901494c-01ee-4d6b-bd12-cd5347127039"
+        }
+      }
+    ],
+    "hashAlgorithmName": "SHA-512",
+    "hashIterations": 100,
+    "isTrial": false,
+    "creationDate": "2020-04-14T18:46:15.000Z",
+    "version": 2,
+    "tags": [],
+    "isDbAuthentication": true,
+    "deleted": false,
+    "serviceConnections": [],
+    "ldap": {
+      "version": 1,
+      "deleted": false,
+      "id": "0bf68b3a-8248-487b-a855-1003874339e7"
+    },
+    "name": "Shopify",
+    "id": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
+    "entryPoint": "shopify"
+  },
+  "taskId": "fd7f6c47-d525-414c-a77f-69047966c765",
+  "taskStatus": "PENDING"
+}
+```
+
 <!-------------------- UPDATE ORGANIZATION -------------------->
 ### Update organization
 `PUT /organizations/:id`
 
-Update an organization. It's parent organization cannot be changed. It can be assigned service connections
+Update an organization. It's parent organization cannot be changed. Any service connections that are supplied in the request will be assigned to the organization asynchronously. The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
+
+The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization. 
+
 
 ```shell
 # Update an organization
@@ -219,6 +274,54 @@ Optional | &nbsp;
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
 
 The responses' `data` field contains the updated [organization](#administration-organizations).
+
+
+Response | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+`data`<br/>*[Organization](#administration-organizations)* | The information about the updated organization
+
+
+```shell
+# Response body example
+```
+```json
+{
+  "data": {
+    "lineage": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
+    "quotas": [
+      {
+        "name": "Unlimited",
+        "id": "09244b06-5b89-43fe-b972-016a590eeb38",
+        "serviceConnection": {
+          "id": "8901494c-01ee-4d6b-bd12-cd5347127039"
+        }
+      }
+    ],
+    "hashAlgorithmName": "SHA-512",
+    "hashIterations": 100,
+    "isTrial": false,
+    "creationDate": "2020-04-14T18:46:15.000Z",
+    "version": 2,
+    "tags": [],
+    "isDbAuthentication": true,
+    "deleted": false,
+    "serviceConnections": [],
+    "ldap": {
+      "version": 1,
+      "deleted": false,
+      "id": "0bf68b3a-8248-487b-a855-1003874339e7"
+    },
+    "name": "Shopify",
+    "id": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
+    "entryPoint": "shopify"
+  },
+  "taskId": "aee1862d-c187-43eb-be12-754c24022dfc",
+  "taskStatus": "PENDING"
+}
+```
+
 
 <!-------------------- DELETE ORGANIZATION -------------------->
 ### Delete organization
