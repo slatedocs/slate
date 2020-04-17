@@ -273,7 +273,7 @@ html, body {
   .lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    padding: 10px;
   }
 }
 
@@ -286,9 +286,10 @@ html, body {
     float:left;
     color: $lang-select-text;
     text-decoration: none;
-    padding: 0 10px;
+    padding: 5px 10px;
     line-height: 30px;
     outline: 0;
+    border-radius: 10px;
 
     &:active, &:focus {
       background-color: $lang-select-pressed-bg;
@@ -467,6 +468,8 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: $aside-text-color;
+    // border-radius: 20px;
 
     &.warning {
       background-color: $aside-warning-bg;
