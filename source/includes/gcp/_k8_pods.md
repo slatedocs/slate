@@ -210,7 +210,7 @@ curl -X GET \
 
 Retrieve a list of all pods in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to list the pods. 
 
@@ -443,7 +443,7 @@ curl -X GET \
 
 Retrieve a pod and all its info in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to get the pod. 
 
@@ -492,7 +492,7 @@ curl -X DELETE \
 
 Delete a pod from a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to delete the pod. 
 

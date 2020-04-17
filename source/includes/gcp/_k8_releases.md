@@ -103,7 +103,7 @@ Or
 
 Retrieve a list of all releases in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
 
@@ -280,7 +280,7 @@ curl -X GET \
 
 Retrieve a release in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
 
@@ -351,7 +351,7 @@ curl -X POST \
 
 Rollback a release in a given [environment](#administration-environments) to the previous revision.
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to rollback the release.
 
@@ -407,7 +407,7 @@ curl -X POST \
 
 Upgrade a release in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to upgrade the release. 
 `upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.  
@@ -454,7 +454,7 @@ curl -X POST \
 
 Uninstall a release in a given [environment](#administration-environments).
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to uninstall the release.
 
