@@ -9,9 +9,9 @@ SSH keys can be assigned to default users of instances by using the [associate S
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sshkeys"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -43,9 +43,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sshkeys/mellon"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {

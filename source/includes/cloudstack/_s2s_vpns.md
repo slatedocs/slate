@@ -10,9 +10,9 @@ A site-to-site VPN allows multiple sites to establish a secure connection over t
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -78,9 +78,9 @@ Query Parameters | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -134,17 +134,15 @@ Attributes | &nbsp;
 #### Create a site-to-site VPN
 
 ```shell
-
 # Here is the absolute minimum information required to create a new site-to-site VPN:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
       "name": "stargate",
@@ -195,17 +193,15 @@ Optional | &nbsp;
 #### Update a site-to-site VPN
 
 ```shell
-
 # Here is the absolute minimum information required to update a site-to-site VPN:
-
 curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
       "name": "stargate",
@@ -252,9 +248,6 @@ Optional | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
@@ -270,12 +263,10 @@ Delete an existing site-to-site VPN.
 #### Reset the connection of a site-to-site VPN
 
 ```shell
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/ca86b14f-20db-463d-b58a-9d3fa5959af2?operation=reset"
-
 ```
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id?operation=reset</code>
 

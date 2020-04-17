@@ -8,11 +8,11 @@ Affinity groups are a way of influencing on which host an [instance](#cloudstack
 
 ```shell
 curl -X GET \
-   -H "MC-Api-Key: your_api_key" \
-"https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups"
-
-# Example:
+  -H "MC-Api-Key: your_api_key" \
+  "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -49,9 +49,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -88,9 +88,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "name": "gnr",
@@ -125,9 +125,9 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "instanceIds": [

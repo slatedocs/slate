@@ -8,9 +8,9 @@ Disk offerings determine the size and the performance (IOPS) of [data volumes](#
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/diskofferings"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": [
@@ -53,9 +53,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/diskofferings/18bbab50-8d85-4b34-8361-0dc223ffd7e5"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": {

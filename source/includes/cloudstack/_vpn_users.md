@@ -7,9 +7,9 @@ VPN users are the accounts that are allowed to connect to [remote access VPNs](#
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpnusers"
-
-# Response example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": [
@@ -38,9 +38,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpnusers/5de76bf5-9f61-487a-a989-042b52882da4"
-
-# Response example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": {

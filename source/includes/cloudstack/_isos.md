@@ -7,9 +7,9 @@ An ISO is a disk image that is a copy of a file system. A bootable ISO can be us
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/isos"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -61,9 +61,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
 "https://cloudmc_endpoint/v1/services/compute-on/test_area/isos/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -115,9 +115,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/isos"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "name": "windows",
@@ -151,9 +151,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attach"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"

@@ -10,9 +10,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/snapshots"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -58,9 +58,9 @@ Query Parameters | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/snapshots/1bd672f4-b274-4371-a792-b0a6c6778cc7"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -101,9 +101,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/snapshots?operation=create"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
   "volumeId": "4fe54594-a788-442c-b7a8-0237f7a4f70d",

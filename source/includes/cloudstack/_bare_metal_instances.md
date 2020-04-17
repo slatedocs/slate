@@ -20,9 +20,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances"
-
-# Request should look like this
 ```
+> Request body example:
 
 ```json
 {
@@ -61,9 +60,8 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=releaseBareMetal"
-
-# Request should look like this
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
