@@ -75,7 +75,7 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 25px;
+    height: 25px;
     margin: 15px;
   }
 
@@ -93,6 +93,7 @@ html, body {
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
+      font-weight: normal;
     }
 
     &:before {
@@ -473,6 +474,7 @@ html, body {
     line-height: 1.6;
     color: $aside-text-color;
     border-radius: 20px;
+    display: flex;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -486,7 +488,8 @@ html, body {
   aside:before {
     vertical-align: middle;
     padding-right: 0.5em;
-    font-size: 14px;
+    font-size: 18px;
+    line-height: 1.6 !important;
   }
 
   aside.notice:before {
