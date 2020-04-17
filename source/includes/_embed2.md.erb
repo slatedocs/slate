@@ -261,7 +261,7 @@ Actions can be called from the global adaEmbed object. A list of the available a
 
 
 ```js
-await window.adaEmbed.createProactive("Hi there! Is there something I can help you with?", 10, "5e9481e296ac6c4467092be5");
+window.adaEmbed.createProactive("Hi there! Is there something I can help you with?", 10, "5e9481e296ac6c4467092be5");
 ```
 
 Can be used to programatically create a proactive intro message. If an Answer ID is provided, that answer will be triggered when Chat is opened. This action requires the `developer_proactive` feature flag to be turned on.
@@ -281,7 +281,7 @@ Returns an object containing information about the bot, including `hasActiveChat
 
 
 ```js
-await window.adaEmbed.reset({
+window.adaEmbed.reset({
   greeting: "5e9481e296ac6c4467092be5"
 });
 ```
@@ -295,7 +295,7 @@ To prevent creating a new `chatter` (and maintain conversation history), `resetC
 
 
 ```js
-await window.adaEmbed.setMetaFields({
+window.adaEmbed.setMetaFields({
   phone_number: "(123) 456-7890",
   name: "Ada Lovelace"
 });
@@ -312,7 +312,7 @@ Meta field keys should not include whitespace, emojis, special characters or per
 
 
 ```js
-await window.adaEmbed.start({
+window.adaEmbed.start({
   handle: "my-bot",
   language: "fr",
   mobileOverlay: true
