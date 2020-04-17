@@ -61,6 +61,7 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+  border-right: 1px solid $border-color;
 
   // language selector for mobile devices
   .lang-selector {
@@ -466,10 +467,12 @@ html, body {
     padding-bottom: 1em;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+    margin-left: $main-padding;
+    margin-right: calc(#{$examples-width} + #{$main-padding}) !important;
     background: $aside-notice-bg;
     line-height: 1.6;
     color: $aside-text-color;
-    // border-radius: 20px;
+    border-radius: 20px;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -596,6 +599,10 @@ html, body {
 
   .page-wrapper .lang-selector {
     display: none;
+  }
+
+  .content aside {
+    margin-right: $main-padding !important;
   }
 
   %right-col {
