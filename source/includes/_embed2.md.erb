@@ -71,7 +71,9 @@ Embed2 supports numerous settings and actions to help you customize the look and
 ### Settings
 Settings are set on the window object as `window.adaSettings = { ... }`. Alternatively, they can be passed directly do `adaEmbed.start({ ... })` for advanced configurations. A full list of available settings is provided below:
 
-#### `adaReadyCallback?(params: { isRolledOut: boolean }): void`
+#### adaReadyCallback
+`adaReadyCallback?(params: { isRolledOut: boolean }): void;`
+
 
 ```html
 <script type="text/javascript">
@@ -84,7 +86,9 @@ Settings are set on the window object as `window.adaSettings = { ... }`. Alterna
 ```
 Specifies a callback function to be called when Embed2 has finished setting up. This is especially useful when Embed2 is loaded asynchronously.
 
-#### `analyticsCallback?(analytics: object): void`
+#### analyticsCallback
+`analyticsCallback?(analytics: object): void;`
+
 
 ```html
 <script type="text/javascript">
@@ -111,49 +115,71 @@ Specifies a callback function to be called when Embed2 has finished setting up. 
 
 Can be used to pass back data analytics. Make sure you have `analyticsCallback` feature enabled on your bot - you can check this with your account manager.
 
-#### `chatterTokenCallback?(chatter: string): void`
+#### chatterTokenCallback
+`chatterTokenCallback?(chatter: string): void;`
+
 Specifies a callback for when the `chatter` token has been set in Chat.
 
-#### `cluster?: string`
+#### cluster
+`cluster?: string;`
+
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
 
-#### `crossWindowPersistence?: boolean`
+#### crossWindowPersistence
+`crossWindowPersistence?: boolean;`
+
 When set enables the Chat drawer open / close state to persist across windows and page refreshes using the `Window.sessionStorage` API. When the browser is closed the state is forgotten.
 
 <aside class="notice">
 We recommend enabling this feature if your bot uses Ada Glass.
 </aside>
 
-#### `domain?: string`
+#### domain
+`domain?: string;`
+
 Can be used to change the subdomain. Unless directed by an Ada team member, you will not need to change this value.
 
-#### `embedStyles:? string`
+#### embedStyles
+`embedStyles?: string;`
+
 The embedStyles option can be used to override default styles inside Embed2 elements. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature.
 
 <aside class="warning">
 Setting custom styles based on Embed2 elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
 </aside>
 
-#### `eventCallbacks?: { [eventName: string]: (jsEvent: object) => void }`
+#### eventCallbacks
+`eventCallbacks?: { [eventName: string]: (jsEvent: object) => void };`
+
 Used in conjunction with Custom JavaScript Event Blocks to trigger specified callbacks as part of a conversation. Requires the `custom_javascript_event_block` feature flag to be turned on.
 
-#### `greeting?: string`
+#### greeting
+`greeting?: string;`
+
 This can be used to customize the greeting messages that new users see. This is useful for setting page-specific greetings across your app. The greeting should correspond to the ID of the Answer you would like to use. The ID can be found in the URL of the corresponding Answer in the dashboard.
 
-#### `handle:? string`
+#### handle
+`handle:? string;`
+
 Can be used to specify the bot handle if one is not specified in the script `data-handle` attribute.
 
-#### `hideMask?: boolean`
+#### hideMask
+`hideMask?: boolean;`
+
 When set to `true`, this will prevent the default mask from appearing over top of your site's content when opened on desktop.
 
 <aside class="notice">
 We recommend setting the value to `false`. This will allow end-users to navigate the page while the Ada Chat window is open.
 </aside>
 
-#### `language?: string`
+#### language
+`language?: string;`
+
 Takes in a language code to programatically set the bot language. Languages must first be turned on in the *Settings > Multilingual* page of your Ada dashboard. Language codes follow the [ISO 639-1 language format](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
-#### `metaFields?: object`
+#### metaFields
+`metaFields?: object;`
+
 
 ```html
 <script type="text/javascript">
@@ -172,10 +198,14 @@ Used to pass meta information about a `chatter`. This can be useful for tracking
 Meta field keys should not include whitespace, emojis, special characters or periods.
 </aside>
 
-#### `lazy?: boolean`
+#### lazy
+`lazy?: boolean;`
+
 When `true`, this will prevent the bot from loading until the `adaEmbed.start(...)` method is called.
 
-#### `parentElement?: string | HTMLElement`
+#### parentElement
+`parentElement?: string | HTMLElement;`
+
 
 ```html
 <head>
@@ -194,29 +224,41 @@ When `true`, this will prevent the bot from loading until the `adaEmbed.start(..
 
 Specifies where to mount the `<iframe>` if the default side drawer is not desired. Accepts the `HTMLElement` or element `id` of the desired parent element.
 
-#### `private?: boolean`
+#### private
+`private?: boolean;`
+
 If set to `true`, this will put Web Chat into "Private" mode. This will cause Web Chat to forget conversation history on refresh. This is effectively the same as setting your Web Chat platform persistence to "Forget After Reload" in the *Settings > Platforms* page of your Ada dashboard. More information on persistence can be found [here](https://adasupporthelp.zendesk.com/hc/en-us/articles/360018115813-Chatter-Persistence-Remembering-Conversations-).
 
-#### `rolloutOverride?: number`
+#### rolloutOverride
+`rolloutOverride?: number;`
+
 Can be used to override the rollout value set in the dashboard. This can be useful if you need page-specific rollout values. Accepts any number between `0` and `1`.
 
-#### `styles?: string`
+#### styles
+`styles?: string;`
+
 The styles option can be used to override default styles inside the Web Chat iFrame. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature.
 
 <aside class="warning">
 Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
 </aside>
 
-#### `testMode?: boolean`
+#### testMode
+`testMode?: boolean;`
+
 Marks the `chatter` as a test user.
 
-#### `toggleCallback?(isDrawerOpen: boolean): void`
+#### toggleCallback
+`toggleCallback?(isDrawerOpen: boolean): void;`
+
 Can be used to trigger side-effects when the Web Chat drawer is opened or closed.
 
 ### Actions
 Actions can be called from the global adaEmbed object. A list of the available actions is available below.
 
-#### `createProactive(body: string, duration?: number, responseId?: string): Promise<void>`
+#### createProactive
+`createProactive(body: string, duration?: number, responseId?: string): Promise<void>;`
+
 
 ```js
 await window.adaEmbed.createProactive("Hi there! Is there something I can help you with?", 10, "5e9481e296ac6c4467092be5");
@@ -224,13 +266,19 @@ await window.adaEmbed.createProactive("Hi there! Is there something I can help y
 
 Can be used to programatically create a proactive intro message. If an Answer ID is provided, that answer will be triggered when Chat is opened. This action requires the `developer_proactive` feature flag to be turned on.
 
-#### `deleteHistory(): Promise<void>`
+#### deleteHistory
+`deleteHistory(): Promise<void>;`
+
 Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window a new `chatter` will be generated.
 
-#### `getInfo(): Promise<WindowInfo>`
+#### getInfo
+`getInfo(): Promise<WindowInfo>;`
+
 Returns an object containing information about the bot, including `hasActiveChatter`, `hasClosedChat`, and `isChatOpen`.
 
-#### `reset(resetParams?: ResetParams): Promise<void>`
+#### reset
+`reset(resetParams?: ResetParams): Promise<void>;`
+
 
 ```js
 await window.adaEmbed.reset({
@@ -242,7 +290,9 @@ Creates a new `chatter` and refreshes the Chat window. `reset` can take an optio
 
 To prevent creating a new `chatter` (and maintain conversation history), `resetChatHistory` can be passed to the object with a value of `false`.
 
-#### `setMetaFields(options: object): Promise<void>`
+#### setMetaFields
+`setMetaFields(options: object): Promise<void>;`
+
 
 ```js
 await window.adaEmbed.setMetaFields({
@@ -257,7 +307,9 @@ Used to update `metaFields` after Chat has been opened. In most situations, the 
 Meta field keys should not include whitespace, emojis, special characters or periods.
 </aside>
 
-#### `start(adaSettings: StartOptions): Promise<void>`
+#### start
+`start(adaSettings: StartOptions): Promise<void>;`
+
 
 ```js
 await window.adaEmbed.start({
@@ -269,8 +321,12 @@ await window.adaEmbed.start({
 
 Used to initialize Embed2 on your page. This action is triggered by default internally, so you will likely not need to call it directly unless you are using Embed2 is `lazy` mode, or have called `stop` and want to re-start Embed2.
 
-#### `stop(): Promise<void>`
+#### stop
+`stop(): Promise<void>;`
+
 Removes Embed2 from your page.
 
-#### `toggle(): Promise<void>`
+#### toggle
+`toggle(): Promise<void>;`
+
 Can be used to programatically open / close the Chat window. This method cannot be used with the `parentElement` option.
