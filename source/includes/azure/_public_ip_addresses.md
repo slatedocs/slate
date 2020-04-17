@@ -176,9 +176,9 @@ Required | &nbsp;
 #### Delete a public IP address
 
 ```shell 
-curl --request DELETE \
-  --url http://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip \
-  --header 'mc-api-key: your_api_key'
+curl -X DELETE \
+  'http://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip' \
+  -H 'mc-api-key: your_api_key'
   ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>

@@ -6,10 +6,10 @@ Applications' login can be automated by MasterPortal. It has an entrypoint that 
 
 ```shell
 Example Request: 
-curl --request POST \
-  --url 'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addCredentials' \
-  --header 'mc-api-key: your_api_key' \
-  --data '{
+curl -X POST \
+  'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addCredentials' \
+  -H 'mc-api-key: your_api_key' \
+  -d '{
 	"username": "sample_username",
 	"password": "sample_password"
 }'
@@ -34,11 +34,11 @@ Required | &nbsp;
 
 ```shell
 Example Request: 
-curl --request POST \
-  --url 'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/appUser/1a578977-5744-4832-bae3-d91ad2939adf:b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addUserCredentials' \
-  --header 'content-type: application/json' \
-  --header 'mc-api-key: your_api_key' \
-  --data '{
+curl -X POST \
+  'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/appUser/1a578977-5744-4832-bae3-d91ad2939adf:b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addUserCredentials' \
+  -H 'content-type: application/json' \
+  -H 'mc-api-key: your_api_key' \
+  -d '{
 	"cloudMcUserId": "1a578977-5744-4832-bae3-d91ad2939adf",
 	"app": {
 		"id": "b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060",
@@ -72,9 +72,9 @@ Required | &nbsp;
 
 ```shell
 Example Request: 
-curl --request POST \
-  --url 'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
-  --header 'mc-api-key: your_api_key' 
+curl -X POST \
+  'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
+  -H 'mc-api-key: your_api_key' 
 ```
 
 ```json

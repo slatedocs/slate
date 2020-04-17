@@ -62,10 +62,10 @@ Attributes | &nbsp;
 #### Create a network security group
 
 ```shell
-curl --request POST \
-  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups \
-  --header 'mc-api-key: your_api_key' \
-  --data '{
+curl -X POST \
+  'http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups' \
+  -H 'mc-api-key: your_api_key' \
+  -d '{
 	"name": "network-security-group", 
 	"region": "eastus"
 }'
@@ -83,9 +83,9 @@ Required | &nbsp;
 #### Delete a network security group
 
 ```shell 
-curl --request DELETE \
-  --url http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-system-co-cloudmc-eastus/providers/Microsoft.Network/networkSecurityGroups/test \
-  --header 'mc-api-key: your_api_key'
+curl -X DELETE \
+  'http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-system-co-cloudmc-eastus/providers/Microsoft.Network/networkSecurityGroups/test' \
+  -H 'mc-api-key: your_api_key'
   ```
 
   <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkSecurityGroups/:id</code>
