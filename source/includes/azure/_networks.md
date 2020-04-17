@@ -10,9 +10,9 @@ A virtual network is an isolated network where you can place groups of resources
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/networks"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -59,9 +59,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/networks"
-
-# Request Example:
 ```
+> Request body example:
+
 ```json
 {
 	"name": "simpleNetwork",

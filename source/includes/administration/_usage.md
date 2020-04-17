@@ -10,9 +10,9 @@
 # Retrieve usage summary in JSON
 curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=json" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -28,12 +28,15 @@ curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8
   }]
 }
 ```
+
 ```shell
 # Retrieve usage summary in CSV
 curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=csv" \
    -H "MC-Api-Key: your_api_key"
+```
+> The above command returns JSON structured like this:
 
-# Response body example
+```
 organizationId,serviceConnectionId,startDate,endDate,usageType,secondaryType,serviceConnectionPricingId,utilityCost,utilityUsage
 52fd201e-aa82-4a27-86b3-ea9650a7fb1e,beeba736-0451-49b0-8020-8b93ed5abb35,2017-05-01T00:00:00.000Z,2017-05-01T01:00:00.000Z,1,RAM,e37cc44a-47b6-4a26-81f5-1dbf85433e36,0.660000,5.49999878
 ```
@@ -83,9 +86,9 @@ curl -X GET \
   'https://cloudmc_endpoint/rest/usage_summary/top_level/organizations/52fd201e-aa82-4a27-86b3-ea9650a7fb1e?start_date=2019-03-12&end_date=2019-03-13' \
   -H 'content-type: application/json' \
   -H 'mc-api-key: your_api_key' \
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [

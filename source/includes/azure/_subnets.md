@@ -10,9 +10,9 @@ A subnet is a child of a virtual network. It is a subset of a network in which I
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/subnets"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -73,9 +73,9 @@ Additional Attributes: Network filter included | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -135,9 +135,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/subnets"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -171,14 +170,15 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
   "addressPrefix":"This is my updated template description"
 }
 ```
+
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnets/:subnet_id</code>
 
 Update a subnet. 
@@ -196,7 +196,6 @@ Optional | &nbsp;
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
-
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnets/:subnet_id</code>

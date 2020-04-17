@@ -13,9 +13,9 @@ Retrieves a list of organizations visible to the caller. In most cases, only the
 # Retrieve visible organizations
 curl "https://cloudmc_endpoint/v1/organizations" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": [
@@ -82,9 +82,9 @@ Retrieve an organization's details
 # Retrieve an organization
 curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": {
@@ -151,9 +151,9 @@ curl -X POST "https://cloudmc_endpoint/v1/organizations" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
-
-# Request body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "entryPoint":"umbrella",
@@ -194,9 +194,9 @@ curl -X PUT "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-a
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
-
-# Request body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "entryPoint":"umbrella",

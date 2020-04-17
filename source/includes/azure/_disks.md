@@ -12,9 +12,8 @@ For information regarding azure disks, please see [azure docs](https://docs.micr
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -75,9 +74,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "id": "/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_e93bd2519aac4c0cbe27c49aa928525e",
@@ -128,9 +127,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/disks"
-
-# Request Example:
 ```
+> Request body example:
+
 ```json
 {
   "name":"ad_root_smean",
@@ -141,9 +140,8 @@ curl -X POST \
   "throughputInMBps": "200"
 }
 ```
-```shell
-# Response Example
-```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",
@@ -176,8 +174,9 @@ curl -X POST \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
 
-# Request Example:
 ```
+> Request body examples:
+
 ```json
 {
   "type":"standardssd_lrs",
@@ -190,9 +189,8 @@ curl -X POST \
   "throughputInMBps": "200"
 }
 ```
-```shell
-# Response Example
-```
+> The above commands return JSON structured like this:
+
 ```json
 {
   "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",
@@ -239,9 +237,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4?operation=detach"
-
-# Request should look like this
 ```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=detach</code>
 
 Detach an existing disk from a given [instance](#azure-instances).
@@ -255,32 +252,22 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}?operation=attach"
-
-# Request should look like this
 ```
-```shell
-# Request Example:
-```
+> Request body examples:
 
 ```json
 {
   "instance" : "cool-instance",
 }
 ```
-```shell
-# Request Example 2:
-```
-
 ```json
 {
   "instance" : "cool-instance",
   "lun" : 10
 }
 ```
+> The above command returns JSON structured like this:
 
-```shell
-# Response Example
-```
 ```json
 {
   "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",

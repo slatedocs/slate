@@ -10,9 +10,9 @@ A security rule in Azure is a filter which controls both inbound and outbound tr
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/securityrules"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -76,9 +76,9 @@ Attributes | &nbsp;
 curl -X GET \
   -H 'mc-api-key: your_api_key' \
   "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/:example-securityGroup/securityRules/example-securityRule"
-  
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -99,7 +99,7 @@ curl -X GET \
 }
 ```
 
-  <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
 
 Retrieve a specific security rule by rule id.
 
@@ -126,9 +126,9 @@ curl -X POST \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body"
     "https://cloudmc_endpoint/v1/services/azure/example/securityrules"
-  
-# Request Example:
 ```
+> Request body example:
+
 ```json
 {
   "securityGroupId": "/subscriptions/subscription/resourceGroups/example-system-azure-example/providers/Microsoft.Network/networksecuritygroups/sample-network-security-group",
@@ -181,9 +181,9 @@ Optional | &nbsp;
 curl -X DELETE \
   -H 'mc-api-key: your_api_key' \
   "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/sample-network-security-group/securityRules/securityRule1"
- ```
+```
 
-  <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
 
 Delete an existing security rule.
 
@@ -196,31 +196,30 @@ curl -X POST \
   -H 'mc-api-key: your_api_key' \
   -d "request_body" \
   "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/:example-securityGroup/securityRules/example-securityRule?operation=edit"
-  
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
-      "access": "Allow",
-      "priority": 180,
-      "protocol": "Tcp",
-      "sourcePortRanges": [],
-      "sources": [
-        "10.0.0.0/24"
-      ],
-      "destinationPortRanges": [
-        "8080"
-      ],
-      "destinations": [
-        "192.168.99.0"
-      ]
+  "access": "Allow",
+  "priority": 180,
+  "protocol": "Tcp",
+  "sourcePortRanges": [],
+  "sources": [
+    "10.0.0.0/24"
+  ],
+  "destinationPortRanges": [
+    "8080"
+  ],
+  "destinations": [
+    "192.168.99.0"
+  ]
 }
 ```
 
-  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id?operation=edit</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id?operation=edit</code>
 
-  Update a specific security rule.
+Update a specific security rule.
 
 Attributes | &nbsp;
 ---------- | -----

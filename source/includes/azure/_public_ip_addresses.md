@@ -10,9 +10,8 @@ Deploy and manage your public ip addresses.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -63,9 +62,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -112,9 +110,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses"
-
-# Request Example:
 ```
+> Request body example:
 
 ```json
 {
@@ -152,9 +149,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses?operation=associate"
-
-# Request Example:
 ```
+> Request body example:
 
 ```json
 {
@@ -194,9 +190,8 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses//subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
-
-# Request Example:
 ```
+> Request body example:
 
 ```json
 {
