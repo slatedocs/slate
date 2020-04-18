@@ -590,6 +590,23 @@ external_ids | Array(Optional) | Example: ["B07G22S48Q", "883929635085"]
 }
 ```
 
+## DELETE product_listing
+
+Deletes a product_listing from the manifest.
+
+Url format:
+
+/api/manifests/{manifest_id}/product_listings/{product_listing_id}
+
+```shell
+curl -X DELETE \
+  'http://localhost:3000/api/manifests/5e73df57584085c9820002fe/product_litings/5e73df57584085c9820002fe.json' \
+  -H 'content-type: application/json' \
+  -H 'token: YOUR-TOKEN'
+
+Make sure to replace `YOUR-TOKEN` with your API key token.
+```
+
 # Products
 
 ## GET products
