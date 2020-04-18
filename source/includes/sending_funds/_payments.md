@@ -330,7 +330,7 @@ recipient_data = [
                    {phonenumber: "+254727447101",first_name: "Jerry", last_name: "Shikanga", amount: 500, description: "Per diem payment2"},
                    {phonenumber: "+254739936708", amount: 30000, description:"Salary for January2"}
                  ]
-                 
+
 payment = Beyonic::Payment.create(
     currency: "BXC",
     description: "Per diem payment",
@@ -416,20 +416,21 @@ response = new Payment().create(mutiplePayments, null);
 System.out.println(response);
 ```
 
-Beyonic now supports creation of multiple payments via API. When multiple payments are created via one API call, they will all be part of the same payment schedule, making it easier for you to perform bulk operations such as approval. 
+Beyonic now supports creation of multiple payments via API. When multiple payments are created via one API call, they will all be part of the same payment schedule, making it easier for you to perform bulk operations such as approval.
 
-To create a bulk payment, you have to include an extra field called "recipient_data" in the request payload. 
+To create a bulk payment, you have to include an extra field called "recipient_data" in the request payload.
 
 recipient_data should be a list of dictionaries, each containing the following fields :
+
     * first_name, 
     * last_name, 
     * national_id,
     * national_id_type,
     * phonenumber, 
-    * amount 
+    * amount,
     * description
-    
-Phonenumber is a mandatory field. 
+
+Phonenumber is a mandatory field.
 Amount can be nullable, but if missing then it must be set in the main payload. In this case each user will be paid the same amount in the payload. If provided in the recipient_data dictionaries then each user will be paid the amounts specified in the recipient_data.
 The rest of the fields are optional.
 
@@ -490,6 +491,22 @@ The rest of the fields are optional.
    "state" : "processed_with_errors"
 }
 ```
+
+
+## Sending a bank payment
+
+To send a bank payment, you will have to include extra fields Below
+
+Field | Type | Description
+----- | -----| ----
+account_number | long integer | Account number of the customer in the bank
+account_name | string | The name of the account in the banks
+bank | int | The id of the bank in Beyonic. Retrieve it from the banks section above.  
+
+If the contact already exists just use the field below alone
+Field | Type | Description
+----- | -----| ----
+contact_bank_account | long integer | The id of the contact bank account in Beyonic. This can be retrieved from the contact object.
 
 
 ## Retrieving a single Payment

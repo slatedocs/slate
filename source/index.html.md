@@ -34,6 +34,7 @@ includes:
   - methods
   - methods/currencies
   - methods/networks
+  - methods/banks
   - methods/accounts
   - methods/transactions
   - methods/contacts
