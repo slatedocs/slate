@@ -571,6 +571,15 @@ html, body {
       padding: $code-annotation-padding 2em;
       border-radius: $border-radius;
       color: #fff;
+      display: flex;
+
+      &:before {
+        @extend %icon-info-sign;
+        vertical-align: middle;
+        padding-right: 0.5em;
+        font-size: 18px;
+        line-height: 1.4 !important;
+      }
     }
   }
 }
