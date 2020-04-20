@@ -47,6 +47,15 @@ html, body {
   width: 20px;
 }
 
+.telescope-img {
+  max-width: 450px !important;
+  width: 100%;
+  display: block;
+  padding: 80px;
+  box-sizing: border-box;
+  margin: auto;
+}
+
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
 
