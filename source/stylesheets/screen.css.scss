@@ -481,7 +481,7 @@ html, body {
     background: $aside-notice-bg;
     line-height: 1.6;
     color: $aside-text-color;
-    border-radius: 20px;
+    border-radius: $border-radius;
     display: flex;
 
     &.warning {
@@ -558,10 +558,19 @@ html, body {
   }
 
   blockquote {
+    background-color: $main-text;
+    color: #fff;
+    padding: 2em 28px;
+    margin: 0;
+    float: right;
+    clear: right;
+    box-sizing: border-box;
+
     &>p {
       background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;
-      color: #eee;
+      border-radius: $border-radius;
+      color: #fff;
     }
   }
 }
