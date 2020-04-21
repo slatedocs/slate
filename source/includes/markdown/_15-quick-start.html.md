@@ -325,10 +325,4 @@ All of the built-in methods can be found in the [/resources folder of the client
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
 
-<div>
-  <div class="docs-helpful-feedback-content">
-      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
-  </div>
-</div>
-
 </section>
