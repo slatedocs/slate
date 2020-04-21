@@ -97,7 +97,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 %header-font {
   @extend %default-font;
-  margin-top: 1em;
+  margin-top: 2em;
   margin-bottom: 0;
   font-weight: bold;
 }
@@ -123,6 +123,6 @@ $border-radius: 20px;
 // These settings are probably best left alone.
 
 %break-words {
-    word-break: break-all;
-    hyphens: auto;
+  word-break: break-all;
+  hyphens: auto;
 }
