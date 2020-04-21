@@ -274,6 +274,29 @@ orderBy|Column to sort by. Can use any column listed in the response. However, a
 orderByDir|Sort direction: asc or desc.
 publishedOnly|Only return currently published entities.
 minimal|Return only array of entities without additional lists in it.
+where|An array of advanced where conditions
+order|An array of advanced order statements
+
+#### Advanced filtering
+
+In some cases you may want to filter by specific value(s). Use URL params like this:
+
+In PHP:
+```php
+$where = [
+  [
+    'col' => 'phone',
+    'expr' => 'in',
+    'val' => '444444444,888888888',
+  ]
+];
+```
+This design allows to add multiple conditions in the same request.
+
+If you are not using PHP, here is URL-encoded example of the above where array:
+`GET https://[your_mauitc_domain]/api/contacts?where%5B0%5D%5Bcol%5D=phone&where%5B0%5D%5Bexpr%5D=in&where%5B0%5D%5Bval%5D=444444444,888888888`
+
+[List of available expressions](https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/query-builder.html#the-expr-class)
 
 #### Response
 
