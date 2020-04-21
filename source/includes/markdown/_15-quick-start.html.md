@@ -280,7 +280,7 @@ client.users.me()
 
 To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
 
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above but in Javascript.
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Javascript.
 
 Save this file as something descriptive like "hello_world.js"
 
@@ -315,7 +315,7 @@ puts "Hello world! " + "My name is " + me.name + "!"
 
 To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
 
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above but in Ruby.
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Ruby.
 
 Save this file as something descriptive like "hello_world.rb"
 
