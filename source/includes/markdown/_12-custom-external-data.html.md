@@ -27,4 +27,10 @@ so this should not be used for private user data.
 | gid | `"contractor_name"` 	The external `gid`. Max size is 1024 characters. Can be a URI. |
 | data | `"{ \"time_estimate\": 3600, \"time_spent\": 1482 }"` The external data blob. Max size is 32,786 characters. |
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 </section>

@@ -71,4 +71,10 @@ you paginate all requests to the API.
 
 **This method returns paginated results for tasks from a project.**
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 </section>

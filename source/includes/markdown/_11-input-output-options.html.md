@@ -86,4 +86,10 @@ The **group** operator can be used in place of any whole term in a path, and wil
 
 `this.(followers|assignee).email` will match the `email` field of the `assignee` object or any of the `followers`.
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 </section>

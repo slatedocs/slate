@@ -83,4 +83,10 @@ When a request is received, if the remaining quota is not positive, the new requ
 
 The **vast** majority of developers will be unaffected by the cost limit, and the quota is set sufficiently high that it only affects users making requests that would compromise the stability of the API. Rather than unconditionally blocking their token from the API, this cost limiter will permit them to continue operation at a slower but safe and stable rate.
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 </section>

@@ -63,6 +63,8 @@ Check out some examples of integrations we've built on Asana below:
 
 Read more on how to [get started](#quick-start "Quick start") building on Asana or [submit an app](https://asana.com/apps/submit) to add to our [apps page](https://asana.com/apps).
 
+---
+
 ## Q&A Response
 
 Asana's API enables customization and automation of your organization’s workflow through scripts built to specialize your use of Asana. Using Asana to track your work and leveraging Asana’s API to automate your processes is a powerful combination which can make your team much more efficient. Here's one example of how we do it at Asana.
@@ -137,5 +139,11 @@ Once candidates have submitted their coding test, a bot uses the Asana API to as
 Our engineering teams handle triaging bug reports by creating a task in a "Bugs" project. A bot then adds the project manager of the relevant team in Asana as a follower, moves the task into a "needs triage" section, and requests assistance. The project manager can then evaluate the bug and triage it.
 
 Since the evaluation of the severity of the bug is important for understanding how urgent the fix is, Bugs Bot will remain persistent, commenting every few days until the task has been moved out of the triage section and into a section of the relevant priority. This process ensures that we're aware of the impact of bugs and helps us avoid severe bugs slipping through the cracks.
+
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
 
 </section>

@@ -81,4 +81,10 @@ The latest version of our [official client libraries](#official-client-libraries
 
 There are currently no active deprecations.
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 </section>

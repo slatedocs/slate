@@ -48,4 +48,11 @@ pagination is strongly encouraged to ensure both you and your users have the bes
 
 Happy coding!
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
+
 </section>
