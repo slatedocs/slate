@@ -2148,7 +2148,7 @@ VENDOR_ID | ID of the vendor being deleted
     {
       "id": 1,
       "sync_status": "Info",
-      "is_incoming": False,
+      "is_incoming": false,
       "object_details": {
         "id": 10,
         "content_type": 60,
@@ -2162,7 +2162,7 @@ VENDOR_ID | ID of the vendor being deleted
     {
       "id": 2,
       "sync_status": "Info",
-      "is_incoming": False,
+      "is_incoming": false,
       "object_details": {
         "id": 20,
         "content_type": 21,
@@ -2176,7 +2176,7 @@ VENDOR_ID | ID of the vendor being deleted
     {
       "id": 3,
       "sync_status": "Error",
-      "is_incoming": False,
+      "is_incoming": false,
       "object_details": {
         "id": 30,
         "content_type": 23,
@@ -2190,7 +2190,7 @@ VENDOR_ID | ID of the vendor being deleted
     {
       "id": 4,
       "sync_status": "Error",
-      "is_incoming": False,
+      "is_incoming": false,
       "object_details": {
         "id": 40,
         "content_type": 280,
