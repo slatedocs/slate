@@ -10,8 +10,7 @@
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id": null,
-  "content":
-    "Had a lunch meeting with Jane and John today. They are looking to invest.",
+  "content": "Had a lunch meeting with Jane and John today. They are looking to invest.",
   "created_at": "2017-03-28 00:38:41 -0700"
 }
 ```
@@ -190,3 +189,36 @@ Note that either `content` or `gmail_id` must be specified.
 ### Returns
 
 The note resource created through this request.
+
+## Delete a note
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/notes/22984" \
+  -u :<API-KEY> \
+  -X "DELETE"
+```
+
+> Example Response
+
+```json
+{ "success": true }
+```
+
+`DELETE /notes/{note_id}`
+
+Deletes a note with a specified `note_id`.
+
+**Note:** An appropriate error will be returned if you are not the creator of the note you
+are trying to delete.
+
+### Path Parameters
+
+| Parameter | Type    | Required | Description                                         |
+| --------- | ------- | -------- | --------------------------------------------------- |
+| note_id   | integer | true     | The unique id of the note that needs to be deleted. |
+
+### Returns
+
+`{success: true}`.
