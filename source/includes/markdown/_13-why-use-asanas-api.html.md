@@ -63,6 +63,8 @@ Check out some examples of integrations we've built on Asana below:
 
 Read more on how to [get started](#quick-start "Quick start") building on Asana or [submit an app](https://asana.com/apps/submit) to add to our [apps page](https://asana.com/apps).
 
+---
+
 ## Q&A Response
 
 Asana's API enables customization and automation of your organization’s workflow through scripts built to specialize your use of Asana. Using Asana to track your work and leveraging Asana’s API to automate your processes is a powerful combination which can make your team much more efficient. Here's one example of how we do it at Asana.
