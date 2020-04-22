@@ -9,9 +9,9 @@ Deploy and manage your disks.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -78,9 +78,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -144,9 +144,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
   "name": "my-disk",
@@ -197,9 +197,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=attach"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "shortUsers": "5611478403377505138",
@@ -226,9 +226,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=detach"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "shortUsers": "5611478403377505138"
@@ -251,9 +251,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=resize"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "sizeGb": "50"

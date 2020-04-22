@@ -9,9 +9,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -152,9 +152,9 @@ The information is not totally returned in the list. We filter out the manifest 
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -326,9 +326,8 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=rollback&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -369,34 +368,33 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954?operation=upgrade&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
    -d "request_body"
-
-
-# Request body examples:
 ```
-```json
-# Change to the latest version of a chart
+> Request body examples:
+
+```js
+// Change to the latest version of a chart
 {
   "upgradeChart":  "stable/aerospike" 
 }
 ```
 
-```json
-# Change to a specific version of a chart
+```js
+// Change to a specific version of a chart
 {
   "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
 }
 ```
 
-```json
-# Change the values for the latest version
+```js
+// Change the values for the latest version
 {
   "upgradeChart" : "stable/aerospike",
   "values": "---\n\"replicaCount\": 3\n"
 }
 ```
+> The above commands return JSON structured like this:
 
 ```json
-# The above command returns JSON structured like this
 {
   "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
   "taskStatus": "SUCCESS"
@@ -429,17 +427,17 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=uninstall&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
    -d "request_body"
-
-# Request body example
 ```
+> Request body example:
+
 ```json
 {
    "keepHistory": true
 }
 ```
+> The above command returns JSON structured like this:
 
 ```json
-# The above command returns JSON structured like this
 {
   "data": {
       "version": 0,

@@ -9,9 +9,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -114,9 +114,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts/stable/aerospike"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -215,9 +215,9 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
 	"relationships": {

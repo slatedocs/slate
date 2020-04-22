@@ -10,9 +10,9 @@ SSH keys are managed at the [environment](#administration-environments) level.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -46,9 +46,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys/user1"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -78,9 +78,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "user1",

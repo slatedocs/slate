@@ -10,9 +10,9 @@ A network is an isolated network where you can place groups of resources, such a
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/networks"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -66,9 +66,9 @@ Attributes | &nbsp;
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/gcp/test-area/networks/6402509859159933821"
-
-Response body:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": {

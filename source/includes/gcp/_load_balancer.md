@@ -10,9 +10,8 @@ HTTP(S) load balancing can balance HTTP and HTTPS traffic across multiple backen
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -61,9 +60,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -106,20 +104,23 @@ Attributes | &nbsp;
 curl -X POST \
   -H 'MC-Api-Key: your_api_key' \
   -H "Content-Type: application/json" \
-  -d "request _body" \
+  -d "request_body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers"
 ```
+> Request body examples:
 
-```json
-Creating loadbalancer with ephemeral IP
+```js
+// Creating loadbalancer with ephemeral IP
 {
 	"name":"my-loadbalancer-name",
 	"shortBackend": "my-backend-backend",
 	"shortProtocol": "HTTP",
 	"shortPort": "80"
 }
+```
 
-Creating loadbalancer with existing IP
+```js
+// Creating loadbalancer with existing IP
 {
 	"name":"my-loadbalancer-name",
 	"shortBackend": "my-backend-backend",
@@ -127,8 +128,10 @@ Creating loadbalancer with existing IP
 	"shortPort": "80",
     "shortIP": "my-ip-name",
 }
+```
 
-Creating loadbalancer with new static IP
+```js
+// Creating loadbalancer with new static IP
 {
 	"name":"my-loadbalancer-name",
 	"shortBackend": "my-backend-backend",
@@ -136,8 +139,10 @@ Creating loadbalancer with new static IP
 	"shortPort": "80",
     "reserveStaticIP": true
 }
+```
 
-Creating loadbalancer with HTTPS protocol
+```js
+// Creating loadbalancer with HTTPS protocol
 {
 	...
     "shortPort": "443",
@@ -171,6 +176,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {

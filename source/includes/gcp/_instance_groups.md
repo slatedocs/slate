@@ -10,9 +10,8 @@ An instance group is a collection of [VM instances](#gcp-instances) that you can
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -74,9 +73,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -135,9 +133,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -187,10 +184,10 @@ Delete an existing instance group
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897?operation=manage_instance_members"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {

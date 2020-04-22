@@ -10,9 +10,8 @@ A backend service directs traffic to backends, such as [instance groups](#gcp-in
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/backendservices"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -92,9 +91,8 @@ Retrieve a list of all backend services in an [environment](#administration-envi
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/backendservices"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -168,10 +166,10 @@ Retrieve a backend service in an [environment](#administration-environments).
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/backendservices"
-
-# Example:
 ```
+> Request body example:
 
 ```json
 {

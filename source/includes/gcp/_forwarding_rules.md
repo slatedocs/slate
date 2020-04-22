@@ -9,8 +9,8 @@ A forwarding rule and its corresponding IP address represent the frontend config
 curl -X GET \
   -H 'MC-Api-key: your_api_key'
   "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules"
-  # The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -69,9 +69,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules/4724455712741277576"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -124,25 +123,30 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -d "request _body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules"
-# Request example:
 ```
-```json
-Creating a forwarding rule with ephemeral IP
+> Request body examples:
+
+```js
+// Creating a forwarding rule with ephemeral IP
 {
   "portRange": "80",
   "name": "my-forwarding-name",
   "shortTarget": "my-target-proxy"
 }
+```
 
-Creating a forwarding rule with new static IP
+```js
+// Creating a forwarding rule with new static IP
 {
   "portRange": "80",
   "name": "my-forwarding-name",	
   "shortTarget": "my-target-proxy",
   "reserveStaticIP": true
 }
+```
 
-Creating a forwarding rule with ephemeral IP
+```js
+// Creating a forwarding rule with ephemeral IP
 {
   "portRange": "80",  
   "name": "my-forwarding-name",

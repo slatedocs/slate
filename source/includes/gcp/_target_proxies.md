@@ -10,9 +10,8 @@ Target proxies route incoming request to either a URL map (HTTP(S) load balancin
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/targetproxies"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -58,9 +57,8 @@ Retrieve a list of all target proxies in an [environment](#administration-enviro
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/targetproxies/2137054791002409126"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -105,17 +103,31 @@ Retrieve a target proxy in an [environment](#administration-environments).
 # Example request: Specifying an existing URL map
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   -d '{ "name": "targetProxyName", "type": "HTTPS", "shortUrlMap": "urlMapName", "shortCertificates": "sslCertificateName" }' \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/targetProxies"
+```
+> Request body examples:
+
+```js
+// Specifying an existing URL map
+{
+   "name": "targetProxyName",
+   "type": "HTTPS",
+   "shortUrlMap": "urlMapName",
+   "shortCertificates": "sslCertificateName"
+}
 ```
 
-```shell
-# Example request: Specifying a backend service. A default URL map will be created automatically.
-curl -X POST \
-   -H "MC-Api-Key: your_api_key" \
-   -d '{ "name": "targetProxyName", "type": "HTTPS", "shortBackend": "backendServicesName", "shortCertificates": "sslCertificateName" }' \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/targetProxies"
+```js
+// Specifying a backend service, a default URL map will be created automatically
+{
+   "name": "targetProxyName",
+   "type": "HTTPS",
+   "shortBackend": "backendServicesName",
+   "shortCertificates": "sslCertificateName"
+}
 ```
+
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/targetProxies</code>
 

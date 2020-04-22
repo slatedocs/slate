@@ -10,9 +10,8 @@ Deploy and manage your instances.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -151,9 +150,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/5611478403377505138"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -289,12 +287,11 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances"
-
-# Request example:
 ```
+> Request body example:
 
-```json
-Create an instance with an existing IP
+```js
+// Create an instance with an existing IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -306,8 +303,10 @@ Create an instance with an existing IP
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
   "shortIP": "my-ip-name"
 }
+```
 
-Create an instance with a new static IP
+```js
+// Create an instance with a new static IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -319,8 +318,10 @@ Create an instance with a new static IP
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
   "reserveStaticIP": true
 }
+```
 
-Create an instance with an ephemeral IP
+```js
+// Create an instance with an ephemeral IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -379,9 +380,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=resize"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -423,23 +423,23 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=change_external_ip"
-   
-# Request example:
 ```
-Changing the IP to an ephemeral IP, just leave it empty
-```json
+> Request body examples:
+
+```js
+// Changing the IP to an ephemeral IP, just leave it empty
 { }
 ```
 
-Changing the IP to a new static IP
-```json
+```js
+// Changing the IP to a new static IP
 {
   "reserveStaticIP" : true
 }
 ```
 
-Changing the IP to an existing IP
-```json
+```js
+// Changing the IP to an existing IP
 {
   "shortIP" : "your-ip-name"
 }
@@ -464,8 +464,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=get_ssh"
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -492,8 +492,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=set_windows_password"
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -517,9 +517,8 @@ Required | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/2986056884972096897?operation=manage_group_membership"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {

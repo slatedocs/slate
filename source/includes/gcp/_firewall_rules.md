@@ -8,9 +8,9 @@ Firewall allows you to control inbound and outbound traffic to your [environment
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/firewallrules"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -80,9 +80,9 @@ Retrieve a list of all firewall rules in a given [environment](#administration-e
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/firewallrules/4890726785951782638"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -151,6 +151,8 @@ curl -X POST \
   -d "request_body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/firewallrule"
 ```
+> Request body example:
+
 ```json
 {
   "action": "allow",
