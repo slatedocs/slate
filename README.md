@@ -24,10 +24,9 @@ You're going to need:
 
 ### Developing Locally
 
-1. Fork this repository on GitHub.
-2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
-3. `cd slate`
-4. Initialize and start Slate. You can either do this locally, or with Vagrant:
+1. Clone this repo at `https://github.com/procurify/sticky.git`
+2. `cd slate`
+3. Initialize and start Slate. You can either do this locally, or with Vagrant:
 
 ```shell
 # either run this to run locally
