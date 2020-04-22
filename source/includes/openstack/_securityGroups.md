@@ -8,6 +8,8 @@ Security groups manage network access to instances.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygroups"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": [
@@ -39,6 +41,8 @@ Retrieve a list of all security groups in an environment.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygroups/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": {
@@ -67,8 +71,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygroups"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "name": "security-group-1",

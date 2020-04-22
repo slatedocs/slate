@@ -10,9 +10,8 @@ Create and manage your containers/buckets.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/swift/example/buckets"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -77,9 +76,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/swift/example/buckets/private"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -124,9 +122,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/swift/example/buckets"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -173,9 +170,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/swift/example/buckets/containerToRename?operation=rename"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
