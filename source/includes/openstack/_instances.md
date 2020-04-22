@@ -28,7 +28,7 @@ curl -H "MC-Api-Key: your_api_key" \
              "sshSecGroup"
          ],
         "updatedDate": "2020-04-15 14:38:32",
-        "createdDate": "2020-04-15 14:37:53"
+        "createdDate": "2020-04-15 14:37:53",
         "addresses": [
           {
             "networkId": "738f3944-e44c-4729-9fca-c6ade9235850",
@@ -104,7 +104,7 @@ curl -H "MC-Api-Key: your_api_key" \
           "sshSecGroup"
       ],
       "updatedDate": "2020-04-15 14:38:32",
-      "createdDate": "2020-04-15 14:37:53"
+      "createdDate": "2020-04-15 14:37:53",
       "addresses": [
         {
           "networkId": "738f3944-e44c-4729-9fca-c6ade9235850",

@@ -17,7 +17,7 @@ curl -H "MC-Api-Key: your_api_key" \
 			"networkId": "d507486c-eacb-48ff-841e-e3938213d95f",
 			"portId": "b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9",
 			"privateIp": "10.182.15.1",
-			"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582"
+			"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582",
 			"routerName": "routeName1"
 		}
 	],
@@ -55,7 +55,7 @@ curl -H "MC-Api-Key: your_api_key" \
 		"networkId": "d507486c-eacb-48ff-841e-e3938213d95f",
 		"portId": "b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9",
 		"privateIp": "10.182.15.1",
-		"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582"
+		"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582",
 		"routerName": "routeName1"
 	}
 }

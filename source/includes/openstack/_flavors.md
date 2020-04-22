@@ -23,7 +23,7 @@ Response body:
       },
       {
          "id": "921e8296-c801-498c-90a9-4398cd44681f",
-         "name": "1vCPU.512MB"
+         "name": "1vCPU.512MB",
          "ephemeralSizeInGB": 0,
          "diskSizeInGB": 20,
          "memorySizeInMB": 512,
@@ -61,7 +61,7 @@ Response body:
 {
    "data": {
       "id": "1d547941-1738-4d7b-a70b-b52a44ff18e5",
-      "name": "1vCPU.256MB"
+      "name": "1vCPU.256MB",
        "ephemeralSizeInGB": 0,
        "diskSizeInGB": 20,
        "memorySizeInMB": 256,
