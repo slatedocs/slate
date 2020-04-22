@@ -1636,21 +1636,28 @@ This endpoint retrieves a list of purchase orders with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/purchase-orders/?status=<STATUS>`
+`GET https://example.procurify.com/api/v3/integrations/netsuite/purchase-orders/?status=pending,ignore&transaction_date=2020-01-02`
 
 ### URL Parameters
 
 #### status
+
+Use this field to get purchase orders of a certain status.  Multiple statuses can be combined using comma-separation. 
 
 Value       | Description
 ----------- | -----------
 pending     | Get all records that need to be processed in NS (a combination of new/updated/deleted)
 synced      | Get all synced records previously successfully synced
 error       | Get all records that encountered an error during its most recent sync
+ignore      | Get all records that are not meant to sync over to NS. These are usually records that exist before initialization.
 
 #### id
 
 Try it out! `?id=1234` will get you PO with id=1234
+
+#### transaction_date
+
+Try it out! `?transaction_date=2020-03-24` will get you PO's that were created after March 24th of 2020
 
 ### HTTP Response Status Code
 
