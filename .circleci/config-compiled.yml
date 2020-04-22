@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  main_job:
+    docker:
+    - image: circleci/python:3.7
+    steps:
+    - run:
+        name: Doing nothing
+        command: echo "I am doing nothing"
+workflows:
+  version: 2
+  main_workflow:
+    jobs:
+    - main_job
+
+# Original config.yml file:
+# version: 2.1
+# jobs:
+#   main_job:
+#     docker:
+#       - image: circleci/python:3.7
+#     steps:
+#       - run:
+#           name: \"Doing nothing\"
+#           command: echo \"I am doing nothing\"
+# 
+# workflows:
+#     version: 2
+# 
+#     main_workflow:
+#       jobs:
+#         - main_job:
+#             name: main_job
