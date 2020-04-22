@@ -36,10 +36,10 @@ Retrieve a list of SSH keys in an OpenStack domain.
 
  Attributes                         | Description                         
  ---------------------------------- | -----------------------------------
- `id`<br/>*string*                  | The SSH key's ID which takes the same value as the name
- `name`<br/>*string*                | The SSH key's name                     
- `fingerprint`<br/>*string*         | A short sequence of bytes used to identify the SSH key                  
- `publicKey`<br/>*string*           | The SSH public key   
+ `id`<br/>*string*                  | The SSH key's ID which takes the same value as the name.
+ `name`<br/>*string*                | The SSH key's name.
+ `fingerprint`<br/>*string*         | A short sequence of bytes used to identify the SSH key.
+ `publicKey`<br/>*string*           | The SSH public key.
 
 #### Retrieve a SSH key
 
@@ -65,11 +65,11 @@ Retrieve a single SSH key in an OpenStack domain.
 
 Attributes                         | Description                         
 ---------------------------------- | -----------------------------------
-`id`<br/>*string*                  | The SSH key's ID which takes the same value as the name    
-`name`<br/>*string*                | The SSH key's name                 
-`fingerprint`<br/>*string*         | A short sequence of bytes used to identify the SSH key  
-`createDate` <br/> *date*          | The date the SSH key was created                             
-`publicKey`<br/>*string*           | The SSH public key   
+`id`<br/>*string*                  | The SSH key's ID which takes the same value as the name.
+`name`<br/>*string*                | The SSH key's name.
+`fingerprint`<br/>*string*         | A short sequence of bytes used to identify the SSH key.
+`createDate` <br/> *date*          | The date the SSH key was created.
+`publicKey`<br/>*string*           | The SSH public key.
 
 #### Create a SSH key
 
@@ -94,8 +94,8 @@ Create a SSH key.
 
 Required attributes                | Description                         
 ---------------------------------- | -----------------------------------
-`name`<br/>*string*                | The SSH key's name                             
-`publicKey`<br/>*string*           | A public SSH key in RSA format
+`name`<br/>*string*                | The SSH key's name.
+`publicKey`<br/>*string*           | A public SSH key in RSA format.
 
 #### Delete a SSH key
 
