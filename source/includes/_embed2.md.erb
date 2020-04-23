@@ -118,6 +118,8 @@ If your bot implementation makes use of any actions from the global `adaEmbed` o
 
 If you are using RequireJS as your module loader, you may encounter issues with the standard Embed2 setup. This is because RequireJS does not know how to interpret the `id` and `data-handle` attributes Ada uses. Instead of setting this attributes, you can just set `handle` in your `window.adaSettings` object.
 
+If you experience additional errors be sure to check out the [RequireJS Common Errors documentation](https://requirejs.org/docs/errors.html).
+
 ## API Reference
 Embed2 supports numerous settings and actions to help you customize the look and behaviour of your bot. Settings are set in the `adaSettings` object when you embed your script. They determine intrinsic properties like bot style and behaviour. Conversely, actions can be called at any point in time to toggle Chat, update user meta data, and more.
 
