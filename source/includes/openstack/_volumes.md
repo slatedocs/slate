@@ -65,11 +65,11 @@ Retrieve a volume.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The volume's id
-`name`<br/>*string* | The volume name
-`description`<br/>*string* | The volume's description
-`sizeInGB`<br/>*integer* | The volume's size in GB
-`state`<br/>*string* | The volume's state
+`id`<br/>*UUID* | The volume's id.
+`name`<br/>*string* | The volume name.
+`description`<br/>*string* | The volume's description.
+`sizeInGB`<br/>*integer* | The volume's size in GB.
+`state`<br/>*string* | The volume's state.
 `instanceId`<br/>*string* | The instance id to which the volume is attached.
 `instanceName`<br/>*string* | The instance name to which the volume is attached.
 `device`<br/>*string* | The device under which the volume is The volume's state.
@@ -98,9 +98,9 @@ Create a volume.
 
 Required attributes                | Description                         
 ---------------------------------- | -----------------------------------
-`name`<br/>*string*                | The volume name                             
-`description`<br/>*string*         | The volume description
-`sizeInGB`<br/>*integer*           | The volume's size in GB
+`name`<br/>*string*                | The volume name.
+`description`<br/>*string*         | The volume description.
+`sizeInGB`<br/>*integer*           | The volume's size in GB.
 
 #### Delete a volume
 
@@ -126,7 +126,7 @@ curl -X POST \
 ```
 ```json
 {
-   "instanceId": "449efafc-0a6f-4f9e-9602-4b9ac2400abd",
+   "instanceId": "449efafc-0a6f-4f9e-9602-4b9ac2400abd"
 }
 ```
 
@@ -136,7 +136,7 @@ Attach a volume to an instance.
 
 Required attributes                | Description                         
 ---------------------------------- | -----------------------------------
-`instanceId`<br/>*UUID*            | The instance id
+`instanceId`<br/>*UUID*            | The instance id.
 
 #### Detach a volume from an instance
 
@@ -162,7 +162,7 @@ curl -X POST \
 ```
 ```json
 {
-   "sizeInGB": 40,
+   "sizeInGB": 40
 }
 ```
 
