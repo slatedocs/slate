@@ -191,9 +191,9 @@ Attributes | &nbsp;
 curl -X POST "https://cloudmc_endpoint/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
+   -d "request_body"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {
@@ -262,9 +262,9 @@ The responses' `data` field contains the created [resource-commitment](#administ
 curl -X PUT "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
+   -d "request_body"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {

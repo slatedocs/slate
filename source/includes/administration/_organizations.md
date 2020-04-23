@@ -150,9 +150,9 @@ Creates a new organization as a sub-organization of the caller's organization, o
 curl -X POST "https://cloudmc_endpoint/v1/organizations" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
+   -d "request_body"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {
@@ -193,9 +193,9 @@ Update an organization. It's parent organization cannot be changed. It can be as
 curl -X PUT "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
+   -d "request_body"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {

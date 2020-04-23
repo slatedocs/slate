@@ -288,7 +288,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances"
 ```
-> Request body example:
+> Request body examples:
 
 ```js
 // Create an instance with an existing IP

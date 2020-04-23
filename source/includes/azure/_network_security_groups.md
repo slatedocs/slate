@@ -63,7 +63,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -X POST \
-  'http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups' \
+  'http://cloudmc_endpoint/v1/services/azure/my-azure/networkSecurityGroups' \
   -H 'mc-api-key: your_api_key' \
   -d '{
 	"name": "network-security-group", 
@@ -84,7 +84,7 @@ Required | &nbsp;
 
 ```shell 
 curl -X DELETE \
-  'http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-system-co-cloudmc-eastus/providers/Microsoft.Network/networkSecurityGroups/test' \
+  'http://cloudmc_endpoint/v1/services/azure/my-azure/networkSecurityGroups/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-system-co-cloudmc-eastus/providers/Microsoft.Network/networkSecurityGroups/test' \
   -H 'mc-api-key: your_api_key'
   ```
 

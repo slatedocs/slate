@@ -84,7 +84,7 @@ curl -X POST \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/sshkeys"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {

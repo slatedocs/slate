@@ -80,7 +80,7 @@ curl -X POST \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {
@@ -126,7 +126,7 @@ curl -X POST \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=attach"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {

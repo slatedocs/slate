@@ -265,9 +265,10 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint:443/v1/services/compute-on/test_area/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" 
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {
@@ -318,9 +319,10 @@ Start an existing instance. The instance must be in the *Stopped* state for this
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {

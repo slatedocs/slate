@@ -139,9 +139,9 @@ Attributes | &nbsp;
 curl -X POST "https://cloudmc_endpoint/v1/users" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request-body]"
+   -d "request-body"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {
@@ -191,9 +191,9 @@ The responses' `data` field contains the created [user](#administration-users) w
 curl -X PUT "https://cloudmc_endpoint/v1/users/fdf60a19-980d-4380-acab-914485111305" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request-body]"
+   -d "request-body"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {

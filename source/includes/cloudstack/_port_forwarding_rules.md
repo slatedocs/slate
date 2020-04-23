@@ -129,7 +129,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules"
 ```
-> The above command returns JSON structured like this:
+> Request body example:
 
 ```json
 {
