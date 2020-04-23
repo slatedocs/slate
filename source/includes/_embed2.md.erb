@@ -120,6 +120,21 @@ If you are using RequireJS as your module loader, you may encounter issues with 
 
 If you experience additional errors be sure to check out the [RequireJS Common Errors documentation](https://requirejs.org/docs/errors.html).
 
+## Upgrading From Embed1
+
+If you are coming to Embed2 from Embed1, great! Upgrading couldn't be simpler. For basic setups, you most likely just need to upgrade you Embed script `src` from "https://static.ada.support/embed.js" to "https://static.ada.support/embed2.js".
+
+Although the Embed2 API is almost identical to Embed1, in some cases features have been removed or modified. You can find a comprehensive list of changes below.
+
+Embed1 Feature | Status | Comments
+-------------- | -------------- | --------------
+`crossWindowPersistence` | Modified | Simplified to accept a boolean instead of an object.
+`dragAndDrop` | Deprecated | 
+`mobileOverlay` | Deprecated | 
+`styles` | Same API | Now requires a feature flag to use.
+
+Additionally, all actions have been modified to return Promises.
+
 ## API Reference
 Embed2 supports numerous settings and actions to help you customize the look and behaviour of your bot. Settings are set in the `adaSettings` object when you embed your script. They determine intrinsic properties like bot style and behaviour. Conversely, actions can be called at any point in time to toggle Chat, update user meta data, and more.
 
