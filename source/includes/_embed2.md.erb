@@ -1,6 +1,6 @@
 # Embed2
 
-Embed2 is a small JavaScript application that embeds your Ada Chat bot into your web page.
+Embed2 is a small JavaScript script that embeds your Ada Chat bot into your web page. It comes equipped with various settings and actiongs to tailor the end-user experience.
 
 ## Quick Start
 
@@ -23,7 +23,7 @@ The first step towards adding your Ada Chat Bot to your web page is to turn on t
 ```
 > Be sure to replace \<YOUR-BOT-HANDLE> with your own bot handle. It's usually the name of your company.
 
-Once you have your website all ready-to-go, find the page where you'd like to embed the Ada Chat bot. This will be a .html file (or equivalent). Here you will need to paste the following into the `<head>` tag.
+Once you have your website all ready-to-go, find the page where you'd like to embed the Ada Chat bot. In most cases this will be an HTML file. Here you will need to paste the following into the `<head>` tag.
 
 ### 3. That's it! 🎉
 You should now see a small question mark button on the bottom right corner of your page. Clicking the button will toggle the Web Chat in and out of view.
@@ -61,6 +61,63 @@ Lazy mode can be configured to delay Embed2 instantiation. To put Embed2 in lazy
 
 When you are ready to instantiate Embed2, call the `start` action. You can pass any settings you would normally set in `window.adaSettings` here.
 
+### Async
+
+```html
+<script
+  async
+  id="__ada"
+  data-handle="<YOUR-BOT-HANDLE>"
+  src="https://static.ada.support/embed2.js"
+></script>
+```
+
+> Approach 1: Use the native script onload handler
+
+```html
+<script
+  async
+  id="__ada"
+  onload="window.adaEmbed.toggle()"
+  data-handle="<YOUR-BOT-HANDLE>"
+  src="https://static.ada.support/embed2.js"
+></script>
+```
+
+> Approach 2: Use the adaReadyCallback
+
+```js
+window.adaSettings = {
+  adaReadyCallback: () => {
+    window.adaEmbed.toggle();
+  }
+};
+```
+
+Since HTML5, the `async` attribute has been available for HTML script elements. From **MDN**, it "allows the elimination of parser-blocking JavaScript where the browser would have to load and evaluate scripts before continuing to parse". It may be applied to the Embed2 script in order to improve load times of your page, however it does come with certain caveats.
+
+If your bot implementation makes use of any actions from the global `adaEmbed` object, you must wait for the object to be added to your document. There are two common approaches for handling this situation.
+
+**Approach 1** involves using the native script `onload` handler. When the script has loaded, the `load` event will be triggered. It is safe to call `adaEmbed` actions from here.
+
+**Approach 2** involves using the `adaReadyCallback`, which you can set in `window.adaSettings`. Note that while in the examples provided `toggle` will work effectively the same way, `adaReadyCallback` is triggered after `adaEmbed.start(...)` has executed. Meanwhile, `onload` is simply triggered when the Embed2 script has been loaded.
+
+### RequireJS
+
+```html
+<script>
+  window.adaSettings = {
+    handle: "<YOUR-BOT-HANDLE>"
+  };
+</script>
+
+<script
+  src="https://static.ada.support/embed2.js"
+></script>
+```
+
+If you are using RequireJS as your module loader, you may encounter issues with the standard Embed2 setup. This is because RequireJS does not know how to interpret the `id` and `data-handle` attributes Ada uses. Instead of setting this attributes, you can just set `handle` in your `window.adaSettings` object.
+
 ## API Reference
 Embed2 supports numerous settings and actions to help you customize the look and behaviour of your bot. Settings are set in the `adaSettings` object when you embed your script. They determine intrinsic properties like bot style and behaviour. Conversely, actions can be called at any point in time to toggle Chat, update user meta data, and more.
 
@@ -69,7 +126,6 @@ Settings are set on the window object as `window.adaSettings = { ... }`. Alterna
 
 #### adaReadyCallback
 `adaReadyCallback?(params: { isRolledOut: boolean }): void;`
-
 
 ```html
 <script type="text/javascript">
