@@ -38,12 +38,12 @@ Retrieve a list of routers in an OpenStack environment.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `id`<br/>*UUID*                         | The router's ID                     |
-| `name`<br/>*string*                     | The router's name                   |
-| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs   |
-| `networkNames`<br/>*Array[string]*      | The router's internal network names |
-| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
-| `externalNetworkName`<br/>*string*      | The router's external network name  |
+| `id`<br/>*UUID*                         | The router's ID.                     |
+| `name`<br/>*string*                     | The router's name.                   |
+| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs.   |
+| `networkNames`<br/>*Array[string]*      | The router's internal network names. |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID.    |
+| `externalNetworkName`<br/>*string*      | The router's external network name.  |
 
 #### Retrieve a router
 
@@ -76,12 +76,12 @@ Retrieve a single router in an OpenStack environment.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `id`<br/>*UUID*                         | The router's ID                     |
-| `name`<br/>*string*                     | The router's name                   |
-| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs   |
-| `networkNames`<br/>*Array[string]*      | The router's internal network names |
-| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
-| `externalNetworkName`<br/>*string*      | The router's external network name  |
+| `id`<br/>*UUID*                         | The router's ID.                     |
+| `name`<br/>*string*                     | The router's name.                   |
+| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs.   |
+| `networkNames`<br/>*Array[string]*      | The router's internal network names. |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID.    |
+| `externalNetworkName`<br/>*string*      | The router's external network name.  |
 
 #### Create a router
 
@@ -106,8 +106,8 @@ Create a router.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `name`<br/>*string*                     | The router's name                   |
-| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
+| `name`<br/>*string*                     | The router's name.                   |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID.   |
 
 #### Add a router interface
 
@@ -131,7 +131,7 @@ Connect a router to a network.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `networkId`<br/>*UUID*                | The ID of the network to connect    |
+| `networkId`<br/>*UUID*                | The ID of the network to connect.    |
 
 
 #### Delete a router

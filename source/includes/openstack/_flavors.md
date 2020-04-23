@@ -15,11 +15,19 @@ Response body:
    "data": [
       {
          "id": "1d547941-1738-4d7b-a70b-b52a44ff18e5",
-         "name": "1vCPU.256MB"
+         "name": "1vCPU.256MB",
+         "ephemeralSizeInGB": 0,
+         "diskSizeInGB": 20,
+         "memorySizeInMB": 256,
+         "cpuCount": 1
       },
       {
          "id": "921e8296-c801-498c-90a9-4398cd44681f",
-         "name": "1vCPU.512MB"
+         "name": "1vCPU.512MB",
+         "ephemeralSizeInGB": 0,
+         "diskSizeInGB": 20,
+         "memorySizeInMB": 512,
+         "cpuCount": 1
       }
    ],
    "metadata": {
@@ -34,8 +42,12 @@ Retrieve a list of available flavors.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The flavor's id
-`name`<br/>*string* | The flavor name
+`id`<br/>*UUID* | The flavor's id.
+`name`<br/>*string* | The flavor name.
+`ephemeralSizeInGB`<br/>*string* | The size of the ephemeral disk in GB.
+`diskSizeInGB`<br/>*string* | The size of the root disk in GB.
+`memorySizeInMB`<br/>*string*| The size of the memory in MB.
+`cpuCount`<br/>*string*| The number of vCPU assigned.
 
 #### Retrieve a flavor
 
@@ -49,16 +61,24 @@ Response body:
 {
    "data": {
       "id": "1d547941-1738-4d7b-a70b-b52a44ff18e5",
-      "name": "1vCPU.256MB"
+      "name": "1vCPU.256MB",
+       "ephemeralSizeInGB": 0,
+       "diskSizeInGB": 20,
+       "memorySizeInMB": 256,
+       "cpuCount": 1
    }
 }
 ```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/flavors/:id</code>
 
-Retrieve information about a flavor
+Retrieve information about a flavor.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The flavor's id
-`name`<br/>*string* | The flavor name
+`id`<br/>*UUID* | The flavor's id.
+`name`<br/>*string* | The flavor name.
+`ephemeralSizeInGB`<br/>*string* | The size of the ephemeral disk in GB.
+`diskSizeInGB`<br/>*string* | The size of the root disk in GB.
+`memorySizeInMB`<br/>*string*| The size of the memory in MB.
+`cpuCount`<br/>*string*| The number of vCPU assigned.

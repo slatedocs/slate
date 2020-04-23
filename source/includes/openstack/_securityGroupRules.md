@@ -44,14 +44,14 @@ Retrieve a list of all security group rules in a security group.
 
  Attribute                      | Description                          
  ---------------------------    | ------------------------------------
- `id`<br/>*UUID*                | The security group rule's id         
- `remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule     
- `startPort`<br/>*int*          | Minimum port that is matched by this rule             
- `endPort`<br/>*int*            | Maximum port that is matched by this rule             
- `etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
- `protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP             
- `ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress            
- `securityGroupId`<br/>*UUID*   | The ID of the parent security group             
+ `id`<br/>*UUID*                | The security group rule's id.
+ `remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule.
+ `startPort`<br/>*int*          | Minimum port that is matched by this rule.
+ `endPort`<br/>*int*            | Maximum port that is matched by this rule.
+ `etherType`<br/>*string*       | IP type, either IPv4 or IPv6.
+ `protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP.
+ `ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress.
+ `securityGroupId`<br/>*UUID*   | The ID of the parent security group.
 
 
 #### Retrieve a security group rule
@@ -81,14 +81,14 @@ Retrieve information about a security group rule.
 
 Attribute                      | Description                          
 ---------------------------    | ------------------------------------
-`id`<br/>*UUID*                | The security group rule's id         
-`remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule     
-`startPort`<br/>*int*          | Minimum port that is matched by this rule             
-`endPort`<br/>*int*            | Maximum port that is matched by this rule             
-`etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
-`protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP             
-`ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress             
-`securityGroupId`<br/>*UUID*   | The ID of the parent security group             
+`id`<br/>*UUID*                | The security group rule's id.
+`remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule.
+`startPort`<br/>*int*          | Minimum port that is matched by this rule.
+`endPort`<br/>*int*            | Maximum port that is matched by this rule.
+`etherType`<br/>*string*       | IP type, either IPv4 or IPv6.
+`protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP.
+`ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress.
+`securityGroupId`<br/>*UUID*   | The ID of the parent security group.
 
 
 
@@ -119,7 +119,7 @@ Create a security group rule for a security group.
 
  Required attributes          | Description                          
  --------------------------   | ------------------------------------
- `securityGroupId`<br/>*UUID* | The ID of the parent security group            
+ `securityGroupId`<br/>*UUID* | The ID of the parent security group.
 
  Optional attributes          | Description                          
  --------------------------   | ------------------------------------
