@@ -30,7 +30,6 @@ Attributes | &nbsp;
 `type`<br/>*string* | The type of the service connection.
 `status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`
 
-
 <!-------------------- GET SERVICE CONNECTION -------------------->
 
 ### Retrieve a service connection
@@ -170,3 +169,36 @@ Attributes | &nbsp;
 ---- | -----------
 `name`<br/>*string* | The name of the policy.
 `value`<br/>*string* | The policy value.
+
+<!-------------------- LIST ASSIGNED ORGANIZATIONS CONNECTIONS -------------------->
+### List organizations assigned to a service connection
+
+`GET /services/connections/:id/assigned_orgs`
+
+```json
+{
+  "data": [
+    {
+      "id": "679fe078-a67a-4383-ab4e-51f5ef3a9287",
+      "name": "MyOrg",
+      "entryPoint": "my-org",
+      "state": "PROVISIONED",
+      "quota": {
+        "id": "90c3e469-71c7-4231-b27b-31dcf3a820ad",
+        "name": "Unlimited"
+      }
+    }
+  ]
+}
+```
+
+Returns the list of organizations that are assigned to the service connection. Only organizations that the caller has access to will be returned.
+
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | The id of the organization
+`name`<br/>*string* | The name of the organization
+`entryPoint`<br/>*string* | The entry point of the organization. Also refered to as the organization code
+`state`<br/>*string* | The provisioning state of the organization on the backend service. States: `PENDING`, `PROVISIONING`, `PROVISIONED`, `PENDING_PURGE`, `PURGING`, `PURGED`.
+`quota`<br/>*Object* | The quota assigned to the organization (may be null depending on if the connection supports quotas or not).<br/>*includes*: `id`, `name`

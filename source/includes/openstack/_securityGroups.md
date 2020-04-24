@@ -16,7 +16,8 @@ curl -H "MC-Api-Key: your_api_key" \
         {
             "id": "1bd672f4-b274-4371-a792-b0a6c6778cc7",
             "name": "default",
-            "description": "Default security group"
+            "description": "Default security group",
+            "isDefault": true
         }
     ],
     "metadata": {
@@ -31,9 +32,10 @@ Retrieve a list of all security groups in an environment.
 
 | Attribute                  | Description                          |
 | -------------------------- | ------------------------------------ |
-| `id`<br/>*UUID*            | The security group's id              |
-| `name`<br/>*string*        | The security group's name            |
-| `description`<br/>*string* | A description of the group's purpose |
+| `id`<br/>*UUID*            | The security group's id.              |
+| `name`<br/>*string*        | The security group's name.            |
+| `description`<br/>*string* | A description of the group's purpose. |
+| `isDefault`<br/>*boolean*  | If the security group is the default. |
 
 #### Retrieve a security group
 
@@ -48,7 +50,8 @@ curl -H "MC-Api-Key: your_api_key" \
     "data": {
         "id": "1bd672f4-b274-4371-a792-b0a6c6778cc7",
         "name": "default",
-        "description": "Default security group"
+        "description": "Default security group",
+        "isDefault": true
     }
 }
 ```
@@ -59,9 +62,10 @@ Retrieve information about a security group.
 
 | Attribute                  | Description                          |
 | -------------------------- | ------------------------------------ |
-| `id`<br/>*UUID*            | The security group's id              |
-| `name`<br/>*string*        | The security group's name            |
-| `description`<br/>*string* | A description of the group's purpose |
+| `id`<br/>*UUID*            | The security group's id.              |
+| `name`<br/>*string*        | The security group's name.            |
+| `description`<br/>*string* | A description of the group's purpose. |
+| `isDefault`<br/>*boolean*  | If the security group is the default. |
 
 #### Create a security group
 
@@ -87,8 +91,8 @@ Create a security group in an environment.
 
 | Required attributes        | Description                          |
 | -------------------------- | ------------------------------------ |
-| `name`<br/>*string*        | The security group's name            |
-| `description`<br/>*string* | A description of the group's purpose |
+| `name`<br/>*string*        | The security group's name.            |
+| `description`<br/>*string* | A description of the group's purpose. |
 
 #### Delete a security group
 

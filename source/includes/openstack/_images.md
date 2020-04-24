@@ -34,8 +34,8 @@ Retrieve a list of available images.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The image's id
-`name`<br/>*string* | The image name
+`id`<br/>*UUID* | The image's id.
+`name`<br/>*string* | The image name.
 
 #### Retrieve an image
 
@@ -56,9 +56,9 @@ curl -H "MC-Api-Key: your_api_key" \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/images/:id</code>
 
-Retrieve information about an image
+Retrieve information about an image.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The image's id
-`name`<br/>*string* | The image name
+`id`<br/>*UUID* | The image's id.
+`name`<br/>*string* | The image name.

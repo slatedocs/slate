@@ -28,7 +28,20 @@ curl -H "MC-Api-Key: your_api_key" \
          "securityGroupNames": [
              "webServerSecGroup",
              "sshSecGroup"
-         ]
+         ],
+        "updatedDate": "2020-04-15 14:38:32",
+        "createdDate": "2020-04-15 14:37:53",
+        "addresses": [
+          {
+            "networkId": "738f3944-e44c-4729-9fca-c6ade9235850",
+            "networkName": "web",
+            "portId": "08e7fabd-33ad-400c-a973-7bbf8cff51bc",
+            "macAddress": "fa:16:3e:02:de:ae",
+            "ipAddress": "10.55.84.72",
+            "ipType": "fixed",
+            "ipVersion": 4
+          }
+        ]
       }
     ],
     "metadata": {
@@ -43,19 +56,30 @@ Retrieve a list of all instances in an environment.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The name of the instance
-`state`<br/>*string* | The current state of the instance
-`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) id of the instance
-`flavorName`<br/>*string* | The [flavor](#openstack-flavors) name of the instance
-`imageId`<br/>*UUID* | The [image](#openstack-images) id of the instance
-`imageName`<br/>*string* | The [image](#openstack-images)  name of the instance
-`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#openstack-flavors)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#openstack-flavors)
-`networkId`<br/>*UUID* | The id of the network where instance is deployed
-`networkName`<br/>*string* | The name of the network where instance is deployed
-`privateIpAddress`<br/>*string* | The instance's private IP address
-`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) associated to the instance
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The name of the instance.
+`state`<br/>*string* | The current state of the instance.
+`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) id of the instance.
+`flavorName`<br/>*string* | The [flavor](#openstack-flavors) name of the instance.
+`imageId`<br/>*UUID* | The [image](#openstack-images) id of the instance.
+`imageName`<br/>*string* | The [image](#openstack-images)  name of the instance.
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#openstack-flavors).
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#openstack-flavors).
+`networkId`<br/>*UUID* | The id of the network where instance is deployed.
+`networkName`<br/>*string* | The name of the network where instance is deployed.
+`privateIpAddress`<br/>*string* | The instance's private IP address.
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) associated to the instance.
+`createdDate`<br/>*string* | The date the instance was created.
+`updatedDate`<br/>*string* | The date the instance was updated.
+`addresses`:<br/>*Array[Object]* | The list of addresses attached to the instance.
+`addresses.networkId`:<br/>*string* | The id of the network.
+`addresses.networkName`:<br/>*string* | The name of the network.
+`addresses.portId`:<br/>*string* | The id of the port.
+`addresses.macAddress`:<br/>*string* | The MAC address associated to the address.
+`addresses.ipAddress`:<br/>*string* | The IP address.
+`addresses.ipType`:<br/>*string* | The type of address. Possible values : fixed, floating.
+`addresses.ipVersion`:<br/>*integer* | The version of the IP protocol.
+     
 
 #### Retrieve an instance
 
@@ -82,8 +106,21 @@ curl -H "MC-Api-Key: your_api_key" \
       "securityGroupNames": [
           "webServerSecGroup",
           "sshSecGroup"
+      ],
+      "updatedDate": "2020-04-15 14:38:32",
+      "createdDate": "2020-04-15 14:37:53",
+      "addresses": [
+        {
+          "networkId": "738f3944-e44c-4729-9fca-c6ade9235850",
+          "networkName": "web",
+          "portId": "08e7fabd-33ad-400c-a973-7bbf8cff51bc",
+          "macAddress": "fa:16:3e:02:de:ae",
+          "ipAddress": "10.55.84.72",
+          "ipType": "fixed",
+          "ipVersion": 4
+        }
       ]
-   }
+  }
 }
 ```
 
@@ -93,19 +130,29 @@ Retrieve information about an instance.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The name of the instance
-`state`<br/>*string* | The current state of the instance
-`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) id of the instance
-`flavorName`<br/>*string* | The [flavor](#openstack-flavors) name of the instance
-`imageId`<br/>*UUID* | The [image](#openstack-images) id of the instance
-`imageName`<br/>*string* | The [image](#openstack-images)  name of the instance
-`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#openstack-flavors)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#openstack-flavors)
-`networkId`<br/>*UUID* | The id of the network where instance is deployed
-`networkName`<br/>*string* | The name of the network where instance is deployed
-`privateIpAddress`<br/>*string* | The instance's private IP address
-`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) associated to the instance
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The name of the instance.
+`state`<br/>*string* | The current state of the instance.
+`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) id of the instance.
+`flavorName`<br/>*string* | The [flavor](#openstack-flavors) name of the instance.
+`imageId`<br/>*UUID* | The [image](#openstack-images) id of the instance.
+`imageName`<br/>*string* | The [image](#openstack-images)  name of the instance.
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [flavor](#openstack-flavors).
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [flavor](#openstack-flavors).
+`networkId`<br/>*UUID* | The id of the network where instance is deployed.
+`networkName`<br/>*string* | The name of the network where instance is deployed.
+`privateIpAddress`<br/>*string* | The instance's private IP address.
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) associated to the instance.
+`createdDate`<br/>*string* | The date the instance was created.
+`updatedDate`<br/>*string* | The date the instance was updated.
+`addresses`:<br/>*Array[Object]* | The list of addresses attached to the instance.
+`addresses.networkId`:<br/>*string* | The id of the network.
+`addresses.networkName`:<br/>*string* | The name of the network.
+`addresses.portId`:<br/>*string* | The id of the port.
+`addresses.macAddress`:<br/>*string* | The MAC address associated to the address.
+`addresses.ipAddress`:<br/>*string* | The IP address.
+`addresses.ipType`:<br/>*string* | The type of address. Possible values : fixed, floating.
+`addresses.ipVersion`:<br/>*integer* | The version of the IP protocol.
 
 #### Create an instance
 
@@ -134,15 +181,19 @@ Create an instance in an environment.
 
 Required | &nbsp;
 ------ | -----------
-`imageId`<br/>*UUID* | The [image](#openstack-images) to use for this instance
-`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) will determine the number of CPU and RAM of your instance
+`imageId`<br/>*UUID* | The [image](#openstack-images) to use for this instance.
+`flavorId`<br/>*UUID* | The [flavor](#openstack-flavors) will determine the number of CPU and RAM of your instance.
 `networkId`<br/>*UUID* | The network in which the instance will be created. If you don't have a network, it can be created through the create network API.
-`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) to be associated to the instance
+`securityGroupNames`<br/>*Array[string]* | The list of [security groups](#openstack-security-groups) to be associated to the instance.
 
 Optional | &nbsp;
 ------ | -----------
-`name`<br/>*string* | Name of the instance
+`name`<br/>*string* | Name of the instance.
 `userData`<br/>*string* | Data that the user can specify when they launch an instance. User data can be used in the cloud-init system as a script that is run during the initial launch. The user data field can be used to configure SSH keys, user settings, or run a script.
+`sshKeyName`<br/>*string* | Name of the ssh key to link to the instance.
+`volumeToAttach`<br>*Object* | Specifies that a volume must be attached a volume needs to be attached to the instance.
+`volumeToAttach.id`<br>*Object* | Id of an existing volume to attach to the instance.
+`volumeToAttach.sizeInGB`<br>*Object* | The size in GB of the new disk to attached to the instance.
 
 #### Associate a floating IP
 
@@ -167,7 +218,7 @@ Associate a floating IP to an instance in your environment.
 
 Required                  | Description
 ------------------------- | -------------------------------------------
-`floatingIpId`<br/>*UUID* | The ID of a previously-acquired floating IP
+`floatingIpId`<br/>*UUID* | The ID of a previously-acquired floating IP.
 
 #### Change security groups
 ```shell
