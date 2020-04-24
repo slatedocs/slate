@@ -72,9 +72,11 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \ 
+    -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/floatingips"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "externalNetworkId": "networkId",

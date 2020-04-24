@@ -208,7 +208,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods?cluster_id=:cluster_id</code>
 
-Retrieve a list of all pods in a given [environment](#administration-environments)
+Retrieve a list of all pods in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -441,7 +441,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods/:id?cluster_id=:cluster_id</code>
 
-Retrieve a pod and all its info in a given [environment](#administration-environments)
+Retrieve a pod and all its info in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -490,7 +490,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods/:id?cluster_id=:cluster_id</code>
 
-Delete a pod from a given [environment](#administration-environments)
+Delete a pod from a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------

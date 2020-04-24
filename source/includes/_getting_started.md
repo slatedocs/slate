@@ -74,7 +74,7 @@ Verbs | Purpose
   "taskStatus": "PENDING"
 }
 ```
-When an API request is successful, the response body will contain the `data` field with the result of the API call. If you're using the [compute API](#compute-api), the `data` field might be empty since most of the operations are asynchronous. The response will contain the `taskId` and `taskStatus` fields so that you can retrieve the result of the operation you executed through the [task API](#tasks)
+When an API request is successful, the response body will contain the `data` field with the result of the API call. If you're using the [compute API](#compute-api), the `data` field might be empty since most of the operations are asynchronous. The response will contain the `taskId` and `taskStatus` fields so that you can retrieve the result of the operation you executed through the [task API](#tasks).
 
 Attributes | &nbsp;
 --- | ---
@@ -86,7 +86,7 @@ Attributes | &nbsp;
 -->
 
 <aside class="notice">
-If the response contains the "errors" field, the request was <strong>not</strong> successful
+If the response contains the "errors" field, the request was <strong>not</strong> successful.
 </aside>
 
 ### Error response

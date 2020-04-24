@@ -31,7 +31,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/affinitygroups</code>
 
-Retrieve a list of all affinity groups in an [environment](#administration-environments)
+Retrieve a list of all affinity groups in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----

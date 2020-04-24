@@ -52,7 +52,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpnusers/:id</code>
 
-Retrieve a VPN user
+Retrieve a VPN user.
 
 Attributes | &nbsp;
 ---------- | -----

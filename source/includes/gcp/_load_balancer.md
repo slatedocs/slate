@@ -41,7 +41,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers</code>
 
-Retrieve a list of all load balancers in a given [environment](#administration-environments)
+Retrieve a list of all load balancers in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -86,7 +86,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers/:id</code>
 
-Retrieve a load balancer in a given [environment](#administration-environments)
+Retrieve a load balancer in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -117,9 +117,7 @@ curl -X POST \
 	"shortProtocol": "HTTP",
 	"shortPort": "80"
 }
-```
 
-```js
 // Creating loadbalancer with existing IP
 {
 	"name":"my-loadbalancer-name",
@@ -128,9 +126,7 @@ curl -X POST \
 	"shortPort": "80",
     "shortIP": "my-ip-name",
 }
-```
 
-```js
 // Creating loadbalancer with new static IP
 {
 	"name":"my-loadbalancer-name",
@@ -139,9 +135,7 @@ curl -X POST \
 	"shortPort": "80",
     "reserveStaticIP": true
 }
-```
 
-```js
 // Creating loadbalancer with HTTPS protocol
 {
 	...
@@ -152,7 +146,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers</code>
 
-Create a new load balancer
+Create a new load balancer.
 
 Required | &nbsp;
 ------- | -----------
@@ -188,7 +182,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers/:id</code>
 
-Delete an existing load balancer
+Delete an existing load balancer.
 
 <aside class="notice">
 By default the forwarding rules, target proxies and url map will be deleted.

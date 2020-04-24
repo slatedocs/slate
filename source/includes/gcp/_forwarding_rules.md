@@ -42,7 +42,7 @@ curl -X GET \
    GET /service/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules
 </code>
 
-Retrieve a list of all forwarding rules
+Retrieve a list of all forwarding rules.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -95,7 +95,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules/:id</code>
 
-Retrieve a forwarding rule in a given [environment](#administration-environments)
+Retrieve a forwarding rule in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -133,9 +133,7 @@ curl -X POST \
   "name": "my-forwarding-name",
   "shortTarget": "my-target-proxy"
 }
-```
 
-```js
 // Creating a forwarding rule with new static IP
 {
   "portRange": "80",
@@ -143,9 +141,7 @@ curl -X POST \
   "shortTarget": "my-target-proxy",
   "reserveStaticIP": true
 }
-```
 
-```js
 // Creating a forwarding rule with ephemeral IP
 {
   "portRange": "80",  
@@ -157,7 +153,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules</code>
 
-Create a new forwarding rule
+Create a new forwarding rule.
 
 Required | &nbsp;
 ------- | -----------

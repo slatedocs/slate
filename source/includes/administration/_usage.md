@@ -107,7 +107,7 @@ curl -X GET \
 }
 ```
 
-Retrieves the usage summary records for top level organization and it's sub-organizations for a specific period ensuring that usage is split between two buckets, resource commitment usage and utility usage. The response format will be in the JSON format
+Retrieves the usage summary records for top level organization and it's sub-organizations for a specific period ensuring that usage is split between two buckets, resource commitment usage and utility usage. The response format will be in the JSON format.
 
 ##### Resource Commitment Usage:
 The usage that is counted toward a pre assigned pool of resources defined by the Resource Commitment of the organization on a specified service connection. The resource commitment usage is capped by the resource commitment capacity which is the total amount of resource allocated to the organization.

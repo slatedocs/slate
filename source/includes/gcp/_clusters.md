@@ -1,5 +1,5 @@
 ### Clusters
-List your Kubernetes clusters
+List your Kubernetes clusters.
 
 <!-------------------- LIST CLUSTERS -------------------->
 

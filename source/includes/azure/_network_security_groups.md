@@ -42,7 +42,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networksecuritygroups</code>
 
-Retrieve a list of all network security groups in an [environment](#administration-environments)
+Retrieve a list of all network security groups in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -90,4 +90,4 @@ curl -X DELETE \
 
   <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkSecurityGroups/:id</code>
 
-  Delete an existing network security group
+  Delete an existing network security group.

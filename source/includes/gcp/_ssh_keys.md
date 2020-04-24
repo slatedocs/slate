@@ -30,7 +30,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys</code>
 
-Retrieve a list of all SSH keys in an [environment](#administration-environments)
+Retrieve a list of all SSH keys in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -61,7 +61,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:id</code>
 
-Retrieve information about an SSH key of an [environment](#administration-environments)
+Retrieve information about an SSH key of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -90,7 +90,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys</code>
 
-Add an SSH key to the [environment](#administration-environments)
+Add an SSH key to the [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -109,4 +109,4 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>
 
-Delete an existing SSH key from the [environment](#administration-environments)
+Delete an existing SSH key from the [environment](#administration-environments).

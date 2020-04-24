@@ -1,6 +1,6 @@
 ### Firewall rules
 
-Firewall allows you to control inbound and outbound traffic to your [environment](#administration-environments)
+Firewall allows you to control inbound and outbound traffic to your [environment](#administration-environments).
 
 #### List firewall rules
 
@@ -53,7 +53,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules</code>
 
-Retrieve a list of all firewall rules in a given [environment](#administration-environments)
+Retrieve a list of all firewall rules in a given [environment](#administration-environments).
 
  Attributes | &nbsp;
 ------- | -----------
@@ -120,7 +120,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id</code>
 
-Retrieve a firewall rules in a given [environment](#administration-environments)
+Retrieve a firewall rules in a given [environment](#administration-environments).
 
  Attributes | &nbsp;
 ------- | -----------

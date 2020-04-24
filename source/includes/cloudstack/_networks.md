@@ -42,7 +42,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
-Retrieve a list of all networks of an [environment](#administration-environments)
+Retrieve a list of all networks of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -155,7 +155,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
-Create a network in an [environment](#administration-environments)
+Create a network in an [environment](#administration-environments).
 
 If the network offering is a VPC subnet offering (indicated by the `vpcOnly` flag on the offering), the vpcId and networkAclId are required fields.
 
@@ -202,7 +202,7 @@ curl -X PUT \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
 
-Update an existing network in an [environment](#administration-environments)
+Update an existing network in an [environment](#administration-environments).
 
 Required | &nbsp;
 ------ | -----------

@@ -44,7 +44,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns</code>
 
-Retrieve a list of all site-to-site VPNs in an [environment](#administration-environments)
+Retrieve a list of all site-to-site VPNs in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -164,7 +164,7 @@ curl -X POST \
 ```
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns</code>
 
-Create a site-to-site VPN
+Create a site-to-site VPN.
 
 Required | &nbsp;
 ------ | -----------
@@ -222,7 +222,7 @@ curl -X PUT \
 ```
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id</code>
 
-Update a site-to-site VPN
+Update a site-to-site VPN.
 
 Optional | &nbsp;
 ------ | -----------

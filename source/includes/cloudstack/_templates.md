@@ -112,7 +112,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates/:id</code>
 
-Retrieve information about a public or private template of an [environment](#administration-environments)
+Retrieve information about a public or private template of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -165,7 +165,7 @@ curl -X POST \
 ```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates</code>
 
-Import a template
+Import a template.
 
 Required | &nbsp;
 -------- | ------
@@ -209,7 +209,7 @@ curl -X POST \
 ```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates/:id/operation=update</code>
 
-Update a template
+Update a template.
 
 Required | &nbsp;
 -------- | ------
@@ -237,4 +237,4 @@ curl -X DELETE \
 ```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates/:id</code>
 
-Delete a private template
+Delete a private template.

@@ -46,7 +46,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups</code>
 
-Retrieve a list of all instance groups in a given [environment](#administration-environments)
+Retrieve a list of all instance groups in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -104,7 +104,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id</code>
 
-Retrieve an instance group in a given [environment](#administration-environments)
+Retrieve an instance group in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -149,7 +149,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups</code>
 
-Create a new instance group
+Create a new instance group.
 
 Required | &nbsp;
 ------- | -----------
@@ -175,7 +175,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id</code>
 
-Delete an existing instance group
+Delete an existing instance group.
 
 <!-------------------- MANAGE INSTANCE MEMBERS -------------------->
 
@@ -198,7 +198,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_instance_members</code>
 
-Manage instance members in an existing instance group
+Manage instance members in an existing instance group.
 
 <aside class="notice">
 An instance can only belong to one load balanced instance group. But you can add an instance to multiple non-load balanced instance groups

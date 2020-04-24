@@ -106,7 +106,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given [environment](#administration-environments)
+Retrieve a list of all instances in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -241,7 +241,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Retrieve an instance in a given [environment](#administration-environments)
+Retrieve an instance in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -303,9 +303,7 @@ curl -X POST \
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
   "shortIP": "my-ip-name"
 }
-```
 
-```js
 // Create an instance with a new static IP
 {
   "name": "my-instance",
@@ -318,9 +316,7 @@ curl -X POST \
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
   "reserveStaticIP": true
 }
-```
 
-```js
 // Create an instance with an ephemeral IP
 {
   "name": "my-instance",
@@ -336,7 +332,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Create a new instance
+Create a new instance.
 
 Required | &nbsp;
 ------- | -----------
@@ -366,7 +362,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Delete an existing instance
+Delete an existing instance.
 
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
@@ -429,16 +425,12 @@ curl -X POST \
 ```js
 // Changing the IP to an ephemeral IP, just leave it empty
 { }
-```
 
-```js
 // Changing the IP to a new static IP
 {
   "reserveStaticIP" : true
 }
-```
 
-```js
 // Changing the IP to an existing IP
 {
   "shortIP" : "your-ip-name"
@@ -475,7 +467,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=get_ssh</code>
 
-Retrieve a command to allow you to SSH into a give running instance
+Retrieve a command to allow you to SSH into a give running instance.
 
 Required | &nbsp;
 ------ | -----------
@@ -503,7 +495,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=set_windows_password</code>
 
-Set and retrieve a generated password to a given user on a running Windows instance
+Set and retrieve a generated password to a given user on a running Windows instance.
 
 Required | &nbsp;
 ------ | -----------
@@ -528,10 +520,10 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_group_membership</code>
 
-Manage an instance's membership to groups
+Manage an instance's membership to groups.
 
 <aside class="notice">
-An instance can only belong to one load balanced instance group. But you can add an instance to multiple non-load balanced instance groups
+An instance can only belong to one load balanced instance group. But you can add an instance to multiple non-load balanced instance groups.
 </aside>
 
 Required | &nbsp;

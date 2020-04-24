@@ -189,7 +189,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/backendservices</code>
 
-Create a new backend service
+Create a new backend service.
 
 | Required | &nbsp;|
 | --- | --- |

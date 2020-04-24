@@ -101,7 +101,7 @@ Or
 
 
 
-Retrieve a list of all releases in a given [environment](#administration-environments)
+Retrieve a list of all releases in a given [environment](#administration-environments).
 
 	 
 Optional | &nbsp;
@@ -363,23 +363,19 @@ curl -X POST \
   "upgradeChart":  "stable/aerospike",
   "upgradeChart":  1 
 }
-```
 
-```js
 // Change to a specific version of a chart
 {
   "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
 }
-```
 
-```js
 // Change the values for the latest version
 {
   "upgradeChart" : "stable/aerospike",
   "values": "---\n\"replicaCount\": 3\n"
 }
 ```
-> The above commands return JSON structured like this
+> The above commands return JSON structured like this:
 
 ```json
 {
@@ -390,7 +386,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=upgrade</code>
 
-Upgrade a release in a given [environment](#administration-environments)
+Upgrade a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------

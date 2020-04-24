@@ -37,7 +37,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos</code>
 
-Retrieve a list of all ISOs of an [environment](#administration-environments)
+Retrieve a list of all ISOs of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -88,7 +88,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id</code>
 
-Retrieve information about a public or private ISO of an [environment](#administration-environments)
+Retrieve information about a public or private ISO of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -128,7 +128,7 @@ curl -X POST \
 ```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos</code>
 
-Import an ISO
+Import an ISO.
 
 Required                   | &nbsp;
 ---------------------------|-------
@@ -196,4 +196,4 @@ curl -X DELETE \
 ```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id</code>
 
-Delete an ISO
+Delete an ISO.

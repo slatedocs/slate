@@ -54,7 +54,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpntunnels</code>
 
-Retrieve a list of all VPN tunnels in a given [environment](#administration-environments)
+Retrieve a list of all VPN tunnels in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -207,7 +207,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpntunnels/:id</code>
 
-Delete a Classic VPN tunnel in a given [environment](#administration-environments)
+Delete a Classic VPN tunnel in a given [environment](#administration-environments).
 
 Optional | &nbsp;
 ------- | -----------

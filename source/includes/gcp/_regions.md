@@ -107,7 +107,7 @@ curl -H "MC-Api-Key: your_api_key" \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/regions/:id</code>
 
-Retrieve information about a region
+Retrieve information about a region.
 
 Attributes | &nbsp;
 ------- | -----------

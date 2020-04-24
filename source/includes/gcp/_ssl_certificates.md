@@ -155,7 +155,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sslcertificates</code>
 
-Create a new ssl certificate
+Create a new ssl certificate.
 
 | Required | &nbsp;|
 | --- | --- |

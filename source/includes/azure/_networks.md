@@ -34,7 +34,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
-Retrieve a list of all virtual networks in an [environment](#administration-environments)
+Retrieve a list of all virtual networks in an [environment](#administration-environments).
 
 Optional query parameters | &nbsp;
 ---------- | -----
@@ -74,7 +74,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
-Create a virtual network in an [environment](#administration-environments)
+Create a virtual network in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----

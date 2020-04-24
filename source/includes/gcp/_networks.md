@@ -45,7 +45,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
-Retrieve a list of all networks in an [environment](#administration-environments)
+Retrieve a list of all networks in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -96,7 +96,7 @@ curl -H "MC-Api-Key: your_api_key" \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
 
-Retrieve information about a network
+Retrieve information about a network.
 
 Attributes | &nbsp;
 ---------- | -----

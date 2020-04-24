@@ -58,7 +58,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks</code>
 
-Retrieve a list of all the disks in a given [environment](#administration-environments)
+Retrieve a list of all the disks in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -99,7 +99,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id</code>
 
-Retrieve a specific disk in a given [environment](#administration-environments)
+Retrieve a specific disk in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -153,7 +153,7 @@ curl -X POST \
 
 _(Use the [task API](#tasks) to get the status of the operation)_
 
-Create a disk in an [environment](#administration-environments)
+Create a disk in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -202,7 +202,7 @@ curl -X POST \
 
 _(Use the [task API](#tasks) to get the status of the operation)_
 
-Edit a disk in an [environment](#administration-environments)
+Edit a disk in an [environment](#administration-environments).
 
 Optional | &nbsp;
 ---------- | -----
@@ -277,7 +277,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=attach</code>
 
-Attach a disk to an instance
+Attach a disk to an instance.
 
 Optional | &nbsp;
 ---------- | -----

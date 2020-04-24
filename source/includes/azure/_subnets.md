@@ -18,12 +18,12 @@ curl -X GET \
   "data": [
     {
       "addressPrefix": "10.1.2.0/24",
-      "parentNetworkId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet",
-      "parentNetworkName": ":example-vnet",
+      "parentNetworkId": "/subscriptions/:subscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet",
+      "parentNetworkName": "example-vnet",
       "allocatedIpAddresses": 3,
       "availableAddresses": 248,
       "totalNumberIps": 251,
-      "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet",
+      "id": "/subscriptions/:subscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet",
       "region": "eastus",
       "name": "example-subnet"
     }
@@ -72,7 +72,7 @@ Additional Attributes: Network filter included | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
+   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
 ```
 > The above command returns JSON structured like this:
 
@@ -80,12 +80,12 @@ curl -X GET \
 {
   "data": {
     "addressPrefix": "10.1.2.0/24",
-    "parentNetworkId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet",
-    "parentNetworkName": ":example-vnet",
+    "parentNetworkId": "/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet",
+    "parentNetworkName": "example-vnet",
     "allocatedIpAddresses": 3,
     "availableAddresses": 248,
     "totalNumberIps": 251,
-    "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet",
+    "id": "/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet",
     "region": "eastus",
     "name": "example-subnet",
     "networkSecurityGroupName": "test-rg",
@@ -93,9 +93,9 @@ curl -X GET \
       {
         "name": "sample-nic",
         "subnetName": "example-subnet",
-        "subnetName": ":example-vnet",
+        "subnetName": "example-vnet",
         "primaryPrivateIp": "10.1.2.4",
-        "id": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/networkInterfaces/virtualNetworks/sample-nic"
+        "id": "/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/networkInterfaces/virtualNetworks/sample-nic"
       }
     ]
   }
@@ -142,7 +142,7 @@ curl -X POST \
 {
   "name": "default",
   "addressPrefix": "10.0.1.0/24",
-  "parentNetworkId": "/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet"
+  "parentNetworkId": "/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet"
 }
 ```
 
@@ -169,7 +169,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
+   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
 ```
 > Request body example:
 
@@ -195,7 +195,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/:subscription/resourceGroups/:resourceGroup/providers/Microsoft.Network/virtualNetworks/:example-vnet/subnets/example-subnet"
+   "https://cloudmc_endpoint/v1/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnets/:subnet_id</code>

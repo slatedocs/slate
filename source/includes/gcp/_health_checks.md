@@ -46,7 +46,7 @@ curl -X GET \
    GET /service/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks
 </code>
 
-Retrieve a list of all healtch checks
+Retrieve a list of all healtch checks.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -104,7 +104,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks/:id</code>
 
-Retrieve a health check in a given [environment](#administration-environments)
+Retrieve a health check in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------

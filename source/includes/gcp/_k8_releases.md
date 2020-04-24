@@ -101,7 +101,7 @@ Or
 
 
 
-Retrieve a list of all releases in a given [environment](#administration-environments)
+Retrieve a list of all releases in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -278,7 +278,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases?cluster_id=:cluster_id</code>
 
-Retrieve a release in a given [environment](#administration-environments)
+Retrieve a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -376,16 +376,12 @@ curl -X POST \
 {
   "upgradeChart":  "stable/aerospike" 
 }
-```
 
-```js
 // Change to a specific version of a chart
 {
   "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
 }
-```
 
-```js
 // Change the values for the latest version
 {
   "upgradeChart" : "stable/aerospike",
@@ -403,7 +399,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=upgrade&cluster_id=:cluster_id</code>
 
-Upgrade a release in a given [environment](#administration-environments)
+Upgrade a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------

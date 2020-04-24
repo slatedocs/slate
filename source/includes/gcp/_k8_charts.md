@@ -78,7 +78,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts?cluster_id=:cluster_id</code>
 
-Retrieve a list of all charts in a given [environment](#administration-environments)
+Retrieve a list of all charts in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -183,7 +183,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts/:id?cluster_id=cluster_id</code>
 
-Retrieve a specific chart in a given [environment](#administration-environments)
+Retrieve a specific chart in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -250,7 +250,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts?cluster_id=:cluster_id</code>
 
-Install a chart in a given [environment](#administration-environments)
+Install a chart in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------

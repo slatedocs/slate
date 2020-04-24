@@ -26,7 +26,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys</code>
 
-Retrieve a list of all SSH keys in an [environment](#administration-environments)
+Retrieve a list of all SSH keys in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -57,7 +57,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>
 
-Retrieve information about an SSH key of an [environment](#administration-environments)
+Retrieve information about an SSH key of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----

@@ -85,7 +85,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
-Retrieve a public IP address in a given [environment](#administration-environments)
+Retrieve a public IP address in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -126,7 +126,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses</code>
 
-Create a public IP address in a given [environment](#administration-environments)
+Create a public IP address in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -160,7 +160,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses?operation=associate</code>
 
-Associate a public IP address in a given [environment](#administration-environments) to a network interface
+Associate a public IP address in a given [environment](#administration-environments) to a network interface.
 
 Required | &nbsp;
 ------- | -----------
@@ -203,7 +203,7 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
-Update a public IP address in a given [environment](#administration-environments)
+Update a public IP address in a given [environment](#administration-environments).
 
 Attribute | &nbsp;
 ------- | -----------

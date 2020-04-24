@@ -75,14 +75,14 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
   -H 'mc-api-key: your_api_key' \
-  "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/:example-securityGroup/securityRules/example-securityRule"
+  "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/mySeccurityRule"
 ```
 > The above command returns JSON structured like this:
 
 ```json
 {
   "data": {
-    "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/sample-network-security-group/defaultSecurityRules/SampleRuleInBound",
+    "id": "/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/defaultSecurityRules/SampleRuleInBound",
     "name": "SampleRuleInBound",
     "direction": "Inbound",
     "access": "Allow",
@@ -195,7 +195,7 @@ Delete an existing security rule.
 curl -X POST \
   -H 'mc-api-key: your_api_key' \
   -d "request_body" \
-  "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/:example-securityGroup/securityRules/example-securityRule?operation=edit"
+  "https://cloudmc_endpoint/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/mySecurityRule?operation=edit"
 ```
 > Request body example:
 

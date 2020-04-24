@@ -164,8 +164,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=extend"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
    "sizeInGB": 40

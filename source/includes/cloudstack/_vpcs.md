@@ -38,7 +38,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs</code>
 
-Retrieve a list of all VPCs of an [environment](#administration-environments)
+Retrieve a list of all VPCs of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -131,7 +131,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs</code>
 
-Create a VPC in an [environment](#administration-environments)
+Create a VPC in an [environment](#administration-environments).
 
 Required | &nbsp;
 ------ | -----------
@@ -168,7 +168,7 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs</code>
 
-Update an existing VPC in your [environment](#administration-environments)
+Update an existing VPC in your [environment](#administration-environments).
 
 Optional | &nbsp;
 ------ | ---- | -----------

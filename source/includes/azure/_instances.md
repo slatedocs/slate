@@ -56,7 +56,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given [environment](#administration-environments)
+Retrieve a list of all instances in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -136,7 +136,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Retrieve an instance in a given [environment](#administration-environments)
+Retrieve an instance in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -211,7 +211,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Create a new instance
+Create a new instance.
 
 Required | &nbsp;
 ------- | -----------
@@ -243,7 +243,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Delete an existing instance
+Delete an existing instance.
 
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 

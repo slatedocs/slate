@@ -76,7 +76,7 @@ Attributes | &nbsp;
 
 `GET /organizations/:id`
 
-Retrieve an organization's details
+Retrieve an organization's details.
 
 ```shell
 # Retrieve an organization
@@ -186,7 +186,7 @@ The responses' `data` field contains the created [organization](#administration-
 ### Update organization
 `PUT /organizations/:id`
 
-Update an organization. It's parent organization cannot be changed. It can be assigned service connections
+Update an organization. It's parent organization cannot be changed. It can be assigned service connections.
 
 ```shell
 # Update an organization
