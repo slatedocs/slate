@@ -395,7 +395,7 @@ curl -X POST \
 
 Upgrade a release in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.  
 

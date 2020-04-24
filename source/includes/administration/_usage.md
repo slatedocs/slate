@@ -79,10 +79,10 @@ Query Parameters | &nbsp;
 
 ```shell
 # Retrieve usage summary in JSON
-curl --request GET \
-  --url 'https://cloudmc_endpoint/rest/usage_summary/top_level/organizations/52fd201e-aa82-4a27-86b3-ea9650a7fb1e?start_date=2019-03-12&end_date=2019-03-13' \
-  --header 'content-type: application/json' \
-  --header 'mc-api-key: your_api_key' \
+curl -X GET \
+  'https://cloudmc_endpoint/rest/usage_summary/top_level/organizations/52fd201e-aa82-4a27-86b3-ea9650a7fb1e?start_date=2019-03-12&end_date=2019-03-13' \
+  -H 'content-type: application/json' \
+  -H 'mc-api-key: your_api_key' \
 
 # Response body example
 ```

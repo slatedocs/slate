@@ -80,7 +80,7 @@ curl -X GET \
 
 Retrieve a list of all charts in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to list the charts. 
 
@@ -185,7 +185,7 @@ curl -X GET \
 
 Retrieve a specific chart in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to get the chart. 
 
@@ -252,7 +252,7 @@ curl -X POST \
 
 Install a chart in a given [environment](#administration-environments)
 
-Mandatory | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `cluster_id` <br/>*string* | The id of the cluster in which to install the chart. 
 

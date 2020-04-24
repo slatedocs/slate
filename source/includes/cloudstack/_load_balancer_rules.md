@@ -72,7 +72,7 @@ Query Parameters | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/:id"
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/f8ed7f44-449c-4510-848c-dc18e6665db1"
 ```
 ```json
 {
