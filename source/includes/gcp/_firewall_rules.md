@@ -1,6 +1,6 @@
 ### Firewall rules
 
-Firewall allows you to control inbound and outbound traffic to your [environment](#administration-environments)
+Firewall allows you to control inbound and outbound traffic to your [environment](#administration-environments).
 
 #### List firewall rules
 
@@ -8,9 +8,9 @@ Firewall allows you to control inbound and outbound traffic to your [environment
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/firewallrules"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -53,7 +53,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules</code>
 
-Retrieve a list of all firewall rules in a given [environment](#administration-environments)
+Retrieve a list of all firewall rules in a given [environment](#administration-environments).
 
  Attributes | &nbsp;
 ------- | -----------
@@ -80,9 +80,9 @@ Retrieve a list of all firewall rules in a given [environment](#administration-e
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/firewallrules/4890726785951782638"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -120,7 +120,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id</code>
 
-Retrieve a firewall rules in a given [environment](#administration-environments)
+Retrieve a firewall rules in a given [environment](#administration-environments).
 
  Attributes | &nbsp;
 ------- | -----------
@@ -151,6 +151,8 @@ curl -X POST \
   -d "request_body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/firewallrule"
 ```
+> Request body example:
+
 ```json
 {
   "action": "allow",

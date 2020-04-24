@@ -12,9 +12,9 @@ Resource commitments allow you to set specific commitment levels on cloud resour
 # Retrieve visible resource commitments
 curl "https://cloudmc_endpoint/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -104,9 +104,9 @@ Attributes | &nbsp;
 
 curl "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -191,10 +191,10 @@ Attributes | &nbsp;
 curl -X POST "https://cloudmc_endpoint/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "displayName": "NEW-RESOURCE-COMMITMENT",
@@ -262,10 +262,10 @@ The responses' `data` field contains the created [resource-commitment](#administ
 curl -X PUT "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "id": "ef17768a-c037-4a8a-8f12-f4595dd84ca0",
@@ -337,7 +337,6 @@ The responses' `data` field contains the created [resource-commitment](#administ
 
 curl "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -X DELETE -H "MC-Api-Key: your_api_key"
-
 ```
 
 Delete a specific resource commitment. You will need a [role](#administration-roles) with the `Commitments: Manage` permission to execute this operation.

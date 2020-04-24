@@ -8,6 +8,8 @@ Floating IPs are public IP addresses that a user can acquire and use in an envir
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/floatingips"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": [
@@ -41,6 +43,8 @@ Attributes | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/floatingips/287a3963-983b-4602-9dea-4dff89e9dc10"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": {
@@ -68,9 +72,11 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \ 
+    -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/floatingips"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "externalNetworkId": "networkId",

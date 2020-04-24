@@ -9,9 +9,9 @@ A region is a geographical area where a resource is located. Regions contains mu
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/gcp/test-area/regions"
-
-Response body:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -71,9 +71,9 @@ Attributes | &nbsp;
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/gcp/test-area/regions/1330"
-
-Response body:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": {
@@ -107,7 +107,7 @@ Response body:
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/regions/:id</code>
 
-Retrieve information about a region
+Retrieve information about a region.
 
 Attributes | &nbsp;
 ------- | -----------

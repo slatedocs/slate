@@ -8,6 +8,8 @@ Deploy and manage your instances. Instances are virtual machines or physical mac
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/instances"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": [
@@ -85,6 +87,8 @@ Attributes | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": {
@@ -158,8 +162,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/instances"
-# Request body example:
 ```
+> Request body example:
+
 ```json
 {
     "name": "web1",
@@ -198,8 +203,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=associate"
-# Request body should look like
 ```
+> Request body example:
+
 ```json
 {
   "floatingIpId": "287a3963-983b-4602-9dea-4dff89e9dc10"
@@ -221,8 +227,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=changeSecurityGroups"
-# Request body should look like
 ```
+> Request body example:
+
 ```json
 {
   "securityGroupNames": [ "securityGroupNameA", "securityGroupNameB"]

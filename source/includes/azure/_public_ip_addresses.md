@@ -10,9 +10,8 @@ Deploy and manage your public ip addresses.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -63,9 +62,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -87,7 +85,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
-Retrieve a public IP address in a given [environment](#administration-environments)
+Retrieve a public IP address in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -112,9 +110,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses"
-
-# Request Example:
 ```
+> Request body example:
 
 ```json
 {
@@ -129,7 +126,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses</code>
 
-Create a public IP address in a given [environment](#administration-environments)
+Create a public IP address in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -152,9 +149,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses?operation=associate"
-
-# Request Example:
 ```
+> Request body example:
 
 ```json
 {
@@ -164,7 +160,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses?operation=associate</code>
 
-Associate a public IP address in a given [environment](#administration-environments) to a network interface
+Associate a public IP address in a given [environment](#administration-environments) to a network interface.
 
 Required | &nbsp;
 ------- | -----------
@@ -194,9 +190,8 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/publicipaddresses//subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
-
-# Request Example:
 ```
+> Request body example:
 
 ```json
 {
@@ -208,7 +203,7 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
 
-Update a public IP address in a given [environment](#administration-environments)
+Update a public IP address in a given [environment](#administration-environments).
 
 Attribute | &nbsp;
 ------- | -----------

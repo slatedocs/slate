@@ -9,9 +9,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -78,7 +78,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts</code>
 
-Retrieve a list of all charts in a given [environment](#administration-environments)
+Retrieve a list of all charts in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -114,9 +114,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts/stable/aerospike"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -178,7 +178,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts/:id</code>
 
-Retrieve a specific chart in a given [environment](#administration-environments)
+Retrieve a specific chart in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -215,9 +215,9 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
 	"relationships": {
@@ -240,7 +240,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts</code>
 
-Install a chart in a given [environment](#administration-environments)
+Install a chart in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------

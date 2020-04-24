@@ -10,9 +10,9 @@ A network security group is a group of security rules that allow or deny inbound
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/networksecuritygroups"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -42,7 +42,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networksecuritygroups</code>
 
-Retrieve a list of all network security groups in an [environment](#administration-environments)
+Retrieve a list of all network security groups in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -63,7 +63,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -X POST \
-  'http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups' \
+  'http://cloudmc_endpoint/v1/services/azure/my-azure/networkSecurityGroups' \
   -H 'mc-api-key: your_api_key' \
   -d '{
 	"name": "network-security-group", 
@@ -84,10 +84,10 @@ Required | &nbsp;
 
 ```shell 
 curl -X DELETE \
-  'http://cloudmc_endpoint/v1/services/azure/co-emcilroy-eastasia/networkSecurityGroups/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-system-co-cloudmc-eastus/providers/Microsoft.Network/networkSecurityGroups/test' \
+  'http://cloudmc_endpoint/v1/services/azure/my-azure/networkSecurityGroups/subscriptions/6b6a1f27-55c1-4b1d-969b-60a3c9eebe64/resourceGroups/azure-system-co-cloudmc-eastus/providers/Microsoft.Network/networkSecurityGroups/test' \
   -H 'mc-api-key: your_api_key'
   ```
 
   <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkSecurityGroups/:id</code>
 
-  Delete an existing network security group
+  Delete an existing network security group.

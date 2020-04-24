@@ -10,9 +10,9 @@ Port forwarding allows traffic from external hosts to services offered by applic
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules"
-
-# Example response:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -70,9 +70,9 @@ Query Parameters | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
-
-# Example response:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -123,17 +123,14 @@ Attributes | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "ipAddressId": "4daf6ce5-a8b1-47d2-96b3-8edda63d891c",
@@ -172,9 +169,6 @@ Optional | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"

@@ -12,9 +12,8 @@ For information regarding bare metal instances, please see [bare metal instances
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -51,7 +50,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given [environment](#administration-environments)
+Retrieve a list of all instances in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -85,10 +84,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
-
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -172,15 +169,13 @@ Attributes | &nbsp;
 ```shell
 
 # Here is the absolute minimum information required to create a new instance:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances"
-
-# Request should look like this
 ```
+> Request body example:
 
 ```json
 {
@@ -236,15 +231,13 @@ Optional | &nbsp;
 ```shell
 
 # Here is the absolute minimum information required to create a new instance:
-
 curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -272,10 +265,10 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint:443/v1/services/compute-on/test_area/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
-
-# Request example:
+   -d "request_body" \
+   "https://cloudmc_endpoint:443/v1/services/compute-on/test_area/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" 
 ```
+> Request body example:
 
 ```json
 {
@@ -308,13 +301,10 @@ Optional | &nbsp;
 #### Start an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
-
 ```
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=start</code>
@@ -326,15 +316,13 @@ Start an existing instance. The instance must be in the *Stopped* state for this
 #### Stop an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -355,8 +343,6 @@ Optional | &nbsp;
 #### Reboot an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -372,8 +358,6 @@ Reboot an existing instance. The instance must be in the *Running* or *Stopped* 
 #### Purge an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -389,8 +373,6 @@ Purges an existing instance (i.e. completely remove it from the environment). Th
 #### Recover an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -406,8 +388,6 @@ Recover an existing instance that was previously destroyed. The instance must be
 #### Change the compute offering of an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -436,8 +416,6 @@ Required | (if custom compute offering)
 #### Reset the password of an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -453,8 +431,6 @@ Reset the password of the default user of an existing instance. The new password
 #### Change network of an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -474,15 +450,12 @@ Required | &nbsp;
 #### Associate an SSH key to an instance
 
 ```shell
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -506,9 +479,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=attachIso"
-
-# Request should look like this
 ```
+> Request body example:
 
 ```json
 {

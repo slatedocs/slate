@@ -8,6 +8,8 @@ Volumes are block-level storage devices that can be attached to instances.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": [
@@ -47,6 +49,8 @@ Attributes | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": {
@@ -82,8 +86,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
    "name": "mysql",
@@ -122,8 +127,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=attach"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
    "instanceId": "449efafc-0a6f-4f9e-9602-4b9ac2400abd"
@@ -158,8 +164,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=extend"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
    "sizeInGB": 40

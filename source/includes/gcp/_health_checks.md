@@ -8,8 +8,8 @@ Health checking mechanisms determine whether VM instances respond properly to tr
 curl -X GET \
   -H 'MC-Api-key: your_api_key'
   "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks"
-  # The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -46,7 +46,7 @@ curl -X GET \
    GET /service/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks
 </code>
 
-Retrieve a list of all healtch checks
+Retrieve a list of all healtch checks.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -73,9 +73,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks/5930212998788364011"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -105,7 +104,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks/:id</code>
 
-Retrieve a health check in a given [environment](#administration-environments)
+Retrieve a health check in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -170,8 +169,10 @@ Destroy an existing health check. A health check can only be deleted if it's not
 ```shell
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks/6938691570659391640"
 ```
+> Request body example:
 
 ```json
 {

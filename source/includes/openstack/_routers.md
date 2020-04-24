@@ -8,6 +8,8 @@ Routers route traffic between networks, including the public internet.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": [
@@ -51,6 +53,8 @@ Retrieve a list of routers in an OpenStack environment.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
     "data": {
@@ -91,8 +95,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "name": "external-router",
@@ -117,8 +122,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71?operation=addRouterInterface"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "networkId": "471eb361-c028-45f5-bd1a-6d05a057624f",

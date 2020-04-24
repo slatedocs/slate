@@ -10,9 +10,8 @@ External IP address to an instance or a forwarding rule if you need to communica
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -56,7 +55,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips</code>
 
-Retrieve a list of all external IPs in a given [environment](#administration-environments)
+Retrieve a list of all external IPs in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -85,9 +84,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips/8516891730356002156"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -150,9 +148,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips?operation=reserve"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "my-static-ip",

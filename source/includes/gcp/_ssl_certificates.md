@@ -10,9 +10,8 @@ Represents an SSL Certificate resource.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sslcertificates"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -83,9 +82,8 @@ Retrieve a list of all ssl certificates in an [environment](#administration-envi
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sslcertificates/6911678730334723784"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -134,30 +132,30 @@ Retrieve a ssl certificate in an [environment](#administration-environments).
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sslcertificates"
-
-# Example:
 ```
+> Request body example:
 
 ```json
 {
-	"name":"ssl-root-rny",
-	"privateKey":"-----BEGIN RSA PRIVATE KEY-----
+	"name": "ssl-root-rny",
+	"privateKey": "-----BEGIN RSA PRIVATE KEY-----
   (encoded private key body in here)
   -----END RSA PRIVATE KEY-----",
-	"certificate":"-----BEGIN CERTIFICATE-----
+	"certificate": "-----BEGIN CERTIFICATE-----
   (encoded certificate body in here)
   -----END CERTIFICATE-----",
-	"chainCertificate":"-----BEGIN CERTIFICATE-----
+	"chainCertificate": "-----BEGIN CERTIFICATE-----
   (encoded chain certificate body in here)
   -----END CERTIFICATE-----",
-	"description":"Api docs demo certificate"
+	"description": "Api docs demo certificate"
 }
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sslcertificates</code>
 
-Create a new ssl certificate
+Create a new ssl certificate.
 
 | Required | &nbsp;|
 | --- | --- |

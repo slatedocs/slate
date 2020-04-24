@@ -10,9 +10,8 @@ HTTP(S) load balancing can balance HTTP and HTTPS traffic across multiple backen
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -42,7 +41,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers</code>
 
-Retrieve a list of all load balancers in a given [environment](#administration-environments)
+Retrieve a list of all load balancers in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -61,9 +60,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -88,7 +86,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers/:id</code>
 
-Retrieve a load balancer in a given [environment](#administration-environments)
+Retrieve a load balancer in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -106,12 +104,13 @@ Attributes | &nbsp;
 curl -X POST \
   -H 'MC-Api-Key: your_api_key' \
   -H "Content-Type: application/json" \
-  -d "request _body" \
+  -d "request_body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers"
 ```
+> Request body examples:
 
-```json
-Creating loadbalancer with ephemeral IP
+```js
+// Creating loadbalancer with ephemeral IP
 {
 	"name":"my-loadbalancer-name",
 	"shortBackend": "my-backend-backend",
@@ -119,7 +118,7 @@ Creating loadbalancer with ephemeral IP
 	"shortPort": "80"
 }
 
-Creating loadbalancer with existing IP
+// Creating loadbalancer with existing IP
 {
 	"name":"my-loadbalancer-name",
 	"shortBackend": "my-backend-backend",
@@ -128,7 +127,7 @@ Creating loadbalancer with existing IP
     "shortIP": "my-ip-name",
 }
 
-Creating loadbalancer with new static IP
+// Creating loadbalancer with new static IP
 {
 	"name":"my-loadbalancer-name",
 	"shortBackend": "my-backend-backend",
@@ -137,7 +136,7 @@ Creating loadbalancer with new static IP
     "reserveStaticIP": true
 }
 
-Creating loadbalancer with HTTPS protocol
+// Creating loadbalancer with HTTPS protocol
 {
 	...
     "shortPort": "443",
@@ -147,7 +146,7 @@ Creating loadbalancer with HTTPS protocol
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers</code>
 
-Create a new load balancer
+Create a new load balancer.
 
 Required | &nbsp;
 ------- | -----------
@@ -171,6 +170,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -182,7 +182,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancers/:id</code>
 
-Delete an existing load balancer
+Delete an existing load balancer.
 
 <aside class="notice">
 By default the forwarding rules, target proxies and url map will be deleted.

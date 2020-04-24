@@ -13,9 +13,9 @@ Retrieves a list of organizations visible to the caller. In most cases, only the
 # Retrieve visible organizations
 curl "https://cloudmc_endpoint/v1/organizations" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": [
@@ -76,15 +76,15 @@ Attributes | &nbsp;
 
 `GET /organizations/:id`
 
-Retrieve an organization's details
+Retrieve an organization's details.
 
 ```shell
 # Retrieve an organization
 curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": {
@@ -150,10 +150,10 @@ Creates a new organization as a sub-organization of the caller's organization, o
 curl -X POST "https://cloudmc_endpoint/v1/organizations" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
    "entryPoint":"umbrella",
@@ -186,17 +186,17 @@ The responses' `data` field contains the created [organization](#administration-
 ### Update organization
 `PUT /organizations/:id`
 
-Update an organization. It's parent organization cannot be changed. It can be assigned service connections
+Update an organization. It's parent organization cannot be changed. It can be assigned service connections.
 
 ```shell
 # Update an organization
 curl -X PUT "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
    "entryPoint":"umbrella",

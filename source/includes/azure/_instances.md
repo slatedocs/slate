@@ -10,9 +10,8 @@ Deploy and manage your instances.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -57,7 +56,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given [environment](#administration-environments)
+Retrieve a list of all instances in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -96,9 +95,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -138,7 +136,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Retrieve an instance in a given [environment](#administration-environments)
+Retrieve an instance in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -178,12 +176,11 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances"
-
-# Request example:
 ```
+> Request body examples:
 
-```json
-Create an instance using ssh key authentication
+```js
+// Create an instance using ssh key authentication
 {
   "name": "new-server",
   "machineType": "Standard_B1ls",
@@ -197,7 +194,7 @@ Create an instance using ssh key authentication
   "sshkey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCguvgDRuUF/wijOJCNmYlQHujCmUHl/i0Ubos4nHy5uCBdn1LGF+PG3TpJqO1LUWqpHaPl4yN7bpsdXyq6a9nxe0C1bQ4FK6P5qm0X320uvqv34jwTPsIbnhw9I317df+xJyXXsL/P5vS4ULPMC5UZjWm4BYe7did4zmXXhA/zmLY6cUg19sZp5r5SUQcf5xHAqO3cQVZwzBhBMwroflZZ59zNpxy+xXPBqC3IdusF2yTDW7bwCQHESUOsd9XhwrzCB+1wETKjLpk0wkWj8G2j1pkKGRpv60QcG85lbZvQAg54v3HYD7fVJCaz9gJJoiyRBnqQ6XVxam5bZgiMKa0J johndoe@machine.local"
 }
 
-Create an instance using password authentication
+// Create an instance using password authentication
 {
   "name": "new-server",
   "machineType": "Standard_B1ls",
@@ -214,7 +211,7 @@ Create an instance using password authentication
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Create a new instance
+Create a new instance.
 
 Required | &nbsp;
 ------- | -----------
@@ -246,7 +243,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Delete an existing instance
+Delete an existing instance.
 
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
@@ -260,9 +257,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=resize"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -303,9 +299,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=reset_password"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -365,12 +360,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
  "https://cloudmc_endpoint/v1/services/azure-conn/test_env/instances/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
-
-# Request should look like this
 ```
-```shell
-# Request Example:
-```
+> Request body example:
 
 ```json
 {
@@ -378,11 +369,8 @@ curl -X POST \
   "diskLun": 10
 }
 ```
+> The above command returns JSON structured like this:
 
-
-```shell
-# Response Example
-```
 ```json
 {
   "taskId": "802c5ae0-8431-47dc-9abe-7e10a9badddc",

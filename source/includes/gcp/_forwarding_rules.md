@@ -9,8 +9,8 @@ A forwarding rule and its corresponding IP address represent the frontend config
 curl -X GET \
   -H 'MC-Api-key: your_api_key'
   "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules"
-  # The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -42,7 +42,7 @@ curl -X GET \
    GET /service/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules
 </code>
 
-Retrieve a list of all forwarding rules
+Retrieve a list of all forwarding rules.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -69,9 +69,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules/4724455712741277576"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -96,7 +95,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules/:id</code>
 
-Retrieve a forwarding rule in a given [environment](#administration-environments)
+Retrieve a forwarding rule in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -124,17 +123,18 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -d "request _body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules"
-# Request example:
 ```
-```json
-Creating a forwarding rule with ephemeral IP
+> Request body examples:
+
+```js
+// Creating a forwarding rule with ephemeral IP
 {
   "portRange": "80",
   "name": "my-forwarding-name",
   "shortTarget": "my-target-proxy"
 }
 
-Creating a forwarding rule with new static IP
+// Creating a forwarding rule with new static IP
 {
   "portRange": "80",
   "name": "my-forwarding-name",	
@@ -142,7 +142,7 @@ Creating a forwarding rule with new static IP
   "reserveStaticIP": true
 }
 
-Creating a forwarding rule with ephemeral IP
+// Creating a forwarding rule with ephemeral IP
 {
   "portRange": "80",  
   "name": "my-forwarding-name",
@@ -153,7 +153,7 @@ Creating a forwarding rule with ephemeral IP
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules</code>
 
-Create a new forwarding rule
+Create a new forwarding rule.
 
 Required | &nbsp;
 ------- | -----------

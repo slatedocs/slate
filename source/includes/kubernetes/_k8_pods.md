@@ -9,9 +9,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/pods"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -208,7 +208,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods</code>
 
-Retrieve a list of all pods in a given [environment](#administration-environments)
+Retrieve a list of all pods in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -238,9 +238,9 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/pods/my-aerospike-0/default"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -437,7 +437,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods/:id</code>
 
-Retrieve a pod and all its info in a given [environment](#administration-environments)
+Retrieve a pod and all its info in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -467,9 +467,9 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/pods/my-aerospike-0/default"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
@@ -481,7 +481,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods/:id</code>
 
-Delete a pod from a given [environment](#administration-environments)
+Delete a pod from a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------

@@ -13,9 +13,9 @@ Environments allow you to manage resources of a specific service and to manage y
 # Retrieve visible environments
 curl "https://cloudmc_endpoint/v1/environments" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -71,9 +71,9 @@ Attributes | &nbsp;
 # Retrieve visible environment
 curl "https://cloudmc_endpoint/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -135,10 +135,10 @@ Attributes | &nbsp;
 curl -X POST "https://cloudmc_endpoint/v1/environments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "name": "glados",
@@ -190,10 +190,10 @@ The responses' `data` field contains the updated [environment](#administration-e
 curl -X POST "https://cloudmc_endpoint/v1/environments/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "name": "skynet-beta",

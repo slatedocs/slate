@@ -9,9 +9,9 @@ Images are virtual machine images that have a virtual disk which contains a boot
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/gcp/test-area/images"
-
-Response body:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -113,9 +113,9 @@ Attributes | &nbsp;
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/gcp/test-area/images/4658005417542122143"
-
-Response body:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
    "data": {
@@ -150,7 +150,7 @@ Response body:
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/images/:id</code>
 
-Retrieve information about an image
+Retrieve information about an image.
 
 Attributes | &nbsp;
 ------- | -----------

@@ -10,9 +10,8 @@ Deploy and manage your instances.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -107,7 +106,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given [environment](#administration-environments)
+Retrieve a list of all instances in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -151,9 +150,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/5611478403377505138"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -243,7 +241,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Retrieve an instance in a given [environment](#administration-environments)
+Retrieve an instance in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -289,12 +287,11 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances"
-
-# Request example:
 ```
+> Request body examples:
 
-```json
-Create an instance with an existing IP
+```js
+// Create an instance with an existing IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -307,7 +304,7 @@ Create an instance with an existing IP
   "shortIP": "my-ip-name"
 }
 
-Create an instance with a new static IP
+// Create an instance with a new static IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -320,7 +317,7 @@ Create an instance with a new static IP
   "reserveStaticIP": true
 }
 
-Create an instance with an ephemeral IP
+// Create an instance with an ephemeral IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -335,7 +332,7 @@ Create an instance with an ephemeral IP
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Create a new instance
+Create a new instance.
 
 Required | &nbsp;
 ------- | -----------
@@ -365,7 +362,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Delete an existing instance
+Delete an existing instance.
 
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
@@ -379,9 +376,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=resize"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -423,23 +419,19 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=change_external_ip"
-   
-# Request example:
 ```
-Changing the IP to an ephemeral IP, just leave it empty
-```json
-{ }
-```
+> Request body examples:
 
-Changing the IP to a new static IP
-```json
+```js
+// Changing the IP to an ephemeral IP, just leave it empty
+{ }
+
+// Changing the IP to a new static IP
 {
   "reserveStaticIP" : true
 }
-```
 
-Changing the IP to an existing IP
-```json
+// Changing the IP to an existing IP
 {
   "shortIP" : "your-ip-name"
 }
@@ -464,8 +456,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=get_ssh"
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -475,7 +467,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=get_ssh</code>
 
-Retrieve a command to allow you to SSH into a give running instance
+Retrieve a command to allow you to SSH into a give running instance.
 
 Required | &nbsp;
 ------ | -----------
@@ -492,8 +484,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=set_windows_password"
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -503,7 +495,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=set_windows_password</code>
 
-Set and retrieve a generated password to a given user on a running Windows instance
+Set and retrieve a generated password to a given user on a running Windows instance.
 
 Required | &nbsp;
 ------ | -----------
@@ -517,9 +509,8 @@ Required | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/2986056884972096897?operation=manage_group_membership"
-
-# Request example:
 ```
+> Request body example:
 
 ```json
 {
@@ -529,10 +520,10 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_group_membership</code>
 
-Manage an instance's membership to groups
+Manage an instance's membership to groups.
 
 <aside class="notice">
-An instance can only belong to one load balanced instance group. But you can add an instance to multiple non-load balanced instance groups
+An instance can only belong to one load balanced instance group. But you can add an instance to multiple non-load balanced instance groups.
 </aside>
 
 Required | &nbsp;

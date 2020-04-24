@@ -1,12 +1,17 @@
 ### Fixes [MC-](https://cloud-ops.atlassian.net/browse/MC-)
 
 #### Changes made
+<!-- Changes should match the template provided below -->
 - ...
 
 #### Related PRs
 - []()
 
-<!-- CLOUDMC-API-DOCS TEMPLATE
+<!-- 
+CLOUDMC-API-DOCS TEMPLATE
+- all sentences should have periods
+- requests and responses should use an example like 'my-env' instead of ':environment'
+- use 'js' instead of 'json' when adding comments to json (else they appear in red)
 
 ### Upgrade release
 
@@ -19,15 +24,13 @@ curl -X POST \
 > Request body example(s):
 
 ```js
-// Add request descriptions (use 'js' instead of 'json', else comments appear in red)
+// Format as 'js' instead of 'json' if adding comments (else they appear in red)
 // Change to the latest version of a chart
 {
   "upgradeChart":  "stable/aerospike",
   "upgradeChart":  1 
 }
-```
 
-```js
 // Change to a specific version of a chart
 {
   "upgradeChart" : "https://kubernetes-charts.storage.googleapis.com/aerospike-0.3.2.tgz"
@@ -44,7 +47,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id?operation=upgrade</code>
 
-Upgrade a release in a given [environment](#administration-environments)
+Upgrade a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------

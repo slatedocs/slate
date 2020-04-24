@@ -5,7 +5,6 @@ Applications' login can be automated by MasterPortal. It has an entrypoint that 
 #### Add Credentials
 
 ```shell
-Example Request: 
 curl -X POST \
   'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addCredentials' \
   -H 'mc-api-key: your_api_key' \
@@ -14,8 +13,9 @@ curl -X POST \
 	"password": "sample_password"
 }'
 ```
+> The above command returns JSON structured like this:
+
 ```json
-Example Response: 
 {
   "taskId": "ac3144ab-03c8-4564-afbf-fabf5fc68199",
   "taskStatus": "SUCCESS"
@@ -33,7 +33,6 @@ Required | &nbsp;
 #### Add Credentials for Another User
 
 ```shell
-Example Request: 
 curl -X POST \
   'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/appUser/1a578977-5744-4832-bae3-d91ad2939adf:b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addUserCredentials' \
   -H 'content-type: application/json' \
@@ -46,10 +45,10 @@ curl -X POST \
 		"password": "sample_password"
 	}
 }'
-
 ```
+> The above command returns JSON structured like this:
+
 ```json
-Example Response: 
 {
   "taskId": "ecdd71ea-1648-44d2-a9cf-71b160acab17",
   "taskStatus": "SUCCESS"
@@ -71,14 +70,13 @@ Required | &nbsp;
 #### Login to An Application
 
 ```shell
-Example Request: 
 curl -X POST \
   'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
   -H 'mc-api-key: your_api_key' 
 ```
+> The above command returns JSON structured like this:
 
 ```json
-Example Response: 
 {    
   "data": "https://mp_proxy_endpoint/portal/login-path/427f5873-7edf-4bba-ba65-8c927776da81/d5484354-28a3-45be-a536-0b02ef3c8e23/datadog-ukqrqhie/f59139e1-82e5-4526-bd5d-04c777a55f2a/b7f0bdd5-b544-d07e-ee56-4ee0d1a8a9c3",
   "taskId": "38805aa4-0a30-4197-8ce9-f79872080773",

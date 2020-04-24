@@ -10,9 +10,9 @@ SSH keys are managed at the [environment](#administration-environments) level.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -30,7 +30,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys</code>
 
-Retrieve a list of all SSH keys in an [environment](#administration-environments)
+Retrieve a list of all SSH keys in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -46,9 +46,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys/user1"
-
-# Example:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -61,7 +61,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:id</code>
 
-Retrieve information about an SSH key of an [environment](#administration-environments)
+Retrieve information about an SSH key of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -78,9 +78,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "user1",
@@ -90,7 +90,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys</code>
 
-Add an SSH key to the [environment](#administration-environments)
+Add an SSH key to the [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -109,4 +109,4 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>
 
-Delete an existing SSH key from the [environment](#administration-environments)
+Delete an existing SSH key from the [environment](#administration-environments).

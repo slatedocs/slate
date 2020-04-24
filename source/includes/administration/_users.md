@@ -13,9 +13,9 @@ A user account allows users to authenticate to an [organization](#administration
 
 curl "https://cloudmc_endpoint/v1/users" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data":[{
@@ -72,9 +72,9 @@ Attributes | &nbsp;
 # Retrieve visible user
 curl "https://cloudmc_endpoint/v1/users/fdf60a19-980d-4380-acab-914485111305" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data":{
@@ -139,10 +139,10 @@ Attributes | &nbsp;
 curl -X POST "https://cloudmc_endpoint/v1/users" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request-body]"
-
-# Request body example
+   -d "request-body"
 ```
+> Request body example:
+
 ```json
 {
   "userName": "vader42",
@@ -191,10 +191,10 @@ The responses' `data` field contains the created [user](#administration-users) w
 curl -X PUT "https://cloudmc_endpoint/v1/users/fdf60a19-980d-4380-acab-914485111305" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request-body]"
-
-# Request body example
+   -d "request-body"
 ```
+> Request body example:
+
 ```json
 {
   "userName": "spidey1",

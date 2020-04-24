@@ -65,15 +65,16 @@ Attributes | &nbsp;
 
 `GET /services/connections/:id/policies/descriptors`
 
+Query Parameters | &nbsp;
+---------- | -----
+`section`<br/>*string* | The name of the policy section to load. Only the policy section matching the section name provided will return all required FormElements and the connection entity.
+
 ```shell
 # Retrieve connection policy descriptors
 curl "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies/descriptors?section=trials" \
    -H "MC-Api-Key: your_api_key"
 ```
-
-Query Parameters | &nbsp;
----------- | -----
-`section`<br/>*string* | The name of the policy section to load. Only the policy section matching the section name provided will return all required FormElements and the connection entity.
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -140,6 +141,8 @@ curl -X PUT \
    -d "[{"name": "serviceVersion", "value": "1.1"}, {"name": "cacheEnabled", "value": "true"}]" \
    "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies"
 ```
+> The above command returns JSON structured like this:
+
 
 ```json
 {

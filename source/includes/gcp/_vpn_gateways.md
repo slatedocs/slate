@@ -10,9 +10,8 @@ With Classic VPN, your on-premises hosts communicate through one or more IPsec V
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -46,7 +45,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpngateways</code>
 
-Retrieve a list of all VPN gateways in a given [environment](#administration-environments)
+Retrieve a list of all VPN gateways in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
@@ -69,9 +68,8 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways/3112849056897469664"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {
@@ -125,9 +123,8 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways"
-
-# Request examples:
 ```
+> Request body examples:
 
 ```json
 {
@@ -171,6 +168,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways/3112849056897469664"
 ```
+> The above command returns JSON structured like this:
 
 ```json
 {

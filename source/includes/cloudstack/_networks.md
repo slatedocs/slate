@@ -11,9 +11,9 @@ A network is an isolated network with its own VLANs and CIDR list, where you can
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks"
-
-# Example response:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -42,7 +42,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
-Retrieve a list of all networks of an [environment](#administration-environments)
+Retrieve a list of all networks of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -78,9 +78,9 @@ Query Parameters | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
-
-# Example response:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -135,17 +135,14 @@ Attributes | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "my_network",
@@ -158,7 +155,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
 
-Create a network in an [environment](#administration-environments)
+Create a network in an [environment](#administration-environments).
 
 If the network offering is a VPC subnet offering (indicated by the `vpcOnly` flag on the offering), the vpcId and networkAclId are required fields.
 
@@ -184,22 +181,18 @@ For isolated networks  | &nbsp;
 
 <!-------------------- UPDATE A NETWORK -------------------->
 
-
 #### Update a network
 
 
 ```shell
-
-# Example:
-
 curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "my_updated_network",
@@ -209,7 +202,7 @@ curl -X PUT \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
 
-Update an existing network in an [environment](#administration-environments)
+Update an existing network in an [environment](#administration-environments).
 
 Required | &nbsp;
 ------ | -----------
@@ -224,9 +217,6 @@ Required | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
@@ -244,17 +234,14 @@ Delete an existing network in an [environment](#administration-environments) To 
 
 
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "my_updated_network",

@@ -9,9 +9,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": [
@@ -78,7 +78,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts?cluster_id=:cluster_id</code>
 
-Retrieve a list of all charts in a given [environment](#administration-environments)
+Retrieve a list of all charts in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -119,9 +119,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts/stable/aerospike?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
   "data": {
@@ -183,7 +183,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts/:id?cluster_id=cluster_id</code>
 
-Retrieve a specific chart in a given [environment](#administration-environments)
+Retrieve a specific chart in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
@@ -225,9 +225,9 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/anenvironment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns JSON structured like this:
+
 ```json
 {
 	"relationships": {
@@ -250,7 +250,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts?cluster_id=:cluster_id</code>
 
-Install a chart in a given [environment](#administration-environments)
+Install a chart in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
