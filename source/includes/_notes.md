@@ -190,6 +190,58 @@ Note that either `content` or `gmail_id` must be specified.
 
 The note resource created through this request.
 
+## Update a note
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/notes/22984" \
+  -u :<API-KEY> \
+  -d content="Had another meeting with Jane and \
+              John today."
+  -X "PUT"
+```
+
+> Example Response
+
+```json
+{
+  "id": 22984,
+  "creator_id": 860197,
+  "person_ids": [38706, 89734],
+  "organization_ids": [64779194],
+  "opportunity_ids": [117],
+  "parent_id": null,
+  "content": "Had another meeting with Jane ... ",
+  "created_at": "2017-03-28 00:38:41 -0700"
+}
+```
+
+`PUT /notes/{notes_id}`
+
+Updates the content of an existing note with `note_id` with the supplied `content` parameter.
+
+**Note:**
+
+You cannot update the content of a note that has mentions. You also cannot update the content
+of a note associated with an email.
+
+### Path Parameters
+
+| Parameter | Type    | Required | Description                                         |
+| --------- | ------- | -------- | --------------------------------------------------- |
+| note_id   | integer | true     | The unique id of the note that needs to be updated. |
+
+### Payload Parameters
+
+| Parameter | Type   | Required | Description                  |
+| --------- | ------ | -------- | ---------------------------- |
+| content   | string | true     | The new content of the note. |
+
+### Returns
+
+The note object that was just updated through this request.
+
 ## Delete a note
 
 > Example Request

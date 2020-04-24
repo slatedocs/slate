@@ -330,9 +330,9 @@ existing values for `emails` and `organization_ids` must also be supplied as par
 
 ### Path Parameters
 
-| Parameter | Type    | Required | Description                                             |
-| --------- | ------- | -------- | ------------------------------------------------------- |
-| person_id | integer | true     | The unique id of the person that needs to be retrieved. |
+| Parameter | Type    | Required | Description                                           |
+| --------- | ------- | -------- | ----------------------------------------------------- |
+| person_id | integer | true     | The unique id of the person that needs to be updated. |
 
 ### Payload Parameters
 
