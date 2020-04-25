@@ -7,6 +7,7 @@ The API endpoint is <aside class="notice">https://app.beyonic.com/api/banks</asi
 
 ## The bank object
 A sample bank object looks like This
+
 ```json
 {
             "id": 1,

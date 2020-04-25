@@ -504,6 +504,7 @@ account_name | string | The name of the account in the banks
 bank | int | The id of the bank in Beyonic. Retrieve it from the banks section above.  
 
 If the contact already exists just use the field below alone
+
 Field | Type | Description
 ----- | -----| ----
 contact_bank_account | long integer | The id of the contact bank account in Beyonic. This can be retrieved from the contact object.
