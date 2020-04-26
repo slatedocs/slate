@@ -62,21 +62,6 @@ The idea behind this policy is to help users detect possible issues where the AP
 
 If you have any reason to believe that you need a higher rate limit, please contact our support.
 
-## A small note about API V2 vs V1
-As of December 31st, 2017, API V1 is deprecated.
-We wrote the API V2 based on our experience from V1, trying to make it simpler and more robust.
-
-We changed many things from V1:
-
-* Different authentication - [read the Authentication section](#authentication).
-
-* All resources' ids of are what we used to call in V1 system_ids. The purpose is to eliminate the ambiguity in parameter names (author? author_id? author_system_id?), and to enable a more distinct definition
-
-* Json API - API standards have been evolved since V1 - [read more here](#json-api).
-
-* Better Documentation - a specific tool for API documentation (slate). We hope you can see the difference.
-
-
 
 # Code examples
 We put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:
