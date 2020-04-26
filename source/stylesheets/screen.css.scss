@@ -20,6 +20,33 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
+
+// Little hack to get json in the middle column
+.content {
+  .center-column + pre {
+    position: static;
+    float: none;
+    clear: none;
+    margin: 0 20px;
+    left: 0;
+    width: 45%;
+    padding-left: 30px;
+  }
+}
+
+.center-column {
+    float: left !important;
+    background-color: #f0f0f0 !important;
+    color: black !important;
+    clear: none !important;
+    // margin-right: $examples-width !important;
+    // width: 50% !important;     // May need to adjust this
+    // text-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////

@@ -20,16 +20,19 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
+$chestnut-blue: #1a4070;
+$grey: #f9f9f9;
+
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
+$nav-bg: #f9f9f9 !default;
 $examples-bg: #2E3336 !default;
 $code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
+$code-annotation-bg: $chestnut-blue !default;
+$nav-subitem-bg: $grey !default; // Dropdown tab color same as main nav panel
+$nav-active-bg: $chestnut-blue !default;
+$nav-active-parent-bg: $chestnut-blue !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #1E2224 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
@@ -44,7 +47,7 @@ $search-notice-bg: #c97a7e !default;
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
+$nav-text: $chestnut-blue !default;
 $nav-active-text: #fff !default;
 $nav-active-parent-text: #fff !default; // parent links of the current section
 $lang-select-text: #fff !default; // color of unselected language tab text
