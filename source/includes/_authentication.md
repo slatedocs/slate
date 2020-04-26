@@ -1,12 +1,17 @@
 # Authentication
 
 ```shell
+# Basic authentication:
     curl -H "Content-Type: application/json" \
      -u YOUR_EMAIL:YOUR_TOKEN  \
     https://api.practitest.com/api/v2/projects.json
-# IS THE SAME AS:
+# IS THE SAME AS (as parameters):
     curl -H "Content-Type: application/json" \
     https://api.practitest.com/api/v2/projects.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
+# IS THE SAME AS (via header):
+    curl -H "Content-Type: application/json" \
+    -H "PTToken: YOUR_TOKEN" \
+    https://api.practitest.com/api/v2/projects.json
 ```
 
 
@@ -128,8 +133,10 @@ There are three ways to authenticate to PractiTest API v2:
 <br>**OR**
 * Custom Header - PTToken -  for example <br>
 `export TOKEN='YOUR_TOKEN'`<br>
-`curl -X POST -H "PTToken: $TOKEN" "https://api.practitest.com/api/v2/projects/4823/requirements.json" \`<br>
-`-d '{"data": { "type": "requirements", "attributes": {"name": "one", "author-id": 6178, "priority": "highest"}  } }`
+`curl -X POST -H "PTToken: $TOKEN" \`<br>
+` -H "Content-Type:application/json" \`<br>
+`-d '{"data": { "type": "requirements", "attributes": {"name": "one", "author-id": 6178, "priority": "highest"}  } }' \`<br>
+`"https://api.practitest.com/api/v2/projects/4823/requirements.json"`<br>
 
 
 <aside class="success">
