@@ -119,16 +119,22 @@ print res.text
 > Make sure to replace `YOUR_TOKEN` with your API token and `YOUR_EMAIL` with your email address.
 
 PractiTest uses API tokens for authentication. You can create a new API token by going to the Account Settings - "API Tokens". Please visit <a href="https://www.practitest.com/help/account/account-api-tokens/" target="_blank">API tokens</a> for more information.
-
 API expects the API-token and developer email to be included in all API requests to the server.
-They can be **either** in the header as basic authentication, **OR** as parameters in the query string (which is usually more convinient with browser's debugging)
+There are three ways to authenticate to PractiTest API v2:
 
+* basic authentication - with curl commands it is  -u YOUR_EMAIL:YOUR_TOKEN (can be any:YOUR_TOKEN too)
+<br>**OR**
+* Parameters - parameters in the query string (which is usually more convinient with browser's debugging) - api_url?api_token=YOUR_TOKEN
+<br>**OR**
+* Custom Header - PTToken -  for example <br>
+`export TOKEN='YOUR_TOKEN'`<br>
+`curl -X POST -H "PTToken: $TOKEN" "https://api.practitest.com/api/v2/projects/4823/requirements.json" \`<br>
+`-d '{"data": { "type": "requirements", "attributes": {"name": "one", "author-id": 6178, "priority": "highest"}  } }`
 
-<aside class="notice">
-You must replace <code>YOUR_EMAIL</code> with your email address and <code>YOUR_TOKEN</code> with your custom API token.
-See below why we'd like you to use your real developer email address.
-</aside>
 
 <aside class="success">
-**Developer email** is not authenticated by the API. You can put there any email you want. But if you have errors, or bad syntax, the only way that we get back to you, would be if you put your valid email address. This way we can help you (almost) immediately if we see something wrong.
+You must replace <code>YOUR_TOKEN</code> with your custom API token.
+<br><br>
+
+**Developer email is not authenticated by the API, and not required anymore. You can put there anything (even the word 'any'). But if you have errors, or bad syntax, the only way that we get back to you, would be if you put your valid email address. This way we can help you if we see something wrong.
 </aside>
