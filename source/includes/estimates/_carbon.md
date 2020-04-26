@@ -49,9 +49,6 @@ This endpoint creates an estimate for your carbon
 
 ### Query Parameters
 
-
-#### Using distance
-
 <div class="center-column"></div>
 
 ```json
