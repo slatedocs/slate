@@ -78,6 +78,7 @@ GEM
       rouge (~> 2.0)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     padrino-helpers (0.13.3.4)
@@ -88,6 +89,8 @@ GEM
       activesupport (>= 3.1)
     parallel (1.19.1)
     public_suffix (4.0.4)
+    puma (4.3.3)
+      nio4r (~> 2.0)
     rack (2.2.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
@@ -123,6 +126,7 @@ DEPENDENCIES
   middleman-sprockets (~> 4.1)
   middleman-syntax (~> 3.0)
   nokogiri (~> 1.10.4)
+  puma
   redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
   sass
