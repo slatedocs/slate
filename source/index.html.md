@@ -521,7 +521,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -638,7 +642,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp
 timeStamp = int(round(time.time() * 1000))
@@ -743,7 +751,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp
 timeStamp = int(round(time.time() * 1000))
@@ -862,7 +874,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1005,7 +1021,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1165,7 +1185,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1285,7 +1309,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1408,7 +1436,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1532,7 +1564,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1647,7 +1683,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1756,7 +1796,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1874,7 +1918,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -1978,7 +2026,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2101,7 +2153,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2229,7 +2285,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2353,7 +2413,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2487,7 +2551,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2662,7 +2730,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2776,7 +2848,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -2889,7 +2965,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3003,7 +3083,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3120,7 +3204,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3229,7 +3317,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3336,7 +3428,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3442,7 +3538,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3551,7 +3651,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -3759,7 +3863,11 @@ import requests
 # Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 # Generating a timestamp.
 timeStamp = int(round(time.time() * 1000))
@@ -4136,7 +4244,11 @@ sio.connect(socketEndpoint, transports = 'websocket')
 
 key = "XXXX"
 secret = "YYYY"
+
+# python3
 secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
 
 body = {"channel":"coindcx"}
 json_body = json.dumps(body, separators = (',', ':'))
