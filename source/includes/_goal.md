@@ -27,7 +27,7 @@ Update a user’s goal inputs for a given competency.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -85,7 +85,7 @@ Retrieve a user’s goal inputs.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -130,7 +130,7 @@ Retrieve a user’s goal inputs for a given competency
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 

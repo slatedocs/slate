@@ -26,7 +26,7 @@ Updates the user’s profile data.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -87,7 +87,7 @@ previously called (which generates a new profile if one doesn't already exists).
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 <aside class="notice"><code>No parameters</code></aside>
@@ -180,7 +180,7 @@ Retrieves available inputs available to an organisation.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -220,7 +220,7 @@ Mark an asset as <code>favourite</code> for a user.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -270,7 +270,7 @@ Mark an asset as <code>completed</code> for a user.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -389,7 +389,7 @@ Retrieve an organisation's available competencies
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
