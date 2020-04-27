@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - estimates/shipping
   - estimates/carbon
+  - estimates/flights
   - errors
 
 search: true
