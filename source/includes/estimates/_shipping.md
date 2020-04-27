@@ -2,17 +2,26 @@
 ## Offset your shipping
 
 ```ruby
-require 'chestnut'
+require 'faraday'
 
-api = Chestnut::APIClient.authorize!('your_secret_chestnut_key')
-api.shipping.get
+connection = Faraday.new(:url => 'https://api.getchestnut.co.uk')
+connection.post do |req|
+  req.url '/v1/estimates/shipping'
+  req.body = '{"origin_postcode":"N1 0AF"},"destination_postcode":"LL64 5UQ"},"weight":{"value":94,"units":"kg"}}'
+  req.headers['Content-Type'] = 'application/json'
+  req.headers['Authorization'] = 'Bearer public_key:47800ea0ee541b4c'
+end
 ```
 
 ```python
-import chestnut
+import requests
 
-api = chestnut.authorize('your_secret_chestnut_key')
-api.shipping.get()
+url = 'https://api.getchestnut.co.uk/v1/estimates/carbon'
+headers = {'Content-type': 'application/json', 'Authorization': 'Bearer public_key:47800ea0ee541b4c'}
+payload = '{"weight":{"value":35,"units":"kg"}}'
+response = requests.post(url, headers=headers, data=payload)
+
+print(response.text)
 ```
 
 ```shell
@@ -22,12 +31,6 @@ curl "http://api.chestnut.co.uk/shipping"
   -H "Authorization: your_secret_chestnut_key"
 ```
 
-```javascript
-const chestnut = require('chestnut');
-
-let api = chestnut.authorize('your_secret_chestnut_key');
-let shipping = api.shipping.get();
-```
 
 > The above command returns JSON structured like this:
 
