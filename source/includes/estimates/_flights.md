@@ -7,7 +7,7 @@ require 'faraday'
 connection = Faraday.new(:url => 'https://api.getchestnut.co.uk')
 connection.post do |req|
   req.url '/v1/estimates/flights'
-  req.body = '{"origin_airport": "ISB","destination_airport":"LHR"}, "passengers": "4"'
+  req.body = '"origin_airport": "ISB","destination_airport":"LHR", "passengers": "4"'
   req.headers['Content-Type'] = 'application/json'
   req.headers['Authorization'] = 'Bearer public_key:47800ea0ee541b4c'
 end
@@ -26,7 +26,7 @@ print(response.text)
 
 ```shell
 curl "http://api.chestnut.co.uk/v1/estimates/flights"
-  -d '{"origin_postcode":"N1 0AF"},"destination_postcode":"LL64 5UQ"},"passengers": "4"' \
+  -d '"origin_airport": "ISB","destination_airport":"LHR", "passengers": "4"' \
   -H "Content-type: application/json" \
   -H "Authorization: your_secret_chestnut_key"
 ```
