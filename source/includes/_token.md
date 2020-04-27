@@ -29,7 +29,7 @@ When a new JWT access token is generated, previous tokens get invalidated.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 

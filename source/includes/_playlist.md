@@ -133,7 +133,7 @@ Returns a user’s playlists (competency, group, favourite, bifrost) in order.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -226,7 +226,7 @@ Retrieve the user’s favourite assets playlist.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -378,7 +378,7 @@ Retrieve a user’s list of competency playlists.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -498,7 +498,7 @@ Returns a specific competency playlist for a user.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -653,7 +653,7 @@ Retrieve a user’s list of group playlists.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -808,7 +808,7 @@ Retrieve a user’s list of nexrex playlists.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -964,7 +964,7 @@ Retrieve a user’s list of bifrost playlists.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -1117,7 +1117,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -1159,7 +1159,7 @@ Method not yet implemented
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -1189,7 +1189,7 @@ Method not yet implemented
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -1256,7 +1256,7 @@ Retrieve a given asset
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.sec.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 

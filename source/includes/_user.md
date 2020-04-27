@@ -29,7 +29,7 @@ The access token has a validity of 15 minutes; the refresh token has a validity 
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/auth`
+`POST https://api.sec.filtered.com/v2/jsonrpc/auth`
 
 <aside class="success">
 Returns — Access Token Model — structure containing the JWT access token and refresh token
