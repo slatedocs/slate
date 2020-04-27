@@ -44,12 +44,27 @@ image:
 	--build-arg PROJECT_NAME=${PROJECT_NAME} \
 	--build-arg PROJECT_REPOSITORY="github.com/excelWithBusiness/${REPO_NAME}" \
 	-t ${TAG}:${BUILD_NUMBER} \
-	-t ${TAG}:latest .
+	-t ${TAG}:latest \
+	-t ${ECR_TAG}:${BUILD_NUMBER} \
+	-t ${ECR_TAG}:latest \
+	.
 # Push the image layers and tags to registry
 push:
 	docker login -u ${DOCKER_USER} -p ${DOCKER_PASS} https://registry.filtered.com
 	docker push ${TAG}:${BUILD_NUMBER}
 	docker push ${TAG}:latest
+
+## ECS stuff
+# makevars
+ECR_REGISTRY_PATH ?=
+ECR_TAG="${ECR_REGISTRY_PATH}/${PROJECT_NAME}"
+push-ecr:
+	@echo "--no-include-email isn't in this old version of AWS CLI"
+	aws ecr get-login --region eu-west-1 | /bin/bash
+	result=$$? ; echo ecr error code: $${result}
+	docker push ${ECR_TAG}:${BUILD_NUMBER}
+	docker push ${ECR_TAG}:latest
+ 
 # Run command defined by ARGS variable
 run:
 	${RUN} bash -c "${ARGS}"
