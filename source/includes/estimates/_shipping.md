@@ -17,7 +17,7 @@ api.shipping.get()
 
 ```shell
 curl "http://api.chestnut.co.uk/shipping"
-  -d '{"from":{"postcode":"N1 0AF"},"to":{"postcode":"LL64 5UQ"},"weight":{"value":94,"units":"kg"}}' \
+  -d '{"origin_postcode":"N1 0AF"},"destination_postcode":"LL64 5UQ"},"weight":{"value":94,"units":"kg"}}' \
   -H "Content-type: application/json" \
   -H "Authorization: your_secret_chestnut_key"
 ```
@@ -57,12 +57,8 @@ This endpoint creates an estimate for your shipping
 
 ```json
 {
-  "from": {
-    "postcode": "N1 0AF"
-  },
-  "to": {
-    "postcode": "LL64 5UQ"
-  },
+  "destination_postcode": "N1 0AF",
+  "origin_postcode": "LL64 5UQ",
   "weight": {
     "value": "100",
     "units": "kg"
