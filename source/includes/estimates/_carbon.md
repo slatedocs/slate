@@ -21,12 +21,12 @@ curl "http://api.chestnut.co.uk/carbon"
   -H "Authorization: your_secret_chestnut_key"
 ```
 
-```javascript
+<!-- ```javascript
 const chestnut = require('chestnut');
 
 let api = chestnut.authorize('your_secret_chestnut_key');
 let carbon = api.carbon.get();
-```
+``` -->
 
 > The above command returns JSON structured like this:
 

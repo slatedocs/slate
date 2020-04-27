@@ -31,10 +31,12 @@ require 'chestnut'
 api = Chestnut::APIClient.authorize!('your_secret_chestnut_key')
 ```
 
+
 ```python
 import chestnut
 
 api = chestnut.authorize('your_secret_chestnut_key')
+
 ```
 
 ```shell
@@ -43,11 +45,14 @@ curl "https://api.getchesnut.co.uk/"
   -H "Authorization: your_secret_chestnut_key"
 ```
 
+<!--
 ```javascript
 const chestnut = require('chestnut');
 
 let api = chestnut.authorize('your_secret_chestnut_key');
 ```
+ -->
+
 
 > Make sure to replace `your_secret_chestnut_key` with your API key.
 
