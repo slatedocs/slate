@@ -1,0 +1,19 @@
+{
+  "name": "snappy-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=devolopment node server.js",
+    "start": "NODE_ENV=production node server.js",
+    "setup": "pm2 deploy ecosystem.config.js production setup",
+    "deploy": "pm2 deploy ecosystem.config.js production --force"
+  },
+  "keywords": [],
+  "author": "sh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
