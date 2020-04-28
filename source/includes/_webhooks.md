@@ -548,7 +548,7 @@ This is fired when a wallet transfer is completed.
 }
 ```
 
-TRADE_SETTLEMENT
+## TRADE_SETTLEMENT
 This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
 E.g. settles successfully
 
