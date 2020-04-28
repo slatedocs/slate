@@ -16,11 +16,11 @@ includes:
   - organizations
   - opps
   - entity-values
+  - entity-value-changes
   - notes
   - entity-files
   - webhooks
   - additional-materials
-
 ---
 
 # Introduction
