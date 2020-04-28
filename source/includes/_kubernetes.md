@@ -1,3 +1,3 @@
-# Kubernetes Standalone plugin
+# Kubernetes plugin
 
-The Kubernetes standalone plugin provides endpoints to carrying out operations on CloudMC Kubernetes entities. 
+The Kubernetes plugin provides endpoints to carrying out operations on CloudMC Kubernetes entities. 
