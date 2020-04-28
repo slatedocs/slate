@@ -92,6 +92,7 @@ GEM
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
+    rake (13.0.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -127,6 +128,8 @@ DEPENDENCIES
   middleman-syntax (~> 3.0)
   nokogiri (~> 1.10.4)
   puma
+  rack
+  rake
   redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
   sass
