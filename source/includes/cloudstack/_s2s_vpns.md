@@ -22,7 +22,7 @@ curl -X GET \
         "state": "Connected",
         "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
         "gateway":"19.19.19.19",
-        "cidr":"10.12.0.2/22",
+        "cidrList":"10.12.0.2/22,10.0.0.0/24",
         "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
         "ikeEncryptionAlgorithm": "aes256",
         "ikeHashAlgorithm": "sha1",
@@ -53,7 +53,7 @@ Attributes | &nbsp;
 `state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#cloudstack-reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
@@ -89,7 +89,7 @@ curl -X GET \
       "state": "Connected",
       "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
       "gateway":"19.19.19.19",
-      "cidr":"10.12.0.2/22",
+      "cidrList":"10.12.0.2/22,10.0.0.0/24",
       "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
       "ikeEncryptionAlgorithm": "aes256",
       "ikeHashAlgorithm": "sha1",
@@ -116,7 +116,7 @@ Attributes | &nbsp;
 `state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#cloudstack-reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
@@ -148,7 +148,7 @@ curl -X POST \
       "name": "stargate",
       "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
       "gateway":"19.19.19.19",
-      "cidr":"10.12.0.2/22",
+      "cidrList":"10.12.0.2/22,10.0.0.0/24",
       "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
       "ikeEncryptionAlgorithm": "aes256",
       "ikeHashAlgorithm": "sha1",
@@ -171,7 +171,7 @@ Required | &nbsp;
 `name`<br/>*string* | The name of the site-to-site VPN. Must be unique in the environment.
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
@@ -206,7 +206,7 @@ curl -X PUT \
 {
       "name": "stargate",
       "gateway":"19.19.19.19",
-      "cidr":"10.12.0.2/22",
+      "cidrList":"10.12.0.2/22,10.0.0.0/24",
       "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
       "ikeEncryptionAlgorithm": "aes256",
       "ikeHashAlgorithm": "sha1",
@@ -228,7 +228,7 @@ Optional | &nbsp;
 ------ | -----------
 `name`<br/>*string* | The name of the site-to-site VPN. Must be unique in the environment.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
