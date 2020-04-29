@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='#'>Register interest for a Developer Key</a>
 
 includes:
   - estimates/shipping
@@ -46,18 +46,10 @@ curl "https://api.getchesnut.co.uk/"
   -H "Authorization: your_secret_chestnut_key"
 ```
 
-<!--
-```javascript
-const chestnut = require('chestnut');
-
-let api = chestnut.authorize('your_secret_chestnut_key');
-```
- -->
-
 
 > Make sure to replace `your_secret_chestnut_key` with your API key.
 
-Chestnut uses API keys to allow access to the API. You can register a new Chestnut API key at our [developer portal](http://example.com/developers).
+Chestnut uses API keys to allow access to the API. You can register interest for a new Chestnut API key at our [temporary developer portal](https://getchestnut.co.uk/developers).
 
 Chestnut expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
