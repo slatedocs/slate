@@ -27,8 +27,8 @@ pipeline {
       }
       steps{
         script {
-            sh "bundle install"
-            sh "./deploy.sh"
+            sh "sudo bundle install"
+            sh "sudo ./deploy.sh"
         }
       }
     }
