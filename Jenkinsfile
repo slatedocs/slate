@@ -28,8 +28,12 @@ pipeline {
       steps{
         script {
             sh "sudo bundle install"
-            sshagent (credentials: ['gh-jenkins']) {
-                sh "sudo ./deploy.sh"
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'gh-jenkins', usernameVariable: 'GIT_AUTHOR_NAME', passwordVariable: 'GIT_PASSWORD']]) {
+                sh 'set +x'
+                sh 'git config user.name "$GIT_AUTHOR_NAME"'
+                sh 'git config user.password "$GIT_PASSWORD"'
+                sh 'set -x'
+                sh "./deploy.sh"
             }
         }
       }
