@@ -235,6 +235,8 @@ Response | &nbsp;
 
 Environments are updated asynchronously on the underlying service. When updating an environment any underlying actions performed by the plugin is done asynchronously to the update of the model. The state of the environment will remain in the PROVISIONED state. The task returned in the response can be used to track the progress of the asynchronous update. 
 
+If the membership mode is changed, users will also be added or removed asynchronously to / from the environment. The progress of the task can be tracked via the task id. 
+
 `PUT /environments/:id`
 
 ```shell
