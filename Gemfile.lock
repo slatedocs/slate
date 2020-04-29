@@ -70,7 +70,7 @@ GEM
       servolux
       tilt (~> 2.0.9)
       uglifier (~> 3.0)
-    middleman-sprockets (4.1.1)
+    middleman-sprockets (4.1.0)
       middleman-core (~> 4.0)
       sprockets (>= 3.0)
     middleman-syntax (3.0.0)
@@ -124,7 +124,7 @@ PLATFORMS
 DEPENDENCIES
   middleman (~> 4.3)
   middleman-autoprefixer (~> 2.7)
-  middleman-sprockets (~> 4.1)
+  middleman-sprockets (= 4.1.0)
   middleman-syntax (~> 3.0)
   nokogiri (~> 1.10.4)
   puma
