@@ -1,11 +1,13 @@
 # Field Value Changes
 
-The field value changes allow you to see historical changes to the values of fields in Affinity.
+Field value changes allow you to see historical changes to the values of fields in Affinity.
 This is especially useful for tracking progress through statuses (e.g. Lead --> Closed Won).
 
 **Note:**
-Only certain fields have their historical values tracked; the API will return an appropriate
-error if the field doesn't support historical tracking.
+Only default fields (e.g. Status) have their historical values tracked; user-created
+fields cannot track historical values. You can see if a field can track historical changes
+by looking at the `track_changes` attribute in the [field resource](#get-fields). The API will return an
+appropriate error if the field doesn't support historical tracking.
 
 ## The field value change resource
 
@@ -45,21 +47,21 @@ appropriate associations, as noted in the example above.
 There are some extra attributes returned by this endpoint; they will be deprecated soon and
 should not be used.
 
-| Attribute     | Type           | Description                                                                                                                                                                                        |
-| ------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id            | integer        | The unique identifier of the field value object.                                                                                                                                                   |
-| field_id      | integer        | The unique identifier of the field the value is associated with.                                                                                                                                   |
-| entity_id     | integer        | The unique identifier of the person, organization, or opportunity object the field value is associated with.                                                                                       |
-| list_entry_id | integer        | The unique identifier of the list entry object the field value is associated with. This only exists if the field the value is associated with is list-specific.                                    |
-| action_type   | One of several | The action_type attribute can take on several different types. See below for reference.                                                                                                            |
-| value         | One of many    | The value attribute can take on many different types, depending on the field `value_type`. When the action type is Delete, value represents the old value; otherwise, it represents the new value. |
+| Attribute     | Type           | Description                                                                                                                                                                                                                 |
+| ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id            | integer        | The unique identifier of the field value change object.                                                                                                                                                                     |
+| field_id      | integer        | The unique identifier of the field the value change is associated with.                                                                                                                                                     |
+| entity_id     | integer        | The unique identifier of the person, organization, or opportunity object the field value change is associated with.                                                                                                         |
+| list_entry_id | integer        | The unique identifier of the list entry object the field value change is associated with.                                                                                                                                   |
+| action_type   | One of several | Describes the action behind this field value change. This attribute can take on several different types; see below for reference.                                                                                           |
+| value         | One of many    | Represents the field's value. This attribute can take on many different types, depending on the field `value_type`. When the action type is Delete, value represents the old value; otherwise, it represents the new value. |
 
 ### Field Value Change action types
 
-The Action Type specified below corresponds to the `action_type` of a field value change.
-This attribute is required, and filters the Field Value Changes that are returned. For example,
-when an `action_type` of 0 is specified, all the Field Value Change objects that are returned
-will represent when a Field Value has been created.
+The action type specified below corresponds to the `action_type` of a field value change.
+This attribute filters the field value changes that are returned. For example,
+when an `action_type` of 0 is specified, all the field value change objects that are returned
+will represent when a field value has been created.
 
 | Action Type | Type   |
 | ----------- | ------ |
@@ -72,7 +74,7 @@ will represent when a Field Value has been created.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/field-values-changes?field_id=38706" -u :<API-KEY>
+curl "https://api.affinity.co/field-value-changes?field_id=236333" -u :<API-KEY>
 ```
 
 > Example Response
@@ -104,9 +106,9 @@ curl "https://api.affinity.co/field-values-changes?field_id=38706" -u :<API-KEY>
 ]
 ```
 
-`GET /field-values`
+`GET /field-value-changes`
 
-Returns all field values attached to a `person`, `organization`, `opportunity`, or `list_entry`.
+Returns all field values changes attached to a specific field.
 
 ### Query Parameters
 
