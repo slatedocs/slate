@@ -20,6 +20,11 @@ pipeline {
     }
 
     stage('Deploy github pages') {
+      when {
+        expression {
+          env.BRANCH_NAME == 'cmc-dev'
+        }
+      }
       steps{
         script {
             sh "bundle install"
