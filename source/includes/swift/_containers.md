@@ -182,7 +182,7 @@ curl -X POST \
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets/:id?operation=rename</code>
 
 <aside class="notice">
-Renaming does not exist in SWIFT. It instead consists of the creation of a new container, a copy of all objects into this new container, and the deletion of the old container.
+Renaming does not exist in Swift. It instead consists of the creation of a new container, a copy of all objects into this new container, and the deletion of the old container.
 </aside>
 
 Required | &nbsp;
