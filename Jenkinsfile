@@ -28,7 +28,9 @@ pipeline {
       steps{
         script {
             sh "sudo bundle install"
-            sh "sudo ./deploy.sh"
+            sshagent (credentials: ['gh-jenkins']) {
+                sh "sudo ./deploy.sh"
+            }
         }
       }
     }
