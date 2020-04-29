@@ -149,7 +149,7 @@ Creates a new organization as a sub-organization of the caller's organization, o
 
 Any service connections that are supplied in the request will be assigned to the organization asynchronously. The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
 
-The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization. 
+The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization.
 
 ```shell
 # Create an organization
@@ -240,7 +240,7 @@ Response | &nbsp;
 
 Update an organization. It's parent organization cannot be changed. Any service connections that are supplied in the request will be assigned to the organization asynchronously. The state of the connections assigned to the organization and its progress is reflected in the organization service connections.
 
-The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization. 
+The task id returned in the response below can also be used to track the completion of the asynchronous assignation of connections to this organization.
 
 
 ```shell
@@ -322,17 +322,46 @@ Response | &nbsp;
 }
 ```
 
-
 <!-------------------- DELETE ORGANIZATION -------------------->
 ### Delete organization
+
 `DELETE /organizations/:id`
 
 Delete an organization. The caller may not delete his own organization. Also, an organization may not be deleted if it has sub-organizations.
 
+Organizations are deleted asynchronously on the underlying services.
+
+Deleting an organization is composed of the following steps:
+
+1. Remove users from environments
+2. Delete users
+3. Delete environments
+4. Delete organization
+
+These steps are performed on each service assigned to the organization.
+
+If one of the steps fails, subsequent steps are aborted and an error response is returned.
+
+Following an error response, subsequent delete attempts will be considered as a "force delete". A force delete entails reattempting to delete the organization as explained above and then deleting related database models regardless of the response from the underlying services.
+
 ```shell
 # Delete an organization
-curl -X DELETE "https://cloudmc_endpoint/v1/organizations/3f913132-d479-4332-8fee-9a8c0c01328a" \
+curl -X DELETE "https://cloudmc_endpoint/v2/organizations/3f913132-d479-4332-8fee-9a8c0c01328a" \
    -H "MC-Api-Key: your_api_key"
 ```
 
-Returns an HTTP status code 204, with an empty response body.
+Response                  | &nbsp;
+--------------------------|-----------------------
+`taskId`<br/>*UUID*       | The id of the task
+`taskStatus`<br/>*string* | The status of the task
+
+```shell
+# Response body example
+```
+
+```json
+{
+  "taskId": "cd921b44-ca9f-4f6b-b184-f952e5ab010a",
+  "taskStatus": "PENDING"
+}
+```
