@@ -15,7 +15,7 @@ api.carbon.get()
 ```
 
 ```shell
-curl "http://api.chestnut.co.uk/carbon"
+curl "http://api.getchestnut.co.uk/carbon"
   -d '{"carbon_estimate": "100"}' \
   -H "Content-type: application/json" \
   -H "Authorization: your_secret_chestnut_key"
@@ -38,7 +38,7 @@ This endpoint creates an estimate for your carbon
 
 ### HTTP Request
 
-`GET http://api.chestnut.co.uk/purchases/convert_estimate`
+`GET http://api.getchestnut.co.uk/purchases/convert_estimate`
 
 ### Query Parameters
 

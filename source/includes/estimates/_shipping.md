@@ -2,15 +2,14 @@
 ## Offset your shipping
 
 ```ruby
-require 'faraday'
+require 'rest-client'
 
-connection = Faraday.new(:url => 'https://api.getchestnut.co.uk')
-connection.post do |req|
-  req.url '/v1/estimates/shipping'
-  req.body = '{"origin_postcode":"N1 0AF"},"destination_postcode":"LL64 5UQ"},"weight":{"value":94,"units":"kg"}}'
-  req.headers['Content-Type'] = 'application/json'
-  req.headers['Authorization'] = 'Bearer public_key:47800ea0ee541b4c'
-end
+url = 'https://api.getchestnut.co.uk/v1/estimates/shipping'
+headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer public_key:47800ea0ee541b4c' }
+body = {origin_postcode: "N1 0AF", destination_postcode: "LL64 5UQ", weight: { value:94, units: "kg" }}
+
+RestClient.post(url, params: body, headers: headers)
+
 ```
 
 ```python
@@ -25,7 +24,7 @@ print(response.text)
 ```
 
 ```shell
-curl "http://api.chestnut.co.uk/shipping"
+curl "http://api.getchestnut.co.uk/v1/estimates/shipping"
   -d '{"origin_postcode":"N1 0AF"},"destination_postcode":"LL64 5UQ"},"weight":{"value":94,"units":"kg"}}' \
   -H "Content-type: application/json" \
   -H "Authorization: your_secret_chestnut_key"
@@ -49,7 +48,7 @@ This endpoint creates an estimate for your shipping
 
 ### HTTP Request
 
-`GET http://api.chestnut.co.uk/shipping`
+`GET http://api.getchestnut.co.uk/shipping`
 
 ### Query Parameters
 
