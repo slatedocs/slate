@@ -1,17 +1,25 @@
 ## Offset your carbon
 
 ```ruby
-require 'chestnut'
+require 'rest-client'
 
-api = Chestnut::APIClient.authorize!('your_secret_chestnut_key')
-api.carbon.get
+url = 'https://api.getchestnut.co.uk/v1/estimates/shipping'
+headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer public_key:47800ea0ee541b4c' }
+body = {weight: {value: 94,units:"kg"}}
+
+RestClient.post(url, params: body, headers: headers)
+
 ```
 
 ```python
-import chestnut
+import requests
 
-api = chestnut.authorize('your_secret_chestnut_key')
-api.carbon.get()
+url = 'https://api.getchestnut.co.uk/v1/estimates/flights'
+headers = {'Content-type': 'application/json', 'Authorization': 'Bearer Token:47800ea0ee541b4c'}
+payload = {"weight": {"value": 94,"units":"kg"}}
+response = requests.post(url, headers=headers, data=payload)
+
+print(response.text)
 ```
 
 ```shell

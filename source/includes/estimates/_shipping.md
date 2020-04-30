@@ -17,7 +17,7 @@ import requests
 
 url = 'https://api.getchestnut.co.uk/v1/estimates/carbon'
 headers = {'Content-type': 'application/json', 'Authorization': 'Bearer public_key:47800ea0ee541b4c'}
-payload = '{"weight":{"value":35,"units":"kg"}}'
+payload = {"weight":{"value":35,"units":"kg"}}
 response = requests.post(url, headers=headers, data=payload)
 
 print(response.text)

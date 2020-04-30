@@ -17,8 +17,8 @@ end
 import requests
 
 url = 'https://api.getchestnut.co.uk/v1/estimates/flights'
-headers = {'Content-type': 'application/json', 'Authorization': 'Bearer Token:47800ea0ee541b4c'}
-payload = '"passengers": "4"'
+headers = {'Content-type': 'application/json', 'Authorization': 'Bearer Token:47800ea0ee541b4c',}
+payload = '"origin_airport": "ISB","destination_airport":"LHR", "passengers": "4"'
 response = requests.post(url, headers=headers, data=payload)
 
 print(response.text)

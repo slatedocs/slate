@@ -1,17 +1,25 @@
 ## Offset a carbon estimate
 
 ```ruby
-require 'chestnut'
+require 'rest-client'
 
-api = Chestnut::APIClient.authorize!('your_secret_chestnut_key')
-api.carbon.get
+url = 'https://api.getchestnut.co.uk/v1/purchases/offset'
+headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer public_key:47800ea0ee541b4c' }
+body = {carbon_estimate: 100}
+
+RestClient.post(url, params: body, headers: headers)
+
 ```
 
 ```python
-import chestnut
+import requests
 
-api = chestnut.authorize('your_secret_chestnut_key')
-api.carbon.get()
+url = 'https://api.getchestnut.co.uk/v1/estimates/carbon'
+headers = {'Content-type': 'application/json', 'Authorization': 'Bearer public_key:47800ea0ee541b4c'}
+payload = {"carbon_estimate": 100}
+response = requests.post(url, headers=headers, data=payload)
+
+print(response.text)
 ```
 
 ```shell
