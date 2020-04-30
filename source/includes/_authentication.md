@@ -124,8 +124,8 @@ print res.text
 > Make sure to replace `YOUR_TOKEN` with your API token and `YOUR_EMAIL` with your email address.
 
 PractiTest uses API tokens for authentication. You can create a new API token by going to the Account Settings - "API Tokens". Please visit <a href="https://www.practitest.com/help/account/account-api-tokens/" target="_blank">API tokens</a> for more information.
-API expects the API-token and developer email to be included in all API requests to the server.
-There are three ways to authenticate to PractiTest API v2:
+API expects the API-token to be included in all API requests to the server.
+There are three ways to authenticate to PractiTest API V2 (you can choose anyone of the three):
 
 * basic authentication - with curl commands it is  -u YOUR_EMAIL:YOUR_TOKEN (can be any:YOUR_TOKEN too)
 <br>**OR**
