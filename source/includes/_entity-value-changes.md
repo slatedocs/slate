@@ -4,9 +4,8 @@ Field value changes allow you to see historical changes to the values of fields 
 This is especially useful for tracking progress through statuses (e.g. Lead --> Closed Won).
 
 **Note:**
-Only default fields (e.g. Status) have their historical values tracked; user-created
-fields cannot track historical values. You can see if a field can track historical changes
-by looking at the `track_changes` attribute in the [field resource](#get-fields). The API will return an
+Not all fields can track historical changes; you can see if a field does so by looking at the
+`track_changes` attribute in the [field resource](#get-fields). The API will return an
 appropriate error if the field doesn't support historical tracking.
 
 ## The field value change resource
