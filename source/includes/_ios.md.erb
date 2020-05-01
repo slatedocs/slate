@@ -1,22 +1,19 @@
 # iOS SDK
-The Ada iOS SDK is a small framework that is used to embed your **Ada** Chat bot into your native iOS application.
+The Ada iOS SDK is a small framework that is used to embed your Ada Chat bot into your native iOS application.
 
 ## Installation
 The Ada iOS SDK can be installed manually or using CocoaPods. The SDK supports iOS 10.x and up.
 
 ### Option 1: Manual Integration
-1. Download the Ada iOS SDK framework [here](https://github.com/AdaSupport/ios-sdk/releases/download/1.1.1/AdaEmbedFramework.framework.zip).
+1. Download the `AdaEmbedFramework.framework.zip` file from the latest release [here](https://github.com/AdaSupport/ios-sdk/releases).
 2. Right click on the project file in XCode, then click "Add Files to *MyProjectName*". Ensure that the *Copy groups* option is selected.
 3. Ensure your Deployment Target is set to 10.0, which is the minimum iOS version that the Ada iOS SDK is compatible with.
 4. In the project settings under General, link the `AdaEmbedFramework.framework` under the Embedded Binaries section. You can do this by dragging the framework from the left side list in the Embedded Binaries list.
 
 ### Option 2: CocoaPods
-The AdaEmbedFramework CocoaPod is public, however use of the Chat interface is gated. To gain access please reach out to an Ada Bot Specialist.
 
-1. Add the `AdaEmbedFramework` to your Podfile.
-
-**Example:**
-```
+```swift
+# Podfile
 platform :ios, '10.0'
 
 target 'MyApp' do
@@ -28,141 +25,118 @@ target 'MyApp' do
 end
 ```
 
+The AdaEmbedFramework CocoaPod is public, however use of the Chat interface is gated. To gain access please reach out to an Ada Account Manager.
+
+1. Add the `AdaEmbedFramework` to your Podfile.
+
 2. Install the pod using: 
-```
-pod install
-```
+
+`pod install`
+
 
 ## Quick Start
-Once you have installed the Ada iOS SDK, you are ready to use it in your app! To start, import AdaEmbedFramework into your controller. Then, create an instance of the `AdaWebHost`.
 
 ```swift
 import AdaEmbedFramework
 
-...
+# ...
 
 var adaFramework = AdaWebHost(handle: "ada-example")
 ```
+
+Once you have installed the Ada iOS SDK, you are ready to use it in your app! To start, import `AdaEmbedFramework` into your controller. Then, create an instance of the `AdaWebHost`.
 
 > Please note "ada-example" is being used for demonstration purposes. Be sure to sure modify "handle", as well as any other values as needed for your bot.
 
 Finally, launch Ada using any of the 3 opening methods: [launchModalWebSupport](#launchmodalwebsupportfrom-viewcontroller-uiviewcontroller), [launchNavWebSupport](#launchinjectingwebsupportinto-view-uiview), or [launchInjectingWebSupport](#launchinjectingwebsupportinto-view-uiview).
 
 ## API
+
 ### Settings
 `AdaWebHost` can take various input parameters to customize the behaviour of your Chat bot.
 
-#### `cluster: String = ""`
-Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
+#### appScheme
+`appScheme: String = ""`
 
-**Example:**
-```swift
-var adaFramework = AdaWebHost(handle: “ada-example”, cluster: "ca")
-```
-
-#### `greeting: String = ""`
-This can be used to customize the greeting messages that new users see. This is useful for setting view-specific greetings across your app. The greeting should correspond to the ID of the Answer you would like to use. The ID can be found in the URL of the corresponding Answer in the dashboard.
-
-**Example:**
-```swift
-var adaFramework = AdaWebHost(handle: “ada-example”, greeting: "5c59aaabd8269e0339979014")
-```
-
-#### `handle: String`
-The handle for your bot. This is a required field.
-
-#### `language: String = ""`
-Takes in a language code to programatically set the bot language. Languages must first be turned on in the Settings > Multilingual page of your Ada dashboard. Language codes follow the [ISO 639-1 language format](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
-
-**Example:**
-```swift
-var adaFramework = AdaWebHost(handle: “ada-example”, language: "fr")
-```
-
-#### `metafields: [String: String]? = [:]`
-Used to pass meta information about a Chatter. This can be useful for tracking information about your end users, as well as for personalizing their experience. For example, you may wish to track the phone_number and name for conversation attribution. Once set, this information can be accessed in the email attachment from Handoff Form submissions, or via the Chatter modal in the Conversations page of your Ada dashboard. Should you need to programatically change these values after bot setup, you can make use of the [setMetaFields](#setmetafields_-fields-string-any) method below.
-
-**Example:**
-```swift
-var adaFramework = AdaWebHost(handle: “ada-example”, metafields: ["tier": "pro"])
-```
-
-#### `styles: String = ""`
-The `styles` setting can be used to override default styles inside the Chat bot. The value of the string should be the CSS rule-set you wish to apply inside the Chat UI. A list of CSS selectors available for targetting can be found in the table below.
-
-| WARNING: We do not recommend assigning styles to classes you inspect in the DOM. Class naming is subject to change, and can cause your custom styles to break. |
-| --- |
-
-Selector | Description
---- | ---
-`#message-container` | The outer wrapper, containing the top bar, message list, and input bar
-`#ada-close-button` | The button used to close the Web Chat window
-`#input-bar` | The bottom wrapper, containg the textarea element, send button, and bottom text
-`#message-input` | The textarea inside the input bar, used for user input
-`#clear-message` | The button used to clear text from the message input
-`#send-button ` | The button for submitting the user input
-`#status-bar` | The bottom text inside the input bar
-`#close-info-button` | The button to close the settings modal
-`#language-selector` | The language select container
-`#language-picker` | The language select element
-`#terms-of-service` | The terms of service link
-`#privacy` | The privacy link
-`#messages-list` | The messages container
-`#topBar` | The top bar container above the message list
-`#info-button` | The settings modal button
-`.g-message` | The base message selector
-`.g-message--is-owned-by-user` | The selector for messages from the end user
-
-**Example:**
-```swift
-var adaFramework = AdaWebHost(handle: “ada-example”, styles: "*{font-size: 14px !important;}")
-```
-
-#### `appScheme: String = ""`
 Can be used to pass the scheme name of the host app. This allows for more robust handling of universal links.
 
-**Example:**
+#### cluster
+`cluster: String = ""`
+
+Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
+
+#### greeting
+`greeting: String = ""`
+
+This can be used to customize the greeting messages that new users see. This is useful for setting view-specific greetings across your app. The greeting should correspond to the ID of the Answer you would like to use. The ID can be found in the URL of the corresponding Answer in the dashboard.
+
+#### handle
+`handle: String`
+
+The handle for your bot. This is a required field.
+
+#### language
+`language: String = ""`
+
+Takes in a language code to programatically set the bot language. Languages must first be turned on in the Settings > Multilingual page of your Ada dashboard. Language codes follow the [ISO 639-1 language format](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+
+#### metaFields
+
 ```swift
-var adaFramework = AdaWebHost(handle: “ada-example”, appScheme: "my-app-scheme")
+var adaFramework = AdaWebHost(handle: "ada-example", metafields: ["tier": "pro"])
 ```
 
-#### `openWebLinksInSafari: Bool = false`
+`metafields: [String: String]? = [:]`
+
+Used to pass meta information about a Chatter. This can be useful for tracking information about your end users, as well as for personalizing their experience. For example, you may wish to track the phone_number and name for conversation attribution. Once set, this information can be accessed in the email attachment from Handoff Form submissions, or via the Chatter modal in the Conversations page of your Ada dashboard. Should you need to programatically change these values after bot setup, you can make use of the [setMetaFields](#setmetafields_-fields-string-any) method below.
+
+#### openWebLinksInSafari
+`openWebLinksInSafari: Bool = false`
+
 External web links now open by default in-app via the SFSafariViewController. To open external links in the Safari browser, pass `openWebLinksInSafari: true` to `AdaWebHost`.
 
-**Example:**
-```swift
-var adaFramework = AdaWebHost(handle: “ada-example”, openWebLinksInSafari: true)
-```
+#### styles
+`styles: String = ""`
+
+The styles option can be used to override default styles inside of Web Chat. The value of the string should be the CSS rule-set you wish to apply inside the Web Chat iFrame. Note that the `ui_customization` feature flag is required to use this feature.
+
+<aside class="warning">
+Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
+</aside>
 
 ### Methods
-#### `launchModalWebSupport(from viewController: UIViewController)`
-Launches Ada Chat in a modal view overtop your current view.
+#### launchModalWebSupport
 
-**Example:**
 ```swift
 adaFramework.launchModalWebSupport(from: self)
 ```
 
-#### `launchNavWebSupport(from navController: UINavigationController)`
-Pushes a view containing Ada Chat to the top of your navigational stack.
+`launchModalWebSupport(from viewController: UIViewController)`
 
-**Example:**
+Launches Ada Chat in a modal view overtop your current view.
+
+#### launchNavWebSupport
+
 ```swift
 adaFramework.launchNavWebSupport(from: navigationController)
 ```
 
-#### `launchInjectingWebSupport(into view: UIView)`
-Launches Ada Chat into a specified subview.
+`launchNavWebSupport(from navController: UINavigationController)`
 
-**Example:**
+Pushes a view containing Ada Chat to the top of your navigational stack.
+
+#### launchInjectingWebSupport
+
 ```swift
 adaFramework.launchInjectingWebSupport(into: injectingView)
 ```
 
-#### `setMetaFields(_ fields: [String: Any])`
-Used to set meta data for a chatter after instantiation. This is useful if you need to update user data after Ada Chat has already launched.
+`launchInjectingWebSupport(into view: UIView)`
 
-**Example:**
+Launches Ada Chat into a specified subview.
+
+#### setMetaFields
+
 ```swift
 adaFramework.setMetaFields([
     "firstName": "Jane",
@@ -171,21 +145,16 @@ adaFramework.setMetaFields([
 ])
 ```
 
-#### `reset()`
+`setMetaFields(_ fields: [String: Any])`
+
+Used to set meta data for a chatter after instantiation. This is useful if you need to update user data after Ada Chat has already launched.
+
+#### reset
+`reset()`
+
 Can be used to create a new `chatter` and refresh the Chat window. 
 
-**Example:**
-```swift
-adaFramework.reset()
-```
+#### deleteHistory
+`deleteHistory()`
 
-#### `deleteHistory()`
 Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window a new `chatter` will be generated.
-
-**Example:**
-```swift
-adaFramework.deleteHistory();
-```
-
-## Questions
-Need some help? Get in touch with us at [help@ada.support](mailto:help@ada.support).
