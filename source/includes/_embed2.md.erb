@@ -28,7 +28,7 @@ Once you have your website all ready-to-go, find the page where you'd like to em
 ### 3. That's it! 🎉
 You should now see a small question mark button on the bottom right corner of your page. Clicking the button will toggle the Web Chat in and out of view.
 
-[You can see see a working example here.](https://jsfiddle.net/avj0fdL3/)
+[You can see see a working example here.](https://jsfiddle.net/1cdnye94/)
 
 ## Advanced Setup
 
@@ -100,7 +100,7 @@ If your bot implementation makes use of any actions from the global `adaEmbed` o
 
 **Approach 1** involves using the native script `onload` handler. When the script has loaded, the `load` event will be triggered. It is safe to call `adaEmbed` actions from here.
 
-**Approach 2** involves using the `adaReadyCallback`, which you can set in `window.adaSettings`. Note that while in the examples provided `toggle` will work effectively the same way, `adaReadyCallback` is triggered after `adaEmbed.start(...)` has executed. Meanwhile, `onload` is simply triggered when the Embed2 script has been loaded.
+**Approach 2** involves using the [adaReadyCallback](#embed2-api-reference-settings-adareadycallback), which you can set in `window.adaSettings`. Note that while in the examples provided `toggle` will work effectively the same way, `adaReadyCallback` is triggered after `adaEmbed.start(...)` has executed. Meanwhile, `onload` is simply triggered when the Embed2 script has been loaded.
 
 ### RequireJS
 
@@ -131,6 +131,7 @@ Embed1 Feature | Status | Comments
 `crossWindowPersistence` | Modified | Simplified to accept a boolean instead of an object.
 `dragAndDrop` | Deprecated | 
 `mobileOverlay` | Deprecated | 
+`private` | Modified | Renamed to `privateMode`.
 `styles` | Same API | Now requires a feature flag to use.
 
 Additionally, all actions have been modified to return Promises.
@@ -142,7 +143,6 @@ Embed2 supports numerous settings and actions to help you customize the look and
 Settings are set on the window object as `window.adaSettings = { ... }`. Alternatively, they can be passed directly do `adaEmbed.start({ ... })` for advanced configurations. A full list of available settings is provided below:
 
 #### adaReadyCallback
-`adaReadyCallback?(params: { isRolledOut: boolean }): void;`
 
 ```html
 <script type="text/javascript">
@@ -153,11 +153,12 @@ Settings are set on the window object as `window.adaSettings = { ... }`. Alterna
   }
 </script>
 ```
+
+`adaReadyCallback?(params: { isRolledOut: boolean }): void;`
+
 Specifies a callback function to be called when Embed2 has finished setting up. This is especially useful when Embed2 is loaded asynchronously.
 
 #### analyticsCallback
-`analyticsCallback?(analytics: object): void;`
-
 
 ```html
 <script type="text/javascript">
@@ -182,7 +183,9 @@ Specifies a callback function to be called when Embed2 has finished setting up. 
 }
 ```
 
-Can be used to pass back data analytics. Make sure you have `analyticsCallback` feature enabled on your bot - you can check this with your account manager.
+`analyticsCallback?(analytics: object): void;`
+
+Can be used to pass back data analytics. Make sure you have the `analyticsCallback` feature enabled on your bot.
 
 #### chatterTokenCallback
 `chatterTokenCallback?(chatter: string): void;`
@@ -247,8 +250,6 @@ We recommend setting the value to `false`. This will allow end-users to navigate
 Takes in a language code to programatically set the bot language. Languages must first be turned on in the *Settings > Multilingual* page of your Ada dashboard. Language codes follow the [ISO 639-1 language format](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 #### metaFields
-`metaFields?: object;`
-
 
 ```html
 <script type="text/javascript">
@@ -260,6 +261,8 @@ Takes in a language code to programatically set the bot language. Languages must
   }
 </script>
 ```
+
+`metaFields?: object;`
 
 Used to pass meta information about a `chatter`. This can be useful for tracking information about your end users, as well as for personalizing their experience. For example, you may wish to track the `phone_number` and `name` for conversation attribution. Once set, this information can be accessed in the email attachment from Handoff Form submissions, or via the *Chatter Info* modal in the *Conversations* page of your Ada dashboard. Should you need to programatically change these values after bot setup, you can make use of the `setMetaFields` action below.
 
@@ -273,8 +276,6 @@ Meta field keys should not include whitespace, emojis, special characters or per
 When `true`, this will prevent the bot from loading until the `adaEmbed.start(...)` method is called.
 
 #### parentElement
-`parentElement?: string | HTMLElement;`
-
 
 ```html
 <head>
@@ -291,12 +292,14 @@ When `true`, this will prevent the bot from loading until the `adaEmbed.start(..
 </body>
 ```
 
+`parentElement?: string | HTMLElement;`
+
 Specifies where to mount the `<iframe>` if the default side drawer is not desired. Accepts the `HTMLElement` or element `id` of the desired parent element.
 
-// #### private
-// `private?: boolean;`
+#### privateMode
+`privateMode?: boolean;`
 
-// If set to `true`, this will put Web Chat into "Private" mode. This will cause Web Chat to forget conversation history on refresh. This is effectively the same as setting your Web Chat platform persistence to "Forget After Reload" in the *Settings > Platforms* page of your Ada dashboard. More information on persistence can be found [here](https://adasupporthelp.zendesk.com/hc/en-us/articles/360018115813-Chatter-Persistence-Remembering-Conversations-).
+If set to `true`, this will put Web Chat into "Private" mode. This will cause Web Chat to forget conversation history on refresh. This is effectively the same as setting your Web Chat platform persistence to "Forget After Reload" in the *Settings > Platforms* page of your Ada dashboard. More information on persistence can be found [here](https://adasupporthelp.zendesk.com/hc/en-us/articles/360018115813-Chatter-Persistence-Remembering-Conversations-).
 
 #### rolloutOverride
 `rolloutOverride?: number;`
@@ -326,11 +329,12 @@ Can be used to trigger side-effects when the Web Chat drawer is opened or closed
 Actions can be called from the global adaEmbed object. A list of the available actions is available below.
 
 #### createProactive
-`createProactive(body: string, duration?: number, responseId?: string): Promise<void>;`
 
 ```js
 window.adaEmbed.createProactive("Hi there! Is there something I can help you with?", 10, "5e9481e296ac6c4467092be5");
 ```
+
+`createProactive(body: string, duration?: number, responseId?: string): Promise<void>;`
 
 Can be used to programatically create a proactive intro message. If an Answer ID is provided, that answer will be triggered when Chat is opened. `createProactive` returns a Promise, which can be used to wait for one proactive intro before displaying the next.
 
@@ -347,8 +351,6 @@ Deletes the `chatter` used to fetch conversation logs for an end-user from stora
 Returns an object containing information about the bot, including `hasActiveChatter`, `hasClosedChat`, and `isChatOpen`.
 
 #### reset
-`reset(resetParams?: ResetParams): Promise<void>;`
-
 
 ```js
 window.adaEmbed.reset({
@@ -356,13 +358,13 @@ window.adaEmbed.reset({
 });
 ```
 
+`reset(resetParams?: ResetParams): Promise<void>;`
+
 Creates a new `chatter` and refreshes the Chat window. `reset` can take an optional object allowing `language`, `metaFields`, and `greeting` to be changed for the new `chatter`.
 
 To prevent creating a new `chatter` (and maintain conversation history), `resetChatHistory` can be passed to the object with a value of `false`.
 
 #### setMetaFields
-`setMetaFields(options: object): Promise<void>;`
-
 
 ```js
 window.adaEmbed.setMetaFields({
@@ -371,6 +373,8 @@ window.adaEmbed.setMetaFields({
 });
 ```
 
+`setMetaFields(options: object): Promise<void>;`
+
 Used to update `metaFields` after Chat has been opened. In most situations, the `metaFields` settings object should be enough for user attribution. However, in cases where Ada Chat remains open while page changes occur (like in Single Page Applications), this methods may be useful.
 
 <aside class="notice">
@@ -378,8 +382,6 @@ Meta field keys should not include whitespace, emojis, special characters or per
 </aside>
 
 #### start
-`start(adaSettings: StartOptions): Promise<void>;`
-
 
 ```js
 window.adaEmbed.start({
@@ -388,6 +390,9 @@ window.adaEmbed.start({
   mobileOverlay: true
 });
 ```
+
+`start(adaSettings: StartOptions): Promise<void>;`
+
 
 Used to initialize Embed2 on your page. This action is triggered by default internally, so you will likely not need to call it directly unless you are using Embed2 is `lazy` mode, or have called `stop` and want to re-start Embed2.
 
@@ -421,7 +426,7 @@ Additional customization of the chat window is available through the `styles` se
 
 #### Ada Embed is rendered as soon as the page loads. How can I delay rendering?
 
-Embed2 features a useful data attribute called `data-lazy`. When defined on your script, Embed2 will not be triggered until you manually call `adaEmbed.start(...)`. Alternatively, the `lazy` property can be passed to the `window.adaSettings`. See [Advanced Setup](#advanced-setup) for more information.
+Embed2 features a useful data attribute called `data-lazy`. When defined on your script, Embed2 will not be triggered until you manually call `adaEmbed.start(...)`. Alternatively, the `lazy` property can be passed to the `window.adaSettings`. See [Advanced Setup](#embed2-advanced-setup) for more information.
 
 ## Versioning
 
