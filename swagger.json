@@ -1057,10 +1057,7 @@
         "parameters" : [ {
           "in" : "query",
           "name" : "symbol",
-          "description" : "symbol should be anyone of following  1. product symbol to get OHLC for given product e.g **BTCUSD**
-                           2. Spot index symbol to get spot index price. e.g. **.DEXBTUSD**
-                           3. Mark and symbol to get mark price OHLC data e.g. **MARK:BTCUSD**
-                           4. Funding and product symbol to get Funding data for given product e.g. **FUNDING:BTCUSD**",
+          "description" : "Symbol should be anyone of following  1. product symbol to get OHLC for given product e.g **BTCUSD** 2. Spot index symbol to get spot index price. e.g. **.DEXBTUSD** 3. Mark and symbol to get mark price OHLC data e.g. **MARK:BTCUSD** 4. Funding and product symbol to get Funding data for given product e.g. **FUNDING:BTCUSD**",
           "type" : "string",
           "required" : true
 
