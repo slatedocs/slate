@@ -54,6 +54,12 @@ Our API is documented for what resources are available and what sort of return d
 
 Now, let’s make the same call to `/users/me` more like software would. Before we do so, we’ll need to get access outside of your web browser to the API.
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 ---
 
 ## Authentication Quick Start
@@ -91,6 +97,12 @@ If your app needs to perform actions on behalf of users, you should use [OAuth](
 5. Copy your token. You will only see this one time, but you can always create another PAT later.
 
 _**Note**: treat your PAT like you would a password. Do not share it or display it online_. 
+
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
 
 ---
 
@@ -134,6 +146,12 @@ You’re ready to start coding!
 
 Asana has [client libraries](#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
+<div>
+  <div class="docs-helpful-feedback-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 ---
 
 ## Accessing the API with Postman
@@ -170,7 +188,7 @@ Importing this collection gives you a snapshot of the API at this time. To stay 
 
 <div>
   <div class="docs-helpful-feedback-content">
-      <h4>Was this section helpful? <a class="feedbackPositive" style="cursor:pointer;">Yes </a><a class="feedbackNegative" style="cursor:pointer;">No</a></h4>
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
 
