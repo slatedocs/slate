@@ -443,6 +443,18 @@ Authorization: Basic ...
 ```http 
 HTTP/1.1 202 Accepted
 Content-Type: application/json
+
+{
+  "destinationBankAccountId" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
+  "amount" : {
+    "currency" : "GBP",
+    "amount" : 10.45
+  },
+  "reference" : "ABC1234567",
+  "narrative" : "Moving to operating account",
+  "status": "PENDING
+}
+
 ```
 
 ```http 
@@ -468,14 +480,15 @@ Before instructing a payment, the destination bank account must first be <a href
 Create a payment instruction from a Wallet.
 
 ### Request
-| Name                          | Type   | Description                                 | Required |
-| ----------------------------- | ------ | ------------------------------------------- | -------- |
-| destinationBankAccountId      | string | The ID of the destination bank account      | required |
-| amount                        | ref    | The total cash balance.                     | required |
-| amount.amount                 | number | The amount.                                 | required |
-| amount.currency               | string | The ISO 4217 three character codes eg 'GBP' | required |
-| reference                     | string | The bank reference used for the transfer    | required |
-| narrative                     | string | The reason for the wallet transfer          |          |
+| Name                          | Type   | Description                                                         | Required |
+| ----------------------------- | ------ | ------------------------------------------------------------------- | -------- |
+| destinationBankAccountId      | string | The ID of the destination bank account                              | required |
+| amount                        | ref    | The total cash balance.                                             | required |
+| amount.amount                 | number | The amount.                                                         | required |
+| amount.currency               | string | The ISO 4217 three character codes eg 'GBP'                         | required |
+| reference                     | string | The bank reference used for the transfer                            | required |
+| narrative                     | string | The reason for the wallet transfer                                  |          |
+| status                        | string | Only present on responses. The status of a wallet transfer.         |          |
 
 ### Possible Error codes
 

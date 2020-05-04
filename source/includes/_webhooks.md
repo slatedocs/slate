@@ -492,7 +492,11 @@ This is fired whenever a wallet is created.
 }
 ```
 
-## WALLET_FUNDS_RECEIVED
+## WALLET_FUNDS_RECEIVED (deprecated)
+
+Note: This webhook is now deprecated and has been replaced by the `WALLET_TRANSFER_UPDATE` webhook below. 
+Existing users of this webhook can continue to use it, however, it is recommended to move to the `WALLET_TRANSFER_UPDATE` webhook.
+
 This is fired when funds are received into a wallet.
 
 ```json
@@ -512,39 +516,49 @@ This is fired when funds are received into a wallet.
 }
 ```
 
-## WALLET_TRANSFER_CLEARED
-<aside class="warning">
-This Webhook is currently not in use.
-</aside>
+## WALLET_TRANSFER_UPDATE
 
-This is fired when a wallet transfer is completed.
+This webhook replaces the now deprecated `WALLET_FUNDS_RECEIVED` endpoint.
+Users of the `WALLET_FUNDS_RECEIVED` endpoint can continue to use it, however, it is recommended to move to this webhook. 
+For new users, please integrate against this webhook instead.
+
+This is fired when funds are transfered into or out of a wallet. 
+
+There are three statuses that can be returned in a 'WALLET_TRANSFER_UPDATE' webhook. These are:
+
+(1) REQUESTED - this status is set when a request to move funds out of a wallet has been acknowledged.
+
+(2) CLEARED - this status is set when:
+
+  (a) funds are confirmed to have successfully left a wallet.
+  
+  (b) funds are confirmed to have successfully arrived into a wallet. 
+  
+(3) FAILED - this status is set when a request to move funds has failed. 
+
 
 ```json
 {
-  "destinationBankAccountDetails" : {
-    "bankAccountId" : "string",
-    "bankDetails" : {
-      "accountName" : "string",
-      "accountNumber" : "string",
-      "sortCode" : "string"
-    }
-  },
-  "sourceWallet" : {
-    "walletId" : "string",
-    "ownerPartyId": "string",
-    "bankDetails" : {
-      "accountName" : "string",
-      "accountNumber" : "string",
-      "sortCode" : "string"
-    }
-  },
-  "amount" : {
-    "amount": 0.00,
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "walletId" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
+  "id" : "fbb5d667-03c4-4658-9b30-fcf06adfa5b8",
+  "direction": "INBOUND",
+  "status": "CLEARED",
+  "amountReceived": {
+    "amount": 10.23,
     "currency": "GBP"
   },
-  "success" : "boolean",
-  "narrative" : "string",
-  "reference" : "string"
+  "reference": "Payment Reference",
+  "sourceAccount": {
+    "accountName": "John Doe",
+    "accountNumber": "00000000",
+    "sortCode": "00000000"
+  },
+  "destinationAccount": {
+    "accountName": "Jane Doe",
+    "accountNumber": "00000000",
+    "sortCode": "00000000"
+  }
 }
 ```
 
