@@ -249,7 +249,7 @@ print "Hello world! " + "My name is " + me['name'] + "!"
 
 To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
 
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Python.
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` in Python.
 
 
 Save this file as something descriptive like "hello_world.py"
@@ -291,11 +291,11 @@ client.users.me()
 
 To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
 
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me`. - the same request as above, but in JavaScript.
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Javascript.
 
 Save this file as something descriptive like "hello_world.js"
 
-To run this script in your console, pass it as an argument to the node interpreter, i.e. `node hello_world.py` from the same directory as the file. You should see the message we wrote above with your user information.
+To run this script in your console, pass it as an argument to the node interpreter, i.e. `node hello_world.js` from the same directory as the file. You should see the message we wrote above with your user information.
 
 All of the built-in functions can be found in the [/gen folder of the client library](https://github.com/Asana/node-asana/tree/master/lib/resources/gen).
 
@@ -331,7 +331,7 @@ puts "Hello world! " + "My name is " + me.name + "!"
 
 To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
 
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me`.
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Ruby.
 
 Save this file as something descriptive like "hello_world.rb"
 

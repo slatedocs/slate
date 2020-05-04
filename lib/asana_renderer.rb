@@ -36,7 +36,9 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     result = ""
     if header_level < 4
       extra_friendly_id = "id='#{extra_friendly_text}' "
-      result = "<a id='#{friendly_text}'></a>"
+      if extra_friendly_text != friendly_text
+        result = "<a id='#{friendly_text}'></a>"
+      end
     end
     result + "<h#{header_level} " + extra_friendly_id + "#{classes} #{on_click}>#{text}</h#{header_level}>"
   end
