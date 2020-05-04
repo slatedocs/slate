@@ -11,7 +11,7 @@ __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-n
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __erp_code__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __<a href="/#part-type-category">part_type_category_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__serial_number_category__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["known", "unknown", "hidden"]</font>
+__serial_number_category__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["known", "hidden", "unknown"]</font>
 __parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
 __part_type_metadata_validator__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __is_sent_by_unit__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson"></font> | 

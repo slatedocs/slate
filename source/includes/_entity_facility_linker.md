@@ -7,11 +7,11 @@ Indicates which entities have access to manufacturing and repair facilities
 Field | Description
 ------:|:------------
 __entity_facility_linker_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each entity_facility_linker.
-__<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,unique,foreign-key)</font> | 
-__test_jig__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__test_bench__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__usb_diag_tool__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
-__rework_process__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,unique,foreign-key)</font> | Entity identifier
+__test_jig__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | Indicates whether the Entity has access to a Test Jig tool
+__test_bench__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | Indicates whether the Entity has access to a Test Bench tool
+__usb_diag_tool__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | Indicates whether the Entity has access to a USB Diagnostic tool
+__rework_process__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | Indicates whether the Entity can use the PCB Rework process
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified

@@ -13,7 +13,7 @@ __link__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font
 __checksum__ <br><font color="DarkGray">_varchar(8)_</font> <font color="Crimson"></font> | 
 __release_date__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
 __parameter_types__ <br><font color="DarkGray">_array_</font> <font color="Crimson"></font> | 
-__status__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["beta", "stable", "outdated", "bad"]</font>
+__status__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["outdated", "stable", "beta", "bad"]</font>
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified

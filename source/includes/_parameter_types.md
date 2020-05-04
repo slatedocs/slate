@@ -8,7 +8,7 @@ Field | Description
 ------:|:------------
 __parameter_type_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each parameter_type.
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | 
-__data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["bool", "int", "float", "string", "datetime"]</font>
+__data_type__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["float", "datetime", "int", "string", "bool"]</font>
 __validation_rules__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __units__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
