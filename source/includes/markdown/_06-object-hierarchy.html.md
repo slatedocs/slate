@@ -96,7 +96,7 @@ Note: it can be advantageous to use guests to create bot accounts. Due to the ac
 * [Users & Guests in the Asana Product Guide](https://asana.com/guide/help/organizations/basics#gl-people)
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>

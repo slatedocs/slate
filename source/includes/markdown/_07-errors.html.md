@@ -87,7 +87,7 @@ least one error object, described below:
 | phrase | `6 sad squid snuggle softly` **500 errors only**. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana's logs. |
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>

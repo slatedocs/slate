@@ -55,7 +55,7 @@ Our API is documented for what resources are available and what sort of return d
 Now, let’s make the same call to `/users/me` more like software would. Before we do so, we’ll need to get access outside of your web browser to the API.
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
@@ -99,7 +99,7 @@ If your app needs to perform actions on behalf of users, you should use [OAuth](
 _**Note**: treat your PAT like you would a password. Do not share it or display it online_. 
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
@@ -147,7 +147,7 @@ You’re ready to start coding!
 Asana has [client libraries](#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
@@ -187,7 +187,7 @@ No need to edit your environment for requests on different objects, simply navig
 Importing this collection gives you a snapshot of the API at this time. To stay up to date with API changes, you'll have to re-import the collection by hitting the 'Run in Postman' button, and choosing to override your existing collection. This means if you want to save custom requests, you should do so in a different collection.
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>

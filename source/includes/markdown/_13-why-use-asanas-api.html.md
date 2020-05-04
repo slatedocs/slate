@@ -64,7 +64,7 @@ Check out some examples of integrations we've built on Asana below:
 Read more on how to [get started](#quick-start "Quick start") building on Asana or [submit an app](https://asana.com/apps/submit) to add to our [apps page](https://asana.com/apps).
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
@@ -125,7 +125,7 @@ Over time, we've continuously tweaked how our integration behaves to evolve our 
 To get started, check out our [quick start](#quick-start "Quick Start") page for an overview of Asana's API. For support or to generate ideas of how your team can work more effectively with Asana, head to the [Asana Community](https://community.asana.com/c/developersAPI "Asana Developers Community") to chat with Asana team members and users!
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
@@ -153,7 +153,7 @@ Our engineering teams handle triaging bug reports by creating a task in a "Bugs"
 Since the evaluation of the severity of the bug is important for understanding how urgent the fix is, Bugs Bot will remain persistent, commenting every few days until the task has been moved out of the triage section and into a section of the relevant priority. This process ensures that we're aware of the impact of bugs and helps us avoid severe bugs slipping through the cracks.
 
 <div>
-  <div class="docs-helpful-feedback-content">
+  <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
