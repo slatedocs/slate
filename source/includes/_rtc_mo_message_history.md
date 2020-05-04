@@ -11,7 +11,7 @@ __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)
 __message_bin__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
 __message_json__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __message_received_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
-__processing_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["failed", "processed"]</font>
+__processing_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["processed", "failed"]</font>
 __processing_status_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record

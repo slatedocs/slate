@@ -10,7 +10,7 @@ __rtc_connection_history_id__ <br><font color="DarkGray">_int_</font> <font colo
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __connection_status__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["online", "offline"]</font>
 __connection_status_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson">(not-null)</font> | 
-__connection_status_reason__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["message-received", "sleep-mode", "unknown", "inactivity", "user-request", "low-battery-voltage"]</font>
+__connection_status_reason__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | <br><font color="DodgerBlue">options: ["inactivity", "message-received", "sleep-mode", "low-battery-voltage", "user-request", "unknown"]</font>
 __connection_status_info__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __latest_message_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at

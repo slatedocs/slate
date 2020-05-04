@@ -42,6 +42,7 @@ includes:
   - default_energy_limits
   - enable_history
   - entities
+  - entity_facility_linker
   - factory_logs
   - final_balances
   - home2_stock_preparation_trackings
@@ -73,6 +74,7 @@ includes:
   - repair_symptom_type_linker
   - repair_workflow_events
   - repair_workflow_history
+  - repair_workflow_selectors
   - repair_workflow_states
   - rtc_connection_history
   - rtc_dead_letter
@@ -92,10 +94,7 @@ includes:
   - subscribers
   - symptom_type_product_type_linker
   - symptom_types
-  - test_bench_entity_linker
-  - test_jig_entity_linker
   - test_jig_test_results
-  - usb_diag_tool_entity_linker
 
   - product_actions
   - create_hub2
