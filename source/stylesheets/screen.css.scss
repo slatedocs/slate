@@ -375,6 +375,13 @@ html, body {
   position: relative;
   z-index: 30;
 
+
+  .docs-developer-satisfaction-content{
+    max-width: 100% - $examples-width - $examples-padding-left;
+    color: #6F7782;
+    cursor: inherit;
+  }
+
   section {
     margin: auto;
     padding: 20px 60px;

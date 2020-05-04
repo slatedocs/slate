@@ -5,6 +5,12 @@
 
 Asana is committed to making the developer experience as smooth as possible. Part of this effort is providing high-quality libraries you can use to access the API. The available libraries are listed below, and more are in development. If you don't see what you need, check the open-source community for your platform, and let us know that you'd like to find one here!
 
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 ---
 
 <a name="NodeJS"></a>

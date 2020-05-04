@@ -129,4 +129,10 @@ To keep the contents of your tag and make a custom vanity link, include the prop
 
 If you do not have access to the referenced object when you try to create a link, the API will not generate an `href` for you, but will instead look for an `href` you provide. This allows you to write back `<a>` tags unmodified even if you do not have access to the resource. If you do not have access to the referenced object and no `href` is provided, your request will be rejected with a `400 Bad Request` error. Similarly, if you provide neither a GID nor a valid `href`, the request will be rejected with the same error.
 
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 </section>

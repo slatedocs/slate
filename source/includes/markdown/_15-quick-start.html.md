@@ -217,6 +217,12 @@ To take your bot’s accessibility to the next level, put your configuration in 
 >### Use webhooks for real-time triaging 
 If you need your bot to react to changes in real time, then you’ll need to use [webhooks](#asana-webhooks). We built a [python webhook inspector](https://github.com/Asana/devrel-examples/tree/master/python/webhooks) to help developers get started using Asana webhooks. 
 
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
 ---
 
 ## Python Hello World
@@ -256,6 +262,11 @@ All of the built-in functions can be found in the [/gen folder of the client lib
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/python" target="_blank">Github examples repository</a>
 
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
 ---
 
 ## Node Hello World
@@ -290,6 +301,11 @@ All of the built-in functions can be found in the [/gen folder of the client lib
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/javascript" target="_blank">Github examples repository</a>
 
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
 ---
 
 ## Ruby Hello World
@@ -324,5 +340,11 @@ To run this script in your console, pass it as an argument to the ruby interpret
 All of the built-in methods can be found in the [/resources folder of the client library](https://github.com/Asana/ruby-asana/tree/master/lib/asana/resources). 
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
+
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
 
 </section>
