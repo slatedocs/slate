@@ -217,7 +217,7 @@ Content-Type: application/json
 Authorization: Basic ...
 ```
 ```http 
-HTTP/1.1 200 Accepted
+HTTP/1.1 200 OK
 Content-Type: application/json
 {
   "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
