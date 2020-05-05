@@ -1025,20 +1025,13 @@ pre {
   }
 }
 
-.beta-feedback-holder {
+.feedback-holder {
   @include text-all($text-body);
 
   font-size: 11px;
   margin-top: 0;
   padding: 0 $spacing-s;
-  text-align: center;
-
-  .beta-indicator {
-    font-weight: 500;
-    color: $purple;
-    text-transform: uppercase;
-    padding-right: $spacing-xs;
-  }
+  text-align: left;
 
   .feedback-link {
     color: $gray-7;
