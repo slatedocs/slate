@@ -78,9 +78,9 @@ When an API request is successful, the response body will contain the `data` fie
 
 Attributes | &nbsp;
 --- | ---
-`data` | The data field contains the object requested by the API caller
-`taskId` | The [task id](#tasks) of an operation executed through the services API
-`taskStatus` | The status of a [task](#tasks) of an operation executed the services API
+`data` | The data field contains the object requested by the API caller.
+`taskId` | The [task id](#tasks) of an operation executed through the services API.
+`taskStatus` | The status of a [task](#tasks) of an operation executed the services API.
 <!--
 `metadata` | The metadata is an optionally returned field containing paging and sorting information
 -->
@@ -90,6 +90,7 @@ If the response contains the "errors" field, the request was <strong>not</strong
 </aside>
 
 ### Error response
+> The error JSON response is structured like this:
 
 ```json
 {
@@ -114,22 +115,22 @@ When an API request is unsuccessful, the response body will contain the `errors`
 
 Attributes | &nbsp;
 --- | ---
-`errors` | A list of errors objects that contain information about each error
+`errors` | A list of errors objects that contain information about each error.
 
 Each error has additional fields to describe it :
 
 Attributes | &nbsp;
 --- | ---
-`code` | The CloudMC error code
-`message` | A human readable explanation of the error code
-`context` | Additional information
+`code` | The CloudMC error code.
+`message` | A human readable explanation of the error code.
+`context` | Additional information.
 
 The HTTP status codes of error responses :
 
 Status code | Reason
 ----------- | -------
 `200` | The request was successful.
-`204` | The request was successful and the response body is empty
+`204` | The request was successful and the response body is empty.
 `400` | Bad request -- Occurs when invalid parameters are provided or when quota limit is exceeded.
 `403` | Forbidden -- Not authorized to perform this request.
 `404` | Not Found -- Cannot locate the specified endpoint.
