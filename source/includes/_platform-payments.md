@@ -155,7 +155,7 @@ Updates a specific set of stored account details. This will trigger an AML check
 
 ## *Registering Companies as Wallet Holders*
 
-## `POST /companies🚧`
+## `POST /companies 🚧`
 ```http
 POST /companies HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -189,8 +189,11 @@ Register a company with the Goji Platform.  This allows the company to own Walle
 The registration process is asynchronous.  When this API is first called, the `status` returned will be `PENDING`. A 
 `COMPANY_REGISTRATION_UPDATE` webhook will be used to notify completion of the registration.
 
-The registration process is partially manual, so the webhook will be dispatched significantly later than the API call, 
-so do not assume the webhook will arrive shortly after the API call. 
+The registration process is partially manual, so the webhook will be dispatched significantly later than the API call. 
+
+<aside class="notice">
+In sandbox use this <a href="#payments-manager-put-companies-id-enable">endpoint</a> to enable a company.
+</aside>
 
 ### Request
 | Name              | Type   | Description                                        | Required |
@@ -206,7 +209,42 @@ so do not assume the webhook will arrive shortly after the API call.
 | ukCompany.number  | string | The Company Number registered with Companies House.|
 | ukCompany.name    | string | Company Name.                                      |
 
-## `GET /companies🚧`
+## `PUT /companies/{id}/enable 🚧`
+```http
+PUT /companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+```
+```http 
+HTTP/1.1 200 Accepted
+Content-Type: application/json
+{
+  "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
+  "status": "REGISTERED",
+  "ukCompany": {
+    "number": "00000000",
+    "name": "Fake Company LIMITED"
+  }
+}
+```
+### Description
+
+Simulate enabling a pending company.  
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
+### Response
+| Name              | Type   | Description                                        |
+| ----------------- | ------ | -------------------------------------------------- |
+| partyId           | string | The Party ID for this company.                     |
+| status            | string | Enum: REGISTERED.                                  |
+| ukCompany.number  | string | The Company Number registered with Companies House.|
+| ukCompany.name    | string | Company Name.                                      |
+
+## `GET /companies 🚧`
 ```http
 GET /companies HTTP/1.1
 Host: api-sandbox.goji.investments
