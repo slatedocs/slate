@@ -403,6 +403,279 @@ Retorna un objeto tipo **[nota de crédito](#requerimiento-nota-credito)** que i
 el cual identifica de manera única a la nota de crédito. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
+## Emisión de una nota de crédito a partir de XML
+
+`POST /credit-notes/issue/xml`
+
+### Requerimiento a partir de XML
+
+Para la emisión de una nota de crédito a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON. Este XML debe cumplir con la especificación del SRI.
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+xml                 | string  | Contenido del archivo xml. __Requerido__
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/credit-notes/issue/xml \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{"xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<notaCredito id=\"comprobante\" version=\"1.1.0\">
+  <infoTributaria>
+    <ambiente>1</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>DATILMEDIA S.A.</razonSocial>
+    <nombreComercial>Datil</nombreComercial>
+    <ruc>1234567890001</ruc>
+    <claveAcceso>0405202004123456789000110010010000000062235571918</claveAcceso>
+    <codDoc>04</codDoc>
+    <estab>001</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>000000006</secuencial>
+    <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+  </infoTributaria>
+  <infoNotaCredito>
+    <fechaEmision>04/05/2020</fechaEmision>
+    <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+    <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+    <razonSocialComprador>Juan Pérez</razonSocialComprador>
+    <identificacionComprador>0953239092001</identificacionComprador>
+    <obligadoContabilidad>NO</obligadoContabilidad>
+    <codDocModificado>01</codDocModificado>
+    <numDocModificado>001-002-000000001</numDocModificado>
+    <fechaEmisionDocSustento>04/05/2020</fechaEmisionDocSustento>
+    <totalSinImpuestos>0.45</totalSinImpuestos>
+    <valorModificacion>0.68</valorModificacion>
+    <moneda>DOLAR</moneda>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>3</codigo>
+        <codigoPorcentaje>3080</codigoPorcentaje>
+        <baseImponible>0.45</baseImponible>
+        <valor>0.16</valor>
+      </totalImpuesto>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>2</codigoPorcentaje>
+        <baseImponible>0.61</baseImponible>
+        <valor>0.07</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <motivo>Motivo de la nota de credito</motivo>
+  </infoNotaCredito>
+  <detalles>
+    <detalle>
+      <codigoInterno>AGDAS-001</codigoInterno>
+      <descripcion>Agua purificada</descripcion>
+      <cantidad>1.000000</cantidad>
+      <precioUnitario>0.450000</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>0.45</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>2</codigoPorcentaje>
+          <tarifa>12.00</tarifa>
+          <baseImponible>0.61</baseImponible>
+          <valor>0.07</valor>
+        </impuesto>
+        <impuesto>
+          <codigo>3</codigo>
+          <codigoPorcentaje>3080</codigoPorcentaje>
+          <tarifa>35.00</tarifa>
+          <baseImponible>0.45</baseImponible>
+          <valor>0.16</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre=\"Campo Adicional\">Informacion Adicional</campoAdicional>
+  </infoAdicional>
+</notaCredito>"}'
+```
+
+```python
+import requests, json
+
+nota_credito = {
+    "xml": '''<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+    <notaCredito id=\"comprobante\" version=\"1.1.0\">
+      <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>DATILMEDIA S.A.</razonSocial>
+        <nombreComercial>Datil</nombreComercial>
+        <ruc>1234567890001</ruc>
+        <claveAcceso>0405202004123456789000110010010000000062235571918</claveAcceso>
+        <codDoc>04</codDoc>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000000006</secuencial>
+        <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+      </infoTributaria>
+      <infoNotaCredito>
+        <fechaEmision>04/05/2020</fechaEmision>
+        <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+        <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+        <razonSocialComprador>Juan Pérez</razonSocialComprador>
+        <identificacionComprador>0953239092001</identificacionComprador>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <codDocModificado>01</codDocModificado>
+        <numDocModificado>001-002-000000001</numDocModificado>
+        <fechaEmisionDocSustento>04/05/2020</fechaEmisionDocSustento>
+        <totalSinImpuestos>0.45</totalSinImpuestos>
+        <valorModificacion>0.68</valorModificacion>
+        <moneda>DOLAR</moneda>
+        <totalConImpuestos>
+          <totalImpuesto>
+            <codigo>3</codigo>
+            <codigoPorcentaje>3080</codigoPorcentaje>
+            <baseImponible>0.45</baseImponible>
+            <valor>0.16</valor>
+          </totalImpuesto>
+          <totalImpuesto>
+            <codigo>2</codigo>
+            <codigoPorcentaje>2</codigoPorcentaje>
+            <baseImponible>0.61</baseImponible>
+            <valor>0.07</valor>
+          </totalImpuesto>
+        </totalConImpuestos>
+        <motivo>Motivo de la nota de credito</motivo>
+      </infoNotaCredito>
+      <detalles>
+        <detalle>
+          <codigoInterno>AGDAS-001</codigoInterno>
+          <descripcion>Agua purificada</descripcion>
+          <cantidad>1.000000</cantidad>
+          <precioUnitario>0.450000</precioUnitario>
+          <descuento>0.00</descuento>
+          <precioTotalSinImpuesto>0.45</precioTotalSinImpuesto>
+          <impuestos>
+            <impuesto>
+              <codigo>2</codigo>
+              <codigoPorcentaje>2</codigoPorcentaje>
+              <tarifa>12.00</tarifa>
+              <baseImponible>0.61</baseImponible>
+              <valor>0.07</valor>
+            </impuesto>
+            <impuesto>
+              <codigo>3</codigo>
+              <codigoPorcentaje>3080</codigoPorcentaje>
+              <tarifa>35.00</tarifa>
+              <baseImponible>0.45</baseImponible>
+              <valor>0.16</valor>
+            </impuesto>
+          </impuestos>
+        </detalle>
+      </detalles>
+      <infoAdicional>
+        <campoAdicional nombre="Campo Adicional">Informacion Adicional</campoAdicional>
+      </infoAdicional>
+    </notaCredito>'''
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/credit-notes/issue/xml",
+    headers = cabeceras,
+    data = json.dumps(nota_credito))
+```
+
+> #### Respuesta de ejemplo
+
+```json
+{
+    "secuencial": "000000006",
+    "fecha_emision": "2020-05-04T00:00:00-05:19",
+    "emisor": {
+        "ruc": "1234567890001",
+        "razon_social": "DATILMEDIA S.A.",
+        "nombre_comercial": "Datil",
+        "contribuyente_especial": "",
+        "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras",
+        "obligado_contabilidad": "NO",
+        "establecimiento": {
+            "punto_emision": "001",
+            "codigo": "001",
+            "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"
+        },
+        "email": "devops@datilmedia.com"
+    },
+    "fecha_emision_documento_modificado": "2020-05-04T00:00:00-05:00",
+    "es_valida": true,
+    "moneda": "USD",
+    "id": "21da58fa6ecf4827ae002b8c641e1b00",
+    "informacion_adicional": {
+        "Campo Adicional": "Informacion Adicional"
+    },
+    "ambiente": "1",
+    "totales": {
+        "total_sin_impuestos": 0.45,
+        "importe_total": 0.68,
+        "impuestos": [
+            {
+                "codigo": "3",
+                "codigo_porcentaje": "3080",
+                "base_imponible": 0.45,
+                "valor": 0.16
+            },
+            {
+                "codigo": "2",
+                "codigo_porcentaje": "2",
+                "base_imponible": 0.61,
+                "valor": 0.07
+            }
+        ]
+    },
+    "comprador": {
+        "identificacion": "0953239092001",
+        "razon_social": "Juan Pérez",
+        "direccion": "",
+        "tipo_identificacion": "04"
+    },
+    "tipo_emision": 1,
+    "items": [
+        {
+            "precio_unitario": 0.45,
+            "descripcion": "Agua purificada",
+            "precio_total_sin_impuestos": 0.45,
+            "impuestos": [
+                {
+                    "codigo": "2",
+                    "tarifa": 12.0,
+                    "codigo_porcentaje": "2",
+                    "base_imponible": 0.61,
+                    "valor": 0.07
+                },
+                {
+                    "codigo": "3",
+                    "tarifa": 35.0,
+                    "codigo_porcentaje": "3080",
+                    "base_imponible": 0.45,
+                    "valor": 0.16
+                }
+            ],
+            "detalles_adicionales": {},
+            "cantidad": 1.0,
+            "codigo_auxiliar": "",
+            "descuento": 0.0,
+            "codigo_principal": "AGDAS-001"
+        }
+    ],
+    "tipo_documento_modificado": "01",
+    "numero_documento_modificado": "001-002-000000001",
+    "clave_acceso": "0405202004123456789000110010010000000062235571918",
+    "motivo": "Motivo de la nota de credito"
+}
+````
+
 ## Consulta de una nota de crédito
 
 Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo

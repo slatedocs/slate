@@ -457,7 +457,7 @@ Retorna un objeto tipo **[liquidacion](#requerimiento-liquidacion)** que incluye
 el cual identifica de manera única a la liquidación de compras. El campo `clave_acceso` generado
 también se incluirá como parte de la respuesta.
 
-## Emisión a partir de XML
+## Emisión de una liquidación de compra a partir de XML
 
 `POST /purchase-settlements/issue/xml`
 
@@ -473,83 +473,145 @@ xml                 | string  | Contenido del archivo xml. __Requerido__
 
 > #### Requerimiento de ejemplo
 
-
 ```shell
 curl -v https://link.datil.co/purchase-settlements/issue/xml \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
--d '{"xml" : "<?xml version=\"1.1.0\" encoding=\"UTF-8\"?><liquidacionCompra id=\"comprobante\" version=\"1.1.0\"><infoTributaria><ambiente>1</ambiente><tipoEmision>1</tipoEmision><razonSocial>DATILMEDIA S.A. DE C.V.</razonSocial><nombreComercial>DATILMEDIA S.A.</nombreComercial><ruc>0992712554001</ruc><claveAcceso>1234567890098765432112345678900987654321987654321</claveAcceso><codDoc>03</codDoc><estab>001</estab><ptoEmi>001</ptoEmi><secuencial>000002134</secuencial><dirMatriz>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE</dirMatriz></infoTributaria><infoLiquidacionCompra><fechaEmision>20/10/2019</fechaEmision><dirEstablecimiento>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE 2</dirEstablecimiento><obligadoContabilidad>NO</obligadoContabilidad><tipoIdentificacionProveedor>04</tipoIdentificacionProveedor><razonSocialProveedor>Sistemas XYZ</razonSocialProveedor><identificacionProveedor>0987343992001</identificacionProveedor><totalSinImpuestos>6.00</totalSinImpuestos><totalDescuento>1.50</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><baseImponible>6.00</baseImponible><valor>0.72</valor></totalImpuesto></totalConImpuestos><importeTotal>6.72</importeTotal><moneda>DOLAR</moneda><pagos><pago><formaPago>01</formaPago><total>6.72</total></pago></pagos></infoLiquidacionCompra><detalles><detalle><codigoPrincipal>105AP</codigoPrincipal><descripcion>Aceite Protector</descripcion><cantidad>1.400000</cantidad><precioUnitario>5.357143</precioUnitario><descuento>1.50</descuento><precioTotalSinImpuesto>6.00</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><tarifa>12.00</tarifa><baseImponible>6.00</baseImponible><valor>0.72</valor></impuesto></impuestos></detalle></detalles><infoAdicional><campoAdicional nombre=\"Info\">Adicional</campoAdicional></infoAdicional></liquidacionCompra>"}'
+-d '{"xml" : "<?xml version=\"1.1.0\" encoding=\"UTF-8\"?>
+<liquidacionCompra id= \"comprobante\" version= \"1.1.0\">
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>DATILMEDIA S.A. DE C.V.</razonSocial>
+        <nombreComercial>DATILMEDIA S.A.</nombreComercial>
+        <ruc>0992712554001</ruc>
+        <claveAcceso>1234567890098765432112345678900987654321987654321</claveAcceso>
+        <codDoc>03</codDoc>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000002134</secuencial>
+        <dirMatriz>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE</dirMatriz>
+    </infoTributaria>
+    <infoLiquidacionCompra>
+        <fechaEmision>20/10/2019</fechaEmision>
+        <dirEstablecimiento>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE 2</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionProveedor>04</tipoIdentificacionProveedor>
+        <razonSocialProveedor>Sistemas XYZ</razonSocialProveedor>
+        <identificacionProveedor>0987343992001</identificacionProveedor>
+        <totalSinImpuestos>6.00</totalSinImpuestos>
+        <totalDescuento>1.50</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>2</codigoPorcentaje>
+                <baseImponible>6.00</baseImponible>
+                <valor>0.72</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <importeTotal>6.72</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>01</formaPago>
+                <total>6.72</total>
+            </pago>
+        </pagos>
+    </infoLiquidacionCompra>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>105AP</codigoPrincipal>
+            <descripcion>Aceite Protector</descripcion>
+            <cantidad>1.400000</cantidad>
+            <precioUnitario>5.357143</precioUnitario>
+            <descuento>1.50</descuento>
+            <precioTotalSinImpuesto>6.00</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>2</codigoPorcentaje>
+                    <tarifa>12.00</tarifa>
+                    <baseImponible>6.00</baseImponible>
+                    <valor>0.72</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre= \"Info\">Adicional</campoAdicional>
+    </infoAdicional>
+</liquidacionCompra>"}'
 ```
 
 ```python
 import requests, json
 
 liquidacion_compra = {
-    "xml" : '''<?xml version="1.1.0" encoding="UTF-8"?>
-<liquidacionCompra id="comprobante" version="1.1.0">
-  <infoTributaria>
-    <ambiente>1</ambiente>
-    <tipoEmision>1</tipoEmision>
-    <razonSocial>DATILMEDIA S.A.</razonSocial>
-    <nombreComercial>DATILMEDIA S.A.</nombreComercial>
-    <ruc>0992712554001</ruc>
-    <claveAcceso>1234567890098765432112345678900987654321987654321</claveAcceso>
-    <codDoc>03</codDoc>
-    <estab>001</estab>
-    <ptoEmi>001</ptoEmi>
-    <secuencial>000002134</secuencial>
-    <dirMatriz>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE</dirMatriz>
-  </infoTributaria>
-  <infoLiquidacionCompra>
-    <fechaEmision>20/10/2019</fechaEmision>
-    <dirEstablecimiento>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE 2</dirEstablecimiento>
-    <obligadoContabilidad>NO</obligadoContabilidad>
-    <tipoIdentificacionProveedor>04</tipoIdentificacionProveedor>
-    <razonSocialProveedor>Sistemas XYZ</razonSocialProveedor>
-    <identificacionProveedor>0987343992001</identificacionProveedor>
-    <totalSinImpuestos>6.00</totalSinImpuestos>
-    <totalDescuento>1.50</totalDescuento>
-    <totalConImpuestos>
-      <totalImpuesto>
-        <codigo>2</codigo>
-        <codigoPorcentaje>2</codigoPorcentaje>
-        <baseImponible>6.00</baseImponible>
-        <valor>0.72</valor>
-      </totalImpuesto>
-    </totalConImpuestos>
-    <importeTotal>6.72</importeTotal>
-    <moneda>DOLAR</moneda>
-    <pagos>
-      <pago>
-        <formaPago>01</formaPago>
-        <total>6.72</total>
-      </pago>
-    </pagos>
-  </infoLiquidacionCompra>
-  <detalles>
-    <detalle>
-      <codigoPrincipal>105AP</codigoPrincipal>
-      <descripcion>Aceite Protector</descripcion>
-      <cantidad>1.400000</cantidad>
-      <precioUnitario>5.357143</precioUnitario>
-      <descuento>1.50</descuento>
-      <precioTotalSinImpuesto>6.00</precioTotalSinImpuesto>
-      <impuestos>
-        <impuesto>
-          <codigo>2</codigo>
-          <codigoPorcentaje>2</codigoPorcentaje>
-          <tarifa>12.00</tarifa>
-          <baseImponible>6.00</baseImponible>
-          <valor>0.72</valor>
-        </impuesto>
-      </impuestos>
-    </detalle>
-  </detalles>
-  <infoAdicional>
-    <campoAdicional nombre="Info">Adicional</campoAdicional>
-  </infoAdicional>
-</liquidacionCompra>'''
+    "xml": '''<?xml version="1.1.0" encoding="UTF-8"?>
+    <liquidacionCompra id="comprobante" version="1.1.0">
+      <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>DATILMEDIA S.A.</razonSocial>
+        <nombreComercial>DATILMEDIA S.A.</nombreComercial>
+        <ruc>0992712554001</ruc>
+        <claveAcceso>1234567890098765432112345678900987654321987654321</claveAcceso>
+        <codDoc>03</codDoc>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000002134</secuencial>
+        <dirMatriz>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE</dirMatriz>
+      </infoTributaria>
+      <infoLiquidacionCompra>
+        <fechaEmision>20/10/2019</fechaEmision>
+        <dirEstablecimiento>VICTOR EMILIO ESTRADA 112 Y CIRCUNVALACION NORTE 2</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionProveedor>04</tipoIdentificacionProveedor>
+        <razonSocialProveedor>Sistemas XYZ</razonSocialProveedor>
+        <identificacionProveedor>0987343992001</identificacionProveedor>
+        <totalSinImpuestos>6.00</totalSinImpuestos>
+        <totalDescuento>1.50</totalDescuento>
+        <totalConImpuestos>
+          <totalImpuesto>
+            <codigo>2</codigo>
+            <codigoPorcentaje>2</codigoPorcentaje>
+            <baseImponible>6.00</baseImponible>
+            <valor>0.72</valor>
+          </totalImpuesto>
+        </totalConImpuestos>
+        <importeTotal>6.72</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+          <pago>
+            <formaPago>01</formaPago>
+            <total>6.72</total>
+          </pago>
+        </pagos>
+      </infoLiquidacionCompra>
+      <detalles>
+        <detalle>
+          <codigoPrincipal>105AP</codigoPrincipal>
+          <descripcion>Aceite Protector</descripcion>
+          <cantidad>1.400000</cantidad>
+          <precioUnitario>5.357143</precioUnitario>
+          <descuento>1.50</descuento>
+          <precioTotalSinImpuesto>6.00</precioTotalSinImpuesto>
+          <impuestos>
+            <impuesto>
+              <codigo>2</codigo>
+              <codigoPorcentaje>2</codigoPorcentaje>
+              <tarifa>12.00</tarifa>
+              <baseImponible>6.00</baseImponible>
+              <valor>0.72</valor>
+            </impuesto>
+          </impuestos>
+        </detalle>
+      </detalles>
+      <infoAdicional>
+        <campoAdicional nombre="Info">Adicional</campoAdicional>
+      </infoAdicional>
+    </liquidacionCompra>'''
 }
 
 cabeceras = {
@@ -563,6 +625,95 @@ respuesta = requests.post(
 ```
 
 ```csharp
+```
+
+> #### Reespuesta de ejemplo
+
+```json
+{
+    "pagos": [
+        {
+            "plazo": null,
+            "total": "6.72",
+            "unidad_tiempo": "",
+            "forma_pago": "01"
+        }
+    ],
+    "secuencial": 3,
+    "proveedor": {
+        "correo": null,
+        "identificacion": "0987343992001",
+        "razon_social": "Sistemas XYZ",
+        "direccion": "",
+        "tipo_identificacion": "04"
+    },
+    "emisor": {
+        "provincia": 10,
+        "email": "devops@datilmedia.com",
+        "categoria": "Combustible",
+        "ruc": "1234567890001",
+        "obligado_contabilidad": false,
+        "contribuyente_especial": "",
+        "subcategoria": "Desarrollo de software",
+        "nombre_comercial": "Hexlab Demo",
+        "pais": 1,
+        "market_id": "denny",
+        "razon_social": "Hexlab Demo",
+        "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras",
+        "ciudad": "Guayaquil",
+        "exportador": false,
+        "telefono": "046029400",
+        "tipoentidad": "Sociedad Anónima"
+    },
+    "correos_enviados": [],
+    "numero": "001-001-000000003",
+    "anulado": false,
+    "es_valida": true,
+    "id": "c1f05f6cd3494c88a21877d8c8d3a5ea",
+    "informacion_adicional": {
+        "Info": "Adicional"
+    },
+    "ambiente": "1",
+    "totales": {
+        "total_sin_impuestos": "6.00",
+        "importe_total": "6.72",
+        "impuestos": [
+            {
+                "codigo": "2",
+                "codigo_porcentaje": "2",
+                "base_imponible": "6.00",
+                "valor": "0.72"
+            }
+        ],
+        "descuento": "1.50"
+    },
+    "envio_sri": {},
+    "items": [
+        {
+            "precio_unitario": "5.357143",
+            "descripcion": "Aceite Protector",
+            "precio_total_sin_impuestos": "6.00",
+            "unidad_medida": null,
+            "impuestos": [
+                {
+                    "codigo": "2",
+                    "tarifa": "12.00",
+                    "codigo_porcentaje": "2",
+                    "base_imponible": "6.00",
+                    "valor": "0.72"
+                }
+            ],
+            "detalles_adicionales": {},
+            "cantidad": "1.400000",
+            "codigo_auxiliar": null,
+            "descuento": "1.50",
+            "codigo_principal": "105AP"
+        }
+    ],
+    "pre_autorizado": false,
+    "clave_acceso": "2010201903123456789000110010010000000032235587919",
+    "autorizacion": {}
+}
 ```
 
 ## Emisión de una liquidación de compras de reembolso

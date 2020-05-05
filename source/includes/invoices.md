@@ -645,14 +645,126 @@ curl -v https://link.datil.co/invoices/issue/xml \
 -H "Content-Type: application/json" \
 -H "X-Key: <API-key>" \
 -H "X-Password: <clave-certificado-firma>" \
--d '{"xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><factura id=\"comprobante\" version=\"1.1.0\"><infoTributaria><ambiente>1</ambiente><tipoEmision>1</tipoEmision><razonSocial>Angel Arreaga</razonSocial><nombreComercial>XYZ</nombreComercial><ruc>0953239092002</ruc><claveAcceso>None</claveAcceso><codDoc>01</codDoc><estab>002</estab><ptoEmi>003</ptoEmi><secuencial>000098431</secuencial><dirMatriz>Mucho Lote 1</dirMatriz></infoTributaria><infoFactura><fechaEmision>17/10/2019</fechaEmision><dirEstablecimiento>Mucho Lote 1</dirEstablecimiento><obligadoContabilidad>NO</obligadoContabilidad><tipoIdentificacionComprador>04</tipoIdentificacionComprador><razonSocialComprador>DATILMEDIA S.A.</razonSocialComprador><identificacionComprador>0992712554001</identificacionComprador><direccionComprador>Entre Guayacanes e Higueras, Guayaquil, Ecuador</direccionComprador><totalSinImpuestos>12.00</totalSinImpuestos><totalDescuento>0.00</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><baseImponible>12.00</baseImponible><valor>1.44</valor></totalImpuesto></totalConImpuestos><propina>0.00</propina><importeTotal>13.44</importeTotal><moneda>DOLAR</moneda></infoFactura><detalles><detalle><codigoPrincipal>105AP1</codigoPrincipal><descripcion>Aceite Protector Madera</descripcion><cantidad>1.000000</cantidad><precioUnitario>12.000000</precioUnitario><descuento>0.00</descuento><precioTotalSinImpuesto>12.00</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><tarifa>12.00</tarifa><baseImponible>12.00</baseImponible><valor>1.44</valor></impuesto></impuestos></detalle></detalles></factura>"}'
+-d '{"xml" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<factura id= \"comprobante\" version= \"1.1.0\">
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>Angel Arreaga</razonSocial>
+        <nombreComercial>XYZ</nombreComercial>
+        <ruc>0953239092002</ruc>
+        <claveAcceso>None</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>002</estab>
+        <ptoEmi>003</ptoEmi>
+        <secuencial>000098431</secuencial>
+        <dirMatriz>Mucho Lote 1</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>17/10/2019</fechaEmision>
+        <dirEstablecimiento>Mucho Lote 1</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+        <razonSocialComprador>DATILMEDIA S.A.</razonSocialComprador>
+        <identificacionComprador>0992712554001</identificacionComprador>
+        <direccionComprador>Entre Guayacanes e Higueras, Guayaquil, Ecuador</direccionComprador>
+        <totalSinImpuestos>12.00</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>2</codigoPorcentaje>
+                <baseImponible>12.00</baseImponible>
+                <valor>1.44</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>13.44</importeTotal>
+        <moneda>DOLAR</moneda>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>105AP1</codigoPrincipal>
+            <descripcion>Aceite Protector Madera</descripcion>
+            <cantidad>1.000000</cantidad>
+            <precioUnitario>12.000000</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>12.00</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>2</codigoPorcentaje>
+                    <tarifa>12.00</tarifa>
+                    <baseImponible>12.00</baseImponible>
+                    <valor>1.44</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+</factura>"}'
 ```
 
 ```python
 import requests, json
 
 factura = {
-    "xml" : '<?xml version="1.0" encoding="UTF-8"?><factura id="comprobante" version="1.1.0"><infoTributaria><ambiente>1</ambiente><tipoEmision>1</tipoEmision><razonSocial>XYZ Corporación S.A.</razonSocial><nombreComercial>XYZ Corp</nombreComercial><ruc>0910000000001</ruc><claveAcceso></claveAcceso><codDoc>01</codDoc><estab>002</estab><ptoEmi>003</ptoEmi><secuencial>000098431</secuencial><dirMatriz>Av. Primera 234 y calle 5ta</dirMatriz></infoTributaria><infoFactura><fechaEmision>17/10/2019</fechaEmision><dirEstablecimiento>Av. Primera 234 y calle 5ta</dirEstablecimiento><obligadoContabilidad>SI</obligadoContabilidad><tipoIdentificacionComprador>04</tipoIdentificacionComprador><razonSocialComprador>Juan Pérez</razonSocialComprador><identificacionComprador>0987654321</identificacionComprador><direccionComprador>Calle única Numero 987</direccionComprador><totalSinImpuestos>12.00</totalSinImpuestos><totalDescuento>0.00</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><baseImponible>12.00</baseImponible><valor>1.44</valor></totalImpuesto></totalConImpuestos><propina>0.00</propina><importeTotal>13.44</importeTotal><moneda>DOLAR</moneda></infoFactura><detalles><detalle><codigoPrincipal>105AP1</codigoPrincipal><descripcion>Aceite Protector Madera</descripcion><cantidad>1.000000</cantidad><precioUnitario>12.000000</precioUnitario><descuento>0.00</descuento><precioTotalSinImpuesto>12.00</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>2</codigoPorcentaje><tarifa>12.00</tarifa><baseImponible>12.00</baseImponible><valor>1.44</valor></impuesto></impuestos></detalle></detalles></factura>'
+    "xml" : '''<?xml version="1.0" encoding="UTF-8"?>
+    <factura id="comprobante" version="1.1.0">
+      <infoTributaria>
+          <ambiente>1</ambiente>
+          <tipoEmision>1</tipoEmision>
+          <razonSocial>XYZ Corporación S.A.</razonSocial>
+          <nombreComercial>XYZ Corp</nombreComercial>
+          <ruc>0910000000001</ruc>
+          <claveAcceso></claveAcceso>
+          <codDoc>01</codDoc>
+          <estab>002</estab>
+          <ptoEmi>003</ptoEmi>
+          <secuencial>000098431</secuencial>
+          <dirMatriz>Av. Primera 234 y calle 5ta</dirMatriz>
+      </infoTributaria>
+      <infoFactura>
+          <fechaEmision>17/10/2019</fechaEmision>
+          <dirEstablecimiento>Av. Primera 234 y calle 5ta</dirEstablecimiento>
+          <obligadoContabilidad>SI</obligadoContabilidad>
+          <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+          <razonSocialComprador>Juan Pérez</razonSocialComprador>
+          <identificacionComprador>0987654321</identificacionComprador>
+          <direccionComprador>Calle única Numero 987</direccionComprador>
+          <totalSinImpuestos>12.00</totalSinImpuestos>
+          <totalDescuento>0.00</totalDescuento>
+          <totalConImpuestos>
+              <totalImpuesto>
+                  <codigo>2</codigo>
+                  <codigoPorcentaje>2</codigoPorcentaje>
+                  <baseImponible>12.00</baseImponible>
+                  <valor>1.44</valor>
+              </totalImpuesto>
+          </totalConImpuestos>
+          <propina>0.00</propina>
+          <importeTotal>13.44</importeTotal>
+          <moneda>DOLAR</moneda>
+      </infoFactura>
+      <detalles>
+          <detalle>
+              <codigoPrincipal>105AP1</codigoPrincipal>
+              <descripcion>Aceite Protector Madera</descripcion>
+              <cantidad>1.000000</cantidad>
+              <precioUnitario>12.000000</precioUnitario>
+              <descuento>0.00</descuento>
+              <precioTotalSinImpuesto>12.00</precioTotalSinImpuesto>
+              <impuestos>
+                  <impuesto>
+                      <codigo>2</codigo>
+                      <codigoPorcentaje>2</codigoPorcentaje>
+                      <tarifa>12.00</tarifa>
+                      <baseImponible>12.00</baseImponible>
+                      <valor>1.44</valor>
+                  </impuesto>
+              </impuestos>
+          </detalle>
+      </detalles>
+    </factura>'''
 }
 
 cabeceras = {

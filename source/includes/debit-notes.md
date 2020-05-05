@@ -374,6 +374,217 @@ Retorna un objeto tipo **[nota de débito](#requerimiento-nota-credito)** que in
 el cual identifica de manera única a la nota de débito. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
+## Emisión de una nota de débito a partir de XML
+
+`POST /debit-notes/issue/xml`
+
+### Requerimiento a partir de XML
+
+Para la emisión de una nota de débito a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON. Este XML debe cumplir con la especificación del SRI.
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+xml                 | string  | Contenido del archivo xml. __Requerido__
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/debit-notes/issue/xml \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{"xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<notaDebito id=\"comprobante\" version=\"1.0.0\">
+  <infoTributaria>
+    <ambiente>1</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>DATILMEDIA S.A.</razonSocial>
+    <nombreComercial>Datil</nombreComercial>
+    <ruc>1234567890001</ruc>
+    <claveAcceso>0405202005123456789000110010010000000012235571917</claveAcceso>
+    <codDoc>05</codDoc>
+    <estab>001</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>000000001</secuencial>
+    <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+  </infoTributaria>
+  <infoNotaDebito>
+    <fechaEmision>04/05/2020</fechaEmision>
+    <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+    <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+    <razonSocialComprador>Santacruz Hernandez Anni Rosa</razonSocialComprador>
+    <identificacionComprador>0953239092001</identificacionComprador>
+    <obligadoContabilidad>NO</obligadoContabilidad>
+    <codDocModificado>01</codDocModificado>
+    <numDocModificado>001-001-000000001</numDocModificado>
+    <fechaEmisionDocSustento>04/05/2020</fechaEmisionDocSustento>
+    <totalSinImpuestos>0.45</totalSinImpuestos>
+    <impuestos>
+      <impuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>2</codigoPorcentaje>
+        <tarifa>12.00</tarifa>
+        <baseImponible>0.45</baseImponible>
+        <valor>0.05</valor>
+      </impuesto>
+      <impuesto>
+        <codigo>3</codigo>
+        <codigoPorcentaje>3080</codigoPorcentaje>
+        <tarifa>35.00</tarifa>
+        <baseImponible>0.45</baseImponible>
+        <valor>0.16</valor>
+      </impuesto>
+    </impuestos>
+    <valorTotal>0.50</valorTotal>
+  </infoNotaDebito>
+  <motivos>
+    <motivo>
+      <razon>Agua purificada</razon>
+      <valor>0.45</valor>
+    </motivo>
+  </motivos>
+  <infoAdicional>
+    <campoAdicional nombre=\"Campo Adicional\">Información adicional</campoAdicional>
+  </infoAdicional>
+</notaDebito>"}'
+```
+
+```python
+import requests, json
+
+nota_debito = {
+    "xml": '''<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+    <notaDebito id=\"comprobante\" version=\"1.0.0\">
+      <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>DATILMEDIA/razonSocial>
+        <nombreComercial>Dail</nombreComercial>
+        <ruc>1234567890001</ruc>
+        <claveAcceso>0405202005123456789000110010010000000012235571917</claveAcceso>
+        <codDoc>05</codDoc>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000000001</secuencial>
+        <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+      </infoTributaria>
+      <infoNotaDebito>
+        <fechaEmision>04/05/2020</fechaEmision>
+        <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+        <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+        <razonSocialComprador>Santacruz Hernandez Anni Rosa</razonSocialComprador>
+        <identificacionComprador>0953239092001</identificacionComprador>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <codDocModificado>01</codDocModificado>
+        <numDocModificado>001-001-000000001</numDocModificado>
+        <fechaEmisionDocSustento>04/05/2020</fechaEmisionDocSustento>
+        <totalSinImpuestos>0.45</totalSinImpuestos>
+        <impuestos>
+          <impuesto>
+            <codigo>2</codigo>
+            <codigoPorcentaje>2</codigoPorcentaje>
+            <tarifa>12.00</tarifa>
+            <baseImponible>0.45</baseImponible>
+            <valor>0.05</valor>
+          </impuesto>
+          <impuesto>
+            <codigo>3</codigo>
+            <codigoPorcentaje>3080</codigoPorcentaje>
+            <tarifa>35.00</tarifa>
+            <baseImponible>0.45</baseImponible>
+            <valor>0.16</valor>
+          </impuesto>
+        </impuestos>
+        <valorTotal>0.50</valorTotal>
+      </infoNotaDebito>
+      <motivos>
+        <motivo>
+          <razon>Agua purificada</razon>
+          <valor>0.45</valor>
+        </motivo>
+      </motivos>
+      <infoAdicional>
+        <campoAdicional nombre="Campo Adicional">Información adicional</campoAdicional>
+      </infoAdicional>
+    </notaDebito>'''
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/debit-notes/issue/xml",
+    headers = cabeceras,
+    data = json.dumps(nota_debito))
+```
+
+> #### Reespuesta de ejemplo
+
+```json
+{
+    "secuencial": 2,
+    "fecha_emision": "2020-05-04T00:00:00-05:00",
+    "emisor": {
+        "ruc": "1234567890001",
+        "razon_social": "DATILMEDIA S.A.",
+        "nombre_comercial": "Datil",
+        "contribuyente_especial": "",
+        "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras",
+        "obligado_contabilidad": false,
+        "establecimiento": {
+            "punto_emision": "001",
+            "codigo": "001",
+            "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"
+        },
+        "email": "devops@datilmedia.com"
+    },
+    "fecha_emision_documento_modificado": "2020-05-04T00:00:00-05:00",
+    "id": "1fb562334f654368ab26dc9ce1a5b99b",
+    "informacion_adicional": {
+        "Campo Adicional": "Información adicional"
+    },
+    "ambiente": "1",
+    "totales": {
+        "total_sin_impuestos": "0.45",
+        "importe_total": "0.50",
+        "impuestos": [
+            {
+                "tarifa": "12.00",
+                "codigo": "2",
+                "codigo_porcentaje": "2",
+                "base_imponible": "0.45",
+                "valor": "0.05"
+            },
+            {
+                "tarifa": "35.00",
+                "codigo": "3",
+                "codigo_porcentaje": "3080",
+                "base_imponible": "0.45",
+                "valor": "0.16"
+            }
+        ],
+        "total_impuestos": "0.05"
+    },
+    "comprador": {
+        "identificacion": "0953239092001",
+        "razon_social": "Santacruz Hernandez Anni Rosa",
+        "tipo_identificacion": "04",
+        "direccion": ""
+    },
+    "tipo_emision": "1",
+    "items": [
+        {
+            "motivo": "Agua purificada",
+            "valor": "0.45"
+        }
+    ],
+    "tipo_documento_modificado": "01",
+    "numero_documento_modificado": "001-001-000000001",
+    "clave_acceso": "0405202005123456789000110010010000000012235571917"
+}
+```
+
 ## Consulta de una nota de débito
 
 Consulta una nota de débito para obtener toda la información del comprobante, incluyendo

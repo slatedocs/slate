@@ -368,3 +368,22 @@ Endoso de títulos | endoso_titulos | Endoso de títulos | 21
 
 Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago "Otros con utilización del sistema financiero".
+
+# Descarga de documentos
+
+## Consulta de RIDE
+
+Consulta de la representación impresa del documento electrónico (RIDE). El ID del documento `id-doc` es el ID que se obtiene después de emitir un documento.
+
+### Operación
+
+`GET app.datil.co/ver/<id-doc>/pdf`
+
+## Consulta de XML
+
+Consulta de representación XML de los documentos. El ID del documento `id-doc` es el ID que se obtiene después de emitir un documento.
+
+### Operación
+
+`GET app.datil.co/ver/<id-doc>/xml`
+

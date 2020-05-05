@@ -368,6 +368,213 @@ Retorna un objeto tipo **[guía de remisión](#requerimiento-guia-remision)** qu
 el cual identifica de manera única a la guía de remisión. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
+## Emisión de una guia de remisión a partir de XML
+
+`POST /waybills/issue/xml`
+
+### Requerimiento a partir de XML
+
+Para la emisión de una guia de remisión a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON. Este XML debe cumplir con la especificación del SRI.
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+xml                 | string  | Contenido del archivo xml. __Requerido__
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/waybills/issue/xml \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{"xml": "<?xml version=\"1.1.0\" encoding=\"UTF-8\">
+<guiaRemision id=\"comprobante\" version=\"1.1.0\">
+  <infoTributaria>
+    <ambiente>1</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>DATILMEDIA S.A.</razonSocial>
+    <nombreComercial>Datil</nombreComercial>
+    <ruc>1234567890001</ruc>
+    <claveAcceso>0405202006123456789000110010010000000012235571913</claveAcceso>
+    <codDoc>06</codDoc>
+    <estab>001</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>000000001</secuencial>
+    <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+  </infoTributaria>
+  <infoGuiaRemision>
+    <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+    <dirPartida>Calle única Numero 987</dirPartida>
+    <razonSocialTransportista>Juan Perez</razonSocialTransportista>
+    <tipoIdentificacionTransportista>05</tipoIdentificacionTransportista>
+    <rucTransportista>0987654321</rucTransportista>
+    <obligadoContabilidad>NO</obligadoContabilidad>
+    <fechaIniTransporte>04/05/2020</fechaIniTransporte>
+    <fechaFinTransporte>05/05/2020</fechaFinTransporte>
+    <placa>GSM-0123</placa>
+  </infoGuiaRemision>
+  <destinatarios>
+    <destinatario>
+      <identificacionDestinatario>0953239092001</identificacionDestinatario>
+      <razonSocialDestinatario>Santacruz Hernandez Anni Rosa</razonSocialDestinatario>
+      <dirDestinatario>Solar 23</dirDestinatario>
+      <motivoTraslado>Motivo del traslado</motivoTraslado>
+      <codEstabDestino>001</codEstabDestino>
+      <ruta>GYE - UIO</ruta>
+      <codDocSustento>01</codDocSustento>
+      <numDocSustento>001-001-000000001</numDocSustento>
+      <fechaEmisionDocSustento>01/05/2020</fechaEmisionDocSustento>
+      <detalles>
+        <detalle>
+          <codigoInterno>AGDAS-001</codigoInterno>
+          <descripcion>Agua purificada</descripcion>
+          <cantidad>1.000000</cantidad>
+          <detallesAdicionales/>
+        </detalle>
+      </detalles>
+    </destinatario>
+  </destinatarios>
+  <infoAdicional>
+    <campoAdicional nombre=\"Campo Adicional\">Informacion Adicional</campoAdicional>
+  </infoAdicional>
+</guiaRemision>"}'
+```
+
+```python
+import requests, json
+
+guia_remision = {
+    "xml": '''<?xml version=\"1.1.0\" encoding=\"UTF-8\">
+    <guiaRemision id=\"comprobante\" version=\"1.1.0\">
+      <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>DATILMEDIA S.A.</razonSocial>
+        <nombreComercial>Datil</nombreComercial>
+        <ruc>1234567890001</ruc>
+        <claveAcceso>0405202006123456789000110010010000000012235571913</claveAcceso>
+        <codDoc>06</codDoc>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000000001</secuencial>
+        <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+      </infoTributaria>
+      <infoGuiaRemision>
+        <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+        <dirPartida>Calle única Numero 987</dirPartida>
+        <razonSocialTransportista>Juan Perez</razonSocialTransportista>
+        <tipoIdentificacionTransportista>05</tipoIdentificacionTransportista>
+        <rucTransportista>0987654321</rucTransportista>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <fechaIniTransporte>04/05/2020</fechaIniTransporte>
+        <fechaFinTransporte>05/05/2020</fechaFinTransporte>
+        <placa>GSM-0123</placa>
+      </infoGuiaRemision>
+      <destinatarios>
+        <destinatario>
+          <identificacionDestinatario>0953239092001</identificacionDestinatario>
+          <razonSocialDestinatario>Santacruz Hernandez Anni Rosa</razonSocialDestinatario>
+          <dirDestinatario>Solar 23</dirDestinatario>
+          <motivoTraslado>Motivo del traslado</motivoTraslado>
+          <codEstabDestino>001</codEstabDestino>
+          <ruta>GYE - UIO</ruta>
+          <codDocSustento>01</codDocSustento>
+          <numDocSustento>001-001-000000001</numDocSustento>
+          <fechaEmisionDocSustento>01/05/2020</fechaEmisionDocSustento>
+          <detalles>
+            <detalle>
+              <codigoInterno>AGDAS-001</codigoInterno>
+              <descripcion>Agua purificada</descripcion>
+              <cantidad>1.000000</cantidad>
+              <detallesAdicionales/>
+            </detalle>
+          </detalles>
+        </destinatario>
+      </destinatarios>
+      <infoAdicional>
+        <campoAdicional nombre="Campo Adicional">Informacion Adicional</campoAdicional>
+      </infoAdicional>
+    </guiaRemision>'''
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/waybills/issue/xml",
+    headers = cabeceras,
+    data = json.dumps(guia_remision))
+```
+
+> #### Respuesta de ejemplo
+
+```json
+{
+    "secuencial": "000000001",
+    "emisor": {
+        "ruc": "1234567890001",
+        "razon_social": "DATILMEDIA S.A.",
+        "nombre_comercial": "Datil",
+        "contribuyente_especial": "",
+        "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras",
+        "obligado_contabilidad": "NO",
+        "establecimiento": {
+            "punto_emision": "001",
+            "codigo": "001",
+            "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"
+        },
+        "email": "devops@datilmedia.com"
+    },
+    "direccion_partida": "Calle única Numero 987",
+    "transportista": {
+        "tipo_identificacion": "05",
+        "razon_social": "Juan Perez",
+        "direccion": "",
+        "placa": "GSM-0123",
+        "identificacion": "0987654321",
+        "telefono": "",
+        "email": ""
+    },
+    "fecha_fin_transporte": "2020-05-05T00:00:00-05:19",
+    "destinatarios": [
+        {
+            "fecha_emision_documento_sustento": "2020-05-01T00:00:00-05:19",
+            "email": "",
+            "ruta": "GYE - UIO",
+            "identificacion": "0953239092001",
+            "motivo_traslado": "Motivo del traslado",
+            "documento_aduanero_unico": "",
+            "numero_documento_sustento": "001-001-000000001",
+            "tipo_identificacion": "05",
+            "codigo_establecimiento_destino": "001",
+            "razon_social": "Santacruz Hernandez Anni Rosa",
+            "numero_autorizacion_documento_sustento": "",
+            "direccion": "Solar 23",
+            "tipo_documento_sustento": "01",
+            "items": [
+                {
+                    "codigo_auxiliar": "",
+                    "descripcion": "Agua purificada",
+                    "codigo_principal": "AGDAS-001",
+                    "cantidad": 1.0,
+                    "detalles_adicionales": {}
+                }
+            ],
+            "telefono": ""
+        }
+    ],
+    "id": "a8ea19c75f2546b883c4a00e9e68e1b9",
+    "fecha_inicio_transporte": "2020-05-04T00:00:00-05:19",
+    "informacion_adicional": {
+        "Campo Adicional": "Informacion Adicional"
+    },
+    "ambiente": "1",
+    "tipo_emision": 1,
+    "clave_acceso": "0405202006123456789000110010010000000012235571913"
+}
+```
+
 ## Consulta de una guía de remisión
 
 Consulta una guía de remisión para obtener toda la información del comprobante, incluyendo

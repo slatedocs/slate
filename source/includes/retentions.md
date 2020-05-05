@@ -279,6 +279,172 @@ Retorna un objeto tipo **[retención](#requerimiento-retencion)** que incluye un
 el cual identifica de manera única a la retención. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
+## Emisión de retenciones a partir de XML
+
+`POST /retentions/issue/xml`
+
+### Requerimiento a partir de XML
+
+Para la emisión de un comprobante de retención a partir de un XML se debe enviar contenido del archivo XML como parámetro en el cuerpo del requerimiento en formato JSON. Este XML debe cumplir con la especificación del SRI.
+
+Parámetro           | Tipo    | Descripción
+------------------- | ------- | ----------
+xml                 | string  | Contenido del archivo xml. __Requerido__
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/retentions/issue/xml \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{"xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<comprobanteRetencion id=\"comprobante\" version=\"1.0.0\">
+  <infoTributaria>
+    <ambiente>1</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>DATILMEDIA S.A.</razonSocial>
+    <nombreComercial>Datil</nombreComercial>
+    <ruc>1234567890001</ruc>
+    <claveAcceso>0405202007123456789000110010010000000012235571911</claveAcceso>
+    <codDoc>07</codDoc>
+    <estab>001</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>000000001</secuencial>
+    <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+  </infoTributaria>
+  <infoCompRetencion>
+    <fechaEmision>04/05/2020</fechaEmision>
+    <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+    <obligadoContabilidad>NO</obligadoContabilidad>
+    <tipoIdentificacionSujetoRetenido>04</tipoIdentificacionSujetoRetenido>
+    <razonSocialSujetoRetenido>Juan Perez</razonSocialSujetoRetenido>
+    <identificacionSujetoRetenido>0953239092001</identificacionSujetoRetenido>
+    <periodoFiscal>05/2020</periodoFiscal>
+  </infoCompRetencion>
+  <impuestos>
+    <impuesto>
+      <codigo>1</codigo>
+      <codigoRetencion>401CD</codigoRetencion>
+      <baseImponible>10.00</baseImponible>
+      <porcentajeRetener>0.00</porcentajeRetener>
+      <valorRetenido>0.00</valorRetenido>
+      <codDocSustento>01</codDocSustento>
+      <numDocSustento>001001000000001</numDocSustento>
+      <fechaEmisionDocSustento>03/05/2020</fechaEmisionDocSustento>
+    </impuesto>
+  </impuestos>
+  <infoAdicional>
+    <campoAdicional nombre="Campo adicional">Información adicional</campoAdicional>
+  </infoAdicional>
+</comprobanteRetencion>"}'
+```
+
+```python
+import requests, json
+
+retencion = {
+    "xml": '''<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+    <comprobanteRetencion id=\"comprobante\" version=\"1.0.0\">
+      <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>DATILMEDIA S.A.</razonSocial>
+        <nombreComercial>Datil</nombreComercial>
+        <ruc>1234567890001</ruc>
+        <claveAcceso>0405202007123456789000110010010000000012235571911</claveAcceso>
+        <codDoc>07</codDoc>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000000001</secuencial>
+        <dirMatriz>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirMatriz>
+      </infoTributaria>
+      <infoCompRetencion>
+        <fechaEmision>04/05/2020</fechaEmision>
+        <dirEstablecimiento>Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionSujetoRetenido>04</tipoIdentificacionSujetoRetenido>
+        <razonSocialSujetoRetenido>Juan Perez</razonSocialSujetoRetenido>
+        <identificacionSujetoRetenido>0953239092001</identificacionSujetoRetenido>
+        <periodoFiscal>05/2020</periodoFiscal>
+      </infoCompRetencion>
+      <impuestos>
+        <impuesto>
+          <codigo>1</codigo>
+          <codigoRetencion>401CD</codigoRetencion>
+          <baseImponible>10.00</baseImponible>
+          <porcentajeRetener>0.00</porcentajeRetener>
+          <valorRetenido>0.00</valorRetenido>
+          <codDocSustento>01</codDocSustento>
+          <numDocSustento>001001000000001</numDocSustento>
+          <fechaEmisionDocSustento>03/05/2020</fechaEmisionDocSustento>
+        </impuesto>
+      </impuestos>
+      <infoAdicional>
+        <campoAdicional nombre="Campo adicional">Información adicional</campoAdicional>
+      </infoAdicional>
+    </comprobanteRetencion>'''
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/retentions/issue/xml",
+    headers = cabeceras,
+    data = json.dumps(retencion))
+```
+
+> #### Respuesta de ejemplo
+
+```json
+{
+    "secuencial": "000000001",
+    "fecha_emision": "2020-05-04T00:00:00-05:19",
+    "emisor": {
+        "ruc": "1234567890001",
+        "razon_social": "DATILMEDIA S.A.",
+        "nombre_comercial": "Datil",
+        "contribuyente_especial": "",
+        "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras",
+        "obligado_contabilidad": "NO",
+        "establecimiento": {
+            "punto_emision": "001",
+            "codigo": "001",
+            "direccion": "Innvernadero Coworking, Bálsamos 813 entre Guayacanes e Higueras"
+        },
+        "email": "devops@datilmedia.com"
+    },
+    "sujeto": {
+        "identificacion": "0953239092001",
+        "razon_social": "Juan Perez",
+        "tipo_identificacion": "04"
+    },
+    "es_valida": true,
+    "periodo_fiscal": "05/2020",
+    "id": "41f5188e0256420cbe9e447db99c9753",
+    "informacion_adicional": {
+        "Campo adicional": "Información adicional"
+    },
+    "ambiente": "1",
+    "tipo_emision": 1,
+    "items": [
+        {
+            "porcentaje": 0.0,
+            "codigo_porcentaje": "401CD",
+            "fecha_emision_documento_sustento": "2020-05-03T00:00:00-05:19",
+            "numero_documento_sustento": "001-001-000000001",
+            "codigo": "1",
+            "tipo_documento_sustento": "01",
+            "base_imponible": 10.0,
+            "valor_retenido": 0.0
+        }
+    ],
+    "clave_acceso": "0405202007123456789000110010010000000012235571911"
+}
+```
+
 ## Consulta de un Comprobante de Retención
 
 Consulta una retención para obtener toda la información del comprobante, incluyendo
