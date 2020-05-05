@@ -380,6 +380,10 @@ html, body {
     max-width: 100% - $examples-width - $examples-padding-left;
     color: #6F7782;
     cursor: inherit;
+
+    @media (max-width: $tablet-width) {
+      max-width: none;
+    }
   }
 
   section {
