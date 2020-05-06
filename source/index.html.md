@@ -492,62 +492,6 @@ is_default | false | boolean | false | If `true` this business address will set 
 
 # Trackings
 
-<!-- ## Get Services
-
-```http
-GET /snappy/trackings/get_services HTTP/1.1
-```
-
-> Response
-
-```json
-{
-    "services": [
-        {
-            "name": "expedited",
-            "name_vi": "Chuyển phát nhanh"
-        },
-        {
-            "disabled": true,
-            "name": "standard",
-            "name_vi": "Tiêu chuẩn"
-        }
-    ],
-    "success": true
-}
-```
-
-```json
-{
-    "services": [
-        {
-            "name": "same_day",
-            "name_vi": "Trong ngày"
-        },
-        {
-            "disabled": true,
-            "name": "next_day",
-            "name_vi": "Ngày tiếp theo"
-        }
-    ],
-    "success": true
-}
-```
-
-This endpoint retrieves services.
-
-### HTTP Request
-
-`GET /snappy/trackings/get_services`
-
-### URL Parameters
-
-Parameter | Required | Type    | Default | Description
---------- | ------- | ------- | ------- | -----------
-sender_district_id | true | string | | Id of sender's district. Get in api [GET /geo/districts](#get-districts)
-receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
-receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
-
 ## Get Trackings
 
 ```http

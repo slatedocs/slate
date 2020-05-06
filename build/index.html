@@ -268,12 +268,6 @@
             <a href="#trackings" class="toc-h1 toc-link" data-title="trackings">Trackings</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#http-request-8" class="toc-h2 toc-link" data-title="http-request">HTTP Request</a>
-                  </li>
-                  <li>
-                    <a href="#url-parameters-4" class="toc-h2 toc-link" data-title="url-parameters">URL Parameters</a>
-                  </li>
-                  <li>
                     <a href="#get-trackings" class="toc-h2 toc-link" data-title="get-trackings">Get Trackings</a>
                   </li>
                   <li>
@@ -902,78 +896,7 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>If <code>true</code> this business address will set to default business address</td>
 </tr>
 </tbody></table>
-<h1 id='trackings'>Trackings</h1>
-<p>&lt;!-- ## Get Services</p>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/snappy/trackings/get_services</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-</code></pre>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expedited"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chuyển phát nhanh"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tiêu chuẩn"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"same_day"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Trong ngày"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ngày tiếp theo"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves services.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET /snappy/trackings/get_services</code></p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>sender_district_id</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>Id of sender&#39;s district. Get in api <a href="#get-districts">GET /geo/districts</a></td>
-</tr>
-<tr>
-<td>receiver_district_id</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>Id of receiver&#39;s district. Get in api <a href="#get-districts">GET /geo/districts</a></td>
-</tr>
-<tr>
-<td>receiver_commune_id</td>
-<td>false</td>
-<td>string</td>
-<td></td>
-<td>Id of receiver&#39;s commune. Get in api <a href="#get-communes">GET /geo/communes</a></td>
-</tr>
-</tbody></table>
-<h2 id='get-trackings'>Get Trackings</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/snappy/trackings?access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h1 id='trackings'>Trackings</h1><h2 id='get-trackings'>Get Trackings</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/snappy/trackings?access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -1100,7 +1023,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all trackings into your business.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /snappy/trackings</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
@@ -1328,7 +1251,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint create a tracking into your business.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST /snappy/trackings/create</code></p>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
@@ -1530,7 +1453,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint calculate all cost of a tracking.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST /snappy/trackings/cal_shipping_cost</code></p>
 <h3 id='query-parameters-6'>Query Parameters</h3>
 <table><thead>
@@ -1739,7 +1662,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint cancel a tracking into your business.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>DELETE /snappy/trackings/cancel</code></p>
 <h3 id='query-parameters-7'>Query Parameters</h3>
 <table><thead>
@@ -2029,9 +1952,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint create an unique webhook callback url into your business.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /snappy/trackings/webhook</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2077,9 +2000,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific webhook callback url into your specific business.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET /snappy/trackings/webhook</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
