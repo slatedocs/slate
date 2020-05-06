@@ -1,7 +1,7 @@
 ### Health checks
 
 Health checking mechanisms determine whether VM instances respond properly to traffic.
-<!-------------------- LIST HEALTH CHECK -------------------->
+
 #### List health checks
 
 ```shell
@@ -46,7 +46,7 @@ curl -X GET \
    GET /service/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks
 </code>
 
-Retrieve a list of all healtch checks.
+Retrieve a list of all health checks.
 
 Attributes | &nbsp;
 ------- | -----------
