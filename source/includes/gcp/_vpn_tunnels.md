@@ -59,19 +59,19 @@ Retrieve a list of all VPN tunnels in a given [environment](#administration-envi
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`description`<br/>*string* | An optional description
-`id`<br/>*UUID* | Unique identifier for this resource
-`gcpVpnGateway`<br/>*Object* | The VPN Gateway associated with this tunnel
-`ikeVersion`<br/>*integer* | IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2
+`description`<br/>*string* | An optional description.
+`id`<br/>*UUID* | Unique identifier for this resource.
+`gcpVpnGateway`<br/>*Object* | The VPN Gateway associated with this tunnel.
+`ikeVersion`<br/>*integer* | IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
 `localTrafficSelector`<br/>*string* | Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string. Only IPv4 is supported. By default it's the CIDR associated with the region in which the VPN gateway resides.
-`name`<br/>*string* | The display name of the address
-`peerIp`<br/>*string* | IP address of the peer VPN gateway in another VPC
-`region`<br/>*string* | The URL of the region where the VPN tunnel is
+`name`<br/>*string* | The display name of the address.
+`peerIp`<br/>*string* | IP address of the peer VPN gateway in another VPC.
+`region`<br/>*string* | The URL of the region where the VPN tunnel is.
 `remoteTrafficSelector`<br/>*string* | Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string. Only IPv4 is supported. The CIDR associated with the `peerIp`.
 `sharedSecret`<br/>*string* | Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
-`status`<br/>*string* | The status of the VPN tunnel
-`selfLink`<br/>*string* | Server-defined URL for the resource
-`targetVpnGateway`<br/>*string* | The URL of the Target VPN gateway with which this VPN tunnel is associated
+`status`<br/>*string* | The status of the VPN tunnel.
+`selfLink`<br/>*string* | Server-defined URL for the resource.
+`targetVpnGateway`<br/>*string* | The URL of the Target VPN gateway with which this VPN tunnel is associated.
 `type`<br/>*string* | The type of this VPN Tunnel. Only CLASSIC is supported.
 
 <!-------------------- RETRIEVE A VPN TUNNEL -------------------->
@@ -126,19 +126,19 @@ Retrieve a VPN tunnel in a given [environment](#administration-environments).
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`description`<br/>*string* | An optional description
-`id`<br/>*UUID* | Unique identifier for this resource
-`gcpVpnGateway`<br/>*Object* | The VPN Gateway associated with this tunnel
-`ikeVersion`<br/>*integer* | IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2
+`description`<br/>*string* | An optional description.
+`id`<br/>*UUID* | Unique identifier for this resource.
+`gcpVpnGateway`<br/>*Object* | The VPN Gateway associated with this tunnel.
+`ikeVersion`<br/>*integer* | IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
 `localTrafficSelector`<br/>*string* | Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string. Only IPv4 is supported. By default it's the CIDR associated with the region in which the VPN gateway resides.
-`name`<br/>*string* | The display name of the address
-`peerIp`<br/>*string* | IP address of the peer VPN gateway in another VPC
-`region`<br/>*string* | The URL of the region where the VPN tunnel is
+`name`<br/>*string* | The display name of the address.
+`peerIp`<br/>*string* | IP address of the peer VPN gateway in another VPC.
+`region`<br/>*string* | The URL of the region where the VPN tunnel is.
 `remoteTrafficSelector`<br/>*string* | Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string. Only IPv4 is supported. The CIDR associated with the `peerIp`.
 `sharedSecret`<br/>*string* | Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
-`status`<br/>*string* | The status of the VPN tunnel
-`selfLink`<br/>*string* | Server-defined URL for the resource
-`targetVpnGateway`<br/>*string* | The URL of the Target VPN gateway with which this VPN tunnel is associated
+`status`<br/>*string* | The status of the VPN tunnel.
+`selfLink`<br/>*string* | Server-defined URL for the resource.
+`targetVpnGateway`<br/>*string* | The URL of the Target VPN gateway with which this VPN tunnel is associated.
 `type`<br/>*string* | The type of this VPN Tunnel. Only CLASSIC is supported.
 
 <!-------------------- CREATE A VPN TUNNEL -------------------->
@@ -173,17 +173,17 @@ Create a new Classic VPN tunnel in a given [environment](#administration-environ
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the VPN tunnel
-`ikeVersion`<br/>*string* | KE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2
-`peerIP`<br/>*string* | The IP address of the Virtual Private Cloud (VPC) the tunnel will connect to
-`remoteTrafficSelector`<br/>*string* | Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string
+`name`<br/>*string* | The display name of the VPN tunnel.
+`ikeVersion`<br/>*string* | KE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
+`peerIP`<br/>*string* | The IP address of the Virtual Private Cloud (VPC) the tunnel will connect to.
+`remoteTrafficSelector`<br/>*string* | Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string.
 `sharedSecret`<br/>*string* | TShared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
-`targetVpnGateway`<br/>*string* | URL of the Target VPN gateway with which this VPN tunnel is associated
+`targetVpnGateway`<br/>*string* | URL of the Target VPN gateway with which this VPN tunnel is associated.
 
 Optional | &nbsp;
 ------- | -----------
-`description`<br/>*string* | An optional description
-`localTrafficSelector`<br/>*string* | Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string
+`description`<br/>*string* | An optional description.
+`localTrafficSelector`<br/>*string* | Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string.
 
 <!-------------------- DELETE VPN GATEWAY -------------------->
 
@@ -211,5 +211,5 @@ Delete a Classic VPN tunnel in a given [environment](#administration-environment
 
 Optional | &nbsp;
 ------- | -----------
-`vpnGatewayToDelete`<br/>*string* | The ID of the VPN gateway to delete after deleting the VPN tunnel
+`vpnGatewayToDelete`<br/>*string* | The ID of the VPN gateway to delete after deleting the VPN tunnel.
 `gcpVpnGateway.externalIpToRelease`<br/>*Array* | A list with only one element specifying the IP address to release.

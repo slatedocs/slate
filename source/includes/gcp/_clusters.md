@@ -43,13 +43,13 @@ curl -X GET \
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`nodeCount`<br/>*number* | Number of nodes in the cluster
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`nodeCount`<br/>*number* | Number of nodes in the cluster.
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
-`status` <br/> *string* | The status of the cluster
+`status` <br/> *string* | The status of the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
-`name` <br/> *string* | The name of the cluster
+`name` <br/> *string* | The name of the cluster.
 `caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 
 
 <!-------------------- RETRIEVE A CLUSTER -------------------->
@@ -80,11 +80,11 @@ curl -X GET \
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`nodeCount`<br/>*number* | Number of nodes in the cluster
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`nodeCount`<br/>*number* | Number of nodes in the cluster.
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
-`status` <br/> *string* | The status of the cluster
+`status` <br/> *string* | The status of the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
-`name` <br/> *string* | The name of the cluster
+`name` <br/> *string* | The name of the cluster.
 `caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 

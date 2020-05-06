@@ -73,7 +73,7 @@ Attributes | &nbsp;
 `addressType`<br/>*string* | The type of address to reserve, either INTERNAL or EXTERNAL. We only list EXTERNAL addresses.
 `kind`<br/>*string* | Type of the resource. Always compute#address for addresses.
 `shortUsers`<br/>*Array[string]* | The names of the instances the IP address is attached to.
-`shortRegion`<br/>*string* | A short version of the region name
+`shortRegion`<br/>*string* | A short version of the region name.
 `type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released automatically when an instance is deleted.
 
 <!-------------------- RETRIEVE AN EXTERNAL IP -------------------->
@@ -135,7 +135,7 @@ Attributes | &nbsp;
 `addressType`<br/>*string* | The type of address to reserve, either INTERNAL or EXTERNAL. We only list EXTERNAL addresses.
 `kind`<br/>*string* | Type of the resource. Always compute#address for addresses.
 `shortUsers`<br/>*Array[string]* | The names of the instances the IP address is attached to.
-`shortRegion`<br/>*string* | A short version of the region name
+`shortRegion`<br/>*string* | A short version of the region name.
 `type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released automatically when an instance is deleted.
 
 <!-------------------- RESERVE AN EXTERNAL IP -------------------->
@@ -166,12 +166,12 @@ If `shortInstance` is provided, the IP will be reserved and attached to this ins
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the external ip
-`shortRegion`<br/>*string* | A short version of the region name
+`name`<br/>*string* | The display name of the external ip.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 Optional | &nbsp;
 ------- | -----------
-`shortInstance`<br/>*string* | The instance name to attach the new external ip address to
+`shortInstance`<br/>*string* | The instance name to attach the new external ip address to.
 
 <!-------------------- RELEASE AN EXTERNAL IP -------------------->
 

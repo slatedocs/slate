@@ -157,8 +157,8 @@ Create a new forwarding rule.
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the forwarding rule
-`portRange`<br/>*string* | The port which will be allocated to the forwarding rule. Supported ports are: 80 or 8080 (HTTP) and 443 (HTTPS)
+`name`<br/>*string* | The display name of the forwarding rule.
+`portRange`<br/>*string* | The port which will be allocated to the forwarding rule. Supported ports are: 80 or 8080 (HTTP) and 443 (HTTPS).
 `shortTarget`<br/>*string* | The name of the target resource.
 
 Optional | &nbsp;

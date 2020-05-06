@@ -90,8 +90,9 @@ If the response contains the "errors" field, the request was <strong>not</strong
 </aside>
 
 ### Error response
-> The error JSON response is structured like this:
-
+```shell
+# Example of error response
+```
 ```json
 {
   "errors": [

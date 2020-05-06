@@ -50,12 +50,12 @@ Retrieve a list of all healtch checks.
 
 Attributes | &nbsp;
 ------- | -----------
-`checkIntervalSec`<br/>*int* | How often (in seconds) to send a health check. The default value is 5 seconds
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
+`checkIntervalSec`<br/>*int* | How often (in seconds) to send a health check. The default value is 5 seconds.
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
 `healthyThreshold`ç | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
-`httpHealthCheck` <br/>*object* | When the type is set to HTTP, this object represents the health check
-`httpSHealthCheck` <br/>*object* | When the type is set to HTTPS, this object represents the health check
+`httpHealthCheck` <br/>*object* | When the type is set to HTTP, this object represents the health check.
+`httpSHealthCheck` <br/>*object* | When the type is set to HTTPS, this object represents the health check.
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `kind`<br/>*string* | Type of the resource.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
@@ -63,7 +63,7 @@ Attributes | &nbsp;
 `timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
 `type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
-`portNumber`<br/>*string* | The port number for health check
+`portNumber`<br/>*string* | The port number for health check.
 
 <!-------------------- RETRIEVE A HEALTH CHECK -------------------->
 
@@ -108,12 +108,12 @@ Retrieve a health check in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`checkIntervalSec`<br/>*int* | How often (in seconds) to send a health check. The default value is 5 seconds
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
+`checkIntervalSec`<br/>*int* | How often (in seconds) to send a health check. The default value is 5 seconds.
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
 `healthyThreshold`<br/>*int* | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
-`httpHealthCheck` <br/>*object* | When the type is set to HTTP, this object represents the health check
-`httpSHealthCheck` <br/>*object* | When the type is set to HTTPS, this object represents the health check
+`httpHealthCheck` <br/>*object* | When the type is set to HTTP, this object represents the health check.
+`httpSHealthCheck` <br/>*object* | When the type is set to HTTPS, this object represents the health check.
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `kind`<br/>*string* | Type of the resource.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
@@ -121,7 +121,7 @@ Attributes | &nbsp;
 `timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
 `type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
-`portNumber`<br/>*string* | The port number for health check
+`portNumber`<br/>*string* | The port number for health check.
 
 <!-------------------- CREATE A HEALTH CHECK -------------------->
 #### Create a health check
@@ -140,13 +140,13 @@ Create a new health check
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the health check
+`name`<br/>*string* | The display name of the health check.
 
 Optional | &nbsp;
 ------- | -----------
 `type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP.
 `portNumber`<br/>*string* | The port number for the health check. The default is 80 for HTTP, 443 for HTTPS.
-`description`<br/>*string* | Description of the health check
+`description`<br/>*string* | Description of the health check.
 
 <!-------------------- DELETE A HEALTH CHECK -------------------->
 
@@ -188,9 +188,9 @@ Edit an existing health check.
 
 Required | &nbsp;
 ------- | -----------
-`portNumber`<br/>*integer* | The port number of the health check
+`portNumber`<br/>*integer* | The port number of the health check.
 
 Optional | &nbsp;
 ------- | -----------
 `type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. The type should be valided (If not specified, the default is HTTP).
-`description`<br/>*string* | Description of the health check
+`description`<br/>*string* | Description of the health check.

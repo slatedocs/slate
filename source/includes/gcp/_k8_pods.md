@@ -217,17 +217,17 @@ Required | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id of the pod.  
-`metadata` <br/>*object* | The metadata of the the pod
-`metadata.annotations` <br/>*map* | The annotations of the pod
-`metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
-`metadata.labels` <br/>*map* | The labels associated to the pod and there associated values
-`metadata.name` <br/>*string* | The name of the pod
-`metadata.namespace` <br/>*string* | The namespace in which the pod is created
-`metadata.uid` <br/>*object* | The UUID of the pod
-`spec`<br/>*object* | The specification used to create and run the pod
-`spec.container`<br/>*string* | The name of the container running
-`status`<br/>*object* | The status information of the the pod
-`status.phase`<br/>*string* | The status of the the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
+`metadata` <br/>*object* | The metadata of the the pod.
+`metadata.annotations` <br/>*map* | The annotations of the pod.
+`metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string.
+`metadata.labels` <br/>*map* | The labels associated to the pod and there associated values.
+`metadata.name` <br/>*string* | The name of the pod.
+`metadata.namespace` <br/>*string* | The namespace in which the pod is created.
+`metadata.uid` <br/>*object* | The UUID of the pod.
+`spec`<br/>*object* | The specification used to create and run the pod.
+`spec.container`<br/>*string* | The name of the container running.
+`status`<br/>*object* | The status information of the the pod.
+`status.phase`<br/>*string* | The status of the the pod. Possible statuses are Running, Pending, Succeeded, Unknown, and Failed.
 
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
@@ -451,17 +451,17 @@ Required | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id of the pod.  
-`metadata` <br/>*object* | The metadata of the the pod
-`metadata.annotations` <br/>*map* | The annotations of the pod
-`metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
-`metadata.labels` <br/>*map* | The labels associated to the pod and there associated values
-`metadata.name` <br/>*string* | The name of the pod
-`metadata.namespace` <br/>*string* | The namespace in which the pod is created
-`metadata.uid` <br/>*object* | The UUID of the pod
-`spec`<br/>*object* | The specification used to create and run the pod
-`spec.container`<br/>*string* | The name of the container running
-`status`<br/>*object* | The status information of the the pod
-`status.phase`<br/>*string* | The status of the the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
+`metadata` <br/>*object* | The metadata of the the pod.
+`metadata.annotations` <br/>*map* | The annotations of the pod.
+`metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string.
+`metadata.labels` <br/>*map* | The labels associated to the pod and there associated values.
+`metadata.name` <br/>*string* | The name of the pod.
+`metadata.namespace` <br/>*string* | The namespace in which the pod is created.
+`metadata.uid` <br/>*object* | The UUID of the pod.
+`spec`<br/>*object* | The specification used to create and run the pod.
+`spec.container`<br/>*string* | The name of the container running.
+`status`<br/>*object* | The status information of the the pod.
+`status.phase`<br/>*string* | The status of the the pod. Possible statuses are Running, Pending, Succeeded, Unknown, and Failed.
 
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
@@ -500,4 +500,4 @@ Required | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `taskId` <br/>*string* | The task id related to the delete pod.  
-`taskStatus` <br/>*string* | The status of the operation
+`taskStatus` <br/>*string* | The status of the operation.

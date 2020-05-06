@@ -54,15 +54,15 @@ Retrieve a list of available regions, filtered by the [service connection](#admi
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`description`<br/>*string* | An optional description of this resource
-`id`<br/>*UUID* | The region's id
-`kind`<br/>*string* | Type of the resource
-`name`<br/>*string* | The region's name
-`quotas`<br/>*Array[object]* | Quotas assigned to this region
-`selfLink`<br/>*string* | Server-defined URL for this resource
-`status`<br/>*string* | tatus of the region, either UP or DOWN
-`zones`<br/>*Array[URL]* | A list of zones available in this region, in the form of resource URLs
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`description`<br/>*string* | An optional description of this resource.
+`id`<br/>*UUID* | The region's id.
+`kind`<br/>*string* | Type of the resource.
+`name`<br/>*string* | The region's name.
+`quotas`<br/>*Array[object]* | Quotas assigned to this region.
+`selfLink`<br/>*string* | Server-defined URL for this resource.
+`status`<br/>*string* | tatus of the region, either UP or DOWN.
+`zones`<br/>*Array[URL]* | A list of zones available in this region, in the form of resource URLs.
 
 <!-------------------- RETRIEVE A REGION -------------------->
 
@@ -111,12 +111,12 @@ Retrieve information about a region.
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`description`<br/>*string* | An optional description of this resource
-`id`<br/>*UUID* | The region's id
-`kind`<br/>*string* | Type of the resource
-`name`<br/>*string* | The region's name
-`quotas`<br/>*Array[object]* | Quotas assigned to this region
-`selfLink`<br/>*string* | Server-defined URL for this resource
-`status`<br/>*string* | tatus of the region, either UP or DOWN
-`zones`<br/>*Array[URL]* | A list of zones available in this region, in the form of resource URLs
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`description`<br/>*string* | An optional description of this resource.
+`id`<br/>*UUID* | The region's id.
+`kind`<br/>*string* | Type of the resource.
+`name`<br/>*string* | The region's name.
+`quotas`<br/>*Array[object]* | Quotas assigned to this region.
+`selfLink`<br/>*string* | Server-defined URL for this resource.
+`status`<br/>*string* | tatus of the region, either UP or DOWN.
+`zones`<br/>*Array[URL]* | A list of zones available in this region, in the form of resource URLs.
