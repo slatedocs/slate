@@ -189,6 +189,22 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/code \
 
 Responds to `GET` requests to `/v1/patients/:id/code` and returns a valid connection code for the given patient and the status of the connection, either `connected` or `pending`.
 
+## Disconnect patient connection
+
+> Example Request
+
+```shell
+curl -X POST https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/disconnect \
+ -u YOUR-API-KEY:
+```
+
+> Example Response
+
+```shell
+{}
+```
+
+Responds to `POST` requests to `/v1/patients/:id/disconnect` and terminates a patient's connection. Returns an empty response if successful.
 
 ## Get Patient Recordings
 
