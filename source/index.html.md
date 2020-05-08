@@ -55,7 +55,7 @@ Limitation of Payment Checkout (Trial Version)
 
 Payment URL for the *trial version* will have several limitations, including:
 
-* Amount of payment is locked to Rp 10.000
+* Amount of payment is locked to Rp 15.000
 * It contains BIG watermark mentioning unverified account (note: you are not supposed to use this for production)
 * You don't get API Callback for payment result. However, you will notice that money will be sent to your bank account in real time
 
