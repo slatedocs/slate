@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Force middleman to use patched version of rake
+gem 'rake', '~> 12.3.3'
+
 # Middleman
 gem 'middleman', '~>4.1.0'
 gem 'middleman-syntax', '~> 3.0.0'
