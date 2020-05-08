@@ -115,7 +115,7 @@ enable_payment_debit | true | Whether OY! should enable payment using Direct Deb
 
 ### Sample payment checkout URL with all parameters defined:
 
-`https://pay.oyindonesia.com/yourusername?txid=partner000001&amount=10000&description=Mohon%20dikirim%20segera&show_contact=true&show_account=true&send_notif=true&enable_payment_cc=false&enable_payment_va=false&enable_payment_debit=true`
+`https://pay.oyindonesia.com/yourusername?txid=partner000001&amount=15000&description=Mohon%20dikirim%20segera&show_contact=true&show_account=true&send_notif=true&enable_payment_cc=false&enable_payment_va=false&enable_payment_debit=true`
 
 
 ## Payment Result Callback
@@ -126,7 +126,7 @@ enable_payment_debit | true | Whether OY! should enable payment using Direct Deb
 {
   "txid": "partner000001",
   "oy_txid": "1234567",
-  "nominal": 10000,
+  "nominal": 15000,
   "name": "Joko Widodo",
   "phone_number": "+6281111111",
   "note": "Mohon dikirim segera",
@@ -229,7 +229,7 @@ In order to receive a callback result, please register specific end point URL (w
 {
   "partner_tx_id": "partner000001",
   "tx_ref_number": "1234567",
-  "amount": 10000,
+  "amount": 15000,
   "sender_name": "Joko Widodo",
   "sender_phone": "+6281111111",
   "sender_note": "Mohon dikirim segera",
