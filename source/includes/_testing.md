@@ -22,7 +22,7 @@ To enable or disable the test currency, once you're logged into Beyonic, go to t
 
 <aside class="notice">https://app.beyonic.com/testing/</aside>
 
-Or go to "Home" > "Company Settings" > (Cogwheel) > Test Tools.
+Or go to "Home" > Settings (Cogwheel) > "Organization Settings" > "Advanced Settings" > Test tools.
 
 From that URL, you can enable the test currency, and also update the available test credit.
 
@@ -83,7 +83,7 @@ Then use this for your callback URLs:
 
 **4. Viewing logged notification requests and responses**
 
-Beyonic logs notificaiton requests and responses for at least 30 days. These can be viewed by logging into the web portal, and going to "Home" > Company Settings" > "Advanced Settings" > "Notification Endpoints"
+Beyonic logs notificaiton requests and responses for at least 30 days. These can be viewed by logging into the web portal, and going to "Home" > Settings (Cogwheel) > "Organization Settings" > "Advanced Settings" > "Notification endpoints"
 
 By clicking on "Recent Events", you will be able to see events and notification attempts, including the responses that Beyonic is getting from your notification server.
 

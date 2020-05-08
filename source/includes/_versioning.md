@@ -41,5 +41,5 @@ You can temporarily override the API version for a specific request in 2 ways:
 
 The various API libraries provide methods for changing the version, as shown in the examples to the right.
 
-Note that this doesn't change your organization's default API version, which was saved in your organizations settings the first time you interacted with the Beyonic API. To change your default API version, log into the web portal and go to "Company Settings" > Settings (Cogwheel) > Manage General Settings.
+Note that this doesn't change your organization's default API version, which was saved in your organizations settings the first time you interacted with the Beyonic API. To change your default API version, log into the web portal and go to Settings (Cogwheel) > "Organization Settings" > "Advanced Settings" > General settings.
 

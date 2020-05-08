@@ -166,7 +166,8 @@ By default, collections are matched to your account and automatically accepted. 
 To enable this functionality, you need to add a verificaiton URL to your collection settings:
 
 1. Log into your Beyonic Account
-2. Click "Company Settings" on the home page
+2. Click on the Settings (Cogwheel) on the home page
+3. Click on "Organization Settings"
 3. Click "Advanced Settings"
 4. Click "Collection Settings"
 5. Enter a Collection Verification URL.

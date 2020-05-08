@@ -42,7 +42,7 @@ You can create and manage webhooks in two ways:
 
 To manage webhooks using the web browser:
 1. Log into your account.
-2. Go "Home" > "Company Settings" > "Advanced Settings" > "Notification Endpoints".
+2. Go "Home" > Settings (Cogwheel) > "Organization Settings" > "Advanced Settings" > "Notification Endpoints".
 
 **Managing Webhooks from the API**
 
