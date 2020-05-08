@@ -91,17 +91,17 @@ params += (enable_payment_debit !== null) ? '&enable_payment_debit'+enable_payme
 window.open("https://pay.oyindonesia.com/username?" + params, "_blank"); 
 ```
 
-> Sample curl command:
+Sample payment checkout URL with all parameters defined:
 
-```shell
-curl -X GET http://pay.oyindonesia.com/username -H 'content-type: application/json' -d '{"txid": "partner000001", "amount": 10000, "description": "Mohon dikirim segera", "show_contact": "true", "show_account": "true", "send_notif": "true", "enable_payment_cc": "false", "enable_payment_va": "false", "enable_payment_debit": "true}'
+```
+https://pay.oyindonesia.com/[your username]?txid=partner000001&amount=10000&description=Mohon dikirim segera&show_contact=true&show_account=true&send_notif=true&enable_payment_cc=false&enable_payment_va=false&enable_payment_debit=true
 ```
 
 Open this URL as webview to open Payment Checkout page, optionally with additional parameters.
 
 ### Open Webview
 
-`GET http://pay.oyindonesia.com/username`
+`GET https://pay.oyindonesia.com/username`
 
 <aside class="success">
 Remember — Make sure to replace `username` with your account username, given on the email.
@@ -175,9 +175,15 @@ success | String | Payment by Buyer is successful and has been sent to your bank
 failed | String | Payment by Buyer is failed
 
 
-# Payment Checkout Webview V2
+# Payment Checkout Webview V2 (To be Released)
 
-## Request With Parameters V2
+## Request With Parameters
+
+Once you complete the registration and activation for payment checkout, you can immediately access our payment checkout link at [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername)
+
+<aside class="success">
+Make sure at most only two of the payment method are false and always use HTTPS instead of HTTP to ensure the payment checkout link functioning properly.
+</aside>
 
 ```javascript
 // note: at most only two of the payment method are false
@@ -197,25 +203,14 @@ params += (enable_payment_debit !== null) ? '&enable_payment_debit=' + enable_pa
 window.open("https://pay.oyindonesia.com/v2?" + params, "_blank"); 
 ```
 
-> Sample curl command:
-
-```shell
-curl -X GET http://pay.oyindonesia.com/v2 -H 'content-type: application/json' -d '{ "partner_tx_id": "partner00001", "amount": "10000", "sender_name": "John Doe", "sender_phone": "%2B62812341234", "sender_note": "Catatan", "description": "Pembayaran Makanan", "is_open": "true", "step": "input-amount", "enable_payment_cc": "true", "enable_payment_va": "true", "enable_payment_debit": "true"}'
-```
-
 Open this URL as webview to open Payment Checkout page, optionally with additional parameters.
 
 ### Open Webview V2
 
-`GET http://pay.oyindonesia.com/v2?username={username}`
-
-<aside class="success">
-Remember — Make sure to replace `{username}` with your account username, given on the email.
-</aside>
+`GET https://pay.oyindonesia.com/v2?username=yourusername`
 
 ### Query Parameters V2
 
-Note: Make sure at most only two of the payment method are false
 
 Parameter | Type | Default Value | Description | Limitation
 --------- | ------- | ----------- | -------- | -------- |
@@ -229,8 +224,15 @@ description | String | - | Description of the payment checkout link | -
 is_open | String | TRUE | Enable open/closed amount transaction method | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
 step | String | - | Accessing specific page of the payment checkout URL. Possible values for this parameter: input-amount, input-personal-info, select-payment-method | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
 
+### Sample payment checkout URL with all parameters defined:
 
-## Payment Result Callback V2
+`https://pay.oyindonesia.com/v2?username=[your username]&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment-checkout-testing&is_open=false&step=select-payment-method&enable_payment_cc=false&enable_payment_debit=false`
+
+The above URL will produce a payment checkout link with a closed amount of IDR 50,000 with VA payment method only available and payer will be redirected to the payment method page upon accessing the URL.
+
+## Callback Results
+
+In order to receive a callback result, please register specific end point URL (web hook) to receive callback whenever payment occurs.
 
 > The above command returns JSON structured similar like this:
 
@@ -250,11 +252,10 @@ step | String | - | Accessing specific page of the payment checkout URL. Possibl
 }
 ```
 
-Non-trial Account can register specific end point URL (web hook) to receive callback whenever payment occurs.
 
-<aside class="warning">You need to register an end point URL to receive this callback. Note that Trial Account would not get access to this feature</aside>
+<aside class="warning">You need to register an end point Callback URL to receive this callback.</aside>
 
-### Callback Parameters V2
+### Callback Parameters
 
 The data on the callback will be sent using JSON format via POST data to your web hook.
 Check here for example: [example](/?json#payment-result-callback-v2)
@@ -272,7 +273,7 @@ sender_bank | String | The bank code used by a payer to do payment
 payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
 va_number | String | VA number to be used on payment if using Virtual Account
 
-## Response Codes V2
+## Response Codes
 
 Possible status codes on the Payment Result Callback:
 
