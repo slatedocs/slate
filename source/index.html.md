@@ -9,9 +9,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
 toc_footers:
   - <a href='https://business.oyindonesia.com/oybayar'>Sign Up for Trial</a>
 
-includes:
-  - responsecodes
-
 search: true
 ---
 
@@ -167,3 +164,122 @@ payment_method | String | Define what payment method to be used in transaction (
 va_number | String | VA number to be used on payment if using Manual Pay
 
 *Instant Pay = direct-debit or cc; Manual Pay = virtual account; Manual Bank Transfer = pay using manual transfer
+
+## Response Codes
+
+Possible status codes on the Payment Result Callback:
+
+Payment Status | Type | Meaning
+-------------- | ---- | -------
+success | String | Payment by Buyer is successful and has been sent to your bank account
+failed | String | Payment by Buyer is failed
+
+
+# OY! Bayar Webview V2
+
+## Request With Parameters V2
+
+```javascript
+// note: at most only two of the payment method are false
+let params = 'username=' + username;
+params += (partner_tx_id !== null) ? '&partner_tx_id=' + partner_tx_id : '';
+params += (amount !== null) ? '&amount=' + amount : '';
+params += (sender_name !== null) ? '&sender_name=' + sender_name : '';
+params += (sender_phone !== null) ? '&sender_phone=' + sender_phone : '';
+params += (sender_note !== null) ? '&sender_note=' + sender_note : '';
+params += (description !== null) ? '&description=' + encodeURIComponent(description) : '';
+params += (is_open !== null) ? '&is_open=' + is_open : '';
+params += (step !== null) ? '&step=' + step : '';
+params += (enable_payment_cc !== null) ? '&enable_payment_cc=' + enable_payment_cc : '';
+params += (enable_payment_va !== null) ? '&enable_payment_va=' + enable_payment_va : '';
+params += (enable_payment_debit !== null) ? '&enable_payment_debit=' + enable_payment_debit : '';
+
+window.open("https://pay.oyindonesia.com/v2?" + params, "_blank"); 
+```
+
+> Sample curl command:
+
+```shell
+curl -X GET http://pay.oyindonesia.com/v2 -H 'content-type: application/json' -d '{ "partner_tx_id": "partner00001", "amount": "10000", "sender_name": "John Doe", "sender_phone": "%2B62812341234", "sender_note": "Catatan", "description": "Pembayaran Makanan", "is_open": "true", "step": "input-amount", "enable_payment_cc": "true", "enable_payment_va": "true", "enable_payment_debit": "true"}'
+```
+
+Open this URL as webview to open OY! Bayar Checkout page, optionally with additional parameters.
+
+### Open Webview V2
+
+`GET http://pay.oyindonesia.com/v2?username={username}`
+
+<aside class="success">
+Remember — Make sure to replace `{username}` with your account username, given on the email.
+</aside>
+
+### Query Parameters V2
+
+Note: Make sure at most only two of the payment method are false
+
+Parameter | Type | Default Value | Description | Limitation
+--------- | ------- | ----------- | -------- | -------- |
+username | String | - | The username used by partner for registration with OY! | -
+partner_tx_id | String | Auto generated | A unique transaction ID provided by partner | A partner_tx_id that has been succesfully paid cannot be used anymore under the same username
+amount | Integer | - | The amount of a transaction to be paid | The amount that can be processed is between IDR 15,000 and IDR 25,000,000
+sender_name | String | - | Name of the payer for a transaction | -
+sender_phone | Numeric | - | Phone number of the payer for a transaction | -
+sender_note | String | - | Additional notes from the payer for a transaction | -
+description | String | - | Description of the payment checkout link | -
+is_open | String | TRUE | Enable open/closed amount transaction method | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
+step | String | - | Accessing specific page of the payment checkout URL. Possible values for this parameter: input-amount, input-personal-info, select-payment-method | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
+
+
+## Payment Result Callback V2
+
+> The above command returns JSON structured similar like this:
+
+```json
+{
+  "partner_tx_id": "partner000001",
+  "tx_ref_number": "1234567",
+  "amount": 10000,
+  "sender_name": "Joko Widodo",
+  "sender_phone": "+6281111111",
+  "sender_note": "Mohon dikirim segera",
+  "status": "success",
+  "settlement_type": "success",
+  "sender_bank": "008",
+  "payment_method": "DC",
+  "va_number" : ""
+}
+```
+
+Non-trial Account can register specific end point URL (web hook) to receive callback whenever payment occurs.
+
+<aside class="warning">You need to register an end point URL to receive this callback. Note that Trial Account would not get access to this feature</aside>
+
+### Callback Parameters V2
+
+The data on the callback will be sent using JSON format via POST data to your web hook.
+Check here for example: [example](/?json#payment-result-callback-v2)
+
+Parameter | Type | Description
+--------- | ---- | -----------
+partner_tx_id | String | A unique transaction ID provided by partner
+tx_ref_number | String | OY's internal unique transaction ID
+amount | BigDecimal | The amount of a transaction that is paid
+sender_name | String | Name of a payer for a transaction
+sender_phone | String | Phone number of a payer for a transaction
+sender_note | String | Additional notes from a payer for a transaction
+status | String | The status of a transaction (e.g. Success/Failed/Processing)
+sender_bank | String | The bank code used by a payer to do payment
+payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
+va_number | String | VA number to be used on payment if using Virtual Account
+
+## Response Codes V2
+
+Possible status codes on the Payment Result Callback:
+
+Payment Status | Type | Settlement Type | Description
+---- | ---- | ---- | ----
+success | String | Realtime | Payment has been successfully charged and disbursed to partner's bank account
+success | String | Non-realtime | Payment has been successfully charged and partner's balance is updated in OY's business portal
+failed | String | Realtime/Non-realtime | Payment failed to be charged. Payer may retry the payment request.
+processing | String | Realtime/Non-realtime | A payment attempt has been initiated
+
