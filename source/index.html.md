@@ -22,7 +22,7 @@ Payment Checkout supports multiple payment methods, including *Direct Debit*, *C
 
 # Quick Integration
 
-> To open Payment Checkout webview, use following code from your platform:
+> To open Payment Checkout, use following code from your platform:
 
 ```javascript
 window.open("https://pay.oyindonesia.com/username", "_blank"); 
@@ -64,14 +64,14 @@ You can upgrade to OY! business partner to remove above limitations, by sending 
 ### How Does It Work?
 ![Integration flow](images/img_integration.png)
 
-1. **Put the logic of opening webview** on your app button, so that whenever buyer clicks on "Payment" button, it will open Payment Checkout webview
+1. **Put the logic of opening webview** on your app button, so that whenever buyer clicks on "Payment" button, it will open Payment Checkout
 2. You implement your own **Product details page**
 3. You implement your **Order System to create transactionId** for buyers to checkout their order
 4. Your App/Web **opens Payment Checkout** page with additional parameters required
 5. Buyer pays using any of *Direct Debit*, *Credit Cards*, or *Bank Virtual Accounts*.
 6. You **receive money on your receiving account** and OY! will **send Payment status Callback** to your end point (note: Only available for non-trial account)
 
-# Payment Checkout Webview
+# Payment Checkout
 
 ## Request With Parameters
 
@@ -91,17 +91,7 @@ params += (enable_payment_debit !== null) ? '&enable_payment_debit'+enable_payme
 window.open("https://pay.oyindonesia.com/username?" + params, "_blank"); 
 ```
 
-Sample payment checkout URL with all parameters defined:
-
-```
-https://pay.oyindonesia.com/[your username]?txid=partner000001&amount=10000&description=Mohon dikirim segera&show_contact=true&show_account=true&send_notif=true&enable_payment_cc=false&enable_payment_va=false&enable_payment_debit=true
-```
-
-Open this URL as webview to open Payment Checkout page, optionally with additional parameters.
-
-### Open Webview
-
-`GET https://pay.oyindonesia.com/username`
+Once you complete the registration and activation for payment checkout, you can immediately access our payment checkout link at [https://pay.oyindonesia.com/yourusername](https://pay.oyindonesia.com/yourusername)
 
 <aside class="success">
 Remember — Make sure to replace `username` with your account username, given on the email.
@@ -115,13 +105,18 @@ Parameter | Default | Description
 --------- | ------- | -----------
 txid | not set | If set to specific ID, OY! will echo back the transactionID label via the Payment Result Callback (parameter name `txid`)
 amount | not set | If set to certain amount, will lock the amount of payment that Buyer can pay. Otherwise, Buyer needs to input the amount
-description | not set | If set, description text will be shown the main page of Payment Checkout webview. Otherwise, it will show blank description
-show_contact | true | If set to true, Payment Checkout webview will show Contact Form asking details of the Buyer
-show_account | true | If set to true, Payment Checkout webview will show your bank account number
+description | not set | If set, description text will be shown the main page of Payment Checkout. Otherwise, it will show blank description
+show_contact | true | If set to true, Payment Checkout will show Contact Form asking details of the Buyer
+show_account | true | If set to true, Payment Checkout will show your bank account number
 send_notif | true | Whether OY! should send payment notification to the Buyer via SMS/Push Notif
 enable_payment_cc | true | Whether OY! should enable payment using Credit Card
 enable_payment_va | true | Whether OY! should enable payment using Bank Virtual Accounts
 enable_payment_debit | true | Whether OY! should enable payment using Direct Debit
+
+### Sample payment checkout URL with all parameters defined:
+
+`https://pay.oyindonesia.com/yourusername?txid=partner000001&amount=10000&description=Mohon%20dikirim%20segera&show_contact=true&show_account=true&send_notif=true&enable_payment_cc=false&enable_payment_va=false&enable_payment_debit=true`
+
 
 ## Payment Result Callback
 
@@ -175,7 +170,7 @@ success | String | Payment by Buyer is successful and has been sent to your bank
 failed | String | Payment by Buyer is failed
 
 
-# Payment Checkout Webview V2 (To be Released)
+# Payment Checkout V2 (To be Released)
 
 ## Request With Parameters
 
@@ -203,13 +198,7 @@ params += (enable_payment_debit !== null) ? '&enable_payment_debit=' + enable_pa
 window.open("https://pay.oyindonesia.com/v2?" + params, "_blank"); 
 ```
 
-Open this URL as webview to open Payment Checkout page, optionally with additional parameters.
-
-### Open Webview V2
-
-`GET https://pay.oyindonesia.com/v2?username=yourusername`
-
-### Query Parameters V2
+### Query Parameters
 
 
 Parameter | Type | Default Value | Description | Limitation
@@ -226,7 +215,7 @@ step | String | - | Accessing specific page of the payment checkout URL. Possibl
 
 ### Sample payment checkout URL with all parameters defined:
 
-`https://pay.oyindonesia.com/v2?username=[your username]&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment-checkout-testing&is_open=false&step=select-payment-method&enable_payment_cc=false&enable_payment_debit=false`
+`https://pay.oyindonesia.com/v2?username=yourusername&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment-checkout-testing&is_open=false&step=select-payment-method&enable_payment_cc=false&enable_payment_debit=false`
 
 The above URL will produce a payment checkout link with a closed amount of IDR 50,000 with VA payment method only available and payer will be redirected to the payment method page upon accessing the URL.
 
@@ -245,7 +234,7 @@ In order to receive a callback result, please register specific end point URL (w
   "sender_phone": "+6281111111",
   "sender_note": "Mohon dikirim segera",
   "status": "success",
-  "settlement_type": "success",
+  "settlement_type": "realtime",
   "sender_bank": "008",
   "payment_method": "DC",
   "va_number" : ""
@@ -268,19 +257,18 @@ amount | BigDecimal | The amount of a transaction that is paid
 sender_name | String | Name of a payer for a transaction
 sender_phone | String | Phone number of a payer for a transaction
 sender_note | String | Additional notes from a payer for a transaction
-status | String | The status of a transaction (e.g. Success/Failed/Processing)
+status | String | The status of a transaction (e.g. success/failed/processing)
 sender_bank | String | The bank code used by a payer to do payment
 payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
 va_number | String | VA number to be used on payment if using Virtual Account
+settlement_type | String | Indicate if a transaction will be settled in realtime/non-realtime
 
 ## Response Codes
 
-Possible status codes on the Payment Result Callback:
-
 Payment Status | Type | Settlement Type | Description
 ---- | ---- | ---- | ----
-success | String | Realtime | Payment has been successfully charged and disbursed to partner's bank account
-success | String | Non-realtime | Payment has been successfully charged and partner's balance is updated in OY's business portal
-failed | String | Realtime/Non-realtime | Payment failed to be charged. Payer may retry the payment request.
-processing | String | Realtime/Non-realtime | A payment attempt has been initiated
+success | String | realtime | Payment has been successfully charged and disbursed to partner's bank account
+success | String | non_realtime | Payment has been successfully charged and partner's balance is updated in OY's business portal
+failed | String | realtime/non_realtime | Payment failed to be charged. Payer may retry the payment request.
+processing | String | realtime/non_realtime | A payment attempt has been initiated
 
