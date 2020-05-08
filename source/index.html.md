@@ -1,5 +1,5 @@
 ---
-title: OY! Bayar Reference
+title: Payment Checkout Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
@@ -7,22 +7,22 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - swift
 
 toc_footers:
-  - <a href='https://business.oyindonesia.com/oybayar'>Sign Up for Trial</a>
+  - <a href='https://business.oyindonesia.com/register'>Sign Up for Trial</a>
 
 search: true
 ---
 
 # Introduction
 
-OY! Bayar service enables business owners like you to receive payments from customers, either **from your Application** or independently **by sending your Payment URL to your customers**.
+Payment Checkout service enables business owners like you to receive payments from customers, either **from your Application** or independently **by sending your Payment URL to your customers**.
 
 With quick and easy integration, your business can start accepting payments on Day 1 after registration.
 
-OY! Bayar supports multiple payment methods, including *Direct Debit*, *Credit Cards*, and *Bank Virtual Accounts*.
+Payment Checkout supports multiple payment methods, including *Direct Debit*, *Credit Cards*, and *Bank Virtual Accounts*.
 
 # Quick Integration
 
-> To open OY! Bayar webview, use following code from your platform:
+> To open Payment Checkout webview, use following code from your platform:
 
 ```javascript
 window.open("https://pay.oyindonesia.com/username", "_blank"); 
@@ -46,11 +46,11 @@ present(navigationController, animated: true, completion: nil)
 ### Get Payment URL for your business
 ![Signup for Trial](images/img_signup.png)
 
-1. Register for a unique payment URL here: [https://business.oyindonesia.com/oybayar](https://www.oyindonesia.com/oybayar)
+1. Register for a unique payment URL here: [https://business.oyindonesia.com/register](https://business.oyindonesia.com/register)
 2. You will receive an email containing a unique payment URL for *trial version* of the checkout page. From here, you can immediately start the integration.
 
 <aside class="warning">
-Limitation of OY! Bayar (Trial Version)
+Limitation of Payment Checkout (Trial Version)
 </aside>
 
 Payment URL for the *trial version* will have several limitations, including:
@@ -64,14 +64,14 @@ You can upgrade to OY! business partner to remove above limitations, by sending 
 ### How Does It Work?
 ![Integration flow](images/img_integration.png)
 
-1. **Put the logic of opening webview** on your app button, so that whenever buyer clicks on "Payment" button, it will open OY! Bayar checkout webview
+1. **Put the logic of opening webview** on your app button, so that whenever buyer clicks on "Payment" button, it will open Payment Checkout webview
 2. You implement your own **Product details page**
 3. You implement your **Order System to create transactionId** for buyers to checkout their order
-4. Your App/Web **opens OY! Bayar** Checkout page with additional parameters required
+4. Your App/Web **opens Payment Checkout** Checkout page with additional parameters required
 5. Buyer pays using any of *Direct Debit*, *Credit Cards*, or *Bank Virtual Accounts*.
 6. You **receive money on your receiving account** and OY! will **send Payment status Callback** to your end point (note: Only available for non-trial account)
 
-# OY! Bayar Webview
+# Payment Checkout Webview
 
 ## Request With Parameters
 
@@ -97,7 +97,7 @@ window.open("https://pay.oyindonesia.com/username?" + params, "_blank");
 curl -X GET http://pay.oyindonesia.com/username -H 'content-type: application/json' -d '{"txid": "partner000001", "amount": 10000, "description": "Mohon dikirim segera", "show_contact": "true", "show_account": "true", "send_notif": "true", "enable_payment_cc": "false", "enable_payment_va": "false", "enable_payment_debit": "true}'
 ```
 
-Open this URL as webview to open OY! Bayar Checkout page, optionally with additional parameters.
+Open this URL as webview to open Payment Checkout page, optionally with additional parameters.
 
 ### Open Webview
 
@@ -115,9 +115,9 @@ Parameter | Default | Description
 --------- | ------- | -----------
 txid | not set | If set to specific ID, OY! will echo back the transactionID label via the Payment Result Callback (parameter name `txid`)
 amount | not set | If set to certain amount, will lock the amount of payment that Buyer can pay. Otherwise, Buyer needs to input the amount
-description | not set | If set, description text will be shown the main page of OY! Bayar webview. Otherwise, it will show blank description
-show_contact | true | If set to true, OY! Bayar webview will show Contact Form asking details of the Buyer
-show_account | true | If set to true, OY! Bayar webview will show your bank account number
+description | not set | If set, description text will be shown the main page of Payment Checkout webview. Otherwise, it will show blank description
+show_contact | true | If set to true, Payment Checkout webview will show Contact Form asking details of the Buyer
+show_account | true | If set to true, Payment Checkout webview will show your bank account number
 send_notif | true | Whether OY! should send payment notification to the Buyer via SMS/Push Notif
 enable_payment_cc | true | Whether OY! should enable payment using Credit Card
 enable_payment_va | true | Whether OY! should enable payment using Bank Virtual Accounts
@@ -152,7 +152,7 @@ Check here for example: [example](/?json#payment-result-callback)
 
 Parameter | Type | Description
 --------- | ---- | -----------
-txid | String | (Optional) TransactionID which partner set on the initial OY! Bayar URL
+txid | String | (Optional) TransactionID which partner set on the initial Payment Checkout URL
 oy_txid | String | Internal TransactionID from OY! system
 nominal | BigDecimal | Amount of payment by the Buyer
 name | String | Name of Buyer
@@ -175,7 +175,7 @@ success | String | Payment by Buyer is successful and has been sent to your bank
 failed | String | Payment by Buyer is failed
 
 
-# OY! Bayar Webview V2
+# Payment Checkout Webview V2
 
 ## Request With Parameters V2
 
@@ -203,7 +203,7 @@ window.open("https://pay.oyindonesia.com/v2?" + params, "_blank");
 curl -X GET http://pay.oyindonesia.com/v2 -H 'content-type: application/json' -d '{ "partner_tx_id": "partner00001", "amount": "10000", "sender_name": "John Doe", "sender_phone": "%2B62812341234", "sender_note": "Catatan", "description": "Pembayaran Makanan", "is_open": "true", "step": "input-amount", "enable_payment_cc": "true", "enable_payment_va": "true", "enable_payment_debit": "true"}'
 ```
 
-Open this URL as webview to open OY! Bayar Checkout page, optionally with additional parameters.
+Open this URL as webview to open Payment Checkout page, optionally with additional parameters.
 
 ### Open Webview V2
 
