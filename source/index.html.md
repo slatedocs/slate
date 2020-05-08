@@ -67,7 +67,7 @@ You can upgrade to OY! business partner to remove above limitations, by sending 
 1. **Put the logic of opening webview** on your app button, so that whenever buyer clicks on "Payment" button, it will open Payment Checkout webview
 2. You implement your own **Product details page**
 3. You implement your **Order System to create transactionId** for buyers to checkout their order
-4. Your App/Web **opens Payment Checkout** Checkout page with additional parameters required
+4. Your App/Web **opens Payment Checkout** page with additional parameters required
 5. Buyer pays using any of *Direct Debit*, *Credit Cards*, or *Bank Virtual Accounts*.
 6. You **receive money on your receiving account** and OY! will **send Payment status Callback** to your end point (note: Only available for non-trial account)
 
