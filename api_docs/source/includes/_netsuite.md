@@ -1836,6 +1836,7 @@ Try it out! `?id=1234` will get you item receipt line with id=1234
             "url": "http://www.staples.com/",
             "payment_term": "Due on Receipt",
             "shipping_term": "FOB",
+            "vendor_external_id": "VENDOR_EX_1",
             "external_id": "EX_VENDOR_2",
             "custom_field": {}
         }
@@ -1892,6 +1893,7 @@ STATUS | status can be "pending", "synced", or "error"
     "url": "http://www.staples.com/",
     "payment_term": "Due on Receipt",
     "shipping_term": "FOB",
+    "vendor_external_id": "VENDOR_EX_1",
     "external_id": "1234"
 }
 ```
@@ -1920,6 +1922,7 @@ STATUS | status can be "pending", "synced", or "error"
         "url": "http://www.staples.com/",
         "payment_term": "Due on Receipt",
         "shipping_term": "FOB",
+        "vendor_external_id": "VENDOR_EX_1",
         "external_id": "1234",
         "custom_fields": {}
     },
@@ -1990,6 +1993,9 @@ Vendor payment term.
 <code>shipping_term</code><br />
 Vendor shipping term.
 
+<code>vendor_external_id</code><br />
+Vendor external id.
+
 <code>external_id</code><span class="required-tag">required</span><br />
 ID of the integration object.
 
@@ -2016,6 +2022,7 @@ ID of the integration object.
     "url": "http://www.staples.com/",
     "payment_term": "Due on Receipt",
     "shipping_term": "FOB",
+    "vendor_external_id": "VENDOR_EX_1",
     "external_id": "1234"
 }
 ```
@@ -2044,6 +2051,7 @@ ID of the integration object.
         "url": "http://www.staples.com/",
         "payment_term": "Due on Receipt",
         "shipping_term": "FOB",
+        "vendor_external_id": "VENDOR_EX_1",
         "external_id": "1234",
         "custom_fields": {}
     },
@@ -2119,6 +2127,9 @@ Vendor payment term.
 
 <code>shipping_term</code><br />
 Vendor shipping term.
+
+<code>vendor_external_id</code><br />
+Vendor external id.
 
 <code>external_id</code><span class="required-tag">required</span><br />
 ID of the integration object.
