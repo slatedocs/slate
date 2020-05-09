@@ -259,6 +259,8 @@ sender_bank | String | The bank code used by a payer to do payment
 payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
 va_number | String | VA number to be used on payment if using Virtual Account
 settlement_type | String | Indicate if a transaction will be settled in realtime/non-realtime
+created | DateTime | A timestamp to indicate when a payment checkout link is created or first accessed, format : `yyyy-MM-dd'T'HH:mm:ss`
+updated | DateTime | A timestamp to indicate when a payment status is updated, format : `yyyy-MM-dd'T'HH:mm:ss`
 
 ## Response Codes
 
