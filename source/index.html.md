@@ -191,9 +191,6 @@ params += (sender_note !== null) ? '&sender_note=' + sender_note : '';
 params += (description !== null) ? '&description=' + encodeURIComponent(description) : '';
 params += (is_open !== null) ? '&is_open=' + is_open : '';
 params += (step !== null) ? '&step=' + step : '';
-params += (enable_payment_cc !== null) ? '&enable_payment_cc=' + enable_payment_cc : '';
-params += (enable_payment_va !== null) ? '&enable_payment_va=' + enable_payment_va : '';
-params += (enable_payment_debit !== null) ? '&enable_payment_debit=' + enable_payment_debit : '';
 
 window.open("https://pay.oyindonesia.com/v2?" + params, "_blank"); 
 ```
@@ -215,7 +212,7 @@ step | String | - | Accessing specific page of the payment checkout URL. Possibl
 
 ### Sample payment checkout URL with all parameters defined:
 
-`https://pay.oyindonesia.com/v2?username=yourusername&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment-checkout-testing&is_open=false&step=select-payment-method&enable_payment_cc=false&enable_payment_debit=false`
+`https://pay.oyindonesia.com/v2?username=yourusername&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment-checkout-testing&is_open=false&step=select-payment-method`
 
 The above URL will produce a payment checkout link with a closed amount of IDR 50,000 with VA payment method only available and payer will be redirected to the payment method page upon accessing the URL.
 
