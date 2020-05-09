@@ -667,7 +667,8 @@ curl -v https://api.datil.co/sales/invoices/6463427e69b546afb77a75973cc74ce7/pay
             }
           }]
         }
-      ]
+      ],
+      "send_payment_confirmation": true
     }'
 ```
 
@@ -688,7 +689,8 @@ payments = {
         "description": "Banco Huancavilva"
       }
     ]
-  }]
+  }],
+  "send_payment_confirmation": True
 }
 headers = {
     'x-api-key': '<clave-del-api>',
@@ -704,6 +706,7 @@ Puedes registrar uno o más pagos.
 Parámetros | &nbsp;
 ---------- | -----------
 payments<p class="dt-data-param-required">requerido</p> | Listado de [pagos](#payment) a registrar
+send_payment_confirmation | Envia un correo de recibo de pago al cliente.
 
 
 Parámetros | &nbsp;
