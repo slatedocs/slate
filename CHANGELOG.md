@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 2.5.0
+
+*May 8, 2020*
+
+* __[security]__ update nokogiri to ~> 1.10.8
+* Update links in example docs to https://github.com/slatedocs/slate from https://github.com/lord/slate
+* Update LICENSE to include full Apache 2.0 text
+* Test slate against Ruby 2.5 and 2.6 on Travis-CI
+* Update Vagrantfile to use Ubuntu 18.04 (thanks @bradthurber)
+* Parse arguments and flags for deploy.sh on script start, instead of potentially after building source files
+* Install nodejs inside Vagrantfile (thanks @fernandoaguilar)
+* Add Dockerfile for running slate (thanks @redhatxl)
+* update middleman-syntax and rouge to ~>3.2
+* update middleman to 4.3.6
+
 ## Version 2.4.0
 
 *October 19, 2019*
