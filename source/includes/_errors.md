@@ -12,7 +12,7 @@ Error Code | Meaning
 404 | Not Found -- The specified kitten could not be found.
 405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
 406 | Not Acceptable -- You requested a format that isn't json.
-409 | Conflict - Previous request still in progress.  Please wait a bit and try again later.
+409 | Conflict -- Previous request still in progress.  Please wait a bit and try again later.
 410 | Gone -- The kitten requested has been removed from our servers.
 418 | I'm a teapot.
 429 | Too Many Requests -- You're requesting too many kittens! Slow down!
