@@ -117,7 +117,37 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache,no-cache,no-cache' \
   --header 'token: YOUR-TOKEN' \
-  --data '{ "manifest" : { "name": "{name}", "marketplace_account_id" : "{marketplace_account_id}", "supplier_id" : "{supplier_id}", "ship_from_address_id" : "{ship_from_address_id}", "template_id" : "{template_id}", "product_listings_attributes" : [{"asin" : "{asin}", "quantity" : "{quantity}", "item_condition" : "{item_condition}", "upc" : "{upc}", "sku" : "{sku}", "title" : "{title}", "retail_price" : "{retail_price}", "item_location" : "{item_location}", "item_category" : "{item_category}", "item_category_id" : "{item_category_id}", "item_remarks" : "{item_remarks}", "brand" : "{brand}", "description" : "{description}", "features" : "{features}", "details_html" : "{details_html}", "item_specifics" : "{item_specifics}", "mpn" : "{mpn}", "listing_format" : "{listing_format}", "color" : "{color}", "manufacturer" : "{manufacturer}", "model" : "{model}", "part_number" : "{part_number}", "listing_duration" : "{listing_duration}", "store_category_external_id" : "{store_category_external_id}","store_category_2_external_id" : "{store_category_2_external_id}", "weight_in_pounds" : "{weight_in_pounds}", "package_dimensions_length" : "{package_dimensions_length}", "package_dimensions_width" : "{package_dimensions_width}", "package_dimensions_height" : "{package_dimensions_height}", "item_dimensions_length" : "{item_dimensions_length}", "item_dimensions_width" : "{item_dimensions_width}", "item_dimensions_height" : "{item_dimensions_height}", "handling_time" : "{handling_time}", "shipping_charge_type" : "{shipping_charge_type}", "global_shipping" : "{global_shipping}", "free_shipping" : "{free_shipping}", "shipping_service_code" : "{shipping_service_code}", "shipping_service_cost" : "{shipping_service_cost}", "extra_shipping_service_cost" : "{extra_shipping_service_cost}", "domestic_rate_table" : "{domestic_rate_table}", "international_shipping_service_code" : "{international_shipping_service_code}", "international_shipping_service_cost" : "{international_shipping_service_cost}", "extra_international_shipping_service_cost" : "{extra_international_shipping_service_cost}", "international_ship_to_locations" : "{international_ship_to_locations}", "international_rate_table" : "{international_rate_table}", "return_in_days_value" : "{return_in_days_value}", "refund_policy_value" : "{refund_policy_value}", "return_shipping_paid_by_value" : "{return_shipping_paid_by_value}", "qunatity_in_case" : "{qunatity_in_case}", "cost_price" : "{cost_price}", "expiration_date" : "{expiration_date}", "fnsku" : "{fnsku}", "image_urls" : [], "external_ids" : []}] } }'
+  --data '{ "manifest" : {
+    "name": "My Manifest",
+    "marketplace_account_id" : "59e0f41007b6205968000016",
+    "supplier_id" : "5c1902f207b620090a000026",
+    "ship_from_address_id" : "59e0d31f07b6204cc8000000",
+    "template_id" : "59e0d31f07b6204cc8000000",
+    "product_listings_attributes" : [
+        {
+            "asin" : "B07G22S48Q", "quantity" : "10", "item_condition" : "like_new", "upc" : "0123456789",
+            "sku" : "S123", "title" : "My product title", "retail_price" : "10.00",
+            "item_location" : "SHELF A - BIN 1", "item_category" : "Clothing",
+            "item_category_id" : "123", "item_remarks" : "Packaging is missing",
+            "brand" : "Polo", "description" : "Green polo shirt", "features" : ['Green', 'Solid'],
+            "details_html" : "More details here",
+            "item_specifics" : [{"name"=>"Brand", "value"=>"Polo"}, {"name"=>"Size", "value"=>"Small"}] , "mpn" : null,
+            "listing_format" : "fixed_price", "color" : "Green", "manufacturer" : "Polo", "model" : "",
+            "part_number" : "", "listing_duration" : "GTC", "store_category_external_id" : "",
+            "store_category_2_external_id" : "", "weight_in_pounds" : "0.2",
+            "package_dimensions_length" : "10", "package_dimensions_width" : "10", "package_dimensions_height" : "14",
+            "item_dimensions_length" : "10", "item_dimensions_width" : "10", "item_dimensions_height" : "14",
+            "handling_time" : "1", "shipping_charge_type" : "", "global_shipping" : "false",
+            "free_shipping" : "true", "shipping_service_code" : "", "shipping_service_cost" : "",
+            "extra_shipping_service_cost" : "", "domestic_rate_table" : "false",
+            "international_shipping_service_code" : "", "international_shipping_service_cost" : "",
+            "extra_international_shipping_service_cost" : "", "international_ship_to_locations" : "",
+            "international_rate_table" : "false", "return_in_days_value" : "30",
+            "refund_policy_value" : "", "return_shipping_paid_by_value" : "",
+            "quantity_in_case" : "", "cost_price" : "2.00", "expiration_date" : "2020-10-30", "fnsku" : "",
+            "image_urls" : ['https://someurl.com'], "external_ids" : []}
+    ]
+} }'
 ```
 ### URL Parameters
 
@@ -257,14 +287,13 @@ Returns back paged manifests optionally filtering by marketplace_account_id OR m
 
 Url format:
 
-/api/manifests?marketplace_account_id={marketplace_account_id}
-&manifest_folder_id={manifest_folder_id}
-&page={page}&page_size={page_size}
+/api/manifests?marketplace_account_id=5c1902f207b620090a000026
+&manifest_folder_id=59e0d31f07b6204cc8000000&page=1&page_size=20
 
 
 ```shell
 curl --request GET \
-  --url 'https://sellerchamp.com/api/manifests?marketplace_account_id={marketplace_account_id}%0A&manifest_folder_id={manifest_folder_id}%%0A&page={page}%0A&page_size={page_size}' \
+  --url 'https://sellerchamp.com/api/manifests?marketplace_account_id=5c1902f207b620090a000026&manifest_folder_id=59e0d31f07b6204cc8000000&page=1&page_size=20' \
   -H 'token: YOUR-TOKEN' \
 
 Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -347,12 +376,12 @@ Returns back paged product_listings for a given manifest_id.  Default page size 
 
 Url format:
 
-/api/manifests/{manifest_id}/product_listings?page={page}&page_size={page_size}
+/api/manifests/MANIFEST_ID/product_listings?page=1&page_size=20
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://sellerchamp.com/api/manifests/{manifest_id}/product_listings?page={page}&page_size={page_size} \
+  https://sellerchamp.com/api/manifests/5e6ec5a5584085af1800013d/product_listings?page=1&page_size=20 \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -461,7 +490,7 @@ It will create product_listings inside the specified manifest.
 
 Url format:
 
-/api/manifests/{manifest_id}/product_listings
+/api/manifests/MANIFEST_ID/product_listings
 
 ```shell
 curl --request POST \
@@ -469,7 +498,28 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache,no-cache,no-cache' \
   --header 'token: YOUR-TOKEN' \
-  --data '{ "product_listings_attributes" : [{"asin" : "{asin}", "quantity" : "{quantity}", "item_condition" : "{item_condition}", "upc" : "{upc}", "sku" : "{sku}", "title" : "{title}", "retail_price" : "{retail_price}", "item_location" : "{item_location}", "item_category" : "{item_category}", "item_category_id" : "{item_category_id}", "item_remarks" : "{item_remarks}", "brand" : "{brand}", "description" : "{description}", "features" : "{features}", "details_html" : "{details_html}", "item_specifics" : "{item_specifics}", "mpn" : "{mpn}", "listing_format" : "{listing_format}", "color" : "{color}", "manufacturer" : "{manufacturer}", "model" : "{model}", "part_number" : "{part_number}", "listing_duration" : "{listing_duration}", "store_category_external_id" : "{store_category_external_id}","store_category_2_external_id" : "{store_category_2_external_id}", "weight_in_pounds" : "{weight_in_pounds}", "package_dimensions_length" : "{package_dimensions_length}", "package_dimensions_width" : "{package_dimensions_width}", "package_dimensions_height" : "{package_dimensions_height}", "item_dimensions_length" : "{item_dimensions_length}", "item_dimensions_width" : "{item_dimensions_width}", "item_dimensions_height" : "{item_dimensions_height}", "handling_time" : "{handling_time}", "shipping_charge_type" : "{shipping_charge_type}", "global_shipping" : "{global_shipping}", "free_shipping" : "{free_shipping}", "shipping_service_code" : "{shipping_service_code}", "shipping_service_cost" : "{shipping_service_cost}", "extra_shipping_service_cost" : "{extra_shipping_service_cost}", "domestic_rate_table" : "{domestic_rate_table}", "international_shipping_service_code" : "{international_shipping_service_code}", "international_shipping_service_cost" : "{international_shipping_service_cost}", "extra_international_shipping_service_cost" : "{extra_international_shipping_service_cost}", "international_ship_to_locations" : "{international_ship_to_locations}", "international_rate_table" : "{international_rate_table}", "return_in_days_value" : "{return_in_days_value}", "refund_policy_value" : "{refund_policy_value}", "return_shipping_paid_by_value" : "{return_shipping_paid_by_value}", "qunatity_in_case" : "{qunatity_in_case}", "cost_price" : "{cost_price}", "expiration_date" : "{expiration_date}", "fnsku" : "{fnsku}", "image_urls" : [], "external_ids" : []}] }'
+  --data '{
+    "product_listings_attributes" : [
+        {
+            "asin" : "B07G22S48Q", "quantity" : "10", "item_condition" : "like_new",
+            "upc" : "0123456789", "sku" : "S123", "title" : "My product title",
+            "retail_price" : "10.00", "item_location" : "SHELF A - BIN 1",
+            "item_category" : "Clothing", "item_category_id" : "123", "item_remarks" : "Packaging is missing",
+            "brand" : "Polo", "description" : "Green polo shirt", "features" : ['Green', 'Solid'],
+            "details_html" : "More details here",
+            "item_specifics" : [{"name"=>"Brand", "value"=>"Polo"}, {"name"=>"Size", "value"=>"Small"}] ,
+            "mpn" : null, "listing_format" : "fixed_price", "color" : "Green",
+            "manufacturer" : "Polo", "model" : "", "part_number" : "",
+            "listing_duration" : "GTC", "store_category_external_id" : "","store_category_2_external_id" : "",
+            "weight_in_pounds" : "0.2", "package_dimensions_length" : "10", "package_dimensions_width" : "10", "package_dimensions_height" : "14",
+            "item_dimensions_length" : "10", "item_dimensions_width" : "10", "item_dimensions_height" : "14",
+            "handling_time" : "1", "shipping_charge_type" : "", "global_shipping" : "false", "free_shipping" : "true",
+            "shipping_service_code" : "", "shipping_service_cost" : "", "extra_shipping_service_cost" : "","domestic_rate_table" : "false",
+            "international_shipping_service_code" : "", "international_shipping_service_cost" : "",
+            "extra_international_shipping_service_cost" : "", "international_ship_to_locations" : "", "international_rate_table" : "false",
+            "return_in_days_value" : "30", "refund_policy_value" : "", "return_shipping_paid_by_value" : "",
+            "quantity_in_case" : "", "cost_price" : "2.00", "expiration_date" : "2020-10-30", "fnsku" : "", "image_urls" : ['https://someurl.com'], "external_ids" : []}
+    ] }'
 ```
 ### URL Parameters
 
@@ -596,7 +646,7 @@ Deletes a product_listing from the manifest.
 
 Url format:
 
-/api/manifests/{manifest_id}/product_listings/{product_listing_id}
+/api/manifests/MANIFEST_ID/product_listings/PRODUCT_LISTING_ID
 
 ```shell
 curl -X DELETE \
@@ -611,16 +661,26 @@ Make sure to replace `YOUR-TOKEN` with your API key token.
 
 ## GET products
 
-Returns back paged products optionally filtering by marketplace_account_id.  Default page size is 50.
+Returns back paged products optionally filtering by search parameters.  Default page size is 50.
 
 Url format:
 
-/api/products
+/api/products?marketplace_account_id=5e2fb23d07b62074fe000011
+
+### URL Parameters
+
+Name | Data Type | Description
+--------------|------------------|-------------------------------------------
+marketplace_account_id | String (optional) | The marketplace_account_id for which to fetch products.
+sku | String (optional) | The product SKU to search for (case-sensitive)
+asin | String (optional) | The product ASIN to search for
+upc | String (optional) | The product UPC/ISBN/EAN to search for
+marketplace_id | String (optional) | The product marketplace_id (ex: eBay Item ID) to search for
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://sellerchamp.com/api/products.json?marketplace_account_id={marketplace_account_id}&page={page}&page_size={page_size} \
+  https://sellerchamp.com/api/products.json?marketplace_account_id=5e2fb23d07b62074fe000011&page=1&page_size=20 \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -700,12 +760,12 @@ Returns back the product for the specified id.
 
 Url format:
 
-/api/products/{product_id}
+/api/products/PRODUCT_ID
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://sellerchamp.com/api/products/{product_id}.json \
+  https://sellerchamp.com/api/products/5e9316fb07b620137a000144.json \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -780,7 +840,7 @@ Updates the product with the specified ID.
 
 Url format:
 
-/api/products/{product_id}
+/api/products/PRODUCT_ID
 
 ```shell
 curl -X PUT \
@@ -813,7 +873,7 @@ Deletes a product, optionally ending the listing on the marketplace.
 
 Url format:
 
-/api/products/{product_id}
+/api/products/PRODUCT_ID
 
 ```shell
 curl -X DELETE \
@@ -842,7 +902,7 @@ Returns back product_images for a product
 
 Url format:
 
-/api/products/{product_id}/product_images
+/api/products/PRODUCT_ID/product_images
 
 ```
 curl -X GET \
@@ -888,7 +948,7 @@ Adds an image to an existing product
 
 Url format:
 
-/api/products/{product_id}/product_images
+/api/products/PRODUCT_ID/product_images
 
 ```
 curl -X POST \
@@ -915,7 +975,7 @@ Removes an image from an existing product
 
 Url format:
 
-/api/products/{product_id}/product_images/{product_image_id}
+/api/products/PRODUCT_ID/product_images/PRODUCT_IMAGE_ID
 
 
 ```shell
@@ -1006,25 +1066,16 @@ Returns back a list of orders that match the specified criteria. All of the avai
 
 Url format with filters:
 
-/api/orders?buyer_name={buyer_name}
-&created_at_start={created_at_start}
-&created_at_end={created_at_end}
-&updated_at_start={updated_at_start}
-&updated_at_end={updated_at_end}
-&order_number={order_number}
-&order_status={order_status}
-&purchased_at_start={purchased_at_start}
-&purchased_at_end={purchased_at_start}
-&store_id={store_id}
-&sort={sort_by}
-&direction={sort_direction}
-&page={page}
-&page_size={page_size}
+/api/orders?buyer_name=smith
+&updated_at_start=2015-01-01T00:00:00&updated_at_end=2015-01-08T00:00:00
+&order_status=awaiting_shipment
+&marketplace_accont_id=5e73df8a584085c98200030b
+&sort=order_status&page=1&page_size=20
 
 
 ```shell
 curl --request GET \
-  --url 'https://sellerchamp.com/api/orders?buyer_name={buyer_name}%0A&order_number={order_number}%0A&order_status={order_status}%0A&purchased_at_start={purchased_at_start}%0A&purchased_at_end={purchased_at_start}%0A&store_id={store_id}%0A&sort={sort_by}%0A&direction={sort_direction}%0A&page={page}%0A&page_size={page_size}&created_at_start={created_at_start}%0A&created_at_end={created_at_end}%0A&updated_at_start={updated_at_start}%0A&updated_at_end={updated_at_end}%0A' \
+  --url 'https://sellerchamp.com/api/orders?order_status=awaiting_shipment&marketplace_account_id=5e73df8a584085c98200030b&updated_at_start=2015-01-01T00:00:00&updated_at_end=2015-01-08T00:00:00&page=1&page_size=20' \
   -H 'token: YOUR-TOKEN' \
 
 Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -1042,7 +1093,7 @@ order_number | String | Filter by order number, performs a "starts with" search.
 order_status | String | Filter by order status. If left empty, orders of all statuses are returned. Example: shipped
 purchased_at_start | String | Returns orders that were paid after the specified date Example: 2015-01-01
 purchased_at_end | String | Returns orders that were paid before the specified date Example: 2015-01-08
-store_id | Number | Filters orders to a single store. Call List Stores to obtain a list of store Ids. Example: 12345.
+marketplace_account_id | Number | Filters orders to a single marketplace account. Call /marketplace_accounts to obtain list of marketplace account ids.
 sort | String | Sort the responses by a set value. The response will be sorted based off the ascending dates (oldest to most current.) If left empty, the response will be sorted by ascending order_id. Example: Order_date
 direction | String | Sets the direction of the sort order. Example: ASC.
 page | String | Page number Default: 1.
@@ -1054,7 +1105,7 @@ Updates an order. If tracking number and carrier code are provided, they are sub
 
 URL format:
 
-/api/orders/{order_id}
+/api/orders/ORDER_ID
 
 ```shell
 curl --request PUT \
