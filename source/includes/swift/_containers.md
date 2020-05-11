@@ -136,7 +136,7 @@ curl -X POST \
 
 Create a new container.
 
-Required | &nbsp;∂===
+Required | &nbsp;
 ------- | -----------
 `name` <br/>*string* | The name of the container. It cannot exceed 256 characters and cannot contain '/'.
 

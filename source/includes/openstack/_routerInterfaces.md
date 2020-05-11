@@ -101,7 +101,7 @@ curl -X POST \
 
 Create a router interface.
 
-Required attributes          | Description                          
+Required          | Description                          
 --------------------------   | ------------------------------------
 `networkId`<br/>*UUID*        | The ID of the network that is being connected. 
 `routerId`<br/>*UUID*         | The ID of the router.
