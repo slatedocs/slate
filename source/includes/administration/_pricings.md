@@ -351,8 +351,8 @@ Required | &nbsp;
 `organization.id` <br/>*UUID* | The id of the organization the pricing belongs to. 
 `productCatalogs` <br/>*Array[productCatalogs.id]* | An array of product catalogs the pricing can add products from.
 `productCatalogs.id` <br/>*UUID* | The id for a product catalog you'd like to add as a source for your pricing.
-`name` <br/>*Map[string,string]* | A map of language keys to a name in the specified language. 
-`description` <br/>*Map[string,string]* | A map of language language keys to the description in the specified language.
+`name` <br/>*Object* | A map of language keys to a name in the specified language. 
+`description` <br/>*Object* | A map of language language keys to the description in the specified language.
 `effectiveDate` <br/>*string* | The date the pricing should become effective.
 `pricingProducts` <br/>*Array[pricingProduct]* | A list of products from a supplied product catalog that are priced, need to supply a product with every supported currency.
 `pricingProduct.product.id` <br/>*UUID* | The id of the product you're applying a price to. Must be contained in one of the specified product catalogs. 
