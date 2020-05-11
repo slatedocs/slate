@@ -9,7 +9,7 @@ Field | Description
 __product_parameter_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each product_parameter.
 __<a href="/#product">product_imei</a>__ <br><font color="DarkGray">_varchar(15)_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#parameter-type">parameter_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
-__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["pending", "active", "expired", "removed"]</font>
+__status__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | <br><font color="DodgerBlue">options: ["expired", "removed", "active", "pending"]</font>
 __value__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null)</font> | 
 __date_added__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __date_removed__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
