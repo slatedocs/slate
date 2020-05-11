@@ -541,7 +541,7 @@ Responds to `GET` requests to `/v1/screening/recordings` and returns an array of
 curl --request POST https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a/qt \
  -u 7863674b-1919-432b-90d5-838fb8207d3f: \
  --header 'Content-Type: application/json' \
- --data '{"qt": 1.45,"rr": 1.21,"qtcb": -5.12,"qtcf": 145}'
+ --data '{"qt": 1.45,"rr": 1.21,"qtcb": -5.12,"qtcf": 145, "error": "any error message", "errorType": "poorQuality"}'
 ```
 
 > Example Response
@@ -553,11 +553,14 @@ curl --request POST https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u
     "rr": 1.21,
     "qtcb": -5.12,
     "qtcf": 145,
-    "measurementID": "IOyFM8PTUW7DEw2UAircc1pfvsh2rxdd"
+    "measurementID": "IOyFM8PTUW7DEw2UAircc1pfvsh2rxdd",
+    "error": "any error message",
+    "errorType": "poorQuality"    
 }
 ```
-
 Responds to `POST` requests to `/v1/recordings/:recordingId/qt` and returns the created qt measurement object.
+A qt measurement may contain an optional error message, which will require an errorType if an error message
+is specified. Valid error types are ```poorQuality```, ```undeterminedRhythm```, and ```other```
 
 ## Recordings Object
 
