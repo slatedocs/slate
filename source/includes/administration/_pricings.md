@@ -245,7 +245,7 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
    -H "MC-Api-Key: your_api_key"
 ```
 
-> Request body example(s):
+> Request body example:
 
 ```js
 {
@@ -292,7 +292,7 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
 	]
 }
 ```
-> The above command(s) return(s) JSON structured like this:
+> The above command return JSON structured like this:
 
 ```js
 {
@@ -360,4 +360,3 @@ Required | &nbsp;
 `pricingProduct.unitPrice` <br/>*int* | The unit price is the price at which the product will be sold to the consumer.
 `pricingProduct.currency` <br/>*string* | The currency the price is set in. 
 `supportedCurrencies` <br/>*Array[string]*| An array of supported currencies.
-
