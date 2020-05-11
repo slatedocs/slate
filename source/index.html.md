@@ -15,6 +15,9 @@ includes:
   - administration/environments 
   - administration/resource_commitments
   - administration/usage
+  - administration/monetization
+  - administration/products
+  - administration/pricings
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
