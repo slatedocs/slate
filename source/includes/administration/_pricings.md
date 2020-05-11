@@ -92,7 +92,7 @@ Attributes | &nbsp;
 `name`<br/>*Object* | The name object in each language for the pricing.
 `description`<br/>*string* | The description object in each language for the pricing.
 `supportedCurrencies`<br/>*Array[string]* | List of the currencies which are supported by this pricing.
-`productCatalogs`<br/>*Object* | List of product catalog objects which are attached to this pricing.
+`productCatalogs`<br/>*Array[Object]* | List of product catalog objects which are attached to this pricing.
 `organization.id`<br/>*UUID* | UUID of the organisation to which belongs the pricing.
 `pricingProducts`<br/>*Array[Object]* | The list of product pricings assigned to the pricing.
 `pricingProducts.id`<br/>*UUID* | UUID of the product pricing.
@@ -223,7 +223,7 @@ Attributes | &nbsp;
 `name`<br/>*Object* | The name object in each language for the pricing.
 `description`<br/>*string* | The description object in each language for the pricing.
 `supportedCurrencies`<br/>*Array[string]* | List of the currencies which are supported by this pricing.
-`productCatalogs`<br/>*Object* | List of product catalog objects which are attached to this pricing.
+`productCatalogs`<br/>*Array[Object]* | List of product catalog objects which are attached to this pricing.
 `organization.id`<br/>*UUID* | UUID of the organisation to which belongs the pricing. It is more detailed.
 `pricingProducts`<br/>*Array[Object]* | The list of product pricings assigned to the pricing.
 `pricingProducts.id`<br/>*UUID* | UUID of the product pricing.
