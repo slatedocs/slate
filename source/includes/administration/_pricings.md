@@ -1,6 +1,6 @@
 ### Pricings
 
-The pricings determines the price for each product defines for a selected catalogs.
+The pricing determines the price for each product defined for a selected catalog.
 
 <!-------------------- LIST PRICINGS -------------------->
 #### List pricings
@@ -89,12 +89,12 @@ curl "https://cloudmc_endpoint/rest/pricings" \
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the pricing.
-`name`<br/>*Object* | The name object in each language for the pricing (en, fr or es).
-`description`<br/>*string* | The description object in each language for the pricing (en, fr or es).
-`supportedCurrencies`<br/>*Array[string]* | List of the currency which are link to this pricing.
-`productCatalogs`<br/>*Object* | List of product catalog object which are attached to this pricing.
+`name`<br/>*Object* | The name object in each language for the pricing.
+`description`<br/>*string* | The description object in each language for the pricing.
+`supportedCurrencies`<br/>*Array[string]* | List of the currencies which are supported by this pricing.
+`productCatalogs`<br/>*Object* | List of product catalog objects which are attached to this pricing.
 `organization.id`<br/>*UUID* | UUID of the organisation to which belongs the pricing.
-`pricingProducts`<br/>*Array[Object]* | The list of products assigned to the pricing.
+`pricingProducts`<br/>*Array[Object]* | The list of product pricings assigned to the pricing.
 `pricingProducts.id`<br/>*UUID* | UUID of the product pricing.
 `pricingProducts.unitPrice`<br/>*double* | The unit price of the product.
 `pricingProducts.product`<br/>*Object* | The product attached to this product pricing element.
@@ -220,12 +220,12 @@ curl "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the pricing.
-`name`<br/>*Object* | The name object in each language for the pricing (en, fr or es).
-`description`<br/>*string* | The description object in each language for the pricing (en, fr or es).
-`supportedCurrencies`<br/>*Array[string]* | List of the currency which are link to this pricing.
-`productCatalogs`<br/>*Object* | List of product catalog object which are attached to this pricing.
+`name`<br/>*Object* | The name object in each language for the pricing.
+`description`<br/>*string* | The description object in each language for the pricing.
+`supportedCurrencies`<br/>*Array[string]* | List of the currencies which are supported by this pricing.
+`productCatalogs`<br/>*Object* | List of product catalog objects which are attached to this pricing.
 `organization.id`<br/>*UUID* | UUID of the organisation to which belongs the pricing. It is more detailed.
-`pricingProducts`<br/>*Array[Object]* | The list of products assigned to the pricing.
+`pricingProducts`<br/>*Array[Object]* | The list of product pricings assigned to the pricing.
 `pricingProducts.id`<br/>*UUID* | UUID of the product pricing.
 `pricingProducts.unitPrice`<br/>*double* | The unit price of the product.
 `pricingProducts.product`<br/>*Object* | The product attached to this product pricing element.

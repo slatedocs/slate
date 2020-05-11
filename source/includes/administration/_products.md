@@ -1,6 +1,6 @@
 ### Product Catalogs
 
-The product catalogs determines the product configured for a service type and maybe specific connections.
+The product catalogs determine the product configured for a service type and optionally for specific connections.
 
 <!-------------------- LIST PRODUCT CATALOGS -------------------->
 #### List product catalogs
@@ -73,22 +73,22 @@ curl "https://cloudmc_endpoint/rest/product_catalogs" \
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the product catalog.
-`name`<br/>*Object* | The name object in each language for the product catalog (en, fr or es).
-`description`<br/>*string* | The description object in each language for the product catalog (en, fr or es).
+`name`<br/>*Object* | The name object in each language for the product catalog.
+`description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
-`serviceType`<br/>*Object* | The service connection type to which is bound the product catalog.
-`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection to which the catalog is bound to.
+`serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
+`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
 `changes`<br/>*Array[Object]* | Array of all changes done on the product catalog.
 `categories`<br/>*Array[Object]* | The list of product categories object.
-`categories.id`<br/>*Array[Object]* | The list of product categories object.
-`categories.name`<br/>*Object* | The name object in each language for the category (en, fr or es).
+`categories.id`<br/>*string* | The id of product category object.
+`categories.name`<br/>*Object* | The name object in each language for the category.
 `products`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
 `products.unit`<br/>*Object* | The unit object of the product.
 `products.unit.unit`<br/>*string* | The unit value of the product.
 `products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom unit.
 `products.period`<br/>*string* | The period for the product capture. Possible values: HOURS, MONTH.
-`products.name`<br/>*Object* | The name object in each language for the product name (en, fr or es).
+`products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
 `products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
@@ -175,22 +175,22 @@ curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afd
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the product catalog.
-`name`<br/>*Object* | The name object in each language for the product catalog (en, fr or es).
-`description`<br/>*string* | The description object in each language for the product catalog (en, fr or es).
+`name`<br/>*Object* | The name object in each language for the product catalog.
+`description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
-`serviceType`<br/>*Object* | The service connection type to which is bound the product catalog.
-`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection to which the catalog is bound to.
+`serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
+`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
 `changes`<br/>*Array[Object]* | Array of all changes done on the product catalog.
 `categories`<br/>*Array[Object]* | The list of product categories object.
-`categories.id`<br/>*Array[Object]* | The list of product categories object.
-`categories.name`<br/>*Object* | The name object in each language for the category (en, fr or es).
+`categories.id`<br/>*string* | The id of product category object.
+`categories.name`<br/>*Object* | The name object in each language for the category.
 `products`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
 `products.unit`<br/>*Object* | The unit object of the product.
 `products.unit.unit`<br/>*string* | The unit value of the product.
 `products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom unit.
 `products.period`<br/>*string* | The period for the product capture. Possible values: HOURS, MONTH.
-`products.name`<br/>*Object* | The name object in each language for the product name (en, fr or es).
+`products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
 `products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
