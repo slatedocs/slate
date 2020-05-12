@@ -183,11 +183,4 @@ Deletes a webhook subscription with a specified `webhook_subscription_id`.
 
 ## Limitations
 
-- The following triggers will not create webhook events:
-
-  - Resources created/updated/deleted via our importer tool
-  - Resources created/updated/deleted via Email Bot.
-  - Organizations created automatically based on email/event interactions.
-  - Field values created/updated/deleted in automated global organization fields (i.e. location, last round raised, etc.)
-
-- There is a limit of three webhook subscriptions. If you have any questions at all regarding webhooks, please reach out to support@affinity.co.
+There is a limit of three webhook subscriptions per Affinity instance. If you have any questions at all regarding webhooks, please reach out to <support@affinity.co>.
