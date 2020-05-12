@@ -67,8 +67,7 @@ module Rouge
               Literal::String::Interpol,
               Literal::String::Other,
               Literal::String::Single,
-              Literal::String,
-              Name::Label,                      :fg => :soft_yellow
+              Literal::String,                  :fg => :soft_yellow
         style Name::Attribute,
               Name::Class,
               Name::Decorator,
@@ -84,6 +83,7 @@ module Rouge
               Text::Whitespace,
               Text,
               Name,                             :fg => :white
+        style Name::Label,                      :fg => :bright_pink
         style Operator::Word,
               Name::Tag,
               Keyword,
