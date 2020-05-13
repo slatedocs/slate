@@ -104,6 +104,7 @@ includes:
   - azure/network_security_groups
   - azure/security_rules
   - azure/public_ip_addresses
+  - azure/clusters
   - masterportal
   - masterportal/applications
   - swift
