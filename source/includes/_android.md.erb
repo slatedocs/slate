@@ -1,3 +1,54 @@
 # Android SDK
 
-Documentation coming soon.
+## Installation
+
+### Manual
+```groovy
+// build.gradle
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+}
+```
+
+The Ada Android SDK can be installed manually from the `.aar` file. To get a download link please reach out to an Ada Bot Specialist.
+
+To install the library you need to save the `.aar` file under your app module `libs` folder, for example `MyAwesomeProject/app/libs`, and include `*.aar` in application level `build.gradle` file.
+
+After that synchronize project.
+
+You can also import a file using the Android Studio functionality. To do this, go to `File`->`New`->`New module`. In the appeared window select `Import .JAR/.AAR Package` and click `Next`. After that, specify path to the `.aar` file and the module name, and click `Finish`. 
+
+```groovy
+implementation project(':new_module_name')
+```
+
+Finally, add this line to your app `build.gradle` file:
+
+### Gradle
+```groovy
+// build.gradle
+allprojects {
+    repositories {
+        maven {
+            url "https://adasupport.bintray.com/Android-SDK"
+        }
+    }
+}        
+```
+
+The Ada Android SDK can be installed using Gradle from the Ada Support Bintray repository.
+
+To integrate the SDK, first add the following code to the project level `build.gradle` file:
+
+```groovy
+//  if your project has artifacts within the androidx namespace
+implementation 'support.ada.embed:android-sdk-appcompat:1.1.2'
+
+//  if your project uses Android Support Library
+implementation 'support.ada.embed:android-sdk-appcompat-legacy:1.1.2'
+```
+
+Next, add the dependency to the application level `build.gradle`:
+
+## Quick Start
+After installing the SDK, you can start Ada chat in several ways.
