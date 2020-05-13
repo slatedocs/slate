@@ -3,11 +3,11 @@
 Consulta la información de autorización de cualquier tipo de comprobante electrónico.
 El ID del documento `id-doc` es el ID que obtienes después de emitir un documento.
 
-### Operación
+<h3 id="consulta-comprobante-op">Operación</h3>
 
 `GET /edocs/<id-doc>`
 
-### Requerimiento
+<h3 id="consulta-comprobante-requerimiento">Requerimiento</h3>
 
 > #### Requerimiento de ejemplo
 
@@ -49,7 +49,7 @@ namespace DatilClient {
 }
 ```
 
-### Respuesta
+<h3 id="consulta-comprobante-respuesta">Respuesta</h3>
 
 Parámetro    | Tipo    | Descripción
 ------------ | ------- | -----------

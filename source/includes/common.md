@@ -287,6 +287,16 @@ Porcentaje IVA | Código
 5%             | 4580
 
 
+## Retención a la Fuente (Renta)
+
+Consulta el catálogo vigente de códigos en:
+
+[https://www.sri.gob.ec/web/guest/retenciones-en-la-fuente](https://www.sri.gob.ec/web/guest/retenciones-en-la-fuente)
+
+<aside class="notice">
+Utiliza los códigos indicados en la columna <em>"Código del Anexo"</em>
+</aside>
+
 ## Retención de IVA Presuntivo y Renta
 
 Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del

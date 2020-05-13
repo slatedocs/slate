@@ -166,13 +166,13 @@ tipo                  | string | Posibles valores: `INFORMATIVO`, `ADVERTENCIA`,
 informacion_adicional | string | Información adicional del mensaje.
 
 
-<h3 id="retencion-de-factura">Retención en factura </h2>
+<h3 id="retencion-de-factura">Retención en factura</h2>
 
 Caso específico de Retenciones en la Comercializadores / Distribuidores de derivados del Petróleo y Retención presuntiva de IVA a los Editores, Distribuidores y Voceadores que participan en la comercialización de periódicos y/o revistas.
 
 Parámetro | Tipo | Descripción
 --------- | ---- |-----------
-codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retención-en-la-factura).  __Requerido__
-codigo_porcentaje | string | Código del [porcentaje del impuesto](#retención-de-iva-presuntivo-y-renta). __Requerido__
+codigo | string | Código del [tipo de impuesto para la retención en la factura](#tipos-de-impuesto-para-la-retencion-en-la-factura).  __Requerido__
+codigo_porcentaje | string | Código del [porcentaje del impuesto](#retencion-de-iva-presuntivo-y-renta). __Requerido__
 tarifa | float | Porcentaje actual del impuesto. Máximo 3 enteros y 2 decimales.  __Requerido__
 valor | float | Valor del impuesto. Máximo 12 enteros y 2 decimales.  __Requerido__
