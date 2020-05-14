@@ -86,15 +86,10 @@ adaView.initialize(adaSettings)
 
 
 #### Programmatically
-
 ```kotlin
 val adaView = AdaEmbedView(getContext())
-```
 
-```kotlin
 val adaSettings = AdaEmbedView.Settings.Builder("ada-example")
-    .cluster("ca")
-    .language("en")
     .build()
 adaView.initialize(adaSettings)
 ```
@@ -118,13 +113,13 @@ val dialog = AdaEmbedDialog()
 dialog.show(supportFragmentManager, AdaEmbedDialog.TAG)
 ```
 
+> Note that TAG is a simple class name, you can use any value you want.
+
 To display a separate chat window on top of the current window, you can use `AdaEmbedDialog`.
 
 First, create a dialog object and pass the settings to its arguments using a constant `AdaEmbedDialog.ARGUMENT_SETTINGS`.
 
 Then show it using the native Android `show` method.
-
-Note that TAG is a simple class name, you can use any value you want.
 
 #### Activity
 
@@ -134,13 +129,13 @@ intent.putExtra(AdaEmbedActivity.EXTRA_SETTINGS, settings)
 context.startActivity(intent)
 ```
 
+> Note that you can use "AdaEmbedActivity" as a regular Android activity. For example, flags and actions can be added.
+
 The SDK allows you to open the chat window in a separate window attached to the app navigation. For this you need to use `AdaEmbedActivity`.
 
 Create an `Intent` and put the settings in it with the key `AdaEmbedActiviti.EXTRA_SETTINGS` and run the activity.
 
-Note that you can use `AdaEmbedActivity` as a regular Android activity. For example, flags and actions can be added.
-
-#### Send files
+#### Send Files
 
 ```kotlin
 adaView.filePickerCallback = { filePickerCallback ->
@@ -149,9 +144,9 @@ adaView.filePickerCallback = { filePickerCallback ->
 }
 ```
 
-When using Ada Glass (for Zendesk live agent support), end users need to occasionally upload files. `AdaEmbedActivity` and `AdaEmbedDialog` already have this functionality, but if you work directly with `AdaEmbedView` you have to handle it yourself.
+When using Ada Glass (for Zendesk live agent support), end users sometimes need to upload files. `AdaEmbedActivity` and `AdaEmbedDialog` already have this functionality, but if you work directly with `AdaEmbedView` you have to handle it yourself.
 
-To do this you need to setup a callback to `AdaEmbedView`. This callback will be fired when a user requests to attach a file. When you get the URI you can invoke `filePickerCallback.onFileTaken(someUri)`; it will signal `AdaEmbedView` that the file is ready for attach. It's also possible to pass `null, which will cancel the request.
+To do this, you need to setup a callback to `AdaEmbedView`. This callback will be fired when a user requests to attach a file. When you get the URI you can invoke `filePickerCallback.onFileTaken(someUri)`; it will signal to `AdaEmbedView` that the file is ready to attach. It's also possible to pass `null`, which will cancel the request.
 
 This operation doesn't require you to pass the file URI to callback immediately. You can save `filePickerCallback` and invoke the callback later (eg. take URI via file picker).
 
