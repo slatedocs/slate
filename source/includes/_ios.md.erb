@@ -105,6 +105,21 @@ Setting custom styles based on Chat elements is inherently brittle, and can caus
 </aside>
 
 ### Methods
+#### deleteHistory
+`deleteHistory()`
+
+Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window a new `chatter` will be generated.
+
+#### launchInjectingWebSupport
+
+```swift
+adaFramework.launchInjectingWebSupport(into: injectingView)
+```
+
+`launchInjectingWebSupport(into view: UIView)`
+
+Launches Ada Chat into a specified subview.
+
 #### launchModalWebSupport
 
 ```swift
@@ -125,15 +140,10 @@ adaFramework.launchNavWebSupport(from: navigationController)
 
 Pushes a view containing Ada Chat to the top of your navigational stack.
 
-#### launchInjectingWebSupport
+#### reset
+`reset()`
 
-```swift
-adaFramework.launchInjectingWebSupport(into: injectingView)
-```
-
-`launchInjectingWebSupport(into view: UIView)`
-
-Launches Ada Chat into a specified subview.
+Can be used to create a new `chatter` and refresh the Chat window. 
 
 #### setMetaFields
 
@@ -148,13 +158,3 @@ adaFramework.setMetaFields([
 `setMetaFields(_ fields: [String: Any])`
 
 Used to set meta data for a chatter after instantiation. This is useful if you need to update user data after Ada Chat has already launched.
-
-#### reset
-`reset()`
-
-Can be used to create a new `chatter` and refresh the Chat window. 
-
-#### deleteHistory
-`deleteHistory()`
-
-Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window a new `chatter` will be generated.
