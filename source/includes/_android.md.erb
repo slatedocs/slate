@@ -1,17 +1,18 @@
 # Android SDK
+The Ada Android SDK is a small framework that is used to embed your Ada Chat bot into your native Android application.
 
 ## Installation
+The Ada Android SDK can be installed manually or using Gradle.
 
 ### Manual
+The Ada Android SDK can be installed manually from the `.aar` file. To get a download link please reach out to an Ada Bot Specialist.
+
 ```groovy
 // build.gradle
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
 ```
-
-The Ada Android SDK can be installed manually from the `.aar` file. To get a download link please reach out to an Ada Bot Specialist.
-
 To install the library you need to save the `.aar` file under your app module `libs` folder, for example `MyAwesomeProject/app/libs`, and include `*.aar` in application level `build.gradle` file.
 
 After that synchronize project.
@@ -19,10 +20,11 @@ After that synchronize project.
 You can also import a file using the Android Studio functionality. To do this, go to `File`->`New`->`New module`. In the appeared window select `Import .JAR/.AAR Package` and click `Next`. After that, specify path to the `.aar` file and the module name, and click `Finish`. 
 
 ```groovy
+// build.gradle
 implementation project(':new_module_name')
 ```
 
-Finally, add this line to your app `build.gradle` file:
+Finally, define the implementation for the new local library module.
 
 ### Gradle
 ```groovy
@@ -40,11 +42,14 @@ The Ada Android SDK can be installed using Gradle from the Ada Support Bintray r
 
 To integrate the SDK, first add the following code to the project level `build.gradle` file:
 
-```groovy
-//  if your project has artifacts within the androidx namespace
-implementation 'support.ada.embed:android-sdk-appcompat:1.1.2'
+> if your project has artifacts within the androidx namespace
 
-//  if your project uses Android Support Library
+```groovy
+implementation 'support.ada.embed:android-sdk-appcompat:1.1.2'
+```
+
+> If your project uses Android Support Library
+```groovy
 implementation 'support.ada.embed:android-sdk-appcompat-legacy:1.1.2'
 ```
 
