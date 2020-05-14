@@ -238,10 +238,9 @@ In order to receive a callback result, please register specific end point URL (w
 }
 ```
 
-
 <aside class="warning">You need to register an end point Callback URL to receive this callback.</aside>
 
-### Callback Parameters
+## Callback Parameters
 
 The data on the callback will be sent using JSON format via POST data to your web hook.
 Check here for example: [example](/?json#payment-result-callback-v2)
@@ -259,15 +258,64 @@ sender_bank | String | The bank code used by a payer to do payment
 payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
 va_number | String | VA number to be used on payment if using Virtual Account
 settlement_type | String | Indicate if a transaction will be settled in realtime/non-realtime
-created | DateTime | A timestamp to indicate when a payment checkout link is created or first accessed, format : `yyyy-MM-dd'T'HH:mm:ss`
-updated | DateTime | A timestamp to indicate when a payment status is updated, format : `yyyy-MM-dd'T'HH:mm:ss`
+created | DateTime | The timestamp which indicates the creation time of a payment checkout link
+updated | DateTime | The timestamp which indicates the latest updated time of a payment checkout link due to status update
 
-## Response Codes
+## Callback Response Codes
 
 Payment Status | Type | Settlement Type | Description
 ---- | ---- | ---- | ----
-success | String | realtime | Payment has been successfully charged and disbursed to partner's bank account
-success | String | non_realtime | Payment has been successfully charged and partner's balance is updated in OY's business portal
-failed | String | realtime/non_realtime | Payment failed to be charged. Payer may retry the payment request.
-processing | String | realtime/non_realtime | A payment attempt has been initiated
+waiting_payment | String | Bank Transfer | Payer triggers a payment status check for an unpaid VA
+expired_va | String | Bank Transfer | An unpaid VA has expired and payer can retry a payment
+charge_in_progress | String | Card | OTP for card payment method has been succesfully entered and processed
+charge_sucess | String | Bank Transfer/Card | A payment has been successfully received by OY
+charge_failed | String | Card | OTP for card payment method has been succesfully entered but payment is rejected
+disburse_in_progress | String | Bank Transfer/Card | For "Realtime" settlement option, disbursement is currently in progress to partner's registered bank account
+complete | String | Bank Transfer/Card	For "Realtime" settlement option, disbursement has been succesfully executed and received by partner
+
+## API Callback
+
+An endpoint to retrieve and/or re-send the latest callback status of a transaction. Please contact us to submit a request of an API Key and IP whitelisting.
+
+### HTTPS Request
+
+GET `https://partner.oyindonesia.com/api/payment-checkout/status`
+
+
+> To open Payment Checkout, use following code from your platform:
+
+```shell
+curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner_tx_id=OY123456&send_callback=false' -H 'x-oy-username:yourusername' -H 'x-api-key:yourapikey'
+```
+
+### Request Headers
+
+Parameters | Type | Description
+---- | ---- | ----
+x-api-key | String | API Key for establishing connection to this particular endpoint
+x-oy-username | String | The registered partner username which access is enabled for payment checkout product
+
+### Request Parameters
+
+Parameters | Type | Description
+---- | ---- | ----
+partner_tx_id | String | A unique transaction ID which callback status to be checked
+send_callback | Boolean | A flag to indiciate if the latest callback of a transaction need to be re-sent or not
+
+### Response Parameters
+Parameter | Type | Description
+---- | ---- | ----
+partner_tx_id | String | A unique transaction ID provided by partner
+tx_ref_number | String | OY's internal unique transaction ID
+amount | BigDecimal | The amount of a transaction that is paid
+sender_name | String | Name of a payer for a transaction
+sender_phone | String | Phone number of a payer for a transaction
+sender_note | String | Additional notes from a payer for a transaction
+status | String | The status of a transaction
+sender_bank | String | The bank code used by a payer to do payment
+payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
+va_number | String | VA number to be used on payment if using Virtual Account
+settlement_type | String | Indicate if a transaction will be settled in realtime/non-realtime
+created | String | The timestamp which indicates the creation time of a payment checkout link
+updated | String | The timestamp which indicates the latest updated time of a payment checkout link due to status update
 
