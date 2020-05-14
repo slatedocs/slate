@@ -156,13 +156,20 @@ To notify `AdaEmbedView` that you are going to handle file attach you should ret
 
 ### Settings
 ```xml
-app:ada_cluster="ca"
-app:ada_language="en"
-app:ada_handle="ada-example"
-app:ada_greetings="5c59aaabd8269e0339979014"
+<!-- Example 1: XML -->
+<support.ada.embed.widget.AdaEmbedView
+        android:id="@+id/ada_chat_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ada_handle="ada-example" 
+        app:ada_cluster="ca"
+        app:ada_language="en"
+        app:ada_handle="ada-example"
+        app:ada_greetings="5c59aaabd8269e0339979014"/>
 ```
 
 ```kotlin
+// Example 2: Kotlin
 val adaSettings = AdaEmbedView.Settings.Builder("ada-example")
     .cluster("ca")
     .greetings("5c59aaabd8269e0339979014")
@@ -236,8 +243,9 @@ The SDK allows you to change your meta fields while the chat frame is displayed.
 To do this you need to call `setMetaFields()` in your `AdaEmbedView` instance and pass your new meta fields as an argument:
 
 #### AdaEmbedActivity & AdaEmbedDialog
-To call actions in the `AdaEmbedActivity`, you first need to create your own activity that inherits `AdaEmbedActivity`. Then using the `getAdaView()` you can obtain the `AdaEmbedView` instance:
+
 ```kotlin
+// AdaEmbedActivity
 class MyCustomActivity : AdaEmbedActivity(){
     override fun onResume() {
         super.onResume()
@@ -248,10 +256,15 @@ class MyCustomActivity : AdaEmbedActivity(){
     }
 }
 ```
-To call actions in the `AdaEmbedDialog`, you can obtain `AdaEmbedDialog` instance from FragmentManager:
+
+To call actions in the `AdaEmbedActivity`, you first need to create your own activity that inherits `AdaEmbedActivity`. Then using the `getAdaView()` you can obtain the `AdaEmbedView` instance:
+
 ```kotlin
+// AdaEmbedDialog
 val adaDialog = supportFragmentManager.findFragmentByTag(AdaEmbedDialog.TAG) as AdaEmbedDialog
 adaDialog.setMetaFields(metaFields)
 adaDialog.deleteHistory()
 adaDialog.reset()
 ```
+
+To call actions in the `AdaEmbedDialog`, you can obtain `AdaEmbedDialog` instance from FragmentManager:
