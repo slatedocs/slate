@@ -271,7 +271,7 @@ charge_in_progress | String | Card | OTP for card payment method has been succes
 charge_sucess | String | Bank Transfer/Card | A payment has been successfully received by OY
 charge_failed | String | Card | OTP for card payment method has been succesfully entered but payment is rejected
 disburse_in_progress | String | Bank Transfer/Card | For "Realtime" settlement option, disbursement is currently in progress to partner's registered bank account
-complete | String | Bank Transfer/Card	For "Realtime" settlement option, disbursement has been succesfully executed and received by partner
+complete | String | Bank Transfer/Card | For "Realtime" settlement option, disbursement has been succesfully executed and received by partner
 
 ## API Callback
 
