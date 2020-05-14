@@ -15,9 +15,9 @@ dependencies {
 ```
 To install the library you need to save the `.aar` file under your app module `libs` folder, for example `MyAwesomeProject/app/libs`, and include `*.aar` in application level `build.gradle` file.
 
-After that synchronize project.
+After that, synchronize the project.
 
-You can also import a file using the Android Studio functionality. To do this, go to `File`->`New`->`New module`. In the appeared window select `Import .JAR/.AAR Package` and click `Next`. After that, specify path to the `.aar` file and the module name, and click `Finish`. 
+You can also import a file using Android Studio. To do this, go to `File -> New -> New Module`. In the window select `Import .JAR/.AAR Package` and click `Next`. After that, specify the path to the `.aar` file and the module name, and click `Finish`. 
 
 ```groovy
 // build.gradle
@@ -40,26 +40,28 @@ allprojects {
 
 The Ada Android SDK can be installed using Gradle from the Ada Support Bintray repository.
 
-To integrate the SDK, first add the following code to the project level `build.gradle` file:
+To integrate the SDK, first add the following code to the project level `build.gradle` file.
 
-> if your project has artifacts within the androidx namespace
+> If your project has artifacts within the AndroidX namespace, use:
 
 ```groovy
 implementation 'support.ada.embed:android-sdk-appcompat:1.1.2'
 ```
 
-> If your project uses Android Support Library
+> If your project uses Android Support Library, use:
+
 ```groovy
 implementation 'support.ada.embed:android-sdk-appcompat-legacy:1.1.2'
 ```
 
-Next, add the dependency to the application level `build.gradle`:
+Next, add the dependency to the application level `build.gradle`.
 
 ## Quick Start
 After installing the SDK, you can start Ada chat in several ways.
 
 #### XML
 ```xml
+<!-- XML -->
 <support.ada.embed.widget.AdaEmbedView
         android:id="@+id/ada_chat_frame"
         android:layout_width="match_parent"
@@ -67,9 +69,14 @@ After installing the SDK, you can start Ada chat in several ways.
         app:ada_handle="ada-example" />
 ```
 
+> Please note "ada-example" is being used for demonstration purposes. Be sure to modify the handle, as well as any other values as needed for your bot.
+
 The simplest way to start Ada Chat is via XML.
 
+To display the view, the `ada_handle` parameter is required. If you specify it as an attribute, the chat will be displayed immediately upon attachment to the parent view. If it is not specified, then you can do it later programmatically using the method `initialize(settings: AdaEmbedView.Settings)`.
+
 ```kotlin
+// Delayed initialization
 val adaView = findViewById(R.id.ada_chat_frame)
 
 adaSettings = AdaEmbedView.Settings.Builder("ada-example")
@@ -77,9 +84,6 @@ adaSettings = AdaEmbedView.Settings.Builder("ada-example")
 adaView.initialize(adaSettings)
 ```
 
-To display the view, the `ada_handle` parameter is required. If you specify it as an attribute, the chat will be displayed immediately upon attachment to the parent view. If it is not specified, then you can do it later programmatically using the method `initialize(settings: AdaEmbedView.Settings)`.
-
-Please note "ada-example" is being used for demonstration purposes. Be sure to modify the handle, as well as any other values as needed for your bot.
 
 #### Programmatically
 
