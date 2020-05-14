@@ -285,7 +285,7 @@ GET `https://partner.oyindonesia.com/api/payment-checkout/status`
 > To open Payment Checkout, use following code from your platform:
 
 ```shell
-curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner_tx_id=OY123456&send_callback=false' -H 'content-type: application/json, accept: application/json, x-oy-username:yourusername, x-api-key:yourapikey'
+curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner_tx_id=OY123456&send_callback=false' -H 'x-oy-username:yourusername' -H ' x-api-key:yourapikey'
 ```
 
 ### Request Headers
