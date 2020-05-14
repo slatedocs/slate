@@ -263,7 +263,7 @@ updated | DateTime | The timestamp which indicates the latest updated time of a 
 
 ## Callback Response Codes
 
-Payment Status | Type | Settlement Type | Description
+Payment Status | Type | Payment Method | Description
 ---- | ---- | ---- | ----
 waiting_payment | String | Bank Transfer | Payer triggers a payment status check for an unpaid VA
 expired_va | String | Bank Transfer | An unpaid VA has expired and payer can retry a payment
