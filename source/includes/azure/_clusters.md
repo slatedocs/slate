@@ -23,12 +23,16 @@ curl -X GET \
       "name": "ssamadh-basic",
       "version": "premium_lrs",
       "region": "southeastasia",
+      "nodePools": "4",
+      "totalNodes": "7",
     },
     {
        "id": "/subscriptions/ 803c8d4a-80ca-4793-8def-89b5f55d1091/resourcegroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.ContainerService/managedClusters/ssamadh-aks-mean",
       "name": "ssamadh-basic",
       "version": "premium_lrs",
       "region": "southeastasia",
+      "nodePools": "2",
+      "totalNodes": "3",
     },
   ],
   "metadata": {
