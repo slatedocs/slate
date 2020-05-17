@@ -71,7 +71,7 @@ You can upgrade to OY! business partner to remove above limitations, by sending 
 5. Buyer pays using any of *Direct Debit*, *Credit Cards*, or *Bank Virtual Accounts*.
 6. You **receive money on your receiving account** and OY! will **send Payment status Callback** to your end point (note: Only available for non-trial account)
 
-# Payment Checkout
+# Payment Checkout V1 (To be Deprecated)
 
 ## Request With Parameters
 
@@ -170,7 +170,7 @@ success | String | Payment by Buyer is successful and has been sent to your bank
 failed | String | Payment by Buyer is failed
 
 
-# Payment Checkout V2 (To be Released)
+# Payment Checkout V2 
 
 ## Request With Parameters
 
