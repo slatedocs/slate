@@ -323,35 +323,25 @@ updated | String | The timestamp which indicates the latest updated time of a pa
 
 An endpoint to create payment checkout URL which return parameters by encapsulation.
 
-### HTTPS Request
-
-POST `https://partner.oyindonesia.com/api/payment-checkout/create`
-
 > Sample Curl
 
 ```shell
 curl -X POST \
   https://partner.oyindonesia.com/api/payment-checkout/create \
-  -H 'cache-control: no-cache' \
-  -H 'content-type: application/json' \
-  -H 'x-api-key: apikeymu' \
-  -H 'x-oy-username: yourusername' \
-  -d '{
-        "username":"yourusername",
-        "partner_tx_id":"AL003",
-        "sender_name":"AL B",
-        "sender_note":"note string API2",
-        "sender_phone": "087726272",
-        "checkout_url":"string",
-        "amount":15003,
-        "is_open":false,
-        "step":"select-payment-method" ,
-        "enable_payment_cc":false,
-        "enable_payment_va":true,
-        "enable_payment_debit":false,
-        "description":"description api 2"
+  -H 'cache-control: no-cache' -H 'content-type: application/json' \
+  -H 'x-api-key: apikeymu' -H 'x-oy-username: yourusername' \
+  -d '{"username":"yourusername","partner_tx_id":"AL003","sender_name":"AL B",
+        "sender_note":"note string API2","sender_phone": "087726272","checkout_url":"string",
+        "amount":15003,"is_open":false,"step":"select-payment-method","enable_payment_cc":false,
+        "enable_payment_va":true,"enable_payment_debit":false,"description":"description api 2"
     }'
 ```
+
+### HTTPS Request
+
+POST `https://partner.oyindonesia.com/api/payment-checkout/create`
+
+> Json Response
 
 ```json
 {
