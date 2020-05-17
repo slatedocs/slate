@@ -25,7 +25,7 @@ Payment Checkout supports multiple payment methods, including *Direct Debit*, *C
 > To open Payment Checkout, use following code from your platform:
 
 ```javascript
-window.open("https://pay.oyindonesia.com/username", "_blank"); 
+window.open("https://pay.oyindonesia.com/username", "_blank");
 ```
 
 ```java
@@ -88,7 +88,7 @@ params += (enable_payment_cc !== null) ? '&enable_payment_cc'+enable_payment_cc 
 params += (enable_payment_va !== null) ? '&enable_payment_va'+enable_payment_va : '';
 params += (enable_payment_debit !== null) ? '&enable_payment_debit'+enable_payment_debit : '';
 
-window.open("https://pay.oyindonesia.com/username?" + params, "_blank"); 
+window.open("https://pay.oyindonesia.com/username?" + params, "_blank");
 ```
 
 Once you complete the registration and activation for payment checkout, you can immediately access our payment checkout link at [https://pay.oyindonesia.com/yourusername](https://pay.oyindonesia.com/yourusername)
@@ -154,7 +154,7 @@ name | String | Name of Buyer
 phone_number | String | Phone Number of Buyer
 note | String | (Optional) This is note from the Buyer
 result | String | Payment Status of Buyer. Can be either "success" or "failed" or "processing"
-sender_bank | String | Bank code used by buyer to do payment 
+sender_bank | String | Bank code used by buyer to do payment
 payment_method | String | Define what payment method to be used in transaction (`Instant Pay`/`Manual Pay`/`Manual Bank Transfer`)*
 va_number | String | VA number to be used on payment if using Manual Pay
 
@@ -192,7 +192,7 @@ params += (description !== null) ? '&description=' + encodeURIComponent(descript
 params += (is_open !== null) ? '&is_open=' + is_open : '';
 params += (step !== null) ? '&step=' + step : '';
 
-window.open("https://pay.oyindonesia.com/v2?" + params, "_blank"); 
+window.open("https://pay.oyindonesia.com/v2?" + params, "_blank");
 ```
 
 ### Query Parameters
@@ -319,3 +319,61 @@ settlement_type | String | Indicate if a transaction will be settled in realtime
 created | String | The timestamp which indicates the creation time of a payment checkout link
 updated | String | The timestamp which indicates the latest updated time of a payment checkout link due to status update
 
+## API Create URL
+
+An endpoint to create payment checkout URL which return parameters by encapsulation.
+
+### HTTPS Request
+
+POST `https://partner.oyindonesia.com/api/payment-checkout/create`
+{
+        "username":"justkhals",
+        "partner_tx_id":"ABC123456527",
+        "sender_name":"Roberto F",
+        "sender_note":"note str",
+        "sender_phone": "082114845847",
+        "checkout_url":"string",
+        "amount":75000,
+        "is_open":false,
+        "step":"input-amount" ,
+        "enable_payment_cc":false,
+        "enable_payment_va":true,
+        "enable_payment_debit":false,
+        "description":"description"
+}
+
+### Request Headers
+
+Parameters | Type | Description
+---- | ---- | ----
+x-api-key | String | API Key for establishing connection to this particular endpoint
+x-oy-username | String | The registered partner username which access is enabled for payment checkout product
+
+### Request Parameters
+
+*Note: all parameters defined via API are mandatory to be declared in the request*
+
+Parameters | Type | Description
+---- | ---- | ----
+username | String | The username used by partner for registration with OY!
+partner_tx_id | String | A unique transaction ID provided by partner. A partner_tx_id that has been succesfully paid cannot be used anymore under the same username and only accepts alphanumerics.
+amount | Integer | The amount of a transaction to be paid. The amount that can be processed is between IDR 15,000 and IDR 25,000,000.
+sender_name | String | Name of the payer for a transaction. Only accept alphabets (cannot be empty).
+sender_phone | Numeric | Phone number of the payer for a transaction. Do not use special character (e.g. "+") and cannot be empty.
+sender_note | String | Additional notes from the payer for a transaction. Cannot be empty string.
+description | String | Description of the payment checkout link.
+is_open	| Boolean | Enable open/closed amount transaction method.
+step | String | Accessing specific page of the payment checkout URL. Possible values for this parameter:
+- input-amount
+- input-personal-info
+- select-payment-method
+enable_payment_va | Boolean | Enable VA payment method for the payment checkout link. There should be at least one payment method enabled.
+enable_payment_dc | Boolean | Enable debit card payment method for the payment checkout link. There should be at least one payment method enabled.
+enable_payment_cc | Boolean | Enable credit card payment method for the payment checkout link. There should be at least one payment method enabled.
+
+
+### Response Parameters
+Parameter | Type | Description
+---- | ---- | ----
+success | Boolean | The username used by partner for registration with OY!
+url | String | A unique transaction ID provided by partner
