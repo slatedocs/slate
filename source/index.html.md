@@ -327,6 +327,8 @@ An endpoint to create payment checkout URL which return parameters by encapsulat
 
 POST `https://partner.oyindonesia.com/api/payment-checkout/create`
 
+> Sample Curl
+
 ```shell
 curl -X POST \
   https://partner.oyindonesia.com/api/payment-checkout/create \
