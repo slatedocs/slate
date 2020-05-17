@@ -326,6 +326,8 @@ An endpoint to create payment checkout URL which return parameters by encapsulat
 ### HTTPS Request
 
 POST `https://partner.oyindonesia.com/api/payment-checkout/create`
+
+```json
 {
         "username":"justkhals",
         "partner_tx_id":"ABC123456527",
@@ -341,6 +343,7 @@ POST `https://partner.oyindonesia.com/api/payment-checkout/create`
         "enable_payment_debit":false,
         "description":"description"
 }
+```
 
 ### Request Headers
 
@@ -353,24 +356,20 @@ x-oy-username | String | The registered partner username which access is enabled
 
 *Note: all parameters defined via API are mandatory to be declared in the request*
 
-Parameters | Type | Description
----- | ---- | ----
-username | String | The username used by partner for registration with OY!
-partner_tx_id | String | A unique transaction ID provided by partner. A partner_tx_id that has been succesfully paid cannot be used anymore under the same username and only accepts alphanumerics.
-amount | Integer | The amount of a transaction to be paid. The amount that can be processed is between IDR 15,000 and IDR 25,000,000.
-sender_name | String | Name of the payer for a transaction. Only accept alphabets (cannot be empty).
-sender_phone | Numeric | Phone number of the payer for a transaction. Do not use special character (e.g. "+") and cannot be empty.
-sender_note | String | Additional notes from the payer for a transaction. Cannot be empty string.
-description | String | Description of the payment checkout link.
-is_open	| Boolean | Enable open/closed amount transaction method.
-step | String | Accessing specific page of the payment checkout URL. Possible values for this parameter:
-- input-amount
-- input-personal-info
-- select-payment-method
-enable_payment_va | Boolean | Enable VA payment method for the payment checkout link. There should be at least one payment method enabled.
-enable_payment_dc | Boolean | Enable debit card payment method for the payment checkout link. There should be at least one payment method enabled.
-enable_payment_cc | Boolean | Enable credit card payment method for the payment checkout link. There should be at least one payment method enabled.
-
+Parameters | Type | Description | Limitation
+---- | ---- | ------ | -------
+username | String | The username used by partner for registration with OY! | -
+partner_tx_id | String | A unique transaction ID provided by partner. | A partner_tx_id that has been succesfully paid cannot be used anymore under the same username and only accepts alphanumerics.
+amount | Integer | The amount of a transaction to be paid. | The amount that can be processed is between IDR 15,000 and IDR 25,000,000.
+sender_name | String | Name of the payer for a transaction. | Only accept alphabets (cannot be empty).
+sender_phone | Numeric | Phone number of the payer for a transaction. | Do not use special character (e.g. "+") and cannot be empty.
+sender_note | String | Additional notes from the payer for a transaction. | Cannot be empty string.
+description | String | Description of the payment checkout link. | -
+is_open	| Boolean | Enable open/closed amount transaction method. | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
+step | String | Accessing specific page of the payment checkout URL. Possible values for this parameter are either (input-amount, input-personal-info, select-payment-method). | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
+enable_payment_va | Boolean | Enable VA payment method for the payment checkout link. | There should be at least one payment method enabled.
+enable_payment_dc | Boolean | Enable debit card payment method for the payment checkout link. | There should be at least one payment method enabled.
+enable_payment_cc | Boolean | Enable credit card payment method for the payment checkout link. | There should be at least one payment method enabled.
 
 ### Response Parameters
 Parameter | Type | Description
