@@ -128,7 +128,7 @@ X-GOJI-REQUEST-ID: 49801f79-5347-4db5-a2b9-59e6cf3e0a22
   ],
   "payTo": {
     "accountName": "Platform1 - Receiving",
-    "accountNumber": "123456789",
+    "accountNumber": "12345678",
     "sortCode": "123456",
     "reference": "OR0CE628FF"
   }
@@ -218,7 +218,7 @@ X-GOJI-REQUEST-ID: 6937bd3b-e3de-4fd6-9bd9-c87cd7305180
   ],
   "payTo": {
     "accountName": "Platform1 - Receiving",
-    "accountNumber": "123456789",
+    "accountNumber": "12345678",
     "sortCode": "123456",
     "reference": "OR0CE628FF"
   }

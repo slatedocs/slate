@@ -1,20 +1,7 @@
 # Payments - Manager
 
 ## Testing outbound payments
-
-When testing outbound payments in the sandbox environment please make sure you use valid sort codes &
-account numbers as these are validated to ensure they accept faster payments prior to being sent.
-
-Below are some valid sample details you can use:
-
-|Sort Code |   Account Number|
-|-|-|
-|203002  |  00004588|
-|203002  |  00027944|
-|204514  |  58110244|
-|204514  |  60282377|
-|166051  |  99993193|
-|166051  |  87889196|
+<%= partial "partials/valid_test_account_numbers" %>
 
 ## *Managing Payment Destinations*
 
@@ -77,6 +64,9 @@ Content-Type: application/json
 ```
 ### Description
 Create a set of bank details.
+
+<%= partial "partials/valid_test_account_numbers" %>
+
 ### Request
 | Name          | Type   | Description         | Required |
 | ------------- | ------ | ------------------- | -------- |
