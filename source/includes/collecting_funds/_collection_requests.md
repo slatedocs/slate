@@ -870,3 +870,10 @@ You can search or filter collection requests on the following fields. Simply add
 * remote_transaction_id - the transaction id or transaction reference of the collection on the mobile network operator's side
 * created_after - only return collection requests created after this date (E.g. 2017-01-01 00:00)
 * created_before - only return collection requests created before this date (E.g. 2017-01-01 00:00)
+* modified_after - only return collection requests modified after this date (E.g. 2020-01-01 00:00)
+* modified_before - only return collection requests modified before this date (E.g. 2020-01-01 00:00)
+* status - only return collection requests that have this status (one of: pending, instructions_sent, successful, failed, expired reversed)
+* reason - only return collection requests that have this reason text
+* network - only return collection requests that are for this mobile phone network
+* contact first name - only return collection requests that have this first name in the contact (E.g. James)
+* contact last name - only return collection requests that have this last name in the contact (E.g. Doe)
