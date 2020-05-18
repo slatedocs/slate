@@ -36,7 +36,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -92,7 +92,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -153,7 +153,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -217,7 +217,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -249,7 +249,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -281,7 +281,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -317,7 +317,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -362,7 +362,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -406,7 +406,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -458,7 +458,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -518,6 +518,8 @@ Transfer cash to another account.
 ### Description
 Simulate depositing cash into any bank account managed on the Goji platform.
 
+For an investor account the payment reference must start with `ISA` if the funds are to be deposited to the ISA account.
+
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
@@ -560,7 +562,7 @@ Content-Type: application/json
 ```
 
 ```http
-HTTP/1.1 400 
+HTTP/1.1 400
 Content-Type: application/json
 
 {
@@ -573,7 +575,7 @@ Content-Type: application/json
 }
 ```
 ```http
-HTTP/1.1 400 
+HTTP/1.1 400
 Content-Type: application/json
 
 {
@@ -607,7 +609,7 @@ Authorization: Basic ...
 
 ```
 
-```http 
+```http
 HTTP/1.1 201 OK
 Content-Type: application/json
 
@@ -621,7 +623,7 @@ Content-Type: application/json
    "reference": "reference",
    "status": "status"
  }
- 
+
 ```
 ### Description
 Extract a fee from a specified investor's account cash balance

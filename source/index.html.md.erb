@@ -255,9 +255,6 @@ In order to complete the email integration you will need to:
 
 In order to permission our email provider (Mandrill) to send emails using your domain you will be required to make the following DNS changes:
 
-##Valid test account numbers
-<%= partial "partials/valid_test_account_numbers" %>
-
 ###DKIM
 
 `v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;`
@@ -280,5 +277,8 @@ If you already have a `TXT` record with SPF information, you'll need to add Mand
 
 ###Domain Ownership Verification
 Additionally, we need to send a verification email to verify your ownership of the domain. Please let us know which email address to send this to and when you receive the email from Mandrill, please forward it to [techsupport@goji.investments](mailto:techsupport@goji.investments)
+
+##Valid test account numbers
+<%= partial "partials/valid_test_account_numbers" %>
 
 # Quickstart Guides
