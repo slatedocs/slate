@@ -427,7 +427,7 @@ POST https://api.roboticcrowd.com/v1/session_queues
 
 Session Queue Schema のJSONオブジェクトを返却します。
 
-## 実行キューを一覧を取得する
+## 実行キューの一覧を取得する
 
 > GET /v1/session_queues
 
@@ -558,6 +558,32 @@ Session Queue Schema の JSON オブジェクトの配列が格納されてい�
 #### total_count
 
 Session Queue Schema のトータル件数が格納されています。
+
+## 実行キューを削除する
+
+> DELETE /v1/session_queues/{session_queue_id}/cancel
+
+```shell
+curl --location --request DELETE "https://api.roboticcrowd.com/v1/session_queues/{session_queue_id}/cancel" \
+  --header "Authorization: Bearer [jwt_token]" \
+  --header "content-type: application/json"
+```
+
+
+このエンドポイントは、実行キューの ID を指定して、実行中のワークフローの実行をキャンセル、または実行待ちのキューの削除を行います。
+指定できる実行キュー ID は、API Key が作成されたプロジェクト内に限ります。
+
+### HTTP Request
+
+`
+DELETE https://api.roboticcrowd.com/v1/session_queues/{session_queue_id}/cancel
+`
+
+### session_queue_id（実行キューID）の確認方法
+
+プロジェクトの セッション画面 の ID により確認できます。
+
+
 
 ## Session Queue Schema
 
