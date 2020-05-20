@@ -1,5 +1,48 @@
 # Changelog
 
+## Version 2.6.0
+
+*May 18, 2020*
+
+__Note__: 2.5.0 was "pulled" due to a breaking bug discovered after release. It is recommended to skip it, and move straight to 2.6.0.
+
+* Fix large whitespace gap in middle column for sections with codeblocks
+* Fix highlighted code elements having a different background than rest of code block
+* Change JSON keys to have a different font color than their values
+* Disable asset hashing for woff and woff2 elements due to middleman bug breaking woff2 asset hashing in general
+* Move Dockerfile to Debian from Alpine
+* Converted repo to a [GitHub template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository)
+* Update sassc to 2.3.0 in Gemfile.lock
+
+## Version 2.5.0
+
+*May 8, 2020*
+
+* __[security]__ update nokogiri to ~> 1.10.8
+* Update links in example docs to https://github.com/slatedocs/slate from https://github.com/lord/slate
+* Update LICENSE to include full Apache 2.0 text
+* Test slate against Ruby 2.5 and 2.6 on Travis-CI
+* Update Vagrantfile to use Ubuntu 18.04 (thanks @bradthurber)
+* Parse arguments and flags for deploy.sh on script start, instead of potentially after building source files
+* Install nodejs inside Vagrantfile (thanks @fernandoaguilar)
+* Add Dockerfile for running slate (thanks @redhatxl)
+* update middleman-syntax and rouge to ~>3.2
+* update middleman to 4.3.6
+
+## Version 2.4.0
+
+*October 19, 2019*
+
+- Move repository from lord/slate to slatedocs/slate
+- Fix documentation to point at new repo link, thanks to [Arun](https://github.com/slash-arun), [Gustavo Gawryszewski](https://github.com/gawry), and [Daniel Korbit](https://github.com/danielkorbit)
+- Update `nokogiri` to 1.10.4
+- Update `ffi` in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jackmack](https://github.com/jakemack)
+- Update `rack` to 2.0.7 in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jackmack](https://github.com/jakemack)
+- Update middleman to `4.3` and relax constraints on middleman related gems, thanks to [jackmack](https://github.com/jakemack)
+- Add sass gem, thanks to [jackmack](https://github.com/jackmack)
+- Activate `asset_cache` in middleman to improve cacheability of static files, thanks to [Sam Gilman](https://github.com/thenengah)
+- Update to using bundler 2 for `Gemfile.lock`, thanks to [jackmack](https://github.com/jakemack)
+
 ## Version 2.3.1
 
 *July 5, 2018*
