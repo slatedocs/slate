@@ -1186,7 +1186,7 @@ var production = {
     LOCALSTORAGE_KEY: "api_explorer_credentials",
     CLIENT_ID: "38682966449842",
     REDIRECT_URI: "https://asana.github.io/developer-docs/explorer/popup_receiver.html",
-    TOKEN_URL: "https://jikyuaso9e.execute-api.us-east-1.amazonaws.com/default/api_explorer_oauth_beta",
+    TOKEN_URL: "https://8fuawabj9d.execute-api.us-east-1.amazonaws.com/default/api_explorer_oauth_beta",
     INITIAL_PAGINATION_LIMIT: 10
 };
 var constant;
