@@ -1,7 +1,7 @@
 ## <em>Quickstart Wallets 🚧</em>
 
 <aside class="notice">
-Please note: wallets are not available by default. Please speak to the Goji integrations team if you wish to use this functionality.
+Please note that wallets are not available by default. Please speak to the Goji integrations team if you wish to use this functionality.
 </aside>
 
 This guide gives a brief overview of how to do the following, using the wallet API:

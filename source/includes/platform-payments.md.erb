@@ -14,17 +14,19 @@ Content-Type: application/json
 Authorization: Basic ...
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-[ {
-  "id" : "id",
-  "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode",
-  "status" : "status"
-} ]
+[
+  {
+    "id" : "06ee16ce-def4-4433-80f2-ab35256316e1",
+    "accountName" : "Destination account",
+    "accountNumber" : "00004588",
+    "sortCode" : "203002",
+    "status" : "ENABLED"
+  }
+]
 ```
 ### Description
 List of bank accounts we hold in the system for sending money to.
@@ -40,31 +42,30 @@ List of bank accounts we hold in the system for sending money to.
 ## `POST /platformApi/bankAccountDetails`
 
 ```http
-
 POST /platformApi/bankAccountDetails HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
 {
-  "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
+  "accountName" : "Destination account",
+  "accountNumber" : "00004588",
+  "sortCode" : "203002"
 }
-
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "id" : "id"
+  "id" : "06ee16ce-def4-4433-80f2-ab35256316e1"
 }
 ```
 ### Description
 Create a set of bank details.
 
+<%= partial "partials/enabling_payment_destination_bank_account_details" %>
 <%= partial "partials/valid_test_account_numbers" %>
 
 ### Request
@@ -78,26 +79,59 @@ Create a set of bank details.
 | ---- | ------ | -------------------- |
 | id   | string | The bank account ID. |
 
+## `PUT /platformApi/test/bankAccountDetails/{id}/enable`
+
+```http
+PUT /platformApi/test/bankAccountDetails/06ee16ce-def4-4433-80f2-ab35256316e1/enable HTTP/1.1
+Host: api-sandbox.goji.investments
+Authorization: Basic ...
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id" : "06ee16ce-def4-4433-80f2-ab35256316e1",
+  "accountName" : "Destination account",
+  "accountNumber" : "00004588",
+  "sortCode" : "203002",
+  "status" : "ENABLED"
+}
+```
+### Description
+Simulate enabling a set of bank details.
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+### Response
+| Name             | Type   | Description                                |
+| ---------------- | ------ | ------------------------------------------ |
+| id               | string | The bank account details ID.               |
+| accountNumber    | string | The account number.                        |
+| sortCode         | string | The sort code.                             |
+| accountName      | string | The account name.                          |
+| status           | string | Whether or not the account has passed AML. In this case it is always `ENABLED` |
+
 ## `GET /platformApi/bankAccountDetails/{id}`
 
 ```http
-
-GET /platformApi/bankAccountDetails/{id} HTTP/1.1
+GET /platformApi/bankAccountDetails/06ee16ce-def4-4433-80f2-ab35256316e1 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
   "accountName" : "accountName",
-  "id" : "id",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode",
-  "status" : "status"
+  "id" : "06ee16ce-def4-4433-80f2-ab35256316e1",
+  "accountNumber" : "00004588",
+  "sortCode" : "203002",
+  "status" : "ENABLED"
 }
 ```
 ### Description
@@ -109,26 +143,24 @@ Get a specific bank account we hold in the system for sending money to.
 | accountNumber | string | The account number.                        |
 | sortCode      | string | The sort code.                             |
 | accountName   | string | The account name.                          |
-| status        | string | Whether or not the account has passed AML. |
+| status        | string | Whether or not the account has passed AML. Possible values are: <br>`ENABLED`<br>`DISABLED`. |
 
 ## `PUT /platformApi/bankAccountDetails/{id}`
 
 ```http
-
-PUT /platformApi/bankAccountDetails/{id} HTTP/1.1
+PUT /platformApi/bankAccountDetails/06ee16ce-def4-4433-80f2-ab35256316e1 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
 {
   "accountName" : "accountName",
-  "accountNumber" : "accountNumber",
-  "sortCode" : "sortCode"
+  "accountNumber" : "00004588",
+  "sortCode" : "203002"
 }
-
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -154,20 +186,20 @@ Authorization: Basic ...
 
 {
   "ukCompany": {
-    "number": "00000000",
+    "number": "AB123456",
     "name": "Fake Company LIMITED"
   }
 }
 ```
 
-```http 
+```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json
 {
   "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "status": "PENDING",
   "ukCompany": {
-    "number": "00000000",
+    "number": "AB123456",
     "name": "Fake Company LIMITED"
   }
 }
@@ -176,10 +208,10 @@ Content-Type: application/json
 
 Register a company with the Goji Platform.  This allows the company to own Wallets, and send/receive money through them.
 
-The registration process is asynchronous.  When this API is first called, the `status` returned will be `PENDING`. A 
+The registration process is asynchronous. When this API is first called, the `status` returned will be `PENDING`. A
 `COMPANY_REGISTRATION_UPDATE` webhook will be used to notify completion of the registration.
 
-The registration process is partially manual, so the webhook will be dispatched significantly later than the API call. 
+The registration process is partially manual, so the webhook will be dispatched significantly later than the API call.
 
 <aside class="notice">
 In sandbox use this <a href="#payments-manager-put-companies-id-enable">endpoint</a> to enable a company.
@@ -199,28 +231,28 @@ In sandbox use this <a href="#payments-manager-put-companies-id-enable">endpoint
 | ukCompany.number  | string | The Company Number registered with Companies House.|
 | ukCompany.name    | string | Company Name.                                      |
 
-## `PUT /companies/{id}/enable 🚧`
+## `PUT /test/companies/{id}/enable 🚧`
 ```http
-PUT /companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable HTTP/1.1
+PUT /test/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 ```
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
   "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "status": "REGISTERED",
   "ukCompany": {
-    "number": "00000000",
+    "number": "AB123456",
     "name": "Fake Company LIMITED"
   }
 }
 ```
 ### Description
 
-Simulate enabling a pending company.  
+Simulate enabling a pending company.
 
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
@@ -242,7 +274,7 @@ Content-Type: application/json
 Authorization: Basic ...
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -250,15 +282,8 @@ Content-Type: application/json
   {
     "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"
     "ukCompany": {
-      "number": "00000000",
+      "number": "AA123456",
       "name": "Fake Company LIMITED"
-    }
-  },
-  {
-    "partyId": "COM~0176cb07-30ba-4802-ab4a-b0835222cf5b"
-    "ukCompany": {
-      "number": "00000001",
-      "name": "Other Fake Company LIMITED"
     }
   }
 ]
@@ -283,14 +308,14 @@ Content-Type: application/json
 Authorization: Basic ...
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
   "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"
   "ukCompany": {
-    "number": "00000000",
+    "number": "AA123456",
     "name": "Fake Company LIMITED"
   }
 }
@@ -318,18 +343,18 @@ Authorization: Basic ...
 
 {
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
-  "walletName" : "Housing Project 22"
+  "walletName" : "Housing Project"
 }
 ```
 
-```http 
+```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json
 
 {
   "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
-  "walletName" : "Housing Project 22"
+  "walletName" : "Housing Project"
 }
 ```
 
@@ -363,7 +388,7 @@ Content-Type: application/json
 Authorization: Basic ...
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -371,12 +396,12 @@ Content-Type: application/json
   {
     "id" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
     "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
-    "walletName" : "Housing Project 22",
+    "walletName" : "Housing Project",
     "bankAccountDetailsId" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
     "bankDetails" : {
-      "accountName": "Housing Project 22",
-      "accountNumber": "00000000",
-      "sortCode": "000000"
+      "accountName": "Housing Project",
+      "accountNumber": "00004588",
+      "sortCode": "203002"
     },
     "balance" : {
       "currency" : "GBP"
@@ -411,19 +436,19 @@ Content-Type: application/json
 Authorization: Basic ...
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
   "id": "3d9ca033-eb05-459f-9f70-1139d2e2b213",
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
-  "walletName": "Housing Project 22",
+  "walletName": "Housing Project",
   "bankAccountDetailsId": "03946a54-6b4f-4bae-897d-6ee2baf0e848",
   "bankDetails": {
-    "accountName": "Housing Project 22",
-    "accountNumber": "00000000",
-    "sortCode": "000000"
+    "accountName": "Housing Project",
+    "accountNumber": "00004588",
+    "sortCode": "203002"
   },
   "balance": {
     "amount": 10.45,
@@ -458,34 +483,34 @@ Content-Type: application/json
 Authorization: Basic ...
 
 {
-  "destinationBankAccountId" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
+  "destinationBankAccountId" : "06ee16ce-def4-4433-80f2-ab35256316e1",
   "amount" : {
     "currency" : "GBP",
     "amount" : 10.45
   },
-  "reference" : "ABC1234567",
+  "reference" : "Reference",
   "narrative" : "Moving to operating account"
 }
 ```
 
-```http 
+```http
 HTTP/1.1 202 Accepted
 Content-Type: application/json
 
 {
-  "destinationBankAccountId" : "03946a54-6b4f-4bae-897d-6ee2baf0e848",
+  "destinationBankAccountId" : "06ee16ce-def4-4433-80f2-ab35256316e1",
   "amount" : {
     "currency" : "GBP",
     "amount" : 10.45
   },
-  "reference" : "ABC1234567",
+  "reference" : "Reference",
   "narrative" : "Moving to operating account",
   "status": "PENDING
 }
 
 ```
 
-```http 
+```http
 HTTP/1.1 400 Bad Request
 Content-Type: application/json
 
@@ -522,7 +547,7 @@ Create a payment instruction from a Wallet.
 
 | Error Code           | Message                                                                                     |
 | -------------------- | --------------------------------------------------------------------------------------------|
-| INVALID_DATA         | Bank account with bankAccountId=03946a54-6b4f-4bae-897d-6ee2baf0e848 does not exist.        |
+| INVALID_DATA         | Bank account with bankAccountId=6ee16ce-def4-4433-80f2-ab35256316e1 does not exist.        |
 | INVALID_DATA         | Destination bank account details are not yet enabled.                                       |
 | INVALID_DATA         | Instruction must include a reference.                                                       |
 | INVALID_DATA         | Payment reference must be below 18 characters long.                                         |
@@ -538,27 +563,27 @@ Content-Type: application/json
 Authorization: Basic ...
 ```
 
-```http 
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 [
   {
-    "id": "id",
+    "id": "97c79c8c-d528-4a97-84d4-4d85bd021692",
     "amount": {
       "amount": 123.50,
       "currency": "GBP"
     },
-    "type": "type",
+    "type": "OUTBOUND",
     "status": "PENDING",
-    "reference": "reference",
+    "reference": "Reference",
     "narrative": "Solicitor Fees",
     "createdDateTime": "2019-01-01T12:33:00Z",
     "clearedDateTime": "2019-01-01T12:33:30Z",
     "associatedBankDetails" : {
-      "accountName": "accountName",
-      "accountNumber": "accountNumber",
-      "sortCode": "sortCode"
+      "accountName": "Destination Account",
+      "accountNumber": "00004588",
+      "sortCode": "203002"
     }
   }
 ]

@@ -730,7 +730,7 @@ To include the application in your existing page as a JavaScript component, you 
 
 2). Extract the JavaScript asset's URL from the request above and include it in your page.
 
-   _Please note: The inclusion of the script import must be made after inclusion of the HTML in the previous step._
+   _Please note that the inclusion of the script import must be made after inclusion of the HTML in the previous step._
 
    e.g `<script src="{{uiData.scriptSrc}}"></script>`
 

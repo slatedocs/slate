@@ -1,7 +1,7 @@
 # ISA administration
 ## Introduction
 
-*Please note: This is a standalone API and is not used in conjunction with any of the other APIs.*
+*Please note this is a standalone API and is not used in conjunction with any of the other APIs.*
 
 The Goji Innovative Finance ISA Platform (Goji Platform) provides the administration, regulatory and compliance functionality to enable the Goji team to efficiently handle all back-office aspects of the Innovative Finance ISA on behalf of a P2P Platform and provide best-in-class 2nd level customer support.
 
@@ -310,7 +310,7 @@ To include the application in your existing page as a JavaScript component, you 
 
 2). Extract the JavaScript asset's URL from the request above and include it in your page.
 
-   __Please note: The inclusion of the script import must be made after inclusion of the HTML in the previous step.__
+   __Please note that the inclusion of the script import must be made after inclusion of the HTML in the previous step.__
 
    e.g `<script src="{{uiData.scriptSrc}}"></script>`
 

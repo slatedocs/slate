@@ -155,12 +155,9 @@ Next, register a payment destination. This is where the funds will be sent.
 
 This returns a payment destination ID which must be saved and used for the subsequent call.
 
+
+<%= partial "partials/enabling_payment_destination_bank_account_details" %>
 <%= partial "partials/valid_test_account_numbers" %>
-
-
-<aside class="notice">
-Please note that by default the payment destination is disabled and has to be enabled by Goji before it can be used.
-</aside>
 
 After the payment destination is enabled, settle the investment.
 
