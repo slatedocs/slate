@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby-version: [2.4, 2.5, 2.6, 2.7]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: gems-${{ runner.os }}-${{ matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+
+    - run: bundle config set deployment 'true'
+    - run: bundle install
+
+    - run: bundle exec middleman build
