@@ -5,7 +5,7 @@ on:
     branches: [ 'master' ]
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     env:
       ruby-version: 2.5
@@ -24,6 +24,8 @@ jobs:
 
     - run: bundle config set deployment 'true'
     - run: bundle install
+
+    - run: bundle exec middleman build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
