@@ -213,7 +213,7 @@ Retrieve a list of all pods in a given [environment](#administration-environment
 Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id of the pod.  
-`metadata` <br/>*object* | The metadata of the the pod
+`metadata` <br/>*object* | The metadata of the pod
 `metadata.annotations` <br/>*map* | The annotations of the pod
 `metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
 `metadata.labels` <br/>*map* | The labels associated to the pod and there associated values
@@ -222,8 +222,8 @@ Attributes | &nbsp;
 `metadata.uid` <br/>*object* | The UUID of the pod
 `spec`<br/>*object* | The specification used to create and run the pod
 `spec.container`<br/>*string* | The name of the container running
-`status`<br/>*object* | The status information of the the pod
-`status.phase`<br/>*string* | The status of the the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
+`status`<br/>*object* | The status information of the pod
+`status.phase`<br/>*string* | The status of the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
 
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
@@ -442,7 +442,7 @@ Retrieve a pod and all its info in a given [environment](#administration-environ
 Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id of the pod.  
-`metadata` <br/>*object* | The metadata of the the pod
+`metadata` <br/>*object* | The metadata of the pod
 `metadata.annotations` <br/>*map* | The annotations of the pod
 `metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
 `metadata.labels` <br/>*map* | The labels associated to the pod and there associated values
@@ -451,8 +451,8 @@ Attributes | &nbsp;
 `metadata.uid` <br/>*object* | The UUID of the pod
 `spec`<br/>*object* | The specification used to create and run the pod
 `spec.container`<br/>*string* | The name of the container running
-`status`<br/>*object* | The status information of the the pod
-`status.phase`<br/>*string* | The status of the the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
+`status`<br/>*object* | The status information of the pod
+`status.phase`<br/>*string* | The status of the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
 
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
