@@ -1,8 +1,8 @@
-## Stateful Sets
+### Stateful Sets
 
 <!-------------------- LIST STATEFUL SETS -------------------->
 
-### List stateful sets
+#### List stateful sets
 
 ```shell
 curl -X GET \
@@ -152,25 +152,25 @@ curl -X GET \
 
 Retrieve a list of all stateful sets in a given [environment](#administration-environments).
 
-| Attributes                                 | &nbsp;                                                                |
-| ------------------------------------------ | --------------------------------------------------------------------- |
-| `id` <br/>*string*                         | The id of the stateful set                                            |
-| `metadata` <br/>*object*                   | The metadata of the the stateful set                                  |
-| `metadata.creationTimestamp` <br/>*string* | The date of creation of the stateful set as a string                  |
-| `metadata.labels` <br/>*map*               | The labels associated to the stateful set and there associated values |
-| `metadata.name` <br/>*string*              | The name of the stateful set                                          |
-| `metadata.namespace` <br/>*string*         | The namespace in which the stateful set is created                    |
-| `metadata.uid` <br/>*object*               | The UUID of the stateful set                                          |
-| `spec`<br/>*object*                        | The specification used to create and run the stateful set             |
-| `status`<br/>*object*                      | The status information of the the stateful set                        |
-| `status.readyReplicas`<br/>*integer*       | Total number of ready pods targeted by this deployment                |
-| `status.replicas`<br/>*integer*            | Total number of non-terminated pods targeted by this deployment       |
+| Attributes                                 | &nbsp;                                                          |
+| ------------------------------------------ | --------------------------------------------------------------- |
+| `id` <br/>*string*                         | The id of the stateful set                                      |
+| `metadata` <br/>*object*                   | The metadata of the the stateful set                            |
+| `metadata.creationTimestamp` <br/>*string* | The date of creation of the stateful set as a string            |
+| `metadata.labels` <br/>*map*               | The labels associated to the stateful set                       |
+| `metadata.name` <br/>*string*              | The name of the stateful set                                    |
+| `metadata.namespace` <br/>*string*         | The namespace in which the stateful set is created              |
+| `metadata.uid` <br/>*object*               | The UUID of the stateful set                                    |
+| `spec`<br/>*object*                        | The specification used to create and run the stateful set       |
+| `status`<br/>*object*                      | The status information of the the stateful set                  |
+| `status.readyReplicas`<br/>*integer*       | Total number of ready pods targeted by this deployment          |
+| `status.replicas`<br/>*integer*            | Total number of non-terminated pods targeted by this deployment |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
 <!-------------------- GET A STATEFUL SET -------------------->
 
-### Get a stateful sets
+#### Get a stateful sets
 
 ```shell
 curl -X GET \
@@ -317,18 +317,18 @@ curl -X GET \
 
 Retrieve a stateful set and all its info in a given [environment](#administration-environments).
 
-| Attributes                                 | &nbsp;                                                                |
-| ------------------------------------------ | --------------------------------------------------------------------- |
-| `id` <br/>*string*                         | The id of the stateful set                                            |
-| `metadata` <br/>*object*                   | The metadata of the the stateful set                                  |
-| `metadata.creationTimestamp` <br/>*string* | The date of creation of the stateful set as a string                  |
-| `metadata.labels` <br/>*map*               | The labels associated to the stateful set and there associated values |
-| `metadata.name` <br/>*string*              | The name of the stateful set                                          |
-| `metadata.namespace` <br/>*string*         | The namespace in which the stateful set is created                    |
-| `metadata.uid` <br/>*object*               | The UUID of the stateful set                                          |
-| `spec`<br/>*object*                        | The specification used to create and run the stateful set             |
-| `status`<br/>*object*                      | The status information of the the stateful set                        |
-| `status.readyReplicas`<br/>*integer*       | Total number of ready pods targeted by this deployment                |
-| `status.replicas`<br/>*integer*            | Total number of non-terminated pods targeted by this deployment       |
+| Attributes                                 | &nbsp;                                                          |
+| ------------------------------------------ | --------------------------------------------------------------- |
+| `id` <br/>*string*                         | The id of the stateful set                                      |
+| `metadata` <br/>*object*                   | The metadata of the the stateful set                            |
+| `metadata.creationTimestamp` <br/>*string* | The date of creation of the stateful set as a string            |
+| `metadata.labels` <br/>*map*               | The labels associated to the stateful                           |
+| `metadata.name` <br/>*string*              | The name of the stateful set                                    |
+| `metadata.namespace` <br/>*string*         | The namespace in which the stateful set is created              |
+| `metadata.uid` <br/>*object*               | The UUID of the stateful set                                    |
+| `spec`<br/>*object*                        | The specification used to create and run the stateful set       |
+| `status`<br/>*object*                      | The status information of the the stateful set                  |
+| `status.readyReplicas`<br/>*integer*       | Total number of ready pods targeted by this deployment          |
+| `status.replicas`<br/>*integer*            | Total number of non-terminated pods targeted by this deployment |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
