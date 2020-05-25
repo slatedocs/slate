@@ -212,15 +212,15 @@ Retrieve a list of all pods in a given [environment](#administration-environment
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to list the pods. 
+`cluster_id` <br/>*string* | The id of the cluster in which to list the pods.
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the pod.  
+`id` <br/>*string* | The id of the pod.
 `metadata` <br/>*object* | The metadata of the the pod
 `metadata.annotations` <br/>*map* | The annotations of the pod
 `metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
-`metadata.labels` <br/>*map* | The labels associated to the pod and there associated values
+`metadata.labels` <br/>*map* | The labels associated to the pod
 `metadata.name` <br/>*string* | The name of the pod
 `metadata.namespace` <br/>*string* | The namespace in which the pod is created
 `metadata.uid` <br/>*object* | The UUID of the pod
@@ -445,16 +445,16 @@ Retrieve a pod and all its info in a given [environment](#administration-environ
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to get the pod. 
+`cluster_id` <br/>*string* | The id of the cluster in which to get the pod.
 
 
 Attributes | &nbsp;
 ------- | -----------
-`id` <br/>*string* | The id of the pod.  
+`id` <br/>*string* | The id of the pod.
 `metadata` <br/>*object* | The metadata of the the pod
 `metadata.annotations` <br/>*map* | The annotations of the pod
 `metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
-`metadata.labels` <br/>*map* | The labels associated to the pod and there associated values
+`metadata.labels` <br/>*map* | The labels associated to the pod
 `metadata.name` <br/>*string* | The name of the pod
 `metadata.namespace` <br/>*string* | The namespace in which the pod is created
 `metadata.uid` <br/>*object* | The UUID of the pod
@@ -494,10 +494,10 @@ Delete a pod from a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to delete the pod. 
+`cluster_id` <br/>*string* | The id of the cluster in which to delete the pod.
 
 
 Attributes | &nbsp;
 ------- | -----------
-`taskId` <br/>*string* | The task id related to the delete pod.  
+`taskId` <br/>*string* | The task id related to the delete pod.
 `taskStatus` <br/>*string* | The status of the operation
