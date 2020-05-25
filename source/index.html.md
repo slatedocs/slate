@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell : curl
+  - shell: curl
   - js
 
 includes:
@@ -12,7 +12,7 @@ includes:
   - administration/organizations
   - administration/users
   - administration/roles
-  - administration/environments 
+  - administration/environments
   - administration/resource_commitments
   - administration/usage
   - administration/monetization
@@ -73,6 +73,7 @@ includes:
   - gcp/firewall_rules
   - gcp/external_ips
   - gcp/routes
+  - gcp/routers
   - gcp/vpn_gateways
   - gcp/vpn_tunnels
   - gcp/load_balancing # Load balancing subsection
