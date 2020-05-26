@@ -8,7 +8,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/namespaces"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/namespaces"
 ```
 > The above command returns JSON structured like this:
 
@@ -88,17 +88,17 @@ Retrieve a list of all namespaces in a given [environment](#administration-envir
 Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id of the namespace.  
-`metadata` <br/>*object* | The metadata of the the namespace
+`metadata` <br/>*object* | The metadata of the namespace
 `metadata.annotations` <br/>*map* | The annotations of the namespace
 `metadata.creationTimestamp` <br/>*string* | The date of creation of the namespace as a string
 `metadata.name` <br/>*string* | The name of the namespace
-`metadata.resourceVersion` <br/>*string* | An opaque value that represents the internal version of namespace object
+`metadata.resourceVersion` <br/>*string* | An opaque value that represents the internal version of the namespace object
 `metadata.selfLink` <br/>*string* | A URL representing the namespace object
 `metadata.uid` <br/>*object* | The UUID of the namespace
 `spec`<br/>*object* | The specification describes the attributes on a namespace.
-`spec.finalizers`<br/>*string* | An opaque list of values that must be empty to permanently remove object from storage
+`spec.finalizers`<br/>*string* | An opaque list of values that must be empty to permanently remove the object from storage
 `status`<br/>*object* | The status information of the namespace
-`status.phase`<br/>*string* | The status of the namespace. Possible statuses are Active, Terminating and Unknown
+`status.phase`<br/>*string* | The status of the namespace. Possible statuses are `Active`, `Terminating` and `Unknown`
 
 
 
@@ -109,7 +109,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/namespaces/cert-manager"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/namespaces/cert-manager"
 ```
 > The above command returns JSON structured like this:
 
@@ -152,14 +152,14 @@ Attributes | &nbsp;
 `id` <br/>*string* | The id of the namespace.
 `apiVersion` <br/>*string* | APIVersion defines the versioned schema of this representation of a namespace object
 `kind` <br/>*string* | A string value representing the REST resource this object represents
-`metadata` <br/>*object* | The metadata of the the namespace
+`metadata` <br/>*object* | The metadata of the namespace
 `metadata.annotations` <br/>*map* | The annotations of the namespace
 `metadata.creationTimestamp` <br/>*string* | The date of creation of the namespace as a string
 `metadata.name` <br/>*string* | The name of the namespace
-`metadata.resourceVersion` <br/>*string* | An opaque value that represents the internal version of namespace object
+`metadata.resourceVersion` <br/>*string* | An opaque value that represents the internal version of the namespace object
 `metadata.selfLink` <br/>*string* | A URL representing the namespace object
 `metadata.uid` <br/>*object* | The UUID of the namespace
 `spec`<br/>*object* | The specification describes the attributes on a namespace.
-`spec.finalizers`<br/>*string* | An opaque list of values that must be empty to permanently remove object from storage
+`spec.finalizers`<br/>*string* | An opaque list of values that must be empty to permanently remove the object from storage
 `status`<br/>*object* | The status information of the namespace
-`status.phase`<br/>*string* | The status of the namespace. Possible statuses are Active, Terminating and Unknown
+`status.phase`<br/>*string* | The status of the namespace. Possible statuses are `Active`, `Terminating` and `Unknown`
