@@ -56,8 +56,8 @@ Attributes | &nbsp;
 `cidr`<br/>*string* | The cidr of the network
 `gateway`<br/>*string* | The gateway of the network
 `netmask`<br/>*string* | The netmask of the network
-`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the the network
-`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the the network
+`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the network
+`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the network
 `networkOfferingId`<br/>*UUID* | The id of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingName`<br/>*string* | The name of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingDescription`<br/>*string* | The description of the [network offering](#cloudstack-network-offerings) of the network
@@ -120,8 +120,8 @@ Attributes | &nbsp;
 `cidr`<br/>*string* | The cidr of the network
 `gateway`<br/>*string* | The gateway of the network
 `netmask`<br/>*string* | The netmask of the network
-`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the the network
-`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the the network
+`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the network
+`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the network
 `networkOfferingId`<br/>*UUID* | The id of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingName`<br/>*string* | The name of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingDescription`<br/>*string* | The description of the [network offering](#cloudstack-network-offerings) of the network
