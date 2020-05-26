@@ -105,22 +105,22 @@ Retrieve a list of all releases in a given [environment](#administration-environ
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
+`cluster_id` <br/>*string* | The id of the cluster in which to list the releases.
 
 
-	 
+
 Optional | &nbsp;
 ------- | -----------
-`namespace` <br/>*string* | The namespace to list the release. This needs the exact value.  
+`namespace` <br/>*string* | The namespace to list the release. This needs the exact value.
 
 
 Attributes | &nbsp;
 ------- | -----------
-`name` <br/>*string* | The name of the release.  
+`name` <br/>*string* | The name of the release.
 `info` <br/>*object* | The information about the release
 `info.first_deployed` <br/>*string* | The annotations of the pod
 `info.last_deployed` <br/>*string* | The date of creation of the pod as a string
-`info.deleted` <br/>*string* | The labels associated to the pod and there associated values
+`info.deleted` <br/>*string* | The labels associated to the pod
 `info.description` <br/>*string* | The name of the pod
 `info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback
 `info.notes` <br/>*string* | The notes linked to the release
@@ -282,16 +282,16 @@ Retrieve a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
+`cluster_id` <br/>*string* | The id of the cluster in which to list the releases.
 
 
 Attributes | &nbsp;
 ------- | -----------
-`name` <br/>*string* | The name of the release.  
+`name` <br/>*string* | The name of the release.
 `info` <br/>*object* | The information about the release
 `info.first_deployed` <br/>*string* | The annotations of the pod
 `info.last_deployed` <br/>*string* | The date of creation of the pod as a string
-`info.deleted` <br/>*string* | The labels associated to the pod and there associated values
+`info.deleted` <br/>*string* | The labels associated to the pod
 `info.description` <br/>*string* | The name of the pod
 `info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback
 `info.notes` <br/>*string* | The notes linked to the release
@@ -374,7 +374,7 @@ curl -X POST \
 ```js
 // Change to the latest version of a chart
 {
-  "upgradeChart":  "stable/aerospike" 
+  "upgradeChart":  "stable/aerospike"
 }
 
 // Change to a specific version of a chart
@@ -403,8 +403,8 @@ Upgrade a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to upgrade the release. 
-`upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.  
+`cluster_id` <br/>*string* | The id of the cluster in which to upgrade the release.
+`upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.
 
 Optional | &nbsp;
 ------- | -----------

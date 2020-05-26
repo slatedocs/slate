@@ -12,7 +12,7 @@ includes:
   - administration/organizations
   - administration/users
   - administration/roles
-  - administration/environments 
+  - administration/environments
   - administration/resource_commitments
   - administration/usage
   - administration/monetization
@@ -84,6 +84,7 @@ includes:
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
   - gcp/k8_pods
+  - gcp/k8_statefulsets
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/k8_namespaces
@@ -91,6 +92,7 @@ includes:
   - gcp/regions
   - kubernetes
   - kubernetes/k8_pods
+  - kubernetes/k8_statefulsets
   - kubernetes/k8_releases
   - kubernetes/k8_charts
   - kubernetes/k8_namespaces
