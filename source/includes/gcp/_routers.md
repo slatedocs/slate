@@ -3,7 +3,7 @@
 Cloud Router allows to programs custom dynamic routes and it scales with your network traffic. Cloud Router isn't a physical device that might cause a bottleneck. It can't be used by itself. But, it is required or recommended in the following cases:
 
 - Required for Cloud NAT
-- Required for Cloud Interconnect and HA VPN
+- Required for Cloud Interconnect and High Availability (HA) VPN
 - A recommended configuration option for Classic VPN
 
 <!-------------------- LIST ROUTERS -------------------->
