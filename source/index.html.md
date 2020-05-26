@@ -88,6 +88,7 @@ includes:
   - gcp/k8_statefulsets
   - gcp/k8_releases
   - gcp/k8_charts
+  - gcp/k8_namespaces
   - gcp/images
   - gcp/regions
   - kubernetes
@@ -95,6 +96,7 @@ includes:
   - kubernetes/k8_statefulsets
   - kubernetes/k8_releases
   - kubernetes/k8_charts
+  - kubernetes/k8_namespaces
   - azure
   - azure/compute
   - azure/instances
