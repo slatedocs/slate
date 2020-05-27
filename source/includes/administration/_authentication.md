@@ -2,7 +2,7 @@
 
 
 
-<!-------------------- LIST ENVIRONMENTS -------------------->
+<!-------------------- LIST IDPS -------------------->
 
 ### List identity providers
 
