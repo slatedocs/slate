@@ -18,6 +18,7 @@ includes:
   - administration/monetization
   - administration/products
   - administration/pricings
+  - administration/authentication
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances

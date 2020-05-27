@@ -5,7 +5,7 @@ The product catalogs determine the product configured for a service type and opt
 <!-------------------- LIST PRODUCT CATALOGS -------------------->
 #### List product catalogs
 
-`GET /product_catalogs
+`GET /product_catalogs`
 
 Retrieves a list of product catalogs configured in the system.
 
