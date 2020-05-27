@@ -1,5 +1,5 @@
 <hr>
-<section class="full-section">
+<section>
 
 ## Errors
 
@@ -19,9 +19,11 @@ HTTP/1.1 401 Not Authorized
 }
 ```
 
+<p class="description">
 Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases,
 the API should return an HTTP Status Code that indicates the nature of the failure (below), with a response body in
 JSON format containing additional information.
+</p>
 
 In the event of a server error the response body will contain an error phrase. These phrases are automatically generated
 using the [node-asana-phrase](https://github.com/Asana/node-asana-phrase) library and can be used by Asana support to
@@ -72,7 +74,7 @@ HTTP/1.1 500 Server Error
 | <span>402</span> | **Payment Required** | The request was valid, but the queried object or object mutation specified in the request is only available to premium organizations and workspaces. |
 | <span>403</span> | **Forbidden** | The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to. |
 | <span>404</span> | **Not Found** | Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist. |
-| <span>429</span> | **Too Many Requests** | You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](#rate-limits) for more information. |
+| <span>429</span> | **Too Many Requests** | You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](/docs/rate-limits) for more information. |
 | <span>451</span> | **Unavailable For Legal Reasons** | This request was blocked for legal reasons, commonly caused by embargoed IP addresses. |
 | <span>500</span> | **Internal Server Error** | There was a problem on Asana's end. |
 

@@ -6,7 +6,9 @@
 <a name="communication" class="jump-anchor"></a>
 ### Communicating about breaking changes
 
+<p class="description">
 Whenever possible, the Asana API aims to preserve backwards compatibility for its users. Apps you write on top of the API now should, in ideal situations, continue to work indefinitely. However, there are a few rare cases where breaking changes are required. For example:
+</p>
 
 - When we identify a stability threat, we may need to partially limit or entirely deprecate the culprit feature in the API.
 - When making a change in a backwards compatible way results in a cluttered, brittle, and confusing interface to Asana.
@@ -73,7 +75,7 @@ At this point, your integration has been migrated to the new behavior. At any po
 <a name="client-libraries" class="jump-anchor"></a>
 ### Client library support
 
-The latest version of our [official client libraries](#official-client-libraries) for Python, Java, PHP, and Javascript all support sending custom headers and are able to use our deprecations framework. Consult the individual libraries for how to send headers with each request.
+The latest version of our [official client libraries](/docs/official-client-libraries) for Python, Java, PHP, and Javascript all support sending custom headers and are able to use our deprecations framework. Consult the individual libraries for how to send headers with each request.
 
 
 <a name="active-deprecations" class="jump-anchor"></a>
@@ -87,4 +89,5 @@ There are currently no active deprecations.
   </div>
 </div>
 
+</section>
 </section>

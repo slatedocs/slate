@@ -3,9 +3,11 @@
 
 ## Custom External Data
 
-Custom external data allows a client application to add app-specific metadata to [Tasks](#asana-tasks)
+<p class="description">
+Custom external data allows a client application to add app-specific metadata to [Tasks](/docs/asana-tasks)
 in the API. The custom data includes a string `gid` that can be used to retrieve objects and a data blob that can store
 character strings.
+</p>
 
 The blob may store unicode-safe serialized data such as JSON or YAML. The external `gid` is capped at 1,024 characters, while data
 blobs are capped at 32,768 characters. Each object supporting external data can have one `gid` and one data blob stored

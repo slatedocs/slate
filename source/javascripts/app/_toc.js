@@ -36,9 +36,10 @@
       windowHeight = $(window).height();
 
       $toc.find(tocLinkSelector).each(function() {
-        var targetId = $(this).attr('href');
-        if (targetId[0] === "#") {
-          headerHeights[targetId] = $(targetId).offset().top - 100;
+        var hrefSplit = $(this).attr('href').split("/docs/");
+        if (hrefSplit.length > 1) {
+          var targetId = hrefSplit[1];
+          headerHeights[targetId] = $('#' + targetId).offset().top - 100;
         }
       });
     };
@@ -62,11 +63,17 @@
 
       // Catch the initial load case
       if (currentTop == scrollOffset && !loaded) {
-        best = window.location.hash;
+        best = window.location.href.split("/docs/")[1];
         loaded = true;
       }
 
-      var $best = $toc.find("[href='" + best + "']").first();
+      var $best;
+      if (best) {
+        $best = $toc.find("[href='" + "/docs/" + best + "']").first();
+      } else {
+        $best = $toc.find(".toc-link").first();
+      }
+
       if (!$best.hasClass("active")) {
         // .active is applied to the ToC link we're currently on, and its parent <ul>s selected by tocListSelector
         // .active-expanded is applied to the ToC links that are parents of this one
@@ -78,9 +85,9 @@
         $toc.find(tocListSelector).filter(":not(.active)").slideUp(150);
         $toc.find(tocListSelector).filter(".active").slideDown(150);
         if (window.history.replaceState) {
-          window.history.replaceState(null, "", "/docs/" + best.substring(1));
+          window.history.replaceState(null, "", $best.attr('href') === "/docs/overview" ? "/docs" : $best.attr('href'));
         }
-        var thisTitle = $best.data("title")
+        var thisTitle = $best.data("title");
         if (thisTitle !== undefined && thisTitle.length > 0) {
           document.title = thisTitle + " – " + originalTitle;
         } else {

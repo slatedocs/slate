@@ -1,9 +1,12 @@
 <hr class="full-line">
 <section class="full-section">
+<section>
 
 # Official Client Libraries
 
+<p class="description">
 Asana is committed to making the developer experience as smooth as possible. Part of this effort is providing high-quality libraries you can use to access the API. The available libraries are listed below, and more are in development. If you don't see what you need, check the open-source community for your platform, and let us know that you'd like to find one here!
+</p>
 
 <div>
   <div class="docs-developer-satisfaction-content">
@@ -11,7 +14,9 @@ Asana is committed to making the developer experience as smooth as possible. Par
   </div>
 </div>
 
----
+</section>
+<hr>
+<section>
 
 <a name="NodeJS"></a>
 ## JavaScript (Node)
@@ -22,12 +27,15 @@ npm install asana
 
 For use in the Node server-side JavaScript runtime.
 
-* [Node Quick Start](#node-hello-world)
+* [Node Quick Start](/docs/node-hello-world)
 * [GitHub](https://github.com/Asana/node-asana/)
 
 **Installation:** Install with npm
 
----
+
+</section>
+<hr>
+<section>
 
 <a name="BrowserJS"></a>
 ## JavaScript (Browser)
@@ -38,12 +46,15 @@ For use in the Node server-side JavaScript runtime.
 
 This is built from the Node library above, so you get the exact same interface.
 
-* [Node Quick Start](#node-hello-world)
+* [Node Quick Start](/docs/node-hello-world)
 * [GitHub](https://github.com/Asana/node-asana/)
 
 **Installation:** Visit the [releases](https://github.com/Asana/node-asana/releases) page to download the latest full or minified JS bundle, then include the script in your web page.
 
----
+
+</section>
+<hr>
+<section>
 
 <a name="Python"></a>
 ## Python
@@ -52,12 +63,15 @@ This is built from the Node library above, so you get the exact same interface.
 pip install asana
 ```
 
-* [Python Quick Start](#python-hello-world)
+* [Python Quick Start](/docs/python-hello-world)
 * [GitHub](https://github.com/Asana/python-asana/)
 
 **Installation:** Install with pip
 
----
+
+</section>
+<hr>
+<section>
 
 <a name="Ruby"></a>
 ## Ruby
@@ -66,12 +80,15 @@ pip install asana
 gem install asana
 ```
 
-* [Ruby Quick Start](#ruby-hello-world)
+* [Ruby Quick Start](/docs/ruby-hello-world)
 * [GitHub](https://github.com/Asana/ruby-asana/)
 
 **Installation:** Install with gem
 
----
+
+</section>
+<hr>
+<section>
 
 <a name="Java"></a>
 ## Java
@@ -80,7 +97,7 @@ gem install asana
 <dependency>
   <groupId>com.asana</groupId>
   <artifactId>asana</artifactId>
-  <version>0.6.0</version>
+  <version>0.10.1</version>
 </dependency>
 ```
 * [GitHub](https://github.com/Asana/java-asana/)
@@ -88,14 +105,16 @@ gem install asana
 **Installation:** If you use [Maven](https://maven.apache.org/) for dependency management simply include the following in your pom.xml.
 
 
----
+</section>
+<hr>
+<section>
 
 <a name="PHP"></a>
 ## PHP
 ```json
 !
 "require": {
-  "asana/asana": "^0.1.2"
+  "asana/asana": "^0.10.0"
 }
 ```
 
@@ -104,4 +123,5 @@ gem install asana
 **Installation:** If you use [Composer](https://getcomposer.org/) to manage dependencies you can include the
 "asana/asana" package as a dependency.
 
+</section>
 </section>

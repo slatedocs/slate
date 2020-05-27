@@ -1,17 +1,20 @@
 <hr>
-<section class="full-section">
+<section>
 
 ## Authentication Basics
 
-Asana supports a few methods of authenticating with the API.
+
+<p class="description">
+Asana supports a few methods of authenticating with the API. Simple cases are usually handled with a Personal Access Token, while multi-user apps utilize oauth.
+</p>
 
 ```shell
 !
 "Authorization: Bearer ACCESS_TOKEN"
 ```
 
- * **[OAuth 2.0](#oauth)** We require that applications designed to access the Asana API on behalf of multiple users implement OAuth 2.0.
- * **[Personal Access Token](#personal-access-token)** Personal Access Tokens are designed for accessing the API from the command line or from personal applications.
+ * **[OAuth 2.0](/docs/oauth)** We require that applications designed to access the Asana API on behalf of multiple users implement OAuth 2.0.
+ * **[Personal Access Token](/docs/personal-access-token)** Personal Access Tokens are designed for accessing the API from the command line or from personal applications.
 
 <a name="oauth" class="jump-anchor"></a>
 
@@ -30,20 +33,20 @@ to make API calls.
 ### What is OAuth?
 
 If you're using a library to handle this or already understand OAuth and have
-[registered an OAuth application](#register-an-application), you may want to skip ahead to the [quick reference](#quick-reference).
+[registered an OAuth application](/docs/register-an-application), you may want to skip ahead to the [quick reference](/docs/quick-reference).
 
-1. If you have not already, you will need to [register an application](#register-an-application). Take note of
+1. If you have not already, you will need to [register an application](/docs/register-an-application). Take note of
 the **client ID**, an application's username, and the **client secret**, an application's password (protect it like one)!
 
 2. A user will arrive at your application and click a button that says "Connect with Asana."
 
-3. This takes the customer to the [User Authorization Endpoint](#user-authorization), which displays a page
+3. This takes the customer to the [User Authorization Endpoint](/docs/user-authorization), which displays a page
 asking the user if they would like to grant access to your third-party application.
 
 4. If the customer clicks "Allow", they are redirected back to the application, bringing along a special code as a
-query parameter. (We are assuming the [Authorization Code Grant](#authorization-code-grant) flow, which is the most common.)
+query parameter. (We are assuming the [Authorization Code Grant](/docs/authorization-code-grant) flow, which is the most common.)
 
-5. The application can now use the [Token Exchange Endpoint](#token-exchange) to exchange the code, together
+5. The application can now use the [Token Exchange Endpoint](/docs/token-exchange) to exchange the code, together
 with the Client Secret, for a Bearer Token (which lasts an hour) and a Refresh Token (which can be used to fetch new
 Bearer Tokens when the current one expires).
 
@@ -117,8 +120,8 @@ Your app redirects the user to `https://app.asana.com/-/oauth_authorize`, passin
 | **response_type** | *required* Must be either `code` or `id_token`, or the space-delimited combination `code id_token`. |
 | **state** | *optional* Encodes state of the app, which will be returned verbatim in the response and can be used to match the response up to a given request. |
 | **code_challenge_method** | *PKCE* The hash method used to generate the challenge. Typically `S256`. |
-| **code_challenge** | *PKCE* The code challenge used for [PKCE](#PKCE). |
-| **scope** | *optional* A space-delimited set of one or more [scopes](#scopes) to get the user's permission to access. Defaults to the `default` OAuth scope if no scopes are specified. |
+| **code_challenge** | *PKCE* The code challenge used for [PKCE](/docs/PKCE). |
+| **scope** | *optional* A space-delimited set of one or more [scopes](/docs/scopes) to get the user's permission to access. Defaults to the `default` OAuth scope if no scopes are specified. |
 
 
 #### Response
@@ -155,10 +158,10 @@ scopes. An exhaustive list of the supported scopes is provided here:
 
 | Scope | Access provided |
 |---|---|
-| **default** | Provides access to all endpoints documented in our [API reference](#asana). If no scopes are requested, this scope is assumed by default. |
-| **openid** | Provides access to [OpenID Connect ID tokens](#openid-connect) and the [OpenID Connect](#openid-connect) user info endpoint. |
-| **email** | Provides access to the user's email through the [OpenID Connect](#openid-connect) user info endpoint. |
-| **profile** | Provides access to the user's name and profile photo through the [OpenID Connect](#openid-connect) user info endpoint. |
+| **default** | Provides access to all endpoints documented in our [API reference](/docs/asana). If no scopes are requested, this scope is assumed by default. |
+| **openid** | Provides access to [OpenID Connect ID tokens](/docs/openid-connect) and the [OpenID Connect](/docs/openid-connect) user info endpoint. |
+| **email** | Provides access to the user's email through the [OpenID Connect](/docs/openid-connect) user info endpoint. |
+| **profile** | Provides access to the user's name and profile photo through the [OpenID Connect](/docs/openid-connect) user info endpoint. |
 
 <a name="token-exchange" class="jump-anchor"></a>
 ### Token Exchange Endpoint
@@ -270,7 +273,7 @@ Here's what you need to know:
 
 1. Whenever a user wants to oauth with Asana, your app server should generate a random string called the 
    `code_verifier`. This string should be saved to the user (as every `code_verifier` should be unique per user). This
-   should stay on the app server and only be sent to the [Token Exchange Endpoint](#token-exchange-endpoint).
+   should stay on the app server and only be sent to the [Token Exchange Endpoint](/docs/token-exchange-endpoint).
    
 2. Your app server will hash the `code_verifier` with SHA256 to get a string called the `code_challenge`. Your server
    will give the browser **only** the `code_challenge` & `code_challenge_method`. The `code_challenge_method` should be
@@ -278,10 +281,10 @@ Here's what you need to know:
    BASE64URL-ENCODE(SHA256(ASCII(code_verifier))).
    
 3. The browser includes `code_challenge` & `code_challenge_method` when redirecting to the 
-   [User Authorization Endpoint](#user-authorization-endpoint).
+   [User Authorization Endpoint](/docs/user-authorization-endpoint).
    
 4. The app server should include the `code_verifier` in it's request to the 
-   [Token Exchange Endpoint](#token-exchange-endpoint).
+   [Token Exchange Endpoint](/docs/token-exchange-endpoint).
    
 Asana confirms that hashing the `code_verifier` with the `code_challenge_method` results in the `code_challenge`. This 
 proves to Asana the app that hit the User Authorization Endpoint is the same app that hit the Token Exchange 
@@ -350,7 +353,7 @@ To access additional information about the user in a standardized format, we als
 email address, and profile photo. This data is available by making a `GET` request to
 `https://app.asana.com/api/1.0/openid_connect/userinfo` with an OAuth access token that has the `openid` scope.
 Depending on the scopes tied to that token, you will receive different pieces of data. Refer to our
-[list of OAuth scopes](#scopes) to determine which additional scopes you need to get the data you want.
+[list of OAuth scopes](/docs/scopes) to determine which additional scopes you need to get the data you want.
 
 Metadata about our OpenID Connect implementation is also made available through OpenID Connect's
 [discovery protocol](https://openid.net/specs/openid-connect-discovery-1_0.html). Making an unauthenticated `GET`

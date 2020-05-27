@@ -161,12 +161,12 @@ under the License.
             <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") %>
               <hr>
             <% end %>
-            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
+            <a href="/docs/<%= h1[:id] %>" class="toc-h1 toc-link<% if h1[:title].start_with?("Overview") %> active<% end %>" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>
-              <ul class="toc-list-h2">
+              <ul class="toc-list-h2 <% if h1[:title].start_with?("Overview") %>active" style="display: block;<% end %>">
                 <% h1[:children].each do |h2| %>
                   <li>
-                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
+                    <a href="/docs/<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
                   </li>
                 <% end %>
               </ul>

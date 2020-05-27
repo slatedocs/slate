@@ -1,13 +1,15 @@
 <hr>
-<section class="full-section">
+<section>
 
 ## Rate Limits
 
+<p class="description">
 To protect the stability of the API and keep it available to all users, Asana enforces multiple kinds of rate limiting. Requests that hit any of our rate limits will receive a `429 Too Many Requests` response, which contains the standard `Retry-After` header indicating how many seconds the client should wait before retrying the request.
+</p>
 
 Limits are allocated per authorization token. Different tokens will have independent limits.
 
-The [client libraries](#official-client-libraries) respect the rate-limited responses and will wait the appropriate amount of time before automatically retrying the request, up to a configurable maximum number of retries.
+The [client libraries](/docs/official-client-libraries) respect the rate-limited responses and will wait the appropriate amount of time before automatically retrying the request, up to a configurable maximum number of retries.
 
 <a name="standard"></a>
 ### Standard Rate Limits
@@ -42,7 +44,7 @@ Our standard rate limiter imposes a quota on how many requests can be made in a 
 | Free | 150 |
 | Premium | 1500 |
 
-In addition, calls to the [search API](#search-tasks-in-a-workspace) are limited to 60 requests per minute. The [duplication endpoints](#duplicate-a-task) are limited to 5 concurrent jobs.
+In addition, calls to the [search API](/docs/search-tasks-in-a-workspace) are limited to 60 requests per minute. The [duplication endpoints](/docs/duplicate-a-task) are limited to 5 concurrent jobs.
 
 Although the quota is defined per minute, it is evaluated more frequently than once per minute, so you may not need to wait for a full minute before retrying your request. For requests rejected by this limiter, the `Retry-After` header has the result of this calculation.
 

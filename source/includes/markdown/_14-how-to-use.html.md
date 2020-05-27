@@ -1,5 +1,6 @@
 <hr class="full-line">
 <section class="full-section">
+<section>
 
 # How to use the API
 
@@ -9,7 +10,7 @@
 https://app.asana.com/api/1.0/users/me
 ```
 
-*If you're familiar with building against APIs, you can jump to our [Quick Start](#quick-start).*
+*If you're familiar with building against APIs, you can jump to our [Quick Start](/docs/quick-start).*
 
 <br></br>
 
@@ -50,7 +51,7 @@ Since every API request you make will start with the same base URL ('https://app
 
 After requesting information from the API, you will receive a resposne in [JSON](https://en.wikipedia.org/wiki/JSON) format, which can be read and understood by both humans and computers. It's structured in a particular way so programs can rely on a consistent format for the data.
 
-Our API is documented for what resources are available and what sort of return data to expect.  For example, here are the [docs for the `/users` endpoint](#get-a-user) which we just called. This is where you can discover what's possible with our API.
+Our API is documented for what resources are available and what sort of return data to expect.  For example, here are the [docs for the `/users` endpoint](/docs/get-a-user) which we just called. This is where you can discover what's possible with our API.
 
 Now, let’s make the same call to `/users/me` more like software would. Before we do so, we’ll need to get access outside of your web browser to the API.
 
@@ -60,17 +61,22 @@ Now, let’s make the same call to `/users/me` more like software would. Before 
   </div>
 </div>
 
----
+
+</section>
+<hr>
+<section>
 
 ## Authentication Quick Start
 
+<p class="description">
 Similarly to entering your username/password into a website or logging into Asana with Google, when you access your Asana data via the API you need to authenticate.  In the above example, you were already logged into Asana in your browser so you were able to authenticate to the API with credentials stored by your browser.
+</p>
 
 If you want to write a script that interacts with the Asana API, the easiest method is to get a Personal Access Token (PAT), which you can think of as your unique password for accessing the API.
 
 ### App or PAT?
 
-If your app needs to perform actions on behalf of users, you should use [OAuth](#oauth).
+If your app needs to perform actions on behalf of users, you should use [OAuth](/docs/oauth).
 
 **Getting a Personal Access Token (PAT)**
 
@@ -104,7 +110,9 @@ _**Note**: treat your PAT like you would a password. Do not share it or display 
   </div>
 </div>
 
----
+</section>
+<hr>
+<section>
 
 ## Accessing the API in the Terminal
 
@@ -144,7 +152,7 @@ In our API documentation, we will often write examples as cURL commands since it
 
 You’re ready to start coding!
 
-Asana has [client libraries](#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
+Asana has [client libraries](/docs/official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
 <div>
   <div class="docs-developer-satisfaction-content">
@@ -152,7 +160,9 @@ Asana has [client libraries](#official-client-libraries) in several popular codi
   </div>
 </div>
 
----
+</section>
+<hr>
+<section>
 
 ## Accessing the API with Postman
 
@@ -177,7 +187,7 @@ Once you have the collection, you should [create an environment](https://learnin
 
 You'll want to set:
 
-1. `authentication_token` to a PAT. If you don't have one yet, visit our [Authentication Quick Start](#authentication-quick-start)
+1. `authentication_token` to a PAT. If you don't have one yet, visit our [Authentication Quick Start](/docs/authentication-quick-start)
 2. `workspace` to your workspace's gid, you can find via a logged-in browser by going to https://app.asana.com/api/1.0/users/me/workspaces, or you can hit that endpoint using your PAT
 3. any other gids you want to easily access.
     1. For example, in my Postman. I set `task` to the gid of a task I regularly test with, `project` to a the gid of a private sandbox project, and `user` to the string 'me'.
@@ -192,4 +202,5 @@ Importing this collection gives you a snapshot of the API at this time. To stay 
   </div>
 </div>
 
+</section>
 </section>

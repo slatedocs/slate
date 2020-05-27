@@ -1,12 +1,14 @@
 <hr>
-<section class="full-section">
+<section>
 
 ## Pagination
 
+<p class="description">
 Paginating requests for object sets that may be large is highly recommended. For requests that will return large result
 sets the API may truncate the result or timeout attempting to gather the data. Pagination ensures a more reliable
 experience by limiting requests to a smaller number of objects at a time, ultimately getting you the results faster;
 should there be more results, the API will return an offset that will allow you to access the next page.
+</p>
 
 #### Strongly prefer paginated requests {#prefer-pagination}
 
@@ -51,7 +53,7 @@ curl "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=eyJ0eXAiOJ
 ```
 
 Note that all of Asana's official [client
-libraries](#official-client-libraries) support
+libraries](/docs/official-client-libraries) support
 pagination by default.
 
 When making a paginated request, the API will return a number of results as specified by the **limit** parameter.

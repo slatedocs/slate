@@ -1,5 +1,6 @@
 <hr class="full-line">
 <section class="full-section">
+<section>
 
 # Quick Start
 
@@ -54,7 +55,7 @@ let config = require('./config');
 
 > Get your access token and use it to create an Asana client. At the time of writing this guide, the Asana API is going 
 through two deprecations (moving to string gids and changing how sections function). You can learn about our 
-[deprecations framework in our docs](#deprecations). 
+[deprecations framework in our docs](/docs/deprecations). 
 To prevent my app from breaking when the deprecations are finalized, I'm passing headers to enable the new API 
 behavior for string gids and sections. We will also set a delay to determine how quickly our parallel requests are sent.
 
@@ -117,7 +118,7 @@ function assignTask(taskStringId, assigneeStringId) {
 > Our final function will take the array of unassigned tasks and round-robin assign them to the group of shuffled 
 designers from the config file. We will use an interval to loop so we can control the speed of the requests. 
 You can change the delay with the const you declared earlier. This is a balance between speed and staying within our 
-[concurrent request limit](#concurrent-request-limits). 
+[concurrent request limit](/docs/concurrent-request-limits). 
 In node, a normal loop would send all requests at once, which doesn’t work in larger projects.
 
 ```javascript
@@ -161,7 +162,9 @@ $ node app.js
 When processes get complex in Asana there can begin to be work about work. This could be happening to you (or someone you love) if you find yourself spending time doing repetitive work such as triaging tasks, reminding people to do something, or adding/removing followers as you move a task through a workflow. 
 
 ### What we’re going to build
+<p class="description">
 In this guide, we will build a simple triage bot that will assign tasks. This is a common Asana use case with support inboxes or request projects. 
+</p>
 
 If you want to skip ahead and see the code for the triage bot, it’s on Github in the Javascript folder of our [devrel-examples repo](https://github.com/Asana/devrel-examples).
 
@@ -174,8 +177,8 @@ For the purposes of this guide, we will keep it this simple, however, you could 
 ### Helpful links
 Before we get started, here are some helpful links for building on the Asana API:
 
-* [Asana API reference docs](#asana)
-* [Asana longform documentation](#why-use-asana-39-s-api)
+* [Asana API reference docs](/docs/asana)
+* [Asana longform documentation](/docs/why-use-asana-39-s-api)
 * [Asana developer community](https://forum.asana.com/c/developersAPI) -- if you get blocked or have a question about the API, there are devs in our community that are eager to help. We also post API updates and news to the community forum.
 * The [code for this bot on Github](https://github.com/Asana/devrel-examples/tree/master/javascript/triage_bot)
 
@@ -183,7 +186,7 @@ Before we get started, here are some helpful links for building on the Asana API
 Create a new Asana account for your bot ([instructions for inviting users](https://asana.com/guide/help/organizations/members#gl-invite)). You want to create a distinct Asana account for your bot because any action it takes in Asana will be attributed to this user. Give your bot a name and photo that will be recognizable to users in Asana that encounter it. Note that if your bot is a guest member in Asana that it will need to be added to every project you need it to work in. Bots based on guest Asana accounts will also not have access to some API features such as defining new custom fields or modifying their settings.
 
 ### Authenticating your bot
-We will authenticate our bot using a [Personal Access Token (PAT)](#personal-access-token). Log in to the Asana account that will be used for the bot and navigate to the developer console. You can get to your dev console by either using this URL https://app.asana.com/-/developer_console or from within Asana by clicking your photo icon in the upper right of Asana -> My Profile Settings -> Apps -> Manage Developer Apps.
+We will authenticate our bot using a [Personal Access Token (PAT)](/docs/personal-access-token). Log in to the Asana account that will be used for the bot and navigate to the developer console. You can get to your dev console by either using this URL https://app.asana.com/-/developer_console or from within Asana by clicking your photo icon in the upper right of Asana -> My Profile Settings -> Apps -> Manage Developer Apps.
 
 Next, click “+ New access token” and follow the instructions to get your token. Treat this token like a username and password. Don’t share it with anyone and never publish it to a public repository. I like to save my PAT as an environment variable (here are instructions on [how to do this on Mac](https://medium.com/@himanshuagarwal1395/setting-up-environment-variables-in-macos-sierra-f5978369b255)). For this guide, I’ve saved a PAT as an env variable called `triage_bot_pat`.
 
@@ -191,7 +194,7 @@ Next, click “+ New access token” and follow the instructions to get your tok
 Before we start coding, [create a project in Asana](https://asana.com/guide/help/projects/basics#gl-create) to use as a sandbox. While not required, I like to [set the project to private](https://asana.com/guide/help/permissions/project-permissions#gl-private-project) while developing. To get some users in the project, add your main Asana user as well as your bot account. You could also invite a personal email as a guest user.
 
 ### Choose an Asana client library 
-The Asana API has [SDKs in several popular languages](#official-client-libraries). For most developers, we recommend using one of our client libraries because they help with some of the complexities of using an API such as authentication, pagination, and deprecations. 
+The Asana API has [SDKs in several popular languages](/docs/official-client-libraries). For most developers, we recommend using one of our client libraries because they help with some of the complexities of using an API such as authentication, pagination, and deprecations. 
 
 For this guide, we will use the [Asana Node client library](https://github.com/Asana/node-asana), however, you can follow along in any language of your choice. 
 
@@ -215,7 +218,7 @@ To take your bot’s accessibility to the next level, put your configuration in 
 >To see this approach in the wild, checkout [Ohmega](https://github.com/Asana/ohmega), an automation framework we created. Here’s the [configuration service](https://github.com/Asana/ohmega/blob/master/ohmega/services/configuration_service.py) that reads a tree of tasks for its configuration. 
 
 >### Use webhooks for real-time triaging 
-If you need your bot to react to changes in real time, then you’ll need to use [webhooks](#asana-webhooks). We built a [python webhook inspector](https://github.com/Asana/devrel-examples/tree/master/python/webhooks) to help developers get started using Asana webhooks. 
+If you need your bot to react to changes in real time, then you’ll need to use [webhooks](/docs/asana-webhooks). We built a [python webhook inspector](https://github.com/Asana/devrel-examples/tree/master/python/webhooks) to help developers get started using Asana webhooks. 
 
 <div>
   <div class="docs-developer-satisfaction-content">
@@ -223,7 +226,9 @@ If you need your bot to react to changes in real time, then you’ll need to use
   </div>
 </div>
 
----
+</section>
+<hr>
+<section>
 
 ## Python Hello World
 
@@ -267,7 +272,10 @@ You can see a variant of this script, and other useful Asana API scripts, in our
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
----
+
+</section>
+<hr>
+<section>
 
 ## Node Hello World
 
@@ -306,7 +314,10 @@ You can see a variant of this script, and other useful Asana API scripts, in our
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
----
+
+</section>
+<hr>
+<section>
 
 ## Ruby Hello World
 
@@ -347,4 +358,5 @@ You can see a variant of this script, and other useful Asana API scripts, in our
   </div>
 </div>
 
+</section>
 </section>

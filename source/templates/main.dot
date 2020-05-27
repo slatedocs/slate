@@ -6,7 +6,10 @@
 
 > Scroll down for {{? data.header.language_tabs.length > 1}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length > 1}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
 
+
+<p class="description">
 {{? data.api.info && data.api.info.description}}{{=data.api.info.description}}{{?}}
+</p>
 
 {{? data.api.servers }}
 Base URLs:
@@ -32,7 +35,7 @@ Base URLs:
 
 {{ var first = true; }}
 <pre class="highlight http tab-http">
-<code>{{ for (var m in data.resource.methods) { data.operationUniqueName = m; data.method = data.resource.methods[m]; data.operationUniqueSlug = data.method.slug; data.operation = data.method.operation; }}{{ if (first) { first = false; } else { }}<br>{{ } }}<a href="#{{=data.operationUniqueName.toLowerCase().replaceAll("'","-39-").replaceAll(" ","-")}}"><span class="{{=data.method.verb.toLowerCase()}}-verb">{{=data.method.verb.toUpperCase()}}</span> <span class=""nn>{{=data.method.path}}</span></a>{{ } /* of methods */ }}</code>
+<code>{{ for (var m in data.resource.methods) { data.operationUniqueName = m; data.method = data.resource.methods[m]; data.operationUniqueSlug = data.method.slug; data.operation = data.method.operation; }}{{ if (first) { first = false; } else { }}<br>{{ } }}<a href="/docs/{{=data.operationUniqueName.toLowerCase().replaceAll("'","-39-").replaceAll(" ","-")}}"><span class="{{=data.method.verb.toLowerCase()}}-verb">{{=data.method.verb.toUpperCase()}}</span> <span class=""nn>{{=data.method.path}}</span></a>{{ } /* of methods */ }}</code>
 </pre>
 
 {{? data.resource.description }}{{= data.resource.description}}{{?}}
@@ -47,6 +50,10 @@ Base URLs:
 </section>{{ } /* of methods */ }}{{ } /* of resources */ }}{{? data.api.components && data.api.components.schemas }}<hr class="full-line">
 <section class="full-section">
 # Schemas
+<p class="description">
+The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
+default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
+</p>
 </section>
 {{ for (var s in data.components.schemas) { }}{{ if (!data.api.info['x-docs-schema-whitelist'].includes(s)) { continue; } }}{{ var origSchema = data.components.schemas[s]; }}{{ var schema = data.api.components.schemas[s]; }}<hr>
 <section>
@@ -80,15 +87,17 @@ Base URLs:
 }}
 
 {{~ blocks :block}}
+<p class="description">
 {{?s.toLowerCase().endsWith("compact")}}
-A `Compact` object is the same as the [full response object](#tocS_{{=s.replaceAll("Compact","")}}), but with less fields included by default. See
-[Input/Output Options](#input-output-options) to include more fields.
+A `Compact` object is the same as the [full response object](/docs/tocS_{{=s.replaceAll("Compact","")}}), but with less fields included by default. See
+[Input/Output Options](/docs/input-output-options) to include more fields.
 {{??}}
 {{? block.title }}{{= block.title}}{{= '\n\n'}}{{?}}
 {{?}}
 {{? block.externalDocs}}
 <a href="{{=block.externalDocs.url}}">{{=block.externalDocs.description||'External documentation'}}</a>
 {{?}}
+</p>
 
 {{? block===blocks[0] }}
 

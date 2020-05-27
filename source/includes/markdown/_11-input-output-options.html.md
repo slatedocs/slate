@@ -1,5 +1,5 @@
 <hr>
-<section class="full-section">
+<section>
 
 ## Input/Output Options
 
@@ -19,12 +19,14 @@ options: {
 }
 ```
 
+<p class="description">
 In addition to providing fields and their values in a request, you may also specify options to control how your request
 is interpreted and how the response is generated. For GET requests, options are specified as URL parameters prefixed
 with `opt_`. For POST or PUT requests, options are specified in the body. If the body uses the `application/x-www-form-urlencoded`
 content type, then options are prefixed with `opt_` just like for GET requests. If the body uses the `application/json`
 content type, then options are specified inside the top-level `options` object
 (a sibling of the `data` object).
+</p>
 
 > ?opt_fields=name,notes&opt_pretty response
 
@@ -45,7 +47,7 @@ the response.
 | Option | Description |
 |---|---|---|
 | **pretty** | Provides the response in "pretty" output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging. |
-| **fields** | Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as <a href="#paths">paths</a>, described below. <br><br> The `gid` of included objects will always be returned, regardless of the field options. |
+| **fields** | Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as <a href="/docs/paths">paths</a>, described below. <br><br> The `gid` of included objects will always be returned, regardless of the field options. |
 
 <a name="paths"></a>
 **SELECTING FIELDS**
