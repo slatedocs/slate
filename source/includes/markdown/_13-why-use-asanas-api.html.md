@@ -6,9 +6,9 @@
 
 ## Asana’s API and you
 
-<p class="description">
+<span class="description">
 Collaboration across teams and tools works best when everyone stays in sync and processes flow easily and without friction. This is why we have Asana's API: it's a platform to ensure all of your information is up to date and that your teams stay efficient and in the loop.
-</p>
+</span>
 
 Asana’s API provides a means for software and scripts to read information from inside Asana, input information from outside Asana, and automatically react when things change. This can include:
 
@@ -78,9 +78,9 @@ Read more on how to [get started](/docs/quick-start "Quick start") building on A
 
 ## Q&A Response
 
-<p class="description">
+<span class="description">
 Asana's API enables customization and automation of your organization’s workflow through scripts built to specialize your use of Asana. Using Asana to track your work and leveraging Asana’s API to automate your processes is a powerful combination which can make your team much more efficient. Here's one example of how we do it at Asana.
-</p>
+</span>
 
 ### Tracking timely responses to support questions
 
@@ -145,7 +145,9 @@ To get started, check out our [quick start](/docs/quick-start "Quick Start") pag
 
 ### Reminder bot
 
+<span class="description">
 Even the most conscientious and best-intentioned teammate can get overloaded and occasionally forget a task. For project managers, team leads, or coordinators, it can be draining to check-in on everyone to make sure that everything is going according to schedule. How can you stay on track and minimize the work-about-work?
+</span>
 
 Instead of continually reminding teammates to stay focused, use Asana’s API to create a bot for automatic reminders (a bot is a script that performs a task automatically). In this case, a "ping bot" takes action when due dates are approaching (or for any other specified trigger). This can act as a more intelligent version of the reminders that Asana already sends when due dates approach. For example, this persistent friend could comment with reminders further in advance, ask assignees or followers to take some action like setting a custom field, re-assign the work, and/or push out due dates. With a bot taking care of the schedule and reminders, people can spend their time on the work that needs human attention, like ideation and feedback.
 

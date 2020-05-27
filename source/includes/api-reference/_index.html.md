@@ -6,9 +6,9 @@
 
 > Scroll down for example requests and responses.
 
-<p class="description">
+<span class="description">
 This is the interface for interacting with the [Asana Platform](https://developers.asana.com). Our API reference is generated from our [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
-</p>
+</span>
 
 Base URLs:
 
@@ -25,7 +25,9 @@ Web: <a href="https://asana.com/support">Asana Support</a>
 <code><a href="/docs/get-an-attachment"><span class="get-verb">GET</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="/docs/delete-an-attachment"><span class="delete-verb">DELETE</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="/docs/get-attachments-for-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a><br><a href="/docs/upload-an-attachment"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a></code>
 </pre>
 
+<span class="description">
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
+</span>
 
 </section>
 <hr class="half-line">
@@ -71,9 +73,9 @@ curl -X GET https://app.asana.com/api/1.0/attachments/{attachment_gid} \
 <code> <span class="get-verb">GET</span> /attachments/{attachment_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Get the full record for a single attachment.
-</p>
+</span>
 
 <h3 id="get-an-attachment-parameters">Parameters</h3>
 
@@ -129,11 +131,11 @@ curl -X DELETE https://app.asana.com/api/1.0/attachments/{attachment_gid} \
 <code> <span class="delete-verb">DELETE</span> /attachments/{attachment_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Deletes a specific, existing attachment.
 
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="delete-an-attachment-parameters">Parameters</h3>
 
@@ -198,9 +200,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/attachments</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact records for all attachments on the task.
-</p>
+</span>
 
 <h3 id="get-attachments-for-a-task-parameters">Parameters</h3>
 
@@ -274,7 +276,7 @@ file: string
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/attachments</code>
 </p>
 
-<p class="description">
+<span class="description">
 Upload an attachment.
 
 This method uploads an attachment to a task and returns the compact
@@ -292,7 +294,7 @@ Requests made should follow the HTTP/1.1 specification that line
 terminators are of the form `CRLF` or `\r\n` outlined
 [here](http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Basic-Rules)
 in order for the server to reliably and properly handle the request.
-</p>
+</span>
 
 <h3 id="upload-an-attachment-parameters">Parameters</h3>
 
@@ -339,6 +341,7 @@ appending the content type to the file path: `—form
 <code><a href="/docs/submit-parallel-requests"><span class="post-verb">POST</span> <span class=""nn>/batch</span></a></code>
 </pre>
 
+<span class="description">
 There are many cases where you want to accomplish a variety of work in the Asana API but want to minimize the number of HTTP requests you make. For example:
 
 * Modern browsers limit the number of requests that a single web page can
@@ -378,6 +381,7 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 * Creating, getting, or deleting organization exports
 * Any SCIM operations
 * Nested calls to the batch API
+</span>
 
 </section>
 <hr class="half-line">
@@ -453,9 +457,9 @@ curl -X POST https://app.asana.com/api/1.0/batch \
 <code> <span class="post-verb">POST</span> /batch</code>
 </p>
 
-<p class="description">
+<span class="description">
 Make multiple requests in parallel to Asana's API.
-</p>
+</span>
 
 <h3 id="submit-parallel-requests-parameters">Parameters</h3>
 
@@ -505,6 +509,7 @@ Make multiple requests in parallel to Asana's API.
 <code><a href="/docs/create-a-custom-field"><span class="post-verb">POST</span> <span class=""nn>/custom_fields</span></a><br><a href="/docs/get-a-custom-field"><span class="get-verb">GET</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="/docs/update-a-custom-field"><span class="put-verb">PUT</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="/docs/delete-a-custom-field"><span class="delete-verb">DELETE</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="/docs/get-a-workspace-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/custom_fields</span></a><br><a href="/docs/create-an-enum-option"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options</span></a><br><a href="/docs/reorder-a-custom-field-39-s-enum"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options/insert</span></a><br><a href="/docs/update-an-enum-option"><span class="put-verb">PUT</span> <span class=""nn>/enum_options/{enum_option_gid}</span></a></code>
 </pre>
 
+<span class="description">
 In the Asana application, Tasks, Projects, and Portfolios can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Item within a Project or Portfolio can contain in addition to the built-in fields that Asana provides.
 
 **Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on [access control](#custom-field-access-control).
@@ -601,6 +606,7 @@ Note that the API enforces the same operations on disabled Custom Field values a
 #### Custom Field access control
 
 Custom Fields are a complex feature of the Asana platform, and their access in the Asana application and in the API vary based on the status of the user and project. When building your application, it's best to be defensive and not assume the given user will have read or write access to a custom field, and fail gracefully when this occurs.
+</span>
 
 </section>
 <hr class="half-line">
@@ -696,7 +702,7 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
 <code> <span class="post-verb">POST</span> /custom_fields</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a new custom field in a workspace. Every custom field is required
 to be created in a specific workspace, and this workspace cannot be
 changed once set.
@@ -706,7 +712,7 @@ with names of existing task properties such as ‘Due Date’ or ‘Assignee’.
 A custom field’s type must be one of ‘text’, ‘enum’, or ‘number’.
 
 Returns the full record of the newly created custom field.
-</p>
+</span>
 
 <h3 id="create-a-custom-field-parameters">Parameters</h3>
 
@@ -831,7 +837,7 @@ curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 <code> <span class="get-verb">GET</span> /custom_fields/{custom_field_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Get the complete definition of a custom field’s metadata.
 
 Since custom fields can be defined for one of a number of types, and
@@ -840,7 +846,7 @@ relevant to a particular type. For instance, as noted above, enum_options
 is only relevant for the enum type and defines the set of choices that
 the enum could represent. The examples below show some of these
 type-specific custom field definitions.
-</p>
+</span>
 
 <h3 id="get-a-custom-field-parameters">Parameters</h3>
 
@@ -954,14 +960,14 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 <code> <span class="put-verb">PUT</span> /custom_fields/{custom_field_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing custom field can be updated by making a PUT request on the URL for that custom field. Only the fields provided in the `data` block will be updated; any unspecified fields will remain unchanged
 When using this method, it is best to specify only those fields you wish to change, or else you may overwrite changes made by another user since you last retrieved the custom field.
 A custom field’s `type` cannot be updated.
 An enum custom field’s `enum_options` cannot be updated with this endpoint. Instead see “Work With Enum Options” for information on how to update `enum_options`.
 Locked custom fields can only be updated by the user who locked the field.
 Returns the complete updated custom field record.
-</p>
+</span>
 
 <h3 id="update-a-custom-field-parameters">Parameters</h3>
 
@@ -1052,11 +1058,11 @@ curl -X DELETE https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
 <code> <span class="delete-verb">DELETE</span> /custom_fields/{custom_field_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing custom field can be deleted by making a DELETE request on the URL for that custom field.
 Locked custom fields can only be deleted by the user who locked the field.
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="delete-a-custom-field-parameters">Parameters</h3>
 
@@ -1150,9 +1156,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/custom_fields</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns a list of the compact representation of all of the custom fields in a workspace.
-</p>
+</span>
 
 <h3 id="get-a-workspace's-custom-fields-parameters">Parameters</h3>
 
@@ -1226,11 +1232,11 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 <code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 50 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list.
 Locked custom fields can only have enum options added by the user who locked the field.
 Returns the full record of the newly created enum option.
-</p>
+</span>
 
 <h3 id="create-an-enum-option-parameters">Parameters</h3>
 
@@ -1309,10 +1315,10 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
 <code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options/insert</code>
 </p>
 
-<p class="description">
+<span class="description">
 Moves a particular enum option to be either before or after another specified enum option in the custom field.
 Locked custom fields can only be reordered by the user who locked the field.
-</p>
+</span>
 
 <h3 id="reorder-a-custom-field's-enum-parameters">Parameters</h3>
 
@@ -1389,11 +1395,11 @@ curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
 <code> <span class="put-verb">PUT</span> /enum_options/{enum_option_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Updates an existing enum option. Enum custom fields require at least one enabled enum option.
 Locked custom fields can only be updated by the user who locked the field.
 Returns the full record of the updated enum option.
-</p>
+</span>
 
 <h3 id="update-an-enum-option-parameters">Parameters</h3>
 
@@ -1430,7 +1436,9 @@ Returns the full record of the updated enum option.
 <code><a href="/docs/get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="/docs/get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
 </pre>
 
+<span class="description">
 Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
+</span>
 
 </section>
 <hr class="half-line">
@@ -1513,9 +1521,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/custom_field_settings</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://developers.asana.com/docs/#input-output-options) for more information.
-</p>
+</span>
 
 <h3 id="get-a-project's-custom-fields-parameters">Parameters</h3>
 
@@ -1618,9 +1626,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/custom_field_settings</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns a list of all of the custom fields settings on a portfolio, in compact form.
-</p>
+</span>
 
 <h3 id="get-a-portfolio's-custom-fields-parameters">Parameters</h3>
 
@@ -1652,6 +1660,7 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 <code><a href="/docs/get-events-on-a-resource"><span class="get-verb">GET</span> <span class=""nn>/events</span></a></code>
 </pre>
 
+<span class="description">
 An *event* is an object representing a change to a resource that was observed by an event subscription.
 
 In general, requesting events on a resource is faster and subject to higher rate limits than requesting the resource itself. Additionally, change events bubble up - listening to events on a project would include when stories are added to tasks in the project, even on subtasks.
@@ -1665,6 +1674,7 @@ Sync tokens may not be valid if you attempt to go ‘backward’ in the history 
 When you receive a `412 Precondition Failed` error, it means that the sync token is either invalid or expired. If you are attempting to keep a set of data in sync, this signals you may need to re-crawl the data.
 
 Sync tokens always expire after 24 hours, but may expire sooner, depending on load on the service.
+</span>
 
 </section>
 <hr class="half-line">
@@ -1735,7 +1745,7 @@ curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
 <code> <span class="get-verb">GET</span> /events</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full record for all events that have occurred since the sync
 token was created.
 
@@ -1746,7 +1756,7 @@ lieu of including the resource ID in the data for the request.
 event. This may be different from the one that the events were requested
 for. For example, a subscription to a project will contain events for
 tasks contained within the project.*
-</p>
+</span>
 
 <h3 id="get-events-on-a-resource-parameters">Parameters</h3>
 
@@ -1782,9 +1792,11 @@ tasks contained within the project.*
 <code><a href="/docs/get-a-job-by-id"><span class="get-verb">GET</span> <span class=""nn>/jobs/{job_gid}</span></a></code>
 </pre>
 
+<span class="description">
 Jobs represent processes that handle asynchronous work.
 Jobs are created when an endpoint requests an action that will be handled asynchronously. Such as project or task duplication.
 Only the creator of the duplication process can access the duplication status of the new object.
+</span>
 
 </section>
 <hr class="half-line">
@@ -1832,9 +1844,9 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
 <code> <span class="get-verb">GET</span> /jobs/{job_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full record for a job.
-</p>
+</span>
 
 <h3 id="get-a-job-by-id-parameters">Parameters</h3>
 
@@ -1864,6 +1876,7 @@ Returns the full record for a job.
 <code><a href="/docs/create-an-organization-export-request"><span class="post-verb">POST</span> <span class=""nn>/organization_exports</span></a><br><a href="/docs/get-details-on-an-org-export-request"><span class="get-verb">GET</span> <span class=""nn>/organization_exports/{organization_export_gid}</span></a></code>
 </pre>
 
+<span class="description">
 An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
 
 To export an Organization using this API:
@@ -1877,6 +1890,7 @@ To export an Organization using this API:
   for large Organizations.
 
 *Note: These endpoints are only available to [Service Accounts](https://asana.com/guide/help/premium/service-accounts) of an [Enterprise](https://asana.com/enterprise) Organization.*
+</span>
 
 </section>
 <hr class="half-line">
@@ -1931,9 +1945,9 @@ curl -X POST https://app.asana.com/api/1.0/organization_exports \
 <code> <span class="post-verb">POST</span> /organization_exports</code>
 </p>
 
-<p class="description">
+<span class="description">
 This method creates a request to export an Organization. Asana will complete the export at some point after you create the request.
-</p>
+</span>
 
 <h3 id="create-an-organization-export-request-parameters">Parameters</h3>
 
@@ -2025,9 +2039,9 @@ curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_exp
 <code> <span class="get-verb">GET</span> /organization_exports/{organization_export_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns details of a previously-requested Organization export.
-</p>
+</span>
 
 <h3 id="get-details-on-an-org-export-request-parameters">Parameters</h3>
 
@@ -2083,8 +2097,10 @@ Status Code **200**
 <code><a href="/docs/get-multiple-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="/docs/create-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="/docs/get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="/docs/update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="/docs/delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="/docs/get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="/docs/add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="/docs/remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="/docs/add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="/docs/remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a><br><a href="/docs/add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="/docs/remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a></code>
 </pre>
 
+<span class="description">
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
+</span>
 
 </section>
 <hr class="half-line">
@@ -2123,9 +2139,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios?workspace=1331&owner=14916 
 <code> <span class="get-verb">GET</span> /portfolios</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns a list of the portfolios in compact representation that are owned by the current API user.
-</p>
+</span>
 
 <h3 id="get-multiple-portfolios-parameters">Parameters</h3>
 
@@ -2275,7 +2291,7 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
 <code> <span class="post-verb">POST</span> /portfolios</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a new portfolio in the given workspace with the supplied name.
 
 Note that portfolios created in the Asana UI may have some state
@@ -2283,7 +2299,7 @@ Note that portfolios created in the Asana UI may have some state
 to the portfolio when it is created. Portfolios created via our
 API will *not* be created with the same initial state to allow
 integrations to create their own starting state on a portfolio.
-</p>
+</span>
 
 <h3 id="create-a-portfolio-parameters">Parameters</h3>
 
@@ -2441,9 +2457,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete portfolio record for a single portfolio.
-</p>
+</span>
 
 <h3 id="get-a-portfolio-parameters">Parameters</h3>
 
@@ -2590,13 +2606,13 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 <code> <span class="put-verb">PUT</span> /portfolios/{portfolio_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 An existing portfolio can be updated by making a PUT request on the URL for
 that portfolio. Only the fields provided in the `data` block will be updated;
 any unspecified fields will remain unchanged.
 
 Returns the complete updated portfolio record.
-</p>
+</span>
 
 <h3 id="update-a-portfolio-parameters">Parameters</h3>
 
@@ -2676,12 +2692,12 @@ curl -X DELETE https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 <code> <span class="delete-verb">DELETE</span> /portfolios/{portfolio_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 An existing portfolio can be deleted by making a DELETE request on
 the URL for that portfolio.
 
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="delete-a-portfolio-parameters">Parameters</h3>
 
@@ -2746,9 +2762,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/items</code>
 </p>
 
-<p class="description">
+<span class="description">
 Get a list of the items in compact form in a portfolio.
-</p>
+</span>
 
 <h3 id="get-portfolio-items-parameters">Parameters</h3>
 
@@ -2814,10 +2830,10 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem \
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addItem</code>
 </p>
 
-<p class="description">
+<span class="description">
 Add an item to a portfolio.
 Returns an empty data block.
-</p>
+</span>
 
 <h3 id="add-a-portfolio-item-parameters">Parameters</h3>
 
@@ -2892,10 +2908,10 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeItem</code>
 </p>
 
-<p class="description">
+<span class="description">
 Remove an item from a portfolio.
 Returns an empty data block.
-</p>
+</span>
 
 <h3 id="remove-a-portfolio-item-parameters">Parameters</h3>
 
@@ -2971,9 +2987,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomF
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
 </p>
 
-<p class="description">
+<span class="description">
 Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
-</p>
+</span>
 
 <h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
 
@@ -3048,9 +3064,9 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCust
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes a custom field setting from a portfolio.
-</p>
+</span>
 
 <h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
 
@@ -3122,10 +3138,10 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addMembers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Adds the specified list of users as members of the portfolio.
 Returns the updated portfolio record.
-</p>
+</span>
 
 <h3 id="add-users-to-a-portfolio-parameters">Parameters</h3>
 
@@ -3198,10 +3214,10 @@ curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMemb
 <code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeMembers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes the specified list of users from members of the portfolio.
 Returns the updated portfolio record.
-</p>
+</span>
 
 <h3 id="remove-users-from-a-portfolio-parameters">Parameters</h3>
 
@@ -3242,7 +3258,9 @@ Status Code **200**
 <code><a href="/docs/get-multiple-portfolio-memberships"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships</span></a><br><a href="/docs/get-a-portfolio-membership"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships/{portfolio_membership_gid}</span></a><br><a href="/docs/get-memberships-from-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/portfolio_memberships</span></a></code>
 </pre>
 
+<span class="description">
 This object determines if a user is a member of a portfolio.
+</span>
 
 </section>
 <hr class="half-line">
@@ -3290,9 +3308,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
 <code> <span class="get-verb">GET</span> /portfolio_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns a list of portfolio memberships in compact representation. You must specify `portfolio`, `portfolio` and `user`, or `workspace` and `user`.
-</p>
+</span>
 
 <h3 id="get-multiple-portfolio-memberships-parameters">Parameters</h3>
 
@@ -3360,9 +3378,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membe
 <code> <span class="get-verb">GET</span> /portfolio_memberships/{portfolio_membership_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete portfolio record for a single portfolio membership.
-</p>
+</span>
 
 <h3 id="get-a-portfolio-membership-parameters">Parameters</h3>
 
@@ -3428,9 +3446,9 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_m
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/portfolio_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact portfolio membership records for the portfolio.
-</p>
+</span>
 
 <h3 id="get-memberships-from-a-portfolio-parameters">Parameters</h3>
 
@@ -3463,11 +3481,13 @@ Returns the compact portfolio membership records for the portfolio.
 <code><a href="/docs/get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="/docs/create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="/docs/get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="/docs/get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="/docs/get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="/docs/remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="/docs/get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="/docs/add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addMembers</span></a><br><a href="/docs/remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="/docs/add-followers-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="/docs/remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a></code>
 </pre>
 
+<span class="description">
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
 
 Projects in organizations are shared with a single team. You cannot currently change the team of a project via the API. Non-organization workspaces do not have teams and so you should not specify the team of project in a regular workspace.
 
 Followers of a project are a subset of the members of that project. Followers of a project will receive all updates including tasks created, added and removed from that project. Members of the project have access to and will receive status updates of the project. Adding followers to a project will add them as members if they are not already, removing followers from a project will not affect membership.
+</span>
 
 </section>
 <hr class="half-line">
@@ -3506,9 +3526,9 @@ curl -X GET https://app.asana.com/api/1.0/projects \
 <code> <span class="get-verb">GET</span> /projects</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact project records for some filtered set of projects. Use one or more of the parameters provided to filter the projects returned.
-</p>
+</span>
 
 <h3 id="get-multiple-projects-parameters">Parameters</h3>
 
@@ -3697,7 +3717,7 @@ curl -X POST https://app.asana.com/api/1.0/projects \
 <code> <span class="post-verb">POST</span> /projects</code>
 </p>
 
-<p class="description">
+<span class="description">
 Create a new project in a workspace or team.
 
 Every project is required to be created in a specific workspace or
@@ -3709,7 +3729,7 @@ If the workspace for your project is an organization, you must also
 supply a `team` to share the project with.
 
 Returns the full record of the newly created project.
-</p>
+</span>
 
 <h3 id="create-a-project-parameters">Parameters</h3>
 
@@ -3914,9 +3934,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
 <code> <span class="get-verb">GET</span> /projects/{project_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete project record for a single project.
-</p>
+</span>
 
 <h3 id="get-a-project-parameters">Parameters</h3>
 
@@ -4101,7 +4121,7 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
 <code> <span class="put-verb">PUT</span> /projects/{project_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing project can be updated by making a PUT request on
 the URL for that project. Only the fields provided in the `data` block
 will be updated; any unspecified fields will remain unchanged.
@@ -4111,7 +4131,7 @@ to change, or else you may overwrite changes made by another user since
 you last retrieved the task.
 
 Returns the complete updated project record.
-</p>
+</span>
 
 <h3 id="update-a-project-parameters">Parameters</h3>
 
@@ -4224,12 +4244,12 @@ curl -X DELETE https://app.asana.com/api/1.0/projects/{project_gid} \
 <code> <span class="delete-verb">DELETE</span> /projects/{project_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing project can be deleted by making a DELETE request on
 the URL for that project.
 
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="delete-a-project-parameters">Parameters</h3>
 
@@ -4324,9 +4344,9 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/duplicate</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates and returns a job that will asynchronously handle the duplication.
-</p>
+</span>
 
 <h3 id="duplicate-a-project-parameters">Parameters</h3>
 
@@ -4408,9 +4428,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/projects</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns a compact representation of all of the projects the task is in.
-</p>
+</span>
 
 <h3 id="get-projects-a-task-is-in-parameters">Parameters</h3>
 
@@ -4469,9 +4489,9 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/projects</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact project records for all projects in the team.
-</p>
+</span>
 
 <h3 id="get-a-team's-projects-parameters">Parameters</h3>
 
@@ -4659,11 +4679,11 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
 <code> <span class="post-verb">POST</span> /teams/{team_gid}/projects</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a project shared with the given team.
 
 Returns the full record of the newly created project.
-</p>
+</span>
 
 <h3 id="create-a-project-in-a-team-parameters">Parameters</h3>
 
@@ -4782,9 +4802,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/projects</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact project records for all projects in the workspace.
-</p>
+</span>
 
 <h3 id="get-all-projects-in-a-workspace-parameters">Parameters</h3>
 
@@ -4972,14 +4992,14 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/projects</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact project records for all projects in the workspace.
 
 If the workspace for your project is an organization, you must also
 supply a team to share the project with.
 
 Returns the full record of the newly created project.
-</p>
+</span>
 
 <h3 id="create-a-project-in-a-workspace-parameters">Parameters</h3>
 
@@ -5106,9 +5126,9 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomField
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/addCustomFieldSetting</code>
 </p>
 
-<p class="description">
+<span class="description">
 Custom fields are associated with projects by way of custom field settings.  This method creates a setting for the project.
-</p>
+</span>
 
 <h3 id="add-a-custom-field-to-a-project-parameters">Parameters</h3>
 
@@ -5183,9 +5203,9 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFi
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/removeCustomFieldSetting</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes a custom field setting from a project.
-</p>
+</span>
 
 <h3 id="remove-a-custom-field-from-a-project-parameters">Parameters</h3>
 
@@ -5253,13 +5273,13 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/task_counts \
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/task_counts</code>
 </p>
 
-<p class="description">
+<span class="description">
 Get an object that holds task count fields. **All fields are excluded by default**. You must [opt in](#input-output-options) using `opt_fields` to get any information from this endpoint.
 
 This endpoint has an additional [rate limit](#standard-rate-limits) and each field counts especially high against our [cost limits](#cost-limits).
 
 Milestones are just tasks, so they are included in the `num_tasks`, `num_incomplete_tasks`, and `num_completed_tasks` counts.
-</p>
+</span>
 
 <h3 id="get-task-count-of-a-project-parameters">Parameters</h3>
 
@@ -5337,10 +5357,10 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addMembers \
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/addMembers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Adds the specified list of users as members of the project.
 Returns the updated project record.
-</p>
+</span>
 
 <h3 id="add-users-to-a-project-parameters">Parameters</h3>
 
@@ -5413,10 +5433,10 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeMembers 
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/removeMembers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes the specified list of users from members of the project.
 Returns the updated project record.
-</p>
+</span>
 
 <h3 id="remove-users-from-a-project-parameters">Parameters</h3>
 
@@ -5489,10 +5509,10 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addFollowers \
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/addFollowers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Adds the specified list of users as followers to the project. Followers are a subset of members, therefore if the users are not already members of the project they will also become members as a result of this operation.
 Returns the updated project record.
-</p>
+</span>
 
 <h3 id="add-followers-to-a-project-parameters">Parameters</h3>
 
@@ -5565,10 +5585,10 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeFollower
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/removeFollowers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes the specified list of users from following the project, this will not affect project membership status.
 Returns the updated project record.
-</p>
+</span>
 
 <h3 id="remove-followers-from-a-project-parameters">Parameters</h3>
 
@@ -5609,7 +5629,9 @@ Status Code **200**
 <code><a href="/docs/get-a-project-membership"><span class="get-verb">GET</span> <span class=""nn>/project_memberships/{project_membership_gid}</span></a><br><a href="/docs/get-memberships-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_memberships</span></a></code>
 </pre>
 
+<span class="description">
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
+</span>
 
 </section>
 <hr class="half-line">
@@ -5656,9 +5678,9 @@ curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_membershi
 <code> <span class="get-verb">GET</span> /project_memberships/{project_membership_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete project record for a single project membership.
-</p>
+</span>
 
 <h3 id="get-a-project-membership-parameters">Parameters</h3>
 
@@ -5719,9 +5741,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_members
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/project_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact project membership records for the project.
-</p>
+</span>
 
 <h3 id="get-memberships-from-a-project-parameters">Parameters</h3>
 
@@ -5754,9 +5776,11 @@ Returns the compact project membership records for the project.
 <code><a href="/docs/get-a-project-status"><span class="get-verb">GET</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a><br><a href="/docs/delete-a-project-status"><span class="delete-verb">DELETE</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a><br><a href="/docs/get-statuses-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="/docs/create-a-project-status"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a></code>
 </pre>
 
+<span class="description">
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: “green” for projects that are on track, “yellow” for projects at risk, and “red” for projects that are behind.
 
 Project statuses can be created and deleted, but not modified.
+</span>
 
 </section>
 <hr class="half-line">
@@ -5808,9 +5832,9 @@ curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} 
 <code> <span class="get-verb">GET</span> /project_statuses/{project_status_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete record for a single status update.
-</p>
+</span>
 
 <h3 id="get-a-project-status-parameters">Parameters</h3>
 
@@ -5861,11 +5885,11 @@ curl -X DELETE https://app.asana.com/api/1.0/project_statuses/{project_status_gi
 <code> <span class="delete-verb">DELETE</span> /project_statuses/{project_status_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Deletes a specific, existing project status update.
 
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="delete-a-project-status-parameters">Parameters</h3>
 
@@ -5930,9 +5954,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuse
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/project_statuses</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact project status update records for all updates on the project.
-</p>
+</span>
 
 <h3 id="get-statuses-from-a-project-parameters">Parameters</h3>
 
@@ -6022,10 +6046,10 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_status
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/project_statuses</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a new status update on the project.
 Returns the full record of the newly created project status update.
-</p>
+</span>
 
 <h3 id="create-a-project-status-parameters">Parameters</h3>
 
@@ -6077,11 +6101,13 @@ Returns the full record of the newly created project status update.
 <code><a href="/docs/get-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="/docs/update-a-section"><span class="put-verb">PUT</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="/docs/delete-a-section"><span class="delete-verb">DELETE</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="/docs/get-sections-in-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="/docs/create-a-section-in-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="/docs/add-task-to-section"><span class="post-verb">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span></a><br><a href="/docs/move-or-insert-sections"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span></a></code>
 </pre>
 
+<span class="description">
 A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.
 
 Sections are largely a shared idiom in Asana’s API for both list and board views of a project regardless of the project’s layout.
 
 The ‘memberships’ property when [getting a task](#get-a-task) will return the information for the section or the column under ‘section’ in the response.
+</span>
 
 </section>
 <hr class="half-line">
@@ -6131,9 +6157,9 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
 <code> <span class="get-verb">GET</span> /sections/{section_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete record for a single section.
-</p>
+</span>
 
 <h3 id="get-a-section-parameters">Parameters</h3>
 
@@ -6213,7 +6239,7 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
 <code> <span class="put-verb">PUT</span> /sections/{section_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing section can be updated by making a PUT request on
 the URL for that project. Only the fields provided in the `data` block
 will be updated; any unspecified fields will remain unchanged. (note that
@@ -6224,7 +6250,7 @@ to change, or else you may overwrite changes made by another user since
 you last retrieved the task.
 
 Returns the complete updated section record.
-</p>
+</span>
 
 <h3 id="update-a-section-parameters">Parameters</h3>
 
@@ -6279,7 +6305,7 @@ curl -X DELETE https://app.asana.com/api/1.0/sections/{section_gid} \
 <code> <span class="delete-verb">DELETE</span> /sections/{section_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing section can be deleted by making a DELETE request on
 the URL for that section.
 
@@ -6288,7 +6314,7 @@ Note that sections must be empty to be deleted.
 The last remaining section in a board view cannot be deleted.
 
 Returns an empty data block.
-</p>
+</span>
 
 <h3 id="delete-a-section-parameters">Parameters</h3>
 
@@ -6353,9 +6379,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/sections</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact records for all sections in the specified project.
-</p>
+</span>
 
 <h3 id="get-sections-in-a-project-parameters">Parameters</h3>
 
@@ -6437,10 +6463,10 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/sections</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a new section in a project.
 Returns the full record of the newly created section.
-</p>
+</span>
 
 <h3 id="create-a-section-in-a-project-parameters">Parameters</h3>
 
@@ -6508,13 +6534,13 @@ curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
 <code> <span class="post-verb">POST</span> /sections/{section_gid}/addTask</code>
 </p>
 
-<p class="description">
+<span class="description">
 Add a task to a specific, existing section. This will remove the task from other sections of the project.
 
 The task will be inserted at the top of a section unless an insert_before or insert_after parameter is declared.
 
 This does not work for separators (tasks with the resource_subtype of section).
-</p>
+</span>
 
 <h3 id="add-task-to-section-parameters">Parameters</h3>
 
@@ -6592,14 +6618,14 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/inser
 <code> <span class="post-verb">POST</span> /projects/{project_gid}/sections/insert</code>
 </p>
 
-<p class="description">
+<span class="description">
 Move sections relative to each other in a board view. One of
 `before_section` or `after_section` is required.
 
 Sections cannot be moved between projects.
 
 Returns an empty data block.
-</p>
+</span>
 
 <h3 id="move-or-insert-sections-parameters">Parameters</h3>
 
@@ -6643,9 +6669,11 @@ Status Code **200**
 <code><a href="/docs/get-a-story"><span class="get-verb">GET</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="/docs/update-a-story"><span class="put-verb">PUT</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="/docs/delete-a-story"><span class="delete-verb">DELETE</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="/docs/get-stories-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="/docs/create-a-story-on-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span></a></code>
 </pre>
 
+<span class="description">
 *See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924) for more info on when conditional fields are returned.*
 
 A *story* represents an activity associated with an object in the Asana system. Stories are generated by the system whenever users take actions such as creating or assigning tasks, or moving tasks between projects. *Comments* are also a form of user-generated story.
+</span>
 
 </section>
 <hr class="half-line">
@@ -6850,9 +6878,9 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
 <code> <span class="get-verb">GET</span> /stories/{story_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full record for a single story.
-</p>
+</span>
 
 <h3 id="get-a-story-parameters">Parameters</h3>
 
@@ -7093,9 +7121,9 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
 <code> <span class="put-verb">PUT</span> /stories/{story_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Updates the story and returns the full record for the updated story. Only comment stories can have their text updated, and only comment stories and attachment stories can be pinned. Only one of `text` and `html_text` can be specified.
-</p>
+</span>
 
 <h3 id="update-a-story-parameters">Parameters</h3>
 
@@ -7153,11 +7181,11 @@ curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
 <code> <span class="delete-verb">DELETE</span> /stories/{story_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Deletes a story. A user can only delete stories they have created.
 
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="delete-a-story-parameters">Parameters</h3>
 
@@ -7230,9 +7258,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/stories</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact records for all stories on the task.
-</p>
+</span>
 
 <h3 id="get-stories-from-a-task-parameters">Parameters</h3>
 
@@ -7473,13 +7501,13 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/stories</code>
 </p>
 
-<p class="description">
+<span class="description">
 Adds a story to a task. This endpoint currently only allows for comment
 stories to be created. The comment will be authored by the currently
 authenticated user, and timestamped when the server receives the request.
 
 Returns the full record for the new story added to the task.
-</p>
+</span>
 
 <h3 id="create-a-story-on-a-task-parameters">Parameters</h3>
 
@@ -7516,9 +7544,11 @@ Returns the full record for the new story added to the task.
 <code><a href="/docs/get-multiple-tags"><span class="get-verb">GET</span> <span class=""nn>/tags</span></a><br><a href="/docs/create-a-tag"><span class="post-verb">POST</span> <span class=""nn>/tags</span></a><br><a href="/docs/get-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="/docs/update-a-tag"><span class="put-verb">PUT</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="/docs/get-a-task-39-s-tags"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span></a><br><a href="/docs/get-tags-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a><br><a href="/docs/create-a-tag-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a></code>
 </pre>
 
+<span class="description">
 A tag is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
 
 Tags have some metadata associated with them, but it is possible that we will simplify them in the future so it is not encouraged to rely too heavily on it. Unlike projects, tags do not provide any ordering on the tasks they are associated with.
+</span>
 
 </section>
 <hr class="half-line">
@@ -7557,9 +7587,9 @@ curl -X GET https://app.asana.com/api/1.0/tags \
 <code> <span class="get-verb">GET</span> /tags</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.
-</p>
+</span>
 
 <h3 id="get-multiple-tags-parameters">Parameters</h3>
 
@@ -7646,7 +7676,7 @@ curl -X POST https://app.asana.com/api/1.0/tags \
 <code> <span class="post-verb">POST</span> /tags</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a new tag in a workspace or organization.
 
 Every tag is required to be created in a specific workspace or
@@ -7655,7 +7685,7 @@ the workspace parameter regardless of whether or not it is an
 organization.
 
 Returns the full record of the newly created tag.
-</p>
+</span>
 
 <h3 id="create-a-tag-parameters">Parameters</h3>
 
@@ -7751,9 +7781,9 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
 <code> <span class="get-verb">GET</span> /tags/{tag_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete tag record for a single tag.
-</p>
+</span>
 
 <h3 id="get-a-tag-parameters">Parameters</h3>
 
@@ -7823,7 +7853,7 @@ curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
 <code> <span class="put-verb">PUT</span> /tags/{tag_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Updates the properties of a tag. Only the fields provided in the `data`
 block will be updated; any unspecified fields will remain unchanged.
 
@@ -7832,7 +7862,7 @@ to change, or else you may overwrite changes made by another user since
 you last retrieved the task.
 
 Returns the complete updated tag record.
-</p>
+</span>
 
 <h3 id="update-a-tag-parameters">Parameters</h3>
 
@@ -7891,9 +7921,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/tags</code>
 </p>
 
-<p class="description">
+<span class="description">
 Get a compact representation of all of the tags the task has.
-</p>
+</span>
 
 <h3 id="get-a-task's-tags-parameters">Parameters</h3>
 
@@ -7952,9 +7982,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/tags</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.
-</p>
+</span>
 
 <h3 id="get-tags-in-a-workspace-parameters">Parameters</h3>
 
@@ -8039,7 +8069,7 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/tags</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a new tag in a workspace or organization.
 
 Every tag is required to be created in a specific workspace or
@@ -8048,7 +8078,7 @@ the workspace parameter regardless of whether or not it is an
 organization.
 
 Returns the full record of the newly created tag.
-</p>
+</span>
 
 <h3 id="create-a-tag-in-a-workspace-parameters">Parameters</h3>
 
@@ -8107,11 +8137,13 @@ Returns the full record of the newly created tag.
 <code><a href="/docs/get-multiple-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="/docs/create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="/docs/get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="/docs/update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="/docs/delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="/docs/duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="/docs/get-tasks-from-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="/docs/get-tasks-from-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="/docs/get-tasks-from-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span></a><br><a href="/docs/get-tasks-from-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></a><br><a href="/docs/get-subtasks-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="/docs/create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="/docs/set-the-parent-of-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="/docs/get-dependencies-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="/docs/set-dependencies-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="/docs/unlink-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="/docs/get-dependents-from-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="/docs/set-dependents-for-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="/docs/unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="/docs/add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="/docs/remove-a-project-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="/docs/add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="/docs/remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="/docs/add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="/docs/remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a><br><a href="/docs/search-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
 </pre>
 
+<span class="description">
 The task is the basic object around which many operations in Asana are centered. In the Asana application, multiple tasks populate the middle pane according to some view parameters, and the set of selected tasks determines the more detailed information presented in the details pane.
 
 Sections are unique in that they will be included in the *memberships* field of task objects returned in the API when the task is within a section. They can also be used to manipulate the ordering of a task within a project.
 
 [Queries](#get-a-set-of-tasks) return a compact representation of each object which is typically the id and name fields. Interested in a specific set of fields or all of the fields? Use [field selectors](#input-output-options) to manipulate what data is included in a response.
+</span>
 
 </section>
 <hr class="half-line">
@@ -8150,11 +8182,11 @@ curl -X GET https://app.asana.com/api/1.0/tasks \
 <code> <span class="get-verb">GET</span> /tasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
 
 For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](#search-tasks-in-a-workspace).
-</p>
+</span>
 
 <h3 id="get-multiple-tasks-parameters">Parameters</h3>
 
@@ -8424,7 +8456,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
 <code> <span class="post-verb">POST</span> /tasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creating a new task is as easy as POSTing to the `/tasks` endpoint with a
 data block containing the fields you’d like to set on the task. Any
 unspecified fields will take on default values.
@@ -8432,7 +8464,7 @@ unspecified fields will take on default values.
 Every task is required to be created in a specific workspace, and this
 workspace cannot be changed once set. The workspace need not be set
 explicitly if you specify `projects` or a `parent` task instead.
-</p>
+</span>
 
 <h3 id="create-a-task-parameters">Parameters</h3>
 
@@ -8687,9 +8719,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete task record for a single task.
-</p>
+</span>
 
 <h3 id="get-a-task-parameters">Parameters</h3>
 
@@ -8932,7 +8964,7 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
 <code> <span class="put-verb">PUT</span> /tasks/{task_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing task can be updated by making a PUT request on the
 URL for that task. Only the fields provided in the `data` block will be
 updated; any unspecified fields will remain unchanged.
@@ -8942,7 +8974,7 @@ to change, or else you may overwrite changes made by another user since
 you last retrieved the task.
 
 Returns the complete updated task record.
-</p>
+</span>
 
 <h3 id="update-a-task-parameters">Parameters</h3>
 
@@ -9050,14 +9082,14 @@ curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
 <code> <span class="delete-verb">DELETE</span> /tasks/{task_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing task can be deleted by making a DELETE request on
 the URL for that task. Deleted tasks go into the “trash” of the user
 making the delete request. Tasks can be recovered from the trash within a
 period of 30 days; afterward they are completely removed from the system.
 
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="delete-a-task-parameters">Parameters</h3>
 
@@ -9146,9 +9178,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/duplicate</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates and returns a job that will asynchronously handle the duplication.
-</p>
+</span>
 
 <h3 id="duplicate-a-task-parameters">Parameters</h3>
 
@@ -9224,9 +9256,9 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/tasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact task records for all tasks within the given project, ordered by their priority within the project. Tasks can exist in more than one project at a time.
-</p>
+</span>
 
 <h3 id="get-tasks-from-a-project-parameters">Parameters</h3>
 
@@ -9285,9 +9317,9 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
 <code> <span class="get-verb">GET</span> /sections/{section_gid}/tasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 *Board view only*: Returns the compact section records for all tasks within the given section.
-</p>
+</span>
 
 <h3 id="get-tasks-from-a-section-parameters">Parameters</h3>
 
@@ -9346,9 +9378,9 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
 <code> <span class="get-verb">GET</span> /tags/{tag_gid}/tasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact task records for all tasks with the given tag. Tasks can have more than one tag at a time.
-</p>
+</span>
 
 <h3 id="get-tasks-from-a-tag-parameters">Parameters</h3>
 
@@ -9407,12 +9439,12 @@ curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/t
 <code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
 *Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
 *Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
 *Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
-</p>
+</span>
 
 <h3 id="get-tasks-from-a-user-task-list-parameters">Parameters</h3>
 
@@ -9476,9 +9508,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/subtasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns a compact representation of all of the subtasks of a task.
-</p>
+</span>
 
 <h3 id="get-subtasks-from-a-task-parameters">Parameters</h3>
 
@@ -9723,9 +9755,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/subtasks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Creates a new subtask and adds it to the parent task. Returns the full record for the newly created subtask.
-</p>
+</span>
 
 <h3 id="create-a-subtask-parameters">Parameters</h3>
 
@@ -9994,9 +10026,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/setParent</code>
 </p>
 
-<p class="description">
+<span class="description">
 parent, or no parent task at all. Returns an empty data block. When using `insert_before` and `insert_after`, at most one of those two options can be specified, and they must already be subtasks of the parent.
-</p>
+</span>
 
 <h3 id="set-the-parent-of-a-task-parameters">Parameters</h3>
 
@@ -10058,9 +10090,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependencies</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact representations of all of the dependencies of a task.
-</p>
+</span>
 
 <h3 id="get-dependencies-from-a-task-parameters">Parameters</h3>
 
@@ -10127,9 +10159,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependencies</code>
 </p>
 
-<p class="description">
+<span class="description">
 Marks a set of tasks as dependencies of this task, if they are not already dependencies. *A task can have at most 15 dependencies*.
-</p>
+</span>
 
 <h3 id="set-dependencies-for-a-task-parameters">Parameters</h3>
 
@@ -10207,9 +10239,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependencies</code>
 </p>
 
-<p class="description">
+<span class="description">
 Unlinks a set of dependencies from this task.
-</p>
+</span>
 
 <h3 id="unlink-dependencies-from-a-task-parameters">Parameters</h3>
 
@@ -10277,9 +10309,9 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependents</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact representations of all of the dependents of a task.
-</p>
+</span>
 
 <h3 id="get-dependents-from-a-task-parameters">Parameters</h3>
 
@@ -10352,9 +10384,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependents</code>
 </p>
 
-<p class="description">
+<span class="description">
 Marks a set of tasks as dependents of this task, if they are not already dependents. *A task can have at most 30 dependents*.
-</p>
+</span>
 
 <h3 id="set-dependents-for-a-task-parameters">Parameters</h3>
 
@@ -10424,9 +10456,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependents</code>
 </p>
 
-<p class="description">
+<span class="description">
 Unlinks a set of dependents from this task.
-</p>
+</span>
 
 <h3 id="unlink-dependents-from-a-task-parameters">Parameters</h3>
 
@@ -10502,7 +10534,7 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addProject</code>
 </p>
 
-<p class="description">
+<span class="description">
 Adds the task to the specified project, in the optional location
 specified. If no location arguments are given, the task will be added to
 the end of the project.
@@ -10517,7 +10549,7 @@ particular place, specify `insert_before` or `insert_after` and a task
 within the section to anchor the position of this task.
 
 Returns an empty data block.
-</p>
+</span>
 
 <h3 id="add-a-project-to-a-task-parameters">Parameters</h3>
 
@@ -10593,12 +10625,12 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeProject</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes the task from the specified project. The task will still exist in
 the system, but it will not be in the project anymore.
 
 Returns an empty data block.
-</p>
+</span>
 
 <h3 id="remove-a-project-from-a-task-parameters">Parameters</h3>
 
@@ -10671,9 +10703,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addTag</code>
 </p>
 
-<p class="description">
+<span class="description">
 Adds a tag to a task. Returns an empty data block.
-</p>
+</span>
 
 <h3 id="add-a-tag-to-a-task-parameters">Parameters</h3>
 
@@ -10746,9 +10778,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeTag</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes a tag from a task. Returns an empty data block.
-</p>
+</span>
 
 <h3 id="remove-a-tag-from-a-task-parameters">Parameters</h3>
 
@@ -10824,11 +10856,11 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/addFollowers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Adds followers to a task. Returns an empty data block.
 Each task can be associated with zero or more followers in the system.
 Requests to add/remove followers, if successful, will return the complete updated task record, described above.
-</p>
+</span>
 
 <h3 id="add-followers-to-a-task-parameters">Parameters</h3>
 
@@ -10904,9 +10936,9 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
 <code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeFollowers</code>
 </p>
 
-<p class="description">
+<span class="description">
 Removes each of the specified followers from the task if they are following. Returns the complete, updated record for the affected task.
-</p>
+</span>
 
 <h3 id="remove-followers-from-a-task-parameters">Parameters</h3>
 
@@ -10974,7 +11006,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/searc
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/tasks/search</code>
 </p>
 
-<p class="description">
+<span class="description">
 To mirror the functionality of the Asana web app's advanced search feature, the Asana API has a task search endpoint that allows you to build complex filters to find and retrieve the exact data you need.
 #### Premium access
 Like the Asana web product's advance search feature, this search endpoint will only be available to premium Asana users. A user is premium if any of the following is true:
@@ -11004,7 +11036,7 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 For example, if the gid of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the gid of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.
 
 Searching for multiple exact matches of a custom field is not supported.
-</p>
+</span>
 
 <h3 id="search-tasks-in-a-workspace-parameters">Parameters</h3>
 
@@ -11105,7 +11137,9 @@ Searching for multiple exact matches of a custom field is not supported.
 <code><a href="/docs/get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="/docs/get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{workspace_gid}/teams</span></a><br><a href="/docs/get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="/docs/add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="/docs/remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
 </pre>
 
+<span class="description">
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
+</span>
 
 </section>
 <hr class="half-line">
@@ -11149,9 +11183,9 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
 <code> <span class="get-verb">GET</span> /teams/{team_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full record for a single team.
-</p>
+</span>
 
 <h3 id="get-a-team-parameters">Parameters</h3>
 
@@ -11210,9 +11244,9 @@ curl -X GET https://app.asana.com/api/1.0/organizations/{workspace_gid}/teams \
 <code> <span class="get-verb">GET</span> /organizations/{workspace_gid}/teams</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact records for all teams in the organization visible to the authorized user.
-</p>
+</span>
 
 <h3 id="get-teams-in-an-organization-parameters">Parameters</h3>
 
@@ -11271,9 +11305,9 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization=13
 <code> <span class="get-verb">GET</span> /users/{user_gid}/teams</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact records for all teams to which the given user is assigned.
-</p>
+</span>
 
 <h3 id="get-teams-for-a-user-parameters">Parameters</h3>
 
@@ -11357,9 +11391,9 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
 <code> <span class="post-verb">POST</span> /teams/{team_gid}/addUser</code>
 </p>
 
-<p class="description">
+<span class="description">
 The user making this call must be a member of the team in order to add others. The user being added must exist in the same organization as the team.
-</p>
+</span>
 
 <h3 id="add-a-user-to-a-team-parameters">Parameters</h3>
 
@@ -11424,9 +11458,9 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
 <code> <span class="post-verb">POST</span> /teams/{team_gid}/removeUser</code>
 </p>
 
-<p class="description">
+<span class="description">
 The user making this call must be a member of the team in order to remove themselves or others.
-</p>
+</span>
 
 <h3 id="remove-a-user-from-a-team-parameters">Parameters</h3>
 
@@ -11467,7 +11501,9 @@ Status Code **204**
 <code><a href="/docs/get-a-team-membership"><span class="get-verb">GET</span> <span class=""nn>/team_memberships/{team_membership_gid}</span></a><br><a href="/docs/get-team-memberships"><span class="get-verb">GET</span> <span class=""nn>/team_memberships</span></a><br><a href="/docs/get-memberships-from-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/team_memberships</span></a><br><a href="/docs/get-memberships-from-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/team_memberships</span></a></code>
 </pre>
 
+<span class="description">
 This object determines if a user is a member of a team.
+</span>
 
 </section>
 <hr class="half-line">
@@ -11514,9 +11550,9 @@ curl -X GET https://app.asana.com/api/1.0/team_memberships/{team_membership_gid}
 <code> <span class="get-verb">GET</span> /team_memberships/{team_membership_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete team membership record for a single team membership.
-</p>
+</span>
 
 <h3 id="get-a-team-membership-parameters">Parameters</h3>
 
@@ -11583,9 +11619,9 @@ curl -X GET https://app.asana.com/api/1.0/team_memberships \
 <code> <span class="get-verb">GET</span> /team_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns compact team membership records.
-</p>
+</span>
 
 <h3 id="get-team-memberships-parameters">Parameters</h3>
 
@@ -11656,9 +11692,9 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/team_memberships \
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/team_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact team memberships for the team.
-</p>
+</span>
 
 <h3 id="get-memberships-from-a-team-parameters">Parameters</h3>
 
@@ -11727,9 +11763,9 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships?work
 <code> <span class="get-verb">GET</span> /users/{user_gid}/team_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact team membership records for the user.
-</p>
+</span>
 
 <h3 id="get-memberships-from-a-user-parameters">Parameters</h3>
 
@@ -11762,7 +11798,9 @@ Returns the compact team membership records for the user.
 <code><a href="/docs/get-objects-via-typeahead"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/typeahead</span></a></code>
 </pre>
 
+<span class="description">
 The typeahead search API provides search for objects from a single workspace.
+</span>
 
 </section>
 <hr class="half-line">
@@ -11801,7 +11839,7 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?r
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/typeahead</code>
 </p>
 
-<p class="description">
+<span class="description">
 Retrieves objects in the workspace based via an auto-completion/typeahead
 search algorithm. This feature is meant to provide results quickly, so do
 not rely on this API to provide extremely accurate search results. The
@@ -11819,7 +11857,7 @@ Queries return a compact representation of each object which is typically
 the gid and name fields. Interested in a specific set of fields or all of
 the fields?! Of course you are. Use field selectors to manipulate what
 data is included in a response.
-</p>
+</span>
 
 <h3 id="get-objects-via-typeahead-parameters">Parameters</h3>
 
@@ -11870,9 +11908,11 @@ data is included in a response.
 <code><a href="/docs/get-multiple-users"><span class="get-verb">GET</span> <span class=""nn>/users</span></a><br><a href="/docs/get-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}</span></a><br><a href="/docs/get-a-user-39-s-favorites"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/favorites</span></a><br><a href="/docs/get-users-in-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/users</span></a><br><a href="/docs/get-users-in-a-workspace-or-organization"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/users</span></a></code>
 </pre>
 
+<span class="description">
 A user object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
 
 Like other objects in the system, users are referred to by numerical IDs. However, the special string identifier `me` can be used anywhere a user ID is accepted, to refer to the current authenticated user.
+</span>
 
 </section>
 <hr class="half-line">
@@ -11911,10 +11951,10 @@ curl -X GET https://app.asana.com/api/1.0/users \
 <code> <span class="get-verb">GET</span> /users</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter.
 Results are sorted by user ID.
-</p>
+</span>
 
 <h3 id="get-multiple-users-parameters">Parameters</h3>
 
@@ -11986,10 +12026,10 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
 <code> <span class="get-verb">GET</span> /users/{user_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full user record for the single user with the provided ID.
 Results are sorted by user ID.
-</p>
+</span>
 
 <h3 id="get-a-user-parameters">Parameters</h3>
 
@@ -12046,10 +12086,10 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_ty
 <code> <span class="get-verb">GET</span> /users/{user_gid}/favorites</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns all of a user's favorites in the given workspace, of the given type.
 Results are given in order (The same order as Asana's sidebar).
-</p>
+</span>
 
 <h3 id="get-a-user's-favorites-parameters">Parameters</h3>
 
@@ -12118,9 +12158,9 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/users</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact records for all users that are members of the team.
-</p>
+</span>
 
 <h3 id="get-users-in-a-team-parameters">Parameters</h3>
 
@@ -12179,10 +12219,10 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/users</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the user records for all users in the specified workspace or organization.
 Results are sorted alphabetically by user names.
-</p>
+</span>
 
 <h3 id="get-users-in-a-workspace-or-organization-parameters">Parameters</h3>
 
@@ -12214,9 +12254,11 @@ Results are sorted alphabetically by user names.
 <code><a href="/docs/get-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}</span></a><br><a href="/docs/get-a-user-39-s-task-list"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span></a></code>
 </pre>
 
+<span class="description">
 A user task list represents the tasks assigned to a particular user.
 
 A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](#tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
+</span>
 
 </section>
 <hr class="half-line">
@@ -12263,9 +12305,9 @@ curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid} \
 <code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full record for a user task list.
-</p>
+</span>
 
 <h3 id="get-a-user-task-list-parameters">Parameters</h3>
 
@@ -12330,9 +12372,9 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list?worksp
 <code> <span class="get-verb">GET</span> /users/{user_gid}/user_task_list</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full record for a user's task list.
-</p>
+</span>
 
 <h3 id="get-a-user's-task-list-parameters">Parameters</h3>
 
@@ -12363,6 +12405,7 @@ Returns the full record for a user's task list.
 <code><a href="/docs/get-multiple-webhooks"><span class="get-verb">GET</span> <span class=""nn>/webhooks</span></a><br><a href="/docs/establish-a-webhook"><span class="post-verb">POST</span> <span class=""nn>/webhooks</span></a><br><a href="/docs/get-a-webhook"><span class="get-verb">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="/docs/delete-a-webhook"><span class="delete-verb">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></a></code>
 </pre>
 
+<span class="description">
 Webhooks allow an application to be notified of changes in Asana. They are intended to provide an efficient way for integrations which react to changes of state in Asana to take action only when something has actually changed.
 
 This is similar to our [Events](#asana-events) resource, but webhooks "push" events via HTTP `POST` rather than expecting integrations to repeatedly "poll" for them. For services that are already accessible on the Internet this is often more convenient and efficient.
@@ -12417,6 +12460,7 @@ To reduce the volume of data to transfer, webhooks created on teams and workspac
 #### Error Handling and Retry
 
 If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect it to take no longer than approximately an hour after they come back before the paused delivery resumes. However, if we are unable to deliver a message for 24 hours the webhook will be deactivated.
+</span>
 
 </section>
 <hr class="half-line">
@@ -12477,9 +12521,9 @@ curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
 <code> <span class="get-verb">GET</span> /webhooks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Get the compact representation of all webhooks your app has registered for the authenticated user in the given workspace.
-</p>
+</span>
 
 <h3 id="get-multiple-webhooks-parameters">Parameters</h3>
 
@@ -12583,7 +12627,7 @@ curl -X POST https://app.asana.com/api/1.0/webhooks \
 <code> <span class="post-verb">POST</span> /webhooks</code>
 </p>
 
-<p class="description">
+<span class="description">
 Establishing a webhook is a two-part process. First, a simple HTTP POST
 request initiates the creation similar to creating any other resource.
 
@@ -12639,7 +12683,7 @@ HTTP/1.1 201
   }
 }
 ```
-</p>
+</span>
 
 <h3 id="establish-a-webhook-parameters">Parameters</h3>
 
@@ -12724,9 +12768,9 @@ curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
 <code> <span class="get-verb">GET</span> /webhooks/{webhook_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full record for the given webhook.
-</p>
+</span>
 
 <h3 id="get-a-webhook-parameters">Parameters</h3>
 
@@ -12777,9 +12821,9 @@ curl -X DELETE https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
 <code> <span class="delete-verb">DELETE</span> /webhooks/{webhook_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 This method *permanently* removes a webhook. Note that it may be possible to receive a request that was already in flight after deleting the webhook, but no further requests will be issued.
-</p>
+</span>
 
 <h3 id="delete-a-webhook-parameters">Parameters</h3>
 
@@ -12817,11 +12861,13 @@ Status Code **200**
 <code><a href="/docs/get-multiple-workspaces"><span class="get-verb">GET</span> <span class=""nn>/workspaces</span></a><br><a href="/docs/get-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="/docs/update-a-workspace"><span class="put-verb">PUT</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="/docs/add-a-user-to-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/addUser</span></a><br><a href="/docs/remove-a-user-from-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/removeUser</span></a></code>
 </pre>
 
+<span class="description">
 A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
 
 An *organization* is a special kind of workspace that represents a company. In an organization, you can group your projects into teams. You can read more about how organizations work on the Asana Guide. To tell if your workspace is an organization or not, check its `is_organization` property.
 
 Over time, we intend to migrate most workspaces into organizations and to release more organization-specific functionality. We may eventually deprecate using workspace-based APIs for organizations. Currently, and until after some reasonable grace period following any further announcements, you can still reference organizations in any `workspace` parameter.
+</span>
 
 </section>
 <hr class="half-line">
@@ -12860,9 +12906,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces \
 <code> <span class="get-verb">GET</span> /workspaces</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact records for all workspaces visible to the authorized user.
-</p>
+</span>
 
 <h3 id="get-multiple-workspaces-parameters">Parameters</h3>
 
@@ -12922,9 +12968,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the full workspace record for a single workspace.
-</p>
+</span>
 
 <h3 id="get-a-workspace-parameters">Parameters</h3>
 
@@ -12994,11 +13040,11 @@ curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
 <code> <span class="put-verb">PUT</span> /workspaces/{workspace_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 A specific, existing workspace can be updated by making a PUT request on the URL for that workspace. Only the fields provided in the data block will be updated; any unspecified fields will remain unchanged.
 Currently the only field that can be modified for a workspace is its name.
 Returns the complete, updated workspace record.
-</p>
+</span>
 
 <h3 id="update-a-workspace-parameters">Parameters</h3>
 
@@ -13082,10 +13128,10 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/addUser</code>
 </p>
 
-<p class="description">
+<span class="description">
 Add a user to a workspace or organization.
 The user can be referenced by their globally unique user ID or their email address. Returns the full user record for the invited user.
-</p>
+</span>
 
 <h3 id="add-a-user-to-a-workspace-or-organization-parameters">Parameters</h3>
 
@@ -13150,11 +13196,11 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser
 <code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/removeUser</code>
 </p>
 
-<p class="description">
+<span class="description">
 Remove a user from a workspace or organization.
 The user making this call must be an admin in the workspace. The user can be referenced by their globally unique user ID or their email address.
 Returns an empty data record.
-</p>
+</span>
 
 <h3 id="remove-a-user-from-a-workspace-or-organization-parameters">Parameters</h3>
 
@@ -13195,7 +13241,9 @@ Status Code **204**
 <code><a href="/docs/get-a-workspace-membership"><span class="get-verb">GET</span> <span class=""nn>/workspace_memberships/{workspace_membership_gid}</span></a><br><a href="/docs/get-workspace-memberships-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/workspace_memberships</span></a><br><a href="/docs/get-the-workspace-memberships-for-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/workspace_memberships</span></a></code>
 </pre>
 
+<span class="description">
 This object determines if a user is a member of a workspace.
+</span>
 
 </section>
 <hr class="half-line">
@@ -13259,9 +13307,9 @@ curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membe
 <code> <span class="get-verb">GET</span> /workspace_memberships/{workspace_membership_gid}</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the complete workspace record for a single workspace membership.
-</p>
+</span>
 
 <h3 id="get-a-workspace-membership-parameters">Parameters</h3>
 
@@ -13327,9 +13375,9 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/workspace_memberships
 <code> <span class="get-verb">GET</span> /users/{user_gid}/workspace_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact workspace membership records for the user.
-</p>
+</span>
 
 <h3 id="get-workspace-memberships-for-a-user-parameters">Parameters</h3>
 
@@ -13397,9 +13445,9 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/workspace_m
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/workspace_memberships</code>
 </p>
 
-<p class="description">
+<span class="description">
 Returns the compact workspace membership records for the workspace.
-</p>
+</span>
 
 <h3 id="get-the-workspace-memberships-for-a-workspace-parameters">Parameters</h3>
 
@@ -13421,10 +13469,10 @@ Returns the compact workspace membership records for the workspace.
 </section><hr class="full-line">
 <section class="full-section">
 # Schemas
-<p class="description">
+<span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
 default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
-</p>
+</span>
 </section>
 <hr>
 <section>
@@ -13444,11 +13492,10 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 
 ```
 
-<p class="description">
-
+<span class="description">
 A generic Asana Resource, containing a globally unique identifier.
 
-</p>
+</span>
 
 ### Properties
 
@@ -13475,11 +13522,10 @@ A generic Asana Resource, containing a globally unique identifier.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A generic Asana Resource, containing a globally unique identifier.
 
-</p>
+</span>
 
 ### Properties
 
@@ -13506,12 +13552,10 @@ A generic Asana Resource, containing a globally unique identifier.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Attachment), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -13548,11 +13592,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
 
 ```
 
-<p class="description">
-
+<span class="description">
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
 
-</p>
+</span>
 
 ### Properties
 
@@ -13597,11 +13640,10 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 ```
 
-<p class="description">
-
+<span class="description">
 A response object returned from a batch request.
 
-</p>
+</span>
 
 ### Properties
 
@@ -13643,12 +13685,10 @@ A response object returned from a batch request.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_CustomField), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -13727,13 +13767,12 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 
 ```
 
-<p class="description">
-
+<span class="description">
 Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
 
 Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
 
-</p>
+</span>
 
 ### Properties
 
@@ -13803,12 +13842,10 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_CustomFieldSetting), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -13879,11 +13916,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 
 ```
 
-<p class="description">
-
+<span class="description">
 Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
 
-</p>
+</span>
 
 ### Properties
 
@@ -13968,8 +14004,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 
 ```
 
-<p class="description">
-
+<span class="description">
 Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
 
 You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
@@ -13982,7 +14017,7 @@ Enum options are an ordered list and by default new enum options are inserted at
 
 An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
 
-</p>
+</span>
 
 ### Properties
 
@@ -14016,8 +14051,7 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 
 ```
 
-<p class="description">
-
+<span class="description">
 Sadly, sometimes requests to the API are not successful. Failures can
 occur for a wide range of reasons. In all cases, the API should return
 an HTTP Status Code that indicates the nature of the failure,
@@ -14030,7 +14064,7 @@ library](https://github.com/Asana/node-asana-phrase) and can be used by
 Asana support to quickly look up the incident that caused the server
 error.
 
-</p>
+</span>
 
 ### Properties
 
@@ -14090,8 +14124,7 @@ error.
 
 ```
 
-<p class="description">
-
+<span class="description">
 An *event* is an object representing a change to a resource that was
 observed by an event subscription or delivered asynchronously to
 the target location of an active webhook.
@@ -14129,7 +14162,7 @@ be `null`, `Event.action` will be `changed`,
 `Event.change.action` will be `added`, and `added_value` will be
 an object with the user's `id` and `type`.
 
-</p>
+</span>
 
 ### Properties
 
@@ -14186,12 +14219,10 @@ an object with the user's `id` and `type`.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Job), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -14248,11 +14279,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *job* is an object representing a process that handles asynchronous work.
 
-</p>
+</span>
 
 ### Properties
 
@@ -14298,12 +14328,10 @@ A *job* is an object representing a process that handles asynchronous work.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Portfolio), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -14340,12 +14368,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Portfoli
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_PortfolioMembership), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -14389,11 +14415,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Portfoli
 
 ```
 
-<p class="description">
-
+<span class="description">
 This object determines if a user is a member of a portfolio.
 
-</p>
+</span>
 
 ### Properties
 
@@ -14503,12 +14528,11 @@ This object determines if a user is a member of a portfolio.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
-</p>
+</span>
 
 ### Properties
 
@@ -14631,12 +14655,10 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Project), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -14668,12 +14690,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Project)
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_ProjectMembership), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -14714,11 +14734,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_ProjectM
 
 ```
 
-<p class="description">
-
+<span class="description">
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
 
-</p>
+</span>
 
 ### Properties
 
@@ -14850,11 +14869,10 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
 
-</p>
+</span>
 
 ### Properties
 
@@ -15018,12 +15036,10 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_ProjectStatus), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -15066,11 +15082,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_ProjectS
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
 
-</p>
+</span>
 
 ### Properties
 
@@ -15119,12 +15134,10 @@ A *project status* is an update on the progress of a particular project, and is 
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Section), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -15165,11 +15178,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Section)
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.
 
-</p>
+</span>
 
 ### Properties
 
@@ -15214,12 +15226,10 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Story), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -15422,11 +15432,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
 
 ```
 
-<p class="description">
-
+<span class="description">
 A story represents an activity associated with an object in the Asana system.
 
-</p>
+</span>
 
 ### Properties
 
@@ -15605,12 +15614,10 @@ A story represents an activity associated with an object in the Asana system.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Tag), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -15651,11 +15658,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Tag), bu
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
 
-</p>
+</span>
 
 ### Properties
 
@@ -15715,12 +15721,10 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Task), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -15892,11 +15896,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
 
 ```
 
-<p class="description">
-
+<span class="description">
 The *task* is the basic object around which many operations in Asana are centered.
 
-</p>
+</span>
 
 ### Properties
 
@@ -16060,12 +16063,10 @@ The *task* is the basic object around which many operations in Asana are centere
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Team), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -16103,12 +16104,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Team), b
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_TeamMembership), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -16154,11 +16153,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_TeamMemb
 
 ```
 
-<p class="description">
-
+<span class="description">
 This object represents a user's connection to a team.
 
-</p>
+</span>
 
 ### Properties
 
@@ -16201,11 +16199,10 @@ This object represents a user's connection to a team.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
 
-</p>
+</span>
 
 ### Properties
 
@@ -16239,12 +16236,10 @@ A *team* is used to group related projects and people together within an organiz
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_User), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -16287,11 +16282,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_User), b
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
 
-</p>
+</span>
 
 ### Properties
 
@@ -16340,12 +16334,10 @@ A *user* object represents an account in Asana that can be given access to vario
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_UserTaskList), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -16391,11 +16383,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_UserTask
 
 ```
 
-<p class="description">
-
+<span class="description">
 A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.
 
-</p>
+</span>
 
 ### Properties
 
@@ -16437,12 +16428,10 @@ A user task list represents the tasks assigned to a particular user. It provides
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Webhook), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -16480,11 +16469,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Webhook)
 
 ```
 
-<p class="description">
-
+<span class="description">
 A WebhookFilter can be passed on creation of a webhook in order to filter the types of actions that trigger delivery of an [Event](#tocS_Event)
 
-</p>
+</span>
 
 ### Properties
 
@@ -16535,11 +16523,10 @@ A WebhookFilter can be passed on creation of a webhook in order to filter the ty
 
 ```
 
-<p class="description">
-
+<span class="description">
 Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [Event](#tocS_Event) schema.
 
-</p>
+</span>
 
 ### Properties
 
@@ -16581,12 +16568,10 @@ Webhook objects represent the state of an active subscription for a server to be
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_Workspace), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -16623,12 +16608,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Workspac
 
 ```
 
-<p class="description">
-
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_WorkspaceMembership), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
-
-</p>
+</span>
 
 ### Properties
 
@@ -16690,11 +16673,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Workspac
 
 ```
 
-<p class="description">
-
+<span class="description">
 This object determines if a user is a member of a workspace.
 
-</p>
+</span>
 
 ### Properties
 
@@ -16748,11 +16730,10 @@ This object determines if a user is a member of a workspace.
 
 ```
 
-<p class="description">
-
+<span class="description">
 A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
 
-</p>
+</span>
 
 ### Properties
 

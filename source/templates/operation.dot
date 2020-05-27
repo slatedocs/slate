@@ -46,9 +46,9 @@
 
 {{? data.operation.summary && !data.options.tocSummary}}*{{= data.operation.summary }}*{{?}}
 
-<p class="description">
+<span class="description">
 {{? data.operation.description}}{{= data.operation.description }}{{?}}
-</p>
+</span>
 
 {{? data.parameters && data.parameters.length }}
 {{#def.parameters}}

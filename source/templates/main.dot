@@ -7,9 +7,9 @@
 > Scroll down for {{? data.header.language_tabs.length > 1}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length > 1}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
 
 
-<p class="description">
+<span class="description">
 {{? data.api.info && data.api.info.description}}{{=data.api.info.description}}{{?}}
-</p>
+</span>
 
 {{? data.api.servers }}
 Base URLs:
@@ -38,7 +38,9 @@ Base URLs:
 <code>{{ for (var m in data.resource.methods) { data.operationUniqueName = m; data.method = data.resource.methods[m]; data.operationUniqueSlug = data.method.slug; data.operation = data.method.operation; }}{{ if (first) { first = false; } else { }}<br>{{ } }}<a href="/docs/{{=data.operationUniqueName.toLowerCase().replaceAll("'","-39-").replaceAll(" ","-")}}"><span class="{{=data.method.verb.toLowerCase()}}-verb">{{=data.method.verb.toUpperCase()}}</span> <span class=""nn>{{=data.method.path}}</span></a>{{ } /* of methods */ }}</code>
 </pre>
 
+<span class="description">
 {{? data.resource.description }}{{= data.resource.description}}{{?}}
+</span>
 
 {{? data.resource.externalDocs}}
 <a href="{{=data.resource.externalDocs.url}}">{{=data.resource.externalDocs.description||'External documentation'}}</a>
@@ -50,10 +52,10 @@ Base URLs:
 </section>{{ } /* of methods */ }}{{ } /* of resources */ }}{{? data.api.components && data.api.components.schemas }}<hr class="full-line">
 <section class="full-section">
 # Schemas
-<p class="description">
+<span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
 default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
-</p>
+</span>
 </section>
 {{ for (var s in data.components.schemas) { }}{{ if (!data.api.info['x-docs-schema-whitelist'].includes(s)) { continue; } }}{{ var origSchema = data.components.schemas[s]; }}{{ var schema = data.api.components.schemas[s]; }}<hr>
 <section>
@@ -87,17 +89,19 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 }}
 
 {{~ blocks :block}}
-<p class="description">
 {{?s.toLowerCase().endsWith("compact")}}
+<span class="description">
 A `Compact` object is the same as the [full response object](/docs/tocS_{{=s.replaceAll("Compact","")}}), but with less fields included by default. See
 [Input/Output Options](/docs/input-output-options) to include more fields.
+</span>
 {{??}}
+<span class="description">
 {{? block.title }}{{= block.title}}{{= '\n\n'}}{{?}}
+</span>
 {{?}}
 {{? block.externalDocs}}
 <a href="{{=block.externalDocs.url}}">{{=block.externalDocs.description||'External documentation'}}</a>
 {{?}}
-</p>
 
 {{? block===blocks[0] }}
 

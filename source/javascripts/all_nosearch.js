@@ -3,7 +3,6 @@
 //= require ./app/_lang
 
 $(function() {
-  var previousMeta = null;
   var pathname = window.location.pathname;
   if (pathname.split('/').length > 2) {
     window.location.hash = pathname.split('/')[2];
@@ -61,6 +60,8 @@ $(function() {
     var ref = $(this).attr('href');
     if (ref && ref.startsWith("/docs/")) {
       event.preventDefault();
+      window.history.pushState(null, "", ref);
+
       ref = "#" + ref.split('/')[2];
 
       $([document.documentElement, document.body]).scrollTop($(ref).offset().top);

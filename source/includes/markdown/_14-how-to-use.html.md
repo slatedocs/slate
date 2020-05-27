@@ -14,7 +14,9 @@ https://app.asana.com/api/1.0/users/me
 
 <br></br>
 
+<span class="description">
 If you’re new to developing on APIs, this is a great place to start.  You’ll learn in this guide how to make the simplest Asana API request -- getting your user information. 
+</span>
 
 To get started
 
@@ -68,9 +70,9 @@ Now, let’s make the same call to `/users/me` more like software would. Before 
 
 ## Authentication Quick Start
 
-<p class="description">
+<span class="description">
 Similarly to entering your username/password into a website or logging into Asana with Google, when you access your Asana data via the API you need to authenticate.  In the above example, you were already logged into Asana in your browser so you were able to authenticate to the API with credentials stored by your browser.
-</p>
+</span >
 
 If you want to write a script that interacts with the Asana API, the easiest method is to get a Personal Access Token (PAT), which you can think of as your unique password for accessing the API.
 
@@ -123,7 +125,9 @@ curl https://app.asana.com/api/1.0/users/me \
   -H "Authorization: Bearer 0/123456789abcdef"
 ```
 
+<span class="description">
 We’ll use cURL, a command line[^1] program to make HTTP requests. MacOS and many Linux distributions have cURL pre-installed, and it’s [available for download](https://curl.haxx.se/dlwiz/?type=bin) on Windows and many other operating systems.  If you’re curious, you can learn more about cURL [in its own documentation](https://curl.haxx.se/docs/httpscripting.html). 
+</span>
 
 **Let’s do this:**
 
@@ -181,7 +185,9 @@ Asana has [client libraries](/docs/official-client-libraries) in several popular
   </script>
 </blockquote>
 
+<span class="description">
 You can quickly get started on Asana's API with the [API Explorer](/explorer). However, if you want a more robust experience hitting the API, we recommend using Postman. You can get started with the 'Run in Postman' button!
+</span>
 
 Once you have the collection, you should [create an environment](https://learning.getpostman.com/docs/postman/environments_and_globals/manage_environments/).
 

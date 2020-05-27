@@ -5,6 +5,7 @@
 
   var htmlPattern = /<[^>]*>/g;
   var loaded = false;
+  var previousMeta = null;
 
   var debounce = function(func, waitTime) {
     var timeout = false;
@@ -62,9 +63,8 @@
       }
 
       // Catch the initial load case
-      if (currentTop == scrollOffset && !loaded) {
+      if (!best && !loaded) {
         best = window.location.href.split("/docs/")[1];
-        loaded = true;
       }
 
       var $best;
@@ -74,7 +74,8 @@
         $best = $toc.find(".toc-link").first();
       }
 
-      if (!$best.hasClass("active")) {
+      if (!$best.hasClass("active") || !loaded) {
+        loaded = true;
         // .active is applied to the ToC link we're currently on, and its parent <ul>s selected by tocListSelector
         // .active-expanded is applied to the ToC links that are parents of this one
         $toc.find(".active").removeClass("active");
@@ -86,6 +87,20 @@
         $toc.find(tocListSelector).filter(".active").slideDown(150);
         if (window.history.replaceState) {
           window.history.replaceState(null, "", $best.attr('href') === "/docs/overview" ? "/docs" : $best.attr('href'));
+
+          // Update meta tag
+          if (previousMeta) {
+            previousMeta.remove();
+          }
+          var currentSection = $("#" + best).parent();
+          var descriptionHolder = currentSection.find(".description");
+
+          var newMeta = document.createElement('meta');
+          newMeta.name = "description";
+          newMeta.content = descriptionHolder ? descriptionHolder.text().replace(/(\r\n|\n|\r)/gm, "") : "";
+          $("head").append(newMeta);
+
+          previousMeta = newMeta;
         }
         var thisTitle = $best.data("title");
         if (thisTitle !== undefined && thisTitle.length > 0) {

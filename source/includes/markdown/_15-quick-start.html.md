@@ -162,9 +162,9 @@ $ node app.js
 When processes get complex in Asana there can begin to be work about work. This could be happening to you (or someone you love) if you find yourself spending time doing repetitive work such as triaging tasks, reminding people to do something, or adding/removing followers as you move a task through a workflow. 
 
 ### What we’re going to build
-<p class="description">
+<span class="description">
 In this guide, we will build a simple triage bot that will assign tasks. This is a common Asana use case with support inboxes or request projects. 
-</p>
+</span>
 
 If you want to skip ahead and see the code for the triage bot, it’s on Github in the Javascript folder of our [devrel-examples repo](https://github.com/Asana/devrel-examples).
 
@@ -252,7 +252,9 @@ print "Hello world! " + "My name is " + me['name'] + "!"
 
 ```
 
+<span class="description">
 To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
+</span>
 
 Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` in Python.
 
@@ -297,7 +299,9 @@ client.users.me()
 });
 ```
 
+<span class="description">
 To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
+</span>
 
 Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Javascript.
 
@@ -340,7 +344,9 @@ me = client.users.me
 puts "Hello world! " + "My name is " + me.name + "!"
 ```
 
+<p>
 To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
+</p>
 
 Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Ruby.
 

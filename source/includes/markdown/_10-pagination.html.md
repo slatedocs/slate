@@ -3,12 +3,12 @@
 
 ## Pagination
 
-<p class="description">
+<span class="description">
 Paginating requests for object sets that may be large is highly recommended. For requests that will return large result
 sets the API may truncate the result or timeout attempting to gather the data. Pagination ensures a more reliable
 experience by limiting requests to a smaller number of objects at a time, ultimately getting you the results faster;
 should there be more results, the API will return an offset that will allow you to access the next page.
-</p>
+</span>
 
 #### Strongly prefer paginated requests {#prefer-pagination}
 

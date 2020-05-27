@@ -10,9 +10,9 @@
 <body>All these new tasks are <em>really</em> getting disorganized, so <a data-asana-gid="4168112"/> just made the new <a data-asana-gid="5732985"/> project to help keep them organized. <strong>Everyone</strong> should start using the <a data-asana-gid="6489418" data-asana-project="5732985"/> when adding new tasks there.</body>
 ```
 
-<p class="description">
+<span class="description">
 The web product offers a number of rich formatting features when writing task notes, comments, project descriptions, and project status updates. These features include bold, italic, underlined, and monospaced text, as well as bulleted and numbered lists. Additionally, users can "@-mention" other users, tasks, projects, and many other objects within Asana to create links.
-</p>
+</span>
 
 The rich text field name for an object is equivalent to it's plain text field name prefixed with `html_`. The following object types in Asana support rich text:
 

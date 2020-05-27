@@ -6,9 +6,9 @@
 <a name="communication" class="jump-anchor"></a>
 ### Communicating about breaking changes
 
-<p class="description">
+<span class="description">
 Whenever possible, the Asana API aims to preserve backwards compatibility for its users. Apps you write on top of the API now should, in ideal situations, continue to work indefinitely. However, there are a few rare cases where breaking changes are required. For example:
-</p>
+</span>
 
 - When we identify a stability threat, we may need to partially limit or entirely deprecate the culprit feature in the API.
 - When making a change in a backwards compatible way results in a cluttered, brittle, and confusing interface to Asana.

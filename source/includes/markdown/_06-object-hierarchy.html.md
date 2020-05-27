@@ -5,9 +5,9 @@
 
 > ![Asana object hierarchy](https://luna1.co/b07faf.png)
 
-<p class="description">
+<span class="description">
 Asana is a work tracking and collaboration tool. This guide is designed to give developers building on Asana’s API a brief overview of how Asana is structured.  It’s not meant to be exhaustive and may be too basic for experienced Asana users, but read on if you're not a user of Asana who uses it regularly.  The intention is to describe the fundamental elements of Asana to help you scope apps and avoid common points of confusion.
-</p>
+</span>
 
 ### How work in Asana is organized
 
