@@ -135,7 +135,7 @@ curl -X POST "https://cloudmc_endpoint/rest/identity_providers" \
 }
 ```
 
-Attributes | &nbsp;
+Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the identity provider.
 `provider`<br/>*string* | The name of the provider. Possible values include the default providers (e.g GOOGLE), or CUSTOM for a custom user-defined provider.
@@ -144,7 +144,7 @@ Attributes | &nbsp;
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider.
 
-Attributes | &nbsp;
+Optional | &nbsp;
 ---------- | -----------
 `logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen.
 `css`<br/>*string* | Custom css for the login button of the identity provider.
@@ -219,7 +219,7 @@ curl -X POST "https://cloudmc_endpoint/rest/identity_providers/c84cfe41-929b-47c
 }
 ```
 
-Attributes | &nbsp;
+Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the identity provider.
 `provider`<br/>*string* | The name of the provider. Possible values include the default providers (e.g GOOGLE), or CUSTOM for a custom user-defined provider.
@@ -228,7 +228,7 @@ Attributes | &nbsp;
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider.
 
-Attributes | &nbsp;
+Optional | &nbsp;
 ---------- | -----------
 `logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen.
 `css`<br/>*string* | Custom css for the login button of the identity provider.
