@@ -34,42 +34,13 @@ Getting started with Slate is super easy! Simply press the green "use this templ
 Getting Started with Slate
 ------------------------------
 
-### Prerequisites
+To get started with Slate, please check out the Getting Started](https://github.com/slatedocs/slate/wiki#getting-started)
+section in our [wiki](https://github.com/slate/wiki).
 
-You're going to need:
-
- - **Linux or macOS** — Windows may work, but is unsupported.
- - **Ruby, version 2.3.1 or newer**
- - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
-
-### Getting Set Up
-
-1. Press the green "use this template" button at the top of this page.
-2. Follow the instructions to create a new copy of the Slate repository.
-3. Clone your repository (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
-4. `cd slate`
-5. Initialize and start Slate. You can either do this locally, or with Vagrant:
-
-```shell
-# either run this to run locally
-bundle install
-bundle exec middleman server
-
-# OR run this to run with vagrant
-vagrant up
-
-# OR run this to run with docker
-docker build . -t slate:latest # this only needs to be run once
-docker run -p 4567:4567 -v $(pwd)/source:/srv/slate/source slate:latest
-```
-
-You can now see the docs at http://localhost:4567. Whoa! That was fast!
-
-Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/slatedocs/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/slatedocs/slate/wiki/Deploying-Slate).
-
-### Note on JavaScript Runtime
-
-For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
+We support running Slate in three different ways:
+* [Natively](https://github.com/slatedocs/slate/wiki/Using-Slate-Natively)
+* [Using Vagrant](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Vagrant)
+* [Using Docker](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Docker)
 
 Companies Using Slate
 ---------------------------------
