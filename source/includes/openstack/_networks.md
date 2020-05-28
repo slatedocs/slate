@@ -8,7 +8,7 @@ Networks are provisioned to be able to control data flow to instances. To commun
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/networks"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -53,7 +53,7 @@ Retrieve a list of all networks in an environment.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/networks/a9e8861d-64a1-4126-b385-6e4db9a5814f"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

@@ -8,7 +8,7 @@ Routers route traffic between networks, including the public internet.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -53,7 +53,7 @@ Retrieve a list of routers in an OpenStack environment.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

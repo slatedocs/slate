@@ -14,7 +14,7 @@ Retrieves a list of pricings configured in the system.
 curl "https://cloudmc_endpoint/rest/pricings" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -114,7 +114,7 @@ Retrieve a pricing's details.
 curl "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

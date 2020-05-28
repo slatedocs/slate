@@ -13,7 +13,7 @@ curl -X POST \
 	"password": "sample_password"
 }'
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -46,7 +46,7 @@ curl -X POST \
 	}
 }'
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -74,7 +74,7 @@ curl -X POST \
   'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
   -H 'mc-api-key: your_api_key' 
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {    

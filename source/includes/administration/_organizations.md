@@ -14,7 +14,7 @@ Retrieves a list of organizations visible to the caller. In most cases, only the
 curl "https://cloudmc_endpoint/v1/organizations" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -83,7 +83,7 @@ Retrieve an organization's details.
 curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

@@ -16,7 +16,7 @@ curl -X GET \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/routers"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -69,7 +69,7 @@ curl -X GET \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/routers/0569972416436922364"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

@@ -8,7 +8,7 @@ Security group rules define the type of traffic that can access the instances as
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules?securitygroupid=f54f050b-01b2-4a73-b6e1-4e13a5566323"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -62,7 +62,7 @@ Retrieve a list of all security group rules in a security group.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules/655d3bcb-3f8a-4738-b50a-53bca43469b5"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

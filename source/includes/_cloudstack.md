@@ -23,7 +23,7 @@ and for listing entities, looks like:
 ## Tasks
 
 ```shell
-# The above command returns JSON structured like this:
+# The above command returns a JSON structured like this:
 ```
 ```json
 {

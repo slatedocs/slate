@@ -14,7 +14,7 @@ Example: If a user has a role with `env:<entity>:read` and `env:<entity>:create`
 curl "https://cloudmc_endpoint/rest/roles?v=v2&environment_id=4865a023-1dd5-45a3-a23d-e952ceb7a44a&filter_scope=ENV" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
