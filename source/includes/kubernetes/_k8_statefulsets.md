@@ -1,8 +1,8 @@
-### Stateful Sets
+## Stateful Sets
 
 <!-------------------- LIST STATEFUL SETS -------------------->
 
-#### List stateful sets
+### List stateful sets
 
 ```shell
 curl -X GET \
@@ -170,7 +170,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET A STATEFUL SET -------------------->
 
-#### Get a stateful sets
+### Get a stateful sets
 
 ```shell
 curl -X GET \
