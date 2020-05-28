@@ -72,7 +72,7 @@ Attributes | &nbsp;
 
 `POST /identity_providers`
 
-Create a new identity provider
+Create a new identity provider.
 
 ```shell
 # Creates a new identity provider
