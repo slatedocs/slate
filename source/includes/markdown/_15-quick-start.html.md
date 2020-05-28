@@ -248,7 +248,7 @@ client.options['client_name'] = "hello_world_python"
 me = client.users.me()
 
 # Print out your information
-print "Hello world! " + "My name is " + me['name'] + "!"
+print("Hello world! " + "My name is " + me['name'] + "!")
 
 ```
 
