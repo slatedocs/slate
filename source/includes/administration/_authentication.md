@@ -111,7 +111,6 @@ curl -X POST "https://cloudmc_endpoint/rest/identity_providers" \
   "data": {
     "provider": "CUSTOM",
     "displayName": "Google",
-    "id": "da33bf85-6ba3-4214-a258-9442de149eff",
     "connectionName": "CloudMC Google",
     "type": "OIDC",
     "parameters": [
@@ -223,12 +222,12 @@ Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the identity provider.
 `provider`<br/>*string* | The name of the provider. Possible values include the default providers (e.g GOOGLE), or CUSTOM for a custom user-defined provider.
-`displayName`<br/>*string* | The display name of the identity provider that will appear on the login screen.
-`connectionName`<br/>*string* | The connection name of the identity provider.
+`displayName`<br/>*string* | The display name of the identity provider that will appear on the login screen. If of a default provider type, this will be set with a default if not passed.
+`connectionName`<br/>*string* | The connection name of the identity provider. If of a default provider type, this will be set with a default if not passed.
+`logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
-`parameters`<br/>*Array* | A list of parameters associated with the identity provider.
+`parameters`<br/>*Array* | A list of parameters associated with the identity provider. The issuerURL will be set if of a default provider type.
 
 Optional | &nbsp;
 ---------- | -----------
-`logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen.
 `css`<br/>*string* | Custom css for the login button of the identity provider.
