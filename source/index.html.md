@@ -181,7 +181,7 @@ Make sure at most only two of the payment method are false and always use HTTPS 
 </aside>
 
 ```javascript
-// note: at most only two of the payment method are false
+// note: at most only two of the payment method can be false
 let params = 'username=' + username;
 params += (partner_tx_id !== null) ? '&partner_tx_id=' + partner_tx_id : '';
 params += (amount !== null) ? '&amount=' + amount : '';
@@ -203,16 +203,19 @@ Parameter | Type | Default Value | Description | Limitation
 username | String | - | The username used by partner for registration with OY! | -
 partner_tx_id | String | Auto generated | A unique transaction ID provided by partner | A partner_tx_id that has been succesfully paid cannot be used anymore under the same username
 amount | Integer | - | The amount of a transaction to be paid | The amount that can be processed is between IDR 15,000 and IDR 25,000,000
-sender_name | String | - | Name of the payer for a transaction | -
+sender_name | String | - | Name of the payer for a transaction | Only accepts alphabets (A-Z) and space as input (cannot be empty)
 sender_phone | Numeric | - | Phone number of the payer for a transaction | -
-sender_note | String | - | Additional notes from the payer for a transaction | -
-description | String | - | Description of the payment checkout link | -
+sender_note | String | - | Additional notes from the payer for a transaction | Only accepts alphabets (A-Z), numeric (0-9) and space as input
+description | String | - | Description of the payment checkout link | Only accepts alphabets (A-Z), numeric (0-9) and space as input
 is_open | String | TRUE | Enable open/closed amount transaction method | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
 step | String | - | Accessing specific page of the payment checkout URL. Possible values for this parameter: input-amount, input-personal-info, select-payment-method | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
+enable_payment_va | Boolean | Enable VA payment method for the payment checkout link | There should be at least one payment method enabled
+enable_payment_debit | Boolean | Enable debit card payment method for the payment checkout link | There should be at least one payment method enabled
+enable_payment_cc | Boolean | Enable credit card payment method for the payment checkout link | There should be at least one payment method enabled
 
 ### Sample payment checkout URL with all parameters defined:
 
-`https://pay.oyindonesia.com/v2?username=yourusername&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment-checkout-testing&is_open=false&step=select-payment-method`
+`https://pay.oyindonesia.com/v2?username=yourusername&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment%20checkout%20testing&is_open=false&step=select-payment-method&enable_payment_cc=false&enable_payment_debit=false`
 
 The above URL will produce a payment checkout link with a closed amount of IDR 50,000 with VA payment method only available and payer will be redirected to the payment method page upon accessing the URL.
 
@@ -282,10 +285,28 @@ An endpoint to retrieve and/or re-send the latest callback status of a transacti
 GET `https://partner.oyindonesia.com/api/payment-checkout/status`
 
 
-> To open Payment Checkout, use following code from your platform:
+> To retrieve a callback result for a particular transaction, use following code from your platform:
 
 ```shell
 curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner_tx_id=OY123456&send_callback=false' -H 'x-oy-username:yourusername' -H ' x-api-key:yourapikey'
+```
+
+> The above command returns JSON structured similar like this:
+
+```json
+{
+  "partner_tx_id": "partner000001",
+  "tx_ref_number": "1234567",
+  "amount": 15000,
+  "sender_name": "Joko Widodo",
+  "sender_phone": "+6281111111",
+  "sender_note": "Mohon dikirim segera",
+  "status": "success",
+  "settlement_type": "realtime",
+  "sender_bank": "008",
+  "payment_method": "DC",
+  "va_number" : ""
+}
 ```
 
 ### Request Headers
@@ -330,10 +351,10 @@ curl -X POST \
   https://partner.oyindonesia.com/api/payment-checkout/create \
   -H 'cache-control: no-cache' -H 'content-type: application/json' \
   -H 'x-api-key: apikeymu' -H 'x-oy-username: yourusername' \
-  -d '{"username":"yourusername","partner_tx_id":"AL003","sender_name":"AL B",
-        "sender_note":"note string API2","sender_phone": "087726272","checkout_url":"string",
-        "amount":15003,"is_open":false,"step":"select-payment-method","enable_payment_cc":false,
-        "enable_payment_va":true,"enable_payment_debit":false,"description":"description api 2"
+  -d '{"username":"testaccount","partner_tx_id":"ABC123456527","sender_name":"Roberto F",
+        "sender_note":"bill payment","sender_phone": "082114845847","checkout_url":"string",
+        "amount":75000,"is_open":false,"step":"select-payment-method","enable_payment_cc":false,
+        "enable_payment_va":true,"enable_payment_debit":false,"description":"payment for March 2020"
     }'
 ```
 
@@ -345,19 +366,19 @@ POST `https://partner.oyindonesia.com/api/payment-checkout/create`
 
 ```json
 {
-        "username":"justkhals",
+        "username":"testaccount",
         "partner_tx_id":"ABC123456527",
         "sender_name":"Roberto F",
-        "sender_note":"note str",
+        "sender_note":"bill payment",
         "sender_phone": "082114845847",
         "checkout_url":"string",
         "amount":75000,
         "is_open":false,
-        "step":"input-amount" ,
+        "step":"select-payment-method" ,
         "enable_payment_cc":false,
         "enable_payment_va":true,
         "enable_payment_debit":false,
-        "description":"description"
+        "description":"payment for March 2020"
 }
 ```
 
@@ -377,10 +398,10 @@ Parameters | Type | Description | Limitation
 username | String | The username used by partner for registration with OY! | -
 partner_tx_id | String | A unique transaction ID provided by partner. | A partner_tx_id that has been succesfully paid cannot be used anymore under the same username and only accepts alphanumerics.
 amount | Integer | The amount of a transaction to be paid. | The amount that can be processed is between IDR 15,000 and IDR 25,000,000.
-sender_name | String | Name of the payer for a transaction. | Only accept alphabets (cannot be empty).
+sender_name | String | Name of the payer for a transaction. | Only accepts alphabets (A-Z) and space as input and cannot be empty.
 sender_phone | Numeric | Phone number of the payer for a transaction. | Do not use special character (e.g. "+") and cannot be empty.
-sender_note | String | Additional notes from the payer for a transaction. | Cannot be empty string.
-description | String | Description of the payment checkout link. | -
+sender_note | String | Additional notes from the payer for a transaction. | Only accepts alphabets (A-Z), numeric (0-9) and space as input.
+description | String | Description of the payment checkout link. | Only accepts alphabets (A-Z), numeric (0-9) and space as input.
 is_open	| Boolean | Enable open/closed amount transaction method. | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
 step | String | Accessing specific page of the payment checkout URL. Possible values for this parameter are either (input-amount, input-personal-info, select-payment-method). | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
 enable_payment_va | Boolean | Enable VA payment method for the payment checkout link. | There should be at least one payment method enabled.
