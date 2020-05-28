@@ -8,7 +8,7 @@ Volumes are block-level storage devices that can be attached to instances.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -49,7 +49,7 @@ Attributes | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

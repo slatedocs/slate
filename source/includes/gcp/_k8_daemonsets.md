@@ -10,7 +10,7 @@ curl -X GET \
    "https://cloudmc_endpoint/v1/services/k8s/an_environment/daemonsets"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -82,7 +82,7 @@ curl -X GET \
    "https://cloudmc_endpoint/v1/services/k8s/an_environment/statefulsets/test-aerospike/auth"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

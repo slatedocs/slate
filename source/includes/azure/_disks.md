@@ -13,7 +13,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -75,7 +75,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -140,7 +140,7 @@ curl -X POST \
   "throughputInMBps": "200"
 }
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -266,7 +266,7 @@ curl -X POST \
   "lun" : 10
 }
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

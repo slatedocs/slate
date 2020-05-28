@@ -10,7 +10,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -148,7 +148,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -316,7 +316,7 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954&operation=rollback"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -418,7 +418,7 @@ curl -X POST \
    "keepHistory": true
 }
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```js
 {

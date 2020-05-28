@@ -7,7 +7,7 @@ Manage outbound traffic rules for isolated networks
 curl -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/egressrules"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -76,7 +76,7 @@ Query Parameters | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/egressrules/f1863d10-e7ec-4f17-8cdd-0e4046643b0b"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

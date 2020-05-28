@@ -14,7 +14,7 @@ Retrieves a list of product catalogs configured in the system.
 curl "https://cloudmc_endpoint/rest/product_catalogs" \
    -H "MC-Api-Key: your_api_key"
 ```s
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -117,7 +117,7 @@ Retrieve a product catalog's details.
 curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

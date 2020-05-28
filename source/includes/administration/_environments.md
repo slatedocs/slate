@@ -14,7 +14,7 @@ Environments allow you to manage resources of a specific service and to manage y
 curl "https://cloudmc_endpoint/v1/environments" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -72,7 +72,7 @@ Attributes | &nbsp;
 curl "https://cloudmc_endpoint/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
