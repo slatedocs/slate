@@ -1,5 +1,5 @@
 ## Authentication
-
+Configure methods of authentication for your organizations.
 
 
 <!-------------------- LIST IDPS -------------------->
