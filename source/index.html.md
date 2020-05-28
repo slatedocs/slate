@@ -143,7 +143,7 @@ Non-trial Account can register specific end point URL (web hook) to receive call
 ### Callback Parameters
 
 The data on the callback will be sent using JSON format via POST data to your web hook.
-Check here for example: [example](/?json#payment-result-callback)
+
 
 Parameter | Type | Description
 --------- | ---- | -----------
