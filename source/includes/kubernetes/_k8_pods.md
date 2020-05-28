@@ -8,7 +8,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/pods"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/pods"
 ```
 > The above command returns JSON structured like this:
 
@@ -237,7 +237,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/pods/my-aerospike-0/default"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/pods/my-aerospike-0/default"
 ```
 > The above command returns JSON structured like this:
 
@@ -466,7 +466,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/pods/my-aerospike-0/default"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/pods/my-aerospike-0/default"
 ```
 > The above command returns JSON structured like this:
 

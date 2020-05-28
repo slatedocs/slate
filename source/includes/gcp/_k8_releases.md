@@ -8,7 +8,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 > The above command returns JSON structured like this:
 
@@ -151,7 +151,7 @@ The information is not totally returned in the list. We filter out the manifest 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 > The above command returns JSON structured like this:
 
@@ -325,7 +325,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=rollback&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954&operation=rollback&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 > The above command returns JSON structured like this:
 
@@ -366,7 +366,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954?operation=upgrade&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954?operation=upgrade&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
    -d "request_body"
 ```
 > Request body examples:
@@ -421,7 +421,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=uninstall&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954&operation=uninstall&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
    -d "request_body"
 ```
 > Request body example:
