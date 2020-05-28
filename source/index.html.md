@@ -209,9 +209,9 @@ sender_note | String | - | Additional notes from the payer for a transaction | O
 description | String | - | Description of the payment checkout link | Only accepts alphabets (A-Z), numeric (0-9) and space as input
 is_open | String | TRUE | Enable open/closed amount transaction method | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
 step | String | - | Accessing specific page of the payment checkout URL. Possible values for this parameter: input-amount, input-personal-info, select-payment-method | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
-enable_payment_va | Boolean | Enable VA payment method for the payment checkout link | There should be at least one payment method enabled
-enable_payment_debit | Boolean | Enable debit card payment method for the payment checkout link | There should be at least one payment method enabled
-enable_payment_cc | Boolean | Enable credit card payment method for the payment checkout link | There should be at least one payment method enabled
+enable_payment_va | Boolean | - | Enable VA payment method for the payment checkout link | There should be at least one payment method enabled
+enable_payment_debit | Boolean | - | Enable debit card payment method for the payment checkout link | There should be at least one payment method enabled
+enable_payment_cc | Boolean | - | Enable credit card payment method for the payment checkout link | There should be at least one payment method enabled
 
 ### Sample payment checkout URL with all parameters defined:
 
