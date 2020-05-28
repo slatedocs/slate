@@ -17,7 +17,6 @@ curl -X GET \
   "data": [
     {
       "id": "test-aerospike/auth",
-      "replicaRatio": "1 / 1",
       "images": [
         "aerospike/aerospike-server:4.5.0.5"
       ],
@@ -37,98 +36,7 @@ curl -X GET \
         "uid": "0aeff29e-e33d-48da-b933-651a9070d58c"
       },
       "spec": {
-        "podManagementPolicy": "OrderedReady",
-        "replicas": 1,
-        "revisionHistoryLimit": 10,
-        "selector": {
-          "matchLabels": {
-            "app": "aerospike",
-            "release": "test"
-          }
-        },
-        "serviceName": "test-aerospike",
-        "template": {
-          "metadata": {
-            "annotations": {
-              "checksum/config": "0e07919467cc16f2c07ac99d0036405deafa06f7d3b430215915470b3a6ca631"
-            },
-            "labels": {
-              "app": "aerospike",
-              "release": "test"
-            }
-          },
-          "spec": {
-            "containers": [
-              {
-                "image": "aerospike/aerospike-server:4.5.0.5",
-                "imagePullPolicy": "IfNotPresent",
-                "name": "test-aerospike",
-                "ports": [
-                  {
-                    "containerPort": 3000,
-                    "name": "clients",
-                    "protocol": "TCP"
-                  },
-                  {
-                    "containerPort": 3002,
-                    "name": "mesh",
-                    "protocol": "TCP"
-                  },
-                  {
-                    "containerPort": 3003,
-                    "name": "info",
-                    "protocol": "TCP"
-                  }
-                ],
-                "readinessProbe": {
-                  "failureThreshold": 3,
-                  "initialDelaySeconds": 15,
-                  "periodSeconds": 10,
-                  "successThreshold": 1,
-                  "tcpSocket": {
-                    "port": 3000
-                  },
-                  "timeoutSeconds": 1
-                },
-                "resources": {},
-                "terminationMessagePath": "/dev/termination-log",
-                "terminationMessagePolicy": "File",
-                "volumeMounts": [
-                  {
-                    "mountPath": "/etc/aerospike",
-                    "name": "config-volume"
-                  }
-                ]
-              }
-            ],
-            "dnsPolicy": "ClusterFirst",
-            "restartPolicy": "Always",
-            "schedulerName": "default-scheduler",
-            "securityContext": {},
-            "terminationGracePeriodSeconds": 30,
-            "volumes": [
-              {
-                "configMap": {
-                  "defaultMode": 420,
-                  "items": [
-                    {
-                      "key": "aerospike.conf",
-                      "path": "aerospike.conf"
-                    }
-                  ],
-                  "name": "test-aerospike"
-                },
-                "name": "config-volume"
-              }
-            ]
-          }
-        },
-        "updateStrategy": {
-          "rollingUpdate": {
-            "partition": 0
-          },
-          "type": "RollingUpdate"
-        }
+        // ...
       },
       "status": {
         "collisionCount": 0,
@@ -163,14 +71,12 @@ Retrieve a list of all stateful sets in a given [environment](#administration-en
 | `metadata.uid` <br/>*object*               | The UUID of the stateful set                                    |
 | `spec`<br/>*object*                        | The specification used to create and run the stateful set       |
 | `status`<br/>*object*                      | The status information of the stateful set                      |
-| `status.readyReplicas`<br/>*integer*       | Total number of ready pods targeted by this deployment          |
-| `status.replicas`<br/>*integer*            | Total number of non-terminated pods targeted by this deployment |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
 <!-------------------- GET A STATEFUL SET -------------------->
 
-### Get a stateful sets
+### Get a stateful set
 
 ```shell
 curl -X GET \
@@ -206,98 +112,7 @@ curl -X GET \
       "uid": "0aeff29e-e33d-48da-b933-651a9070d58c"
     },
     "spec": {
-      "podManagementPolicy": "OrderedReady",
-      "replicas": 1,
-      "revisionHistoryLimit": 10,
-      "selector": {
-        "matchLabels": {
-          "app": "aerospike",
-          "release": "test"
-        }
-      },
-      "serviceName": "test-aerospike",
-      "template": {
-        "metadata": {
-          "annotations": {
-            "checksum/config": "0e07919467cc16f2c07ac99d0036405deafa06f7d3b430215915470b3a6ca631"
-          },
-          "labels": {
-            "app": "aerospike",
-            "release": "test"
-          }
-        },
-        "spec": {
-          "containers": [
-            {
-              "image": "aerospike/aerospike-server:4.5.0.5",
-              "imagePullPolicy": "IfNotPresent",
-              "name": "test-aerospike",
-              "ports": [
-                {
-                  "containerPort": 3000,
-                  "name": "clients",
-                  "protocol": "TCP"
-                },
-                {
-                  "containerPort": 3002,
-                  "name": "mesh",
-                  "protocol": "TCP"
-                },
-                {
-                  "containerPort": 3003,
-                  "name": "info",
-                  "protocol": "TCP"
-                }
-              ],
-              "readinessProbe": {
-                "failureThreshold": 3,
-                "initialDelaySeconds": 15,
-                "periodSeconds": 10,
-                "successThreshold": 1,
-                "tcpSocket": {
-                  "port": 3000
-                },
-                "timeoutSeconds": 1
-              },
-              "resources": {},
-              "terminationMessagePath": "/dev/termination-log",
-              "terminationMessagePolicy": "File",
-              "volumeMounts": [
-                {
-                  "mountPath": "/etc/aerospike",
-                  "name": "config-volume"
-                }
-              ]
-            }
-          ],
-          "dnsPolicy": "ClusterFirst",
-          "restartPolicy": "Always",
-          "schedulerName": "default-scheduler",
-          "securityContext": {},
-          "terminationGracePeriodSeconds": 30,
-          "volumes": [
-            {
-              "configMap": {
-                "defaultMode": 420,
-                "items": [
-                  {
-                    "key": "aerospike.conf",
-                    "path": "aerospike.conf"
-                  }
-                ],
-                "name": "test-aerospike"
-              },
-              "name": "config-volume"
-            }
-          ]
-        }
-      },
-      "updateStrategy": {
-        "rollingUpdate": {
-          "partition": 0
-        },
-        "type": "RollingUpdate"
-      }
+      // ...
     },
     "status": {
       "collisionCount": 0,
@@ -328,7 +143,5 @@ Retrieve a stateful set and all its info in a given [environment](#administratio
 | `metadata.uid` <br/>*object*               | The UUID of the stateful set                                    |
 | `spec`<br/>*object*                        | The specification used to create and run the stateful set       |
 | `status`<br/>*object*                      | The status information of the stateful set                      |
-| `status.readyReplicas`<br/>*integer*       | Total number of ready pods targeted by this deployment          |
-| `status.replicas`<br/>*integer*            | Total number of non-terminated pods targeted by this deployment |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
