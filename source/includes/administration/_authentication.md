@@ -150,14 +150,14 @@ Optional | &nbsp;
 
 <!-------------------- UPDATE IDPS -------------------->
 
-#### Update Identity Providr
+#### Update Identity Provider
 
 `POST /identity_providers/:id`
 
 Update an existing identity provider.
 
 ```shell
-# Creates a new identity provider
+# Updates an existing identity provider
 curl -X POST "https://cloudmc_endpoint/rest/identity_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
    -H "MC-Api-Key: your_api_key"
 ```
@@ -231,3 +231,30 @@ Required | &nbsp;
 Optional | &nbsp;
 ---------- | -----------
 `css`<br/>*string* | Custom css for the login button of the identity provider.
+
+<!-------------------- Delete IDPs -------------------->
+
+#### Delete Identity Provider
+
+`Delete /identity_providers/:id`
+
+Delete an existing identity provider.
+
+```shell
+# Deletes a specified identity provider
+curl -X DELETE "https://cloudmc_endpoint/rest/identity_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+  "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
+  "taskStatus": "SUCCESS"
+}
+```
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the identity provider deletion.
+`taskStatus` <br/>*string* | The status of the operation.
