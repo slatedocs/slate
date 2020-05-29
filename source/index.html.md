@@ -22,8 +22,9 @@ Tauros provides a simple and practical REST API to help you to automatically per
 
 Before making API calls consider the following:
 
+* Enable the developer mode in your profile to create an Api Key
 * All requests use the `application/json` content type and go over `https`.
-* The base url is `https://api.tauros.io/api/v1`.
+* The base url is `https://api.staging.tauros.io/api/v1` for staging environment and `https://api.tauros.io/api/v1` for production.
 * All requests are `GET` and `POST` requests methods and responses come in a default response json object with the result in the `data` field.
 * Check the `success` flag to ensure that your API call succeeded.
 * If something goes wrong look at the `msg` field. There you will find the error description.
@@ -80,7 +81,7 @@ API key can be obtained by log in to tauros if not 2FA enabled. But withdrawal p
 }
 ``` -->
 
-## Login with 2FA deactivated
+<!-- ## Login with 2FA deactivated
 ```shell
 curl -X POST https://api.tauros.io/api/v2/auth/signin/ \
 -H 'Content-Type: application/json' \
@@ -108,7 +109,7 @@ curl -X POST https://api.tauros.io/api/v2/auth/signin/ \
 -d '{"email": "example@mail.com", "password": "secure_pass"}'
 ```
 Login when the account has two factor authentication enabled is performed in two steps.
-The first step requires `email` and `password` and the endpoint will return a temporal `token` that must be provided in the second step along with your 2FA `code`.  
+The first step requires `email` and `password` and the endpoint will return a temporal `token` that must be provided in the second step along with your 2FA `code`.
 
 > The API call will response this:
 
@@ -161,7 +162,7 @@ Json Web Token (JWT) is configured to expire in 30 minutes, after that time, the
       "two_factor":true
     }
 }
-```
+```-->
 
 # Currencies [PUBLIC]
 <aside class="notice">
@@ -242,7 +243,7 @@ This endpoint returns all available currencies in Tauros, cryptocurrencies as we
 None
 
 # Wallet Operations
-<!-- ====================================================================================================== -->
+
 
 ## Get Deposit Address
 
@@ -419,7 +420,9 @@ This API call is used to retrieve your wallets balances, including their deposit
 
 * `pending`: Funds that will be added in your account due to an incoming transfer.
 
-* `frozen`: Frozen funds due to a limit order you have previously placed.
+* `frozen`: Frozen funds due to withdrawal in confirmation
+
+* `In_orders`: In_orders funds due to a limit order you have previously placed.
 
 
 ### HTTP Request
@@ -491,7 +494,7 @@ curl -X GET "https://api.tauros.io/api/v1/data/getbalance/?coin=btc" \
 ```shell
 TAUROS_API_KEY='your_api_key'
 
-curl -X GET "https://api.tauros.io/api/v1/data/transfershistory/?coin=btc&type=deposits" \   
+curl -X GET "https://api.tauros.io/api/v1/data/transfershistory/?coin=btc&type=deposits" \
 -H "Content-Type: application/json" \
 -H "Authorization: Token $TAUROS_API_KEY"
 ```
@@ -1048,13 +1051,13 @@ Returns the trading fees. See [Trading fees](https://tauros.io/fees).
 ```javascript
 import io from 'socket.io-client';
 // or
-let io = require('socket.io-client');
+const io = require('socket.io-client');
 
-const JWT = 'YOUR_JSON_WEB_TOKEN';
+const ApiKey = 'YOUR_API_KEY';
 
 
 // connect to your websocket
-const socket = io.connect(`wss://private-ws.coinbtr.com?token=${JWT}`);
+const socket = io.connect(`wss://private-ws.tauros.io?token=${ApiKey}`);
 
 socket.on('connect', () => {
   console.log("connected");
@@ -1073,10 +1076,10 @@ socket.on('notification', (notification) => {
 
 Tauros uses Web-Sockets in order to notify real-time events that occur in your account. The websocket endpoints are the following:
 
-* `private-ws.coinbtr.com` for production environment.
-* `private-ws-staging.coinbtr.com` for staging environment.
+* `private-ws.tauros.io` for production environment.
+* `private-ws-staging.tauros.io` for staging environment.
 
-We recommend to use [socket.io](https://socket.io) if using JavaScript. Installation:
+You need to use a [socket.io] client implementation (https://socket.io) if using JavaScript. Installation:
 
 If using yarn:
 
@@ -1162,7 +1165,7 @@ let io = require('socket.io-client');
 
 
 // connect to the websocket
-const socket = io.connect('wss://ws.coinbtr.com');
+const socket = io.connect('wss://ws.tauros.io');
 
 // Define a market you want to subscribe
 const market = 'btc-mxn';
@@ -1189,8 +1192,8 @@ socket.emit('unsubscribe', market);
 
 Tauros implements Web-Sockets in order to provide real-time market data from our trading engine. The websocket public endpoints are the following:
 
-* `ws.coinbtr.com` for production environment.
-* `ws-staging.coinbtr.com` for staging environment.
+* `ws.tauros.io` for production environment.
+* `ws-staging.tauros.io` for staging environment.
 
 We recommend to use [socket.io](https://socket.io) JavaScript. Installation:
 
@@ -1301,3 +1304,118 @@ The `data` field contains an array with the last trades in the following form:
 | v | String | Order value. |
 | s | Integer | Taker side. 1 indicates **BUY**, 0 indicates **SELL**. |
 | t | Integer | UTC timestamp with milliseconds precision. |
+
+#Webhooks
+## What is a webhook
+
+Webhooks may be setup to programmatically receive callbacks from Tauros. Webhook notifications are triggered when the specified event occurs, such as an order filled (OF) or a taker trade (TD), among others. You can setup and configure a webhook in the [Tauros Developer Section](https://tauros.io/develop).
+
+Tauros servers will make a POST http request to the specified URL with a JSON payload, and expect a HTTP 200 OK.
+
+## Type of notifications
+
+> Messages on this channel look like this:
+
+```javascript
+// Notification standard:
+{
+  "title": "NOTIFICATION_TITLE",
+  "description": "NOTIFICATION_DESCRIPTION"
+  "type": 'TYPE_OF_NOTIFICATION',
+  "date": '2019-02-20T03:05:56.810445Z',
+  "object": OBJECT // Order, Trade or Transfer object
+}
+```
+
+Webhook can be configurated to notify if some of the following events occur.
+
+Types of notifications:
+
+* Order placed (`OP`)
+* Order filled (`OF`)
+* Order closed (`OC`) ([by the user](#close-an-open-order))
+* New trade (`TD`)
+* New deposit or withdrawal (`TR`)
+
+The `order`, `trade` or `transfer` object is included in the `object` field.
+
+```javascript
+// Order partially filled notification sample
+{
+  "title": "Order filled",
+  "description": "Your BUY order has been partially filled"
+  "type": 'OF',
+  "date": '2019-02-20T03:05:56.810445Z',
+  "object": {
+    "amount": "0.0005",
+    "amount_paid": "100",
+    "amount_received": "0.0004995",
+    "closed_at": null,
+    "created_at": "2019-09-23 21:27:06.083978+00:00",
+    "fee_amount_paid": "0.5",
+    "fee_decimal": "0.00100000",
+    "fee_percent": "0.10000000",
+    "filled": "0.0005",
+    "id": 107487,
+    "initial_amount": "0.0010",
+    "initial_value": "200",
+    "is_open": true,
+    "left_coin": "BTC",
+    "market": "BTC-MXN",
+    "price": "200000.00",
+    "right_coin": "MXN",
+    "side": "BUY",
+    "value": "100"
+  }
+}
+```
+
+```javascript
+// Withdrawal notification sample
+{
+  "title": "New BTC withdrawal",
+   "description": "You have sent 0.001 BTC via Tauros Transfer",
+   "type": "TR",
+   "date": "2020-02-23 19:34:15.004078+00:00",
+   "object": {
+      "sender": "example1@mail.com",
+      "receiver": "emaple2@mail.com",
+      "coin": "BTC",
+      "coin_name": "Test Bitcoin",
+      "amount": "0.001",
+      "txId": null,
+      "confirmed": true,
+      "confirmed_at": "2020-02-23 19:34:14.901017+00:00",
+      "is_innerTransfer": true,
+      "address": "",
+      "explorer_link": null,
+      "fee_amount": "0",
+      "total_amount": "0.001",
+      "type": "withdrawal",
+      "description": "My part of papa johns pizza",
+      "id": 827
+  }
+}
+```
+
+```javascript
+// Taker trade notification sample
+{"title": "New trade",
+ "description": "New trade in BTC-MXN orderbook",
+ "type": "TD",
+ "date": "2020-02-23 19:38:49.679603+00:00",
+ "object": {
+    "market": "BTC-MXN",
+    "side": "BUY",
+    "amount_paid": "1990",
+    "amount_received": "0.00996",
+    "price": "199000.00",
+    "fee_amount": "0.00004",
+    "created_at": "2020-02-23 19:38:49.161057+00:00",
+    "left_coin": "BTC",
+    "right_coin": "MXN",
+    "filled_as": "taker",
+    "closed_at": "2020-02-23 19:38:49.161057+00:00"
+  }
+}
+```
