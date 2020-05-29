@@ -2,8 +2,6 @@
 
 The Trade Settlement API allows an Investment Manager to report trades which require settlement.
 
-The API is currently under construction.
-
 ## Trades
 
 Once an instrument has been created, it can then be traded. A trade can be submitted using [`POST /trades`](/#settlement-equity-post-trades).
