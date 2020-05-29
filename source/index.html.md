@@ -88,6 +88,7 @@ includes:
   - gcp/k8_pods
   - gcp/k8_statefulsets
   - gcp/k8_daemonsets
+  - gcp/k8_deployments
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/k8_namespaces
@@ -97,6 +98,7 @@ includes:
   - kubernetes/k8_pods
   - kubernetes/k8_statefulsets
   - kubernetes/k8_daemonsets
+  - kubernetes/k8_deployments
   - kubernetes/k8_releases
   - kubernetes/k8_charts
   - kubernetes/k8_namespaces
