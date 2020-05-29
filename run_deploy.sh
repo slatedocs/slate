@@ -13,7 +13,7 @@ rancher kubectl apply \
   -f .production/deployments/deployment.yaml \
   -f .production/services/web-service.yaml \
   -f .production/ingress/$CIRCLE_BRANCH.yaml \
-  --namespace=default
+  --namespace=api-$CIRCLE_BRANCH
 
 echo -e "${blue}\nDefault Deployment Success${noc}"
 

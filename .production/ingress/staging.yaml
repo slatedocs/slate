@@ -4,10 +4,10 @@ metadata:
   labels:
     io.coinbetter.ingress: master
   name: docs-app-tauros
-  namespace: api-master
+  namespace: api-staging
 spec:
   rules:
-  - host: docs.tauros.io
+  - host: docs-staging.tauros.io
     http:
       paths:
       - backend:
