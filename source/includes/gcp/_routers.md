@@ -126,3 +126,122 @@ Retrieve a cloud router in a given [environment](#administration-environments).
 | `bgp`<br/>_Object_               | BGP information specific to this router.                                                                                                     |
 | `bgpPeers`<br/>_Object_          | BGP information that is configured into the routing stack to establish BGP peering. _(Includes: `Peer ASN`, `Interface name`, `IP address`)_ |
 | `interfaces`<br/>_Array[Object]_ | Router interfaces. Each interface contains either one linked resource or IP address and IP address range.                                    |
+
+<!-------------------- CREATE A ROUTER -------------------->
+
+#### Create a router
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers"
+```
+
+> Request body example:
+
+```json
+{
+  "name": "cmc-c-router",
+  "shortNetwork": "cmc-vpc",
+  "shortRegion": "us-central1",
+  "bgp": {
+    "asn": 65510
+  }
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers</code>
+
+Create a new router
+
+| Required                    | &nbsp;                                                                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `name`<br/>_string_         | The display name of the router.                                                                                                 |
+| `shortRegion`<br/>_string_  | A short version of the region name.                                                                                             |
+| `shortNetwork`<br/>_string_ | A short version of the network name to which this router is attached to.                                                        |
+| `bgp.asn`<br/>_string_      | The BGP Autonomous System Number (ASN) Number that is to be assigned to this router. _Must be a valid ASN between 64512–65534_. |
+
+| Optional               | &nbsp;                                                                                   |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| `region`<br/>_string_  | Instead of the `shortRegion`, the long URI version of the region can also be provided.   |
+| `network`<br/>_string_ | Instead of the `shortNetwork`, the long URI version of the network can also be provided. |
+
+<!-------------------- ADD VPN TUNNEL INTERFACES -------------------->
+
+#### Add router interface(s)
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers/5333546534174463697?operation=addvpntunnelinterface"
+```
+
+> Request body example:
+
+```json
+{
+  "interfaces": [
+    {
+      "name": "if-cmc-srx-bgp-interface",
+      "ipRange": "169.254.13.1/30",
+      "linkedVpnTunnel": "https://www.googleapis.com/compute/v1/projects/cmc-junniper-lab-ses/regions/us-central1/vpnTunnels/cmc-srx-vpn-tunnel"
+    }
+  ]
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers/:id?operation=addvpntunnelinterface</code>
+
+Add one or more interfaces associated to existing [Vpn Tunnel(s)](#gcp-vpn-tunnels).
+
+| Required                                     | &nbsp;                                                                                                                                                                            |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `interfaces`<br/>_Array_                     | An array of interfaces to be added to the selected router.                                                                                                                        |
+| `interfaces[*].name`<br/>_string_            | The name of the interface on the router.                                                                                                                                          |
+| `interfaces[*].ipRange`<br/>_string_         | IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, _for example: 169.254.0.1/30_. |
+| `interfaces[*].linkedVpnTunnel`<br/>_string_ | URI of the linked VPN tunnel, which must be in the same region as the router.                                                                                                     |
+
+<!-------------------- ADD BGP PEERS -------------------->
+
+#### Add BGP peer(s)
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers/5333546534174463697?operation=addbgppeer"
+```
+
+> Request body example:
+
+```json
+{
+  "bgpPeers": [
+    {
+      "name": "juniper-srx-bgp-5th-p2",
+      "interfaceName": "if-juniper-srx-bgp-3rd-exp",
+      "ipAddress": "169.254.13.1",
+      "peerIpAddress": "169.254.13.2",
+      "peerAsn": 64999
+    }
+  ]
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers/:id?operation=addbgppeer</code>
+
+Add one or more BGP peers associated to existing router interface(s)
+
+| Required                                 | &nbsp;                                                                                       |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `bgpPeers`<br/>_Array_                   | An array of BGP peers to be added to the selected router.                                    |
+| `bgpPeers[*].name`<br/>_string_          | The name of the BGP peer association.                                                        |
+| `bgpPeers[*].interfaceName`<br/>_string_ | The router interface through which this BGP peering will be realized.                        |
+| `bgpPeers[*].ipAddress`<br/>_string_     | The router's IP address on the above interface for this BGP peering. Only IPv4 is supported. |
+| `bgpPeers[*].peerIpAddress`<br/>_string_ | The peer IP address to which this BGP peering tries to connect to. Only IPv4 is supported.   |
+| `bgpPeers[*].peerAsn`<br/>_string_       | Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.       |
