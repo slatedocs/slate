@@ -2,7 +2,7 @@
 
 ## Version 2.6.1
 
-*May 28, 2020*
+*May 30, 2020*
 
 * __[security]__ update child dependency activesupport in Gemfile.lock to 5.4.2.3
 * Update Middleman in Gemfile.lock to 4.3.7
