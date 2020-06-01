@@ -95,7 +95,7 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/CreateOrderRequest"
-            },
+            }
           }
         }],
         "responses": {
