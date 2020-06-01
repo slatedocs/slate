@@ -40,7 +40,7 @@ the **client ID**, an application's username, and the **client secret**, an appl
 
 2. A user will arrive at your application and click a button that says "Connect with Asana."
 
-3. This takes the customer to the [User Authorization Endpoint](/docs/user-authorization), which displays a page
+3. This takes the customer to the [User Authorization Endpoint](/docs/user-authorization-endpoint), which displays a page
 asking the user if they would like to grant access to your third-party application.
 
 4. If the customer clicks "Allow", they are redirected back to the application, bringing along a special code as a
