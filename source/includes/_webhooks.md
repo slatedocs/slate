@@ -83,8 +83,6 @@ The webhook `POST` body will be in the following format.
 The following event `type`s will be supported, along with the content as `JSON`.
 
 ## INVESTOR_PERSONAL_DETAILS_REGISTERED
-This is fired whenever personal details are registered.
-
 ```json
 {
   "title": "string",
@@ -97,9 +95,9 @@ This is fired whenever personal details are registered.
 }
 ````
 
-## INVESTOR_CREATED
-This is fired whenever a new investor is registered.
+This is fired whenever personal details are registered.
 
+## INVESTOR_CREATED
 ```json
 {
   "clientId": "string",
@@ -123,30 +121,18 @@ This is fired whenever a new investor is registered.
   }
 }
 ```
+This is fired whenever a new investor is registered.
 
 ## INVESTOR_KYC_STATUS_CHANGE
-This is fired whenever an investor's KYC status changes eg from `REFERRED` to `VERIFIED`.
-
 ```json
 {
   "clientId": "string",
   "newKycStatus": "string"
 }
 ```
+This is fired whenever an investor's KYC status changes eg from `REFERRED` to `VERIFIED`.
 
 ## INVESTOR_FUNDS_RECEIVED
-This is fired whenever investor funds are cleared into their account eg for a bank transfer.
-
-<aside class="notice">
-If using the batch payments api this event will not trigger but instead a `BATCH_UPDATE` event will be generated once all payments have been received.
-</aside>
-
-<aside class="notice">
-If redirected = true, the accountType will reflect which account the money has been credited to. The intendedAccountType will
-contain details of where the investor wished to deposit. This scenario is most likely when depositing into an ISA and the ISA subscription
-status is preventing deposits.
-</aside>
-
 ```json
 {
   "clientId": "string",
@@ -167,10 +153,25 @@ status is preventing deposits.
   "sourceType": "string"
 }
 ```
+This is fired whenever investor funds are cleared into their account eg for a bank transfer.
+
+<aside class="notice">
+If using the batch payments api this event will not trigger but instead a `BATCH_UPDATE` event will be generated once all payments have been received.
+</aside>
+
+<aside class="notice">
+If redirected = true, the accountType will reflect which account the money has been credited to. The intendedAccountType will
+contain details of where the investor wished to deposit. This scenario is most likely when depositing into an ISA and the ISA subscription
+status is preventing deposits.
+</aside>
+
+### Valid Source Types
+DEPOSIT<br>
+BONUS<br>
+CAPITAL_REPAYMENT<br>
+INTEREST_REPAYMENT
 
 ## ISA_AUTO_REPAIRED
-This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.
-
 ```json
 {
   "clientId": "string",
@@ -180,10 +181,9 @@ This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscri
   }
 }
 ```
+This is fired whenever an oversubscribed ISA has been auto repaired. Oversubscription happens when an investor deposits more than their allowed subscription limit. The overflowing amount will be automatically moved to the investment account.
 
 ## INVESTOR_FUNDS_WITHDRAWN
-This is fired whenever an investor withdraws funds.
-
 ```json
 {
   "clientId": "string",
@@ -195,10 +195,9 @@ This is fired whenever an investor withdraws funds.
   }
 }
 ```
+This is fired whenever an investor withdraws funds.
 
 ## INVESTMENT_QUEUED
-This is fired whenever an investment is queued. Bond Management API only.
-
 ```json
 {
   "clientId": "string",
@@ -210,30 +209,92 @@ This is fired whenever an investment is queued. Bond Management API only.
   "productTermId": "string"
 }
 ```
+This is fired whenever an investment is queued. Bond Management API only.
 
 ## INVESTMENT_FULFILLED
-This is fired whenever an investment is fulfilled. Bond Management API only.
-
 ```json
 {
   "clientId": "string",
   "investmentId": "string"
 }
 ```
+This is fired whenever an investment is fulfilled. Bond Management API only.
 
 ## TRANSFER_IN_CREATED
-This is fired whenever a transfer in is created.
-
 ```json
 {
   "clientId": "string",
   "transferInId": "string"
 }
 ```
+This is fired whenever a transfer in is created.
 
 ## TRANSFER_OUT_CREATED
+```json
+{
+  "transferOut": {
+    "id": "string",
+    "isaId": "string",
+    "originatorId": "string",
+    "originatorName": "string",
+    "clientId": "string",
+    "workflowId": "string",
+    "isaManager": {
+      "name": "string",
+      "address": {
+        "lineOne": "string",
+        "lineTwo": "string",
+        "lineThree": "string",
+        "townCity": "string",
+        "region": "string",
+        "country": "string",
+        "postcode": "string"
+      },
+      "accountNumber": "string",
+      "sortCode": "string",
+      "bankReference": "string"
+    },
+    "transferDetails": {
+      "dateTAFReceived": "2017-12-12",
+      "transferDateFromNewIsaManager": "2017-12-12",
+      "transferAll": "boolean",
+      "transferCurrentYearSubscriptions": "boolean",
+      "transferPriorYearSubscriptions": "boolean",
+      "transferAllPriorYearSubscriptions": "boolean",
+      "priorYearAmountToTransfer": {
+        "amount": 0.00,
+          "currency": "GBP"
+      },
+      "transferOutFee": {
+        "amount": 0.00,
+        "currency": "GBP"
+      }
+    },
+    "transferOutFee": {
+      "id": "string",
+      "transferOutId": "string",
+      "transferOutFee": {
+        "amount": 0.00,
+        "currency": "GBP"
+      },
+      "dateTime": "2017-12-12T14:34:23"
+    },
+    "dateTimeStarted": "2017-12-12T14:34:23",
+    "amountToTransfer": {
+      "amount": 0.00,
+      "currency": "GBP"
+    },
+    "amountSubscribedInCurrentYear": {
+      "amount": 0.00,
+      "currency": "GBP"
+    },
+    "dateOfFirstSubscriptionInCurrentYear": "2017-12-12"
+  }
+}
+```
 This is fired whenever a transfer out is requested.
 
+## TRANSFER_OUT_COMPLETED
 ```json
 {
   "transferOut": {
@@ -296,76 +357,9 @@ This is fired whenever a transfer out is requested.
   }
 }
 ```
-
-## TRANSFER_OUT_COMPLETED
 This is fired whenever a transfer out is completed.
 
-```json
-{
-  "transferOut": {
-    "id": "string",
-    "isaId": "string",
-    "originatorId": "string",
-    "originatorName": "string",
-    "clientId": "string",
-    "workflowId": "string",
-    "isaManager": {
-      "name": "string",
-      "address": {
-        "lineOne": "string",
-        "lineTwo": "string",
-        "lineThree": "string",
-        "townCity": "string",
-        "region": "string",
-        "country": "string",
-        "postcode": "string"
-      },
-      "accountNumber": "string",
-      "sortCode": "string",
-      "bankReference": "string"
-    },
-    "transferDetails": {
-      "dateTAFReceived": "2017-12-12",
-      "transferDateFromNewIsaManager": "2017-12-12",
-      "transferAll": "boolean",
-      "transferCurrentYearSubscriptions": "boolean",
-      "transferPriorYearSubscriptions": "boolean",
-      "transferAllPriorYearSubscriptions": "boolean",
-      "priorYearAmountToTransfer": {
-        "amount": 0.00,
-          "currency": "GBP"
-      },
-      "transferOutFee": {
-        "amount": 0.00,
-        "currency": "GBP"
-      }
-    },
-    "transferOutFee": {
-      "id": "string",
-      "transferOutId": "string",
-      "transferOutFee": {
-        "amount": 0.00,
-        "currency": "GBP"
-      },
-      "dateTime": "2017-12-12T14:34:23"
-    },
-    "dateTimeStarted": "2017-12-12T14:34:23",
-    "amountToTransfer": {
-      "amount": 0.00,
-      "currency": "GBP"
-    },
-    "amountSubscribedInCurrentYear": {
-      "amount": 0.00,
-      "currency": "GBP"
-    },
-    "dateOfFirstSubscriptionInCurrentYear": "2017-12-12"
-  }
-}
-```
-
 ## TRANSFER_IN_FUNDS_RECEIVED
-This is fired whenever the funds for a transfer in are received.
-
 ```json
 {
   "clientId": "string",
@@ -376,19 +370,17 @@ This is fired whenever the funds for a transfer in are received.
   }
 }
 ```
+This is fired whenever the funds for a transfer in are received.
 
 ## ISA_PROVISIONALLY_OPENED
-This is fired whenever an ISA is opened.
-
 ```json
 {
   "clientId": "string"
 }
 ```
+This is fired whenever an ISA is opened.
 
 ## INVESTMENT_PAYOUT_EVENT
-This is fired whenever a repayment is distributed to an investor's account. Bond Management API only.
-
 ```json
 {
   "investmentPayouts" : [ {
@@ -410,10 +402,9 @@ This is fired whenever a repayment is distributed to an investor's account. Bond
   }
 }
 ```
+This is fired whenever a repayment is distributed to an investor's account. Bond Management API only.
 
 ## FUNDS_REQUESTED
-This is fired whenever repayment funds are requested from the investment manager. Bond Management API only.
-
 ```json
 {
   "transactions" : [ {
@@ -435,10 +426,9 @@ This is fired whenever repayment funds are requested from the investment manager
   "bankReference" : "string"
 }
 ```
+This is fired whenever repayment funds are requested from the investment manager. Bond Management API only.
 
 ## FUNDS_RECEIVED
-This is fired whenever repayment funds are received from the investment manager.
-
 ```json
 {
   "reference" : "string",
@@ -448,10 +438,9 @@ This is fired whenever repayment funds are received from the investment manager.
   }
 }
 ```
+This is fired whenever repayment funds are received from the investment manager.
 
 ## BANK_ACCOUNT_DETAILS_STATUS_CHANGED
-This is fired whenever a set of bank account details are "ENABLED"/"DISABLED", as displayed by their status.
-
 ```json
 {
   "id" : "string",
@@ -461,10 +450,13 @@ This is fired whenever a set of bank account details are "ENABLED"/"DISABLED", a
   "status" : "string"
 }
 ```
+When registering bank account details using
+<a href="/#payments-manager-post-platformapi-bankaccountdetails">/platformApi/bankAccountDetails</a>
+Goji will perform verification of these account details and once validated the details will be ENABLED or DISABLED.
+This is fired whenever the status of the bank account details changes.
+
 
 ## COMPANY_REGISTRATION_UPDATE
-This is fired when the status of the company registration state changes. 
-
 ```json
 {
   "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
@@ -475,10 +467,9 @@ This is fired when the status of the company registration state changes.
   }
 }
 ```
+This is fired when the status of the company registration state changes.
 
 ## WALLET_CREATED
-This is fired whenever a wallet is created.
-
 ```json
 {
   "walletId" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
@@ -491,14 +482,9 @@ This is fired whenever a wallet is created.
   }
 }
 ```
+This is fired whenever a wallet is created.
 
 ## WALLET_FUNDS_RECEIVED (deprecated)
-
-Note: This webhook is now deprecated and has been replaced by the `WALLET_TRANSFER_UPDATE` webhook below. 
-Existing users of this webhook can continue to use it, however, it is recommended to move to the `WALLET_TRANSFER_UPDATE` webhook.
-
-This is fired when funds are received into a wallet.
-
 ```json
 {
   "walletId" : "3d9ca033-eb05-459f-9f70-1139d2e2b213",
@@ -516,27 +502,12 @@ This is fired when funds are received into a wallet.
 }
 ```
 
+Note: This webhook is now deprecated and has been replaced by the `WALLET_TRANSFER_UPDATE` webhook below.
+Existing users of this webhook can continue to use it, however, it is recommended to move to the `WALLET_TRANSFER_UPDATE` webhook.
+
+This is fired when funds are received into a wallet.
+
 ## WALLET_TRANSFER_UPDATE
-
-This webhook replaces the now deprecated `WALLET_FUNDS_RECEIVED` endpoint.
-Users of the `WALLET_FUNDS_RECEIVED` endpoint can continue to use it, however, it is recommended to move to this webhook. 
-For new users, please integrate against this webhook instead.
-
-This is fired when funds are transfered into or out of a wallet. 
-
-There are three statuses that can be returned in a 'WALLET_TRANSFER_UPDATE' webhook. These are:
-
-(1) REQUESTED - this status is set when a request to move funds out of a wallet has been acknowledged.
-
-(2) CLEARED - this status is set when:
-
-  (a) funds are confirmed to have successfully left a wallet.
-  
-  (b) funds are confirmed to have successfully arrived into a wallet. 
-  
-(3) FAILED - this status is set when a request to move funds has failed. 
-
-
 ```json
 {
   "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
@@ -562,10 +533,25 @@ There are three statuses that can be returned in a 'WALLET_TRANSFER_UPDATE' webh
 }
 ```
 
-## TRADE_SETTLEMENT
-This event is fired when a trade request (available as part of the Equities API) has reached a terminal state. 
-E.g. settles successfully
+This webhook replaces the now deprecated `WALLET_FUNDS_RECEIVED` endpoint.
+Users of the `WALLET_FUNDS_RECEIVED` endpoint can continue to use it, however, it is recommended to move to this webhook. 
+For new users, please integrate against this webhook instead.
 
+This is fired when funds are transfered into or out of a wallet. 
+
+There are three statuses that can be returned in a 'WALLET_TRANSFER_UPDATE' webhook. These are:
+
+(1) REQUESTED - this status is set when a request to move funds out of a wallet has been acknowledged.
+
+(2) CLEARED - this status is set when:
+
+  (a) funds are confirmed to have successfully left a wallet.
+  
+  (b) funds are confirmed to have successfully arrived into a wallet. 
+  
+(3) FAILED - this status is set when a request to move funds has failed. 
+
+## TRADE_SETTLEMENT
 ```json
 {
   "id": "99a41761-6629-47a2-8087-23961b1b059b",
@@ -596,7 +582,7 @@ E.g. settles successfully
           "accountType": "ORIGINATOR"
         },
         "fees": [
-          
+
         ]
       },
       "price": {
@@ -610,6 +596,9 @@ E.g. settles successfully
   }
 }
 ```
+
+This event is fired when a trade request (available as part of the Equities API) has reached a terminal state.
+E.g. settles successfully
 
 ## DIVIDEND_UPDATE
 
@@ -661,7 +650,6 @@ This event is fired two times in the lifecycle of a dividend post request:
 | totalReceived       | Number    | Number     | Total batch payments has been received by the investors.      |
 
 ## BATCH_UPDATE
-
 ```json
 {
   "id": "6d9fc50e-de1b-4855-8c03-ae8a6093d91b",
@@ -708,8 +696,6 @@ This event is fired when an update related to a bulk payment request occurs. E.g
 | totalReceived       | Number    | Number     | Total batch payments has been received by the investors.      |
 
 ## ACCOUNT_FEE_PROCESSED
-This is fired when account fees have been processed
-
 ```json
 {
   "clientId": "string",
@@ -724,4 +710,7 @@ This is fired when account fees have been processed
   "clearedDateTime": "2017-12-12T14:34:23"
 }
 ```
+
+This is fired when account fees have been processed
+
 
