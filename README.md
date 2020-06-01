@@ -34,7 +34,7 @@ Getting started with Slate is super easy! Simply press the green "use this templ
 Getting Started with Slate
 ------------------------------
 
-To get started with Slate, please check out the Getting Started](https://github.com/slatedocs/slate/wiki#getting-started)
+To get started with Slate, please check out the [Getting Started](https://github.com/slatedocs/slate/wiki#getting-started)
 section in our [wiki](https://github.com/slate/wiki).
 
 We support running Slate in three different ways:
