@@ -92,9 +92,9 @@ Our nonce is implemented as a counter that must be unique and must increase with
 
 ## Signing a Message
 ```shell
-API_URL=https://moises.coinbtr.com
-API_KEY="2b32f07efa786aef006f03bfbdb141265bbd3352"
-API_SECRET="c0e745205b9cd03f004c9d09d50ae06a120a86a76b0e9e26550749837aceebb2"
+API_URL=https://api.staging.tauros.io
+API_KEY="TAUROS_API_KEY"
+API_SECRET="TAUROS_API_SECRET"
 
 NONCE=$(date +%s)
 
