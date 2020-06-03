@@ -953,8 +953,6 @@ curl -X GET "https://api.tauros.io/api/v1/trading/history/" \
 ```
 This endpoint retrieves your trading history.
 
-The `all` field contains maker and taker history ordered by most recent. Filtering by `market` is optional.
-
 ### HTTP Request
 `GET /v2/trading/my-trades/<market>/`
 
