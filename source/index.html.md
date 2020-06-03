@@ -783,7 +783,7 @@ curl -X POST "https://api.tauros.io/api/v1/trading/placeorder/" \
 ```
 You can place two types of orders: `limit` and `market`. Orders can be placed only if your wallet has enough funds. Once an order is placed, your wallet funds will be frozen. If you cancel your order, the associated funds will be restored. If you cancel an open order that has been partially filled the exchanged funds will not be restored.
 ### HTTP Request
-`POST /trading/placeorder/`
+`POST /v1/trading/placeorder/`
 
 ### Body Parameters
 
@@ -792,10 +792,11 @@ You can place two types of orders: `limit` and `market`. Orders can be placed on
 | market | String | Yes | Market where your order will be placed (e.g. `btc-mxn`). |
 | amount | String or Float | Yes | Amount of coins to trade. |
 | side | String | Yes | `buy` or `sell`. |
-| type | String | Yes | `market` or `limit`. Default is `limit`. |
-| price | String | Yes | Order price at which you wish to exchange your coins. Required only for `limit` orders. |
-| is_amount_value | Boolean | No | Designated whether the provided `amount` is the order amount or order value. |
+| price | String or Float| Yes* | Order price at which you wish to exchange your coins. |
+| type | String | No | `market` or `limit`. Default is `limit`. |
+| is_amount_value | Boolean | No | Designates whether the provided `amount` is the order amount or order value. |
 
+* Required only for limit orders
 ## List my open orders
 <!-- ```shell
 TAUROS_API_KEY='your_api_key'
