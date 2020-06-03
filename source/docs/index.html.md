@@ -2,6 +2,11 @@
 title: Asana
 language_tabs:
   - shell: ' curl'
+  - javascript--nodejs: ' node'
+  - python: ' python'
+  - java: ' java'
+  - php: ' php'
+  - ruby: ' ruby'
 toc_footers: []
 includes:
   - markdown/05-basic-concepts.html.md

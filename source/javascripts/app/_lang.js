@@ -40,8 +40,10 @@ under the License.
     window.recacheHeights();
 
     // scroll to the new location of the position
-    if ($(window.location.hash).get(0)) {
-      $(window.location.hash).get(0).scrollIntoView(true);
+    var splitPath = window.location.href.split('/');
+    var section = $("#" + splitPath[splitPath.length - 1]).get(0);
+    if (section) {
+      section.scrollIntoView(true);
     }
   }
 
@@ -122,11 +124,11 @@ under the License.
   // if a button is clicked, add the state to the history
   function pushURL(language) {
     if (!history) { return; }
-    var hash = window.location.hash;
-    if (hash) {
-      hash = hash.replace(/^#+/, '');
-    }
-    history.pushState({}, '', '?' + generateNewQueryString(language));
+    // var hash = window.location.hash;
+    // if (hash) {
+    //   hash = hash.replace(/^#+/, '');
+    // }
+    //history.pushState({}, '', '?' + generateNewQueryString(language));
 
     // save language as next default
     localStorage.setItem("language", language);

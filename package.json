@@ -1,0 +1,25 @@
+{
+  "name": "developer-docs",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <img src=\"https://luna1.co/984202.png\" alt=\"Asana: API Documentation\" width=\"264\">   <br>   <br>   <br>   <a href=\"https://travis-ci.org/lord/slate\"><img src=\"https://travis-ci.org/lord/slate.svg?branch=master\" alt=\"Build Status\"></a> </p>",
+  "main": "pull_code_samples.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asana/developer-docs.git"
+  },
+  "author": "Ross Grambo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Asana/developer-docs/issues"
+  },
+  "homepage": "https://github.com/Asana/developer-docs#readme",
+  "dependencies": {
+    "yaml": "^1.10.0"
+  }
+}

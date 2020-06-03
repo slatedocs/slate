@@ -4,7 +4,7 @@
 <section class="full-section">
 <h1 id="asana">API Reference</h1>
 
-> Scroll down for example requests and responses.
+> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
 <span class="description">
 This is the interface for interacting with the [Asana Platform](https://developers.asana.com). Our API reference is generated from our [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
@@ -39,11 +39,58 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/attachments/{attachment_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.attachments.getAttachment(attachmentGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.attachments.get_attachment(attachment_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.attachments.get_attachment(attachment_gid: 'attachment_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Attachment result = client.attachments.getAttachment(attachmentGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->attachments->getAttachment($attachment_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -110,11 +157,58 @@ Get the full record for a single attachment.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/attachments/{attachment_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.attachments.deleteAttachment(attachmentGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.attachments.delete_attachment(attachment_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.attachments.delete_attachment(attachment_gid: 'attachment_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.attachments.deleteAttachment(attachmentGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->attachments->deleteAttachment($attachment_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -173,11 +267,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.attachments.getAttachmentsForTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.attachments.get_attachments_for_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.attachments.get_attachments_for_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Attachment> result = client.attachments.getAttachmentsForTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->attachments->getAttachmentsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -234,12 +375,62 @@ Returns the compact records for all attachments on the task.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Content-Type: multipart/form-data' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.attachments.createAttachmentForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.attachments.create_attachment_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.attachments.create_attachment_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Attachment result = client.attachments.createAttachmentForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->attachments->createAttachmentForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -393,12 +584,62 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.batchapi.createBatchRequest({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.batch_api.create_batch_request({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.batch_api.create_batch_request(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.batchapi.createBatchRequest()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->batchapi->createBatchRequest(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -618,12 +859,62 @@ Custom Fields are a complex feature of the Asana platform, and their access in t
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/custom_fields \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.createCustomField({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.create_custom_field({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.create_custom_field(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+CustomField result = client.customfields.createCustomField()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->createCustomField(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -783,11 +1074,58 @@ The identifier format will always have a precision of 0.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.getCustomField(customFieldGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.get_custom_field(custom_field_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.get_custom_field(custom_field_gid: 'custom_field_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+CustomField result = client.customfields.getCustomField(customFieldGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->getCustomField($custom_field_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -876,12 +1214,62 @@ type-specific custom field definitions.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.updateCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.update_custom_field(custom_field_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.update_custom_field(custom_field_gid: 'custom_field_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+CustomField result = client.customfields.updateCustomField(customFieldGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->updateCustomField($custom_field_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -1037,11 +1425,58 @@ The identifier format will always have a precision of 0.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.deleteCustomField(customFieldGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.delete_custom_field(custom_field_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.delete_custom_field(custom_field_gid: 'custom_field_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.customfields.deleteCustomField(customFieldGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->deleteCustomField($custom_field_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -1100,11 +1535,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.getCustomFieldsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.get_custom_fields_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.get_custom_fields_for_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<CustomField> result = client.customfields.getCustomFieldsForWorkspace(workspaceGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->getCustomFieldsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -1190,12 +1672,62 @@ Returns a list of the compact representation of all of the custom fields in a wo
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.createEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.create_enum_option_for_custom_field(custom_field_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.create_enum_option_for_custom_field(custom_field_gid: 'custom_field_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.customfields.createEnumOptionForCustomField(customFieldGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->createEnumOptionForCustomField($custom_field_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -1275,12 +1807,62 @@ Returns the full record of the newly created enum option.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.insertEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.insert_enum_option_for_custom_field(custom_field_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.insert_enum_option_for_custom_field(custom_field_gid: 'custom_field_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.customfields.insertEnumOptionForCustomField(customFieldGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->insertEnumOptionForCustomField($custom_field_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -1353,12 +1935,62 @@ Locked custom fields can only be reordered by the user who locked the field.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfields.updateEnumOption(enumOptionGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_fields.update_enum_option(enum_option_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_fields.update_enum_option(enum_option_gid: 'enum_option_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.customfields.updateEnumOption(enumOptionGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfields->updateEnumOption($enum_option_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -1450,11 +2082,58 @@ Custom fields are attached to a particular project with the Custom Field Setting
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfieldsettings.getCustomFieldSettingsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_field_settings.get_custom_field_settings_for_project(project_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_field_settings.get_custom_field_settings_for_project(project_gid: 'project_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<CustomFieldSetting> result = client.customfieldsettings.getCustomFieldSettingsForProject(projectGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfieldsettings->getCustomFieldSettingsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -1555,11 +2234,58 @@ Returns a list of all of the custom fields settings on a project, in compact for
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.customfieldsettings.getCustomFieldSettingsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.custom_field_settings.get_custom_field_settings_for_portfolio(portfolio_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.custom_field_settings.get_custom_field_settings_for_portfolio(portfolio_gid: 'portfolio_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<CustomFieldSetting> result = client.customfieldsettings.getCustomFieldSettingsForPortfolio(portfolioGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->customfieldsettings->getCustomFieldSettingsForPortfolio($portfolio_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -1686,11 +2412,58 @@ Sync tokens always expire after 24 hours, but may expire sooner, depending on lo
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.events.getEvents({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.events.get_events({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.events.get_events(resource: '&#x27;resource_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.events.getEvents(sync, resource)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->events->getEvents(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -1808,11 +2581,58 @@ Only the creator of the duplication process can access the duplication status of
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.jobs.getJob(jobGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.jobs.get_job(job_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.jobs.get_job(job_gid: 'job_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Job result = client.jobs.getJob(jobGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->jobs->getJob($job_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -1902,12 +2722,62 @@ To export an Organization using this API:
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/organization_exports \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.organizationexports.createOrganizationExport({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.organization_exports.create_organization_export({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.organization_exports.create_organization_export(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+OrganizationExport result = client.organizationexports.createOrganizationExport()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->organizationexports->createOrganizationExport(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -2007,11 +2877,58 @@ Status Code **201**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_export_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.organizationexports.getOrganizationExport(organizationExportGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.organization_exports.get_organization_export(organization_export_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.organization_exports.get_organization_export(organization_export_gid: 'organization_export_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+OrganizationExport result = client.organizationexports.getOrganizationExport(organizationExportGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->organizationexports->getOrganizationExport($organization_export_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -2112,11 +3029,58 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios?workspace=1331&owner=14916 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.getPortfolios({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.get_portfolios({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.get_portfolios(workspace: '&#x27;workspace_example&#x27;', owner: '&#x27;owner_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Portfolio> result = client.portfolios.getPortfolios(owner, workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->getPortfolios(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -2174,12 +3138,62 @@ Returns a list of the portfolios in compact representation that are owned by the
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.createPortfolio({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.create_portfolio({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.create_portfolio(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Portfolio result = client.portfolios.createPortfolio()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->createPortfolio(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -2357,11 +3371,58 @@ integrations to create their own starting state on a portfolio.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.getPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.get_portfolio(portfolio_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.get_portfolio(portfolio_gid: 'portfolio_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Portfolio result = client.portfolios.getPortfolio(portfolioGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -2489,12 +3550,62 @@ Returns the complete portfolio record for a single portfolio.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.updatePortfolio(portfolioGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.update_portfolio(portfolio_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.update_portfolio(portfolio_gid: 'portfolio_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Portfolio result = client.portfolios.updatePortfolio(portfolioGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -2671,11 +3782,58 @@ Returns the complete updated portfolio record.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.deletePortfolio(portfolioGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.delete_portfolio(portfolio_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.delete_portfolio(portfolio_gid: 'portfolio_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.portfolios.deletePortfolio(portfolioGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->deletePortfolio($portfolio_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -2735,11 +3893,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.getItemsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.get_items_for_portfolio(portfolio_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.get_items_for_portfolio(portfolio_gid: 'portfolio_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Project> result = client.portfolios.getItemsForPortfolio(portfolioGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->getItemsForPortfolio($portfolio_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -2796,12 +4001,62 @@ Get a list of the items in compact form in a portfolio.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.addItemForPortfolio(portfolioGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.add_item_for_portfolio(portfolio_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.add_item_for_portfolio(portfolio_gid: 'portfolio_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.portfolios.addItemForPortfolio(portfolioGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->addItemForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -2876,12 +4131,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.removeItemForPortfolio(portfolioGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.remove_item_for_portfolio(portfolio_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.remove_item_for_portfolio(portfolio_gid: 'portfolio_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.portfolios.removeItemForPortfolio(portfolioGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->removeItemForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -2952,12 +4257,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.addCustomFieldSettingForPortfolio(portfolioGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.add_custom_field_setting_for_portfolio(portfolio_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.add_custom_field_setting_for_portfolio(portfolio_gid: 'portfolio_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.portfolios.addCustomFieldSettingForPortfolio(portfolioGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->addCustomFieldSettingForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -3032,12 +4387,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.removeCustomFieldSettingForPortfolio(portfolioGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.remove_custom_field_setting_for_portfolio(portfolio_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.remove_custom_field_setting_for_portfolio(portfolio_gid: 'portfolio_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.portfolios.removeCustomFieldSettingForPortfolio(portfolioGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->removeCustomFieldSettingForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -3106,12 +4511,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.addMembersForPortfolio(portfolioGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.add_members_for_portfolio(portfolio_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.add_members_for_portfolio(portfolio_gid: 'portfolio_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.portfolios.addMembersForPortfolio(portfolioGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->addMembersForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -3182,12 +4637,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfolios.removeMembersForPortfolio(portfolioGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolios.remove_members_for_portfolio(portfolio_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolios.remove_members_for_portfolio(portfolio_gid: 'portfolio_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.portfolios.removeMembersForPortfolio(portfolioGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfolios->removeMembersForPortfolio($portfolio_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -3272,11 +4777,58 @@ This object determines if a user is a member of a portfolio.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfoliomemberships.getPortfolioMemberships({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolio_memberships.get_portfolio_memberships({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolio_memberships.get_portfolio_memberships(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<PortfolioMembership> result = client.portfoliomemberships.getPortfolioMemberships(user, workspace, portfolio)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfoliomemberships->getPortfolioMemberships(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -3344,11 +4896,58 @@ Returns a list of portfolio memberships in compact representation. You must spec
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membership_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfoliomemberships.getPortfolioMembership(portfolioMembershipGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolio_memberships.get_portfolio_membership(portfolio_membership_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolio_memberships.get_portfolio_membership(portfolio_membership_gid: 'portfolio_membership_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+PortfolioMembership result = client.portfoliomemberships.getPortfolioMembership(portfolioMembershipGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfoliomemberships->getPortfolioMembership($portfolio_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -3410,11 +5009,58 @@ Returns the complete portfolio record for a single portfolio membership.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.portfoliomemberships.getPortfolioMembershipsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.portfolio_memberships.get_portfolio_memberships_for_portfolio(portfolio_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.portfolio_memberships.get_portfolio_memberships_for_portfolio(portfolio_gid: 'portfolio_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<PortfolioMembership> result = client.portfoliomemberships.getPortfolioMembershipsForPortfolio(portfolioGid, user)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->portfoliomemberships->getPortfolioMembershipsForPortfolio($portfolio_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -3499,11 +5145,58 @@ Followers of a project are a subset of the members of that project. Followers of
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.getProjects({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.get_projects({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.get_projects(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Project> result = client.projects.getProjects(archived, team, workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->getProjects(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -3562,12 +5255,62 @@ Returns the compact project records for some filtered set of projects. Use one o
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.createProject({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.create_project({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.create_project(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Project result = client.projects.createProject()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->createProject(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -3820,11 +5563,58 @@ Returns the full record of the newly created project.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.getProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.get_project(project_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.get_project(project_gid: 'project_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Project result = client.projects.getProject(projectGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->getProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -3966,12 +5756,62 @@ Returns the complete project record for a single project.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.updateProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.update_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.update_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Project result = client.projects.updateProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->updateProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4223,11 +6063,58 @@ Returns the complete updated project record.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.deleteProject(projectGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.delete_project(project_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.delete_project(project_gid: 'project_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.deleteProject(projectGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->deleteProject($project_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -4287,12 +6174,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.duplicateProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.duplicate_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.duplicate_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Job result = client.projects.duplicateProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->duplicateProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4401,11 +6338,58 @@ Creates and returns a job that will asynchronously handle the duplication.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.getProjectsForTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.get_projects_for_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.get_projects_for_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Project> result = client.projects.getProjectsForTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->getProjectsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -4462,11 +6446,58 @@ Returns a compact representation of all of the projects the task is in.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.getProjectsForTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.get_projects_for_team(team_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.get_projects_for_team(team_gid: 'team_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Project> result = client.projects.getProjectsForTeam(teamGid, archived)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->getProjectsForTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -4524,12 +6555,62 @@ Returns the compact project records for all projects in the team.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.createProjectForTeam(teamGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.create_project_for_team(team_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.create_project_for_team(team_gid: 'team_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Project result = client.projects.createProjectForTeam(teamGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->createProjectForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4775,11 +6856,58 @@ Returns the full record of the newly created project.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.getProjectsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.get_projects_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.get_projects_for_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Project> result = client.projects.getProjectsForWorkspace(workspaceGid, archived)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->getProjectsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -4837,12 +6965,62 @@ Returns the compact project records for all projects in the workspace.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.createProjectForWorkspace(workspaceGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.create_project_for_workspace(workspace_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.create_project_for_workspace(workspace_gid: 'workspace_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Project result = client.projects.createProjectForWorkspace(workspaceGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->createProjectForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5091,12 +7269,62 @@ Returns the full record of the newly created project.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.addCustomFieldSettingForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.add_custom_field_setting_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.add_custom_field_setting_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.addCustomFieldSettingForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->addCustomFieldSettingForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5171,12 +7399,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.removeCustomFieldSettingForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.remove_custom_field_setting_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.remove_custom_field_setting_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.removeCustomFieldSettingForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->removeCustomFieldSettingForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5245,11 +7523,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/task_counts \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.getTaskCountsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.get_task_counts_for_project(project_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.get_task_counts_for_project(project_gid: 'project_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.getTaskCountsForProject(projectGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->getTaskCountsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5325,12 +7650,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.addMembersForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.add_members_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.add_members_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.addMembersForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->addMembersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5401,12 +7776,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.removeMembersForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.remove_members_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.remove_members_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.removeMembersForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->removeMembersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5477,12 +7902,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.addFollowersForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.add_followers_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.add_followers_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.addFollowersForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->addFollowersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5553,12 +8028,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projects.removeFollowersForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.projects.remove_followers_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.projects.remove_followers_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projects.removeFollowersForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projects->removeFollowersForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5643,11 +8168,58 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_membership_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectmemberships.getProjectMembership(projectMembershipGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_memberships.get_project_membership(project_membership_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_memberships.get_project_membership(project_membership_gid: 'project_membership_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+ProjectMembership result = client.projectmemberships.getProjectMembership(projectMembershipGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectmemberships->getProjectMembership($project_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5710,11 +8282,58 @@ Returns the complete project record for a single project membership.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectmemberships.getProjectMembershipsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_memberships.get_project_memberships_for_project(project_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_memberships.get_project_memberships_for_project(project_gid: 'project_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<ProjectMembership> result = client.projectmemberships.getProjectMembershipsForProject(projectGid, user)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectmemberships->getProjectMembershipsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5792,11 +8411,58 @@ Project statuses can be created and deleted, but not modified.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectstatuses.getProjectStatus(projectStatusGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_statuses.get_project_status(project_status_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_statuses.get_project_status(project_status_gid: 'project_status_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+ProjectStatus result = client.projectstatuses.getProjectStatus(projectStatusGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectstatuses->getProjectStatus($project_status_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5864,11 +8530,58 @@ Returns the complete record for a single status update.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/project_statuses/{project_status_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectstatuses.deleteProjectStatus(projectStatusGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_statuses.delete_project_status(project_status_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_statuses.delete_project_status(project_status_gid: 'project_status_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projectstatuses.deleteProjectStatus(projectStatusGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectstatuses->deleteProjectStatus($project_status_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5927,11 +8640,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectstatuses.getProjectStatusesForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_statuses.get_project_statuses_for_project(project_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_statuses.get_project_statuses_for_project(project_gid: 'project_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<ProjectStatus> result = client.projectstatuses.getProjectStatusesForProject(projectGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectstatuses->getProjectStatusesForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5988,12 +8748,62 @@ Returns the compact project status update records for all updates on the project
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectstatuses.createProjectStatusForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_statuses.create_project_status_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_statuses.create_project_status_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+ProjectStatus result = client.projectstatuses.createProjectStatusForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectstatuses->createProjectStatusForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -6119,11 +8929,58 @@ The ‘memberships’ property when [getting a task](#get-a-task) will return th
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.sections.getSection(sectionGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.sections.get_section(section_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.sections.get_section(section_gid: 'section_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Section result = client.sections.getSection(sectionGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->sections->getSection($section_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -6189,12 +9046,62 @@ Returns the complete record for a single section.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.sections.updateSection(sectionGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.sections.update_section(section_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.sections.update_section(section_gid: 'section_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Section result = client.sections.updateSection(sectionGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->sections->updateSection($section_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -6284,11 +9191,58 @@ Returns the complete updated section record.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.sections.deleteSection(sectionGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.sections.delete_section(section_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.sections.delete_section(section_gid: 'section_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.sections.deleteSection(sectionGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->sections->deleteSection($section_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -6352,11 +9306,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.sections.getSectionsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.sections.get_sections_for_project(project_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.sections.get_sections_for_project(project_gid: 'project_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Section> result = client.sections.getSectionsForProject(projectGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->sections->getSectionsForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -6413,12 +9414,62 @@ Returns the compact records for all sections in the specified project.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.sections.createSectionForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.sections.create_section_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.sections.create_section_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Section result = client.sections.createSectionForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->sections->createSectionForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -6500,12 +9551,62 @@ Returns the full record of the newly created section.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.sections.addTaskForSection(sectionGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.sections.add_task_for_section(section_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.sections.add_task_for_section(section_gid: 'section_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.sections.addTaskForSection(sectionGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->sections->addTaskForSection($section_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -6583,12 +9684,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.sections.insertSectionForProject(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.sections.insert_section_for_project(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.sections.insert_section_for_project(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.sections.insertSectionForProject(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->sections->insertSectionForProject($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -6685,11 +9836,58 @@ A *story* represents an activity associated with an object in the Asana system. 
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.stories.getStory(storyGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.stories.get_story(story_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.stories.get_story(story_gid: 'story_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Story result = client.stories.getStory(storyGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->stories->getStory($story_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -6912,12 +10110,62 @@ Returns the full record for a single story.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.stories.updateStory(storyGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.stories.update_story(story_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.stories.update_story(story_gid: 'story_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Story result = client.stories.updateStory(storyGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->stories->updateStory($story_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -7160,11 +10408,58 @@ Updates the story and returns the full record for the updated story. Only commen
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.stories.deleteStory(storyGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.stories.delete_story(story_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.stories.delete_story(story_gid: 'story_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.stories.deleteStory(storyGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->stories->deleteStory($story_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -7223,11 +10518,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.stories.getStoriesForTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.stories.get_stories_for_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.stories.get_stories_for_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Story> result = client.stories.getStoriesForTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->stories->getStoriesForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -7292,12 +10634,62 @@ Returns the compact records for all stories on the task.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.stories.createStoryForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.stories.create_story_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.stories.create_story_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Story result = client.stories.createStoryForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->stories->createStoryForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -7560,11 +10952,58 @@ Tags have some metadata associated with them, but it is possible that we will si
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tags \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.getTags({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.get_tags({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.get_tags(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Tag> result = client.tags.getTags(workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->getTags(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -7621,12 +11060,62 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.createTag({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.create_tag({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.create_tag(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Tag result = client.tags.createTag()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->createTag(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -7743,11 +11232,58 @@ Returns the full record of the newly created tag.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.getTag(tagGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.get_tag(tag_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.get_tag(tag_gid: 'tag_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Tag result = client.tags.getTag(tagGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->getTag($tag_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -7815,11 +11351,61 @@ Returns the complete tag record for a single tag.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.updateTag(tagGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.update_tag(tag_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.update_tag(tag_gid: 'tag_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Tag result = client.tags.updateTag(tagGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->updateTag($tag_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -7894,11 +11480,58 @@ Returns the complete updated tag record.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.getTagsForTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.get_tags_for_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.get_tags_for_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Tag> result = client.tags.getTagsForTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->getTagsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -7955,11 +11588,58 @@ Get a compact representation of all of the tags the task has.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.getTagsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.get_tags_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.get_tags_for_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Tag> result = client.tags.getTagsForWorkspace(workspaceGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->getTagsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -8016,12 +11696,62 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.createTagForWorkspace(workspaceGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.create_tag_for_workspace(workspace_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.create_tag_for_workspace(workspace_gid: 'workspace_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Tag result = client.tags.createTagForWorkspace(workspaceGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -8155,11 +11885,58 @@ Sections are unique in that they will be included in the *memberships* field of 
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getTasks({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_tasks({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_tasks(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getTasks(modifiedSince, completedSince, workspace, section, project, assignee)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getTasks(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -8243,12 +12020,62 @@ include assigning, renaming, completing, and adding stories.*
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.createTask({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.create_task({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.create_task(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Task result = client.tasks.createTask()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -8550,11 +12377,58 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Task result = client.tasks.getTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -8751,12 +12625,62 @@ Returns the complete task record for a single task.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.updateTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.update_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.update_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Task result = client.tasks.updateTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -9061,11 +12985,58 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.deleteTask(taskGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.delete_task(task_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.delete_task(task_gid: 'task_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.deleteTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->deleteTask($task_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -9127,12 +13098,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.duplicateTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.duplicate_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.duplicate_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Job result = client.tasks.duplicateTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->duplicateTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -9229,11 +13250,58 @@ Creates and returns a job that will asynchronously handle the duplication.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getTasksForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_tasks_for_project(project_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_tasks_for_project(project_gid: 'project_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getTasksForProject(projectGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getTasksForProject($project_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -9290,11 +13358,58 @@ Returns the compact task records for all tasks within the given project, ordered
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getTasksForSection(sectionGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_tasks_for_section(section_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_tasks_for_section(section_gid: 'section_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getTasksForSection(sectionGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getTasksForSection($section_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -9351,11 +13466,58 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getTasksForTag(tagGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_tasks_for_tag(tag_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_tasks_for_tag(tag_gid: 'tag_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getTasksForTag(tagGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getTasksForTag($tag_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -9412,11 +13574,58 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getTasksForUserTaskList(userTaskListGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_tasks_for_user_task_list(user_task_list_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_tasks_for_user_task_list(user_task_list_gid: 'user_task_list_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getTasksForUserTaskList(userTaskListGid, completedSince)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getTasksForUserTaskList($user_task_list_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -9481,11 +13690,58 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getSubtasksForTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_subtasks_for_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_subtasks_for_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getSubtasksForTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getSubtasksForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -9542,12 +13798,62 @@ Returns a compact representation of all of the subtasks of a task.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.createSubtaskForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.create_subtask_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.create_subtask_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Task result = client.tasks.createSubtaskForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -9844,12 +14150,62 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.setParentForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.set_parent_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.set_parent_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Task result = client.tasks.setParentForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10063,11 +14419,58 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getDependenciesForTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_dependencies_for_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_dependencies_for_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getDependenciesForTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getDependenciesForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -10124,12 +14527,62 @@ Returns the compact representations of all of the dependencies of a task.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.addDependenciesForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.add_dependencies_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.add_dependencies_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.addDependenciesForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->addDependenciesForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10202,12 +14655,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.removeDependenciesForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.remove_dependencies_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.remove_dependencies_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.tasks.removeDependenciesForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->removeDependenciesForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10282,11 +14785,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.getDependentsForTask(taskGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.get_dependents_for_task(task_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.get_dependents_for_task(task_gid: 'task_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.getDependentsForTask(taskGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->getDependentsForTask($task_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -10343,12 +14893,62 @@ Returns the compact representations of all of the dependents of a task.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.addDependentsForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.add_dependents_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.add_dependents_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.addDependentsForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->addDependentsForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10419,12 +15019,62 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.removeDependentsForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.remove_dependents_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.remove_dependents_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.tasks.removeDependentsForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->removeDependentsForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10499,12 +15149,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.addProjectForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.add_project_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.add_project_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.addProjectForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->addProjectForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10593,12 +15293,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.removeProjectForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.remove_project_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.remove_project_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.removeProjectForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->removeProjectForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10671,12 +15421,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.addTagForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.add_tag_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.add_tag_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.addTagForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->addTagForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10746,12 +15546,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.removeTagForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.remove_tag_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.remove_tag_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.removeTagForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->removeTagForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10821,12 +15671,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.addFollowersForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.add_followers_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.add_followers_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.addFollowersForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->addFollowersForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10901,12 +15801,62 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.removeFollowerForTask(taskGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.remove_follower_for_task(task_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.remove_follower_for_task(task_gid: 'task_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tasks.removeFollowerForTask(taskGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->removeFollowerForTask($task_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -10979,11 +15929,58 @@ Status Code **200**
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tasks.searchTasksForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tasks.search_tasks_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tasks.search_tasks_for_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Task> result = client.tasks.searchTasksForWorkspace(workspaceGid, sortAscending, sortBy, isSubtask, completed, hasAttachment, isBlocked, isBlocking, modifiedAtAfter, modifiedAtBefore, dueOnBefore, modifiedOn, modifiedOnAfter, modifiedOnBefore, completedAtAfter, completedAtBefore, completedOn, completedOnAfter, completedOnBefore, createdAtAfter, commentedOnByNot, createdAtBefore, createdOn, createdOnAfter, createdOnBefore, startOn, startOnAfter, startOnBefore, dueAtAfter, dueAtBefore, dueOn, commentedOnByAny, dueOnAfter, likedByNot, likedByAny, assignedByNot, assignedByAny, createdByNot, createdByAny, followersNot, followersAny, teamsAny, tagsAll, tagsNot, tagsAny, sectionsAll, sectionsNot, sectionsAny, projectsAll, projectsNot, projectsAny, assigneeStatus, assigneeNot, assigneeAny, resourceSubtype, text)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tasks->searchTasksForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11151,11 +16148,58 @@ A *team* is used to group related projects and people together within an organiz
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teams.getTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.teams.get_team(team_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.teams.get_team(team_gid: 'team_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Team result = client.teams.getTeam(teamGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teams->getTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11217,11 +16261,58 @@ Returns the full record for a single team.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/organizations/{workspace_gid}/teams \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teams.getTeamsForOrganization(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.teams.get_teams_for_organization(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.teams.get_teams_for_organization(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Team> result = client.teams.getTeamsForOrganization(workspaceGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teams->getTeamsForOrganization($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11278,11 +16369,58 @@ Returns the compact records for all teams in the organization visible to the aut
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization=1331 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teams.getTeamsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.teams.get_teams_for_user(user_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.teams.get_teams_for_user(user_gid: 'user_gid', organization: '&#x27;organization_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Team> result = client.teams.getTeamsForUser(userGid, organization)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teams->getTeamsForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11340,12 +16478,62 @@ Returns the compact records for all teams to which the given user is assigned.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teams.addUserForTeam(teamGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.teams.add_user_for_team(team_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.teams.add_user_for_team(team_gid: 'team_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+User result = client.teams.addUserForTeam(teamGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teams->addUserForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -11426,12 +16614,62 @@ The user making this call must be a member of the team in order to add others. T
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teams.removeUserForTeam(teamGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.teams.remove_user_for_team(team_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.teams.remove_user_for_team(team_gid: 'team_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.teams.removeUserForTeam(teamGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teams->removeUserForTeam($team_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -11515,11 +16753,58 @@ This object determines if a user is a member of a team.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/team_memberships/{team_membership_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teammemberships.getTeamMembership(teamMembershipGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.team_memberships.get_team_membership(team_membership_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.team_memberships.get_team_membership(team_membership_gid: 'team_membership_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.teammemberships.getTeamMembership(teamMembershipGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teammemberships->getTeamMembership($team_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11582,11 +16867,58 @@ Returns the complete team membership record for a single team membership.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/team_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teammemberships.getTeamMemberships({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.team_memberships.get_team_memberships({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.team_memberships.get_team_memberships(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.teammemberships.getTeamMemberships(workspace, user, team)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teammemberships->getTeamMemberships(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11655,11 +16987,58 @@ Returns compact team membership records.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/team_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teammemberships.getTeamMembershipsForTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.team_memberships.get_team_memberships_for_team(team_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.team_memberships.get_team_memberships_for_team(team_gid: 'team_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.teammemberships.getTeamMembershipsForTeam(teamGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teammemberships->getTeamMembershipsForTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11726,11 +17105,58 @@ Returns the compact team memberships for the team.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/team_memberships?workspace=31326 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teammemberships.getTeamMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.team_memberships.get_team_memberships_for_user(user_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.team_memberships.get_team_memberships_for_user(user_gid: 'user_gid', workspace: '&#x27;workspace_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.teammemberships.getTeamMembershipsForUser(userGid, workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teammemberships->getTeamMembershipsForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11812,11 +17238,58 @@ The typeahead search API provides search for objects from a single workspace.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?resource_type=user \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.typeahead.typeaheadForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.typeahead.typeahead_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.typeahead.typeahead_for_workspace(workspace_gid: 'workspace_gid', resource_type: '&#x27;resource_type_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.typeahead.typeaheadForWorkspace(workspaceGid, count, query, type, resourceType)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->typeahead->typeaheadForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11924,11 +17397,58 @@ Like other objects in the system, users are referred to by numerical IDs. Howeve
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.users.getUsers({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.users.get_users({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.users.get_users(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<User> result = client.users.getUsers(workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->users->getUsers(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11986,11 +17506,58 @@ Results are sorted by user ID.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.users.getUser(userGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.users.get_user(user_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.users.get_user(user_gid: 'user_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+User result = client.users.getUser(userGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->users->getUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12059,11 +17626,58 @@ Results are sorted by user ID.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_type=project&workspace=1234 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.users.getFavoritesForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.users.get_favorites_for_user(user_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.users.get_favorites_for_user(user_gid: 'user_gid', resource_type: '&#x27;resource_type_example&#x27;', workspace: '&#x27;workspace_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.users.getFavoritesForUser(userGid, workspace, resourceType)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->users->getFavoritesForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12131,11 +17745,58 @@ Results are given in order (The same order as Asana's sidebar).
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.users.getUsersForTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.users.get_users_for_team(team_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.users.get_users_for_team(team_gid: 'team_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<User> result = client.users.getUsersForTeam(teamGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->users->getUsersForTeam($team_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12192,11 +17853,58 @@ Returns the compact records for all users that are members of the team.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.users.getUsersForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.users.get_users_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.users.get_users_for_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<User> result = client.users.getUsersForWorkspace(workspaceGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->users->getUsersForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12270,11 +17978,58 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.usertasklists.getUserTaskList(userTaskListGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.user_task_lists.get_user_task_list(user_task_list_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.user_task_lists.get_user_task_list(user_task_list_gid: 'user_task_list_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+UserTaskList result = client.usertasklists.getUserTaskList(userTaskListGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->usertasklists->getUserTaskList($user_task_list_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12337,11 +18092,58 @@ Returns the full record for a user task list.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list?workspace=1234 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.usertasklists.getUserTaskListForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.user_task_lists.get_user_task_list_for_user(user_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.user_task_lists.get_user_task_list_for_user(user_gid: 'user_gid', workspace: '&#x27;workspace_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+UserTaskList result = client.usertasklists.getUserTaskListForUser(userGid, workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->usertasklists->getUserTaskListForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12472,11 +18274,58 @@ If we attempt to send a webhook payload and we receive an error status code, or 
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.webhooks.getWebhooks({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.webhooks.get_webhooks({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.webhooks.get_webhooks(workspace: '&#x27;workspace_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Webhook> result = client.webhooks.getWebhooks(resource, workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->webhooks->getWebhooks(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12556,12 +18405,62 @@ Get the compact representation of all webhooks your app has registered for the a
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/webhooks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.webhooks.createWebhook({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.webhooks.create_webhook({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.webhooks.create_webhook(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Webhook result = client.webhooks.createWebhook()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->webhooks->createWebhook(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -12721,11 +18620,58 @@ HTTP/1.1 201
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.webhooks.getWebhook(webhookGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.webhooks.get_webhook(webhook_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.webhooks.get_webhook(webhook_gid: 'webhook_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Webhook result = client.webhooks.getWebhook(webhookGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->webhooks->getWebhook($webhook_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12800,11 +18746,58 @@ Returns the full record for the given webhook.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.webhooks.deleteWebhook(webhookGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.webhooks.delete_webhook(webhook_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.webhooks.delete_webhook(webhook_gid: 'webhook_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.webhooks.deleteWebhook(webhookGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->webhooks->deleteWebhook($webhook_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12879,11 +18872,58 @@ Over time, we intend to migrate most workspaces into organizations and to releas
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspaces.getWorkspaces({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspaces.get_workspaces({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspaces.get_workspaces(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Workspace> result = client.workspaces.getWorkspaces()
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspaces->getWorkspaces(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -12939,11 +18979,58 @@ Returns the compact records for all workspaces visible to the authorized user.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspaces.getWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspaces.get_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspaces.get_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Workspace result = client.workspaces.getWorkspace(workspaceGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspaces->getWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -13000,12 +19087,62 @@ Returns the full workspace record for a single workspace.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspaces.updateWorkspace(workspaceGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspaces.update_workspace(workspace_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspaces.update_workspace(workspace_gid: 'workspace_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Workspace result = client.workspaces.updateWorkspace(workspaceGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspaces->updateWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -13077,12 +19214,62 @@ Returns the complete, updated workspace record.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspaces.addUserForWorkspace(workspaceGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspaces.add_user_for_workspace(workspace_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspaces.add_user_for_workspace(workspace_gid: 'workspace_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+User result = client.workspaces.addUserForWorkspace(workspaceGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspaces->addUserForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -13164,12 +19351,62 @@ The user can be referenced by their globally unique user ID or their email addre
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
+  -d '{"field":"value","field":"value"}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspaces.removeUserForWorkspace(workspaceGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspaces.remove_user_for_workspace(workspace_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspaces.remove_user_for_workspace(workspace_gid: 'workspace_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.workspaces.removeUserForWorkspace(workspaceGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspaces->removeUserForWorkspace($workspace_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -13255,11 +19492,58 @@ This object determines if a user is a member of a workspace.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membership_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspacememberships.getWorkspaceMembership(workspaceMembershipGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspace_memberships.get_workspace_membership(workspace_membership_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspace_memberships.get_workspace_membership(workspace_membership_gid: 'workspace_membership_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.workspacememberships.getWorkspaceMembership(workspaceMembershipGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspacememberships->getWorkspaceMembership($workspace_membership_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -13339,11 +19623,58 @@ Returns the complete workspace record for a single workspace membership.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/workspace_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspacememberships.getWorkspaceMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspace_memberships.get_workspace_memberships_for_user(user_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspace_memberships.get_workspace_memberships_for_user(user_gid: 'user_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.workspacememberships.getWorkspaceMembershipsForUser(userGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspacememberships->getWorkspaceMembershipsForUser($user_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -13409,11 +19740,58 @@ Returns the compact workspace membership records for the user.
 > Code samples
 
 ```shell
-# You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/workspace_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.workspacememberships.getWorkspaceMembershipsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.workspace_memberships.get_workspace_memberships_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.workspace_memberships.get_workspace_memberships_for_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.workspacememberships.getWorkspaceMembershipsForWorkspace(workspaceGid, user)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->workspacememberships->getWorkspaceMembershipsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response

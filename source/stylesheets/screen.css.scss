@@ -903,7 +903,7 @@ code, pre {
   }
 
   .toc-wrapper .lang-selector {
-    display: block;
+    display: none;
   }
 
   .page-wrapper .lang-selector {
@@ -1043,8 +1043,4 @@ pre {
       border-bottom: 1px solid $teal;
     }
   }
-}
-
-.lang-selector {
-  display: none !important;
 }
