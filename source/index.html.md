@@ -794,7 +794,7 @@ You can place two types of orders: `limit` and `market`. Orders can be placed on
 | side | String | Yes | `buy` or `sell`. |
 | type | String | Yes | `market` or `limit`. Default is `limit`. |
 | price | String | Yes | Order price at which you wish to exchange your coins. Required only for `limit` orders. |
-| is_amount_value | Boolean | No | Designated wether the provided `amount` is the order amount or order value. |
+| is_amount_value | Boolean | No | Designated whether the provided `amount` is the order amount or order value. |
 
 ## List my open orders
 <!-- ```shell
