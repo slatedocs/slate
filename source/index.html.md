@@ -242,9 +242,9 @@ fetch(URL_API + path, request)
 
 <?php
 
-$apiUrl = 'http://coinbtr:8000';
-$apiKey = 'fe4fd5f1e056e4c7aa71bf73f626e855078ec2b8';
-$apiSecret = 'b0b1cb82db2782375446ce4f337a7ed20f8093f8705712b7f20a6ae94c5c1869';
+$apiUrl = 'https://api.staging.tauros.io';
+$apiKey = 'TAUR_API_KEY';
+$apiSecret = 'TAUR_API_SECRET';
 
 $path = '/api/v1/enable-developer-mode/';
 
