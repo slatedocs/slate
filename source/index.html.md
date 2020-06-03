@@ -110,15 +110,15 @@ DATA='{
     "price": "250000"
 }'
 
-URL_ENCODE_DATA="price=250000&amount=0.001&type=LIMIT&side=SELL&market=BTC-MXN"
+URL_ENCODE_DATA="market=BTC-MXN&amount=0.001&side=SELL&type=LIMIT&price=250000"
 
 MESSAGE=$NONCE$METHOD$REQUEST_PATH$URL_ENCODE_DATA
 
-MESSAGE_SHA256=$(echo "$MESSAGE" | sha256sum)
+MESSAGE_SHA256=$(echo -n $MESSAGE | openssl dgst -binary -sha256)
 
 API_SECRET_DECODED=$(echo $API_SECRET | base64 -d)
 
-SIGNATURE=$(echo -n $MESSAGE_SHA256 | openssl dgst -binary -sha512 -hmac $API_SECRET_DECODED | base64 )
+SIGNATURE=$(echo -n $MESSAGE_SHA256 | openssl dgst -binary -sha512 -hmac $API_SECRET_DECODED | base64 | sed ':a;N;$!ba;s/\n//g')
 
 curl -X $METHOD $API_URL$REQUEST_PATH \
   -H "Content-Type: application/json" \
@@ -127,7 +127,6 @@ curl -X $METHOD $API_URL$REQUEST_PATH \
   -H "Authorization: Bearer $API_KEY" \
   -d "$DATA";
 ```
-
 
 ```python
 import requests
