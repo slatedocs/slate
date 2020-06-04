@@ -330,7 +330,7 @@ curl -X POST \
   "ephemeralIP": true
 }
 
-// Create an instance with no IP
+// Create an instance with no external IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
