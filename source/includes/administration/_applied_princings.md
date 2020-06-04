@@ -95,7 +95,7 @@ curl -X POST "https://cloudmc_endpoint/rest/applied_pricings" \
 
 ```js
 {
-
+    
 }
 ```
 
