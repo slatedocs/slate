@@ -23,6 +23,8 @@ To get started
 1. Be [logged into Asana](https://app.asana.com).  
 2. Go to this URL: <a href="https://app.asana.com/api/1.0/users/me?opt_pretty&opt_client_name=hello_world_browser" target="_blank">https://app.asana.com/api/1.0/users/me</a>
 
+`me` is a User Identifier that refers to the logged in user. A User Identifier can be either `me`, an email_address, or the gid of the user.
+
 > Response
 
 ```json
@@ -51,7 +53,7 @@ Let’s unpack what just happened. The base URL for all requests to the Asana AP
 
 Since every API request you make will start with the same base URL ('https://app.asana.com/api/1.0'), we'll just talk about what comes next in the URL -- which is often referred to as a 'resource' or 'path'. For instance, when we say `/users/me` it's actually shorthand for the entire URL which would be `https://app.asana.com/api/1.0/users/me`.
 
-After requesting information from the API, you will receive a resposne in [JSON](https://en.wikipedia.org/wiki/JSON) format, which can be read and understood by both humans and computers. It's structured in a particular way so programs can rely on a consistent format for the data.
+After requesting information from the API, you will receive a response in [JSON](https://en.wikipedia.org/wiki/JSON) format, which can be read and understood by both humans and computers. It's structured in a particular way so programs can rely on a consistent format for the data.
 
 Our API is documented for what resources are available and what sort of return data to expect.  For example, here are the [docs for the `/users` endpoint](/docs/get-a-user) which we just called. This is where you can discover what's possible with our API.
 

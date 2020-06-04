@@ -102,7 +102,7 @@ $result = $client->attachments->getAttachment($attachment_gid, array('param' => 
     "resource_type": "attachment",
     "name": "Screenshot.png",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
+    "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "host": "dropbox",
     "parent": {
       "gid": "12345",
@@ -449,7 +449,7 @@ file: string
     "resource_type": "attachment",
     "name": "Screenshot.png",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
+    "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "host": "dropbox",
     "parent": {
       "gid": "12345",
@@ -757,18 +757,9 @@ In the Asana application, Tasks, Projects, and Portfolios can hold user-specifie
 
 The characteristics of Custom Fields are:
 
-* There is metadata that defines the Custom Field. This metadata can be
-  shared across an entire workspace, or be specific to a Project or Portfolio.
-* Creating a Custom Field Setting on a Project or Portfolio means each direct
-  child will have the custom field. This is conceptually akin to adding
-  columns in a database or a spreadsheet:
-  every Task (row) in the Project (table) can contain information for that
-  field, including "blank" values, i.e. `null` data. For Portfolio custom
-  fields, every Project (row) in the Portfolio (table) will contain
-  information for the custom field.
-* Custom Field Settings only go one child deep. Meaning a custom field
-  setting on a portfolio will give each project the custom field, but not
-  each task within those projects.
+* There is metadata that defines the Custom Field. This metadata can be shared across an entire workspace, or be specific to a Project or Portfolio.
+* Creating a Custom Field Setting on a Project or Portfolio means each direct child will have the custom field. This is conceptually akin to adding columns in a database or a spreadsheet: every Task (row) in the Project (table) can contain information for that field, including "blank" values, i.e. `null` data. For Portfolio custom fields, every Project (row) in the Portfolio (table) will contain information for the custom field.
+* Custom Field Settings only go one child deep. Meaning a custom field setting on a portfolio will give each project the custom field, but not each task within those projects.
 * Tasks have Custom Field _values_ assigned to them.
 
 A brief example: let's imagine that an organization has defined a Custom Field for "Priority". This field is of `enum` type and can have user-defined values of `Low`, `Medium`, or `High`. This is the field metadata, and it is visible within, and shared across, the entire organization.
@@ -791,13 +782,9 @@ Number fields can have an arbitrary `precision` associated with them; for exampl
 
 Enum fields represent a selection from a list of options. On the metadata, they will contain all of the options in an array. Each option has 4 properties:
 
-* `gid` - the gid of this enum option. Note that this is the gid of the
-  _option_ - the Custom Field itself has a separate `gid`.
+* `gid` - the gid of this enum option. Note that this is the gid of the _option_ - the Custom Field itself has a separate `gid`.
 * `name` - the name of the option, e.g. "Choice #1"
-* `enabled` - whether this field is enabled. Disabled fields are not
-  available to choose from when disabled, and are visually hidden in the
-  Asana application, but they remain in the metadata for Custom Field values
-  which were set to the option before the option was disabled.
+* `enabled` - whether this field is enabled. Disabled fields are not available to choose from when disabled, and are visually hidden in the Asana application, but they remain in the metadata for Custom Field values which were set to the option before the option was disabled.
 * `color` - a color associated with this choice.
 
 On the Task's Custom Field value, the enum will have an `enum_value` property which will be the same as one of the choices from the list defined in the Custom Field metadata.
@@ -7311,7 +7298,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.projects.addCustomFieldSettingForProject(projectGid)
+CustomFieldSetting result = client.projects.addCustomFieldSettingForProject(projectGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -7344,7 +7331,55 @@ $result = $client->projects->addCustomFieldSettingForProject($project_gid, array
 
 ```json
 {
-  "data": {}
+  "data": {
+    "gid": "12345",
+    "resource_type": "custom_field_setting",
+    "custom_field": {
+      "gid": "12345",
+      "resource_type": "custom_field",
+      "currency_code": "EUR",
+      "custom_label": "gold pieces",
+      "custom_label_position": "suffix",
+      "description": "Development team priority",
+      "enabled": true,
+      "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
+      "enum_value": {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      },
+      "format": "custom",
+      "has_notifications_enabled": true,
+      "is_global_to_workspace": true,
+      "name": "Status",
+      "number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "text",
+      "text_value": "Some Value",
+      "type": "text"
+    },
+    "is_important": false,
+    "parent": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    }
+  }
 }
 ```
 
@@ -7375,20 +7410,12 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully added the custom field to the project.|
+|200<span class="param-type"> [CustomFieldSetting](#schemacustomfieldsetting)</span>|Successfully added the custom field to the project.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="add-a-custom-field-to-a-project-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
 
 </section><hr class="half-line">
 <section>
@@ -9109,6 +9136,8 @@ $result = $client->sections->updateSection($section_gid, array('field' => 'value
 ```json
 {
   "data": {
+    "insert_after": "987654",
+    "insert_before": "86420",
     "name": "Next Actions",
     "project": "13579"
   }
@@ -9165,6 +9194,8 @@ Returns the complete updated section record.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
 |» data<span class="param-type"> object</span>|none|
+|»» insert_after<span class="param-type"> string</span>|An existing section within this project after which the added section should be inserted. Cannot be provided together with insert_before.|
+|»» insert_before<span class="param-type"> string</span>|An existing section within this project before which the added section should be inserted. Cannot be provided together with insert_after.|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
 |»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
@@ -9265,7 +9296,7 @@ the URL for that section.
 
 Note that sections must be empty to be deleted.
 
-The last remaining section in a board view cannot be deleted.
+The last remaining section cannot be deleted.
 
 Returns an empty data block.
 </span>
@@ -9477,6 +9508,8 @@ $result = $client->sections->createSectionForProject($project_gid, array('field'
 ```json
 {
   "data": {
+    "insert_after": "987654",
+    "insert_before": "86420",
     "name": "Next Actions",
     "project": "13579"
   }
@@ -9525,6 +9558,8 @@ Returns the full record of the newly created section.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The section to create.|
 |» data<span class="param-type"> object</span>|none|
+|»» insert_after<span class="param-type"> string</span>|An existing section within this project after which the added section should be inserted. Cannot be provided together with insert_before.|
+|»» insert_before<span class="param-type"> string</span>|An existing section within this project before which the added section should be inserted. Cannot be provided together with insert_after.|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
 |»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
@@ -9770,7 +9805,7 @@ $result = $client->sections->insertSectionForProject($project_gid, array('field'
 </p>
 
 <span class="description">
-Move sections relative to each other in a board view. One of
+Move sections relative to each other. One of
 `before_section` or `after_section` is required.
 
 Sections cannot be moved between projects.
@@ -9905,8 +9940,7 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
     },
     "resource_subtype": "comment_added",
     "text": "This is a comment.",
-    "type": "comment",
-    "html_text": "<body>This is a comment.</body>",
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "assignee": {
       "gid": "12345",
@@ -10049,8 +10083,7 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
         "name": "Greg Sanchez"
       },
       "resource_subtype": "comment_added",
-      "text": "marked today",
-      "type": "comment"
+      "text": "marked today"
     },
     "tag": {
       "gid": "12345",
@@ -10176,7 +10209,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
     "created_by": {
       "name": "Greg Sanchez"
     },
-    "html_text": "<body>This is a comment.</body>",
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "text": "This is a comment."
   }
@@ -10198,8 +10231,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
     },
     "resource_subtype": "comment_added",
     "text": "This is a comment.",
-    "type": "comment",
-    "html_text": "<body>This is a comment.</body>",
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "assignee": {
       "gid": "12345",
@@ -10342,8 +10374,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
         "name": "Greg Sanchez"
       },
       "resource_subtype": "comment_added",
-      "text": "marked today",
-      "type": "comment"
+      "text": "marked today"
     },
     "tag": {
       "gid": "12345",
@@ -10587,8 +10618,7 @@ $result = $client->stories->getStoriesForTask($task_gid, array('param' => 'value
         "name": "Greg Sanchez"
       },
       "resource_subtype": "comment_added",
-      "text": "marked today",
-      "type": "comment"
+      "text": "marked today"
     }
   ]
 }
@@ -10700,7 +10730,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
     "created_by": {
       "name": "Greg Sanchez"
     },
-    "html_text": "<body>This is a comment.</body>",
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "text": "This is a comment."
   }
@@ -10722,8 +10752,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
     },
     "resource_subtype": "comment_added",
     "text": "This is a comment.",
-    "type": "comment",
-    "html_text": "<body>This is a comment.</body>",
+    "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "assignee": {
       "gid": "12345",
@@ -10866,8 +10895,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
         "name": "Greg Sanchez"
       },
       "resource_subtype": "comment_added",
-      "text": "marked today",
-      "type": "comment"
+      "text": "marked today"
     },
     "tag": {
       "gid": "12345",
@@ -15969,7 +15997,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<Task> result = client.tasks.searchTasksForWorkspace(workspaceGid, sortAscending, sortBy, isSubtask, completed, hasAttachment, isBlocked, isBlocking, modifiedAtAfter, modifiedAtBefore, dueOnBefore, modifiedOn, modifiedOnAfter, modifiedOnBefore, completedAtAfter, completedAtBefore, completedOn, completedOnAfter, completedOnBefore, createdAtAfter, commentedOnByNot, createdAtBefore, createdOn, createdOnAfter, createdOnBefore, startOn, startOnAfter, startOnBefore, dueAtAfter, dueAtBefore, dueOn, commentedOnByAny, dueOnAfter, likedByNot, likedByAny, assignedByNot, assignedByAny, createdByNot, createdByAny, followersNot, followersAny, teamsAny, tagsAll, tagsNot, tagsAny, sectionsAll, sectionsNot, sectionsAny, projectsAll, projectsNot, projectsAny, assigneeStatus, assigneeNot, assigneeAny, resourceSubtype, text)
+List<Task> result = client.tasks.searchTasksForWorkspace(workspaceGid, sortAscending, sortBy, isSubtask, completed2, hasAttachment, isBlocked, isBlocking, modifiedAtAfter, modifiedAtBefore, dueOnAfter, modifiedOn, modifiedOnAfter, modifiedOnBefore, completedAtAfter, completedAtBefore, completedOn, completedOnAfter, completedOnBefore, completed, dueOnBefore, createdAtAfter, createdAtBefore, createdOn, createdOnAfter, createdOnBefore, startOn, startOnAfter, startOnBefore, dueAtAfter, dueAtBefore, commentedOnByNot, dueOn, commentedOnByAny, likedByNot, likedByAny, assignedByNot, assignedByAny, createdByNot, createdByAny, followersNot, followersAny, teamsAny, tagsAll, tagsNot, tagsAny, sectionsAll, sectionsNot, sectionsAny, projectsAll, projectsNot, projectsAny, assigneeStatus, assigneeNot, assigneeAny, resourceSubtype, text)
     .option("pretty", true)
     .execute();
 ```
@@ -16033,6 +16061,8 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 For example, if the gid of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the gid of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.
 
 Searching for multiple exact matches of a custom field is not supported.
+
+*Note: If you specify `projects.any` and `sections.any`, you will receive tasks for the project **and** tasks for the section. If you're looking for only tasks in a section, omit the `projects.any` from the request.*
 </span>
 
 <h3 id="search-tasks-in-a-workspace-parameters">Parameters</h3>
@@ -16080,6 +16110,7 @@ Searching for multiple exact matches of a custom field is not supported.
 |?created_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
 |?created_at.before<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
 |?created_at.after<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
+|?completed<span class="param-type"> boolean</span>|Filters on completed/incomplete tasks|
 |?completed_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
 |?completed_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
 |?completed_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
@@ -16093,7 +16124,6 @@ Searching for multiple exact matches of a custom field is not supported.
 |?is_blocking<span class="param-type"> boolean</span>|Filter to incomplete tasks with dependents|
 |?is_blocked<span class="param-type"> boolean</span>|Filter to tasks with incomplete dependencies|
 |?has_attachment<span class="param-type"> boolean</span>|Filter to tasks with attachments|
-|?completed<span class="param-type"> boolean</span>|Filter to completed tasks|
 |?is_subtask<span class="param-type"> boolean</span>|Filter to subtasks|
 |?sort_by<span class="param-type"> string</span>|One of `due_date`, `created_at`, `completed_at`, `likes`, or `modified_at`, defaults to `modified_at`|
 |?sort_ascending<span class="param-type"> boolean</span>|Default `false`|
@@ -19958,7 +19988,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
   "resource_type": "attachment",
   "name": "Screenshot.png",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
+  "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
   "host": "dropbox",
   "parent": {
     "gid": "12345",
@@ -19983,7 +20013,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
+|download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
 |host<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
 |parent<span class="param-type"> object</span>|The task this attachment is attached to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -21598,8 +21628,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
     "name": "Greg Sanchez"
   },
   "resource_subtype": "comment_added",
-  "text": "marked today",
-  "type": "comment"
+  "text": "marked today"
 }
 
 ```
@@ -21622,7 +21651,6 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |text<span class="param-type"> string</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
-|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 
 </section><hr>
 <section>
@@ -21645,8 +21673,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
   },
   "resource_subtype": "comment_added",
   "text": "This is a comment.",
-  "type": "comment",
-  "html_text": "<body>This is a comment.</body>",
+  "html_text": "<body>This is a comment.<body>",
   "is_pinned": false,
   "assignee": {
     "gid": "12345",
@@ -21789,8 +21816,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
       "name": "Greg Sanchez"
     },
     "resource_subtype": "comment_added",
-    "text": "marked today",
-    "type": "comment"
+    "text": "marked today"
   },
   "tag": {
     "gid": "12345",
@@ -21828,7 +21854,6 @@ A story represents an activity associated with an object in the Asana system.
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
-|type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 |html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -21945,7 +21970,6 @@ A story represents an activity associated with an object in the Asana system.
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |» text<span class="param-type"> string</span>|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
-|» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 |tag<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|

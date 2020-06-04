@@ -199,17 +199,20 @@ tags:
 
 
       * There is metadata that defines the Custom Field. This metadata can be
-        shared across an entire workspace, or be specific to a Project or Portfolio.
+      shared across an entire workspace, or be specific to a Project or Portfolio.
+
       * Creating a Custom Field Setting on a Project or Portfolio means each direct
-        child will have the custom field. This is conceptually akin to adding
-        columns in a database or a spreadsheet:
-        every Task (row) in the Project (table) can contain information for that
-        field, including "blank" values, i.e. `null` data. For Portfolio custom
-        fields, every Project (row) in the Portfolio (table) will contain
-        information for the custom field.
+      child will have the custom field. This is conceptually akin to adding
+      columns in a database or a spreadsheet:
+      every Task (row) in the Project (table) can contain information for that
+      field, including "blank" values, i.e. `null` data. For Portfolio custom
+      fields, every Project (row) in the Portfolio (table) will contain
+      information for the custom field.
+
       * Custom Field Settings only go one child deep. Meaning a custom field
-        setting on a portfolio will give each project the custom field, but not
-        each task within those projects.
+      setting on a portfolio will give each project the custom field, but not
+      each task within those projects.
+
       * Tasks have Custom Field _values_ assigned to them.
 
 
@@ -267,13 +270,15 @@ tags:
 
 
       * `gid` - the gid of this enum option. Note that this is the gid of the
-        _option_ - the Custom Field itself has a separate `gid`.
+      _option_ - the Custom Field itself has a separate `gid`.
+
       * `name` - the name of the option, e.g. "Choice #1"
 
       * `enabled` - whether this field is enabled. Disabled fields are not
-        available to choose from when disabled, and are visually hidden in the
-        Asana application, but they remain in the metadata for Custom Field values
-        which were set to the option before the option was disabled.
+      available to choose from when disabled, and are visually hidden in the
+      Asana application, but they remain in the metadata for Custom Field values
+      which were set to the option before the option was disabled.
+
       * `color` - a color associated with this choice.
 
 
@@ -1226,14 +1231,14 @@ components:
 
                 *Note:* May be null if the attachment is hosted by
                 [Box](https://www.box.com/). If present, this URL may only be
-                valid for 1 hour from the time of retrieval. You should avoid
+                valid for two minutes from the time of retrieval. You should avoid
                 persisting this URL somewhere and just refresh it on demand to
                 ensure you do not keep stale URLs.
               type: string
               format: uri
               readOnly: true
               nullable: true
-              example: https://www.dropbox.com/s/123/Screenshot.png?dl=1
+              example: https://s3.amazonaws.com/assets/123/Screenshot.png
             host:
               description: >-
                 The service hosting the attachment. Valid values are `asana`,
@@ -2707,7 +2712,6 @@ components:
         - $ref: '#/components/schemas/ProjectStatusCompact'
         - type: object
           required:
-            - project
             - text
             - color
           properties:
@@ -2792,6 +2796,20 @@ components:
             an empty string.
           type: string
           example: Next Actions
+        insert_before:
+          description: >-
+            An existing section within this project before which the added
+            section should be inserted. Cannot be provided together with
+            insert_after.
+          type: string
+          example: '86420'
+        insert_after:
+          description: >-
+            An existing section within this project after which the added
+            section should be inserted. Cannot be provided together with
+            insert_before.
+          type: string
+          example: '987654'
       required:
         - project
         - name
@@ -3108,7 +3126,7 @@ components:
                 HTML formatted text for a comment. This will not include the name
                 of the creator.
               type: string
-              example: <body>This is a comment.</body>
+              example: <body>This is a comment.<body>
             is_pinned:
               description: >-
                 *Conditional*. Whether the story should be pinned on the
@@ -3157,13 +3175,6 @@ components:
                 created the story.
               type: string
               example: marked today
-            type:
-              description: >
-                *Deprecated: new integrations should prefer the
-                `resource_subtype` field.*
-              type: string
-              readOnly: true
-              example: comment
     StoryResponseDates:
       description: >-
         *Conditional*
@@ -6439,7 +6450,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/EmptyResponse'
+                    $ref: '#/components/schemas/CustomFieldSettingResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -6804,7 +6815,7 @@ paths:
 
         Note that sections must be empty to be deleted.
 
-        The last remaining section in a board view cannot be deleted.
+        The last remaining section cannot be deleted.
 
         Returns an empty data block.
       tags:
@@ -6960,7 +6971,7 @@ paths:
     post:
       summary: Move or Insert sections
       description: |-
-        Move sections relative to each other in a board view. One of
+        Move sections relative to each other. One of
         `before_section` or `after_section` is required.
 
         Sections cannot be moved between projects.
@@ -8878,6 +8889,12 @@ paths:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
+      - name: completed
+        in: query
+        description: >-
+          Filters on completed/incomplete tasks
+        schema:
+          type: boolean
       - name: completed_on.before
         in: query
         description: >-
@@ -9104,6 +9121,11 @@ paths:
 
 
         Searching for multiple exact matches of a custom field is not supported.
+
+
+        *Note: If you specify `projects.any` and `sections.any`, you will receive
+        tasks for the project **and** tasks for the section. If you're looking for
+        only tasks in a section, omit the `projects.any` from the request.*
       tags:
         - Tasks
       operationId: searchTasksForWorkspace
