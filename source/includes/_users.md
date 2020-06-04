@@ -1,26 +1,6 @@
 # Users
 
 ## GET all users at your account
-
-This endpoint retrieves all users.
-
-### HTTP Request
-
-`https://api.practitest.com/api/v2/users.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Here's the examples of the JSON requests and response that you may get when submitting a GET request
-
-### PAT Support
-Shows list of users only to projects that a user belongs to.
-
-<aside class="notice">
-  Remember, you can see examples in the dark area to the right.
-</aside>
-
-
-
 ```shell
     curl -H "Content-Type: application/json" \
      -u YOUR_EMAIL:YOUR_TOKEN  \
@@ -120,3 +100,21 @@ Console.WriteLine(response.Headers);
     "total-count": 5
   }
 }
+```
+
+This endpoint retrieves all users.
+
+### HTTP Request
+
+`https://api.practitest.com/api/v2/users.json`
+
+### Query Parameters - [pagination](#pagination)
+
+Here's the examples of the JSON requests and response that you may get when submitting a GET request
+
+### PAT Support
+Shows list of users only to projects that a user belongs to.
+
+<aside class="notice">
+  Remember, you can see examples in the dark area to the right.
+</aside>
