@@ -704,7 +704,6 @@ You can search or filter collections on the following fields. Simply add them to
 * created_before - only return collections created before this date (E.g. 2020-01-01 00:00)
 * modified_after - only return collections modified after this date (E.g. 2020-01-01 00:00)
 * modified_before - only return collections modified before this date (E.g. 2020-01-01 00:00)
-* organization - only return collections matched to this organization
 * status - only return collections that have this status (one of: pending, reversed, reversed_on_network, successful, failed, cashed_out, expired)
 * network - only return collections that are for this mobile phone network
 * contact first name - only return collections that have this first name in the contact (E.g. James)
