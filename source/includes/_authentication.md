@@ -1,5 +1,6 @@
 # Authentication
 
+## Authentication Options
 ```shell
 # Basic authentication:
     curl -H "Content-Type: application/json" \
@@ -13,71 +14,33 @@
     -H "PTToken: YOUR_TOKEN" \
     https://api.practitest.com/api/v2/projects.json
 ```
+> Make sure to replace `YOUR_TOKEN` with your API token.
+
+PractiTest uses API tokens for authentication. You can create a new API token by going to the Account Settings - "API Tokens", or going to your personal settings for Personal Tokens. Please visit <a href="https://www.practitest.com/help/account/account-api-tokens/" target="_blank">API tokens</a> for more information.
+API expects the API-token to be included in all API requests to the server.
+There are three ways to authenticate to PractiTest API V2 (you can choose anyone of the three):
+
+* basic authentication - with curl commands it is  -u YOUR_EMAIL:YOUR_TOKEN (can be any:YOUR_TOKEN too)
+<br>**OR**
+* Parameters - parameters in the query string (which is usually more convinient with browser's debugging) - api_url?api_token=YOUR_TOKEN
+<br>**OR**
+* Custom Header - PTToken -  for example <br>
+`export TOKEN='YOUR_TOKEN'`<br>
+`curl -X POST -H "PTToken: $TOKEN" \`<br>
+` -H "Content-Type:application/json" \`<br>
+`-d '{"data": { "type": "requirements", "attributes": {"name": "one", "author-id": 6178, "priority": "highest"}  } }' \`<br>
+`"https://api.practitest.com/api/v2/projects/4823/requirements.json"`<br>
 
 
-```csharp
-// https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.getresponse%28v=vs.110%29.aspx
-string token = "xxx";
-string developerEmail = "my@email.address";
+<aside class="success">
+You must replace <code>YOUR_TOKEN</code> with your custom API token.
+<br><br>
 
-var request = WebRequest.Create("https://api.practitest.com/api/v2/projects.json");
-//request.PreAuthenticate = true;
-string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(developerEmail + ":" + token));
-request.Headers["Authorization"] = "Basic " + authInfo;
-// Console.WriteLine("Authorization: Basic " + authInfo);
+**Developer email is not authenticated by the API, and not required anymore. You can put there anything (even the word 'any'). But if you have errors, or bad syntax, the only way that we get back to you, would be if you put your valid email address. This way we can help you if we see something wrong.
+</aside>
 
-try {
-  var response = request.GetResponse();
-  Console.WriteLine(response.Headers);
-  // Get the stream associated with the response.
-  Stream receiveStream = response.GetResponseStream ();
-
-  // Pipes the stream to a higher level stream reader with the required encoding format.
-  StreamReader readStream = new StreamReader (receiveStream, Encoding.UTF8);
-
-  Console.WriteLine ("Response stream received.");
-  Console.WriteLine (readStream.ReadToEnd ());
-  response.Close ();
-  readStream.Close ();
-} catch (WebException ex) {
-  Console.WriteLine("Exception:");
-  Console.WriteLine(ex.Response.Headers);
-  var resp = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
-  Console.WriteLine(resp);
-}
-```
-
-```ruby
-require 'net/http'
-require 'net/https'
-require 'uri'
-require 'json'
-
-URL   = "https://api.practitest.com"
-TOKEN = "xxx"
-DEVELOPER_EMAIL= "my@mail.address"
-
-uri = URI.parse("#{URL}/api/v2/projects.json")
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
-req = Net::HTTP::Get.new(uri.path)
-req.basic_auth DEVELOPER_EMAIL, TOKEN
-res = http.request(req)
-puts res.body
-```
-
-
-```python
-import httplib
-import requests
-from requests.auth import AuthBase
-res = requests.get('https://api.practitest.com/api/v2/projects.json', auth=('user@pt.com', 'dd2d9ddee2e9cd4861b1f0353375de1b4444d49'))
-print res.status_code
-print res.text
-```
-
+## API Tokens types
 > This command: https://api.practitest.com/api/v2/projects.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
-
 
 ```json
 {
@@ -120,28 +83,14 @@ print res.text
 }
 ```
 
+PractiTest support two two types of API Tokens:
+### Account API Token
+This is the most powerful API token type that has access to all projects in the account, and all API resources described in this document.
 
-> Make sure to replace `YOUR_TOKEN` with your API token and `YOUR_EMAIL` with your email address.
+### Personal Api Token - PAT
+This token type type was introduced on May 2020, and is gradually supported inside the API resources.
 
-PractiTest uses API tokens for authentication. You can create a new API token by going to the Account Settings - "API Tokens". Please visit <a href="https://www.practitest.com/help/account/account-api-tokens/" target="_blank">API tokens</a> for more information.
-API expects the API-token to be included in all API requests to the server.
-There are three ways to authenticate to PractiTest API V2 (you can choose anyone of the three):
+It also means that currently NOT ALL THE RESOURCES are working with PAT, and for each resource there's a specific description for PAT.
+Personal API Token means that each user may have its own token; an API resource that supports PAT will enable only user's permissions.
 
-* basic authentication - with curl commands it is  -u YOUR_EMAIL:YOUR_TOKEN (can be any:YOUR_TOKEN too)
-<br>**OR**
-* Parameters - parameters in the query string (which is usually more convinient with browser's debugging) - api_url?api_token=YOUR_TOKEN
-<br>**OR**
-* Custom Header - PTToken -  for example <br>
-`export TOKEN='YOUR_TOKEN'`<br>
-`curl -X POST -H "PTToken: $TOKEN" \`<br>
-` -H "Content-Type:application/json" \`<br>
-`-d '{"data": { "type": "requirements", "attributes": {"name": "one", "author-id": 6178, "priority": "highest"}  } }' \`<br>
-`"https://api.practitest.com/api/v2/projects/4823/requirements.json"`<br>
-
-
-<aside class="success">
-You must replace <code>YOUR_TOKEN</code> with your custom API token.
-<br><br>
-
-**Developer email is not authenticated by the API, and not required anymore. You can put there anything (even the word 'any'). But if you have errors, or bad syntax, the only way that we get back to you, would be if you put your valid email address. This way we can help you if we see something wrong.
-</aside>
+For example -> in the <a href="/#projects">projects</a> API request, with Account Token, you may list all projects in the account; PAT enables to show only projects in the account that the user has access to.
