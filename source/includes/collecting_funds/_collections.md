@@ -700,8 +700,14 @@ You can search or filter collections on the following fields. Simply add them to
 * reference - the reference code that the customer used when sending the collection
 * remote_transaction_id - the transation id or transaction reference of the collection on the mobile network operator's side
 * collection_request - the ID of the collection request that this collection was matched to
-* created_after - only return collections created after this date (E.g. 2017-01-01 00:00)
-* created_before - only return collections created before this date (E.g. 2017-01-01 00:00)
+* created_after - only return collections created after this date (E.g. 2020-01-01 00:00)
+* created_before - only return collections created before this date (E.g. 2020-01-01 00:00)
+* modified_after - only return collections modified after this date (E.g. 2020-01-01 00:00)
+* modified_before - only return collections modified before this date (E.g. 2020-01-01 00:00)
+* status - only return collections that have this status (one of: pending, reversed, reversed_on_network, successful, failed, cashed_out, expired)
+* network - only return collections that are for this mobile phone network
+* contact first name - only return collections that have this first name in the contact (E.g. James)
+* contact last name - only return collections that have this last name in the contact (E.g. Doe)
 
 **Response**
 
