@@ -35,7 +35,7 @@ Getting Started with Slate
 ------------------------------
 
 To get started with Slate, please check out the [Getting Started](https://github.com/slatedocs/slate/wiki#getting-started)
-section in our [wiki](https://github.com/slatedocs/wiki).
+section in our [wiki](https://github.com/slatedocs/slate/wiki).
 
 We support running Slate in three different ways:
 * [Natively](https://github.com/slatedocs/slate/wiki/Using-Slate-Natively)
