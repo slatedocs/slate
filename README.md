@@ -101,12 +101,3 @@ bundle exec middleman build --clean
 aws s3 cp build/index.html  s3://pt_public/api/slate-apiv2/index.html --acl public-read
 aws cloudfront create-invalidation --distribution-id E2V3PVGRJTV0N8 \
   --paths /api/slate-apiv2/index.html
-
-# deploy old
-# cp build/index.html ../website-jekyll/pages/api-v2.html
-
-# cp build/stylesheets/* ../website-jekyll/assets/api-v2/stylesheets
-# cp build/images/* ../website-jekyll/assets/api-v2/images
-# cp build/fonts/* ../website-jekyll/assets/api-v2/fonts
-# cp build/javascripts/* ../website-jekyll/assets/api-v2/javascripts
-```
