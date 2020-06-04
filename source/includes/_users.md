@@ -12,7 +12,14 @@ This endpoint retrieves all users.
 
 Here's the examples of the JSON requests and response that you may get when submitting a GET request
 
-Remember, you can see examples in the dark area to the right.
+### PAT Support
+Shows list of users only to projects that a user belongs to.
+
+<aside class="notice">
+  Remember, you can see examples in the dark area to the right.
+</aside>
+
+
 
 ```shell
     curl -H "Content-Type: application/json" \

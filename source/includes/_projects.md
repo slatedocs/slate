@@ -20,3 +20,6 @@ Note: The example query parameters above use unencoded [ and ] characters simply
 [Here's](#authentication) the examples of the JSON requests and responses that you may get when submitting a GET request
 
 Remember, you can see examples in the dark area to the right.
+
+### PAT Support
+Shows user's projects inside the account.
