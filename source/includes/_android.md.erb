@@ -180,6 +180,29 @@ val adaSettings = AdaEmbedView.Settings.Builder("ada-example")
 
 Using the SDK, you can configure the initial chat settings for greater customization. Settings can be configured for XML, or programmatically using the`AdaEmbedView.Settings` class.
 
+#### zdChatterAuthCallback
+
+> When using AdaEmbedView
+
+```kotlin
+adaView.authTokenCallback = {
+    getToken() // this functions returns String
+}
+```
+
+> When using AdaEmbedDialog
+
+```kotlin
+val adaDialog = AdaEmbedDialog()
+adaDialog.authTokenCallback = {
+    getToken() // this functions returns String
+}
+```
+
+When called, the `zdChatterAuthCallback` can be used to request JWT token from your API, and then passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable chatter identity.
+
+To implement, `authTokenCallback` must be defined on `adaView`, or `adaDialog`. If the SDK requests a JWT token, this callback will be fired.
+
 #### cluster
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
 
