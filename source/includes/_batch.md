@@ -22,7 +22,7 @@ $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 $batchId = $batchApi->create();
 if ($batchId) {
-   
+    printf('Created batch ID %d%s', $batchId, PHP_EOL);
 }
 ```
 
