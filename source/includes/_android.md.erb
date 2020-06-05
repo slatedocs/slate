@@ -180,29 +180,6 @@ val adaSettings = AdaEmbedView.Settings.Builder("ada-example")
 
 Using the SDK, you can configure the initial chat settings for greater customization. Settings can be configured for XML, or programmatically using the`AdaEmbedView.Settings` class.
 
-#### zdChatterAuthCallback
-
-> When using AdaEmbedView
-
-```kotlin
-adaView.zdChatterAuthCallback = {
-    getToken() // this functions returns String
-}
-```
-
-> When using AdaEmbedDialog
-
-```kotlin
-val adaDialog = AdaEmbedDialog()
-adaDialog.zdChatterAuthCallback = {
-    getToken() // this functions returns String
-}
-```
-
-When called, the `zdChatterAuthCallback` can be used to request a JWT token from your API, and then have it passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable chatter identity.
-
-To implement, `zdChatterAuthCallback` must be defined on `adaView`, or `adaDialog`. If the SDK requests a JWT token, this callback will be fired.
-
 #### cluster
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
 
@@ -226,6 +203,29 @@ The `styles` option can be used to override default styles inside of Web Chat. T
 <aside class="warning">
 Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
 </aside>
+
+#### zdChatterAuthCallback
+
+> When using AdaEmbedView
+
+```kotlin
+adaView.zdChatterAuthCallback = {
+    getToken() // this functions returns String
+}
+```
+
+> When using AdaEmbedDialog
+
+```kotlin
+val adaDialog = AdaEmbedDialog()
+adaDialog.zdChatterAuthCallback = {
+    getToken() // this functions returns String
+}
+```
+
+When called, the `zdChatterAuthCallback` can be used to request a JWT token from your API, and then have it passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable chatter identity.
+
+To implement, `zdChatterAuthCallback` must be defined on `adaView`, or `adaDialog`. If the SDK requests a JWT token, this callback will be fired.
 
 ### Actions
 #### deleteHistory
