@@ -18,6 +18,7 @@ includes:
   - pagination
   - projects
   - users
+  - attachments
   - system_fields
   - custom_fields
   - requirements
