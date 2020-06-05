@@ -199,7 +199,7 @@ adaDialog.zdChatterAuthCallback = {
 }
 ```
 
-When called, the `zdChatterAuthCallback` can be used to request a JWT token from your API, and then passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable chatter identity.
+When called, the `zdChatterAuthCallback` can be used to request a JWT token from your API, and then have it passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable chatter identity.
 
 To implement, `zdChatterAuthCallback` must be defined on `adaView`, or `adaDialog`. If the SDK requests a JWT token, this callback will be fired.
 
