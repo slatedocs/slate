@@ -21,8 +21,8 @@ use BrightLocal\Batches\V4 as BatchApi;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $batchApi = new BatchApi($api);
 $result = $batchApi->create();
-if ($result['success']) {
-    $batchId = $result['batch-id'];
+if ($result) {
+    $batchId = $result;
 }
 ```
 
