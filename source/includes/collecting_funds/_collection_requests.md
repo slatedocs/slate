@@ -863,10 +863,17 @@ public class FilterCollectionRequestsExample {
 
 You can search or filter collection requests on the following fields. Simply add them to your request as shown in the examples. You can combine multiple filters. Note that filters return exact matches only. (The phonenumber field is treated differently - see below).
 
-* amount - the collection request amount
-* currency - the currency code
+* amount - the collection request amount (E.g 2000)
+* currency - the currency code of the currency of the collection request (E.g. UGX)
 * collection - the ID of the collection that fulfilled or matched this collection request
 * phonenumber - the phonenumber that the collection request was intended for. Note that the phonenumber will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
 * remote_transaction_id - the transaction id or transaction reference of the collection on the mobile network operator's side
 * created_after - only return collection requests created after this date (E.g. 2017-01-01 00:00)
 * created_before - only return collection requests created before this date (E.g. 2017-01-01 00:00)
+* modified_after - only return collection requests modified after this date (E.g. 2020-01-01 00:00)
+* modified_before - only return collection requests modified before this date (E.g. 2020-01-01 00:00)
+* status - only return collection requests that have this status (one of: pending, instructions_sent, successful, failed, expired, reversed)
+* reason - only return collection requests that have this reason text
+* network - only return collection requests that are for this mobile phone network
+* contact_first_name - only return collection requests that have this first name in the contact (E.g. James)
+* contact_last_name - only return collection requests that have this last name in the contact (E.g. Doe)
