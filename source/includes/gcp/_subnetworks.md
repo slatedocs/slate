@@ -1,7 +1,7 @@
 ### Subnetworks
 Create and manage your subnetworks. Subnetworks belongs to a network.
 
-<!-------------------- LIST INSTANCES -------------------->
+<!-------------------- LIST SUBNETWORKS -------------------->
 
 #### List subnetworks
 
@@ -64,7 +64,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A SUBNETWORK -------------------->
 
-#### Create a subnet
+#### Create a subnetwork
 
 ```shell
 curl -X POST \
