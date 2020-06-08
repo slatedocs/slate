@@ -23,10 +23,20 @@ update:
 	cd ../client_libraries/ruby-asana && git checkout master && git pull
 	cd ../client_libraries/python-asana && git checkout master && git pull
 
+library_prs:
+	cd ../client_libraries/node-asana && git checkout master && git pull
+	cd ../client_libraries/php-asana && git checkout master && git pull
+	cd ../client_libraries/java-asana && git checkout master && git pull
+	cd ../client_libraries/ruby-asana && git checkout master && git pull
+	cd ../client_libraries/python-asana && git checkout master && git pull
+
 # Generate Libraries, Generate Docs, Pull Samples into Docs, and Serve
 local: code_gen docs_gen serve
 
 # Pull Latest Libraries, Generate Docs, Pull Samples into Docs, and Serve
 latest: update docs_gen serve
+
+# Generates Libraries, Generates Docs, Pull Samples into Docs, Open Tabs to PR client library changes
+prs: code_gen docs_gen library_prs
 
 .DEFAULT_GOAL := latest

@@ -8642,6 +8642,13 @@ paths:
             - upcoming
             - later
         example: later
+      - name: portfolios.any
+        in: query
+        description: >-
+          Comma-separated list of portfolio IDs
+        schema:
+          type: string
+        example: 12345,23456,34567
       - name: projects.any
         in: query
         description: >-

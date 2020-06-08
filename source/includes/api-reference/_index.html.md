@@ -15997,7 +15997,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<Task> result = client.tasks.searchTasksForWorkspace(workspaceGid, sortAscending, sortBy, isSubtask, completed2, hasAttachment, isBlocked, isBlocking, modifiedAtAfter, modifiedAtBefore, dueOnAfter, modifiedOn, modifiedOnAfter, modifiedOnBefore, completedAtAfter, completedAtBefore, completedOn, completedOnAfter, completedOnBefore, completed, dueOnBefore, createdAtAfter, createdAtBefore, createdOn, createdOnAfter, createdOnBefore, startOn, startOnAfter, startOnBefore, dueAtAfter, dueAtBefore, commentedOnByNot, dueOn, commentedOnByAny, likedByNot, likedByAny, assignedByNot, assignedByAny, createdByNot, createdByAny, followersNot, followersAny, teamsAny, tagsAll, tagsNot, tagsAny, sectionsAll, sectionsNot, sectionsAny, projectsAll, projectsNot, projectsAny, assigneeStatus, assigneeNot, assigneeAny, resourceSubtype, text)
+List<Task> result = client.tasks.searchTasksForWorkspace(workspaceGid, sortAscending, sortBy, isSubtask, completed2, hasAttachment, isBlocked, isBlocking, modifiedAtAfter, modifiedAtBefore, dueOnBefore, modifiedOn, modifiedOnAfter, modifiedOnBefore, completedAtAfter, completedAtBefore, completedOn, completedOnAfter, completedOnBefore, completed, commentedOnByNot, createdAtAfter, createdAtBefore, createdOn, createdOnAfter, createdOnBefore, startOn, startOnAfter, startOnBefore, dueAtAfter, dueAtBefore, commentedOnByAny, dueOn, dueOnAfter, likedByNot, likedByAny, assignedByNot, assignedByAny, createdByNot, createdByAny, followersNot, followersAny, teamsAny, tagsAll, tagsNot, tagsAny, sectionsAll, sectionsNot, sectionsAny, projectsAll, projectsNot, projectsAny, portfoliosAny, assigneeStatus, assigneeNot, assigneeAny, resourceSubtype, text)
     .option("pretty", true)
     .execute();
 ```
@@ -16077,6 +16077,7 @@ Searching for multiple exact matches of a custom field is not supported.
 |?assignee.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?assignee.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?assignee_status<span class="param-type"> string</span>|One of `inbox`, `today`, `upcoming`, or `later`|
+|?portfolios.any<span class="param-type"> string</span>|Comma-separated list of portfolio IDs|
 |?projects.any<span class="param-type"> string</span>|Comma-separated list of project IDs|
 |?projects.not<span class="param-type"> string</span>|Comma-separated list of project IDs|
 |?projects.all<span class="param-type"> string</span>|Comma-separated list of project IDs|
