@@ -40,12 +40,6 @@ curl -X GET \
 
 Retrieve a list of all networks in a given [environment](#administration-environments).
 
-#### Filters:
-
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks?network=<a href="#VPC-network-selflink">:VPC-network-selflink</a></code>
-
-Retrieve a list of all networks in a given [environment](#administration-environments) and [VPC-network].
-
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
@@ -62,6 +56,12 @@ Attributes | &nbsp;
 `name`<br/>*string* | The display name of the subnet.
 `shortRegion`<br/>*string* | A short version of the region name
 
+#### Filters
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks?network=<a href="#VPC-network-selflink">:VPC-network-selflink</a></code>
+
+Retrieve a list of all networks in a given [environment](#administration-environments) and [VPC-network].
+
 <!-------------------- CREATE A SUBNETWORK -------------------->
 
 #### Create a subnet
@@ -72,7 +72,6 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/subnetworks"
-}'
 ```
 > Request body example:
 
