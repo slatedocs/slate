@@ -649,7 +649,7 @@
     },
     "/fills/history/download/csv": {
       "get": {
-        "tags": ["Fill"],
+        "tags": ["TradeHistory"],
         "summary": "Download Wallet transactions",
         "operationId": "downloadFillsHistory",
         "produces": ["application/json"],
@@ -800,7 +800,7 @@
     "/wallet/balances": {
       "get": {
         "tags": ["Wallet"],
-        "operationId": "getWalletBalances",
+        "operationId": "getBalances",
         "summary": "Get Wallet Balances",
         "produces": ["application/json"],
         "security": [{
@@ -822,7 +822,7 @@
       "get": {
         "tags": ["Wallet"],
         "summary": "Get Wallet transactions",
-        "operationId": "getWalletTransactions",
+        "operationId": "getTransactions",
         "produces": ["application/json"],
         "consumes": ["application/json"],
         "security": [{
@@ -871,7 +871,7 @@
       "get": {
         "tags": ["Wallet"],
         "summary": "Download Wallet transactions",
-        "operationId": "downloadWalletTransactions",
+        "operationId": "downloadTransactions",
         "produces": ["application/json"],
         "consumes": ["application/json"],
         "security": [{
