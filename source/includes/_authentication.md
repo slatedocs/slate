@@ -39,7 +39,7 @@ You must replace <code>YOUR_TOKEN</code> with your custom API token.
 **Developer email is not authenticated by the API, and not required anymore. You can put there anything (even the word 'any'). But if you have errors, or bad syntax, the only way that we get back to you, would be if you put your valid email address. This way we can help you if we see something wrong.
 </aside>
 
-## API Tokens types
+## API Token types
 > This command: https://api.practitest.com/api/v2/projects.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
 
 ```json
@@ -83,14 +83,20 @@ You must replace <code>YOUR_TOKEN</code> with your custom API token.
 }
 ```
 
-PractiTest support two two types of API Tokens:
+PractiTest supports two types of API Tokens:
 ### Account API Token
-This is the most powerful API token type that has access to all projects in the account, and all API resources described in this document.
+This is the most powerful API token type, with access to all projects in the account, and all the API resources described in this document.
 
 ### Personal Api Token - PAT
-This token type type was introduced on May 2020, and is gradually supported inside the API resources.
+This token type was introduced in May 2020, and it is being gradually supported in all the API resources.
 
-It also means that currently NOT ALL THE RESOURCES are working with PAT, and for each resource there's a specific description for PAT.
-Personal API Token means that each user may have its own token; an API resource that supports PAT will enable only user's permissions.
+Currently NOT ALL THE RESOURCES are working with PAT, and for each resource there's a specific description specifically for this token type.
 
-For example -> in the <a href="/#projects">projects</a> API request, with Account Token, you may list all projects in the account; PAT enables to show only projects in the account that the user has access to.
+When working with the Personal API Token each user may have its own token; and then PractiTest will provide access to an API resources based on the user’s permissions.
+
+For example -> in the <a href="#projects">Projects API request</a>, with Account Token, you may list all projects in the account; PAT allows you to show only the projects in the account that the specific user has access to.
+
+Please take into account, once again, that not all API resources currently support PAT, and so you should check this before working with the API and this token type
+
+
+For example -> in the  API request, with Account Token, you may list all projects in the account; PAT enables to show only projects in the account that the user has access to.
