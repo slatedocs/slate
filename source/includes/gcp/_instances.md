@@ -339,6 +339,19 @@ curl -X POST \
   "bootDiskSizeInGb": "10",
   "cpuCount": "2",
   "memoryInGB": "4.5",
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "ephemeralIP": true
+}
+
+// Create an instance with no external IP
+{
+  "name": "my-instance",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-a",
+  "bootDiskType": "pd-standard",
+  "bootDiskSizeInGb": "10",
+  "cpuCount": "2",
+  "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514"
 }
 ```
@@ -360,8 +373,9 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource.
-`shortIP`<br/>*string* | The name of an existing regional external IP address assigned to this instance in the same region. This argument is only valid in conjunction with reserveStaticIP being false.
+`reserveStaticIP`<br/>*boolean* | If the value is true, a new static IP would be reserved and provided to the resource.
+`shortIP`<br/>*string* | The name of an existing regional external IP address assigned to this instance in the same region. This argument is only valid in conjunction with reserveStaticIP and ephemeral IP being false.
+`ephemeralIP`<br/>*boolean* | If the value is false, reserve static IP is false and if no shortIP is provided the instance won't have an external IP. If the value is true, an ephemeral external IP address will be assigned.
 `startupScript`<br/>*string* | A startup script metadata item to run every time the instance boots up.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
