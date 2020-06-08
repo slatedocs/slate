@@ -8896,12 +8896,6 @@ paths:
           type: string
           format: date-time
         example: '2019-04-15T01:01:46.055Z'
-      - name: completed
-        in: query
-        description: >-
-          Filters on completed/incomplete tasks
-        schema:
-          type: boolean
       - name: completed_on.before
         in: query
         description: >-

@@ -406,6 +406,12 @@ html, body {
     }
   }
 
+  .full-section {
+    section {
+      padding: 20px 0;
+    }
+  }
+
   &:after {
     content: '';
     display: block;

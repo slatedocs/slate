@@ -15997,7 +15997,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<Task> result = client.tasks.searchTasksForWorkspace(workspaceGid, sortAscending, sortBy, isSubtask, completed2, hasAttachment, isBlocked, isBlocking, modifiedAtAfter, modifiedAtBefore, dueOnBefore, modifiedOn, modifiedOnAfter, modifiedOnBefore, completedAtAfter, completedAtBefore, completedOn, completedOnAfter, completedOnBefore, completed, commentedOnByNot, createdAtAfter, createdAtBefore, createdOn, createdOnAfter, createdOnBefore, startOn, startOnAfter, startOnBefore, dueAtAfter, dueAtBefore, commentedOnByAny, dueOn, dueOnAfter, likedByNot, likedByAny, assignedByNot, assignedByAny, createdByNot, createdByAny, followersNot, followersAny, teamsAny, tagsAll, tagsNot, tagsAny, sectionsAll, sectionsNot, sectionsAny, projectsAll, projectsNot, projectsAny, portfoliosAny, assigneeStatus, assigneeNot, assigneeAny, resourceSubtype, text)
+List<Task> result = client.tasks.searchTasksForWorkspace(workspaceGid, sortAscending, sortBy, isSubtask, completed, hasAttachment, isBlocked, isBlocking, modifiedAtAfter, modifiedAtBefore, dueOnBefore, modifiedOn, modifiedOnAfter, modifiedOnBefore, completedAtAfter, completedAtBefore, completedOn, completedOnAfter, completedOnBefore, createdAtAfter, commentedOnByNot, createdAtBefore, createdOn, createdOnAfter, createdOnBefore, startOn, startOnAfter, startOnBefore, dueAtAfter, dueAtBefore, dueOn, commentedOnByAny, dueOnAfter, likedByNot, likedByAny, assignedByNot, assignedByAny, createdByNot, createdByAny, followersNot, followersAny, teamsAny, tagsAll, tagsNot, tagsAny, sectionsAll, sectionsNot, sectionsAny, projectsAll, projectsNot, projectsAny, portfoliosAny, assigneeStatus, assigneeNot, assigneeAny, resourceSubtype, text)
     .option("pretty", true)
     .execute();
 ```
@@ -16111,7 +16111,6 @@ Searching for multiple exact matches of a custom field is not supported.
 |?created_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
 |?created_at.before<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
 |?created_at.after<span class="param-type"> string(date-time)</span>|ISO 8601 datetime string|
-|?completed<span class="param-type"> boolean</span>|Filters on completed/incomplete tasks|
 |?completed_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
 |?completed_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
 |?completed_on<span class="param-type"> string(date)</span>|ISO 8601 date string or `null`|
@@ -16125,6 +16124,7 @@ Searching for multiple exact matches of a custom field is not supported.
 |?is_blocking<span class="param-type"> boolean</span>|Filter to incomplete tasks with dependents|
 |?is_blocked<span class="param-type"> boolean</span>|Filter to tasks with incomplete dependencies|
 |?has_attachment<span class="param-type"> boolean</span>|Filter to tasks with attachments|
+|?completed<span class="param-type"> boolean</span>|Filter to completed tasks|
 |?is_subtask<span class="param-type"> boolean</span>|Filter to subtasks|
 |?sort_by<span class="param-type"> string</span>|One of `due_date`, `created_at`, `completed_at`, `likes`, or `modified_at`, defaults to `modified_at`|
 |?sort_ascending<span class="param-type"> boolean</span>|Default `false`|
