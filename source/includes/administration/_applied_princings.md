@@ -76,7 +76,7 @@ Attributes | &nbsp;
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
 `scopeOrganization.name`<br/>*string* | The name of the organization.
 `creationDate`<br/>*Object* | The date the applied pricing was created.
-`status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, WILL_BE_ACTIVE.
+`status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, FUTURE.
 
 
 <!-------------------- GET APPLIED PRICING -------------------->
@@ -151,7 +151,7 @@ Attributes | &nbsp;
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
 `scopeOrganization.name`<br/>*string* | The name of the organization.
 `creationDate`<br/>*Object* | The date the applied pricing was created.
-`status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, WILL_BE_ACTIVE.
+`status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, FUTURE.
 
 <!-------------------- CREATE APPLIED PRICING -------------------->
 #### Create applied pricing
@@ -212,7 +212,7 @@ Required | &nbsp;
 ------- | -----------
 `organization.id` <br/>*UUID* | The UUID of the organization the applied pricing belongs to. 
 `pricingDefinition.id` <br/>*UUID* | the UUID of the pricing that will be used in the applied pricing.
-`scopeQualifier` <br/>*string* | The scope qualifier for the applied pricing. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, TAG_ANYMATCH, GLOBAL.
+`scopeQualifier` <br/>*string* | The scope qualifier for the applied pricing. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
 `currency` <br/>*String* | The currency used for the applied pricing. The value is a ISO 4217 currency code that is part of the pricing selected. 
 `startDate` <br/>*Date* | The start date for the applied pricing.
 `billingDay` <br/>*int*| The billing day that the applied pricing will be applied.
