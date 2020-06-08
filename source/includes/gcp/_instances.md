@@ -46,10 +46,16 @@ curl -X GET \
       ],
       "kind": "compute#instance",
       "labelFingerprint": "42WmSpB8rSM=",
-      "metadata": {
-        "fingerprint": "WFshDDge4fM=",
-        "kind": "compute#metadata"
-      },
+    "metadata": {
+      "fingerprint": "RnfaWQ2UP4U=",
+      "items": [
+        {
+          "key": "startup-script",
+          "value": "#! /bin/bash\napt-get update\nEOF"
+        }
+      ],
+      "kind": "compute#metadata"
+    },
       "networkInterfaces": [
         {
           "accessConfigs": [
@@ -187,6 +193,12 @@ curl -X GET \
     "labelFingerprint": "42WmSpB8rSM=",
     "metadata": {
       "fingerprint": "WFshDDge4fM=",
+      "items": [
+        {
+          "key": "startup-script",
+          "value": "#! /bin/bash\napt-get update\nEOF"
+        }
+      ],
       "kind": "compute#metadata"
     },
     "networkInterfaces": [
@@ -301,7 +313,8 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
-  "shortIP": "my-ip-name"
+  "shortIP": "my-ip-name",
+  "startupScript": "#! /bin/bash\napt-get update\nEOF"
 }
 
 // Create an instance with a new static IP
@@ -349,6 +362,7 @@ Optional | &nbsp;
 ------- | -----------
 `reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource.
 `shortIP`<br/>*string* | The name of an existing regional external IP address assigned to this instance in the same region. This argument is only valid in conjunction with reserveStaticIP being false.
+`startupScript`<br/>*string* | A startup script metadata item to run every time the instance boots up.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
