@@ -1,13 +1,13 @@
-### Subnetworks
-Create and manage your subnetworks. Subnetworks belongs to a network.
+### Subnets
+Create and manage your subnets. Subnets belongs to a network.
 
 <!-------------------- LIST SUBNETWORKS -------------------->
 
-#### List subnetworks
+#### List subnets
 
 ```shell
 curl -X GET \
-  -H "mc-api-key: MSzI0RPkdvMgU9Y68oGRsw==" \
+  -H "mc-api-key: your_api_key" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/subnetworks"
 ```
 > The above command returns a JSON structured like this:
@@ -17,16 +17,16 @@ curl -X GET \
   "data": [
     {
       "creationTimestamp": "2020-05-28T07:20:17.315-07:00",
-      "fingerprint": "6S1Xfr1s97Y=",
+      "fingerprint": "resource_fingerprint",
       "gatewayAddress": "10.128.0.1",
       "ipCidrRange": "10.128.0.0/20",
       "kind": "compute#subnetwork",
-      "network": "https://www.googleapis.com/compute/v1/projects/cmc-ankhang-gcp-env-ggb/global/networks/default",
+      "network": "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/networks/default",
       "privateIpGoogleAccess": false,
-      "region": "https://www.googleapis.com/compute/v1/projects/cmc-ankhang-gcp-env-ggb/regions/us-central1",
-      "selfLink": "https://www.googleapis.com/compute/v1/projects/cmc-ankhang-gcp-env-ggb/regions/us-central1/subnetworks/default",
+      "region": "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/us-central1",
+      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/us-central1/subnetworks/default",
       "shortNetwork": "default",
-      "id": "5575250766523954766",
+      "id": "resource_id",
       "name": "default",
       "shortRegion": "us-central1"
     }],
@@ -58,13 +58,13 @@ Attributes | &nbsp;
 `region`<br/>*Array[Disk]* | Server-defined URL for the region name
 `selfLink`<br/>*string* | Server-defined URL for this resource
 `shortNetwork`<br/>*string* | Display name of the VPC network that contains the subnet
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The display name of the subnetwork.
+`id`<br/>*UUID* | The id of the subnet
+`name`<br/>*string* | The display name of the subnet.
 `shortRegion`<br/>*string* | A short version of the region name
 
 <!-------------------- CREATE A SUBNETWORK -------------------->
 
-#### Create a subnetwork
+#### Create a subnet
 
 ```shell
 curl -X POST \
@@ -87,14 +87,14 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks</code>
 
-Create a new subnetwork
+Create a new subnet
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the instance
+`name`<br/>*string* | The display name of the subnet
 `shortRegion`<br/>*string* | A short version of the region name
 `network`<br/>*string* | The selflink of the network
-`ipCidrRange`<br/>*string* | The CIDR IP range of the subnetwork
+`ipCidrRange`<br/>*string* | The CIDR IP range of the subnet
 
 Optional | &nbsp;
 ------- | -----------

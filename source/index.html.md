@@ -77,6 +77,7 @@ includes:
   - gcp/routers
   - gcp/vpn_gateways
   - gcp/vpn_tunnels
+  - gcp/subnetworks
   - gcp/load_balancing # Load balancing subsection
   - gcp/load_balancer
   - gcp/forwarding_rules
