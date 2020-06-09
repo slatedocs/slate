@@ -72,7 +72,7 @@ Attributes | &nbsp;
 `currency`<br/>*string* | The currency associated to the applied pricing.
 `billingDay`<br/>*int* | The billing day that the applied pricing will be applied.
 `scopeQualifier`<br/>*string* | Scope qualifier of the applied pricing. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
-`scopeOrganization`<br/>*Object* | The organisation to which the scope is applied to.
+`scopeOrganization`<br/>*Object* | The organization to which the scope is applied to.
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
 `scopeOrganization.name`<br/>*string* | The name of the organization.
 `creationDate`<br/>*Object* | The date the applied pricing was created.
@@ -147,7 +147,7 @@ Attributes | &nbsp;
 `currency`<br/>*string* | The currency associated to the applied pricing.
 `billingDay`<br/>*int* | The billing day that the applied pricing will be applied.
 `scopeQualifier`<br/>*string* | Scope qualifier of the applied pricing. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
-`scopeOrganization`<br/>*Object* | The organisation to which the scope is applied to.
+`scopeOrganization`<br/>*Object* | The organization to which the scope is applied to.
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
 `scopeOrganization.name`<br/>*string* | The name of the organization.
 `creationDate`<br/>*Object* | The date the applied pricing was created.
@@ -158,7 +158,7 @@ Attributes | &nbsp;
 
 `POST /applied_pricings`
 
-Create a new pricing.
+Create a new applied pricing.
 
 ```shell
 # Creates a new pricing
