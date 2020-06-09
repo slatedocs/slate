@@ -113,7 +113,7 @@ Attributes | &nbsp;
 Retrieve a product catalog's details.
 
 ```shell
-# Retrieve an organization
+# Retrieve a product catalog's details
 curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```

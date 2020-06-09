@@ -110,7 +110,7 @@ Attributes | &nbsp;
 Retrieve a pricing's details.
 
 ```shell
-# Retrieve an organization
+# Retrieve a pricing's details
 curl "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
