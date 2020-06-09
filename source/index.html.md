@@ -63,6 +63,12 @@ The idea behind this policy is to help users detect possible issues where the AP
 
 If you have any reason to believe that you need a higher rate limit, please contact our support.
 
+## Base URL
+Sometimes you may see in the description of resource [BASE_URL]. The reason is that this is dynamic and may change, depends on which datacenter you're working on.
+
+If your account is hosted in US servers (url is https://prod.practitest.com), then the BASE_URL should be: https://api.practitest.com
+For EU servers, the BASE_URL is: https://eu1-prod.practitest.app/
+
 
 # Code examples
 We put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:
