@@ -325,6 +325,21 @@ Marks the `chatter` as a test user.
 
 Can be used to trigger side-effects when the Web Chat drawer is opened or closed.
 
+#### zdChatterAuthCallback
+`zdChatterAuthCallback?(callback: (token: string) => void): void;`
+
+```js
+window.adaSettings = {
+  zdChatterAuthCallback: (callback) => {
+    // Here you should make a request to get the fresh JWT token
+    const token = "token goes here";
+    callback(token)
+  }
+};
+```
+
+When called, the `zdChatterAuthCallback` can be used to request a JWT token from your API, and then have it passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable chatter identity.
+
 ### Actions
 Actions can be called from the global adaEmbed object. A list of the available actions is available below.
 

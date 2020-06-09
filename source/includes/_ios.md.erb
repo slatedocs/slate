@@ -106,7 +106,20 @@ The styles option can be used to override default styles inside of Web Chat. The
 Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
 </aside>
 
-### Methods
+#### zdChatterAuthCallback
+`zdChatterAuthCallback: ((((_ token: String) -> Void)) -> Void)? = nil`
+
+```swift
+var adaFramework = AdaWebHost(handle: "nic", zendeskAuthCallback: { callback in
+    // Request JWT from your API
+    // Then...
+    callback("your.JWT")
+})
+```
+
+When called, the `zdChatterAuthCallback` can be used to request a JWT token from your API, and then have it passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable chatter identity.
+
+### Actions
 #### deleteHistory
 `deleteHistory()`
 
