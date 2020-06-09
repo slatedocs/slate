@@ -152,6 +152,14 @@ This operation doesn't require you to pass the file URI to callback immediately.
 
 To notify `AdaEmbedView` that you are going to handle file attach you should return `true`.
 
+#### Third-Party Cookies
+
+```
+app:ada_accept_third_party_cookies = "true"
+```
+
+The SDK has support for third-party cookies. Note that apps targeting [Build.VERSION_CODES.KITKAT](https://developer.android.com/reference/android/os/Build.VERSION_CODES#KITKAT) and lower already allow third-party cookies by default.
+
 ## API
 
 ### Settings
