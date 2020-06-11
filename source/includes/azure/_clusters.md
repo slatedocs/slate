@@ -60,7 +60,8 @@ curl -X GET \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/clusters/subscriptions/9e548d49-7d56-452c-8fc8-e81a25d05ddf/resourcegroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.ContainerService/managedClusters/ssamadh-aks-mean"
 ```
 
-Note: The cluster may also be retrieved by the cluster name: 
+Note: The above example uses the complete cluster id set by Azure. However, the cluster may also be retrieved by the cluster name as shown below:
+
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
@@ -90,8 +91,8 @@ Attributes        | &nbsp;
 id                | The resource id
 name              | The name of the resource, unique within the environment
 provisioningState | The state of the cluster could be any of [Succeeded, Creating, Deleting, Updating, Cancelled, Failed]
-dnsPrefix         | DNS prefix specified when creating the managed cluster
-nodePools         | Number of node container service agent pool
+dnsPrefix         | The DNS prefix specified when creating the managed cluster
+nodePools         | The number of node container service agent pool
 totalNodes        | The total number of nodes across all nodePools
 rbacEnabled       | Indicates of RBAC is enabled for this kubernetes cluster
 endpoint          | The fully qualified domain name (fqdn) for the master pool
