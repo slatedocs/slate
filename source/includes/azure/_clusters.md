@@ -141,10 +141,10 @@ Required | &nbsp;
 `primaryPoolNodeType`<br/>*string* | The size type of each virtual machine in the agent pool.
 `rbacEnabled`<br/>*boolean* | A boolean to indicate whether RBAC should be enabled on this cluster or not.
 `region`<br/>*string* | The name of the region for the cluster.
-`rootUsername`<br/>*string* | The user name to create a root user on cluster.
-
-Optional | &nbsp;
-------- | -----------
 `sshkey`<br/>*string* | The ssh key public portion that will be used to access cluster.
 `version` <br/>*string* | The version for the Kubernetes cluster.
 `vmScaleSetsEnabled`<br/>*boolean* | The boolean to indicate whether to use virtual machine scale sets or availability set for agent pool.
+
+Optional | &nbsp;
+------- | -----------
+`rootUsername`<br/>*string* | The user name to create a root user on cluster.
