@@ -15,7 +15,7 @@ curl -X GET \
 ```
 > The above command returns a JSON structured like this:
 
-```json
+```js
 {
   "data": [
     {
@@ -68,7 +68,7 @@ curl -X GET \
 ```
 > The above command returns a JSON structured like this:
 
-```json
+```js
 {
   "data": {
       "id": "/subscriptions/9e548d49-7d56-452c-8fc8-e81a25d05ddf/resourcegroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.ContainerService/managedClusters/ssamadh-aks-mean",
@@ -89,11 +89,11 @@ Attributes        | &nbsp;
 -------           | -----------
 id                | The resource id
 name              | The name of the resource, unique within the environment
-provisioningState | The state of the cluster could be any of [Succeeded, Creating, Deleting, Updating, Cancelled, Failed],
+provisioningState | The state of the cluster could be any of [Succeeded, Creating, Deleting, Updating, Cancelled, Failed]
 dnsPrefix         | DNS prefix specified when creating the managed cluster
-nodePools         | Number of node container service agent pool.
+nodePools         | Number of node container service agent pool
 totalNodes        | The total number of nodes across all nodePools
 rbacEnabled       | Indicates of RBAC is enabled for this kubernetes cluster
 endpoint          | The fully qualified domain name (fqdn) for the master pool
 region            | The resource location
-version           | The version of kubernetes running in the cluster,
+version           | The version of kubernetes running in the cluster
