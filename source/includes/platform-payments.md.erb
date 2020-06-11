@@ -358,6 +358,20 @@ Content-Type: application/json
 }
 ```
 
+```http
+HTTP/1.1 409 Conflict
+Content-Type: application/json
+
+{
+  "errors": [
+    {
+      "errorCode": "NAME_ALREADY_EXIST",
+      "message": "Wallet with name: Housing Project already exist for partyId: COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"
+    }
+  ]
+}}
+```
+
 <aside class="notice">
 Prior to creating a Wallet, the Company who owns the money in the Wallet must be <a href="#payments-manager-post-companies">registered</a>.
 </aside>
