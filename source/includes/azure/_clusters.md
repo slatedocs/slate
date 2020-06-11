@@ -15,7 +15,7 @@ curl -X GET \
 ```
 > The above command returns a JSON structured like this:
 
-```json
+```js
 {
   "data": [
     {
@@ -50,6 +50,7 @@ Attributes | &nbsp;
 `data`<br/>*array* | A list of Azure Kubenetes Service (AKS) Clusters. _(See ["Retrieve an AKS cluster"](#azure-retrieve-an-aks-cluster) API for the strucutre of each AKS cluster object)_
 `metadata`<br/>*object* | Consists of the meta information related to the returned cluster list. The attribute `recordCount` contains the number of clusters returned.
 
+<<<<<<< HEAD
 
 
 <!-------------------- CREATE AKS CLUSTER -------------------->
@@ -99,3 +100,53 @@ Optional | &nbsp;
 `sshkey`<br/>*string* | The ssh key public portion that will be used to access cluster.
 `version` <br/>*string* | The version for the Kubernetes cluster.
 `vmScaleSetsEnabled`<br/>*boolean* | The boolean to indicate whether to use virtual machine scale sets or availability set for agent pool. 
+=======
+<!-------------------- Retrieve  AKS Cluster -------------------->
+
+#### Retrieve an AKS clusters
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/clusters/subscriptions/9e548d49-7d56-452c-8fc8-e81a25d05ddf/resourcegroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.ContainerService/managedClusters/ssamadh-aks-mean"
+```
+
+Note: The above example uses the complete cluster id set by Azure. However, the cluster may also be retrieved by the cluster name as shown below:
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/azure-conn/test_env/clusters/ssamadh-aks-mean"
+```
+> The above command returns a JSON structured like this:
+
+```js
+{
+  "data": {
+      "id": "/subscriptions/9e548d49-7d56-452c-8fc8-e81a25d05ddf/resourcegroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.ContainerService/managedClusters/ssamadh-aks-mean",
+      "name": "ssamadh-basic",
+      "version": "premium_lrs",
+      "region": "southeastasia",
+      "nodePools": "4",
+      "totalNodes": "7",
+    },
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:cluster_name</code>
+
+Retrieve a specific AKS cluster in a given [environment](#administration-environments).
+
+Attributes        | &nbsp;
+-------           | -----------
+id                | The resource id
+name              | The name of the resource, unique within the environment
+provisioningState | The state of the cluster could be any of [Succeeded, Creating, Deleting, Updating, Cancelled, Failed]
+dnsPrefix         | The DNS prefix specified when creating the managed cluster
+nodePools         | The number of node container service agent pool
+totalNodes        | The total number of nodes across all nodePools
+rbacEnabled       | Indicates of RBAC is enabled for this kubernetes cluster
+endpoint          | The fully qualified domain name (fqdn) for the master pool
+region            | The resource location
+version           | The version of kubernetes running in the cluster
+>>>>>>> bcfd45fd21902eace4690eba92a6ab304a072f9b
