@@ -507,7 +507,7 @@ formId|ID of the form you want to get submissions for
 search|String or search command to filter entities by.
 start|Starting row for the entities returned. Defaults to 0.
 limit|Limit number of entities to return. Defaults to the system configuration for pagination (30).
-orderBy|Column to sort by. Can use any column listed in the response.
+orderBy|Column to sort by. Can use any column listed in the response, also can use column of joined table with prefix. Sort by submitted date is `s.date_submitted`
 orderByDir|Sort direction: asc or desc.
 publishedOnly|Only return currently published entities.
 minimal|Return only array of entities without additional lists in it.
