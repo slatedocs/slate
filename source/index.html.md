@@ -20,6 +20,7 @@ includes:
   - administration/pricings
   - administration/applied_pricings
   - administration/authentication
+  - administration/service_providers
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
