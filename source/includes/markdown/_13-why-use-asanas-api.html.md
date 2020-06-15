@@ -54,24 +54,7 @@ Integrations or scripts work great to maintain a custom workflow, saving a team 
 
 Whether it's ensuring that custom fields are filled out, tasks are completed, tasks live in the correct board-view column, or automatically assigning tasks at certain stages in your process, integrations can react to changes in Asana to ensure that everyone is up to date. When processes mature around how you get work done, it's a great time to use Asana's platform to make sure everything stays consistent and clear.
 
-Check out some examples of integrations we've built on Asana below:
-
-* [Triage Bot](/docs/triage-bot "Triage bot")
-* [Reminder Bot](/docs/bot-examples "Reminder bot") - don't let a task slip away!
-* [Q&A Response Times](/docs/q-a-response "Workflow automation") - measure goals and maintain a consistent process.
-
-
-<div>
-  <div class="docs-developer-satisfaction-content">
-      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
-  </div>
-</div>
-
-</section>
-<hr>
-<section>
-
-
+Check out some examples of integrations we've built on Asana in the next section.
 
 <div>
   <div class="docs-developer-satisfaction-content">
