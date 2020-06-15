@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.8.1
 jobs:
   build-deploy-s3:
     docker:
