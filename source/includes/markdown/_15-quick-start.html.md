@@ -2,7 +2,200 @@
 <section class="full-section">
 <section>
 
-# Quick Start
+# Examples
+
+## Python Hello World
+
+```python
+!
+import asana
+
+# replace with your personal access token. 
+personal_access_token = '0/123456789....'
+
+# Construct an Asana client
+client = asana.Client.access_token(personal_access_token)
+# Set things up to send the name of this script to us to show that you succeeded! This is optional.
+client.options['client_name'] = "hello_world_python"
+
+# Get your user info
+me = client.users.me()
+
+# Print out your information
+print("Hello world! " + "My name is " + me['name'] + "!")
+
+```
+
+<span class="description">
+To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
+</span>
+
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` in Python.
+
+
+Save this file as something descriptive like "hello_world.py"
+
+To run this script in your console, pass it as an argument to the python interpreter, i.e. `python hello_world.py` from the same directory as the file. You should see the message we wrote above with your user information.
+
+As an aside, for clarity `python-asana` will also work with Python 3.x (with small changes to the above example to make it compatible.)
+
+All of the built-in functions can be found in the [/gen folder of the client library](https://github.com/Asana/python-asana/tree/master/asana/resources/gen). 
+
+You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/python" target="_blank">Github examples repository</a>
+
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
+</section>
+<hr>
+<section>
+
+## Node Hello World
+
+```javascript
+!
+var asana = require('asana');
+
+// replace with your personal access token. 
+var personalAccessToken = '0/123456789....';
+
+// Construct an Asana client
+var client = asana.Client.create().useAccessToken(personalAccessToken);
+
+// Get your user info
+client.users.me()
+  .then(function(me) {
+    // Print out your information
+    console.log('Hello world! ' + 'My name is ' + me.name + '!');
+});
+```
+
+<span class="description">
+To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
+</span>
+
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Javascript.
+
+Save this file as something descriptive like "hello_world.js"
+
+To run this script in your console, pass it as an argument to the node interpreter, i.e. `node hello_world.js` from the same directory as the file. You should see the message we wrote above with your user information.
+
+All of the built-in functions can be found in the [/gen folder of the client library](https://github.com/Asana/node-asana/tree/master/lib/resources/gen).
+
+You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/javascript" target="_blank">Github examples repository</a>
+
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
+</section>
+<hr>
+<section>
+
+## Ruby Hello World
+
+```ruby
+!
+require 'asana'
+
+# replace with your personal access token. 
+
+personal_access_token = '0/123456789....'
+
+client = Asana::Client.new do |c|
+
+  c.authentication :access_token, personal_access_token
+
+end
+
+me = client.users.me
+
+puts "Hello world! " + "My name is " + me.name + "!"
+```
+
+<p>
+To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
+</p>
+
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Ruby.
+
+Save this file as something descriptive like "hello_world.rb"
+
+To run this script in your console, pass it as an argument to the ruby interpreter, i.e. `ruby hello_world.rb` from the same directory as the file. You should see the message we wrote above with your user information.
+
+All of the built-in methods can be found in the [/resources folder of the client library](https://github.com/Asana/ruby-asana/tree/master/lib/asana/resources). 
+
+You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
+
+## Workflow automation script
+
+<span class="description">
+Asana's API enables customization and automation of your organization’s workflow through scripts built to specialize your use of Asana. Using Asana to track your work and leveraging Asana’s API to automate your processes is a powerful combination which can make your team much more efficient. Here's one example of how we do it at Asana.
+</span>
+
+### Tracking timely responses to support questions
+
+Asana’s developer relations team manages technical support for our API through a number of channels: support tickets, questions about our API and integrations forwarded on from our colleagues, the [Asana Community's Developer category](https://community.asana.com/c/developersAPI "Asana Developer Community"), Stack Overflow, pull requests and bug reports from open-source GitHub projects like our [client libraries](/docs/official-client-libraries "Official Asana client libraries"), and more. Staying on top of all of these channels can be daunting, but we want our users to reach us however works best for them. At the same time, we want to isolate the noisiness of incoming requests for our colleagues at Asana who are involved with only one channel.
+
+Additionally, the management of the question and answer process, triaging the incoming requests, troubleshooting with our engineers, and measuring our response performance are all internal processes. Even if we have a workflow in place to support our developer relations team, we want the experience for other teams to be easy and lightweight. We want to ensure our coworkers do the right things by default without hindering the consistency of our work and our ability to track progress.
+
+Our solution: automation and reporting through our API to provide consistent management of the whole process.
+
+To do this, we wrote an integration with the following goals in mind:
+
+* Maintain clarity amongst our teams by tracking work in Asana.
+* Have only one place we have to look to stay in the loop.
+* Ensure that no questions get missed, i.e. a [reminder bot](/docs/bot-examples "Reminder Bot").
+* Let our API users know that they've been heard in a timely fashion.
+* Track our performance in remaining responsive.
+* Automate some of the bookkeeping required to maintain a consistent workflow.
+* Separate the specifics of how we track our performance from our colleagues’ workflows.
+
+The script we built does the following for us:
+
+1. Integrate with external sources to put incoming questions into Asana, one project per channel.
+2. Add question tasks from each incoming project into a [single combined project.](https://asana.com/guide/help/tasks/fields#gl-multi-home "Multi-Home")
+3. Acknowledge a question has been received and begin tracking response times.
+4. Upon first response, complete a task to signal relevant followers that we've reached out.
+
+### Maintain focus
+
+We use [webhooks](/docs/asana-webhooks "Webhooks documentation") to get notified in near-real time when new tasks are created in any of several Asana projects, one per incoming channel. Some of these projects are automatically synced with outside sources, others are available for our coworkers to create tasks in. Keeping tasks in their source channel helps keep us organized for where to go to respond. These projects are what our colleagues follow in order to remain focused on their own channels. 
+
+Our script responds to these webhook notifications from each project by adding these tasks into a single "Developer Questions" project. Our developer relations team can then see all outstanding questions about our API in a single place. This is a key part of hitting our service level agreement (SLA) goals: not having to cycle through many projects and channels to see how we're progressing.
+
+### Ensure timely responses
+
+Once a question gets added to our Developer Questions project, our integration creates a subtask on it. This signals to our colleagues that we have received the question and will begin to triage and investigate. The subtask is completed when we first respond to our users to inform them that we're investigating. Completion of the question task itself signals that we've achieved a resolution for the person who reached out to us.
+
+### Track progress
+
+Our script can generate a simple report to see which questions are still open, how long they’ve been open, and how much time we have left to answer before we miss our service level agreement limits. A simple webpage that the integration creates enables a high level view of what's still in progress and how timely we've been in the past.
+
+### Keep the process moving, automatically
+
+Our integration also helps automate some of the routine steps to ensure questions get answered. After a task gets triaged for priority, our integration sets an appropriate due date. It can also set an assignee and followers based on current workload and by matching certain keywords in the task description. If the task approaches its due date and it has not received a response, the script comments on the task to alert us that the question is about to reach our SLA limit. This helps us keep the right people in the loop with minimal overhead and maximum clarity of what needs to be done by when.
+
+By managing this routine and specialized workflow with automation through Asana’s API, our team is more efficient, more effective, and less likely to make a mistake. We know how responsive we've been and can see how we're doing at any time. We're better able to minimize the number of questions which slip through the cracks. The result is better support for outside developers and increased focus on core work, not work about work. 
+
+Over time, we've continuously tweaked how our integration behaves to evolve our process, empowering us to adjust and iterate our approach. This is one of the key opportunities that Asana's API provides: ownership and control over how work gets done. Incremental improvements provide the chance to try out new workflows and settle on one that works well for everyone, leading to a more consistent and customized experience of using Asana.
+
+To get started, check out our [quick start](/docs/quick-start "Quick Start") page for an overview of Asana's API. For support or to generate ideas of how your team can work more effectively with Asana, head to the [Asana Community](https://community.asana.com/c/developersAPI "Asana Developers Community") to chat with Asana team members and users!
+
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+
+</section>
+<hr>
+<section>
 
 ## Triage Bot
 
@@ -230,133 +423,27 @@ If you need your bot to react to changes in real time, then you’ll need to use
 <hr>
 <section>
 
-## Python Hello World
+## Other bot examples
 
-```python
-!
-import asana
-
-# replace with your personal access token. 
-personal_access_token = '0/123456789....'
-
-# Construct an Asana client
-client = asana.Client.access_token(personal_access_token)
-# Set things up to send the name of this script to us to show that you succeeded! This is optional.
-client.options['client_name'] = "hello_world_python"
-
-# Get your user info
-me = client.users.me()
-
-# Print out your information
-print("Hello world! " + "My name is " + me['name'] + "!")
-
-```
+### Reminder bot
 
 <span class="description">
-To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
+Even the most conscientious and best-intentioned teammate can get overloaded and occasionally forget a task. For project managers, team leads, or coordinators, it can be draining to check-in on everyone to make sure that everything is going according to schedule. How can you stay on track and minimize the work-about-work?
 </span>
 
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` in Python.
+Instead of continually reminding teammates to stay focused, use Asana’s API to create a bot for automatic reminders (a bot is a script that performs a task automatically). In this case, a "ping bot" takes action when due dates are approaching (or for any other specified trigger). This can act as a more intelligent version of the reminders that Asana already sends when due dates approach. For example, this persistent friend could comment with reminders further in advance, ask assignees or followers to take some action like setting a custom field, re-assign the work, and/or push out due dates. With a bot taking care of the schedule and reminders, people can spend their time on the work that needs human attention, like ideation and feedback.
 
+### Recruiting bot
 
-Save this file as something descriptive like "hello_world.py"
+At Asana, we use a bot to help automate the process for evaluating engineering candidates. The bot helps ensure that applicant coding tests are graded in a timely manner by the right engineer.
 
-To run this script in your console, pass it as an argument to the python interpreter, i.e. `python hello_world.py` from the same directory as the file. You should see the message we wrote above with your user information.
+When candidates have submitted their coding test, the bot uses the Asana API to assign the test to a grader based on specific criteria tracked in Asana, such as their preferred programming languages and number of previous evaluations. Graders are given *x* days to grade tests (the bot takes into account when graders are out of office). If tests have not been graded by the due date, graders are pinged by the bot with a comment on the task to either grade the test or re-assign it to someone else. After *y* days, the bot automatically re-assigns the test to the next grader to keep the process moving.
 
-As an aside, for clarity `python-asana` will also work with Python 3.x (with small changes to the above example to make it compatible.)
+### Bugs bot
 
-All of the built-in functions can be found in the [/gen folder of the client library](https://github.com/Asana/python-asana/tree/master/asana/resources/gen). 
+Our engineering teams handle triaging bug reports by creating a task in a "Bugs" project. A bot then adds the project manager of the relevant team in Asana as a follower, moves the task into a "needs triage" section, and requests assistance. The project manager can then evaluate the bug and triage it.
 
-You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/python" target="_blank">Github examples repository</a>
-
-<div>
-  <div class="docs-developer-satisfaction-content">
-      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
-  </div>
-</div>
-
-</section>
-<hr>
-<section>
-
-## Node Hello World
-
-```javascript
-!
-var asana = require('asana');
-
-// replace with your personal access token. 
-var personalAccessToken = '0/123456789....';
-
-// Construct an Asana client
-var client = asana.Client.create().useAccessToken(personalAccessToken);
-
-// Get your user info
-client.users.me()
-  .then(function(me) {
-    // Print out your information
-    console.log('Hello world! ' + 'My name is ' + me.name + '!');
-});
-```
-
-<span class="description">
-To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
-</span>
-
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Javascript.
-
-Save this file as something descriptive like "hello_world.js"
-
-To run this script in your console, pass it as an argument to the node interpreter, i.e. `node hello_world.js` from the same directory as the file. You should see the message we wrote above with your user information.
-
-All of the built-in functions can be found in the [/gen folder of the client library](https://github.com/Asana/node-asana/tree/master/lib/resources/gen).
-
-You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/javascript" target="_blank">Github examples repository</a>
-
-<div>
-  <div class="docs-developer-satisfaction-content">
-      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
-  </div>
-</div>
-
-</section>
-<hr>
-<section>
-
-## Ruby Hello World
-
-```ruby
-!
-require 'asana'
-
-# replace with your personal access token. 
-
-personal_access_token = '0/123456789....'
-
-client = Asana::Client.new do |c|
-
-  c.authentication :access_token, personal_access_token
-
-end
-
-me = client.users.me
-
-puts "Hello world! " + "My name is " + me.name + "!"
-```
-
-<p>
-To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
-</p>
-
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Ruby.
-
-Save this file as something descriptive like "hello_world.rb"
-
-To run this script in your console, pass it as an argument to the ruby interpreter, i.e. `ruby hello_world.rb` from the same directory as the file. You should see the message we wrote above with your user information.
-
-All of the built-in methods can be found in the [/resources folder of the client library](https://github.com/Asana/ruby-asana/tree/master/lib/asana/resources). 
-
-You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
+Since the evaluation of the severity of the bug is important for understanding how urgent the fix is, Bugs Bot will remain persistent, commenting every few days until the task has been moved out of the triage section and into a section of the relevant priority. This process ensures that we're aware of the impact of bugs and helps us avoid severe bugs slipping through the cracks.
 
 <div>
   <div class="docs-developer-satisfaction-content">

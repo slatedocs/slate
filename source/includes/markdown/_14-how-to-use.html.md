@@ -118,7 +118,7 @@ _**Note**: treat your PAT like you would a password. Do not share it or display 
 <hr>
 <section>
 
-## Accessing the API in the Terminal
+## Using Terminal
 
 > curl Request
 
@@ -170,7 +170,7 @@ Asana has [client libraries](/docs/official-client-libraries) in several popular
 <hr>
 <section>
 
-## Accessing the API with Postman
+## Using Postman
 
 <blockquote>
   <div class="postman-run-button"
