@@ -588,3 +588,29 @@ curl -X POST \
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
 
  Stop an existing instance. The instance must be in either the *RUNNING* or *STOPPING* status for this operation to work. The default behavior is that the instance (denote by **id**) will be stopped gracefully.
+
+<!-------------------- EDIT STARTUP SCRIPT -------------------->
+
+#### Edit a startup script
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=edit_startup_script"
+```
+> Request body example:
+
+```json
+{
+    "startupScript": "#! /bin/bash\ncat <<EOF > /var/www/html/index.html\n<html><body><h1>Hello World</h1>\n<p>This page was created from a simple startup script!</p>\n</body></html>\nEOF"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=edit_startup_script</code>
+
+Edit the startup script for an existing instance.
+
+Required | &nbsp;
+------ | -----------
+`startupScript`<br/>*string* | A startup script metadata item to run every time the instance boots up.
