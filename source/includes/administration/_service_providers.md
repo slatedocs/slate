@@ -118,3 +118,166 @@ Attributes | &nbsp;
 `config.responseAttributes.attributeValueField`<br/>*Object* | The object containing the source for the value in the response.
 `config.responseAttributes.attributeValueField.sourceModel`<br/>*string* | The model object to get the value from. Possible values are : ORGANIZATION, USER.
 `config.responseAttributes.attributeValueField.fieldName`<br/>*string* | The field name to get the information from.
+
+
+<!-------------------- CREATE SERVICE PROVIDERS -------------------->
+
+#### Create service provider
+
+`POST /service_providers`
+
+```shell
+# Creates a new service provider
+curl -X POST "https://cloudmc_endpoint/rest/service_providers" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> Request body example:
+
+```js
+{
+	"name": "Slack",
+	"type": "SAML",
+	"config": {
+		"assertionConsumerUrl": "https://yourdomain.slack.com/sso/saml",
+		"serviceProviderIssuer": "https://slack.com",
+		"sign": "RESPONSE",
+		"responseAttributes": [
+			{
+				"attributeName": "first-name",
+				"attributeValueField": {
+					"sourceModel": "user",
+					"fieldName": "firstName"
+				}
+			}
+		]
+	}
+}
+```
+> The above command return JSON structured like this:
+
+```js
+{
+  "data": {
+    "name": "Slack",
+    "id": "dbf3df1c-d28e-4cb5-bcb9-ce85d1675b27",
+    "type": "SAML",
+    "config": {
+      "assertionConsumerUrl": "https://yourdomain.slack.com/sso/saml",
+      "nameIdFormat": "UNSPECIFIED",
+      "responseAttributes": [
+        {
+          "nameFormat": "UNSPECIFIED",
+          "attributeName": "first-name",
+          "attributeValueField": {
+            "fieldName": "firstName",
+            "sourceModel": "user"
+          }
+        }
+      ],
+      "name": "Slack",
+      "sign": "RESPONSE",
+      "serviceProviderIssuer": "https://slack.com"
+    }
+  }
+}
+```
+Required | &nbsp;
+---------- | -----------
+`name`<br/>*string* | The name of the service provider.
+`type`<br/>*string* | The type of service provider. Possible values are : SAML.
+`config`<br/>*Object* | The object containing the configuration of the service provider.
+`config.serviceProviderIssuer`<br/>*string* | The issuer for the service provider. This is what contained in the SAML request issuer tag. This is also referred to as the EntityID or EntityURL.
+`config.assertionConsumerUrl`<br/>*string* | The URL where the response is sent.
+`config.sign`<br/>*string* | How is the returned XML is signed. Possible values are : ASSERTION, RESPONSE, ASSERTION_AND_RESPONSE. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeName`<br/>*string* | The attribute name. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeValueField`<br/>*Object* | The object containing the source for the value in the response. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeValueField.sourceModel`<br/>*string* | The model object to get the value from. Possible values are : ORGANIZATION, USER. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeValueField.fieldName`<br/>*string* | The field name to get the information from. Only required if `config.responseAttributes` is passed.
+
+Optional | &nbsp;
+---------- | -----------
+`config.nameIdFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, EMAIL_ADDRESS, X509_SUBJECT, WINDOWS_DQN, KERBEROS_PRINCIPAL, ENTITY, PERSISTENT and TRANSIENT. If not provided this defaults to UNSPECIFIED.
+`config.responseAttributes.nameFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, URI and BASIC. If not provided this defaults to UNSPECIFIED.
+`config.responseAttributes`<br/>*Array[Object]* | The list of attributes part of the response.
+
+
+#### Update service provider
+
+`PUT /service_providers/:id`
+
+```shell
+# Updates an existing service provider
+curl -X POST "https://cloudmc_endpoint/rest/service_providers/:id" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> Request body example:
+
+```js
+{
+	"name": "Slack",
+  "id": "dbf3df1c-d28e-4cb5-bcb9-ce85d1675b27",
+	"type": "SAML",
+	"config": {
+		"assertionConsumerUrl": "https://yourdomain.slack.com/sso/saml",
+		"serviceProviderIssuer": "https://slack.com",
+		"sign": "RESPONSE",
+		"responseAttributes": [
+			{
+				"attributeName": "first-name",
+				"attributeValueField": {
+					"sourceModel": "user",
+					"fieldName": "firstName"
+				}
+			}
+		]
+	}
+}
+```
+> The above command return JSON structured like this:
+
+```js
+{
+  "data": {
+    "name": "Slack",
+    "id": "dbf3df1c-d28e-4cb5-bcb9-ce85d1675b27",
+    "type": "SAML",
+    "config": {
+      "assertionConsumerUrl": "https://yourdomain.slack.com/sso/saml",
+      "nameIdFormat": "UNSPECIFIED",
+      "responseAttributes": [
+        {
+          "nameFormat": "UNSPECIFIED",
+          "attributeName": "first-name",
+          "attributeValueField": {
+            "fieldName": "firstName",
+            "sourceModel": "user"
+          }
+        }
+      ],
+      "name": "Slack",
+      "sign": "RESPONSE",
+      "serviceProviderIssuer": "https://slack.com"
+    }
+  }
+}
+```
+Required | &nbsp;
+---------- | -----------
+`name`<br/>*string* | The name of the service provider.
+`type`<br/>*string* | The type of service provider. Possible values are : SAML.
+`config`<br/>*Object* | The object containing the configuration of the service provider.
+`config.serviceProviderIssuer`<br/>*string* | The issuer for the service provider. This is what contained in the SAML request issuer tag. This is also referred to as the EntityID or EntityURL.
+`config.assertionConsumerUrl`<br/>*string* | The URL where the response is sent.
+`config.sign`<br/>*string* | How is the returned XML is signed. Possible values are : ASSERTION, RESPONSE, ASSERTION_AND_RESPONSE. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeName`<br/>*string* | The attribute name. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeValueField`<br/>*Object* | The object containing the source for the value in the response. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeValueField.sourceModel`<br/>*string* | The model object to get the value from. Possible values are : ORGANIZATION, USER. Only required if `config.responseAttributes` is passed.
+`config.responseAttributes.attributeValueField.fieldName`<br/>*string* | The field name to get the information from. Only required if `config.responseAttributes` is passed.
+
+Optional | &nbsp;
+---------- | -----------
+`config.nameIdFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, EMAIL_ADDRESS, X509_SUBJECT, WINDOWS_DQN, KERBEROS_PRINCIPAL, ENTITY, PERSISTENT and TRANSIENT. If not provided this defaults to UNSPECIFIED.
+`config.responseAttributes.nameFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, URI and BASIC. If not provided this defaults to UNSPECIFIED.
+`config.responseAttributes`<br/>*Array[Object]* | The list of attributes part of the response.
