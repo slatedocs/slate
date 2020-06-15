@@ -148,3 +148,17 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `rootUsername`<br/>*string* | The user name to create a root user on cluster.
+
+<!-------------------- DELETE A CLUSTER -------------------->
+
+#### Delete a cluster
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/azure/example/clusters/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.ContainerService/managedClusters/sample_small_cluster"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:id</code>
+
+Delete an existing cluster.
