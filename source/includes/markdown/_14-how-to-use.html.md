@@ -149,7 +149,7 @@ We’ll use cURL, a command line[^1] program to make HTTP requests. MacOS and ma
 3. Press Enter
 
 Nice work! You just wrote a cURL command.
-
+ 
 In our API documentation, we will often write examples as cURL commands since it's a middle-of-the-road approach to accessing our API: more flexible than using a browser, but user-friendly enough to be quick and easy to do.
 
 You’re ready to start coding!

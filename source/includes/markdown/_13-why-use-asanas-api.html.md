@@ -2,7 +2,7 @@
 <section class="full-section">
 <section>
 
-# Common usecases
+# Common Usecases
 
 <span class="description">
 Collaboration across teams and tools works best when everyone stays in sync and processes flow easily and without friction. This is why we have Asana's API: it's a platform to ensure all of your information is up to date and that your teams stay efficient and in the loop.

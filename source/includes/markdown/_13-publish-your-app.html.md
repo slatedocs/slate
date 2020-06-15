@@ -27,19 +27,30 @@ To request a developer sandbox, please fill out **[this form](https://form-beta.
 <hr>
 <section>
 
-# Build an App
+# Submit your App
 
 <span class="description">
-This section is for apps that will be used by more than one Asana domain. 
+Have you built a web application that you want to share with the Asana community? Submit [this form](https://www.asana.com/apps/submit) to get your app listed in the [Asana apps directory](https://www.asana.com/apps).
 </span>
 
-## Publish your app to the Asana apps directory
+### Recommendations and resources for app developers:
 
-<a name="communication" class="jump-anchor"></a>
-### Communicating about breaking changes
+* We strongly recommend that you use [OAuth 2.0](/docs/oauth) for your app. Apps that don’t use Auth 2.0 will likely not be approved for listing in our directory.
 
+* Be aware of the [OWASP Top 10 Web App Security Risks](https://owasp.org/www-project-top-ten/) when developing your app. 
 
+* If you are new to app security, we recommend reading [The Web Application Hacker's Handbook](https://www.amazon.com/The-Web-Application-Hackers-Handbook/dp/1118026470).
 
+* Use end-to-end encryption. Use a trusted site to test your TLS security (such as: https://www.ssllabs.com/ssltest/).
+
+* Join the [Asana developer community](https://forum.asana.com/c/developersAPI). This is the best resource to get technical questions answered as well as get notified about new API features, deprecations, and other breaking changes. 
+
+* Once your app is listed, you can answer Asana user questions in the [integrations section of the Asana community](https://forum.asana.com/c/integrations).
+
+### Updating your existing app listing
+If you wish to update your existing listing, send an email to api-support at asana.com with the specific changes. 
+
+We expect existing apps to maintain the same level of user experience that they had when accepted to the apps directory.  
 
 
 <div>

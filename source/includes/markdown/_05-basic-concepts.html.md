@@ -2,7 +2,7 @@
 <section class="full-section">
 <section>
 
-<h1 id="basics">Basics</h1>
+# Overview
 
 > Helpful code snippets will show up in this column.
 

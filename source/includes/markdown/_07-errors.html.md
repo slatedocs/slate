@@ -1,7 +1,7 @@
 <hr>
 <section>
 
-# Errors
+## Errors
 
 > Missing authorization header
 

@@ -85,6 +85,15 @@ When a request is received, if the remaining quota is not positive, the new requ
 
 The **vast** majority of developers will be unaffected by the cost limit, and the quota is set sufficiently high that it only affects users making requests that would compromise the stability of the API. Rather than unconditionally blocking their token from the API, this cost limiter will permit them to continue operation at a slower but safe and stable rate.
 
+## Common issues & pathological cases to avoid
+
+* Deeply nested subtasks (i.e. working sub-subtasks, sub-sub-subtasks, etc.)
+* Projects with too many tasks (i.e projects with over 1,000 tasks)
+* Too many unreadable tags in a workspace
+* Domains with too many projects for typeahead to work well
+* Undeleted webhooks
+
+
 <div>
   <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
