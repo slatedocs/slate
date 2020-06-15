@@ -52,12 +52,12 @@ Attributes | &nbsp;
 `config.serviceProviderIssuer`<br/>*string* | The issuer for the service provider. This is what contained in the SAML request issuer tag. This is also referred to as the EntityID or EntityURL.
 `config.assertionConsumerUrl`<br/>*string* | The URL where the response is sent.
 `config.sign`<br/>*string* | How is the returned XML is signed. Possible values are : ASSERTION, RESPONSE, ASSERTION_AND_RESPONSE.
-`config.nameIdFormat`<br/>*string* | The format for the name field
+`config.nameIdFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, EMAIL_ADDRESS, X509_SUBJECT, WINDOWS_DQN, KERBEROS_PRINCIPAL, ENTITY, PERSISTENT and TRANSIENT.
 `config.responseAttributes`<br/>*Array[Object]* | The list of attributes part of the response
-`config.responseAttributes.nameFormat`<br/>*string* | The format for the name field
+`config.responseAttributes.nameFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, URI and BASIC. 
 `config.responseAttributes.attributeName`<br/>*string* | The attribute name
 `config.responseAttributes.attributeValueField`<br/>*Object* | The object containing the source for the value in the response.
-`config.responseAttributes.attributeValueField.sourceModel`<br/>*string* | The model object to get the value from.
+`config.responseAttributes.attributeValueField.sourceModel`<br/>*string* | The model object to get the value from. Possible values are : ORGANIZATION, USER.
 `config.responseAttributes.attributeValueField.fieldName`<br/>*string* | The field name to get the information from.
 
 
@@ -111,10 +111,10 @@ Attributes | &nbsp;
 `config.serviceProviderIssuer`<br/>*string* | The issuer for the service provider. This is what contained in the SAML request issuer tag. This is also referred to as the EntityID or EntityURL.
 `config.assertionConsumerUrl`<br/>*string* | The URL where the response is sent.
 `config.sign`<br/>*string* | How is the returned XML is signed. Possible values are : ASSERTION, RESPONSE, ASSERTION_AND_RESPONSE.
-`config.nameIdFormat`<br/>*string* | The format for the name field
+`config.nameIdFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, EMAIL_ADDRESS, X509_SUBJECT, WINDOWS_DQN, KERBEROS_PRINCIPAL, ENTITY, PERSISTENT and TRANSIENT.
 `config.responseAttributes`<br/>*Array[Object]* | The list of attributes part of the response
-`config.responseAttributes.nameFormat`<br/>*string* | The format for the name field
+`config.responseAttributes.nameFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, URI and BASIC. 
 `config.responseAttributes.attributeName`<br/>*string* | The attribute name
 `config.responseAttributes.attributeValueField`<br/>*Object* | The object containing the source for the value in the response.
-`config.responseAttributes.attributeValueField.sourceModel`<br/>*string* | The model object to get the value from.
+`config.responseAttributes.attributeValueField.sourceModel`<br/>*string* | The model object to get the value from. Possible values are : ORGANIZATION, USER.
 `config.responseAttributes.attributeValueField.fieldName`<br/>*string* | The field name to get the information from.
