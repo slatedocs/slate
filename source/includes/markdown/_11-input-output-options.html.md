@@ -1,7 +1,7 @@
 <hr>
 <section>
 
-## Input/Output Options
+# Input/Output Options
 
 > GET url params
 

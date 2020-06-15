@@ -1,7 +1,7 @@
 <hr>
 <section>
 
-## Rich Text
+# Rich Text
 
 > Example Rich Text
 
@@ -25,7 +25,7 @@ The rich text field name for an object is equivalent to it's plain text field na
 | Teams                  | `description`    | `html_description` |
 
 <a id="reading"></a>
-### Reading rich text
+## Reading rich text
 
 > Python
 
@@ -121,7 +121,7 @@ Here's an example of what a complete rich comment might look like in the API:
 `
 
 <a name="writing"></a>
-### Writing rich text
+## Writing rich text
 
 When writing rich text to the API, you must provide similarly structured, valid XML. The text must be wrapped in a `<body>` tag, all tags must be closed, balanced, and match the case of supported tags, and attributes must be quoted. Invalid XML, as well as unsupported tags, will be rejected with a `400 Bad Request` error. Only `<a>` tags support attributes, and any attributes on other tags will be similarly rejected.
 

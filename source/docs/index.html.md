@@ -19,6 +19,7 @@ includes:
   - markdown/11-input-output-options.html.md
   - markdown/12-custom-external-data.html.md
   - markdown/13-deprecations.html.md
+  - markdown/13-publish-your-app.html.md
   - markdown/13-why-use-asanas-api.html.md
   - markdown/14-how-to-use.html.md
   - markdown/15-quick-start.html.md

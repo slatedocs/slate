@@ -1,7 +1,7 @@
 <hr>
 <section>
 
-## Rate Limits
+# Rate Limits
 
 <span class="description">
 To protect the stability of the API and keep it available to all users, Asana enforces multiple kinds of rate limiting. Requests that hit any of our rate limits will receive a `429 Too Many Requests` response, which contains the standard `Retry-After` header indicating how many seconds the client should wait before retrying the request.
@@ -12,7 +12,7 @@ Limits are allocated per authorization token. Different tokens will have indepen
 The [client libraries](/docs/official-client-libraries) respect the rate-limited responses and will wait the appropriate amount of time before automatically retrying the request, up to a configurable maximum number of retries.
 
 <a name="standard"></a>
-### Standard Rate Limits
+## Standard Rate Limits
 
 > Request
 
@@ -51,7 +51,7 @@ Although the quota is defined per minute, it is evaluated more frequently than o
 Requests rejected by this limiter **still count against the quotas** so that ignoring the `Retry-After` header will result in fewer and fewer requests being accepted during the subsequent tine windows.
 
 <a name="concurrent"></a>
-### Concurrent Request Limits
+## Concurrent Request Limits
 
 In addition to limiting the total number of requests in a given time window, we also limit the number of requests being handled at any given instant. We may change these limits or add new limits in the future.
 
@@ -65,7 +65,7 @@ For example, if you have 50 read requests in-flight and attempt to make another 
 Responses for requests rejected by this concurrent request limiter will contain a `Retry-After` header specifying a duration long enough such that the other in-flight requests are guaranteed to have either completed or timed out.
 
 <a name="cost"></a>
-### Cost Limits
+## Cost Limits
 
 Objects in Asana are connected to each other in a graph. Some examples of links in this graph are:
 
