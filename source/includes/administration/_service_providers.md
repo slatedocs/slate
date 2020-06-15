@@ -201,6 +201,7 @@ Optional | &nbsp;
 `config.responseAttributes.nameFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, URI and BASIC. If not provided this defaults to UNSPECIFIED.
 `config.responseAttributes`<br/>*Array[Object]* | The list of attributes part of the response.
 
+<!-------------------- UPDATE SERVICE PROVIDERS -------------------->
 
 #### Update service provider
 
