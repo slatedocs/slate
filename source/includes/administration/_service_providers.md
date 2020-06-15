@@ -110,7 +110,7 @@ Attributes | &nbsp;
 `config`<br/>*Object* | The object containing the configuration of the service provider.
 `config.serviceProviderIssuer`<br/>*string* | The issuer for the service provider. This is what is contained in the SAML request issuer tag. This is also referred to as the EntityID or EntityURL.
 `config.assertionConsumerUrl`<br/>*string* | The URL where the response is sent.
-`config.sign`<br/>*string* | How is the returned XML is signed. Possible values are : ASSERTION, RESPONSE, ASSERTION_AND_RESPONSE.
+`config.sign`<br/>*string* | How the returned XML is signed. Possible values are : ASSERTION, RESPONSE, ASSERTION_AND_RESPONSE.
 `config.nameIdFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, EMAIL_ADDRESS, X509_SUBJECT, WINDOWS_DQN, KERBEROS_PRINCIPAL, ENTITY, PERSISTENT and TRANSIENT.
 `config.responseAttributes`<br/>*Array[Object]* | The list of attributes part of the response
 `config.responseAttributes.nameFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, URI and BASIC. 
