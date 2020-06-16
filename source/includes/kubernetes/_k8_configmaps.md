@@ -51,7 +51,7 @@ Retrieve a list of all configmaps in a given [environment](#administration-envir
 | `metadata.namespace` <br/>_string_         | The namespace in which the configmap is created         |
 | `metadata.uid` <br/>_object_               | The UUID of the configmap                               |
 | `metadata.selfLink` <br/>_object_          | A link uniquely identifying this config map             |
-| `metadata.resourceVersion` <br/>_object_   | The version returned of the configmap                          |
+| `metadata.resourceVersion` <br/>_object_   | The version returned of the configmap                   |
 
 
 <!-------------------- GET A configmap -------------------->
