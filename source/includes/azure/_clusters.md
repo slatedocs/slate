@@ -158,6 +158,14 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/clusters/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.ContainerService/managedClusters/sample_small_cluster"
 ```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "3e4d4466-ce4b-404b-ada5-ee5a3fb76f4e",
+  "taskStatus": "PENDING"
+}
+```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:id</code>
 
