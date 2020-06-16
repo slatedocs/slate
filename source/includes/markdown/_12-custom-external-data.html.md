@@ -1,7 +1,7 @@
 <hr>
 <section>
 
-## Custom External Data
+# Custom External Data
 
 <span class="description">
 Custom external data allows a client application to add app-specific metadata to [Tasks](/docs/asana-tasks)

@@ -1,8 +1,8 @@
 <span></span>
 <section class="full-section">
 <section>
-<h1 id="overview">Overview</h1>
-<h2 id="basics">Basics</h1>
+
+# Overview
 
 > Helpful code snippets will show up in this column.
 

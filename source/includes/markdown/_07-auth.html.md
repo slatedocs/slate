@@ -1,8 +1,8 @@
 <hr>
 <section>
 
-## Authentication Basics
-
+# Authentication
+<a id="authentication-basics"></a>
 
 <span class="description">
 Asana supports a few methods of authenticating with the API. Simple cases are usually handled with a Personal Access Token, while multi-user apps utilize oauth.
@@ -18,7 +18,7 @@ Asana supports a few methods of authenticating with the API. Simple cases are us
 
 <a name="oauth" class="jump-anchor"></a>
 
-### OAuth
+## OAuth
 
 Most of the time, OAuth is the preferred method of authentication for developers, users, and Asana as a platform.
 If you're new to OAuth, take a moment to learn about it here. It's not as scary as you might think!
@@ -310,7 +310,7 @@ for many apps, this will simply require a configuration update of your applicati
 can be found on their respective websites, and most popular application servers will contain documentation on how to proceed.
 
 <a name="personal-access-token" class="jump-anchor"></a>
-### Personal Access Token
+## Personal Access Token
 
 Personal Access Tokens are a useful mechanism for accessing the API in scenarios where OAuth would be considered
 overkill, such as access from the command line and personal scripts or applications. A user can create many, but not
@@ -333,7 +333,7 @@ longer need.
 with the API. *Don't hardcode them into your programs*; instead, opt to use them as environment variables.
 
 <a name="openid-connect" class="jump-anchor"></a>
-### OpenID Connect
+## OpenID Connect
 
 Asana also supports the [OpenID Connect](https://openid.net/connect/) protocol for authenticating Asana users with your
 applications. This means that, in addition to the normal `code` and `token` response types for the OAuth flow, you can

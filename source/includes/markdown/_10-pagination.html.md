@@ -1,7 +1,7 @@
 <hr>
 <section>
 
-## Pagination
+# Pagination
 
 <span class="description">
 Paginating requests for object sets that may be large is highly recommended. For requests that will return large result

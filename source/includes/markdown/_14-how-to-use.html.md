@@ -10,9 +10,7 @@
 https://app.asana.com/api/1.0/users/me
 ```
 
-*If you're familiar with building against APIs, you can jump to our [Quick Start](/docs/quick-start).*
-
-<br></br>
+*If you're familiar with building against APIs, you can jump to our [examples](/docs/examples).*
 
 <span class="description">
 If you’re new to developing on APIs, this is a great place to start.  You’ll learn in this guide how to make the simplest Asana API request -- getting your user information. 
@@ -46,8 +44,6 @@ To get started
 ```
 
 And Congratulations! You’ve just made your first Asana API request.  
-
-<br></br>
 
 Let’s unpack what just happened. The base URL for all requests to the Asana API is `https://app.asana.com/api/1.0`. We want information about users, so we go down a level to the `https://app.asana.com/api/1.0/users` resource.  Within the set of all users in Asana, We’re specifically looking to get information about our own account, so we get more specific by adding `/me` to get `https://app.asana.com/api/1.0/users/me`. The `/me` part would ordinarily be an identifier (a long number) or email address of the user, but we've created this shorthand for getting the current user of Asana's API, whomever that may be.  Put it together and you have the above path to get your user information from Asana.
 
@@ -118,7 +114,8 @@ _**Note**: treat your PAT like you would a password. Do not share it or display 
 <hr>
 <section>
 
-## Accessing the API in the Terminal
+## Using Terminal
+<a id="accessing-the-api-in-the-terminal"></a>
 
 > curl Request
 
@@ -153,7 +150,7 @@ We’ll use cURL, a command line[^1] program to make HTTP requests. MacOS and ma
 3. Press Enter
 
 Nice work! You just wrote a cURL command.
-
+ 
 In our API documentation, we will often write examples as cURL commands since it's a middle-of-the-road approach to accessing our API: more flexible than using a browser, but user-friendly enough to be quick and easy to do.
 
 You’re ready to start coding!
@@ -170,7 +167,8 @@ Asana has [client libraries](/docs/official-client-libraries) in several popular
 <hr>
 <section>
 
-## Accessing the API with Postman
+## Using Postman
+<a id="accessing-the-api-with-postman"></a>
 
 <blockquote>
   <div class="postman-run-button"

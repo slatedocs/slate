@@ -1,10 +1,10 @@
 <hr>
 <section>
 
-## Deprecations
+# Deprecations
 
+## Communicating about breaking changes
 <a name="communication" class="jump-anchor"></a>
-### Communicating about breaking changes
 
 <span class="description">
 Whenever possible, the Asana API aims to preserve backwards compatibility for its users. Apps you write on top of the API now should, in ideal situations, continue to work indefinitely. However, there are a few rare cases where breaking changes are required. For example:
@@ -20,8 +20,8 @@ If a breaking change is required, the API team will provide a number of resource
 - We will provide a clear description of the change, how it affects your requests, and a migration plan to follow to transition through the deprecation.
 - We will designate a deprecation period during which you will be able to choose between both old and new behavior from the API, allowing you to test out the change without having to put your entire app at risk.
 
+## Response header notifications
 <a name="response-header" class="jump-anchor"></a>
-### Response header notifications
 
 While the previously mentioned communication channels are the best place to learn about upcoming changes, the API _itself_ will also alert you of upcoming changes. Shortly after we post communication, the API will begin sending `Asana-Change` headers in the responses. These headers will have two or three pieces of information:
 
@@ -38,8 +38,8 @@ Asana-Change: name=other_change;info=https://asa.na/api-oc
 
 **Note:** If your request is *not* affected, we will not claim `affected=false`. This is in case, during the deprecation, we detect that the change has a larger scope than initially thought. A request going from "you **may** be affected" to "you definitely **are** affected" is an acceptable update, but a request going from "you definitely are **not** affected" to "you definitely **are** affected" is not an acceptable update.
 
+## Request header options
 <a name="request-header" class="jump-anchor"></a>
-### Request header options
 
 During the deprecation period, you can test out how the API will behave by sending additional headers in your requests. Sending an `Asana-Enable` header including comma-separated names of features will turn those features on for that request. Sending an `Asana-Disable` header will do the opposite and turn those features off for that request.
 
@@ -72,14 +72,14 @@ The way we recommend you implement these changes in your integration is this:
 
 At this point, your integration has been migrated to the new behavior. At any point after the end date the `Asana-Enable` header will be ignored by the Asana API and you can feel free to remove it. (We strongly recommend keeping it all the way through the end date in case of unforseen circumstances that cause us to temporarily reset the default behavior from the new implementation to the deprecated behavior.)
 
+## Client library support
 <a name="client-libraries" class="jump-anchor"></a>
-### Client library support
 
 The latest version of our [official client libraries](/docs/official-client-libraries) for Python, Java, PHP, and Javascript all support sending custom headers and are able to use our deprecations framework. Consult the individual libraries for how to send headers with each request.
 
 
-<a name="active-deprecations" class="jump-anchor"></a>
 ### Active deprecations
+<a name="active-deprecations" class="jump-anchor"></a>
 
 There are currently no active deprecations.
 
@@ -89,5 +89,4 @@ There are currently no active deprecations.
   </div>
 </div>
 
-</section>
 </section>
