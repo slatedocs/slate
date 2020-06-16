@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.8.1
 jobs:
   build-deploy-s3:
     docker:
@@ -13,7 +15,6 @@ jobs:
     - run: aws configure set s3.signature_version s3v4
     - run: aws s3 sync build/ s3://lumahealth-api-docs
 workflows:
-  version: 2
   main:
     jobs:
     - build-deploy-s3:
@@ -22,3 +23,12 @@ workflows:
             only:
             - master
             - dev
+    - aws-ecr/build-and-push-image:
+        filters:
+          branches:
+            only:
+            - master
+            - dev
+        context: ecr
+        repo: web/apidocs
+        tag: "${CIRCLE_BRANCH}-$(date +'%Y%m%d')-$(git show-ref HEAD --abbrev -s)"
