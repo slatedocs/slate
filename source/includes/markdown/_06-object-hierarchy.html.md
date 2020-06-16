@@ -6,7 +6,7 @@
 > ![Asana object hierarchy](https://luna1.co/b07faf.png)
 
 <span class="description">
-Asana is a work tracking and collaboration tool. This guide is designed to give developers building on Asana’s API a brief overview of how Asana is structured.  It’s not meant to be exhaustive and may be too basic for experienced Asana users, but read on if you're not a user of Asana who uses it regularly.  The intention is to describe the fundamental elements of Asana to help you scope apps and avoid common points of confusion.
+Asana is a work tracking and collaboration tool. This guide is designed to give developers a brief overview of how Asana is structured.  It’s not meant to be exhaustive and may be too basic for experienced Asana users.  The intention is to describe the fundamental elements of Asana to help you scope apps and avoid common points of confusion.
 </span>
 
 ## How work is organized
@@ -14,7 +14,7 @@ Asana is a work tracking and collaboration tool. This guide is designed to give 
 
 <h3 id="tasks-hierarchy">Tasks</h3>
 
-Tasks are the basic unit of action in Asana.  Tasks have many fields including a single assignee, name, notes, followers (aka collaborators), likes, and comments. Tasks inherit custom fields from their parent project(s). Custom fields values are set for each individual task.  
+Tasks are the basic unit of action in Asana.  Tasks have many fields including a single assignee, name, notes, followers (i.e. collaborators), likes, and comments (among others). Tasks inherit custom fields from their parent project(s). Custom fields values are set for each individual task.  
 
 In addition to standard Create / Read / Update / Delete operations, there are a few things to watch out for when working with tasks:
 

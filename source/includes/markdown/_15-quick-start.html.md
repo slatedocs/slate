@@ -198,7 +198,7 @@ To get started, check out our [examples](/docs/examples "Examples") page. For su
 <hr>
 <section>
 
-## Triage Bot
+## Triage bot
 
 >### Let’s start coding!
 
