@@ -3,6 +3,8 @@
 <section>
 
 # Common Usecases
+<a id="why-use-asanas-api"></a>
+<a id="asanas-api-and-you"></a>
 
 <span class="description">
 Collaboration across teams and tools works best when everyone stays in sync and processes flow easily and without friction. This is why we have Asana's API: it's a platform to ensure all of your information is up to date and that your teams stay efficient and in the loop.

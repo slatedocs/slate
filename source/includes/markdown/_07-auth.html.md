@@ -2,7 +2,7 @@
 <section>
 
 # Authentication
-
+<a id="authentication-basics"></a>
 
 <span class="description">
 Asana supports a few methods of authenticating with the API. Simple cases are usually handled with a Personal Access Token, while multi-user apps utilize oauth.
