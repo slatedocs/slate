@@ -282,3 +282,18 @@ Optional | &nbsp;
 `config.nameIdFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, EMAIL_ADDRESS, X509_SUBJECT, WINDOWS_DQN, KERBEROS_PRINCIPAL, ENTITY, PERSISTENT and TRANSIENT. If not provided this defaults to UNSPECIFIED.
 `config.responseAttributes.nameFormat`<br/>*string* | The format for the name field. Possible values are : UNSPECIFIED, URI and BASIC. If not provided this defaults to UNSPECIFIED.
 `config.responseAttributes`<br/>*Array[Object]* | The list of attributes part of the response.
+
+<!-------------------- DELETE SERVICE PROVIDER -------------------->
+
+
+### Delete service provider
+
+`DELETE /service_providers/:id`
+
+```shell
+# Delete a service provider
+curl "https://cloudmc_endpoint/rest/service_providers/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
+   -X DELETE -H "MC-Api-Key: your_api_key"
+
+```
+Delete a specific service provider. 
