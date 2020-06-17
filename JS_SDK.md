@@ -36,7 +36,7 @@ e.g.
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: "ENVIRONMENT",
+      env: "production",
       options: {} // options as described below
     },
     {
@@ -44,7 +44,7 @@ e.g.
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: "ENVIRONMENT",
+      env: "production",
       options: {} // options as described below
     }]
   </script>
@@ -154,7 +154,7 @@ Exmaple with both of these options active would look like
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "production",
       options:  {
         dnc_checked: true,
         skipMandatoryEmail:true,
@@ -227,7 +227,7 @@ You can pass `dnc_checked` as `true` in the options to set the checkbox by defau
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "production",
       options:  { dnc_checked: true, skipMandatoryEmail:true } // options as described below
     }]
  </script>
@@ -245,7 +245,7 @@ By default request are made to anarock database only. in case you have anarock s
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "production",
       options:  { host: 'yourdomain.com' } // options as described below
     }]
  </script>
@@ -266,7 +266,7 @@ Once this option is set to true, you need to make sure that all campaign ids are
       requireOTP: true,
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "production",
       options:  { host: 'yourdomain.com' } // options as described below
     }]
  </script>
@@ -288,7 +288,7 @@ You can pass `projects` as `[{name: '', campaign_id: ''}]` in the options to sho
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "production",
       options:  { 
         projects: [{name: 'Project1', campaign_id: 'project-1'}, {name: 'Project2', campaign_id: 'project-2'}, {name: 'Project3', campaign_id: 'project-3'}, {name: 'Project4', campaign_id: 'project-4'}]
       }
@@ -308,7 +308,7 @@ When you have passed `projects` in options, you may also pass `selectedProject` 
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "production",
       options:  { 
         projects: [{name: 'Project1', campaign_id: 'project-1'}, {name: 'Project2', campaign_id: 'project-2'}],
         selectedProject: {name: 'Project1', campaign_id: 'project-1'}
@@ -330,7 +330,7 @@ To cater to use cases where you might have to change selected project or list of
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "production",
       options:  { 
         projects: [{name: 'Project1', campaign_id: 'project-1'}, {name: 'Project2', campaign_id: 'project-2'}],
         selectedProject: {name: 'Project1', campaign_id: 'project-1'}

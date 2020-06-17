@@ -281,6 +281,7 @@ The post params posted at any update in a particular leads are as follows
 - `Booking Done` - When moved into Booking Done \n
 - `Fail` - When marked as Failed
 - `Junk` - When marked as Junk 
+- `In Call Center` - When lead is sent to call center
       
   
   Other parameters are the once described in the http://anarock.github.io/leads documentation.
