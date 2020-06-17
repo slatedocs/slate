@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/an_environment/statefulsets"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/statefulsets?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -48,17 +48,22 @@ curl -X GET \
         "updateRevision": "test-aerospike-6db7776c7d",
         "updatedReplicas": 1
       }
-    }
+    },
+    ...
   ],
   "metadata": {
-    "recordCount": 1
+    "recordCount": 4
   }
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/statefulsets</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/statefulsets?cluster_id=:cluster_id</code>
 
 Retrieve a list of all stateful sets in a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                                    |
+|----------------------------|-----------------------------------------------------------|
+| `cluster_id` <br/>*string* | The id of the cluster in which to list the stateful sets. |
 
 | Attributes                                 | &nbsp;                                                          |
 | ------------------------------------------ | --------------------------------------------------------------- |
@@ -81,7 +86,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/an_environment/statefulsets/test-aerospike/auth"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/statefulsets/test-aerospike/auth?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -128,16 +133,20 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/statefulsets/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/statefulsets/:id?cluster_id=:cluster_id</code>
 
 Retrieve a stateful set and all its info in a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                                  |
+|----------------------------|---------------------------------------------------------|
+| `cluster_id` <br/>*string* | The id of the cluster in which to get the stateful set. |
 
 | Attributes                                 | &nbsp;                                                          |
 | ------------------------------------------ | --------------------------------------------------------------- |
 | `id` <br/>*string*                         | The id of the stateful set                                      |
 | `metadata` <br/>*object*                   | The metadata of the stateful set                                |
 | `metadata.creationTimestamp` <br/>*string* | The date of creation of the stateful set as a string            |
-| `metadata.labels` <br/>*map*               | The labels associated to the stateful                           |
+| `metadata.labels` <br/>*map*               | The labels associated to the stateful set                       |
 | `metadata.name` <br/>*string*              | The name of the stateful set                                    |
 | `metadata.namespace` <br/>*string*         | The namespace in which the stateful set is created              |
 | `metadata.uid` <br/>*object*               | The UUID of the stateful set                                    |
