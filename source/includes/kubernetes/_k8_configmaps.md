@@ -37,21 +37,21 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/configmaps</code>
 
-Retrieve a list of all configmaps in a given [environment](#administration-environments).
+Retrieve a list of all config maps in a given [environment](#administration-environments).
 
 | Attributes                                 | &nbsp;                                                  |
 | ------------------------------------------ | ------------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the configmap                                 |
-| `apiVersion` <br/>_string_                 | The API version used to retrieve this configmap         |
-| `kind` <br/>_string_                       | The type of the returned resource: ConfigMap            |
-| `metadata` <br/>_object_                   | The metadata of the configmap                           |
+| `id` <br/>_string_                         | The id of the config map                                |
+| `apiVersion` <br/>_string_                 | The API version used to retrieve this config map        |
+| `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap        |
+| `metadata` <br/>_object_                   | The metadata of the config map                          |
 | `metadata.creationTimestamp` <br/>_string_ | The date of creation of the configmap as a string       |
-| `metadata.annotations` <br/>_map_          | The annotations associated to the configmap             |
-| `metadata.name` <br/>_string_              | The name of the configmap                               |
-| `metadata.namespace` <br/>_string_         | The namespace in which the configmap is created         |
-| `metadata.uid` <br/>_object_               | The UUID of the configmap                               |
-| `metadata.selfLink` <br/>_object_          | A link uniquely identifying this config map             |
-| `metadata.resourceVersion` <br/>_object_   | The version returned of the configmap                   |
+| `metadata.annotations` <br/>_map_          | The annotations associated to the config map            |
+| `metadata.name` <br/>_string_              | The name of the config map                              |
+| `metadata.namespace` <br/>_string_         | The namespace in which the config map is created        |
+| `metadata.uid` <br/>_object_               | The UUID of the config map                              |
+| `metadata.selfLink` <br/>_object_          | A link that uniquely identifies this config map         |
+| `metadata.resourceVersion` <br/>_object_   | The resource version of the config map                  |
 
 
 <!-------------------- GET A configmap -------------------->
@@ -91,17 +91,17 @@ curl -X GET \
 
 Retrieve a configmap and all its info in a given [environment](#administration-environments).
 
-| Attributes                                 | &nbsp;                                                          |
-| ------------------------------------------ | --------------------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the configmap                                        |
-| `apiVersion` <br/>_string_                 | The API version used to retrieve this configmap                |
-| `kind` <br/>_string_                       | The type of the returned resource: ConfigMap                   |
-| `metadata` <br/>_object_                   | The metadata of the configmap                                  |
-| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the configmap as a string              |
-| `metadata.annotations` <br/>_map_          | The annotations associated to the configmag                    |
-| `metadata.name` <br/>_string_              | The name of the configmap                                      |
-| `metadata.namespace` <br/>_string_         | The namespace in which the configmap is created                |
-| `metadata.uid` <br/>_object_               | The UUID of the configmap                                      |
-| `metadata.selfLink` <br/>_object_          | A link uniquely identifying this config map                    |
-| `metadata.resourceVersion` <br/>_object_   | The version returned of the configmap                          |
+| Attributes                                 | &nbsp;                                                  |
+| ------------------------------------------ | ------------------------------------------------------- |
+| `id` <br/>_string_                         | The id of the config map                                |
+| `apiVersion` <br/>_string_                 | The API version used to retrieve this config map        |
+| `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap        |
+| `metadata` <br/>_object_                   | The metadata of the config map                          |
+| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the configmap as a string       |
+| `metadata.annotations` <br/>_map_          | The annotations associated to the config map            |
+| `metadata.name` <br/>_string_              | The name of the config map                              |
+| `metadata.namespace` <br/>_string_         | The namespace in which the config map is created        |
+| `metadata.uid` <br/>_object_               | The UUID of the config map                              |
+| `metadata.selfLink` <br/>_object_          | A link that uniquely identifies this config map         |
+| `metadata.resourceVersion` <br/>_object_   | The resource version of the config map                  |
 
