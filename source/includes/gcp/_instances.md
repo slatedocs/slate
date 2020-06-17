@@ -11,7 +11,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -46,10 +46,16 @@ curl -X GET \
       ],
       "kind": "compute#instance",
       "labelFingerprint": "42WmSpB8rSM=",
-      "metadata": {
-        "fingerprint": "WFshDDge4fM=",
-        "kind": "compute#metadata"
-      },
+    "metadata": {
+      "fingerprint": "RnfaWQ2UP4U=",
+      "items": [
+        {
+          "key": "startup-script",
+          "value": "#! /bin/bash\napt-get update\nEOF"
+        }
+      ],
+      "kind": "compute#metadata"
+    },
       "networkInterfaces": [
         {
           "accessConfigs": [
@@ -151,7 +157,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/5611478403377505138"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -187,6 +193,12 @@ curl -X GET \
     "labelFingerprint": "42WmSpB8rSM=",
     "metadata": {
       "fingerprint": "WFshDDge4fM=",
+      "items": [
+        {
+          "key": "startup-script",
+          "value": "#! /bin/bash\napt-get update\nEOF"
+        }
+      ],
       "kind": "compute#metadata"
     },
     "networkInterfaces": [
@@ -301,7 +313,8 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
-  "shortIP": "my-ip-name"
+  "shortIP": "my-ip-name",
+  "startupScript": "#! /bin/bash\napt-get update\nEOF"
 }
 
 // Create an instance with a new static IP
@@ -318,6 +331,19 @@ curl -X POST \
 }
 
 // Create an instance with an ephemeral IP
+{
+  "name": "my-instance",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-a",
+  "bootDiskType": "pd-standard",
+  "bootDiskSizeInGb": "10",
+  "cpuCount": "2",
+  "memoryInGB": "4.5",
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "ephemeralIP": true
+}
+
+// Create an instance with no external IP
 {
   "name": "my-instance",
   "shortRegion": "northamerica-northeast1",
@@ -347,8 +373,10 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIP is provided, an ephemeral external IP address will be assigned. If the value is true, a new static IP would be reserved and provided to the resource.
-`shortIP`<br/>*string* | The name of an existing regional external IP address assigned to this instance in the same region. This argument is only valid in conjunction with reserveStaticIP being false.
+`reserveStaticIP`<br/>*boolean* | If the value is true, a new static IP would be reserved and provided to the resource.
+`shortIP`<br/>*string* | The name of an existing regional external IP address assigned to this instance in the same region. This argument is only valid in conjunction with reserveStaticIP and ephemeral IP being false.
+`ephemeralIP`<br/>*boolean* | If the value is false, reserve static IP is false and if no shortIP is provided the instance won't have an external IP. If the value is true, an ephemeral external IP address will be assigned.
+`startupScript`<br/>*string* | A startup script metadata item to run every time the instance boots up.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
@@ -560,3 +588,29 @@ curl -X POST \
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
 
  Stop an existing instance. The instance must be in either the *RUNNING* or *STOPPING* status for this operation to work. The default behavior is that the instance (denote by **id**) will be stopped gracefully.
+
+<!-------------------- EDIT STARTUP SCRIPT -------------------->
+
+#### Edit a startup script
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=edit_startup_script"
+```
+> Request body example:
+
+```json
+{
+    "startupScript": "#! /bin/bash\ncat <<EOF > /var/www/html/index.html\n<html><body><h1>Hello World</h1>\n<p>This page was created from a simple startup script!</p>\n</body></html>\nEOF"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=edit_startup_script</code>
+
+Edit the startup script for an existing instance.
+
+Required | &nbsp;
+------ | -----------
+`startupScript`<br/>*string* | A startup script metadata item to run every time the instance boots up.

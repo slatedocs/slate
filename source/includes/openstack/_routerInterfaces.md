@@ -8,7 +8,7 @@ Router interfaces connect a router to a network.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routerinterfaces?routerid=3de4f523-06ce-4955-acb0-b8e3d61ec582"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -49,7 +49,7 @@ Retrieve a list of router interfaces associated with a router in an OpenStack en
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routerinterfaces/b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

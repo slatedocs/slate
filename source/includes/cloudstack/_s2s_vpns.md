@@ -11,7 +11,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -79,7 +79,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

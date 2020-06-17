@@ -11,7 +11,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/networks"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

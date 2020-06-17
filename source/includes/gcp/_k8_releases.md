@@ -8,9 +8,9 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -105,31 +105,31 @@ Retrieve a list of all releases in a given [environment](#administration-environ
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
+`cluster_id` <br/>*string* | The id of the cluster in which to list the releases.
 
 
-	 
+
 Optional | &nbsp;
 ------- | -----------
-`namespace` <br/>*string* | The namespace to list the release. This needs the exact value.  
+`namespace` <br/>*string* | The namespace to list the release. This needs the exact value.
 
 
 Attributes | &nbsp;
 ------- | -----------
-`name` <br/>*string* | The name of the release.  
+`name` <br/>*string* | The name of the release.
 `info` <br/>*object* | The information about the release.
 `info.first_deployed` <br/>*string* | The annotations of the pod.
 `info.last_deployed` <br/>*string* | The date of creation of the pod as a string.
-`info.deleted` <br/>*string* | The labels associated to the pod and there associated values.
+`info.deleted` <br/>*string* | The labels associated to the pod.
 `info.description` <br/>*string* | The name of the pod.
-`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, and pending-rollback.
+`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback.
 `info.notes` <br/>*string* | The notes linked to the release.
 `chart`<br/>*object* | The information related to the chart of used in the release.
 `chart.version` <br/>*string* | The version of the chart.
 `chart.metadata` <br/>*object* | The metadata associated to the chart.
 `chart.metadata.name` <br/>*string* | The name of the chart.
 `chart.metadata.home` <br/>*string* | The home URL for the chart.
-`chart.metadata.sources` <br/>*list* | The list of sources of the charts.
+`chart.metadata.sources` <br/>*list* | The list of source of the charts.
 `chart.metadata.version` <br/>*string* | The version of the chart.
 `chart.metadata.description` <br/>*string* | The description of the chart.
 `chart.metadata.keywords` <br/>*list* | The list of keywords linked to the chart.
@@ -151,9 +151,9 @@ The information is not totally returned in the list. We filter out the manifest 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -282,18 +282,18 @@ Retrieve a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to list the releases. 
+`cluster_id` <br/>*string* | The id of the cluster in which to list the releases.
 
 
 Attributes | &nbsp;
 ------- | -----------
-`name` <br/>*string* | The name of the release.  
+`name` <br/>*string* | The name of the release.
 `info` <br/>*object* | The information about the release.
 `info.first_deployed` <br/>*string* | The annotations of the pod.
 `info.last_deployed` <br/>*string* | The date of creation of the pod as a string.
-`info.deleted` <br/>*string* | The labels associated to the pod and there associated values.
+`info.deleted` <br/>*string* | The labels associated to the pod.
 `info.description` <br/>*string* | The name of the pod.
-`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, and pending-rollback.
+`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback.
 `info.notes` <br/>*string* | The notes linked to the release.
 `chart`<br/>*object* | The information related to the chart of used in the release.
 `chart.version` <br/>*string* | The version of the chart.
@@ -325,9 +325,9 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=rollback&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954&operation=rollback&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -366,7 +366,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954?operation=upgrade&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954?operation=upgrade&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
    -d "request_body"
 ```
 > Request body examples:
@@ -374,7 +374,7 @@ curl -X POST \
 ```js
 // Change to the latest version of a chart
 {
-  "upgradeChart":  "stable/aerospike" 
+  "upgradeChart":  "stable/aerospike"
 }
 
 // Change to a specific version of a chart
@@ -403,8 +403,8 @@ Upgrade a release in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to upgrade the release. 
-`upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.  
+`cluster_id` <br/>*string* | The id of the cluster in which to upgrade the release.
+`upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.
 
 Optional | &nbsp;
 ------- | -----------
@@ -421,7 +421,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/anenvironment/releases/pspensieri/aerospike-1579797954&operation=uninstall&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/k8s/an_environment/releases/pspensieri/aerospike-1579797954&operation=uninstall&cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
    -d "request_body"
 ```
 > Request body example:
@@ -431,7 +431,7 @@ curl -X POST \
    "keepHistory": true
 }
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

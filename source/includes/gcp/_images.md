@@ -10,7 +10,7 @@ Images are virtual machine images that have a virtual disk which contains a boot
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/gcp/test-area/images"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -114,7 +114,7 @@ Attributes | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/gcp/test-area/images/4658005417542122143"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

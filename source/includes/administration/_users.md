@@ -14,7 +14,7 @@ A user account allows users to authenticate to an [organization](#administration
 curl "https://cloudmc_endpoint/v1/users" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -73,7 +73,7 @@ Attributes | &nbsp;
 curl "https://cloudmc_endpoint/v1/users/fdf60a19-980d-4380-acab-914485111305" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

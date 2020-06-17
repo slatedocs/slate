@@ -8,7 +8,7 @@ Snapshots are point in time copies of volumes that can be used to create other v
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/snapshots"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -47,7 +47,7 @@ Attributes | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/snapshots/4b41c7de-b2a8-4cb7-82ce-46685b07921d"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

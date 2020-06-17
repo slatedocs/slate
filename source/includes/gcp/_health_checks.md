@@ -9,7 +9,7 @@ curl -X GET \
   -H 'MC-Api-key: your_api_key'
   "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -74,7 +74,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks/5930212998788364011"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

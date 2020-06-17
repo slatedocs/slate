@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell : curl
+  - shell: curl
   - js
 
 includes:
@@ -12,9 +12,15 @@ includes:
   - administration/organizations
   - administration/users
   - administration/roles
-  - administration/environments 
+  - administration/environments
   - administration/resource_commitments
   - administration/usage
+  - administration/monetization
+  - administration/products
+  - administration/pricings
+  - administration/applied_pricings
+  - administration/authentication
+  - administration/service_providers
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
@@ -70,8 +76,10 @@ includes:
   - gcp/firewall_rules
   - gcp/external_ips
   - gcp/routes
+  - gcp/routers
   - gcp/vpn_gateways
   - gcp/vpn_tunnels
+  - gcp/subnets
   - gcp/load_balancing # Load balancing subsection
   - gcp/load_balancer
   - gcp/forwarding_rules
@@ -81,14 +89,22 @@ includes:
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
   - gcp/k8_pods
+  - gcp/k8_statefulsets
+  - gcp/k8_daemonsets
+  - gcp/k8_deployments
   - gcp/k8_releases
   - gcp/k8_charts
+  - gcp/k8_namespaces
   - gcp/images
   - gcp/regions
   - kubernetes
   - kubernetes/k8_pods
+  - kubernetes/k8_statefulsets
+  - kubernetes/k8_daemonsets
+  - kubernetes/k8_deployments
   - kubernetes/k8_releases
   - kubernetes/k8_charts
+  - kubernetes/k8_namespaces
   - azure
   - azure/compute
   - azure/instances
@@ -101,6 +117,8 @@ includes:
   - azure/network_security_groups
   - azure/security_rules
   - azure/public_ip_addresses
+  - azure/kubernetes # Kubernetes section
+  - azure/clusters
   - masterportal
   - masterportal/applications
   - swift

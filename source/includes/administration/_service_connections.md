@@ -74,7 +74,7 @@ Query Parameters | &nbsp;
 curl "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies/descriptors?section=trials" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -141,7 +141,7 @@ curl -X PUT \
    -d "[{"name": "serviceVersion", "value": "1.1"}, {"name": "cacheEnabled", "value": "true"}]" \
    "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 
 ```json

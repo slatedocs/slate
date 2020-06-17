@@ -12,7 +12,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -56,8 +56,8 @@ Attributes | &nbsp;
 `cidr`<br/>*string* | The cidr of the network
 `gateway`<br/>*string* | The gateway of the network
 `netmask`<br/>*string* | The netmask of the network
-`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the the network
-`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the the network
+`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the network
+`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the network
 `networkOfferingId`<br/>*UUID* | The id of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingName`<br/>*string* | The name of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingDescription`<br/>*string* | The description of the [network offering](#cloudstack-network-offerings) of the network
@@ -79,7 +79,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -120,8 +120,8 @@ Attributes | &nbsp;
 `cidr`<br/>*string* | The cidr of the network
 `gateway`<br/>*string* | The gateway of the network
 `netmask`<br/>*string* | The netmask of the network
-`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the the network
-`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the the network
+`networkAclId`<br/>*UUID* | The id of the [network ACL](#cloudstack-network-acls) of the network
+`networkAclName`<br/>*string* | The name of the [network ACL](#cloudstack-network-acls) of the network
 `networkOfferingId`<br/>*UUID* | The id of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingName`<br/>*string* | The name of the [network offering](#cloudstack-network-offerings) of the network
 `networkOfferingDescription`<br/>*string* | The description of the [network offering](#cloudstack-network-offerings) of the network

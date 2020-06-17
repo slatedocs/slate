@@ -8,7 +8,7 @@ SSH keys can be assigned on instance creation to provide SSH access.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/sshkeys"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -49,7 +49,7 @@ Retrieve a list of SSH keys in an OpenStack domain.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/sshkeys/ssh-key-a"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

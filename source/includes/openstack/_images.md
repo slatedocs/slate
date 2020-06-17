@@ -8,7 +8,7 @@ Images are virtual machine images that have a virtual disk that contains a boota
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/images"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -43,7 +43,7 @@ Attributes | &nbsp;
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/images/22f53310-798d-4029-bb00-747a52d2a376"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

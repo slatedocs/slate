@@ -13,7 +13,7 @@ Resource commitments allow you to set specific commitment levels on cloud resour
 curl "https://cloudmc_endpoint/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -105,7 +105,7 @@ Attributes | &nbsp;
 curl "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {

@@ -11,7 +11,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -69,7 +69,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways/3112849056897469664"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -157,7 +157,7 @@ Optional | &nbsp;
 ------- | -----------
 `description`<br/>*string* | An optional description.
 `shortIP`<br/>*string* | The name of the external static IP to use for the VPN gateway.
-`reseveStaticIP`<br/>*string* | A flag to indicate if a new external static IP needs to be reserved for the VPN gateway. This option is mutually exclusive with `shortIP`.
+`reserveStaticIP`<br/>*string* | A flag to indicate if a new external static IP needs to be reserved for the VPN gateway. This option is mutually exclusive with `shortIP`.
 
 <!-------------------- DELETE VPN GATEWAY -------------------->
 
@@ -168,7 +168,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways/3112849056897469664"
 ```
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
