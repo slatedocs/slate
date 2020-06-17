@@ -68,7 +68,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE IDPS -------------------->
 
-#### Create identity provider
+### Create identity provider
 
 `POST /identity_providers`
 
@@ -150,7 +150,7 @@ Optional | &nbsp;
 
 <!-------------------- UPDATE IDPS -------------------->
 
-#### Update Identity Provider
+### Update Identity Provider
 
 `POST /identity_providers/:id`
 
@@ -234,7 +234,7 @@ Optional | &nbsp;
 
 <!-------------------- Delete IDPs -------------------->
 
-#### Delete Identity Provider
+### Delete Identity Provider
 
 `Delete /identity_providers/:id`
 
