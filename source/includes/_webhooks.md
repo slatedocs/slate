@@ -23,7 +23,7 @@ The encrypted string is then UTF-8 URL encoded.
 ### Verifying the signature
 
 <aside class="notice">
-You should verify that the `Authorization` header matches the expected signature string using the secret that was shared with you during onboarding.
+You should verify that the <code>Authorization</code> header matches the expected signature string using the secret that was shared with you during onboarding.
 </aside>
 
 ## `POST /webhooks`
@@ -156,11 +156,11 @@ This is fired whenever an investor's KYC status changes eg from `REFERRED` to `V
 This is fired whenever investor funds are cleared into their account eg for a bank transfer.
 
 <aside class="notice">
-If using the batch payments api this event will not trigger but instead a `BATCH_UPDATE` event will be generated once all payments have been received.
+If using the batch payments api this event will not trigger but instead a <code>BATCH_UPDATE</code> event will be generated once all payments have been received.
 </aside>
 
 <aside class="notice">
-If redirected = true, the accountType will reflect which account the money has been credited to. The intendedAccountType will
+If <code>redirected = true</code>, the <code>accountType</code> will reflect which account the money has been credited to. The <code>intendedAccountType</code> will
 contain details of where the investor wished to deposit. This scenario is most likely when depositing into an ISA and the ISA subscription
 status is preventing deposits.
 </aside>

@@ -1997,7 +1997,7 @@ Lists all transfers out for all investors.
 
 If you are migrating your existing investors over to Goji, then you need to onboard the existing investors using the dedicated [investor migration endpoint](#investors-post-platformapi-migrate) and include `migrationDetails` data.
 
-The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the dilligence status as agreed with Goji before migration takes place. 
+The `migrationDetails` allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
 
 ### Upgrading investors currently using the ISA Administration API
 
@@ -2015,6 +2015,53 @@ Any existing ISA data is preserved.
 ## `POST /platformApi/migrate`
 
 ```http
+POST /platformApi/investors HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "title": "MS",
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "address": {
+    "country": "GBR",
+    "lineOne": "1 The High Street",
+    "lineTwo": "",
+    "lineThree": "",
+    "postcode": "AA1 1AA",
+    "townCity": "London",
+    "region": "Greater London"
+  },
+  "nationalInsuranceNumber": "MG442319A",
+  "accountTypes": [
+    "GOJI_INVESTMENT",
+    "ISA"
+  ],
+  "entityType": "INDIVIDUAL",
+  "employmentDetails": {
+    "jobTitle": "Accountant",
+    "employmentStatus": "EMPLOYED_FULL_TIME"
+  },
+  "nationalities": [
+    {"nationality": "GB"},
+    {"nationality": "CH"}
+  ],
+  "dateOfBirth": "1990-01-19",
+  "migrationDetails": {
+    "existingClientId": "existingClientId",
+    "diligenceMigrationOption": "FULL_CHECK",
+    "previousCheckDate": "2000-01-23"
+  },
+  "investorDeclarationType": "RESTRICTED",
+  "contactDetails": {
+    "emailAddress": "example@example.com",
+    "telephoneNumber": "07123456789"
+  }
+}
+```
+
+```http
 
 POST /platformApi/investors HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -2022,48 +2069,43 @@ Content-Type: application/json
 Authorization: Basic ...
 
 {
-  "lastName" : "lastName",
-  "corporateDetails" : {
-    "companyType" : "companyType",
-    "registrationNumber" : "registrationNumber",
-    "companyName" : "companyName"
+  "title": "MS",
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "corporateDetails": {
+    "companyType": "LLC",
+    "registrationNumber": "AB123456",
+    "companyName": "Fake company"
   },
-  "address" : {
-    "country" : "country",
-    "lineTwo" : "lineTwo",
-    "townCity" : "townCity",
-    "postcode" : "postcode",
-    "lineOne" : "lineOne",
-    "lineThree" : "lineThree",
-    "region" : "region"
+  "address": {
+    "country": "GBR",
+    "lineOne": "1 The High Street",
+    "lineTwo": "",
+    "lineThree": "",
+    "postcode": "AA1 1AA",
+    "townCity": "London",
+    "region": "Greater London"
   },
-  "entityType" : "INDIVIDUAL",
-  "employmentDetails" : {
-    "jobTitle" : "jobTitle",
-    "employmentStatus" : "EMPLOYED_FULL_TIME"
-  },
-  "nationalities" : [ {
-    "nationality" : "GB"
-  }, {
-    "nationality" : "CH"
-  } ],
-  "dateOfBirth" : "2000-01-23",
-  "migrationDetails" : {
-    "existingClientId" : "existingClientId",
+  "accountTypes": [
+    "GOJI_INVESTMENT",
+  ],
+  "entityType": "CORPORATE",
+  "nationalities": [
+    {"nationality": "GB"},
+    {"nationality": "CH"}
+  ],
+  "dateOfBirth": "1990-01-19",
+  "migrationDetails": {
+    "existingClientId": "existingClientId",
     "diligenceMigrationOption": "FULL_CHECK",
     "previousCheckDate": "2000-01-23"
   },
-  "title" : "MISS",
-  "investorDeclarationType" : "RESTRICTED",
-  "contactDetails" : {
-    "emailAddress" : "emailAddress",
-    "telephoneNumber" : "telephoneNumber"
-  },
-  "firstName" : "firstName",
-  "nationalInsuranceNumber" : "nationalInsuranceNumber",
-  "accountTypes" : [ { }, { } ]
+  "investorDeclarationType": "HIGH_NET_WORTH",
+  "contactDetails": {
+    "emailAddress": "example@example.com",
+    "telephoneNumber": "07123456789"
+  }
 }
-
 ```
 
 ```http 
@@ -2071,41 +2113,51 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "lastName" : "lastName",
-  "corporateDetails" : {
-    "companyType" : "companyType",
-    "registrationNumber" : "registrationNumber",
-    "companyName" : "companyName"
+  "title": "MS",
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "corporateDetails": {
+    "companyType": "LLC",
+    "registrationNumber": "AB123456",
+    "companyName": "Fake company"
   },
-  "clientId" : "clientId",
-  "address" : {
-    "country" : "country",
-    "lineTwo" : "lineTwo",
-    "townCity" : "townCity",
-    "postcode" : "postcode",
-    "lineOne" : "lineOne",
-    "lineThree" : "lineThree",
-    "region" : "region"
+  "address": {
+    "country": "GBR",
+    "lineOne": "1 The High Street",
+    "lineTwo": "",
+    "lineThree": "",
+    "postcode": "AA1 1AA",
+    "townCity": "London",
+    "region": "Greater London"
   },
-  "entityType" : "INDIVIDUAL",
-  "employmentDetails" : {
-    "jobTitle" : "jobTitle",
-    "employmentStatus" : "EMPLOYED_FULL_TIME"
+  "accountTypes": [
+    "GOJI_INVESTMENT",
+  ],
+  "entityType": "CORPORATE",
+  "nationalities": [
+    {"nationality": "GB"},
+    {"nationality": "CH"}
+  ],
+  "dateOfBirth": "1990-01-19",
+  "migrationDetails": {
+    "existingClientId": "existingClientId",
+    "diligenceMigrationOption": "FULL_CHECK",
+    "previousCheckDate": "2000-01-23"
   },
-  "dateOfBirth" : "2000-01-23",
-  "title" : "MISS",
-  "contactDetails" : {
-    "emailAddress" : "emailAddress",
-    "telephoneNumber" : "telephoneNumber"
-  },
-  "firstName" : "firstName",
-  "nationalInsuranceNumber" : "nationalInsuranceNumber",
-  "accountTypes" : "GOJI_INVESTMENT",
-  "investmentDeclarationType" : "RESTRICTED"
+  "investorDeclarationType": "HIGH_NET_WORTH",
+  "contactDetails": {
+    "emailAddress": "example@example.com",
+    "telephoneNumber": "07123456789"
+  }
 }
 ```
 ### Description
 Migrates an existing investor onto the Goji system.
+
+<aside class="notice">
+The required <code>migrationDetails</code> allows the platform to provide an existing investor ID where applicable and provide the diligence status as agreed with Goji before migration takes place. 
+</aside>
+
 ### Request
 | Name                                | Type   | Description                                                                                                                                                                                                           | Required |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
