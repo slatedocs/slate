@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/an_environment/configmaps"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps"
 ```
 
 > The above command returns a JSON structured like this:
@@ -47,7 +47,7 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/an_environment/configmaps/cert-manager-cainjector-leader-election/kube-system"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/cert-manager-cainjector-leader-election/kube-system"
 ```
 
 > The above command returns a JSON structured like this:
