@@ -104,7 +104,11 @@ $phone = $number->getNationalNumber(); // 7123456789
 $campaign_id = "UniqueString"; // String to Attribute the lead to specific project. contact ANAROCK team for this.
 
 $postFields  = "";
-$postFields .= "&field=".$value; // refer to query parameters section on left section
+$postFields .= "&name=".$name; // refer to query parameters section on left section
+$postFields .= "&email=".$email;
+$postFields .= "&source=".$utm_source;
+$postFields .= "&sub_source=".$utm_campaign;
+$postFields .= "&placement=".$utm_term;
 $postFields .= "&current_time=".$current_time;
 $postFields .= "&phone=".$phone; // Phone number without country code
 $postFields .= "&country_code=".$country_code; // Standard ISO3166-1 alpha-2 code for a country.
@@ -244,46 +248,6 @@ NodeJS | <a href="https://www.npmjs.com/package/awesome-phonenumber">https://www
   
 ### <a href="https://github.com/anarock/leads/blob/master/sample_lead_push.php">https://github.com/anarock/leads/blob/master/sample_lead_push.php</a>
 
-
-
-# Lead Source and Sub Sources API
-
-
-```php
-<?php
-// shows that lead is generated from google
-$source_id = 1
-// shows that lead is generated from google GDN.
-$sub_source_id = 8 
-
-$postFields .= "&source_id=".$source_id;
-$postFields .= "&sub_source_id=".$sub_source_id;
-```
-
-```javascript
-const source_id : 1 // shows that lead is generated from google
-const sub_source_id : 8 // shows that lead is generated from google GDN.
-
-{
-  source_id : 1 
-  sub_source_id: 8
-}
-```
-
-Its very important to categorize lead depending upon the source and sub source for better understanding of performance and analysis of over all marketting channels.
-
-While posting a lead the parameters should also have a source_id and sub_source_id as fields.
-
-The values for which can be accessed from this API. 
-
-### <a target="_blank" href="https://lead.anarock.com/api/v0/source-metadata">https://lead.anarock.com/api/v0/source-metadata</a>
-
-
-Example - If a lead is been generated from google GDN then 
-
-<aside class="success">
-Remember — without proper <code>source_id</code> and <code>sub_source_id</code>, leads will not be attributed to the correct sources. If you are running campaign on a new source and it's not present in the API, please contact Anarock team for the same.
-</aside>
 
 # Check Successful Submission
 
