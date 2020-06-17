@@ -122,7 +122,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE SERVICE PROVIDERS -------------------->
 
-#### Create service provider
+### Create service provider
 
 `POST /service_providers`
 
@@ -206,7 +206,7 @@ Optional | &nbsp;
 
 <!-------------------- UPDATE SERVICE PROVIDERS -------------------->
 
-#### Update service provider
+### Update service provider
 
 `PUT /service_providers/:id`
 
