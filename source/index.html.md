@@ -102,6 +102,7 @@ includes:
   - kubernetes/k8_statefulsets
   - kubernetes/k8_daemonsets
   - kubernetes/k8_deployments
+  - kubernetes/k8_configmaps
   - kubernetes/k8_releases
   - kubernetes/k8_charts
   - kubernetes/k8_namespaces
