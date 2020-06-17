@@ -88,24 +88,25 @@ includes:
   - gcp/ssl_certificates
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
+  - gcp/k8_namespaces
   - gcp/k8_pods
   - gcp/k8_statefulsets
   - gcp/k8_daemonsets
   - gcp/k8_deployments
+  - gcp/k8_configmaps
   - gcp/k8_releases
   - gcp/k8_charts
-  - gcp/k8_namespaces
   - gcp/images
   - gcp/regions
   - kubernetes
+  - kubernetes/k8_namespaces
   - kubernetes/k8_pods
   - kubernetes/k8_statefulsets
   - kubernetes/k8_daemonsets
   - kubernetes/k8_deployments
   - kubernetes/k8_configmaps
   - kubernetes/k8_releases
-  - kubernetes/k8_charts
-  - kubernetes/k8_namespaces
+  - kubernetes/k8_charts  
   - azure
   - azure/compute
   - azure/instances
@@ -120,6 +121,12 @@ includes:
   - azure/public_ip_addresses
   - azure/kubernetes # Kubernetes section
   - azure/clusters
+  - azure/k8_namespaces
+  - azure/k8_pods
+  - azure/k8_statefulsets
+  - azure/k8_daemonsets
+  - azure/k8_deployments
+  - azure/k8_configmaps
   - masterportal
   - masterportal/applications
   - swift
