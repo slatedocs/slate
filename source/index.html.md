@@ -93,6 +93,7 @@ includes:
   - gcp/k8_statefulsets
   - gcp/k8_daemonsets
   - gcp/k8_deployments
+  - gcp/k8_configmaps
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/images
@@ -125,6 +126,7 @@ includes:
   - azure/k8_statefulsets
   - azure/k8_daemonsets
   - azure/k8_deployments
+  - azure/k8_configmaps
   - masterportal
   - masterportal/applications
   - swift
