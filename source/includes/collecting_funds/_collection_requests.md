@@ -430,7 +430,7 @@ print collection_request  # Examine the returned object
 ```
 
 To create a recurring collection request, use the options below in the subscription_settings field.The start_date and end_date are mandatory whereas weekdays, months and frequency are the optional.
-**Note: We use UTC timezone when checking for recurrence.
+**Note: All timestamps are interpreted as UTC
 
 * start_date:The start date of the subscription.The default value is the creation date of the collection request.The value must be in future date and in the format 'DD/MM/YY HH:MM:SS'.
 
