@@ -41,8 +41,6 @@ curl "https://cloudmc_endpoint/v1/service_providers" \
   ]
 }
 ```
-<code>GET /service_providers</code>
-
 List the service providers configured on the system.
 
 Attributes | &nbsp;
@@ -102,8 +100,6 @@ curl "https://cloudmc_endpoint/v1/service_providers/04b77783-516f-4064-a6df-e7f9
   }
 }
 ```
-<code>GET /service_providers/:id</code>
-
 Return the service provider configured associated to the id on the system.
 
 Attributes | &nbsp;
@@ -186,8 +182,6 @@ curl -X POST "https://cloudmc_endpoint/rest/service_providers" \
   }
 }
 ```
-
-<code>POST /service_providers</code>
 
 Create a new service provider
 
@@ -274,8 +268,6 @@ curl -X POST "https://cloudmc_endpoint/rest/service_providers/:id" \
 }
 ```
 
-<code>POST /service_providers/:id</code>
-
 Updates a specific service provider
 
 Required | &nbsp;
@@ -310,7 +302,5 @@ curl "https://cloudmc_endpoint/rest/service_providers/f9dea588-d7ab-4f42-b6e6-4b
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
-
-<code>DELETE /service_providers/:id</code>
 
 Delete a specific service provider. 
