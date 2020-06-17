@@ -223,7 +223,7 @@ Setting custom styles based on Embed2 elements is inherently brittle, and can ca
 #### eventCallbacks
 `eventCallbacks?: { [eventName: string]: (jsEvent: object) => void };`
 
-Used in conjunction with Custom JavaScript Event Blocks to trigger specified callbacks as part of a conversation. Requires the `custom_javascript_event_block` feature flag to be turned on.
+Used in conjunction with the Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
 
 #### greeting
 `greeting?: string;`
