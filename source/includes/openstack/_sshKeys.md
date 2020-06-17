@@ -97,7 +97,7 @@ curl -X POST \
 
 Create a SSH key.
 
-Required attributes                | Description                         
+Required                | Description                         
 ---------------------------------- | -----------------------------------
 `name`<br/>*string*                | The SSH key's name.
 `publicKey`<br/>*string*           | A public SSH key in RSA format.

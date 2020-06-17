@@ -50,14 +50,14 @@ Retrieve a list of all networks in an [environment](#administration-environments
 Attributes | &nbsp;
 ---------- | -----
 `autoCreateSubnetworks`<br/>*boolean* | When set to true, the VPC network is created in "auto" mode. When set to false, the VPC network is created in "custom" mode.
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`description`<br/>*string* | An optional description of this resource
-`id`<br/>*string* | The network's id
-`name`<br/>*string* | The network's name
-`kind`<br/>*string* | Type of the resource
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`description`<br/>*string* | An optional description of this resource.
+`id`<br/>*string* | The network's id.
+`name`<br/>*string* | The network's name.
+`kind`<br/>*string* | Type of the resource.
 `routingConfig`<br/>*object* | The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce. RoutingMode is either REGIONAL or GLOBAL.
-`selfLink`<br/>*string* | Server-defined URL for this resource
-`subnetworks`<br/>*Array[URL]* | Server-defined fully-qualified URLs for all subnetworks in this VPC network
+`selfLink`<br/>*string* | Server-defined URL for this resource.
+`subnetworks`<br/>*Array[URL]* | Server-defined fully-qualified URLs for all subnetworks in this VPC network.
 
 <!-------------------- RETRIEVE A NETWORK -------------------->
 
@@ -101,11 +101,11 @@ Retrieve information about a network.
 Attributes | &nbsp;
 ---------- | -----
 `autoCreateSubnetworks`<br/>*boolean* | When set to true, the VPC network is created in "auto" mode. When set to false, the VPC network is created in "custom" mode.
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`description`<br/>*string* | An optional description of this resource
-`id`<br/>*string* | The network's id
-`name`<br/>*string* | The network's name
-`kind`<br/>*string* | Type of the resource
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`description`<br/>*string* | An optional description of this resource.
+`id`<br/>*string* | The network's id.
+`name`<br/>*string* | The network's name.
+`kind`<br/>*string* | Type of the resource.
 `routingConfig`<br/>*object* | The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce. RoutingMode is either REGIONAL or GLOBAL.
-`selfLink`<br/>*string* | Server-defined URL for this resource
-`subnetworks`<br/>*Array[URL]* | Server-defined fully-qualified URLs for all subnetworks in this VPC network
+`selfLink`<br/>*string* | Server-defined URL for this resource.
+`subnetworks`<br/>*Array[URL]* | Server-defined fully-qualified URLs for all subnetworks in this VPC network.

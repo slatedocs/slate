@@ -47,13 +47,13 @@ Retrieve the usage summary records for an organization and all of its sub-organi
 
 Attributes | &nbsp;
 ---- | -----------
-`organizationId`<br/>*UUID* | Id of the [organization](#administration-organizations)
-`serviceConnectionId`<br/>*UUID* | Id of the [service connection](#administration-service-connections)
-`serviceConnectionPricingId`<br/>*UUID* | Id of the service connection pricing
-`utilityCost`<br/>*string* | Utility cost of the record (aggregated per the period)
-`utilityUsage`<br/>*string* | Utility usage of the record
-`startDate`<br/>*string* | Start date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-`endDate`<br/>*string* | End date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+`organizationId`<br/>*UUID* | Id of the [organization](#administration-organizations).
+`serviceConnectionId`<br/>*UUID* | Id of the [service connection](#administration-service-connections).
+`serviceConnectionPricingId`<br/>*UUID* | Id of the service connection pricing.
+`utilityCost`<br/>*string* | Utility cost of the record (aggregated per the period).
+`utilityUsage`<br/>*string* | Utility usage of the record.
+`startDate`<br/>*string* | Start date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+`endDate`<br/>*string* | End date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 `usageType`<br/>*string* | Usage type of the record.
 `secondaryType`<br/>*string* | Secondary type of the record.
 
@@ -66,14 +66,14 @@ Query Parameters (*required*) | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`service_connection_id`<br/>*UUID* | Show usage summary for this service connection
+`service_connection_id`<br/>*UUID* | Show usage summary for this service connection.
 `include_sub_orgs`<br/>*boolean* | Include usage summary of all its sub-organizations. Defaults to false.
 `include_cost`<br/>*boolean* | Include the utility cost and service connection pricing id fields. Defaults to true.
 `include_free_usage`<br/>*boolean* | Include all summary records that has no cost associated to it (i.e. utilityCost == 0). Defaults to true.
-`combine_usage_types`<br/>*boolean* | Sums up the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`
+`combine_usage_types`<br/>*boolean* | Sums up the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`.
 `period`<br/>*String* | The period on which the aggregation is made. HOUR, DAY or PERIOD. The default is HOUR.
 `format`<br/>*String* | JSON or CSV. Defaults to JSON.
-`include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted
+`include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted.
 
 ### List top level organization usage summary
 
@@ -107,7 +107,7 @@ curl -X GET \
 }
 ```
 
-Retrieves the usage summary records for top level organization and it's sub-organizations for a specific period ensuring that usage is split between two buckets, resource commitment usage and utility usage. The response format will be in the JSON format.
+Retrieves the usage summary records for top level organization and its sub-organizations for a specific period ensuring that usage is split between two buckets, resource commitment usage and utility usage. The response format will be in the JSON format.
 
 ##### Resource Commitment Usage:
 The usage that is counted toward a pre assigned pool of resources defined by the Resource Commitment of the organization on a specified service connection. The resource commitment usage is capped by the resource commitment capacity which is the total amount of resource allocated to the organization.
@@ -120,14 +120,14 @@ The following will always hold:
 
 Attributes | &nbsp;
 ---- | -----------
-`organizationId`<br/>*UUID* | Id of the [organization](#administration-organizations)
-`serviceConnectionId`<br/>*UUID* | Id of the [service connection](#administration-service-connections)
-`serviceConnectionPricingId`<br/>*UUID* | Id of the service connection pricing
-`utilityCost`<br/>*string* | Utility cost of the record (aggregated per the period)
-`utilityUsage`<br/>*string* | Utility usage of the record
+`organizationId`<br/>*UUID* | Id of the [organization](#administration-organizations).
+`serviceConnectionId`<br/>*UUID* | Id of the [service connection](#administration-service-connections).
+`serviceConnectionPricingId`<br/>*UUID* | Id of the service connection pricing.
+`utilityCost`<br/>*string* | Utility cost of the record (aggregated per the period).
+`utilityUsage`<br/>*string* | Utility usage of the record.
 `resourceCommitmentUsage`<br/>*string* | The amount of usage that was counted toward the commitment capacity defined by the resource commitment.
-`startDate`<br/>*string* | Start date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-`endDate`<br/>*string* | End date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+`startDate`<br/>*string* | Start date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+`endDate`<br/>*string* | End date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 `usageType`<br/>*string* | Usage type of the record.
 `secondaryType`<br/>*string* | Secondary type of the record.
 
@@ -139,10 +139,10 @@ Query Parameters (*required*) | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`service_connection_id`<br/>*UUID* | Show usage summary for this service connection
+`service_connection_id`<br/>*UUID* | Show usage summary for this service connection.
 `include_sub_orgs`<br/>*boolean* | Include usage summary of all its sub-organizations. Defaults to false.
 `include_cost`<br/>*boolean* | Include the utility cost and service connection pricing id fields. Defaults to true.
 `include_free_usage`<br/>*boolean* | Include all summary records that has no cost associated to it (i.e. utilityCost == 0). Defaults to true.
-`combine_usage_types`<br/>*boolean* | Sums up the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`
+`combine_usage_types`<br/>*boolean* | Sums up the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`.
 `period`<br/>*String* | The period on which the aggregation is made. HOUR, DAY or PERIOD. The default is HOUR.
-`include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted
+`include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted.

@@ -89,7 +89,7 @@ curl -X POST \
 
 Create a security group in an environment.
 
-| Required attributes        | Description                          |
+| Required        | Description                          |
 | -------------------------- | ------------------------------------ |
 | `name`<br/>*string*        | The security group's name.            |
 | `description`<br/>*string* | A description of the group's purpose. |

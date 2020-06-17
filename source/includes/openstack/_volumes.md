@@ -101,7 +101,7 @@ curl -X POST \
 
 Create a volume.
 
-Required attributes                | Description                         
+Required                | Description                         
 ---------------------------------- | -----------------------------------
 `name`<br/>*string*                | The volume name.
 `description`<br/>*string*         | The volume description.
@@ -140,7 +140,7 @@ curl -X POST \
 
 Attach a volume to an instance.
 
-Required attributes                | Description                         
+Required                | Description                         
 ---------------------------------- | -----------------------------------
 `instanceId`<br/>*UUID*            | The instance id.
 
@@ -177,7 +177,7 @@ curl -X POST \
 
 Extend a volume size.
 
-Required attributes                | Description                         
+Required                | Description                         
 ---------------------------------- | -----------------------------------
 `sizeInGB`<br/>*integer*            | The new size of the volume. It must be greater than the existing size.
 

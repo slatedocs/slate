@@ -21,14 +21,14 @@ curl -X POST \
   "taskStatus": "SUCCESS"
 }
 ```
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/apps/:id</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/apps/:id?operation=addCredentials</code>
 
 Add credentials to your own user for the given application.
 
 Required | &nbsp;
 ---------- | -----
-`username`<br/>*string* | The username for the application
-`password`<br/>*string* | The password for the application
+`username`<br/>*string* | The username for the application.
+`password`<br/>*string* | The password for the application.
 
 #### Add Credentials for Another User
 
@@ -55,17 +55,17 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/appUser/:id</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/appUser/:id?operation=addUserCredentials</code>
 
 Add credentials to another user for the given application. Note the appUser's id
 is their [CloudMC user](#administration-users) id and [application](#masterportal-applications) id concatenated like `<cloudMcUserId>:<appId>`.
 
 Required | &nbsp;
 ---------- | -----
-`cloudMcUserId`<br/>*UUID* | The id for the *cloudmc* user to which the credentials should be added
-`app > id`<br/>*UUID* | The id of the [application](#masterportal-applications) to which the credentials should be added
-`app > username`<br/>*string* | The username for the application
-`app > password`<br/>*string* | The password for the application
+`cloudMcUserId`<br/>*UUID* | The id for the *cloudmc* user to which the credentials should be added.
+`app > id`<br/>*UUID* | The id of the [application](#masterportal-applications) to which the credentials should be added.
+`app > username`<br/>*string* | The username for the application.
+`app > password`<br/>*string* | The password for the application.
 
 #### Login to An Application
 

@@ -193,9 +193,9 @@ Create a new backend service.
 
 | Required | &nbsp;|
 | --- | --- |
-| `name`<br/>*string* | The display name of the backend service |
-| `shortBackends`<br/>*string* | A short version of the list of backends |
-| `shortHealthChecks`<br/>*string* | A short version of the health checks |
+| `name`<br/>*string* | The display name of the backend service. |
+| `shortBackends`<br/>*string* | A short version of the list of backends. |
+| `shortHealthChecks`<br/>*string* | A short version of the health checks. |
 
 <!-------------------- DELETE A BACKEND SERVICE -------------------->
 

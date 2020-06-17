@@ -87,24 +87,24 @@ Retrieve a list of available images.
 
 Attributes | &nbsp;
 ------- | -----------
-`archiveSizeBytes`<br/>*string* | Size of the image tar.gz archive stored in Google Cloud Storage (in bytes)
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`description`<br/>*string* | An optional description of this resource
-`diskSizeGb`<br/>*string* | Size of the image when restored onto a persistent disk (in GB)
-`family`<br/>*string* | The name of the image family to which this image belongs
-`kind`<br/>*string* | Type of the resource
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
-`licenseCodes`<br/>*Array[integer]* | License codes indicating which licenses are attached to this image.
-`licenses`<br/>*Array[URI]* | Any applicable license URI
-`rawDisk`<br/>*Object* | The parameters of the raw disk image
-`selfLink`<br/>*string* | Server-defined URL for this resource
-`sourceType`<br/>*string* | The type of the image used to create this disk. The default and only value is RAW
+`archiveSizeBytes`<br/>*string* | Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`description`<br/>*string* | An optional description of this resource.
+`diskSizeGb`<br/>*string* | Size of the image when restored onto a persistent disk (in GB).
+`family`<br/>*string* | The name of the image family to which this image belongs.
+`kind`<br/>*string* | Type of the resource.
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
+`licenseCodes`<br/>*Array[integer]* | License codes indicating which licenses are attached to this image..
+`licenses`<br/>*Array[URI]* | Any applicable license URI.
+`rawDisk`<br/>*Object* | The parameters of the raw disk image.
+`selfLink`<br/>*string* | Server-defined URL for this resource.
+`sourceType`<br/>*string* | The type of the image used to create this disk. The default and only value is RAW.
 `status`<br/>*string* | The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
-`vendorFamily`<br/>*string* | Image family's vendor name
-`shortName`<br/>*string* | A short version of the OS image's name
-`iconUrl`<br/>*string* | Icon representing the OS image
-`id`<br/>*UUID* | The image's id
-`name`<br/>*string* | The image's name
+`vendorFamily`<br/>*string* | Image family's vendor name.
+`shortName`<br/>*string* | A short version of the OS image's name.
+`iconUrl`<br/>*string* | Icon representing the OS image.
+`id`<br/>*UUID* | The image's id.
+`name`<br/>*string* | The image's name.
 
 <!-------------------- RETRIEVE AN IMAGE -------------------->
 
@@ -154,21 +154,21 @@ Retrieve information about an image.
 
 Attributes | &nbsp;
 ------- | -----------
-`archiveSizeBytes`<br/>*string* | Size of the image tar.gz archive stored in Google Cloud Storage (in bytes)
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`description`<br/>*string* | An optional description of this resource
-`diskSizeGb`<br/>*string* | Size of the image when restored onto a persistent disk (in GB)
-`family`<br/>*string* | The name of the image family to which this image belongs
-`kind`<br/>*string* | Type of the resource
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
+`archiveSizeBytes`<br/>*string* | Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`description`<br/>*string* | An optional description of this resource.
+`diskSizeGb`<br/>*string* | Size of the image when restored onto a persistent disk (in GB).
+`family`<br/>*string* | The name of the image family to which this image belongs.
+`kind`<br/>*string* | Type of the resource.
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
 `licenseCodes`<br/>*Array[integer]* | License codes indicating which licenses are attached to this image.
-`licenses`<br/>*Array[URI]* | Any applicable license URI
-`rawDisk`<br/>*Object* | The parameters of the raw disk image
-`selfLink`<br/>*string* | Server-defined URL for this resource
-`sourceType`<br/>*string* | The type of the image used to create this disk. The default and only value is RAW
+`licenses`<br/>*Array[URI]* | Any applicable license URI.
+`rawDisk`<br/>*Object* | The parameters of the raw disk image.
+`selfLink`<br/>*string* | Server-defined URL for this resource.
+`sourceType`<br/>*string* | The type of the image used to create this disk. The default and only value is RAW.
 `status`<br/>*string* | The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
-`vendorFamily`<br/>*string* | Image family's vendor name
-`shortName`<br/>*string* | A short version of the OS image's name
-`iconUrl`<br/>*string* | Icon representing the OS image
-`id`<br/>*UUID* | The image's id
-`name`<br/>*string* | The image's name
+`vendorFamily`<br/>*string* | Image family's vendor name.
+`shortName`<br/>*string* | A short version of the OS image's name.
+`iconUrl`<br/>*string* | Icon representing the OS image.
+`id`<br/>*UUID* | The image's id.
+`name`<br/>*string* | The image's name.

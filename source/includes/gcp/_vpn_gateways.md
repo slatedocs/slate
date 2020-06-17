@@ -50,9 +50,9 @@ Retrieve a list of all VPN gateways in a given [environment](#administration-env
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`description`<br/>*string* | An optional description
+`description`<br/>*string* | An optional description.
 `externalIp`<br/>*Object* | The external IP attached to this VPN gateway.
-`forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway
+`forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway.
 `id`<br/>*UUID* | Unique identifier for this resource.
 `name`<br/>*string* | The display name of the VPN gateway.
 `network`<br/>*string* | URL of the network to which this VPN gateway is attached.
@@ -103,9 +103,9 @@ Retrieve a VPN gateway in a given [environment](#administration-environments).
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`description`<br/>*string* | An optional description
+`description`<br/>*string* | An optional description.
 `externalIp`<br/>*Object* | The external IP attached to this VPN gateway.
-`forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway
+`forwardingRules`<br/>Array | List of the forwarding rules which are defined for this VPN gateway.
 `id`<br/>*UUID* | Unique identifier for this resource.
 `name`<br/>*string* | The display name of the VPN gateway.
 `network`<br/>*string* | URL of the network to which this VPN gateway is attached.
@@ -150,13 +150,13 @@ Create a new Classic VPN gateway in a given [environment](#administration-enviro
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the VPN gateway
-`shortRegion`<br/>*string* | A short version of the region name
+`name`<br/>*string* | The display name of the VPN gateway.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 Optional | &nbsp;
 ------- | -----------
-`description`<br/>*string* | An optional description
-`shortIP`<br/>*string* | The name of the external static IP to use for the VPN gateway
+`description`<br/>*string* | An optional description.
+`shortIP`<br/>*string* | The name of the external static IP to use for the VPN gateway.
 `reserveStaticIP`<br/>*string* | A flag to indicate if a new external static IP needs to be reserved for the VPN gateway. This option is mutually exclusive with `shortIP`.
 
 <!-------------------- DELETE VPN GATEWAY -------------------->

@@ -50,25 +50,25 @@ Retrieve a list of all disks in a given [environment](#administration-environmen
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `sizeGb` <br/>*string* | The size of the disk in GB. Acceptable values are 1 to 65536, inclusive.
 `zone`<br/>*string* | URL of the zone where the instance resides. 
 `status`<br/>*string* | The status of the disk. One of the following values: READY, CREATING, ATTACHING, ATTACHED, DETACHING, RESIZING, DELETING, and DEPRECATED.
-`selfLink`<br/>*string* | Server-defined URL for this resource
+`selfLink`<br/>*string* | Server-defined URL for this resource.
 `type`<br/>*string* | URL of the disk type resource describing which disk type to use to create the disk. Choices are ':url/pd-standard' or ':url/pd-ssd'.
 `lastAttachTimestamp`<br/>*string* | Timestamp representing the last time the disk was attached.
 `users`<br/>*Array[string]* | Links to the instances the disk is attached to.
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
 `physicalBlockSizeBytes`<br/>*string* | Physical block size of the persistent disk, in bytes. Currently supported sizes are 4096 and 16384.
 `kind`<br/>*string* | Type of the resource.
 `shortUsers`<br/>*string* | The names of the instances the disk is attached to.
 `shortType`<br/>*string* | The disk type. Choices are 'pd-standard' or 'pd-ssd'.
 `attach_mode`<br/>*string* | The mode used to attach the disk to instances. Valid modes are READ_WRITE or READ_ONLY.
 `autoDelete`<br/>*boolean* | Whether the resource should be deleted when the instance it's attached to are deleted.
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The display name of the instance
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The display name of the instance.
+`shortZone`<br/>*string* | A short version of the zone name.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 <!-------------------- RETRIEVE A DISK -------------------->
 
@@ -114,25 +114,25 @@ Retrieve a disk in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `sizeGb` <br/>*string* | The size of the disk in GB. Acceptable values are 1 to 65536, inclusive.
 `zone`<br/>*string* | URL of the zone where the instance resides. 
 `status`<br/>*string* | The status of the disk. One of the following values: READY, CREATING, ATTACHING, ATTACHED, DETACHING, RESIZING, DELETING, and DEPRECATED.
-`selfLink`<br/>*string* | Server-defined URL for this resource
+`selfLink`<br/>*string* | Server-defined URL for this resource.
 `type`<br/>*string* | URL of the disk type resource describing which disk type to use to create the disk. Choices are ':url/pd-standard' or ':url/pd-ssd'.
 `lastAttachTimestamp`<br/>*string* | Timestamp representing the last time the disk was attached.
 `users`<br/>*Array[string]* | Links to the instances the disk is attached to.
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
 `physicalBlockSizeBytes`<br/>*string* | Physical block size of the persistent disk, in bytes. Currently supported sizes are 4096 and 16384.
 `kind`<br/>*string* | Type of the resource.
 `shortUsers`<br/>*string* | The names of the instances the disk is attached to.
 `shortType`<br/>*string* | The disk type. Choices are 'pd-standard' or 'pd-ssd'.
 `attachMode`<br/>*string* | The mode used to attach the disk to instances. Valid modes are READ_WRITE or READ_ONLY.
 `autoDelete`<br/>*boolean* | Whether the resource should be deleted when the instance it's attached to are deleted.
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The display name of the instance
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The display name of the instance.
+`shortZone`<br/>*string* | A short version of the zone name.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 <!-------------------- CREATE A DISK -------------------->
 
@@ -163,9 +163,9 @@ Create a new disk
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the instance
-`shortRegion`<br/>*string* | A short version of the region name
-`shortZone`<br/>*string* | A short version of the zone name
+`name`<br/>*string* | The display name of the instance.
+`shortRegion`<br/>*string* | A short version of the region name.
+`shortZone`<br/>*string* | A short version of the zone name.
 `shortType`<br/>*string* | The disk type. Choices are 'pd-standard' or 'pd-ssd'.
 `sizeGb` <br/>*string* | The size of the disk in GB. Acceptable values are 1 to 65536, inclusive.
 
@@ -240,7 +240,7 @@ Detach an existing disk from a given [instance](#gcp-instances).
 
 Required | &nbsp;
 ---------- | -----
-`shortUsers`<br/>*string* | The id of the [instance](#gcp-instances) to which the created disk should be attached
+`shortUsers`<br/>*string* | The id of the [instance](#gcp-instances) to which the created disk should be attached.
 
 <!-------------------- RESIZE A DISK -------------------->
 

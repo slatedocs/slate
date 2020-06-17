@@ -117,29 +117,29 @@ Optional | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `name` <br/>*string* | The name of the release.
-`info` <br/>*object* | The information about the release
-`info.first_deployed` <br/>*string* | The annotations of the pod
-`info.last_deployed` <br/>*string* | The date of creation of the pod as a string
-`info.deleted` <br/>*string* | The labels associated to the pod
-`info.description` <br/>*string* | The name of the pod
-`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback
-`info.notes` <br/>*string* | The notes linked to the release
-`chart`<br/>*object* | The information related to the chart of used in the release
-`chart.version` <br/>*string* | The version of the chart
-`chart.metadata` <br/>*object* | The metadata associated to the chart
-`chart.metadata.name` <br/>*string* | The name of the chart
-`chart.metadata.home` <br/>*string* | The home URL for the chart
-`chart.metadata.sources` <br/>*list* | The list of source of the charts
-`chart.metadata.version` <br/>*string* | The version of the chart
-`chart.metadata.description` <br/>*string* | The description of the chart
-`chart.metadata.keywords` <br/>*list* | The list of keywords linked to the chart
-`chart.metadata.maintainers` <br/>*list* | The list of the maintainer contact information
-`chart.metadata.icon` <br/>*string* | The icon URL for the chart
-`chart.metadata.appVersion` <br/>*string* | The version of the application
-`chart.metadata.deprecate` <br/>*bool* | If the chart is deprecated or not of the application
-`values` <br/>*object* | All values that were used to install the release
-`version`<br/>*string* | The revision of the release
-`namespace`<br/>*string* | The namespace to which the release is installed
+`info` <br/>*object* | The information about the release.
+`info.first_deployed` <br/>*string* | The annotations of the pod.
+`info.last_deployed` <br/>*string* | The date of creation of the pod as a string.
+`info.deleted` <br/>*string* | The labels associated to the pod.
+`info.description` <br/>*string* | The name of the pod.
+`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback.
+`info.notes` <br/>*string* | The notes linked to the release.
+`chart`<br/>*object* | The information related to the chart of used in the release.
+`chart.version` <br/>*string* | The version of the chart.
+`chart.metadata` <br/>*object* | The metadata associated to the chart.
+`chart.metadata.name` <br/>*string* | The name of the chart.
+`chart.metadata.home` <br/>*string* | The home URL for the chart.
+`chart.metadata.sources` <br/>*list* | The list of source of the charts.
+`chart.metadata.version` <br/>*string* | The version of the chart.
+`chart.metadata.description` <br/>*string* | The description of the chart.
+`chart.metadata.keywords` <br/>*list* | The list of keywords linked to the chart.
+`chart.metadata.maintainers` <br/>*list* | The list of the maintainer contact information.
+`chart.metadata.icon` <br/>*string* | The icon URL for the chart.
+`chart.metadata.appVersion` <br/>*string* | The version of the application.
+`chart.metadata.deprecate` <br/>*bool* | If the chart is deprecated or not of the application.
+`values` <br/>*object* | All values that were used to install the release.
+`version`<br/>*string* | The revision of the release.
+`namespace`<br/>*string* | The namespace to which the release is installed.
 
 The information is not totally returned in the list. We filter out the manifest portion. We also filter out the files and the templates of the chart details. This information will be present in the GET request for an individual release.
 
@@ -288,26 +288,26 @@ Required | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `name` <br/>*string* | The name of the release.
-`info` <br/>*object* | The information about the release
-`info.first_deployed` <br/>*string* | The annotations of the pod
-`info.last_deployed` <br/>*string* | The date of creation of the pod as a string
-`info.deleted` <br/>*string* | The labels associated to the pod
-`info.description` <br/>*string* | The name of the pod
-`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback
-`info.notes` <br/>*string* | The notes linked to the release
-`chart`<br/>*object* | The information related to the chart of used in the release
-`chart.version` <br/>*string* | The version of the chart
-`chart.metadata` <br/>*object* | The metadata associated to the chart
-`chart.metadata.name` <br/>*string* | The name of the chart
-`chart.metadata.home` <br/>*string* | The home URL for the chart
-`chart.metadata.sources` <br/>*list* | The list of source of the charts
-`chart.metadata.version` <br/>*string* | The version of the chart
-`chart.metadata.description` <br/>*string* | The description of the chart
-`chart.metadata.keywords` <br/>*list* | The list of keywords linked to the chart
-`chart.metadata.maintainers` <br/>*list* | The list of the maintainer contact information
-`chart.metadata.icon` <br/>*string* | The icon URL for the chart
-`chart.metadata.appVersion` <br/>*string* | The version of the application
-`chart.metadata.deprecate` <br/>*bool* | If the chart is deprecated or not of the application
+`info` <br/>*object* | The information about the release.
+`info.first_deployed` <br/>*string* | The annotations of the pod.
+`info.last_deployed` <br/>*string* | The date of creation of the pod as a string.
+`info.deleted` <br/>*string* | The labels associated to the pod.
+`info.description` <br/>*string* | The name of the pod.
+`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback.
+`info.notes` <br/>*string* | The notes linked to the release.
+`chart`<br/>*object* | The information related to the chart of used in the release.
+`chart.version` <br/>*string* | The version of the chart.
+`chart.metadata` <br/>*object* | The metadata associated to the chart.
+`chart.metadata.name` <br/>*string* | The name of the chart.
+`chart.metadata.home` <br/>*string* | The home URL for the chart.
+`chart.metadata.sources` <br/>*list* | The list of source of the charts.
+`chart.metadata.version` <br/>*string* | The version of the chart.
+`chart.metadata.description` <br/>*string* | The description of the chart.
+`chart.metadata.keywords` <br/>*list* | The list of keywords linked to the chart.
+`chart.metadata.maintainers` <br/>*list* | The list of the maintainer contact information.
+`chart.metadata.icon` <br/>*string* | The icon URL for the chart.
+`chart.metadata.appVersion` <br/>*string* | The version of the application.
+`chart.metadata.deprecate` <br/>*bool* | If the chart is deprecated or not of the application.
 `chart.templates` <br/> *list* | The list of templates contained inside the chart.
 `chart.templates.name` <br/> *string* | The path name of the template inside the chart.
 `chart.templates.data` <br/> *string* | The contents of the template. This is a base64 encode string.
@@ -315,9 +315,9 @@ Attributes | &nbsp;
 `chart.files.name` <br/> *string* | The path name of the file inside the chart.
 `chart.files.data` <br/> *string* | The contents of the file. This is a base64 encode string.
 `manifest` <br/> *string* | The YAML Kubernetes resources created by the Helm templating.
-`values` <br/>*object* | All values that were used to install the release
-`version`<br/>*string* | The revision of the release
-`namespace`<br/>*string* | The namespace to which the release is installed
+`values` <br/>*object* | All values that were used to install the release.
+`version`<br/>*string* | The revision of the release.
+`namespace`<br/>*string* | The namespace to which the release is installed.
 
 <!-- ROLLBACK RELEASE -->
 #### Rollback release to previous revision

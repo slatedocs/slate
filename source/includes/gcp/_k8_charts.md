@@ -88,26 +88,26 @@ Required | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id for the chart.  
-`type` <br/>*string* | The type of chart
-`attributes` <br/>*object* | The annotations of the pod
-`attributes.name` <br/>*string* | The name of the chart
-`attributes.repo` <br/>*map* | The repository information where this chart was fetched (name,url)
-`attributes.repoUrl` <br/>*string* | The url of the source of the chart
-`attributes.description` <br/>*string* | The chart description
-`attributes.home` <br/>*string* | The home url for the chart
-`attributes.keywords` <br/>*string* | The keywords linked to the chart
-`attributes.maintainers` <br/>*object* | The maintainers of the charts and their information
-`attributes.sources` <br/>*list* | The sources for the chart
-`attributes.icon` <br/>*string* | The icon for the chart
-`relationships` <br/>*objection* | The relationship information for the chart
-`relationships.latestChartVersion` <br/>*object* | The lastest version chart information
-`relationships.latestChartVersion.data.version` <br/>*string* | The digest validating the chart
-`relationships.latestChartVersion.data.digest` <br/>*string* | The name of the chart
-`relationships.latestChartVersion.data.urls` <br/>*string* | The URLs for the package to download
-`relationships.latestChartVersion.data.readme` <br/>*string* | The readme file location
-`relationships.latestChartVersion.data.values` <br/>*string* | The values file location
-`version`<br/>*string* | The revision of the release
-`insecureServer`<br/>*boolean* | Specify if to access the chart we need an unsecure connection
+`type` <br/>*string* | The type of chart.
+`attributes` <br/>*object* | The annotations of the pod.
+`attributes.name` <br/>*string* | The name of the chart.
+`attributes.repo` <br/>*map* | The repository information where this chart was fetched (name,url).
+`attributes.repoUrl` <br/>*string* | The url of the source of the chart.
+`attributes.description` <br/>*string* | The chart description.
+`attributes.home` <br/>*string* | The home url for the chart.
+`attributes.keywords` <br/>*string* | The keywords linked to the chart.
+`attributes.maintainers` <br/>*object* | The maintainers of the charts and their information.
+`attributes.sources` <br/>*list* | The sources for the chart.
+`attributes.icon` <br/>*string* | The icon for the chart.
+`relationships` <br/>*objection* | The relationship information for the chart.
+`relationships.latestChartVersion` <br/>*object* | The lastest version chart information.
+`relationships.latestChartVersion.data.version` <br/>*string* | The digest validating the chart.
+`relationships.latestChartVersion.data.digest` <br/>*string* | The name of the chart.
+`relationships.latestChartVersion.data.urls` <br/>*string* | The URLs for the package to download.
+`relationships.latestChartVersion.data.readme` <br/>*string* | The readme file location.
+`relationships.latestChartVersion.data.values` <br/>*string* | The values file location.
+`version`<br/>*string* | The revision of the release.
+`insecureServer`<br/>*boolean* | Specify if to access the chart we need an unsecure connection.
 
 
 
@@ -193,26 +193,26 @@ Required | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `id` <br/>*string* | The id for the chart.  
-`type` <br/>*string* | The type of chart
-`attributes` <br/>*object* | The annotations of the pod
-`attributes.name` <br/>*string* | The name of the chart
-`attributes.repo` <br/>*map* | The repository information where this chart was fetched (name,url)
-`attributes.repoUrl` <br/>*string* | The url of the source of the chart
-`attributes.description` <br/>*string* | The chart description
-`attributes.home` <br/>*string* | The home url for the chart
-`attributes.keywords` <br/>*string* | The keywords linked to the chart
-`attributes.maintainers` <br/>*object* | The maintainers of the charts and their information
-`attributes.sources` <br/>*list* | The sources for the chart
-`attributes.icon` <br/>*string* | The icon for the chart
-`relationships` <br/>*objection* | The relationship information for the chart
-`relationships.latestChartVersion` <br/>*object* | The lastest version chart information
-`relationships.latestChartVersion.data.version` <br/>*string* | The digest validating the chart
-`relationships.latestChartVersion.data.digest` <br/>*string* | The name of the chart
-`relationships.latestChartVersion.data.urls` <br/>*string* | The URLs for the package to download
-`relationships.latestChartVersion.data.readme` <br/>*string* | The readme file location
-`relationships.latestChartVersion.data.values` <br/>*string* | The values file location
-`version`<br/>*string* | The revision of the release
-`insecureServer`<br/>*boolean* | Specify if to access the chart we need an unsecure connection
+`type` <br/>*string* | The type of chart.
+`attributes` <br/>*object* | The annotations of the pod.
+`attributes.name` <br/>*string* | The name of the chart.
+`attributes.repo` <br/>*map* | The repository information where this chart was fetched (name,url).
+`attributes.repoUrl` <br/>*string* | The url of the source of the chart.
+`attributes.description` <br/>*string* | The chart description.
+`attributes.home` <br/>*string* | The home url for the chart.
+`attributes.keywords` <br/>*string* | The keywords linked to the chart.
+`attributes.maintainers` <br/>*object* | The maintainers of the charts and their information.
+`attributes.sources` <br/>*list* | The sources for the chart.
+`attributes.icon` <br/>*string* | The icon for the chart.
+`relationships` <br/>*objection* | The relationship information for the chart.
+`relationships.latestChartVersion` <br/>*object* | The lastest version chart information.
+`relationships.latestChartVersion.data.version` <br/>*string* | The digest validating the chart.
+`relationships.latestChartVersion.data.digest` <br/>*string* | The name of the chart.
+`relationships.latestChartVersion.data.urls` <br/>*string* | The URLs for the package to download.
+`relationships.latestChartVersion.data.readme` <br/>*string* | The readme file location.
+`relationships.latestChartVersion.data.values` <br/>*string* | The values file location.
+`version`<br/>*string* | The revision of the release.
+`insecureServer`<br/>*boolean* | Specify if to access the chart we need an unsecure connection.
 
 
 
@@ -258,10 +258,10 @@ Required | &nbsp;
 
 Attributes | &nbsp;
 ------- | -----------
-`relationships` <br/>*objection* | The relationship information for the chart
-`relationships.latestChartVersion` <br/>*object* | The lastest version chart information
-`relationships.latestChartVersion.data.urls` <br/>*string* | The URLs for the package to download
-`insecureServer`<br/>*boolean* | Specify if to access the chart we need an unsecure connection
-`passedValues` <br/>*string* | The values to use to install the chart. It must be a valid Yaml format
-`namespace` <br/>*map* | The namespace in which the chart will be installed
+`relationships` <br/>*objection* | The relationship information for the chart.
+`relationships.latestChartVersion` <br/>*object* | The lastest version chart information.
+`relationships.latestChartVersion.data.urls` <br/>*string* | The URLs for the package to download.
+`insecureServer`<br/>*boolean* | Specify if to access the chart we need an unsecure connection.
+`passedValues` <br/>*string* | The values to use to install the chart. It must be a valid Yaml format.
+`namespace` <br/>*map* | The namespace in which the chart will be installed.
 `releaseName` <br/>*string* | The name under which the chart will be known.

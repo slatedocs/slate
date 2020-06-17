@@ -51,15 +51,15 @@ Retrieve information about users you have access to. If you want access to other
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the user
-`userName`<br/>*string* | The username of the user
-`firstName`<br/>*string* | The first name of the user
-`lastName`<br/>*string* | The last name of the user
-`email`<br/>*string* | The email of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
+`id`<br/>*UUID* | The id of the user.
+`userName`<br/>*string* | The username of the user.
+`firstName`<br/>*string* | The first name of the user.
+`lastName`<br/>*string* | The last name of the user.
+`email`<br/>*string* | The email of the user.
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created.
 `status`<br/>*string* | The current status of the user.
-`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
+`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs.
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user.<br/>*includes*: `id`, `name` and `environment.id`
 
 
 <!-------------------- GET USER -------------------->
@@ -114,16 +114,16 @@ Retrieve information about a specific user. If you want access to other users in
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the user
-`userName`<br/>*string* | The username of the user
-`firstName`<br/>*string* | The first name of the user
-`lastName`<br/>*string* | The last name of the user
-`email`<br/>*string* | The email of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
+`id`<br/>*UUID* | The id of the user.
+`userName`<br/>*string* | The username of the user.
+`firstName`<br/>*string* | The first name of the user.
+`lastName`<br/>*string* | The last name of the user.
+`email`<br/>*string* | The email of the user.
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created.
 `status`<br/>*string* | The current status of the user.
-`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
-`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
+`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs.
+`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of.<br/>*includes*: `id`, `name`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user.<br/>*includes*: `id`, `name` and `environment.id`
 
 
 <!-------------------- CREATE USER -------------------->
@@ -165,18 +165,18 @@ Create a user in a specific organization. There's two different types of [role](
 Required | &nbsp;
 -------- | -----------
 `userName`<br/>*string* | Username of the new user. Should be unique across the organization.
-`firstName`<br/>*string* | First name of the user
-`lastName`<br/>*string* | Last name of the user
+`firstName`<br/>*string* | First name of the user.
+`lastName`<br/>*string* | Last name of the user.
 `email`<br/>*string* | Email of the user. Should be unique across the organization.
 
 Optional | &nbsp;
 -------- | -----------
-`organization`</br>*[Organization](#administration-organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
+`organization`</br>*[Organization](#administration-organization)* | Organization in which the user will be created. *Defaults to your organization*.<br/>*required:* `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environment roles to give to the user.<br/>*required*: `id`
 
 ##### Returns
 
-The responses' `data` field contains the created [user](#administration-users) with it's `id`.
+The responses' `data` field contains the created [user](#administration-users) with its `id`.
 
 
 <!-------------------- UPDATE USER -------------------->
@@ -214,8 +214,8 @@ Update a specific user. It is important to note that updating the list of roles 
 Optional | &nbsp;
 -------- | -----------
 `userName`<br/>*string* | The new username of the user. Should be unique across the organization.
-`firstName`<br/>*string* | The new first name of the user
-`lastName`<br/>*string* | The new last name of the user
+`firstName`<br/>*string* | The new first name of the user.
+`lastName`<br/>*string* | The new last name of the user.
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
 `roles`<br/>*Array[[Role](#administration-roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 

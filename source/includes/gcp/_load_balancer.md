@@ -45,12 +45,12 @@ Retrieve a list of all load balancers in a given [environment](#administration-e
 
 Attributes | &nbsp;
 ------- | -----------
-`backendServices`<br/>*List<String>* | The list of backends for this resource
-`forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
-`id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
-`name`<br/>*String* | The name of this resource
-`targetProxies`<br/>*List<String>* | The list of target proxies for this resource
-`urlMap`<br/>*String* | Server-defined URL for corresponding url map
+`backendServices`<br/>*List<String>* | The list of backends for this resource.
+`forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource.
+`id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map.
+`name`<br/>*String* | The name of this resource.
+`targetProxies`<br/>*List<String>* | The list of target proxies for this resource.
+`urlMap`<br/>*String* | Server-defined URL for corresponding url map.
 
 <!-------------------- RETRIEVE A LOAD BALANCER -------------------->
 
@@ -90,12 +90,12 @@ Retrieve a load balancer in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`backendServices`<br/>*List<String>* | The list of backends for this resource
-`forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource
-`id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map
-`name`<br/>*String* | The name of this resource
-`targetProxies`<br/>*List<String>* | The list of target proxies for this resource
-`urlMap`<br/>*String* | Server-defined URL for corresponding url map
+`backendServices`<br/>*List<String>* | The list of backends for this resource.
+`forwardingRules`<br/>*List<String>* | The list of forwarding rules for this resource.
+`id`<br/>*String* | The id of this resource, which should be the same id as corresponding Url Map.
+`name`<br/>*String* | The name of this resource.
+`targetProxies`<br/>*List<String>* | The list of target proxies for this resource.
+`urlMap`<br/>*String* | Server-defined URL for corresponding url map.
 
 <!-------------------- CREATE A LOADBALANCER -------------------->
 ##### Create a load balancer
@@ -150,7 +150,7 @@ Create a new load balancer.
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the load balancer
+`name`<br/>*string* | The display name of the load balancer.
 `shortBackend`<br/>*string* | The existing backend serivce that will be attached to this load balancer.
 `shortProtocol`<br/>*string* | The protocol of this resource.
 `shortPort`<br/>*string* | The port number of this resource.
@@ -198,6 +198,6 @@ Any specified optional resources to be removed will be deleted if they can be de
 
 Optional | &nbsp;
 ------ | -----------
-`shortBackendsToDelete`<br/>*List<String>* | A list of backend services to delete
-`shortHealthChecksToDelete`<br/>*List<String>* | A list of health checks to delete
-`shortSslCertificatesToDelete`<br/>*List<String>* | A list of SSL certificates to delete
+`shortBackendsToDelete`<br/>*List<String>* | A list of backend services to delete.
+`shortHealthChecksToDelete`<br/>*List<String>* | A list of health checks to delete.
+`shortSslCertificatesToDelete`<br/>*List<String>* | A list of SSL certificates to delete.

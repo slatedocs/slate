@@ -1,5 +1,5 @@
 ## Organizations
-Organizations are the largest logical grouping of users, environments and resources available in CloudMC. Each organization is isolated from other organizations. It has its own subdomain (`[entryPoint].CloudMC`) and is protected by its own customizable system [roles](#administration-roles). An administrator that must manage it's sub-organizations environments or provisioned resources can do so by having the `Access other levels` permission. Additionally, provisioned resource usage is metered at the organization level facilitating cost tracking.
+Organizations are the largest logical grouping of users, environments and resources available in CloudMC. Each organization is isolated from other organizations. It has its own subdomain (`[entryPoint].CloudMC`) and is protected by its own customizable system [roles](#administration-roles). An administrator that must manage its sub-organizations environments or provisioned resources can do so by having the `Access other levels` permission. Additionally, provisioned resource usage is metered at the organization level facilitating cost tracking.
 
 
 <!-------------------- LIST ORGANIZATIONS -------------------->
@@ -59,17 +59,17 @@ curl "https://cloudmc_endpoint/v1/organizations" \
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | ---
-`name`<br/>*string* | ---
-`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`
-`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization
-`isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise
-`tags`<br/>*Array[string]* | Tags associated to the organization
-`parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
-`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization<br/>*includes*: `id`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
-`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
-`users`<br/>*Array[[User](#administration-users)]* | The users of the organization<br/>*includes*: `id`
+`id`<br/>*UUID* | The id of the organization.
+`name`<br/>*string* | The name of the organization.
+`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
+`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
+`isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
+`tags`<br/>*Array[string]* | Tags associated to the organization.
+`parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
+`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources.<br/>*includes*: `id`,`serviceCode`
+`users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*includes*: `id`
 
 <!-------------------- FIND ORGANIZATION -------------------->
 ### Retrieve an organization
@@ -126,17 +126,17 @@ curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | ---
-`name`<br/>*string* | ---
-`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL :<br/>`[entryPoint].CloudMC`
-`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization
-`isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise
-`tags`<br/>*Array[string]* | Tags associated to the organization
-`parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
-`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization<br/>*includes*: `id`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
-`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
-`users`<br/>*Array[[User](#administration-users)]* | The users of the organization<br/>*includes*: `id`
+`id`<br/>*UUID* | The id of the organization.
+`name`<br/>*string* | The name of the organization.
+`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL :<br/>`[entryPoint].CloudMC`.
+`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
+`isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
+`tags`<br/>*Array[string]* | Tags associated to the organization.
+`parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
+`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
+`serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources.<br/>*includes*: `id`,`serviceCode`
+`users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*includes*: `id`
 
 <!-------------------- CREATE ORGANIZATION -------------------->
 ### Create organization
@@ -172,7 +172,7 @@ curl -X POST "https://cloudmc_endpoint/v1/organizations" \
 Required | &nbsp;
 ---- | ----
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
-`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`
+`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 
 
 Optional | &nbsp;
@@ -180,13 +180,13 @@ Optional | &nbsp;
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
 
-The responses' `data` field contains the created [organization](#administration-organizations) with it's `id`.
+The responses' `data` field contains the created [organization](#administration-organizations) with its `id`.
 
 <!-------------------- UPDATE ORGANIZATION -------------------->
 ### Update organization
 `PUT /organizations/:id`
 
-Update an organization. It's parent organization cannot be changed. It can be assigned service connections.
+Update an organization. Its parent organization cannot be changed. It can be assigned service connections.
 
 ```shell
 # Update an organization
@@ -212,7 +212,7 @@ curl -X PUT "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-a
 Required | &nbsp;
 ---- | ----
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
-`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`
+`entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 
 Optional | &nbsp;
 ---- | ----

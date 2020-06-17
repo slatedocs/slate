@@ -50,13 +50,13 @@ List environments that you have access to. It will only return environments that
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the environment
-`name`<br/>*string* | The name of the environment
-`description`<br/>*string* | The description of the environment
+`id`<br/>*UUID* | The id of the environment.
+`name`<br/>*string* | The name of the environment.
+`description`<br/>*string* | The description of the environment.
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
-`organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created.
+`organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment.<br/>*includes*: `id`, `name`, `entryPoint`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment.<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
 
 
@@ -108,18 +108,18 @@ curl "https://cloudmc_endpoint/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6de
 }
 ```
 
-Retrieve an environment you have access to. You can always retrieve environments that you're member of but to access other environments you will need the `Environments read` permission.
+Retrieve an environment you have access to. You can always retrieve environments that you're a member of but to access other environments you will need the `Environments read` permission.
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the environment
-`name`<br/>*string* | The name of the environment
-`description`<br/>*string* | The description of the environment
+`id`<br/>*UUID* | The id of the environment.
+`name`<br/>*string* | The name of the environment.
+`description`<br/>*string* | The description of the environment.
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
-`organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
-`users`<br/>*Array[[User](#administration-users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created.
+`organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment.<br/>*includes*: `id`, `name`, `entryPoint`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment.<br/>*includes*: `id`, `name`
+`users`<br/>*Array[[User](#administration-users)]* | The users that are members of the environment.<br/>*includes*: `id`, `username`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
 
 <!-------------------- CREATE ENVIRONMENT -------------------->
@@ -166,12 +166,12 @@ Required | &nbsp;
 -------- | -----------
 `name`<br/>*string* | The name of the new environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
 `description`<br/>*string* | The description of the new environment.
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection that the environment should be created in.<br/>*required*: `id`
 
 Optional | &nbsp;
 -------- | -----------
-`organization`<br/>*[Organization](#administration-organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
-`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
+`organization`<br/>*[Organization](#administration-organizations)* | The organization that the environment should be created in. *Defaults to your organization*.<br/>*required*: `id`
+`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*.
 `roles`<br/>*Array[[Role](#administration-roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
@@ -211,8 +211,8 @@ curl -X POST "https://cloudmc_endpoint/v1/environments/f9dea588-d7ab-4f42-b6e6-4
 Optional | &nbsp;
 -------- | -----------
 `name`<br/>*string* | The updated name of the environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
-`description`<br/>*string* | The updated description of the environment
-`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
+`description`<br/>*string* | The updated description of the environment.
+`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*.
 `roles`<br/>*Array[[Role](#administration-roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 

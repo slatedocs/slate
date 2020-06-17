@@ -116,37 +116,37 @@ Retrieve a list of all instances in a given [environment](#administration-enviro
 
 Attributes | &nbsp;
 ------- | -----------
-`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED
-`zone`<br/>*string* | URL of the zone where the instance resides
-`machineType`<br/>*string* | URL of the machine type resource used by this instance
-`cpuPlatform`<br/>*string* | The CPU platform used by this instance
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`deletionProtection`<br/>*string* | Whether the resource should be protected against deletion
-`disks`<br/>*Array[Disk]* | Array of disks associated with this instance
-`kind`<br/>*string* | Type of the resource
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
-`metadata`<br/>*object* | The metadata key/value pairs assigned to this instance
-`networkInterfaces`<br/>*Array[object]* | An array of network configurations for this instance
-`scheduling`<br/>*object* | Sets the scheduling options for this instance
-`selfLink`<br/>*string* | Server-defined URL for this resource
+`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
+`zone`<br/>*string* | URL of the zone where the instance resides.
+`machineType`<br/>*string* | URL of the machine type resource used by this instance.
+`cpuPlatform`<br/>*string* | The CPU platform used by this instance.
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`deletionProtection`<br/>*string* | Whether the resource should be protected against deletion.
+`disks`<br/>*Array[Disk]* | Array of disks associated with this instance.
+`kind`<br/>*string* | Type of the resource.
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
+`metadata`<br/>*object* | The metadata key/value pairs assigned to this instance.
+`networkInterfaces`<br/>*Array[object]* | An array of network configurations for this instance.
+`scheduling`<br/>*object* | Sets the scheduling options for this instance.
+`selfLink`<br/>*string* | Server-defined URL for this resource.
 `startRestricted`<br/>*boolean* | Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
-`tags`<br/>*object* | Tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation
-`shortMachineType`<br/>*string* | A short version of the machineType name
-`project`<br/>*string* | The project where the instance resides
-`internalIp`<br/>*string* | The instance's internal IP
-`networkName`<br/>*string* | The network to which the instance is connected to
-`subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to
-`iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk
-`osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk
-`osImageSelfLink`<br/>*string* | The full URL to the OS image
-`osImageSizeInGb`<br/>*string* | The size of the OS image
-`bootDiskSizeInGb`<br/>*string* | The size of the instance's boot disk
-`cpuCount`<br/>*string* | The number of vCPUs for the machine type
-`memoryInGB`<br/>*string* | The memory size for the machine name
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The display name of the instance
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
+`tags`<br/>*object* | Tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation.
+`shortMachineType`<br/>*string* | A short version of the machineType name.
+`project`<br/>*string* | The project where the instance resides.
+`internalIp`<br/>*string* | The instance's internal IP.
+`networkName`<br/>*string* | The network to which the instance is connected to.
+`subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to.
+`iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk.
+`osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk.
+`osImageSelfLink`<br/>*string* | The full URL to the OS image.
+`osImageSizeInGb`<br/>*string* | The size of the OS image.
+`bootDiskSizeInGb`<br/>*string* | The size of the instance's boot disk.
+`cpuCount`<br/>*string* | The number of vCPUs for the machine type.
+`memoryInGB`<br/>*string* | The memory size for the machine name.
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The display name of the instance.
+`shortZone`<br/>*string* | A short version of the zone name.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -257,37 +257,37 @@ Retrieve an instance in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED
-`zone`<br/>*string* | URL of the zone where the instance resides
-`machineType`<br/>*string* | URL of the machine type resource used by this instance
-`cpuPlatform`<br/>*string* | The CPU platform used by this instance
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
-`deletionProtection`<br/>*string* | Whether the resource should be protected against deletion
-`disks`<br/>*Array[Disk]* | Array of disks associated with this instance
-`kind`<br/>*string* | Type of the resource
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
-`metadata`<br/>*object* | The metadata key/value pairs assigned to this instance
-`networkInterfaces`<br/>*Array[object]* | An array of network configurations for this instance
-`scheduling`<br/>*object* | Sets the scheduling options for this instance
-`selfLink`<br/>*string* | Server-defined URL for this resource
+`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
+`zone`<br/>*string* | URL of the zone where the instance resides.
+`machineType`<br/>*string* | URL of the machine type resource used by this instance.
+`cpuPlatform`<br/>*string* | The CPU platform used by this instance.
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
+`deletionProtection`<br/>*string* | Whether the resource should be protected against deletion.
+`disks`<br/>*Array[Disk]* | Array of disks associated with this instance.
+`kind`<br/>*string* | Type of the resource.
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
+`metadata`<br/>*object* | The metadata key/value pairs assigned to this instance.
+`networkInterfaces`<br/>*Array[object]* | An array of network configurations for this instance.
+`scheduling`<br/>*object* | Sets the scheduling options for this instance.
+`selfLink`<br/>*string* | Server-defined URL for this resource.
 `startRestricted`<br/>*boolean* | Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
-`tags`<br/>*object* | Tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation
-`shortMachineType`<br/>*string* | A short version of the machineType name
-`project`<br/>*string* | The project where the instance resides
-`internalIp`<br/>*string* | The instance's internal IP
-`networkName`<br/>*string* | The network to which the instance is connected to
-`subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to
-`iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk
-`osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk
-`osImageSelfLink`<br/>*string* | The full URL to the OS image
-`osImageSizeInGb`<br/>*string* | The size of the OS image
-`bootDiskSizeInGb`<br/>*string* | The size of the instance's boot disk
-`cpuCount`<br/>*string* | The number of vCPUs for the machine type
-`memoryInGB`<br/>*string* | The memory size for the machine name
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The display name of the instance
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
+`tags`<br/>*object* | Tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation.
+`shortMachineType`<br/>*string* | A short version of the machineType name.
+`project`<br/>*string* | The project where the instance resides.
+`internalIp`<br/>*string* | The instance's internal IP.
+`networkName`<br/>*string* | The network to which the instance is connected to.
+`subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to.
+`iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk.
+`osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk.
+`osImageSelfLink`<br/>*string* | The full URL to the OS image.
+`osImageSizeInGb`<br/>*string* | The size of the OS image.
+`bootDiskSizeInGb`<br/>*string* | The size of the instance's boot disk.
+`cpuCount`<br/>*string* | The number of vCPUs for the machine type.
+`memoryInGB`<br/>*string* | The memory size for the machine name.
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The display name of the instance.
+`shortZone`<br/>*string* | A short version of the zone name.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
@@ -362,14 +362,14 @@ Create a new instance.
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the instance
-`shortRegion`<br/>*string* | A short version of the region name
-`shortZone`<br/>*string* | A short version of the zone name
-`bootDiskType`<br/>*string* | The boot disk type. Choices are 'pd-standard' or 'pd-ssd'
-`bootDiskSizeInGb` <br/>*string* | The size of the boot disk in GB. Acceptable values are 1 to 2000, inclusive
-`cpuCount`<br/>*string* | Updated number of vCPUs of instance
-`memoryInGB`<br/>*string* | Updated memory of instance
-`osImageSelfLink`<br/>*string* | The full URL to the OS image
+`name`<br/>*string* | The display name of the instance.
+`shortRegion`<br/>*string* | A short version of the region name.
+`shortZone`<br/>*string* | A short version of the zone name.
+`bootDiskType`<br/>*string* | The boot disk type. Choices are 'pd-standard' or 'pd-ssd'.
+`bootDiskSizeInGb` <br/>*string* | The size of the boot disk in GB. Acceptable values are 1 to 2000, inclusive.
+`cpuCount`<br/>*string* | Updated number of vCPUs of instance.
+`memoryInGB`<br/>*string* | Updated memory of instance.
+`osImageSelfLink`<br/>*string* | The full URL to the OS image.
 
 Optional | &nbsp;
 ------- | -----------
@@ -434,8 +434,8 @@ The total memory for a machine type must be a multiple of 512 MB. For example, 6
 
 Optional | &nbsp;
 ------ | -----------
-`cpuCount`<br/>*string* | Updated number of vCPUs of instance
-`memoryInGB`<br/>*string* | Updated memory of instance
+`cpuCount`<br/>*string* | Updated number of vCPUs of instance.
+`memoryInGB`<br/>*string* | Updated memory of instance.
 
 <!-------------------- CHANGE EXTERNAL IP -------------------->
 
@@ -527,7 +527,7 @@ Set and retrieve a generated password to a given user on a running Windows insta
 
 Required | &nbsp;
 ------ | -----------
-`username`<br/>*string* | The username
+`username`<br/>*string* | The username.
 
 <!-------------------- MANAGE GROUP MEMBERSHIP -------------------->
 

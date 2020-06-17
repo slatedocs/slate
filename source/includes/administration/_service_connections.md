@@ -24,11 +24,11 @@ Service connections are the services that you can create resources for (e.g. com
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | The id of the service connection
+`id`<br/>*UUID* | The id of the service connection.
 `serviceCode`<br/>*string* | The service code of the service connection. It is used in the endpoint of the services API.
-`name`<br/>*string* | The name of the service connection
+`name`<br/>*string* | The name of the service connection.
 `type`<br/>*string* | The type of the service connection.
-`status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`
+`status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`.
 
 <!-------------------- GET SERVICE CONNECTION -------------------->
 
@@ -53,11 +53,11 @@ Attributes | &nbsp;
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | The id of the service connection
+`id`<br/>*UUID* | The id of the service connection.
 `serviceCode`<br/>*string* | The service code of the service connection. It is used in the endpoint of the services API.
-`name`<br/>*string* | The name of the service connection
+`name`<br/>*string* | The name of the service connection.
 `type`<br/>*string* | The type of the service connection.
-`status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`
+`status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`.
 
 <!-------------------- GET CONNECTION POLICY DESCRIPTORS -------------------->
 
@@ -121,11 +121,11 @@ curl "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-a
 
 Attributes | &nbsp;
 ---- | -----------
-`name`<br/>*string* | The name of the policy section
+`name`<br/>*string* | The name of the policy section.
 `label`<br/>*string* | The label key for the policy section name.
 `formElements`<br/>*Array* | The FormElements returned by the policy section. Form elements are only returned for a given section if the query param `section` matches the name of a policy section.  
 `optional`<br/>*boolean* | Specifies if the policy section is required or not.
-`entity`<br/> *Object* | The service connection entity which includes a string to string map of the ServiceConnectionPolicy::name to ServiceConnectionPolicy::value
+`entity`<br/> *Object* | The service connection entity which includes a string to string map of the `ServiceConnectionPolicy::name` to `ServiceConnectionPolicy::value`.
 
 
 <!-------------------- UPDATE CONNECTION POLICIES -------------------->
@@ -197,8 +197,8 @@ Returns the list of organizations that are assigned to the service connection. O
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | The id of the organization
-`name`<br/>*string* | The name of the organization
-`entryPoint`<br/>*string* | The entry point of the organization. Also refered to as the organization code
+`id`<br/>*UUID* | The id of the organization.
+`name`<br/>*string* | The name of the organization.
+`entryPoint`<br/>*string* | The entry point of the organization. Also refered to as the organization code.
 `state`<br/>*string* | The provisioning state of the organization on the backend service. States: `PENDING`, `PROVISIONING`, `PROVISIONED`, `PENDING_PURGE`, `PURGING`, `PURGED`.
 `quota`<br/>*Object* | The quota assigned to the organization (may be null depending on if the connection supports quotas or not).<br/>*includes*: `id`, `name`

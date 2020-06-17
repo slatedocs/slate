@@ -66,13 +66,13 @@ Retrieve a list of all firewall rules in a given [environment](#administration-e
 `id`<br/>*string* | The unique identifier for the resource.
 `kind`<br/>*string* | Type of the resource.
 `logConfig`<br/>*object* | This field denotes the logging options for a particular firewall rule. If logging is enabled, logs will be exported to Stackdriver.
-`name`<br/>*string* | The display name of the firewall rule
+`name`<br/>*string* | The display name of the firewall rule.
 `network`<br/>*string* | URL of the network resource for this firewall rule.
 `priority`<br/>*integer* | Priority for this rule. This is an integer between 0 and 65535, both inclusive. The default value is 1000. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority 0 has higher precedence than a rule with priority 1. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of 65535. To avoid conflicts with the implied rules, use a priority number less than 65535.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `sourceRanges`<br/>*Array[string]* | Server-defined URL for the resource.
 `targetTags`<br/>*Array[string]* | A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
-`action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic)
+`action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic).
 
 #### Retrieve a firewall rule
 
@@ -133,13 +133,13 @@ Retrieve a firewall rules in a given [environment](#administration-environments)
 `id`<br/>*string* | The unique identifier for the resource.
 `kind`<br/>*string* | Type of the resource.
 `logConfig`<br/>*object* | This field denotes the logging options for a particular firewall rule. If logging is enabled, logs will be exported to Stackdriver.
-`name`<br/>*string* | The display name of the firewall rule
+`name`<br/>*string* | The display name of the firewall rule.
 `network`<br/>*string* | URL of the network resource for this firewall rule.
 `priority`<br/>*integer* | Priority for this rule. This is an integer between 0 and 65535, both inclusive. The default value is 1000. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority 0 has higher precedence than a rule with priority 1. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of 65535. To avoid conflicts with the implied rules, use a priority number less than 65535.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `sourceRanges`<br/>*Array[string]* | Server-defined URL for the resource.
 `targetTags`<br/>*Array[string]* | A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
-`action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic)
+`action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic).
 
 <!-------------------- CREATE A FIREWALL RULE -------------------->
 
@@ -170,19 +170,19 @@ Create a new firewall rule.
 
 Required | &nbsp;
 ------- | -----------
-`action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic)
+`action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic).
 `direction`<br/>*string* | Direction of traffic to which this firewall applies, either INGRESS or EGRESS. The default is INGRESS.
-`name`<br/>*string* | The display name of the firewall rule
+`name`<br/>*string* | The display name of the firewall rule.
 `priority`<br/>*string* | Priority for this rule. This is an integer between 0 and 65535, both inclusive. The default value is 1000.
 `range`<br/>*string* | The source or destination range depending on the `direction` specified. The firewall rule applies only to traffic that has a source/destination IP address in these ranges. These ranges must be expressed in CIDR format.
 
 
 Optional | &nbsp;
 ------- | -----------
-`all`<br/>*boolean* | Specifies if the firewall rule is an allow all or deny all rule
-`tcpPorts`<br/>*string* | The tcp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22
-`udpPorts`<br/>*string* | The udp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22
-`protocols`<br/>*string* | Supported protocols are: icmp, esp, ah, sctp, ipip or a valid [decimal IP protocol number](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
+`all`<br/>*boolean* | Specifies if the firewall rule is an allow all or deny all rule.
+`tcpPorts`<br/>*string* | The tcp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22.
+`udpPorts`<br/>*string* | The udp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22.
+`protocols`<br/>*string* | Supported protocols are: icmp, esp, ah, sctp, ipip or a valid [decimal IP protocol number](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
 
 
 <!-------------------- DELETE A FIREWALL RULE -------------------->
