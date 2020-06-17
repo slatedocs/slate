@@ -1,4 +1,4 @@
-## configmaps
+## ConfigMaps
 
 <!-------------------- LIST CONFIG MAPS -------------------->
 
@@ -52,7 +52,6 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 | `metadata.uid` <br/>_object_               | The UUID of the config map                              |
 | `metadata.selfLink` <br/>_object_          | A link that uniquely identifies this config map         |
 | `metadata.resourceVersion` <br/>_object_   | The resource version of the config map                  |
-
 
 <!-------------------- GET A configmap -------------------->
 
