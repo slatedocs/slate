@@ -12,36 +12,20 @@ curl -X GET \
 
 > The above command returns a JSON structured like this:
 
-```js
+```json
 {
-    "data": [
-        {
-            "id": "coredns/kube-system",
-            "data": {
-                "Corefile": ".:53 {\n    errors\n    health\n    kubernetes cluster.local in-addr.arpa ip6.arpa {\n      pods insecure\n      upstream\n      fallthrough in-addr.arpa ip6.arpa\n    }\n    prometheus :9153\n    forward . /etc/resolv.conf\n    cache 30\n    loop\n    reload\n    loadbalance\n    import custom/*.override\n}\nimport custom/*.server\n"
-            },
-            "metadata": {
-                "annotations": {
-                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"data\":{\"Corefile\":\".:53 {\\n    errors\\n    health\\n    kubernetes cluster.local in-addr.arpa ip6.arpa {\\n      pods insecure\\n      upstream\\n      fallthrough in-addr.arpa ip6.arpa\\n    }\\n    prometheus :9153\\n    forward . /etc/resolv.conf\\n    cache 30\\n    loop\\n    reload\\n    loadbalance\\n    import custom/*.override\\n}\\nimport custom/*.server\\n\"},\"kind\":\"ConfigMap\",\"metadata\":{\"annotations\":{},\"labels\":{\"addonmanager.kubernetes.io/mode\":\"Reconcile\",\"k8s-app\":\"kube-dns\",\"kubernetes.io/cluster-service\":\"true\"},\"name\":\"coredns\",\"namespace\":\"kube-system\"}}\n"
-                },
-                "creationTimestamp": "2020-06-15T16:14:37.000-04:00",
-                "labels": {
-                    "addonmanager.kubernetes.io/mode": "Reconcile",
-                    "k8s-app": "kube-dns",
-                    "kubernetes.io/cluster-service": "true"
-                },
-                "name": "coredns",
-                "namespace": "kube-system",
-                "resourceVersion": "92",
-                "selfLink": "/api/v1/namespaces/kube-system/configmaps/coredns",
-                "uid": "d77702d6-9f40-40ee-bf2f-b80ff313083f"
-            }
-        },
-        ...
-    ],
-    "metadata": {
-        "recordCount": 4
+  "data": [
+    {
+      "id": "coredns/kube-system",
+      "data": {
+        "Corefile": ".:53 {\n    errors\n    health\n    kubernetes cluster.local in-addr.arpa ip6.arpa {\n      pods insecure\n      upstream\n      fallthrough in-addr.arpa ip6.arpa\n    }\n    prometheus :9153\n    forward . /etc/resolv.conf\n    cache 30\n    loop\n    reload\n    loadbalance\n    import custom/*.override\n}\nimport custom/*.server\n"
+      },
+      "metadata": {}
     }
+  ],
+  "metadata": {
+    "recordCount": 4
+  }
 }
 ```
 
@@ -55,13 +39,6 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 | `apiVersion` <br/>_string_                 | The API version used to retrieve this config map        |
 | `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap        |
 | `metadata` <br/>_object_                   | The metadata of the config map                          |
-| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the config map as a string      |
-| `metadata.annotations` <br/>_map_          | The annotations associated to the config map            |
-| `metadata.name` <br/>_string_              | The name of the config map                              |
-| `metadata.namespace` <br/>_string_         | The namespace in which the config map is created        |
-| `metadata.uid` <br/>_object_               | The UUID of the config map                              |
-| `metadata.selfLink` <br/>_object_          | A link that uniquely identifies this config map         |
-| `metadata.resourceVersion` <br/>_object_   | The resource version of the config map                  |
 
 <!-------------------- GET A configmap -------------------->
 
@@ -75,23 +52,13 @@ curl -X GET \
 
 > The above command returns a JSON structured like this:
 
-```js
+```json
 {
-    "data": {
-      "id": "cert-manager-cainjector-leader-election/kube-system",
-      "apiVersion": "v1",
-      "kind": "ConfigMap",
-      "metadata": {
-        "annotations": {
-          "control-plane.alpha.kubernetes.io/leader": "{\"holderIdentity\":\"cert-manager-cainjector-54c4796c5d-9txng_7d63d35e-a197-497b-9b5f-c9722aabc6cd\",\"leaseDurationSeconds\":15,\"acquireTime\":\"2020-06-14T02:01:27Z\",\"renewTime\":\"2020-06-16T19:54:04Z\",\"leaderTransitions\":23}"
-        },
-        "creationTimestamp": "2020-03-20T15:48:41.000-04:00",
-        "name": "cert-manager-cainjector-leader-election",
-        "namespace": "kube-system",
-        "resourceVersion": "25190285",
-        "selfLink": "/api/v1/namespaces/kube-system/configmaps/cert-manager-cainjector-leader-election",
-        "uid": "255fdf58-4f53-4260-abb9-334445c187a2"
-      }
+  "data": {
+    "id": "cert-manager-cainjector-leader-election/kube-system",
+    "apiVersion": "v1",
+    "kind": "ConfigMap",
+    "metadata": {}
   }
 }
 ```
@@ -106,10 +73,3 @@ Retrieve a configmap and all its info in a given [environment](#administration-e
 | `apiVersion` <br/>_string_                 | The API version used to retrieve this config map        |
 | `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap        |
 | `metadata` <br/>_object_                   | The metadata of the config map                          |
-| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the config map as a string      |
-| `metadata.annotations` <br/>_map_          | The annotations associated to the config map            |
-| `metadata.name` <br/>_string_              | The name of the config map                              |
-| `metadata.namespace` <br/>_string_         | The namespace in which the config map is created        |
-| `metadata.uid` <br/>_object_               | The UUID of the config map                              |
-| `metadata.selfLink` <br/>_object_          | A link that uniquely identifies this config map         |
-| `metadata.resourceVersion` <br/>_object_   | The resource version of the config map                  |

@@ -20,34 +20,9 @@ curl -X GET \
       "images": [
         "aerospike/aerospike-server:4.5.0.5"
       ],
-      "metadata": {
-        "creationTimestamp": "2020-04-27T09:13:49.000-04:00",
-        "generation": 1,
-        "labels": {
-          "app": "aerospike",
-          "chart": "aerospike-0.3.2",
-          "heritage": "Helm",
-          "release": "test"
-        },
-        "name": "test-aerospike",
-        "namespace": "auth",
-        "resourceVersion": "117166675",
-        "selfLink": "/apis/apps/v1/namespaces/auth/statefulsets/test-aerospike",
-        "uid": "0aeff29e-e33d-48da-b933-651a9070d58c"
-      },
-      "spec": {
-        // ...
-      },
-      "status": {
-        "collisionCount": 0,
-        "currentReplicas": 1,
-        "currentRevision": "test-aerospike-6db7776c7d",
-        "observedGeneration": 1,
-        "readyReplicas": 1,
-        "replicas": 1,
-        "updateRevision": "test-aerospike-6db7776c7d",
-        "updatedReplicas": 1
-      }
+      "metadata": {},
+      "spec": {},
+      "status": {}
     }
   ],
   "metadata": {
@@ -64,11 +39,6 @@ Retrieve a list of all stateful sets in a given [environment](#administration-en
 | ------------------------------------------ | --------------------------------------------------------------- |
 | `id` <br/>*string*                         | The id of the stateful set                                      |
 | `metadata` <br/>*object*                   | The metadata of the stateful set                                |
-| `metadata.creationTimestamp` <br/>*string* | The date of creation of the stateful set as a string            |
-| `metadata.labels` <br/>*map*               | The labels associated to the stateful set                       |
-| `metadata.name` <br/>*string*              | The name of the stateful set                                    |
-| `metadata.namespace` <br/>*string*         | The namespace in which the stateful set is created              |
-| `metadata.uid` <br/>*object*               | The UUID of the stateful set                                    |
 | `spec`<br/>*object*                        | The specification used to create and run the stateful set       |
 | `status`<br/>*object*                      | The status information of the stateful set                      |
 
@@ -96,34 +66,9 @@ curl -X GET \
     ],
     "apiVersion": "apps/v1",
     "kind": "StatefulSet",
-    "metadata": {
-      "creationTimestamp": "2020-04-27T09:13:49.000-04:00",
-      "generation": 1,
-      "labels": {
-        "app": "aerospike",
-        "chart": "aerospike-0.3.2",
-        "heritage": "Helm",
-        "release": "test"
-      },
-      "name": "test-aerospike",
-      "namespace": "auth",
-      "resourceVersion": "117166675",
-      "selfLink": "/apis/apps/v1/namespaces/auth/statefulsets/test-aerospike",
-      "uid": "0aeff29e-e33d-48da-b933-651a9070d58c"
-    },
-    "spec": {
-      // ...
-    },
-    "status": {
-      "collisionCount": 0,
-      "currentReplicas": 1,
-      "currentRevision": "test-aerospike-6db7776c7d",
-      "observedGeneration": 1,
-      "readyReplicas": 1,
-      "replicas": 1,
-      "updateRevision": "test-aerospike-6db7776c7d",
-      "updatedReplicas": 1
-    }
+    "metadata": {},
+    "spec": {},
+    "status": {}
   }
 }
 ```
@@ -136,11 +81,6 @@ Retrieve a stateful set and all its info in a given [environment](#administratio
 | ------------------------------------------ | --------------------------------------------------------------- |
 | `id` <br/>*string*                         | The id of the stateful set                                      |
 | `metadata` <br/>*object*                   | The metadata of the stateful set                                |
-| `metadata.creationTimestamp` <br/>*string* | The date of creation of the stateful set as a string            |
-| `metadata.labels` <br/>*map*               | The labels associated to the stateful                           |
-| `metadata.name` <br/>*string*              | The name of the stateful set                                    |
-| `metadata.namespace` <br/>*string*         | The namespace in which the stateful set is created              |
-| `metadata.uid` <br/>*object*               | The UUID of the stateful set                                    |
 | `spec`<br/>*object*                        | The specification used to create and run the stateful set       |
 | `status`<br/>*object*                      | The status information of the stateful set                      |
 

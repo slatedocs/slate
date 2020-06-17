@@ -14,30 +14,17 @@ curl -X GET \
 
 ```json
 {
-    "data": [
-        {
-            "id": "default",
-            "metadata": {
-                "creationTimestamp": "2020-06-15T16:14:16.000-04:00",
-                "name": "default",
-                "resourceVersion": "42",
-                "selfLink": "/api/v1/namespaces/default",
-                "uid": "74fa5ce7-4537-45d8-a683-e73f8772f785"
-            },
-            "spec": {
-                "finalizers": [
-                    "kubernetes"
-                ]
-            },
-            "status": {
-                "phase": "Active"
-            }
-        },
-        ...
-    ],
-    "metadata": {
-        "recordCount": 4
+  "data": [
+    {
+      "id": "default",
+      "metadata": {},
+      "spec": {},
+      "status": {}
     }
+  ],
+  "metadata": {
+    "recordCount": 4
+  }
 }
 ```
 
@@ -46,25 +33,17 @@ curl -X GET \
 Retrieve a list of all namespaces in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                                 |
-|----------------------------|--------------------------------------------------------|
-| `cluster_id` <br/>*string* | The id of the cluster in which to list the namespaces. |
+| -------------------------- | ------------------------------------------------------ |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to list the namespaces. |
 
 | Attributes                                 | &nbsp;                                                                                    |
-|--------------------------------------------|-------------------------------------------------------------------------------------------|
-| `id` <br/>*string*                         | The id of the namespace.                                                                  |
-| `apiVersion` <br/>*string*                 | APIVersion defines the versioned schema of this representation of a namespace object      |
-| `kind` <br/>*string*                       | A string value representing the REST resource this object represents                      |
-| `metadata` <br/>*object*                   | The metadata of the namespace                                                             |
-| `metadata.annotations` <br/>*map*          | The annotations of the namespace                                                          |
-| `metadata.creationTimestamp` <br/>*string* | The date of creation of the namespace as a string                                         |
-| `metadata.name` <br/>*string*              | The name of the namespace                                                                 |
-| `metadata.resourceVersion` <br/>*string*   | An opaque value that represents the internal version of the namespace object              |
-| `metadata.selfLink` <br/>*string*          | A URL representing the namespace object                                                   |
-| `metadata.uid` <br/>*object*               | The UUID of the namespace                                                                 |
-| `spec`<br/>*object*                        | The specification describes the attributes on a namespace.                                |
-| `spec.finalizers`<br/>*string*             | An opaque list of values that must be empty to permanently remove the object from storage |
-| `status`<br/>*object*                      | The status information of the namespace                                                   |
-| `status.phase`<br/>*string*                | The status of the namespace. Possible statuses are `Active`, `Terminating` and `Unknown`  |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `id` <br/>_string_                         | The id of the namespace.                                                                  |
+| `apiVersion` <br/>_string_                 | APIVersion defines the versioned schema of this representation of a namespace object      |
+| `kind` <br/>_string_                       | A string value representing the REST resource this object represents                      |
+| `metadata` <br/>_object_                   | The metadata of the namespace                                                             |
+| `spec`<br/>_object_                        | The specification describes the attributes on a namespace.                                |
+| `status`<br/>_object_                      | The status information of the namespace                                                   |
 
 <!-------------------- GET A NAMESPACE -------------------->
 
@@ -80,26 +59,14 @@ curl -X GET \
 
 ```json
 {
-    "data": {
-        "id": "default",
-        "apiVersion": "v1",
-        "kind": "Namespace",
-        "metadata": {
-            "creationTimestamp": "2020-06-15T16:14:16.000-04:00",
-            "name": "default",
-            "resourceVersion": "42",
-            "selfLink": "/api/v1/namespaces/default",
-            "uid": "74fa5ce7-4537-45d8-a683-e73f8772f785"
-        },
-        "spec": {
-            "finalizers": [
-                "kubernetes"
-            ]
-        },
-        "status": {
-            "phase": "Active"
-        }
-    }
+  "data": {
+    "id": "default",
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {},
+    "spec": {},
+    "status": {}
+  }
 }
 ```
 
@@ -108,22 +75,14 @@ curl -X GET \
 Retrieve a namespace and all its info in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                               |
-|----------------------------|------------------------------------------------------|
-| `cluster_id` <br/>*string* | The id of the cluster in which to get the namespace. |
+| -------------------------- | ---------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to get the namespace. |
 
 | Attributes                                 | &nbsp;                                                                                    |
-|--------------------------------------------|-------------------------------------------------------------------------------------------|
-| `id` <br/>*string*                         | The id of the namespace.                                                                  |
-| `apiVersion` <br/>*string*                 | APIVersion defines the versioned schema of this representation of a namespace object      |
-| `kind` <br/>*string*                       | A string value representing the REST resource this object represents                      |
-| `metadata` <br/>*object*                   | The metadata of the namespace                                                             |
-| `metadata.annotations` <br/>*map*          | The annotations of the namespace                                                          |
-| `metadata.creationTimestamp` <br/>*string* | The date of creation of the namespace as a string                                         |
-| `metadata.name` <br/>*string*              | The name of the namespace                                                                 |
-| `metadata.resourceVersion` <br/>*string*   | An opaque value that represents the internal version of the namespace object              |
-| `metadata.selfLink` <br/>*string*          | A URL representing the namespace object                                                   |
-| `metadata.uid` <br/>*object*               | The UUID of the namespace                                                                 |
-| `spec`<br/>*object*                        | The specification describes the attributes on a namespace.                                |
-| `spec.finalizers`<br/>*string*             | An opaque list of values that must be empty to permanently remove the object from storage |
-| `status`<br/>*object*                      | The status information of the namespace                                                   |
-| `status.phase`<br/>*string*                | The status of the namespace. Possible statuses are `Active`, `Terminating` and `Unknown`  |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `id` <br/>_string_                         | The id of the namespace.                                                                  |
+| `apiVersion` <br/>_string_                 | APIVersion defines the versioned schema of this representation of a namespace object      |
+| `kind` <br/>_string_                       | A string value representing the REST resource this object represents                      |
+| `metadata` <br/>_object_                   | The metadata of the namespace                                                             |
+| `spec`<br/>_object_                        | The specification describes the attributes on a namespace.                                |
+| `status`<br/>_object_                      | The status information of the namespace                                                   |
