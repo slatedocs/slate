@@ -128,8 +128,8 @@ includes:
   - azure/k8_statefulsets
   - azure/k8_daemonsets
   - azure/k8_deployments
-  - azure/k8_secrets
   - azure/k8_configmaps
+  - azure/k8_secrets
   - masterportal
   - masterportal/applications
   - swift
