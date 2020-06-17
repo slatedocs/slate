@@ -45,7 +45,7 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 | `apiVersion` <br/>_string_                 | The API version used to retrieve this config map        |
 | `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap        |
 | `metadata` <br/>_object_                   | The metadata of the config map                          |
-| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the configmap as a string       |
+| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the config map as a string       |
 | `metadata.annotations` <br/>_map_          | The annotations associated to the config map            |
 | `metadata.name` <br/>_string_              | The name of the config map                              |
 | `metadata.namespace` <br/>_string_         | The namespace in which the config map is created        |
@@ -96,7 +96,7 @@ Retrieve a configmap and all its info in a given [environment](#administration-e
 | `apiVersion` <br/>_string_                 | The API version used to retrieve this config map        |
 | `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap        |
 | `metadata` <br/>_object_                   | The metadata of the config map                          |
-| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the configmap as a string       |
+| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the config map as a string       |
 | `metadata.annotations` <br/>_map_          | The annotations associated to the config map            |
 | `metadata.name` <br/>_string_              | The name of the config map                              |
 | `metadata.namespace` <br/>_string_         | The namespace in which the config map is created        |
