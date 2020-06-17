@@ -94,6 +94,7 @@ includes:
   - gcp/k8_daemonsets
   - gcp/k8_deployments
   - gcp/k8_configmaps
+  - gcp/k8_secrets
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/images
@@ -105,6 +106,7 @@ includes:
   - kubernetes/k8_daemonsets
   - kubernetes/k8_deployments
   - kubernetes/k8_configmaps
+  - kubernetes/k8_secrets
   - kubernetes/k8_releases
   - kubernetes/k8_charts  
   - azure
@@ -126,6 +128,7 @@ includes:
   - azure/k8_statefulsets
   - azure/k8_daemonsets
   - azure/k8_deployments
+  - azure/k8_secrets
   - azure/k8_configmaps
   - masterportal
   - masterportal/applications

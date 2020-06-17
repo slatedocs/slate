@@ -55,7 +55,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/an_environment/deployments/coredns/kube-system?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/deployments/coredns/kube-system?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:

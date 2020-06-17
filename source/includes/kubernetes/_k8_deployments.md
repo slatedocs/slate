@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/an_environment/deployments"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/deployments"
 ```
 
 > The above command returns a JSON structured like this:
@@ -54,7 +54,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/k8s/an_environment/deployments/test-aerospike/auth"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/deployments/test-aerospike/auth"
 ```
 
 > The above command returns a JSON structured like this:

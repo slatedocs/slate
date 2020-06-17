@@ -1,8 +1,8 @@
-## ConfigMaps
+### ConfigMaps
 
 <!-------------------- LIST CONFIG MAPS -------------------->
 
-### List configmaps
+#### List configmaps
 
 ```shell
 curl -X GET \
