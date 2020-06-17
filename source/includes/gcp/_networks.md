@@ -109,3 +109,57 @@ Attributes | &nbsp;
 `routingConfig`<br/>*object* | The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce. RoutingMode is either REGIONAL or GLOBAL.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `subnetworks`<br/>*Array[URL]* | Server-defined fully-qualified URLs for all subnetworks in this VPC network.
+
+<!-------------------- CREATE A NETWORK -------------------->
+
+#### Create a network
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/networks"
+```
+
+> Request body example for network in auto subnet creation mode:
+
+```json
+{
+	"name": "vpc-name",
+	"autoCreateSubnetworks": true
+}
+```
+
+> Request body example for network in custom subnet creation mode:
+
+```json
+{
+	"name": "vpc-name",
+	"autoCreateSubnetworks": false,
+	"subnetName": "subnet-name",
+	"subnetShortRegion": "northamerica-northeast1",
+	"subnetIpCidrRange": "10.0.0.0/20"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks</code>
+
+Create a new network and attach subnet
+
+Required in auto mode | &nbsp;
+--------------------- | -----------
+`name`<br/>*string* | The display name of the network.
+`autoCreateSubnetworks`<br/>*boolean* | Whether subnets will be automatically created for each region.
+
+Required in custom mode | &nbsp;
+----------------------- | -----------
+`name`<br/>*string* | The display name of the network.
+`autoCreateSubnetworks`<br/>*boolean* | Whether subnets will be automatically created for each region.
+`subnetName`<br/>*string* | The display name of the subnet.
+`subnetShortRegion`<br/>*string* | A short version of the region name of the subnet.
+`subnetIpCidrRange`<br/>*string* | The CIDR IP range of the subnet.
+
+Optional | &nbsp;
+------- | -----------
+`description`<br/>*string* | Description of the network.
