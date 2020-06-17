@@ -17,37 +17,11 @@ curl -X GET \
   "data": [
     {
       "id": "canal/kube-system",
-      "metadata": {
-        "annotations": {
-          "deprecated.daemonset.template.generation": "8",
-          "kubectl.kubernetes.io/last-applied-configuration": "{...}"
-        },
-        "creationTimestamp": "2019-03-12T14:22:52.000-04:00",
-        "generation": 8,
-        "labels": {
-          "k8s-app": "canal"
-        },
-        "name": "canal",
-        "namespace": "kube-system",
-        "resourceVersion": "117221602",
-        "selfLink": "/apis/apps/v1/namespaces/kube-system/daemonsets/canal",
-        "uid": "d946db1b-44f3-11e9-960d-02007a9a001f"
-      },
-      "spec": {
-        /*...*/
-      },
-      "status": {
-        "currentNumberScheduled": 10,
-        "desiredNumberScheduled": 10,
-        "numberAvailable": 10,
-        "numberMisscheduled": 0,
-        "numberReady": 10,
-        "observedGeneration": 8,
-        "updatedNumberScheduled": 10
-      }
+      "metadata": {},
+      "spec": {},
+      "status": {}
     }
   ],
-  // ...
   "metadata": {
     "recordCount": 9
   }
@@ -62,11 +36,6 @@ Retrieve a list of all daemon sets in a given [environment](#administration-envi
 | ------------------------------------------ | ------------------------------------------------------- |
 | `id` <br/>_string_                         | The id of the daemon set                                |
 | `metadata` <br/>_object_                   | The metadata of the daemon set                          |
-| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the daemon set as a string      |
-| `metadata.labels` <br/>_map_               | The labels associated to the daemon set                 |
-| `metadata.name` <br/>_string_              | The name of the daemon set                              |
-| `metadata.namespace` <br/>_string_         | The namespace in which the daemon set is created        |
-| `metadata.uid` <br/>_object_               | The UUID of the daemon set                              |
 | `spec`<br/>_object_                        | The specification used to create and run the daemon set |
 | `status`<br/>_object_                      | The status information of the daemon set                |
 
@@ -88,34 +57,9 @@ curl -X GET \
 {
     "data": {
         "id": "canal/kube-system",
-        "metadata": {
-            "annotations": {
-                "deprecated.daemonset.template.generation": "8",
-                "kubectl.kubernetes.io/last-applied-configuration": "{...}"
-            },
-            "creationTimestamp": "2019-03-12T14:22:52.000-04:00",
-            "generation": 8,
-            "labels": {
-                "k8s-app": "canal"
-            },
-            "name": "canal",
-            "namespace": "kube-system",
-            "resourceVersion": "117221602",
-            "selfLink": "/apis/apps/v1/namespaces/kube-system/daemonsets/canal",
-            "uid": "d946db1b-44f3-11e9-960d-02007a9a001f"
-        },
-        "spec": {
-          // ...
-        },
-        "status": {
-            "currentNumberScheduled": 10,
-            "desiredNumberScheduled": 10,
-            "numberAvailable": 10,
-            "numberMisscheduled": 0,
-            "numberReady": 10,
-            "observedGeneration": 8,
-            "updatedNumberScheduled": 10
-        }
+        "metadata": {},
+        "spec": {},
+        "status": {}
     }
 }
 ```
@@ -128,11 +72,6 @@ Retrieve a daemon set and all its info in a given [environment](#administration-
 | ------------------------------------------ | --------------------------------------------------------------- |
 | `id` <br/>_string_                         | The id of the daemon set                                        |
 | `metadata` <br/>_object_                   | The metadata of the daemon set                                  |
-| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the daemon set as a string              |
-| `metadata.labels` <br/>_map_               | The labels associated to the daemon                             |
-| `metadata.name` <br/>_string_              | The name of the daemon set                                      |
-| `metadata.namespace` <br/>_string_         | The namespace in which the daemon set is created                |
-| `metadata.uid` <br/>_object_               | The UUID of the daemon set                                      |
 | `spec`<br/>_object_                        | The specification used to create and run the daemon set         |
 | `status`<br/>_object_                      | The status information of the daemon set                        |
 
