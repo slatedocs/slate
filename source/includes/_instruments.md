@@ -209,7 +209,7 @@ Please specify either one or the other when sending an allocation instruction.
 
 | Key                  | JSON Type | Value Type       | Value Description                                                                                                 |
 |----------------------|-----------|------------------|-------------------------------------------------------------------------------------------------------------------|
-| id                   | String    | UUID             | A platform-generated UUID for this allocation.                                                                    |
+| id                   | String    | AllocationId     | The platform generated unique ID of the allocation. Up to 100 characters.                                                                  |
 | quantity             | Number    | Number           | The (whole) number of shares to allocate.                                                                         |
 | instrumentSymbol     | String    | InstrumentSymbol | Platform generated unique ID of the instrument.                                                                   |
 | investor             | Object    | Object           | Set to null for non-investor allocations, else populated with the fields below.                                   |
