@@ -160,7 +160,7 @@ Create a new router
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `name`<br/>_string_         | The display name of the router.                                                                                                 |
 | `shortRegion`<br/>_string_  | A short version of the region name.                                                                                             |
-| `shortNetwork`<br/>_string_ | A short version of the network name this router is attached to.                                                                 |
+| `shortNetwork`<br/>_string_ | A shortened version of the network name that the router is attached to.                                                         |
 | `bgp.asn`<br/>_string_      | The BGP Autonomous System Number (ASN) Number that is to be assigned to this router. _Must be a valid ASN between 64512–65534_. |
 
 | Optional               | &nbsp;                                                                                   |
@@ -243,7 +243,7 @@ Add one or more BGP peers associated to existing router interface(s)
 | `bgpPeers[*].name`<br/>_string_          | The name of the BGP peer association.                                                        |
 | `bgpPeers[*].interfaceName`<br/>_string_ | The router interface through which this BGP peering will be realized.                        |
 | `bgpPeers[*].ipAddress`<br/>_string_     | The router's IP address on the above interface for this BGP peering. Only IPv4 is supported. |
-| `bgpPeers[*].peerIpAddress`<br/>_string_ | The peer IP address this BGP peering tries to connect to. Only IPv4 is supported.            |
+| `bgpPeers[*].peerIpAddress`<br/>_string_ | The peer IP address that the BGP peering will try to connect to. Only IPv4 is supported.     |
 | `bgpPeers[*].peerAsn`<br/>_string_       | Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.       |
 
 <!-------------------- DELETE A ROUTER -------------------->
@@ -260,6 +260,6 @@ curl -X DELETE \
 
 Delete an existing cloud router from the [environment](#administration-environments).
 
-| Optional                | &nbsp;                                                                                                                                                                                                                     |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Optional                | &nbsp;                                                                                                                                                                                                                           |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `selfLink`<br/>_string_ | The partially qualified Google Cloud `selfLink` of this router. This should include the projectId, region and the router name delimited by the URL path separator. `Ex: project-id/regions/<short-region>/routers/<router-name>` |
