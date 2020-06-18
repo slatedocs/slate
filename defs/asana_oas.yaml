@@ -748,7 +748,7 @@ tags:
        to these higher-level webhooks, so all changes on these resources are
        automatically filtered out.
        * Webhook events from `project` resources can be filtered for these
-      `action`s: `added`, `removed`, `deleted`, `undeleted`, and `changed`.
+       `action`s: `added`, `removed`, `deleted`, `undeleted`, and `changed`.
        * Webhook events from `team_membership` resources can be filtered to
        `action`s `added` and `removed`.
        * Webhook events from `workspace_membership` resources can be filtered
@@ -764,6 +764,24 @@ tags:
       can expect it to take no longer than approximately an hour after they come
       back before the paused delivery resumes. However, if we are unable to
       deliver a message for 24 hours the webhook will be deactivated.
+
+      #### Resources and Actions
+
+      This is not an exhaustive list, but should cover the most common use
+      cases.
+
+
+       * Attachment - deleted, undeleted
+       * Portfolio - added, deleted, removed
+       * Project - added, changed, deleted, removed, undeleted
+       * Project Membership - added, removed
+       * Section - added, changed, deleted, undeleted
+       * Story - added, removed, undeleted
+       * Tag - added, changed, deleted, undeleted
+       * Task - added, changed, deleted, removed, undeleted
+       * Team - added, changed, deleted
+       * Team Membership - added, removed
+       * Workspace - added, removed, changed
   - name: Workspaces
     description: >-
       A *workspace* is the highest-level organizational unit in Asana. All
@@ -4092,8 +4110,8 @@ components:
       properties:
         resource:
           description: >-
-            A resource ID to subscribe to. Many Asana resources are valid to create
-            webhooks on, but higher-level resources require filters.
+            A resource ID to subscribe to. Many Asana resources are valid to
+            create webhooks on, but higher-level resources require filters.
           type: string
           example: '12345'
         target:

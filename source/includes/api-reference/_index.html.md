@@ -18284,7 +18284,7 @@ To reduce the volume of data to transfer, webhooks created on teams and workspac
  to these higher-level webhooks, so all changes on these resources are
  automatically filtered out.
  * Webhook events from `project` resources can be filtered for these
-`action`s: `added`, `removed`, `deleted`, `undeleted`, and `changed`.
+ `action`s: `added`, `removed`, `deleted`, `undeleted`, and `changed`.
  * Webhook events from `team_membership` resources can be filtered to
  `action`s `added` and `removed`.
  * Webhook events from `workspace_membership` resources can be filtered
@@ -18293,6 +18293,20 @@ To reduce the volume of data to transfer, webhooks created on teams and workspac
 #### Error Handling and Retry
 
 If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect it to take no longer than approximately an hour after they come back before the paused delivery resumes. However, if we are unable to deliver a message for 24 hours the webhook will be deactivated.
+#### Resources and Actions
+This is not an exhaustive list, but should cover the most common use cases.
+
+ * Attachment - deleted, undeleted
+ * Portfolio - added, deleted, removed
+ * Project - added, changed, deleted, removed, undeleted
+ * Project Membership - added, removed
+ * Section - added, changed, deleted, undeleted
+ * Story - added, removed, undeleted
+ * Tag - added, changed, deleted, undeleted
+ * Task - added, changed, deleted, removed, undeleted
+ * Team - added, changed, deleted
+ * Team Membership - added, removed
+ * Workspace - added, removed, changed
 </span>
 
 </section>
