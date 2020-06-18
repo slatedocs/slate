@@ -9,7 +9,7 @@ With Classic VPN, your on-premises hosts communicate through one or more IPsec V
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/vpngateways"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/vpntunnels"
 ```
 > The above command returns a JSON structured like this:
 
@@ -185,9 +185,9 @@ Optional | &nbsp;
 `description`<br/>*string* | An optional description.
 `localTrafficSelector`<br/>*string* | Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string.
 
-<!-------------------- DELETE VPN GATEWAY -------------------->
+<!-------------------- DELETE VPN TUNNEL -------------------->
 
-#### Delete VPN gateway
+#### Delete VPN Tunnel
 
 ```shell
 curl -X DELETE \
