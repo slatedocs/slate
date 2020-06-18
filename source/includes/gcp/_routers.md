@@ -161,7 +161,7 @@ Create a new router
 | `name`<br/>_string_         | The display name of the router.                                                                                                 |
 | `shortRegion`<br/>_string_  | A short version of the region name.                                                                                             |
 | `shortNetwork`<br/>_string_ | A shortened version of the network name that the router is attached to.                                                         |
-| `bgp.asn`<br/>_string_      | The BGP Autonomous System Number (ASN) Number that is to be assigned to this router. _Must be a valid ASN between 64512–65534_. |
+| `bgp.asn`<br/>_string_      | The BGP Autonomous System Number (ASN) that is to be assigned to this router. _Must be a valid ASN between 64512–65534_. |
 
 | Optional               | &nbsp;                                                                                   |
 | ---------------------- | ---------------------------------------------------------------------------------------- |
