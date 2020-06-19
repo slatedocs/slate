@@ -105,6 +105,10 @@ curl -X GET \
 
 Retrieve a service and all its info in a given [environment](#administration-environments).
 
+| Required                   | &nbsp;                                             |
+| -------------------------- | -------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to get the service. |
+
 | Attributes                                 | &nbsp;                                                          |
 | ------------------------------------------ | --------------------------------------------------------------- |
 | `id` <br/>_string_                         | The id of the service                                           |
