@@ -6,9 +6,11 @@ Welcome to the Mautic Developer Documentation. This documentation will go over h
 
 Development is open and available to any member of the Mautic community. All fixes and improvements are done through pull requests to the code on [GitHub](https://github.com/mautic/mautic). This code is open source and publicly available. 
 
+Read all about [contributing to Mautic](https://contribute.mautic.org/contributing-to-mautic/developer) as a Developer.
+
 Read more about the PR process on the Mautic [Governance](https://www.mautic.org/about/governance) page.
 
-The code should try to follow [Symfony's Coding Standards](http://symfony.com/doc/current/contributing/code/standards.html)
+The code should try to follow [Symfony's Coding Standards](http://symfony.com/doc/current/contributing/code/standards.html
 
 ## Symfony
 
