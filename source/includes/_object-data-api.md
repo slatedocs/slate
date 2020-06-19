@@ -1895,6 +1895,147 @@ Parameter | Description
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or document being accessed
 
+
+## Object Merge Templates
+
+Object merge templates allow you to extract data from any Intelex object and export it into a Microsoft Word® or PDF document, depending on the configuration of the merge template. By mapping 'MergeFields' in the Word document to data fields in a particular Intelex object, you are able to export dynamically generated files populated with object record data you need, such as employee names, hire dates, etc. You can use dot notations to drill down to child objects and populate their data.
+
+Intelex objects with the merge template option enabled, and at least one uploaded Merge Template, can be queried in one of two ways.
+
+- Retrieve a list of records detailing all Merge Templates for that object.
+- Request a merge document content for a specific object record.
+
+To access Merge Template details use the system reserved property: ILX.MailMergeDocs.
+
+### Requesting Merge Templates
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.MailMergeDocs' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.MailMergeDocs");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Example Response
+
+```json
+{
+  "@odata.context": "string",
+  "value": [
+    {
+      "@odata.type": "string",
+      "@odata.id": "string",
+      "@odata.editLink": "string",
+      "Id": "string",
+      "DateCreated": "2020-06-08T12:32:51.28-04:00",
+      "DateModified": "2020-06-08T12:32:51.28-04:00",
+      "Description": "string",
+      "DownloadAs": "string",
+      "ObjectRecordId": "string",
+      "TemplateName": "string"
+    }
+  ]
+}
+```
+
+This request returns a list of all merge templates belonging to a given object. ILX.MailMergeDocs is a system reserved property for working with merge templates. Any object that has merge templates enabled will be able to access this property and request the templates that belong to the object.
+
+
+#### GET /object/{intelex_object}({id})/ILX.MailMergeDocs
+
+##### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id|The Intelex UID of the object record being accessed
+
+
+### Downloading Merge Documents
+
+> Example Requests
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.MailMergeDocs(UID)',
+  headers: 
+   { accept: 'application/octet-stream' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v2/object/IncidentsObject(UID)/ILX.MailMergeDocs(UID)");
+var request = new RestRequest(Method.GET);
+request.AddHeader("accept", "application/octet-stream");
+IRestResponse response = client.Execute(request);
+```
+
+> Example Responses
+
+By including the 'accept' header parameter, the response will be the binary contents of the dynamically generated document file.
+
+```	
+PK �Y�P����.customXml/item1.xml�ZYo�8~_` ...
+```
+
+
+Without the 'accept' header, the response will be the metadata for the requested merge template record.
+
+```json
+{
+  "@odata.type": "string",
+  "@odata.id": "string",
+  "@odata.editLink": "string",
+  "Id": "string",
+  "DateCreated": "2020-06-08T12:32:51.28-04:00",
+  "DateModified": "2020-06-15T11:02:24.28-04:00",
+  "Description": "string",
+  "DownloadAs": "string",
+  "ObjectRecordId": "string",
+  "TemplateName": "string"
+}
+```
+
+By default, this request returns the metadata of a specific Merge Template document. When you provide the Accept header value of 'application/octet-stream', then the binary contents of merged file itself will be returned instead.
+
+#### GET /object/{intelex_object}({id1})/ILX.MailMergeDocs({id2})
+
+##### URL Parameters
+
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+id1|The Intelex UID of the record being accessed
+id2|The Intelex UID of the merge template to return
+
+##### Header Parameters
+
+Parameter | Description | Example Value
+--------- | ------------| -----------
+Accept|Provide the content type in order to download the file|application/octet-stream
+
+
 ## Object Batch Requests
 
 > Example Batch Request Body: The following example includes a batch with a unique identifier of AAA123 and a change set with a unique identifier of BBB456. The request creates a record then updates the record that was just created
