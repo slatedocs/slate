@@ -10,7 +10,7 @@ Read all about [contributing to Mautic](https://contribute.mautic.org/contributi
 
 Read more about the PR process on the Mautic [Governance](https://www.mautic.org/about/governance) page.
 
-The code should try to follow [Symfony's Coding Standards](http://symfony.com/doc/current/contributing/code/standards.html
+The code should try to follow [Symfony's Coding Standards](http://symfony.com/doc/current/contributing/code/standards.html)
 
 ## Symfony
 
