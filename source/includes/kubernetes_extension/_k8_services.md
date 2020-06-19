@@ -51,9 +51,12 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services?cluster_id=:cluster_id</code>
 
 Retrieve a list of all services in a given [environment](#administration-environments).
+| Required                   | &nbsp;                                             |
+| -------------------------- | -------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to get the service. |
 
 | Attributes                                 | &nbsp;                                                          |
 | ------------------------------------------ | --------------------------------------------------------------- |
@@ -101,7 +104,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services/:id?cluster_id=:cluster_id</code>
 
 Retrieve a service and all its info in a given [environment](#administration-environments).
 
