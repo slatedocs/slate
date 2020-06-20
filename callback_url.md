@@ -6,19 +6,20 @@ The post params posted at any update in a particular leads are as follows
 
 ```json
  {
-  "channel_name":"agent_app", // present always
-  "country_code":"+91", // present always
-  "email":null, // present always
-  "is_duplicate":null, // present always
-  "lead_id":1402361, // present always
-  "lead_status":"Final negotiation", // present always
-  "name":"History ", // present always
-  "phone":"+919999999988", // present always
+  "channel_name":"agent_app",
+  "country_code":"+91",
+  "email":null,
+  "lead_id":1402361,
+  "lead_status":"Final negotiation",
+  "last_status": "Visit done",
+  "name":"History ",
+  "phone":"+919999999988",
   "source": "facebook",
   "sub_source": "leadgen",
-  "placement":null, // present always
-  "project_name":"santacruz", // present always
-  "cp_data":{  // only if lead was created with CP as source
+  "action": "lead_update",
+  "placement":null,
+  "project_name":"santacruz",
+  "cp_data":{
     "id":5649,
     "name":"Bb",
     "email":null,
@@ -38,17 +39,17 @@ The post params posted at any update in a particular leads are as follows
     "phone":"+919988555566",
     "country_id":49
   },
-  "rating":null, // key present always
-  "min_budget":null, // key present always
-  "max_budget":null, // key present always
-  "lead_status_reasons":null, // key present always
+  "rating":null,
+  "min_budget":null,
+  "max_budget":null,
+  "lead_status_reasons":null,
   "extra_details":{ 
     "cp_id":5649,
     "referral_data":{
 
     }
   },
-  "booking_details":{ // only when lead is moved to booking done
+  "booking_details":{
     "area":"5",
     "unit_no":"5",
     "base_price":"5",
@@ -58,7 +59,7 @@ The post params posted at any update in a particular leads are as follows
     "floor_rise_price":"8",
     "apartment_type_id":1
   },
-  "booking_docs":[ // only when lead is moved to booking done
+  "booking_docs":[
     {
       "id":1127,
       "lead_id":1402447,
@@ -80,17 +81,18 @@ The post params posted at any update in a particular leads are as follows
       "updated_at":"2019-05-21T17:15:27.621+05:30"
     }
   ],
-  "project_id":1046, // always present
-  "created_at":1558080407, // always present
-  "claimed_at":1554524295, // always present
-  "agent_email":"tanvi.tyagi@anarock.com", // only if agent is attached .. can be null if lead is with call center
-  "latest_event_details":{ // can be null if no event has been planned or done so far
+  "project_id":1046,
+  "created_at":1558080407,
+  "claimed_at":1554524295,
+  "agent_email":"tanvi.tyagi@anarock.com",
+  "agent_name" "Tanvi Tyagi",
+  "latest_event_details":{
     "event_id":1225388,
     "start_time":1558091400,
     "end_time":1558092300,
     "event_type":"f2f"
   },
-  "event_details":[ // can be empty if no event has been planned or done so far , key will always be present with empty array as default
+  "event_details":[
     {
       "event_id":1225388,
       "start_time":1558091400,
@@ -142,7 +144,7 @@ The post params posted at any update in a particular leads are as follows
       ]
     }
   ],
-  "notes":[ // can be empty if no note has been added so far , key will always be present with empty array as default
+  "notes":[
     {
       "note_type":"text",
       "data":"revisit done",
@@ -214,7 +216,7 @@ The post params posted at any update in a particular leads are as follows
       }
     }
   ],
-  "calls":[ // can be empty if no calls have been done so far , key will always be present with empty array as default
+  "calls":[
     {
       "action":"incoming",
       "agent_details":{
@@ -269,6 +271,17 @@ The post params posted at any update in a particular leads are as follows
 - ```sv``` (for site visit),
 - ```f2f``` (for Face to Face )
 
+```action``` can have the following values
+- ```call_created``` when a new call is done on a particular lead
+- ```lead_update``` when a property on lead is updated
+- ```status_update``` when status of the lead is updated
+- ```agent_update``` when current agent on the lead is updated
+- ```status_and_agent_update``` when agent and status both are updated
+- ```disposition_created``` when call center has done an activity on a lead
+- ```event_update``` when an event is updated on a lead
+- ```inquiry_created``` new inquiry created on a lead
+- ```note_creation``` a new note is added on a lead
+
 
 ```lead_status``` can have the following values 
 - `New` (Any lead that is just created or cannot be resolved because it's duplicate. This is the first status for a lead in the system)
@@ -284,6 +297,45 @@ The post params posted at any update in a particular leads are as follows
 - `In Call Center` - When lead is sent to call center
       
   
-  Other parameters are the once described in the http://anarock.github.io/leads documentation.
+Other parameters are the once described in the http://anarock.github.io/leads documentation.
+
+All object arrays in the payload are sorted with latest first, eg. calls, events, notes dispositions are sorted as latest first
+
+
+### Few Examples of the hooks about consuming hooks on various actiosn
+
+#### Lead is in call center bucket call duration is more than 60 sec and not moved to Junk & Failed 
+action === `disposition_created`
+lead_status === `In Call Center`
+dispositions[0].disposition_type === `followup`
+calls[0].duration_in_sec > 60
+
+#### Lead was in call center bucket and transfer to sales team( Through patch out or send to fresh)
+action === `disposition_created`
+dispositions[0].disposition_type === `fresh` || dispositions[0].disposition_type === `patch_out`
+
+#### Lead is in call center bucket call duration is more than 60 sec and move to failed.
+action === `status_update` || action === `status_and_agent_update`
+lead_status === `Failed` || lead_status === `Junk`
+last_status === `In Call Center`
+dispositions[0].disposition_type === `failed` || dispositions[0].disposition_type === `junk`
+
+#### Lead is in Sales team bucket and Site visit event as completed/done  by the sales team with sales manager
+action === `event_update`
+[`Visit done`].indexOf(lead_status) !== -1
+latest_event_details.event_type === `sv`
+
+#### Lead is in Sales team bucket and lead status change to booking done with sales manager
+action === `status_update`
+lead_status === `Booking done`
+
+### Lead is in Sales team bucket and lead status change to failed with sales manager
+action === `status_update`
+lead_status === `Failed` || lead_status === `Junk`
+last_status !== `In Call Center`
+
+
+
+
   
 
