@@ -278,12 +278,13 @@ html, body {
 }
 
 .lang-selector {
+  display: flex;
   background-color: $lang-select-bg;
   width: 100%;
   font-weight: bold;
+  overflow-x: auto;
   a {
-    display: block;
-    float:left;
+    display: inline;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;

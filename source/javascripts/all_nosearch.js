@@ -3,6 +3,11 @@
 //= require ./app/_toc
 //= require ./app/_lang
 
+function adjustLanguageSelectorWidth() {
+  const elem = $('.dark-box > .lang-selector');
+  elem.width(elem.parent().width());
+}
+
 $(function() {
   loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
   setupLanguages($('body').data('languages'));
@@ -10,6 +15,11 @@ $(function() {
     window.recacheHeights();
     window.refreshToc();
   });
+
+  $(window).resize(function() {
+    adjustLanguageSelectorWidth();
+  });
+  adjustLanguageSelectorWidth();
 });
 
 window.onpopstate = function() {
