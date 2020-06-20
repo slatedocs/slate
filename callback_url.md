@@ -306,32 +306,45 @@ All object arrays in the payload are sorted with latest first, eg. calls, events
 
 #### Lead is in call center bucket call duration is more than 60 sec and not moved to Junk & Failed 
 action === `disposition_created`
+
 lead_status === `In Call Center`
+
 dispositions[0].disposition_type === `followup`
+
 calls[0].duration_in_sec > 60
 
 #### Lead was in call center bucket and transfer to sales team( Through patch out or send to fresh)
 action === `disposition_created`
+
 dispositions[0].disposition_type === `fresh` || dispositions[0].disposition_type === `patch_out`
 
 #### Lead is in call center bucket call duration is more than 60 sec and move to failed.
 action === `status_update` || action === `status_and_agent_update`
+
 lead_status === `Failed` || lead_status === `Junk`
+
 last_status === `In Call Center`
+
 dispositions[0].disposition_type === `failed` || dispositions[0].disposition_type === `junk`
 
 #### Lead is in Sales team bucket and Site visit event as completed/done  by the sales team with sales manager
 action === `event_update`
+
 [`Visit done`].indexOf(lead_status) !== -1
+
 latest_event_details.event_type === `sv`
 
 #### Lead is in Sales team bucket and lead status change to booking done with sales manager
+
 action === `status_update`
+
 lead_status === `Booking done`
 
 ### Lead is in Sales team bucket and lead status change to failed with sales manager
 action === `status_update`
+
 lead_status === `Failed` || lead_status === `Junk`
+
 last_status !== `In Call Center`
 
 
