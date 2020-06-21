@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 2.7.0
+
+* June 21, 2020*
+
+* __[security]__ Bumped rack in Gemfile.lock from 2.2.2 to 2.2.3
+* Bumped bundled jQuery from 3.2.1 to 3.5.1
+* Bumped bundled lunr from 0.5.7 to 2.3.8
+* Bumped imagesloaded from 3.1.8 to 4.1.4
+* Bumped rouge from 3.17.0 to 3.20.0
+* Bumped redcarpet from 3.4.0 to 3.5.0
+* Fix color of highlighted code being unreadable when printing page
+* Add clipboard icon for "Copy to Clipboard" functionality to code boxes (see note below)
+* Fix handling of ToC selectors that contain punctutation (thanks @gruis)
+* Fix language bar truncating languages that overflow screen width
+* Strip HTML tags from ToC title before displaying it in title bar in JS (backup to stripping done in Ruby code) (thanks @atic)
+
+To enable the new clipboard icon, you need to add `code_clipboard: true` to the frontmatter of source/index.html.md.
+See [this line](https://github.com/slatedocs/slate/blame/master/source/index.html.md#L19) for an example of usage.
+
 ## Version 2.6.1
 
 *May 30, 2020*
