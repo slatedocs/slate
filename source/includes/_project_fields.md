@@ -2,17 +2,6 @@
 
 ## GET all SYSTEM & CUSTOM fields in your project
 
-This endpoint retrieves all fields.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/fields.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Here's the example of the JSON request and response that you may get when submitting a GET request
-
-Remember, you can see examples in the dark area to the right.
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -24,77 +13,90 @@ https://api.practitest.com/api/v2/projects/4566/fields.json
 
 ```json
 {
-     "data": [
+  "data": [
     {
       "id": 88769,
-        "type": "SystemField",
-         "name": "Status",
-        "field_format": "list",
-        "possible_values": null,
-        "uniq_name": "issue_status",
-        "entities": [
-            "Issue"
-    ]
+      "type": "SystemField",
+      "name": "Status",
+      "field_format": "list",
+      "possible_values": null,
+      "uniq_name": "issue_status",
+      "entities": [
+        "Issue"
+      ]
     },
-{
+    {
       "id": 48633,
       "type": "CustomField",
       "name": "Test Level",
       "field_format": "list",
       "possible_values": [
-              "Blah",
-              "Regression",
-              "Relieve",
-              "Sanity"
-    ],
+        "Blah",
+        "Regression",
+        "Relieve",
+        "Sanity"
+      ],
       "uniq_name": "___f_48633",
       "entities": [
-              "TestSet",
-              "Test"
-     ]
+        "TestSet",
+        "Test"
+      ]
     },
-  {
-       "id": 48634,
-       "type": "CustomField",
-       "name": "Testing Environment",
-       "field_format": "list",
-       "possible_values": [
-               "Production",
-               "Testing Lab",
-               "Customer"
-    ],
+    {
+      "id": 48634,
+      "type": "CustomField",
+      "name": "Testing Environment",
+      "field_format": "list",
+      "possible_values": [
+        "Production",
+        "Testing Lab",
+        "Customer"
+      ],
       "uniq_name": "___f_48634",
       "entities": [
-                "Issue"
-       ]
+        "Issue"
+      ]
     },
-  {
-        "id": 48635,
-        "type": "CustomField",
-        "name": "Testing Project",
-        "field_format": "linkedlist",
-        "possible_values": {
+    {
+      "id": 48635,
+      "type": "CustomField",
+      "name": "Testing Project",
+      "field_format": "linkedlist",
+      "possible_values": {
         "Production": [
-                "ASIA",
-                "EUROPE",
-                "AMERICA"
-       ],
+          "ASIA",
+          "EUROPE",
+          "AMERICA"
+        ],
         "Testing Lab": [
-                "Lab1",
-                "Lab2",
-                "Lab3"
-     ],
+          "Lab1",
+          "Lab2",
+          "Lab3"
+        ],
         "Customer": [
-                "ABC",
-                "CBS",
-                "NBC",
-                "CNN"
-    ],
-      "": []
-   },
-       "uniq_name": "___f_48635",
-       "entities": [
-               "Issue"
-     ]
-   }
-]
+          "ABC",
+          "CBS",
+          "NBC",
+          "CNN"
+        ]
+      },
+      "uniq_name": "___f_48635",
+      "entities": [
+        "Issue"
+      ]
+    }
+  ]
+}
+```
+
+This endpoint retrieves all fields.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/fields.json`
+
+### Query Parameters - [pagination](#pagination)
+
+Here's the example of the JSON request and response that you may get when submitting a GET request
+
+Remember, you can see examples in the dark area to the right.
