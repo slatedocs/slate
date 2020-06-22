@@ -100,6 +100,8 @@ updated-hours-ago | showing runs that were updated # hours ago |
 * None of the parameters are required. You can also combine multiple parameters if needed.
 You can see examples in the dark area to the right.
 
+### PAT Support
+Supported - if the user has the permissions to view runs
 
 
 ## Create a run (Automated Test)
@@ -181,3 +183,6 @@ We expect to get the file content encoded as BASE64. See code examples: shell wi
 href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank"> here</a>, Java example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank"> here</a>, C sharp (.Net) example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank"> here</a>.
 
 **** This parameter allows to attach files to specific step/s.
+
+### PAT Support
+Supported - if the user has the permissions to run tests

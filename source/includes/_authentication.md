@@ -94,6 +94,9 @@ Currently NOT ALL THE RESOURCES are working with PAT, and for each resource ther
 
 When working with the Personal API Token each user may have its own token; and then PractiTest will provide access to an API resources based on the user’s permissions.
 
+With the usage of PAT, author-id parameter is not required anymore, since the default author is the user that the PAT belongs to. PAT that have impersonation enabled, can override the author-id attribute.
+Another difference is that all entities that have history (such as issues, tests, requirements), the history will be shown when using API with PAT.
+
 For example -> in the <a href="#projects">Projects API request</a>, with Account Token, you may list all projects in the account; PAT allows you to show only the projects in the account that the specific user has access to.
 
 Please take into account, once again, that not all API resources currently support PAT, and so you should check this before working with the API and this token type

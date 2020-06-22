@@ -115,6 +115,9 @@ display-id | filter instances based on an instance display-id (can be used to co
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
 
+### PAT Support
+Supported - if the user has the permissions to view runs / instances
+
 
 ## Create an instance
 
@@ -153,6 +156,8 @@ data/attributes/custom-fields | a hash of custom-fields with their value | false
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
 
+### PAT Support
+Supported - if the user has the permissions to create instances
 
 
 ## Show a specific instance
@@ -201,6 +206,9 @@ This endpoint shows a specific instance in your project.
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
 
 Here's the example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to view runs / instances
 
 
 ## Update a specific instance
@@ -265,6 +273,10 @@ data/attributes/custom-fields | a hash of custom-fields with their value |
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit instances
+
+
 ## Delete a specific instance
 
 ```shell
@@ -281,3 +293,6 @@ This endpoint deletes a specific instance.
 
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to delete instances (Runs - Admin)
