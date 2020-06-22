@@ -1,24 +1,6 @@
 # Steps
 
 ## GET all steps in your project
-
-This endpoint retrieves all steps.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Parameters* | Description |
---------- | ------- |
-test-ids | filter steps with test-ids (separated by commas) |
-name_exact | filter by step name exact match; case sensitive! |
-name_like | filter by step name: case insensitive, phrase can be inside the name |
-
-* none of the parameters are required. If you combine multiple parameters, it will do AND
-You can see examples in the dark area to the right.
-
 ```shell
 # Some request examples:
 
@@ -104,17 +86,25 @@ https://api.practitest.com/api/v2/projects/4566/steps.json?test-ids=23223,43121
 }
 ```
 
-
-
-## Show a specific step
-
-This endpoint shows a specific step in your project.
+This endpoint retrieves all steps.
 
 ### HTTP Request
 
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps/YOUR_STEP_ID.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps.json`
 
-In the right area see the example of the JSON request and response
+### Query Parameters - [pagination](#pagination)
+
+Parameters* | Description |
+--------- | ------- |
+test-ids | filter steps with test-ids (separated by commas) |
+name_exact | filter by step name exact match; case sensitive! |
+name_like | filter by step name: case insensitive, phrase can be inside the name |
+
+* none of the parameters are required. If you combine multiple parameters, it will do AND
+You can see examples in the dark area to the right.
+
+
+## Show a specific step
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -144,11 +134,22 @@ https://api.practitest.com/api/v2/projects/4566/steps/45893.json
   }
 }
 ```
+This endpoint shows a specific step in your project.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps/YOUR_STEP_ID.json`
+
+In the right area see the example of the JSON request and response
 
 
 
 ## Delete a specific step
-
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X DELETE https://api.practitest.com/api/v2/projects/4566/steps/45893.json
+```
 This endpoint deletes a specific step.
 
 ### HTTP Request
@@ -157,9 +158,3 @@ This endpoint deletes a specific step.
 
 
 You can find at the right area an example of the JSON request and response
-
-```shell
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X DELETE https://api.practitest.com/api/v2/projects/4566/steps/45893.json
-```

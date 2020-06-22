@@ -9,15 +9,6 @@ This endpoint retrieves all requirements linked to a specific test
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
 
 ## Replace linked requirements for a specific test
-
-This endpoint replaces linked requirements for a specific test
-
-### HTTP Request
-
-`PATCH https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
-
-You can find at the right area an example of the JSON request and response
-
 ```shell
 # Some request examples:
 
@@ -28,15 +19,16 @@ curl -H "Content-Type:application/json" \
 -d '{"data": [{ "id": REQUIREMENT_ID, "type": "requirements" },{ "id": ANOTHER_REQUIREMENT_ID, "type": "requirements" }]}'
 
 ```
-## Link requirements to a specific test
-
-This endpoint links requirements to a specific test
+This endpoint replaces linked requirements for a specific test
 
 ### HTTP Request
 
-`POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
+`PATCH https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
 
 You can find at the right area an example of the JSON request and response
+
+
+## Link requirements to a specific test
 
 ```shell
 # Some request examples:
@@ -48,15 +40,15 @@ curl -H "Content-Type:application/json" \
 -d '{"data": [{ "id": REQUIREMENT_ID, "type": "requirements" },{ "id": ANOTHER_REQUIREMENT_ID, "type": "requirements" }]}'
 
 ```
-## Delete linked requirements for a specific test
-
-This endpoint removes linked requirements for a specific test
+This endpoint links requirements to a specific test
 
 ### HTTP Request
 
-`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
+`POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
 
 You can find at the right area an example of the JSON request and response
+
+## Delete linked requirements for a specific test
 
 ```shell
 # Some request examples:
@@ -68,3 +60,10 @@ curl -H "Content-Type:application/json" \
 -d '{"data": [{ "id": REQUIREMENT_ID, "type": "requirements" },{ "id": ANOTHER_REQUIREMENT_ID, "type": "requirements" }]}'
 
 ```
+This endpoint removes linked requirements for a specific test
+
+### HTTP Request
+
+`DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
+
+You can find at the right area an example of the JSON request and response

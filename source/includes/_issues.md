@@ -1,29 +1,6 @@
 # Issues
 
 ## GET all Issues in your project
-
-This endpoint retrieves all Issues.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Parameters* | Description |
---------- | ------- |
-filter-id | the Issues filter id -> showing Issues that are in this filter |
-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
-display-ids | filter Issues with display-ids (separated by commas) |
-title_exact | filter by Issue name exact match; case sensitive! |
-title_like | filter by Issue name: case insensitive, phrase can be inside the name |
-relationships | shows entities linked to issues, should be equal to true  |
-
-
-
-* none of the parameters are required. If you combine multiple parameters, it will do AND
-You can see examples in the dark area to the right.
-
 ```shell
 # Some request examples:
 
@@ -50,7 +27,6 @@ https://api.practitest.com/api/v2/projects/4566/issues.json?relationships=true
 ```
 
 > This command: https://api.practitest.com/api/v2/projects/4566/issues.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
-
 
 ```json
 {
@@ -93,10 +69,43 @@ YOUR_TOKEN&developer_email=your_EMAIL&name_like=Issuer3&page%5Bnumber%5D=1&page%
   }
 }
 ```
+This endpoint retrieves all Issues.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues.json`
+
+### Query Parameters - [pagination](#pagination)
+
+Parameters* | Description |
+--------- | ------- |
+filter-id | the Issues filter id -> showing Issues that are in this filter |
+filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
+display-ids | filter Issues with display-ids (separated by commas) |
+title_exact | filter by Issue name exact match; case sensitive! |
+title_like | filter by Issue name: case insensitive, phrase can be inside the name |
+relationships | shows entities linked to issues, should be equal to true  |
+
+
+
+* none of the parameters are required. If you combine multiple parameters, it will do AND
+You can see examples in the dark area to the right.
 
 
 ## Create an Issue
+```shell
+# create an issue
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/issues.json \
+-d '{"data": { "type": "issues", "attributes": {"title": "one", "author-id": 4370, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
+# create an issue with description and issue type:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/issues.json \
+-d '{"data": { "type": "issues", "attributes": {"title": "TEST Issue", "description": "description", "author-id": 5863, "priority": "2-high", "issue-type": "task"}  } }'
+```
 This endpoint creates an Issue in your project.
 
 ### HTTP Request
@@ -117,37 +126,8 @@ data/attributes/tags | an array of tags | false |
 
 You can find at the [right area](#create-an-Issue) (shell) an example of the request
 
-```shell
-# create an issue
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X POST https://api.practitest.com/api/v2/projects/4566/issues.json \
--d '{"data": { "type": "issues", "attributes": {"title": "one", "author-id": 4370, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
-
-# create an issue with description and issue type:
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X POST https://api.practitest.com/api/v2/projects/4566/issues.json \
--d '{"data": { "type": "issues", "attributes": {"title": "TEST Issue", "description": "description", "author-id": 5863, "priority": "2-high", "issue-type": "task"}  } }'
-```
-
 
 ## Show a specific Issue
-
-This endpoint shows a specific Issue in your project.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID.json`
-
-Here's the example of the JSON request and response
-
-Parameters* | Description |
---------- | ------- |
-relationships | shows entities linked to issues, should be equal to true  |
-
-* none of the parameters are required.
-
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
@@ -182,10 +162,55 @@ https://api.practitest.com/api/v2/projects/4566/issues/45893.json
 }
 }
 ```
+This endpoint shows a specific Issue in your project.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID.json`
+
+Here's the example of the JSON request and response
+
+Parameters* | Description |
+--------- | ------- |
+relationships | shows entities linked to issues, should be equal to true  |
+
+* none of the parameters are required.
+
 
 
 ## Update a specific Issue
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PUT https://api.practitest.com/api/v2/projects/4566/issues/45893.json \
+-d '{"data": { "type": "issues", "attributes": {"priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
+# some more examples:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X PUT https://api.practitest.com/api/v2/projects/4566/issues/98019.json \
+-d '{"data": { "type": "issues", "attributes": {"priority": "2-high", "version": "1.5", "issue-type": "task" }  } }'
+```
+
+```json
+{
+  "data": {
+    "id": "45893",
+    "type": "issues",
+    "attributes": {
+      ...
+      "priority": "highest",
+      "custom-fields": {
+        "---f-22":"my text one",
+        "---f-24": ["ClientA", ["ClientB"]]
+      },
+      ...
+      "created-at": "2015-11-17T09:29:22+00:00",
+      "updated-at": "2015-11-17T09:29:22+00:00"
+    }
+  }
+}
+```
 This endpoint updates a specific Issue.
 
 ### HTTP Request
@@ -210,60 +235,7 @@ data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a 
 
 You can find at the right area an example of the JSON request and response
 
-```shell
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X PUT https://api.practitest.com/api/v2/projects/4566/issues/45893.json \
--d '{"data": { "type": "issues", "attributes": {"priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
-
-# some more examples:
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN  \
--X PUT https://api.practitest.com/api/v2/projects/4566/issues/98019.json \
--d '{"data": { "type": "issues", "attributes": {"priority": "2-high", "version": "1.5", "issue-type": "task" }  } }'
-
-
-```
-
-
-```json
-{
-  "data": {
-    "id": "45893",
-    "type": "issues",
-    "attributes": {
-      ...
-      "priority": "highest",
-      "custom-fields": {
-        "---f-22":"my text one",
-        "---f-24": ["ClientA", ["ClientB"]]
-      },
-      ...
-      "created-at": "2015-11-17T09:29:22+00:00",
-      "updated-at": "2015-11-17T09:29:22+00:00"
-    }
-  }
-}
-```
 ## Update an Issue Status
-
-This endpoint updates an Issue Status.
-
-### HTTP Request
-
-`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/ISSUE_ID/update_status.json`
-
-### Parameters
-
-Parameters | Description | Required?
---------- | ------- |------- |
-data/attributes/status-name | issue transition status from the Workflow | true |
-data/attributes/user-id* | user id (not Display ID) - [users list](#users)  | true |
-
-* Please note that user-id should be ID of a user who can perform the relevant issue transition according to the Project Workflow.
-
-You can find at the right area an example of the JSON request and response
-
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
@@ -302,20 +274,34 @@ curl -H "Content-Type:application/json" \
   }
 }
 ```
+This endpoint updates an Issue Status.
+
+### HTTP Request
+
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/ISSUE_ID/update_status.json`
+
+### Parameters
+
+Parameters | Description | Required?
+--------- | ------- |------- |
+data/attributes/status-name | issue transition status from the Workflow | true |
+data/attributes/user-id* | user id (not Display ID) - [users list](#users)  | true |
+
+* Please note that user-id should be ID of a user who can perform the relevant issue transition according to the Project Workflow.
+
+You can find at the right area an example of the JSON request and response
+
 
 ## Delete a specific Issue
-
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X DELETE https://api.practitest.com/api/v2/projects/4566/issues/45893.json
+```
 This endpoint deletes a specific Issue.
 
 ### HTTP Request
 
 `DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID.json`
 
-
 You can find at the right area an example of the JSON request and response
-
-```shell
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X DELETE https://api.practitest.com/api/v2/projects/4566/issues/45893.json
-```
