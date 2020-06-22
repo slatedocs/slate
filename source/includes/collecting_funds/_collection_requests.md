@@ -875,5 +875,5 @@ You can search or filter collection requests on the following fields. Simply add
 * status - only return collection requests that have this status (one of: pending, instructions_sent, successful, failed, expired, reversed)
 * reason - only return collection requests that have this reason text
 * network - only return collection requests that are for this mobile phone network
-* contact first name - only return collection requests that have this first name in the contact (E.g. James)
-* contact last name - only return collection requests that have this last name in the contact (E.g. Doe)
+* contact_first_name - only return collection requests that have this first name in the contact (E.g. James)
+* contact_last_name - only return collection requests that have this last name in the contact (E.g. Doe)

@@ -706,8 +706,8 @@ You can search or filter collections on the following fields. Simply add them to
 * modified_before - only return collections modified before this date (E.g. 2020-01-01 00:00)
 * status - only return collections that have this status (one of: pending, reversed, reversed_on_network, successful, failed, cashed_out, expired)
 * network - only return collections that are for this mobile phone network
-* contact first name - only return collections that have this first name in the contact (E.g. James)
-* contact last name - only return collections that have this last name in the contact (E.g. Doe)
+* contact_first_name - only return collections that have this first name in the contact (E.g. James)
+* contact_last_name - only return collections that have this last name in the contact (E.g. Doe)
 
 **Response**
 
