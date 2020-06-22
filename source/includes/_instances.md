@@ -2,27 +2,6 @@
 
 ## GET all instances in your project
 
-This endpoint retrieves all instances.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Parameters* | Description |
---------- | ------- |
-set-filter-id | the testSet's filter id -> showing instances of TestSets which are in this filter |
-set-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
-test-ids | filter instances that are related to a certain test_id (NOT display-id!) |
-set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
-name_exact | filter by instance name exact match; case sensitive! |
-name_like | filter by instance name: case insensitive, phrase can be inside the name |
-display-id | filter instances based on an instance display-id (can be used to convert display to system id) |
-
-* none of the parameters are required. If you combine multiple parameters, it will do AND
-You can see examples in the dark area to the right.
-
 ```shell
 # Some request examples:
 
@@ -115,8 +94,42 @@ https://api.practitest.com/api/v2/projects/4566/instances.json?test-ids=1111&set
 }
 ```
 
+This endpoint retrieves all instances.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances.json`
+
+### Query Parameters - [pagination](#pagination)
+
+Parameters* | Description |
+--------- | ------- |
+set-filter-id | the testSet's filter id -> showing instances of TestSets which are in this filter |
+set-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
+test-ids | filter instances that are related to a certain test_id (NOT display-id!) |
+set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
+name_exact | filter by instance name exact match; case sensitive! |
+name_like | filter by instance name: case insensitive, phrase can be inside the name |
+display-id | filter instances based on an instance display-id (can be used to convert display to system id) |
+
+* none of the parameters are required. If you combine multiple parameters, it will do AND
+You can see examples in the dark area to the right.
+
 
 ## Create an instance
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/instances.json \
+-d '{"data": { "type": "instances", "attributes": {"test-id": 233, "set-id": 33, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+
+# example with creating multiple instances
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4520/instances.json \
+-d '{"data": [{ "type": "instances", "attributes": {"test-id": 72926, "set-id": 22140}}, { "type": "instances", "attributes": {"test-id": 72927, "set-id": 22140}}, { "type": "instances", "attributes": {"test-id": 72927, "set-id": 22141}}]}'
+```
 
 This endpoint creates an instance in your project.
 
@@ -140,30 +153,9 @@ data/attributes/custom-fields | a hash of custom-fields with their value | false
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
 
-```shell
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X POST https://api.practitest.com/api/v2/projects/4566/instances.json \
--d '{"data": { "type": "instances", "attributes": {"test-id": 233, "set-id": 33, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
-
-# example with creating multiple instances
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X POST https://api.practitest.com/api/v2/projects/4520/instances.json \
--d '{"data": [{ "type": "instances", "attributes": {"test-id": 72926, "set-id": 22140}}, { "type": "instances", "attributes": {"test-id": 72927, "set-id": 22140}}, { "type": "instances", "attributes": {"test-id": 72927, "set-id": 22141}}]}'
-```
-
 
 
 ## Show a specific instance
-
-This endpoint shows a specific instance in your project.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
-
-Here's the example of the JSON request and response
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -202,27 +194,16 @@ https://api.practitest.com/api/v2/projects/4566/instances/45893.json
 }
 ```
 
-
-## Update a specific instance
-
-This endpoint updates a specific instance.
+This endpoint shows a specific instance in your project.
 
 ### HTTP Request
 
-`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
 
-### Parameters
-
-Available parameters | Description |
---------- | ------- |
-data/attributes/planned-execution | date field of planned-execution |
-data/attributes/version | string of instance version |
-data/attributes/priority | string of instance priority |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
-data/attributes/custom-fields | a hash of custom-fields with their value |
+Here's the example of the JSON request and response
 
 
-You can find at the right area an example of the JSON request and response
+## Update a specific instance
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -240,8 +221,6 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
 -X PUT https://api.practitest.com/api/v2/projects/4566/instances/98019.json \
 -d '{"data": { "type": "instances", "attributes": {"version": "1.5", "custom-fields": { "---f-45390": "Chrome"}}  } }'
-
-
 
 ```
 
@@ -267,7 +246,32 @@ curl -H "Content-Type:application/json" \
 }
 ```
 
+This endpoint updates a specific instance.
+
+### HTTP Request
+
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/instances/YOUR_INSTANCE_ID.json`
+
+### Parameters
+
+Available parameters | Description |
+--------- | ------- |
+data/attributes/planned-execution | date field of planned-execution |
+data/attributes/version | string of instance version |
+data/attributes/priority | string of instance priority |
+data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
+data/attributes/custom-fields | a hash of custom-fields with their value |
+
+
+You can find at the right area an example of the JSON request and response
+
 ## Delete a specific instance
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X DELETE https://api.practitest.com/api/v2/projects/4566/instances/45893.json
+```
 
 This endpoint deletes a specific instance.
 
@@ -277,9 +281,3 @@ This endpoint deletes a specific instance.
 
 
 You can find at the right area an example of the JSON request and response
-
-```shell
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X DELETE https://api.practitest.com/api/v2/projects/4566/instances/45893.json
-```
