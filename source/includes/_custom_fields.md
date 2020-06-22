@@ -2,18 +2,6 @@
 
 ## GET all custom fields in your project
 
-This endpoint retrieves all custom fields.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Here's the example of the JSON request and response that you may get when submitting a GET request
-
-Remember, you can see examples in the dark area to the right.
-
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
@@ -75,15 +63,21 @@ https://api.practitest.com/api/v2/projects/4566/custom_fields.json
   }
 }
 ```
-## GET a specific custom field in your project
 
-This endpoint retrieves a specific custom field.
+This endpoint retrieves all custom fields.
 
 ### HTTP Request
 
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields.json`
+
+### Query Parameters - [pagination](#pagination)
 
 Here's the example of the JSON request and response that you may get when submitting a GET request
+
+Remember, you can see examples in the dark area to the right.
+
+
+## GET a specific custom field in your project
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -114,26 +108,16 @@ https://api.practitest.com/api/v2/projects/4566/custom_fields/45893.json
   }
 }
 ```
-## PUT a specific custom field in your project
-
-This endpoint updates a specific custom field.
+This endpoint retrieves a specific custom field.
 
 ### HTTP Request
 
-`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
 
-### Query Parameters - [pagination](#pagination)
+Here's the example of the JSON request and response that you may get when submitting a GET request
 
-Parameter | Description |
---------- | ------- |
-data/attributes/name | the name of a custom field |
-data/attributes/possible-values | values that can be set for a custom field |
-data/attributes/parent-list-id | the id of a parent list that can be set for a "linked list" custom field
-data/attributes/possible-values-parent-cf-id | the id of an existing list where you can take values for a custom field
 
-Here's the example of the JSON request and response that you may get when submitting a PUT request
-
-Remember, you can see examples in the dark area to the right.
+## PUT a specific custom field in your project
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -163,3 +147,23 @@ curl -H "Content-Type:application/json" \
     }
   }
 }
+```
+
+This endpoint updates a specific custom field.
+
+### HTTP Request
+
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/custom_fields/YOUR_CUSTOM_FIELD_ID.json`
+
+### Query Parameters - [pagination](#pagination)
+
+Parameter | Description |
+--------- | ------- |
+data/attributes/name | the name of a custom field |
+data/attributes/possible-values | values that can be set for a custom field |
+data/attributes/parent-list-id | the id of a parent list that can be set for a "linked list" custom field
+data/attributes/possible-values-parent-cf-id | the id of an existing list where you can take values for a custom field
+
+Here's the example of the JSON request and response that you may get when submitting a PUT request
+
+Remember, you can see examples in the dark area to the right.
