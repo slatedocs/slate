@@ -1,28 +1,6 @@
 # Tests
 
 ## GET all tests in your project
-
-This endpoint retrieves all tests.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Parameters* | Description |
---------- | ------- |
-filter-id | the test's filter id -> showing tests that are in this filter of the Test Library |
-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
-display-ids | filter tests with display-ids (separated by commas) |
-name_exact | filter by test name exact match; case sensitive! |
-name_like | filter by test name: case insensitive, phrase can be inside the name |
-relationships | shows entities linked to tests, should be equal to true  |
-
-
-* none of the parameters are required. If you combine multiple parameters, it will do AND
-You can see examples in the dark area to the right.
-
 ```shell
 # Some request examples:
 
@@ -96,9 +74,42 @@ YOUR_TOKEN&developer_email=your_EMAIL&name_like=Issuer3&page%5Bnumber%5D=1&page%
   }
 }
 ```
+This endpoint retrieves all tests.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests.json`
+
+### Query Parameters - [pagination](#pagination)
+
+Parameters* | Description |
+--------- | ------- |
+filter-id | the test's filter id -> showing tests that are in this filter of the Test Library |
+filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
+display-ids | filter tests with display-ids (separated by commas) |
+name_exact | filter by test name exact match; case sensitive! |
+name_like | filter by test name: case insensitive, phrase can be inside the name |
+relationships | shows entities linked to tests, should be equal to true  |
+
+
+* none of the parameters are required. If you combine multiple parameters, it will do AND
+You can see examples in the dark area to the right.
 
 
 ## Create a test
+```shell
+# create a test
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
+-d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": 22, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+
+# create a test with 2 steps:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
+-d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": 22, "priority": "highest"}, "steps": {"data": [{"name": "step one", "description": "Step 1 description", "expected-results": "result"}, {"name": "step two", "expected-results": "result2"}] }}}'
+```
 
 This endpoint creates a test in your project.
 
@@ -128,36 +139,8 @@ To update / view and delete steps, refer to steps resources (to be released)
 
 You can find at the [right area](#create-an-test) (shell) an example of the request
 
-```shell
-# create a test
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
--d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": 22, "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
-
-# create a test with 2 steps:
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
--d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": 22, "priority": "highest"}, "steps": {"data": [{"name": "step one", "description": "Step 1 description", "expected-results": "result"}, {"name": "step two", "expected-results": "result2"}] }}}'
-```
-
 
 ## Show a specific test
-
-This endpoint shows a specific test in your project.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID.json`
-
-Here's the example of the JSON request and response
-
-Parameters* | Description |
---------- | ------- |
-relationships | shows entities linked to tests, should be equal to true  |
-
-* none of the parameters are required.
 
 ```shell
 curl -H "Content-Type:application/json" \
@@ -198,10 +181,61 @@ https://api.practitest.com/api/v2/projects/4566/tests/45893.json
 }
 }
 ```
+This endpoint shows a specific test in your project.
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID.json`
+
+Here's the example of the JSON request and response
+
+Parameters* | Description |
+--------- | ------- |
+relationships | shows entities linked to tests, should be equal to true  |
+
+* none of the parameters are required.
 
 
 ## Update a specific test
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PUT https://api.practitest.com/api/v2/projects/4566/tests/45893.json \
+-d '{"data": { "type": "tests", "attributes": {"planned-execution":"2017-03-01T12:43:31Z", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
+# some more examples:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X PUT https://api.practitest.com/api/v2/projects/4566/tests/98019.json \
+-d '{"data": { "type": "tests", "attributes": {"planned-execution":"2017-03-05T12:43:31Z", "priority": "2-high", "version": "1.5", "custom-fields": { "---f-45510": "5381"}}  } }'
+
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X PUT https://api.practitest.com/api/v2/projects/4566/tests/98019.json \
+-d '{"data": { "type": "tests", "attributes": {"version": "1.5", "custom-fields": { "---f-45390": "Chrome"}}  } }'
+
+```
+
+```json
+{
+  "data": {
+    "id": "45893",
+    "type": "tests",
+    "attributes": {
+      ...
+      "planned-execution": "2017-03-01T12:43:31Z",
+      "priority": "highest",
+      "custom-fields": {
+        "---f-22":"my text one",
+        "---f-24": ["ClientA", ["ClientB"]]
+      },
+      ...
+      "created-at": "2015-11-17T09:29:22+00:00",
+      "updated-at": "2015-11-17T09:29:22+00:00"
+    }
+  }
+}
+```
 This endpoint updates a specific test.
 
 ### HTTP Request
@@ -227,50 +261,14 @@ data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a 
 
 You can find at the right area an example of the JSON request and response
 
+
+## Delete a specific test
+
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
--X PUT https://api.practitest.com/api/v2/projects/4566/tests/45893.json \
--d '{"data": { "type": "tests", "attributes": {"planned-execution":"2017-03-01T12:43:31Z", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
-
-# some more examples:
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN  \
--X PUT https://api.practitest.com/api/v2/projects/4566/tests/98019.json \
--d '{"data": { "type": "tests", "attributes": {"planned-execution":"2017-03-05T12:43:31Z", "priority": "2-high", "version": "1.5", "custom-fields": { "---f-45510": "5381"}}  } }'
-
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN  \
--X PUT https://api.practitest.com/api/v2/projects/4566/tests/98019.json \
--d '{"data": { "type": "tests", "attributes": {"version": "1.5", "custom-fields": { "---f-45390": "Chrome"}}  } }'
-
-
-
+-X DELETE https://api.practitest.com/api/v2/projects/4566/tests/45893.json
 ```
-
-
-```json
-{
-  "data": {
-    "id": "45893",
-    "type": "tests",
-    "attributes": {
-      ...
-      "planned-execution": "2017-03-01T12:43:31Z",
-      "priority": "highest",
-      "custom-fields": {
-        "---f-22":"my text one",
-        "---f-24": ["ClientA", ["ClientB"]]
-      },
-      ...
-      "created-at": "2015-11-17T09:29:22+00:00",
-      "updated-at": "2015-11-17T09:29:22+00:00"
-    }
-  }
-}
-```
-
-## Delete a specific test
 
 This endpoint deletes a specific test.
 
@@ -281,23 +279,8 @@ This endpoint deletes a specific test.
 
 You can find at the right area an example of the JSON request and response
 
-```shell
-curl -H "Content-Type:application/json" \
--u YOUR_EMAIL:YOUR_TOKEN \
--X DELETE https://api.practitest.com/api/v2/projects/4566/tests/45893.json
-```
-
 
 ## Run statuses count
-
-This gives statistics data of run statuses of your project's tests
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/run_statuses_count.json`
-
-You can find at the right area an example of the JSON request and response
-
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
@@ -319,3 +302,10 @@ https://api.practitest.com/api/v2/projects/4566/tests/run_statuses_count.json
   }
 }
 ```
+This gives statistics data of run statuses of your project's tests
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/run_statuses_count.json`
+
+You can find at the right area an example of the JSON request and response
