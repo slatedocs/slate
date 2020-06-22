@@ -19,7 +19,7 @@ includes:
   - projects
   - users
   - attachments
-  - system_fields
+  - project_fields
   - custom_fields
   - requirements
   - requirement_traceability
