@@ -2,30 +2,6 @@
 # Runs
 
 ## GET all runs in your project
-
-This endpoint retrieves all runs.
-
-### HTTP Request
-
-`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json`
-
-### Query Parameters - [pagination](#pagination)
-
-Parameters* | Description |
---------- | ------- |
-test-ids | filters runs that are related to a certain test_id/ids, separated by comma (NOT display-id!) |
-set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
-instance-ids | filter by Instances ids, separated by comma (NOT display-id) |
-run-type: 'AutomatedRun |ManualRun' | filters run by Run Type: Automated or Manual  |
-set-filter-id | the testSet's filter id -> showing runs of TestSets which are in this filter |
-set-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
-updated-hours-ago | showing runs that were updated # hours ago |
-
-
-* None of the parameters are required. You can also combine multiple parameters if needed.
-You can see examples in the dark area to the right.
-
-
 ```shell
 # Some request examples:
 
@@ -102,43 +78,31 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
 }
 ```
 
-## Create a run (Automated Test)
-
-This endpoint upload new run results to your project.
-
-<aside class="notice">This method is for uploading automated Tests results from your CI / Automated Test scripts. It replaces the previous api/v1/automated_tests/upload_test_results.</aside>
+This endpoint retrieves all runs.
 
 ### HTTP Request
 
-`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json`
+`GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json`
 
-### Parameters
+### Query Parameters - [pagination](#pagination)
 
-Parameters | Description | required? |
---------- | ------- |------- |
-data/attributes/instance-id* | Instance id (not display-id) | true |
-data/attributes/exit-code | 0 for passed, otherwise failed | false |
-data/attributes/run-duration | (HH:MM:SS), to update the run duration of a specific instance | false |
-data/attributes/automated-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
-data/attributes/custom-fields | a hash of custom-fields with their value | false |
-data/steps/data** | an array of steps override the exit code | false |
-data/files/data*** | an array of files  | false |
-data/steps/data/files/data**** | an array of files | false
-
-
-* Users can update 20 instances (maximum) with results by sending one request. See a curl example in the dark area to the right.
-
-** Steps array includes steps json hash, with these attributes: name, description, expected-results, actual-results, status.
-Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A
-When using steps, the exit-code is ignored, and it calculates it according to the steps status.
-
-*** Files would be as attachments in your automated test runs. It's a json hash that has two attributes: filename, and content_encoded.
-We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, Ruby example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank"> here</a>, Python version 2 example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank"> here</a>, Python version 3 example <a
-href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank"> here</a>, Java example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank"> here</a>, C sharp (.Net) example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank"> here</a>.
-
-**** This parameter allows to attach files to specific step/s.
+Parameters* | Description |
+--------- | ------- |
+test-ids | filters runs that are related to a certain test_id/ids, separated by comma (NOT display-id!) |
+set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
+instance-ids | filter by Instances ids, separated by comma (NOT display-id) |
+run-type: 'AutomatedRun |ManualRun' | filters run by Run Type: Automated or Manual  |
+set-filter-id | the testSet's filter id -> showing runs of TestSets which are in this filter |
+set-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
+updated-hours-ago | showing runs that were updated # hours ago |
 
 
+* None of the parameters are required. You can also combine multiple parameters if needed.
+You can see examples in the dark area to the right.
+
+
+
+## Create a run (Automated Test)
 ```shell
 # upload test results with a file attachment
 curl -H "Content-Type:application/json" \
@@ -182,3 +146,38 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
 -X POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json \
 -d '{"data": [{ "type": "instances", "attributes": {"instance-id": 105716, "exit-code": 0, "automated-execution-output": "THIS IS MY OUTPUT"}}, { "type": "instances", "attributes": {"instance-id": 105717, "exit-code": 0, "automated-execution-output": "THIS IS MY OUTPUT"}}]}'
+```
+
+This endpoint upload new run results to your project.
+
+<aside class="notice">This method is for uploading automated Tests results from your CI / Automated Test scripts. It replaces the previous api/v1/automated_tests/upload_test_results.</aside>
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json`
+
+### Parameters
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+data/attributes/instance-id* | Instance id (not display-id) | true |
+data/attributes/exit-code | 0 for passed, otherwise failed | false |
+data/attributes/run-duration | (HH:MM:SS), to update the run duration of a specific instance | false |
+data/attributes/automated-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
+data/attributes/custom-fields | a hash of custom-fields with their value | false |
+data/steps/data** | an array of steps override the exit code | false |
+data/files/data*** | an array of files  | false |
+data/steps/data/files/data**** | an array of files | false
+
+
+* Users can update 20 instances (maximum) with results by sending one request. See a curl example in the dark area to the right.
+
+** Steps array includes steps json hash, with these attributes: name, description, expected-results, actual-results, status.
+Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A
+When using steps, the exit-code is ignored, and it calculates it according to the steps status.
+
+*** Files would be as attachments in your automated test runs. It's a json hash that has two attributes: filename, and content_encoded.
+We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, Ruby example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank"> here</a>, Python version 2 example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank"> here</a>, Python version 3 example <a
+href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank"> here</a>, Java example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank"> here</a>, C sharp (.Net) example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank"> here</a>.
+
+**** This parameter allows to attach files to specific step/s.
