@@ -136,7 +136,6 @@ curl -X POST \
 ```json
 {
 	"name": "vpc-name",
-	"autoCreateSubnetworks": false,
 	"subnetName": "subnet-name",
 	"subnetShortRegion": "northamerica-northeast1",
 	"subnetIpCidrRange": "10.0.0.0/20"
@@ -155,7 +154,6 @@ Required in auto mode | &nbsp;
 Required in custom mode | &nbsp;
 ----------------------- | -----------
 `name`<br/>*string* | The display name of the network.
-`autoCreateSubnetworks`<br/>*boolean* | Whether subnets will be automatically created for each region.
 `subnetName`<br/>*string* | The display name of the subnet.
 `subnetShortRegion`<br/>*string* | A short version of the region name of the subnet.
 `subnetIpCidrRange`<br/>*string* | The CIDR IP range of the subnet.
