@@ -22,3 +22,6 @@ build/
 _yardoc
 doc/
 .idea/
+
+# Docker override
+docker-compose.override.yml 

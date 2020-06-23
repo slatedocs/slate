@@ -44,8 +44,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/38.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 19,
@@ -74,8 +76,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/38.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 12,
@@ -114,8 +118,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 32,
-					"name": "",
-					"image": ""
+					"name": "Inc.",
+					"image": "/shot/p/sq/32.png",
+					"favicon": "",
+                    "url": "inc.com"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -144,6 +150,10 @@ offset (optional) | integer | starting from
 
 <aside class="success">
 Returns — Matrix of Playlist Models - all playlists belonging to a user grouped by types
+</aside>
+
+<aside class="notice">
+The playlists of type "nexRex" (method playlist.FetchNexRexPlaylists) and "algorithm" (method playlist.FetchBifrostPlaylists) can take few seconds to be generated after the user profile is updated
 </aside>
 
 ### Errors
@@ -205,8 +215,10 @@ curl --data-binary '{"id":"5","method":"playlist.FetchFavouritePlaylist","jsonrp
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 31,
-					"name": "",
-					"image": ""
+					"name": "Inc.",
+					"image": "/shot/p/sq/31.png",
+					"favicon": "",
+                    "url": "hbr.org"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -289,8 +301,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "js
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 19,
@@ -319,8 +333,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "js
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 12,
@@ -359,8 +375,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "js
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 32,
-					"name": "",
-					"image": ""
+					"name": "Inc.",
+					"image": "/shot/p/sq/32.png",
+					"favicon": "",
+                    "url": "inc.com"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -444,8 +462,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylist", "par
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 4,
-					"name": "",
-					"image": ""
+					"name": "BBC",
+					"image": "/shot/p/sq/4.png",
+					"favicon": "",
+                    "url": "bbc.co.uk"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -477,8 +497,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylist", "par
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 31,
-					"name": "",
-					"image": ""
+					"name": "Harvard Business Review",
+					"image": "/shot/p/sq/31.png",
+					"favicon": "",
+                    "url": "hbr.org"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -564,8 +586,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 19,
@@ -594,8 +618,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 12,
@@ -634,8 +660,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 32,
-					"name": "",
-					"image": ""
+					"name": "Inc.",
+					"image": "/shot/p/sq/32.png",
+					"favicon": "",
+                    "url": "inc.com"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -719,8 +747,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchNexRexPlaylists", "jsonrp
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 19,
@@ -749,8 +779,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchNexRexPlaylists", "jsonrp
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 12,
@@ -789,8 +821,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchNexRexPlaylists", "jsonrp
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 32,
-					"name": "",
-					"image": ""
+					"name": "Inc.",
+					"image": "/shot/p/sq/32.png",
+					"favicon": "",
+                    "url": "inc.com"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -874,8 +908,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonr
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 19,
@@ -904,8 +940,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonr
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 12,
@@ -944,9 +982,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonr
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 32,
-					"name": "",
-					"image": "",
-				    "favicon": "",
+					"name": "Inc.",
+					"image": "/shot/p/sq/32.png",
+					"favicon": "",
+                    "url": "inc.com"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -1030,8 +1069,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 19,
@@ -1060,8 +1101,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 56,
-					"name": "",
-					"image": ""
+					"name": "TED",
+					"image": "/shot/p/sq/56.png",
+					"favicon": "",
+                    "url": "ted.com"
 				},
 				"competencyList": [{
 					"id": 12,
@@ -1100,8 +1143,10 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 				"restrictionLabel": "Free",
 				"provider": {
 					"id": 32,
-					"name": "",
-					"image": ""
+					"name": "Inc.",
+					"image": "/shot/p/sq/32.png",
+					"favicon": "",
+                    "url": "inc.com"
 				},
 				"competencyList": [{
 					"id": 1,
@@ -1237,8 +1282,10 @@ curl --data-binary '{"id":"5","method":"playlist.GetAsset","params":{"id":319},"
 		"restrictionLabel": "Free",
 		"provider": {
 			"id": 31,
-			"name": "",
-			"image": ""
+			"name": "Harvard Business Review",
+			"image": "/shot/p/sq/31.png",
+			"favicon": "",
+			"url": "hbr.org"
 		},
 		"competencyList": [{
 			"id": 1,

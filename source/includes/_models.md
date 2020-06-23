@@ -49,9 +49,10 @@ refresh_token | string | Token used to generate a new JWT token
 	"restrictionLabel": "Free",
 	"provider": {
 		"id": 310,
-		"name": "",
+		"name": "Scientific American",
 		"image": "/shot/p/sq/310.png",
-		"favicon": ""
+		"favicon": "",
+        "url": "https://www.scientificamerican.com"
 	},
 	"competencyList": [{
 		"id": 21,
