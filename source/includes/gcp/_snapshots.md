@@ -57,7 +57,7 @@ Retrieve a list of all snapshots.
 
 Attributes | &nbsp;
 ------- | -----------
-`description` <br/>*string* | The snapshot description
+`description` <br/>*string* | The snapshot description.
 `creationTimestamp` <br/>*string* | Creation timestamp in RFC3339 text format.
 `status` <br/>*string* | The status of the snapshot. One of the following values: CREATING, DELETING, FAILED, READY, or UPLOADING.
 `sourceDisk` <br/>*string* | The source disk used to create this snapshot.
@@ -83,7 +83,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/7059283128121212212"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/snapshots/7059283128121212212"
 ```
 > The above command returns a JSON structured like this:
 
@@ -126,7 +126,7 @@ Retrieve a specific snapshot by id.
 
 Attributes | &nbsp;
 ------- | -----------
-`description` <br/>*string* | The snapshot description
+`description` <br/>*string* | The snapshot description.
 `creationTimestamp` <br/>*string* | Creation timestamp in RFC3339 text format.
 `status` <br/>*string* | The status of the snapshot. One of the following values: CREATING, DELETING, FAILED, READY, or UPLOADING.
 `sourceDisk` <br/>*string* | The source disk used to create this snapshot.
