@@ -22,7 +22,13 @@ Beyonic::setApiKey('ab594c14986612f6167a975e1c369e71edab6900');
 import beyonic
 beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 ```
+```java
+package com.beyonic;
 
+import com.beyonic.Beyonic;
+
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
+```
 All requests must use [https](http://en.wikipedia.org/wiki/HTTP_Secure).
 
 The Beyonic API uses Token Based Authentication, and requires an API key for authentication. You can generate or change your API key by logging into your account. Keep your API key secret to maintain the integrity of your account.

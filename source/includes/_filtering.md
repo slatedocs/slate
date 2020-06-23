@@ -35,6 +35,17 @@ contacts = beyonic.Contact.list(first_name='tom')
 
 ```
 
+```java
+package com.beyonic.examples;
+
+import com.beyonic.models.Contact;
+
+HashMap<String, String> contactFilter = new HashMap<>();
+contactFilter.put("first_name", "Jerry");
+response = new Contact().filter(contactFilter, null);
+System.out.println(response);
+```
+
 Most Beyonic API methods support a way to retrieve a list of records or a single record. For example, you can retrieve a list of contacts or a single contact.
 
 When retrieving a list or a single record, you can limit the results to records where a given field matches specific search criteria. To do this, add the  keyword to your request as shown in the examples.

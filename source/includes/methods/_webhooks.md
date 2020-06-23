@@ -166,72 +166,24 @@ hook = beyonic.Webhook.create(event='payment.status.changed',
 ```
 
 ```java
-package com.beyonic.examples.webhooks;
+package com.beyonic.samples;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class CreateWebhookExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/webhooks";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-    private static final String EVENT = "payment.status.changed";
-    private static final String TARGET = "https://my.callback.url/";
-
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-
-            JSONObject contact = createWebhookObject();
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            out.write(contact.toString());
-            out.close();
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            int beyID = 0;
-            try {
-                if (conn.getResponseCode() == 201) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    JSONObject obj = new JSONObject(response);
-                    beyID = obj.getInt("id");
-                    System.out.println("ID of created Webhook: " + beyID);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static JSONObject createWebhookObject() throws JSONException {
-        JSONObject webhook = new JSONObject();
-        webhook.put("event",EVENT);
-        webhook.put("target",TARGET);
-        return webhook;
-    }
+try{
+    HashMap<String, Object> data = new HashMap<>();
+    data.put("event", "payment.status.changed");
+    data.put("target", "https://my.callback.url/");
+    response = new Webhook().create(data, null);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 
@@ -293,52 +245,22 @@ hook = beyonic.Webhook.get(23)
 ```
 
 ```java
-package com.beyonic.examples.webhooks;
+package com.beyonic.samples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class SingleWebhookExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/webhooks";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "/1");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+   
+    response = new Webhook().get(123);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 
 ```
@@ -395,51 +317,21 @@ hooks = beyonic.Webhook.list()
 ```
 
 ```java
-package com.beyonic.examples.webhooks;
+package com.beyonic.samples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
-public class ListAllWebhooksExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/webhooks";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    response = new Webhook().list(null, null);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 
@@ -531,69 +423,24 @@ hook.save()
 ```
 
 ```java
-package com.beyonic.examples.webhooks;
+package com.beyonic.samples;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
+String response = null;
 
-public class UpdateWebhookExample {
-
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/webhooks";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-    private static final String EVENT = "payment.status.changed";
-    private static final String TARGET = "https://my.callback.url/";
-
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "/503");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            out.write(webhookObject().toString());
-            out.close();
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static JSONObject webhookObject() throws JSONException {
-        JSONObject webhook = new JSONObject();
-        webhook.put("event",EVENT);
-        webhook.put("target",TARGET);
-        return webhook;
-    }
-
+try{
+    HashMap<String, Object> data = new HashMap<>();
+    data.put("id", 123);
+    data.put("target", "https://new.my.callback.url/");
+    response = new Webook().update(contactData, null);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 
@@ -645,40 +492,21 @@ beyonic.Webhook.delete(11)
 ```
 
 ```java
-package com.beyonic.examples.webhooks;
+package com.beyonic.samples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class DeleteWebhookExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/webhooks";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "/502");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-            conn.setRequestMethod("DELETE");
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    response = new Webook().delete(123);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 
@@ -721,51 +549,23 @@ hooks = beyonic.Webhook.list(user=1)
 ```
 
 ```java
-package com.beyonic.examples.webhooks;
+package com.beyonic.samples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
-public class FilterWebhooksExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/webhooks";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "?user=12");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    HashMap<String, String> filterValues = new HashMap<>();
+    filterValues.put("user", "1");
+    response = new Webook().filter(filterValues, null);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 

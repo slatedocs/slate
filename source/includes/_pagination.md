@@ -41,6 +41,19 @@ contacts = beyonic.Contact.list(limit='10',
 
 ```
 
+```java
+package com.beyonic.examples;
+
+import com.beyonic.models.Contact;
+
+HashMap<String, String> paginationDetails = new HashMap<>();
+paginationDetails.put("limit", "10");
+paginationDetails.put("offset", "5");
+response = new Contact().filter(paginationDetails, null);
+System.out.println(response);
+
+```
+
 Most Beyonic API methods support a way to retrieve a list of records. For example, you can retrieve a list of contacts.
 
 When retrieving a list, you can control the number of records returned by adding two parameters to your request:
