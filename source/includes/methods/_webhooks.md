@@ -776,11 +776,7 @@ You can search or filter webhooks on the following fields. Simply add them to yo
 
 
 ## Authorization of Webhooks
-
-When web hooks are sent, there’s an option to send verification details in the web hook for your server or application to verify that the web hook actually originates from Beyonic.
-Currently we support the HTTPBasicAuth scheme. 
-You provide us with the username and password for the web hook in the Beyonic Web when creating a new web hook. 
-We include these in `Authorization` Header in the requests to your server which will contain data such as `Basic abcdefghsijklm`. 
-You can use this to authenticate the request.
+You can optionally set HTTPBasicAuth authorization for your webhooks to verify that they come from Beyonic. To enable this, privately send the username and password you want to use for the callback verification to tech@beyonic.com and we will set this up for you.
+Once set up we will include an `Authorization` Header in the requests to your notiication endpoint with a value like `Basic YWFzZGZhc2RmOmJhc2RmYWRmYXNkZmFzZGY=`. You can use this to authenticate the request.
 
 If no Authentication details were provided during creation then no Authorization Header will be sent.
