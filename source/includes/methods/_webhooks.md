@@ -773,3 +773,10 @@ You can search or filter webhooks on the following fields. Simply add them to yo
 
 * user - the ID of the user who created the webhook. Note that only users within your organization will be matched.
 * event - the webhook event
+
+
+## Authorization of Webhooks
+You can optionally set HTTPBasicAuth authorization for your webhooks to verify that they come from Beyonic. To enable this, privately send the username and password you want to use for the callback verification to tech@beyonic.com and we will set this up for you.
+Once set up we will include an `Authorization` Header in the requests to your notiication endpoint with a value like `Basic YWFzZGZhc2RmOmJhc2RmYWRmYXNkZmFzZGY=`. You can use this to authenticate the request.
+
+If no Authentication details were provided during creation then no Authorization Header will be sent.
