@@ -71,6 +71,7 @@ includes:
   - gcp/disks
   - gcp/ssh_keys
   - gcp/health_checks
+  - gcp/snapshots
   - gcp/networking # Networking section
   - gcp/networks
   - gcp/firewall_rules
