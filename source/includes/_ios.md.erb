@@ -67,6 +67,11 @@ Can be used to pass the scheme name of the host app. This allows for more robust
 
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
 
+#### eventCallbacks
+`eventCallbacks: [String: (_ event: [String: Any]) -> Void]? = nil`
+
+Used in conjunction with the Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
+
 #### greeting
 `greeting: String = ""`
 
