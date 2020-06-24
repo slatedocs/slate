@@ -1967,7 +1967,7 @@ id|The Intelex UID of the object record being accessed
 
 ### Downloading Merge Documents
 
-> Example Requests
+> Example Request
 
 ```javascript
 var request = require("request");
@@ -1991,7 +1991,7 @@ request.AddHeader("accept", "application/octet-stream");
 IRestResponse response = client.Execute(request);
 ```
 
-> Example Responses
+> Example Response - including the 'accept' header parameter, the response will be the binary contents of the dynamically generated document file.
 
 By including the 'accept' header parameter, the response will be the binary contents of the dynamically generated document file.
 
@@ -1999,6 +1999,7 @@ By including the 'accept' header parameter, the response will be the binary cont
 PK �Y�P����.customXml/item1.xml�ZYo�8~_` ...
 ```
 
+> Example Response - without the 'accept' header, the response will be the metadata for the requested merge template record.
 
 Without the 'accept' header, the response will be the metadata for the requested merge template record.
 
