@@ -84,6 +84,9 @@ name_like | filter by TestSet name: case insensitive, phrase can be inside the n
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
 
+### PAT Support
+Supported - if the user has the permissions to view Runs / TestSets
+
 
 ## Create a TestSet
 ```shell
@@ -123,6 +126,9 @@ data/attributes/tags | an array of tags | false |
 
 
 You can find at the [right area](#create-a-Test-Set) (shell) an example of the request
+
+### PAT Support
+Supported - if the user has the permissions to run Tests, view and edit Instances / TestSets
 
 
 ## Show a specific TestSet
@@ -169,6 +175,9 @@ This endpoint shows a specific TestSet in your project.
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/sets/YOUR_SET_ID.json`
 
 Here's the example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to view Runs / TestSets
 
 
 ## Update a specific TestSet
@@ -232,6 +241,9 @@ data/attributes/tags | an array of tags | false |
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to run Tests, view and edit Instances / TestSets
+
 
 ## Delete a specific TestSet
 
@@ -248,6 +260,9 @@ This endpoint deletes a specific TestSet.
 
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to delete Instances / TestSets (Runs - Admin)
 
 
 ## Clone a TestSet
@@ -305,3 +320,6 @@ data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/tags | an array of tags | false |
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to run Tests, view and edit Instances / TestSets

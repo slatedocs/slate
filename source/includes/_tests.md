@@ -95,6 +95,9 @@ relationships | shows entities linked to tests, should be equal to true  |
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
 
+### PAT Support
+Supported - if the user has the permissions to view Tests
+
 
 ## Create a test
 ```shell
@@ -122,7 +125,7 @@ This endpoint creates a test in your project.
 Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/name | name | true |
-data/attributes/author-id | user-id of author - [users list](#users) | true |
+data/attributes/author-id | user-id of author - [users list](#users) | true (unless using PAT) |
 data/attributes/description | Test description | false |
 data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
 data/attributes/planned-execution | date field of planned-execution | false |
@@ -139,6 +142,11 @@ To update / view and delete steps, refer to steps resources (to be released)
 
 You can find at the [right area](#create-an-test) (shell) an example of the request
 
+
+### PAT Support
+Supported - if the user has the permissions to create Tests.
+
+The "author-id" parameter is not required, and can only be used (and override PAT user) if it has "impersonation" enabled
 
 ## Show a specific test
 
@@ -194,6 +202,9 @@ Parameters* | Description |
 relationships | shows entities linked to tests, should be equal to true  |
 
 * none of the parameters are required.
+
+### PAT Support
+Supported - if the user has the permissions to view Tests
 
 
 ## Update a specific test
@@ -261,6 +272,13 @@ data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a 
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Tests.
+
+History of a change by PAT user will be created automatically.
+
+The "updated-by-user-id" parameter can only be used (and override PAT user) if it has "impersonation" enabled.
+
 
 ## Delete a specific test
 
@@ -278,6 +296,9 @@ This endpoint deletes a specific test.
 
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to delete Tests.
 
 
 ## Run statuses count
@@ -309,3 +330,6 @@ This gives statistics data of run statuses of your project's tests
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/run_statuses_count.json`
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to view Tests
