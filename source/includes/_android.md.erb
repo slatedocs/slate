@@ -45,13 +45,13 @@ To integrate the SDK, first add the following code to the project level `build.g
 > If your project has artifacts within the AndroidX namespace, use:
 
 ```groovy
-implementation 'support.ada.embed:android-sdk-appcompat:1.2.1'
+implementation 'support.ada.embed:android-sdk-appcompat:1.3.0'
 ```
 
 > If your project uses Android Support Library, use:
 
 ```groovy
-implementation 'support.ada.embed:android-sdk-appcompat-legacy:1.2.1'
+implementation 'support.ada.embed:android-sdk-appcompat-legacy:1.3.0'
 ```
 
 > Be sure to get the latest version at https://bintray.com/beta/#/adasupport/Android-SDK?tab=packages.
@@ -192,6 +192,33 @@ Using the SDK, you can configure the initial chat settings for greater customiza
 
 #### cluster
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
+
+#### eventCallback
+```kotlin
+val eventCallback: (event: Event) -> Unit = {
+    //some action with event
+}
+
+adaView.addEventCallback("event_name", eventCallback)
+```
+
+> Or, you can omit event name to use as a generic event:
+
+```kotlin
+adaView.addEventCallback(callback = eventCallback)
+```
+
+> To remove callbacks:
+
+```kotlin
+adaView.removeEventCallback(eventCallback) // Remove a specific callback
+// Or...
+adaView.removeEventCallbacks("event_name") // Remove all callback associated with an event name
+// Or...
+adaView.removeEventCallbacks() // Remove all callbacks
+```
+
+Used in conjunction with the Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
 
 #### greeting
 This can be used to customize the greeting messages that new users see. This is useful for setting view-specific greetings across your app. The greeting should correspond to the ID of the Answer you would like to use. The ID can be found in the URL of the corresponding Answer in the dashboard.
