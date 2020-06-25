@@ -103,8 +103,8 @@ Create a SAML settings. This can only be invoke at the initial setup. It cannot 
 
 Required | &nbsp;
 ---------- | -----------
-`certificate`<br/>*string* | The certificate send in the saml response for the service provider to validate the signature.
-`privateKey`<br/>*string* | The private key used to sign the SAML request.
+`certificate`<br/>*string* | The certificate send in the saml response for the service provider to validate the signature. It must use the SHA-256 algorithm.
+`privateKey`<br/>*string* | The private key used to sign the SAML request. It must be an RSA key of 2048 bits
 
 
 <!-------------------- UPDATE SAML SETTINGS -------------------->
@@ -144,5 +144,5 @@ Updates a specific SAML settings
 
 Required | &nbsp;
 ---------- | -----------
-`certificate`<br/>*string* | The certificate send in the saml response for the service provider to validate the signature.
-`privateKey`<br/>*string* | The private key used to sign the SAML request.
+`certificate`<br/>*string* | The certificate send in the saml response for the service provider to validate the signature. It must use the SHA-256 algorithm.
+`privateKey`<br/>*string* | The private key used to sign the SAML request. It must be an RSA key of 2048 bits
