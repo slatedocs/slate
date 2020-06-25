@@ -288,10 +288,10 @@ The post params posted at any update in a particular leads are as follows
 - `Fresh` - Any lead that is available in the pool for all the agents to Claim \n
 - `Claimed` - When a particular lead is claimed by an agent \n
 - `Interest` - When marked as interested by an agent \n
-- `Meeting Done` - When a F2F event has been completed  or the agent moved to meeting done \n
-- `Visit Done` - When a Site Visit event has been completed or the agent moves to meeting done or lead is captured via `Site Digitalization` (to get this impletemented contact Anarock PoC) \n
-- `Final Negotitaion` - When a visit is marked as Final Negotiation by Agent \n
-- `Booking Done` - When moved into Booking Done \n
+- `Meeting done` - When a F2F event has been completed  or the agent moved to meeting done \n
+- `Visit done` - When a Site Visit event has been completed or the agent moves to meeting done or lead is captured via `Site Digitalization` (to get this impletemented contact Anarock PoC) \n
+- `Final negotitaion` - When a visit is marked as Final Negotiation by Agent \n
+- `Booking done` - When moved into Booking Done \n
 - `Fail` - When marked as Failed
 - `Junk` - When marked as Junk 
 - `In Call Center` - When lead is sent to call center
