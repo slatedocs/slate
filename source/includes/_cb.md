@@ -408,6 +408,7 @@ old_business_name |
 old_lookup_data	| For e.g, old postcode
 is_public | Publish reports on a white label URL. Y or N.
 campaign_notes | Notes for any issues & concerns which you want our submission team to be aware of when they submit to directories
+white_label_profile_id | Id of existing White Label Profile
 
 ## Upload Image
 
