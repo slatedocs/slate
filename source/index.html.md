@@ -126,6 +126,7 @@ includes:
   - rtc_online_status
   - force_connection
   - get_repair
+  - suggest_energy_limit
 
   - product_data
 
