@@ -67,46 +67,6 @@ Attributes | &nbsp;
 `privateKey`<br/>*string* | The private key used to sign the SAML request.
 
 
-<!-------------------- CREATE SAML SETTINGS -------------------->
-
-#### Create SAML settings
-
-`POST /saml_settings`
-
-```shell
-# Creates a new SAML setting
-curl -X POST "https://cloudmc_endpoint/rest/saml_settings" \
-   -H "MC-Api-Key: your_api_key"
-```
-
-> Request body example:
-
-```js
-{
-    "certificate": "certificate value",
-    "privateKey":  "private key value"
-}
-```
-> The above command return JSON structured like this:
-
-```js
-{
-  "data": {
-    "id": "04b77783-516f-4064-a6df-e7f9cae222c1",
-    "certificate": "certificate value",
-    "privateKey":  "private key value"
-  }
-}
-```
-
-Create a SAML settings. This can only be invoke at the initial setup. It cannot have more than one setting.
-
-Required | &nbsp;
----------- | -----------
-`certificate`<br/>*string* | The certificate send in the saml response for the service provider to validate the signature. It must use the SHA-256 algorithm.
-`privateKey`<br/>*string* | The private key used to sign the SAML request. It must be an RSA key of 2048 bits
-
-
 <!-------------------- UPDATE SAML SETTINGS -------------------->
 
 #### Update SAML settings
