@@ -289,9 +289,9 @@ curl -X POST \
 Take a snapshot of a persistent disk.
 
 <aside class="notice">
-Snapshots are incremental to avoid billing for redundant data and minimize use of storage. However, snapshots may occasionally capture the full disk for reliability. See the link for more information on <a href="https://cloud.google.com/compute/docs/disks/create-snapshots">creating snapshots</a>
+Snapshots are incremental to avoid billing for redundant data and minimize use of storage. However, snapshots may occasionally capture the full disk for reliability. See the link for more information on <a href="https://cloud.google.com/compute/docs/disks/create-snapshots">creating snapshots.</a>
 </aside>
 
-Required | &nbsp;
+Optional | &nbsp;
 ---------- | -----
-`snapshotName` <br/>*string* | The name of the snapshot. The name cannot exceed 64 characters.
+`snapshotName` <br/>*string* | The name of the snapshot. A default value set if a snapshot name is not provided.
