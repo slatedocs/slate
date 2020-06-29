@@ -1,9 +1,9 @@
-## Service Providers
+### Service Providers
 Configure the service providers that can use CloudMC as their authentication source.
 
 <!-------------------- LIST SERVICE PROVIDERS -------------------->
 
-### List service providers
+#### List service providers
 
 `GET /service_providers`
 
@@ -64,7 +64,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET SERVICE PROVIDERS -------------------->
 
-### Retrieve service provider
+#### Retrieve service provider
 
 `GET /service_providers/:id`
 
@@ -122,7 +122,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE SERVICE PROVIDERS -------------------->
 
-### Create service provider
+#### Create service provider
 
 `POST /service_providers`
 
@@ -206,13 +206,13 @@ Optional | &nbsp;
 
 <!-------------------- UPDATE SERVICE PROVIDERS -------------------->
 
-### Update service provider
+#### Update service provider
 
 `PUT /service_providers/:id`
 
 ```shell
 # Updates an existing service provider
-curl -X POST "https://cloudmc_endpoint/rest/service_providers/:id" \
+curl -X PUT "https://cloudmc_endpoint/rest/service_providers/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -221,7 +221,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service_providers/:id" \
 ```js
 {
 	"name": "Slack",
-  "id": "dbf3df1c-d28e-4cb5-bcb9-ce85d1675b27",
+    "id": "dbf3df1c-d28e-4cb5-bcb9-ce85d1675b27",
 	"type": "SAML",
 	"config": {
 		"assertionConsumerUrl": "https://yourdomain.slack.com/sso/saml",
@@ -292,7 +292,7 @@ Optional | &nbsp;
 <!-------------------- DELETE SERVICE PROVIDER -------------------->
 
 
-### Delete service provider
+#### Delete service provider
 
 `DELETE /service_providers/:id`
 
