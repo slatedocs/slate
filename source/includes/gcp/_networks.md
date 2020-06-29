@@ -65,7 +65,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/gcp/test-area/networks/6402509859159933821"
+    "https://cloudmc_endpoint/v1/services/gcp/test-area/networks/6402509859159933821"
 ```
 > The above command returns a JSON structured like this:
 
@@ -161,3 +161,17 @@ Required in custom mode | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `description`<br/>*string* | Description of the network.
+
+<!-------------------- DELETE A NETWORK -------------------->
+
+#### Delete a network
+
+```shell
+curl -X DELETE \
+  -H "mc-api-key: your_api_key" \
+  "https://cloudmc_endpoint/v1/services/gcp/test-area/networks/6402509859159933821"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
+
+Delete an existing network
