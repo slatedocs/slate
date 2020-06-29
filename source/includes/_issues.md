@@ -327,3 +327,6 @@ This endpoint deletes a specific Issue.
 `DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID.json`
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to delete Issues
