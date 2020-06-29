@@ -144,3 +144,9 @@ Attributes | &nbsp;
 `downloadBytes` <br/>*string* | Number of bytes downloaded to restore a snapshot to a disk.
 `id` <br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `name` <br/>*string* | Name of the resource; provided by the client when the resource is created. 
+
+<!-------------------- CREATE A SNAPSHOT -------------------->
+
+#### Create a snapshot
+
+See [take a snapshot of a disk](#gcp-take-a-snapshot-of-a-disk) to create a snapshot.

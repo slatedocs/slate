@@ -266,3 +266,32 @@ Resize an existing disk.
 Required | &nbsp;
 ---------- | -----
 `sizeGb` <br/>*string* | The size of the disk in GB. Valid values are 1 to 65536, inclusive, unless this is an [instance](#gcp-instances)'s boot disk, then the valid values are 1 to 2000.
+
+<!-------------------- TAKE SNAPSHOT -------------------->
+
+#### Take a snapshot of a disk
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=snapshot"
+```
+> Request body example:
+
+```json
+{
+   "snapshotName": "my-snapshot"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=snapshot</code>
+
+Take a snapshot of a persistent disk.
+
+<aside class="notice">
+Snapshots are incremental to avoid billing for redundant data and minimize use of storage. However, snapshots may occasionally capture the full disk for reliability. See the link for more information on <a href="https://cloud.google.com/compute/docs/disks/create-snapshots">creating snapshots</a>
+</aside>
+
+Required | &nbsp;
+---------- | -----
+`snapshotName` <br/>*string* | The name of the snapshot. The name cannot exceed 64 characters.

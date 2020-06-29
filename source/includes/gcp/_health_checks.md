@@ -53,7 +53,7 @@ Attributes | &nbsp;
 `checkIntervalSec`<br/>*int* | How often (in seconds) to send a health check. The default value is 5 seconds.
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
-`healthyThreshold`ç | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+`healthyThreshold` | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
 `httpHealthCheck` <br/>*object* | When the type is set to HTTP, this object represents the health check.
 `httpSHealthCheck` <br/>*object* | When the type is set to HTTPS, this object represents the health check.
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
