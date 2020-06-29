@@ -91,6 +91,9 @@ relationships | shows entities linked to issues, should be equal to true  |
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
 
+### PAT Support
+Supported - if the user has the permissions to view Issues
+
 
 ## Create an Issue
 ```shell
@@ -116,7 +119,7 @@ Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/title | name | true |
 data/attributes/description | description | false |
-data/attributes/author-id | user-id of author | true |
+data/attributes/author-id | user-id of author | true (unless using PAT) |
 data/attributes/assigned-to-id | user id of assigned-to user (not Display ID) - [users list](#users)  | false |
 data/attributes/version | string of the issue's version | false |
 data/attributes/priority | string of the issue's priority | false |
@@ -125,6 +128,9 @@ data/attributes/issue-type | issue type | false |
 data/attributes/tags | an array of tags | false |
 
 You can find at the [right area](#create-an-Issue) (shell) an example of the request
+
+### PAT Support
+Supported - if the user has the permissions to create an Issue
 
 
 ## Show a specific Issue
@@ -176,6 +182,8 @@ relationships | shows entities linked to issues, should be equal to true  |
 
 * none of the parameters are required.
 
+### PAT Support
+Supported - if the user has the permissions to view Issues
 
 
 ## Update a specific Issue
@@ -235,6 +243,14 @@ data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a 
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit an Issue
+
+History of a change by PAT user will be created automatically.
+
+The "updated-by-user-id" parameter can only be used (and override PAT user) if it has "impersonation" enabled.
+
+
 ## Update an Issue Status
 ```shell
 curl -H "Content-Type:application/json" \
@@ -285,11 +301,17 @@ This endpoint updates an Issue Status.
 Parameters | Description | Required?
 --------- | ------- |------- |
 data/attributes/status-name | issue transition status from the Workflow | true |
-data/attributes/user-id* | user id (not Display ID) - [users list](#users)  | true |
+data/attributes/user-id* | user id (not Display ID) - [users list](#users)  | true (unless using PAT)|
 
 * Please note that user-id should be ID of a user who can perform the relevant issue transition according to the Project Workflow.
 
 You can find at the right area an example of the JSON request and response
+
+
+### PAT Support
+Supported - if the user has the permissions to update Issue Status
+
+The "user-id" parameter can only be used (and override PAT user) if it has "impersonation" enabled.
 
 
 ## Delete a specific Issue
