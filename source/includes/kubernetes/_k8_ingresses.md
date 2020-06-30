@@ -69,6 +69,7 @@ curl -X GET \
       },
       "status": {
         "loadBalancer": {}
+      }
     }
   ]
 }
