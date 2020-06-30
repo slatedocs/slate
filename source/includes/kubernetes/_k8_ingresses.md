@@ -84,14 +84,14 @@ Retrieve a list of all ingresses in a given [environment](#administration-enviro
 | `id` <br/>_string_                         | The id of the ingress                                           |
 | `endpoint` <br/>_string_                   | The endpoint of the ingress                                     |
 | `service` <br/>_object_                    | The service associated with the ingress                         |
-| `service.port` <br/>_string_               | The name of the service associated with the ingress             |
+| `service.port` <br/>_string_               | The port of the service associated with the ingress             |
 | `service.name` <br/>_string_               | The name of the service associated with the ingress             |
 | `metadata` <br/>_object_                   | The metadata of the ingress                                     |
 | `metadata.name` <br/>_string_              | The name of the ingress                                         |
 | `metadata.namespace` <br/>_string_         | The namespace in which the ingress is created                   |
 | `metadata.labels` <br/>_object_            | The labels associated with the ingress                          |
 | `metadata.uid` <br/>_object_               | The UUID of the ingress                                         |
-| `spec`<br/>_object_                        | The attributes that a user creates on an ingress                |
+| `spec`<br/>_object_                        | The attributes that a user specifies on an ingress              |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
@@ -146,13 +146,13 @@ Retrieve an ingress and all its info in a given [environment](#administration-en
 | `id` <br/>_string_                         | The id of the ingress                                           |
 | `endpoint` <br/>_string_                   | The endpoint of the ingress                                     |
 | `service` <br/>_object_                    | The service associated with the ingress                         |
-| `service.port` <br/>_string_               | The name of the service associated with the ingress             |
+| `service.port` <br/>_string_               | The port of the service associated with the ingress             |
 | `service.name` <br/>_string_               | The name of the service associated with the ingress             |
 | `metadata` <br/>_object_                   | The metadata of the ingress                                     |
 | `metadata.name` <br/>_string_              | The name of the ingress                                         |
 | `metadata.namespace` <br/>_string_         | The namespace in which the ingress is created                   |
 | `metadata.labels` <br/>_object_            | The labels associated with the ingress                          |
 | `metadata.uid` <br/>_object_               | The UUID of the ingress                                         |
-| `spec`<br/>_object_                        | The attributes that a user creates on an ingress                |
+| `spec`<br/>_object_                        | The attributes that a user specifies on an ingress              |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
