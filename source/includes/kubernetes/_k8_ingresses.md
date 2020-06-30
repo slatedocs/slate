@@ -17,7 +17,7 @@ curl -X GET \
   "data": [
     {
       "id": "cloudmc/cmc-stg",
-      "endpoint": "http://cloudmc-stg.cloudops-devteam.com",
+      "endpoint": "http://example.endpoint.com",
       "service": {
         "port": "8080",
         "name": "cloudmc"
@@ -42,7 +42,7 @@ curl -X GET \
     },
     {
       "id": "cm-acme-http-solver-75png/auth",
-      "endpoint": "http://dex.cloudops-devteam.com",
+      "endpoint": "http://fake.endpoint.com",
       "service": {
         "port": "8089",
         "name": "cm-acme-http-solver-2x5gv"
@@ -111,7 +111,7 @@ curl -X GET \
 {
   "data": {
     "id": "cloudmc/cmc-stg",
-    "endpoint": "http://cloudmc-stg.cloudops-devteam.com",
+    "endpoint": "http://example.endpoint.com",
     "service": {
       "port": "8080",
       "name": "cloudmc"
