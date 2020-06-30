@@ -1,6 +1,6 @@
 ### Routes
 
-A route is a paths that network traffic takes from an [instances](#gcp-instances) to other destinations. The destination can be inside a GCP network or outside.
+A route is a path that network traffic takes from an [instance](#gcp-instances) to other destinations. The destination can be inside a GCP network or outside.
 
 <!-------------------- LIST ROUTES -------------------->
 
@@ -46,9 +46,9 @@ Attributes | &nbsp;
 `name`<br/>*string* | The route's name.
 `description`<br/>*string* | An optional description of this resource.
 `network`<br/>*string* | URL of the network to which this route is attached.
-`destRange`<br/>*string* | The route's address destinatiation.
+`destRange`<br/>*string* | The route's address destination.
 `priority`<br/>*integer* | Priority for this route. Number should be a positive integer. Priority is used to break ties when there is more than one matching route of maximum length.
-`nextHopNetwork`<br/>*string* | The next hop handles the matching packets for this route. It can be an instance, an IP address or the default internet gateway
+`nextHopNetwork`<br/>*string* | The next hop handles the matching packets for this route. It can be an instance, an IP address or the default internet gateway.
 `selfLink`<br/>*string* | Server-defined URL for the resource.
 `kind`<br/>*string* | Type of the resource.
 `networkName`<br/>*string* | Name of the network to which this route is attached.
@@ -93,9 +93,9 @@ Attributes | &nbsp;
 `name`<br/>*string* | The route's name.
 `description`<br/>*string* | An optional description of this resource.
 `network`<br/>*string* | URL of the network to which this route is attached.
-`destRange`<br/>*string* | The route's address destinatiation.
+`destRange`<br/>*string* | The route's address destination.
 `priority`<br/>*integer* | Priority for this route. Number should be a positive integer. Priority is used to break ties when there is more than one matching route of maximum length.
-`nextHopNetwork`<br/>*string* | The next hop handles the matching packets for this route. It can be an instance, an IP address or the default internet gateway
+`nextHopNetwork`<br/>*string* | The next hop handles the matching packets for this route. It can be an instance, an IP address or the default internet gateway.
 `selfLink`<br/>*string* | Server-defined URL for the resource.
 `kind`<br/>*string* | Type of the resource.
 `networkName`<br/>*string* | Name of the network to which this route is attached.

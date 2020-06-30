@@ -73,7 +73,7 @@ Retrieve a list of all firewall rules in a given [environment](#administration-e
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `sourceRanges`<br/>*Array[string]* | Server-defined URL for the resource.
 `targetTags`<br/>*Array[string]* | A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
-`details`<br/>*string* | Concatenation of the IP protocols followd by the port ranges.
+`details`<br/>*string* | Concatenation of the IP protocols followed by the port ranges.
 `action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic).
 
 #### Retrieve a firewall rule
@@ -142,7 +142,7 @@ Retrieve a firewall rules in a given [environment](#administration-environments)
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `sourceRanges`<br/>*Array[string]* | Server-defined URL for the resource.
 `targetTags`<br/>*Array[string]* | A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
-`details`<br/>*string* | Concatenation of the IP protocols followd by the port ranges.
+`details`<br/>*string* | Concatenation of the IP protocols followed by the port ranges.
 `action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic).
 
 <!-------------------- CREATE A FIREWALL RULE -------------------->
