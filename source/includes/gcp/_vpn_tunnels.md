@@ -39,6 +39,7 @@ curl -X GET \
       "kind": "compute#vpnTunnel",
       "gcpVpnGateway": {},
       "shortVpnGateway": "test-vpn-gw",
+      "shortNetwork": "test-vpc",
       "address": "34.66.131.105",
       "type": "CLASSIC",
       "id": "8211895554244865771",
@@ -72,6 +73,9 @@ Attributes | &nbsp;
 `status`<br/>*string* | The status of the VPN tunnel.
 `selfLink`<br/>*string* | Server-defined URL for the resource.
 `targetVpnGateway`<br/>*string* | The URL of the Target VPN gateway with which this VPN tunnel is associated.
+`shortVpnGateway`<br/>*string* | Name of the VPN gateway with which this VPN tunnel is associated.
+`shortNetwork`<br/>*string* | Name of the network with which this VPN tunnel is associated.
+`shortRegion`<br/>*string* | Name of the region with which the VPN gateway attached to the tunnel is located.
 `type`<br/>*string* | The type of this VPN Tunnel. Only CLASSIC is supported.
 
 <!-------------------- RETRIEVE A VPN TUNNEL -------------------->
@@ -110,6 +114,7 @@ curl -X GET \
     "kind": "compute#vpnTunnel",
     "gcpVpnGateway": {},
     "shortVpnGateway": "test-vpn-gw",
+    "shortNetwork": "test-vpc",
     "address": "34.66.131.105",
     "type": "CLASSIC",
     "id": "8211895554244865771",
@@ -139,6 +144,9 @@ Attributes | &nbsp;
 `status`<br/>*string* | The status of the VPN tunnel.
 `selfLink`<br/>*string* | Server-defined URL for the resource.
 `targetVpnGateway`<br/>*string* | The URL of the Target VPN gateway with which this VPN tunnel is associated.
+`shortVpnGateway`<br/>*string* | Name of the VPN gateway with which this VPN tunnel is associated.
+`shortNetwork`<br/>*string* | Name of the network with which this VPN tunnel is associated.
+`shortRegion`<br/>*string* | Name of the region with which the VPN gateway attached to the tunnel is located.
 `type`<br/>*string* | The type of this VPN Tunnel. Only CLASSIC is supported.
 
 <!-------------------- CREATE A VPN TUNNEL -------------------->
