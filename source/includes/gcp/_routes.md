@@ -33,6 +33,7 @@ curl -X GET \
     "recordCount": 1
   }
 }
+```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routes</code>
 
@@ -79,6 +80,7 @@ curl -H "MC-Api-Key: your_api_key" \
     "networkName": "default"
   }
 }
+```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routes/:id</code>
 
