@@ -34,8 +34,10 @@ curl -X GET \
         "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/us-west1/subnetworks/default",
         "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/northamerica-northeast1/subnetworks/default",
         "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/us-east4/subnetworks/default"
-      ]
-    }
+      ],
+      "numberSubnets": 2,
+      "mode": "custom"
+    },
   ],
   "metadata": {
     "recordCount": 1
@@ -58,6 +60,8 @@ Attributes | &nbsp;
 `routingConfig`<br/>*object* | The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce. RoutingMode is either REGIONAL or GLOBAL.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `subnetworks`<br/>*Array[URL]* | Server-defined fully-qualified URLs for all subnetworks in this VPC network.
+`numberSubnets`<br/>*integer* | Number of subnets in the network.
+`mode`<br/>*string* | If autoCreateSubnetworks is true, then auto, else custom.
 
 <!-------------------- RETRIEVE A NETWORK -------------------->
 
@@ -89,7 +93,9 @@ curl -H "MC-Api-Key: your_api_key" \
         "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/us-west1/subnetworks/default",
         "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/northamerica-northeast1/subnetworks/default",
         "https://www.googleapis.com/compute/v1/projects/test-area-oox/regions/us-east4/subnetworks/default"
-      ]
+      ],
+      "numberSubnets": 2,
+      "mode": "custom"
     }
 }
 ```
@@ -109,6 +115,8 @@ Attributes | &nbsp;
 `routingConfig`<br/>*object* | The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce. RoutingMode is either REGIONAL or GLOBAL.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `subnetworks`<br/>*Array[URL]* | Server-defined fully-qualified URLs for all subnetworks in this VPC network.
+`numberSubnets`<br/>*integer* | Number of subnets in the network.
+`mode`<br/>*string* | If autoCreateSubnetworks is true, then auto, else custom.
 
 <!-------------------- CREATE A NETWORK -------------------->
 
