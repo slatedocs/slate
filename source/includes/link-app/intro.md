@@ -2,15 +2,13 @@
 
 Integra tu sistema contable o ERP con Facturación Electrónica. La aplicación
 **Link** de Dátil te permite emitir todos los tipos de comprobantes
-electrónicos: facturas, retenciones, notas de crédito, notas de débito y
-guías de remisión.
+electrónicos: facturas, retenciones, notas de crédito, notas de débito,
+guías de remisión y liquidaciones de compra.
 
-Link funciona como un servicio del sistema operativo, de esta manera se mantiene
-en ejecución permanente emitiendo comprobantes.
+**Link** se instala como un servicio del sistema operativo. De esta manera se mantiene
+en ejecución permanente para revisar periódicamente la base de datos en busca de
+comprobantes a emitir.
 
-**Link** se conecta a la base de datos de tu ERP o sistema contable para obtener
-la información de los comprobantes mientras sigues usando tu sistema como
-siempre lo has hecho.
 
 **¿Cómo funciona?**
 
@@ -22,8 +20,8 @@ configuración.
 todas las tablas/vistas relacionadas establecidas en la configuración.
 - Si el intento de emisión del documento fue exitoso, Link actualiza la tabla
 de Control con el estado _RECIBIDO_
-- La *tarea de consulta de resultado* consulta al servicio de Dátil el estado
-de autorización del documento hasta obtener un estado final (AUTORIZADO,
+- La *tarea de consulta de resultado* consulta al [servicio de Dátil](https://datil.dev)
+el estado de autorización del documento hasta obtener un estado final (AUTORIZADO,
 NO AUTORIZADO o DEVUELTO).
 
 

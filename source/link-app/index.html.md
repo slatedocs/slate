@@ -13,9 +13,8 @@ includes:
   - link-app/downloads
   - link-app/setup
   - link-app/config
-  - common
-  - link-app/ini_examples
   - link-app/upgrade
+  - link-app/advanced
 
 search: true
 ---

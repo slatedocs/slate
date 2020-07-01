@@ -80,3 +80,22 @@ autorizacion | Objeto de tipo [autorización SRI](#autorizacion-sri)
     "ambiente": "2"
 }
 ```
+
+# Descarga de comprobantes
+
+## Consulta de RIDE
+
+Consulta de la representación impresa del documento electrónico (RIDE). El ID del comprobante `id-doc` es el ID que se obtiene después de emitir un comprobante.
+
+### Operación
+
+`GET app.datil.co/ver/<id-doc>/pdf`
+
+## Consulta de XML
+
+Consulta de representación XML de los comprobantes. El ID del comprobante `id-doc` es el ID que se obtiene después de emitir un comprobante.
+
+### Operación
+
+`GET app.datil.co/ver/<id-doc>/xml`
+

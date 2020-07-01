@@ -634,6 +634,8 @@ también se incluirá como parte de la respuesta.
 
 ## Emisión de una factura a partir de XML
 
+### Operación
+
 `POST /invoices/issue/xml`
 
 ### Requerimiento a partir de XML
@@ -1296,6 +1298,365 @@ medio       | string       | Código del [tipo de forma de pago](#tipos-de-forma
 total       | float        | Total aplicable a la forma de pago especificada. __Requerido__
 notas       | string (máximo 300 caracteres) | Texto abierto que te permite registrar cualquier nota relacionada al pago.
 propiedades | objeto       | Información adicional adjunta al pago en forma de diccionario. Ejemplo:<br>` {"plazo": "30", "unidad_tiempo": "dias"}`
+
+## Emisión de una factura con descuentos
+
+### Operación
+
+`POST /invoices/issue`
+
+### Requerimiento
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/invoices/issue \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":52,
+  "fecha_emision":"2020-06-30T11:28:56.782Z",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad": true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"001",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "moneda":"USD",
+  "info_adicional":[
+    {
+      "nombre": "Tiempo de entrega",
+      "valor": "5 días"
+    }
+  ],
+  "totales":{
+    "total_sin_impuestos":14,
+    "impuestos":[
+      {
+        "base_imponible":14,
+        "valor":1.56,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
+      }
+    ],
+    "importe_total":14.56,
+    "propina":0.0,
+    "descuento":4,
+    "descuento_adicional":1
+  },
+  "comprador":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"046029400"
+  },
+  "items":[
+    {
+      "cantidad":1,
+      "codigo_principal": "ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 7,
+      "descuento": 1,
+      "descripcion": "Zanahoria granel  50 Kg.",
+      "precio_total_sin_impuestos": 6,
+      "impuestos": [
+        {
+          "base_imponible":6,
+          "valor":0.72,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales": {
+        "Peso":"5"
+      },
+      "unidad_medida": "Kilos"
+    },
+    {
+      "cantidad":2,
+      "codigo_principal": "ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 5,
+      "descuento": 1,
+      "descripcion": "Brocoli granel  50 Kg.",
+      "precio_total_sin_impuestos": 8,
+      "impuestos": [
+        {
+          "base_imponible":8,
+          "valor":0.96,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales": {
+        "Peso":"5"
+      },
+      "unidad_medida": "Kilos"
+    }
+  ]
+}'
+```
+
+```python
+import requests, json
+
+factura = {
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":52,
+  "fecha_emision":"2020-06-30T11:28:56.782Z",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad": true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"001",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "moneda":"USD",
+  "info_adicional":[
+    {
+      "nombre": "Tiempo de entrega",
+      "valor": "5 días"
+    }
+  ],
+  "totales":{
+    "total_sin_impuestos":14,
+    "impuestos":[
+      {
+        "base_imponible":14,
+        "valor":1.56,
+        "codigo":"2",
+        "codigo_porcentaje":"2"
+      }
+    ],
+    "importe_total":14.56,
+    "propina":0.0,
+    "descuento":4,
+    "descuento_adicional":1
+  },
+  "comprador":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"046029400"
+  },
+  "items":[
+    {
+      "cantidad":1,
+      "codigo_principal": "ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 7,
+      "descuento": 1,
+      "descripcion": "Zanahoria granel  50 Kg.",
+      "precio_total_sin_impuestos": 6,
+      "impuestos": [
+        {
+          "base_imponible":6,
+          "valor":0.72,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales": {
+        "Peso":"5"
+      },
+      "unidad_medida": "Kilos"
+    },
+    {
+      "cantidad":2,
+      "codigo_principal": "ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 5,
+      "descuento": 1,
+      "descripcion": "Brocoli granel  50 Kg.",
+      "precio_total_sin_impuestos": 8,
+      "impuestos": [
+        {
+          "base_imponible":8,
+          "valor":0.96,
+          "tarifa":12.0,
+          "codigo":"2",
+          "codigo_porcentaje":"2"
+        }
+      ],
+      "detalles_adicionales": {
+        "Peso":"5"
+      },
+      "unidad_medida": "Kilos"
+    }
+  ]
+}
+
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/invoices/issue",
+    headers = cabeceras,
+    data = json.dumps(factura))
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      // Este ejemplo utiliza RestSharp
+      // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
+      // copia y pega y presiona enter: Install-Package RestSharp
+
+      var client = new RestClient("https://link.datil.co/");
+      var request = new RestRequest("invoices/issue", Method.POST);
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("X-Password", "<clave-certificado-firma>");
+      request.AddHeader("Content-Type", "application/json");
+      request.RequestFormat = DataFormat.Json;
+
+      var body = (@"{
+        ""ambiente"":1,
+        ""tipo_emision"":1,
+        ""secuencial"":52,
+        ""fecha_emision"":""2020-06-30T11:28:56.782Z"",
+        ""emisor"":{
+          ""ruc"":""0910000000001"",
+          ""obligado_contabilidad"": true,
+          ""contribuyente_especial"":""12345"",
+          ""nombre_comercial"":""XYZ Corp"",
+          ""razon_social"":""XYZ Corporación S.A."",
+          ""direccion"":""Av. Primera 234 y calle 5ta"",
+          ""establecimiento"":{
+            ""punto_emision"":""001"",
+            ""codigo"":""001"",
+            ""direccion"":""Av. Primera 234 y calle 5ta""
+          }
+        },
+        ""moneda"":""USD"",
+        ""info_adicional"":[
+          {
+            ""nombre"": ""Tiempo de entrega"",
+            ""valor"": ""5 días""
+          }
+        ],
+        ""totales"":{
+          ""total_sin_impuestos"":14,
+          ""impuestos"":[
+            {
+              ""base_imponible"":14,
+              ""valor"":1.56,
+              ""codigo"":""2"",
+              ""codigo_porcentaje"":""2""
+            }
+          ],
+          ""importe_total"":14.56,
+          ""propina"":0.0,
+          ""descuento"":4,
+          ""descuento_adicional"":1
+        },
+        ""comprador"":{
+          ""email"":""juan.perez@xyz.com"",
+          ""identificacion"":""0987654321"",
+          ""tipo_identificacion"":""05"",
+          ""razon_social"":""Juan Pérez"",
+          ""direccion"":""Calle única Numero 987"",
+          ""telefono"":""046029400""
+        },
+        ""items"":[
+          {
+            ""cantidad"":1,
+            ""codigo_principal"": ""ZNC"",
+            ""codigo_auxiliar"": ""050"",
+            ""precio_unitario"": 7,
+            ""descuento"": 1,
+            ""descripcion"": ""Zanahoria granel  50 Kg."",
+            ""precio_total_sin_impuestos"": 6,
+            ""impuestos"": [
+              {
+                ""base_imponible"":6,
+                ""valor"":0.72,
+                ""tarifa"":12.0,
+                ""codigo"":""2"",
+                ""codigo_porcentaje"":""2""
+              }
+            ],
+            ""detalles_adicionales"": {
+              ""Peso"":""5""
+            },
+            ""unidad_medida"": ""Kilos""
+          },
+          {
+            ""cantidad"":2,
+            ""codigo_principal"": ""ZNC"",
+            ""codigo_auxiliar"": ""050"",
+            ""precio_unitario"": 5,
+            ""descuento"": 1,
+            ""descripcion"": ""Brocoli granel  50 Kg."",
+            ""precio_total_sin_impuestos"": 8,
+            ""impuestos"": [
+              {
+                ""base_imponible"":8,
+                ""valor"":0.96,
+                ""tarifa"":12.0,
+                ""codigo"":""2"",
+                ""codigo_porcentaje"":""2""
+              }
+            ],
+            ""detalles_adicionales"": {
+              ""Peso"":""5""
+            },
+            ""unidad_medida"": ""Kilos""
+          }
+        ]
+      }");
+      request.AddParameter("application/json", body, ParameterType.RequestBody);
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+      Console.ReadLine();
+    }
+  }
+}
+```
+
+Para la emisión de una factura con descuentos se debe enviar la información completa del comprobante en el cuerpo del requerimiento en formato JSON. Se debe considerar el descuento para las bases imponibles de los items. 
+
+<h3 id="totales-reembolso"> Totales </h3>
+
+Parámetro           | Tipo                    | Descripción
+------------------- | ----------------------- |-----------
+total_sin_impuestos | float | Total antes de los impuestos sin incluir el descuento adicional. __Requerido__
+descuento           | float | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
+importe_total       | float | Total incluyendo impuestos. __Requerido__
+impuestos           | listado de objetos [total impuesto](#total-impuesto) | Listado de impuesto totalizados. __Requerido__
 
 ## Consulta de una factura
 
