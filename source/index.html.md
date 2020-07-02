@@ -21,7 +21,7 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to SpringVerify India APIs. We provide endpoints for user verification. The endpoints exposed in this documentation are to collect user information, which you want to verify. Example: National ID, past employements or past educations.
+Welcome to SpringVerify India APIs. The endpoints exposed in this documentation are to collect user information to verify. Example: National ID, past employments or past education etc. 
 
 The SpringVerify India API is organized around REST. Our API has predictable resource-oriented URLs, accepts form request JSON bodies, returns JSON responses, and uses standard HTTP response codes, authentication, and verbs.
 
@@ -44,7 +44,7 @@ We currently have two environments, development and production. Both the environ
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/87c12d8a47528cde952c)
 
 <aside class="notice">
-  Please contact springVerify Team (info@springverify.com) to register your company. Currently there is no sign up for security reasons.
+  Please contact SpringVerify Team (info@springverify.com) to register your company. Currently there is no sign up for security reasons.
 </aside>
 
 # Login
@@ -267,11 +267,10 @@ print(response.text.encode('utf8'))
 
 Post API to gather candidate's basic details and configuration. The configuration is decided at the company (your) end. 
 
-The configuration sent in this api will be
-validated against enteries in following APIs. For example , if Pan is True, we expect candidate's pan card in identity verifications API.
+The configuration sent in this api will be validated against enteries in following APIs. For example, if Pan is True, we expect candidate's PAN card in identity verification API.
 
 <aside class="notice">
-Use the uuid and token returned, are used in the preceding APIs.
+Use the uuid and token returned in the preceding APIs.
 </aside>
 
 
@@ -380,16 +379,16 @@ Please give the image url in this API. Use the token which was returned after ad
 
 If you know the front and back, please send in front and back keys. If front and back are not known, please send in the docs as an array. 
 
-If front/back are provided, we conduct OCR of the document which can be fetched using getCandidate API. Back is optional, so you can only send front of the doc.
+If front and back are provided, we conduct OCR of the document which can be fetched using getCandidate API. Back is optional, so you can only send front of the doc.
 
-Doc Types:
+Doc Types with keys:
 
-1. ind_driving_license
-2. ind_passport
-3. ind_voter_id
-4. ind_pan
+1. Driving License(ind_driving_license)
+2. Passport(ind_passport)
+3. Voter ID(ind_voter_id)
+4. PAN(ind_pan)
 
-# Add Employement
+# Add Employment
 ```shell
 curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents/employment' \
 --header 'Content-Type: application/json' \
@@ -493,24 +492,16 @@ puts response.read_body
 This API is used to add employment details and any relevant docs of the user. Please give the image url in this API.
 
 <aside class="notice">
- Use the token which was returned from add candidate API.
+ Use the token returned from add candidate API.
 </aside>
 
-<b>Currenly Supported Docs</b>
+<b>Currenly Supported Documents with keys</b>
 
-1. Salary Slip
-2. Experience Letter
-3. Relieving Letter
-4. Appointment Letter
-5. Others (not specific doc)
-
-<b>document_type keys</b>
-
-1. SalarySlip
-2. ExperienceLetter
-3. RelievingLetter
-4. AppointmentLetter
-5. Other
+1. Salary Slip (SalarySlip)
+2. Experience Letter (ExperienceLetter)
+3. Relieving Letter (RelievingLetter)
+4. Appointment Letter (AppointmentLetter)
+5. Others - eg: no specific document (Other)
 
 
 # Add Education
@@ -627,31 +618,23 @@ puts response.read_body
 }
 ```
 
-This API is used to add education details and any relevant docs of the user.
+This API is used to add education details and any relevant docs of the candidate.
 
 <aside class="notice">
  Please give the image url in this API. Use the token which was returned after add candidate API.
 </aside>
 
 <aside class="warning">
-  Api will reject upload of any docs that were not set True in config.
+  API will reject upload of any docs that were not set True in config.
 </aside>
 
-<b>Supported Docs</b>
+<b>Supported Documents with Keys</b>
 
-1. 10th class
-2. 12th class
-3. Bachelor
-4. Masters
-5. Doctorate
-
-<b>Education Keys</b>
-
-1. 10
-2. 12
-3. bachelor
-4. masters
-5. doctorate
+1. 10th class (10)
+2. 12th class (12)
+3. Bachelor (bachelor)
+4. Masters (masters)
+5. Doctorate (doctorate)
 
 # Get Candidate
 
