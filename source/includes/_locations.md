@@ -11,7 +11,7 @@
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v1/clients-and-locations/locations/', [
+$success = $api->post('/v2/clients-and-locations/locations/', [
     'name'                 => 'Le Bernardin',
     'location-reference'   => 'LE-BERNARDIN-10019',
     'url'                  => 'le-bernardin.com',
@@ -43,7 +43,7 @@ curl -X POST \
  -d 'city=New York' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
- https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
+ https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/
 ```
 
 ```csharp
@@ -62,7 +62,7 @@ parameters.Add("city", "New York");
 parameters.Add("postcode", "10019");
 parameters.Add("telephone", "+1 212-554-1515");
 
-var success = request.Post("/v1/clients-and-locations/locations/", parameters);
+var success = request.Post("/v2/clients-and-locations/locations/", parameters);
 ```
 
 > Success (200 OK)
@@ -78,7 +78,7 @@ Adds a new location and associates it with your account.
 
 ### HTTP Request
 
-`POST https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/`
+`POST https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/`
 
 ### Query Parameters
 
@@ -106,13 +106,38 @@ contact-telephone | 20 characters max
 contact-email | 100 characters max
 contact-fax | 20 characters max
 number-of-employees | 10 characters max
-year-of-formation | 20 characters max
-extra-business-categories-ids | Json encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories)
-working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end. Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A 
-payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
+formation-date | Month and date formatted 'mm-yyyy'
+extra-business-categories-ids | Array. For example, [1234,5678,9012]. [See here for a full list of valid business category IDs.](#business-categories)
+opening-hours[regular][apply_to_all] | <span class="label label-required">Required</span> Boolean field
+opening-hours[regular][mon][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][mon][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][mon][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][tue][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][tue][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][tue][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][wed][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][thu][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][fri][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'	
+opening-hours[regular][fri][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][fri][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][sat][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sat][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sat][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sun][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[special][][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[special][][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][date] | <span class="label label-required">Required</span> Date string with format 'yyyy-mm-dd'
+payment-methods | Array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
 long-description | 500 characters max
-services-of-products| Json encoded array
+services-of-products| Array
 
 ## Update Location
 
@@ -128,7 +153,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('/v1/clients-and-locations/locations/' .$locationId, [
+$success = $api->put('/v2/clients-and-locations/locations/' .$locationId, [
     'name'                	 		=> 'Le Bernardin',
     'url'                  			=> 'le-bernardin.com',
     'location-reference'			=> 'LE-BERNADIN-10019',
@@ -160,7 +185,7 @@ curl -X PUT \
  -d 'city=New York' \
  -d 'postcode=10019' \
  -d 'telephone=+1 212-554-1515' \
- https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/1
+ https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/1
 ```
 
 ```csharp
@@ -180,7 +205,7 @@ parameters.Add("city", "New York");
 parameters.Add("postcode", "10019");
 parameters.Add("telephone", "+1 212-554-1515");
 
-var success = request.Put("/v1/clients-and-locations/locations/" + locationId + "", parameters);
+var success = request.Put("/v2/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -194,7 +219,7 @@ var success = request.Put("/v1/clients-and-locations/locations/" + locationId + 
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
+`PUT https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -222,13 +247,38 @@ contact-telephone | 20 characters max
 contact-email | 100 characters max
 contact-fax | 20 characters max
 number-of-employees | 10 characters max
-year-of-formation | 20 characters max
-extra-business-categories-ids | Json encoded array. For example, [“1234”,“5678”,“9012”]. [See here for a full list of valid business category IDs.](#business-categories)
-working-hours | Json encoded array. Available array keys: mon_start, mon_end, tue_start, tue_end, wed_start, wed_end, thu_start, thu_end, fri_start, fri_end, sat_start, sat_end, sun_start, sun_end. Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A 
-payment-methods | Json encoded array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
+formation-date | Month and date formatted 'mm-yyyy'
+extra-business-categories-ids | Array. For example, [1234,5678,9012]. [See here for a full list of valid business category IDs.](#business-categories)
+opening-hours[regular][apply_to_all] | <span class="label label-required">Required</span> Boolean field
+opening-hours[regular][mon][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][mon][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][mon][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][tue][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][tue][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][tue][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][wed][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][thu][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][fri][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'	
+opening-hours[regular][fri][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][fri][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][sat][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sat][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sat][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sun][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[special][][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[special][][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][date] | <span class="label label-required">Required</span> Date string with format 'yyyy-mm-dd'
+payment-methods | Array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
 long-description | 500 characters max
-services-of-products| Json encoded array
+services-of-products| Array
 
 ## Delete Location
 
@@ -242,7 +292,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('/v1/clients-and-locations/locations/' . $locationId);
+$result = $api->delete('/v2/clients-and-locations/locations/' . $locationId);
 if (!empty($result['success'])) {
     echo 'Successfully deleted location.' . PHP_EOL;
 }
@@ -254,7 +304,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var locationId = 1;
 var parameters = new api.Parameters();
 
-var success = request.Delete("/v1/clients-and-locations/locations/" + locationId + "", parameters);
+var success = request.Delete("/v2/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -269,7 +319,7 @@ Delete an existing location. If there are reports associated with this location 
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -292,7 +342,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$location = $api->get('/v1/clients-and-locations/locations/' . $locationId);
+$location = $api->get('/v2/clients-and-locations/locations/' . $locationId);
 print_r($location);
 ```
 
@@ -302,7 +352,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var locationId = 1;
 var parameters = new api.Parameters();
 
-var success = request.Get("/v1/clients-and-locations/locations/" + locationId + "", parameters);
+var success = request.Get("/v2/clients-and-locations/locations/" + locationId + "", parameters);
 ```
 
 > Success (200 OK)
@@ -329,7 +379,7 @@ var success = request.Get("/v1/clients-and-locations/locations/" + locationId + 
         "contact-fax":"",
         "contact-mobile":"",
         "num-of-employees":"50",
-        "year-of-formation":"2009",
+        "formation-date":"11-2009",
         "extra-business_categories":[
           "marketing"
         ],
@@ -337,10 +387,6 @@ var success = request.Get("/v1/clients-and-locations/locations/" + locationId + 
             503,
             2824
         ],
-        "working-hours":{
-            "mon_start":"9 a.m.",
-            "mon_end":"7 p.m."
-        },
         "payment-methods-accepted":[
             "visa",
             "paypal"
@@ -358,7 +404,7 @@ Get extended details for a specific location.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
+`GET https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -379,7 +425,7 @@ expires | <span class="label label-required">Required</span> [See above for how 
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('/v1/clients-and-locations/locations/search', [
+$results = $api->call('/v2/clients-and-locations/locations/search', [
     'q' => 'BrightLocal'
 ]);
 print_r($results);
@@ -391,14 +437,14 @@ curl -X GET \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'q=My+Sample+Query' \	
-  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/search/
+  https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/search/
 ```
 
 ```csharp
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var parameters = new api.Parameters();
 parameters.Add("q", "BrightLocal");
-var success = request.Get("/v1/clients-and-locations/locations/search", parameters);
+var success = request.Get("/v2/clients-and-locations/locations/search", parameters);
 ```
 
 > Success (200 OK)
@@ -427,7 +473,7 @@ Search for locations matching a specified search string. The search uses a numbe
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/search`
+`GET https://tools.brightlocal.com/seo-tools/api/v2/clients-and-locations/locations/search`
 
 ### Query Parameters
 
