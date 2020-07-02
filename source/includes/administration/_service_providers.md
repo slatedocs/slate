@@ -310,7 +310,7 @@ Delete a specific service provider.
 
 #### Get service provider metadata file
 
-`GET /service_providers/:id`
+`GET /service_providers/:id/metadata`
 
 ```shell
 # Get a service provider's metadata file
