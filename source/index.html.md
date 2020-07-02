@@ -21,7 +21,7 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to SpringVerify India APIs. The endpoints exposed in this documentation are to collect user information to verify. Example: National ID, past employments or past education etc. 
+Welcome to SpringVerify India API Documentation. The endpoints exposed in this documentation are to collect user information to verify. Example: National ID, past employments or past education etc. The first step is to login to get a JWT token. The token is then used to submit add a candidate (initiate) and then submit documents(ID, education and experience). 
 
 The SpringVerify India API is organized around REST. Our API has predictable resource-oriented URLs, accepts form request JSON bodies, returns JSON responses, and uses standard HTTP response codes, authentication, and verbs.
 
@@ -276,7 +276,7 @@ Use the uuid and token returned in the preceding APIs.
 
 # Identity Verification
 
-Post API to store ID cards of the candidate. Optionally, we do <b>OCR</b> on the uploaded ID.
+Post API to store ID cards of the candidate. Optionally, we can do <b>OCR</b> on the uploaded document.
 
 
 ```shell
@@ -495,7 +495,7 @@ This API is used to add employment details and any relevant docs of the user. Pl
  Use the token returned from add candidate API.
 </aside>
 
-<b>Currenly Supported Documents with keys</b>
+<b>Currently Supported Documents with keys</b>
 
 1. Salary Slip (SalarySlip)
 2. Experience Letter (ExperienceLetter)
