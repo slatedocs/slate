@@ -304,3 +304,57 @@ curl "https://cloudmc_endpoint/rest/service_providers/f9dea588-d7ab-4f42-b6e6-4b
 ```
 
 Delete a specific service provider. 
+
+<!-------------------- GET SERVICE PROVIDER METADATA -------------------->
+
+
+#### Get service provider metadata file
+
+`GET /service_providers/:id/metadata`
+
+```shell
+# Get a service provider's metadata file
+curl "https://cloudmc_endpoint/rest/service_providers/f9dea588-d7ab-4f42-b6e6-4b85f273f3db/metadata"
+
+> The above command returns XML structured like this:
+
+```xml
+<md:EntityDescriptor entityID="https://cloudmc_endpoint">
+    <ds:Signature>
+        <ds:SignedInfo>
+            <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+            <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <ds:Reference URI="">
+                <ds:Transforms>
+                    <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                    <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                </ds:Transforms>
+                <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                <ds:DigestValue>5U/iSjUM0ooVDT5n60sK1vgPchsZbVyp+Epm7P/GP8Y=</ds:DigestValue>
+            </ds:Reference>
+        </ds:SignedInfo>
+        <ds:SignatureValue>
+k2k3+9IbMkUCIN/TmcZMmrG3AB6izICW10bjtnjSocz+RgnAwrUEoNQTYsOG4nsEcHFZ31zxuRJq YOnjJ259XcPGsTrZSmV/GIWxYwUcPUP292D00Ulql+Gpj5YVk31uoaWQ93fln42hbwW6Qkaaiz9i +4OXASSxx8WgBpG4Ro0Carm0fT7nJU55+ZX0bFiKRCBmbUhxXivbVj914ed2vFjkWoucG1NXvIdF L+j3Qhn3DAd/XUvR06WfPWModAl7ip/+GH97QkE7sq4szcRAKzrR10kFVLFBbMu/zZ1a0FMSc1tC vZKh1SAA61IYZy/j9OuYGCELt59f2wd+5X1+7w==
+</ds:SignatureValue>
+        <ds:KeyInfo>
+            <ds:X509Data>
+                <ds:X509Certificate>CERT_DATA</ds:X509Data>
+        </ds:KeyInfo>
+    </ds:Signature>
+    <md:IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect">
+        <md:KeyDescriptor use="signing">
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>CERT_DATA</ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:NameIDFormat>
+urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+</md:NameIDFormat>
+        <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://cloudmc_endpoint/rest/service_providers/f9dea588-d7ab-4f42-b6e6-4b85f273f3db"/>
+        <saml2:Attribute Name="first-name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"/>
+    </md:IDPSSODescriptor>
+</md:EntityDescriptor>
+```
+
+Gets the metadata file for a given service provider. This can be provided to certain identity providers for quick set-up. 
