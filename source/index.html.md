@@ -76,6 +76,7 @@ includes:
   - repair_workflow_history
   - repair_workflow_selectors
   - repair_workflow_states
+  - repair_centres
   - rtc_connection_history
   - rtc_dead_letter
   - rtc_dead_letters
@@ -95,6 +96,7 @@ includes:
   - symptom_type_product_type_linker
   - symptom_types
   - test_jig_test_results
+  - user_repair_centre_links
 
   - product_actions
   - create_hub2

@@ -1,0 +1,190 @@
+## <u>Repair Centre</u>
+Details of Repair Centres
+
+
+### <u>The repair_centre object</u>
+
+Field | Description
+------:|:------------
+__repair_centre_id__ <br><font color="DarkGray">_int_</font> <font color="Crimson">__(primary key)__</font> | A unique integer identifier for each repair_centre.
+__name__ <br><font color="DarkGray">_string_</font> <font color="Crimson">(not-null,unique)</font> | Repair Centre name
+__<a href="/#entity">entity_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,unique,foreign-key)</font> | Entity identifier
+__created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
+__created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
+__modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
+__modified_by__ <br><font color="DarkGray">_text_</font>| user that last modified the record
+
+<br>
+
+Relationship | Description
+-------------:|:------------
+<font color="DarkGray">N/A</font> | <font color="DarkGray">_There are no relationships for this table._</font>
+
+<hr>
+<br>
+
+> An example POST request. Note that `repair_centre_id`, `created_at`, `modified_at` and `created_by` are all handled internally by the system and need not be explicitly specified. See Meta Data for more information.
+
+```python
+    url = "https://smartapi.bboxx.co.uk/v1/repair_centres"
+    data = json.dumps({
+		"name": "test",
+		"entity_id": 1,
+		})
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.post(url=url, data=data, headers=headers)
+
+    r
+    >>> <Response 201>
+
+    r.json()
+
+    >>> {
+		"repair_centre_id": 1
+		"name": "test",
+		"entity_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
+```
+
+> We can retrieve the `repair_centre` created by specifying its `repair_centre_id` in the request url:
+
+```python
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_centres/1'
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.get(url=url, headers=headers)
+
+    r
+    >>> <Response 200>
+
+    r.json()
+    >>> {
+		"repair_centre_id": 1
+		"name": "test",
+		"entity_id": 1,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": None
+	}
+```
+
+> We can retrieve all `repair_centres` by omitting the `repair_centre_id`:
+
+```python
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_centres'
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.get(url=url, headers=headers)
+
+    r
+    >>> <Response 200>
+
+    r.json()
+    >>> {
+        u'total_pages': 1,
+        u'objects': [
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+            {<record>},
+        ],
+        u'num_results': 10,
+        u'page': 1
+    }
+```
+
+> We can edit the newly created `repair_centre` with a `PUT` request:
+
+```python
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_centres/1'
+    data = json.dumps({
+		"name": "changed",
+		"entity_id": 2,
+		})
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.put(url=url, data=data, headers=headers)
+
+    r
+    >>> <Response 200>
+
+    r.json()
+    >>> {
+		"repair_centre_id": 1
+		"name": "changed",
+		"entity_id": 2,
+		"created_at": "2000-01-01 00:00:00"
+		"created_by": "test.user@bboxx.co.uk"
+		"modified_at": 2016-07-07 12:34:45
+	}
+```
+> Note that the `modified_at` field has been updated accordingly.
+
+> If a user has `SYSTEM` permissions they can delete the `repair_centre`
+
+```python
+    url = 'https://smartapi.bboxx.co.uk/v1/repair_centres/1'
+    headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
+
+    r = requests.delete(url=url, headers=headers)
+
+    r
+    >>> <Response 204>
+
+    r.text
+    >>>
+```
+> Note that the response from a 204 request is empty. This means that `r.json()` cannot be called and will throw a JSONDecodeError. In fact the response is `u''` - an empty unicode string.
+
+
+
+### POST
+     | value
+ ----:|:---
+endpoint | `/v1/repair_centres`
+method | `POST`
+url_params | <font color="DarkGray">N/A</font>
+query params | <font color="DarkGray">N/A</font>
+body | JSON-formatted dictionary with the details of the `repair_centre` that you wish to create
+permissions | <font color="Crimson">__`SYSTEM`__</font>
+response | `201`
+
+### GET
+     | value
+ ----:|:---
+endpoint | `/v1/repair_centres` or `/v1/repair_centres/<repair_centre_id>`
+method | `GET`
+url_params | `repair_centre_id` <font color="DarkGray">_(int)_</font>
+query params | *> See Query Format and Filtering*
+body | <font color="DarkGray">N/A</font>
+permissions | <font color="Jade">__`OVERVIEW`__</font>
+response | `200`
+
+### PUT
+     | value
+ ----:|:---
+endpoint | `/v1/repair_centres/<repair_centre_id>`
+method | `PUT`
+url_params | `repair_centre_id` of the repair_centre you wish to edit
+query params | <font color="DarkGray">N/A</font>
+body | JSON-formatted dictionary of the columns that you wish to alter
+permissions | <font color="Crimson">__`SYSTEM`__</font>
+response | `200`
+
+### DELETE
+     | value
+ ----:|:---
+endpoint | `/v1/repair_centres/<repair_centre_id>`
+method | `DELETE`
+url_params | `repair_centre_id` <font color="DarkGray">_(int)_</font>
+query params | <font color="DarkGray">N/A</font>
+body | <font color="DarkGray">N/A</font>
+permissions | <font color="Crimson">__`SYSTEM`__</font>
+response | `204`
+
+    
