@@ -32,6 +32,15 @@ const hash = crypto.createHmac('sha256', key).update(message);
 const hashInHex = hash.digest('hex');
 ```
 
+```ruby
+# ruby
+
+auth_key = 'Key'
+current_time = Time.current.to_i
+
+hash =  OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), auth_key, current_time.to_s)
+```
+
 > Make sure to replace `KEY` with your API key.
 
 Server uses SHA256 HMAC authentication method. The hash is created using current timestamp and your key as parameters.
