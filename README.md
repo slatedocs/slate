@@ -137,6 +137,35 @@ return axios({
 })
 ```
 
+```ruby
+#Ruby
+
+current_time = Time.current.to_i;
+prod_key = PROD_KEY;
+hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), prod_key, current_time.to_s);
+params = {
+ :name=>"ketan",
+ :email=>"abc@test.com",
+ :purpose=>"buy",
+ :phone=>"9819619866",
+ :country_code=>"in",
+ :current_time=> current_time,
+ :hash=> hash,
+ :campaign_id=>"42-Queens-Square-Sell-Do-Leads",
+ :source_id=>1,
+ :sub_source_id=>6,
+ :channel_name=>"sell-do"
+};
+uri = URI.parse(url);
+http = Net::HTTP.new(uri.host, uri.port);
+http.use_ssl = true;
+request = Net::HTTP::Post.new(uri.request_uri);
+request.add_field('Content-Type', 'application/json');
+request.body = params.to_json;
+response = http.request(request);
+
+```
+
 > The above command returns JSON structured like this:
 
 ```json
