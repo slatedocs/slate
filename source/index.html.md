@@ -555,7 +555,7 @@ This API call is used to withdraw MXN to a given CLABE.
 | numeric_ref | Integer | No | Seven digits numerical reference, also known as "*Referencia numerica*" (e.g. 1234567). |
 
 ## List Balances
-This API call is used to retrieve your wallets balances, including their deposit addresses (if they have been previously generated). There are three type of balances in tauros: `available`, `pending` and `frozen`.
+This API call is used to retrieve your wallets balances, including their deposit addresses (if they have been previously generated). There are four types of balances in tauros: `available`, `pending`, `frozen` and `in_orders`.
 
 * `available`: Funds you can spend.
 
