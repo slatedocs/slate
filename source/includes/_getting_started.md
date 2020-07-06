@@ -36,7 +36,9 @@ Verbs | Purpose
 `DELETE` | Used to delete a resource.
 
 ## Responses
+
 ### Success response
+
 <!--
 ```json
 {
@@ -54,9 +56,11 @@ Verbs | Purpose
 }
 ```
 -->
+
 ```shell
 # Example without tasks
 ```
+
 ```json
 {
   "data": [
@@ -65,15 +69,18 @@ Verbs | Purpose
   ]
 }
 ```
+
 ```shell
 # Example of compute API call with task
 ```
+
 ```json
 {
   "taskId": "c2c13744-8610-4012-800a-0907bea110a5",
   "taskStatus": "PENDING"
 }
 ```
+
 When an API request is successful, the response body will contain the `data` field with the result of the API call. If you're using the [compute API](#compute-api), the `data` field might be empty since most of the operations are asynchronous. The response will contain the `taskId` and `taskStatus` fields so that you can retrieve the result of the operation you executed through the [task API](#tasks).
 
 Attributes | &nbsp;
@@ -90,9 +97,11 @@ If the response contains the "errors" field, the request was <strong>not</strong
 </aside>
 
 ### Error response
+
 ```shell
 # Example of error response
 ```
+
 ```json
 {
   "errors": [

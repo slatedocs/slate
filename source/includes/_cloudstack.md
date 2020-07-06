@@ -25,6 +25,7 @@ and for listing entities, looks like:
 ```shell
 # The above command returns a JSON structured like this:
 ```
+
 ```json
 {
   "taskId": "b2f82e2a-123e-4f86-a4c7-dc9b850dd11e",
@@ -35,9 +36,11 @@ and for listing entities, looks like:
 Some operations take longer to execute, and to avoid blocking on the response until it is fully completed, these are treated in an asynchronous fashion. This means the API will return immediately, and provide you a `taskId` that is your reference to the ongoing background task. Using the tasks API, you can query the task's status to find if it has completed and obtain the result of the operation.
 
 ### Retrieve a task
+
 ```shell
 # Example of success response
 ```
+
 ```json
 {
   "taskId": "b2f82e2a-123e-4f86-a4c7-dc9b850dd11e",
