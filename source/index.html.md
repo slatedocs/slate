@@ -16,6 +16,24 @@ includes:
 
 search: true
 ---
+# Change Log
+
+## 2020-07-08
+
+* New API Key features:
+  * A trusted IP addresses list can be added to an API Key.
+
+* Authentication layer enhanced. Request signing is now required.
+  * `Taur-Nonce` header is required for private endpoints. See [what is a nonce](#what-is-a-nonce).
+  * `Taur-Signature` header is required for private endpoints. See [message signing](#signing-a-message).
+
+* New endpoints for withdrawals:
+  * POST /api/v2/wallets/crypto-withdraw/
+  * POST /api/v2/wallets/mxn-withdraw/
+  * POST /api/v2/wallets/inner-transfer/
+
+* New endpoint for listing user trades (it allows pagination):
+ * GET /api/v2/trading/my-trades/
 
 # Introduction
 
@@ -25,11 +43,11 @@ Tauros provides a simple and practical REST API to help you to automatically per
 
 Before to start developing on the Tauros API consider the following:
 
-* Create and account in the staging Tauros web site `https://staging.tauros.io. Staging environment uses testnet coins.
-* Enable the Developer Mode in your profile section to create an API Key and a API Secret.
+* It is recommended to create an account in the [Staging Tauros](https://staging.tauros.io) web app. Staging environment uses testnet coins.
+* Enable the Developer Mode in your profile section to create an API Key and an API Secret.
 * The API base url is `https://api.staging.tauros.io/api/` for staging environment and `https://api.tauros.io/api/` for production.
 * All private enpoints requests require message signing.
-* Check the success`flag to ensure that your API call succeeded.
+* Check the `success` flag to ensure that your API call succeeded.
 * All requests use the `application/json` content type and go over `https`.
 * If something goes wrong look at the `msg` field. There you will find the error description.
 
@@ -102,17 +120,9 @@ METHOD=POST
 
 REQUEST_PATH="/api/v1/trading/placeorder/"
 
-DATA='{
-    "market": "BTC-MXN",
-    "amount": "0.001",
-    "side": "SELL",
-    "type": "LIMIT",
-    "price": "250000"
-}'
+DATA='{"market":"BTC-MXN","amount":"0.001","side":"SELL","type":"LIMIT","price":"250000"}'
 
-URL_ENCODE_DATA="market=BTC-MXN&amount=0.001&side=SELL&type=LIMIT&price=250000"
-
-MESSAGE=$NONCE$METHOD$REQUEST_PATH$URL_ENCODE_DATA
+MESSAGE=$NONCE$METHOD$REQUEST_PATH$DATA
 
 MESSAGE_SHA256=$(echo -n $MESSAGE | openssl dgst -binary -sha256)
 
@@ -181,7 +191,7 @@ server_res.json() # {...}
 const crypto = require('crypto');
 const fetch = require('node-fetch');
 
-const URL_API = 'https://staging.api.tauros.io';
+const URL_API = 'https://api.staging.tauros.io';
 
 const api_key = 'TAUROS_API_KEY';
 const api_secret = 'TAUROS_API_SECRET';
@@ -202,7 +212,7 @@ let nonce = Date.now() / 1000;
 nonce = nonce.toString().replace(".", "");
 
 // make signature
-let body = new URLSearchParams(data).toString();
+let body = JSON.stringify(data)
 
 let message = nonce + method.toUpperCase() + path + body;
 
@@ -238,8 +248,6 @@ fetch(URL_API + path, request)
 ```
 
 ```php
-<?php
-
 <?php
 
 $apiUrl = 'https://api.staging.tauros.io';
@@ -423,13 +431,6 @@ This endpoint returns all available currencies in Tauros, cryptocurrencies as we
 
 ## Get Deposit Address
 
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-COIN=btc
-
-curl -X GET "https://api.tauros.io/api/v1/data/getdepositaddress/?coin=$COIN" \
--H "Authorization: Token $TAUROS_API_KEY"
-``` -->
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
 ### HTTP Request
@@ -463,21 +464,10 @@ Most of exchanges or wallets allows you to include this information in your tran
 
 ## Cryptocurrency Withdraw
 
-<!-- ```shell
-TAUROS_API_KEY="your_api_key"
-ADDRESS="2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG"
-COIN="btc"
-AMOUNT="0.001"
-
-curl -X POST "https://api.tauros.io/api/v1/data/withdraw/" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY" \
--d "{\"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": \"$AMOUNT\"}"
-``` -->
 This API call allows you to send cryptocurrency to a given destination address.
 
 ### HTTP Request
-`POST /v3/wallets/crypto-withdraw/`
+`POST /v2/wallets/crypto-withdraw/`
 
 > The API response will look like this:
 
@@ -512,22 +502,11 @@ Make sure your API key has permission to perform this action.
 
 ## Tauros Transfer®
 
-<!-- ```shell
-TAUROS_API_KEY="your_api_key"
-EMAIL="jhon@mail.com"
-COIN="mxn"
-AMOUNT="100" # 100 MXN
-
-curl -X POST "https://api.tauros.io/api/v1/data/withdraw/" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY" \
--d "{\"coin\": \"$COIN\", \"email\": \"$EMAIL\", \"amount\": \"$AMOUNT\"}"
-``` -->
 *Tauros Transfer®* allows you to transfer funds to another user registered in Tauros.
 Funds are transferred instantly with 0 commission fee.
 
 ### HTTP Request
-`POST /v3/wallets/inner-transfer/`
+`POST /v2/wallets/inner-transfer/`
 
 > The API response will look like this:
 
@@ -552,18 +531,6 @@ Funds are transferred instantly with 0 commission fee.
 | amount | Float | Yes | All | Amount to send. |
 
 ## Mexican Pesos Withdraw (SPEI)
-<!-- ```shell
-TAUROS_API_KEY="your_api_key"
-CLABE="002123456789012345"
-RECIPIENT="RAMON SANCHEZ CRUZ"
-COIN="mxn"
-AMOUNT="100" # 100 MXN
-
-curl -X POST "https://api.tauros.io/api/v1/data/transfer/" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY" \
--d "{\"coin\": \"$COIN\", \"clabe\": \"$CLABE\", \"amount\": \"$AMOUNT\", \"recipient\": \"$RECIPIENT\"}"
-``` -->
 > The API response will look like this:
 
 ```json
@@ -575,7 +542,7 @@ curl -X POST "https://api.tauros.io/api/v1/data/transfer/" \
 This API call is used to withdraw MXN to a given CLABE.
 
 ### HTTP Request
-`POST /v3/wallets/mxn-withdraw/`
+`POST /v2/wallets/mxn-withdraw/`
 
 ### Body Parameters
 | Parameter | Type | Required | Description |
@@ -588,13 +555,6 @@ This API call is used to withdraw MXN to a given CLABE.
 | numeric_ref | Integer | No | Seven digits numerical reference, also known as "*Referencia numerica*" (e.g. 1234567). |
 
 ## List Balances
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-
-curl -X GET "https://api.tauros.io/api/v1/data/listbalances/" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY"
-``` -->
 This API call is used to retrieve your wallets balances, including their deposit addresses (if they have been previously generated). There are three type of balances in tauros: `available`, `pending` and `frozen`.
 
 * `available`: Funds you can spend.
@@ -637,14 +597,6 @@ None
 ## Get Balance
 Alternatively you can request your balance for a specific coin.
 
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-
-curl -X GET "https://api.tauros.io/api/v1/data/getbalance/?coin=btc" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY"
-``` -->
-
 > The API response will look like this:
 
 ```json
@@ -672,13 +624,6 @@ curl -X GET "https://api.tauros.io/api/v1/data/getbalance/?coin=btc" \
 | coin | String | No | Coin symbol (e.g. `btc`). |
 
 ## List transfers
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-
-curl -X GET "https://api.tauros.io/api/v1/data/transfershistory/?coin=btc&type=deposits" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY"
-``` -->
 
 > The API response will look like this:
 
@@ -756,19 +701,6 @@ Make sure that your API key has permissions to perform these actions.
 </aside>
 
 ## Place a new order
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-MKT="btc-mxn"
-SIDE="sell"
-TYPE="limit"
-AMOUNT="0.001" # 0.001 BTC
-PRICE="100000" # Means 1 BTC = $100,000.00 MXN
-
-curl -X POST "https://api.tauros.io/api/v1/trading/placeorder/" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY" \
--d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\", \"type\":\"$TYPE\", \"side\": \"$SIDE\", \"price\": \"$PRICE\"}"
-``` -->
 > The API response will look like this:
 
 ```json
@@ -797,13 +729,6 @@ You can place two types of orders: `limit` and `market`. Orders can be placed on
 
 * Required only for limit orders
 ## List my open orders
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-
-curl -X GET "https://api.tauros.io/api/v1/trading/myopenorders/" \
--H "Authorization: Token $TAUROS_API_KEY"
-``` -->
-
 > The API response will look like this:
 
 ```json
@@ -864,16 +789,6 @@ This endpoint returns your open orders and their status.
 
 ## Close an open order
 
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-ORDER_ID=3453
-
-curl -X POST "https://api.tauros.io/api/v1/trading/closeorder/" \
--H "Content-Type: application/json" \
--H "Authorization: Token $TAUROS_API_KEY" \
--d "{\"id\": $ORDER_ID}"
-``` -->
-
 > The API response will look like this:
 
 ```json
@@ -893,21 +808,17 @@ This API call allows you to close an open order that you have previously placed.
 | id | Integer | Yes | Order id |
 
 ## List my trading history
-<!-- ```shell
-TAUROS_API_KEY='your_api_key'
-
-curl -X GET "https://api.tauros.io/api/v1/trading/history/" \
--H "Authorization: Token $TAUROS_API_KEY"
-``` -->
 
 > The API response will look like this:
 
 ```json
 {
+  "success": true,
+  "msg": null,
   "count": 3,
   "next": null,
   "previous": null,
-  "results": [
+  "payload": [
     {
       "market": "BTC-MXN",
       "amount_paid": 100.0,
@@ -978,107 +889,81 @@ curl -X GET "https://api.tauros.io/api/v1/trading/markets/"
 
 ```json
 {
-  "count": 7,
+  "success": true,
+  "msg": null,
   "next": null,
   "previous": null,
-  "results": [
+  "count": 7,
+  "payload": [
     {
-      "id": 9,
-      "name": "LTC-BTC",
-      "base_coin_id": 2,
-      "min_amount": 10000,
-      "max_amount": 1000000000000,
-      "min_value": 2500,
-      "max_value": 150000000000,
-      "min_price": "0.00100000",
-      "max_price": "80000.00000000",
-      "is_open": false,
-      "quote_coin": 3,
-      "base_coin_type": 1
-    },
-    {
-      "id": 15,
-      "name": "BEMB-MXN",
-      "base_coin_id": 7,
-      "min_amount": 500,
-      "max_amount": 20000000,
-      "min_value": 100,
-      "max_value": 20000000,
-      "min_price": "0.01000000",
-      "max_price": "100.00000000",
-      "is_open": true,
-      "quote_coin": 8,
-      "base_coin_type": 2
-    },
-    {
-      "id": 13,
-      "name": "DASH-MXN",
-      "base_coin_id": 7,
-      "min_amount": 50000,
-      "max_amount": 10000000000000,
-      "min_value": 100,
-      "max_value": 100000000,
-      "min_price": "100.00000000",
-      "max_price": "50000.00000000",
-      "is_open": true,
-      "quote_coin": 7,
-      "base_coin_type": 2
-    },
-    {
-      "id": 12,
-      "name": "XLM-MXN",
-      "base_coin_id": 7,
-      "min_amount": 10000,
-      "max_amount": 10000000000000,
-      "min_value": 100,
-      "max_value": 100000000,
-      "min_price": "0.01000000",
-      "max_price": "100.00000000",
-      "is_open": true,
-      "quote_coin": 4,
-      "base_coin_type": 2
-    },
-    {
-      "id": 11,
-      "name": "BCH-MXN",
-      "base_coin_id": 7,
-      "min_amount": 10000,
-      "max_amount": 10000000000000,
-      "min_value": 100,
-      "max_value": 1000000000,
-      "min_price": "100.00000000",
-      "max_price": "200000.00000000",
-      "is_open": true,
-      "quote_coin": 6,
-      "base_coin_type": 2
-    },
-    {
-      "id": 10,
-      "name": "LTC-MXN",
-      "base_coin_id": 7,
-      "min_amount": 10000,
-      "max_amount": 100000000000,
-      "min_value": 100,
-      "max_value": 100000000,
-      "min_price": "100.00000000",
-      "max_price": "10000000.00000000",
-      "is_open": true,
-      "quote_coin": 3,
-      "base_coin_type": 2
-    },
-    {
-      "id": 6,
+      "min_amount": "0.00001",
+      "max_amount": "500",
+      "min_value": "1",
+      "max_value": "10000000",
       "name": "BTC-MXN",
-      "base_coin_id": 7,
-      "min_amount": 1000,
-      "max_amount": 50000000000,
-      "min_value": 100,
-      "max_value": 1000000000,
       "min_price": "500.00000000",
       "max_price": "16000000.00000000",
-      "is_open": true,
-      "quote_coin": 2,
-      "base_coin_type": 2
+      "is_open": true
+    },
+    {
+      "min_amount": "0.0001",
+      "max_amount": "1000",
+      "min_value": "1",
+      "max_value": "1000000",
+      "name": "LTC-MXN",
+      "min_price": "100.00000000",
+      "max_price": "10000000.00000000",
+      "is_open": true
+    },
+    {
+      "min_amount": "0.0001",
+      "max_amount": "10000",
+      "min_value": "0.000025",
+      "max_value": "1500",
+      "name": "LTC-BTC",
+      "min_price": "0.00100000",
+      "max_price": "80000.00000000",
+      "is_open": false
+    },
+    {
+      "min_amount": "0.0001",
+      "max_amount": "100000",
+      "min_value": "1",
+      "max_value": "10000000",
+      "name": "BCH-MXN",
+      "min_price": "100.00000000",
+      "max_price": "200000.00000000",
+      "is_open": true
+    },
+    {
+      "min_amount": "0.001",
+      "max_amount": "1000000",
+      "min_value": "1",
+      "max_value": "1000000",
+      "name": "XLM-MXN",
+      "min_price": "0.01000000",
+      "max_price": "100.00000000",
+      "is_open": true
+    },
+    {
+      "min_amount": "0.0005",
+      "max_amount": "100000",
+      "min_value": "1",
+      "max_value": "1000000",
+      "name": "DASH-MXN",
+      "min_price": "100.00000000",
+      "max_price": "50000.00000000",
+      "is_open": true
+    },
+    {
+      "min_amount": "5",
+      "max_amount": "200000",
+      "min_value": "1",
+      "max_value": "200000",
+      "name": "BEMB-MXN",
+      "min_price": "0.01000000",
+      "max_price": "100.00000000",
+      "is_open": true
     }
   ]
 }
