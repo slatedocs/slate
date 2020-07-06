@@ -374,7 +374,7 @@ Required | &nbsp;
 `cpuCount`<br/>*string* | Updated number of vCPUs of instance.
 `memoryInGB`<br/>*string* | Updated memory of instance.
 `osImageSelfLink`<br/>*string* | The full URL to the OS image.
-`subnetworkName`<br/>*string* | The subnet to which the instance is to be attached upon creation _(must be in the same region as the region provided for the instance)_.
+`subnetworkName`<br/>*string* | The subnet that the instance is attached to upon creation. _(Note that the subnet must be in the same region as the instance)_.
 
 Optional | &nbsp;
 ------- | -----------
