@@ -1,7 +1,7 @@
 ## {{= data.operationUniqueName}}
 
 {{? data.operation.operationId}}
-<a id="opId{{=data.title_prefix+'-'+data.operation.operationId}}"></a>
+<a id="opId{{=data.operation.operationId}}"></a>
 {{?}}
 
 {{ data.methodUpper = data.method.verb.toUpperCase(); }}

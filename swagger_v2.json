@@ -9,66 +9,224 @@
       "email": "support@delta.exchange"
     }
   },
-  "host": "localhost:3010",
+  "host": "api.delta.exchange",
   "basePath": "/v2",
-  "tags": [{
-    "name": "Assets",
-    "description": "Get Asset List"
-  }, {
-    "name": "Products",
-    "description": "Get Product List"
-  }, {
-    "name": "Orders",
-    "description": "Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage"
-  }, {
-    "name": "Positions",
-    "description": "Get Open positions, Change Position Margin, Close Position"
-  }, {
-    "name": "Trade History",
-    "description": "Get Orders History, Get Fill History"
-  }, {
-    "name": "Orderbook",
-    "description": "L2Orderbook"
-  }, {
-    "name": "Wallet",
-    "description": "Get balances, Get transaction history"
-  }, {
-    "name": "OHLC Candles"
-  }],
-  "schemes": ["http"],
+  "tags": [
+    {
+      "name": "Assets",
+      "description": "Get Asset List"
+    },
+    {
+      "name": "Indices",
+      "description": "Get Indices List"
+    },
+    {
+      "name": "Products",
+      "description": "Get Product List"
+    },
+    {
+      "name": "Orders",
+      "description": "Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage"
+    },
+    {
+      "name": "Positions",
+      "description": "Get Open positions, Change Position Margin, Close Position"
+    },
+    {
+      "name": "Trade History",
+      "description": "Get Orders History, Get Fill History"
+    },
+    {
+      "name": "Orderbook",
+      "description": "L2Orderbook"
+    },
+    {
+      "name": "Trades",
+      "description": "Get Trades of a contract"
+    },
+    {
+      "name": "Wallet",
+      "description": "Get balances, Get transaction history"
+    },
+    {
+      "name": "OHLC Candles"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/assets": {
       "get": {
-        "tags": ["Assets"],
+        "tags": [
+          "Assets"
+        ],
         "summary": "Get list of all assets",
         "operationId": "getAssets",
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of all assets",
             "schema": {
-              "$ref": "#/definitions/ArrayOfAssets"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfAssets"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
       }
     },
-    "/products" : {
-      "get" : {
-        "tags" : [ "Products" ],
-        "summary" : "Get live products",
-        "operationId" : "getProducts",
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "200" : {
-            "description" : "List of live products",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfProducts"
+    "/indices": {
+      "get": {
+        "tags": [
+          "Indices"
+        ],
+        "operationId": "getIndices",
+        "summary": "Get indices",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of indices (Spot underlyings, Interest Rates indexes)",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfIndices"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get live products",
+        "operationId": "getProducts",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of live products",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfProducts"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/tickers": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get tickers for products",
+        "operationId": "getTickers",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of live tickers for all products",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfTickers"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/tickers/{symbol}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get ticker for a product by symbol",
+        "operationId": "getTicker",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "description": "symbol of the ticker",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of live tickers for all products",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Ticker"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -76,209 +234,280 @@
     },
     "/orders": {
       "post": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Place Order",
         "operationId": "placeOrder",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "order",
-          "description": "Order which needs to be created",
-          "required": true,
-          "schema": {
-            "type": "array",
-            "items": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order",
+            "description": "Order which needs to be created",
+            "required": true,
+            "schema": {
               "$ref": "#/definitions/CreateOrderRequest"
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Returns back the order object with assigned id and latest state",
             "schema": {
-              "$ref": "#/definitions/Order"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Order"
+                    }
+                  }
+                }
+              ]
             }
           },
           "400": {
             "description": "Returns [error](#place-order-error-description) if order could not be placed",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy", "SelfMatchingPostOnlyMode", "ImmediateExecutionPostOnlyOrder", "BracketOrderPositionExists", "InvalidBracketOrder"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
       },
       "delete": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Cancel Order",
         "operationId": "cancelOrder",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "order",
-          "description": "Order which needs to be cancelled",
-          "required": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/DeleteOrderRequest"  
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order",
+            "description": "Order which needs to be cancelled",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteOrderRequest"
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Returns back the order object",
             "schema": {
-              "$ref": "#/definitions/Order"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Order"
+                    }
+                  }
+                }
+              ]
             }
           },
           "400": {
             "description": "Returns error if order could not be cancelled",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["ALREADY_FILLED", "InvalidOrder", "InvalidProduct"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
       },
       "put": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Edit Order",
         "operationId": "editOrder",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "order",
-          "description": "Order which needs to be edited",
-          "required": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/EditOrderRequest"  
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order",
+            "description": "Order which needs to be edited",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditOrderRequest"
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Returns back the order object with assigned id and latest state",
             "schema": {
-              "$ref": "#/definitions/Order"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Order"
+                    }
+                  }
+                }
+              ]
             }
           },
           "400": {
             "description": "Returns [error](#place-order-error-description) if order could not be placed",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy", "SelfMatchingPostOnlyMode", "ImmediateExecutionPostOnlyOrder"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
       },
       "get": {
-        "summary": "Get Orders - V2",
-        "tags": ["Orders"],
+        "summary": "Get Active Orders",
+        "tags": [
+          "Orders"
+        ],
         "operationId": "getOrders",
         "deprecated": false,
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters" : [ {
-          "in" : "query",
-          "name" : "product_ids",
-          "description" : "comma separated product ids",
-          "type" : "string"
-        },{
-          "in" : "query",
-          "name" : "contract_types",
-          "description" : "comma separated product ids",
-          "type" : "string",
-          "enum" : [ "futures", "perpetual_futures", "call_options", "put_options", "interest_rate_swaps", "move_options", "spreads"]
-        }, {
-          "in" : "query",
-          "name" : "order_types",
-          "description" : "comma separated order types",
-          "type" : "string",
-          "enum" : ["market", "limit", "stop_market", "stop_limit", "all_stop"]
-        }, {
-          "in" : "query",
-          "name" : "start_time",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "integer"
-        }, {
-          "in" : "query",
-          "name" : "end_time",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "integer"
-        }, {
-          "in" : "query",
-          "name" : "after",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "string"
-        }, {
-          "in" : "query",
-          "name" : "before",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "string"
-        }, {
-          "in" : "query",
-          "name" : "page_size",
-          "description" : "number of records per page",
-          "type" : "integer",
-          "default": 10
-        }],
-        "responses" : {
-          "200" : {
-            "description" : "List of orders as per the query",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfOrders"
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "product_ids",
+            "description": "comma separated product ids",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "contract_types",
+            "description": "comma separated product ids",
+            "type": "string",
+            "enum": [
+              "futures",
+              "perpetual_futures",
+              "call_options",
+              "put_options",
+              "interest_rate_swaps",
+              "move_options",
+              "spreads"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "order_types",
+            "description": "comma separated order types",
+            "type": "string",
+            "enum": [
+              "market",
+              "limit",
+              "stop_market",
+              "stop_limit",
+              "all_stop"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "description": "after cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "description": "before cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "number of records per page",
+            "type": "integer",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of orders as per the query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfOrders"
+                    },
+                    "meta": {
+                      "$ref": "#/definitions/PaginationMeta"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -286,49 +515,46 @@
     },
     "/orders/all": {
       "delete": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Cancel all open orders",
         "operationId": "cancelAllOrders",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "filters",
-          "description": "Filters for selecting orders that needs to be cancelled",
-          "required": false,
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/CancelAllFilterObject" 
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "filters",
+            "description": "Filters for selecting orders that needs to be cancelled",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CancelAllFilterObject"
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "returns back success response",
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ApiSuccessResponse"
             }
           },
           "400": {
             "description": "Returns error if orders could not be cancelled",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["InvalidProduct"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
@@ -336,47 +562,66 @@
     },
     "/orders/batch": {
       "post": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Create batch orders",
         "operationId": "batchCreate",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "orders",
-          "required": true,
-          "schema": {
-            "$ref": "#/definitions/ArrayOfCreateOrderRequest"
-          },
-          "description": "Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders"
-        }],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "payload",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "orders": {
+                  "$ref": "#/definitions/ArrayOfCreateOrderRequest"
+                },
+                "product_id": {
+                  "type": "integer"
+                }
+              }
+            },
+            "description": "Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders"
+          }
+        ],
         "responses": {
           "200": {
             "description": "returns the orders placed",
             "schema": {
-              "$ref": "#/definitions/Order"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfOrders"
+                    }
+                  }
+                }
+              ]
             }
           },
           "400": {
             "description": "returns error if orders couldnt be placed",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
-
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
@@ -384,7 +629,9 @@
       "put": {
         "description": "batch order edit ",
         "summary": "Edit batch orders",
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "operationId": "batchEdit",
         "deprecated": false,
         "produces": [
@@ -393,87 +640,118 @@
         "consumes": [
           "application/json"
         ],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "name": "orders",
-          "in": "body",
-          "required": true,
-          "description": "",
-          "schema": {
-            "$ref": "#/definitions/EditBatchOrders"
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
           }
-        }],
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "payload",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "orders": {
+                  "$ref": "#/definitions/ArrayOfEditOrderRequest"
+                },
+                "product_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "List of edited orders",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfOrders"
+                    }
+                  }
+                }
+              ]
+            }
           },
           "400": {
             "description": "returns error if orders couldnt be edited",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
-
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
       },
       "delete": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Delele batch orders",
         "operationId": "batchDelete",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "orders",
-          "required": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/ArrayOfDeleteOrderRequest"  
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "payload",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "orders": {
+                  "$ref": "#/definitions/ArrayOfDeleteOrderRequest"
+                },
+                "product_id": {
+                  "type": "integer"
+                }
+              }
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "returns the orders deleted",
             "schema": {
-              "$ref": "#/definitions/Order"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfOrders"
+                    }
+                  }
+                }
+              ]
             }
           },
           "400": {
             "description": "returns error if orders couldnt be deleted",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["ALREADY_FILLED", "InvalidOrder", "InvalidProduct"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
@@ -481,76 +759,105 @@
     },
     "/orders/leverage": {
       "post": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Change order leverage",
         "operationId": "changeOrderLeverage",
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "order_leverage",
-          "required": true,
-          "schema": {
-            "type": "object",
-            "required": ["product_id", "leverage"],
-            "properties": {
-              "product_id": {
-                "type": "integer"
-              },
-              "leverage": {
-                "type": "string"
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order_leverage",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "product_id",
+                "leverage"
+              ],
+              "properties": {
+                "product_id": {
+                  "type": "integer"
+                },
+                "leverage": {
+                  "type": "string"
+                }
               }
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "returns the OrderLeverage object",
             "schema": {
-              "$ref": "#/definitions/OrderLeverage"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/OrderLeverage"
+                    }
+                  }
+                }
+              ]
             }
           },
           "400": {
             "description": "Returns error if leverage couldnt be changed",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["InsufficientMargin", "LeverageLimitExceeded"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
       },
       "get": {
-        "tags": ["Orders"],
+        "tags": [
+          "Orders"
+        ],
         "summary": "Get order leverage",
         "operationId": "getOrderLeverage",
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "query",
-          "name": "product_id",
-          "type": "integer",
-          "required": true
-        }],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "product_id",
+            "type": "integer",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "returns the OrderLeverage object",
             "schema": {
-              "$ref": "#/definitions/OrderLeverage"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/OrderLeverage"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -558,33 +865,108 @@
     },
     "/orders/history": {
       "get": {
-        "tags": ["TradeHistory"],
+        "tags": [
+          "TradeHistory"
+        ],
         "summary": "Get order history (cancelled and closed)",
         "operationId": "getOrderHistory",
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "query",
-          "name": "page_num",
-          "description": "page number for pagination",
-          "type": "integer",
-          "default": 1
-        }, {
-          "in": "query",
-          "name": "page_size",
-          "description": "page size for pagination",
-          "type": "integer",
-          "default": 20
-        }],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "product_ids",
+            "description": "comma separated product ids",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "contract_types",
+            "description": "comma separated product ids",
+            "type": "string",
+            "enum": [
+              "futures",
+              "perpetual_futures",
+              "call_options",
+              "put_options",
+              "interest_rate_swaps",
+              "move_options",
+              "spreads"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "order_types",
+            "description": "comma separated order types",
+            "type": "string",
+            "enum": [
+              "market",
+              "limit",
+              "stop_market",
+              "stop_limit",
+              "all_stop"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "description": "after cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "description": "before cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "number of records per page",
+            "type": "integer",
+            "default": 10
+          }
+        ],
         "responses": {
           "200": {
-            "description": "List of orders",
+            "description": "List of closed and cancelled orders",
             "schema": {
-              "$ref": "#/definitions/ArrayOfOrders"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfOrders"
+                    },
+                    "meta": {
+                      "$ref": "#/definitions/PaginationMeta"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -593,123 +975,187 @@
     "/fills": {
       "get": {
         "summary": "GET user fills by filters",
-        "tags": ["Trade History"],
+        "tags": [
+          "Trade History"
+        ],
         "operationId": "GETuserfillsbyfilters",
         "deprecated": false,
         "produces": [
           "application/json"
         ],
-        "parameters": [{
-          "name": "Authorization",
-          "in": "header",
-          "required": false,
-          "default": "Bearer {token}",
-          "type": "string"
-        }, {
-          "name": "user_id",
-          "in": "query",
-          "required": true,
-          "type": "integer",
-          "format": "int32",
-          "description": ""
-        }, {
-          "name": "product_ids",
-          "in": "query",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }, {
-          "name": "contract_types",
-          "in": "query",
-          "required": true,
-          "type": "string",
-          "description": ""
-        }, {
-          "name": "start_time",
-          "in": "query",
-          "required": true,
-          "type": "integer",
-          "format": "int64",
-          "description": ""
-        }, {
-          "name": "end_time",
-          "in": "query",
-          "required": true,
-          "type": "integer",
-          "format": "int64",
-          "description": ""
-        }],
+        "parameters": [
+          {
+            "name": "product_ids",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "contract_types",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "enum": [
+              "futures",
+              "perpetual_futures",
+              "call_options",
+              "put_options",
+              "interest_rate_swaps",
+              "move_options",
+              "spreads"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "description": "Start time for the fills query",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "description": "End time for the fills query",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "description": "from time in micro-seconds in epoc",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "number of records per page",
+            "type": "integer",
+            "default": 10
+          }
+        ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "fills",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfFills"
+                    },
+                    "meta": {
+                      "$ref": "#/definitions/PaginationMeta"
+                    }
+                  }
+                }
+              ]
+            }
           }
         }
       }
     },
     "/fills/history/download/csv": {
       "get": {
-        "tags": ["TradeHistory"],
+        "tags": [
+          "TradeHistory"
+        ],
         "summary": "Download Wallet transactions",
         "operationId": "downloadFillsHistory",
-        "produces": ["application/json"],
-        "consumes": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        
-        "parameters": [{
-          "name": "product_ids",
-          "in": "query",
-          "type": "string",
-          "description": ""
-        }, {
-          "name": "contract_types",
-          "in": "query",
-          "type": "string",
-          "description": "",
-          "enum": ["futures", "perpetual_futures", "call_options", "put_options", "interest_rate_swaps", "move_options", "spreads"]
-        }, {
-          "in": "query",
-          "name": "start_time",
-          "description": "Start time for the transaction query",
-          "type": "integer",
-          "required": false
-        }, {
-          "in": "query",
-          "name": "end_time",
-          "description": "End time for the transaction query",
-          "type": "integer",
-          "required": false
-        }],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "product_ids",
+            "in": "query",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "contract_types",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "enum": [
+              "futures",
+              "perpetual_futures",
+              "call_options",
+              "put_options",
+              "interest_rate_swaps",
+              "move_options",
+              "spreads"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "description": "Start time for the fills query",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "description": "End time for the fills query",
+            "type": "integer",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
-            "description": "csv of transactions for that wallet",
-            "schema": {
-              "$ref": "#/definitions/ArrayOfTransactions"
-            }
+            "description": "csv of fills for the filter query"
           }
         }
       }
     },
     "/positions": {
       "get": {
-        "tags": ["Positions"],
+        "tags": [
+          "Positions"
+        ],
         "operationId": "getPositions",
         "summary": "Get open positions",
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of all open positions",
             "schema": {
-              "$ref": "#/definitions/ArrayOfPositions"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfPositions"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -717,81 +1163,153 @@
     },
     "/positions/change_margin": {
       "post": {
-        "tags": ["Positions"],
+        "tags": [
+          "Positions"
+        ],
         "operationId": "changePositionMargin",
         "summary": "Add/Remove position margin",
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "body",
-          "name": "position_margin",
-          "required": true,
-          "schema": {
-            "type": "object",
-            "required": ["product_id", "delta_margin"],
-            "properties": {
-              "product_id": {
-                "type": "integer"
-              },
-              "delta_margin": {
-                "type": "string",
-                "description": "Delta in the position margin, positive in case of adding margin & negative in case of removing margin"
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "position_margin",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "product_id",
+                "delta_margin"
+              ],
+              "properties": {
+                "product_id": {
+                  "type": "integer"
+                },
+                "delta_margin": {
+                  "type": "string",
+                  "description": "Delta in the position margin, positive in case of adding margin & negative in case of removing margin"
+                }
               }
             }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "returns the position object",
             "schema": {
-              "$ref": "#/definitions/Position"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Position"
+                    }
+                  }
+                }
+              ]
             }
           },
           "400": {
             "description": "Returns error if position margin could not be changed",
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "enum": ["PositionNotSet", "LeverageLimitExceeded", "InsufficientMargin", "ExistingOrderWithLowerThanBankruptcy"]
-                },
-                "message": {
-                  "type": "string",
-                  "description": "A more verbose error message"
-                }
-              }
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
       }
     },
-    "/orderbook/{product_id}/l2": {
+    "/l2orderbook/{symbol}": {
       "get": {
-        "tags": ["Orderbook"],
+        "tags": [
+          "Orderbook"
+        ],
         "operationId": "getL2Orderbook",
         "summary": "Get L2 orderbook",
-        "produces": ["application/json"],
-        "parameters": [{
-          "in": "path",
-          "name": "product_id",
-          "type": "integer",
-          "required": true
-        }, {
-          "in": "query",
-          "name": "depth",
-          "description": "number of levels on each side",
-          "type": "integer"
-        }],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "depth",
+            "description": "number of levels on each side",
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "L2 orderbook for the product",
             "schema": {
-              "$ref": "#/definitions/L2Orderbook"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/L2Orderbook"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/trades/{symbol}": {
+      "get": {
+        "tags": [
+          "Trades"
+        ],
+        "operationId": "getTrades",
+        "summary": "Get public trades",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of recent trades of the product",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Trades"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -799,20 +1317,38 @@
     },
     "/wallet/balances": {
       "get": {
-        "tags": ["Wallet"],
+        "tags": [
+          "Wallet"
+        ],
         "operationId": "getBalances",
         "summary": "Get Wallet Balances",
-        "produces": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of wallets attached to the user account",
             "schema": {
-              "$ref": "#/definitions/ArrayOfWallets"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfWallets"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -820,48 +1356,77 @@
     },
     "/wallet/transactions": {
       "get": {
-        "tags": ["Wallet"],
+        "tags": [
+          "Wallet"
+        ],
         "summary": "Get Wallet transactions",
         "operationId": "getTransactions",
-        "produces": ["application/json"],
-        "consumes": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in" : "query",
-          "name" : "start_time",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "integer"
-        }, {
-          "in" : "query",
-          "name" : "end_time",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "integer"
-        }, {
-          "in" : "query",
-          "name" : "after",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "string"
-        }, {
-          "in" : "query",
-          "name" : "before",
-          "description" : "from time in micro-seconds in epoc",
-          "type" : "string"
-        }, {
-          "in" : "query",
-          "name" : "page_size",
-          "description" : "number of records per page",
-          "type" : "integer",
-          "default": 10
-        }],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "asset_id",
+            "description": "asset_id for which to get txns logs",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "description": "end time in micro-seconds in epoc",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "description": "after cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "description": "before cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "number of records per page",
+            "type": "integer",
+            "default": 10
+          }
+        ],
         "responses": {
           "200": {
             "description": "list of transactions for that wallet",
             "schema": {
-              "$ref": "#/definitions/ArrayOfTransactions"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfTransactions"
+                    },
+                    "meta": {
+                      "$ref": "#/definitions/PaginationMeta"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -869,48 +1434,49 @@
     },
     "/wallet/transactions/download": {
       "get": {
-        "tags": ["Wallet"],
+        "tags": [
+          "Wallet"
+        ],
         "summary": "Download Wallet transactions",
         "operationId": "downloadTransactions",
-        "produces": ["application/json"],
-        "consumes": ["application/json"],
-        "security": [{
-          "api-key": [],
-          "signature": [],
-          "timestamp": []
-        }],
-        "parameters": [{
-          "in": "query",
-          "name": "start_time",
-          "description": "Start time for the transaction query",
-          "type": "integer",
-          "required": false
-        }, {
-          "in": "query",
-          "name": "end_time",
-          "description": "End time for the transaction query",
-          "type": "integer",
-          "required": false
-        }],
-        "responses": {
-          "200": {
-            "description": "csv of transactions for that wallet",
-            "schema": {
-              "$ref": "#/definitions/ArrayOfTransactions"
-            }
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
           }
-        }
-      }
-    },
-    "/spot_indices": {
-      "get": {
-        "tags" : [ "SpotIndice" ],
-        "operationId": "getSpotIndices",
-        "summary": "Get spot indices",
-        "produces": ["application/json"],
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "asset_id",
+            "description": "asset_id for which to get txns logs",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "description": "Start time for the transaction query",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "description": "End time for the transaction query",
+            "type": "integer",
+            "required": false
+          }
+        ],
         "responses": {
           "200": {
-            "description": "List of spot spot indices"
+            "description": "csv of transactions for that wallet"
           }
         }
       }
@@ -934,6 +1500,51 @@
     }
   },
   "definitions": {
+    "ApiSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "ApiErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "default": false
+        },
+        "error": {
+          "type": "object"
+        }
+      }
+    },
+    "Index": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "constituent_exchanges": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "ArrayOfIndices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Index"
+      }
+    },
     "Asset": {
       "type": "object",
       "properties": {
@@ -983,14 +1594,13 @@
           "type": "string",
           "description": "settlement Timestamp of futures contract"
         },
-        "product_type": {
+        "notional_type": {
           "type": "string",
-          "enum": ["future", "inverse_future"],
-          "description": "contract type 'future' or 'inverse_future'"
-        },
-        "pricing_source": {
-          "type": "string",
-          "description": "source and method of contract pricing"
+          "enum": [
+            "vanilla",
+            "inverse"
+          ],
+          "description": "whether notional is calculated using vanilla math or inverse math"
         },
         "impact_size": {
           "type": "integer",
@@ -1018,7 +1628,11 @@
         },
         "trading_status": {
           "type": "string",
-          "enum": ["operational", "disrupted_cancel_only", "disrupted_post_only"],
+          "enum": [
+            "operational",
+            "disrupted_cancel_only",
+            "disrupted_post_only"
+          ],
           "description": "trading status of the contract e.g. 'operational','disrupted_cancel_only' or 'disrupted_post_only' "
         },
         "max_leverage_notional": {
@@ -1035,9 +1649,9 @@
         "maintenance_margin_scaling_factor": {
           "type": "string"
         },
-        "commission_rate": {
+        "taker_commission_rate": {
           "type": "string",
-          "description": "rate at which commission fee will be calculated for a trade in given contract"
+          "description": "rate at which commission fee will be calculated for a taker trade in given contract"
         },
         "maker_commission_rate": {
           "type": "string",
@@ -1083,8 +1697,10 @@
         },
         "settling_asset": {
           "$ref": "#/definitions/Asset"
+        },
+        "spot_index": {
+          "$ref": "#/definitions/Index"
         }
-
       }
     },
     "ArrayOfProducts": {
@@ -1112,36 +1728,52 @@
         "side": {
           "type": "string",
           "description": "side for which to place order",
-          "enum": ["buy", "sell"]
+          "enum": [
+            "buy",
+            "sell"
+          ]
         },
         "order_type": {
           "type": "string",
-          "enum": ["limit_order", "market_order"]
+          "enum": [
+            "limit_order",
+            "market_order"
+          ]
         },
         "limit_price": {
           "type": "string"
         },
         "stop_order_type": {
           "type": "string",
-          "enum": ["stop_loss_order"]
+          "enum": [
+            "stop_loss_order"
+          ]
         },
         "stop_price": {
           "type": "string"
         },
         "close_on_trigger": {
           "type": "string",
-          "enum": ["false", "true"]
+          "enum": [
+            "false",
+            "true"
+          ]
         },
         "state": {
           "type": "string",
           "description": "Order Status",
-          "enum": ["open", "pending", "closed", "cancelled"]
+          "enum": [
+            "open",
+            "pending",
+            "closed",
+            "cancelled"
+          ]
         },
         "created_at": {
           "type": "string"
         },
-        "product": {
-          "$ref": "#/definitions/Product"
+        "product_id": {
+          "type": "integer"
         }
       }
     },
@@ -1154,7 +1786,9 @@
     "CreateOrderRequest": {
       "type": "object",
       "description": "A create order object",
-      "required": ["product_id"],
+      "required": [
+        "product_id"
+      ],
       "properties": {
         "product_id": {
           "type": "integer"
@@ -1168,23 +1802,39 @@
         "side": {
           "type": "string",
           "description": "side for which to place order",
-          "enum": ["buy", "sell"]
+          "enum": [
+            "buy",
+            "sell"
+          ]
         },
         "order_type": {
           "type": "string",
-          "enum": ["limit_order", "market_order"]
+          "enum": [
+            "limit_order",
+            "market_order"
+          ]
         },
         "time_in_force": {
           "type": "string",
-          "enum": ["gtc", "ioc", "fok"]
+          "enum": [
+            "gtc",
+            "ioc",
+            "fok"
+          ]
         },
         "post_only": {
           "type": "string",
-          "enum": ["true", "false"]
+          "enum": [
+            "true",
+            "false"
+          ]
         },
         "reduce_only": {
           "type": "string",
-          "enum": ["true", "false"]
+          "enum": [
+            "true",
+            "false"
+          ]
         }
       }
     },
@@ -1242,12 +1892,18 @@
         "cancel_limit_orders": {
           "type": "string",
           "description": "set as true to cancel open limit orders",
-          "enum": ["true", "false"]
+          "enum": [
+            "true",
+            "false"
+          ]
         },
         "cancel_stop_orders": {
           "type": "string",
           "description": "set as true to cancel stop orders",
-          "enum": ["true", "false"]
+          "enum": [
+            "true",
+            "false"
+          ]
         }
       }
     },
@@ -1283,8 +1939,8 @@
         "adl_level": {
           "type": "integer"
         },
-        "product": {
-          "$ref": "#/definitions/Product"
+        "product_id": {
+          "type": "integer"
         }
       }
     },
@@ -1305,8 +1961,11 @@
           "type": "integer"
         },
         "side": {
-          "type": "integer",
-          "enum": ["buy", "sell"]
+          "type": "string",
+          "enum": [
+            "buy",
+            "sell"
+          ]
         },
         "price": {
           "type": "string",
@@ -1314,7 +1973,10 @@
         },
         "role": {
           "type": "string",
-          "enum": ["taker", "maker"]
+          "enum": [
+            "taker",
+            "maker"
+          ]
         },
         "commission": {
           "type": "string",
@@ -1323,8 +1985,8 @@
         "created_at": {
           "type": "string"
         },
-        "product": {
-          "$ref": "#/definitions/Product"
+        "product_id": {
+          "type": "integer"
         }
       }
     },
@@ -1382,15 +2044,24 @@
               }
             }
           }
-        },
-        "recent_trades": {
+        }
+      }
+    },
+    "Trades": {
+      "type": "object",
+      "description": "trades of a symbol",
+      "properties": {
+        "trades": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "side": {
                 "type": "string",
-                "enum": ["buy", "sell"]
+                "enum": [
+                  "buy",
+                  "sell"
+                ]
               },
               "size": {
                 "type": "integer"
@@ -1403,15 +2074,6 @@
               }
             }
           }
-        },
-        "spot_price": {
-          "type": "string"
-        },
-        "mark_price": {
-          "type": "string"
-        },
-        "product_id": {
-          "type": "integer"
         }
       }
     },
@@ -1465,13 +2127,27 @@
         },
         "transaction_type": {
           "type": "string",
-          "enum": ["pnl", "deposit", "withdrawal", "commission", "conversion", "perpetual_futures_funding", "withdrawal_cancellation", "referral_bonus", "commission_rebate", "promo_credit"]
+          "enum": [
+            "pnl",
+            "deposit",
+            "withdrawal",
+            "commission",
+            "conversion",
+            "perpetual_futures_funding",
+            "withdrawal_cancellation",
+            "referral_bonus",
+            "commission_rebate",
+            "promo_credit"
+          ]
         },
         "meta_data": {
           "type": "object"
         },
-        "product": {
-          "$ref": "#/definitions/Product"
+        "product_id": {
+          "type": "integer"
+        },
+        "asset_id": {
+          "type": "integer"
         },
         "created_at": {
           "type": "string"
@@ -1484,7 +2160,7 @@
         "$ref": "#/definitions/Transaction"
       }
     },
-    "24hrTicker": {
+    "Ticker": {
       "type": "object",
       "properties": {
         "symbol": {
@@ -1507,137 +2183,40 @@
         },
         "volume": {
           "type": "integer"
-        }
-      }
-    },
-    "OHLCData": {
-      "type": "object",
-      "properties": {
-        "t": {
-          "type": "array",
-          "description": "array of timestamps for which candles are returned",
-          "items": {
-            "type": "integer"
-          }
         },
-        "o": {
-          "type": "array",
-          "description": "open prices for candles",
-          "items": {
-            "type": "string"
-          }
-        },
-        "h": {
-          "type": "array",
-          "description": "high prices for candles",
-          "items": {
-            "type": "string"
-          }
-        },
-        "l": {
-          "type": "array",
-          "description": "low prices for candles",
-          "items": {
-            "type": "string"
-          }
-        },
-        "c": {
-          "type": "array",
-          "description": "close prices for candles",
-          "items": {
-            "type": "string"
-          }
-        },
-        "v": {
-          "type": "array",
-          "description": "volumes for candles",
-          "items": {
-            "type": "integer"
-          }
-        }
-      }
-    },
-    "WithdrawalsResponse": {
-      "type": "object",
-      "properties": {
-        "address": {
-          "type": "string",
-          "description": "BTC Destination Address"
-        },
-        "amount": {
-          "type": "string",
-          "description": "Amount to be Withdrawn"
-        },
-        "fee": {
-          "type": "string",
-          "description": "Withdrawal Fee"
-        },
-        "id": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Trasaction id"
-        },
-        "state": {
-          "type": "string",
-          "description": "state of withdrawal request"
-        },
-        "transaction_meta": {
-          "type": "string",
-          "description": "Amount to be Withdrawn"
-        },
-        "user_id": {
-          "type": "integer",
-          "format": "int64",
-          "description": "User id"
-        }
-      }
-    },
-    "EditBatchOrders": {
-      "type": "object",
-      "properties": {
-        "product_id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "orders": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BatchEditOrders"
-          }
-        }
-      },
-      "required": [
-        "product_id",
-        "orders"
-      ]
-    },
-    "BatchEditOrders": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Order id to be edited"
-        },
-        "size": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "limit_price": {
+        "mark_price": {
           "type": "string"
         },
-        "product_id": {
-          "type": "integer",
-          "format": "int32"
+        "spot_price": {
+          "type": "string"
+        },
+        "turnover": {
+          "type": "number"
+        },
+        "turnover_symbol": {
+          "type": "string"
+        },
+        "turnover_usd": {
+          "type": "number"
         }
-      },
-      "required": [
-        "id",
-        "size",
-        "limit_price",
-        "product_id"
-      ]
+      }
+    },
+    "ArrayOfTickers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Ticker"
+      }
+    },
+    "PaginationMeta": {
+      "type": "object",
+      "properties": {
+        "after": {
+          "type": "string"
+        },
+        "before": {
+          "type": "string"
+        }
+      }
     }
-
   }
 }
