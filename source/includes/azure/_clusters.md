@@ -13,6 +13,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/clusters"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -67,6 +68,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/clusters/ssamadh-aks-mean"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -99,8 +101,6 @@ Attributes        | &nbsp;
 `region`<br/>*string* | The resource location
 `version` <br/>*string* | The version of kubernetes running in the cluster
 
-
-
 <!-------------------- CREATE AKS CLUSTER -------------------->
 
 #### Create a cluster
@@ -112,6 +112,7 @@ curl -X POST \
    -d "request_body" \
    "http://cloudmc_endpoint/v1/services/azure/example/clusters"
 ```
+
 > Request body examples:
 
 ```json
@@ -158,6 +159,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/clusters/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.ContainerService/managedClusters/sample_small_cluster"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
