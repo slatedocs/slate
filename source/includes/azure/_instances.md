@@ -11,6 +11,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -86,7 +87,6 @@ Attributes | &nbsp;
 `displayPowerState`<br/>*string* | The status of the instance. One of the following values: running, deallocating, deallocated, starting, stopped, stopping and unknown.
 `networkInterfaces`<br/>*list* | A list of network interfaces of the instance. Contains fields: `id`, `name`, `primary`.
 
-
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
 #### Retrieve an instance
@@ -96,6 +96,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -177,6 +178,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances"
 ```
+
 > Request body examples:
 
 ```js
@@ -258,6 +260,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=resize"
 ```
+
 > Request body example:
 
 ```json
@@ -300,6 +303,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=reset_password"
 ```
+
 > Request body example:
 
 ```json
@@ -313,11 +317,9 @@ curl -X POST \
 For Linux instances, reset the administrator account.
 For Windows instances, reset the administrator account and reset the Remote Desktop service configuration.
 
-
 Optional | &nbsp;
 ------ | -----------
 `password`<br/>*string* | The password of the administator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. If not provided, a new password is generated.
-
 
 <!-------------------- START AN INSTANCE -------------------->
 
@@ -350,10 +352,10 @@ curl -X POST \
 
  Stop an existing instance. The instance must be in either the power state *PowerState/running* or *PowerState/starting* status for this operation to work.
 
-
 <!-------------------- ATTACH A DISK -------------------->
 
 #### Attach a disk (instance side)
+
 ```shell
 curl -X POST \
    -H "Content-Type: application/json" \
@@ -361,6 +363,7 @@ curl -X POST \
    -d "request_body" \
  "https://cloudmc_endpoint/v1/services/azure-conn/test_env/instances/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
 ```
+
 > Request body example:
 
 ```json
@@ -369,6 +372,7 @@ curl -X POST \
   "diskLun": 10
 }
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -379,7 +383,6 @@ curl -X POST \
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=attach_disk</code>
-
 
 Required | &nbsp;
 ------ | -----------

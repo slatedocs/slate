@@ -13,6 +13,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -65,7 +66,6 @@ Attributes | &nbsp;
 `data`<br/>*array* | A list of Azure disks. _(See ["Retrieve an Azure disk"](#azure-retrieve-an-azure-disk) API for the strucutre of each disk object)_
 `metadata`<br/>*object* | Consists of the meta information related to the returned disk list. The attribute `recordCount` contains the number of disks returned.
 
-
 <!-------------------- RETRIEVE A DISK -------------------->
 
 #### Retrieve an Azure disk
@@ -75,6 +75,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -128,6 +129,7 @@ curl -X POST \
    -d "request_body"
    "https://cloudmc_endpoint/v1/services/azure/example/disks"
 ```
+
 > Request body example:
 
 ```json
@@ -140,6 +142,7 @@ curl -X POST \
   "throughputInMBps": "200"
 }
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -175,6 +178,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/60a3c9eebe64-55c1-4b1d-969b-60a3c/resourceGroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.Compute/disks/the-sheep_disk1_c0cbe27c49aa928525e93bd2519aac4"
 
 ```
+
 > Request body examples:
 
 ```json
@@ -183,12 +187,14 @@ curl -X POST \
   "sizeGb":"200",
 }
 ```
+
 ```json
 {
   "iops": "40",
   "throughputInMBps": "200"
 }
 ```
+
 > The above commands return JSON structured like this:
 
 ```json
@@ -227,10 +233,10 @@ curl -X DELETE \
 
 Destroy an existing disk. A disk can only be deleted if it's not attached to an [instance](#azure-instances).
 
-
 <!-------------------- DETACH A DISK -------------------->
 
 #### Detach a disk
+
 ```shell
 curl -X POST \
    -H "Content-Type: application/json" \
@@ -246,6 +252,7 @@ Detach an existing disk from a given [instance](#azure-instances).
 <!-------------------- ATTACH A DISK -------------------->
 
 #### Attach a disk (disk side)
+
 ```shell
 curl -X POST \
    -H "Content-Type: application/json" \
@@ -253,6 +260,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/azure-conn/test_env/disks/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}?operation=attach"
 ```
+
 > Request body examples:
 
 ```json
@@ -260,12 +268,14 @@ curl -X POST \
   "instance" : "cool-instance",
 }
 ```
+
 ```json
 {
   "instance" : "cool-instance",
   "lun" : 10
 }
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
