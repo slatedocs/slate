@@ -1,28 +1,9 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.8.1
-jobs:
-  build-deploy-s3:
-    docker:
-      - image: circleci/ruby:2.6-stretch
-    working_directory: ~/lumahealthhq/rest-service-docs
-    steps:
-    - checkout
-    - run: sudo apt-get install -y nodejs awscli
-    - run: sudo gem install bundler -v 1.15.4
-    - run: bundle install
-    - run: bundle exec middleman build --clean
-    - run: aws configure set s3.signature_version s3v4
-    - run: aws s3 sync build/ s3://lumahealth-api-docs
 workflows:
   main:
     jobs:
-    - build-deploy-s3:
-        filters:
-          branches:
-            only:
-            - master
-            - dev
     - aws-ecr/build-and-push-image:
         filters:
           branches:
