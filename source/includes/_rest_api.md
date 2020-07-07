@@ -1,21 +1,3 @@
----
-title: Delta Exchange Api V2 v1.0.0
-language_tabs:
-  - python: Python
-  - shell: Shell
-  - ruby: Ruby
-language_clients:
-  - python: ""
-  - shell: ""
-  - ruby: ""
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
-
----
-
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
 
