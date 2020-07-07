@@ -313,6 +313,7 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "subnetworkName": "production-net",
   "shortIP": "my-ip-name",
   "startupScript": "#! /bin/bash\napt-get update\nEOF"
 }
@@ -327,6 +328,7 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "subnetworkName": "staging-net",
   "reserveStaticIP": true
 }
 
@@ -340,6 +342,7 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "subnetworkName": "development-net",
   "ephemeralIP": true
 }
 
@@ -352,7 +355,8 @@ curl -X POST \
   "bootDiskSizeInGb": "10",
   "cpuCount": "2",
   "memoryInGB": "4.5",
-  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514"
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "subnetworkName": "demo-net",
 }
 ```
 
@@ -370,6 +374,7 @@ Required | &nbsp;
 `cpuCount`<br/>*string* | Updated number of vCPUs of instance.
 `memoryInGB`<br/>*string* | Updated memory of instance.
 `osImageSelfLink`<br/>*string* | The full URL to the OS image.
+`subnetworkName`<br/>*string* | The subnet that the instance is attached to upon creation. _(Note that the subnet must be in the same region as the instance)_.
 
 Optional | &nbsp;
 ------- | -----------
