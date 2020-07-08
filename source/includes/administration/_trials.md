@@ -1,5 +1,5 @@
 ### Trials
-Manage trials and trials configuration.
+Manage trials and trials settings.
 
 <!-------------------- LIST TRIALS SETTINGS -------------------->
 
@@ -46,9 +46,9 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the trial settings.
 `duration`<br/>*integer* | The number of days a trial account will remain active.
 `extensionDays`<br/>*integer* | The number of days that a trial administrator adds when extending an active trial.
-`maxConcurrentTrials`<br/>*integer* | The number of organization that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
-`cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system delete the trial's resources.
-`expirationReminderDays`<br/>*integer* | The number of days before the trial's end the trial administrator will receive an email notification that the trial is about to expire.
+`maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
+`cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system will delete the trial's resources.
+`expirationReminderDays`<br/>*integer* | The number of days before the trial's end that the trial administrator will receive an email notification that the trial is about to expire.
 `allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address. 
 `contactUsEmail`<br/>*string* | The email address that trial user can contact for more info/support.
 `contactUsPhone`<br/>*string* | The phone number that trial user can contact for more info/support.
@@ -100,9 +100,9 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the trial settings.
 `duration`<br/>*integer* | The number of days a trial account will remain active.
 `extensionDays`<br/>*integer* | The number of days that a trial administrator adds when extending an active trial.
-`maxConcurrentTrials`<br/>*integer* | The number of organization that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
-`cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system delete the trial's resources.
-`expirationReminderDays`<br/>*integer* | The number of days before the trial's end the trial administrator will receive an email notification that the trial is about to expire.
+`maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
+`cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system will delete the trial's resources.
+`expirationReminderDays`<br/>*integer* | The number of days before the trial's end that the trial administrator will receive an email notification that the trial is about to expire.
 `allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address. 
 `contactUsEmail`<br/>*string* | The email address that trial user can contact for more info/support.
 `contactUsPhone`<br/>*string* | The phone number that trial user can contact for more info/support.
@@ -117,7 +117,7 @@ Attributes | &nbsp;
 `PUT /trials_settings/:id`
 
 ```shell
-# Updates an existing trial settings
+# Updates an existing trial's settings
 curl -X PUT "https://cloudmc_endpoint/rest/trials_settings/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
@@ -171,16 +171,16 @@ curl -X PUT "https://cloudmc_endpoint/rest/trials_settings/:id" \
 }
 ```
 
-Updates a specific trial settings
+Updates a specific trial's settings.
 
 Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the trial settings.
 `duration`<br/>*integer* | The number of days a trial account will remain active.
 `extensionDays`<br/>*integer* | The number of days that a trial administrator adds when extending an active trial.
-`maxConcurrentTrials`<br/>*integer* | The number of organization that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
-`cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system delete the trial's resources.
-`expirationReminderDays`<br/>*integer* | The number of days before the trial's end the trial administrator will receive an email notification that the trial is about to expire.
+`maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
+`cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system will delete the trial's resources.
+`expirationReminderDays`<br/>*integer* | The number of days before the trial's end that the trial administrator will receive an email notification that the trial is about to expire.
 `allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address. 
 `contactUsEmail`<br/>*string* | The email address that trial user can contact for more info/support.
 `registrationHTML`<br/>*Object* | Mapped object containing the registration information HTML in different languages.
