@@ -23,6 +23,7 @@ includes:
   - administration/identity_providers
   - administration/service_providers
   - administration/saml_settings
+  - administration/trials
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
