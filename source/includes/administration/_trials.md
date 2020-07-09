@@ -1,5 +1,8 @@
-### Trials
+## Trials
 Manage trials and trials settings.
+
+### Trials Settings
+Manage trials settings.
 
 <!-------------------- LIST TRIALS SETTINGS -------------------->
 
