@@ -3,8 +3,8 @@ The REST API has endpoints for account and order management as well as public ma
 
 REST API ENDPOINT URL
 
-- Production - https://api.delta.exchange
-- Testnet - https://testnet-api.delta.exchange
+- Production - https://api.delta.exchange/v2
+- Testnet - https://testnet-api.delta.exchange/v2
 
 {{ for (var r in data.resources) { }}
 {{ data.resource = data.resources[r]; }}
