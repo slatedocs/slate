@@ -33,7 +33,7 @@
       "description": "Get Open positions, Change Position Margin, Close Position"
     },
     {
-      "name": "Trade History",
+      "name": "TradeHistory",
       "description": "Get Orders History, Get Fill History"
     },
     {
@@ -49,11 +49,12 @@
       "description": "Get balances, Get transaction history"
     },
     {
-      "name": "OHLC Candles"
+      "name": "OHLC Candles",
+      "description": "Get price data"
     }
   ],
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/assets": {
@@ -976,9 +977,9 @@
       "get": {
         "summary": "GET user fills by filters",
         "tags": [
-          "Trade History"
+          "TradeHistory"
         ],
-        "operationId": "GETuserfillsbyfilters",
+        "operationId": "getUserfills",
         "deprecated": false,
         "produces": [
           "application/json"
@@ -1009,15 +1010,13 @@
             "in": "query",
             "name": "start_time",
             "description": "Start time for the fills query",
-            "type": "integer",
-            "required": true
+            "type": "integer"
           },
           {
             "in": "query",
             "name": "end_time",
             "description": "End time for the fills query",
-            "type": "integer",
-            "required": true
+            "type": "integer"
           },
           {
             "in": "query",
@@ -2348,7 +2347,7 @@
         },
         "volume": {
           "type": "number"
-        },
+        }
       }
     },
     "ArrayOfOHLCData": {
@@ -2364,7 +2363,7 @@
         "items": {
           "type": "integer"
         },
-        "description": "array of timestamp and closing value",
+        "description": "array of timestamp and closing value"
       },
       "example": {"MARK:BTCUSD_31Oct": [[1594214051,0.00003826],[1594214051,0.00003826]],"SPOT:BTCUSD_31Oct": [[1594215270,0.00003826]]}
     }
