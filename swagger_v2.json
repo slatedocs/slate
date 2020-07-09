@@ -1480,6 +1480,114 @@
           }
         }
       }
+    },
+    "/history/candles": {
+      "get": {
+        "summary": "GET ohlc candles",
+        "tags": [
+          "OHLC Candles"
+        ],
+        "operationId": "getCandles",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "resolution",
+            "type": "string",
+            "description": "",
+            "enum": [
+              "1m","3m","5m","15m","30m","1h","2h","4h","6h","1d","7d","30d","1w","2w"
+            ],
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "symbol",
+            "type": "string",
+            "description": "product symbol",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "description": "Start time",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "description": "End time",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ohlc",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfOHLCData"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/history/sparklines": {
+      "get": {
+        "summary": "GET product history sparkline",
+        "tags": [
+          "OHLC Candles"
+        ],
+        "operationId": "getSparklines",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "symbols",
+            "type": "string",
+            "description": "comma separated product symbols",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "product history sparkline",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/SparklineData"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -2217,6 +2325,48 @@
           "type": "string"
         }
       }
+    },
+    "OHLCData": {
+      "type": "object",
+      "description": "A ohlc object",
+      "properties": {
+        "time": {
+          "type": "integer"
+        },
+        "open": {
+          "type": "number",
+          "format": "float"
+        },
+        "high": {
+          "type": "number"
+        },
+        "low": {
+          "type": "number"
+        },
+        "close": {
+          "type": "number"
+        },
+        "volume": {
+          "type": "number"
+        },
+      }
+    },
+    "ArrayOfOHLCData": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/OHLCData"
+      }
+    },
+    "SparklineData": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "description": "array of timestamp and closing value",
+      },
+      "example": {"MARK:BTCUSD_31Oct": [[1594214051,0.00003826],[1594214051,0.00003826]],"SPOT:BTCUSD_31Oct": [[1594215270,0.00003826]]}
     }
   }
 }
