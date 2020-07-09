@@ -1,60 +1,12 @@
-
-
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
 
 REST API ENDPOINT URL
 
-- Production - https://api.delta.exchange
-- Testnet - https://testnet-api.delta.exchange
+- Production - https://api.delta.exchange/v2
+- Testnet - https://testnet-api.delta.exchange/v2
 
-<h1 id="delta-exchange-api-default">Default</h1>
-
-## deprecated__orders_bracket
-
-> Code samples
-
-```python
-import requests
-
-r = requests.deprecated('https://api.delta.exchange/orders/bracket', params={
-
-)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X DEPRECATED https://api.delta.exchange/orders/bracket
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-result = RestClient.deprecated 'https://api.delta.exchange/orders/bracket',
-  params: {
-  }
-
-p JSON.parse(result)
-
-```
-
-`DEPRECATED /orders/bracket`
-
-<h3 id="deprecated__orders_bracket-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-
-<aside class="success">
-This operation does not require authentication.
-</aside>
-
-<h1 id="delta-exchange-api-assets">Assets</h1>
+<h1 id="delta-exchange-api-v2-assets">Assets</h1>
 
 Get Asset List
 
@@ -67,10 +19,13 @@ Get Asset List
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
 }
 
-r = requests.get('https://api.delta.exchange/assets', params={
+r = requests.get('http://api.delta.exchange/v2/assets', params={
 
 }, headers = headers)
 
@@ -80,8 +35,11 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/assets \
-  -H 'Accept: application/json'
+curl -X GET http://api.delta.exchange/v2/assets \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
 
 ```
 
@@ -90,10 +48,13 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
 }
 
-result = RestClient.get 'https://api.delta.exchange/assets',
+result = RestClient.get 'http://api.delta.exchange/v2/assets',
   params: {
   }, headers: headers
 
@@ -108,28 +69,113 @@ p JSON.parse(result)
 > 200 Response
 
 ```json
-[
-  {
-    "id": 0,
-    "symbol": "string",
-    "precision": 0
-  }
-]
+{
+  "success": true,
+  "result": [
+    {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    }
+  ]
+}
 ```
 
 <h3 id="get-list-of-all-assets-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all assets|[ArrayOfAssets](#schemaarrayofassets)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all assets|Inline|
+
+<h3 id="get-list-of-all-assets-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+<h1 id="delta-exchange-api-v2-indices">Indices</h1>
+
+Get Indices List
+
+## Get indices
+
+<a id="opIdgetIndices"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('http://api.delta.exchange/v2/indices', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/indices \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/indices',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /indices`
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "id": 0,
+      "symbol": "string",
+      "constituent_exchanges": [
+        {}
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="get-indices-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of indices (Spot underlyings, Interest Rates indexes)|Inline|
+
+<h3 id="get-indices-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication.
 </aside>
 
-<h1 id="delta-exchange-api-products">Products</h1>
+<h1 id="delta-exchange-api-v2-products">Products</h1>
 
-Get Product List, 24hr Ticker
+Get Product List
 
 ## Get live products
 
@@ -143,7 +189,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://api.delta.exchange/products', params={
+r = requests.get('http://api.delta.exchange/v2/products', params={
 
 }, headers = headers)
 
@@ -153,7 +199,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/products \
+curl -X GET http://api.delta.exchange/v2/products \
   -H 'Accept: application/json'
 
 ```
@@ -166,7 +212,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://api.delta.exchange/products',
+result = RestClient.get 'http://api.delta.exchange/v2/products',
   params: {
   }, headers: headers
 
@@ -181,69 +227,90 @@ p JSON.parse(result)
 > 200 Response
 
 ```json
-[
-  {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
+{
+  "success": true,
+  "result": [
+    {
       "id": 0,
       "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
+      "description": "string",
+      "created_at": "string",
+      "updated_at": "string",
+      "settlement_time": "string",
+      "notional_type": "vanilla",
+      "impact_size": 0,
+      "initial_margin": 0,
+      "maintenance_margin": "string",
+      "contract_value": "string",
+      "contract_unit_currency": "string",
+      "tick_size": "string",
+      "trading_status": "operational",
+      "max_leverage_notional": "string",
+      "default_leverage": "string",
+      "initial_margin_scaling_factor": "string",
+      "maintenance_margin_scaling_factor": "string",
+      "taker_commission_rate": "string",
+      "maker_commission_rate": "string",
+      "liquidation_penalty_factor": "string",
+      "contract_type": "string",
+      "position_size_limit": 0,
+      "basis_factor_max_limit": "string",
+      "is_quanto": true,
+      "funding_method": "string",
+      "annualized_funding": "string",
+      "price_band": "string",
+      "underlying_asset": {
+        "id": 0,
+        "symbol": "string",
+        "precision": 0
+      },
+      "quoting_asset": {
+        "id": 0,
+        "symbol": "string",
+        "precision": 0
+      },
+      "settling_asset": {
+        "id": 0,
+        "symbol": "string",
+        "precision": 0
+      },
+      "spot_index": {
+        "id": 0,
+        "symbol": "string",
+        "constituent_exchanges": [
+          {}
+        ]
+      }
     }
-  }
-]
+  ]
+}
 ```
 
 <h3 id="get-live-products-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live products|[ArrayOfProducts](#schemaarrayofproducts)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live products|Inline|
+
+<h3 id="get-live-products-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|notional_type|vanilla|
+|notional_type|inverse|
+|trading_status|operational|
+|trading_status|disrupted_cancel_only|
+|trading_status|disrupted_post_only|
 
 <aside class="success">
 This operation does not require authentication.
 </aside>
 
-## Get 24hr ticker
+## Get tickers for products
 
-<a id="opIdget24hrTicker"></a>
+<a id="opIdgetTickers"></a>
 
 > Code samples
 
@@ -253,8 +320,8 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('https://api.delta.exchange/products/ticker/24hr', params={
-  'symbol': 'string'
+r = requests.get('http://api.delta.exchange/v2/tickers', params={
+
 }, headers = headers)
 
 print r.json()
@@ -263,7 +330,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/products/ticker/24hr?symbol=string \
+curl -X GET http://api.delta.exchange/v2/tickers \
   -H 'Accept: application/json'
 
 ```
@@ -276,22 +343,15 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'https://api.delta.exchange/products/ticker/24hr',
+result = RestClient.get 'http://api.delta.exchange/v2/tickers',
   params: {
-  'symbol' => 'string'
-}, headers: headers
+  }, headers: headers
 
 p JSON.parse(result)
 
 ```
 
-`GET /products/ticker/24hr`
-
-<h3 id="get-24hr-ticker-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|symbol|query|string|true|product symbol|
+`GET /tickers`
 
 > Example responses
 
@@ -299,27 +359,126 @@ p JSON.parse(result)
 
 ```json
 {
-  "symbol": "string",
-  "timestamp": 0,
-  "open": 0,
-  "high": 0,
-  "low": 0,
-  "close": 0,
-  "volume": 0
+  "success": true,
+  "result": [
+    {
+      "symbol": "string",
+      "timestamp": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0,
+      "mark_price": "string",
+      "spot_price": "string",
+      "turnover": 0,
+      "turnover_symbol": "string",
+      "turnover_usd": 0
+    }
+  ]
 }
 ```
 
-<h3 id="get-24hr-ticker-responses">Responses</h3>
+<h3 id="get-tickers-for-products-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Ticker Date|[24hrTicker](#schema24hrticker)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live tickers for all products|Inline|
+
+<h3 id="get-tickers-for-products-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication.
 </aside>
 
-<h1 id="delta-exchange-api-orders">Orders</h1>
+## Get ticker for a product by symbol
+
+<a id="opIdgetTicker"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('http://api.delta.exchange/v2/tickers/{symbol}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/tickers/{symbol} \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/tickers/{symbol}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /tickers/{symbol}`
+
+<h3 id="get-ticker-for-a-product-by-symbol-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|symbol|path|string|true|symbol of the ticker|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "symbol": "string",
+    "timestamp": 0,
+    "open": 0,
+    "high": 0,
+    "low": 0,
+    "close": 0,
+    "volume": 0,
+    "mark_price": "string",
+    "spot_price": "string",
+    "turnover": 0,
+    "turnover_symbol": "string",
+    "turnover_usd": 0
+  }
+}
+```
+
+<h3 id="get-ticker-for-a-product-by-symbol-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live tickers for all products|Inline|
+
+<h3 id="get-ticker-for-a-product-by-symbol-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-orders">Orders</h1>
 
 Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage
 
@@ -339,7 +498,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('https://api.delta.exchange/orders', params={
+r = requests.post('http://api.delta.exchange/v2/orders', params={
 
 }, headers = headers)
 
@@ -349,7 +508,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST https://api.delta.exchange/orders \
+curl -X POST http://api.delta.exchange/v2/orders \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -370,7 +529,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'https://api.delta.exchange/orders',
+result = RestClient.post 'http://api.delta.exchange/v2/orders',
   params: {
   }, headers: headers
 
@@ -391,12 +550,7 @@ p JSON.parse(result)
   "order_type": "limit_order",
   "time_in_force": "gtc",
   "post_only": "true",
-  "reduce_only": "true",
-  "bracket_order": {
-    "stop_loss_price": "string",
-    "take_profit_price": "string",
-    "trail_amount": "string"
-  }
+  "reduce_only": "true"
 }
 ```
 
@@ -412,63 +566,21 @@ p JSON.parse(result)
 
 ```json
 {
-  "id": 0,
-  "user_id": 0,
-  "size": 0,
-  "unfilled_size": 0,
-  "side": "buy",
-  "order_type": "limit_order",
-  "limit_price": "string",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "false",
-  "state": "open",
-  "created_at": "string",
-  "product": {
+  "success": true,
+  "result": {
     "id": 0,
-    "symbol": "string",
-    "description": "string",
+    "user_id": 0,
+    "size": 0,
+    "unfilled_size": 0,
+    "side": "buy",
+    "order_type": "limit_order",
+    "limit_price": "string",
+    "stop_order_type": "stop_loss_order",
+    "stop_price": "string",
+    "close_on_trigger": "false",
+    "state": "open",
     "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
+    "product_id": 0
   }
 }
 ```
@@ -477,33 +589,26 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the order object with assigned id and latest state|[Order](#schemaorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns [error](#place-order-error-description) if order could not be placed|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the order object with assigned id and latest state|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns [error](#place-order-error-description) if order could not be placed|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="place-order-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|error|InsufficientMargin|
-|error|OrderSizeExceededAvailable|
-|error|OrderExceedsSizeLimit|
-|error|OrderLeverageNotSet|
-|error|InvalidProduct|
-|error|ImmediateLiquidationOrder|
-|error|LowerthanBankruptcy|
-|error|SelfMatchingPostOnlyMode|
-|error|ImmediateExecutionPostOnlyOrder|
-|error|BracketOrderPositionExists|
-|error|InvalidBracketOrder|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -525,7 +630,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.delete('https://api.delta.exchange/orders', params={
+r = requests.delete('http://api.delta.exchange/v2/orders', params={
 
 }, headers = headers)
 
@@ -535,7 +640,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X DELETE https://api.delta.exchange/orders \
+curl -X DELETE http://api.delta.exchange/v2/orders \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -556,7 +661,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.delete 'https://api.delta.exchange/orders',
+result = RestClient.delete 'http://api.delta.exchange/v2/orders',
   params: {
   }, headers: headers
 
@@ -587,175 +692,8 @@ p JSON.parse(result)
 
 ```json
 {
-  "id": 0,
-  "user_id": 0,
-  "size": 0,
-  "unfilled_size": 0,
-  "side": "buy",
-  "order_type": "limit_order",
-  "limit_price": "string",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "false",
-  "state": "open",
-  "created_at": "string",
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
-  }
-}
-```
-
-<h3 id="cancel-order-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the order object|[Order](#schemaorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if order could not be cancelled|Inline|
-
-<h3 id="cancel-order-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|ALREADY_FILLED|
-|error|InvalidOrder|
-|error|InvalidProduct|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-## Get Orders
-
-<a id="opIdgetOrders"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/orders', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/orders \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/orders',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /orders`
-
-<h3 id="get-orders-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_id|query|integer|false|get orders for a particular product id|
-|state|query|string|false|get orders with a particular state|
-|stop_order_type|query|string|false|get stop orders with stop_order_type|
-|page_num|query|integer|false|page number for pagination|
-|page_size|query|integer|false|page size for pagination|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|state|open|
-|state|closed|
-|state|cancelled|
-|stop_order_type|stop_loss_order|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
+  "success": true,
+  "result": {
     "id": 0,
     "user_id": 0,
     "size": 0,
@@ -768,61 +706,35 @@ p JSON.parse(result)
     "close_on_trigger": "false",
     "state": "open",
     "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
+    "product_id": 0
   }
-]
+}
 ```
 
-<h3 id="get-orders-responses">Responses</h3>
+<h3 id="cancel-order-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of orders as per the query|[ArrayOfOrders](#schemaarrayoforders)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the order object|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if order could not be cancelled|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="cancel-order-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -844,7 +756,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.put('https://api.delta.exchange/orders', params={
+r = requests.put('http://api.delta.exchange/v2/orders', params={
 
 }, headers = headers)
 
@@ -854,7 +766,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X PUT https://api.delta.exchange/orders \
+curl -X PUT http://api.delta.exchange/v2/orders \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -875,7 +787,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.put 'https://api.delta.exchange/orders',
+result = RestClient.put 'http://api.delta.exchange/v2/orders',
   params: {
   }, headers: headers
 
@@ -908,63 +820,21 @@ p JSON.parse(result)
 
 ```json
 {
-  "id": 0,
-  "user_id": 0,
-  "size": 0,
-  "unfilled_size": 0,
-  "side": "buy",
-  "order_type": "limit_order",
-  "limit_price": "string",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "false",
-  "state": "open",
-  "created_at": "string",
-  "product": {
+  "success": true,
+  "result": {
     "id": 0,
-    "symbol": "string",
-    "description": "string",
+    "user_id": 0,
+    "size": 0,
+    "unfilled_size": 0,
+    "side": "buy",
+    "order_type": "limit_order",
+    "limit_price": "string",
+    "stop_order_type": "stop_loss_order",
+    "stop_price": "string",
+    "close_on_trigger": "false",
+    "state": "open",
     "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
+    "product_id": 0
   }
 }
 ```
@@ -973,31 +843,169 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the order object with assigned id and latest state|[Order](#schemaorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns [error](#place-order-error-description) if order could not be placed|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the order object with assigned id and latest state|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns [error](#place-order-error-description) if order could not be placed|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="edit-order-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|error|InsufficientMargin|
-|error|OrderSizeExceededAvailable|
-|error|OrderExceedsSizeLimit|
-|error|OrderLeverageNotSet|
-|error|InvalidProduct|
-|error|ImmediateLiquidationOrder|
-|error|LowerthanBankruptcy|
-|error|SelfMatchingPostOnlyMode|
-|error|ImmediateExecutionPostOnlyOrder|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Get Active Orders
+
+<a id="opIdgetOrders"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('http://api.delta.exchange/v2/orders', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/orders \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/orders',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /orders`
+
+<h3 id="get-active-orders-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_ids|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated product ids|
+|order_types|query|string|false|comma separated order types|
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
+|after|query|string|false|after cursor for pagination|
+|before|query|string|false|before cursor for pagination|
+|page_size|query|integer|false|number of records per page|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+|contract_types|interest_rate_swaps|
+|contract_types|move_options|
+|contract_types|spreads|
+|order_types|market|
+|order_types|limit|
+|order_types|stop_market|
+|order_types|stop_limit|
+|order_types|all_stop|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "id": 0,
+      "user_id": 0,
+      "size": 0,
+      "unfilled_size": 0,
+      "side": "buy",
+      "order_type": "limit_order",
+      "limit_price": "string",
+      "stop_order_type": "stop_loss_order",
+      "stop_price": "string",
+      "close_on_trigger": "false",
+      "state": "open",
+      "created_at": "string",
+      "product_id": 0
+    }
+  ],
+  "meta": {
+    "after": "string",
+    "before": "string"
+  }
+}
+```
+
+<h3 id="get-active-orders-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of orders as per the query|Inline|
+
+<h3 id="get-active-orders-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1019,7 +1027,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.delete('https://api.delta.exchange/orders/all', params={
+r = requests.delete('http://api.delta.exchange/v2/orders/all', params={
 
 }, headers = headers)
 
@@ -1029,7 +1037,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X DELETE https://api.delta.exchange/orders/all \
+curl -X DELETE http://api.delta.exchange/v2/orders/all \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1050,7 +1058,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.delete 'https://api.delta.exchange/orders/all',
+result = RestClient.delete 'http://api.delta.exchange/v2/orders/all',
   params: {
   }, headers: headers
 
@@ -1081,266 +1089,17 @@ p JSON.parse(result)
 > 200 Response
 
 ```json
-{}
+{
+  "success": true
+}
 ```
 
 <h3 id="cancel-all-open-orders-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if orders could not be cancelled|Inline|
-
-<h3 id="cancel-all-open-orders-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|InvalidProduct|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-## Place Bracket Order __DEPRECATED__
-
-<a id="opIdplaceBracketOrder"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.post('https://api.delta.exchange/orders/bracket', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X POST https://api.delta.exchange/orders/bracket \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.post 'https://api.delta.exchange/orders/bracket',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`POST /orders/bracket`
-
-> Body parameter
-
-```json
-{
-  "product_id": 0,
-  "stop_loss_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  },
-  "take_profit_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  }
-}
-```
-
-<h3 id="place-bracket-order-__deprecated__-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[CreateBracketOrderRequest](#schemacreatebracketorderrequest)|true|Bracket order which needs to be created|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "stop_loss_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  },
-  "take_profit_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-}
-```
-
-<h3 id="place-bracket-order-__deprecated__-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the stop loss and take profit orders with assigned ids and latest states|[BracketOrder](#schemabracketorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if order could not be placed|Inline|
-
-<h3 id="place-bracket-order-__deprecated__-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|ImmediateExecutionStopOrder|
-|error|CloseOnTriggerExists|
-|error|NoOpenPosition|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if orders could not be cancelled|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1362,7 +1121,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('https://api.delta.exchange/orders/batch', params={
+r = requests.post('http://api.delta.exchange/v2/orders/batch', params={
 
 }, headers = headers)
 
@@ -1372,7 +1131,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST https://api.delta.exchange/orders/batch \
+curl -X POST http://api.delta.exchange/v2/orders/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1393,7 +1152,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'https://api.delta.exchange/orders/batch',
+result = RestClient.post 'http://api.delta.exchange/v2/orders/batch',
   params: {
   }, headers: headers
 
@@ -1406,30 +1165,54 @@ p JSON.parse(result)
 > Body parameter
 
 ```json
-[
-  {
-    "product_id": 0,
-    "limit_price": "string",
-    "size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "time_in_force": "gtc",
-    "post_only": "true",
-    "reduce_only": "true",
-    "bracket_order": {
-      "stop_loss_price": "string",
-      "take_profit_price": "string",
-      "trail_amount": "string"
+{
+  "orders": [
+    {
+      "product_id": 0,
+      "limit_price": "string",
+      "size": 0,
+      "side": "buy",
+      "order_type": "limit_order",
+      "time_in_force": "gtc",
+      "post_only": "true",
+      "reduce_only": "true"
     }
-  }
-]
+  ],
+  "product_id": 0
+}
 ```
 
 <h3 id="create-batch-orders-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[ArrayOfCreateOrderRequest](#schemaarrayofcreateorderrequest)|true|Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders|
+|body|body|object|true|Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders|
+|» orders|body|[[CreateOrderRequest](#schemacreateorderrequest)]|false|[A create order object]|
+|»» product_id|body|integer|true|none|
+|»» limit_price|body|string|false|none|
+|»» size|body|integer|false|none|
+|»» side|body|string|false|side for which to place order|
+|»» order_type|body|string|false|none|
+|»» time_in_force|body|string|false|none|
+|»» post_only|body|string|false|none|
+|»» reduce_only|body|string|false|none|
+|» product_id|body|integer|false|none|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|»» side|buy|
+|»» side|sell|
+|»» order_type|limit_order|
+|»» order_type|market_order|
+|»» time_in_force|gtc|
+|»» time_in_force|ioc|
+|»» time_in_force|fok|
+|»» post_only|true|
+|»» post_only|false|
+|»» reduce_only|true|
+|»» reduce_only|false|
 
 > Example responses
 
@@ -1437,64 +1220,24 @@ p JSON.parse(result)
 
 ```json
 {
-  "id": 0,
-  "user_id": 0,
-  "size": 0,
-  "unfilled_size": 0,
-  "side": "buy",
-  "order_type": "limit_order",
-  "limit_price": "string",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "false",
-  "state": "open",
-  "created_at": "string",
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
+  "success": true,
+  "result": [
+    {
       "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
+      "user_id": 0,
+      "size": 0,
+      "unfilled_size": 0,
+      "side": "buy",
+      "order_type": "limit_order",
+      "limit_price": "string",
+      "stop_order_type": "stop_loss_order",
+      "stop_price": "string",
+      "close_on_trigger": "false",
+      "state": "open",
+      "created_at": "string",
+      "product_id": 0
     }
-  }
+  ]
 }
 ```
 
@@ -1502,29 +1245,26 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders placed|[Order](#schemaorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be placed|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders placed|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be placed|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="create-batch-orders-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|error|InsufficientMargin|
-|error|OrderSizeExceededAvailable|
-|error|OrderExceedsSizeLimit|
-|error|OrderLeverageNotSet|
-|error|InvalidProduct|
-|error|ImmediateLiquidationOrder|
-|error|LowerthanBankruptcy|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1546,7 +1286,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.put('https://api.delta.exchange/orders/batch', params={
+r = requests.put('http://api.delta.exchange/v2/orders/batch', params={
 
 }, headers = headers)
 
@@ -1556,7 +1296,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X PUT https://api.delta.exchange/orders/batch \
+curl -X PUT http://api.delta.exchange/v2/orders/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1577,7 +1317,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.put 'https://api.delta.exchange/orders/batch',
+result = RestClient.put 'http://api.delta.exchange/v2/orders/batch',
   params: {
   }, headers: headers
 
@@ -1593,15 +1333,15 @@ batch order edit
 
 ```json
 {
-  "product_id": 0,
   "orders": [
     {
       "id": 0,
-      "size": 0,
+      "product_id": 0,
       "limit_price": "string",
-      "product_id": 0
+      "size": 0
     }
-  ]
+  ],
+  "product_id": 0
 }
 ```
 
@@ -1609,16 +1349,38 @@ batch order edit
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[EditBatchOrders](#schemaeditbatchorders)|true|none|
+|body|body|object|true|none|
+|» orders|body|[[EditOrderRequest](#schemaeditorderrequest)]|false|[edit order object]|
+|»» id|body|integer|false|none|
+|»» product_id|body|integer|false|none|
+|»» limit_price|body|string|false|none|
+|»» size|body|integer|false|total size after editing order|
+|» product_id|body|integer|false|none|
 
 > Example responses
 
-> 400 Response
+> 200 Response
 
 ```json
 {
-  "error": "InsufficientMargin",
-  "message": "string"
+  "success": true,
+  "result": [
+    {
+      "id": 0,
+      "user_id": 0,
+      "size": 0,
+      "unfilled_size": 0,
+      "side": "buy",
+      "order_type": "limit_order",
+      "limit_price": "string",
+      "stop_order_type": "stop_loss_order",
+      "stop_price": "string",
+      "close_on_trigger": "false",
+      "state": "open",
+      "created_at": "string",
+      "product_id": 0
+    }
+  ]
 }
 ```
 
@@ -1626,29 +1388,26 @@ batch order edit
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be edited|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of edited orders|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be edited|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="edit-batch-orders-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|error|InsufficientMargin|
-|error|OrderSizeExceededAvailable|
-|error|OrderExceedsSizeLimit|
-|error|OrderLeverageNotSet|
-|error|InvalidProduct|
-|error|ImmediateLiquidationOrder|
-|error|LowerthanBankruptcy|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1670,7 +1429,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.delete('https://api.delta.exchange/orders/batch', params={
+r = requests.delete('http://api.delta.exchange/v2/orders/batch', params={
 
 }, headers = headers)
 
@@ -1680,7 +1439,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X DELETE https://api.delta.exchange/orders/batch \
+curl -X DELETE http://api.delta.exchange/v2/orders/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1701,7 +1460,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.delete 'https://api.delta.exchange/orders/batch',
+result = RestClient.delete 'http://api.delta.exchange/v2/orders/batch',
   params: {
   }, headers: headers
 
@@ -1714,19 +1473,26 @@ p JSON.parse(result)
 > Body parameter
 
 ```json
-[
-  {
-    "id": 0,
-    "product_id": 0
-  }
-]
+{
+  "orders": [
+    {
+      "id": 0,
+      "product_id": 0
+    }
+  ],
+  "product_id": 0
+}
 ```
 
 <h3 id="delele-batch-orders-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[ArrayOfDeleteOrderRequest](#schemaarrayofdeleteorderrequest)|true|none|
+|body|body|object|true|none|
+|» orders|body|[[DeleteOrderRequest](#schemadeleteorderrequest)]|false|[A delete order object]|
+|»» id|body|integer|false|none|
+|»» product_id|body|integer|false|none|
+|» product_id|body|integer|false|none|
 
 > Example responses
 
@@ -1734,64 +1500,24 @@ p JSON.parse(result)
 
 ```json
 {
-  "id": 0,
-  "user_id": 0,
-  "size": 0,
-  "unfilled_size": 0,
-  "side": "buy",
-  "order_type": "limit_order",
-  "limit_price": "string",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "false",
-  "state": "open",
-  "created_at": "string",
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
+  "success": true,
+  "result": [
+    {
       "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
+      "user_id": 0,
+      "size": 0,
+      "unfilled_size": 0,
+      "side": "buy",
+      "order_type": "limit_order",
+      "limit_price": "string",
+      "stop_order_type": "stop_loss_order",
+      "stop_price": "string",
+      "close_on_trigger": "false",
+      "state": "open",
+      "created_at": "string",
+      "product_id": 0
     }
-  }
+  ]
 }
 ```
 
@@ -1799,25 +1525,26 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders deleted|[Order](#schemaorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be deleted|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders deleted|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be deleted|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="delele-batch-orders-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|error|ALREADY_FILLED|
-|error|InvalidOrder|
-|error|InvalidProduct|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1839,7 +1566,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('https://api.delta.exchange/orders/leverage', params={
+r = requests.post('http://api.delta.exchange/v2/orders/leverage', params={
 
 }, headers = headers)
 
@@ -1849,7 +1576,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST https://api.delta.exchange/orders/leverage \
+curl -X POST http://api.delta.exchange/v2/orders/leverage \
   -H 'Content-Type: application/json' \
   -H 'Accept: */*' \
   -H 'api-key: ****' \
@@ -1870,7 +1597,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'https://api.delta.exchange/orders/leverage',
+result = RestClient.post 'http://api.delta.exchange/v2/orders/leverage',
   params: {
   }, headers: headers
 
@@ -1905,24 +1632,10 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the OrderLeverage object|[OrderLeverage](#schemaorderleverage)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if leverage couldnt be changed|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the OrderLeverage object|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if leverage couldnt be changed|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="change-order-leverage-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|InsufficientMargin|
-|error|LeverageLimitExceeded|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1943,7 +1656,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('https://api.delta.exchange/orders/leverage', params={
+r = requests.get('http://api.delta.exchange/v2/orders/leverage', params={
   'product_id': '0'
 }, headers = headers)
 
@@ -1953,7 +1666,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/orders/leverage?product_id=0 \
+curl -X GET http://api.delta.exchange/v2/orders/leverage?product_id=0 \
   -H 'Accept: */*' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -1972,7 +1685,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'https://api.delta.exchange/orders/leverage',
+result = RestClient.get 'http://api.delta.exchange/v2/orders/leverage',
   params: {
   'product_id' => 'integer'
 }, headers: headers
@@ -1997,13 +1710,15 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the OrderLeverage object|[OrderLeverage](#schemaorderleverage)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the OrderLeverage object|Inline|
+
+<h3 id="get-order-leverage-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-positions">Positions</h1>
+<h1 id="delta-exchange-api-v2-positions">Positions</h1>
 
 Get Open positions, Change Position Margin, Close Position
 
@@ -2022,7 +1737,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('https://api.delta.exchange/positions', params={
+r = requests.get('http://api.delta.exchange/v2/positions', params={
 
 }, headers = headers)
 
@@ -2032,7 +1747,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/positions \
+curl -X GET http://api.delta.exchange/v2/positions \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -2051,7 +1766,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'https://api.delta.exchange/positions',
+result = RestClient.get 'http://api.delta.exchange/v2/positions',
   params: {
   }, headers: headers
 
@@ -2066,70 +1781,30 @@ p JSON.parse(result)
 > 200 Response
 
 ```json
-[
-  {
-    "user_id": 0,
-    "size": 0,
-    "entry_price": "string",
-    "margin": "string",
-    "liquidation_price": "string",
-    "bankruptcy_price": "string",
-    "adl_level": 0,
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
+{
+  "success": true,
+  "result": [
+    {
+      "user_id": 0,
+      "size": 0,
+      "entry_price": "string",
+      "margin": "string",
+      "liquidation_price": "string",
+      "bankruptcy_price": "string",
+      "adl_level": 0,
+      "product_id": 0
     }
-  }
-]
+  ]
+}
 ```
 
 <h3 id="get-open-positions-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all open positions|[ArrayOfPositions](#schemaarrayofpositions)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all open positions|Inline|
+
+<h3 id="get-open-positions-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -2151,7 +1826,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('https://api.delta.exchange/positions/change_margin', params={
+r = requests.post('http://api.delta.exchange/v2/positions/change_margin', params={
 
 }, headers = headers)
 
@@ -2161,7 +1836,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST https://api.delta.exchange/positions/change_margin \
+curl -X POST http://api.delta.exchange/v2/positions/change_margin \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -2182,7 +1857,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'https://api.delta.exchange/positions/change_margin',
+result = RestClient.post 'http://api.delta.exchange/v2/positions/change_margin',
   params: {
   }, headers: headers
 
@@ -2215,58 +1890,16 @@ p JSON.parse(result)
 
 ```json
 {
-  "user_id": 0,
-  "size": 0,
-  "entry_price": "string",
-  "margin": "string",
-  "liquidation_price": "string",
-  "bankruptcy_price": "string",
-  "adl_level": 0,
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
+  "success": true,
+  "result": {
+    "user_id": 0,
+    "size": 0,
+    "entry_price": "string",
+    "margin": "string",
+    "liquidation_price": "string",
+    "bankruptcy_price": "string",
+    "adl_level": 0,
+    "product_id": 0
   }
 }
 ```
@@ -2275,34 +1908,806 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the position object|[Position](#schemaposition)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if position margin could not be changed|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the position object|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if position margin could not be changed|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="add/remove-position-margin-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|PositionNotSet|
-|error|LeverageLimitExceeded|
-|error|InsufficientMargin|
-|error|ExistingOrderWithLowerThanBankruptcy|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-trade-history">Trade History</h1>
+<h1 id="delta-exchange-api-v2-trade-history">Trade History</h1>
 
 Get Orders History, Get Fill History
+
+## GET user fills by filters
+
+<a id="opIdGETuserfillsbyfilters"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('http://api.delta.exchange/v2/fills', params={
+  'start_time': '0',  'end_time': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/fills?start_time=0&end_time=0 \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/fills',
+  params: {
+  'start_time' => 'integer',
+'end_time' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /fills`
+
+<h3 id="get-user-fills-by-filters-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_ids|query|string|false|none|
+|contract_types|query|string|false|none|
+|start_time|query|integer|true|Start time for the fills query|
+|end_time|query|integer|true|End time for the fills query|
+|before|query|string|false|from time in micro-seconds in epoc|
+|page_size|query|integer|false|number of records per page|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+|contract_types|interest_rate_swaps|
+|contract_types|move_options|
+|contract_types|spreads|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "id": 0,
+      "size": 0,
+      "side": "buy",
+      "price": "string",
+      "role": "taker",
+      "commission": "string",
+      "created_at": "string",
+      "product_id": 0
+    }
+  ],
+  "meta": {
+    "after": "string",
+    "before": "string"
+  }
+}
+```
+
+<h3 id="get-user-fills-by-filters-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|fills|Inline|
+
+<h3 id="get-user-fills-by-filters-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+|role|taker|
+|role|maker|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-orderbook">Orderbook</h1>
+
+L2Orderbook
+
+## Get L2 orderbook
+
+<a id="opIdgetL2Orderbook"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('http://api.delta.exchange/v2/l2orderbook/{symbol}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/l2orderbook/{symbol} \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/l2orderbook/{symbol}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /l2orderbook/{symbol}`
+
+<h3 id="get-l2-orderbook-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|symbol|path|string|true|none|
+|depth|query|integer|false|number of levels on each side|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "buy_book": [
+      {
+        "price": "string",
+        "size": 0
+      }
+    ],
+    "sell_book": [
+      {
+        "price": "string",
+        "size": 0
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get-l2-orderbook-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|L2 orderbook for the product|Inline|
+
+<h3 id="get-l2-orderbook-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-trades">Trades</h1>
+
+Get Trades of a contract
+
+## Get public trades
+
+<a id="opIdgetTrades"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('http://api.delta.exchange/v2/trades/{symbol}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/trades/{symbol} \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/trades/{symbol}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /trades/{symbol}`
+
+<h3 id="get-public-trades-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|symbol|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "trades": [
+      {
+        "side": "buy",
+        "size": 0,
+        "price": "string",
+        "timestamp": 0
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get-public-trades-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of recent trades of the product|Inline|
+
+<h3 id="get-public-trades-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-wallet">Wallet</h1>
+
+Get balances, Get transaction history
+
+## Get Wallet Balances
+
+<a id="opIdgetBalances"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('http://api.delta.exchange/v2/wallet/balances', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/wallet/balances \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/wallet/balances',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /wallet/balances`
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "balance": "string",
+      "order_margin": "string",
+      "position_margin": "string",
+      "commission": "string",
+      "available_balance": "string",
+      "asset": {
+        "id": 0,
+        "symbol": "string",
+        "precision": 0
+      }
+    }
+  ]
+}
+```
+
+<h3 id="get-wallet-balances-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of wallets attached to the user account|Inline|
+
+<h3 id="get-wallet-balances-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Get Wallet transactions
+
+<a id="opIdgetTransactions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('http://api.delta.exchange/v2/wallet/transactions', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/wallet/transactions \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/wallet/transactions',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /wallet/transactions`
+
+<h3 id="get-wallet-transactions-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|asset_id|query|integer|false|asset_id for which to get txns logs|
+|end_time|query|integer|false|end time in micro-seconds in epoc|
+|after|query|string|false|after cursor for pagination|
+|before|query|string|false|before cursor for pagination|
+|page_size|query|integer|false|number of records per page|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "id": 0,
+      "amount": "string",
+      "balance": "string",
+      "transaction_type": "pnl",
+      "meta_data": {},
+      "product_id": 0,
+      "asset_id": 0,
+      "created_at": "string"
+    }
+  ],
+  "meta": {
+    "after": "string",
+    "before": "string"
+  }
+}
+```
+
+<h3 id="get-wallet-transactions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|list of transactions for that wallet|Inline|
+
+<h3 id="get-wallet-transactions-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|transaction_type|pnl|
+|transaction_type|deposit|
+|transaction_type|withdrawal|
+|transaction_type|commission|
+|transaction_type|conversion|
+|transaction_type|perpetual_futures_funding|
+|transaction_type|withdrawal_cancellation|
+|transaction_type|referral_bonus|
+|transaction_type|commission_rebate|
+|transaction_type|promo_credit|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Download Wallet transactions
+
+<a id="opIddownloadTransactions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('http://api.delta.exchange/v2/wallet/transactions/download', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/wallet/transactions/download \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/wallet/transactions/download',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /wallet/transactions/download`
+
+<h3 id="download-wallet-transactions-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|asset_id|query|integer|false|asset_id for which to get txns logs|
+|start_time|query|integer|false|Start time for the transaction query|
+|end_time|query|integer|false|End time for the transaction query|
+
+<h3 id="download-wallet-transactions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|csv of transactions for that wallet|None|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+<h1 id="delta-exchange-api-v2-ohlc-candles">OHLC Candles</h1>
+
+## GET ohlc candles
+
+<a id="opIdgetCandles"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('http://api.delta.exchange/v2/history/candles', params={
+  'resolution': '1m',  'symbol': 'string',  'start': '0',  'end': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/history/candles?resolution=1m&symbol=string&start=0&end=0 \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/history/candles',
+  params: {
+  'resolution' => 'string',
+'symbol' => 'string',
+'start' => 'integer',
+'end' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /history/candles`
+
+<h3 id="get-ohlc-candles-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|resolution|query|string|true|none|
+|symbol|query|string|true|product symbol|
+|start|query|integer|true|Start time|
+|end|query|integer|true|End time|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|resolution|1m|
+|resolution|3m|
+|resolution|5m|
+|resolution|15m|
+|resolution|30m|
+|resolution|1h|
+|resolution|2h|
+|resolution|4h|
+|resolution|6h|
+|resolution|1d|
+|resolution|7d|
+|resolution|30d|
+|resolution|1w|
+|resolution|2w|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "time": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    }
+  ]
+}
+```
+
+<h3 id="get-ohlc-candles-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|ohlc|Inline|
+
+<h3 id="get-ohlc-candles-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+## GET product history sparkline
+
+<a id="opIdgetSparklines"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('http://api.delta.exchange/v2/history/sparklines', params={
+  'symbols': 'string'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET http://api.delta.exchange/v2/history/sparklines?symbols=string \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'http://api.delta.exchange/v2/history/sparklines',
+  params: {
+  'symbols' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /history/sparklines`
+
+<h3 id="get-product-history-sparkline-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|symbols|query|string|true|comma separated product symbols|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "MARK:BTCUSD_31Oct": [
+      [
+        1594214051,
+        0.00003826
+      ],
+      [
+        1594214051,
+        0.00003826
+      ]
+    ],
+    "SPOT:BTCUSD_31Oct": [
+      [
+        1594215270,
+        0.00003826
+      ]
+    ]
+  }
+}
+```
+
+<h3 id="get-product-history-sparkline-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|product history sparkline|Inline|
+
+<h3 id="get-product-history-sparkline-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-tradehistory">TradeHistory</h1>
 
 ## Get order history (cancelled and closed)
 
@@ -2319,7 +2724,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('https://api.delta.exchange/orders/history', params={
+r = requests.get('http://api.delta.exchange/v2/orders/history', params={
 
 }, headers = headers)
 
@@ -2329,7 +2734,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/orders/history \
+curl -X GET http://api.delta.exchange/v2/orders/history \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -2348,7 +2753,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'https://api.delta.exchange/orders/history',
+result = RestClient.get 'http://api.delta.exchange/v2/orders/history',
   params: {
   }, headers: headers
 
@@ -2362,281 +2767,31 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|page_num|query|integer|false|page number for pagination|
-|page_size|query|integer|false|page size for pagination|
+|product_ids|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated product ids|
+|order_types|query|string|false|comma separated order types|
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
+|after|query|string|false|after cursor for pagination|
+|before|query|string|false|before cursor for pagination|
+|page_size|query|integer|false|number of records per page|
 
-> Example responses
+#### Enumerated Values
 
-> 200 Response
-
-```json
-[
-  {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-]
-```
-
-<h3 id="get-order-history-(cancelled-and-closed)-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of orders|[ArrayOfOrders](#schemaarrayoforders)|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-## Get fills
-
-<a id="opIdgetFills"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/fills', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/fills \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/fills',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /fills`
-
-<h3 id="get-fills-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_id|query|integer|false|product id for fill query|
-|start_time|query|integer|false|Start time for the fill query|
-|end_time|query|integer|false|End time for the fill query|
-|page_num|query|integer|false|page number for pagination|
-|page_size|query|integer|false|page size for pagination|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "id": 0,
-    "size": 0,
-    "side": "buy",
-    "price": "string",
-    "role": "taker",
-    "commission": "string",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-]
-```
-
-<h3 id="get-fills-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of Fills|[ArrayOfFills](#schemaarrayoffills)|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-<h1 id="delta-exchange-api-orderbook">Orderbook</h1>
-
-L2Orderbook
-
-## Get L2 orderbook
-
-<a id="opIdgetL2Orderbook"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://api.delta.exchange/orderbook/{product_id}/l2', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/orderbook/{product_id}/l2 \
-  -H 'Accept: application/json'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.delta.exchange/orderbook/{product_id}/l2',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /orderbook/{product_id}/l2`
-
-<h3 id="get-l2-orderbook-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_id|path|integer|true|none|
-|depth|query|integer|false|number of levels on each side|
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+|contract_types|interest_rate_swaps|
+|contract_types|move_options|
+|contract_types|spreads|
+|order_types|market|
+|order_types|limit|
+|order_types|stop_market|
+|order_types|stop_limit|
+|order_types|all_stop|
 
 > Example responses
 
@@ -2644,266 +2799,54 @@ p JSON.parse(result)
 
 ```json
 {
-  "buy_book": [
+  "success": true,
+  "result": [
     {
-      "price": "string",
-      "size": 0
-    }
-  ],
-  "sell_book": [
-    {
-      "price": "string",
-      "size": 0
-    }
-  ],
-  "recent_trades": [
-    {
-      "side": "buy",
+      "id": 0,
+      "user_id": 0,
       "size": 0,
-      "price": "string",
-      "timestamp": 0
+      "unfilled_size": 0,
+      "side": "buy",
+      "order_type": "limit_order",
+      "limit_price": "string",
+      "stop_order_type": "stop_loss_order",
+      "stop_price": "string",
+      "close_on_trigger": "false",
+      "state": "open",
+      "created_at": "string",
+      "product_id": 0
     }
   ],
-  "spot_price": "string",
-  "mark_price": "string",
-  "product_id": 0
-}
-```
-
-<h3 id="get-l2-orderbook-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|L2 orderbook for the product|[L2Orderbook](#schemal2orderbook)|
-
-<aside class="success">
-This operation does not require authentication.
-</aside>
-
-<h1 id="delta-exchange-api-wallet">Wallet</h1>
-
-Get balances, Get transaction history
-
-## Get Wallet Balances
-
-<a id="opIdgetWalletBalances"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/wallet/balances', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/wallet/balances \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/wallet/balances',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /wallet/balances`
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "balance": "string",
-    "order_margin": "string",
-    "position_margin": "string",
-    "commission": "string",
-    "available_balance": "string",
-    "asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
+  "meta": {
+    "after": "string",
+    "before": "string"
   }
-]
+}
 ```
 
-<h3 id="get-wallet-balances-responses">Responses</h3>
+<h3 id="get-order-history-(cancelled-and-closed)-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of wallets attached to the user account|[ArrayOfWallets](#schemaarrayofwallets)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of closed and cancelled orders|Inline|
 
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
+<h3 id="get-order-history-(cancelled-and-closed)-responseschema">Response Schema</h3>
 
-## Get Wallet transactions
+#### Enumerated Values
 
-<a id="opIdgetWalletTransactions"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/wallet/transactions', params={
-  'asset_id': '0'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/wallet/transactions?asset_id=0 \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/wallet/transactions',
-  params: {
-  'asset_id' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /wallet/transactions`
-
-<h3 id="get-wallet-transactions-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|asset_id|query|integer|true|asset_id for that particular Wallet|
-|product_id|query|integer|false|product_id filter for the transaction query|
-|transaction_type|query|integer|false|transaction_type filter for the transaction query|
-|start_time|query|integer|false|Start time for the transaction query|
-|end_time|query|integer|false|End time for the transaction query|
-|page_num|query|integer|false|page number for pagination|
-|page_size|query|integer|false|page size for pagination|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "id": 0,
-    "amount": "string",
-    "balance": "string",
-    "transaction_type": "pnl",
-    "meta_data": {},
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    },
-    "created_at": "string"
-  }
-]
-```
-
-<h3 id="get-wallet-transactions-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|list of transactions for that wallet|[ArrayOfTransactions](#schemaarrayoftransactions)|
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -2911,21 +2854,20 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Download Wallet transactions
 
-<a id="opIddownloadWalletTransactions"></a>
+<a id="opIddownloadFillsHistory"></a>
 
 > Code samples
 
 ```python
 import requests
 headers = {
-  'Accept': 'application/json',
   'api-key': '****',
   'signature': '****',
   'timestamp': '****'
 }
 
-r = requests.get('https://api.delta.exchange/wallet/download/transactions', params={
-  'asset_id': '0'
+r = requests.get('http://api.delta.exchange/v2/fills/history/download/csv', params={
+  'start_time': '0',  'end_time': '0'
 }, headers = headers)
 
 print r.json()
@@ -2934,8 +2876,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/wallet/download/transactions?asset_id=0 \
-  -H 'Accept: application/json' \
+curl -X GET http://api.delta.exchange/v2/fills/history/download/csv?start_time=0&end_time=0 \
   -H 'api-key: ****' \
   -H 'signature: ****' \
   -H 'timestamp: ****'
@@ -2947,455 +2888,137 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json',
   'api-key' => '****',
   'signature' => '****',
   'timestamp' => '****'
 }
 
-result = RestClient.get 'https://api.delta.exchange/wallet/download/transactions',
+result = RestClient.get 'http://api.delta.exchange/v2/fills/history/download/csv',
   params: {
-  'asset_id' => 'integer'
+  'start_time' => 'integer',
+'end_time' => 'integer'
 }, headers: headers
 
 p JSON.parse(result)
 
 ```
 
-`GET /wallet/download/transactions`
+`GET /fills/history/download/csv`
 
 <h3 id="download-wallet-transactions-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|asset_id|query|integer|true|asset_id for that particular Wallet|
-|product_id|query|integer|false|product_id filter for the transaction query|
-|transaction_type|query|integer|false|transaction_type filter for the transaction query|
-|start_time|query|integer|false|Start time for the transaction query|
-|end_time|query|integer|false|End time for the transaction query|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "id": 0,
-    "amount": "string",
-    "balance": "string",
-    "transaction_type": "pnl",
-    "meta_data": {},
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    },
-    "created_at": "string"
-  }
-]
-```
-
-<h3 id="download-wallet-transactions-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|csv of transactions for that wallet|[ArrayOfTransactions](#schemaarrayoftransactions)|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-## Raise withdrawals request
-
-<a id="opIdraiseWithdrawalRequest"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.post('https://api.delta.exchange/wallet/withdrawals', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X POST https://api.delta.exchange/wallet/withdrawals \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.post 'https://api.delta.exchange/wallet/withdrawals',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`POST /wallet/withdrawals`
-
-> Body parameter
-
-```json
-{
-  "release_promo_credit": "string",
-  "amount": "string",
-  "address": "string"
-}
-```
-
-<h3 id="raise-withdrawals-request-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|none|
-|» release_promo_credit|body|string|false|none|
-|» amount|body|string|true|none|
-|» address|body|string|true|none|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "address": "string",
-  "amount": "string",
-  "fee": "string",
-  "id": 0,
-  "state": "string",
-  "transaction_meta": "string",
-  "user_id": 0
-}
-```
-
-<h3 id="raise-withdrawals-request-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the WithdrawalsResponse object|[WithdrawalsResponse](#schemawithdrawalsresponse)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if Withdrawal limit exceeded, ammount or address is missing or invalid|Inline|
-
-<h3 id="raise-withdrawals-request-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|WithdrawalLimitExceeded|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-## Cancel withdrawals request
-
-<a id="opIdcancelWithdrawalRequest"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.post('https://api.delta.exchange/wallet/withdrawals/cancel', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X POST https://api.delta.exchange/wallet/withdrawals/cancel \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.post 'https://api.delta.exchange/wallet/withdrawals/cancel',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`POST /wallet/withdrawals/cancel`
-
-> Body parameter
-
-```json
-{
-  "withdrawal_id": 0
-}
-```
-
-<h3 id="cancel-withdrawals-request-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|none|
-|» withdrawal_id|body|integer|true|none|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true
-}
-```
-
-<h3 id="cancel-withdrawals-request-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns success true or false|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if Withdrawal Withdrawal Already Processed|Inline|
-
-<h3 id="cancel-withdrawals-request-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» success|boolean|false|none|none|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|WithdrawalAlreadyProcessed|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-<h1 id="delta-exchange-api-ohlc-candles">OHLC Candles</h1>
-
-## Get OHLC candles
-
-<a id="opIdgetCandles"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://api.delta.exchange/chart/history', params={
-  'symbol': 'string',  'from': '0',  'to': '0',  'resolution': '1'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/chart/history?symbol=string&from=0&to=0&resolution=1 \
-  -H 'Accept: application/json'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.delta.exchange/chart/history',
-  params: {
-  'symbol' => 'string',
-'from' => 'integer',
-'to' => 'integer',
-'resolution' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /chart/history`
-
-<h3 id="get-ohlc-candles-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|symbol|query|string|true|symbol should be anyone of following  1. product symbol to get OHLC for given product e.g **BTCUSD** 2. Spot index symbol to get spot index price. e.g. **.DEXBTUSD** 3. Mark and symbol to get mark price OHLC data e.g. **MARK:BTCUSD** 4. Funding and product symbol to get Funding data for given product e.g. **FUNDING:BTCUSD**|
-|from|query|integer|true|start time for the interval ( in seconds )|
-|to|query|integer|true|end time for the interval ( in seconds )|
-|resolution|query|string|true|resolution for the candles|
+|product_ids|query|string|false|none|
+|contract_types|query|string|false|none|
+|start_time|query|integer|true|Start time for the fills query|
+|end_time|query|integer|true|End time for the fills query|
 
 #### Enumerated Values
 
 |Parameter|Value|
 |---|---|
-|resolution|1|
-|resolution|3|
-|resolution|5|
-|resolution|15|
-|resolution|30|
-|resolution|60|
-|resolution|120|
-|resolution|240|
-|resolution|360|
-|resolution|D|
-|resolution|7D|
-|resolution|30D|
-|resolution|1W|
-|resolution|2W|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+|contract_types|interest_rate_swaps|
+|contract_types|move_options|
+|contract_types|spreads|
 
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "t": [
-    0
-  ],
-  "o": [
-    "string"
-  ],
-  "h": [
-    "string"
-  ],
-  "l": [
-    "string"
-  ],
-  "c": [
-    "string"
-  ],
-  "v": [
-    0
-  ]
-}
-```
-
-<h3 id="get-ohlc-candles-responses">Responses</h3>
+<h3 id="download-wallet-transactions-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OHLC candles|[OHLCData](#schemaohlcdata)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|csv of fills for the filter query|None|
 
-<aside class="success">
-This operation does not require authentication.
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
 # Schemas
+
+<h2 id="tocSapisuccessresponse">ApiSuccessResponse</h2>
+
+<a id="schemaapisuccessresponse"></a>
+
+```json
+{
+  "success": true
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|success|boolean|false|none|none|
+
+<h2 id="tocSapierrorresponse">ApiErrorResponse</h2>
+
+<a id="schemaapierrorresponse"></a>
+
+```json
+{
+  "success": false,
+  "error": {}
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|success|boolean|false|none|none|
+|error|object|false|none|none|
+
+<h2 id="tocSindex">Index</h2>
+
+<a id="schemaindex"></a>
+
+```json
+{
+  "id": 0,
+  "symbol": "string",
+  "constituent_exchanges": [
+    {}
+  ]
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer(int64)|false|none|none|
+|symbol|string|false|none|none|
+|constituent_exchanges|[object]|false|none|none|
+
+<h2 id="tocSarrayofindices">ArrayOfIndices</h2>
+
+<a id="schemaarrayofindices"></a>
+
+```json
+[
+  {
+    "id": 0,
+    "symbol": "string",
+    "constituent_exchanges": [
+      {}
+    ]
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[Index](#schemaindex)]|false|none|none|
 
 <h2 id="tocSasset">Asset</h2>
 
@@ -3451,8 +3074,7 @@ This operation does not require authentication.
   "created_at": "string",
   "updated_at": "string",
   "settlement_time": "string",
-  "product_type": "future",
-  "pricing_source": "string",
+  "notional_type": "vanilla",
   "impact_size": 0,
   "initial_margin": 0,
   "maintenance_margin": "string",
@@ -3464,7 +3086,7 @@ This operation does not require authentication.
   "default_leverage": "string",
   "initial_margin_scaling_factor": "string",
   "maintenance_margin_scaling_factor": "string",
-  "commission_rate": "string",
+  "taker_commission_rate": "string",
   "maker_commission_rate": "string",
   "liquidation_penalty_factor": "string",
   "contract_type": "string",
@@ -3488,6 +3110,13 @@ This operation does not require authentication.
     "id": 0,
     "symbol": "string",
     "precision": 0
+  },
+  "spot_index": {
+    "id": 0,
+    "symbol": "string",
+    "constituent_exchanges": [
+      {}
+    ]
   }
 }
 
@@ -3503,8 +3132,7 @@ This operation does not require authentication.
 |created_at|string|false|none|product/contract creation date and time|
 |updated_at|string|false|none|product/contract update date and time|
 |settlement_time|string|false|none|settlement Timestamp of futures contract|
-|product_type|string|false|none|contract type 'future' or 'inverse_future'|
-|pricing_source|string|false|none|source and method of contract pricing|
+|notional_type|string|false|none|whether notional is calculated using vanilla math or inverse math|
 |impact_size|integer|false|none|size of a typical trade. Used in the computation of mark price|
 |initial_margin|integer|false|none|The amount required to enter into a new position|
 |maintenance_margin|string|false|none|The amount necessary when a loss on a futures position requires you to allocate more funds to return the margin to the initial margin level.|
@@ -3516,7 +3144,7 @@ This operation does not require authentication.
 |default_leverage|string|false|none|default leverage|
 |initial_margin_scaling_factor|string|false|none|none|
 |maintenance_margin_scaling_factor|string|false|none|none|
-|commission_rate|string|false|none|rate at which commission fee will be calculated for a trade in given contract|
+|taker_commission_rate|string|false|none|rate at which commission fee will be calculated for a taker trade in given contract|
 |maker_commission_rate|string|false|none|rate at which maker rebate will be calculated|
 |liquidation_penalty_factor|string|false|none|Determines liquidation charge as per the following formula: liquidation_penalty_factor * minimum maintenance margin|
 |contract_type|string|false|none|Type of contracts e.g. futures, perpetual futures,|
@@ -3529,13 +3157,14 @@ This operation does not require authentication.
 |underlying_asset|[Asset](#schemaasset)|false|none|none|
 |quoting_asset|[Asset](#schemaasset)|false|none|none|
 |settling_asset|[Asset](#schemaasset)|false|none|none|
+|spot_index|[Index](#schemaindex)|false|none|none|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|product_type|future|
-|product_type|inverse_future|
+|notional_type|vanilla|
+|notional_type|inverse|
 |trading_status|operational|
 |trading_status|disrupted_cancel_only|
 |trading_status|disrupted_post_only|
@@ -3553,8 +3182,7 @@ This operation does not require authentication.
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
+    "notional_type": "vanilla",
     "impact_size": 0,
     "initial_margin": 0,
     "maintenance_margin": "string",
@@ -3566,7 +3194,7 @@ This operation does not require authentication.
     "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
+    "taker_commission_rate": "string",
     "maker_commission_rate": "string",
     "liquidation_penalty_factor": "string",
     "contract_type": "string",
@@ -3590,6 +3218,13 @@ This operation does not require authentication.
       "id": 0,
       "symbol": "string",
       "precision": 0
+    },
+    "spot_index": {
+      "id": 0,
+      "symbol": "string",
+      "constituent_exchanges": [
+        {}
+      ]
     }
   }
 ]
@@ -3620,52 +3255,7 @@ This operation does not require authentication.
   "close_on_trigger": "false",
   "state": "open",
   "created_at": "string",
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
-  }
+  "product_id": 0
 }
 
 ```
@@ -3688,7 +3278,7 @@ This operation does not require authentication.
 |close_on_trigger|string|false|none|none|
 |state|string|false|none|Order Status|
 |created_at|string|false|none|none|
-|product|[Product](#schemaproduct)|false|none|none|
+|product_id|integer|false|none|none|
 
 #### Enumerated Values
 
@@ -3725,52 +3315,7 @@ This operation does not require authentication.
     "close_on_trigger": "false",
     "state": "open",
     "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
+    "product_id": 0
   }
 ]
 
@@ -3781,145 +3326,6 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[[Order](#schemaorder)]|false|none|[An Order object]|
-
-<h2 id="tocSbracketorder">BracketOrder</h2>
-
-<a id="schemabracketorder"></a>
-
-```json
-{
-  "stop_loss_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  },
-  "take_profit_order": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
-    "side": "buy",
-    "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
-    "state": "open",
-    "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
-  }
-}
-
-```
-
-*__DEPRECATED__*
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|stop_loss_order|[Order](#schemaorder)|false|none|An Order object|
-|take_profit_order|[Order](#schemaorder)|false|none|An Order object|
 
 <h2 id="tocScreateorderrequest">CreateOrderRequest</h2>
 
@@ -3934,12 +3340,7 @@ This operation does not require authentication.
   "order_type": "limit_order",
   "time_in_force": "gtc",
   "post_only": "true",
-  "reduce_only": "true",
-  "bracket_order": {
-    "stop_loss_price": "string",
-    "take_profit_price": "string",
-    "trail_amount": "string"
-  }
+  "reduce_only": "true"
 }
 
 ```
@@ -3950,7 +3351,7 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|product_id|integer|false|none|none|
+|product_id|integer|true|none|none|
 |limit_price|string|false|none|none|
 |size|integer|false|none|none|
 |side|string|false|none|side for which to place order|
@@ -3958,10 +3359,6 @@ This operation does not require authentication.
 |time_in_force|string|false|none|none|
 |post_only|string|false|none|none|
 |reduce_only|string|false|none|none|
-|bracket_order|object|false|none|_DEPRECATED_|
-|» stop_loss_price|string|false|none|none|
-|» take_profit_price|string|false|none|none|
-|» trail_amount|string|false|none|none|
 
 #### Enumerated Values
 
@@ -3979,46 +3376,6 @@ This operation does not require authentication.
 |reduce_only|true|
 |reduce_only|false|
 
-<h2 id="tocScreatebracketorderrequest">CreateBracketOrderRequest</h2>
-
-<a id="schemacreatebracketorderrequest"></a>
-
-```json
-{
-  "product_id": 0,
-  "stop_loss_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  },
-  "take_profit_order": {
-    "order_type": "market_order",
-    "stop_price": "string"
-  }
-}
-
-```
-
-*__DEPRECATED__  bracket order object*
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|product_id|integer|false|none|none|
-|stop_loss_order|object|false|none|none|
-|» order_type|string|false|none|none|
-|» stop_price|string|false|none|none|
-|take_profit_order|object|false|none|none|
-|» order_type|string|false|none|none|
-|» stop_price|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|order_type|market_order|
-|order_type|market_order|
-
 <h2 id="tocSarrayofcreateorderrequest">ArrayOfCreateOrderRequest</h2>
 
 <a id="schemaarrayofcreateorderrequest"></a>
@@ -4033,12 +3390,7 @@ This operation does not require authentication.
     "order_type": "limit_order",
     "time_in_force": "gtc",
     "post_only": "true",
-    "reduce_only": "true",
-    "bracket_order": {
-      "stop_loss_price": "string",
-      "take_profit_price": "string",
-      "trail_amount": "string"
-    }
+    "reduce_only": "true"
   }
 ]
 
@@ -4183,52 +3535,7 @@ This operation does not require authentication.
   "liquidation_price": "string",
   "bankruptcy_price": "string",
   "adl_level": 0,
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
-  }
+  "product_id": 0
 }
 
 ```
@@ -4246,7 +3553,7 @@ This operation does not require authentication.
 |liquidation_price|string|false|none|none|
 |bankruptcy_price|string|false|none|none|
 |adl_level|integer|false|none|none|
-|product|[Product](#schemaproduct)|false|none|none|
+|product_id|integer|false|none|none|
 
 <h2 id="tocSarrayofpositions">ArrayOfPositions</h2>
 
@@ -4262,52 +3569,7 @@ This operation does not require authentication.
     "liquidation_price": "string",
     "bankruptcy_price": "string",
     "adl_level": 0,
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
+    "product_id": 0
   }
 ]
 
@@ -4332,52 +3594,7 @@ This operation does not require authentication.
   "role": "taker",
   "commission": "string",
   "created_at": "string",
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
-  }
+  "product_id": 0
 }
 
 ```
@@ -4390,12 +3607,12 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |id|integer|false|none|none|
 |size|integer|false|none|none|
-|side|integer|false|none|none|
+|side|string|false|none|none|
 |price|string|false|none|Price at which the fill happened, BigDecimal sent as string|
 |role|string|false|none|none|
 |commission|string|false|none|Commission paid on this fill, negative value means commission was earned because of maker role|
 |created_at|string|false|none|none|
-|product|[Product](#schemaproduct)|false|none|none|
+|product_id|integer|false|none|none|
 
 #### Enumerated Values
 
@@ -4420,52 +3637,7 @@ This operation does not require authentication.
     "role": "taker",
     "commission": "string",
     "created_at": "string",
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    }
+    "product_id": 0
   }
 ]
 
@@ -4517,18 +3689,7 @@ This operation does not require authentication.
       "price": "string",
       "size": 0
     }
-  ],
-  "recent_trades": [
-    {
-      "side": "buy",
-      "size": 0,
-      "price": "string",
-      "timestamp": 0
-    }
-  ],
-  "spot_price": "string",
-  "mark_price": "string",
-  "product_id": 0
+  ]
 }
 
 ```
@@ -4545,14 +3706,36 @@ This operation does not require authentication.
 |sell_book|[object]|false|none|none|
 |» price|string|false|none|none|
 |» size|integer|false|none|none|
-|recent_trades|[object]|false|none|none|
+
+<h2 id="tocStrades">Trades</h2>
+
+<a id="schematrades"></a>
+
+```json
+{
+  "trades": [
+    {
+      "side": "buy",
+      "size": 0,
+      "price": "string",
+      "timestamp": 0
+    }
+  ]
+}
+
+```
+
+*trades of a symbol*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|trades|[object]|false|none|none|
 |» side|string|false|none|none|
 |» size|integer|false|none|none|
 |» price|string|false|none|none|
 |» timestamp|integer|false|none|none|
-|spot_price|string|false|none|none|
-|mark_price|string|false|none|none|
-|product_id|integer|false|none|none|
 
 #### Enumerated Values
 
@@ -4631,52 +3814,8 @@ This operation does not require authentication.
   "balance": "string",
   "transaction_type": "pnl",
   "meta_data": {},
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "future",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "operational",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
-  },
+  "product_id": 0,
+  "asset_id": 0,
   "created_at": "string"
 }
 
@@ -4691,7 +3830,8 @@ This operation does not require authentication.
 |balance|string|false|none|net wallet balance after this transaction|
 |transaction_type|string|false|none|none|
 |meta_data|object|false|none|none|
-|product|[Product](#schemaproduct)|false|none|none|
+|product_id|integer|false|none|none|
+|asset_id|integer|false|none|none|
 |created_at|string|false|none|none|
 
 #### Enumerated Values
@@ -4721,52 +3861,8 @@ This operation does not require authentication.
     "balance": "string",
     "transaction_type": "pnl",
     "meta_data": {},
-    "product": {
-      "id": 0,
-      "symbol": "string",
-      "description": "string",
-      "created_at": "string",
-      "updated_at": "string",
-      "settlement_time": "string",
-      "product_type": "future",
-      "pricing_source": "string",
-      "impact_size": 0,
-      "initial_margin": 0,
-      "maintenance_margin": "string",
-      "contract_value": "string",
-      "contract_unit_currency": "string",
-      "tick_size": "string",
-      "trading_status": "operational",
-      "max_leverage_notional": "string",
-      "default_leverage": "string",
-      "initial_margin_scaling_factor": "string",
-      "maintenance_margin_scaling_factor": "string",
-      "commission_rate": "string",
-      "maker_commission_rate": "string",
-      "liquidation_penalty_factor": "string",
-      "contract_type": "string",
-      "position_size_limit": 0,
-      "basis_factor_max_limit": "string",
-      "is_quanto": true,
-      "funding_method": "string",
-      "annualized_funding": "string",
-      "price_band": "string",
-      "underlying_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "quoting_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      },
-      "settling_asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
-    },
+    "product_id": 0,
+    "asset_id": 0,
     "created_at": "string"
   }
 ]
@@ -4779,9 +3875,9 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |*anonymous*|[[Transaction](#schematransaction)]|false|none|none|
 
-<h2 id="tocS24hrticker">24hrTicker</h2>
+<h2 id="tocSticker">Ticker</h2>
 
-<a id="schema24hrticker"></a>
+<a id="schematicker"></a>
 
 ```json
 {
@@ -4791,7 +3887,12 @@ This operation does not require authentication.
   "high": 0,
   "low": 0,
   "close": 0,
-  "volume": 0
+  "volume": 0,
+  "mark_price": "string",
+  "spot_price": "string",
+  "turnover": 0,
+  "turnover_symbol": "string",
+  "turnover_usd": 0
 }
 
 ```
@@ -4807,6 +3908,60 @@ This operation does not require authentication.
 |low|number|false|none|none|
 |close|number|false|none|none|
 |volume|integer|false|none|none|
+|mark_price|string|false|none|none|
+|spot_price|string|false|none|none|
+|turnover|number|false|none|none|
+|turnover_symbol|string|false|none|none|
+|turnover_usd|number|false|none|none|
+
+<h2 id="tocSarrayoftickers">ArrayOfTickers</h2>
+
+<a id="schemaarrayoftickers"></a>
+
+```json
+[
+  {
+    "symbol": "string",
+    "timestamp": 0,
+    "open": 0,
+    "high": 0,
+    "low": 0,
+    "close": 0,
+    "volume": 0,
+    "mark_price": "string",
+    "spot_price": "string",
+    "turnover": 0,
+    "turnover_symbol": "string",
+    "turnover_usd": 0
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[Ticker](#schematicker)]|false|none|none|
+
+<h2 id="tocSpaginationmeta">PaginationMeta</h2>
+
+<a id="schemapaginationmeta"></a>
+
+```json
+{
+  "after": "string",
+  "before": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|after|string|false|none|none|
+|before|string|false|none|none|
 
 <h2 id="tocSohlcdata">OHLCData</h2>
 
@@ -4814,23 +3969,74 @@ This operation does not require authentication.
 
 ```json
 {
-  "t": [
-    0
+  "time": 0,
+  "open": 0,
+  "high": 0,
+  "low": 0,
+  "close": 0,
+  "volume": 0
+}
+
+```
+
+*A ohlc object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|time|integer|false|none|none|
+|open|number(float)|false|none|none|
+|high|number|false|none|none|
+|low|number|false|none|none|
+|close|number|false|none|none|
+|volume|number|false|none|none|
+
+<h2 id="tocSarrayofohlcdata">ArrayOfOHLCData</h2>
+
+<a id="schemaarrayofohlcdata"></a>
+
+```json
+[
+  {
+    "time": 0,
+    "open": 0,
+    "high": 0,
+    "low": 0,
+    "close": 0,
+    "volume": 0
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[OHLCData](#schemaohlcdata)]|false|none|[A ohlc object]|
+
+<h2 id="tocSsparklinedata">SparklineData</h2>
+
+<a id="schemasparklinedata"></a>
+
+```json
+{
+  "MARK:BTCUSD_31Oct": [
+    [
+      1594214051,
+      0.00003826
+    ],
+    [
+      1594214051,
+      0.00003826
+    ]
   ],
-  "o": [
-    "string"
-  ],
-  "h": [
-    "string"
-  ],
-  "l": [
-    "string"
-  ],
-  "c": [
-    "string"
-  ],
-  "v": [
-    0
+  "SPOT:BTCUSD_31Oct": [
+    [
+      1594215270,
+      0.00003826
+    ]
   ]
 }
 
@@ -4840,88 +4046,5 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|t|[integer]|false|none|array of timestamps for which candles are returned|
-|o|[string]|false|none|open prices for candles|
-|h|[string]|false|none|high prices for candles|
-|l|[string]|false|none|low prices for candles|
-|c|[string]|false|none|close prices for candles|
-|v|[integer]|false|none|volumes for candles|
-
-<h2 id="tocSwithdrawalsresponse">WithdrawalsResponse</h2>
-
-<a id="schemawithdrawalsresponse"></a>
-
-```json
-{
-  "address": "string",
-  "amount": "string",
-  "fee": "string",
-  "id": 0,
-  "state": "string",
-  "transaction_meta": "string",
-  "user_id": 0
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|address|string|false|none|BTC Destination Address|
-|amount|string|false|none|Amount to be Withdrawn|
-|fee|string|false|none|Withdrawal Fee|
-|id|integer(int64)|false|none|Trasaction id|
-|state|string|false|none|state of withdrawal request|
-|transaction_meta|string|false|none|Amount to be Withdrawn|
-|user_id|integer(int64)|false|none|User id|
-
-<h2 id="tocSeditbatchorders">EditBatchOrders</h2>
-
-<a id="schemaeditbatchorders"></a>
-
-```json
-{
-  "product_id": 0,
-  "orders": [
-    {
-      "id": 0,
-      "size": 0,
-      "limit_price": "string",
-      "product_id": 0
-    }
-  ]
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|product_id|integer(int32)|true|none|none|
-|orders|[[BatchEditOrders](#schemabatcheditorders)]|true|none|none|
-
-<h2 id="tocSbatcheditorders">BatchEditOrders</h2>
-
-<a id="schemabatcheditorders"></a>
-
-```json
-{
-  "id": 0,
-  "size": 0,
-  "limit_price": "string",
-  "product_id": 0
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|id|integer(int32)|true|none|Order id to be edited|
-|size|integer(int32)|true|none|none|
-|limit_price|string|true|none|none|
-|product_id|integer(int32)|true|none|none|
+|**additionalProperties**|[integer]|false|none|array of timestamp and closing value|
 

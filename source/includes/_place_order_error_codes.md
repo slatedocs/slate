@@ -1,16 +1,27 @@
-# Place order error description
-various errors returned by system while placing order
+# Place order errors
+This section lists various errors returned by the system while placing order. The error format looks like this 
 
-error | description
+```
+{
+  success: false,
+  error: {
+    code: ...,        // error code
+    context: {
+      ...
+    }
+  }
+}
+```
+
+Here is a list of error codes and their explanation
+
+error code | description
 --|--
-InsufficientMargin  | Margin required to place order with selected leverage and quantity is insufficient.
-OrderSizeExceededAvailable | order size more than available, the order book doesn't have sufficient liquidity.
-OrderExceedsSizeLimit | orders couldn't be placed as it will breach allowed risk limits.
-OrderLeverageNotSet | Order leverage is not set for this order, set any order leverage.
-InvalidProduct | The contract/product is either doesn\'t exist or has already expired.
-ImmediateLiquidationOrder | Order will cause immediate liquidation.
-LowerthanBankruptcy | Order prices are out of position bankruptcy limits.
-SelfMatchingPostOnlyMode | Self matching is not allowed in post only mode.
-ImmediateExecutionPostOnlyOrder | orders couldn't be placed as it includes post only orders which will be immediately executed.
-~~BracketOrderPositionExists~~ | __DEPRECATED__ Cannot add bracket order when position already exists.	
-~~InvalidBracketOrder~~ |__DEPRECATED__  Cannot add bracket order because either the stop loss price or take profit price is incorrect.
+insufficient_margin  | Margin required to place order with selected leverage and quantity is insufficient.
+order_size_exceed_available | Rhe order book doesn't have sufficient liquidity, hence the order couldnt be filled (for ex - ioc orders).
+risk_limits_breached | orders couldn't be placed as it will breach allowed risk limits.
+invalid_contract | The contract/product is either doesn\'t exist or has already expired.
+immediate_liquidation | Order will cause immediate liquidation.
+out_of_bankruptcy | Order prices are out of position bankruptcy limits.
+self_matching_disrupted_post_only | Self matching is not allowed during auction.
+immediate_execution_post_only | orders couldn't be placed as it includes post only orders which will be immediately executed.
