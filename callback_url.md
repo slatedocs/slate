@@ -295,11 +295,9 @@ The post params posted at any update in a particular leads are as follows
 - `Fail` - When marked as Failed
 - `Junk` - When marked as Junk 
 - `In Call Center` - When lead is sent to call center
-      
-  
-Other parameters are the once described in the http://anarock.github.io/leads documentation.
 
-All object arrays in the payload are sorted with latest first, eg. calls, events, notes dispositions are sorted as latest first
+
+Note: All object arrays in the payload are sorted with latest first, eg. calls, events, notes dispositions are sorted as latest first.
 
 
 ### Few Examples of the hooks about consuming hooks on various actiosn
