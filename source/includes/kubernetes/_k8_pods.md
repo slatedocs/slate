@@ -501,7 +501,6 @@ Required Attributes                 | &nbsp;
 `apiVersion` <br/>*string*          | The api version (versioned schema) of the pod
 `metadata` <br/>*object*            | The metadata of the pod
 `metadata.name` <br/>*string*       | The name of the pod
-`metadata.namespace` <br/>*string*  | The namespace in which the pod is created
 `spec`<br/>*object*                 | The specification used to create and run the pod
 `spec.container.image`<br/>*string* | The docker image name
 `spec.container.name`<br/>*string*  | The (unique) name of the container specified as a DNS_LABEL
@@ -509,6 +508,7 @@ Required Attributes                 | &nbsp;
 | Optional Attributes                       | &nbsp;                                                                  |
 | ----------------------------------------- | ----------------------------------------------------------------------- |
 | `kind`<br/>_string_                       | The string value representing the REST resource this object represents  |
+| `metadata.namespace` <br/>*string*        | The namespace in which the pod is created                               |
 
 Return value:
 

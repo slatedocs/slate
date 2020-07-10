@@ -146,7 +146,6 @@ Create a daemon set in a given [environment](#administration-environments).
 | `apiVersion` <br/> _string_                | The api version (versioned schema) of the daemon set                      |
 | `metadata` <br/>_object_                   | The metadata of the daemon set                                            |
 | `metadata.name` <br/>_string_              | The name of the daemon set                                                |
-| `metadata.namespace` <br/>_string_         | The namespace in which the daemon set is created                          |
 | `spec`<br/>_object_                        | The specification used to create and run the daemon set                   |
 | `spec.selector`<br/>_object_               | The label query over the daemon set's resources                           |
 | `spec.template`<br/>_object_               | The data a daemon set's pod should have when created                      |
@@ -155,6 +154,7 @@ Create a daemon set in a given [environment](#administration-environments).
 | Optional Attributes                        | &nbsp;                                                                    |
 | ------------------------------------------ | ------------------------------------------------------------------------- |
 | `kind`<br/>_string_                        | The string value representing the REST resource this object represents    |
+| `metadata.namespace` <br/>_string_         | The namespace in which the daemon set is created                          |
 | `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a daemon set          |
 
 Return value:
