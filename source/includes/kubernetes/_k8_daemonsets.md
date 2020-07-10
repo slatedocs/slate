@@ -83,10 +83,11 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/daemonsets"
   Content-Type: application/json
   {
   "apiVersion": "apps/v1",
+  "kind": "DaemonSet",
   "metadata": {
     "name": "daemonset-name",
     "namespace": "default"
@@ -129,20 +130,26 @@ curl -X POST \
 
 Create a daemon set in a given [environment](#administration-environments).
 
-| Attributes                                 | &nbsp;                                                                    |
+| Required Attributes                        | &nbsp;                                                                    |
 | ------------------------------------------ | --------------------------------------------------------------------------|
 | `apiVersion` <br/> _string_                | The api version (versioned schema) of the daemon set                      |
 | `metadata` <br/>_object_                   | The metadata of the daemon set                                            |
 | `metadata.name` <br/>_string_              | The name of the daemon set                                                |
 | `metadata.namespace` <br/>_string_         | The namespace in which the daemon set is created                          |
 | `spec`<br/>_object_                        | The specification used to create and run the daemon set                   |
-| `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a daemon set          |
+| `spec.selector`<br/>_object_               | The label query over the daemon set's resources                           |
 | `spec.template`<br/>_object_               | The data a daemon set's pod should have when created                      |
 | `spec.spec`<br/>*object*                   | The specification used to create and run the pod(s) within the daemon set |
+
+
+| Optional Attributes                        | &nbsp;                                                                    |
+| ------------------------------------------ | ------------------------------------------------------------------------- |
+| `kind`<br/>_string_                        | The string value representing the REST resource this object represents    |
+| `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a daemon set          |
 
 Return value:
 
 | Attributes                 | &nbsp;                                              |
 ---------------------------- | ----------------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the daemon set create task. |
+| `taskId` <br/>*string*     | The id corresponding to the create daemon set task. |
 | `taskStatus` <br/>*string* | The status of the operation.                        |

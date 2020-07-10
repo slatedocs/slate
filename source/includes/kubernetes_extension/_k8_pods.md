@@ -476,6 +476,7 @@ curl -X POST \
   Content-Type: application/json
   {
 	  "apiVersion": "v1",
+    "kind": "Pod",
 	  "metadata": {
 	  	"name": "edgar-allen-pod",
 		  "namespace": "default"
@@ -504,7 +505,7 @@ curl -X POST \
 
 Create a pod in a given [environment](#administration-environments).
 
-Attributes                          | &nbsp;
+Required Attributes                 | &nbsp;
 ----------------------------------- | ------------------------------------------------------------
 `apiVersion` <br/>*string*          | The api version (versioned schema) of the pod
 `metadata` <br/>*object*            | The metadata of the pod
@@ -514,11 +515,15 @@ Attributes                          | &nbsp;
 `spec.container.image`<br/>*string* | The docker image name
 `spec.container.name`<br/>*string*  | The (unique) name of the container specified as a DNS_LABEL
 
+| Optional Attributes                       | &nbsp;                                                                  |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `kind`<br/>_string_                       | The string value representing the REST resource this object represents  |
+
 Return value:
 
 | Attributes                 | &nbsp;                                       |
 ---------------------------- | ---------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the pod create task. |
+| `taskId` <br/>*string*     | The id corresponding to the create pod task. |
 | `taskStatus` <br/>*string* | The status of the operation.                 |
 
 
@@ -554,5 +559,5 @@ Required | &nbsp;
 
 Attributes | &nbsp;
 ------- | -----------
-`taskId` <br/>*string* | The task id related to the delete pod.
+`taskId` <br/>*string* | The task id related to the delete pod task.
 `taskStatus` <br/>*string* | The status of the operation.
