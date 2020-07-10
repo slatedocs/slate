@@ -466,6 +466,66 @@ Attributes | &nbsp;
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
+<!-------------------- CREATE POD -------------------->
+
+#### Create a pod
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods"
+  Content-Type: application/json
+  {
+	  "apiVersion": "v1",
+    "kind": "Pod",
+	  "metadata": {
+	  	"name": "edgar-allen-pod",
+		  "namespace": "default"
+  	},
+	  "spec": {
+		"containers": [
+			{
+				"image": "nginx",
+				"name": "nginx"
+			}
+		  ]
+	  }
+  }
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods</code>
+
+Create a pod in a given [environment](#administration-environments).
+
+Required Attributes                 | &nbsp;
+----------------------------------- | ------------------------------------------------------------
+`apiVersion` <br/>*string*          | The api version (versioned schema) of the pod
+`metadata` <br/>*object*            | The metadata of the pod
+`metadata.name` <br/>*string*       | The name of the pod
+`spec`<br/>*object*                 | The specification used to create and run the pod
+`spec.container.image`<br/>*string* | The docker image name
+`spec.container.name`<br/>*string*  | The (unique) name of the container specified as a DNS_LABEL
+
+| Optional Attributes                       | &nbsp;                                                                  |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `kind`<br/>_string_                       | The string value representing the REST resource this object represents  |
+| `metadata.namespace` <br/>*string*        | The namespace in which the pod is created                               |
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+---------------------------- | ---------------------------------------------|
+| `taskId` <br/>*string*     | The id corresponding to the create pod task. |
+| `taskStatus` <br/>*string* | The status of the operation.                 |
+
 
 
 <!-------------------- DELETE POD -------------------->
@@ -499,5 +559,5 @@ Required | &nbsp;
 
 Attributes | &nbsp;
 ------- | -----------
-`taskId` <br/>*string* | The task id related to the delete pod.
+`taskId` <br/>*string* | The task id related to the delete pod task.
 `taskStatus` <br/>*string* | The status of the operation.
