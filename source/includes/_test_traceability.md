@@ -8,6 +8,9 @@ This endpoint retrieves all requirements linked to a specific test
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
 
+### PAT Support
+Supported - if the user has the permissions to view Tests
+
 ## Replace linked requirements for a specific test
 ```shell
 # Some request examples:
@@ -26,6 +29,9 @@ This endpoint replaces linked requirements for a specific test
 `PATCH https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Tests
 
 
 ## Link requirements to a specific test
@@ -48,6 +54,10 @@ This endpoint links requirements to a specific test
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Tests
+
+
 ## Delete linked requirements for a specific test
 
 ```shell
@@ -67,3 +77,6 @@ This endpoint removes linked requirements for a specific test
 `DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/YOUR_TEST_ID/relationships/requirements.json`
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Tests

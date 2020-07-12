@@ -8,6 +8,9 @@ This endpoint retrieves all requirements linked to a specific issue
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/requirements.json`
 
+### PAT Support
+Supported - if the user has the permissions to view Issues
+
 ## Replace linked requirements for a specific issue
 
 ```shell
@@ -28,6 +31,9 @@ This endpoint replaces linked requirements for a specific issue
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Issues
+
 ## Link requirements to a specific issue
 ```shell
 # Request example:
@@ -46,6 +52,10 @@ This endpoint links requirements to a specific issue
 `POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/requirements.json`
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Issues
+
 
 ## Delete linked requirements for a specific issue
 ```shell
@@ -66,6 +76,9 @@ This endpoint removes linked requirements for a specific issue
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Issues
+
 
 ## GET all issues linked to a specific issue
 This endpoint retrieves all issues linked to a specific issue
@@ -73,6 +86,11 @@ This endpoint retrieves all issues linked to a specific issue
 ### HTTP Request
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/issues.json`
+
+
+### PAT Support
+Supported - if the user has the permissions to view Issues
+
 
 ## Replace linked issues for a specific issue
 ```shell
@@ -92,7 +110,9 @@ This endpoint replaces linked issues for a specific issue
 
 `PATCH https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/issues.json`
 
-You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Issues
 
 
 ## Link issues to a specific issue
@@ -114,6 +134,9 @@ This endpoint links issues to a specific issue
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Issues
+
 ## Delete linked issues for a specific issue
 ```shell
 # Request example:
@@ -132,3 +155,6 @@ This endpoint removes linked issues for a specific issue
 `DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/YOUR_ISSUE_ID/relationships/issues.json`
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Issues

@@ -8,6 +8,10 @@ This endpoint retrieves all tests linked to a specific requirement
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/tests.json`
 
+### PAT Support
+Supported - if the user has the permissions to view Requirements
+
+
 ## Replace linked tests for a specific requirement
 ```shell
 # Some request examples:
@@ -28,6 +32,9 @@ This endpoint replaces linked tests for a specific requirement
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
 ## Link tests to a specific requirement
 ```shell
 # Some request examples:
@@ -46,7 +53,9 @@ This endpoint links tests to a specific requirement
 
 `POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/tests.json`
 
-You can find at the right area an example of the JSON request and response
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
 
 ## Delete linked tests for a specific requirement
 ```shell
@@ -67,6 +76,9 @@ This endpoint removes linked tests for a specific requirement
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
 
 ## GET all issues linked to a specific requirement
 
@@ -75,6 +87,10 @@ This endpoint retrieves all issues linked to a specific requirement
 ### HTTP Request
 
 `GET https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/issues.json`
+
+### PAT Support
+Supported - if the user has the permissions to view Requirements
+
 
 ## Replace linked issues for a specific requirement
 ```shell
@@ -96,6 +112,9 @@ This endpoint replaces linked issues for a specific requirement
 
 You can find at the right area an example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
 
 ## Link issues to a specific requirement
 ```shell
@@ -115,7 +134,9 @@ This endpoint links issues to a specific requirement
 
 `POST http://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/issues.json`
 
-You can find at the right area an example of the JSON request and response
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
+
 
 ## Delete linked issues for a specific requirement
 ```shell
@@ -136,3 +157,6 @@ This endpoint removes linked issues for a specific requirement
 `DELETE https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/requirements/YOUR_REQUIREMENT_ID/relationships/issues.json`
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Requirements
