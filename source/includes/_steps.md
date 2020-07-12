@@ -103,6 +103,9 @@ name_like | filter by step name: case insensitive, phrase can be inside the name
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
 
+### PAT Support
+Supported - if the user has the permissions to view Tests
+
 
 ## Show a specific step
 
@@ -142,6 +145,8 @@ This endpoint shows a specific step in your project.
 
 In the right area see the example of the JSON request and response
 
+### PAT Support
+Supported - if the user has the permissions to view Tests
 
 
 ## Delete a specific step
@@ -158,3 +163,6 @@ This endpoint deletes a specific step.
 
 
 You can find at the right area an example of the JSON request and response
+
+### PAT Support
+Supported - if the user has the permissions to edit Tests

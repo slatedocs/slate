@@ -74,7 +74,9 @@ This endpoint retrieves all custom fields.
 
 Here's the example of the JSON request and response that you may get when submitting a GET request
 
-Remember, you can see examples in the dark area to the right.
+
+### PAT Support
+Supported - if the user has the permissions to customize fields
 
 
 ## GET a specific custom field in your project
@@ -116,6 +118,8 @@ This endpoint retrieves a specific custom field.
 
 Here's the example of the JSON request and response that you may get when submitting a GET request
 
+### PAT Support
+Supported - if the user has the permissions to customize fields
 
 ## PUT a specific custom field in your project
 
@@ -166,4 +170,5 @@ data/attributes/possible-values-parent-cf-id | the id of an existing list where 
 
 Here's the example of the JSON request and response that you may get when submitting a PUT request
 
-Remember, you can see examples in the dark area to the right.
+### PAT Support
+Supported - if the user has the permissions to customize fields

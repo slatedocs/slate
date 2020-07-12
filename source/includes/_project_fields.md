@@ -100,3 +100,6 @@ This endpoint retrieves all fields.
 Here's the example of the JSON request and response that you may get when submitting a GET request
 
 Remember, you can see examples in the dark area to the right.
+
+### PAT Support
+Supported - if the user has the permissions to customize fields
