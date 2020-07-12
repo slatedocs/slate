@@ -32,10 +32,12 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
             "status":"NO RUN",
             "tester-id":5380,
             "instance-id":98016,
+            "preconditions": null,
+            "version": "2",
             "test-id":80893,
             "run-type":"ManualRun",
             "custom-fields":{  
-
+              "---f-47889": "Mac"
             },
             "automated-execution-output":null,
             "run-duration":"00:53:20",
@@ -51,6 +53,8 @@ https://api.practitest.com/api/v2/projects/4566/runs.json?test-ids=80895
             "status":"NOT COMPLETED",
             "tester-id":5380,
             "instance-id":98016,
+            "preconditions": null,
+            "version": "1.5",
             "test-id":80893,
             "run-type":"ManualRun",
             "custom-fields":{  
@@ -166,6 +170,7 @@ data/attributes/instance-id* | Instance id (not display-id) | true |
 data/attributes/exit-code | 0 for passed, otherwise failed | false |
 data/attributes/run-duration | (HH:MM:SS), to update the run duration of a specific instance | false |
 data/attributes/automated-execution-output | text output string that will be shown in ‘Execution output’ field (up to 255 characters) | false |
+data/attributes/version | string of Run version | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/steps/data** | an array of steps override the exit code | false |
 data/files/data*** | an array of files  | false |
