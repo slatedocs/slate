@@ -83,20 +83,27 @@ You must replace <code>YOUR_TOKEN</code> with your custom API token.
 }
 ```
 
-PractiTest supports two types of API Tokens:
-### Account API Token
-This is the most powerful API token type, with access to all projects in the account, and all the API resources described in this document.
+PractiTest supports two types of API Tokens: **Personal API Tokens (PAT), and Account tokens**.
+
 
 ### Personal Api Token - PAT
-This token type was introduced in May 2020, and it is being gradually supported in all the API resources.
+This token type was introduced in May 2020, and is being gradually supported in all the API resources; for each resource, there is a separate description for this token type.
 
-Currently NOT ALL THE RESOURCES are working with PAT, and for each resource there's a specific description specifically for this token type.
-
-When working with the Personal API Token each user may have its own token; and then PractiTest will provide access to an API resources based on the user’s permissions.
-
-When using PAT the author-id parameter is not required anymore, the default author is the owner of the PAT.   When working with a PAT that has the attribute “Impersonation” enabled, this user will be able to override the author-id attribute during the API calls.
-Another difference is that entities that have history (such as Issues, Tests, and Requirements), will show changes done by the PAT user when working with the API.
+When working with the Personal API Token, each user has its own token.  PractiTest will provide access to API resources based on the PAT user’s permissions. By default, actions made with PAT will be recorded as the PAT owner’s actions (unless Impersonation is in use)
 
 For example -> in the <a href="#projects">Projects API request</a>, with Account Token, you may list all projects in the account; PAT allows you to show only the projects in the account that the specific user has access to.
 
-Please take into account, once again, that not all API resources currently support PAT, and so you should check this before working with the API and this token type
+If 'Impersonation' is enabled by the account owner to the PAT user, the PAT user will have the ability to impersonate someone else with this token. For example:
+
+* When using PAT the author-id parameter is not required anymore, and the default author is the owner of the PAT.   When working with an impersonation enabled PAT this user can override the author-id to any other value.
+* For entities that have history (such as Issues, Tests, and Requirements), any changes made by the PAT user will show his name under the ‘User’ column (in the history). An Impersonation PAT user can define that user attribute.
+
+This doesn’t give the impersonating PAT user the ability to override permissions. For example: If a PAT user is not permitted to change an issue according to the project workflow, he will not be able to do so, no matter if the user has the impersonation attribute enabled or not.
+
+
+### Account API Token
+This is the most powerful API token type, with access to all projects in the account, and all the API resources described in this document.
+
+<aside class="warning">
+It is less recommended to use the Account API Token since it has the permissions to do everything within the Account.
+</aside>
