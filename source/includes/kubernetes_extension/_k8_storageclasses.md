@@ -119,7 +119,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storage classs/:id?cluster_id=:cluster_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id?cluster_id=:cluster_id</code>
 
 Retrieve a storage class and all its info in a given [environment](#administration-environments).
 
