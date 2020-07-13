@@ -70,7 +70,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 | `parameters` <br/>_object_           | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
 | `provisioner` <br/>_string_          | The provsioner for the storage class                                                                                                        |
 | `reclaimPolicy` <br/>_string_        | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
-| `volumeBindingMode` <br/>_string_    | The default volume binding model for this storage class. You have a choice between ``, `` or ``.                                            |
+| `volumeBindingMode` <br/>_string_    | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
 <!-------------------- GET A storage class -------------------->
 
 #### Get a storage class
@@ -78,7 +78,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses/default-token-xxxmt/default?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses/default?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -119,7 +119,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storage classs/:id?cluster_id=:cluster_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id?cluster_id=:cluster_id</code>
 
 Retrieve a storage class and all its info in a given [environment](#administration-environments).
 
@@ -136,4 +136,4 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 | `parameters` <br/>_object_           | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
 | `provisioner` <br/>_string_          | The provsioner for the storage class                                                                                                        |
 | `reclaimPolicy` <br/>_string_        | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
-| `volumeBindingMode` <br/>_string_    | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                                            |
+| `volumeBindingMode` <br/>_string_    | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
