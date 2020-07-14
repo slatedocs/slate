@@ -1,4 +1,4 @@
-### Persistent volumes
+## Persistent volumes
 
 <!-------------------- LIST Persistent volumes -------------------->
 
@@ -81,13 +81,15 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id` <br/>_string_                    | The id of the persistent volume. This is the name of the resource.                                                                              |
-| `metadata` <br/>_object_              | The metadata of the persistent volume.                                                                                                          |
-| `parameters` <br/>_object_            | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
-| `provisioner` <br/>_string_           | The provisioner for the storage class.                                                                                                      |
-| `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
-| `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
-| `status.phase` <br/>_string_     | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`.                   |
+| `id` <br/>_string_ | The id of the persistent volume. This is the name of the resource. |
+| `metadata` <br/>_object_ | The metadata of the persistent volume.|
+| `spec` <br/>_object_ | The specification of the persistent volume. |
+| `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Values is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
+| `spec.capacity.storage` <br/>_string_ | Storage capacity of the persistent volume. |
+| `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` - manual reclamation, `Recycle` - basic scrub or `Delete` - associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted.|
+| `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
+| `spec.capacity.volumeMode` <br/>_string_ | If set to `Filesystem` (default value), the volume is mounted into Pods into a directory. If set to `Block`, then the volume is used as a raw block device. |
+| `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
 
 
 <!-------------------- GET A persistent volume -------------------->
@@ -165,11 +167,12 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id` <br/>_string_                    | The id of the storage class. This is the name of the resource                                                                               |
-| `isDefault` <br/>_boolean_            | Whether or not the storage class is the default one                                                                                         |
-| `allowVolumeExpansion` <br/>_boolean_ | Whether not the storage class allows for expandable volumes.                                                                                |
-| `metadata` <br/>_object_              | The metadata of the storage class.                                                                                                          |
-| `parameters` <br/>_object_            | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
-| `provisioner` <br/>_string_           | The provsioner for the storage class                                                                                                        |
-| `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
-| `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
+| `id` <br/>_string_ | The id of the persistent volume. This is the name of the resource. |
+| `metadata` <br/>_object_ | The metadata of the persistent volume.|
+| `spec` <br/>_object_ | The specification of the persistent volume. |
+| `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Values is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
+| `spec.capacity.storage` <br/>_string_ | Storage capacity of the persistent volume. |
+| `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` - manual reclamation, `Recycle` - basic scrub or `Delete` - associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted.|
+| `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
+| `spec.capacity.volumeMode` <br/>_string_ | If set to `Filesystem` (default value), the volume is mounted into Pods into a directory. If set to `Block`, then the volume is used as a raw block device. |
+| `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
