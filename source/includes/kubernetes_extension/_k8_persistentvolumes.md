@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -75,9 +75,13 @@ curl -X GET \
   }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes?cluster_id=:cluster_id</code>
 
 Retrieve a list of all persistent volumes in a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                                      |
+| -------------------------- | ----------------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to list the persistent volumes. |
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -159,9 +163,13 @@ curl -X GET \
     }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes/:id?cluster_id=:cluster_id</code>
 
 Retrieve a persistent volume and all its info in a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                                      |
+| -------------------------- | ----------------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to get the persistent volume. |
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
