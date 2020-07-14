@@ -162,3 +162,31 @@ Return value:
 ---------------------------- | ------------------------------------------------------|
 | `taskId` <br/>*string*     | The id corresponding to the create stateful set task. |
 | `taskStatus` <br/>*string* | The status of the operation.                          |
+
+<!-------------------- DELETE STATEFUL SET -------------------->
+
+### Delete a stateful set
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/statefulsets/my-aerospike/default"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/statefulsets/:id</code>
+
+Delete a stateful set from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                                |
+| -------------------------- | ----------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete stateful set task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                          |

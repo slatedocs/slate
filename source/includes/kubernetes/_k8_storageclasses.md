@@ -1,8 +1,8 @@
-### Storage Classes
+## Storage Classes
 
 <!-------------------- LIST Storage classes -------------------->
 
-#### List storage classes
+### List storage classes
 
 ```shell
 curl -X GET \
@@ -53,13 +53,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses?cluster_id=:cluster_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses</code>
 
 Retrieve a list of all storage classes in a given [environment](#administration-environments).
-
-| Required                   | &nbsp;                                                      |
-| -------------------------- | ----------------------------------------------------------- |
-| `cluster_id` <br/>_string_ | The id of the cluster in which to list the storage classes. |
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,7 +69,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 | `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
 <!-------------------- GET A storage class -------------------->
 
-#### Get a storage class
+### Get a storage class
 
 ```shell
 curl -X GET \
@@ -119,13 +115,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id?cluster_id=:cluster_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id</code>
 
 Retrieve a storage class and all its info in a given [environment](#administration-environments).
-
-| Required                   | &nbsp;                                                      |
-| -------------------------- | ----------------------------------------------------------- |
-| `cluster_id` <br/>_string_ | The id of the cluster in which to list the storage classes. |
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
