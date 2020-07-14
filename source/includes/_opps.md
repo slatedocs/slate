@@ -32,23 +32,11 @@ any of those opportunities.
   "list_entries": [
     {
       "id": 442313,
-      "creator": {
-        "id": 38706,
-        "type": 1,
-        "emails": ["john@affinity.co", "johnjdoe@gmail.com"],
-        "firstName": "John",
-        "lastName": "Doe",
-        "photoUrl":
-          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
-        "entityType": 0,
-        "inferredType": 1,
-        "interactionsHidden": true,
-        "hiddenExternal": false,
-        "primaryEmail": "john@affinity.co"
-      },
-      "listId": 4974,
-      "entityId": 117,
-      "createdAt": "2018-03-03T23:02:46.412-08:00"
+      "creator_id": 38706,
+      "list_id": 4974,
+      "entity_id": 117,
+      "entity_type": 8,
+      "created_at": "2018-03-03T23:02:46.412-08:00"
     }
   ]
 }
@@ -102,59 +90,37 @@ curl "https://api.affinity.co/opportunities?term=affinity" -u :<API-KEY>
 {
   "opportunities": [
     {
-      "id":121,
-      "name":"Affinity Opp",
-      "person_ids":[3526824],
-      "organization_ids":[128367168],
+      "id": 121,
+      "name": "Affinity Opp",
+      "person_ids": [3526824],
+      "organization_ids": [128367168],
       "list_entries": [
         {
-          "id":442313,
-          "creator":{
-            "id":1124736,
-            "type":1,
-            "emails": ["john@affinity.co", "johnjdoe@gmail.com"],
-            "firstName":"John",
-            "lastName":"Doe",
-            "photoUrl":"https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
-            "entityType":0,
-            "inferredType":1,
-            "interactionsHidden":true,
-            "hiddenExternal":false,
-            "primaryEmail":"john@affinity.co"
-          },
-        "listId":4974,
-        "entityId":121,
-        "createdAt":"2018-03-03T23:02:46.412-08:00"
+          "id": 442313,
+          "creator_id": 1124736,
+          "list_id": 4974,
+          "entity_id": 121,
+          "entity_type": 8,
+          "created_at": "2018-03-03T23:02:46.412-08:00"
         },
       ],
-    }
+    },
     {
-      "id":150,
-      "name":"Affinity Opp 2",
-      "person_ids":[5326214],
-      "organization_ids":[128367168],
+      "id": 150,
+      "name": "Affinity Opp 2",
+      "person_ids": [5326214],
+      "organization_ids": [128367168],
       "list_entries": [
         {
-          "id":442421,
-          "creator":{
-            "id":1124736,
-            "type":1,
-            "emails": ["john@affinity.co", "johnjdoe@gmail.com"],
-            "firstName":"John",
-            "lastName":"Doe",
-            "photoUrl":"https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
-            "entityType":0,
-            "inferredType":1,
-            "interactionsHidden":true,
-            "hiddenExternal":false,
-            "primaryEmail":"john@affinity.co"
-          },
-        "listId":4974,
-        "entityId":150,
-        "createdAt":"2018-03-08T23:02:46.412-08:00"
+          "id": 442421,
+          "creator_id": 1124736,
+          "list_id": 4974,
+          "entity_id": 150,
+          "entity_type": 8,
+          "created_at": "2018-03-08T23:02:46.412-08:00"
         },
       ],
-    }
+    },
     ...
   ],
   "next_page_token": "eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9",
@@ -202,25 +168,13 @@ curl "https://api.affinity.co/opportunities/117" -u :<API-KEY>
   "list_entries": [
     {
       "id": 442313,
-      "creator": {
-        "id": 1124736,
-        "type": 1,
-        "emails": ["john@affinity.co", "johnjdoe@gmail.com"],
-        "firstName": "John",
-        "lastName": "Doe",
-        "photoUrl":
-          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f732ds9b817a03f6d826e",
-        "entityType": 0,
-        "inferredType": 1,
-        "interactionsHidden": true,
-        "hiddenExternal": false,
-        "primaryEmail": "john@affinity.co"
-      },
-      "listId": 4974,
-      "entityId": 121,
-      "createdAt": "2018-03-03T23:02:46.412-08:00"
-    }
-  ]
+      "creator_id": 1124736,
+      "list_id": 4974,
+      "entity_id": 121,
+      "entity_type": 8,
+      "created_at": "2018-03-03T23:02:46.412-08:00"
+    },
+  ],
 }
 ```
 
@@ -262,23 +216,11 @@ curl "https://api.affinity.co/opportunities" \
   "list_entries": [
     {
       "id": 999886,
-      "creator": {
-        "id": 1127776,
-        "type": 1,
-        "emails": ["john@affinity.co", "john@berkeley.edu"],
-        "firstName": "John",
-        "lastName": "Doe",
-        "photoUrl":
-          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f73259b807a06f6d826a",
-        "entityType": 0,
-        "inferredType": 1,
-        "interactionsHidden": true,
-        "hiddenExternal": false,
-        "primaryEmail": "john@affinity.co"
-      },
-      "listId": 6645,
-      "entityId": 50,
-      "createdAt": "2018-03-07T16:32:35.794-08:00"
+      "creator_id": 1127776,
+      "list_id": 6645,
+      "entity_id": 50,
+      "entity_type": 8,
+      "created_at": "2018-03-07T16:32:35.794-08:00"
     }
   ]
 }
@@ -325,23 +267,11 @@ curl "https://api.affinity.co/opportunities/120611418" \
   "list_entries": [
     {
       "id": 999886,
-      "creator": {
-        "id": 1127776,
-        "type": 1,
-        "emails": ["john@affinity.co", "john@berkeley.edu"],
-        "firstName": "John",
-        "lastName": "Doe",
-        "photoUrl":
-          "https://dapjjo8h3d36y.cloudfront.net/315dc7f40516f73259b807a06f6d826a",
-        "entityType": 0,
-        "inferredType": 1,
-        "interactionsHidden": true,
-        "hiddenExternal": false,
-        "primaryEmail": "john@affinity.co"
-      },
-      "listId": 6645,
-      "entityId": 50,
-      "createdAt": "2018-03-07T16:32:35.794-08:00"
+      "creator_id": 1127776,
+      "list_id": 6645,
+      "entity_id": 50,
+      "entity_type": 8,
+      "created_at": "2018-03-07T16:32:35.794-08:00"
     }
   ]
 }
