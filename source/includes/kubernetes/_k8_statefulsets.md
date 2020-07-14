@@ -186,7 +186,7 @@ curl -X DELETE \
 
 Delete a stateful set from a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                       |
-| -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the delete pod task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                 |
+| Attributes                 | &nbsp;                                                |
+| -------------------------- | ----------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete stateful set task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                          |

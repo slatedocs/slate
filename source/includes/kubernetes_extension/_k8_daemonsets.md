@@ -185,9 +185,9 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/daemonsets/:id?cluster_id=:cluster_id</code>
 
-Delete a daemon sets from a given [environment](#administration-environments).
+Delete a daemon set from a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                       |
-| -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the delete pod task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                 |
+| Attributes                 | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete daemon set task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                        |

@@ -194,7 +194,7 @@ curl -X DELETE \
 
 Delete a deployment from a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                       |
-| -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the delete pod task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                 |
+| Attributes                 | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete deployment task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                        |
