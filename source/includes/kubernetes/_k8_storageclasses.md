@@ -61,16 +61,16 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 | -------------------------- | ----------------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to list the storage classes. |
 
-| Attributes                           | &nbsp;                                                                                                                                      |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id` <br/>_string_                   | The id of the storage class. This is the name of the resource                                                                               |
-| `isDefault` <br/>_boolean_           | Whether or not the storage class is the default one                                                                                         |
-| `allowVolumExpansion` <br/>_boolean_ | Whether not the storage class allows for expandeable volumes                                                                                |
-| `metadata` <br/>_object_             | The metadata of the storage class.                                                                                                          |
-| `parameters` <br/>_object_           | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
-| `provisioner` <br/>_string_          | The provsioner for the storage class                                                                                                        |
-| `reclaimPolicy` <br/>_string_        | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
-| `volumeBindingMode` <br/>_string_    | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
+| Attributes                            | &nbsp;                                                                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id` <br/>_string_                    | The id of the storage class. This is the name of the resource.                                                                              |
+| `isDefault` <br/>_boolean_            | Whether or not the storage class is the default one.                                                                                        |
+| `allowVolumeExpansion` <br/>_boolean_ | Whether not the storage class allows for expandable volumes.                                                                                |
+| `metadata` <br/>_object_              | The metadata of the storage class.                                                                                                          |
+| `parameters` <br/>_object_            | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
+| `provisioner` <br/>_string_           | The provisioner for the storage class.                                                                                                      |
+| `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
+| `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
 <!-------------------- GET A storage class -------------------->
 
 #### Get a storage class
@@ -127,13 +127,13 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 | -------------------------- | ----------------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to list the storage classes. |
 
-| Attributes                           | &nbsp;                                                                                                                                      |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id` <br/>_string_                   | The id of the storage class. This is the name of the resource                                                                               |
-| `isDefault` <br/>_boolean_           | Whether or not the storage class is the default one                                                                                         |
-| `allowVolumExpansion` <br/>_boolean_ | Whether not the storage class allows for expandeable volumes                                                                                |
-| `metadata` <br/>_object_             | The metadata of the storage class.                                                                                                          |
-| `parameters` <br/>_object_           | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
-| `provisioner` <br/>_string_          | The provsioner for the storage class                                                                                                        |
-| `reclaimPolicy` <br/>_string_        | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
-| `volumeBindingMode` <br/>_string_    | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
+| Attributes                            | &nbsp;                                                                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id` <br/>_string_                    | The id of the storage class. This is the name of the resource                                                                               |
+| `isDefault` <br/>_boolean_            | Whether or not the storage class is the default one                                                                                         |
+| `allowVolumeExpansion` <br/>_boolean_ | Whether not the storage class allows for expandable volumes.                                                                                |
+| `metadata` <br/>_object_              | The metadata of the storage class.                                                                                                          |
+| `parameters` <br/>_object_            | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
+| `provisioner` <br/>_string_           | The provsioner for the storage class                                                                                                        |
+| `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
+| `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
