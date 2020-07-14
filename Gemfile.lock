@@ -54,7 +54,7 @@ GEM
       activesupport (>= 4.2, < 5.1)
       addressable (~> 2.3)
       backports (~> 3.6)
-      bundler (~> 1.1)
+      bundler (>= 1.1)
       contracts (~> 0.13.0)
       dotenv
       erubis
@@ -119,4 +119,4 @@ DEPENDENCIES
   rouge (~> 2.0.5)
 
 BUNDLED WITH
-   1.14.3
+   2.1.4
