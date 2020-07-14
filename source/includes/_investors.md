@@ -111,6 +111,34 @@ Loads the current set of terms and conditions.
 | termsAndConditions | string | The terms and conditions in HTML format. |
 | version            | string | The version of the terms and conditions. |
 
+## `GET /investorIds`
+
+```http
+
+GET /investorIds HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+```
+
+```http 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+["INVESTOR-ID-1", "INVESTOR-ID-2"]
+
+```
+
+### Description
+Returns all the investor ids on the platform. Intended for use in bulk tasks such as reconciliation, allowing the caller to first get the full list of investors and then call out to other endpoints for information on each investor.
+
+### Request
+No body required.
+
+### Response
+An array of strings.
+
 ## `POST /platformApi/investors`
 
 ```http

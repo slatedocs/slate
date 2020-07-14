@@ -647,3 +647,103 @@ Extract a fee from a specified investor's account cash balance
 | bankAccountId    | string | The ID of the bank account details the fees are being sent to                 |
 | reference        | string | The payment reference to be used for the fee transaction                      |
 | status           | string | The status of the fee transfer process. Possible values are: <br>`PENDING`<br>`CLEARED`<br>|
+
+## `GET /reports/investor/cash/balance`
+
+```http
+
+GET /reports/investor/cash/balance?asOf=2020-12-25T15:00:00Z&id={investorId1}&id={investorId2}&id={investorId3} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "investorId": "INVESTOR-ID-1",
+    "gia": {
+      "totalBalance": { "amount": 10000.0, "currency": "GBP" },
+      "uninvestedCashBalance": { "amount": 5000.0, "currency": "GBP" },
+      "pendingIncomingTransferBalance": { "amount": 0, "currency": "GBP" },
+      "queuedForInvestmentBalance": { "amount": 5000.0, "currency": "GBP" },
+      "investedBalance": { "amount": 0, "currency": "GBP" }
+    },
+    "isa": {
+      "totalBalance": { "amount": 1000.0, "currency": "GBP" },
+      "uninvestedCashBalance": { "amount": 0.0, "currency": "GBP" },
+      "pendingIncomingTransferBalance": { "amount": 0, "currency": "GBP" },
+      "queuedForInvestmentBalance": { "amount": 1000.0, "currency": "GBP" },
+      "investedBalance": { "amount": 0, "currency": "GBP" }
+    },
+    "sipp": {
+      "totalBalance": { "amount": 300.0, "currency": "GBP" },
+      "uninvestedCashBalance": { "amount": 0.0, "currency": "GBP" },
+      "pendingIncomingTransferBalance": { "amount": 0, "currency": "GBP" },
+      "queuedForInvestmentBalance": { "amount": 300.0, "currency": "GBP" },
+      "investedBalance": { "amount": 0, "currency": "GBP" }
+    }
+  },
+  {
+    "investorId": "INVESTOR-ID-2",
+    "gia": {
+      "totalBalance": { "amount": 0, "currency": "GBP" },
+      "uninvestedCashBalance": { "amount": 0, "currency": "GBP" },
+      "pendingIncomingTransferBalance": { "amount": 0, "currency": "GBP" },
+      "queuedForInvestmentBalance": { "amount": 0, "currency": "GBP" },
+      "investedBalance": { "amount": 0, "currency": "GBP" }
+    },
+    "isa": {
+      "totalBalance": { "amount": 0, "currency": "GBP" },
+      "uninvestedCashBalance": { "amount": 0, "currency": "GBP" },
+      "pendingIncomingTransferBalance": { "amount": 0, "currency": "GBP" },
+      "queuedForInvestmentBalance": { "amount": 0, "currency": "GBP" },
+      "investedBalance": { "amount": 0, "currency": "GBP" }
+    },
+    "sipp": {
+      "totalBalance": { "amount": 0, "currency": "GBP" },
+      "uninvestedCashBalance": { "amount": 0, "currency": "GBP" },
+      "pendingIncomingTransferBalance": { "amount": 0, "currency": "GBP" },
+      "queuedForInvestmentBalance": { "amount": 0, "currency": "GBP" },
+      "investedBalance": { "amount": 0, "currency": "GBP" }
+    }
+  }
+]
+
+```
+### Description
+Returns a snapshot of the balances of up to 100 investors as of a specified date.  Intended for use in combination with `GET /investorIds` to fetch large numbers of investor balances for purposes such as reconciliation.
+
+The `id` query parameter may repeated up to 100 times. If more than 100 ids are specified, a `400` error is returned.
+
+If the `asOf` parameter is excluded, the current state is returned.
+
+
+### Response
+| Name                                          | Type   | Description                                                           |
+| --------------------------------------------- | ------ | --------------------------------------------------------------------- |
+| [].investorId                                 | string | The investor's Goji-assigned internal id                              |
+| [].gia                                        | ref    | The account balance's for the investor's investment account.          |
+| [].isa                                        | ref    | The account balance's for the investor's ISA account.                 |
+| [].sipp                                       | ref    | The account balance's for the investor's SIPP account.                |
+| [].{}.totalBalance                            | ref    | The total balance in the account. The sum of the invested, queued and cash balances. Currently excludes the value of investments in non-debt instruments such as equities, so this balance will appear to go down when investments are made in such instruments. |
+| [].{}.totalBalance.amount                     | number |                                                                       |
+| [].{}.totalBalance.currency                   | string | The ISO 4217 three character codes eg 'GBP'                           |
+| [].{}.uninvestedCashBalance                   | ref    | The total uninvested cash.                                            |
+| [].{}.uninvestedCashBalance.amount            | number |                                                                       |
+| [].{}.uninvestedCashBalance.currency          | string | The ISO 4217 three character codes eg 'GBP'                           |
+| [].{}.pendingIncomingTransferBalance          | ref    | The total value of pending incoming account transfers.                |
+| [].{}.pendingIncomingTransferBalance.amount   | number |                                                                       |
+| [].{}.pendingIncomingTransferBalance.currency | string | The ISO 4217 three character codes eg 'GBP'                           |
+| [].{}.queuedForInvestmentBalance              | ref    | The total value of funds queued for investment in debt instruments.   |
+| [].{}.queuedForInvestmentBalance.amount       | number |                                                                       |
+| [].{}.queuedForInvestmentBalance.currency     | string | The ISO 4217 three character codes eg 'GBP'                           |
+| [].{}.investedBalance                         | ref    | The total value of funds invested in debt instruments.                |
+| [].{}.investedBalance.amount                  | number |                                                                       |
+| [].{}.investedBalance.currency                | string | The ISO 4217 three character codes eg 'GBP'                           |
