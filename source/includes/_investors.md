@@ -680,11 +680,11 @@ Add an investor's KYC documents.
 | documents[].fileName | string | The file name eg passport.pdf.     | required |
 | documents[].data     | string | The file to upload Base64 encoded. | required |
 
-## `GET /reports/investors/kyc`
+## `GET /reports/investor/kyc`
 
 ```http
 
-GET /reports/investors/kyc?id={clientId}&id={clientId} HTTP/1.1
+GET /reports/investor/kyc?id={clientId}&id={clientId} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -756,11 +756,11 @@ If no `id` query parameters are specified and empty array is returned.
 | [].{}.lastFailure.failureDate                       | string | Date of rejection                                                                                                                                                                                                  |
 | [].{}.lastFailure.rejectedDocuments                 | array  | The rejected documents.                                                                                                                                                                                            |
 
-## `GET /reports/investors/kyb`
+## `GET /reports/investor/kyb`
 
 ```http
 
-GET /reports/investors/kyb?id={clientId}&id={clientId} HTTP/1.1
+GET /reports/investor/kyb?id={clientId}&id={clientId} HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
