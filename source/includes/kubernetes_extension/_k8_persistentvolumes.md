@@ -73,6 +73,7 @@ curl -X GET \
   "metadata": {
     "recordCount": 1
   }
+}
 ```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes?cluster_id=:cluster_id</code>
@@ -110,59 +111,59 @@ curl -X GET \
 
 ```json
 {
-      "id": "pvc-05097a93-120d-45d2",
-      "metadata": {
-        "annotations": {
-          "pv.kubernetes.io/provisioned-by": "rook-ceph.rbd.csi.ceph.com"
-        },
-        "creationTimestamp": "2020-07-03T09:12:17.000-04:00",
-        "finalizers": [
-          "kubernetes.io/pv-protection"
-        ],
-        "name": "pvc-05097a93-120d-45d2-aaab-0f273849fccd",
-        "resourceVersion": "147569183",
-        "selfLink": "/api/v1/persistentvolumes/pvc-05097a93-120d-45d2-aaab-0f273849fccd",
-        "uid": "2e20a8fb-d90c-4c39-acd8-7007f85e2d8e"
+  "id": "pvc-05097a93-120d-45d2",
+  "metadata": {
+    "annotations": {
+      "pv.kubernetes.io/provisioned-by": "rook-ceph.rbd.csi.ceph.com"
+    },
+    "creationTimestamp": "2020-07-03T09:12:17.000-04:00",
+    "finalizers": [
+      "kubernetes.io/pv-protection"
+    ],
+    "name": "pvc-05097a93-120d-45d2-aaab-0f273849fccd",
+    "resourceVersion": "147569183",
+    "selfLink": "/api/v1/persistentvolumes/pvc-05097a93-120d-45d2-aaab-0f273849fccd",
+    "uid": "2e20a8fb-d90c-4c39-acd8-7007f85e2d8e"
+  },
+  "spec": {
+    "accessModes": [
+      "ReadWriteOnce"
+    ],
+    "capacity": {
+      "storage": "8Gi"
+    },
+    "claimRef": {
+      "apiVersion": "v1",
+      "kind": "PersistentVolumeClaim",
+      "name": "data-cmc-cluster-zookeeper-1",
+      "namespace": "cmc-kafka",
+      "resourceVersion": "147569124",
+      "uid": "05097a93-120d-45d2-aaab-0f273849fccd"
+    },
+    "csi": {
+      "driver": "rook-ceph.rbd.csi.ceph.com",
+      "fsType": "ext4",
+      "nodeStageSecretRef": {
+        "name": "rook-csi-rbd-node",
+        "namespace": "rook-ceph"
       },
-      "spec": {
-        "accessModes": [
-          "ReadWriteOnce"
-        ],
-        "capacity": {
-          "storage": "8Gi"
-        },
-        "claimRef": {
-          "apiVersion": "v1",
-          "kind": "PersistentVolumeClaim",
-          "name": "data-cmc-cluster-zookeeper-1",
-          "namespace": "cmc-kafka",
-          "resourceVersion": "147569124",
-          "uid": "05097a93-120d-45d2-aaab-0f273849fccd"
-        },
-        "csi": {
-          "driver": "rook-ceph.rbd.csi.ceph.com",
-          "fsType": "ext4",
-          "nodeStageSecretRef": {
-            "name": "rook-csi-rbd-node",
-            "namespace": "rook-ceph"
-          },
-          "volumeAttributes": {
-            "clusterID": "rook-ceph",
-            "imageFeatures": "layering",
-            "imageFormat": "2",
-            "pool": "replicapool",
-            "storage.kubernetes.io/csiProvisionerIdentity": "1593101040137-8081-rook-ceph.rbd.csi.ceph.com"
-          },
-          "volumeHandle": "0001-0009-rook-ceph-0000000000000001-d11d2a4d-bd2e-11ea-b56e-7a7db811cab1"
-        },
-        "persistentVolumeReclaimPolicy": "Delete",
-        "storageClassName": "rook-ceph-block",
-        "volumeMode": "Filesystem"
+      "volumeAttributes": {
+        "clusterID": "rook-ceph",
+        "imageFeatures": "layering",
+        "imageFormat": "2",
+        "pool": "replicapool",
+        "storage.kubernetes.io/csiProvisionerIdentity": "1593101040137-8081-rook-ceph.rbd.csi.ceph.com"
       },
-      "status": {
-        "phase": "Bound"
-      }
-    }
+      "volumeHandle": "0001-0009-rook-ceph-0000000000000001-d11d2a4d-bd2e-11ea-b56e-7a7db811cab1"
+    },
+    "persistentVolumeReclaimPolicy": "Delete",
+    "storageClassName": "rook-ceph-block",
+    "volumeMode": "Filesystem"
+  },
+  "status": {
+    "phase": "Bound"
+  }
+}
 ```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes/:id?cluster_id=:cluster_id</code>
