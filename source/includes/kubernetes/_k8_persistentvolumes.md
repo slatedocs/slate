@@ -85,7 +85,7 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 | `id` <br/>_string_ | The id of the persistent volume. This is the name of the resource. |
 | `metadata` <br/>_object_ | The metadata of the persistent volume.|
 | `spec` <br/>_object_ | The specification of the persistent volume. |
-| `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Values is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
+| `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
 | `spec.capacity.storage` <br/>_string_ | Storage capacity of the persistent volume. |
 | `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` - manual reclamation, `Recycle` - basic scrub or `Delete` - associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted.|
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
@@ -171,7 +171,7 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 | `id` <br/>_string_ | The id of the persistent volume. This is the name of the resource. |
 | `metadata` <br/>_object_ | The metadata of the persistent volume.|
 | `spec` <br/>_object_ | The specification of the persistent volume. |
-| `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Values is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
+| `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
 | `spec.capacity.storage` <br/>_string_ | Storage capacity of the persistent volume. |
 | `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` - manual reclamation, `Recycle` - basic scrub or `Delete` - associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted.|
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
