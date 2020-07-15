@@ -87,7 +87,7 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 | `spec` <br/>_object_ | The specification of the persistent volume. |
 | `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
 | `spec.capacity.storage` <br/>_string_ | Storage capacity of the persistent volume. |
-| `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` - manual reclamation, `Recycle` - basic scrub or `Delete` - associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted.|
+| `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` (manual reclamation), `Recycle` (basic scrub) or `Delete` (associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted).|
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
 | `spec.capacity.volumeMode` <br/>_string_ | If set to `Filesystem` (default value), the volume is mounted into Pods into a directory. If set to `Block`, then the volume is used as a raw block device. |
 | `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
@@ -173,7 +173,7 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 | `spec` <br/>_object_ | The specification of the persistent volume. |
 | `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
 | `spec.capacity.storage` <br/>_string_ | Storage capacity of the persistent volume. |
-| `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` - manual reclamation, `Recycle` - basic scrub or `Delete` - associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted.|
+| `spec.persistentVolumeReclaimPolicy` <br/>_string_     | One of `Retain` (manual reclamation), `Recycle` (basic scrub) or `Delete` (associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted).|
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
 | `spec.capacity.volumeMode` <br/>_string_ | If set to `Filesystem` (default value), the volume is mounted into Pods into a directory. If set to `Block`, then the volume is used as a raw block device. |
 | `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
