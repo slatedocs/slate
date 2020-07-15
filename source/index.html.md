@@ -102,6 +102,7 @@ includes:
   - gcp/k8_configmaps
   - gcp/k8_secrets
   - gcp/k8_storageclasses
+  - gcp/k8_persistentvolumes
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/images
@@ -117,6 +118,7 @@ includes:
   - kubernetes/k8_configmaps
   - kubernetes/k8_secrets
   - kubernetes/k8_storageclasses
+  - kubernetes/k8_persistentvolumes
   - kubernetes/k8_releases
   - kubernetes/k8_charts  
   - azure
@@ -143,6 +145,7 @@ includes:
   - azure/k8_configmaps
   - azure/k8_secrets
   - azure/k8_storageclasses
+  - azure/k8_persistentvolumes
   - masterportal
   - masterportal/applications
   - swift
