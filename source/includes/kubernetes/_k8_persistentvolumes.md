@@ -167,7 +167,7 @@ curl -X GET \
 Retrieve a persistent volume and all its info in a given [environment](#administration-environments).
 
 | Attributes                            | &nbsp;                                                                                                                                      |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------- |------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id` <br/>_string_ | The id of the persistent volume. This is the name of the resource. |
 | `metadata` <br/>_object_ | The metadata of the persistent volume.|
 | `spec` <br/>_object_ | The specification of the persistent volume. |
