@@ -557,8 +557,6 @@ Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
 
-
-
 ```
 
 ```http 
@@ -581,24 +579,24 @@ Content-Type: application/json
     } ],
     "failureDate" : "failureDate"
   },
-  "status" : "AWAITING_CREDIT_AGENCY_CHECK"
+  "status" : "AWAITING_CREDIT_AGENCY_CHECK",
+  "clientId" : "GOJI-1234"
 }
 ```
 ### Description
 Retrieves an investor's KYC details.
 ### Response
-| Name                                                | Type   | Description                                                                                                                                                                         |
-| --------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| status                                              | string | The KYC details of the investor Possible values are: <br>`AWAITING_CREDIT_AGENCY_CHECK`<br>`ELECTRONICALLY_VERIFIED`<br>`ENHANCED_VERIFICATION_REQUIRED`<br>`ENHANCED_VERIFIED`<br> |
-| documentsRequired                                   | array  | Required documents for upload                                                                                                                                                       |
-| documentsRequired[].documentsRequired               | array  |  Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>            |
-| documentsPendingApproval                            | array  | Uploaded documents that require approving                                                                                                                                           |
-| documentsPendingApproval[].documentsPendingApproval | array  |  Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>            |
-| documentsApproved                                   | array  | Approved documents                                                                                                                                                                  |
-| documentsApproved[].documentsApproved               | array  |  Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>            |
-| lastFailure                                         | ref    |                                                                                                                                                                                     |
-| lastFailure.failureDate                             | string | Date of rejection                                                                                                                                                                   |
-| lastFailure.rejectedDocuments                       | array  | The rejected documents.                                                                                                                                                             |
+| Name                                                | Type   | Description                                                                                                                                                                                                        |
+| --------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| clientId                                            | string | The clientId of the investor                                                                                                                                                                                       |
+| status                                              | string | The KYC details of the investor. Possible values are: <br>`AWAITING_CREDIT_AGENCY_CHECK`<br>`ELECTRONICALLY_VERIFIED`<br>`ENHANCED_VERIFICATION_REQUIRED`<br>`ENHANCED_VERIFIED`<br>                               |
+| documentsRequired.[]                                | array  |  Required documents for upload. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>            |
+| documentsPendingApproval.[]                         | array  |  Uploaded documents that require approving. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>|
+| documentsApproved.[]                                | array  |  Approved documents. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>                       |
+| {}.lastFailure                                      | ref    |                                                                                                                                                                                                                    |
+| {}.lastFailure.failureDate                          | string | Date of rejection                                                                                                                                                                                                  |
+| {}.lastFailure.rejectedDocuments                    | array  | The rejected documents.                                                                                                                                                                                            |
+
 ## `GET /platformApi/investors/{clientId}/kyb`
 
 ```http
@@ -615,17 +613,37 @@ Authorization: Basic ...
 ```http 
 HTTP/1.1 200 OK
 Content-Type: application/json
-
 {
-  "status" : "DOCUMENTS_REQUIRED"
+    "documentsRequired" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+    "documentsApproved" : [ ],
+    "requirements" : [
+      {
+        "requirementType" : "",
+        "status" : "",
+        "checkType" : ""
+      }
+    ]
+    "overallStatus" : "DOCUMENTS_REQUIRED",
+    "status" : "DOCUMENTS_REQUIRED",
+    "clientId" : "GOJI-1234"
 }
 ```
 ### Description
 Retrieves an investor's KYB status - this is only applicable for corporates.
 ### Response
-| Name   | Type   | Description                                                                                            |
-| ------ | ------ | ------------------------------------------------------------------------------------------------------ |
-| status | string | The KYB status of a corporate investor Possible values are: <br>`DOCUMENTS_REQUIRED`<br>`VERIFIED`<br> |
+| Name                                                | Type   | Description                                                                                                                                                                                                          |
+| --------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| clientId                                            | string | The clientId of the investor                                                                                                                                                                                         |
+| status                                              | string | The KYB status of the investor. Possible values are: <br>`DOCUMENTS_REQUIRED`<br>`VERIFIED`<br>                                                                                                                       |
+| overallStatus                                       | string | The overall KYB status of the investor. Possible values are: <br>`IN_PROGRESS`<br>`PASSED`<br>`DECLINED`<br>`                                                                                                         |
+| documentsRequired.[]                                | array  | Required documents for upload. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>               |
+| documentsPendingApproval.[]                         | array  | Uploaded documents that require approving. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>   |
+| documentsApproved.[]                                | array  | Approved documents. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>                          |
+| requirements                                        | ref    |                                                                                                                                                                                                                      |
+| requirements.[].{}.requirementType                  | string |                                                                                                                                                                                                                      |
+| requirements.[].{}.status                           | string | Possible values are: <br>`IN_PROGRESS`<br>`PASSED`<br>`DECLINED`<br>                                                                                                                                                 |
+| requirements.[].{}.checkType                        | string | Possible values are: `IDENTITY_CHECK`<br>`MANUAL_IDENTITY_CHECK`<br>`DEPOSIT_LIMIT_CHECK`<br>`PEP_CHECK`<br>`SANCTIONS_CHECK`<br>`BWA_CHECK`<br>`MANUAL_VERIFICATION_CHECK`<br>`NO_WORKFLOW_CREATED_CHECK`<br>`NONE` |
+
 ## `POST /platformApi/investors/{clientId}/kyc/documents`
 
 ```http
@@ -661,6 +679,148 @@ Add an investor's KYC documents.
 | documents            | array  | The documents.                     | required |
 | documents[].fileName | string | The file name eg passport.pdf.     | required |
 | documents[].data     | string | The file to upload Base64 encoded. | required |
+
+## `GET /reports/investors/kyc`
+
+```http
+
+GET /reports/investors/kyc?id={clientId}&id={clientId} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "documentsRequired" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+    "documentsPendingApproval" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+    "documentsApproved" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+    "lastFailure" : {
+      "rejectedDocuments" : [ {
+        "reason" : "reason",
+        "notes" : "notes",
+        "type" : "type"
+      }, {
+        "reason" : "reason",
+        "notes" : "notes",
+        "type" : "type"
+      } ],
+      "failureDate" : "failureDate"
+    },
+    "status" : "AWAITING_CREDIT_AGENCY_CHECK",
+    "clientId" : "GOJI-1234"
+  },
+  {
+      "documentsRequired" : [ ],
+      "documentsPendingApproval" : [ ],
+      "documentsApproved" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+      "lastFailure" : {
+        "rejectedDocuments" : [ {
+          "reason" : "reason",
+          "notes" : "notes",
+          "type" : "type"
+        }, {
+          "reason" : "reason",
+          "notes" : "notes",
+          "type" : "type"
+        } ],
+        "failureDate" : "failureDate"
+      },
+      "status" : "VERIFIED",
+      "clientId" : "GOJI-4567"
+    }
+]
+```
+### Description
+Retrieves investor's KYC details. Intended for use in combination with `GET /investorIds` to fetch large numbers of investor kyc statuses for purposes such as reconciliation.
+
+The `id` query parameter may repeated up to 100 times. If more than 100 ids are specified, a `400` error is returned.
+If no `id` query parameters are specified and empty array is returned.
+
+### Response
+| Name                                                | Type   | Description                                                                                                                                                                                                        |
+| --------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [].clientId                                         | string | The clientId of the investor                                                                                                                                                                                       |
+| [].status                                           | string | The KYC details of the investor. Possible values are: <br>`AWAITING_CREDIT_AGENCY_CHECK`<br>`ELECTRONICALLY_VERIFIED`<br>`ENHANCED_VERIFICATION_REQUIRED`<br>`ENHANCED_VERIFIED`<br>                               |
+| [].documentsRequired.[]                             | array  | Required documents for upload. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>             |
+| [].documentsPendingApproval.[]                      | array  | Uploaded documents that require approving. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br> |
+| [].documentsApproved.[]                             | array  | Approved documents. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>                        |
+| [].{}.lastFailure                                   | ref    |                                                                                                                                                                                                                    |
+| [].{}.lastFailure.failureDate                       | string | Date of rejection                                                                                                                                                                                                  |
+| [].{}.lastFailure.rejectedDocuments                 | array  | The rejected documents.                                                                                                                                                                                            |
+
+## `GET /reports/investors/kyb`
+
+```http
+
+GET /reports/investors/kyb?id={clientId}&id={clientId} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "documentsRequired" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+    "documentsApproved" : [ ],
+    "requirements" : [
+      {
+        "requirementType" : "",
+        "status" : "",
+        "checkType" : ""
+      }
+    ]
+    "overallStatus" : "DOCUMENTS_REQUIRED",
+    "status" : "DOCUMENTS_REQUIRED",
+    "clientId" : "GOJI-1234"
+  },
+  {
+    "documentsRequired" : [ ],
+    "documentsApproved" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+    "requirements" : [
+      {
+        "requirementType" : "",
+        "status" : "",
+        "checkType" : ""
+      }
+    ]
+    "overallStatus" : "VERIFIED",
+    "status" : "VERIFIED",
+    "clientId" : "GOJI-4567"
+    }
+]
+```
+### Description
+Retrieves corporate investors KYB details. Intended for use in combination with `GET /investorIds` to fetch large numbers of corporate kyb statuses for purposes such as reconciliation.
+
+The `id` query parameter may repeated up to 100 times. If more than 100 ids are specified, a `400` error is returned.
+If no `id` query parameters are specified and empty array is returned.
+
+### Response
+| Name                                                | Type   | Description                                                                                                                                                                                                         |
+| --------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [].clientId                                         | string | The clientId of the investor                                                                                                                                                                                        |
+| [].status                                           | string | The KYB status of the investor. Possible values are: <br>`DOCUMENTS_REQUIRED`<br>`VERIFIED`<br>                                                                                                                     |
+| [].overallStatus                                    | string | The overall KYB status of the investor. Possible values are: <br>`IN_PROGRESS`<br>`PASSED`<br>`DECLINED`<br>`                                                                                                       |
+| [].documentsRequired.[]                             | array  | Required documents for upload. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>              |
+| [].documentsPendingApproval.[]                      | array  | Uploaded documents that require approving. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>  |
+| [].documentsApproved.[]                             | array  | Approved documents. Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>                         |
+| [].requirements                                     | ref    |                                                                                                                                                                                                                     |
+| [].requirements.[].{}.requirementType               | string |                                                                                                                                                                                                                     |
+| [].requirements.[].{}.status                        | string | Possible values are: <br>`IN_PROGRESS`<br>`PASSED`<br>`DECLINED`<br>                                                                                                                                                |
+| [].requirements.[].{}.checkType                     | string | Possible values are: `IDENTITY_CHECK`<br>`MANUAL_IDENTITY_CHECK`<br>`DEPOSIT_LIMIT_CHECK`<br>`PEP_CHECK`<br>`SANCTIONS_CHECK`<br>`BWA_CHECK`<br>`MANUAL_VERIFICATION_CHECK`<br>`NO_WORKFLOW_CREATED_CHECK`<br>`NONE`|
 
 ## <em>ISAs</em>
 
@@ -2234,9 +2394,9 @@ The required <code>migrationDetails</code> allows the platform to provide an exi
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
 | address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
 | address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
-| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
+| address.region                      | string | The region of the address, e.g. county.                                                                                                                                                                                  |
 | address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
+| address.country                     | string | The country of the investor's address as a 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
 | contactDetails                      | ref    |                                                                                                                                                                                                                       |
 | contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
 | contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
@@ -2244,10 +2404,10 @@ The required <code>migrationDetails</code> allows the platform to provide an exi
 | employmentDetails                   | ref    |                                                                                                                                                                                                                       |
 | employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
 | employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
-| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
-| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
+| entityType                          | string | Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
+| accountTypes                        | string | Investor's account types. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
+| corporateDetails                    | ref    | Only required for CORPORATE entityType.                                                                                                                                                                               |
 | corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
-| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
+| investmentDeclarationType           | string | The investor type declared by the investor. Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
