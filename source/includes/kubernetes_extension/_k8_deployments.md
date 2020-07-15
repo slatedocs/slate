@@ -97,7 +97,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- CREATE DEPLOYMENT -------------------->
 
-### Create a deployment
+#### Create a deployment
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
