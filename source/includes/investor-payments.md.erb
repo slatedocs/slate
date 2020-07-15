@@ -652,7 +652,7 @@ Extract a fee from a specified investor's account cash balance
 
 ```http
 
-GET /reports/investor/cash/balance?asOf=2020-12-25T15:00:00Z&id={investorId1}&id={investorId2}&id={investorId3} HTTP/1.1
+GET /reports/investor/cash/balance?asOf=2020-12-25T15:00:00Z&id=INVESTOR-ID-1&id=INVESTOR-ID-2 HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
@@ -728,7 +728,7 @@ If the `asOf` parameter is excluded, the current state is returned.
 ### Response
 | Name                                          | Type   | Description                                                           |
 | --------------------------------------------- | ------ | --------------------------------------------------------------------- |
-| [].investorId                                 | string | The investor's Goji-assigned internal id                              |
+| [].investorId                                 | string | The investor's client id (e.g. `GOJI-1128`)                           |
 | [].gia                                        | ref    | The account balance's for the investor's investment account.          |
 | [].isa                                        | ref    | The account balance's for the investor's ISA account.                 |
 | [].sipp                                       | ref    | The account balance's for the investor's SIPP account.                |

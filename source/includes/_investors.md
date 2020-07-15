@@ -131,7 +131,7 @@ Content-Type: application/json
 ```
 
 ### Description
-Returns all the investor ids on the platform. Intended for use in bulk tasks such as reconciliation, allowing the caller to first get the full list of investors and then call out to other endpoints for information on each investor.
+Returns all the client ids of the investors on the platform. Intended for use in bulk tasks such as reconciliation, allowing the caller to first get the full list of investors and then call out to other endpoints for information on each investor.
 
 ### Request
 No body required.
