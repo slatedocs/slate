@@ -742,7 +742,7 @@ Content-Type: application/json
 Retrieves investor's KYC details. Intended for use in combination with `GET /investorIds` to fetch large numbers of investor kyc statuses for purposes such as reconciliation.
 
 The `id` query parameter may repeated up to 100 times. If more than 100 ids are specified, a `400` error is returned.
-If no `id` query parameters are specified and empty array is returned.
+If no `id` query parameters are specified, an empty array is returned.
 
 ### Response
 | Name                                                | Type   | Description                                                                                                                                                                                                        |
@@ -806,7 +806,7 @@ Content-Type: application/json
 Retrieves corporate investors KYB details. Intended for use in combination with `GET /investorIds` to fetch large numbers of corporate kyb statuses for purposes such as reconciliation.
 
 The `id` query parameter may repeated up to 100 times. If more than 100 ids are specified, a `400` error is returned.
-If no `id` query parameters are specified and empty array is returned.
+If no `id` query parameters are specified, an empty array is returned.
 
 ### Response
 | Name                                                | Type   | Description                                                                                                                                                                                                         |
