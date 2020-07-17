@@ -158,7 +158,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims/:id?cluster_id=:cluster_id</code>
 
-Retrieve a persistent volume claims and all its info in a given [environment](#administration-environments).
+Retrieve a persistent volume claim and all its info in a given [environment](#administration-environments).
 
 		
 | Required                   | &nbsp;                                                      |	
