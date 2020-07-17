@@ -56,9 +56,9 @@ We currently have two environments, development and production. Both the environ
 curl --location --request POST 'https://api-dev.in.springverify.com/v1/auth/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-	"email":"jackhym23@gmail.com",
-      "password":"999999999"
-}'
+      "email":"jackhym23@gmail.com",
+          "password":"999999999"
+    }'
 ```
 
 ```ruby
@@ -273,8 +273,107 @@ The configuration sent in this api will be validated against enteries in followi
 Use the uuid and token returned in the preceding APIs.
 </aside>
 
+# Get Background Verification URL
+
+```shell
+curl --location --request GET 'https://api-dev.in.springverify.com/v1/candidate/backgroundVerificationUrl' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ2MzU2MjIsImV4cCI6MTU5ODIzNTYyMn0.tYKb4l911veWQ0JW2sONfkU-aflfLgtDL0P0Ff79PHw' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "candidateId": <Integer ID>
+}'
+```
+
+```java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+Request request = new Request.Builder()
+  .url("https://api-dev.in.springverify.com/v1/candidate/backgroundVerificationUrl")
+  .method("GET", null)
+  .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ2MzU2MjIsImV4cCI6MTU5ODIzNTYyMn0.tYKb4l911veWQ0JW2sONfkU-aflfLgtDL0P0Ff79PHw")
+  .addHeader("Content-Type", "application/json")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```python
+import requests
+
+url = "https://api-dev.in.springverify.com/v1/candidate/backgroundVerificationUrl"
+
+payload = "{\n    \"candidateId\": 958\n}"
+headers = {
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ2MzU2MjIsImV4cCI6MTU5ODIzNTYyMn0.tYKb4l911veWQ0JW2sONfkU-aflfLgtDL0P0Ff79PHw',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ2MzU2MjIsImV4cCI6MTU5ODIzNTYyMn0.tYKb4l911veWQ0JW2sONfkU-aflfLgtDL0P0Ff79PHw");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({"candidateId":958});
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://api-dev.in.springverify.com/v1/candidate/backgroundVerificationUrl", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```ruby
+require "uri"
+require "net/http"
+
+url = URI("https://api-dev.in.springverify.com/v1/candidate/backgroundVerificationUrl")
+
+https = Net::HTTP.new(url.host, url.port);
+https.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+request["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ2MzU2MjIsImV4cCI6MTU5ODIzNTYyMn0.tYKb4l911veWQ0JW2sONfkU-aflfLgtDL0P0Ff79PHw"
+request["Content-Type"] = "application/json"
+request.body = "{\n    \"candidateId\": 958\n}"
+
+response = https.request(request)
+puts response.read_body
+```
+
+>Response looks like this
+
+```json
+{
+    "link": "https://dev-portal.in.springverify.com/candidate/bgv?token=<Auth_Token>",
+    "status": 200
+}
+```
+
+GET  Background Verification (BGV) form's url. Candidate or HR can fill and submit this form for starting a verification of the candidate's information. 
+
+We will do the verification and update statuses for the same via dashboard and email.
+
+<aside class="success">
+   Use the Company's (Login) token to generate BGV URL. 
+</aside>
+
+<aside class="notice">
+  API is useful if you would like to generate a <b>UI form</b> on the fly, to be filled by HR or by the candidate.
+</aside>
+
 
 # Identity Verification
+
 
 Post API to store ID cards of the candidate. Optionally, we can do <b>OCR</b> on the uploaded document.
 
@@ -285,11 +384,11 @@ curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents
 --header 'Authorization: Bearer <Token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"type" : "ind_voter_id",
-"front" : <front_doc_url>,
-"back" : <back_doc_url>,
-"docs" : [ <doc_urls> ]
-}'
+        "type" : "ind_voter_id",
+        "front" : <front_doc_url>,
+        "back" : <back_doc_url>,
+        "docs" : [ <doc_urls> ]
+    }'
 ```
 
 ```java
@@ -392,19 +491,30 @@ Doc Types with keys:
 ```shell
 curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents/employment' \
 --header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM' \
 --data-raw '{
     "employments" : [
         {
-            "document_type": "SalarySlip",
-            "companyName": "Google",
-            "designation": "Engineer",
-            "currentlyHere": true,
+            "document_type": "ExperienceLetter",
+			"companyName": "ABC",
+            "designation": "1",
+            "currentlyHere": "true",
             "startDate": "25/11/19",
-            "endDate" : "25/3/20",
-            "s3Links" : [
-                        <link1>,
-                        <link2>,
-                        <link3>
+            "employee_id": "cxz102",
+            "location": "New Delhi",
+            "country": "India",
+            "employmentLinks" : [
+                "https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"
+            ],
+            "verifications" : [
+                {
+                    "type": "HR",
+                    "number": "+91829102833"
+                },
+                {
+                    "type": "REPORTINGMANAGER",
+                    "email": "reporting@manager.com"
+                }
             ]
         }
     ]
@@ -414,9 +524,9 @@ curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents
 ```javascript
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34");
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM");
 
-var raw = JSON.stringify({"employments":[{"document_type":"ABC","companyName":"ABC","designation":"1","currentlyHere":"true","startDate":"25/11/19","employmentLinks":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"]}]});
+var raw = JSON.stringify({"employments":[{"document_type":"ExperienceLetter","companyName":"ABC","designation":"1","currentlyHere":"true","startDate":"25/11/19","employee_id":"cxz102","location":"New Delhi","country":"India","employmentLinks":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"],"verifications":[{"type":"HR","number":"+91829102833"},{"type":"REPORTINGMANAGER","email":"reporting@manager.com"}]}]});
 
 var requestOptions = {
   method: 'POST',
@@ -435,12 +545,12 @@ fetch("https://api-dev.in.springverify.com/v1/documents/employment", requestOpti
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\n    \"employments\" : [\n        {\n            \"document_type\": \"ABC\",\n\t\t\t\"companyName\": \"ABC\",\n            \"designation\": \"1\",\n            \"currentlyHere\": \"true\",\n            \"startDate\": \"25/11/19\",\n            \"employmentLinks\" : [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        }\n    ]\n}");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"employments\" : [\n        {\n            \"document_type\": \"ExperienceLetter\",\n\t\t\t\"companyName\": \"ABC\",\n            \"designation\": \"1\",\n            \"currentlyHere\": \"true\",\n            \"startDate\": \"25/11/19\",\n            \"employee_id\": \"cxz102\",\n            \"location\": \"New Delhi\",\n            \"country\": \"India\",\n            \"employmentLinks\" : [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ],\n            \"verifications\" : [\n                {\n                    \"type\": \"HR\",\n                    \"number\": \"+91829102833\"\n                },\n                {\n                    \"type\": \"REPORTINGMANAGER\",\n                    \"email\": \"reporting@manager.com\"\n                }\n            ]\n        }\n    ]\n}");
 Request request = new Request.Builder()
   .url("https://api-dev.in.springverify.com/v1/documents/employment")
   .method("POST", body)
   .addHeader("Content-Type", "application/json")
-  .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34")
+  .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM")
   .build();
 Response response = client.newCall(request).execute();
 ```
@@ -450,10 +560,10 @@ import requests
 
 url = "https://api-dev.in.springverify.com/v1/documents/employment"
 
-payload = "{\n    \"employments\" : [\n        {\n            \"document_type\": \"ABC\",\n\t\t\t\"companyName\": \"ABC\",\n            \"designation\": \"1\",\n            \"currentlyHere\": \"true\",\n            \"startDate\": \"25/11/19\",\n            \"employmentLinks\" : [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        }\n    ]\n}"
+payload = "{\n    \"employments\" : [\n        {\n            \"document_type\": \"ExperienceLetter\",\n\t\t\t\"companyName\": \"ABC\",\n            \"designation\": \"1\",\n            \"currentlyHere\": \"true\",\n            \"startDate\": \"25/11/19\",\n            \"employee_id\": \"cxz102\",\n            \"location\": \"New Delhi\",\n            \"country\": \"India\",\n            \"employmentLinks\" : [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ],\n            \"verifications\" : [\n                {\n                    \"type\": \"HR\",\n                    \"number\": \"+91829102833\"\n                },\n                {\n                    \"type\": \"REPORTINGMANAGER\",\n                    \"email\": \"reporting@manager.com\"\n                }\n            ]\n        }\n    ]\n}"
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34'
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM'
 }
 
 response = requests.request("POST", url, headers=headers, data = payload)
@@ -472,8 +582,8 @@ https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
 request["Content-Type"] = "application/json"
-request["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34"
-request.body = "{\n    \"employments\" : [\n        {\n            \"document_type\": \"ABC\",\n\t\t\t\"companyName\": \"ABC\",\n            \"designation\": \"1\",\n            \"currentlyHere\": \"true\",\n            \"startDate\": \"25/11/19\",\n            \"employmentLinks\" : [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        }\n    ]\n}"
+request["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM"
+request.body = "{\n    \"employments\" : [\n        {\n            \"document_type\": \"ExperienceLetter\",\n\t\t\t\"companyName\": \"ABC\",\n            \"designation\": \"1\",\n            \"currentlyHere\": \"true\",\n            \"startDate\": \"25/11/19\",\n            \"employee_id\": \"cxz102\",\n            \"location\": \"New Delhi\",\n            \"country\": \"India\",\n            \"employmentLinks\" : [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ],\n            \"verifications\" : [\n                {\n                    \"type\": \"HR\",\n                    \"number\": \"+91829102833\"\n                },\n                {\n                    \"type\": \"REPORTINGMANAGER\",\n                    \"email\": \"reporting@manager.com\"\n                }\n            ]\n        }\n    ]\n}"
 
 response = https.request(request)
 puts response.read_body
@@ -485,14 +595,15 @@ puts response.read_body
 {
     "message": "Employment saved",
     "response": [
-    ]
+        "1d20-21f1-13cd-13df"
+    ] //uuids
 }
 ```
 
 This API is used to add employment details and any relevant docs of the user. Please give the image url in this API.
 
 <aside class="notice">
- Use the token returned from add candidate API.
+  Use the token returned from add candidate API.
 </aside>
 
 <b>Currently Supported Documents with keys</b>
@@ -503,31 +614,69 @@ This API is used to add employment details and any relevant docs of the user. Pl
 4. Appointment Letter (AppointmentLetter)
 5. Others - eg: no specific document (Other)
 
+<aside class="notice">
+  For verification purposes, at least the <b>employmentLinks</b> to document should be sent in the API.
+</aside>
 
 # Add Education
 
 ```shell
 curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents/education' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozMjMsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODAzODUxMjN9.dInOuPThk52E7KLh1084zpxyfcWyYQQAPYiD9b2d05w' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM' \
 --data-raw '{
-    "education" : {
-      "10": [
-          <link>
-      ],
-      "12": [
-          <link>,
-          <link>
-      ],
-      "bachelor": [
-          <link>
-      ],
-      "masters": [
-        <link>
-      ],
-      "doctorate": [
-          <link>
-      ]
+    "education": {
+        "10": {
+            "course_type": "10th",
+            "institute_name": "tomorrow highland'\''s school",
+            "registration_number": "123xyz",
+            "start_date": "24/08/1991",
+            "issue_date": "1992",
+            "links": [
+              <urls>
+            ]
+        },
+        "12": {
+            "course_type": "10th",
+            "institute_name": "tomorrow highland'\''s school",
+            "registration_number": "123xyz",
+            "start_date": "24/08/1992",
+            "issue_date": "1993",
+            "links": [
+              <urls>
+            ]
+        },
+        "bachelor": {
+            "course_type": "bachelor",
+            "institute_name": "tomorrow highland'\''s college",
+            "registration_number": "123xyz",
+            "start_date": "24/08/1993",
+            "issue_date": "1995",
+            "degree": "UG",
+            "links": [
+                <urls>
+            ]
+        },
+        "masters": {
+            "course_type": "masters",
+            "institute_name": "tomorrow highland'\''s college",
+            "registration_number": "123xyz",
+            "start_date": "24/08/1995",
+            "issue_date": "1997",
+            "links": [
+              <urls>
+            ]
+        },
+        "doctorate": {
+            "course_type": "doctorate",
+            "institute_name": "tomorrow highland'\''s college",
+            "registration_number": "123xyz",
+            "start_date": "24/08/1998",
+            "issue_date": "1999",
+            "links": [
+              <urls>
+            ]
+        }
     }
 }'
 ```
@@ -536,12 +685,12 @@ curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\n\t\"education\" :     {\n        \"10\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"12\": [\n        ],\n        \"bachelor\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"masters\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"doctorate\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ]\n    }\n}");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"education\": {\n        \"10\": {\n            \"course_type\": \"10th\",\n            \"institute_name\": \"tomorrow highland's school\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1991\",\n            \"issue_date\": \"1992\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        },\n        \"12\": {\n            \"course_type\": \"10th\",\n            \"institute_name\": \"tomorrow highland's school\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1992\",\n            \"issue_date\": \"1993\",\n            \"links\": []\n        },\n        \"bachelor\": {\n            \"course_type\": \"bachelor\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1993\",\n            \"issue_date\": \"1995\",\n            \"degree\": \"UG\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        },\n        \"masters\": {\n            \"course_type\": \"masters\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1995\",\n            \"issue_date\": \"1997\",\n            \"links\": [\n                \"https://thumbor.forbes.com/thumbor/711x426/https://specials-images.forbesimg.com/dam/imageserve/673357300/960x0.jpg?fit=scale\"\n            ]\n        },\n        \"doctorate\": {\n            \"course_type\": \"doctorate\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1998\",\n            \"issue_date\": \"1999\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        }\n    }\n}");
 Request request = new Request.Builder()
   .url("https://api-dev.in.springverify.com/v1/documents/education")
   .method("POST", body)
   .addHeader("Content-Type", "application/json")
-  .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34")
+  .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM")
   .build();
 Response response = client.newCall(request).execute();
 ```
@@ -549,9 +698,9 @@ Response response = client.newCall(request).execute();
 ```javascript
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
-myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34");
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM");
 
-var raw = JSON.stringify({"education":{"10":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"],"12":[],"bachelor":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"],"masters":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"],"doctorate":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"]}});
+var raw = JSON.stringify({"education":{"10":{"course_type":"10th","institute_name":"tomorrow highland's school","registration_number":"123xyz","start_date":"24/08/1991","issue_date":"1992","links":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"]},"12":{"course_type":"10th","institute_name":"tomorrow highland's school","registration_number":"123xyz","start_date":"24/08/1992","issue_date":"1993","links":[]},"bachelor":{"course_type":"bachelor","institute_name":"tomorrow highland's college","registration_number":"123xyz","start_date":"24/08/1993","issue_date":"1995","degree":"UG","links":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"]},"masters":{"course_type":"masters","institute_name":"tomorrow highland's college","registration_number":"123xyz","start_date":"24/08/1995","issue_date":"1997","links":["https://thumbor.forbes.com/thumbor/711x426/https://specials-images.forbesimg.com/dam/imageserve/673357300/960x0.jpg?fit=scale"]},"doctorate":{"course_type":"doctorate","institute_name":"tomorrow highland's college","registration_number":"123xyz","start_date":"24/08/1998","issue_date":"1999","links":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front","https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"]}}});
 
 var requestOptions = {
   method: 'POST',
@@ -567,19 +716,18 @@ fetch("https://api-dev.in.springverify.com/v1/documents/education", requestOptio
 ```
 
 ```python
-import requests
-
-url = "https://api-dev.in.springverify.com/v1/documents/education"
-
-payload = "{\n\t\"education\" :     {\n        \"10\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"12\": [\n        ],\n        \"bachelor\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"masters\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"doctorate\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ]\n    }\n}"
+import http.client
+import mimetypes
+conn = http.client.HTTPSConnection("api-dev.in.springverify.com")
+payload = "{\n    \"education\": {\n        \"10\": {\n            \"course_type\": \"10th\",\n            \"institute_name\": \"tomorrow highland's school\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1991\",\n            \"issue_date\": \"1992\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        },\n        \"12\": {\n            \"course_type\": \"10th\",\n            \"institute_name\": \"tomorrow highland's school\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1992\",\n            \"issue_date\": \"1993\",\n            \"links\": []\n        },\n        \"bachelor\": {\n            \"course_type\": \"bachelor\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1993\",\n            \"issue_date\": \"1995\",\n            \"degree\": \"UG\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        },\n        \"masters\": {\n            \"course_type\": \"masters\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1995\",\n            \"issue_date\": \"1997\",\n            \"links\": [\n                \"https://thumbor.forbes.com/thumbor/711x426/https://specials-images.forbesimg.com/dam/imageserve/673357300/960x0.jpg?fit=scale\"\n            ]\n        },\n        \"doctorate\": {\n            \"course_type\": \"doctorate\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1998\",\n            \"issue_date\": \"1999\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        }\n    }\n}"
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34'
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM'
 }
-
-response = requests.request("POST", url, headers=headers, data = payload)
-
-print(response.text.encode('utf8'))
+conn.request("POST", "/v1/documents/education", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
 ```
 
 ```ruby
@@ -593,8 +741,8 @@ https.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
 request["Content-Type"] = "application/json"
-request["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjozNzEsImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSJ9LCJpYXQiOjE1ODMzMDYyNTh9.g8MN0IksBnPmxsOgpeIg1D2-BIkDgkCUtXR6TXZYe34"
-request.body = "{\n\t\"education\" :     {\n        \"10\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"12\": [\n        ],\n        \"bachelor\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"masters\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ],\n        \"doctorate\": [\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n            \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n        ]\n    }\n}"
+request["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM"
+request.body = "{\n    \"education\": {\n        \"10\": {\n            \"course_type\": \"10th\",\n            \"institute_name\": \"tomorrow highland's school\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1991\",\n            \"issue_date\": \"1992\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        },\n        \"12\": {\n            \"course_type\": \"10th\",\n            \"institute_name\": \"tomorrow highland's school\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1992\",\n            \"issue_date\": \"1993\",\n            \"links\": []\n        },\n        \"bachelor\": {\n            \"course_type\": \"bachelor\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1993\",\n            \"issue_date\": \"1995\",\n            \"degree\": \"UG\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        },\n        \"masters\": {\n            \"course_type\": \"masters\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1995\",\n            \"issue_date\": \"1997\",\n            \"links\": [\n                \"https://thumbor.forbes.com/thumbor/711x426/https://specials-images.forbesimg.com/dam/imageserve/673357300/960x0.jpg?fit=scale\"\n            ]\n        },\n        \"doctorate\": {\n            \"course_type\": \"doctorate\",\n            \"institute_name\": \"tomorrow highland's college\",\n            \"registration_number\": \"123xyz\",\n            \"start_date\": \"24/08/1998\",\n            \"issue_date\": \"1999\",\n            \"links\": [\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\",\n                \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n            ]\n        }\n    }\n}"
 
 response = https.request(request)
 puts response.read_body
@@ -636,6 +784,138 @@ This API is used to add education details and any relevant docs of the candidate
 4. Masters (masters)
 5. Doctorate (doctorate)
 
+# Add Address
+
+```shell
+curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents/address' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM' \
+--data-raw '{
+    "isPermanent" : false,
+    "addressLinks": [
+        "https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"
+    ],
+    "docType": "Driving License",
+    "is_current_permanent_same": true,
+    "currently_reside": "YES",
+    "address_type": "Own / Parents",
+    "landmark": "Temple",
+    "zipcode": "560095",
+    "country": "India",
+    "length_of_stay": "10 years",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "is_candidate_available": true,
+    "point_of_contact" :{
+        "number":"+91892001010",
+        "type": "FRIEND"
+    }
+}'
+```
+
+```java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"isPermanent\" : false,\n    \"addressLinks\": [\n        \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n    ],\n    \"docType\": \"Driving License\",\n    \"is_current_permanent_same\": true,\n    \"currently_reside\": \"YES\",\n    \"address_type\": \"Own / Parents\",\n    \"landmark\": \"Temple\",\n    \"zipcode\": \"560095\",\n    \"country\": \"India\",\n    \"length_of_stay\": \"10 years\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"is_candidate_available\": true,\n    \"point_of_contact\" :{\n        \"number\":\"+91892001010\",\n        \"type\": \"FRIEND\"\n    }\n}");
+Request request = new Request.Builder()
+  .url("https://api-dev.in.springverify.com/v1/documents/address")
+  .method("POST", body)
+  .addHeader("Content-Type", "application/json")
+  .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```python
+import requests
+
+url = "https://api-dev.in.springverify.com/v1/documents/address"
+
+payload = "{\n    \"isPermanent\" : false,\n    \"addressLinks\": [\n        \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n    ],\n    \"docType\": \"Driving License\",\n    \"is_current_permanent_same\": true,\n    \"currently_reside\": \"YES\",\n    \"address_type\": \"Own / Parents\",\n    \"landmark\": \"Temple\",\n    \"zipcode\": \"560095\",\n    \"country\": \"India\",\n    \"length_of_stay\": \"10 years\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"is_candidate_available\": true,\n    \"point_of_contact\" :{\n        \"number\":\"+91892001010\",\n        \"type\": \"FRIEND\"\n    }\n}"
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM'
+}
+
+response = requests.request("POST", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM");
+
+var raw = JSON.stringify({"isPermanent":false,"addressLinks":["https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front"],"docType":"Driving License","is_current_permanent_same":true,"currently_reside":"YES","address_type":"Own / Parents","landmark":"Temple","zipcode":"560095","country":"India","length_of_stay":"10 years","city":"Bengaluru","state":"Karnataka","is_candidate_available":true,"point_of_contact":{"number":"+91892001010","type":"FRIEND"}});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://api-dev.in.springverify.com/v1/documents/address", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```ruby
+require "uri"
+require "net/http"
+
+url = URI("https://api-dev.in.springverify.com/v1/documents/address")
+
+https = Net::HTTP.new(url.host, url.port);
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = "application/json"
+request["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNhbmRpZGF0ZUlkIjo5NzksImNvbXBhbnlJZCI6Miwicm9sZSI6ImNhbmRpZGF0ZSIsImVtYWlsIjpudWxsLCJjb21wYW55TmFtZSI6bnVsbCwiY29tcGFueUxvZ29VcmwiOm51bGwsImFjY2Vzc0xldmVsIjpudWxsLCJ1c2VySWQiOm51bGwsImZvcm1GaWxsZWRCeSI6bnVsbH0sImlhdCI6MTU5NDg5MDI1MX0.olJF36gE50i5-iAmtjNCGyMPJZQ5xjOWOWVusMTuKCM"
+request.body = "{\n    \"isPermanent\" : false,\n    \"addressLinks\": [\n        \"https://springverify-assets-id.s3.amazonaws.com/323/ind_driving_license-front\"\n    ],\n    \"docType\": \"Driving License\",\n    \"is_current_permanent_same\": true,\n    \"currently_reside\": \"YES\",\n    \"address_type\": \"Own / Parents\",\n    \"landmark\": \"Temple\",\n    \"zipcode\": \"560095\",\n    \"country\": \"India\",\n    \"length_of_stay\": \"10 years\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"is_candidate_available\": true,\n    \"point_of_contact\" :{\n        \"number\":\"+91892001010\",\n        \"type\": \"FRIEND\"\n    }\n}"
+
+response = https.request(request)
+puts response.read_body
+```
+
+>Response looks like
+
+```json
+{
+    "message": "Address saved",
+    "uuid": [
+        "457b4cce-f5a8-494e-901e-42959b74395e"
+    ]
+}
+```
+
+API to upload candidate's address information for verification.
+
+<aside class="notice">
+  For verification purposes, at least the <b>addressLinks</b> to document should be sent in the API.
+</aside>
+
+Point of contact type can be:
+
+1. FRIEND
+2. FATHER
+3. MOTHER
+4. TENANT
+5. FAMILY
+6. CANDIDATE
+
+Address Type can be:
+
+1. Own / Parents
+2. Rented
+
+<aside class="notice">
+  Company/Candidate can leverage is_candidate_available to set availability of the candidate at home between <b>9am - 5pm</b>
+</aside>
+
 # Get Candidate
 
 ```shell
@@ -643,8 +923,8 @@ curl --location --request GET 'https://api-dev.in.springverify.com/v1/candidate/
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiYW51cmFnLnNhbmRodUBzcHJpbmdyb2xlLmNvbSIsImNvbXBhbnlJZCI6Mn0sImlhdCI6MTU4MTU4MDM5NywiZXhwIjoxNTg1MTgwMzk3fQ.p4K0NefA8eOXFcCqxOYiLtnhmXM0KbqsiBuVxsUqT_o' \
 --data-raw '{
-        "uuid" : ["89234831-1a7a-11ea-bc81-1657eb2ddd16", "16fe0e16-61dc-431c-9f33-255ec1b01fd4"]
-}'
+          "uuid" : ["89234831-1a7a-11ea-bc81-1657eb2ddd16", "16fe0e16-61dc-431c-9f33-255ec1b01fd4"]
+    }'
 ```
 
 ```java
@@ -1188,6 +1468,143 @@ This API is used to get candidates in bulk. You can provide multiple candidates 
                         ]
                 }
         },
+]
+```
+
+# Get All Candidates
+
+```shell
+curl --location --request GET 'https://api-dev.in.springverify.com/v1/candidate/candidates?limit=20&page=2' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ5ODQ2OTcsImV4cCI6MTU5ODU4NDY5N30.eGrdMRasVlpp1xwcVTuiGfwDCujty22ULUxRynmeal0'
+```
+```java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+Request request = new Request.Builder()
+  .url("https://api-dev.in.springverify.com/v1/candidate/candidates?limit=20&page=2")
+  .method("GET", null)
+  .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ5ODQ2OTcsImV4cCI6MTU5ODU4NDY5N30.eGrdMRasVlpp1xwcVTuiGfwDCujty22ULUxRynmeal0")
+  .build();
+Response response = client.newCall(request).execute();
+```
+```javascript
+var settings = {
+  "url": "https://api-dev.in.springverify.com/v1/candidate/candidates?limit=20&page=2",
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ5ODQ2OTcsImV4cCI6MTU5ODU4NDY5N30.eGrdMRasVlpp1xwcVTuiGfwDCujty22ULUxRynmeal0"
+  },
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+```python
+import requests
+
+url = "https://api-dev.in.springverify.com/v1/candidate/candidates?limit=20&page=2"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ5ODQ2OTcsImV4cCI6MTU5ODU4NDY5N30.eGrdMRasVlpp1xwcVTuiGfwDCujty22ULUxRynmeal0'
+}
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+```ruby
+require "uri"
+require "net/http"
+
+url = URI("https://api-dev.in.springverify.com/v1/candidate/candidates?limit=20&page=2")
+
+https = Net::HTTP.new(url.host, url.port);
+https.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+request["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiamFja2h5bTIzQGdtYWlsLmNvbSIsImNvbXBhbnlJZCI6MiwidXNlcklkIjoyLCJjb21wYW55TmFtZSI6Im15ZmFrZWljbyB0ZXN0aW5nIiwiYWNjZXNzTGV2ZWwiOjV9LCJpYXQiOjE1OTQ5ODQ2OTcsImV4cCI6MTU5ODU4NDY5N30.eGrdMRasVlpp1xwcVTuiGfwDCujty22ULUxRynmeal0"
+
+response = https.request(request)
+puts response.read_body
+```
+
+API to fetch all candidates uploaded by the Company, in a sorted fashion. Sorting is based on action taken on candidate
+
+<aside type="notice">
+limit and page are optional. If not provided, either, default values are limit 10 and page 0
+</aside>
+
+
+>Response looks like
+
+```json
+[
+  {
+        "id": 931,
+        "uuid": "bbbe9c76-7835-4fc2-8cde-ae7e8b6aefb6",
+        "company_id": 2,
+        "candidate_id": 934,
+        "employee_id": "kagifo",
+        "phone_number": "+919956004345",
+        "country_code": "IN",
+        "alt_phone_number": null,
+        "alt_country_code": "IN",
+        "resume": "https://springverify-assets-id.s3.amazonaws.com/934/resume",
+        "category_id": null,
+        "created_at": "2020-07-02T08:18:02.000Z",
+        "updated_at": "2020-07-02T09:44:19.000Z",
+        "deleted_at": null,
+        "candidate_ids": null,
+        "work_experience": null,
+        "education": null,
+        "address": null,
+        "history": null,
+        "refcheck": null,
+        "worldcheck": null,
+        "creditcheck": null,
+        "drugscheck": null,
+        "typeform_url": null,
+        "signrequest_url": null,
+        "status": 4,
+        "signedrequest_status": 1,
+        "springverify_signature": null,
+        "consent_letter_url": "https://springverify-assets-id.s3.amazonaws.com/934/consent-letter.pdf",
+        "consent_added_at": "2020-07-02T09:44:19.000Z",
+        "spring_candidate_ip": null,
+        "form_filled": "2020-07-02T09:44:19.000Z",
+        "candidate_added_by": 2,
+        "form_filled_by": 3,
+        "consent_added_by": 3,
+        "who_fills_form": 3,
+        "past_jobs": null,
+        "springscan_id": "5efd98808f0166001a1df693",
+        "candidate": {
+            "id": 934,
+            "uuid": "7dd5d7a8-3ac9-42df-a6e3-e23897d1354e",
+            "email": "kagifo7064@enmail1.com",
+            "alternate_email": null,
+            "name": "kagifo",
+            "type": null,
+            "created_at": "2020-07-02T08:18:02.000Z",
+            "updated_at": "2020-07-02T09:44:19.000Z",
+            "ongrid_id": null,
+            "gender": 1,
+            "deleted_at": null,
+            "dob": null,
+            "father_name": null,
+            "email_reject_type": "NA",
+            "user_id": 2,
+            "whatsapp_update": true,
+            "bgv_slack_notification_shared": false,
+            "candidate_user_category_mappings": [],
+            "candidate_company_category_mappings": [],
+            "candidates_metadata": []
+        }
+    },
+    ...
 ]
 ```
 
