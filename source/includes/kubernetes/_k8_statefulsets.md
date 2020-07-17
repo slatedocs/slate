@@ -1,8 +1,8 @@
-## Stateful Sets
+### Stateful Sets
 
 <!-------------------- LIST STATEFUL SETS -------------------->
 
-### List stateful sets
+#### List stateful sets
 
 ```shell
 curl -X GET \
@@ -46,7 +46,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET A STATEFUL SET -------------------->
 
-### Get a stateful set
+#### Get a stateful set
 
 ```shell
 curl -X GET \
@@ -88,7 +88,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- CREATE A STATEFUL SET -------------------->
 
-### Create a stateful set
+#### Create a stateful set
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
@@ -165,7 +165,7 @@ Return value:
 
 <!-------------------- DELETE STATEFUL SET -------------------->
 
-### Delete a stateful set
+#### Delete a stateful set
 
 ```shell
 curl -X DELETE \

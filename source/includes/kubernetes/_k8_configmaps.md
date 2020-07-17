@@ -1,8 +1,8 @@
-## ConfigMaps
+### ConfigMaps
 
 <!-------------------- LIST CONFIG MAPS -------------------->
 
-### List configmaps
+#### List configmaps
 
 ```shell
 curl -X GET \
@@ -42,7 +42,7 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 
 <!-------------------- GET A configmap -------------------->
 
-### Get a configmap
+#### Get a configmap
 
 ```shell
 curl -X GET \

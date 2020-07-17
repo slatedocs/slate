@@ -113,14 +113,18 @@ includes:
   - gcp/regions
   - kubernetes
   - kubernetes/k8_namespaces
+  - kubernetes/k8_workloads
   - kubernetes/k8_pods
-  - kubernetes/k8_statefulsets
-  - kubernetes/k8_daemonsets
   - kubernetes/k8_deployments
+  - kubernetes/k8_daemonsets
+  - kubernetes/k8_statefulsets
+  - kubernetes/k8_networking
   - kubernetes/k8_services
   - kubernetes/k8_ingresses
+  - kubernetes/k8_configuration
   - kubernetes/k8_configmaps
   - kubernetes/k8_secrets
+  - kubernetes/k8_storage
   - kubernetes/k8_storageclasses
   - kubernetes/k8_persistentvolumes
   - kubernetes/k8_releases

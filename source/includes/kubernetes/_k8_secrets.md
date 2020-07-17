@@ -1,8 +1,8 @@
-## Secrets
+### Secrets
 
 <!-------------------- LIST Secrets -------------------->
 
-### List secrets
+#### List secrets
 
 ```shell
 curl -X GET \
@@ -49,7 +49,7 @@ Retrieve a list of all secrets in a given [environment](#administration-environm
 
 <!-------------------- GET A secret -------------------->
 
-### Get a secret
+#### Get a secret
 
 ```shell
 curl -X GET \
