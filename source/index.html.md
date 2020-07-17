@@ -103,6 +103,7 @@ includes:
   - gcp/k8_secrets
   - gcp/k8_storageclasses
   - gcp/k8_persistentvolumes
+  - gcp/k8_persistentvolumeclaims
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/images
@@ -119,6 +120,7 @@ includes:
   - kubernetes/k8_secrets
   - kubernetes/k8_storageclasses
   - kubernetes/k8_persistentvolumes
+  - kubernetes/k8_persistentvolumeclaims
   - kubernetes/k8_releases
   - kubernetes/k8_charts  
   - azure
@@ -146,6 +148,7 @@ includes:
   - azure/k8_secrets
   - azure/k8_storageclasses
   - azure/k8_persistentvolumes
+  - azure/k8_persistentvolumeclaims
   - masterportal
   - masterportal/applications
   - swift
