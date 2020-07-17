@@ -1,8 +1,8 @@
-### Storage Classes
+#### Storage Classes
 
 <!-------------------- LIST Storage classes -------------------->
 
-#### List storage classes
+##### List storage classes
 
 ```shell
 curl -X GET \
@@ -73,7 +73,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 | `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
 <!-------------------- GET A storage class -------------------->
 
-#### Get a storage class
+##### Get a storage class
 
 ```shell
 curl -X GET \

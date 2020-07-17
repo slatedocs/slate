@@ -93,14 +93,18 @@ includes:
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
   - gcp/k8_namespaces
+  - gcp/k8_workloads
   - gcp/k8_pods
-  - gcp/k8_statefulsets
-  - gcp/k8_daemonsets
   - gcp/k8_deployments
+  - gcp/k8_daemonsets
+  - gcp/k8_statefulsets
+  - gcp/k8_networking
   - gcp/k8_services
   - gcp/k8_ingresses
+  - gcp/k8_configuration
   - gcp/k8_configmaps
   - gcp/k8_secrets
+  - gcp/k8_storage
   - gcp/k8_storageclasses
   - gcp/k8_persistentvolumes
   - gcp/k8_releases
@@ -109,14 +113,18 @@ includes:
   - gcp/regions
   - kubernetes
   - kubernetes/k8_namespaces
+  - kubernetes/k8_workloads
   - kubernetes/k8_pods
-  - kubernetes/k8_statefulsets
-  - kubernetes/k8_daemonsets
   - kubernetes/k8_deployments
+  - kubernetes/k8_daemonsets
+  - kubernetes/k8_statefulsets
+  - kubernetes/k8_networking
   - kubernetes/k8_services
   - kubernetes/k8_ingresses
+  - kubernetes/k8_configuration
   - kubernetes/k8_configmaps
   - kubernetes/k8_secrets
+  - kubernetes/k8_storage
   - kubernetes/k8_storageclasses
   - kubernetes/k8_persistentvolumes
   - kubernetes/k8_releases
@@ -136,14 +144,18 @@ includes:
   - azure/kubernetes # Kubernetes section
   - azure/clusters
   - azure/k8_namespaces
+  - azure/k8_workloads
   - azure/k8_pods
-  - azure/k8_statefulsets
-  - azure/k8_daemonsets
   - azure/k8_deployments
+  - azure/k8_daemonsets
+  - azure/k8_statefulsets
+  - azure/k8_networking
   - azure/k8_services
   - azure/k8_ingresses
+  - azure/k8_configuration
   - azure/k8_configmaps
   - azure/k8_secrets
+  - azure/k8_storage
   - azure/k8_storageclasses
   - azure/k8_persistentvolumes
   - masterportal

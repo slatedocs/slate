@@ -176,25 +176,34 @@ html, body {
     font-size: 12px;
   }
 
-  .toc-h3 {
-    padding-left: $nav-padding + 2*$nav-indent;
-    font-size: 12px;
-  }
-
-
   .toc-list-h3 {
     display: none;
     background-color: $nav-subitem-bg;
   }
 
-  .toc-h4 {
-    padding-left: $nav-padding + 3*$nav-indent;
+  .toc-h3 {
+    padding-left: $nav-padding + 2 * $nav-indent;
     font-size: 12px;
   }
 
   .toc-list-h4 {
     display: none;
     background-color: $nav-subitem-bg;
+  }
+
+  .toc-h4 {
+    padding-left: $nav-padding + 3 * $nav-indent;
+    font-size: 12px;
+  }
+
+  .toc-list-h5 {
+    display: none;
+    background-color: $nav-subitem-bg;
+  }
+
+  .toc-h5 {
+    padding-left: $nav-padding + 4 * $nav-indent;
+    font-size: 12px;
   }
 
   .toc-footer {
@@ -363,7 +372,7 @@ html, body {
   }
 
   // the div is the tocify hidden div for placeholding stuff
-  &>h1, &>h2, &>h3, &>h4, &>div {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>div {
     clear:both;
   }
 
@@ -440,7 +449,7 @@ html, body {
 
     td:first-child {
       white-space:nowrap;
-      text-align: right;    
+      text-align: right;
     }
 
     tr>td {
@@ -632,13 +641,13 @@ html, body {
   background-color: $code-bg;
 }
 
-@media (min-width: $tablet-width) {   
-  table{    
-    display: table !important;    
-    width: 94% - $examples-width;   
+@media (min-width: $tablet-width) {
+  table{
+    display: table !important;
+    width: 94% - $examples-width;
     margin-left: 4%;
-  }   
-   th:first-child {   
-     width:25%;   
-   }    
+  }
+  th:first-child {
+    width:25%;
+  }
 }

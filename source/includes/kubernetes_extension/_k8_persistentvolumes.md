@@ -1,8 +1,8 @@
-### Persistent volumes
+#### Persistent volumes
 
 <!-------------------- LIST Persistent volumes -------------------->
 
-#### List persistent volumes
+##### List persistent volumes
 
 ```shell
 curl -X GET \
@@ -99,7 +99,7 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 
 <!-------------------- GET A persistent volume -------------------->
 
-#### Get a persistent volume
+##### Get a persistent volume
 
 ```shell
 curl -X GET \

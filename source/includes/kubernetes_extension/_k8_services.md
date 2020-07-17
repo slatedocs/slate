@@ -1,8 +1,8 @@
-### Services
+#### Services
 
 <!-------------------- LIST SERVICES -------------------->
 
-#### List services
+##### List services
 
 ```shell
 curl -X GET \
@@ -74,7 +74,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET A SERVICE -------------------->
 
-#### Get a service
+##### Get a service
 
 ```shell
 curl -X GET \

@@ -1,8 +1,8 @@
-## Daemon Sets
+### Daemon Sets
 
 <!-------------------- LIST DAEMON SETS -------------------->
 
-### List daemon sets
+#### List daemon sets
 
 ```shell
 curl -X GET \
@@ -43,7 +43,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET A DAEMON SET -------------------->
 
-### Get a daemon set
+#### Get a daemon set
 
 ```shell
 curl -X GET \
@@ -79,7 +79,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- CREATE DAEMON SET -------------------->
 
-### Create a daemon set
+#### Create a daemon set
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
@@ -156,7 +156,7 @@ Return value:
 
 <!-------------------- DELETE DAEMON SET -------------------->
 
-### Delete a daemon set
+#### Delete a daemon set
 
 ```shell
 curl -X DELETE \
