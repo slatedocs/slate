@@ -1,8 +1,8 @@
-### Ingresses
+#### Ingresses
 
 <!-------------------- LIST INGRESSES -------------------->
 
-#### List ingresses
+##### List ingresses
 
 ```shell
 curl -X GET \
@@ -101,7 +101,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET AN INGRESS -------------------->
 
-#### Get an ingress
+##### Get an ingress
 
 ```shell
 curl -X GET \

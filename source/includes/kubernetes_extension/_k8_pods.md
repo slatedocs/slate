@@ -1,9 +1,9 @@
-### Pods
+#### Pods
 
 
 <!-------------------- LIST PODS -------------------->
 
-#### List pods
+##### List pods
 
 ```shell
 curl -X GET \
@@ -236,7 +236,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET A POD -------------------->
 
-#### Get a pod
+##### Get a pod
 
 ```shell
 curl -X GET \
@@ -468,7 +468,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- CREATE POD -------------------->
 
-#### Create a pod
+##### Create a pod
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
@@ -530,7 +530,7 @@ Return value:
 
 <!-------------------- DELETE POD -------------------->
 
-#### Delete a pod
+##### Delete a pod
 
 ```shell
 curl -X DELETE \

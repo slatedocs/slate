@@ -1,8 +1,8 @@
-### Deployments
+#### Deployments
 
 <!-------------------- LIST DEPLOYMENTS -------------------->
 
-#### List deployments
+##### List deployments
 
 ```shell
 curl -X GET \
@@ -51,7 +51,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET A DEPLOYMENT -------------------->
 
-#### Get a deployment
+##### Get a deployment
 
 ```shell
 curl -X GET \
@@ -97,7 +97,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- CREATE DEPLOYMENT -------------------->
 
-#### Create a deployment
+##### Create a deployment
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
@@ -173,7 +173,7 @@ Return value:
 
 <!-------------------- DELETE DEPLOYMENT -------------------->
 
-#### Delete a deployment
+##### Delete a deployment
 
 ```shell
 curl -X DELETE \
