@@ -285,6 +285,23 @@ On subscribing to **ticker** channel, socket server will emit messages with type
 }
 ```
 
+## all_trades
+
+**all_trades** channel provides a real time feed of all trades (fills).
+
+```
+// All Trades Response
+{
+    symbol: "BNBBTC_30Nov",
+    price: "0.0014579",
+    size: 100,
+    type: "recent_trade",
+    buyer_role: "maker",
+    seller_role: "taker",
+    timestamp: 1561634049751430
+}
+```
+
 ## mark_price
 
 **mark_price** channel provides a real time feed of mark price. This is the price on which all open positions are marked for liquidation.
@@ -444,6 +461,108 @@ Channel provides updates for change in position. Need to pass list of product sy
     "bankruptcy_price": "3300.0",       // Bankruptcy Price
     "commission": "0.00001212"          // Commissions blocked for closing the position
 }
+```
+
+## Orders
+Channel provides updates when any order is updated for any action such as fill, quantity change. Need to pass list of product symbols while subscribing.
+
+A snapshot of all open/pending orders will be sent after subscribing a symbol. And all incremental updates will be sent on create/update/delete of orders
+
+All updates including snapshot will have incremental seq_id. seq_id is separate for each symbol.
+
+
+```
+// Order update
+type: "orders",
+      timestamp: System.system_time(:microsecond)
+{
+    "type": "orders",
+    "action": "create",                 // "create"/"update"/"delete"
+    "reason": "",                       // ""/"fill"/"stop_update"/"stop_trigger"/"stop_cancel"
+    "symbol": "BTCUSD_29Mar",           // Product Symbol
+    "product_id": 1,                    // Product ID
+    "order_id": 1234                    // Order id
+    "client_order_id": ""               // Client order id
+    "size": 100,                        // Order size
+    "unfilled_size": 55,                // Unfilled size
+    "price": "9000.00"                  // Price of the order
+    "side": "buy"                       // Order side (buy or sell)
+    "cancellation_reason": "cancelled_by_user"        // Cancellation reason in case of cancelled order, null otherwise
+    "stop_order_type": "stop_loss_order",             // If a Stop Order -> "stop_loss_order"/"take_profit_order", null otherwise
+    "bracket_order": false              // true for a bracket_order, false otherwise
+    "state": "open"                     // "open"/"pending"/"closed"/"cancelled"
+    "seq_no": 1                         // Incremental sequence number
+    "timestamp": 1594105083998848       // Unix timestamp in microseconds
+}
+
+// Stop Order or Bracket orders will include these extra fields, refer bracket order documentation for more details
+{  
+    "stop_price": "9010.00"                     
+    "trigger_price_max_or_min": "9020.00"
+    "bracket_stop_loss_price": "8090.00"
+    "bracket_stop_loss_limit_price": "8090.00"
+    "bracket_take_profit_price": "9020"
+    "bracket_take_profit_limit_price": "9020"
+    "bracket_trail_amount": "10.00"
+}
+
+// Snapshot
+{
+  "meta": {
+    "seq_no": 7,
+    "timestamp": 1594149235554045
+  },
+  "result": [
+    {
+      "id": 1592130,
+      "limit_price": "9000",
+      "order_type": "limit_order",
+      "product_id": 13,
+      "reduce_only": false,
+      "side": "buy",
+      "size": 1,
+      "state": "open",
+      "stop_order_type": null,
+      "stop_price": null,
+      "time_in_force": "gtc",
+      "trail_amount": null,
+      "unfilled_size": 1,
+      "user_id": 1132
+    }
+  ],
+  "success": true,
+  "symbol": "BTCUSD",
+  "type": "orders",
+  "action": "snapshot"
+}
+```
+
+## UserTrades
+Channel provides updates for fills. Need to pass list of product symbols while subscribing.
+
+All updates will have incremental seq_id. seq_id is separate for each symbol.
+
+
+```
+// user_trades
+{
+    
+    "symbol": "BNBBTC_30Nov",
+    "fill_id": "1234-abcd-qwer-3456",
+    "reason": "normal"                      // "normal" or "adl"
+    "product_id": 7,
+    "type": "user_trades",
+    "user_id": 1998,
+    "order_id": 3283999,
+    "side": "buy",
+    "size": 190,
+    "price": "0.00145791",
+    "role": "taker",
+    "client_order_id": "GA123",
+    "timestamp": 1544091555086559,
+    "seq_no": 1
+}
+    
 ```
 
 ## Trading Notitifications
