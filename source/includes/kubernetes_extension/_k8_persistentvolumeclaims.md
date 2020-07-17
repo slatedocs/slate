@@ -71,7 +71,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims?cluster_id=:cluster_id</code>
 
-Retrieve a list of all persistent volumes in a given [environment](#administration-environments).
+Retrieve a list of all persistent volume claims in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                                      |	
 | -------------------------- | ----------------------------------------------------------- |	
@@ -80,7 +80,7 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id` <br/>_string_ | The id of the persistent volume claim. This is the name of the resource. |
+| `id` <br/>_string_ | The id of the persistent volume claim. This is the name and namespace of the resource. |
 | `metadata` <br/>_object_ | The metadata of the persistent volume claim.|
 | `spec` <br/>_object_ | The specification of the persistent volume claim. |
 | `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
@@ -90,9 +90,9 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 | `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
 
 
-<!-------------------- GET A persistent volume -------------------->
+<!-------------------- GET A persistent volume claim -------------------->
 
-#### Get a persistent volume
+#### Get a persistent volume claim
 
 ```shell
 curl -X GET \
@@ -158,7 +158,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims/:id?cluster_id=:cluster_id</code>
 
-Retrieve a persistent volume and all its info in a given [environment](#administration-environments).
+Retrieve a persistent volume claims and all its info in a given [environment](#administration-environments).
 
 		
 | Required                   | &nbsp;                                                      |	
@@ -167,7 +167,7 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 
 | Attributes                            | &nbsp;                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id` <br/>_string_ | The id of the persistent volume claim. This is the name of the resource. |
+| `id` <br/>_string_ | The id of the persistent volume claim. This is the name and namespace of the resource. |
 | `metadata` <br/>_object_ | The metadata of the persistent volume claim.|
 | `spec` <br/>_object_ | The specification of the persistent volume claim. |
 | `spec.accessModes` <br/>_string_ | The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
