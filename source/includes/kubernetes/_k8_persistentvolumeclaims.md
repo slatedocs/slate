@@ -78,13 +78,14 @@ Retrieve a list of all persistent volume claims in a given [environment](#admini
 | `id` <br/>_string_ | The id of the persistent volume claim. This is the name and namespace of the resource. |
 | `metadata` <br/>_object_ | The metadata of the persistent volume claim.|
 | `spec` <br/>_object_ | The specification of the persistent volume claim. |
-| `spec.accessModes` <br/>_string_ | The requested accessMode for the persistent volume. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
-| `spec.resources.requests.storage` <br/>_string_ | Requested storage capacity of the persistent volume. |
+| `spec.accessModes` <br/>_string_ | The requested access mode. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
+| `spec.resources.requests.storage` <br/>_string_ | The requested storage capacity of the persistent volume. |
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
 | `spec.capacity.volumeMode` <br/>_string_ | If set to `Filesystem` (default value), the volume is mounted into Pods into a directory. If set to `Block`, then the volume is used as a raw block device. |
-| `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
-| `status.accessModes` <br/>_string_ | Defined access mode of the persistent volume claimed. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes).|
-| `status.capacity.phase` <br/>_string_ | Allocated storage capacity of the persistent volume. |
+| `status` <br/>_object_ | The status of the persistent volume claim. |
+| `status.phase` <br/>_string_ | The claim is in one of the following phases: `Pending`, `Bound`, `Lost` or `Terminating`. |
+| `status.accessModes` <br/>_string_ | The allocated access mode. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes).|
+| `status.capacity.storage` <br/>_string_ | The allocated storage capacity. |
 
 
 
@@ -163,10 +164,11 @@ Retrieve a persistent volume claim and all its info in a given [environment](#ad
 | `id` <br/>_string_ | The id of the persistent volume claim. This is the name and namespace of the resource. |
 | `metadata` <br/>_object_ | The metadata of the persistent volume claim.|
 | `spec` <br/>_object_ | The specification of the persistent volume claim. |
-| `spec.accessModes` <br/>_string_ | The requested accessMode for the persistent volume. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
-| `spec.resources.requests.storage` <br/>_string_ | Requested storage capacity of the persistent volume. |
+| `spec.accessModes` <br/>_string_ | The requested access mode. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes). |
+| `spec.resources.requests.storage` <br/>_string_ | The requested storage capacity of the persistent volume. |
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
 | `spec.capacity.volumeMode` <br/>_string_ | If set to `Filesystem` (default value), the volume is mounted into Pods into a directory. If set to `Block`, then the volume is used as a raw block device. |
-| `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
-| `status.accessModes` <br/>_string_ | Defined access mode of the persistent volume claimed. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes).|
-| `status.capacity.phase` <br/>_string_ | Allocated storage capacity of the persistent volume. |
+| `status` <br/>_object_ | The status of the persistent volume claim. |
+| `status.phase` <br/>_string_ | The claim is in one of the following phases: `Pending`, `Bound`, `Lost` or `Terminating`. |
+| `status.accessModes` <br/>_string_ | The allocated access mode. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes).|
+| `status.capacity.storage` <br/>_string_ | The allocated storage capacity. |
