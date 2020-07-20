@@ -260,7 +260,13 @@ The post params posted at any update in a particular leads are as follows
      "purpose_of_purchase": "Self Use",
      "current_apartment_type": 1,
      "current_residence_type": "Family Owned"
-  }
+  },
+  "disposition": [{
+    id: 121,
+    agent_name: "name",
+    disposition_type: "followup",
+    created_at: 1558080727
+  }]
 }
 ```
 
@@ -295,6 +301,10 @@ The post params posted at any update in a particular leads are as follows
 - `Fail` - When marked as Failed
 - `Junk` - When marked as Junk 
 - `In Call Center` - When lead is sent to call center
+
+```disposition_type``` can have the the following values ```"failed", "follow_up", "fresh", "junk", "patch_out", "not_contacted", "call_back"```
+
+
 
 
 Note: All object arrays in the payload are sorted with latest first, eg. calls, events, notes dispositions are sorted as latest first.
