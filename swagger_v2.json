@@ -1882,7 +1882,8 @@
         "product_id": {
           "type": "integer"
         }
-      }
+      },
+      "example": { "id": "ashb1212", "product_id": 27, "limit_price": "9200", "side": "buy", "size": 100, "unfilled_size": 50, "user_id": 1, "order_type": "limit_order", "state": "open", "created_at": "..."}
     },
     "ArrayOfOrders": {
       "type": "array",
@@ -2124,7 +2125,7 @@
       "type": "object",
       "description": "L2 orderbook",
       "properties": {
-        "buy_book": {
+        "buy": {
           "type": "array",
           "items": {
             "type": "object",
@@ -2138,7 +2139,7 @@
             }
           }
         },
-        "sell_book": {
+        "sell": {
           "type": "array",
           "items": {
             "type": "object",
@@ -2152,6 +2153,20 @@
             }
           }
         }
+      },
+      "example": {
+        "buy": [
+          {
+          "price": "9187.5",
+          "size": 205640
+          }
+        ],
+        "sell": [
+          {
+          "price": "9188.0",
+          "size": 113752
+          }
+        ]
       }
     },
     "Trades": {

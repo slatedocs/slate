@@ -227,26 +227,31 @@ ws.send({
 
 # Public Channels
 
-## ticker
+## v2 ticker
 
 The ticker channel provides price change data for the last 24 hrs (rolling window). It is published every 5 seconds.
 
-On subscribing to **ticker** channel, socket server will emit messages with type 'ticker' in response.
+On subscribing to **v2/ticker** channel, socket server will emit messages with type 'ticker' in response.
 
 > Ticker Sample
 
 ```
 // Response
 {
-    "symbol": "BNBBTC_30Nov",
-    "product_id": 7,
-    "type": "ticker",
-    "timestamp": 1561634049751430,
-    "open": 0.0014622,
-    "high": 0.0014622,
-    "low": 0.0014622,
-    "close": 0.0014622,
-    "volume": 1
+    "close": 0.00001327,
+    "high": 0.00001359,
+    "low": 0.00001323,
+    "mark_price": "0.00001325",
+    "open": 0.00001347,
+    "product_id": 56,
+    "size": 1254631,                        // num of contracts traded
+    "spot_price": "0.00001326",             
+    "symbol": "ADABTC",
+    timestamp: 1595242187705121,            // in us
+    "turnover": 16.805033569999996,         // turnover reported in settling symbol
+    "turnover_symbol": "BTC",               // settling symbol
+    "turnover_usd": 154097.09108233,        // turnover in usd
+    "volume": 1254631                       // volume is defined as contract_value * size 
 }
 ```
 
@@ -265,23 +270,6 @@ On subscribing to **ticker** channel, socket server will emit messages with type
     "timestamp": 1561634049751430,
     "buy": [{"limit_price":"0.0014577","size":62},{"limit_price":"0.0014571","size":28}],
     "sell": [{"limit_price":"6229.0","size":15964},{"limit_price":"6229.5","size":3504},{"limit_price":"6230.0","size":15964},{"limit_price":"6231.0","size":15957}]
-}
-```
-
-## recent_trade
-
-**recent_trade** channel provides a real time feed of all recent trades (fills).
-
-```
-// Trades Response
-{
-    symbol: "BNBBTC_30Nov",
-    price: "0.0014579",
-    size: 100,
-    "type": "recent_trade",
-    buyer_role: "maker",
-    seller_role: "taker",
-    timestamp: 1561634049751430
 }
 ```
 
@@ -564,7 +552,7 @@ All updates will have incremental seq_id. seq_id is separate for each symbol.
 }
     
 ```
-
+<!-- 
 ## Trading Notitifications
 
 **trading_notifications** channel provides updates of all the private trade notifications.
@@ -724,3 +712,4 @@ Channel provide updates when margin get updated due to auto_topup istrue for tha
 // Auto Topup
 
 ```
+ -->

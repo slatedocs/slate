@@ -1,5 +1,7 @@
-<h1 id="ApiSection" class="section-header">API</h1>
-The REST API has endpoints for account and order management as well as public market data.
+<h1 id="ApiSection" class="section-header">Rest Api</h1>
+This section documents the latest(v2) api for trading on Delta Exchange. The REST API has endpoints for account and order management as well as public market data.
+
+If you are looking for the old api documentation, here is the link to [v1 api](https://github.com/delta-exchange/slate/blob/master/source/includes/_rest_api_v1.md) docs (now deprecated). 
 
 REST API ENDPOINT URL
 
@@ -25,7 +27,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('http://api.delta.exchange/v2/assets', params={
+r = requests.get('https://api.delta.exchange/v2/assets', params={
 
 }, headers = headers)
 
@@ -35,7 +37,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/assets \
+curl -X GET https://api.delta.exchange/v2/assets \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -54,7 +56,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/assets',
+result = RestClient.get 'https://api.delta.exchange/v2/assets',
   params: {
   }, headers: headers
 
@@ -109,7 +111,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/indices', params={
+r = requests.get('https://api.delta.exchange/v2/indices', params={
 
 }, headers = headers)
 
@@ -119,7 +121,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/indices \
+curl -X GET https://api.delta.exchange/v2/indices \
   -H 'Accept: application/json'
 
 ```
@@ -132,7 +134,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/indices',
+result = RestClient.get 'https://api.delta.exchange/v2/indices',
   params: {
   }, headers: headers
 
@@ -189,7 +191,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/products', params={
+r = requests.get('https://api.delta.exchange/v2/products', params={
 
 }, headers = headers)
 
@@ -199,7 +201,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/products \
+curl -X GET https://api.delta.exchange/v2/products \
   -H 'Accept: application/json'
 
 ```
@@ -212,7 +214,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/products',
+result = RestClient.get 'https://api.delta.exchange/v2/products',
   params: {
   }, headers: headers
 
@@ -320,7 +322,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/tickers', params={
+r = requests.get('https://api.delta.exchange/v2/tickers', params={
 
 }, headers = headers)
 
@@ -330,7 +332,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/tickers \
+curl -X GET https://api.delta.exchange/v2/tickers \
   -H 'Accept: application/json'
 
 ```
@@ -343,7 +345,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/tickers',
+result = RestClient.get 'https://api.delta.exchange/v2/tickers',
   params: {
   }, headers: headers
 
@@ -403,7 +405,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/tickers/{symbol}', params={
+r = requests.get('https://api.delta.exchange/v2/tickers/{symbol}', params={
 
 }, headers = headers)
 
@@ -413,7 +415,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/tickers/{symbol} \
+curl -X GET https://api.delta.exchange/v2/tickers/{symbol} \
   -H 'Accept: application/json'
 
 ```
@@ -426,7 +428,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/tickers/{symbol}',
+result = RestClient.get 'https://api.delta.exchange/v2/tickers/{symbol}',
   params: {
   }, headers: headers
 
@@ -498,7 +500,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('http://api.delta.exchange/v2/orders', params={
+r = requests.post('https://api.delta.exchange/v2/orders', params={
 
 }, headers = headers)
 
@@ -508,7 +510,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST http://api.delta.exchange/v2/orders \
+curl -X POST https://api.delta.exchange/v2/orders \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -529,7 +531,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'http://api.delta.exchange/v2/orders',
+result = RestClient.post 'https://api.delta.exchange/v2/orders',
   params: {
   }, headers: headers
 
@@ -568,19 +570,16 @@ p JSON.parse(result)
 {
   "success": true,
   "result": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
+    "id": "ashb1212",
+    "product_id": 27,
+    "limit_price": "9200",
     "side": "buy",
+    "size": 100,
+    "unfilled_size": 50,
+    "user_id": 1,
     "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
     "state": "open",
-    "created_at": "string",
-    "product_id": 0
+    "created_at": "..."
   }
 }
 ```
@@ -630,7 +629,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.delete('http://api.delta.exchange/v2/orders', params={
+r = requests.delete('https://api.delta.exchange/v2/orders', params={
 
 }, headers = headers)
 
@@ -640,7 +639,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X DELETE http://api.delta.exchange/v2/orders \
+curl -X DELETE https://api.delta.exchange/v2/orders \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -661,7 +660,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.delete 'http://api.delta.exchange/v2/orders',
+result = RestClient.delete 'https://api.delta.exchange/v2/orders',
   params: {
   }, headers: headers
 
@@ -694,19 +693,16 @@ p JSON.parse(result)
 {
   "success": true,
   "result": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
+    "id": "ashb1212",
+    "product_id": 27,
+    "limit_price": "9200",
     "side": "buy",
+    "size": 100,
+    "unfilled_size": 50,
+    "user_id": 1,
     "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
     "state": "open",
-    "created_at": "string",
-    "product_id": 0
+    "created_at": "..."
   }
 }
 ```
@@ -756,7 +752,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.put('http://api.delta.exchange/v2/orders', params={
+r = requests.put('https://api.delta.exchange/v2/orders', params={
 
 }, headers = headers)
 
@@ -766,7 +762,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X PUT http://api.delta.exchange/v2/orders \
+curl -X PUT https://api.delta.exchange/v2/orders \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -787,7 +783,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.put 'http://api.delta.exchange/v2/orders',
+result = RestClient.put 'https://api.delta.exchange/v2/orders',
   params: {
   }, headers: headers
 
@@ -822,19 +818,16 @@ p JSON.parse(result)
 {
   "success": true,
   "result": {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
+    "id": "ashb1212",
+    "product_id": 27,
+    "limit_price": "9200",
     "side": "buy",
+    "size": 100,
+    "unfilled_size": 50,
+    "user_id": 1,
     "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
     "state": "open",
-    "created_at": "string",
-    "product_id": 0
+    "created_at": "..."
   }
 }
 ```
@@ -883,7 +876,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('http://api.delta.exchange/v2/orders', params={
+r = requests.get('https://api.delta.exchange/v2/orders', params={
 
 }, headers = headers)
 
@@ -893,7 +886,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/orders \
+curl -X GET https://api.delta.exchange/v2/orders \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -912,7 +905,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/orders',
+result = RestClient.get 'https://api.delta.exchange/v2/orders',
   params: {
   }, headers: headers
 
@@ -961,19 +954,16 @@ p JSON.parse(result)
   "success": true,
   "result": [
     {
-      "id": 0,
-      "user_id": 0,
-      "size": 0,
-      "unfilled_size": 0,
+      "id": "ashb1212",
+      "product_id": 27,
+      "limit_price": "9200",
       "side": "buy",
+      "size": 100,
+      "unfilled_size": 50,
+      "user_id": 1,
       "order_type": "limit_order",
-      "limit_price": "string",
-      "stop_order_type": "stop_loss_order",
-      "stop_price": "string",
-      "close_on_trigger": "false",
       "state": "open",
-      "created_at": "string",
-      "product_id": 0
+      "created_at": "..."
     }
   ],
   "meta": {
@@ -1027,7 +1017,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.delete('http://api.delta.exchange/v2/orders/all', params={
+r = requests.delete('https://api.delta.exchange/v2/orders/all', params={
 
 }, headers = headers)
 
@@ -1037,7 +1027,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X DELETE http://api.delta.exchange/v2/orders/all \
+curl -X DELETE https://api.delta.exchange/v2/orders/all \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1058,7 +1048,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.delete 'http://api.delta.exchange/v2/orders/all',
+result = RestClient.delete 'https://api.delta.exchange/v2/orders/all',
   params: {
   }, headers: headers
 
@@ -1121,7 +1111,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('http://api.delta.exchange/v2/orders/batch', params={
+r = requests.post('https://api.delta.exchange/v2/orders/batch', params={
 
 }, headers = headers)
 
@@ -1131,7 +1121,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST http://api.delta.exchange/v2/orders/batch \
+curl -X POST https://api.delta.exchange/v2/orders/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1152,7 +1142,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'http://api.delta.exchange/v2/orders/batch',
+result = RestClient.post 'https://api.delta.exchange/v2/orders/batch',
   params: {
   }, headers: headers
 
@@ -1223,19 +1213,16 @@ p JSON.parse(result)
   "success": true,
   "result": [
     {
-      "id": 0,
-      "user_id": 0,
-      "size": 0,
-      "unfilled_size": 0,
+      "id": "ashb1212",
+      "product_id": 27,
+      "limit_price": "9200",
       "side": "buy",
+      "size": 100,
+      "unfilled_size": 50,
+      "user_id": 1,
       "order_type": "limit_order",
-      "limit_price": "string",
-      "stop_order_type": "stop_loss_order",
-      "stop_price": "string",
-      "close_on_trigger": "false",
       "state": "open",
-      "created_at": "string",
-      "product_id": 0
+      "created_at": "..."
     }
   ]
 }
@@ -1286,7 +1273,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.put('http://api.delta.exchange/v2/orders/batch', params={
+r = requests.put('https://api.delta.exchange/v2/orders/batch', params={
 
 }, headers = headers)
 
@@ -1296,7 +1283,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X PUT http://api.delta.exchange/v2/orders/batch \
+curl -X PUT https://api.delta.exchange/v2/orders/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1317,7 +1304,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.put 'http://api.delta.exchange/v2/orders/batch',
+result = RestClient.put 'https://api.delta.exchange/v2/orders/batch',
   params: {
   }, headers: headers
 
@@ -1366,19 +1353,16 @@ batch order edit
   "success": true,
   "result": [
     {
-      "id": 0,
-      "user_id": 0,
-      "size": 0,
-      "unfilled_size": 0,
+      "id": "ashb1212",
+      "product_id": 27,
+      "limit_price": "9200",
       "side": "buy",
+      "size": 100,
+      "unfilled_size": 50,
+      "user_id": 1,
       "order_type": "limit_order",
-      "limit_price": "string",
-      "stop_order_type": "stop_loss_order",
-      "stop_price": "string",
-      "close_on_trigger": "false",
       "state": "open",
-      "created_at": "string",
-      "product_id": 0
+      "created_at": "..."
     }
   ]
 }
@@ -1429,7 +1413,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.delete('http://api.delta.exchange/v2/orders/batch', params={
+r = requests.delete('https://api.delta.exchange/v2/orders/batch', params={
 
 }, headers = headers)
 
@@ -1439,7 +1423,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X DELETE http://api.delta.exchange/v2/orders/batch \
+curl -X DELETE https://api.delta.exchange/v2/orders/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1460,7 +1444,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.delete 'http://api.delta.exchange/v2/orders/batch',
+result = RestClient.delete 'https://api.delta.exchange/v2/orders/batch',
   params: {
   }, headers: headers
 
@@ -1503,19 +1487,16 @@ p JSON.parse(result)
   "success": true,
   "result": [
     {
-      "id": 0,
-      "user_id": 0,
-      "size": 0,
-      "unfilled_size": 0,
+      "id": "ashb1212",
+      "product_id": 27,
+      "limit_price": "9200",
       "side": "buy",
+      "size": 100,
+      "unfilled_size": 50,
+      "user_id": 1,
       "order_type": "limit_order",
-      "limit_price": "string",
-      "stop_order_type": "stop_loss_order",
-      "stop_price": "string",
-      "close_on_trigger": "false",
       "state": "open",
-      "created_at": "string",
-      "product_id": 0
+      "created_at": "..."
     }
   ]
 }
@@ -1566,7 +1547,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('http://api.delta.exchange/v2/orders/leverage', params={
+r = requests.post('https://api.delta.exchange/v2/orders/leverage', params={
 
 }, headers = headers)
 
@@ -1576,7 +1557,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST http://api.delta.exchange/v2/orders/leverage \
+curl -X POST https://api.delta.exchange/v2/orders/leverage \
   -H 'Content-Type: application/json' \
   -H 'Accept: */*' \
   -H 'api-key: ****' \
@@ -1597,7 +1578,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'http://api.delta.exchange/v2/orders/leverage',
+result = RestClient.post 'https://api.delta.exchange/v2/orders/leverage',
   params: {
   }, headers: headers
 
@@ -1656,7 +1637,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('http://api.delta.exchange/v2/orders/leverage', params={
+r = requests.get('https://api.delta.exchange/v2/orders/leverage', params={
   'product_id': '0'
 }, headers = headers)
 
@@ -1666,7 +1647,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/orders/leverage?product_id=0 \
+curl -X GET https://api.delta.exchange/v2/orders/leverage?product_id=0 \
   -H 'Accept: */*' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -1685,7 +1666,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/orders/leverage',
+result = RestClient.get 'https://api.delta.exchange/v2/orders/leverage',
   params: {
   'product_id' => 'integer'
 }, headers: headers
@@ -1737,7 +1718,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('http://api.delta.exchange/v2/positions', params={
+r = requests.get('https://api.delta.exchange/v2/positions', params={
 
 }, headers = headers)
 
@@ -1747,7 +1728,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/positions \
+curl -X GET https://api.delta.exchange/v2/positions \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -1766,7 +1747,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/positions',
+result = RestClient.get 'https://api.delta.exchange/v2/positions',
   params: {
   }, headers: headers
 
@@ -1826,7 +1807,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('http://api.delta.exchange/v2/positions/change_margin', params={
+r = requests.post('https://api.delta.exchange/v2/positions/change_margin', params={
 
 }, headers = headers)
 
@@ -1836,7 +1817,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST http://api.delta.exchange/v2/positions/change_margin \
+curl -X POST https://api.delta.exchange/v2/positions/change_margin \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1857,7 +1838,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'http://api.delta.exchange/v2/positions/change_margin',
+result = RestClient.post 'https://api.delta.exchange/v2/positions/change_margin',
   params: {
   }, headers: headers
 
@@ -1917,13 +1898,153 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-v2-trade-history">Trade History</h1>
+<h1 id="delta-exchange-api-v2-tradehistory">TradeHistory</h1>
 
 Get Orders History, Get Fill History
 
+## Get order history (cancelled and closed)
+
+<a id="opIdgetOrderHistory"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/orders/history', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/orders/history \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/orders/history',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /orders/history`
+
+<h3 id="get-order-history-(cancelled-and-closed)-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_ids|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated product ids|
+|order_types|query|string|false|comma separated order types|
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
+|after|query|string|false|after cursor for pagination|
+|before|query|string|false|before cursor for pagination|
+|page_size|query|integer|false|number of records per page|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+|contract_types|interest_rate_swaps|
+|contract_types|move_options|
+|contract_types|spreads|
+|order_types|market|
+|order_types|limit|
+|order_types|stop_market|
+|order_types|stop_limit|
+|order_types|all_stop|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "id": "ashb1212",
+      "product_id": 27,
+      "limit_price": "9200",
+      "side": "buy",
+      "size": 100,
+      "unfilled_size": 50,
+      "user_id": 1,
+      "order_type": "limit_order",
+      "state": "open",
+      "created_at": "..."
+    }
+  ],
+  "meta": {
+    "after": "string",
+    "before": "string"
+  }
+}
+```
+
+<h3 id="get-order-history-(cancelled-and-closed)-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of closed and cancelled orders|Inline|
+
+<h3 id="get-order-history-(cancelled-and-closed)-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|close_on_trigger|false|
+|close_on_trigger|true|
+|state|open|
+|state|pending|
+|state|closed|
+|state|cancelled|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 ## GET user fills by filters
 
-<a id="opIdGETuserfillsbyfilters"></a>
+<a id="opIdgetUserfills"></a>
 
 > Code samples
 
@@ -1933,8 +2054,8 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/fills', params={
-  'start_time': '0',  'end_time': '0'
+r = requests.get('https://api.delta.exchange/v2/fills', params={
+
 }, headers = headers)
 
 print r.json()
@@ -1943,7 +2064,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/fills?start_time=0&end_time=0 \
+curl -X GET https://api.delta.exchange/v2/fills \
   -H 'Accept: application/json'
 
 ```
@@ -1956,11 +2077,9 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/fills',
+result = RestClient.get 'https://api.delta.exchange/v2/fills',
   params: {
-  'start_time' => 'integer',
-'end_time' => 'integer'
-}, headers: headers
+  }, headers: headers
 
 p JSON.parse(result)
 
@@ -1974,8 +2093,8 @@ p JSON.parse(result)
 |---|---|---|---|---|
 |product_ids|query|string|false|none|
 |contract_types|query|string|false|none|
-|start_time|query|integer|true|Start time for the fills query|
-|end_time|query|integer|true|End time for the fills query|
+|start_time|query|integer|false|Start time for the fills query|
+|end_time|query|integer|false|End time for the fills query|
 |before|query|string|false|from time in micro-seconds in epoc|
 |page_size|query|integer|false|number of records per page|
 
@@ -2038,6 +2157,90 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
+## Download Wallet transactions
+
+<a id="opIddownloadFillsHistory"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/fills/history/download/csv', params={
+  'start_time': '0',  'end_time': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/fills/history/download/csv?start_time=0&end_time=0 \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/fills/history/download/csv',
+  params: {
+  'start_time' => 'integer',
+'end_time' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /fills/history/download/csv`
+
+<h3 id="download-wallet-transactions-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_ids|query|string|false|none|
+|contract_types|query|string|false|none|
+|start_time|query|integer|true|Start time for the fills query|
+|end_time|query|integer|true|End time for the fills query|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+|contract_types|interest_rate_swaps|
+|contract_types|move_options|
+|contract_types|spreads|
+
+<h3 id="download-wallet-transactions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|csv of fills for the filter query|None|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 <h1 id="delta-exchange-api-v2-orderbook">Orderbook</h1>
 
 L2Orderbook
@@ -2054,7 +2257,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/l2orderbook/{symbol}', params={
+r = requests.get('https://api.delta.exchange/v2/l2orderbook/{symbol}', params={
 
 }, headers = headers)
 
@@ -2064,7 +2267,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/l2orderbook/{symbol} \
+curl -X GET https://api.delta.exchange/v2/l2orderbook/{symbol} \
   -H 'Accept: application/json'
 
 ```
@@ -2077,7 +2280,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/l2orderbook/{symbol}',
+result = RestClient.get 'https://api.delta.exchange/v2/l2orderbook/{symbol}',
   params: {
   }, headers: headers
 
@@ -2102,16 +2305,16 @@ p JSON.parse(result)
 {
   "success": true,
   "result": {
-    "buy_book": [
+    "buy": [
       {
-        "price": "string",
-        "size": 0
+        "price": "9187.5",
+        "size": 205640
       }
     ],
-    "sell_book": [
+    "sell": [
       {
-        "price": "string",
-        "size": 0
+        "price": "9188.0",
+        "size": 113752
       }
     ]
   }
@@ -2146,7 +2349,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/trades/{symbol}', params={
+r = requests.get('https://api.delta.exchange/v2/trades/{symbol}', params={
 
 }, headers = headers)
 
@@ -2156,7 +2359,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/trades/{symbol} \
+curl -X GET https://api.delta.exchange/v2/trades/{symbol} \
   -H 'Accept: application/json'
 
 ```
@@ -2169,7 +2372,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/trades/{symbol}',
+result = RestClient.get 'https://api.delta.exchange/v2/trades/{symbol}',
   params: {
   }, headers: headers
 
@@ -2243,7 +2446,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('http://api.delta.exchange/v2/wallet/balances', params={
+r = requests.get('https://api.delta.exchange/v2/wallet/balances', params={
 
 }, headers = headers)
 
@@ -2253,7 +2456,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/wallet/balances \
+curl -X GET https://api.delta.exchange/v2/wallet/balances \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -2272,7 +2475,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/wallet/balances',
+result = RestClient.get 'https://api.delta.exchange/v2/wallet/balances',
   params: {
   }, headers: headers
 
@@ -2333,7 +2536,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('http://api.delta.exchange/v2/wallet/transactions', params={
+r = requests.get('https://api.delta.exchange/v2/wallet/transactions', params={
 
 }, headers = headers)
 
@@ -2343,7 +2546,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/wallet/transactions \
+curl -X GET https://api.delta.exchange/v2/wallet/transactions \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -2362,7 +2565,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/wallet/transactions',
+result = RestClient.get 'https://api.delta.exchange/v2/wallet/transactions',
   params: {
   }, headers: headers
 
@@ -2449,7 +2652,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('http://api.delta.exchange/v2/wallet/transactions/download', params={
+r = requests.get('https://api.delta.exchange/v2/wallet/transactions/download', params={
 
 }, headers = headers)
 
@@ -2459,7 +2662,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/wallet/transactions/download \
+curl -X GET https://api.delta.exchange/v2/wallet/transactions/download \
   -H 'api-key: ****' \
   -H 'signature: ****' \
   -H 'timestamp: ****'
@@ -2476,7 +2679,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/wallet/transactions/download',
+result = RestClient.get 'https://api.delta.exchange/v2/wallet/transactions/download',
   params: {
   }, headers: headers
 
@@ -2506,6 +2709,8 @@ To perform this operation, you must be sign the request using your api key and s
 
 <h1 id="delta-exchange-api-v2-ohlc-candles">OHLC Candles</h1>
 
+Get price data
+
 ## GET ohlc candles
 
 <a id="opIdgetCandles"></a>
@@ -2518,7 +2723,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/history/candles', params={
+r = requests.get('https://api.delta.exchange/v2/history/candles', params={
   'resolution': '1m',  'symbol': 'string',  'start': '0',  'end': '0'
 }, headers = headers)
 
@@ -2528,7 +2733,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/history/candles?resolution=1m&symbol=string&start=0&end=0 \
+curl -X GET https://api.delta.exchange/v2/history/candles?resolution=1m&symbol=string&start=0&end=0 \
   -H 'Accept: application/json'
 
 ```
@@ -2541,7 +2746,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/history/candles',
+result = RestClient.get 'https://api.delta.exchange/v2/history/candles',
   params: {
   'resolution' => 'string',
 'symbol' => 'string',
@@ -2627,7 +2832,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('http://api.delta.exchange/v2/history/sparklines', params={
+r = requests.get('https://api.delta.exchange/v2/history/sparklines', params={
   'symbols': 'string'
 }, headers = headers)
 
@@ -2637,7 +2842,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET http://api.delta.exchange/v2/history/sparklines?symbols=string \
+curl -X GET https://api.delta.exchange/v2/history/sparklines?symbols=string \
   -H 'Accept: application/json'
 
 ```
@@ -2650,7 +2855,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get 'http://api.delta.exchange/v2/history/sparklines',
+result = RestClient.get 'https://api.delta.exchange/v2/history/sparklines',
   params: {
   'symbols' => 'string'
 }, headers: headers
@@ -2705,235 +2910,6 @@ p JSON.parse(result)
 
 <aside class="success">
 This operation does not require authentication.
-</aside>
-
-<h1 id="delta-exchange-api-v2-tradehistory">TradeHistory</h1>
-
-## Get order history (cancelled and closed)
-
-<a id="opIdgetOrderHistory"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('http://api.delta.exchange/v2/orders/history', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET http://api.delta.exchange/v2/orders/history \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'http://api.delta.exchange/v2/orders/history',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /orders/history`
-
-<h3 id="get-order-history-(cancelled-and-closed)-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_ids|query|string|false|comma separated product ids|
-|contract_types|query|string|false|comma separated product ids|
-|order_types|query|string|false|comma separated order types|
-|start_time|query|integer|false|from time in micro-seconds in epoc|
-|end_time|query|integer|false|from time in micro-seconds in epoc|
-|after|query|string|false|after cursor for pagination|
-|before|query|string|false|before cursor for pagination|
-|page_size|query|integer|false|number of records per page|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-|contract_types|interest_rate_swaps|
-|contract_types|move_options|
-|contract_types|spreads|
-|order_types|market|
-|order_types|limit|
-|order_types|stop_market|
-|order_types|stop_limit|
-|order_types|all_stop|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": [
-    {
-      "id": 0,
-      "user_id": 0,
-      "size": 0,
-      "unfilled_size": 0,
-      "side": "buy",
-      "order_type": "limit_order",
-      "limit_price": "string",
-      "stop_order_type": "stop_loss_order",
-      "stop_price": "string",
-      "close_on_trigger": "false",
-      "state": "open",
-      "created_at": "string",
-      "product_id": 0
-    }
-  ],
-  "meta": {
-    "after": "string",
-    "before": "string"
-  }
-}
-```
-
-<h3 id="get-order-history-(cancelled-and-closed)-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of closed and cancelled orders|Inline|
-
-<h3 id="get-order-history-(cancelled-and-closed)-responseschema">Response Schema</h3>
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|side|buy|
-|side|sell|
-|order_type|limit_order|
-|order_type|market_order|
-|stop_order_type|stop_loss_order|
-|close_on_trigger|false|
-|close_on_trigger|true|
-|state|open|
-|state|pending|
-|state|closed|
-|state|cancelled|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-## Download Wallet transactions
-
-<a id="opIddownloadFillsHistory"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('http://api.delta.exchange/v2/fills/history/download/csv', params={
-  'start_time': '0',  'end_time': '0'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET http://api.delta.exchange/v2/fills/history/download/csv?start_time=0&end_time=0 \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'http://api.delta.exchange/v2/fills/history/download/csv',
-  params: {
-  'start_time' => 'integer',
-'end_time' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /fills/history/download/csv`
-
-<h3 id="download-wallet-transactions-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_ids|query|string|false|none|
-|contract_types|query|string|false|none|
-|start_time|query|integer|true|Start time for the fills query|
-|end_time|query|integer|true|End time for the fills query|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-|contract_types|interest_rate_swaps|
-|contract_types|move_options|
-|contract_types|spreads|
-
-<h3 id="download-wallet-transactions-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|csv of fills for the filter query|None|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
 # Schemas
@@ -3243,19 +3219,16 @@ To perform this operation, you must be sign the request using your api key and s
 
 ```json
 {
-  "id": 0,
-  "user_id": 0,
-  "size": 0,
-  "unfilled_size": 0,
+  "id": "ashb1212",
+  "product_id": 27,
+  "limit_price": "9200",
   "side": "buy",
+  "size": 100,
+  "unfilled_size": 50,
+  "user_id": 1,
   "order_type": "limit_order",
-  "limit_price": "string",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "false",
   "state": "open",
-  "created_at": "string",
-  "product_id": 0
+  "created_at": "..."
 }
 
 ```
@@ -3303,19 +3276,16 @@ To perform this operation, you must be sign the request using your api key and s
 ```json
 [
   {
-    "id": 0,
-    "user_id": 0,
-    "size": 0,
-    "unfilled_size": 0,
+    "id": "ashb1212",
+    "product_id": 27,
+    "limit_price": "9200",
     "side": "buy",
+    "size": 100,
+    "unfilled_size": 50,
+    "user_id": 1,
     "order_type": "limit_order",
-    "limit_price": "string",
-    "stop_order_type": "stop_loss_order",
-    "stop_price": "string",
-    "close_on_trigger": "false",
     "state": "open",
-    "created_at": "string",
-    "product_id": 0
+    "created_at": "..."
   }
 ]
 
@@ -3678,16 +3648,16 @@ To perform this operation, you must be sign the request using your api key and s
 
 ```json
 {
-  "buy_book": [
+  "buy": [
     {
-      "price": "string",
-      "size": 0
+      "price": "9187.5",
+      "size": 205640
     }
   ],
-  "sell_book": [
+  "sell": [
     {
-      "price": "string",
-      "size": 0
+      "price": "9188.0",
+      "size": 113752
     }
   ]
 }
@@ -3700,10 +3670,10 @@ To perform this operation, you must be sign the request using your api key and s
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|buy_book|[object]|false|none|none|
+|buy|[object]|false|none|none|
 |» price|string|false|none|none|
 |» size|integer|false|none|none|
-|sell_book|[object]|false|none|none|
+|sell|[object]|false|none|none|
 |» price|string|false|none|none|
 |» size|integer|false|none|none|
 
