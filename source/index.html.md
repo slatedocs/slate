@@ -24,7 +24,6 @@ search: true
 
 * PHP sample code for requests signing fixed.
 
-
 ## 2020-07-08
 
 * New API Key features:
@@ -1126,7 +1125,10 @@ curl -X GET "https://api.tauros.io/api/v1/trading/trades/?market=$MKT"
 This endpoint returns the last 50 trades for a given market.
 
 ## Tickers
-Provides a summary market data (ticker) for all markets. Fields:
+Provides a summary market data (ticker) for all markets.
+
+Fields:
+
 * `high`: Last 24h highest price.
 * `low`: Last 24h lowest price.
 * `volume`: Last 24h amount traded.
@@ -1186,12 +1188,10 @@ curl -X GET "https://api.tauros.io/api/v2/trading/tickers/"
 ```
 
 ### HTTP Request
-`GET /v1/trading/trades/`
+`GET /v2/trading/tickers/`
 
 ### Query Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| market | String | No | Market name (e.g. `btc-mxn`). |
+None
 
 ## List trading fees
 ```shell
