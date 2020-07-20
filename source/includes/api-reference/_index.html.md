@@ -5328,7 +5328,7 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
     "followers": "12345,23456",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
@@ -5380,7 +5380,7 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "members": [
       {
@@ -5490,7 +5490,7 @@ Returns the full record of the newly created project.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -5644,7 +5644,7 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "members": [
       {
@@ -5829,7 +5829,7 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
     "followers": "12345,23456",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
@@ -5881,7 +5881,7 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "members": [
       {
@@ -5989,7 +5989,7 @@ Returns the complete updated project record.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -6628,7 +6628,7 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
     "followers": "12345,23456",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
@@ -6680,7 +6680,7 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "members": [
       {
@@ -6782,7 +6782,7 @@ Returns the full record of the newly created project.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -7038,7 +7038,7 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
     "followers": "12345,23456",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
@@ -7090,7 +7090,7 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
     "default_view": "calendar",
     "due_date": "2019-09-15",
     "due_on": "2019-09-15",
-    "html_notes": "These are things we need to purchase.",
+    "html_notes": "<body>These are things we need to purchase.</body>",
     "is_template": false,
     "members": [
       {
@@ -7195,7 +7195,7 @@ Returns the full record of the newly created project.
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -18278,7 +18278,7 @@ Webhook events will "propagate up" from contained objects through to parent obje
 
 This can be a lot of data, some of which might not be relevant to a particular integration, so Asana's webhooks have a filtering feature which allows integrations to specify only the types of changes that they care about. By specifying the list of [WebhookFilter](#tocS_WebhookFilter)s on webhook creation an integration can select just the subset of events it wants to receive.  When filters are specified on the webhook events will only be delivered if they pass any of the filters specified when creating the webhook.
 
-To reduce the volume of data to transfer, webhooks created on teams and workspaces *must* specify filters. In addition, the set of event filters that can be placed on a team-level or workspace-level webhook is more limited than filters for webhooks that are created on lower-level resources:
+To reduce the volume of data to transfer, webhooks created on teams, portfolios, and workspaces *must* specify filters. In addition, the set of event filters that can be placed on a team-level or workspace-level webhook is more limited than filters for webhooks that are created on lower-level resources:
 
  * Webhook events from tasks, subtasks, and stories won't be propagated
  to these higher-level webhooks, so all changes on these resources are
@@ -21231,7 +21231,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   "default_view": "calendar",
   "due_date": "2019-09-15",
   "due_on": "2019-09-15",
-  "html_notes": "These are things we need to purchase.",
+  "html_notes": "<body>These are things we need to purchase.</body>",
   "is_template": false,
   "members": [
     {
@@ -21339,7 +21339,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
 |notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|

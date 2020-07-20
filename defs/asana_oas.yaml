@@ -737,11 +737,11 @@ tags:
       any of the filters specified when creating the webhook.
 
 
-      To reduce the volume of data to transfer, webhooks created on teams and
-      workspaces *must* specify filters. In addition, the set of event filters
-      that can be placed on a team-level or workspace-level webhook is more
-      limited than filters for webhooks that are created on lower-level
-      resources:
+      To reduce the volume of data to transfer, webhooks created on teams,
+      portfolios, and workspaces *must* specify filters. In addition, the set of
+      event filters that can be placed on a team-level or workspace-level
+      webhook is more limited than filters for webhooks that are created on
+      lower-level resources:
 
 
        * Webhook events from tasks, subtasks, and stories won't be propagated
@@ -2494,7 +2494,7 @@ components:
                 [Opt In](#input-output-options).
                 The notes of the project with formatting as HTML.
               type: string
-              example: These are things we need to purchase.
+              example: <body>These are things we need to purchase.</body>
             is_template:
               description: >-
                 [Opt In](#input-output-options).
@@ -2536,7 +2536,8 @@ components:
                 The day on which work for this project begins, or null if the
                 project has no start date. This takes a date with `YYYY-MM-DD`
                 format. *Note: `due_on` or `due_at` must be present in the
-                request when setting or unsetting the `start_on` parameter.*
+                request when setting or unsetting the `start_on` parameter.
+                Additionally, start_on and due_on cannot be the same date.*
               type: string
               nullable: true
               format: date
