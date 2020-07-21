@@ -261,11 +261,11 @@ The post params posted at any update in a particular leads are as follows
      "current_apartment_type": 1,
      "current_residence_type": "Family Owned"
   },
-  "disposition": [{
-    id: 121,
-    agent_name: "name",
-    disposition_type: "followup",
-    created_at: 1558080727
+  "dispositions": [{
+    "id": 121,
+    "agent_name": "name",
+    "disposition_type": "followup",
+    "created_at": 1558080727
   }]
 }
 ```
