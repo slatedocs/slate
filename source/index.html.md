@@ -41,7 +41,7 @@ We currently have two environments, development and production. Both the environ
 
 ## Postman
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/87c12d8a47528cde952c)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/87c12d8a47528cde952c)
 
 <aside class="notice">
   Please contact SpringVerify Team (info@springverify.com) to register your company. Currently there is no sign up for security reasons.
@@ -272,6 +272,265 @@ The configuration sent in this api will be validated against enteries in followi
 <aside class="notice">
 Use the uuid and token returned in the preceding APIs.
 </aside>
+
+# Add Candidate Details
+
+```shell
+curl --location --request POST 'https://api-dev.in.springverify.com/v1/candidate/information' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "candidate_uuid": "da67740b-3c7e-4cb3-95df-32555e12304c",
+    "basic_details": {
+        "full_name": "John Doe",
+        "employee_id": "412"
+    },
+    "contact_details": {
+        "email": "karan.ahuja@springrole.com",
+        "alternate_email": "john.doe@personal.com",
+        "phone_number": "+919999999999",
+        "alternate_phone_number": "+918888888888",
+        "whatsapp_update": false
+    },
+    "id_check": [
+        {
+            "id_type": "ind_pan",
+            "front_doc_url": "<image_url>",
+            "back_doc_url": "<image_url>"
+        }
+    ],
+    "employment_check": {
+        "no_of_previous_jobs": 1,
+        "data": [
+            {
+                "company_name": "Testone",
+                "employee_id": "567888",
+                "city": "Delhi",
+                "country": "India",
+                "designation": "Dev",
+                "currently_working": false,
+                "reason": "Test",
+                "duration": {
+                    "start_date": "2008-04-09",
+                    "end_date": "2012-06-06",
+                    "currently_working": false
+                },
+                "doc_type": "ExperienceLetter",
+                "proof_doc": [
+                    "<image_url>",
+                    "<image_url>"
+                ],
+                "hr_info": {
+                    "full_name": "Testing",
+                    "email": "Test@gmail.com",
+                    "phone_number": "+919658447556"
+                },
+                "manager_info": {
+                    "full_name": "Testone",
+                    "email": "Test@gmail.com",
+                    "phone_number": "+918954914334"
+                }
+            }
+        ]
+    },
+    "education_check": [
+        {
+            "education_level": "Professional Course",
+            "degree_type": "Part Time",
+            "university_name": "Tedt",
+            "registration_number": "66445666",
+            "degree": "Test",
+            "areas_of_study": "Testtest",
+            "dates_attended": {
+                "start_date": "02/2013",
+                "end_date": "05/2016"
+            },
+            "grade_sheet": ["<image_url>"],
+            "certificate":  "<image_url>"
+        }
+    ],
+    "address_check": {
+        "permanent_address": {
+            "house_no": "Tccycfyyd",
+            "colony": "Iggihiihi",
+            "rented": "false",
+            "landmark": "Uffififiiffiififufuf",
+            "pincode": "560030",
+            "country": "India",
+            "city": "Bengaluru ",
+            "state": "Karnataka",
+            "latitude": "",
+            "longitude": "",
+            "staying_period": "3 years",
+            "is_current_permanent_same": true,
+            "is_candidate_available": true,
+            "other_full_name": "",
+            "relation": "",
+            "other_relation": "",
+            "relative_country_code": "+91",
+            "relative_phone_number": "",
+            "other_phone_number": "+91",
+            "doc_type": "Passport",
+            "other_doc": "",
+            "front_doc_url":  "<image_url>",
+            "back_doc_url":  "<image_url>",
+            "front_pdf": true,
+            "back_pdf": false,
+            "single_doc": false,
+            "gmap_address_info": {
+                "lat": null,
+                "lng": null,
+                "full_address": null,
+                "place_id": null
+            },
+            "absence_contact_details": {
+                "full_name": null,
+                "relation": null,
+                "phone_number": null
+            }
+        },
+        "current_address": {
+            "house_no": "Tccycfyyd",
+            "colony": "Iggihiihi",
+            "rented": "false",
+            "landmark": "Uffififiiffiififufuf",
+            "pincode": "560030",
+            "country": "India",
+            "city": "Bengaluru ",
+            "state": "Karnataka",
+            "latitude": "",
+            "longitude": "",
+            "staying_period": "3 years",
+            "is_current_permanent_same": true,
+            "is_candidate_available": true,
+            "other_full_name": "",
+            "relation": "",
+            "other_relation": "",
+            "relative_country_code": "+91",
+            "relative_phone_number": "",
+            "other_phone_number": "+91",
+            "doc_type": "Passport",
+            "other_doc": "",
+            "front_doc_url":  "<image_url>",
+            "back_doc_url": "<image_url>",
+            "front_pdf": true,
+            "back_pdf": false,
+            "single_doc": false,
+            "gmap_address_info": {
+                "lat": null,
+                "lng": null,
+                "full_address": null,
+                "place_id": null
+            },
+            "absence_contact_details": {
+                "full_name": null,
+                "relation": null,
+                "phone_number": null
+            }
+        }
+    },
+    "consent": {
+        "docUrl": "www.google.com"
+    },
+    "send_candidate_consent_email": false
+}'
+```
+
+```java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"candidate_uuid\": \"da67740b-3c7e-4cb3-95df-32555e12304c\",\n    \"basic_details\": {\n        \"full_name\": \"John Doe\",\n        \"employee_id\": \"412\"\n    },\n    \"contact_details\": {\n        \"email\": \"karan.ahuja@springrole.com\",\n        \"alternate_email\": \"john.doe@personal.com\",\n        \"phone_number\": \"+919999999999\",\n        \"alternate_phone_number\": \"+918888888888\",\n        \"whatsapp_update\": false\n    },\n    \"id_check\": [\n        {\n            \"id_type\": \"ind_pan\",\n            \"front_doc_url\": \"<image_url>\",\n            \"back_doc_url\": \"<image_url>\"\n        }\n    ],\n    \"employment_check\": {\n        \"no_of_previous_jobs\": 1,\n        \"data\": [\n            {\n                \"company_name\": \"Testone\",\n                \"employee_id\": \"567888\",\n                \"city\": \"Delhi\",\n                \"country\": \"India\",\n                \"designation\": \"Dev\",\n                \"currently_working\": false,\n                \"reason\": \"Test\",\n                \"duration\": {\n                    \"start_date\": \"2008-04-09\",\n                    \"end_date\": \"2012-06-06\",\n                    \"currently_working\": false\n                },\n                \"doc_type\": \"ExperienceLetter\",\n                \"proof_doc\": [\n                    \"<image_url>\",\n                    \"<image_url>\"\n                ],\n                \"hr_info\": {\n                    \"full_name\": \"Testing\",\n                    \"email\": \"Test@gmail.com\",\n                    \"phone_number\": \"+919658447556\"\n                },\n                \"manager_info\": {\n                    \"full_name\": \"Testone\",\n                    \"email\": \"Test@gmail.com\",\n                    \"phone_number\": \"+918954914334\"\n                }\n            }\n        ]\n    },\n    \"education_check\": [\n        {\n            \"education_level\": \"Professional Course\",\n            \"degree_type\": \"Part Time\",\n            \"university_name\": \"Tedt\",\n            \"registration_number\": \"66445666\",\n            \"degree\": \"Test\",\n            \"areas_of_study\": \"Testtest\",\n            \"dates_attended\": {\n                \"start_date\": \"02/2013\",\n                \"end_date\": \"05/2016\"\n            },\n            \"grade_sheet\": [\"<image_url>\"],\n            \"certificate\":  \"<image_url>\"\n        }\n    ],\n    \"address_check\": {\n        \"permanent_address\": {\n            \"house_no\": \"Tccycfyyd\",\n            \"colony\": \"Iggihiihi\",\n            \"rented\": \"false\",\n            \"landmark\": \"Uffififiiffiififufuf\",\n            \"pincode\": \"560030\",\n            \"country\": \"India\",\n            \"city\": \"Bengaluru \",\n            \"state\": \"Karnataka\",\n            \"latitude\": \"\",\n            \"longitude\": \"\",\n            \"staying_period\": \"3 years\",\n            \"is_current_permanent_same\": true,\n            \"is_candidate_available\": true,\n            \"other_full_name\": \"\",\n            \"relation\": \"\",\n            \"other_relation\": \"\",\n            \"relative_country_code\": \"+91\",\n            \"relative_phone_number\": \"\",\n            \"other_phone_number\": \"+91\",\n            \"doc_type\": \"Passport\",\n            \"other_doc\": \"\",\n            \"front_doc_url\":  \"<image_url>\",\n            \"back_doc_url\":  \"<image_url>\",\n            \"front_pdf\": true,\n            \"back_pdf\": false,\n            \"single_doc\": false,\n            \"gmap_address_info\": {\n                \"lat\": null,\n                \"lng\": null,\n                \"full_address\": null,\n                \"place_id\": null\n            },\n            \"absence_contact_details\": {\n                \"full_name\": null,\n                \"relation\": null,\n                \"phone_number\": null\n            }\n        },\n        \"current_address\": {\n            \"house_no\": \"Tccycfyyd\",\n            \"colony\": \"Iggihiihi\",\n            \"rented\": \"false\",\n            \"landmark\": \"Uffififiiffiififufuf\",\n            \"pincode\": \"560030\",\n            \"country\": \"India\",\n            \"city\": \"Bengaluru \",\n            \"state\": \"Karnataka\",\n            \"latitude\": \"\",\n            \"longitude\": \"\",\n            \"staying_period\": \"3 years\",\n            \"is_current_permanent_same\": true,\n            \"is_candidate_available\": true,\n            \"other_full_name\": \"\",\n            \"relation\": \"\",\n            \"other_relation\": \"\",\n            \"relative_country_code\": \"+91\",\n            \"relative_phone_number\": \"\",\n            \"other_phone_number\": \"+91\",\n            \"doc_type\": \"Passport\",\n            \"other_doc\": \"\",\n            \"front_doc_url\":  \"<image_url>\",\n            \"back_doc_url\": \"<image_url>\",\n            \"front_pdf\": true,\n            \"back_pdf\": false,\n            \"single_doc\": false,\n            \"gmap_address_info\": {\n                \"lat\": null,\n                \"lng\": null,\n                \"full_address\": null,\n                \"place_id\": null\n            },\n            \"absence_contact_details\": {\n                \"full_name\": null,\n                \"relation\": null,\n                \"phone_number\": null\n            }\n        }\n    },\n    \"consent\": {\n        \"docUrl\": \"www.google.com\"\n    },\n    \"send_candidate_consent_email\": false\n}");
+Request request = new Request.Builder()
+  .url("https://api-dev.in.springverify.com/v1/candidate/information")
+  .method("POST", body)
+  .addHeader("Content-Type", "application/json")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```python
+import requests
+
+url = "https://api-dev.in.springverify.com/v1/candidate/information"
+
+payload = "{\n    \"candidate_uuid\": \"da67740b-3c7e-4cb3-95df-32555e12304c\",\n    \"basic_details\": {\n        \"full_name\": \"John Doe\",\n        \"employee_id\": \"412\"\n    },\n    \"contact_details\": {\n        \"email\": \"karan.ahuja@springrole.com\",\n        \"alternate_email\": \"john.doe@personal.com\",\n        \"phone_number\": \"+919999999999\",\n        \"alternate_phone_number\": \"+918888888888\",\n        \"whatsapp_update\": false\n    },\n    \"id_check\": [\n        {\n            \"id_type\": \"ind_pan\",\n            \"front_doc_url\": \"<image_url>\",\n            \"back_doc_url\": \"<image_url>\"\n        }\n    ],\n    \"employment_check\": {\n        \"no_of_previous_jobs\": 1,\n        \"data\": [\n            {\n                \"company_name\": \"Testone\",\n                \"employee_id\": \"567888\",\n                \"city\": \"Delhi\",\n                \"country\": \"India\",\n                \"designation\": \"Dev\",\n                \"currently_working\": false,\n                \"reason\": \"Test\",\n                \"duration\": {\n                    \"start_date\": \"2008-04-09\",\n                    \"end_date\": \"2012-06-06\",\n                    \"currently_working\": false\n                },\n                \"doc_type\": \"ExperienceLetter\",\n                \"proof_doc\": [\n                    \"<image_url>\",\n                    \"<image_url>\"\n                ],\n                \"hr_info\": {\n                    \"full_name\": \"Testing\",\n                    \"email\": \"Test@gmail.com\",\n                    \"phone_number\": \"+919658447556\"\n                },\n                \"manager_info\": {\n                    \"full_name\": \"Testone\",\n                    \"email\": \"Test@gmail.com\",\n                    \"phone_number\": \"+918954914334\"\n                }\n            }\n        ]\n    },\n    \"education_check\": [\n        {\n            \"education_level\": \"Professional Course\",\n            \"degree_type\": \"Part Time\",\n            \"university_name\": \"Tedt\",\n            \"registration_number\": \"66445666\",\n            \"degree\": \"Test\",\n            \"areas_of_study\": \"Testtest\",\n            \"dates_attended\": {\n                \"start_date\": \"02/2013\",\n                \"end_date\": \"05/2016\"\n            },\n            \"grade_sheet\": [\"<image_url>\"],\n            \"certificate\":  \"<image_url>\"\n        }\n    ],\n    \"address_check\": {\n        \"permanent_address\": {\n            \"house_no\": \"Tccycfyyd\",\n            \"colony\": \"Iggihiihi\",\n            \"rented\": \"false\",\n            \"landmark\": \"Uffififiiffiififufuf\",\n            \"pincode\": \"560030\",\n            \"country\": \"India\",\n            \"city\": \"Bengaluru \",\n            \"state\": \"Karnataka\",\n            \"latitude\": \"\",\n            \"longitude\": \"\",\n            \"staying_period\": \"3 years\",\n            \"is_current_permanent_same\": true,\n            \"is_candidate_available\": true,\n            \"other_full_name\": \"\",\n            \"relation\": \"\",\n            \"other_relation\": \"\",\n            \"relative_country_code\": \"+91\",\n            \"relative_phone_number\": \"\",\n            \"other_phone_number\": \"+91\",\n            \"doc_type\": \"Passport\",\n            \"other_doc\": \"\",\n            \"front_doc_url\":  \"<image_url>\",\n            \"back_doc_url\":  \"<image_url>\",\n            \"front_pdf\": true,\n            \"back_pdf\": false,\n            \"single_doc\": false,\n            \"gmap_address_info\": {\n                \"lat\": null,\n                \"lng\": null,\n                \"full_address\": null,\n                \"place_id\": null\n            },\n            \"absence_contact_details\": {\n                \"full_name\": null,\n                \"relation\": null,\n                \"phone_number\": null\n            }\n        },\n        \"current_address\": {\n            \"house_no\": \"Tccycfyyd\",\n            \"colony\": \"Iggihiihi\",\n            \"rented\": \"false\",\n            \"landmark\": \"Uffififiiffiififufuf\",\n            \"pincode\": \"560030\",\n            \"country\": \"India\",\n            \"city\": \"Bengaluru \",\n            \"state\": \"Karnataka\",\n            \"latitude\": \"\",\n            \"longitude\": \"\",\n            \"staying_period\": \"3 years\",\n            \"is_current_permanent_same\": true,\n            \"is_candidate_available\": true,\n            \"other_full_name\": \"\",\n            \"relation\": \"\",\n            \"other_relation\": \"\",\n            \"relative_country_code\": \"+91\",\n            \"relative_phone_number\": \"\",\n            \"other_phone_number\": \"+91\",\n            \"doc_type\": \"Passport\",\n            \"other_doc\": \"\",\n            \"front_doc_url\":  \"<image_url>\",\n            \"back_doc_url\": \"<image_url>\",\n            \"front_pdf\": true,\n            \"back_pdf\": false,\n            \"single_doc\": false,\n            \"gmap_address_info\": {\n                \"lat\": null,\n                \"lng\": null,\n                \"full_address\": null,\n                \"place_id\": null\n            },\n            \"absence_contact_details\": {\n                \"full_name\": null,\n                \"relation\": null,\n                \"phone_number\": null\n            }\n        }\n    },\n    \"consent\": {\n        \"docUrl\": \"www.google.com\"\n    },\n    \"send_candidate_consent_email\": false\n}"
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({"candidate_uuid":"da67740b-3c7e-4cb3-95df-32555e12304c","basic_details":{"full_name":"John Doe","employee_id":"412"},"contact_details":{"email":"karan.ahuja@springrole.com","alternate_email":"john.doe@personal.com","phone_number":"+919999999999","alternate_phone_number":"+918888888888","whatsapp_update":false},"id_check":[{"id_type":"ind_pan","front_doc_url":"<image_url>","back_doc_url":"<image_url>"}],"employment_check":{"no_of_previous_jobs":1,"data":[{"company_name":"Testone","employee_id":"567888","city":"Delhi","country":"India","designation":"Dev","currently_working":false,"reason":"Test","duration":{"start_date":"2008-04-09","end_date":"2012-06-06","currently_working":false},"doc_type":"ExperienceLetter","proof_doc":["<image_url>","<image_url>"],"hr_info":{"full_name":"Testing","email":"Test@gmail.com","phone_number":"+919658447556"},"manager_info":{"full_name":"Testone","email":"Test@gmail.com","phone_number":"+918954914334"}}]},"education_check":[{"education_level":"Professional Course","degree_type":"Part Time","university_name":"Tedt","registration_number":"66445666","degree":"Test","areas_of_study":"Testtest","dates_attended":{"start_date":"02/2013","end_date":"05/2016"},"grade_sheet":["<image_url>"],"certificate":"<image_url>"}],"address_check":{"permanent_address":{"house_no":"Tccycfyyd","colony":"Iggihiihi","rented":"false","landmark":"Uffififiiffiififufuf","pincode":"560030","country":"India","city":"Bengaluru ","state":"Karnataka","latitude":"","longitude":"","staying_period":"3 years","is_current_permanent_same":true,"is_candidate_available":true,"other_full_name":"","relation":"","other_relation":"","relative_country_code":"+91","relative_phone_number":"","other_phone_number":"+91","doc_type":"Passport","other_doc":"","front_doc_url":"<image_url>","back_doc_url":"<image_url>","front_pdf":true,"back_pdf":false,"single_doc":false,"gmap_address_info":{"lat":null,"lng":null,"full_address":null,"place_id":null},"absence_contact_details":{"full_name":null,"relation":null,"phone_number":null}},"current_address":{"house_no":"Tccycfyyd","colony":"Iggihiihi","rented":"false","landmark":"Uffififiiffiififufuf","pincode":"560030","country":"India","city":"Bengaluru ","state":"Karnataka","latitude":"","longitude":"","staying_period":"3 years","is_current_permanent_same":true,"is_candidate_available":true,"other_full_name":"","relation":"","other_relation":"","relative_country_code":"+91","relative_phone_number":"","other_phone_number":"+91","doc_type":"Passport","other_doc":"","front_doc_url":"<image_url>","back_doc_url":"<image_url>","front_pdf":true,"back_pdf":false,"single_doc":false,"gmap_address_info":{"lat":null,"lng":null,"full_address":null,"place_id":null},"absence_contact_details":{"full_name":null,"relation":null,"phone_number":null}}},"consent":{"docUrl":"www.google.com"},"send_candidate_consent_email":false});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://api-dev.in.springverify.com/v1/candidate/information", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```ruby
+require "uri"
+require "net/http"
+
+url = URI("https://api-dev.in.springverify.com/v1/candidate/information")
+
+https = Net::HTTP.new(url.host, url.port);
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = "application/json"
+request.body = "{\n    \"candidate_uuid\": \"da67740b-3c7e-4cb3-95df-32555e12304c\",\n    \"basic_details\": {\n        \"full_name\": \"John Doe\",\n        \"employee_id\": \"412\"\n    },\n    \"contact_details\": {\n        \"email\": \"karan.ahuja@springrole.com\",\n        \"alternate_email\": \"john.doe@personal.com\",\n        \"phone_number\": \"+919999999999\",\n        \"alternate_phone_number\": \"+918888888888\",\n        \"whatsapp_update\": false\n    },\n    \"id_check\": [\n        {\n            \"id_type\": \"ind_pan\",\n            \"front_doc_url\": \"<image_url>\",\n            \"back_doc_url\": \"<image_url>\"\n        }\n    ],\n    \"employment_check\": {\n        \"no_of_previous_jobs\": 1,\n        \"data\": [\n            {\n                \"company_name\": \"Testone\",\n                \"employee_id\": \"567888\",\n                \"city\": \"Delhi\",\n                \"country\": \"India\",\n                \"designation\": \"Dev\",\n                \"currently_working\": false,\n                \"reason\": \"Test\",\n                \"duration\": {\n                    \"start_date\": \"2008-04-09\",\n                    \"end_date\": \"2012-06-06\",\n                    \"currently_working\": false\n                },\n                \"doc_type\": \"ExperienceLetter\",\n                \"proof_doc\": [\n                    \"<image_url>\",\n                    \"<image_url>\"\n                ],\n                \"hr_info\": {\n                    \"full_name\": \"Testing\",\n                    \"email\": \"Test@gmail.com\",\n                    \"phone_number\": \"+919658447556\"\n                },\n                \"manager_info\": {\n                    \"full_name\": \"Testone\",\n                    \"email\": \"Test@gmail.com\",\n                    \"phone_number\": \"+918954914334\"\n                }\n            }\n        ]\n    },\n    \"education_check\": [\n        {\n            \"education_level\": \"Professional Course\",\n            \"degree_type\": \"Part Time\",\n            \"university_name\": \"Tedt\",\n            \"registration_number\": \"66445666\",\n            \"degree\": \"Test\",\n            \"areas_of_study\": \"Testtest\",\n            \"dates_attended\": {\n                \"start_date\": \"02/2013\",\n                \"end_date\": \"05/2016\"\n            },\n            \"grade_sheet\": [\"<image_url>\"],\n            \"certificate\":  \"<image_url>\"\n        }\n    ],\n    \"address_check\": {\n        \"permanent_address\": {\n            \"house_no\": \"Tccycfyyd\",\n            \"colony\": \"Iggihiihi\",\n            \"rented\": \"false\",\n            \"landmark\": \"Uffififiiffiififufuf\",\n            \"pincode\": \"560030\",\n            \"country\": \"India\",\n            \"city\": \"Bengaluru \",\n            \"state\": \"Karnataka\",\n            \"latitude\": \"\",\n            \"longitude\": \"\",\n            \"staying_period\": \"3 years\",\n            \"is_current_permanent_same\": true,\n            \"is_candidate_available\": true,\n            \"other_full_name\": \"\",\n            \"relation\": \"\",\n            \"other_relation\": \"\",\n            \"relative_country_code\": \"+91\",\n            \"relative_phone_number\": \"\",\n            \"other_phone_number\": \"+91\",\n            \"doc_type\": \"Passport\",\n            \"other_doc\": \"\",\n            \"front_doc_url\":  \"<image_url>\",\n            \"back_doc_url\":  \"<image_url>\",\n            \"front_pdf\": true,\n            \"back_pdf\": false,\n            \"single_doc\": false,\n            \"gmap_address_info\": {\n                \"lat\": null,\n                \"lng\": null,\n                \"full_address\": null,\n                \"place_id\": null\n            },\n            \"absence_contact_details\": {\n                \"full_name\": null,\n                \"relation\": null,\n                \"phone_number\": null\n            }\n        },\n        \"current_address\": {\n            \"house_no\": \"Tccycfyyd\",\n            \"colony\": \"Iggihiihi\",\n            \"rented\": \"false\",\n            \"landmark\": \"Uffififiiffiififufuf\",\n            \"pincode\": \"560030\",\n            \"country\": \"India\",\n            \"city\": \"Bengaluru \",\n            \"state\": \"Karnataka\",\n            \"latitude\": \"\",\n            \"longitude\": \"\",\n            \"staying_period\": \"3 years\",\n            \"is_current_permanent_same\": true,\n            \"is_candidate_available\": true,\n            \"other_full_name\": \"\",\n            \"relation\": \"\",\n            \"other_relation\": \"\",\n            \"relative_country_code\": \"+91\",\n            \"relative_phone_number\": \"\",\n            \"other_phone_number\": \"+91\",\n            \"doc_type\": \"Passport\",\n            \"other_doc\": \"\",\n            \"front_doc_url\":  \"<image_url>\",\n            \"back_doc_url\": \"<image_url>\",\n            \"front_pdf\": true,\n            \"back_pdf\": false,\n            \"single_doc\": false,\n            \"gmap_address_info\": {\n                \"lat\": null,\n                \"lng\": null,\n                \"full_address\": null,\n                \"place_id\": null\n            },\n            \"absence_contact_details\": {\n                \"full_name\": null,\n                \"relation\": null,\n                \"phone_number\": null\n            }\n        }\n    },\n    \"consent\": {\n        \"docUrl\": \"www.google.com\"\n    },\n    \"send_candidate_consent_email\": false\n}"
+
+response = https.request(request)
+puts response.read_body
+```
+
+
+
+POST API to provide all the relevant information of the candidate for verification. Recommended, if you want to send bulk data programmatically or directly integrate this API in your product.
+
+Alternatively, you can use [Get Background Verification URL](https://docs-bgv.springverify.com/#get-background-verification-url) to generate a form URL for the candidate. 
+
+<aside type="notice">
+Auth Token of company login is needed in headers
+</aside>
+
+Mandatory fields:
+
+1. candidate_uuid (from add or get candidate API)
+2. basic_details.full_name
+3. contact_details.email (if consent has to be sent on candidate's email)
+
+all other fields are non-mandatory. Its advisable to send as much information as possible , with at least the document links for a successful verification.
+
+- For types of <b>Employment</b> Fields click [here](https://docs-bgv.springverify.com/#add-employment)
+- For types of <b>Education</b> Fields click [here](https://docs-bgv.springverify.com/#add-education)
+- For types of <b>ID</b> Fields click [here](https://docs-bgv.springverify.com/#identity-verification)
+- For types of <b>Address</b> Fields click [here](https://docs-bgv.springverify.com/#add-address)
+
+<aside type="success">
+<b>send_candidate_consent_email</b> field is used to send e-mail to candidate for consent on background verification, in case a consent url is not provided
+while adding the candidate or in consent.doc_url. You should send send_candidate_consent_email as true in such scenario.
+</aside>
+
+<aside type="notice">
+please make sure to send at least the doc urls for a successful verification process
+</aside>
+
 
 # Get Background Verification URL
 
