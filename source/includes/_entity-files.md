@@ -11,11 +11,11 @@ Entity files are files uploaded to a relevant entity. Possible files, for exampl
   "id": 43212,
   "name": "JohnDoeFriends.csv",
   "size": 993,
-  "personId": 10,
-  "organizationId": null,
-  "opportunityId": null,
-  "createdAt": "2011-01-25T09:59:35.288-08:00",
-  "uploaderId": 10
+  "person_id": 10,
+  "organization_id": null,
+  "opportunity_id": null,
+  "created_at": "2011-01-25T09:59:35.288-08:00",
+  "uploader_id": 10
 }
 ```
 
@@ -24,10 +24,10 @@ Entity files are files uploaded to a relevant entity. Possible files, for exampl
 | id             | integer  | The unique identifier of the entity file object.                            |
 | name           | string   | The name of the file.                                                       |
 | size           | string   | The size of the file in bytes.                                              |
-| personId       | integer  | The unique identifier of the person corresponding to the entity file.       |
-| organizationId | integer  | The unique identifier of the organization corresponding to the entity file. |
-| opportunityId  | integer  | The unique identifier of the opportunity corresponding to the entity file.  |
-| uploaderId     | integer  | The unique identifier of the user who created the entity file.              |
+| person_id       | integer  | The unique identifier of the person corresponding to the entity file.       |
+| organization_id | integer  | The unique identifier of the organization corresponding to the entity file. |
+| opportunity_id  | integer  | The unique identifier of the opportunity corresponding to the entity file.  |
+| uploader_id     | integer  | The unique identifier of the user who created the entity file.              |
 | created_at     | datetime | The time when the entity file was created.                                  |
 
 ## Get all files
@@ -47,21 +47,21 @@ curl "https://api.affinity.co/entity-files" -u :<API-KEY>
             "id": 43212,
             "name": "JohnDoeFriends.csv",
             "size": 993,
-            "personId": 142,
-            "organizationId": null,
-            "opportunityId": null,
-            "createdAt": "2011-01-25T09:59:35.288-08:00",
-            "uploaderId": 10
+            "person_id": 142,
+            "organization_id": null,
+            "opportunity_id": null,
+            "created_at": "2011-01-25T09:59:35.288-08:00",
+            "uploader_id": 10
         },
         {
             "id": 131,
             "name": "Import.csv",
             "size": 227224,
-            "personId": 38654,
-            "organizationId": null,
-            "opportunityId": null,
-            "createdAt": "2019-01-13T12:52:51.539-08:00",
-            "uploaderId": 101
+            "person_id": 38654,
+            "organization_id": null,
+            "opportunity_id": null,
+            "created_at": "2019-01-13T12:52:51.539-08:00",
+            "uploader_id": 101
         },
         ...
     ],
@@ -123,11 +123,11 @@ curl "https://api.affinity.co/entity-files/43212" -u :<API-KEY>
   "id": 43212,
   "name": "GoogleFriends.csv",
   "size": 993,
-  "personId": null,
-  "organizationId": 10,
-  "opportunityId": null,
-  "createdAt": "2011-01-25T09:59:35.288-08:00",
-  "uploaderId": 10
+  "person_id": null,
+  "organization_id": 10,
+  "opportunity_id": null,
+  "created_at": "2011-01-25T09:59:35.288-08:00",
+  "uploader_id": 10
 }
 ```
 
