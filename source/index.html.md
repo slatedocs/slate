@@ -517,18 +517,18 @@ Mandatory fields:
 
 all other fields are non-mandatory. Its advisable to send as much information as possible , with at least the document links for a successful verification.
 
-- For types of <b>Employment</b> Fields click [here](https://docs-bgv.springverify.com/#add-employment)
-- For types of <b>Education</b> Fields click [here](https://docs-bgv.springverify.com/#add-education)
-- For types of <b>ID</b> Fields click [here](https://docs-bgv.springverify.com/#identity-verification)
-- For types of <b>Address</b> Fields click [here](https://docs-bgv.springverify.com/#add-address)
+- For types of <b>Employment</b> fields click [here](https://docs-bgv.springverify.com/#add-employment)
+- For types of <b>Education</b> fields click [here](https://docs-bgv.springverify.com/#add-education)
+- For types of <b>ID</b> fields click [here](https://docs-bgv.springverify.com/#identity-verification)
+- For types of <b>Address</b> fields click [here](https://docs-bgv.springverify.com/#add-address)
 
 <aside type="success">
 <b>send_candidate_consent_email</b> field is used to send e-mail to candidate for consent on background verification, in case a consent url is not provided
-while adding the candidate or in consent.doc_url. You should send send_candidate_consent_email as true in such scenario.
+while adding the candidate or in consent.doc_url. You should send send_candidate_consent_email as TRUE in such scenario.
 </aside>
 
 <aside type="notice">
-please make sure to send at least the doc urls for a successful verification process
+Please make sure to send at-least the doc URLs for a successful verification process
 </aside>
 
 
@@ -741,10 +741,10 @@ If front and back are provided, we conduct OCR of the document which can be fetc
 
 Doc Types with keys:
 
-1. Driving License(ind_driving_license)
-2. Passport(ind_passport)
-3. Voter ID(ind_voter_id)
-4. PAN(ind_pan)
+1. Driving License (ind_driving_license)
+2. Passport (ind_passport)
+3. Voter ID (ind_voter_id)
+4. PAN (ind_pan)
 
 # Add Employment
 ```shell
