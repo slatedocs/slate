@@ -386,6 +386,7 @@ Authorization: Basic ...
     },
     "bankAccountId" : "bankAccountId",
     "reference" : "reference",
+    "repaymentReference" : "repaymentReference"
     "investmentId" : "investmentId",
     "premium" : {
       "amount" : 2.68,
@@ -417,7 +418,8 @@ Records the settlement of a secondary market trade.
 | buySide.fee.amount                          | number | The amount.                                                                                                     ||
 | buySide.fee.currency                        | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | buySide.bankAccountId                       | string | The ID of the bank account details to send fees to                                                              ||
-| buySide.reference                           | string | The bank reference for the funds transfer                                                                       ||
+| buySide.reference                           | string | The bank reference used in the transfer of fees                                                                       ||
+| buySide.feeReference  (optional)            | string | Alias of the `sellSide.reference` field. Provided for additional clarity.                                                                   ||
 | buySide.totalPurchaseAmount.amount          | number | The amount.                                                                                                     ||
 | buySide.totalPurchaseAmount.currency        | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | buySide.newInvestmentId                     | string | The ID for the investment being held by the buy side investor                                                   ||
@@ -429,7 +431,9 @@ Records the settlement of a secondary market trade.
 | sellSide.fee.amount                         | number | The amount.                                                                                                     ||
 | sellSide.fee.currency                       | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | sellSide.bankAccountId                      | string | The ID of the bank account details to send fees to                                                              ||
-| sellSide.reference                          | string | The bank reference for the funds transfer                                                                       ||
+| sellSide.reference                          | string | The bank reference used in the transfer of fees.                                                                      ||
+| sellSide.feeReference  (optional)           | string | Alias of the `sellSide.reference` field. Provided for additional clarity.                                                                   ||
+| sellSide.repaymentReference (optional)      | string | The bank reference used for the transfer of funds to the seller. If specified it will also be present on the `INVESTOR_FUNDS_RECEIVED` webhook ||
 | sellSide.investmentId                       | string | The ID of the investment being sold                                                                             ||
 | sellSide.premium.amount                     | number | The amount.                                                                                                     ||
 | sellSide.premium.currency                   | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
@@ -514,7 +518,7 @@ Adds a repayment to an investment.
 ### Request
 | Name                              | Type   | Description                                                                    | Required |
 | --------------------------------- | ------ | ------------------------------------------------------------------------------ | -------- |
-| reference                         | string | The payment reference used for the repayment of funds.                         | required |
+| reference                         | string | The payment reference used for the repayment of funds. Will also be present on `INVESTOR_FUNDS_RECEIVED` webhook | required |
 | investorRepayments                | array  | The repayments per investor.                                                   | required |
 | investorRepayments[].investmentId | string | The ID of the of the investment                                                | required |
 | investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br> | required |
