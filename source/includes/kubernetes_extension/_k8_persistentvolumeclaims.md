@@ -1,8 +1,8 @@
-### Persistent Volume Claims
+#### Persistent Volume Claims
 
 <!-------------------- LIST Persistent volume claims -------------------->
 
-#### List persistent volume claims
+##### List persistent volume claims
 
 ```shell
 curl -X GET \
@@ -94,7 +94,7 @@ Retrieve a list of all persistent volume claims in a given [environment](#admini
 
 <!-------------------- GET A persistent volume claim -------------------->
 
-#### Get a persistent volume claim
+##### Get a persistent volume claim
 
 ```shell
 curl -X GET \
