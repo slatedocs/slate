@@ -70,7 +70,7 @@ Specifies the Kubernetes cluster to be used. Unless directed by an Ada team memb
 #### eventCallbacks
 `eventCallbacks: [String: (_ event: [String: Any]) -> Void]? = nil`
 
-Used in conjunction with the Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
+Used in conjunction with the Chat Transfer Block or Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
 
 #### greeting
 `greeting: String = ""`
