@@ -140,21 +140,50 @@ exemple
 
 ```javascript
 {
-  annee: "1983",
-  antenne_id: null,
-  civilite: "H",
-  code_postal: "75015",
-  ville: "paris",
-  latitude: "45.8383",
-  longitude: "1.01181",
-  date_ouverture: "2020-02-20",
-  department_id: "75",
-  numero_dossier: "123123123",
-  numero_rg: "RGXXXX123",
-  residence: "En établissement",
-  ti_id: global.ti.id,
-  type: "Curatelle renforcée aux biens et à la personne"
-  status: "Mesure en cours"
+    annee_naissance: "1989",
+    antenne_id: null,
+    cabinet: null,
+    cause_sortie: "dessaisissement_famille",
+    civilite: "monsieur",
+    code_postal: "89000",
+    date_fin_mesure: "2020-04-04T00:00:00.000Z",
+    date_nomination: "2020-01-01T00:00:00.000Z",
+    department_id: 90,
+    etablissement: null,
+    etablissement_id: null,
+    judgment_date: null,
+    latitude: 47.8022,
+    longitude: 3.51709,
+    lieu_vie: "domicile",
+    mandataire_id: 501,
+    ti_id: null,
+    ville: "AUXERRE",
+    date_premier_mesure: "2020-01-10T00:00:00.000Z",
+    date_protection_en_cours: "2020-01-10T00:00:00.000Z",
+    status: "en_cours",
+    numero_dossier: "45656456",
+    numero_rg: "RG234534534",
+    pays: "FR",
+    magistrat_id: null,
+    id: 138671,
+    ressources: [{
+      id: 7
+      mesure_id: 138671,
+      annee: 2010,
+      niveau_ressource: 300,
+      prestations_sociales: "[\"PCH\",\"RSA\"]",
+    }],
+    etats: [{
+      id: 70,
+      mesure_id: 138671,
+      date_changement_etat: "2020-01-08T00:00:00.000Z",
+      nature_mesure: "curatelle_simple",
+      lieu_vie: "domicile",
+      code_postal: "89000",
+      ville: "AUXERRE",
+      pays: "FR",
+      etablissement_siret: ""
+    }]
 }
 ```
 
@@ -164,37 +193,79 @@ exemple
 
 ID de la mesure.
 
-**annee** `number`
+**annee_naissance** `string`
 
 Année de naissance de la personne.
 
+**antenne_id** `string`
+
+Dans le cas d'un service mandataire, identifiant unique emjpm de l'antenne'
+
+**cabinet** `string`
+
+Cabinet du tribunal ayant attribué la mesure de protection.
+
+**champ_mesure** `string`
+
+Champ de la mesure de protection, les valeurs possibles sont "protection_bien", "protection_personne", ou "protection_bien_personne".
+
 **civilite** `string`
 
-Civilité de la personne, les valeurs possibles sont "H" et "F".
+Civilité de la personne, les valeurs possibles sont "monsieur" et "madame".
 
 **code_postal** `string`
 
 Code postal de la personne.
 
-**ville** `string`
+**created_at** `timestamptz`
 
-Ville de la personne.
+Date de création
 
-**latitude** `float`
+**date_fin_mesure** `date`
 
-Latitude de la personne.
+Date de fin de la mesure de protection (yyyy-MM-dd)
 
-**longitude** `float`
+**date_nomination** `date`
 
-Longitude de la personne.
+Date de jugement ou ordonnance de nomination (yyyy-MM-dd)
 
-**date_ouverture** `date`
+**date_premier_mesure** `date`
 
-Date d'ouverture de la mesure.
+Date de la première mise sous protection juridique (yyyy-MM-dd)
+
+**date_protection_en_cours** `date`
+
+Date de la protection en cours (yyyy-MM-dd)
 
 **department_id** `number`
 
-ID du département de la mesure.
+ID du département
+
+**is_urgent** `boolean`
+
+**judgment_date** `date`
+
+Date de jugement
+
+**latitude** `number`
+
+**lieu_vie** `string`
+
+Lieu de vie du majeur protégé, les valeurs possibles sont "domicile", "etablissement", ou "etablissement_conservation_domicile".
+
+**longitude** `number`
+
+**magistrat_id** `number`
+
+ID du magistrat
+
+**mandataire_id** `number`
+
+ID du mandataire
+
+**nature_mesure** `string`
+
+Nature de la mesure de protection, les valeurs possibles sont "curatelle_simple", "curatelle_renforcee", "tutelle", "sauvegarde_justice", "mesure_accompagnement_judiciaire", "subroge_curateur", "subroge_tuteur", "mandat_protection_future", ou "mesure_ad_hoc".
 
 **numero_dossier** `string`
 
@@ -204,21 +275,37 @@ Numéro de dossier de la mesure.
 
 Numéro RG de la mesure.
 
-**residence** `string`
+**pays** `string`
 
-Résidence de la personne.
+Code pays (ISO 3166-1 alpha-2) du lieu de vie du majeur protégé
 
-**ti_id** `number`
+**resultat_revision** `string`
 
-ID du tribunal de la mesure.
+Résultat de la révision de la mesure de protection, les valeurs possibles sont "mainlevee", "reconduction", "aggravation", "allegement", "dessaisissement_famille", ou "dessaisissement_autre_mjpm".
+
+**service_id** `number`
+
+ID du service
 
 **status** `string`
 
-Status de la mesure, les valeurs possibles sont "Eteindre mesure" et "Mesure en cours".
+Status de la mesure, les valeurs possibles sont "en_attente", "en_cours", ou "eteinte".
 
-**antenne_id** `number`
+**ti_id** `number`
 
-ID de l'antenne du service.
+ID du tribunal
+
+**type_etablissement**
+
+Type d'établissement, les valeurs possibles sont "etablissement_handicapes", "etablissement_personne_agee", "autre_etablissement_s_ms", "etablissement_hospitalier", ou "etablissement_psychiatrique".
+
+**etats** `array`
+
+Historique des états de la mesure
+
+**ressources** `array`
+
+Historique des mesures de protection
 
 ## Lister toutes les mesures
 
@@ -228,12 +315,12 @@ ID de l'antenne du service.
 const token =
   "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w";
 const emjpmApiMesuresUrl =
-  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures?status=Mesure en cours";
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures?status=en_cours";
 
 const response = await fetch(emjpmApiMesuresUrl, {
   headers: {
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 });
 ```
 
@@ -243,32 +330,63 @@ const response = await fetch(emjpmApiMesuresUrl, {
 {
   "mesures": [
     {
-      "id": 87243,
-      "code_postal": null,
-      "ville": "Paris",
+      "id": 138671,
+      "code_postal": "89000",
+      "ville": "AUXERRE",
       "etablissement": null,
-      "mandataire_id": 877,
-      "created_at": "2019-10-21T09:57:36.723Z",
-      "annee": "2000",
-      "type": "Tutelle aux biens et à la personne",
-      "date_ouverture": "2019-01-08T00:00:00.000Z",
-      "residence": "En établissement",
-      "civilite": "H",
-      "status": "Mesure en cours",
-      "extinction": null,
+      "mandataire_id": 501,
+      "created_at": "2020-07-24T08:15:19.937Z",
+      "annee_naissance": "1989",
+      "date_nomination": "2019-12-31T23:00:00.000Z",
+      "date_fin_mesure": "2020-04-03T22:00:00.000Z",
       "etablissement_id": null,
       "ti_id": null,
-      "numero_dossier": null,
+      "numero_dossier": "45656456",
       "cabinet": null,
-      "reason_extinction": null,
-      "numero_rg": null,
-      "department_id": 71,
+      "numero_rg": "RG234534534",
+      "department_id": 90,
       "antenne_id": null,
       "service_id": null,
       "is_urgent": false,
       "judgment_date": null,
-      "latitude": null,
-      "longitude": null
+      "latitude": 47.8022,
+      "longitude": 3.51709,
+      "pays": "FR",
+      "magistrat_id": null,
+      "lieu_vie": "domicile",
+      "type_etablissement": null,
+      "civilite": "monsieur",
+      "cause_sortie": "dessaisissement_famille",
+      "nature_mesure": null,
+      "champ_mesure": null,
+      "date_premier_mesure": "2020-01-09T23:00:00.000Z",
+      "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
+      "status": "en_cours",
+      "resultat_revision": null,
+      "etats": [
+        {
+          "id": 70,
+          "mesure_id": 138671,
+          "date_changement_etat": "2020-01-07T23:00:00.000Z",
+          "nature_mesure": "curatelle_simple",
+          "champ_protection": null,
+          "lieu_vie": "domicile",
+          "code_postal": "89000",
+          "ville": "AUXERRE",
+          "pays": "FR",
+          "type_etablissement": null,
+          "etablissement_siret": ""
+        }
+      ],
+      "ressources": [
+        {
+          "id": 2,
+          "annee": 2020,
+          "niveau_ressource": 1000,
+          "prestations_sociales": "[\"AAH\"]",
+          "mesure_id": 138671
+        }
+      ]
     }
   ]
 }
@@ -281,7 +399,7 @@ Les mesures retournées sont triées, avec la mesure la plus récente apparaissa
 
 **status** (optionnel)
 
-Retourne uniquement les mesures ayant ce status. Les valeurs possibles sont "Mesure en cours", "Mesure en attente".
+Retourne uniquement les mesures ayant ce status. Les valeurs possibles sont "en_attente", "en_cours", ou "eteinte".
 
 ### Retours
 
@@ -297,8 +415,8 @@ const emjpmApiMesuresUrl =
 
 const response = await fetch(emjpmApiMesuresUrl, {
   headers: {
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 });
 ```
 
@@ -306,32 +424,63 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-  "id": 87243,
-  "code_postal": null,
-  "ville": "Paris",
+  "id": 138671,
+  "code_postal": "89000",
+  "ville": "AUXERRE",
   "etablissement": null,
-  "mandataire_id": 877,
-  "created_at": "2019-10-21T09:57:36.723Z",
-  "annee": "2000",
-  "type": "Tutelle aux biens et à la personne",
-  "date_ouverture": "2019-01-08T00:00:00.000Z",
-  "residence": "En établissement",
-  "civilite": "H",
-  "status": "Mesure en cours",
-  "extinction": null,
+  "mandataire_id": 501,
+  "created_at": "2020-07-24T08:15:19.937Z",
+  "annee_naissance": "1989",
+  "date_nomination": "2019-12-31T23:00:00.000Z",
+  "date_fin_mesure": "2020-04-03T22:00:00.000Z",
   "etablissement_id": null,
   "ti_id": null,
-  "numero_dossier": null,
+  "numero_dossier": "45656456",
   "cabinet": null,
-  "reason_extinction": null,
-  "numero_rg": null,
-  "department_id": 71,
+  "numero_rg": "RG234534534",
+  "department_id": 90,
   "antenne_id": null,
   "service_id": null,
   "is_urgent": false,
   "judgment_date": null,
-  "latitude": null,
-  "longitude": null
+  "latitude": 47.8022,
+  "longitude": 3.51709,
+  "pays": "FR",
+  "magistrat_id": null,
+  "lieu_vie": "domicile",
+  "type_etablissement": null,
+  "civilite": "monsieur",
+  "cause_sortie": "dessaisissement_famille",
+  "nature_mesure": null,
+  "champ_mesure": null,
+  "date_premier_mesure": "2020-01-09T23:00:00.000Z",
+  "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
+  "status": "en_cours",
+  "resultat_revision": null,
+  "etats": [
+    {
+      "id": 70,
+      "mesure_id": 138671,
+      "date_changement_etat": "2020-01-07T23:00:00.000Z",
+      "nature_mesure": "curatelle_simple",
+      "champ_protection": null,
+      "lieu_vie": "domicile",
+      "code_postal": "89000",
+      "ville": "AUXERRE",
+      "pays": "FR",
+      "type_etablissement": null,
+      "etablissement_siret": ""
+    }
+  ],
+  "ressources": [
+    {
+      "id": 2,
+      "annee": 2020,
+      "niveau_ressource": 1000,
+      "prestations_sociales": "[\"AAH\"]",
+      "mesure_id": 138671
+    }
+  ]
 }
 ```
 
@@ -355,8 +504,8 @@ const emjpmApiMesuresUrl =
 const response = await fetch(emjpmApiMesuresUrl, {
   method: "post",
   headers: {
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 });
 ```
 
@@ -364,32 +513,63 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-  "id": 87243,
-  "code_postal": null,
-  "ville": "Paris",
+  "id": 138671,
+  "code_postal": "89000",
+  "ville": "AUXERRE",
   "etablissement": null,
-  "mandataire_id": 877,
-  "created_at": "2019-10-21T09:57:36.723Z",
-  "annee": "2000",
-  "type": "Tutelle aux biens et à la personne",
-  "date_ouverture": "2019-01-08T00:00:00.000Z",
-  "residence": "En établissement",
-  "civilite": "H",
-  "status": "Mesure en cours",
-  "extinction": null,
+  "mandataire_id": 501,
+  "created_at": "2020-07-24T08:15:19.937Z",
+  "annee_naissance": "1989",
+  "date_nomination": "2019-12-31T23:00:00.000Z",
+  "date_fin_mesure": "2020-04-03T22:00:00.000Z",
   "etablissement_id": null,
   "ti_id": null,
-  "numero_dossier": null,
+  "numero_dossier": "45656456",
   "cabinet": null,
-  "reason_extinction": null,
-  "numero_rg": null,
-  "department_id": 71,
+  "numero_rg": "RG234534534",
+  "department_id": 90,
   "antenne_id": null,
   "service_id": null,
   "is_urgent": false,
   "judgment_date": null,
-  "latitude": null,
-  "longitude": null
+  "latitude": 47.8022,
+  "longitude": 3.51709,
+  "pays": "FR",
+  "magistrat_id": null,
+  "lieu_vie": "domicile",
+  "type_etablissement": null,
+  "civilite": "monsieur",
+  "cause_sortie": "dessaisissement_famille",
+  "nature_mesure": null,
+  "champ_mesure": null,
+  "date_premier_mesure": "2020-01-09T23:00:00.000Z",
+  "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
+  "status": "en_cours",
+  "resultat_revision": null,
+  "etats": [
+    {
+      "id": 70,
+      "mesure_id": 138671,
+      "date_changement_etat": "2020-01-07T23:00:00.000Z",
+      "nature_mesure": "curatelle_simple",
+      "champ_protection": null,
+      "lieu_vie": "domicile",
+      "code_postal": "89000",
+      "ville": "AUXERRE",
+      "pays": "FR",
+      "type_etablissement": null,
+      "etablissement_siret": ""
+    }
+  ],
+  "ressources": [
+    {
+      "id": 2,
+      "annee": 2020,
+      "niveau_ressource": 1000,
+      "prestations_sociales": "[\"AAH\"]",
+      "mesure_id": 138671
+    }
+  ]
 }
 ```
 
@@ -398,37 +578,29 @@ Tous les paramètres sont obligatoires sauf indiqué par `(optionnel)`.
 
 ### Paramètres
 
-**annee** `number`
+**annee_naissance** `number`
 
 Année de naissance de la personne.
+
+**antenne_id** `number` `optionnel`
+
+ID de l'antenne du service.
+
+**cause_sortie** `string`
+
+Causes de sortie de la mesure de protection, les valeurs possibles sont "mainlevee", "deces", "caducite", "dessaisissement_famille", ou "dessaisissement_autre_mjpm".
 
 **civilite** `string`
 
 Civilité de la personne, les valeurs possibles sont "H" et "F".
 
-**code_postal** `string`
+**date_fin_mesure** `date`
 
-Code postal de la personne.
+**date_nomination** `date`
 
-**ville** `string`
+**date_premier_mesure** `date`
 
-Ville de la personne.
-
-**latitude** `float`
-
-Latitude de la personne.
-
-**longitude** `float`
-
-Longitude de la personne.
-
-**date_ouverture** `date`
-
-Date d'ouverture de la mesure.
-
-**department_id** `number`
-
-ID du département de la mesure.
+**date_protection_en_cours** `date`
 
 **numero_dossier** `string`
 
@@ -438,21 +610,29 @@ Numéro de dossier de la mesure.
 
 Numéro RG de la mesure.
 
-**residence** `string`
+**tribunal_siret** `string`
 
-Résidence de la personne.
+Siret du tribunal ayant attribué la mesure de protection.
 
-**ti_id** `number`
+**tribunal_cabinet** `string` `optionnel`
 
-ID du tribunal de la mesure.
+Cabinet du tribunal ayant attribué la mesure de protection.
 
-**status** `string`
+**etats** `array`
 
-Status de la mesure, les valeurs possibles sont "Eteindre mesure" et "Mesure en cours".
+Historique des état d'une mesure de protection. Comprend les champs suivants:
 
-**antenne_id** `number` `optionnel`
+- date_changement_etat: `string` `unique` Date de changement d'état de la protection (exemple: 2020-02-01)
+- nature_mesure: `string` Nature de la mesure de protection, les valeurs possibles sont "curatelle_simple", "curatelle_renforcee", "tutelle", "sauvegarde_justice", "mesure_accompagnement_judiciaire", "subroge_curateur", "subroge_tuteur", "mandat_protection_future", ou "mesure_ad_hoc".
+- champ_mesure: `string` Champ de la mesure de protection, les valeurs possibles sont "protection_bien", "protection_personne", ou "protection_bien_personne".
 
-ID de l'antenne du service.
+**ressources** `array`
+
+Historique des mesures de protection. Comprend les champs suivants:
+
+- annee `number` `optionnel`
+- niveau_ressource: `number`
+- prestations_sociales: `array` Liste des prestations sociales perçues, les valeurs possibles sont "AAH", "PCH", "ASI", "RSA", "ALS", "APL", "ASPA", ou "APA".
 
 ### Retours
 
@@ -472,8 +652,8 @@ const emjpmApiMesuresUrl =
 const response = await fetch(emjpmApiMesuresUrl, {
   method: "put",
   headers: {
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 });
 ```
 
@@ -481,32 +661,63 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-  "id": 87243,
-  "code_postal": null,
-  "ville": "Paris",
+  "id": 138671,
+  "code_postal": "89000",
+  "ville": "AUXERRE",
   "etablissement": null,
-  "mandataire_id": 877,
-  "created_at": "2019-10-21T09:57:36.723Z",
-  "annee": "2000",
-  "type": "Tutelle aux biens et à la personne",
-  "date_ouverture": "2019-01-08T00:00:00.000Z",
-  "residence": "En établissement",
-  "civilite": "H",
-  "status": "Mesure en cours",
-  "extinction": null,
+  "mandataire_id": 501,
+  "created_at": "2020-07-24T08:15:19.937Z",
+  "annee_naissance": "1989",
+  "date_nomination": "2019-12-31T23:00:00.000Z",
+  "date_fin_mesure": "2020-04-03T22:00:00.000Z",
   "etablissement_id": null,
   "ti_id": null,
-  "numero_dossier": null,
+  "numero_dossier": "45656456",
   "cabinet": null,
-  "reason_extinction": null,
-  "numero_rg": null,
-  "department_id": 71,
+  "numero_rg": "RG234534534",
+  "department_id": 90,
   "antenne_id": null,
   "service_id": null,
   "is_urgent": false,
   "judgment_date": null,
-  "latitude": null,
-  "longitude": null
+  "latitude": 47.8022,
+  "longitude": 3.51709,
+  "pays": "FR",
+  "magistrat_id": null,
+  "lieu_vie": "domicile",
+  "type_etablissement": null,
+  "civilite": "monsieur",
+  "cause_sortie": "dessaisissement_famille",
+  "nature_mesure": null,
+  "champ_mesure": null,
+  "date_premier_mesure": "2020-01-09T23:00:00.000Z",
+  "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
+  "status": "en_cours",
+  "resultat_revision": null,
+  "etats": [
+    {
+      "id": 70,
+      "mesure_id": 138671,
+      "date_changement_etat": "2020-01-07T23:00:00.000Z",
+      "nature_mesure": "curatelle_simple",
+      "champ_protection": null,
+      "lieu_vie": "domicile",
+      "code_postal": "89000",
+      "ville": "AUXERRE",
+      "pays": "FR",
+      "type_etablissement": null,
+      "etablissement_siret": ""
+    }
+  ],
+  "ressources": [
+    {
+      "id": 2,
+      "annee": 2020,
+      "niveau_ressource": 1000,
+      "prestations_sociales": "[\"AAH\"]",
+      "mesure_id": 138671
+    }
+  ]
 }
 ```
 
@@ -516,37 +727,29 @@ Cette requête accepte quasiment les mêmes paramètres que pour la création d'
 
 ### Paramètres
 
-**annee** `number`
+**annee_naissance** `number`
 
 Année de naissance de la personne.
+
+**antenne_id** `number` `optionnel`
+
+ID de l'antenne du service.
+
+**cause_sortie** `string`
+
+Causes de sortie de la mesure de protection, les valeurs possibles sont "mainlevee", "deces", "caducite", "dessaisissement_famille", ou "dessaisissement_autre_mjpm".
 
 **civilite** `string`
 
 Civilité de la personne, les valeurs possibles sont "H" et "F".
 
-**code_postal** `string`
+**date_fin_mesure** `date`
 
-Code postal de la personne.
+**date_nomination** `date`
 
-**ville** `string`
+**date_premier_mesure** `date`
 
-Ville de la personne.
-
-**latitude** `float`
-
-Latitude de la personne.
-
-**longitude** `float`
-
-Longitude de la personne.
-
-**date_ouverture** `date`
-
-Date d'ouverture de la mesure.
-
-**department_id** `number`
-
-ID du département de la mesure.
+**date_protection_en_cours** `date`
 
 **numero_dossier** `string`
 
@@ -556,21 +759,29 @@ Numéro de dossier de la mesure.
 
 Numéro RG de la mesure.
 
-**residence** `string`
+**tribunal_siret** `string`
 
-Résidence de la personne.
+Siret du tribunal ayant attribué la mesure de protection.
 
-**ti_id** `number`
+**tribunal_cabinet** `string` `optionnel`
 
-ID du tribunal de la mesure.
+Cabinet du tribunal ayant attribué la mesure de protection.
 
-**status** `string`
+**etats** `array`
 
-Status de la mesure, les valeurs possibles sont "Eteindre mesure" et "Mesure en cours".
+Historique des état d'une mesure de protection. Comprend les champs suivants:
 
-**antenne_id** `number`
+- date_changement_etat: `string` `unique` Date de changement d'état de la protection (exemple: 2020-02-01)
+- nature_mesure: `string` Nature de la mesure de protection, les valeurs possibles sont "curatelle_simple", "curatelle_renforcee", "tutelle", "sauvegarde_justice", "mesure_accompagnement_judiciaire", "subroge_curateur", "subroge_tuteur", "mandat_protection_future", ou "mesure_ad_hoc".
+- champ_mesure: `string` Champ de la mesure de protection, les valeurs possibles sont "protection_bien", "protection_personne", ou "protection_bien_personne".
 
-ID de l'antenne du service.
+**ressources** `array`
+
+Historique des mesures de protection. Comprend les champs suivants:
+
+- annee `number` `optionnel`
+- niveau_ressource: `number`
+- prestations_sociales: `array` Liste des prestations sociales perçues, les valeurs possibles sont "AAH", "PCH", "ASI", "RSA", "ALS", "APL", "ASPA", ou "APA".
 
 ### Retours
 
@@ -590,8 +801,8 @@ const emjpmApiMesuresUrl =
 const response = await fetch(emjpmApiMesuresUrl, {
   method: "delete",
   headers: {
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 });
 ```
 
@@ -599,36 +810,7 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-  "mesures": [
-    {
-      "id": 87243,
-      "code_postal": null,
-      "ville": "Paris",
-      "etablissement": null,
-      "mandataire_id": 877,
-      "created_at": "2019-10-21T09:57:36.723Z",
-      "annee": "2000",
-      "type": "Tutelle aux biens et à la personne",
-      "date_ouverture": "2019-01-08T00:00:00.000Z",
-      "residence": "En établissement",
-      "civilite": "H",
-      "status": "Mesure en cours",
-      "extinction": null,
-      "etablissement_id": null,
-      "ti_id": null,
-      "numero_dossier": null,
-      "cabinet": null,
-      "reason_extinction": null,
-      "numero_rg": null,
-      "department_id": 71,
-      "antenne_id": null,
-      "service_id": null,
-      "is_urgent": false,
-      "judgment_date": null,
-      "latitude": null,
-      "longitude": null
-    }
-  ]
+  "affected_rows": 1
 }
 ```
 
@@ -636,5 +818,37 @@ Supprime la mesure associé à l'ID passé.
 
 ### Retours
 
-Retourne l'objet [mesure](/?javascript#l-39-objet-mesure) supprimé.
+Retourne le nombre de mesures [mesure](/?javascript#l-39-objet-mesure) supprimées.
 Si la mesure n'existe pas, une [erreur](/?javascript#errors) est retournée.
+
+## Supprimer toutes les mesure
+
+> DELETE /api/editors/mesures
+
+```javascript
+const token =
+  "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL2VtanBtLWVkaXRvci1kZW1vLm5ldGxpZnkuY29tIiwidWlkIjoiRFRDWDhmNlBDOHljcmxvVTBmbDhWcUdGdWpzSXllVVhrTDZ4THBITXNHSXJJTmhEeXBVSnF5UnRPSEZzWlpwSmZ4VENLVFh0OEY2MTJraFFvclljTjhLUkg3SlBsbVdkWGpnMUZ0NHBQaG9GR1BoWjhqY3kyRldmYWNVazNkNmUiLCJ1c2VySWQiOjEzMDIsImVkaXRvcklkIjoiMSIsImVkaXRvclRva2VuIjoiZzV2ZzRtdXU0NnMiLCJpYXQiOjE1ODIxMDYwOTQsInN1YiI6IkRUQ1g4ZjZQQzh5Y3Jsb1UwZmw4VnFHRnVqc0l5ZVVYa0w2eExwSE1zR0lySU5oRHlwVUpxeVJ0T0hGc1pacEpmeFRDS1RYdDhGNjEya2hRb3JZY044S1JIN0pQbG1XZFhqZzFGdDRwUGhvRkdQaFo4amN5MkZXZmFjVWszZDZlIn0.HHcDnAYgL6gKhjFxSE1xy9sgf1OoNS2-E5EWnphwhDYhsE0nTM73XLjY_Tz1UsFcWSZPDwOGpsv-IfXwFdJZq0fZmhRW7atWQoMdBtB-djWF373XUP_pDK4whX014tLF9oJPxeX_xpDXT0-tue_HlOmUHzBx7LGhWUC_OlZ3PKqSLtJdvhvc0fbesJVo4TpGoCb4xYvIbsQtTI8yOIso9aUdbdv9azLoQQcjN0IYgn1PCEX3kI1tqRgTYNFQRrGIMqHNckF76PlRsJa7MJFhHlxogEqEgKUyvH85LODuyNEv6a8cx5qKUuz-jEHh3zEGbv9qqVwQ879O23GPMeHE4w";
+const emjpmApiMesuresUrl =
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/mesures";
+
+const response = await fetch(emjpmApiMesuresUrl, {
+  method: "delete",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+```
+
+> REPONSE
+
+```json
+{
+  "affected_rows": 10
+}
+```
+
+Supprime toutes les mesures de l'utilisateur
+
+### Retours
+
+Retourne le nombre de mesures [mesure](/?javascript#l-39-objet-mesure) supprimées.
