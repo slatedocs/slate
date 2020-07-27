@@ -656,7 +656,7 @@ notes | Provide instructions to our submissions team with specifics about how yo
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->post('/v2/cb/get-all');
+$results = $api->post('/v4/cb/get-all');
 print_r($results);
 ```
 
@@ -665,7 +665,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
 
-var campaigns = request.Get("/v2/cb/get-all", parameters);
+var campaigns = request.Get("/v4/cb/get-all", parameters);
 ```
 
 > Success (200 OK)
@@ -727,7 +727,7 @@ var campaigns = request.Get("/v2/cb/get-all", parameters);
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v2/cb/get-all`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/cb/get-all`
 
 ### Query Parameters
 
