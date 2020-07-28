@@ -33,6 +33,7 @@ curl "https://cloudmc_endpoint/v1/identity_providers" \
       "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceae5",
       "connectionName": "Google",
       "type": "OIDC",
+      "rank": "1",
       "parameters": [
         {
           "parameter": "issuerURL",
@@ -66,6 +67,8 @@ Attributes | &nbsp;
 `connectionName`<br/>*string* | The connection name of the identity provider.
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider.
+`rank`<br/>*int* | If provided, it sorts the of identity providers in decending order starting from 1.
+
 
 <!-------------------- CREATE IDPS -------------------->
 
@@ -114,6 +117,7 @@ curl -X POST "https://cloudmc_endpoint/rest/identity_providers" \
     "displayName": "Google",
     "connectionName": "CloudMC Google",
     "type": "OIDC",
+    "rank": "1",
     "parameters": [
       {
         "parameter": "issuerURL",
@@ -144,6 +148,8 @@ Required | &nbsp;
 `logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider. The issuerURL will be set if of a default provider type.
+`rank`<br/>*int* | If provided, it sorts the of identity providers in decending order starting from 1.
+
 
 Optional | &nbsp;
 ---------- | -----------
@@ -198,6 +204,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/identity_providers/c84cfe41-929b-47c9
     "id": "da33bf85-6ba3-4214-a258-9442de149eff",
     "connectionName": "CloudMC Google",
     "type": "OIDC",
+    "rank": "1",
     "parameters": [
       {
         "parameter": "issuerURL",
@@ -228,6 +235,8 @@ Required | &nbsp;
 `logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider. The issuerURL will be set if of a default provider type.
+`rank`<br/>*int* | If provided, it sorts the of identity providers in decending order starting from 1.
+
 
 Optional | &nbsp;
 ---------- | -----------
