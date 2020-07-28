@@ -272,7 +272,7 @@ The post params posted at any update in a particular leads are as follows
     "created_at": 1558080727
   }],
   "status_changes": {
-    "moved_to_new: 1558080727,
+    "moved_to_new": 1558080727,
     "moved_to_claimed": 1558080727,
     "moved_to_interested": 1558080727,
     "moved_to_meeting_done": 1558080727,
