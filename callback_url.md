@@ -86,6 +86,10 @@ The post params posted at any update in a particular leads are as follows
   "claimed_at":1554524295,
   "agent_email":"tanvi.tyagi@anarock.com",
   "agent_name" "Tanvi Tyagi",
+  "project_usp": "some usp",
+  "project_description": "some usp",
+  "developer": "some developer",
+  "city": "Mumbai",
   "latest_event_details":{
     "event_id":1225388,
     "start_time":1558091400,
@@ -266,7 +270,22 @@ The post params posted at any update in a particular leads are as follows
     "agent_name": "name",
     "disposition_type": "followup",
     "created_at": 1558080727
-  }]
+  }],
+  "status_changes": {
+    "moved_to_new: 1558080727,
+    "moved_to_claimed": 1558080727,
+    "moved_to_interested": 1558080727,
+    "moved_to_meeting_done": 1558080727,
+    "moved_to_visit_done":1558080727,
+    "moved_to_final_negotiation": 1558080727,
+    "moved_to_booking_done":1558080727,
+    "moved_to_failed": 1558080727,
+    "moved_to_junk: 1558080727,
+    "moved_to_in_transfer": 1558080727,
+    "moved_to_linked": 1558080727,
+    "moved_to_fresh": 1558080727,
+    "status_before_cc": "Interested"
+  }
 }
 ```
 
