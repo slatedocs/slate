@@ -280,7 +280,7 @@ The post params posted at any update in a particular leads are as follows
     "moved_to_final_negotiation": 1558080727,
     "moved_to_booking_done":1558080727,
     "moved_to_failed": 1558080727,
-    "moved_to_junk: 1558080727,
+    "moved_to_junk": 1558080727,
     "moved_to_in_transfer": 1558080727,
     "moved_to_linked": 1558080727,
     "moved_to_fresh": 1558080727,
