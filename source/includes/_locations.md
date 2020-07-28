@@ -23,6 +23,72 @@ $success = $api->post('/v2/clients-and-locations/locations/', [
     'city'                 => 'New York',
     'postcode'             => '10019',
     'telephone'            => '+1 212-554-1515',
+    'opening-hours' => [
+        'regular' => [
+            'apply-to-all' => false,
+            'mon' => [
+                'status' => 'open',
+                'hours' => [
+                    [
+                        'start' => '10:00',
+                        'end' => '18:00',
+                    ]
+                ],           
+            ],
+            'tue' => [
+                'status' => 'split',
+                'hours' => [
+                    [
+                        'start' => '10:00',
+                        'end' => '12:00',
+                    ],
+                    [
+                        'start' => '13:00',
+                        'end' => '18:00',
+                    ]
+                ],                  
+            ],
+            'wed' => [
+                'status' => '24hrs',
+                'hours' => [],           
+            ],
+            'thu' => [
+                'status' => 'open',
+                'hours' => [
+                    [
+                        'start' => '10:00',
+                        'end' => '18:00',
+                    ]
+                ],           
+            ],
+            'fri' => [
+                'status' => 'open',
+                'hours' => [
+                    [
+                        'start' => '10:00',
+                        'end' => '18:00',
+                    ]
+                ],           
+            ],
+            'sat' => [
+                'status' => 'closed',
+                'hours' => [
+                    []
+                ],           
+            ],
+            'sun' => [
+                'status' => 'closed',
+                'hours' => [],           
+            ],
+        ],
+        'special' => [
+            [
+                'date' => '01-01-2020',
+                'status' => 'closed',
+                'hours' => [],
+            ],
+        ],
+    ], 
 ]);
 print_r($success);
 ```
@@ -112,28 +178,28 @@ opening-hours[regular][apply-to-all] | <span class="label label-required">Requir
 opening-hours[regular][mon][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
 opening-hours[regular][mon][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
 opening-hours[regular][mon][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][tue][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][tue][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][tue][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][wed][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][wed][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][wed][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][thu][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][thu][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][thu][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][fri][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'	
-opening-hours[regular][fri][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
-opening-hours[regular][fri][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
-opening-hours[regular][sat][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][sat][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][sat][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][sun][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][sun][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][sun][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[special][][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[special][][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
-opening-hours[special][][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
-opening-hours[special][][date] | <span class="label label-required">Required</span> Date string with format 'yyyy-mm-dd'
+opening-hours[regular][tue][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][tue][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][tue][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][wed][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][thu][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][fri][status]	| Can be 'open', 'closed', '24hrs', 'split'	
+opening-hours[regular][fri][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][fri][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][sat][status]	| Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sat][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sat][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sun][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[special][][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[special][][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][date] | Date string with format 'yyyy-mm-dd'
 payment-methods | Array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
 long-description | 500 characters max
@@ -165,6 +231,20 @@ $success = $api->put('/v2/clients-and-locations/locations/' .$locationId, [
     'city'                 			=> 'New York',
     'postcode'             			=> '10019',
     'telephone'            			=> '+1 212-554-1515',
+    'opening-hours' => [
+        'regular' => [
+            'apply-to-all' => true,
+            'mon' => [
+                'status' => 'open',
+                'hours' => [
+                    [
+                        'start' => '10:00',
+                        'end' => '18:00',
+                    ]
+                ],           
+            ],
+        ],
+    ], 
 ]);
 print_r($success);
 ```
@@ -253,28 +333,28 @@ opening-hours[regular][apply-to-all] | <span class="label label-required">Requir
 opening-hours[regular][mon][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
 opening-hours[regular][mon][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
 opening-hours[regular][mon][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][tue][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][tue][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][tue][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][wed][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][wed][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][wed][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][thu][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][thu][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][thu][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][fri][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'	
-opening-hours[regular][fri][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
-opening-hours[regular][fri][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm	
-opening-hours[regular][sat][status]	| <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][sat][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][sat][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][sun][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][sun][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][sun][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[special][][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[special][][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
-opening-hours[special][][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
-opening-hours[special][][date] | <span class="label label-required">Required</span> Date string with format 'yyyy-mm-dd'
+opening-hours[regular][tue][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][tue][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][tue][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][wed][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][wed][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][thu][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][thu][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][fri][status]	| Can be 'open', 'closed', '24hrs', 'split'	
+opening-hours[regular][fri][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][fri][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm	
+opening-hours[regular][sat][status]	| Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sat][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sat][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][sun][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][sun][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[special][][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[special][][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm, Closed or N/A
+opening-hours[special][][date] | Date string with format 'yyyy-mm-dd'
 payment-methods | Array. Available values: cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travelers, financing, paypal, discover
 short-description | 200 characters max
 long-description | 500 characters max
