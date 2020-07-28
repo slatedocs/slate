@@ -23,9 +23,9 @@ $success = $api->post('/v2/clients-and-locations/locations/', [
     'city'                 => 'New York',
     'postcode'             => '10019',
     'telephone'            => '+1 212-554-1515',
-    'opening_hours' => [
+    'opening-hours' => [
         'regular' => [
-            'apply_to_all' => false,
+            'apply-to-all' => false,
             'mon' => [
                 'status' => 'open',
                 'hours' => [
@@ -231,6 +231,20 @@ $success = $api->put('/v2/clients-and-locations/locations/' .$locationId, [
     'city'                 			=> 'New York',
     'postcode'             			=> '10019',
     'telephone'            			=> '+1 212-554-1515',
+    'opening-hours' => [
+        'regular' => [
+            'apply-to-all' => true,
+            'mon' => [
+                'status' => 'open',
+                'hours' => [
+                    [
+                        'start' => '10:00',
+                        'end' => '18:00',
+                    ]
+                ],           
+            ],
+        ],
+    ], 
 ]);
 print_r($success);
 ```
