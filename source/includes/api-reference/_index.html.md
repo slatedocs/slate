@@ -101,6 +101,7 @@ $result = $client->attachments->getAttachment($attachment_gid, array('param' => 
     "gid": "12345",
     "resource_type": "attachment",
     "name": "Screenshot.png",
+    "resource_subtype": null,
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "host": "dropbox",
@@ -329,7 +330,8 @@ $result = $client->attachments->getAttachmentsForTask($task_gid, array('param' =
     {
       "gid": "12345",
       "resource_type": "attachment",
-      "name": "Screenshot.png"
+      "name": "Screenshot.png",
+      "resource_subtype": null
     }
   ]
 }
@@ -448,6 +450,7 @@ file: string
     "gid": "12345",
     "resource_type": "attachment",
     "name": "Screenshot.png",
+    "resource_subtype": null,
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "host": "dropbox",
@@ -753,7 +756,7 @@ Make multiple requests in parallel to Asana's API.
 <span class="description">
 In the Asana application, Tasks, Projects, and Portfolios can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Item within a Project or Portfolio can contain in addition to the built-in fields that Asana provides.
 
-**Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on [access control](#custom-field-access-control).
+**Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on [access control](/docs/custom-field-access-control).
 
 The characteristics of Custom Fields are:
 
@@ -791,23 +794,23 @@ On the Task's Custom Field value, the enum will have an `enum_value` property wh
 
 #### Querying an organization for its Custom Fields
 
-For Custom Fields shared across the workspace or organization, the Workspace [can be queried](#get-a-workspace-39-s-custom-fields) for its list of defined Custom Fields. Like other collection queries, the fields will be returned as a compact record; slightly different from most other compact records is the fact that the compact record for Custom Fields includes `type` as well as `gid` and `name`.
+For Custom Fields shared across the workspace or organization, the Workspace [can be queried](/docs/get-a-workspace-39-s-custom-fields) for its list of defined Custom Fields. Like other collection queries, the fields will be returned as a compact record; slightly different from most other compact records is the fact that the compact record for Custom Fields includes `type` as well as `gid` and `name`.
 
 #### Accessing Custom Field definitions
 
-The [Custom Fields](#get-a-custom-field) reference describes how the metadata which defines a Custom Field is accessed. A GET request with a `gid` can be issued on the `/custom_fields` endpoint to fetch the full definition of a single Custom Field given its `gid` from (for instance) listing all Custom Fields on a Workspace, or getting the `gid` from a Custom Field Settings object or a Task.
+The [Custom Fields](/docs/get-a-custom-field) reference describes how the metadata which defines a Custom Field is accessed. A GET request with a `gid` can be issued on the `/custom_fields` endpoint to fetch the full definition of a single Custom Field given its `gid` from (for instance) listing all Custom Fields on a Workspace, or getting the `gid` from a Custom Field Settings object or a Task.
 
 #### Associating Custom Fields with a Project or Portfolio
 
-A mapping between a Custom Field and a Project or Portfolio is handled with a [Custom Field Settings](#asana-custom-field-settings) object. This object contains a reference for each of the Custom Field and the Project or Porfolio, as well as additional information about the status of that particular Custom Field. For instance, `is_important`, which defines whether or not the custom field will appear in the list/grid on the Asana application.
+A mapping between a Custom Field and a Project or Portfolio is handled with a [Custom Field Settings](/docs/asana-custom-field-settings) object. This object contains a reference for each of the Custom Field and the Project or Porfolio, as well as additional information about the status of that particular Custom Field. For instance, `is_important`, which defines whether or not the custom field will appear in the list/grid on the Asana application.
 
 #### Accessing Custom Field values on Tasks or Projects
 
-The [Tasks](#get-a-task) reference has information on how Custom Fields look on Tasks. Custom Fields will return as an array on the property `custom_fields`, and each entry will contain, side-by-side, the compact representation of the Custom Field metadata and a `{typename}_value` property that stores the value set for the Custom Field.
+The [Tasks](/docs/get-a-task) reference has information on how Custom Fields look on Tasks. Custom Fields will return as an array on the property `custom_fields`, and each entry will contain, side-by-side, the compact representation of the Custom Field metadata and a `{typename}_value` property that stores the value set for the Custom Field.
 
 Of particular note is that the top-level `gid` of each entry in the `custom_fields` array is the `gid` of the Custom Field metadata, as it is the compact representation of this metadata. This can be used to refer to the full metadata by making a request to the `/custom_fields/{custom_fields_id}` endpoint as described above.
 
-Custom Fields can be set just as in the Asana-defined fields on a task via POST or PUT requests. You can see an example on the [update a task](#update-a-task) endpoint.
+Custom Fields can be set just as in the Asana-defined fields on a task via POST or PUT requests. You can see an example on the [update a task](/docs/update-a-task) endpoint.
 
 Custom Fields on projects follow this same pattern.
 
@@ -997,13 +1000,13 @@ Returns the full record of the newly created custom field.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span>|The custom field object to create.|
-|» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
+|» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](/docs/asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
 |»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
@@ -1349,13 +1352,13 @@ Returns the complete updated custom field record.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span>|The custom field object with all updated properties.|
-|» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
+|» data<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](/docs/asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
 |»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
@@ -2689,7 +2692,7 @@ An *organization_export* object represents a request to export the complete data
 To export an Organization using this API:
 
 * Create an `organization_export`
-  [request](#create-an-organization-export-request)
+  [request](/docs/create-an-organization-export-request)
   and store the id that is returned.
 * Request the `organization_export` every few minutes, until the
   `state` field contains ‘finished’.
@@ -3002,7 +3005,7 @@ Status Code **200**
 </pre>
 
 <span class="description">
-A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
+A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 </span>
 
@@ -3307,7 +3310,7 @@ integrations to create their own starting state on a portfolio.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The portfolio to create.|
-|» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
+|» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.|
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |»» name<span class="param-type"> string</span>|The name of the portfolio.|
@@ -3717,7 +3720,7 @@ Returns the complete updated portfolio record.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the portfolio.|
-|» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.|
+|» data<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.|
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |»» name<span class="param-type"> string</span>|The name of the portfolio.|
@@ -5475,7 +5478,7 @@ Returns the full record of the newly created project.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
@@ -5484,8 +5487,8 @@ Returns the full record of the newly created project.
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -5974,7 +5977,7 @@ Returns the complete updated project record.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
@@ -5983,8 +5986,8 @@ Returns the complete updated project record.
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -6767,7 +6770,7 @@ Returns the full record of the newly created project.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
@@ -6776,8 +6779,8 @@ Returns the full record of the newly created project.
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -7180,7 +7183,7 @@ Returns the full record of the newly created project.
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
@@ -7189,8 +7192,8 @@ Returns the full record of the newly created project.
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -7626,9 +7629,9 @@ $result = $client->projects->getTaskCountsForProject($project_gid, array('param'
 </p>
 
 <span class="description">
-Get an object that holds task count fields. **All fields are excluded by default**. You must [opt in](#input-output-options) using `opt_fields` to get any information from this endpoint.
+Get an object that holds task count fields. **All fields are excluded by default**. You must [opt in](/docs/input-output-options) using `opt_fields` to get any information from this endpoint.
 
-This endpoint has an additional [rate limit](#standard-rate-limits) and each field counts especially high against our [cost limits](#cost-limits).
+This endpoint has an additional [rate limit](/docs/standard-rate-limits) and each field counts especially high against our [cost limits](/docs/cost-limits).
 
 Milestones are just tasks, so they are included in the `num_tasks`, `num_incomplete_tasks`, and `num_completed_tasks` counts.
 </span>
@@ -8897,7 +8900,7 @@ Returns the full record of the newly created project status update.
 |»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
-|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»» title<span class="param-type"> string</span>|The title of the project status update.|
@@ -8943,7 +8946,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 
 Sections are largely a shared idiom in Asana’s API for both list and board views of a project regardless of the project’s layout.
 
-The ‘memberships’ property when [getting a task](#get-a-task) will return the information for the section or the column under ‘section’ in the response.
+The ‘memberships’ property when [getting a task](/docs/get-a-task) will return the information for the section or the column under ‘section’ in the response.
 </span>
 
 </section>
@@ -10412,7 +10415,7 @@ Updates the story and returns the full record for the updated story. Only commen
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
 |»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
@@ -10937,7 +10940,7 @@ Returns the full record for the new story added to the task.
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
 |»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
@@ -10961,7 +10964,7 @@ Returns the full record for the new story added to the task.
 <h1 id="tags">Tags</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-multiple-tags"><span class="get-verb">GET</span> <span class=""nn>/tags</span></a><br><a href="/docs/create-a-tag"><span class="post-verb">POST</span> <span class=""nn>/tags</span></a><br><a href="/docs/get-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="/docs/update-a-tag"><span class="put-verb">PUT</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="/docs/get-a-task-39-s-tags"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span></a><br><a href="/docs/get-tags-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a><br><a href="/docs/create-a-tag-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a></code>
+<code><a href="/docs/get-multiple-tags"><span class="get-verb">GET</span> <span class=""nn>/tags</span></a><br><a href="/docs/create-a-tag"><span class="post-verb">POST</span> <span class=""nn>/tags</span></a><br><a href="/docs/get-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="/docs/update-a-tag"><span class="put-verb">PUT</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="/docs/delete-a-tag"><span class="delete-verb">DELETE</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="/docs/get-a-task-39-s-tags"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span></a><br><a href="/docs/get-tags-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a><br><a href="/docs/create-a-tag-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a></code>
 </pre>
 
 <span class="description">
@@ -11473,7 +11476,7 @@ block will be updated; any unspecified fields will remain unchanged.
 
 When using this method, it is best to specify only those fields you wish
 to change, or else you may overwrite changes made by another user since
-you last retrieved the task.
+you last retrieved the tag.
 
 Returns the complete updated tag record.
 </span>
@@ -11498,6 +11501,119 @@ Returns the complete updated tag record.
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Delete a tag
+
+<a id="opIddeleteTag"></a>
+
+> Code samples
+
+```shell
+curl -X DELETE https://app.asana.com/api/1.0/tags/{tag_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.tags.deleteTag(tagGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.tags.delete_tag(tag_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.tags.delete_tag(tag_gid: 'tag_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.tags.deleteTag(tagGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->tags->deleteTag($tag_gid, array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="delete-verb">DELETE</span> /tags/{tag_gid}</code>
+</p>
+
+<span class="description">
+A specific, existing tag can be deleted by making a DELETE request on
+the URL for that tag.
+
+Returns an empty data record.
+</span>
+
+<h3 id="delete-a-tag-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/tag_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the tag.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="delete-a-tag-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified tag.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="delete-a-tag-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
 
 </section><hr class="half-line">
 <section>
@@ -11900,7 +12016,7 @@ The task is the basic object around which many operations in Asana are centered.
 
 Sections are unique in that they will be included in the *memberships* field of task objects returned in the API when the task is within a section. They can also be used to manipulate the ordering of a task within a project.
 
-[Queries](#get-a-set-of-tasks) return a compact representation of each object which is typically the id and name fields. Interested in a specific set of fields or all of the fields? Use [field selectors](#input-output-options) to manipulate what data is included in a response.
+[Queries](/docs/get-a-set-of-tasks) return a compact representation of each object which is typically the id and name fields. Interested in a specific set of fields or all of the fields? Use [field selectors](/docs/input-output-options) to manipulate what data is included in a response.
 </span>
 
 </section>
@@ -11990,7 +12106,7 @@ $result = $client->tasks->getTasks(array('param' => 'value', 'param' => 'value')
 <span class="description">
 Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
 
-For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](#search-tasks-in-a-workspace).
+For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](/docs/search-tasks-in-a-workspace).
 </span>
 
 <h3 id="get-multiple-tasks-parameters">Parameters</h3>
@@ -12336,11 +12452,11 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
@@ -12358,7 +12474,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
 
-**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
+**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
@@ -12943,11 +13059,11 @@ Returns the complete updated task record.
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
@@ -12966,7 +13082,7 @@ Returns the complete updated task record.
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
 
-**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
+**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
@@ -14108,11 +14224,11 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
 |»» followers<span class="param-type"> [string]</span>|*Create-Only* An array of strings identifying users. These can either be the string "me", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
@@ -14131,7 +14247,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 **assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
 Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
 
-**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
+**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
@@ -17996,7 +18112,7 @@ Results are sorted alphabetically by user names.
 <span class="description">
 A user task list represents the tasks assigned to a particular user.
 
-A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](#tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
+A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](/docs/tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
 </span>
 
 </section>
@@ -18241,7 +18357,7 @@ Returns the full record for a user's task list.
 <span class="description">
 Webhooks allow an application to be notified of changes in Asana. They are intended to provide an efficient way for integrations which react to changes of state in Asana to take action only when something has actually changed.
 
-This is similar to our [Events](#asana-events) resource, but webhooks "push" events via HTTP `POST` rather than expecting integrations to repeatedly "poll" for them. For services that are already accessible on the Internet this is often more convenient and efficient.
+This is similar to our [Events](/docs/asana-events) resource, but webhooks "push" events via HTTP `POST` rather than expecting integrations to repeatedly "poll" for them. For services that are already accessible on the Internet this is often more convenient and efficient.
 
 However, webhooks _require_ a server to be accessible over the internet at all times to receive the event. For most simple integrations, Events provide much of the same benefits while using a significantly simpler implementation which does not require maintaining an internet-accessible server.
 
@@ -18256,7 +18372,7 @@ The purpose of this header is to provide a shared secret that both Asana and the
 
 #### Receiving Events
 
-Because multiple events often happen in short succession, a webhook payload is designed to be able to transmit multiple events at once. The schema of these events is described in [Event](#tocS_Event).
+Because multiple events often happen in short succession, a webhook payload is designed to be able to transmit multiple events at once. The schema of these events is described in [Event](/docs/tocS_Event).
 
 The HTTP POST that the target receives contains:
 
@@ -18276,7 +18392,7 @@ Note that events are "skinny" and contain only some basic details of the change,
 #### Filtering
 Webhook events will "propagate up" from contained objects through to parent objects--for instance, changes to comments will be sent to webhooks on the parent task and to ones on the task's projects. In this way a webhook on a project will be notified of all changes that occur in all of its tasks, subtasks of those tasks, and comments on those tasks and subtasks.
 
-This can be a lot of data, some of which might not be relevant to a particular integration, so Asana's webhooks have a filtering feature which allows integrations to specify only the types of changes that they care about. By specifying the list of [WebhookFilter](#tocS_WebhookFilter)s on webhook creation an integration can select just the subset of events it wants to receive.  When filters are specified on the webhook events will only be delivered if they pass any of the filters specified when creating the webhook.
+This can be a lot of data, some of which might not be relevant to a particular integration, so Asana's webhooks have a filtering feature which allows integrations to specify only the types of changes that they care about. By specifying the list of [WebhookFilter](/docs/tocS_WebhookFilter)s on webhook creation an integration can select just the subset of events it wants to receive.  When filters are specified on the webhook events will only be delivered if they pass any of the filters specified when creating the webhook.
 
 To reduce the volume of data to transfer, webhooks created on teams, portfolios, and workspaces *must* specify filters. In addition, the set of event filters that can be placed on a team-level or workspace-level webhook is more limited than filters for webhooks that are created on lower-level resources:
 
@@ -18636,7 +18752,7 @@ HTTP/1.1 201
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The webhook workspace and target.|
 |» data<span class="param-type"> object</span>|none|
 |»» filters<span class="param-type"> [object]</span>|An array of WebhookFilter objects to specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered; otherwise no event will be sent to the receiving server.|
-|»»» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](#tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
+|»»» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](/docs/tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
 |»»» fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
 |»»» resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
 |»»» resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
@@ -19970,7 +20086,8 @@ A generic Asana Resource, containing a globally unique identifier.
 {
   "gid": "12345",
   "resource_type": "attachment",
-  "name": "Screenshot.png"
+  "name": "Screenshot.png",
+  "resource_subtype": null
 }
 
 ```
@@ -19987,6 +20104,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
+|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
 
 </section><hr>
 <section>
@@ -20002,6 +20120,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
   "gid": "12345",
   "resource_type": "attachment",
   "name": "Screenshot.png",
+  "resource_subtype": null,
   "created_at": "2012-02-22T02:06:58.147Z",
   "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
   "host": "dropbox",
@@ -20027,6 +20146,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
+|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
 |host<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
@@ -20120,7 +20240,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -20191,7 +20311,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 ```
 
 <span class="description">
-Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
+Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](/docs/asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
 
 Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
 
@@ -20206,9 +20326,9 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -20356,9 +20476,9 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -20594,10 +20714,10 @@ an object with the user's `id` and `type`.
 |action<span class="param-type"> string</span>|The type of action taken on the **resource** that triggered the event.  This can be one of `changed`, `added`, `removed`, `deleted`, or `undeleted` depending on the nature of the event.|
 |change<span class="param-type"> object</span>|Information about the type of change that has occurred. This field is only present when the value of the property `action`, describing the action taken on the **resource**, is `changed`.|
 |» action<span class="param-type"> string</span>|The type of action taken on the **field** which has been changed.  This can be one of `changed`, `added`, or `removed` depending on the nature of the change.|
-|» added_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `added` and the `added_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
+|» added_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `added` and the `added_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](/docs/input-output-options)) when using the [Events](/docs/asana-events) resource.|
 |» field<span class="param-type"> string</span>|The name of the field that has changed in the resource.|
-|» new_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `changed` and the `new_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
-|» removed_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `removed` and the `removed_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](#input-output-options)) when using the [Events](#asana-events) resource.|
+|» new_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `changed` and the `new_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](/docs/input-output-options)) when using the [Events](/docs/asana-events) resource.|
+|» removed_value<span class="param-type"> any</span>|*Conditional.* This property is only present when the **field's** `action` is `removed` and the `removed_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](/docs/input-output-options)) when using the [Events](/docs/asana-events) resource.|
 |created_at<span class="param-type"> string(date-time)</span>|The timestamp when the event occurred.|
 |parent<span class="param-type"> object</span>|For added/removed events, the parent object that resource was added to or removed from. The parent will be `null` for other event types.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -20802,7 +20922,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Portfoli
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the portfolio.|
@@ -20849,7 +20969,7 @@ This object determines if a user is a member of a portfolio.
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
+|portfolio<span class="param-type"> object</span>|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the portfolio.|
@@ -20952,7 +21072,7 @@ This object determines if a user is a member of a portfolio.
 ```
 
 <span class="description">
-A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
+A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
 </span>
@@ -20979,9 +21099,9 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -21316,7 +21436,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |» color<span class="param-type"> string</span>|The color associated with the status update.|
-|» html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
 |» text<span class="param-type"> string</span>|The text content of the status update.|
 |» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
@@ -21330,8 +21450,8 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the project with formatting as HTML.|
-|is_template<span class="param-type"> boolean</span>|[Opt In](#input-output-options). Determines if the project is a template.|
+|html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
+|is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -21348,7 +21468,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -21522,7 +21642,7 @@ A *project status* is an update on the progress of a particular project, and is 
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |color<span class="param-type"> string</span>|The color associated with the status update.|
-|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
+|html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
 |text<span class="param-type"> string</span>|The text content of the status update.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
@@ -21869,17 +21989,17 @@ A story represents an activity associated with an object in the Asana system.
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
-|html_text<span class="param-type"> string</span>|[Opt In](#input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
+|html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
+|custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](/docs/asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -22334,15 +22454,15 @@ The *task* is the basic object around which many operations in Asana are centere
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|dependencies<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
+|dependencies<span class="param-type"> [object]</span>|[Opt In](/docs/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|dependents<span class="param-type"> [object]</span>|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|dependents<span class="param-type"> [object]</span>|[Opt In](/docs/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |due_at<span class="param-type"> string(date)¦null</span>|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |due_on<span class="param-type"> string(date)¦null</span>|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
+|external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
 |» data<span class="param-type"> string</span>|none|
 |» gid<span class="param-type"> string</span>|none|
 |hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
@@ -22352,8 +22472,8 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|html_notes<span class="param-type"> string</span>|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
-|is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.|
+|html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.|
+|is_rendered_as_separator<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](/docs/asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.|
 |liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this task.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
@@ -22374,7 +22494,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
 |num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
-|num_subtasks<span class="param-type"> integer</span>|[Opt In](#input-output-options). The number of subtasks on this task.|
+|num_subtasks<span class="param-type"> integer</span>|[Opt In](/docs/input-output-options). The number of subtasks on this task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -22387,9 +22507,9 @@ The *task* is the basic object around which many operations in Asana are centere
 |» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|» description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the custom field.|
+|» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
@@ -22628,8 +22748,8 @@ A *team* is used to group related projects and people together within an organiz
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the team.|
-|description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team.|
-|html_description<span class="param-type"> string</span>|[Opt In](#input-output-options). The description of the team with formatting as HTML.|
+|description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the team.|
+|html_description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the team with formatting as HTML.|
 |organization<span class="param-type"> object</span>|The organization/workspace the team belongs to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -22887,7 +23007,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Webhook)
 ```
 
 <span class="description">
-A WebhookFilter can be passed on creation of a webhook in order to filter the types of actions that trigger delivery of an [Event](#tocS_Event)
+A WebhookFilter can be passed on creation of a webhook in order to filter the types of actions that trigger delivery of an [Event](/docs/tocS_Event)
 
 </span>
 
@@ -22895,7 +23015,7 @@ A WebhookFilter can be passed on creation of a webhook in order to filter the ty
 
 |Name|Description|
 |---|---|
-|action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](#tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
+|action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](/docs/tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
 |fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
 |resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
 |resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
@@ -22941,7 +23061,7 @@ A WebhookFilter can be passed on creation of a webhook in order to filter the ty
 ```
 
 <span class="description">
-Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [Event](#tocS_Event) schema.
+Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [Event](/docs/tocS_Event) schema.
 
 </span>
 
@@ -22959,7 +23079,7 @@ Webhook objects represent the state of an active subscription for a server to be
 |target<span class="param-type"> string(uri)</span>|The URL to receive the HTTP POST.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |filters<span class="param-type"> [object]</span>|Whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered; otherwise no event will be sent to the receiving server.|
-|» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](#tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
+|» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](/docs/tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
 |» fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
 |» resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
 |» resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
