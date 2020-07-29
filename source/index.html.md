@@ -18,6 +18,12 @@ search: true
 ---
 # Change Log
 
+## 2020-07-20
+
+* New public endpoint for quering tickers.
+
+* PHP sample code for requests signing fixed.
+
 ## 2020-07-08
 
 * New API Key features:
@@ -264,7 +270,7 @@ $method = 'post';
 $microTime = explode(' ', microtime());
 $nonce = $microTime[1] . str_pad(substr($microTime[0], 2, 6), 6, '0');
 
-$requestData = http_build_query($data);
+$requestData = json_encode($data, JSON_FORCE_OBJECT);
 $message = $nonce . strtoupper($method) . $path . $requestData;
 $apiSha256 = hash('sha256', utf8_encode($message), true);
 $apiHmac = hash_hmac('sha512', $apiSha256, base64_decode($apiSecret), true);
@@ -572,7 +578,7 @@ This API call is used to retrieve your wallets balances, including their deposit
 ```json
 {
 	"success": true,
-	"message": null,
+	"msg": null,
 	"data": [{
 			"coin": "LTC",
 			"balance": 0.00000000,
@@ -874,7 +880,7 @@ This endpoint retrieves your trading history.
 | offset | Integer | No | Indicates the starting position of the query in relation to the complete set of unpaginated items. |
 
 
-#Market Data [PUBLIC]
+# Market Data [PUBLIC]
 The following API calls retrieve information related to markets.
 
 <aside class="notice">
@@ -1125,6 +1131,75 @@ This endpoint returns the last 50 trades for a given market.
 | Parameter | Type | Required |  Description |
 |---|---|---|---|---|
 | market | String | No | Market name (e.g. `btc-mxn`). |
+
+## Tickers
+Provides a summary market data (ticker) for all markets.
+
+Fields:
+
+* `high`: Last 24h highest price.
+* `low`: Last 24h lowest price.
+* `volume`: Last 24h amount traded.
+* `last`: Last price.
+
+```shell
+curl -X GET "https://api.tauros.io/api/v2/trading/tickers/"
+```
+> The API response will look like this:
+
+```json
+{
+  "success": true,
+  "msg": null,
+  "next": null,
+  "previous": null,
+  "count": 5,
+  "payload": [
+      {
+        "market": "BTC-MXN",
+        "last": 206140.7,
+        "high": 206980.14,
+        "low": 206018.21,
+        "volume": 0.06895091
+      },
+      {
+        "market": "LTC-MXN",
+        "last": 934.05,
+        "high": 960.78,
+        "low": 934.05,
+        "volume": 9.58559476
+      },
+      {
+        "market": "BCH-MXN",
+        "last": 5040.11,
+        "high": 5129.7,
+        "low": 4980.85,
+        "volume": 0.99706549
+      },
+      {
+        "market": "XLM-MXN",
+        "last": 2.14,
+        "high": 16.8,
+        "low": 2.14,
+        "volume": 1681.0954899
+      },
+      {
+        "market": "DASH-MXN",
+        "last": 1560.43,
+        "high": 1689.77,
+        "low": 890.02,
+        "volume": 4.05001625
+      }
+    ]
+}
+
+```
+
+### HTTP Request
+`GET /v2/trading/tickers/`
+
+### Query Parameters
+None
 
 ## List trading fees
 ```shell
