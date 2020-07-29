@@ -1127,6 +1127,11 @@ This endpoint returns the last 50 trades for a given market.
 ### HTTP Request
 `GET /v1/trading/trades/`
 
+### Query Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | No | Market name (e.g. `btc-mxn`). |
+
 ## Tickers
 Provides a summary market data (ticker) for all markets.
 
