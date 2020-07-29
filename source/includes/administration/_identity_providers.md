@@ -148,7 +148,7 @@ Required | &nbsp;
 `logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider. The issuerURL will be set if of a default provider type.
-`rank`<br/>*int* | If provided, this integer sorts identity providers on the Login page in ascending order.rank
+`rank`<br/>*int* | If provided, this integer sorts identity providers on the Login page in ascending order.
 
 
 Optional | &nbsp;
