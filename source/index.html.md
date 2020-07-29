@@ -1124,6 +1124,9 @@ curl -X GET "https://api.tauros.io/api/v1/trading/trades/?market=$MKT"
 ```
 This endpoint returns the last 50 trades for a given market.
 
+### HTTP Request
+`GET /v1/trading/trades/`
+
 ## Tickers
 Provides a summary market data (ticker) for all markets.
 
