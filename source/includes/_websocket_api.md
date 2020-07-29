@@ -414,6 +414,40 @@ This channel provides updates on system wide announcements like scheduled mainte
 }
 ```
 
+## ohlc candles
+This channel provides ohlc updated for given time resolution
+Subscribe to **ohlc_candle** channel for updates
+
+Subscription payload sample
+```
+{
+  "name": "candlestick_1m",
+  "symbols": ["BTCUSD_P"]
+}
+```
+
+name = "candlestick_" + resolution
+resolutions = ["1m","3m","5m","15m","30m","1h","2h","4h","6h","12h","1d","1w","2w","30d"]
+symbols= product symbol
+
+Sample response
+```
+{
+    "candle_start_time": 1596015240000000,
+    "close": 9223,
+    "high": 9228,
+    "low": 9220,
+    "open": 9221,
+    "resolution": "1m",
+    "symbol": "BTCUSD_P",
+    "timestamp": 1596015289339699,
+    "type": "candlestick_1m",
+    "volume": 1.2
+}
+```
+
+
+
 # Private Channels
 
 Private channels require clients to authenticate.
