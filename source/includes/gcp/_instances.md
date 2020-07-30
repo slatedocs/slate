@@ -89,8 +89,8 @@ curl -X GET \
       "project": "test-area-oox",
       "internalIp": "10.162.0.7",
       "externalIp": "35.203.99.102",
-      "networkName": "default",
-      "subnetworkName": "default",
+      "shortNetwork": "default",
+      "shortSubnetwork": "default",
       "iconUrl": "/rest/services/assets/gcp/os_logo/debian.png",
       "osImageName": "debian-9-stretch",
       "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
@@ -134,8 +134,8 @@ Attributes | &nbsp;
 `shortMachineType`<br/>*string* | A short version of the machineType name.
 `project`<br/>*string* | The project where the instance resides.
 `internalIp`<br/>*string* | The instance's internal IP.
-`networkName`<br/>*string* | The network to which the instance is connected to.
-`subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to.
+`shortNetwork`<br/>*string* | The network to which the instance is connected to.
+`shortSubnetwork`<br/>*string* | The sub-network within the network the instance is connected to.
 `iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk.
 `osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk.
 `osImageSelfLink`<br/>*string* | The full URL to the OS image.
@@ -234,8 +234,8 @@ curl -X GET \
     "project": "test-area-oox",
     "internalIp": "10.162.0.7",
     "externalIp": "35.203.99.102",
-    "networkName": "default",
-    "subnetworkName": "default",
+    "shortNetwork": "default",
+    "shortSubnetwork": "default",
     "iconUrl": "/rest/services/assets/gcp/os_logo/debian.png",
     "osImageName": "debian-9-stretch",
     "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
@@ -275,8 +275,8 @@ Attributes | &nbsp;
 `shortMachineType`<br/>*string* | A short version of the machineType name.
 `project`<br/>*string* | The project where the instance resides.
 `internalIp`<br/>*string* | The instance's internal IP.
-`networkName`<br/>*string* | The network to which the instance is connected to.
-`subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to.
+`shortNetwork`<br/>*string* | The network to which the instance is connected to.
+`shortSubnetwork`<br/>*string* | The sub-network within the network the instance is connected to.
 `iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk.
 `osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk.
 `osImageSelfLink`<br/>*string* | The full URL to the OS image.
@@ -313,7 +313,7 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
-  "subnetworkName": "production-net",
+  "shortSubnetwork": "production-net",
   "shortIP": "my-ip-name",
   "startupScript": "#! /bin/bash\napt-get update\nEOF"
 }
@@ -328,7 +328,7 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
-  "subnetworkName": "staging-net",
+  "shortSubnetwork": "staging-net",
   "reserveStaticIP": true
 }
 
@@ -342,7 +342,7 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
-  "subnetworkName": "development-net",
+  "shortSubnetwork": "development-net",
   "ephemeralIP": true
 }
 
@@ -356,7 +356,7 @@ curl -X POST \
   "cpuCount": "2",
   "memoryInGB": "4.5",
   "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
-  "subnetworkName": "demo-net",
+  "shortSubnetwork": "demo-net",
 }
 ```
 
@@ -374,7 +374,7 @@ Required | &nbsp;
 `cpuCount`<br/>*string* | Updated number of vCPUs of instance.
 `memoryInGB`<br/>*string* | Updated memory of instance.
 `osImageSelfLink`<br/>*string* | The full URL to the OS image.
-`subnetworkName`<br/>*string* | The subnet that the instance is attached to upon creation. _(Note that the subnet must be in the same region as the instance)_.
+`shortSubnetwork`<br/>*string* | The subnet that the instance is attached to upon creation. _(Note that the subnet must be in the same region as the instance)_.
 
 Optional | &nbsp;
 ------- | -----------

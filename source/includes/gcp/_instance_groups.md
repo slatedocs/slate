@@ -158,10 +158,10 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`shortInstances`<br/>*array[string]* | Array of instance names to add to the instance group upon creation.
+`shortInstances`<br/>*array[string]* | Array of instance names to add to the instance group upon creation. All these instances should belong to the zone provided and should be in the same subnet.
 `shortNetwork`<br/>*string* | The network to which the instance group is connected to.
 `shortRegion`<br/>*string* | A short version of the region name.
-`shortSubnetwork`<br/>*string* | The sub-network within the network the instance group is connected to.
+`shortSubnetwork`<br/>*string* | The sub-network within the network the instance group is connected to. This will only be applied to the instance group if instances are being bound at creation time, if not, only the network will be applied to the instance group.
 
 <!-------------------- DELETE AN INSTANCE GROUP -------------------->
 
