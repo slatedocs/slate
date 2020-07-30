@@ -172,3 +172,67 @@ Retrieve a persistent volume claim and all its info in a given [environment](#ad
 | `status.phase` <br/>_string_ | The claim is in one of the following phases: `Pending`, `Bound`, `Lost` or `Terminating`. |
 | `status.accessModes` <br/>_string_ | The allocated access mode. The volume can be mounted on a host in any way supported by the resource provider and will give the provider access to different capabilities. Value is one of `ReadWriteOnce` (by a single node), `ReadOnlyMany` (by many nodes) or `ReadWriteMany` (by many nodes).|
 | `status.capacity.storage` <br/>_string_ | The allocated storage capacity. |
+
+<!-------------------- CREATE a persistent volume claim -------------------->
+
+#### Create a persistent volume claim
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims"
+  Content-Type: application/json
+   {
+      "apiVersion": "v1",
+      "kind": "PersistentVolumeClaim",
+      "metadata": {
+         "name": "small-pvc",
+         "namespace": "default"
+      },
+      "spec": {
+         "accessModes": [
+            "ReadWriteOnce"
+         ],
+         "resources": {
+            "requests": {
+               "storage": "10G"
+            }
+         }
+      }
+   }
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims</code>
+
+Create a persistent volume claim in a given [environment](#administration-environments).
+
+| Required Attributes                             | &nbsp;                                                                                                                                                                                                          |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apiVersion` <br/>_string_                      | The api version (versioned schema) of the persistent volume claim.                                                                                                                                               |
+| `metadata` <br/>_object_                        | The metadata of the persistent volume claim.                                                                                                                                                                     |
+| `metadata.name` <br/>_string_                   | The name of the persistent volume claim.                                                                                                                                                                         |
+| `spec` <br/>_object_                            | The spec for the persistent volume claim.                                                                                                                                                                        |
+| `spec.accessModes` <br/>_array_                 | A list of access modes, the options are: ReadWriteOnce, ReadOnlyMany and ReadWriteMany.                                                                                                                          |
+| `spec.resources.requests.storage` <br/>_string_ | Measured in bytes. You can express storage as a plain integer or as a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki. |
+
+| Optional Attributes                   | &nbsp;                                                                                        |
+| ------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `kind`<br/>_string_                   | The string value representing the REST resource this object represents.                       |
+| `metadata.namespace` <br/>_string_    | The namespace in which the pod is created, if not specified will create the claim in default. |
+| `spec.storageClassName` <br/>_string_ | The storage class for the persistent volume claim, will use the default if not specified.     |
+| `spec.resources.limits` <br/>_object_ | Limits describe the maximum number of storage resources allowed.                              |
+
+Return value:
+
+| Attributes                 | &nbsp;                                                           |
+| -------------------------- | ---------------------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create persistent volume claim task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                                     |
