@@ -177,3 +177,31 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume. |
 | `spec.capacity.volumeMode` <br/>_string_ | If set to `Filesystem` (default value), the volume is mounted into Pods into a directory. If set to `Block`, then the volume is used as a raw block device. |
 | `status.phase` <br/>_string_ | Volume is in one of the following phases: `Available`, `Bound`, `Released` or `Failed`. |
+
+<!-------------------- DELETE a persistent volume  -------------------->
+#### Delete a persistent volume
+
+<!-- TODO is cluster_id required -->
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes/:id</code>
+
+Delete a perstent volume from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete persistent volume task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                        |

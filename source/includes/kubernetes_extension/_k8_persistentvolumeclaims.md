@@ -247,3 +247,30 @@ Return value:
 | -------------------------- | -------------------------------------------- |
 | `taskId` <br/>_string_     | The id corresponding to the create persistent volume claim task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
+
+<!-------------------- DELETE a persistent volume claim  -------------------->
+##### Delete a persistent volume claim
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims/:id</code>
+
+Delete a perstent volume claim from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete persistent volume claim task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                        |
