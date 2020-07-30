@@ -99,7 +99,7 @@ Retrieve a list of all persistent volume claims in a given [environment](#admini
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg?cluster_id=:cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -254,7 +254,7 @@ Return value:
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg?cluster_id=:cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -266,7 +266,7 @@ curl -X GET \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims/:id?cluster_id=:cluster_id</code>
 
 Delete a perstent volume claim from a given [environment](#administration-environments).
 

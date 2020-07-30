@@ -189,7 +189,6 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 <!-------------------- DELETE a persistent volume  -------------------->
 ##### Delete a persistent volume
 
-<!-- TODO is cluster_id required -->
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
@@ -205,7 +204,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes/:id?cluster_id=:cluster_id</code>
 
 Delete a perstent volume from a given [environment](#administration-environments).
 

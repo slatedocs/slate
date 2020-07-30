@@ -141,7 +141,6 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 <!-------------------- DELETE A storage class -------------------->
 ##### Delete a storage class
 
-<!-- TODO is cluster_id required -->
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
@@ -157,7 +156,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id?cluster_id=:cluster_id</code>
 
 Delete a storage class from a given [environment](#administration-environments).
 

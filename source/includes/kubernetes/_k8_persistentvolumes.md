@@ -100,7 +100,7 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2"
 ```
 
 > The above command returns a JSON structured like this:
@@ -181,11 +181,10 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 <!-------------------- DELETE a persistent volume  -------------------->
 #### Delete a persistent volume
 
-<!-- TODO is cluster_id required -->
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2"
 ```
 
 > The above command returns a JSON structured like this:
