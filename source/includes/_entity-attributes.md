@@ -124,3 +124,33 @@ Pass the `with_modified_names` flag to return the fields such that the names hav
 ### Returns
 
 An array of all the fields requested.
+
+## Delete a field
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/fields/1234" \
+  -u :<API-KEY> \
+  -X "DELETE"
+```
+
+> Example Response
+
+```json
+{ "success": true }
+```
+
+`DELETE /fields/{id}`
+
+Deletes an field with the specified `id`.
+
+### Path Parameters
+
+| Parameter      | Type    | Required | Description                                                |
+| -------------- | ------- | -------- | ---------------------------------------------------------- |
+| id | integer | true     | The unique id of the field that needs to be deleted. |
+
+### Returns
+
+`{success: true}`.

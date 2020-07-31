@@ -197,7 +197,7 @@ Creates a new field value with the supplied parameters.
 | ------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | field_id      | integer | true     | The unique identifier of the field (column) that the field value is associated with.                                                                                                              |
 | entity_id     | integer | true     | The unique identifier of the entity (person, organization, or opportunity) that the field value is associated with.                                                                               |
-| list_entry_id | integer | false    | The unique identifier of the list entry (list row) that the field value is associated with. Only specify the list_entry_id if the field that the field value is associated with is list specific. |
+| list_entry_id | integer | false    | The unique identifier of the list entry (list row) that the field value is associated with. Only specify the `list_entry_id` if the field that the field value is associated with is list specific. |
 | value         | custom  | true     | See the [field value resource](#the-field-value-resource) section for all value types. The value specified must correspond to the `value_type` of the supplied `field`.                           |
 
 ### Returns
