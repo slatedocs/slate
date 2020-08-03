@@ -89,8 +89,6 @@ Retrieve a secret and all its info in a given [environment](#administration-envi
 | `kind` <br/>_string_       | A string value representing the REST resource that this object represents. |
 | `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
 
-
-
 <!-------------------- DELETE SECRET -------------------->
 
 #### Delete a secret

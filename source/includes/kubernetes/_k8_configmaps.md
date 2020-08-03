@@ -74,7 +74,6 @@ Retrieve a configmap and all its info in a given [environment](#administration-e
 | `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap        |
 | `metadata` <br/>_object_                   | The metadata of the config map                          |
 
-
 <!-------------------- DELETE CONFIG MAP -------------------->
 
 #### Delete a configmap
