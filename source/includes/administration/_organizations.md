@@ -253,7 +253,7 @@ curl "https://cloudmc_endpoint/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5
     {
       "lastCheckedDate": "2020-07-31T19:14:36Z",
       "createdDate": "2020-07-31T19:12:55Z",
-      "domain": "www.aGoodFakeDomain.com",
+      "domain": "aGoodFakeDomain.com",
       "organization": {
         "name": "my organization",
         "id": "87895f43-51c1-43cc-b987-7e301bf5b86a",
@@ -266,7 +266,7 @@ curl "https://cloudmc_endpoint/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5
     {
       "lastCheckedDate": "2020-08-03T15:24:35Z",
       "createdDate": "2020-08-03T14:41:20Z",
-      "domain": "www.anotherFakeDomain.com",
+      "domain": "anotherFakeDomain.com",
       "organization": {
         "name": "my organization",
         "id": "87895f43-51c1-43cc-b987-7e301bf5b86a",
@@ -297,7 +297,7 @@ Attributes | &nbsp;
 Creates a new verified domain in the specified organization.
 
 ```shell
-# Create an organization
+# Create a verified domain
 curl -X POST "https://cloudmc_endpoint/v1/organizations87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
@@ -325,7 +325,7 @@ The responses' `data` field contains the created verified domain with its `id`, 
 Delete a specified domain on the organization.
 
 ```shell
-# Delete an organization
+# Delete a verified domain
 curl -X DELETE "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/verified_domains/22d30872-8e90-43b5-b1ba-636bead42e34" \
    -H "MC-Api-Key: your_api_key"
 ```
@@ -362,7 +362,7 @@ curl "https://cloudmc_endpoint/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5
        {
         "lastCheckedDate": "2020-08-03T17:19:36Z",
         "createdDate": "2020-08-03T16:14:00Z",
-        "domain": "http://newDomainName.com",
+        "domain": "newDomainName.com",
         "organization": {
           "lineage": "87895f43-51c1-43cc-b987-7e301bf5b86a",
           "notes": "",
