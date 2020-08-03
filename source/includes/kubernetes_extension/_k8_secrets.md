@@ -104,7 +104,7 @@ Retrieve a secret and all its info in a given [environment](#administration-envi
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets/default-token-xxxmt/default"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets/default-token-xxxmt/default?cluster_id=a_cluster_id"
 ```
 > The above command returns a JSON structured like this:
 
@@ -115,11 +115,15 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/secrets/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/secrets/:id?cluster_id=:cluster_id</code>
 
 Delete a secret from a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                       |
----------------------------- | ---------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the delete pod task. |
-| `taskStatus` <br/>*string* | The status of the operation.                 |
+Required | &nbsp;
+------- | -----------
+`cluster_id` <br/>*string* | The id of the cluster in which to delete the secret.
+
+| Attributes                 | &nbsp;                                          |
+---------------------------- | ------------------------------------------------|
+| `taskId` <br/>*string*     | The id corresponding to the delete secret task. |
+| `taskStatus` <br/>*string* | The status of the operation.                    |

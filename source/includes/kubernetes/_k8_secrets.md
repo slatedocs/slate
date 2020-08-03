@@ -111,7 +111,7 @@ curl -X DELETE \
 
 Delete a secret from a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                       |
----------------------------- | ---------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the delete pod task. |
-| `taskStatus` <br/>*string* | The status of the operation.                 |
+| Attributes                 | &nbsp;                                          |
+---------------------------- | ------------------------------------------------|
+| `taskId` <br/>*string*     | The id corresponding to the delete secret task. |
+| `taskStatus` <br/>*string* | The status of the operation.                    |
