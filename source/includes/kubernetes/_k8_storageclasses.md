@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses"
 ```
 
 > The above command returns a JSON structured like this:
@@ -74,7 +74,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses/rook-ceph-block?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses/rook-ceph-block"
 ```
 
 > The above command returns a JSON structured like this:
@@ -129,3 +129,30 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 | `provisioner` <br/>_string_           | The provsioner for the storage class                                                                                                        |
 | `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
 | `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
+
+<!-------------------- DELETE A storage class -------------------->
+#### Delete a storage class
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses/rook-ceph-block
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id</code>
+
+Delete a storage class from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete storage class task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                        |
