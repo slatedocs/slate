@@ -51,6 +51,7 @@ person entity. Furthermore, the list would have two "fields" with the names
 | ------------ | ----- | ---------------------------------------- |
 | person       | 0     | Type specifying a list of people.        |
 | organization | 1     | Type specifying a list of organizations. |
+| opportunity  | 8     | Type specifying a list of opportunities. |
 
 ## Get all lists
 
