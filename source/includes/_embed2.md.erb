@@ -207,6 +207,29 @@ When set enables the Chat drawer open / close state to persist across windows an
 We recommend enabling this feature if your bot uses Ada Glass.
 </aside>
 
+#### customDomains
+
+```html
+<script type="text/javascript">
+  window.adaSettings = {
+    customDomains: {
+      embedModern: "https://my-cdn.com/embed2/<hash>/client-modern.js",
+      embedLegacy: "https://my-cdn.com/embed2/<hash>/client-legacy.js"
+    }
+  }
+</script>
+```
+
+`customDomains?: { embedLegacy: string; embedModern: string; };`
+
+To reduce bundle size for users on modern browsers, Embed2 dynamically loads either a `modern` or `legacy` client script. However, this also means that serving Embed2 from your own domain is not as easy as hosting [the entry script](https://static.ada.support/embed2.js).
+
+To get around this issue, the `customDomains` option can be used to specify the dynamic client scripts (which you have self-hosted).
+
+<aside class="notice">
+The Embed2 entry and client scripts must all use the same version. If you require assistance getting the latest versions please reach out to an Ada bot specialist.
+</aside>
+
 #### domain
 `domain?: string;`
 
