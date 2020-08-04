@@ -145,7 +145,7 @@ curl -X POST \
     "name": "local-storage-name"
   },
   "provisioner": "kubernetes.io/no-provisioner",
-  "volumeBindingMode": WaitForFirstConsumer
+  "volumeBindingMode": "WaitForFirstConsumer"
 }
 ```
 
@@ -176,6 +176,13 @@ Create a storage class in a given [environment](#administration-environments).
 | `reclaimPolicy` <br/>_string_              | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.               |
 | `parameters` <br/>_object_                 | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
 | `allowVolumeExpansion` <br/>_boolean_      | Whether not the storage class allows for expandable volumes.              |
+
+Return value:
+
+| Attributes                 | &nbsp;                                                |
+---------------------------- | ------------------------------------------------------|
+| `taskId` <br/>*string*     | The id corresponding to the create stateful set task. |
+| `taskStatus` <br/>*string* | The status of the operation.                          |
 
 <!-------------------- DELETE A storage class -------------------->
 #### Delete a storage class
