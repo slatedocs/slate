@@ -233,3 +233,209 @@ curl -X DELETE "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988
 ```
 
 Returns an HTTP status code 204, with an empty response body.
+
+<!-------------------- GET VERIFIED DOMAINS -------------------->
+### Get verified domains
+`GET /organizations/:organization_id/verified_domains`
+
+Get a list of all verified domains on the specified organization.
+
+```shell
+# Retrieve all verified domains
+curl "https://cloudmc_endpoint/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "lastCheckedDate": "2020-07-31T19:14:36Z",
+      "createdDate": "2020-07-31T19:12:55Z",
+      "domain": "aGoodFakeDomain.com",
+      "organization": {
+        "name": "my organization",
+        "id": "87895f43-51c1-43cc-b987-7e301bf5b86a",
+        "entryPoint": "myOrg"
+      },
+      "id": "22d30872-8e90-43b5-b1ba-636bead42e34",
+      "verificationCode": "cmc-verification=81405f20-f96e-4964-b8bb-fb97c802ca5c",
+      "status": "VERIFIED"
+    },
+    {
+      "lastCheckedDate": "2020-08-03T15:24:35Z",
+      "createdDate": "2020-08-03T14:41:20Z",
+      "domain": "anotherFakeDomain.com",
+      "organization": {
+        "name": "my organization",
+        "id": "87895f43-51c1-43cc-b987-7e301bf5b86a",
+        "entryPoint": "myOrg"
+      },
+      "id": "5752811e-08cf-4105-91ca-bac80efe3d23",
+      "verificationCode": "cmc-verification=a571fb45-1dc6-4569-adf2-9e166861499f",
+      "status": "PENDING"
+    }
+  ]
+}
+```
+
+Attributes | &nbsp;
+---- | -----------
+`lastCheckedDate`<br/>*string* |  The last date that the domain's DNS was checked for the TXT record with the verification code. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+`domain`<br/>*string* | The domain associated with the organization.
+`organization`<br/>*[Organization](#administration-organizations)* | The organization to which the verified domain belongs. *includes*:`id`,`name`, `entryPoint`.
+`id`<br/>*UUID* | The id of the verified domain.
+`verificationCode`<br/>*string* | The verification code for the domain. This is the value that should be added to the domain's DNS registration as a new TXT record. CloudMC will check on a recurring schedule if the TXT record has been added to the domain, and update the status to VERIFIED once found.
+`status`<br/>*string* | The status of the domain ownership proof. Possible values are : VERIFIED, PENDING, ERROR.
+
+<!-------------------- CREATE VERIFIED DOMAIN -------------------->
+### Create verified domain
+
+`POST /organizations/:organization_id/verified_domains`
+
+Creates a new verified domain in the specified organization.
+
+```shell
+# Create a verified domain
+curl -X POST "https://cloudmc_endpoint/v1/organizations87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "request_body"
+```
+> Request body example:
+
+```json
+{
+   "domain":"www.umbrellaCorp.com",
+}
+```
+
+Required | &nbsp;
+---- | ----
+`domain`<br/>*string*  | The domain associated with the organization. 
+
+The responses' `data` field contains the created verified domain with its `id`, as well as with the `verificationCode`. A TXT record will need to be added to the domain's DNS registration with the verification code as its value.
+
+
+<!-------------------- DELETE VERIFIED DOMAIN -------------------->
+### Delete verified domain
+`DELETE /organizations/:organization_id/verified_domains/:id`
+
+Delete a specified domain on the organization.
+
+```shell
+# Delete a verified domain
+curl -X DELETE "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/verified_domains/22d30872-8e90-43b5-b1ba-636bead42e34" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+Returns an HTTP status code 200, with an empty response body.
+
+<!-------------------- GET SECURITY SETTINGS -------------------->
+### Get security settings
+`GET /organizations/organization_id/security_settings`
+
+Retrieve the security settings for the organization.
+
+```shell
+# Retrieve the organization's security settings
+curl "https://cloudmc_endpoint/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/security_settings" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "defaultRole": {
+      "name": "guest",
+      "id": "6e022506-ab89-4676-859d-06d370b67417"
+    },
+    "organization": {
+      "name": "my organization",
+      "id": "87895f43-51c1-43cc-b987-7e301bf5b86a",
+      "entryPoint": "myOrg"
+    },
+    "autoCreationEnabled": true,
+    "verifiedDomains": [
+       {
+        "lastCheckedDate": "2020-08-03T17:19:36Z",
+        "createdDate": "2020-08-03T16:14:00Z",
+        "domain": "newDomainName.com",
+        "organization": {
+          "lineage": "87895f43-51c1-43cc-b987-7e301bf5b86a",
+          "notes": "",
+          "hashAlgorithmName": "SHA-512",
+          "hashIterations": 100,
+          "isTrial": false,
+          "creationDate": "2020-04-30T21:25:49.000Z",
+          "version": 2,
+          "isLdapAuthentication": false,
+          "isBillable": false,
+          "isDbAuthentication": true,
+          "deleted": false,
+          "ldap": {
+            "id": "063ec8ee-8a55-4374-9c8c-57a10f11cf1b"
+          },
+          "name": "my organization",
+          "id": "87895f43-51c1-43cc-b987-7e301bf5b86a",
+          "entryPoint": "myOrg"
+        },
+        "id": "29d66b1d-669a-439b-883a-d7c1e36e1ca6",
+        "verificationCode": "cmc-verification=8c8f5473-9306-4e16-a820-a747482e85e5",
+        "status": "VERIFIED"
+      }
+    ]
+  }
+}
+```
+Attributes | &nbsp;
+---- | -----------
+`defaultRole`<br/>*object* | The role that will be assigned to new users logging into the organization with an email domain matching that of the organization's security settings. 
+`defaultRole.name`<br/>*string* | The name of the default role.
+`defaultRole.id`<br/>*UUID* | The id of the default role.
+`organization`<br/>*[Organization](#administration-organizations)* | The organization to which the verified domain belongs. *includes*:`id`,`name`, `entryPoint`.
+`autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
+`verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
+
+<!-------------------- UPDATE SECURITY SETTINGS -------------------->
+### Update security settings
+`PUT /organizations/:organization_id/security_settings`
+
+```shell
+# Update an organization's security settings
+curl -X PUT "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/security_settings" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "request_body"
+```
+> Request body example:
+
+```json
+{
+   "autoCreationEnabled": true,
+   "verifiedDomains": [ 
+	 	{ 
+			 "id": "29d66b1d-669a-439b-883a-d7c1e36e1ca6"
+		}
+	],
+	"defaultRole": {
+      "name": "guest",
+      "id": "6e022506-ab89-4676-859d-06d370b67417" 
+	}
+}
+```
+
+Required | &nbsp;
+---- | ----
+`defaultRole`<br/>*object*  | The role that will be assigned to new users logging into the organization with an email domain matching that of the organization's security settings. 
+`defaultRole.name`<br/>*string* | The name of the default role.
+`defaultRole.id`<br/>*UUID* | The id of the default role.
+
+Optional | &nbsp;
+---- | ----
+`autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
+`verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of objects containing the ids of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
+
+Returns an HTTP status code 200, with an empty response body.
