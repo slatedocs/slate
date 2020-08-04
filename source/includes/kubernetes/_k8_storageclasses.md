@@ -126,7 +126,7 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 | `allowVolumeExpansion` <br/>_boolean_ | Whether not the storage class allows for expandable volumes.                                                                                |
 | `metadata` <br/>_object_              | The metadata of the storage class.                                                                                                          |
 | `parameters` <br/>_object_            | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
-| `provisioner` <br/>_string_           | The provsioner for the storage class                                                                                                        |
+| `provisioner` <br/>_string_           | The provisioner for the storage class                                                                                                        |
 | `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
 | `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
 
@@ -168,7 +168,7 @@ Create a storage class in a given [environment](#administration-environments).
 | `kind`<br/>_string_                        | The string value representing the REST resource this object represents.     |
 | `metadata` <br/>_object_                   | The metadata of the storage class.                                          |
 | `metadata.name` <br/>_string_              | The name of the storage class.                                              |
-| `provisioner` <br/>_string_                | The provsioner for the storage class                                        |
+| `provisioner` <br/>_string_                | The provisioner for the storage class                                        |
 | `volumeBindingMode` <br/>_string_          | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                    |
 
 | Optional Attributes                        | &nbsp;                                                                    |

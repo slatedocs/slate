@@ -176,7 +176,7 @@ Create a storage class in a given [environment](#administration-environments).
 | `kind`<br/>_string_                        | The string value representing the REST resource this object represents.     |
 | `metadata` <br/>_object_                   | The metadata of the storage class.                                          |
 | `metadata.name` <br/>_string_              | The name of the storage class.                                              |
-| `provisioner` <br/>_string_                | The provsioner for the storage class                                        |
+| `provisioner` <br/>_string_                | The provisioner for the storage class                                        |
 | `volumeBindingMode` <br/>_string_          | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                    |
 
 | Optional Attributes                        | &nbsp;                                                                    |
