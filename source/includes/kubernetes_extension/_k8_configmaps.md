@@ -1,8 +1,8 @@
-#### ConfigMaps
+#### Config Maps
 
 <!-------------------- LIST CONFIG MAPS -------------------->
 
-##### List configmaps
+##### List config maps
 
 ```shell
 curl -X GET \
@@ -37,16 +37,16 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 | -------------------------- | ------------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to list the config maps. |
 
-| Attributes                                 | &nbsp;                                             |
-| ------------------------------------------ | -------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the config map                           |
-| `apiVersion` <br/>_string_                 | The API version used to retrieve this config map   |
-| `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap   |
-| `metadata` <br/>_object_                   | The metadata of the config map                     |
+| Attributes                 | &nbsp;                                            |
+| -------------------------- | ------------------------------------------------- |
+| `id` <br/>_string_         | The id of the config map.                         |
+| `apiVersion` <br/>_string_ | The API version used to retrieve this config map. |
+| `kind` <br/>_string_       | The type of the returned resource. ie, ConfigMap. |
+| `metadata` <br/>_object_   | The metadata of the config map.                   |
 
-<!-------------------- GET A configmap -------------------->
+<!-------------------- GET A CONFIG MAP -------------------->
 
-##### Get a configmap
+##### Get a config map
 
 ```shell
 curl -X GET \
@@ -72,28 +72,85 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/configmaps/:id?cluster_id=:cluster_id</code>
 
-Retrieve a configmap and all its info in a given [environment](#administration-environments).
+Retrieve a config map and all its info in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                                |
 | -------------------------- | ----------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to get the config map. |
 
-| Attributes                                 | &nbsp;                                             |
-| ------------------------------------------ | -------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the config map                           |
-| `apiVersion` <br/>_string_                 | The API version used to retrieve this config map   |
-| `kind` <br/>_string_                       | The type of the returned resource. ie, ConfigMap   |
-| `metadata` <br/>_object_                   | The metadata of the config map                     |
+| Attributes                 | &nbsp;                                            |
+| -------------------------- | ------------------------------------------------- |
+| `id` <br/>_string_         | The id of the config map.                         |
+| `apiVersion` <br/>_string_ | The API version used to retrieve this config map. |
+| `kind` <br/>_string_       | The type of the returned resource. ie, ConfigMap. |
+| `metadata` <br/>_object_   | The metadata of the config map.                   |
 
-<!-------------------- DELETE CONFIG MAP -------------------->
+<!-------------------- CREATE A CONFIG MAP -------------------->
 
-##### Delete a configmap
+##### Create a config map
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps?cluster_id=:cluster_id"
+  Content-Type: application/json
+  {
+  "apiVersion": "v1",
+  "kind": "ConfigMap",
+  "metadata": {
+    "name": "game-demo"
+  },
+  "data": {
+    "player_initial_lives": "3",
+    "ui_properties_file_name": "user-interface.properties",
+    "game.properties": "enemy.types=aliens,monsters\nplayer.maximum-lives=5\n",
+    "user-interface.properties": "color.good=purple\ncolor.bad=yellow\nallow.textmode=true\n"
+  }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/configmaps?cluster_id=:cluster_id</code>
+
+Create a config map in a given [environment](#administration-environments).
+
+| Required Attributes           | &nbsp;                                                                   |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| `cluster_id` <br/>_string_    | The id of the cluster in which to delete the config map.                 |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the config map.                    |
+| `metadata` <br/>_object_      | The metadata of the config map.                                          |
+| `metadata.name` <br/>_string_ | The name of the config map.                                              |
+| `data`<br/>_object_           | The non-confidential data (in key-value pairs) stored in the config map. |
+
+| Optional Attributes                | &nbsp;                                           |
+| ---------------------------------- | ------------------------------------------------ |
+| `metadata.namespace` <br/>_string_ | The namespace in which the config map is created |
+
+Return value:
+
+| Attributes                 | &nbsp;                                               |
+| -------------------------- | ---------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create config maps task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                         |
+
+<!-------------------- DELETE A CONFIG MAP -------------------->
+
+##### Delete a config map
 
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/cert-manager-cainjector-leader-election/kube-system?cluster_id=a_cluster_id"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -105,13 +162,13 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/configmaps/:id?cluster_id=:cluster_id</code>
 
-Delete a configmap from a given [environment](#administration-environments).
+Delete a config map from a given [environment](#administration-environments).
 
-Required | &nbsp;
-------- | -----------
-`cluster_id` <br/>*string* | The id of the cluster in which to delete the configmap.
+| Required                   | &nbsp;                                                   |
+| -------------------------- | -------------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to delete the config map. |
 
-| Attributes                 | &nbsp;                                             |
----------------------------- | ---------------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the delete configmap task. |
-| `taskStatus` <br/>*string* | The status of the operation.                       |
+| Attributes                 | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete config map task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                        |

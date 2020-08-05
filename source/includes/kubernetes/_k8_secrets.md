@@ -1,6 +1,6 @@
 ### Secrets
 
-<!-------------------- LIST Secrets -------------------->
+<!-------------------- LIST SECRETS -------------------->
 
 #### List secrets
 
@@ -18,10 +18,10 @@ curl -X GET \
     {
       "id": "default-token-xxxmt/default",
       "apiVersion": "v1",
-      "data": {
-            "ca.crt": [],
-            "namespace": [],
-            "token": []
+      "encodedData": {
+        "ca.crt": "LS0tLS...",
+        "namespace": "a3ViZS1zeXN0ZW0=",
+        "token": "ZXlKa..."
       },
       "kind": "Secret",
       "metadata": {},
@@ -39,10 +39,10 @@ curl -X GET \
 Retrieve a list of all secrets in a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                                                     |
-| -------------------------- | ---------------------------------------------------------------------------|
+| -------------------------- | -------------------------------------------------------------------------- |
 | `id` <br/>_string_         | The id of the secret.                                                      |
 | `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
-| `data` <br/>_string_       | The data that the secret contains.                                         |
+| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
 | `metadata` <br/>_object_   | The metadata of the secret.                                                |
 | `kind` <br/>_string_       | A string value representing the REST resource that this object represents. |
 | `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
@@ -61,18 +61,18 @@ curl -X GET \
 
 ```json
 {
-    "data": {
-        "id": "default-token-xxxmt/default",
-        "apiVersion": "v1",
-        "data": {
-            "ca.crt": [],
-            "namespace": [],
-            "token": []
-        },
-        "kind": "Secret",
-        "metadata": {},
-        "type": "kubernetes.io/service-account-token"
-    }
+  "data": {
+    "id": "default-token-xxxmt/default",
+    "apiVersion": "v1",
+    "encodedData": {
+      "ca.crt": "LS0tLS...",
+      "namespace": "a3ViZS1zeXN0ZW0=",
+      "token": "ZXlKa..."
+    },
+    "kind": "Secret",
+    "metadata": {},
+    "type": "kubernetes.io/service-account-token"
+  }
 }
 ```
 
@@ -81,13 +81,92 @@ curl -X GET \
 Retrieve a secret and all its info in a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                                                     |
-| -------------------------- | ---------------------------------------------------------------------------|
+| -------------------------- | -------------------------------------------------------------------------- |
 | `id` <br/>_string_         | The id of the secret.                                                      |
 | `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
-| `data` <br/>_string_       | The data that the secret contains.                                         |
+| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
 | `metadata` <br/>_object_   | The metadata of the secret.                                                |
 | `kind` <br/>_string_       | A string value representing the REST resource that this object represents. |
 | `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
+
+<!-------------------- CREATE A SECRET -------------------->
+
+#### Create a secret
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets"
+  Content-Type: application/json
+  {
+  "apiVersion": "v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "mysecret"
+  },
+  "type": "Opaque",
+  "stringData": {
+    "username": "my-username",
+    "password": "my-password"
+  }
+}
+
+# OR
+
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets"
+  Content-Type: application/json
+  {
+  "apiVersion": "v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "mysecret"
+  },
+  "type": "Opaque",
+  "encodedData": {
+    "username": "YWRtaW4=",
+    "password": "MWYyZDFlMmU2N2Rm"
+  }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/secrets</code>
+
+Create a secret in a given [environment](#administration-environments).
+
+| Required Attributes           | &nbsp;                                            |
+| ----------------------------- | ------------------------------------------------- |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the secret. |
+| `metadata` <br/>_object_      | The metadata of the secret.                       |
+| `metadata.name` <br/>_string_ | The name of the secret.                           |
+
+One of the following two attributes is also required.
+
+| Attributes                 | &nbsp;                                                                |
+| -------------------------- | --------------------------------------------------------------------- |
+| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                         |
+| `stringData`<br/>_object_  | The non-base64 encoded data to be encoded when the secret is created. |
+
+| Optional Attributes                | &nbsp;                                       |
+| ---------------------------------- | -------------------------------------------- |
+| `metadata.namespace` <br/>_string_ | The namespace in which the secret is created |
+
+Return value:
+
+| Attributes                 | &nbsp;                                          |
+| -------------------------- | ----------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create secret task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                    |
 
 <!-------------------- DELETE SECRET -------------------->
 
@@ -98,6 +177,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets/default-token-xxxmt/default"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -112,6 +192,6 @@ curl -X DELETE \
 Delete a secret from a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                          |
----------------------------- | ------------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the delete secret task. |
-| `taskStatus` <br/>*string* | The status of the operation.                    |
+| -------------------------- | ----------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete secret task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                    |
