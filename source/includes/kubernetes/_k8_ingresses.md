@@ -156,3 +156,67 @@ Retrieve an ingress and all its info in a given [environment](#administration-en
 | `spec`<br/>_object_                        | The attributes that a user specifies for an ingress             |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
+
+<!-------------------- CREATE INGRESS -------------------->
+
+#### Create an ingress
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/ingresses"
+  Content-Type: application/json
+  {
+  "apiVersion": "networking.k8s.io/v1beta1",
+  "kind": "Ingress",
+  "metadata": {
+    "name": "ingress-name",
+    "namespace": "default",
+    "annotations": {
+      "nginx.ingress.kubernetes.io/rewrite-target": "/"
+    }
+  },
+  "spec": {
+    "rules": [
+      {
+        "hostname": "endpoint.com",
+        "http": {
+          "paths": [
+            {
+              "path": "/testpath",
+              "pathType": "Prefix",
+              "backend": {
+                "serviceName": "test",
+                "servicePort": 80
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses</code>
+
+Create an ingress in a given [environment](#administration-environments).
+
+| Required Attributes                        | &nbsp;                                                                  |
+| ------------------------------------------ | ------------------------------------------------------------------------|
+| `apiVersion` <br/> _string_                | The api version (versioned schema) of the ingress.                      |
+| `metadata` <br/>_object_                   | The metadata of the ingress.                                            |
+| `metadata.name` <br/>_string_              | The name of the ingress.                                                |
+| `spec`<br/>_object_                        | The specification used to create and run the ingress.                   |
+| `spec.rules`<br/>_object_                  | The list of host rules used to configure the ingress.                   |
+
+| Optional Attributes                        | &nbsp;                                                                  |
+| ------------------------------------------ | ------------------------------------------------------------------------|
+| `kind`<br/>_string_                        | The string value representing the REST resource this object represents. |
+| `metadata.namespace` <br/>_string_         | The namespace in which the ingress is created.                          |
+
+Return value:
+
+| Attributes                 | &nbsp;                                           |
+---------------------------- | -------------------------------------------------|
+| `taskId` <br/>*string*     | The id corresponding to the create ingress task. |
+| `taskStatus` <br/>*string* | The status of the operation.                     |
