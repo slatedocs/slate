@@ -72,8 +72,8 @@ Attributes | &nbsp;
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
 `users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*includes*: `id`
 `notes`<br/>*string* | Organization notes.
-`isDbAuthentication`<br/>*boolean* | Whether or not the organization supports db authentication.
-`isLdapAuthentication`<br/>*boolean* | Whether or ldap authentication is enabled on this organization.
+`isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
+`isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | The custom domain for the organization.
 
@@ -145,8 +145,8 @@ Attributes | &nbsp;
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
 `users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*includes*: `id`
 `notes`<br/>*string* | Organization notes.
-`isDbAuthentication`<br/>*boolean* | Whether or not the organization supports db authentication.
-`isLdapAuthentication`<br/>*boolean* | Whether or ldap authentication is enabled on this organization.
+`isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
+`isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | The custom domain for the organization.
 
@@ -230,8 +230,8 @@ Optional | &nbsp;
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
 `users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*required* : `id`
 `notes`<br/>*string* | Organization notes. Must have the `Organization metadata: Manage` permission.
-`isDbAuthentication`<br/>*boolean* | Whether or not the organization supports db authentication.
-`isLdapAuthentication`<br/>*boolean* | Whether or ldap authentication is enabled on this organization.
+`isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
+`isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | An object describing a verified domain. Must have the `Organization: Manage reseller features` permission. <br/>*required* : `id`
 
 The responses' `data` field contains the updated [organization](#administration-organizations).
