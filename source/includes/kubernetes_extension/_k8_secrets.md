@@ -42,14 +42,14 @@ Retrieve a list of all secrets in a given [environment](#administration-environm
 | -------------------------- | --------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to list the secrets. |
 
-| Attributes                  | &nbsp;                                                                     |
-| --------------------------- | -------------------------------------------------------------------------- |
-| `id` <br/>_string_          | The id of the secret.                                                      |
-| `apiVersion` <br/>_string_  | The API version used to retrieve the secret.                               |
-| `encodedData` <br/>_string_ | The data that the secret contains.                                         |
-| `metadata` <br/>_object_    | The metadata of the secret.                                                |
-| `kind` <br/>_string_        | A string value representing the REST resource that this object represents. |
-| `type` <br/>_string_        | A string used to facilitate programmatic handling of a secret's data.      |
+| Attributes                 | &nbsp;                                                                     |
+| -------------------------- | -------------------------------------------------------------------------- |
+| `id` <br/>_string_         | The id of the secret.                                                      |
+| `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
+| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
+| `metadata` <br/>_object_   | The metadata of the secret.                                                |
+| `kind` <br/>_string_       | A string value representing the REST resource that this object represents. |
+| `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
 
 <!-------------------- GET A secret -------------------->
 
@@ -88,14 +88,14 @@ Retrieve a secret and all its info in a given [environment](#administration-envi
 | -------------------------- | ------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to get the secret. |
 
-| Attributes                  | &nbsp;                                                                     |
-| --------------------------- | -------------------------------------------------------------------------- |
-| `id` <br/>_string_          | The id of the secret.                                                      |
-| `apiVersion` <br/>_string_  | The API version used to retrieve the secret.                               |
-| `encodedData` <br/>_string_ | The data that the secret contains.                                         |
-| `metadata` <br/>_object_    | The metadata of the secret.                                                |
-| `kind` <br/>_string_        | A string value representing the REST resource that this object represents. |
-| `type` <br/>_string_        | A string used to facilitate programmatic handling of a secret's data.      |
+| Attributes                 | &nbsp;                                                                     |
+| -------------------------- | -------------------------------------------------------------------------- |
+| `id` <br/>_string_         | The id of the secret.                                                      |
+| `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
+| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
+| `metadata` <br/>_object_   | The metadata of the secret.                                                |
+| `kind` <br/>_string_       | A string value representing the REST resource that this object represents. |
+| `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
 
 <!-------------------- CREATE A SECRET -------------------->
 
