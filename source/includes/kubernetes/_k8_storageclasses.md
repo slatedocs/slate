@@ -67,6 +67,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 | `provisioner` <br/>_string_           | The provisioner for the storage class.                                                                                                      |
 | `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
 | `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
+
 <!-------------------- GET A storage class -------------------->
 
 #### Get a storage class
@@ -81,37 +82,37 @@ curl -X GET \
 
 ```json
 {
-    "data": {
-      "id": "rook-ceph-block",
-      "isDefault": true,
-      "allowVolumeExpansion": true,
-      "metadata": {
-        "annotations": {
-          "storageclass.kubernetes.io/is-default-class": "true"
-        },
-        "creationTimestamp": "2020-04-20T16:08:54.000-04:00",
-        "name": "rook-ceph-block",
-        "resourceVersion": "107033002",
-        "selfLink": "/apis/storage.k8s.io/v1/storageclasses/rook-ceph-block",
-        "uid": "f289c0e6-3f20-4274-8cb8-5db8b34dece6"
+  "data": {
+    "id": "rook-ceph-block",
+    "isDefault": true,
+    "allowVolumeExpansion": true,
+    "metadata": {
+      "annotations": {
+        "storageclass.kubernetes.io/is-default-class": "true"
       },
-      "parameters": {
-        "clusterID": "rook-ceph",
-        "csi.storage.k8s.io/controller-expand-secret-name": "rook-csi-rbd-provisioner",
-        "csi.storage.k8s.io/controller-expand-secret-namespace": "rook-ceph",
-        "csi.storage.k8s.io/fstype": "ext4",
-        "csi.storage.k8s.io/node-stage-secret-name": "rook-csi-rbd-node",
-        "csi.storage.k8s.io/node-stage-secret-namespace": "rook-ceph",
-        "csi.storage.k8s.io/provisioner-secret-name": "rook-csi-rbd-provisioner",
-        "csi.storage.k8s.io/provisioner-secret-namespace": "rook-ceph",
-        "imageFeatures": "layering",
-        "imageFormat": "2",
-        "pool": "replicapool"
-      },
-      "provisioner": "rook-ceph.rbd.csi.ceph.com",
-      "reclaimPolicy": "Delete",
-      "volumeBindingMode": "Immediate"
-    }
+      "creationTimestamp": "2020-04-20T16:08:54.000-04:00",
+      "name": "rook-ceph-block",
+      "resourceVersion": "107033002",
+      "selfLink": "/apis/storage.k8s.io/v1/storageclasses/rook-ceph-block",
+      "uid": "f289c0e6-3f20-4274-8cb8-5db8b34dece6"
+    },
+    "parameters": {
+      "clusterID": "rook-ceph",
+      "csi.storage.k8s.io/controller-expand-secret-name": "rook-csi-rbd-provisioner",
+      "csi.storage.k8s.io/controller-expand-secret-namespace": "rook-ceph",
+      "csi.storage.k8s.io/fstype": "ext4",
+      "csi.storage.k8s.io/node-stage-secret-name": "rook-csi-rbd-node",
+      "csi.storage.k8s.io/node-stage-secret-namespace": "rook-ceph",
+      "csi.storage.k8s.io/provisioner-secret-name": "rook-csi-rbd-provisioner",
+      "csi.storage.k8s.io/provisioner-secret-namespace": "rook-ceph",
+      "imageFeatures": "layering",
+      "imageFormat": "2",
+      "pool": "replicapool"
+    },
+    "provisioner": "rook-ceph.rbd.csi.ceph.com",
+    "reclaimPolicy": "Delete",
+    "volumeBindingMode": "Immediate"
+  }
 }
 ```
 
@@ -126,18 +127,19 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 | `allowVolumeExpansion` <br/>_boolean_ | Whether not the storage class allows for expandable volumes.                                                                                |
 | `metadata` <br/>_object_              | The metadata of the storage class.                                                                                                          |
 | `parameters` <br/>_object_            | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
-| `provisioner` <br/>_string_           | The provisioner for the storage class                                                                                                        |
+| `provisioner` <br/>_string_           | The provisioner for the storage class                                                                                                       |
 | `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
 | `volumeBindingMode` <br/>_string_     | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                   |
 
 <!-------------------- CREATE A storage class -------------------->
+
 #### Create a storage class
 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses"
-  Content-Type: application/json 
+  Content-Type: application/json
   {
   "apiVersion": "storage.k8s.io/v1",
   "kind": "StorageClass",
@@ -162,29 +164,30 @@ curl -X POST \
 
 Create a storage class in a given [environment](#administration-environments).
 
-| Required Attributes                        | &nbsp;                                                                      |
-| ------------------------------------------ | ----------------------------------------------------------------------------|
-| `apiVersion` <br/> _string_                | The api version (versioned schema) of the storage class.                    |
-| `kind`<br/>_string_                        | The string value representing the REST resource this object represents.     |
-| `metadata` <br/>_object_                   | The metadata of the storage class.                                          |
-| `metadata.name` <br/>_string_              | The name of the storage class.                                              |
-| `provisioner` <br/>_string_                | The provisioner for the storage class                                        |
-| `volumeBindingMode` <br/>_string_          | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`.                    |
+| Required Attributes               | &nbsp;                                                                                                                    |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `apiVersion` <br/> _string_       | The api version (versioned schema) of the storage class.                                                                  |
+| `kind`<br/>_string_               | The string value representing the REST resource this object represents.                                                   |
+| `metadata` <br/>_object_          | The metadata of the storage class.                                                                                        |
+| `metadata.name` <br/>_string_     | The name of the storage class.                                                                                            |
+| `provisioner` <br/>_string_       | The provisioner for the storage class                                                                                     |
+| `volumeBindingMode` <br/>_string_ | The default volume binding model for this storage class. You have a choice between `Immediate` or `WaitForFirstConsumer`. |
 
-| Optional Attributes                        | &nbsp;                                                                    |
-| ------------------------------------------ | ------------------------------------------------------------------------- |
-| `reclaimPolicy` <br/>_string_              | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.               |
-| `parameters` <br/>_object_                 | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
-| `allowVolumeExpansion` <br/>_boolean_      | Whether not the storage class allows for expandable volumes.              |
+| Optional Attributes                   | &nbsp;                                                                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `reclaimPolicy` <br/>_string_         | The default volume reclaim policy for this storage class. You have a choice between `Reclaim` or `Delete`.                                  |
+| `parameters` <br/>_object_            | The parameters for the storage provisioner. These are storage provisioner specific and you will likely have to read external documentation. |
+| `allowVolumeExpansion` <br/>_boolean_ | Whether not the storage class allows for expandable volumes.                                                                                |
 
 Return value:
 
 | Attributes                 | &nbsp;                                                |
----------------------------- | ------------------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the create stateful set task. |
-| `taskStatus` <br/>*string* | The status of the operation.                          |
+| -------------------------- | ----------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create stateful set task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                          |
 
 <!-------------------- DELETE A storage class -------------------->
+
 #### Delete a storage class
 
 ```shell
@@ -206,7 +209,7 @@ curl -X DELETE \
 
 Delete a storage class from a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                              |
-| -------------------------- | --------------------------------------------------- |
+| Attributes                 | &nbsp;                                                 |
+| -------------------------- | ------------------------------------------------------ |
 | `taskId` <br/>_string_     | The id corresponding to the delete storage class task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                        |
+| `taskStatus` <br/>_string_ | The status of the operation.                           |

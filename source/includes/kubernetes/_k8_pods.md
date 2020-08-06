@@ -1,6 +1,5 @@
 ### Pods
 
-
 <!-------------------- LIST PODS -------------------->
 
 #### List pods
@@ -10,6 +9,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -204,31 +204,26 @@ curl -X GET \
 }
 ```
 
-
-
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods</code>
 
 Retrieve a list of all pods in a given [environment](#administration-environments).
 
-Attributes | &nbsp;
-------- | -----------
-`id` <br/>*string* | The id of the pod.
-`metadata` <br/>*object* | The metadata of the pod
-`metadata.annotations` <br/>*map* | The annotations of the pod
-`metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
-`metadata.labels` <br/>*map* | The labels associated to the pod
-`metadata.name` <br/>*string* | The name of the pod
-`metadata.namespace` <br/>*string* | The namespace in which the pod is created
-`metadata.uid` <br/>*object* | The UUID of the pod
-`spec`<br/>*object* | The specification used to create and run the pod
-`spec.container`<br/>*string* | The name of the container running
-`status`<br/>*object* | The status information of the pod
-`status.phase`<br/>*string* | The status of the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
-
+| Attributes                                 | &nbsp;                                                                                       |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| `id` <br/>_string_                         | The id of the pod.                                                                           |
+| `metadata` <br/>_object_                   | The metadata of the pod                                                                      |
+| `metadata.annotations` <br/>_map_          | The annotations of the pod                                                                   |
+| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the pod as a string                                                  |
+| `metadata.labels` <br/>_map_               | The labels associated to the pod                                                             |
+| `metadata.name` <br/>_string_              | The name of the pod                                                                          |
+| `metadata.namespace` <br/>_string_         | The namespace in which the pod is created                                                    |
+| `metadata.uid` <br/>_object_               | The UUID of the pod                                                                          |
+| `spec`<br/>_object_                        | The specification used to create and run the pod                                             |
+| `spec.container`<br/>_string_              | The name of the container running                                                            |
+| `status`<br/>_object_                      | The status information of the pod                                                            |
+| `status.phase`<br/>_string_                | The status of the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
-
-
 
 <!-------------------- GET A POD -------------------->
 
@@ -239,6 +234,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods/my-aerospike-0/default"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -433,33 +429,31 @@ curl -X GET \
 }
 ```
 
-
-
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods/:id</code>
 
 Retrieve a pod and all its info in a given [environment](#administration-environments).
 
-Attributes | &nbsp;
-------- | -----------
-`id` <br/>*string* | The id of the pod.
-`metadata` <br/>*object* | The metadata of the pod
-`metadata.annotations` <br/>*map* | The annotations of the pod
-`metadata.creationTimestamp` <br/>*string* | The date of creation of the pod as a string
-`metadata.labels` <br/>*map* | The labels associated to the pod
-`metadata.name` <br/>*string* | The name of the pod
-`metadata.namespace` <br/>*string* | The namespace in which the pod is created
-`metadata.uid` <br/>*object* | The UUID of the pod
-`spec`<br/>*object* | The specification used to create and run the pod
-`spec.container`<br/>*string* | The name of the container running
-`status`<br/>*object* | The status information of the pod
-`status.phase`<br/>*string* | The status of the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed
-
+| Attributes                                 | &nbsp;                                                                                       |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| `id` <br/>_string_                         | The id of the pod.                                                                           |
+| `metadata` <br/>_object_                   | The metadata of the pod                                                                      |
+| `metadata.annotations` <br/>_map_          | The annotations of the pod                                                                   |
+| `metadata.creationTimestamp` <br/>_string_ | The date of creation of the pod as a string                                                  |
+| `metadata.labels` <br/>_map_               | The labels associated to the pod                                                             |
+| `metadata.name` <br/>_string_              | The name of the pod                                                                          |
+| `metadata.namespace` <br/>_string_         | The namespace in which the pod is created                                                    |
+| `metadata.uid` <br/>_object_               | The UUID of the pod                                                                          |
+| `spec`<br/>_object_                        | The specification used to create and run the pod                                             |
+| `spec.container`<br/>_string_              | The name of the container running                                                            |
+| `status`<br/>_object_                      | The status information of the pod                                                            |
+| `status.phase`<br/>_string_                | The status of the pod. Possible statuses are Running, Pending, Succeeded, Unknown and Failed |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
 <!-------------------- CREATE POD -------------------->
 
 #### Create a pod
+
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
@@ -496,27 +490,26 @@ curl -X POST \
 
 Create a pod in a given [environment](#administration-environments).
 
-Required Attributes                 | &nbsp;
------------------------------------ | ------------------------------------------------------------
-`apiVersion` <br/>*string*          | The api version (versioned schema) of the pod
-`metadata` <br/>*object*            | The metadata of the pod
-`metadata.name` <br/>*string*       | The name of the pod
-`spec`<br/>*object*                 | The specification used to create and run the pod
-`spec.container.image`<br/>*string* | The docker image name
-`spec.container.name`<br/>*string*  | The (unique) name of the container specified as a DNS_LABEL
+| Required Attributes                 | &nbsp;                                                      |
+| ----------------------------------- | ----------------------------------------------------------- |
+| `apiVersion` <br/>_string_          | The api version (versioned schema) of the pod               |
+| `metadata` <br/>_object_            | The metadata of the pod                                     |
+| `metadata.name` <br/>_string_       | The name of the pod                                         |
+| `spec`<br/>_object_                 | The specification used to create and run the pod            |
+| `spec.container.image`<br/>_string_ | The docker image name                                       |
+| `spec.container.name`<br/>_string_  | The (unique) name of the container specified as a DNS_LABEL |
 
-| Optional Attributes                       | &nbsp;                                                                  |
-| ----------------------------------------- | ----------------------------------------------------------------------- |
-| `kind`<br/>_string_                       | The string value representing the REST resource this object represents  |
-| `metadata.namespace` <br/>*string*        | The namespace in which the pod is created                               |
+| Optional Attributes                | &nbsp;                                                                 |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| `kind`<br/>_string_                | The string value representing the REST resource this object represents |
+| `metadata.namespace` <br/>_string_ | The namespace in which the pod is created                              |
 
 Return value:
 
 | Attributes                 | &nbsp;                                       |
----------------------------- | ---------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the create pod task. |
-| `taskStatus` <br/>*string* | The status of the operation.                 |
-
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create pod task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- DELETE POD -------------------->
 
@@ -527,6 +520,7 @@ curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods/my-aerospike-0/default"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -536,13 +530,11 @@ curl -X DELETE \
 }
 ```
 
-
-
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods/:id</code>
 
 Delete a pod from a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                       |
----------------------------- | ---------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the delete pod task. |
-| `taskStatus` <br/>*string* | The status of the operation.                 |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete pod task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                 |

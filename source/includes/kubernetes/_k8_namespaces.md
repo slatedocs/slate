@@ -32,12 +32,12 @@ curl -X GET \
 
 Retrieve a list of all namespaces in a given [environment](#administration-environments).
 
-| Attributes                     | &nbsp;                                                                                    |
-| ------------------------------ | ----------------------------------------------------------------------------------------- |
-| `id` <br/>_string_             | The id of the namespace.                                                                  |
-| `metadata` <br/>_object_       | The metadata of the namespace                                                             |
-| `spec`<br/>_object_            | The specification describes the attributes on a namespace.                                |
-| `status`<br/>_object_          | The status information of the namespace                                                   |
+| Attributes               | &nbsp;                                                     |
+| ------------------------ | ---------------------------------------------------------- |
+| `id` <br/>_string_       | The id of the namespace.                                   |
+| `metadata` <br/>_object_ | The metadata of the namespace                              |
+| `spec`<br/>_object_      | The specification describes the attributes on a namespace. |
+| `status`<br/>_object_    | The status information of the namespace                    |
 
 <!-------------------- GET A NAMESPACE -------------------->
 
