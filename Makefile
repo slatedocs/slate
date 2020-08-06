@@ -13,6 +13,9 @@ ruby_gen:
 python_gen:
 	cd ../client_libraries/python-asana && java -jar ../../swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../../developer-docs/defs/asana_oas.yaml -l asana-python -c swagger_templates/python-config.json -Dapis
 
+api_explorer_gen:
+	cd ../client_libraries/api-explorer && java -jar ../../swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../../developer-docs/defs/asana_oas.yaml -l asana-api-explorer -c swagger_templates/api-explorer-config.json -Dapis
+
 code_gen: java_gen node_gen php_gen ruby_gen python_gen
 
 docs_gen:
@@ -51,6 +54,9 @@ ruby_pr:
 
 java_pr:
 	$(call library_pr,java)
+
+api_explorer_pr:
+	cd ../client_libraries/api-explorer && git checkout master && git branch -D openapi-sync; git push origin --delete openapi-sync; git checkout -b openapi-sync && cd ../../developer-docs && $(MAKE) api_explorer_gen && cd ../client_libraries/api-explorer && git add . && git commit -m "Generated from OpenAPI"; git push --set-upstream origin openapi-sync && open https://github.com/Asana/api-explorer/compare/openapi-sync
 
 library_prs: node_pr python_pr php_pr ruby_pr java_pr
 

@@ -191,8 +191,7 @@ tags:
       with Custom Fields need to handle an assortment of use cases for free and
       premium users in context of free and premium organizations. For a detailed
       examination of to what data users will have access in different
-      circumstances, read the section below on
-      [access control](/docs/custom-field-access-control).
+      circumstances, read the section below on access control.
 
 
       The characteristics of Custom Fields are:
@@ -5316,7 +5315,6 @@ paths:
         - $ref: '#/components/parameters/offset'
         - name: workspace
           in: query
-          required: true
           description: >-
             The workspace or organization to filter portfolios on.
           schema:
