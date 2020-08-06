@@ -76,3 +76,31 @@ Retrieve a namespace and all its info in a given [environment](#administration-e
 | `metadata` <br/>_object_   | The metadata of the namespace.                                                        |
 | `spec`<br/>_object_        | The specification describes the attributes on a namespace.                            |
 | `status`<br/>_object_      | The status information of the namespace.                                              |
+
+<!-------------------- DELETE A NAMESPACE -------------------->
+
+#### Delete a namespace
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/namespaces/test-namespace"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/namespaces/:id</code>
+
+Delete a namespace from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete namespaces task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                        |
