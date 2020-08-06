@@ -28,6 +28,9 @@ curl "https://cloudmc_endpoint/v1/trials_settings" \
       "cleanupDelayDays": 5,
       "expirationReminderDays": 3,
       "allowMultipleTrialSameEmail": false,
+      "enableRecaptcha": true,
+      "recaptchaSitekey": "6Lfg9rkZAAAAAHAwlr6_qs4QBTFRHVFgLhK3XXX",
+      "recaptchaSecretkey": "6Lfg9rkZAAAAAOSjYqghXeQ7zfagZTqXXXRmXXE",
       "contactUsEmail": "email@gmail.com",
       "contactUsPhone": "555-555-555",
       "registrationHTML": {
@@ -52,7 +55,10 @@ Attributes | &nbsp;
 `maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
 `cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system will delete the trial's resources.
 `expirationReminderDays`<br/>*integer* | The number of days before the trial's end that the trial administrator will receive an email notification that the trial is about to expire.
-`allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address. 
+`allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address.
+`enableRecaptcha`<br/>*boolean* | If the reCAPTCHA verification on the sign up form is displayed. The reCAPTCHA site key and secret key must be present.
+`recaptchaSitekey`<br/>*string* | The site key obtained from the reCAPTCHA admin console (Google).
+`recaptchaSecretkey`<br/>*string* | The secret key obtained from the reCAPTCHA admin console (Google).
 `contactUsEmail`<br/>*string* | The email address that trial user can contact for more info/support.
 `contactUsPhone`<br/>*string* | The phone number that trial user can contact for more info/support.
 `registrationHTML`<br/>*Object* | Mapped object containing the registration information HTML in different languages.
@@ -83,6 +89,9 @@ curl "https://cloudmc_endpoint/v1/trials_settings/b41f2aa3-e2d1-48d8-9760-8b874c
     "cleanupDelayDays": 5,
     "expirationReminderDays": 3,
     "allowMultipleTrialSameEmail": false,
+    "enableRecaptcha": true,
+    "recaptchaSitekey": "6Lfg9rkZAAAAAHAwlr6_qs4QBTFRHVFgLhK3XXX",
+    "recaptchaSecretkey": "6Lfg9rkZAAAAAOSjYqghXeQ7zfagZTqXXXRmXXE",
     "contactUsEmail": "email@gmail.com",
     "contactUsPhone": "555-555-555",
     "registrationHTML": {
@@ -106,7 +115,10 @@ Attributes | &nbsp;
 `maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
 `cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system will delete the trial's resources.
 `expirationReminderDays`<br/>*integer* | The number of days before the trial's end that the trial administrator will receive an email notification that the trial is about to expire.
-`allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address. 
+`allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address.
+`enableRecaptcha`<br/>*boolean* | If the reCAPTCHA verification on the sign up form is displayed. The reCAPTCHA site key and secret key must be present.
+`recaptchaSitekey`<br/>*string* | The site key obtained from the reCAPTCHA admin console (Google).
+`recaptchaSecretkey`<br/>*string* | The secret key obtained from the reCAPTCHA admin console (Google).
 `contactUsEmail`<br/>*string* | The email address that trial user can contact for more info/support.
 `contactUsPhone`<br/>*string* | The phone number that trial user can contact for more info/support.
 `registrationHTML`<br/>*Object* | Mapped object containing the registration information HTML in different languages.
@@ -136,6 +148,9 @@ curl -X PUT "https://cloudmc_endpoint/rest/trials_settings/:id" \
   "cleanupDelayDays": 5,
   "expirationReminderDays": 3,
   "allowMultipleTrialSameEmail": false,
+  "enableRecaptcha": true,
+  "recaptchaSitekey": "6Lfg9rkZAAAAAHAwlr6_qs4QBTFRHVFgLhK3XXX",
+  "recaptchaSecretkey": "6Lfg9rkZAAAAAOSjYqghXeQ7zfagZTqXXXRmXXE",
   "contactUsEmail": "email@gmail.com",
   "contactUsPhone": "555-555-555",
   "registrationHTML": {
@@ -160,6 +175,9 @@ curl -X PUT "https://cloudmc_endpoint/rest/trials_settings/:id" \
     "cleanupDelayDays": 5,
     "expirationReminderDays": 3,
     "allowMultipleTrialSameEmail": false,
+    "enableRecaptcha": true,
+    "recaptchaSitekey": "6Lfg9rkZAAAAAHAwlr6_qs4QBTFRHVFgLhK3XXX",
+    "recaptchaSecretkey": "6Lfg9rkZAAAAAOSjYqghXeQ7zfagZTqXXXRmXXE",
     "contactUsEmail": "email@gmail.com",
     "contactUsPhone": "555-555-555",
     "registrationHTML": {
@@ -185,6 +203,9 @@ Required | &nbsp;
 `cleanupDelayDays`<br/>*integer* | The number of days after the trial expiration before the system will delete the trial's resources.
 `expirationReminderDays`<br/>*integer* | The number of days before the trial's end that the trial administrator will receive an email notification that the trial is about to expire.
 `allowMultipleTrialSameEmail`<br/>*boolean* | If more than one trial account can be created using the same email address. 
+`enableRecaptcha`<br/>*boolean* | If the reCAPTCHA verification on the sign up form is displayed. The reCAPTCHA site key and secret key must be present.
+`recaptchaSitekey`<br/>*string* | The site key obtained from the reCAPTCHA admin console (Google).
+`recaptchaSecretkey`<br/>*string* | The secret key obtained from the reCAPTCHA admin console (Google).
 `contactUsEmail`<br/>*string* | The email address that trial user can contact for more info/support.
 `registrationHTML`<br/>*Object* | Mapped object containing the registration information HTML in different languages.
 `termsAndConditionsHTML`<br/>*Object* | Mapped object containing the terms and conditions HTML name in different languages.
