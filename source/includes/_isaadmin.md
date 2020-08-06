@@ -477,6 +477,7 @@ The steps to repair the ISA will be as follows:
  * Any cash on account is withdrawn using `/cash` with type set to `CUSTOMER_WITHDRAWAL`
  * If investments are to be removed from the tax wrapper, call `DELETE /investors/{investorId}/investment/{investmentId}/investment`. This reduces the ISA balance by the outstanding capital amount.
  * Once this process is complete, Goji will email the investor with details of the taxable income that needs to be declared in their tax return.
+ 
 ## `GET /terms`
 
 ```http
