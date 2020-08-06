@@ -161,26 +161,48 @@ Create a service in a given [environment](#administration-environments).
 | -------------------------- | -------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to get the service. |
 
+| Required Attributes           | &nbsp;                                                                  |
+| ----------------------------- | ----------------------------------------------------------------------- |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the service.                      |
+| `metadata` <br/>_object_      | The metadata of the service.                                            |
+| `metadata.name` <br/>_string_ | The name of the service.                                                |
+| `spec`<br/>_object_           | The specification used to create and run the service.                   |
+| `spec.selector`<br/>_object_  | The label query over the service's set of resources.                    |
+| `spec.ports`<br/>_object_     | The list of ports that are exposed by this service.                     |
+| `spec.type`<br/>_object_      | The type of service (ClusterIP, NodePort, ExternalName or LoadBalancer) |
 
-| Required Attributes                        | &nbsp;                                                                  |
-| ------------------------------------------ | ------------------------------------------------------------------------|
-| `apiVersion` <br/> _string_                | The api version (versioned schema) of the service.                      |
-| `metadata` <br/>_object_                   | The metadata of the service.                                            |
-| `metadata.name` <br/>_string_              | The name of the service.                                                |
-| `spec`<br/>_object_                        | The specification used to create and run the service.                   |
-| `spec.selector`<br/>_object_               | The label query over the service's set of resources.                    |
-| `spec.ports`<br/>_object_                  | The list of ports that are exposed by this service.                     |
-| `spec.type`<br/>*object*                   | The type of service (ClusterIP, NodePort, ExternalName or LoadBalancer) |
-
-| Optional Attributes                        | &nbsp;                                                                  |
-| ------------------------------------------ | ------------------------------------------------------------------------|
-| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.      |
-| `metadata.namespace` <br/>_string_         | The namespace in which the service is created.                          |
-| `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a service.          |
+| Optional Attributes                      | &nbsp;                                                             |
+| ---------------------------------------- | ------------------------------------------------------------------ |
+| `kind`<br/>_string_                      | The string value of the REST resource that this object represents. |
+| `metadata.namespace` <br/>_string_       | The namespace in which the service is created.                     |
+| `spec.selector.matchLabels`<br/>_object_ | The key value pairs retrieved by a label query from a service.     |
 
 Return value:
 
 | Attributes                 | &nbsp;                                           |
----------------------------- | -------------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the create service task. |
-| `taskStatus` <br/>*string* | The status of the operation.                     |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the create service task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
+
+<!-------------------- DELETE A SERVICE -------------------->
+
+##### Delete a service
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/services/test-service/default?cluster_id=test-cluster"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services/:id?cluster_id=:cluster_id</code>
+
+Delete a service from a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                             |
+| -------------------------- | -------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to get the service. |
+
+| Attributes                 | &nbsp;                                           |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the delete service task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
