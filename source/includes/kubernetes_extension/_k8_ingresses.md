@@ -223,7 +223,7 @@ Create an ingress in a given [environment](#administration-environments).
 
 | Optional Attributes                        | &nbsp;                                                                  |
 | ------------------------------------------ | ------------------------------------------------------------------------|
-| `kind`<br/>_string_                        | The string value representing the REST resource this object represents. |
+| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.      |
 | `metadata.namespace` <br/>_string_         | The namespace in which the ingress is created.                          |
 
 Return value:
