@@ -44,7 +44,7 @@ Retrieve a list of all secrets in a given [environment](#administration-environm
 | `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
 | `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
 | `metadata` <br/>_object_   | The metadata of the secret.                                                |
-| `kind` <br/>_string_       | A string value representing the REST resource that this object represents. |
+| `kind`<br/>_string_        | The string value of the REST resource that this object represents.         |
 | `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
 
 <!-------------------- GET A secret -------------------->
@@ -86,7 +86,7 @@ Retrieve a secret and all its info in a given [environment](#administration-envi
 | `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
 | `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
 | `metadata` <br/>_object_   | The metadata of the secret.                                                |
-| `kind` <br/>_string_       | A string value representing the REST resource that this object represents. |
+| `kind`<br/>_string_        | The string value of the REST resource that this object represents.         |
 | `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
 
 <!-------------------- CREATE A SECRET -------------------->
@@ -157,9 +157,9 @@ One of the following two attributes is also required.
 | `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                         |
 | `stringData`<br/>_object_  | The non-base64 encoded data to be encoded when the secret is created. |
 
-| Optional Attributes                | &nbsp;                                       |
-| ---------------------------------- | -------------------------------------------- |
-| `metadata.namespace` <br/>_string_ | The namespace in which the secret is created |
+| Optional Attributes                | &nbsp;                                        |
+| ---------------------------------- | --------------------------------------------- |
+| `metadata.namespace` <br/>_string_ | The namespace in which the secret is created. |
 
 Return value:
 
