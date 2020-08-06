@@ -60,7 +60,8 @@ curl https://app.procurementexpress.com/api/v1/budgets
   "summary": "Test",
   "creator_id": 1,
   "department_ids": [],
-  "approver_ids": []
+  "approver_ids": [],
+  "quickbooks_account": "Bank Charge - Expenses"
 }
 ```
 
@@ -86,21 +87,21 @@ date format for `start_date` and `end_date`. Please find date format in [Company
 
 ### Query Parameters
 
-| Param                                | Type    | required | Description                                                        |
-| ------------------------------------ | ------- | -------- | ------------------------------------------------------------------ |
-| authentication_token                 | header  | required | Authentication token                                               |
-| app_company_id                       | header  | required | registered company id                                              |
-| budget[amount]                       | double  | required | Budget Amount                                                      |
-| budget[name]                         | string  | required | Budget Name                                                        |
-| budget[cost_code]                    | string  | optional | Budget cost code                                                   |
-| budget[cost_type]                    | string  | optional | Budget cost type                                                   |
-| budget[currency_id]                  | integer | required | Budget currency                                                    |
-| budget[creator_id]                   | integer | required | Budget creator                                                     |
-| budget[allow_anyone_to_approve_a_po] | boolean | optional | Allow anyone to approve a PO?                                      |
-| budget[start_date]                   | date    | optional | Budget start date                                                  |
-| budget[end_date]                     | date    | optional | Budget end date                                                    |
-| budget[approver_ids]                 | Array   | optional | Array of approver ids                                              |
-| budget[department_ids]               | Array   | optional | Array of department ids                                            |
+| Param                                | Type    | required | Description                   |
+| ------------------------------------ | ------- | -------- | ----------------------------- |
+| authentication_token                 | header  | required | Authentication token          |
+| app_company_id                       | header  | required | registered company id         |
+| budget[amount]                       | double  | required | Budget Amount                 |
+| budget[name]                         | string  | required | Budget Name                   |
+| budget[cost_code]                    | string  | optional | Budget cost code              |
+| budget[cost_type]                    | string  | optional | Budget cost type              |
+| budget[currency_id]                  | integer | required | Budget currency               |
+| budget[creator_id]                   | integer | required | Budget creator                |
+| budget[allow_anyone_to_approve_a_po] | boolean | optional | Allow anyone to approve a PO? |
+| budget[start_date]                   | date    | optional | Budget start date             |
+| budget[end_date]                     | date    | optional | Budget end date               |
+| budget[approver_ids]                 | Array   | optional | Array of approver ids         |
+| budget[department_ids]               | Array   | optional | Array of department ids       |
 
 ## GET All Budgets
 
