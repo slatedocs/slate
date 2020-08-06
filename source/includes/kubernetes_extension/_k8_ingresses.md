@@ -141,7 +141,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingress/:id?cluster_id=:cluster_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
 Retrieve an ingress and all its info in a given [environment](#administration-environments).
 
@@ -205,7 +205,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingress/:id?cluster_id=:cluster_id</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
 Create an ingress in a given [environment](#administration-environments).
 
