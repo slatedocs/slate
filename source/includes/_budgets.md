@@ -268,7 +268,8 @@ curl 'https://app.procurementexpress.com/api/v1/budgets/1'
   "remaining_amount": 50000.0,
   "creator_id": 1,
   "department_ids": [],
-  "approver_ids": []
+  "approver_ids": [],
+  "quickbooks_account": false
 }
 ```
 
