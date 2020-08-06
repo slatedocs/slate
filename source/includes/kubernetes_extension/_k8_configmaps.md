@@ -124,7 +124,7 @@ Create a config map in a given [environment](#administration-environments).
 
 | Required Attributes           | &nbsp;                                                                   |
 | ----------------------------- | ------------------------------------------------------------------------ |
-| `cluster_id` <br/>_string_    | The id of the cluster in which to delete the config map.                 |
+| `cluster_id` <br/>_string_    | The id of the cluster in which to create the config map.                 |
 | `apiVersion` <br/> _string_   | The api version (versioned schema) of the config map.                    |
 | `metadata` <br/>_object_      | The metadata of the config map.                                          |
 | `metadata.name` <br/>_string_ | The name of the config map.                                              |

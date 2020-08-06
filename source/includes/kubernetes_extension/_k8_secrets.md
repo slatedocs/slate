@@ -154,7 +154,7 @@ Create a secret in a given [environment](#administration-environments).
 
 | Required Attributes           | &nbsp;                                               |
 | ----------------------------- | ---------------------------------------------------- |
-| `cluster_id` <br/>_string_    | The id of the cluster in which to delete the secret. |
+| `cluster_id` <br/>_string_    | The id of the cluster in which to create the secret. |
 | `apiVersion` <br/> _string_   | The api version (versioned schema) of the secret.    |
 | `metadata` <br/>_object_      | The metadata of the secret.                          |
 | `metadata.name` <br/>_string_ | The name of the secret.                              |
