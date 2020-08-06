@@ -36,14 +36,14 @@ Retrieve a list of all namespaces in a given [environment](#administration-envir
 | -------------------------- | ------------------------------------------------------ |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to list the namespaces. |
 
-| Attributes                                 | &nbsp;                                                                                    |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the namespace.                                                                  |
-| `apiVersion` <br/>_string_                 | APIVersion defines the versioned schema of this representation of a namespace object      |
-| `kind` <br/>_string_                       | A string value representing the REST resource this object represents                      |
-| `metadata` <br/>_object_                   | The metadata of the namespace                                                             |
-| `spec`<br/>_object_                        | The specification describes the attributes on a namespace.                                |
-| `status`<br/>_object_                      | The status information of the namespace                                                   |
+| Attributes                 | &nbsp;                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------ |
+| `id` <br/>_string_         | The id of the namespace.                                                             |
+| `apiVersion` <br/>_string_ | APIVersion defines the versioned schema of this representation of a namespace object |
+| `kind` <br/>_string_       | A string value representing the REST resource this object represents                 |
+| `metadata` <br/>_object_   | The metadata of the namespace                                                        |
+| `spec`<br/>_object_        | The specification describes the attributes on a namespace.                           |
+| `status`<br/>_object_      | The status information of the namespace                                              |
 
 <!-------------------- GET A NAMESPACE -------------------->
 
@@ -78,11 +78,11 @@ Retrieve a namespace and all its info in a given [environment](#administration-e
 | -------------------------- | ---------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to get the namespace. |
 
-| Attributes                                 | &nbsp;                                                                                    |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the namespace.                                                                  |
-| `apiVersion` <br/>_string_                 | APIVersion defines the versioned schema of this representation of a namespace object      |
-| `kind` <br/>_string_                       | A string value representing the REST resource this object represents                      |
-| `metadata` <br/>_object_                   | The metadata of the namespace                                                             |
-| `spec`<br/>_object_                        | The specification describes the attributes on a namespace.                                |
-| `status`<br/>_object_                      | The status information of the namespace                                                   |
+| Attributes                 | &nbsp;                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------ |
+| `id` <br/>_string_         | The id of the namespace.                                                             |
+| `apiVersion` <br/>_string_ | APIVersion defines the versioned schema of this representation of a namespace object |
+| `kind` <br/>_string_       | A string value representing the REST resource this object represents                 |
+| `metadata` <br/>_object_   | The metadata of the namespace                                                        |
+| `spec`<br/>_object_        | The specification describes the attributes on a namespace.                           |
+| `status`<br/>_object_      | The status information of the namespace                                              |
