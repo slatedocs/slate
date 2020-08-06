@@ -820,3 +820,96 @@ Action to actually `join` existing company. To join the company, you need to pas
 | -------------------- | ------- | ------------------------------------------- |
 | authentication_token | header  | Authentication token                        |
 | company_id           | integer | Company id you want to send join request to |
+
+## Update Player ID
+
+Update Player ID In User Account
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/users/get_player,
+  headers = {
+    authentication_token: 'your token'
+  }
+  body = {
+    onesignal_player_id: 'player id'
+  }
+)
+```
+
+```shell
+curl https://app.procurementexpress.com/api/v1/users/get_player'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -d "onesignal_player_id: player id"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ 
+  "success": true
+  "info": "Player ID updated"
+}
+```
+
+### HTTP Request
+
+`POST https://app.procurementexpress.com/api/v1/users/get_player`
+
+### Query Parameters
+
+| Param                | Type    | Description          |
+| -------------------- | ------- | -------------------- |
+| authentication_token | header  | Authentication token |
+| onesignal_player_id  | array   | Player ID            |
+
+
+## Remove Player ID
+
+Remove Player ID From User Account After Logged Out
+
+```ruby
+require 'rest-client'
+
+RestClient.put(
+  'https://app.procurementexpress.com/api/v1/users/remove_player,
+  headers = {
+    authentication_token: 'your token'
+  }
+  body = {
+    onesignal_player_id: 'player id'
+  }
+)
+```
+
+```shell
+curl https://app.procurementexpress.com/api/v1/users/remove_player'
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -d "onesignal_player_id: player id"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ 
+  "success": true 
+  "info": "Player ID removed"
+}
+```
+
+### HTTP Request
+
+`PUT https://app.procurementexpress.com/api/v1/users/remove_player`
+
+### Query Parameters
+
+| Param                | Type    | Description           |
+| -------------------- | ------- | --------------------- |
+| authentication_token | header  | Authentication token  |
+| onesignal_player_id  | array   | Player id             |

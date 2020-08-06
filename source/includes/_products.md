@@ -56,14 +56,14 @@ Create a new products and returns the `Product` object that is created.
 
 ### Query Parameters
 
-| Params               | Type    | required | Description                                                        |
-| -------------------- | ------- | -------- | ------------------------------------------------------------------ |
-| authentication_token | header  | required | Authentication token                                               |
-| app_company_id       | header  | required | Company ID                                                         |
-| product[description] | string  | required | `Required` Product Description                                     |
-| product[sku]         | string  | optional | Product Stock Keeping Unit (sku)                                   |
-| product[unit_price]  | decimal | optional | Product Unit Price                                                 |
-| product[supplier_id] | integer | optional | Supplier ID                                                        |
+| Params               | Type    | required | Description                      |
+| -------------------- | ------- | -------- | -------------------------------- |
+| authentication_token | header  | required | Authentication token             |
+| app_company_id       | header  | required | Company ID                       |
+| product[description] | string  | required | `Required` Product Description   |
+| product[sku]         | string  | optional | Product Stock Keeping Unit (sku) |
+| product[unit_price]  | decimal | optional | Product Unit Price               |
+| product[supplier_id] | integer | optional | Supplier ID                      |
 
 ## Get all Products
 
@@ -248,3 +248,56 @@ Any parameters not provided will be left unchanged.
 | product[sku]         | string  | Product Stock Keeping Unit (sku) |
 | product[unit_price]  | decimal | Product Unit Price               |
 | product[supplier_id] | integer | Supplier ID                      |
+
+## Get SKUS
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.procurementexpress.com/api/v1/products/skus',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/products/skus'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+["SKU-001", "SKU-002"]
+```
+
+Returns a list of your products's SKUs.
+
+### Filter skus by supplier
+
+you can pass `supplier_id` query params to filter skus by supplier like:
+`/api/v1/products/skus?supplier_id=1`
+
+### Filter skus by keyword
+
+To filter sku list based on user input keyword, you can pass `query` params in URL like:
+
+`/api/v1/products/skus?query=SKU`
+
+### HTTP Request
+
+`GET https://app.procurementexpress.com/api/v1/products/skus`
+
+### Query Parameters
+
+| Params               | Type    | Description          |
+| -------------------- | ------- | -------------------- |
+| authentication_token | header  | Authentication token |
+| app_company_id       | header  | Company ID           |
+| supplier_id          | integer | filter by supplier   |

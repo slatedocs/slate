@@ -459,7 +459,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/approvers?department_i
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   },
@@ -475,7 +475,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/approvers?department_i
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   }
@@ -539,7 +539,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/all_approvers'
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   },
@@ -555,7 +555,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/all_approvers'
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   }
@@ -567,6 +567,80 @@ Retrieves the list of all approvers for current company regardless of auto appro
 ### HTTP Request
 
 `GET https://app.procurementexpress.com/api/v1/companies/all_approvers`
+
+### URL Parameters
+
+| Params               | Type    | Description          |
+| -------------------- | ------- | -------------------- |
+| authentication_token | headers | Authentication token |
+| app_company_id       | headers | Company Id           |
+
+## Get All Employees
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.procurementexpress.com/api/v1/companies/employees',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/companies/employees'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "email": "admin@example.com",
+    "name": "Admin User",
+    "phone_number": "",
+    "setup_incomplete": false,
+    "employer_id": 1,
+    "approval_limit": 1000000,
+    "companies": [
+      {
+        "id": 1,
+        "approval_limit": 1000000
+      }
+    ],
+    "roles": ["companyadmin", "finance", "approver", "teammember"]
+  },
+  {
+    "id": 2,
+    "email": "accountant@example.com",
+    "name": "Accountant User",
+    "phone_number": "",
+    "setup_incomplete": false,
+    "employer_id": 1,
+    "approval_limit": 1000000,
+    "companies": [
+      {
+        "id": 1,
+        "approval_limit": 1000000
+      }
+    ],
+    "roles": ["finance", "approver", "teammember"]
+  }
+]
+```
+
+Retrieves the list of all employees for current company.
+
+### HTTP Request
+
+`GET https://app.procurementexpress.com/api/v1/companies/employees`
 
 ### URL Parameters
 
