@@ -157,7 +157,7 @@ Create a service in a given [environment](#administration-environments).
 | `spec`<br/>_object_                        | The specification used to create and run the service.                   |
 | `spec.selector`<br/>_object_               | The label query over the service's set of resources.                    |
 | `spec.ports`<br/>_object_                  | The list of ports that are exposed by this service.                     |
-| `spec.type`<br/>*object*                   | The type of service (ClusterIP, NodePort, ExternalName or LoadBalancer) |
+| `spec.type`<br/>_object_                   | The type of service (ClusterIP, NodePort, ExternalName or LoadBalancer) |
 
 | Optional Attributes                        | &nbsp;                                                                  |
 | ------------------------------------------ | ------------------------------------------------------------------------|
@@ -169,5 +169,5 @@ Return value:
 
 | Attributes                 | &nbsp;                                           |
 ---------------------------- | -------------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the create service task. |
-| `taskStatus` <br/>*string* | The status of the operation.                     |
+| `taskId` <br/>_string_     | The id corresponding to the create service task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |

@@ -32,12 +32,12 @@ curl -X GET \
 
 Retrieve a list of all namespaces in a given [environment](#administration-environments).
 
-| Attributes               | &nbsp;                                                     |
-| ------------------------ | ---------------------------------------------------------- |
-| `id` <br/>_string_       | The id of the namespace.                                   |
-| `metadata` <br/>_object_ | The metadata of the namespace                              |
-| `spec`<br/>_object_      | The specification describes the attributes on a namespace. |
-| `status`<br/>_object_    | The status information of the namespace                    |
+| Attributes                     | &nbsp;                                                                                    |
+| ------------------------------ | ----------------------------------------------------------------------------------------- |
+| `id` <br/>_string_             | The id of the namespace.                                                                  |
+| `metadata` <br/>_object_       | The metadata of the namespace.                                                            |
+| `spec`<br/>_object_            | The specification describes the attributes on a namespace.                                |
+| `status`<br/>_object_          | The status information of the namespace.                                                  |
 
 <!-------------------- GET A NAMESPACE -------------------->
 
@@ -68,11 +68,11 @@ curl -X GET \
 
 Retrieve a namespace and all its info in a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                                                               |
-| -------------------------- | ------------------------------------------------------------------------------------ |
-| `id` <br/>_string_         | The id of the namespace.                                                             |
-| `apiVersion` <br/>_string_ | APIVersion defines the versioned schema of this representation of a namespace object |
-| `kind` <br/>_string_       | A string value representing the REST resource this object represents                 |
-| `metadata` <br/>_object_   | The metadata of the namespace                                                        |
-| `spec`<br/>_object_        | The specification describes the attributes on a namespace.                           |
-| `status`<br/>_object_      | The status information of the namespace                                              |
+| Attributes                 | &nbsp;                                                                                |
+| -------------------------- | ------------------------------------------------------------------------------------- |
+| `id` <br/>_string_         | The id of the namespace.                                                              |
+| `apiVersion` <br/>_string_ | APIVersion defines the versioned schema of this representation of a namespace object. |
+| `kind`<br/>_string_        | The string value of the REST resource that this object represents.                    |
+| `metadata` <br/>_object_   | The metadata of the namespace.                                                        |
+| `spec`<br/>_object_        | The specification describes the attributes on a namespace.                            |
+| `status`<br/>_object_      | The status information of the namespace.                                              |
