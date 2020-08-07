@@ -363,7 +363,7 @@ implementation necessary for you to use OpenID Connect with Asana's API.
 
 [client libraries]: ./client-libraries
 [omniauth]: https://github.com/intridea/omniauth
-[oauth-spec]: http://tools.ietf.org/html/draft-ietf-oauth-v2-31
+[oauth-spec]: https://tools.ietf.org/html/rfc6749
 
 <div>
   <div class="docs-developer-satisfaction-content">
