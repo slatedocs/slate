@@ -89,7 +89,7 @@ Retrieve a namespace and all its info in a given [environment](#administration-e
 
 <!-------------------- CREATE A NAMESPACE -------------------->
 
-##### Create a namespace
+#### Create a namespace
 
 ```shell
 curl -X POST \
