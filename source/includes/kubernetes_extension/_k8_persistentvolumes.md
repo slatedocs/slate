@@ -235,7 +235,8 @@ Create a persistent volume in a given [environment](#administration-environments
 | `spec` <br/>_object_                            | The spec for the persistent volume.                                                                                                                                                                        |
 | `spec.accessModes` <br/>_array_                 | A list of access modes, the options are: ReadWriteOnce, ReadOnlyMany and ReadWriteMany.                                                                                                                          |
 | `spec.capacity.storage` <br/>_string_           | Measured in bytes. You can express storage as a plain integer or as a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki. |
-| `spec.hostPath.path` <br/>_string_              | A hostPath volume mounts a file or directory from the host node's filesystem into your Pod.  |
+| `spec.hostPath.path` <br/>_string_              | Directory location on host.|
+
 
 | Optional Attributes                   | &nbsp;                                                                                        |
 | ------------------------------------- | --------------------------------------------------------------------------------------------- |
