@@ -224,7 +224,7 @@ Return value:
 
 <!-------------------- DELETE AN INGRESS -------------------->
 
-#### Delete a ingress
+#### Delete an ingress
 
 ```shell
 curl -X DELETE \
