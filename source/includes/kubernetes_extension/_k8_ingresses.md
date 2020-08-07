@@ -168,6 +168,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 <!-------------------- CREATE AN INGRESS -------------------->
 
 ##### Create an ingress
+
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
@@ -213,22 +214,54 @@ Create an ingress in a given [environment](#administration-environments).
 | -------------------------- | -------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to get the ingress. |
 
-| Required Attributes                        | &nbsp;                                                                  |
-| ------------------------------------------ | ------------------------------------------------------------------------|
-| `apiVersion` <br/> _string_                | The api version (versioned schema) of the ingress.                      |
-| `metadata` <br/>_object_                   | The metadata of the ingress.                                            |
-| `metadata.name` <br/>_string_              | The name of the ingress.                                                |
-| `spec`<br/>_object_                        | The specification used to create and run the ingress.                   |
-| `spec.rules`<br/>_object_                  | The list of host rules used to configure the ingress.                   |
+| Required Attributes           | &nbsp;                                                |
+| ----------------------------- | ----------------------------------------------------- |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the ingress.    |
+| `metadata` <br/>_object_      | The metadata of the ingress.                          |
+| `metadata.name` <br/>_string_ | The name of the ingress.                              |
+| `spec`<br/>_object_           | The specification used to create and run the ingress. |
+| `spec.rules`<br/>_object_     | The list of host rules used to configure the ingress. |
 
-| Optional Attributes                        | &nbsp;                                                                  |
-| ------------------------------------------ | ------------------------------------------------------------------------|
-| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.      |
-| `metadata.namespace` <br/>_string_         | The namespace in which the ingress is created.                          |
+| Optional Attributes                | &nbsp;                                                             |
+| ---------------------------------- | ------------------------------------------------------------------ |
+| `kind`<br/>_string_                | The string value of the REST resource that this object represents. |
+| `metadata.namespace` <br/>_string_ | The namespace in which the ingress is created.                     |
 
 Return value:
 
 | Attributes                 | &nbsp;                                           |
----------------------------- | -------------------------------------------------|
-| `taskId` <br/>*string*     | The id corresponding to the create ingress task. |
-| `taskStatus` <br/>*string* | The status of the operation.                     |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the create ingress task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
+
+<!-------------------- DELETE AN INGRESS -------------------->
+
+##### Delete an ingress
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/ingresses/test-ingress/default?cluster_id=test-cluster"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
+
+Delete an ingress from a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                             |
+| -------------------------- | -------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to get the ingress. |
+
+| Attributes                 | &nbsp;                                           |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the delete ingress task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
