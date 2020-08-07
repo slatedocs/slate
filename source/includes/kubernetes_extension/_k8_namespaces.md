@@ -89,7 +89,7 @@ Retrieve a namespace and all its info in a given [environment](#administration-e
 
 <!-------------------- DELETE A NAMESPACE -------------------->
 
-##### Delete a namespace
+#### Delete a namespace
 
 ```shell
 curl -X DELETE \
