@@ -12,7 +12,7 @@ test/tmp
 test/version_tmp
 tmp
 *.DS_STORE
-build/
+#build/
 .cache
 .vagrant
 .sass-cache
