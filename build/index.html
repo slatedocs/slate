@@ -306,27 +306,47 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#introduction-cost-calculator" class="toc-h1 toc-link" data-title="Introduction - Cost Calculator">Introduction - Cost Calculator</a>
           </li>
           <li>
-            <a href="#cost-calculator" class="toc-h1 toc-link" data-title="Cost Calculator">Cost Calculator</a>
+            <a href="#nlp" class="toc-h1 toc-link" data-title="NLP">NLP</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#nlp-api-output-changes" class="toc-h2 toc-link" data-title="NLP API Output changes">NLP API Output changes</a>
+                    <a href="#api-output-changes" class="toc-h2 toc-link" data-title="API Output changes">API Output changes</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#leni-ms" class="toc-h1 toc-link" data-title="Leni-ms">Leni-ms</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#askleni-api-io-changes" class="toc-h2 toc-link" data-title="Askleni API IO Changes">Askleni API IO Changes</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#insights-api-io-changes" class="toc-h2 toc-link" data-title="Insights API IO Changes">Insights API IO Changes</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#comparator-api-io" class="toc-h2 toc-link" data-title="Comparator API IO">Comparator API IO</a>
+                  </li>
+                  <li>
+                    <a href="#studies-api-io" class="toc-h2 toc-link" data-title="Studies API IO">Studies API IO</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#analytics" class="toc-h1 toc-link" data-title="Analytics">Analytics</a>
+          </li>
+          <li>
+            <a href="#nlg" class="toc-h1 toc-link" data-title="NLG">NLG</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#io-dataset-boxplot" class="toc-h2 toc-link" data-title="IO - dataset boxplot">IO - dataset boxplot</a>
+                  </li>
+                  <li>
+                    <a href="#io-metric_type-boxplot" class="toc-h2 toc-link" data-title="IO - metric_type boxplot">IO - metric_type boxplot</a>
+                  </li>
+                  <li>
+                    <a href="#io-monte_carlo-boxplot" class="toc-h2 toc-link" data-title="IO - monte_carlo boxplot">IO - monte_carlo boxplot</a>
                   </li>
               </ul>
           </li>
@@ -342,17 +362,9 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
+        <h1 id='introduction-cost-calculator'>Introduction - Cost Calculator</h1>
 <p>This documentation is the reference for JNJRnD Phase 1B <strong>APIs and IO Structures</strong></p>
-
-<p>The following are the modules</p>
-
-<ol>
-<li>Cost Calculator</li>
-<li>Save Simulation</li>
-<li>Edit Monte-Carlo</li>
-</ol>
-<h1 id='cost-calculator'>Cost Calculator</h1><h2 id='nlp-api-output-changes'>NLP API Output changes</h2>
+<h1 id='nlp'>NLP</h1><h2 id='api-output-changes'>API Output changes</h2>
 <p>The following is the sample question for <em>cost calculator</em></p>
 
 <p><code>How much would phase 2 diabetes cost?</code></p>
@@ -696,153 +708,1298 @@ query=how+long+would+a+phase+2+diabetes+study+take</span><span class="se">\</spa
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='leni-ms'>Leni-ms</h1><h2 id='askleni-api-io-changes'>Askleni API IO Changes</h2><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>http://localhost:3000/rest/v3/askleni</code></p>
+
+<ul>
+<li>A new field <code>question_type</code> added inside <code>data</code></li>
+</ul>
+
+<p><code>&quot;question_type&quot;: &quot;cost_calculator&quot;</code></p>
+
+<ul>
+<li>A new filter added inside <code>intermediate_filters</code></li>
+</ul>
+
+<p><code>{</code><br/>
+<code>&quot;values&quot;: [</code><br/>
+<code>{</code><br/>
+<code>&quot;METRIC TYPE&quot;: &quot;Total Cost per patient&quot;,</code><br/>
+<code>&quot;label&quot;: &quot;Total Cost per patient&quot;,</code><br/>
+<code>&quot;value&quot;: &quot;Total Cost per patient&quot;,</code><br/>
+<code>&quot;selected&quot;: true,</code><br/>
+<code>&quot;key&quot;: &quot;metric_0&quot;</code><br/>
+<code>},</code><br/>
+<code>{</code><br/>
+<code>&quot;METRIC TYPE&quot;: &quot;FTE Cost per patient&quot;,</code><br/>
+<code>&quot;label&quot;: &quot;FTE Cost per patient&quot;,</code><br/>
+<code>&quot;value&quot;: &quot;FTE Cost per patient&quot;,</code><br/>
+<code>&quot;selected&quot;: false,</code><br/>
+<code>&quot;key&quot;: &quot;metric_1&quot;</code><br/>
+<code>},</code><br/>
+<code>{</code><br/>
+<code>&quot;METRIC TYPE&quot;: &quot;OOP Cost per patient&quot;,</code><br/>
+<code>&quot;label&quot;: &quot;OOP Cost per patient&quot;,</code><br/>
+<code>&quot;value&quot;: &quot;OOP Cost per patient&quot;,</code><br/>
+<code>&quot;selected&quot;: false,</code><br/>
+<code>&quot;key&quot;: &quot;metric_2&quot;</code><br/>
+<code>}</code><br/>
+<code>],</code><br/>
+<code>&quot;label&quot;: &quot;Metric Type&quot;</code><br/>
+<code>}</code><br/></p>
+
+<ul>
+<li><p>A new field <code>metric_type_boxplot_data</code> added inside <code>data</code></p></li>
+<li><p><code>additional_params</code> values are changed</p></li>
+</ul>
+
+<p><code>&quot;additional_params&quot;: {</code><br/>
+&emsp;&emsp;<code>&quot;patient_count&quot;: {</code><br/>
+&emsp;&emsp;&emsp;<code>&quot;label&quot;: &quot;No. Of patients for simulation&quot;,</code><br/>
+&emsp;&emsp;&emsp;<code>&quot;type&quot;: &quot;number&quot;,</code><br/>
+&emsp;&emsp;&emsp;<code>&quot;value&quot;: 11</code><br/>
+&emsp;<code>},</code><br/>
+&emsp;&emsp;<code>&quot;proposed_budget&quot;: {</code><br/>
+&emsp;&emsp;&emsp;<code>&quot;label&quot;: &quot;Proposed Bugdet(USD Thousands)&quot;,</code><br/>
+&emsp;&emsp;&emsp;<code>&quot;type&quot;: &quot;number&quot;,</code><br/>
+&emsp;&emsp;&emsp;<code>&quot;value&quot;: 0</code><br/>
+&emsp;<code>}</code><br/>
+<code>}</code><br/></p>
+
+<ul>
+<li>Cart section will have only JRD filters and table. There will not be INDUSTRY filters in cost calculator</li>
+</ul>
+
+<blockquote>
+<p>API Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/rest/v3/askleni</span><span class="se">\</span><span class="s2">
+?question=How%20much%20would%20a%20phase%202%20diabetes</span><span class="se">\</span><span class="s2">
+%20cost&amp;user=varsha@lymbyc.com&amp;from=web&amp;cache=true"</span>
+</code></pre></div>
+<blockquote>
+<p>API Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"inferences"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leni_jnjrd_0172b5cb597349b891d84aa05b83055c_0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"context_tokens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phase 2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"selection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDICATION (KMR)"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"filter_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                        </span><span class="p">{</span><span class="w">
+                                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESPIRATORY SYNCYTIAL VIRUS"</span><span class="p">,</span><span class="w">
+                                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                        </span><span class="p">},</span><span class="w">
+                                        </span><span class="p">{</span><span class="w">
+                                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESPIRATORY SYNCYTIAL VIRUS VACCINE"</span><span class="w">
+                                        </span><span class="p">}</span><span class="w">
+                                    </span><span class="p">]</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"selection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"filter_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                        </span><span class="p">{</span><span class="w">
+                                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESPIRATORY INFECTIONS"</span><span class="p">,</span><span class="w">
+                                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                        </span><span class="p">},</span><span class="w">
+                                        </span><span class="p">{</span><span class="w">
+                                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACUTE RESPIRATORY DISORDERS"</span><span class="w">
+                                        </span><span class="p">},</span><span class="w">
+                                        </span><span class="p">{</span><span class="w">
+                                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OTHER RESPIRATORY DISORDERS"</span><span class="w">
+                                        </span><span class="p">}</span><span class="w">
+                                    </span><span class="p">]</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"respiratory"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JNJ RND"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"subdomain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jnj_research"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sub-domain description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output generation success"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"inference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leni_jnjrd_0172b5cb597349b891d84aa05b83055c_0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"context_tokens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phase 2"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"selection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDICATION (KMR)"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"filter_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                    </span><span class="p">{</span><span class="w">
+                                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESPIRATORY SYNCYTIAL VIRUS"</span><span class="p">,</span><span class="w">
+                                        </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                    </span><span class="p">},</span><span class="w">
+                                    </span><span class="p">{</span><span class="w">
+                                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESPIRATORY SYNCYTIAL VIRUS VACCINE"</span><span class="w">
+                                    </span><span class="p">}</span><span class="w">
+                                </span><span class="p">]</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"respiratory"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JNJ RND"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How much would phase 2 diabetes cost"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cached_output"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"question_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cost_calculator"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"intermediate_filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disease Area"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disease Area"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"level_0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indication"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indication"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"level_1"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Level"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"indications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"parent_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"disease_0"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIV/AIDS"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIV/AIDS"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"indication_0"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"parent_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"level_0"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIRAL"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIRAL"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"disease_0"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disease Area"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"METRIC TYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"metric_0"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"METRIC TYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FTE Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FTE Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FTE Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"metric_1"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"METRIC TYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OOP Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OOP Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OOP Cost per patient"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"metric_2"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metric Type"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"applied_variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"applied_filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LEVEL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"applied"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"DA"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Level"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"applied"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"II"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Trial Phase Group"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"chart_filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"dataset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jrd"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"applied"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="s2">"RESPIRATORY INFECTIONS"</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADVANCED CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANXIETY/STRESS DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ARTERY DISEASE CORONARY"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ARTERY DISEASE PERIPHERAL"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ARTHRITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BACTERIAL"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BONE/TISSUE CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BREAST CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCER RELATED DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHORIORETINAL DISEASES"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEMENTIA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEVELOPMENTAL DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GYNECOLOGIC CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEART ARRHYTHMIAS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEART FAILURE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEMATOLOGIC CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEPATITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HYPERTENSION"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFLAMMATORY (NON ARTHRITIS)"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFLAMMATORY BOWEL DISEASE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFLAMMATORY/IMMUNE SKIN DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIVER DISEASE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LUNG CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MALE REPRODUCTIVE CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOOD DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NERVE DAMAGE DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OBSTRUCTIVE LUNG DISEASE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST-OPERATIVE PAIN"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PREVENTATIVE VACCINE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PSYCHOTIC DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RENAL DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESPIRATORY INFECTIONS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SLEEP DISORDERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STROKE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THROMBOSIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"URINARY CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"DISEASE AREA (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIRAL"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDICATION (KMR)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACUTE MYOCARDIAL INFARCTION"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADVANCED CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALZHEIMERS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMYLOIDOSIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ATRIAL FIBRILLATION"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AXIAL SPONDYLOARTHRITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLADDER CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUNIONECTOMY PAIN"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHRONIC OBSTRUCTIVE PULMONARY DISEASE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONGESTIVE HEART FAILURE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CROHNS DISEASE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEPRESSION"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DERMATITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES - TYPE II"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EBOLA VACCINE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ESSENTIAL HYPERTENSION"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEPATITIS B"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HEPATITIS C"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIDRADENITIS SUPPURATIVA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIV VACCINE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIV/AIDS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFLUENZA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSOMNIA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISCHEMIC STROKE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JUVENILE IDIOPATHIC ARTHRITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LEUKEMIA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LUPUS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MULTIPLE MYELOMA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MULTIPLE SCLEROSIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MYELODYSPLASTIC SYNDROMES"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MYELOPROLIFERATIVE NEOPLASM"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NEPHROSIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NON SMALL CELL LUNG CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NON-ALCOHOLIC STEATOHEPATITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OVARIAN CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROSTATE CANCER"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PSORIASIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PSORIATIC ARTHRITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PULMONARY HYPERTENSION"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RESPIRATORY SYNCYTIAL VIRUS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETINOPATHY"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RHEUMATOID ARTHRITIS"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHIZOPHRENIA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"INDICATION (KMR)"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ULCERATIVE COLITIS"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDICATION (KMR)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDICATION (KMR)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THERAPEUTIC AREA"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"THERAPEUTIC AREA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardiovascular and Metabolism"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"THERAPEUTIC AREA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Immunology"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"THERAPEUTIC AREA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Infectious Diseases and Vaccines"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"THERAPEUTIC AREA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Neuroscience"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"THERAPEUTIC AREA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oncology"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"THERAPEUTIC AREA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"THERAPEUTIC AREA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pulmonary Hypertension"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THERAPEUTIC AREA"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THERAPEUTIC AREA"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRIMARY INDICATION (JRD)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRIMARY INDICATION (JRD)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRIMARY INDICATION (JRD)"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I/II"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"II"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IIA"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IIB"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"III"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IIIB"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF SUBJECTS"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF SUBJECTS"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"range-number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF SUBJECTS"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF COUNTRIES"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF COUNTRIES"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"range-number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF COUNTRIES"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF SITES"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">1188</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF SITES"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"range-number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NUMBER OF SITES"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIRST PATIENT IN"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">2002</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIRST PATIENT IN"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"range-number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIRST PATIENT IN"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LAST PATIENT OUT"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">2004</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">2028</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LAST PATIENT OUT"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"range-number"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LAST PATIENT OUT"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT TYPE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"applied"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"PRODUCT TYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LARGE MOLECULE"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"PRODUCT TYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMALL MOLECULE"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT TYPE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT TYPE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROJECT NAME"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROJECT NAME"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROJECT NAME"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT NAME"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT NAME"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRODUCT NAME"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROJECT TYPE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"PROJECT TYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Line Extension"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"PROJECT TYPE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Molecular Entity"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROJECT TYPE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROJECT TYPE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRATEGIC PRIORITY"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STRATEGIC PRIORITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accelerate to Value (LD)"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STRATEGIC PRIORITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Core (LD)"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STRATEGIC PRIORITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invest to PoC (ED)"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STRATEGIC PRIORITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Key Plus Acceleration (LD)"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STRATEGIC PRIORITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Applicable"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STRATEGIC PRIORITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Required (LD)"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STRATEGIC PRIORITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard (LD)"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRATEGIC PRIORITY"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRATEGIC PRIORITY"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROTOCOL ID"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROTOCOL ID"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROTOCOL ID"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STUDY STAGE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"applied"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="s2">"Conduct"</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STUDY STAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Analysis"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STUDY STAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Conduct"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STUDY STAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Data Capture"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STUDY STAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enrollment"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STUDY STAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Startup"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STUDY STAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Study"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"STUDY STAGE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Treatment"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STUDY STAGE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-single"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STUDY STAGE"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"display_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"applied"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="s2">"II"</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE GROUP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"II"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"TRIAL PHASE GROUP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"III"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dropdown-multi"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"data_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"searchable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JRD"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"dataset_boxplot_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"number_of_subjects_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"number_of_studies"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_25th"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.7</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_10th"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_90th"</span><span class="p">:</span><span class="w"> </span><span class="mf">30.7</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"variability_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"data_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JRD"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"on_time_75"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"number_of_subjects_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">5800</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"study_stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Study"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"median"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_75th"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sample_size_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jrd"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"day_difference_75"</span><span class="p">:</span><span class="w"> </span><span class="mf">-6.7</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"number_of_subjects_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"number_of_studies"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DA"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_25th"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.5</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_10th"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_90th"</span><span class="p">:</span><span class="w"> </span><span class="mf">37.2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"variability_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"data_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDUSTRY BENCHMARK"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"on_time_75"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"number_of_subjects_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"study_stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Study"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"median"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.6</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_75th"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sample_size_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kmr"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"day_difference_75"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"plain_text_story"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The selected JRD studies median is 6.7 months shorter than the Industry Benchmarks median and is 3.1 months shorter than the selected Industry Studies median. JRD historically takes a median of 13.9 months to complete such a study. The median cycle time is 20.6 months for Industry Benchmarks and 17.0 months for selected Industry studies. The selected JRD studies have lower variability and lower sample size than the industry benchmarks and selected industry studies."</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"chart"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"datatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Source"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JRD + INDUSTRY BENCHMARKS"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"datatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chart Type"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Box Plot"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"datatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Latest Refresh Date"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cost-calculator-box-plot"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"story"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div class=</span><span class="se">\"</span><span class="s2">lym-story-output</span><span class="se">\"</span><span class="s2">&gt;&lt;div class=</span><span class="se">\"</span><span class="s2">lym-story-heading</span><span class="se">\"</span><span class="s2">&gt;&lt;/div&gt;&lt;div class=</span><span class="se">\"</span><span class="s2">lym-story-desc</span><span class="se">\"</span><span class="s2">&gt;&lt;div&gt;The selected JRD studies median is &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;6.7&lt;/span&gt; months &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;shorter&lt;/span&gt; than the Industry Benchmarks median and is &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;3.1&lt;/span&gt; months &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;shorter&lt;/span&gt; than the selected Industry Studies median.&lt;/div&gt;&lt;div&gt;JRD historically takes a median of &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;13.9&lt;/span&gt; months to complete such a study.&lt;/div&gt;&lt;div&gt;The median cycle time is &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;20.6&lt;/span&gt; months for Industry Benchmarks and &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;17.0&lt;/span&gt; months for selected Industry studies.&lt;/div&gt;&lt;div&gt;The selected JRD studies have&lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt; lower &lt;/span&gt;variability and &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt; lower &lt;/span&gt;sample size than the industry benchmarks and selected industry studies.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"number_of_subjects_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"number_of_studies"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_25th"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.7</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_10th"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.9</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_90th"</span><span class="p">:</span><span class="w"> </span><span class="mf">30.7</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"variability_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"data_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JRD"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"on_time_75"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"number_of_subjects_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">5800</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"study_stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Study"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"median"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.9</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_75th"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.3</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"sample_size_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jrd"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"day_difference_75"</span><span class="p">:</span><span class="w"> </span><span class="mf">-6.7</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"number_of_subjects_min"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"number_of_studies"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DA"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_25th"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.5</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_10th"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_90th"</span><span class="p">:</span><span class="w"> </span><span class="mf">37.2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"variability_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"data_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDUSTRY BENCHMARK"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"on_time_75"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"number_of_subjects_max"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"study_stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Study"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"median"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.6</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"percentile_75th"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.9</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"sample_size_flag"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kmr"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"day_difference_75"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"plain_text_story"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The selected JRD studies median is 6.7 months shorter than the Industry Benchmarks median and is 3.1 months shorter than the selected Industry Studies median. JRD historically takes a median of 13.9 months to complete such a study. The median cycle time is 20.6 months for Industry Benchmarks and 17.0 months for selected Industry studies. The selected JRD studies have lower variability and lower sample size than the industry benchmarks and selected industry studies."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sub domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jnj_research"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"monte_carlo_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nl">"plain_text_story"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"chart"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"label_x_axis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Study Simulation End Date"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"plot_bands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nl">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nl">"label_y_axis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"# of times simulation</span><span class="se">\n</span><span class="s2">landed on this date"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"story"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leni_jnjrd_0172b5cb597349b891d84aa05b83055c_0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"metric_type_boxplot_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"metric_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total Cost Per Patient"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"median"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.5</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"number_of_studies"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_75th"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.5</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DA"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_25th"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_10th"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.6</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_90th"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.7</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"metric_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OOP Cost Per Patient"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"median"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.6</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"number_of_studies"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_75th"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.8</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DA"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_25th"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.8</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_10th"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.8</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_90th"</span><span class="p">:</span><span class="w"> </span><span class="mf">36.3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"metric_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FTE Cost Per Patient"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"median"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"number_of_studies"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_75th"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DA"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_25th"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_10th"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"percentile_90th"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.4</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"chart"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"datatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Source"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JRD + INDUSTRY BENCHMARKS"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"datatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chart Type"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Box Plot"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"datatype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Latest Refresh Date"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cost-calculator-box-plot"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"comparator_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"chart"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calculator-box-plot"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"additional_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"patient_count"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No. Of patients for simulation"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"proposed_budget"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Proposed Bugdet(USD Thousands)"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output generation success"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"story"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div class=</span><span class="se">\"</span><span class="s2">lym-story-output</span><span class="se">\"</span><span class="s2">&gt;&lt;div class=</span><span class="se">\"</span><span class="s2">lym-story-heading</span><span class="se">\"</span><span class="s2">&gt;&lt;/div&gt;&lt;div class=</span><span class="se">\"</span><span class="s2">lym-story-desc</span><span class="se">\"</span><span class="s2">&gt;&lt;div&gt;The selected JRD studies median is &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;6.7&lt;/span&gt; months &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;shorter&lt;/span&gt; than the Industry Benchmarks median and is &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;3.1&lt;/span&gt; months &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;shorter&lt;/span&gt; than the selected Industry Studies median.&lt;/div&gt;&lt;div&gt;JRD historically takes a median of &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;13.9&lt;/span&gt; months to complete such a study.&lt;/div&gt;&lt;div&gt;The median cycle time is &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;20.6&lt;/span&gt; months for Industry Benchmarks and &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt;17.0&lt;/span&gt; months for selected Industry studies.&lt;/div&gt;&lt;div&gt;The selected JRD studies have&lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt; lower &lt;/span&gt;variability and &lt;span class = </span><span class="se">\"</span><span class="s2">lym-story-v</span><span class="se">\"</span><span class="s2">&gt; lower &lt;/span&gt;sample size than the industry benchmarks and selected industry studies.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How much would phase 2 diabetes cost"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status_txt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSIGHTS GENERATION SUCCESS"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='insights-api-io-changes'>Insights API IO Changes</h2>
+<p>Insights API has been called from many places</p>
+
+<table><thead>
+<tr>
+<th>API calls</th>
+<th>Analyzer</th>
+<th>Calculator</th>
+<th>Cost Calculator</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Intermediate Filters</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Refine Query</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Update Boxplot</td>
+<td></td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Refine Montecarlo</td>
+<td></td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>API Request from <strong>Intermediate Filters</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3000/rest/v3/insights</span><span class="se">\</span><span class="s2">
+?user=varsha@lymbyc.com&amp;from=web&amp;cache=true</span><span class="se">\</span><span class="s2">
+&amp;change=true&amp;trend=false"</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"input"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nl">"inferences"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leni_jnjrd_378112533dd24ca095744263d9cad191_0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"context_tokens"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="w">
+                </span><span class="p">}],</span><span class="w">
+                </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phase 2"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                    </span><span class="nl">"selection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"filter_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">}]</span><span class="w">
+                </span><span class="p">}],</span><span class="w">
+                </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diabetes"</span><span class="w">
+            </span><span class="p">}],</span><span class="w">
+            </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JNJ RND"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How much would phase 2 diabetes cost"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"intermediate_filters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IND"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"disease_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"indication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES - TYPE I"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"metric_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total Cost Per Patient"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<blockquote>
+<p>API Request from <strong>Refine Query</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"input"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nl">"inferences"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leni_jnjrd_378112533dd24ca095744263d9cad191_0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"context_tokens"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="w">
+                </span><span class="p">}],</span><span class="w">
+                </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phase 2"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                    </span><span class="nl">"selection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"filter_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                        </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">}]</span><span class="w">
+                </span><span class="p">}],</span><span class="w">
+                </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diabetes"</span><span class="w">
+            </span><span class="p">}],</span><span class="w">
+            </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JNJ RND"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How much would phase 2 diabetes cost"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>API Request from <strong>Update Boxplot</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"input"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"inferences"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leni_jnjrd_378112533dd24ca095744263d9cad191_0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"context_tokens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phase 2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"selection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"filter_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                        </span><span class="p">{</span><span class="w">
+                                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="p">,</span><span class="w">
+                                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                        </span><span class="p">}</span><span class="w">
+                                    </span><span class="p">]</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diabetes"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JNJ RND"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How much would phase 2 diabetes cost"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"intermediate_filters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"disease_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"metric_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total Cost Per Patient"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"additional_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"patient_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"proposed_budget"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"selected_studies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JRD"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"dataset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jrd"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"study"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"28431754-DIA-2003 - DB 18 weeks PBO, 50mg; 150mg BID"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"28431754-DIA-2001 - Metformin Add-on"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"cart_filters"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>API Request from <strong>Refine Montecarlo</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"input"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"inferences"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leni_jnjrd_378112533dd24ca095744263d9cad191_0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"context_tokens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE GROUP"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRIAL PHASE"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phase 2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"selection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISEASE AREA (KMR)"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"filter_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                        </span><span class="p">{</span><span class="w">
+                                            </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="p">,</span><span class="w">
+                                            </span><span class="nl">"selected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                                        </span><span class="p">}</span><span class="w">
+                                    </span><span class="p">]</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diabetes"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JNJ RND"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"last_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-09 17:11:53"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How much would phase 2 diabetes cost"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"intermediate_filters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"disease_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIABETES MELLITUS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"metric_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total Cost Per Patient"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"additional_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"patient_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"proposed_budget"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"selected_studies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JRD"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"dataset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jrd"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"study"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"28431754-DIA-2003 - DB 18 weeks PBO, 50mg; 150mg BID"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"28431754-DIA-2001 - Metformin Add-on"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"cart_filters"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comparator-api-io'>Comparator API IO</h2><h2 id='studies-api-io'>Studies API IO</h2><h1 id='analytics'>Analytics</h1><h1 id='nlg'>NLG</h1><h2 id='io-dataset-boxplot'>IO - dataset boxplot</h2><h2 id='io-metric_type-boxplot'>IO - metric_type boxplot</h2><h2 id='io-monte_carlo-boxplot'>IO - monte_carlo boxplot</h2>
 <!--<aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>-->
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-X</span> DELETE
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
