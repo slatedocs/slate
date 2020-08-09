@@ -19,20 +19,14 @@ search: true
 code_clipboard: true
 ---
 
-# Introduction
+# Introduction - Cost Calculator
 
 This documentation is the reference for JNJRnD Phase 1B **APIs and IO Structures**
 
-The following are the modules
-
-1. Cost Calculator
-2. Save Simulation
-3. Edit Monte-Carlo
 
 
-
-# Cost Calculator
-## NLP API Output changes
+# NLP
+## API Output changes
 
 The following is the sample question for *cost calculator*
 
@@ -366,7 +360,8 @@ query=how+long+would+a+phase+2+diabetes+study+take\
 
 
 
-## Leni-ms: Askleni API IO Changes
+# Leni-ms
+## Askleni API IO Changes
 
 ### HTTP Request
 `http://localhost:3000/rest/v3/askleni`
@@ -1394,7 +1389,7 @@ curl "http://localhost:3000/rest/v3/askleni\
 ```
 
 
-## Leni-ms: Insights API IO Changes
+## Insights API IO Changes
 
 Insights API has been called from many places
 
@@ -1406,6 +1401,12 @@ Update Boxplot |   | yes | yes
 Refine Montecarlo |   | yes | yes
 
 > API Request from **Intermediate Filters**
+
+```shell
+curl "http://localhost:3000/rest/v3/insights\
+?user=varsha@lymbyc.com&from=web&cache=true\
+&change=true&trend=false"
+```
 
 ```json
 {
@@ -1635,15 +1636,14 @@ Refine Montecarlo |   | yes | yes
 ```
 
 
-## Leni-ms: Comparator API IO
-## Leni-ms: Studies API IO
-## Analytics: IO
-## NLG: IO - dataset boxplot
-## NLG: IO - metric_type boxplot
-## NLG: IO - monte_carlo boxplot
+## Comparator API IO
+## Studies API IO
+# Analytics
 
-# Save Simulation
-# Edit Monte-Carlo
+# NLG
+## IO - dataset boxplot
+## IO - metric_type boxplot
+## IO - monte_carlo boxplot
 
 <!--<aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
