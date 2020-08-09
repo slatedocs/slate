@@ -8,6 +8,8 @@ toc_footers:
   - <a href='https://www.castupload.com'>&larr; back to Castupload</a>
 
 search: true
+
+code_clipboard: true
 ---
 
 # Authentication

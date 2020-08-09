@@ -1,5 +1,62 @@
 # Changelog
 
+## Version 2.7.0
+
+*June 21, 2020*
+
+* __[security]__ Bumped rack in Gemfile.lock from 2.2.2 to 2.2.3
+* Bumped bundled jQuery from 3.2.1 to 3.5.1
+* Bumped bundled lunr from 0.5.7 to 2.3.8
+* Bumped imagesloaded from 3.1.8 to 4.1.4
+* Bumped rouge from 3.17.0 to 3.20.0
+* Bumped redcarpet from 3.4.0 to 3.5.0
+* Fix color of highlighted code being unreadable when printing page
+* Add clipboard icon for "Copy to Clipboard" functionality to code boxes (see note below)
+* Fix handling of ToC selectors that contain punctutation (thanks @gruis)
+* Fix language bar truncating languages that overflow screen width
+* Strip HTML tags from ToC title before displaying it in title bar in JS (backup to stripping done in Ruby code) (thanks @atic)
+
+To enable the new clipboard icon, you need to add `code_clipboard: true` to the frontmatter of source/index.html.md.
+See [this line](https://github.com/slatedocs/slate/blame/main/source/index.html.md#L19) for an example of usage.
+
+## Version 2.6.1
+
+*May 30, 2020*
+
+* __[security]__ update child dependency activesupport in Gemfile.lock to 5.4.2.3
+* Update Middleman in Gemfile.lock to 4.3.7
+* Replace Travis-CI with GitHub actions for continuous integration
+* Replace Spectrum with GitHub discussions
+
+## Version 2.6.0
+
+*May 18, 2020*
+
+__Note__: 2.5.0 was "pulled" due to a breaking bug discovered after release. It is recommended to skip it, and move straight to 2.6.0.
+
+* Fix large whitespace gap in middle column for sections with codeblocks
+* Fix highlighted code elements having a different background than rest of code block
+* Change JSON keys to have a different font color than their values
+* Disable asset hashing for woff and woff2 elements due to middleman bug breaking woff2 asset hashing in general
+* Move Dockerfile to Debian from Alpine
+* Converted repo to a [GitHub template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository)
+* Update sassc to 2.3.0 in Gemfile.lock
+
+## Version 2.5.0
+
+*May 8, 2020*
+
+* __[security]__ update nokogiri to ~> 1.10.8
+* Update links in example docs to https://github.com/slatedocs/slate from https://github.com/lord/slate
+* Update LICENSE to include full Apache 2.0 text
+* Test slate against Ruby 2.5 and 2.6 on Travis-CI
+* Update Vagrantfile to use Ubuntu 18.04 (thanks @bradthurber)
+* Parse arguments and flags for deploy.sh on script start, instead of potentially after building source files
+* Install nodejs inside Vagrantfile (thanks @fernandoaguilar)
+* Add Dockerfile for running slate (thanks @redhatxl)
+* update middleman-syntax and rouge to ~>3.2
+* update middleman to 4.3.6
+
 ## Version 2.4.0
 
 *October 19, 2019*
@@ -7,12 +64,12 @@
 - Move repository from lord/slate to slatedocs/slate
 - Fix documentation to point at new repo link, thanks to [Arun](https://github.com/slash-arun), [Gustavo Gawryszewski](https://github.com/gawry), and [Daniel Korbit](https://github.com/danielkorbit)
 - Update `nokogiri` to 1.10.4
-- Update `ffi` in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jackmack](https://github.com/jakemack)
-- Update `rack` to 2.0.7 in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jackmack](https://github.com/jakemack)
-- Update middleman to `4.3` and relax constraints on middleman related gems, thanks to [jackmack](https://github.com/jakemack)
-- Add sass gem, thanks to [jackmack](https://github.com/jackmack)
+- Update `ffi` in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jakemack](https://github.com/jakemack)
+- Update `rack` to 2.0.7 in `Gemfile.lock` to fix security warnings, thanks to [Grey Baker](https://github.com/greysteil) and [jakemack](https://github.com/jakemack)
+- Update middleman to `4.3` and relax constraints on middleman related gems, thanks to [jakemack](https://github.com/jakemack)
+- Add sass gem, thanks to [jakemack](https://github.com/jakemack)
 - Activate `asset_cache` in middleman to improve cacheability of static files, thanks to [Sam Gilman](https://github.com/thenengah)
-- Update to using bundler 2 for `Gemfile.lock`, thanks to [jackmack](https://github.com/jakemack)
+- Update to using bundler 2 for `Gemfile.lock`, thanks to [jakemack](https://github.com/jakemack)
 
 ## Version 2.3.1
 
