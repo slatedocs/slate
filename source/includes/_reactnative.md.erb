@@ -12,7 +12,7 @@ yarn add @ada-support/react-native-sdk
 
 The Ada React Native SDK is based on [react-native-webview](https://github.com/react-native-community/react-native-webview). Before you can use the SDK, you will need to follow the react-native-webview ["Getting Started Guide"](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md).
 
-Next, simply install the Ada React Native SDK via NPM.
+When you've configured react-native-webview, simply install the Ada React Native SDK via NPM.
 
 ## Quick Start
 
@@ -27,7 +27,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-Once you have installed the Ada React Native SDK, you are ready to use it in your app! To start, import the `AdaEmbedView` component. Next, render the component. Note that you must pass a valid `handle` for the Chat window to work.
+Once you have installed the Ada React Native SDK, you are ready to use it in your app! Simply import the `AdaEmbedView` component, then render it. Note that you must pass a valid `handle` for the Chat window to work.
 
 ## API
 
@@ -40,6 +40,19 @@ Once you have installed the Ada React Native SDK, you are ready to use it in you
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
 
 #### eventCallbacks
+```jsx
+eventCallbacks={{
+  "*": (event) => {
+    // This function will catch all events
+    console.log(event.event_name);
+  },
+  "my_event_name": (event) => {
+    // This function will catch only events with the specified name (my_event_name)
+    console.log(event.event_name);
+  }
+}}
+```
+
 `eventCallbacks?: { [eventName: string]: (jsEvent: object) => void };`
 
 Used in conjunction with the Chat Transfer Block or Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
@@ -112,14 +125,14 @@ class MyComponent extends React.Component {
 }
 ```
 
-Action can be called directly from the `AdaEmbedView` ref. This allows you to modify Ada Chat without using state/props to trigger a re-render of the entire subtree.
+Actions can be called directly from the `AdaEmbedView` ref. This allows you to modify Ada Chat without using state/props to trigger a re-render of the entire subtree.
 
 #### deleteHistory
 ```jsx
 this.adaEmbedView.deleteHistory();
 ```
 
-Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window a new `chatter` will be generated.
+Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window, a new `chatter` will be generated.
 
 #### reset
 ```jsx
