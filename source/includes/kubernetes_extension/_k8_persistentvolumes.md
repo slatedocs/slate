@@ -196,7 +196,6 @@ curl -X POST \
   Content-Type: application/json
    {
       "apiVersion": "v1",
-      "kind": "PersistentVolume",
       "metadata": {
          "name": "small-pvc",
          "namespace": "default"
@@ -240,7 +239,6 @@ Create a persistent volume in a given [environment](#administration-environments
 
 | Optional Attributes                   | &nbsp;                                                                                        |
 | ------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `kind`<br/>_string_                   | The string value representing the REST resource this object represents.                       |
 | `metadata.namespace` <br/>_string_    | The namespace in which the pod is created, if not specified will create the persistent volume in default. |
 | `spec.storageClassName` <br/>_string_ | Storage class associated to the volume.   |
 | `spec.claimRef` <br/>_array_          | The name of the PersistentVolumeClaim associated to the persistent volume.          |
