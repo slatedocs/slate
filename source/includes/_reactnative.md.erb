@@ -1,0 +1,163 @@
+# React Native SDK
+The Ada React Native SDK is a small framework that is used to embed your Ada Chat bot into your React Native application.
+
+## Installation
+```shell
+# With npm
+npm install --save @ada-support/react-native-sdk
+
+# With yarn
+yarn add @ada-support/react-native-sdk
+```
+
+The Ada React Native SDK is based on [react-native-webview](https://github.com/react-native-community/react-native-webview). Before you can use the SDK, you will need to follow the react-native-webview ["Getting Started Guide"](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md).
+
+When you've configured react-native-webview, simply install the Ada React Native SDK via NPM.
+
+## Quick Start
+
+```jsx
+import AdaEmbedView from '@ada-support/react-native-sdk';
+// ...
+
+class MyComponent extends React.Component {
+  render() {
+    return <AdaEmbedView handle="ada-example"/>;
+  }
+}
+```
+
+Once you have installed the Ada React Native SDK, you are ready to use it in your app! Simply import the `AdaEmbedView` component, then render it. Note that you must pass a valid `handle` for the Chat window to work.
+
+## API
+
+### Props
+`AdaEmbedView` can take various props to customize the behaviour of your Chat bot.
+
+#### cluster
+`cluster?: string;`
+
+Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
+
+#### eventCallbacks
+```jsx
+eventCallbacks={{
+  "*": (event) => {
+    // This function will catch all events
+    console.log(event.event_name);
+  },
+  "my_event_name": (event) => {
+    // This function will catch only events with the specified name (my_event_name)
+    console.log(event.event_name);
+  }
+}}
+```
+
+`eventCallbacks?: { [eventName: string]: (jsEvent: object) => void };`
+
+Used in conjunction with the Chat Transfer Block or Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
+
+#### greeting
+`greeting?: string;`
+
+This can be used to customize the greeting messages that new users see. This is useful for setting view-specific greetings across your app. The greeting should correspond to the ID of the Answer you would like to use. The ID can be found in the URL of the corresponding Answer in the dashboard.
+
+#### handle
+`handle: string;`
+
+The handle for your bot. This is a required field.
+
+#### language
+`language?: string;`
+
+Takes in a language code to programatically set the bot language. Languages must first be turned on in the Settings > Multilingual page of your Ada dashboard. Language codes follow the [ISO 639-1 language format](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+
+#### metaFields
+
+```jsx
+metaFields={{
+  name: "Some name",
+  age: 30
+}}
+```
+
+`metaFields?: object;`
+
+Used to pass meta information about a `chatter`. This can be useful for tracking information about your end users, as well as for personalizing their experience. For example, you may wish to track the phone_number and name for conversation attribution. Once set, this information can be accessed in the email attachment from Handoff Form submissions, or via the Chatter modal in the Conversations page of your Ada dashboard. Should you need to programatically change these values after bot setup, you can make use of the [setMetaFields](#setmetafields_-fields-string-any) method below.
+
+#### styles
+`styles?: string;`
+
+The styles option can be used to override default styles inside of Web Chat. The value of the string should be the CSS rule-set you wish to apply inside the Web Chat iFrame. Note that the `ui_customization` feature flag is required to use this feature.
+
+<aside class="warning">
+Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
+</aside>
+
+#### thirdPartyCookiesEnabled (Android)
+`thirdPartyCookiesEnabled?: boolean;`
+
+The `thirdPartyCookies` prop can be set to enable third-party cookies in the `AdaEmbedView`. This feature is only available in Android. The default value is `false`.
+
+#### zdChatterAuthCallback
+`zdChatterAuthCallback?(callback: (token: string) => void): void;`
+
+```jsx
+zdChatterAuthCallback={callback => {
+  const token = getTokenFromAPI(); // Get a fresh JWT token from your API
+  callback(token);
+}}
+```
+
+The `zdChatterAuthCallback` can be used to request a JWT token from your API, and then have it passed to Ada. This allows for a shared trust between Ada and Zendesk, and in turn for verifiable `chatter` identity.
+
+### Actions
+```jsx
+import AdaEmbedView from '@ada-support/react-native-sdk';
+// ...
+
+class MyComponent extends React.Component {
+  render() {
+    return <AdaEmbedView 
+            handle="ada-example"
+            ref={ref => (this.adaEmbedView = ref)}/>;
+  }
+}
+```
+
+Actions can be called directly from the `AdaEmbedView` ref. This allows you to modify Ada Chat without using state/props to trigger a re-render of the entire subtree.
+
+#### deleteHistory
+```jsx
+this.adaEmbedView.deleteHistory();
+```
+
+Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window, a new `chatter` will be generated.
+
+#### reset
+```jsx
+this.adaEmbedView.reset();
+
+// With options
+this.adaEmbedView.reset({
+  metaFields: {
+    name: "Some name",
+    age: 30
+  },
+  resetChatHistory: false
+});
+```
+
+Creates a new `chatter` and refreshes the Chat window. `reset` can take an optional object allowing `language`, `metaFields`, and `greeting` to be changed for the new `chatter`.
+
+To prevent creating a new `chatter` (and maintain conversation history), `resetChatHistory` can be passed to the object with a value of `false`.
+
+#### setMetaFields
+```jsx
+this.adaEmbedView.setMetaFields({
+  name: "Some name",
+  age: 30
+});
+```
+
+Used to set meta data for a `chatter` after instantiation. This is useful if you need to update user data after Ada Chat has already launched.
