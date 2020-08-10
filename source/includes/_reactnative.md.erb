@@ -29,6 +29,38 @@ class MyComponent extends React.Component {
 
 Once you have installed the Ada React Native SDK, you are ready to use it in your app! Simply import the `AdaEmbedView` component, then render it. Note that you must pass a valid `handle` for the Chat window to work.
 
+## File Permissions
+Some functionality in the Ada Chat bot will not work unless permissions are explicitly given.
+
+### iOS
+```xml
+<!-- Photo capture -->
+<key>NSCameraUsageDescription</key>
+<string>Take pictures for certain activities</string>
+
+<!-- Gallery selection -->
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Select pictures for certain activities</string>
+
+<!-- Video recording -->
+<key>NSMicrophoneUsageDescription</key>
+<string>Need microphone access for recording videos</string>
+```
+
+For iOS, all you need to do is specify the permissions in your `ios/[project]/Info.plist` file.
+
+### Android
+```xml
+<manifest ...>
+  ...
+  <!-- this is required only for Android 4.1-5.1 (api 16-22)  -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  ...
+</manifest>
+```
+
+For Android, add permissions in `AndroidManifest.xml`. 
+
 ## API
 
 ### Props
