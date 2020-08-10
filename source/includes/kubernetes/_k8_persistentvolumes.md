@@ -226,7 +226,7 @@ Create a persistent volume in a given [environment](#administration-environments
 | `spec` <br/>_object_                            | The spec for the persistent volume.                                                                                                                                                                        |
 | `spec.accessModes` <br/>_array_                 | A list of access modes, the options are: ReadWriteOnce, ReadOnlyMany and ReadWriteMany.                                                                                                                          |
 | `spec.capacity.storage` <br/>_string_           | Measured in bytes. You can express storage as a plain integer or as a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki. |
-| `spec.hostPath.path` <br/>_string_              | Directory location on host. |
+| `spec.<VOLUME_TYPE>` <br/>_object_              | Volume types are identified by name and what volume types are supported differ heavily by Kubernetes deployment. The contents of the object also depend on the volume type. Examples of common volumes types are `nfs`, `hostPath`, or `local`. |
 
 | Optional Attributes                   | &nbsp;                                                                                        |
 | ------------------------------------- | --------------------------------------------------------------------------------------------- |
