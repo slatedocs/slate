@@ -55,7 +55,6 @@ __product_parameter__ | The associated product_parameter
 __analysis_histories__ | The associated analysis_histories
 __rtc_message_history__ | The associated rtc_message_history
 __rtc_connection_history__ | The associated rtc_connection_history
-__battery_failure__ | The associated battery_failure
 __migration_history__ | The associated migration_history
 __payment_command__ | The associated payment_command
 __balance__ | The associated balance
@@ -264,5 +263,3 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
-
-    
