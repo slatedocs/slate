@@ -33,9 +33,6 @@ includes:
   - appliance_symptoms
   - appliance_types
   - balances
-  - battery_failure_battery_failure_type_linker
-  - battery_failures
-  - battery_failure_types
   - battery_test_results
   - channels
   - connections

@@ -21,7 +21,6 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __part_product_linker__ | The associated part_product_linker
-__battery_failure__ | The associated battery_failure
 
 
 <hr>
@@ -200,5 +199,3 @@ query params | <font color="DarkGray">N/A</font>
 body | <font color="DarkGray">N/A</font>
 permissions | <font color="Crimson">__`SYSTEM`__</font>
 response | `204`
-
-    
