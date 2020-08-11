@@ -299,8 +299,8 @@ The post params posted at any update in a particular leads are as follows
 - ```f2f``` (for Face to Face )
 
 ```action``` can have the following values
-- ```call_created``` when a new call is done on a particular lead
-- ```lead_update``` when a property on lead is updated
+- ```call_logged``` when a new call is done on a particular lead
+- ```lead_updated``` when a property on lead is updated
 - ```status_update``` when status of the lead is updated
 - ```agent_update``` when current agent on the lead is updated
 - ```status_and_agent_update``` when agent and status both are updated
