@@ -415,8 +415,12 @@ This channel provides updates on system wide announcements like scheduled mainte
 ```
 
 ## candlesticks
-This channel provides last ohlc candle for given time resolution
-Subscribe to **candlestick_${resolution}** channel for updates
+This channel provides last ohlc candle for given time resolution.
+
+Subscribe to **candlestick_${resolution}** channel for updates. 
+
+List of supported resolutions
+["1m","3m","5m","15m","30m","1h","2h","4h","6h","12h","1d","1w","2w","30d"]
 
 >OHLC candles update sample
 
@@ -424,10 +428,10 @@ Subscribe to **candlestick_${resolution}** channel for updates
 Sample Subscribe Request
 {
   "name": "candlestick_1m",                 // "candlestick_" + resolution
-  "symbols": [ "BTCUSD", "ETHUSDT" ]                   // product symbol
+  "symbols": [ "BTCUSD", "ETHUSDT" ]        // product symbol
 }
 
-supported_resolutions = ["1m","3m","5m","15m","30m","1h","2h","4h","6h","12h","1d","1w","2w","30d"]
+
 
 Sample feed response
 
