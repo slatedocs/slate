@@ -65,8 +65,8 @@ will represent when a field value has been created.
 | Action Type | Type   |
 | ----------- | ------ |
 | 0           | Create |
-| 1           | Update |
-| 2           | Delete |
+| 1           | Delete |
+| 2           | Update |
 
 ## Get field values changes
 
