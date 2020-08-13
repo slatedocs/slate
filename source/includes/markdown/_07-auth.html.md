@@ -46,7 +46,7 @@ asking the user if they would like to grant access to your third-party applicati
 4. If the customer clicks "Allow", they are redirected back to the application, bringing along a special code as a
 query parameter. (We are assuming the [Authorization Code Grant](/docs/authorization-code-grant) flow, which is the most common.)
 
-5. The application can now use the [Token Exchange Endpoint](/docs/token-exchange) to exchange the code, together
+5. The application can now use the [Token Exchange Endpoint](/docs/token-exchange-endpoint) to exchange the code, together
 with the Client Secret, for a Bearer Token (which lasts an hour) and a Refresh Token (which can be used to fetch new
 Bearer Tokens when the current one expires).
 
@@ -120,8 +120,8 @@ Your app redirects the user to `https://app.asana.com/-/oauth_authorize`, passin
 | **response_type** | *required* Must be either `code` or `id_token`, or the space-delimited combination `code id_token`. |
 | **state** | *optional* Encodes state of the app, which will be returned verbatim in the response and can be used to match the response up to a given request. |
 | **code_challenge_method** | *PKCE* The hash method used to generate the challenge. Typically `S256`. |
-| **code_challenge** | *PKCE* The code challenge used for [PKCE](/docs/PKCE). |
-| **scope** | *optional* A space-delimited set of one or more [scopes](/docs/scopes) to get the user's permission to access. Defaults to the `default` OAuth scope if no scopes are specified. |
+| **code_challenge** | *PKCE* The code challenge used for [PKCE](/docs/proof-key-for-code-exchange-pkce-oauth-extension). |
+| **scope** | *optional* A space-delimited set of one or more [scopes](/docs/oauth-scopes) to get the user's permission to access. Defaults to the `default` OAuth scope if no scopes are specified. |
 
 
 #### Response
@@ -353,7 +353,7 @@ To access additional information about the user in a standardized format, we als
 email address, and profile photo. This data is available by making a `GET` request to
 `https://app.asana.com/api/1.0/openid_connect/userinfo` with an OAuth access token that has the `openid` scope.
 Depending on the scopes tied to that token, you will receive different pieces of data. Refer to our
-[list of OAuth scopes](/docs/scopes) to determine which additional scopes you need to get the data you want.
+[list of OAuth scopes](/docs/oauth-scopes) to determine which additional scopes you need to get the data you want.
 
 Metadata about our OpenID Connect implementation is also made available through OpenID Connect's
 [discovery protocol](https://openid.net/specs/openid-connect-discovery-1_0.html). Making an unauthenticated `GET`

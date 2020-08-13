@@ -756,7 +756,7 @@ Make multiple requests in parallel to Asana's API.
 <span class="description">
 In the Asana application, Tasks, Projects, and Portfolios can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Item within a Project or Portfolio can contain in addition to the built-in fields that Asana provides.
 
-**Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on [access control](/docs/custom-field-access-control).
+**Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on access control.
 
 The characteristics of Custom Fields are:
 
@@ -3268,6 +3268,7 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
         }
       }
     ],
+    "due_on": "2019-09-15",
     "members": [
       {
         "gid": "12345",
@@ -3280,6 +3281,8 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
+    "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -3481,6 +3484,7 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
         }
       }
     ],
+    "due_on": "2019-09-15",
     "members": [
       {
         "gid": "12345",
@@ -3493,6 +3497,8 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
+    "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -3680,6 +3686,7 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
         }
       }
     ],
+    "due_on": "2019-09-15",
     "members": [
       {
         "gid": "12345",
@@ -3692,6 +3699,8 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
+    "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -5435,6 +5444,7 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -5699,6 +5709,7 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -5936,6 +5947,7 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -6735,6 +6747,7 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -7145,6 +7158,7 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "permalink_url": "string",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -11181,6 +11195,7 @@ $result = $client->tags->createTag(array('field' => 'value', 'field' => 'value')
       }
     ],
     "name": "Stuff to buy",
+    "permalink_url": "string",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11333,6 +11348,7 @@ $result = $client->tags->getTag($tag_gid, array('param' => 'value', 'param' => '
       }
     ],
     "name": "Stuff to buy",
+    "permalink_url": "string",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11455,6 +11471,7 @@ $result = $client->tags->updateTag($tag_gid, array('field' => 'value', 'field' =
       }
     ],
     "name": "Stuff to buy",
+    "permalink_url": "string",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11905,6 +11922,7 @@ $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 
   "data": {
     "color": "light-green",
     "name": "Stuff to buy",
+    "permalink_url": "string",
     "workspace": {
       "name": "My Company Workspace"
     }
@@ -11928,6 +11946,7 @@ $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 
       }
     ],
     "name": "Stuff to buy",
+    "permalink_url": "string",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11962,6 +11981,7 @@ Returns the full record of the newly created tag.
 |» data<span class="param-type"> [TagResponse](#schematagresponse)</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» permalink_url<span class="param-type"> string</span>|none|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
@@ -16363,7 +16383,8 @@ $result = $client->teams->getTeam($team_gid, array('param' => 'value', 'param' =
       "gid": "12345",
       "resource_type": "workspace",
       "name": "My Company Workspace"
-    }
+    },
+    "permalink_url": "string"
   }
 }
 ```
@@ -21050,6 +21071,7 @@ This object determines if a user is a member of a portfolio.
       }
     }
   ],
+  "due_on": "2019-09-15",
   "members": [
     {
       "gid": "12345",
@@ -21062,6 +21084,8 @@ This object determines if a user is a member of a portfolio.
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
+  "permalink_url": "string",
+  "start_on": "2019-09-14",
   "workspace": {
     "gid": "12345",
     "resource_type": "workspace",
@@ -21131,6 +21155,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|due_on<span class="param-type"> string(date)¦null</span>|none|
 |members<span class="param-type"> [object]</span>|none|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -21139,6 +21164,8 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|permalink_url<span class="param-type"> string</span>|none|
+|start_on<span class="param-type"> string(date)¦null</span>|none|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -21403,6 +21430,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
+  "permalink_url": "string",
   "team": {
     "gid": "12345",
     "resource_type": "team",
@@ -21488,6 +21516,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|permalink_url<span class="param-type"> string</span>|none|
 |team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -22186,6 +22215,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Tag), bu
     }
   ],
   "name": "Stuff to buy",
+  "permalink_url": "string",
   "workspace": {
     "gid": "12345",
     "resource_type": "workspace",
@@ -22212,6 +22242,7 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|permalink_url<span class="param-type"> string</span>|none|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -22731,7 +22762,8 @@ This object represents a user's connection to a team.
     "gid": "12345",
     "resource_type": "workspace",
     "name": "My Company Workspace"
-  }
+  },
+  "permalink_url": "string"
 }
 
 ```
@@ -22754,6 +22786,7 @@ A *team* is used to group related projects and people together within an organiz
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
+|permalink_url<span class="param-type"> string</span>|none|
 
 </section><hr>
 <section>

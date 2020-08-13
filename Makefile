@@ -1,3 +1,18 @@
+java_version_bump:
+	node increment_version.js java
+
+node_version_bump:
+	node increment_version.js node
+
+php_version_bump:
+	node increment_version.js php
+
+ruby_version_bump:
+	node increment_version.js ruby
+
+python_version_bump:
+	node increment_version.js python
+
 java_gen:
 	cd ../client_libraries/java-asana && java -jar ../../swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i ../../developer-docs/defs/asana_oas.yaml -l asana-java -c swagger_templates/java-config.json -Dapis
 
@@ -37,7 +52,7 @@ update:
 	cd ../client_libraries/python-asana && git checkout master && git pull
 
 define library_pr
-	cd ../client_libraries/$(1)-asana && git checkout master && git branch -D openapi-sync; git push origin --delete openapi-sync; git checkout -b openapi-sync && cd ../../developer-docs && $(MAKE) $(1)_gen && cd ../client_libraries/$(1)-asana && git add . && git commit -m "Generated from OpenAPI"; git push --set-upstream origin openapi-sync && open https://github.com/Asana/$(1)-asana/compare/openapi-sync
+	cd ../client_libraries/$(1)-asana && git checkout master && git branch -D openapi-sync; git push origin --delete openapi-sync; git checkout -b openapi-sync && cd ../../developer-docs && $(MAKE) $(1)_gen && $(MAKE) $(1)_version_bump && cd ../client_libraries/$(1)-asana && git add . && git commit -m "Generated from OpenAPI"; git push --set-upstream origin openapi-sync && open https://github.com/Asana/$(1)-asana/compare/openapi-sync
 endef
 
 node_pr:

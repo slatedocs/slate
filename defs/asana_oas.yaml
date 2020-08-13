@@ -2079,6 +2079,11 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/CustomFieldSettingResponse'
+            due_on:
+              type: string
+              format: date
+              nullable: true
+              example: '2019-09-15'
             members:
               type: array
               readOnly: true
@@ -2086,6 +2091,11 @@ components:
                 $ref: '#/components/schemas/UserCompact'
             owner:
               $ref: '#/components/schemas/UserCompact'
+            start_on:
+              type: string
+              format: date
+              nullable: true
+              example: '2019-09-14'
             workspace:
               allOf:
                 - $ref: '#/components/schemas/WorkspaceCompact'
@@ -2093,6 +2103,8 @@ components:
                   description: >-
                     *Create-only*. The workspace or organization that the
                     portfolio belongs to.
+            permalink_url:
+              type: string
     PortfolioRequest:
       allOf:
         - $ref: '#/components/schemas/PortfolioBase'
@@ -2381,6 +2393,8 @@ components:
                 - ticket
                 - coins
               example: chat_bubbles
+            permalink_url:
+              type: string
     ProjectRequest:
       allOf:
         - $ref: '#/components/schemas/ProjectBase'
@@ -3231,6 +3245,8 @@ components:
                 $ref: '#/components/schemas/UserCompact'
             workspace:
               $ref: '#/components/schemas/WorkspaceCompact'
+            permalink_url:
+              type: string
     TagRequest:
       allOf:
         - $ref: '#/components/schemas/TagBase'
@@ -3369,6 +3385,8 @@ components:
                     *Create-only*. The workspace this task is associated with.
                     Once created, task cannot be moved to a different workspace.
                     This attribute can only be specified at creation time.
+              permalink_url:
+                type: string
     TaskRequest:
       allOf:
         - $ref: '#/components/schemas/TaskBase'
@@ -3901,6 +3919,8 @@ components:
                 - type: object
                   description: |
                     The organization/workspace the team belongs to.
+            permalink_url:
+              type: string
     TeamRequest:
       $ref: '#/components/schemas/TeamBase'
     TeamBase:
@@ -5315,6 +5335,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - name: workspace
           in: query
+          required: true
           description: >-
             The workspace or organization to filter portfolios on.
           schema:
