@@ -312,7 +312,7 @@ can be found on their respective websites, and most popular application servers 
 <a name="personal-access-token" class="jump-anchor"></a>
 ## Personal Access Token
 
-Personal Access Tokens are a useful mechanism for accessing the API in scenarios where OAuth would be considered
+Personal Access Tokens (PATs) are a useful mechanism for accessing the API in scenarios where OAuth would be considered
 overkill, such as access from the command line and personal scripts or applications. A user can create many, but not
 unlimited, personal access tokens. When creating a token you must give it a description to help you remember what you
 created the token for.
@@ -320,17 +320,21 @@ created the token for.
 Personal Access Tokens should be used similarly to OAuth access tokens when accessing the API, passing them in the
 Authorization header.
 
+> Example cURL request authenticating with a PAT
+
 ```shell
 !
 curl https://app.asana.com/api/1.0/users/me \
   -H "Authorization: Bearer ACCESS_TOKEN"
 ```
 
-You should regularly review the list of personal access tokens you have created and **deauthorize** those that you no
+You can generate a Personal Access Token from the Asana [developer console](https://app.asana.com/0/developer-console). See the [Authentication Quick Start](/docs/authentication-quick-start) for detailed instructions on getting started with PATs. 
+
+You should regularly review the list of personal access tokens you have created and deauthorize those that you no
 longer need.
 
-**Note**: Remember to keep your tokens secret; treat them just like passwords! They act on your behalf when interacting
-with the API. *Don't hardcode them into your programs*; instead, opt to use them as environment variables.
+Remember to keep your tokens secret; treat them just like passwords! They act on your behalf when interacting
+with the API. *Don't hardcode them into your programs*. Instead, opt to use them as environment variables.
 
 <a name="openid-connect" class="jump-anchor"></a>
 ## OpenID Connect
