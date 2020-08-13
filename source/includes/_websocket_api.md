@@ -283,7 +283,7 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
     symbol: "BNBBTC_30Nov",
     price: "0.0014579",
     size: 100,
-    type: "recent_trade",
+    type: "all_trades",
     buyer_role: "maker",
     seller_role: "taker",
     timestamp: 1561634049751430
