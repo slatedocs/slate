@@ -23,9 +23,18 @@ PARAMS
   "min_budget": 1000000,
   "max_budget": 12110000,
   "interested_property_types": ["1 BHK", "2 BHK", "3 BHK"],
-  "purpose_of_purchase": "Investment", // "End Use"
+  "purpose_of_purchase": "Investment", // "Self Use"
+  "mode_of_payment": "Loan", // "Self Funded" , "Sale of Property", "Other"
+  "designation": "Manager",
+  "industry": "Real Estate",
   "pincode": 400051,
+  "ethnicity": "Gujarati",
   "occupation": "Business",
+  "company_name": "Anarock",
+  "annual_income_min": 400000,
+  "annual_income_max": 500000,
+  "min_age": 30,
+  "max_age": 35,
   "possession_in": "1 year",  // "1 year", "2 year", "Ready to move in"
   "gender": "male", // "male", "female", "others"
   "source": "google", // google, facebook, radio, 
