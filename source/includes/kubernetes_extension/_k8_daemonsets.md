@@ -168,7 +168,7 @@ Return value:
 
 <!-------------------- REPLACE DAEMON SET -------------------->
 
-#### Replace a daemon set
+##### Replace a daemon set
 
 ```shell
 curl -X PUT \

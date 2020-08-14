@@ -169,7 +169,7 @@ Return value:
 
 <!-------------------- REPLACE A STATEFUL SET -------------------->
 
-#### Replace a stateful set
+##### Replace a stateful set
 
 ```shell
 curl -X PUT \

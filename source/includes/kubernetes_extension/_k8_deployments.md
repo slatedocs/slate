@@ -174,7 +174,7 @@ Return value:
 
 <!-------------------- REPLACE DEPLOYMENT ------------------->
 
-#### Replace a deployment
+##### Replace a deployment
 
 ```shell
 curl -X PUT \

@@ -522,12 +522,12 @@ curl -X PUT \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods/edgar-allen-pod/default"
   Content-Type: application/json
   {
-	  "apiVersion": "v1",
+    "apiVersion": "v1",
     "kind": "Pod",
 	  "metadata": {
 	  	"name": "edgar-allen-pod",
 		  "namespace": "default"
-  	},
+  },
 	  "spec": {
 		"containers": [
 			{
