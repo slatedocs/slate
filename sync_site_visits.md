@@ -35,6 +35,11 @@ PARAMS
     "phone": "9879876434",
     "firm_name": "CP Firm Name"
   },
+  "referral_data": {
+    name: "Test Referrar",
+    country_code: "+91",
+    phone: "9819619866"
+  },
   "visit_date": 1597342829 // epoch timestamsp in seconds
 }
 ```
