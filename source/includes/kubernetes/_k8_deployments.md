@@ -2,7 +2,7 @@
 
 <!-------------------- LIST DEPLOYMENTS -------------------->
 
-###### List deployments
+#### List deployments
 
 ```shell
 curl -X GET \
@@ -49,7 +49,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 
 <!-------------------- GET A DEPLOYMENT -------------------->
 
-###### Get a deployment
+#### Get a deployment
 
 ```shell
 curl -X GET \
