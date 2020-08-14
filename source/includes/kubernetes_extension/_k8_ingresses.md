@@ -234,6 +234,97 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create ingress task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                     |
 
+<!-------------------- EDIT AN INGRESS -------------------->
+
+##### Edit an ingress
+
+```shell
+curl -X PUT \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/ingresses/ingress-name/default?cluster_id=test-cluster"
+```
+> Request body example:
+
+```json
+{
+  "endpoint": "http://my-endpoint.com",
+  "service": {
+    "port": "6556",
+    "name": "test"
+  },
+  "apiVersion": "extensions/v1beta1",
+  "kind": "Ingress",
+  "metadata": {
+    "creationTimestamp": "2020-08-13T14:13:42.000-04:00",
+    "generation": 3,
+    "name": "ingress-name",
+    "namespace": "default",
+    "resourceVersion": "170302224",
+    "selfLink": "/apis/extensions/v1beta1/namespaces/default/ingresses/ingress-name",
+    "uid": "c67e6a6a-2b07-4976-8b3d-2ec9fd91ae5d"
+  },
+  "spec": {
+    "rules": [
+      {
+        "host": "my-endpoint.com",
+        "http": {
+          "paths": [
+            {
+              "backend": {
+                "serviceName": "test",
+                "servicePort": 6556
+              },
+              "path": "/testpath"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "status": {
+    "loadBalancer": {
+      "ingress": [
+        {
+          "hostname": "hostname-worker-01"
+        },
+        {
+          "hostname": "hostname-worker-02"
+        },
+        {
+          "hostname": "hostname-worker-03"
+        },
+        {
+          "hostname": "hostname-worker-04"
+        }
+      ]
+    }
+  }
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
+
+Replace an ingress in a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                             |
+| -------------------------- | -------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to get the ingress. |
+
+| Required Attributes           | &nbsp;                                                             |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the service.                 |
+| `kind`<br/>_string_           | The string value of the REST resource that this object represents. |
+| `metadata` <br/>_object_      | The metadata of the service.                                       |
+| `metadata.name` <br/>_string_ | The name of the service.                                           |
+| `spec`<br/>_object_           | The specification used to create and run the service.              |
+
+Return value:
+
+| Attributes                 | &nbsp;                                            |
+| -------------------------- | ------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace ingress task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                      |
+
 <!-------------------- DELETE AN INGRESS -------------------->
 
 ##### Delete an ingress
@@ -260,6 +351,8 @@ Delete an ingress from a given [environment](#administration-environments).
 | Required                   | &nbsp;                                             |
 | -------------------------- | -------------------------------------------------- |
 | `cluster_id` <br/>_string_ | The id of the cluster in which to get the ingress. |
+
+Return value:
 
 | Attributes                 | &nbsp;                                           |
 | -------------------------- | ------------------------------------------------ |
