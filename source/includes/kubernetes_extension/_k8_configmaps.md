@@ -154,7 +154,8 @@ curl -X PUT \
   "apiVersion": "v1",
   "kind": "ConfigMap",
   "metadata": {
-    "name": "game-demo"
+    "name": "game-demo",
+    "namespace": "default"
   },
   "data": {
     "player_initial_lives": "5",
