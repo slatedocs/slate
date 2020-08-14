@@ -145,22 +145,22 @@ Create a deployment in a given [environment](#administration-environments).
 | `apiVersion` <br/> _string_                | The api version (versioned schema) of the deployment.                      |
 | `metadata` <br/>_object_                   | The metadata of the deployment.                                            |
 | `metadata.name` <br/>_string_              | The name of the deployment.                                                |
-| `spec`<br/>_object_                        | The specification used to create and run the deployment.                   |
+| `spec`<br/>_object_                        | The specification used to replace and run the deployment.                  |
 | `spec.selector`<br/>_object_               | The label query over the deployment's set of resources.                    |
-| `spec.template`<br/>_object_               | The data a deployment's pod should have when created.                      |
-| `spec.spec`<br/>*object*                   | The specification used to create and run the pod(s) within the deployment. |
+| `spec.template`<br/>_object_               | The data a deployment's pod should have when replaced.                     |
+| `spec.spec`<br/>*object*                   | The specification used to replace and run the pod(s) within the deployment.|
 
 | Optional Attributes                        | &nbsp;                                                                     |
 | ------------------------------------------ | -------------------------------------------------------------------------- |
 | `kind`<br/>_string_                        | The string value of the REST resource that this object represents.         |
-| `metadata.namespace` <br/>_string_         | The namespace in which the deployment is created.                          |
+| `metadata.namespace` <br/>_string_         | The namespace in which the deployment is replaced.                         |
 | `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a deployment.          |
 
 Return value:
 
 | Attributes                 | &nbsp;                                              |
 | -------------------------- | --------------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create deployment task. |
+| `taskId` <br/>_string_     | The id corresponding to the replace deployment task.|
 | `taskStatus` <br/>_string_ | The status of the operation.                        |
 
 <!-------------------- REPLACE DEPLOYMENT ------------------->

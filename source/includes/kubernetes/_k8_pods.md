@@ -557,20 +557,20 @@ Required Attributes                 | &nbsp;
 `apiVersion` <br/>_string_          | The api version (versioned schema) of the pod.
 `metadata` <br/>_object_            | The metadata of the pod.
 `metadata.name` <br/>_string_       | The name of the pod.
-`spec`<br/>_object_                 | The specification used to create and run the pod.
+`spec`<br/>_object_                 | The specification used to replace and run the pod.
 `spec.container.image`<br/>_string_ | The docker image name.
 `spec.container.name`<br/>_string_  | The (unique) name of the container specified as a DNS_LABEL.
 
 | Optional Attributes                       | &nbsp;                                                                  |
 | ----------------------------------------- | ----------------------------------------------------------------------- |
 | `kind`<br/>_string_                       | The string value of the REST resource that this object represents.      |
-| `metadata.namespace` <br/>_string_        | The namespace in which the pod is created                               |
+| `metadata.namespace` <br/>_string_        | The namespace in which the pod is replaced.                             |
 
 Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create pod task. |
+| `taskId` <br/>_string_     | The id corresponding to the replace pod task.|
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- DELETE POD -------------------->

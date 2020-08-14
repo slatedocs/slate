@@ -218,22 +218,22 @@ Replace a stateful set in a given [environment](#administration-environments).
 | `apiVersion` <br/> _string_                | The api version (versioned schema) of the stateful set.                      |
 | `metadata` <br/>_object_                   | The metadata of the stateful set.                                            |
 | `metadata.name` <br/>_string_              | The name of the stateful set.                                                |
-| `spec`<br/>_object_                        | The specification used to create and run the stateful set.                   |
+| `spec`<br/>_object_                        | The specification used to replaced and run the stateful set.                   |
 | `spec.selector`<br/>_object_               | The label query over the stateful set's of resources.                        |
-| `spec.template`<br/>_object_               | The data a stateful set's pod should have when created.                      |
-| `spec.spec`<br/>_object_                   | The specification used to create and run the pod(s) within the stateful set. |
+| `spec.template`<br/>_object_               | The data a stateful set's pod should have when replaced.                      |
+| `spec.spec`<br/>_object_                   | The specification used to replace and run the pod(s) within the stateful set. |
 
 | Optional Attributes                        | &nbsp;                                                                    |
 | ------------------------------------------ | ------------------------------------------------------------------------- |
 | `kind`<br/>_string_                        | The string value of the REST resource that this object represents.        |
-| `metadata.namespace` <br/>_string_         | The namespace in which the stateful set is created.                       |
+| `metadata.namespace` <br/>_string_         | The namespace in which the stateful set is replaced.                      |
 | `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a stateful set.       |
 
 Return value:
 
 | Attributes                 | &nbsp;                                                |
 | -------------------------- | ----------------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create stateful set task. |
+| `taskId` <br/>_string_     | The id corresponding to the replace stateful set task.|
 | `taskStatus` <br/>_string_ | The status of the operation.                          |
 
 <!-------------------- DELETE STATEFUL SET -------------------->
