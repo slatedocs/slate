@@ -467,7 +467,7 @@ Send a segment email to linked segment(s).
 
 ### Create a reply to a send email send row
 
-This enpoint can create a record that a specific email stat row received a reply. It will also mark an email send stat as read.
+This endpoint can create a record that a specific email stat row received a reply. It will also mark an email send stat as read.
 
 #### HTTP Request
 
