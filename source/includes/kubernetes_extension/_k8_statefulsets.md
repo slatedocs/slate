@@ -167,6 +167,83 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create stateful set task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                          |
 
+<!-------------------- REPLACE A STATEFUL SET -------------------->
+
+##### Replace a stateful set
+
+```shell
+curl -X PUT \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/statefulsets/stateful-set-name/default"
+  Content-Type: application/json
+  {
+  "apiVersion": "apps/v1",
+  "kind": "StatefulSet",
+  "metadata": {
+    "name": "stateful-set-name",
+    "namespace": "default"
+  },
+  "spec": {
+    "selector": {
+      "matchLabels": {
+        "app": "nginx"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "nginx"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "nginx",
+            "image": "k8s.gcr.io/nginx-slim:0.8"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/statefulsets/:id</code>
+
+Replace a stateful set in a given [environment](#administration-environments).
+
+| Required Attributes                        | &nbsp;                                                                       |
+| ------------------------------------------ | -----------------------------------------------------------------------------|
+| `apiVersion` <br/> _string_                | The api version (versioned schema) of the stateful set.                      |
+| `metadata` <br/>_object_                   | The metadata of the stateful set.                                            |
+| `metadata.name` <br/>_string_              | The name of the stateful set.                                                |
+| `spec`<br/>_object_                        | The specification used to replaced and run the stateful set.                   |
+| `spec.selector`<br/>_object_               | The label query over the stateful set's of resources.                        |
+| `spec.template`<br/>_object_               | The data a stateful set's pod should have when replaced.                      |
+| `spec.spec`<br/>_object_                   | The specification used to replace and run the pod(s) within the stateful set. |
+
+| Optional Attributes                        | &nbsp;                                                                    |
+| ------------------------------------------ | ------------------------------------------------------------------------- |
+| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.        |
+| `metadata.namespace` <br/>_string_         | The namespace in which the stateful set is replaced.                      |
+| `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a stateful set.       |
+
+Return value:
+
+| Attributes                 | &nbsp;                                                |
+| -------------------------- | ----------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace stateful set task.|
+| `taskStatus` <br/>_string_ | The status of the operation.                          |
+
 <!-------------------- DELETE STATEFUL SET -------------------->
 
 ##### Delete a stateful set

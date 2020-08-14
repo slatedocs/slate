@@ -512,6 +512,67 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create pod task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
+<!-------------------- REPLACE POD -------------------->
+
+#### Replace a pod
+
+```shell
+curl -X PUT \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods/edgar-allen-pod/default"
+  Content-Type: application/json
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+	  "metadata": {
+	  	"name": "edgar-allen-pod",
+		  "namespace": "default"
+  },
+	  "spec": {
+		"containers": [
+			{
+				"image": "nginx",
+				"name": "nginx"
+			}
+		  ]
+	  }
+  }
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/pods/:id</code>
+
+Replace a pod in a given [environment](#administration-environments).
+
+Required Attributes                 | &nbsp;
+----------------------------------- | ------------------------------------------------------------
+`apiVersion` <br/>_string_          | The api version (versioned schema) of the pod.
+`metadata` <br/>_object_            | The metadata of the pod.
+`metadata.name` <br/>_string_       | The name of the pod.
+`spec`<br/>_object_                 | The specification used to replace and run the pod.
+`spec.container.image`<br/>_string_ | The docker image name.
+`spec.container.name`<br/>_string_  | The (unique) name of the container specified as a DNS_LABEL.
+
+| Optional Attributes                       | &nbsp;                                                                  |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `kind`<br/>_string_                       | The string value of the REST resource that this object represents.      |
+| `metadata.namespace` <br/>_string_        | The namespace in which the pod is replaced.                             |
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace pod task.|
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
+
 <!-------------------- DELETE POD -------------------->
 
 #### Delete a pod
