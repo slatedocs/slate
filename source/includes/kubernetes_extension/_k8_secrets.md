@@ -209,7 +209,8 @@ curl -X PUT \
   "apiVersion": "v1",
   "kind": "Secret",
   "metadata": {
-    "name": "mysecret"
+    "name": "mysecret",
+    "namespace": "shhh"
   },
   "type": "Opaque",
   "encodedData": {
@@ -232,30 +233,30 @@ curl -X PUT \
 
 Replace a secret in a given [environment](#administration-environments).
 
-| Required Attributes           | &nbsp;                                               |
-| ----------------------------- | ---------------------------------------------------- |
-| `cluster_id` <br/>_string_    | The id of the cluster in which to create the secret. |
-| `apiVersion` <br/> _string_   | The api version (versioned schema) of the secret.    |
-| `metadata` <br/>_object_      | The metadata of the secret.                          |
-| `metadata.name` <br/>_string_ | The name of the secret.                              |
+| Required Attributes           | &nbsp;                                                |
+| ----------------------------- | ----------------------------------------------------- |
+| `cluster_id` <br/>_string_    | The id of the cluster in which to replace the secret. |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the secret.     |
+| `metadata` <br/>_object_      | The metadata of the secret.                           |
+| `metadata.name` <br/>_string_ | The name of the secret.                               |
 
 One of the following two attributes is also required.
 
-| Attributes                 | &nbsp;                                                                |
-| -------------------------- | --------------------------------------------------------------------- |
-| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                         |
-| `stringData`<br/>_object_  | The non-base64 encoded data to be encoded when the secret is created. |
+| Attributes                 | &nbsp;                                                                 |
+| -------------------------- | ---------------------------------------------------------------------- |
+| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                          |
+| `stringData`<br/>_object_  | The non-base64 encoded data to be encoded when the secret is replaced. |
 
-| Optional Attributes                | &nbsp;                                       |
-| ---------------------------------- | -------------------------------------------- |
-| `metadata.namespace` <br/>_string_ | The namespace in which the secret is created |
+| Optional Attributes                | &nbsp;                                        |
+| ---------------------------------- | --------------------------------------------- |
+| `metadata.namespace` <br/>_string_ | The namespace in which the secret is replaced |
 
 Return value:
 
-| Attributes                 | &nbsp;                                          |
-| -------------------------- | ----------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create secret task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                    |
+| Attributes                 | &nbsp;                                           |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the replace secret task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
 
 <!-------------------- DELETE SECRET -------------------->
 

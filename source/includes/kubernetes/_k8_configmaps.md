@@ -136,7 +136,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/configmaps-name/default"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/game-demo/default"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -173,16 +173,16 @@ Replace a config map in a given [environment](#administration-environments).
 | `metadata.name` <br/>_string_ | The name of the config map.                                              |
 | `data`<br/>_object_           | The non-confidential data (in key-value pairs) stored in the config map. |
 
-| Optional Attributes                | &nbsp;                                           |
-| ---------------------------------- | ------------------------------------------------ |
-| `metadata.namespace` <br/>_string_ | The namespace in which the config map is created |
+| Optional Attributes                | &nbsp;                                             |
+| ---------------------------------- | -------------------------------------------------- |
+| `metadata.namespace` <br/>_string_ | The namespace in which the config map is replaced. |
 
 Return value:
 
-| Attributes                 | &nbsp;                                               |
-| -------------------------- | ---------------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create config maps task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                         |
+| Attributes                 | &nbsp;                                                |
+| -------------------------- | ----------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace config maps task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                          |
 
 <!-------------------- DELETE A CONFIG MAP -------------------->
 

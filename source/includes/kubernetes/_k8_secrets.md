@@ -181,7 +181,8 @@ curl -X PUT \
   "apiVersion": "v1",
   "kind": "Secret",
   "metadata": {
-    "name": "mysecret"
+    "name": "mysecret",
+    "namespace": "shhh"
   },
   "type": "Opaque",
   "stringData": {
@@ -231,21 +232,21 @@ Replace a secret in a given [environment](#administration-environments).
 
 One of the following two attributes is also required.
 
-| Attributes                 | &nbsp;                                                                |
-| -------------------------- | --------------------------------------------------------------------- |
-| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                         |
-| `stringData`<br/>_object_  | The non-base64 encoded data to be encoded when the secret is created. |
+| Attributes                 | &nbsp;                                                                 |
+| -------------------------- | ---------------------------------------------------------------------- |
+| `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                          |
+| `stringData`<br/>_object_  | The non-base64 encoded data to be encoded when the secret is replaced. |
 
-| Optional Attributes                | &nbsp;                                        |
-| ---------------------------------- | --------------------------------------------- |
-| `metadata.namespace` <br/>_string_ | The namespace in which the secret is created. |
+| Optional Attributes                | &nbsp;                                         |
+| ---------------------------------- | ---------------------------------------------- |
+| `metadata.namespace` <br/>_string_ | The namespace in which the secret is replaced. |
 
 Return value:
 
-| Attributes                 | &nbsp;                                          |
-| -------------------------- | ----------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create secret task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                    |
+| Attributes                 | &nbsp;                                           |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the replace secret task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
 
 <!-------------------- DELETE SECRET -------------------->
 

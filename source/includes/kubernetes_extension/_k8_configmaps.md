@@ -148,7 +148,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/my-configmap/default?cluster_id=:cluster_id"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/game-demo/default?cluster_id=:cluster_id"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -180,22 +180,22 @@ Replace a config map in a given [environment](#administration-environments).
 
 | Required Attributes           | &nbsp;                                                                   |
 | ----------------------------- | ------------------------------------------------------------------------ |
-| `cluster_id` <br/>_string_    | The id of the cluster in which to create the config map.                 |
+| `cluster_id` <br/>_string_    | The id of the cluster in which to replace the config map.                |
 | `apiVersion` <br/> _string_   | The api version (versioned schema) of the config map.                    |
 | `metadata` <br/>_object_      | The metadata of the config map.                                          |
 | `metadata.name` <br/>_string_ | The name of the config map.                                              |
 | `data`<br/>_object_           | The non-confidential data (in key-value pairs) stored in the config map. |
 
-| Optional Attributes                | &nbsp;                                           |
-| ---------------------------------- | ------------------------------------------------ |
-| `metadata.namespace` <br/>_string_ | The namespace in which the config map is created |
+| Optional Attributes                | &nbsp;                                             |
+| ---------------------------------- | -------------------------------------------------- |
+| `metadata.namespace` <br/>_string_ | The namespace in which the config map is replaced. |
 
 Return value:
 
-| Attributes                 | &nbsp;                                               |
-| -------------------------- | ---------------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create config maps task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                         |
+| Attributes                 | &nbsp;                                                |
+| -------------------------- | ----------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace config maps task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                          |
 
 <!-------------------- DELETE A CONFIG MAP -------------------->
 
