@@ -156,7 +156,6 @@ Create a service in a given [environment](#administration-environments).
 | `metadata` <br/>_object_      | The metadata of the service.                                            |
 | `metadata.name` <br/>_string_ | The name of the service.                                                |
 | `spec`<br/>_object_           | The specification used to create and run the service.                   |
-| `spec.selector`<br/>_object_  | The label query over the service's set of resources.                    |
 | `spec.ports`<br/>_object_     | The list of ports that are exposed by this service.                     |
 | `spec.type`<br/>_object_      | The type of service (ClusterIP, NodePort, ExternalName or LoadBalancer) |
 
@@ -164,9 +163,86 @@ Create a service in a given [environment](#administration-environments).
 | ---------------------------------------- | ------------------------------------------------------------------ |
 | `kind`<br/>_string_                      | The string value of the REST resource that this object represents. |
 | `metadata.namespace` <br/>_string_       | The namespace in which the service is created.                     |
+| `spec.selector`<br/>_object_             | The label query over the service's set of resources.               |
 | `spec.selector.matchLabels`<br/>_object_ | The key value pairs retrieved by a label query from a service.     |
 
 Return value:
+
+| Attributes                 | &nbsp;                                           |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the create service task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
+
+<!-------------------- EDIT A SERVICE -------------------->
+
+#### Edit a service
+
+```shell
+curl -X PUT \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/services/service-name/default"
+```
+> Request body example:
+
+```json
+{
+    "type": "LoadBalancer",
+    "ports": [
+        "4000/TCP"
+    ],
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "creationTimestamp": "2020-08-13T11:05:00.000-04:00",
+        "name": "service-name",
+        "namespace": "default",
+        "resourceVersion": "170742452",
+        "selfLink": "/api/v1/namespaces/default/services/service-name",
+        "uid": "a84c8fea-f9d9-47ab-8e58-37059e9f18bd"
+    },
+    "spec": {
+        "clusterIP": "10.245.44.45",
+        "externalTrafficPolicy": "Cluster",
+        "ports": [
+            {
+                "nodePort": 31167,
+                "port": 3000,
+                "protocol": "TCP",
+                "targetPort": 306
+            }
+        ],
+        "sessionAffinity": "ClientIP",
+        "sessionAffinityConfig": {
+            "clientIP": {
+                "timeoutSeconds": 10555
+            }
+        },
+        "type": "LoadBalancer"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services/:id</code>
+
+Replace a service in a given [environment](#administration-environments).
+
+| Required Attributes           | &nbsp;                                                             |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the service.                 |
+| `kind`<br/>_string_           | The string value of the REST resource that this object represents. |
+| `metadata` <br/>_object_      | The metadata of the service.                                       |
+| `metadata.name` <br/>_string_ | The name of the service.                                           |
+| `spec`<br/>_object_           | The specification used to create and run the service.              |
+
+Return value:
+
+| Attributes                 | &nbsp;                                            |
+| -------------------------- | ------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace service task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                      |
 
 <!-------------------- DELETE A SERVICE -------------------->
 
