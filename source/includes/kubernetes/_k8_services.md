@@ -173,9 +173,9 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create service task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                     |
 
-<!-------------------- EDIT A SERVICE -------------------->
+<!-------------------- REPLACE A SERVICE -------------------->
 
-#### Edit a service
+#### Replace a service
 
 ```shell
 curl -X PUT \

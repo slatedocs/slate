@@ -234,9 +234,9 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create ingress task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                     |
 
-<!-------------------- EDIT AN INGRESS -------------------->
+<!-------------------- REPLACE AN INGRESS -------------------->
 
-##### Edit an ingress
+##### Replace an ingress
 
 ```shell
 curl -X PUT \
