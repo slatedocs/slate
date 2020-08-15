@@ -52,7 +52,7 @@ $parameters = array(
 	'db_backup_prefix' => 'bak_',
 );
 ```
-* Execute the following command and add your own options: `php app/console mautic:install http://your.mautic.instance`
+* Execute the following command and add your own options: `php bin/console mautic:install http://your.mautic.instance`
 
 ### Environments
 
