@@ -35,7 +35,7 @@ PARAMS
   "source": "google", // google, facebook, radio, 
   "cp_data": {
     "name": "CP Name",
-    "country_code: "+91",
+    "country_code": "+91",
     "phone": "9879876434",
     "firm_name": "CP Firm Name"
   },
