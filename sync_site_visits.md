@@ -36,13 +36,13 @@ PARAMS
   "cp_data": {
     "name": "CP Name",
     "country_code": "+91",
-    "phone": "9879876434",
+    "phone": 9879876434,
     "firm_name": "CP Firm Name"
   },
   "referral_data": {
     "name": "Test Referrar",
     "country_code": "+91",
-    "phone": "9819619866"
+    "phone": 9819619866
   }
 }
 ```
