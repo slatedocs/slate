@@ -40,9 +40,9 @@ PARAMS
     "firm_name": "CP Firm Name"
   },
   "referral_data": {
-    name: "Test Referrar",
-    country_code": "+91",
-    phone: "9819619866"
+    "name": "Test Referrar",
+    "country_code": "+91",
+    "phone": "9819619866"
   }
 }
 ```
