@@ -1,7 +1,7 @@
 API End Point
 
 
-URL - `https://lead.anarock.com/api/v0/:channel/third-party/create-site-visit`
+URL - `https://lead.anarock.com/api/v0/:channel/site-visit`
 
 Test URL - `https://marketing.anarock.com/api/v0/test_channel/third-party/create-site-visit`
 
@@ -18,11 +18,11 @@ PARAMS
   "phone": "9819619866",
   "name": "Test Name",
   "email": "test@test.com",
-  "sourcing_agent_email_ids": ["agent1@anarock.com", "agent2@anarock.com"],
-  "closing_agent_email_ids": ["agent3@anarock.com", "agent4@anarock.com"],
+  "sourcing_agent_email_ids": "agent1@anarock.com,agent2@anarock.com",
+  "closing_agent_email_ids": "agent3@anarock.com,agent4@anarock.com",
   "min_budget": 1000000,
   "max_budget": 12110000,
-  "interested_property_types": ["1 BHK", "2 BHK", "3 BHK"],
+  "interested_property_types": "1 BHK,2 BHK,3 BHK",
   "purpose_of_purchase": "Investment", // "Self Use"
   "mode_of_payment": "Loan", // "Self Funded" , "Sale of Property", "Other"
   "designation": "Manager",
