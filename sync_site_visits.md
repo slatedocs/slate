@@ -11,7 +11,7 @@ PARAMS
 
 ```js
 {
-  "project_id": 726,
+  "assignment_supply_entity_mapping_id": 726,
   "integration_key": "516501274ba4288a",
   "campaign_id": "f8c2858d4c85cdec8532a755b9819c63",
   "country_code": "+91",
