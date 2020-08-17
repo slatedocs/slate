@@ -32,14 +32,14 @@ PARAMS
   "occupation": "Business",
   "company_name": "Anarock",
   "gender": "male", // "male", "female", "others"
-  "source": "google", // google, facebook, radio, 
-  "cp_data": {
+  "source": "google", // google, facebook, radio,  // either this or CP data or source is mandatory
+  "cp_data": { // either this or CP data or source is mandatory
     "name": "CP Name",
     "country_code": "+91",
     "phone": "9879876434",
     "firm_name": "CP Firm Name"
   },
-  "referral_data": {
+  "referral_data": { // either this or CP data or source is mandatory
     "name": "Test Referrar",
     "country_code": "+91",
     "phone": "9819619866"
