@@ -2080,9 +2080,12 @@ components:
               items:
                 $ref: '#/components/schemas/CustomFieldSettingResponse'
             due_on:
+              description: >-
+                The day on which this portfolio is due. This takes a date with
+                format YYYY-MM-DD.
               type: string
-              format: date
               nullable: true
+              format: date-time
               example: '2019-09-15'
             members:
               type: array
@@ -2092,9 +2095,15 @@ components:
             owner:
               $ref: '#/components/schemas/UserCompact'
             start_on:
+              description: >-
+                The day on which work for this portfolio begins, or null if the
+                portfolio has no start date. This takes a date with `YYYY-MM-DD`
+                format. *Note: `due_on` must be present in the
+                request when setting or unsetting the `start_on` parameter.
+                Additionally, start_on and due_on cannot be the same date.*
               type: string
-              format: date
               nullable: true
+              format: date
               example: '2019-09-14'
             workspace:
               allOf:
@@ -2105,6 +2114,10 @@ components:
                     portfolio belongs to.
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     PortfolioRequest:
       allOf:
         - $ref: '#/components/schemas/PortfolioBase'
@@ -2395,6 +2408,10 @@ components:
               example: chat_bubbles
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     ProjectRequest:
       allOf:
         - $ref: '#/components/schemas/ProjectBase'
@@ -3247,6 +3264,10 @@ components:
               $ref: '#/components/schemas/WorkspaceCompact'
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     TagRequest:
       allOf:
         - $ref: '#/components/schemas/TagBase'
@@ -3385,8 +3406,12 @@ components:
                     *Create-only*. The workspace this task is associated with.
                     Once created, task cannot be moved to a different workspace.
                     This attribute can only be specified at creation time.
-              permalink_url:
-                type: string
+            permalink_url:
+              type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     TaskRequest:
       allOf:
         - $ref: '#/components/schemas/TaskBase'
@@ -3921,6 +3946,10 @@ components:
                     The organization/workspace the team belongs to.
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     TeamRequest:
       $ref: '#/components/schemas/TeamBase'
     TeamBase:
@@ -9687,6 +9716,22 @@ paths:
         the gid and name fields. Interested in a specific set of fields or all of
         the fields?! Of course you are. Use field selectors to manipulate what
         data is included in a response.
+
+        Resources with type `user` are returned in order of most contacted to
+        least contacted. This is determined by task assignments, adding the user
+        to projects, and adding the user as a follower to tasks, conversations,
+        etc.
+
+        Resources with type `project` are returned in order of recency. This is
+        determined when the user visits the project, is added to the project, and
+        completes tasks in the project.
+
+        Resources with type `task` are returned with priority placed on tasks
+        the user is following, but no guarentee on the order of those tasks.
+
+        Leaving the `query` string empty or omitted will give you results, still
+        following the resource ordering above. This could be used to list users or
+        projects that are relevent for the requesting user's api token.
       tags:
         - Typeahead
       operationId: typeaheadForWorkspace

@@ -3281,7 +3281,7 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
@@ -3497,7 +3497,7 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
@@ -3699,7 +3699,7 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
@@ -5444,7 +5444,7 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -5709,7 +5709,7 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -5947,7 +5947,7 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -6747,7 +6747,7 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -7158,7 +7158,7 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "team": {
       "gid": "12345",
       "resource_type": "team",
@@ -11195,7 +11195,7 @@ $result = $client->tags->createTag(array('field' => 'value', 'field' => 'value')
       }
     ],
     "name": "Stuff to buy",
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11348,7 +11348,7 @@ $result = $client->tags->getTag($tag_gid, array('param' => 'value', 'param' => '
       }
     ],
     "name": "Stuff to buy",
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11471,7 +11471,7 @@ $result = $client->tags->updateTag($tag_gid, array('field' => 'value', 'field' =
       }
     ],
     "name": "Stuff to buy",
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11922,7 +11922,6 @@ $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 
   "data": {
     "color": "light-green",
     "name": "Stuff to buy",
-    "permalink_url": "string",
     "workspace": {
       "name": "My Company Workspace"
     }
@@ -11946,7 +11945,7 @@ $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 
       }
     ],
     "name": "Stuff to buy",
-    "permalink_url": "string",
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -11981,7 +11980,6 @@ Returns the full record of the newly created tag.
 |» data<span class="param-type"> [TagResponse](#schematagresponse)</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» permalink_url<span class="param-type"> string</span>|none|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
@@ -12419,6 +12417,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
       "resource_type": "task",
       "name": "Bug Task"
     },
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "projects": [
       {
         "gid": "12345",
@@ -12729,6 +12728,7 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
       "resource_type": "task",
       "name": "Bug Task"
     },
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "projects": [
       {
         "gid": "12345",
@@ -13024,6 +13024,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
       "resource_type": "task",
       "name": "Bug Task"
     },
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "projects": [
       {
         "gid": "12345",
@@ -14197,6 +14198,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
       "resource_type": "task",
       "name": "Bug Task"
     },
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "projects": [
       {
         "gid": "12345",
@@ -14518,6 +14520,7 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
       "resource_type": "task",
       "name": "Bug Task"
     },
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "projects": [
       {
         "gid": "12345",
@@ -16384,7 +16387,7 @@ $result = $client->teams->getTeam($team_gid, array('param' => 'value', 'param' =
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
-    "permalink_url": "string"
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list"
   }
 }
 ```
@@ -17498,6 +17501,22 @@ Queries return a compact representation of each object which is typically
 the gid and name fields. Interested in a specific set of fields or all of
 the fields?! Of course you are. Use field selectors to manipulate what
 data is included in a response.
+
+Resources with type `user` are returned in order of most contacted to
+least contacted. This is determined by task assignments, adding the user
+to projects, and adding the user as a follower to tasks, conversations,
+etc.
+
+Resources with type `project` are returned in order of recency. This is
+determined when the user visits the project, is added to the project, and
+completes tasks in the project.
+
+Resources with type `task` are returned with priority placed on tasks
+the user is following, but no guarentee on the order of those tasks.
+
+Leaving the `query` string empty or omitted will give you results, still
+following the resource ordering above. This could be used to list users or
+projects that are relevent for the requesting user's api token.
 </span>
 
 <h3 id="get-objects-via-typeahead-parameters">Parameters</h3>
@@ -21084,7 +21103,7 @@ This object determines if a user is a member of a portfolio.
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "permalink_url": "string",
+  "permalink_url": "https://app.asana.com/0/resource/123456789/list",
   "start_on": "2019-09-14",
   "workspace": {
     "gid": "12345",
@@ -21155,7 +21174,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|due_on<span class="param-type"> string(date)¦null</span>|none|
+|due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this portfolio is due. This takes a date with format YYYY-MM-DD.|
 |members<span class="param-type"> [object]</span>|none|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -21164,8 +21183,8 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|permalink_url<span class="param-type"> string</span>|none|
-|start_on<span class="param-type"> string(date)¦null</span>|none|
+|permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this portfolio begins, or null if the portfolio has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -21430,7 +21449,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "permalink_url": "string",
+  "permalink_url": "https://app.asana.com/0/resource/123456789/list",
   "team": {
     "gid": "12345",
     "resource_type": "team",
@@ -21516,7 +21535,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|permalink_url<span class="param-type"> string</span>|none|
+|permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
 |team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -22215,7 +22234,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Tag), bu
     }
   ],
   "name": "Stuff to buy",
-  "permalink_url": "string",
+  "permalink_url": "https://app.asana.com/0/resource/123456789/list",
   "workspace": {
     "gid": "12345",
     "resource_type": "workspace",
@@ -22242,7 +22261,7 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|permalink_url<span class="param-type"> string</span>|none|
+|permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -22442,6 +22461,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
     "resource_type": "task",
     "name": "Bug Task"
   },
+  "permalink_url": "https://app.asana.com/0/resource/123456789/list",
   "projects": [
     {
       "gid": "12345",
@@ -22569,6 +22589,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the task.|
+|permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
 |projects<span class="param-type"> [object]</span>|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -22763,7 +22784,7 @@ This object represents a user's connection to a team.
     "resource_type": "workspace",
     "name": "My Company Workspace"
   },
-  "permalink_url": "string"
+  "permalink_url": "https://app.asana.com/0/resource/123456789/list"
 }
 
 ```
@@ -22786,7 +22807,7 @@ A *team* is used to group related projects and people together within an organiz
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
-|permalink_url<span class="param-type"> string</span>|none|
+|permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
 
 </section><hr>
 <section>
