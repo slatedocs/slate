@@ -627,6 +627,21 @@ filter_expression | Filter expression used to query data
 |Filter based on person responsible|Workflow/PersonResponsible/Name eq 'AC Slater'
 |Filter based on workflow status (enum)|Workflow/WorkflowStatus eq Enum.WorkflowStatusType'Completed'
 
+##### Filtering tasks assigned to you
+
+`assignedToMe()` is a function that can be used in expressions to easily filter tasks assigned to you as an individual, as a member of a location role, or member of a group. Requires Web Platform Release 6.5.131 or higher.
+
+|Description|Example Values|
+|---|---|
+|Filter my tasks on current object|$filter=assignedToMe()|
+|Filter others’ tasks on current object|$filter=not assignedToMe()|
+|Filter tasks on a M:1 field on the current object|$filter=assignedToMe(Audit/Workflow/PersonResponsible/Id)|
+|Filter others’ tasks on a M:1 field on the current object|$filter=not assignedToMe(Audit/Workflow/PersonResponsible/Id)|
+
+When filtering for a field, you have to specify the full path up to the Id of the Person Responsible, as in the examples above.
+
+You can only access the records you have permission to view.
+
 ##### Filter alias
 @me is an alias that can be used in expressions to filter based on your identity'
 
