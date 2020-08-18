@@ -1127,7 +1127,64 @@
           "Positions"
         ],
         "operationId": "getPositions",
-        "summary": "Get open positions",
+        "summary": "Get position",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "id of the product"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Open position for the give product id",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "size": {
+                          "type": "integer",
+                          "description": "Position size, negative for short and positive for long"
+                        },
+                        "entry_price": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/positions/margined": {
+      "get": {
+        "tags": [
+          "Positions"
+        ],
+        "operationId": "getMarginedPositions",
+        "summary": "Get margined positions",
         "produces": [
           "application/json"
         ],
