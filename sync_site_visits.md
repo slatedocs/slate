@@ -3,7 +3,7 @@ API End Point
 
 URL - `https://lead.anarock.com/api/v0/:channel/site-visit`
 
-Test URL - `https://marketing.anarock.com/api/v0/test_channel/third-party/create-site-visit`
+Test URL - `https://lead.anarock.com/api/v0/test_channel/site-visit`
 
 METHOD - `POST`
 
