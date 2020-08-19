@@ -852,3 +852,52 @@ Supprime toutes les mesures de l'utilisateur
 ### Retours
 
 Retourne le nombre de mesures [mesure](/?javascript#l-39-objet-mesure) supprimées.
+
+# Antennes (service)
+
+## Lister toutes les antennes
+
+> GET /api/editors/service-antennes
+
+```javascript
+const token =
+  "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEiLCJ1aWQiOiJYRTFIdUc2Z2dEN2NJQmFsYnNsZTJWQndFR29GUmVHeTVEanZwUG4xeWZwSmFrU1VJNFpCZDR3d1lDU250NDBSNGZrRWxCc2dOTlJzZUVaYmpEVEgwa3dBY2NFZ2hUem9Mc3hyMEZEM1NuaGNOWHlKV1VyUE0xMm5lcEx1RTBqVCIsInVzZXJJZCI6NTI2LCJlZGl0b3JJZCI6IjIiLCJlZGl0b3JUb2tlbiI6Imw0YWJicGdrOWlyIiwiaWF0IjoxNTk3ODM0NDAwLCJzdWIiOiJYRTFIdUc2Z2dEN2NJQmFsYnNsZTJWQndFR29GUmVHeTVEanZwUG4xeWZwSmFrU1VJNFpCZDR3d1lDU250NDBSNGZrRWxCc2dOTlJzZUVaYmpEVEgwa3dBY2NFZ2hUem9Mc3hyMEZEM1NuaGNOWHlKV1VyUE0xMm5lcEx1RTBqVCJ9.Risb6k_jlZ9C8uVbIBFj8wbCGhQ3p_I8xlYeFLYoc_Ts0NACumgJIH32lN-rO1BxW0NNlVIhuNGwbWm0jbA-MpQhToh0bcq0An2rXtMeSNSbcyFLD-KNQpjhXbJq87W6sJMEZ7rt2YxgJUyCa-9l6wED1FrAKntDOsKZCxFJ7tBDTsmIsNmJVTpURP28wBTUbOaqkBrhQ4rNYQp34dUeQ49QqArjZIwlAmBR9EJQnQLunIKGtsvLnLfLB7Nz_MqCRWOsLkWdcsrrwIQMS3-VsBMJ36bT5i707c0VeSaKf_AtBP-sRUiX_rIFhPdRUXbEcSYAAnvCq_VkhJMjCN1m_Q";
+const emjpmApiMesuresUrl =
+  "https://test-api-v25-21-0-emjpm.dev.fabrique.social.gouv.fr/api/editors/service-antennes";
+
+const response = await fetch(emjpmApiMesuresUrl, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+```
+
+> RESPONSE
+
+```json
+[
+  {
+    "id": 175,
+    "nom": "OULLINS",
+    "adresse": "12 RUE JACQUARD",
+    "code_postal": "69600",
+    "ville": "OULLINS"
+  },
+  {
+    "id": 176,
+    "nom": "RILLIEUX",
+    "adresse": "1 RUE GABRIEL LADEVEZE",
+    "code_postal": "69140",
+    "ville": "RILLIEUX-LA-PAPE"
+  },
+  {
+    "id": 174,
+    "nom": "GRIGNY",
+    "adresse": "10 RUE ROBESPIERRE",
+    "code_postal": "69520",
+    "ville": "GRIGNY"
+  }
+]
+```
+
+Retourne la liste de toutes les antennes associées à votre service.
