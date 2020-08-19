@@ -515,6 +515,13 @@ Content-Type: application/json
 ```
 ### Description
 Adds a repayment to an investment.
+
+<aside class="notice">
+The API call can be made before or after the funds have been deposited into the receiving account. If the funds are present when the API
+call is made they will be distributed immediately. If no funds are present the repayments will be recorded and when the deposit is made it
+will automatically be distributed in this scenario a <a href="/#webhooks-batch_update">BATCH_UPDATE</a> webhook with a type of `REPAYMENTS` will be dispatched upon commencing distribution of funds.
+</aside>
+
 ### Request
 | Name                              | Type   | Description                                                                    | Required |
 | --------------------------------- | ------ | ------------------------------------------------------------------------------ | -------- |
