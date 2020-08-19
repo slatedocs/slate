@@ -505,118 +505,220 @@ GET /snappy/trackings?access_token=<access_token> HTTP/1.1
     "success": true,
     "trackings_data": {
         "page_number": 1,
-        "page_size": 50,
+        "page_size": 20,
         "total_entries": 1,
         "total_pages": 1,
         "trackings": [
             {
-                "addition_services": [],
-                "balance_adjustment": 0,
-                "business": {
-                    "id": 63,
-                    "name": "SG1",
-                    "owner": {
-                        "fb_id": null,
-                        "name": "SG1"
-                    },
-                    "phone_number": "+84937123123"
-                },
-                "business_id": 63,
-                "creator": {
-                    "fb_id": null,
-                    "name": "SG1"
-                },
-                "creator_id": "14d4a1a1-ea42-4164-805d-e240f2561f71",
-                "current_status": "Đã khởi tạo",
-                "current_status_en": "request_received",
-                "custom_id": "S61180417003",
-                "customer_tracking_id": null,
+                "business_address_id": "524a9669-2cd4-4ec1-9c7f-1a18412391aa",
                 "department": {
-                    "address": "127/19 Hoàng Hoa Thám, Phường 13, Tân Bình",
-                    "district_name": "Quận Tân Bình",
-                    "phone_number": "0886.332.882",
-                    "province_name": "Hồ Chí Minh",
-                    "second_phone_number": "0886.334.884"
+                    "address": "35 Lê Văn Thiêm, Phường Nhân Chính",
+                    "commune_id": "1011101",
+                    "district_id": "10111",
+                    "district_name": "Quận Thanh Xuân",
+                    "full_address": "35 Lê Văn Thiêm, Phường Nhân Chính Quận Thanh Xuân Hà Nội",
+                    "id": -1,
+                    "name": "Snappy HN",
+                    "province_id": "101",
+                    "province_name": "Hà Nội",
+                    "second_phone_number": "",
+                    "shippo_id": "1161"
                 },
-                "from": {
-                    "address": "Số 1 ABC",
-                    "commune_id": null,
-                    "district_id": "10101",
-                    "full_address": "SG1 - Số 1 ABC, Quận Ba Đình, Hà Nội",
-                    "id": "82019ce2-088d-4cb1-8e8a-c6255d12ce6c",
-                    "name": "SG1",
-                    "phone_number": "+84937123123",
-                    "province_id": "101"
-                },
-                "id": "E80008124",
-                "inserted_at": "2018-04-17T16:55:03",
+                "creator_id": "51f003b6-28c1-444f-a1dd-670a2234ab8d",
+                "status_color": "#639026",
+                "picked_up_at": "2020-08-18T10:49:38",
+                "returned_at": null,
+                "customer_tracking_id": "SNAPPY172233NCM2018",
+                "tags": [],
                 "last_update": {
-                    "location": "SG1 - Số 1 ABC, Quận Ba Đình, Hà Nội",
-                    "note": "Khởi tạo vận đơn",
-                    "status": "Đã khởi tạo",
-                    "status_color": "#AD7E05",
-                    "updated_at": "2018-04-18T09:21:40"
+                    "last_updated_at": null,
+                    "location": null,
+                    "note": "Thành Công",
+                    "status": "Giao thành công",
+                    "status_color": "#639026",
+                    "updated_at": "2020-08-19T07:44:39"
                 },
-                "logs": [],
+                "addition_services": [],
+                "receiver_commune_id": null,
+                "from": {
+                    "address": "Số 37, Ngõ 107 Đào Tấn, Ba Đình, Hà Nội",
+                    "commune_id": "1010115",
+                    "district_id": "10101",
+                    "full_address": "Đuôi Gà - Số 37, Ngõ 107 Đào Tấn, Ba Đình, Hà Nội - Phường Cống Vị, Quận Ba Đình, Hà Nội",
+                    "id": "524a9669-2cd4-4ec1-9c7f-1a18412391aa",
+                    "name": "Đuôi Gà",
+                    "phone_number": "0328023559",
+                    "province_id": "101",
+                    "real_address": {
+                        "address": "Số 12A ngách 121 Ngõ Thịnh Quang, Đi Từ Vĩnh Hồ Vào Đên Cuối Đường Rẽ Trái",
+                        "commune_id": "",
+                        "district_id": "10109",
+                        "full_address": "Số 12A ngách 121 Ngõ Thịnh Quang, Đi Từ Vĩnh Hồ Vào Đên Cuối Đường Rẽ Trái - Quận Đống Đa, Hà Nội",
+                        "province_id": "101"
+                    },
+                    "return_address": null
+                },
+                "current_status": "Giao thành công",
+                "business": {
+                    "hotlines": "0944603696, 0336895861, 0961309527, 0974573885",
+                    "id": 1523,
+                    "name": "duoigashop",
+                    "owner": {
+                        "avatar_url": null,
+                        "email": "phantronggiap@gmail.com",
+                        "fb_id": null,
+                        "id": "51f003b6-28c1-444f-a1dd-670a2234ab8d",
+                        "name": "duoigashop",
+                        "permission": 1,
+                        "phone_number": "+84974573885",
+                        "signatures": null
+                    },
+                    "phone_number": "+84974573885"
+                },
+                "id": "S29975697",
+                "receiver_province_id": "101",
+                "creator": {
+                    "avatar_url": null,
+                    "email": "phantronggiap@gmail.com",
+                    "fb_id": null,
+                    "id": "51f003b6-28c1-444f-a1dd-670a2234ab8d",
+                    "name": "duoigashop",
+                    "permission": 1,
+                    "phone_number": "+84974573885",
+                    "signatures": null
+                },
+                "log": {
+                    "payment_status": "locked",
+                    "updated_at": "2020-08-19T14:05:01"
+                },
+                "balance_adjustment": -16000,
+                "short_id": 997569,
+                "sny_warehouse_id": null,
+                "business_id": 1523,
+                "delivered_at": "2020-08-18T16:04:36",
+                "updated_at": "2020-08-19T07:46:02",
+                "tracking_undeliverable": null,
+                "updates": [
+                    {
+                        "is_extend_update": true,
+                        "last_updated_at": null,
+                        "location": null,
+                        "note": "Đã giao",
+                        "status": "Giao thành công",
+                        "updated_at": "2020-08-18T16:04:36"
+                    },
+                    {
+                        "is_extend_update": true,
+                        "last_updated_at": null,
+                        "location": null,
+                        "note": "Đang giao",
+                        "status": "Đang giao",
+                        "updated_at": "2020-08-18T13:17:57"
+                    },
+                    {
+                        "is_extend_update": true,
+                        "last_updated_at": null,
+                        "location": null,
+                        "note": "Chờ giao",
+                        "status": "Đang trong kho",
+                        "updated_at": "2020-08-18T10:49:38"
+                    },
+                    {
+                        "is_extend_update": true,
+                        "last_updated_at": null,
+                        "location": null,
+                        "note": "Tạo đơn",
+                        "status": "Đang lấy hàng",
+                        "updated_at": "2020-08-18T09:15:03"
+                    },
+                    {
+                        "editor": {
+                            "avatar_url": null,
+                            "email": "phantronggiap@gmail.com",
+                            "fb_id": null,
+                            "id": "51f003b6-28c1-444f-a1dd-670a2234ab8d",
+                            "name": "duoigashop",
+                            "permission": 1,
+                            "phone_number": "+84974573885",
+                            "signatures": null
+                        },
+                        "last_editor": {
+                            "avatar_url": null,
+                            "email": "phantronggiap@gmail.com",
+                            "fb_id": null,
+                            "id": "51f003b6-28c1-444f-a1dd-670a2234ab8d",
+                            "name": "duoigashop",
+                            "permission": 1,
+                            "phone_number": "+84974573885",
+                            "signatures": null
+                        },
+                        "last_updated_at": "2020-08-18T09:15:02",
+                        "location": "Đuôi Gà - Số 37, Ngõ 107 Đào Tấn, Ba Đình, Hà Nội - Phường Cống Vị, Quận Ba Đình, Hà Nội",
+                        "note": "Gọi cho khách trước khi đến. Shop cám ơn bưu tá",
+                        "status": "Đơn mới",
+                        "status_color": "#AD7E05",
+                        "updated_at": "2020-08-18T09:15:02"
+                    }
+                ],
+                "receiver_district_id": "10113",
+                "services": {
+                    "cod_service": {
+                        "amount": 0,
+                        "cost": 0,
+                        "is_save_log_cod": true,
+                        "use_cod": false
+                    },
+                    "discount": {
+                        "department": "HN",
+                        "discount_percentage": 20
+                    },
+                    "insurance_cost": 0,
+                    "is_allow_checking_good": true,
+                    "is_allow_try_out": false,
+                    "is_confirm_returned": false,
+                    "is_exchange": false,
+                    "is_new_customer": false,
+                    "is_receiver_pay": false,
+                    "name": "same_day",
+                    "name_vi": "Trong ngày",
+                    "shipping_cost": 16000,
+                    "shipping_cost_of_shop": 0
+                },
+                "inserted_at": "2020-08-18T09:15:02",
+                "current_status_en": "delivered",
+                "shop_id": null,
+                "to": {
+                    "address": "Ngõ 11 duy tân sau toà nhà viettel ( cầu giấy) - sđt khác 0978795766",
+                    "commune_id": null,
+                    "district_id": "10113",
+                    "full_address": "Ngõ 11 duy tân sau toà nhà viettel ( cầu giấy) - sđt khác 0978795766 - Quận Cầu Giấy, Hà Nội",
+                    "id": null,
+                    "name": "Đào Mai",
+                    "phone_number": "0936361700",
+                    "province_id": "101",
+                    "real_address": null,
+                    "return_address": null
+                },
+                "print_data": {
+                    "district_type": "NT",
+                    "receiver_province": "HN",
+                    "sender_province": "HN"
+                },
+                "returned_editor": null,
                 "package_info": {
                     "items": [
                         {
-                            "name": "sp 1",
-                            "quantity": 2,
-                            "selected": "false",
-                            "weight": 100
-                        },
-                        {
-                            "name": "sp 2",
+                            "name": "Hộ vớ đi chân",
                             "quantity": 1,
-                            "weight": 200
+                            "retail_price": 0,
+                            "selected": false,
+                            "weight": 100
                         }
                     ],
-                    "snippet": "2 x 100g sp 1, 1 x 200g sp 2",
-                    "total_weight": 400
-                },
-                "services": {
-                    "cod_service": {
-                        "amount": 500000,
-                        "cost": 0,
-                        "is_save_log_cod": false,
-                        "use_cod": true
-                    },
-                    "insurance_cost": 0,
-                    "is_allow_checking_good": false,
-                    "is_allow_try_out": false,
-                    "is_receiver_pay": false,
-                    "is_save_log_insurance_cost": false,
-                    "is_save_log_return": false,
-                    "is_save_log_shipping_cost": false,
-                    "is_save_log_shipping_cost_of_shop": false,
-                    "name": "expedited",
-                    "name_vi": "Chuyển phát nhanh",
-                    "shipping_cost": 30000,
-                    "shipping_cost_of_shop": 0
-                },
-                "short_id": 812,
-                "status_color": "#AD7E05",
-                "to": {
-                    "address": "12 test",
-                    "commune_id": "7010101",
-                    "district_id": "70101",
-                    "full_address": "Phường Tân Định, Quận 1, Hồ Chí Minh",
-                    "id": null,
-                    "name": "test",
-                    "phone_number": "095555555",
-                    "province_id": "701"
-                },
-                "updated_at": "2018-04-18T09:21:40",
-                "updates": [
-                    {
-                        "location": "SG1 - Số 1 ABC, Quận Ba Đình, Hà Nội",
-                        "note": "Khởi tạo vận đơn",
-                        "status": "Đã khởi tạo",
-                        "status_color": "#AD7E05",
-                        "updated_at": "2018-04-18T09:21:40"
-                    }
-                ]
+                    "snippet": "1 x 100g Hộ vớ đi chân",
+                    "total_weight": 100,
+                    "value": 0
+                }
             }
         ]
     }
@@ -656,7 +758,7 @@ Content-Type: application/json
 ```json
 {
     "access_token": "eyJ1aWQiOiIxNGQ0YTFhMS1lYTQyLTQxNjQtODA1ZC1lMjQwZjI1NjFmNzEiLCJpYXQiOj",
-    "business_id": 63,
+    "business_id": 37,
     "business_address_id": "82019ce2-088d-4cb1-8e8a-c6255d12ce6c",
     "receiver_name": "test",
     "receiver_phone_number": "0955555555",
@@ -688,108 +790,201 @@ Content-Type: application/json
     "message": "Vận đơn đã được khởi tạo thành công",
     "success": true,
     "tracking": {
-        "addition_services": [],
-        "balance_adjustment": 0,
-        "business": {
-            "id": 63,
-            "name": "SG1",
-            "owner": {
-                "fb_id": null,
-                "name": "SG1"
-            },
-            "phone_number": "+84937123123"
-        },
-        "business_id": 63,
-        "creator": {
-            "fb_id": null,
-            "name": "SG1"
-        },
-        "creator_id": "14d4a1a1-ea42-4164-805d-e240f2561f71",
-        "current_status": "Đã khởi tạo",
-        "current_status_en": "request_received",
-        "custom_id": "S61180418001",
-        "customer_tracking_id": null,
+        "business_address_id": "ca4fb6d3-51aa-4d85-a2fb-f22018809f6a",
         "department": {
-            "address": "127/19 Hoàng Hoa Thám, Phường 13, Tân Bình",
-            "district_name": "Quận Tân Bình",
-            "phone_number": "0886.332.882",
-            "province_name": "Hồ Chí Minh",
-            "second_phone_number": "0886.334.884"
+            "address": "35 Lê Văn Thiêm, Phường Nhân Chính",
+            "commune_id": "1011101",
+            "district_id": "10111",
+            "district_name": "Quận Thanh Xuân",
+            "full_address": "35 Lê Văn Thiêm, Phường Nhân Chính Quận Thanh Xuân Hà Nội",
+            "id": -1,
+            "name": "Snappy HN",
+            "phone_number": "1900636505",
+            "phone_number_care_ghtk": "0918392442",
+            "province_id": "101",
+            "province_name": "Hà Nội",
+            "second_phone_number": "",
         },
-        "from": {
-            "address": "Số 1 ABC",
-            "commune_id": null,
-            "district_id": "10101",
-            "full_address": "SG1 - Số 1 ABC, Quận Ba Đình, Hà Nội",
-            "id": "82019ce2-088d-4cb1-8e8a-c6255d12ce6c",
-            "name": "SG1",
-            "phone_number": "+84937123123",
-            "province_id": "101"
-        },
-        "id": "E80008142",
-        "inserted_at": "2018-04-18T15:42:56",
+        "creator_id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+        "status_color": "#AD7E05",
+        "picked_up_at": null,
+        "returned_at": null,
+        "customer_tracking_id": null,
+        "print_department": null,
+        "tags": [],
         "last_update": {
-            "location": "SG1 - Số 1 ABC, Quận Ba Đình, Hà Nội",
+            "editor": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "fb_id": "1361243100592751",
+                "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                "name": "Hoàng Sơn",
+                "permission": 15,
+                "phone_number": "+84968999999",
+                "signatures": null
+            },
+            "last_editor": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "fb_id": "1361243100592751",
+                "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                "name": "Hoàng Sơn",
+                "permission": 15,
+                "phone_number": "+84968999999",
+                "signatures": null
+            },
+            "last_updated_at": "2020-08-19T15:05:40",
+            "location": "test - sô 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội",
             "note": "Khởi tạo vận đơn",
-            "status": "Đã khởi tạo",
+            "status": "Đơn mới",
             "status_color": "#AD7E05",
-            "updated_at": "2018-04-18T15:42:56"
+            "updated_at": "2020-08-19T15:05:40"
         },
-        "logs": [],
-        "package_info": {
-            "items": [
-                {
-                    "name": "sp 1",
-                    "quantity": 2,
-                    "weight": 100
-                }
-            ],
-            "snippet": "2 x 100g sp 1",
-            "total_weight": 200,
-            "value": 600000
+        "addition_services": [],
+        "receiver_commune_id": null,
+        "from": {
+            "address": "sô 58 tố hữu",
+            "commune_id": "1012123",
+            "district_id": "10121",
+            "full_address": "test - sô 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội",
+            "id": "ca4fb6d3-51aa-4d85-a2fb-f22018809f6a",
+            "name": "test",
+            "phone_number": "+84987654321",
+            "province_id": "101",
+            "real_address": null,
+            "return_address": null
         },
+        "current_status": "Đơn mới",
+        "business": {
+            "hotlines": "0999999999, 0888888888",
+            "id": 37,
+            "name": "Hemlock",
+            "owner": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "fb_id": "1361243100592751",
+                "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                "name": "Hoàng Sơn",
+                "permission": 15,
+                "phone_number": "+84968999999",
+                "signatures": null
+            },
+            "phone_number": "+84916880806"
+        },
+        "id": "S29994515",
+        "receiver_province_id": "101",
+        "creator": {
+            "avatar_url": null,
+            "email": "sonhgc00016@gmail.com",
+            "fb_id": "1361243100592751",
+            "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+            "name": "Hoàng Sơn",
+            "permission": 15,
+            "phone_number": "+84968999999",
+            "signatures": null
+        },
+        "log": null,
+        "balance_adjustment": 0,
+        "short_id": 999451,
+        "sny_warehouse_id": null,
+        "business_id": 37,
+        "delivered_at": null,
+        "print_district": null,
+        "updated_at": "2020-08-19T15:05:40",
+        "tracking_undeliverable": null,
+        "updates": [
+            {
+                "editor": {
+                    "avatar_url": null,
+                    "email": "sonhgc00016@gmail.com",
+                    "fb_id": "1361243100592751",
+                    "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                    "name": "Hoàng Sơn",
+                    "permission": 15,
+                    "phone_number": "+84968999999",
+                    "signatures": null
+                },
+                "last_editor": {
+                    "avatar_url": null,
+                    "email": "sonhgc00016@gmail.com",
+                    "fb_id": "1361243100592751",
+                    "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                    "name": "Hoàng Sơn",
+                    "permission": 15,
+                    "phone_number": "+84968999999",
+                    "signatures": null
+                },
+                "last_updated_at": "2020-08-19T15:05:40",
+                "location": "test - sô 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội",
+                "note": "Khởi tạo vận đơn",
+                "status": "Đơn mới",
+                "status_color": "#AD7E05",
+                "updated_at": "2020-08-19T15:05:40"
+            }
+        ],
+        "receiver_district_id": "10101",
         "services": {
             "cod_service": {
-                "amount": 500000,
+                "amount": 200000,
                 "cost": 0,
                 "is_save_log_cod": false,
                 "use_cod": true
             },
+            "discount": {
+                "department": "HN",
+                "discount_percentage": 20
+            },
             "insurance_cost": 0,
             "is_allow_checking_good": false,
             "is_allow_try_out": false,
+            "is_confirm_returned": false,
+            "is_exchange": false,
             "is_receiver_pay": false,
             "is_save_log_insurance_cost": false,
             "is_save_log_return": false,
             "is_save_log_shipping_cost": false,
             "is_save_log_shipping_cost_of_shop": false,
-            "name": "expedited",
-            "name_vi": "Chuyển phát nhanh",
-            "shipping_cost": 30000,
+            "name": "same_day",
+            "name_vi": "Trong ngày",
+            "shipping_cost": 16000,
             "shipping_cost_of_shop": 0
         },
-        "short_id": 814,
-        "status_color": "#AD7E05",
+        "inserted_at": "2020-08-19T15:05:40",
+        "current_status_en": "request_received",
+        "shop_id": null,
         "to": {
-            "address": "12 test",
-            "commune_id": "7010101",
-            "district_id": "70101",
-            "full_address": "Phường Tân Định, Quận 1, Hồ Chí Minh",
+            "address": "addess test",
+            "commune_id": null,
+            "district_id": "10101",
+            "full_address": "addess test - Quận Ba Đình, Hà Nội",
             "id": null,
             "name": "test",
-            "phone_number": "095555555",
-            "province_id": "701"
+            "phone_number": "0999999999",
+            "province_id": "101",
+            "real_address": null,
+            "return_address": null
         },
-        "updated_at": "2018-04-18T15:42:56",
-        "updates": [
-            {
-                "location": "SG1 - Số 1 ABC, Quận Ba Đình, Hà Nội",
-                "note": "Khởi tạo vận đơn",
-                "status": "Đã khởi tạo",
-                "status_color": "#AD7E05",
-                "updated_at": "2018-04-18T15:42:56"
-            }
-        ]
+        "print_data": {
+            "district_type": "NT",
+            "receiver_province": "HN",
+            "sender_province": "HN"
+        },
+        "returned_editor": null,
+        "partner_info": {},
+        "package_info": {
+            "items": [
+                {
+                    "name": "test",
+                    "quantity": 1,
+                    "retail_price": 0,
+                    "selected": false,
+                    "weight": 20
+                }
+            ],
+            "snippet": "1 x 20g test",
+            "total_weight": 20,
+            "value": 200000
+        }
     }
 }
 ```
@@ -896,7 +1091,7 @@ Content-Type: application/json
 ```json
 {
     "access_token": "eyJ1aWQiOiIxNGQ0YTFhMS1lYTQyLTQxNjQtODA1ZC1lMjQwZjI1NjFmNzEiLCJpYXQiOj",
-    "tracking_id": "S20010326",
+    "tracking_id": "S29994515",
     "note": "Lý do hủy vận đơn"
 }
 ```
@@ -908,123 +1103,245 @@ Content-Type: application/json
     "message": "Cập nhật trạng thái vận đơn thành công",
     "success": true,
     "tracking": {
-        "addition_services": [],
-        "balance_adjustment": -20000,
-        "business": {
-            "id": 1,
-            "name": "Snappy",
-            "owner": {
-                "fb_id": null,
-                "name": "Hoàng Sơn"
-            },
-            "phone_number": "+84999999999"
-        },
-        "business_id": 1,
-        "creator": {
-            "fb_id": null,
-            "name": "user4",
-            "phone_number": "+84904123123"
-        },
-        "creator_id": "132abd0a-73b0-4b22-9934-68bb6ef0df36",
-        "current_status": "Đã hủy",
-        "current_status_en": "canceled",
-        "custom_id": "S01181207001",
-        "customer_tracking_id": null,
-        "department": {
-            "address": "Số 33 Tô Vĩnh Diện",
-            "district_name": "Quận Thanh Xuân",
-            "name": "HN",
-            "phone_number": "02420.233.555",
-            "province_name": "Hà Nội",
-            "second_phone_number": "02421.233.555"
-        },
-        "from": {
-            "address": "Luffy",
-            "commune_id": "1010111",
-            "district_id": "10101",
-            "full_address": "ABC - Luffy Phường Kim Mã, Quận Ba Đình, Hà Nội",
-            "id": "11ac8617-a5fa-4f3a-a1ab-6e2de6c7c8cc",
-            "name": "ABC",
-            "phone_number": "+84999999999",
-            "province_id": "101"
-        },
-        "full_pos_id": null,
-        "id": "S20010326",
-        "inserted_at": "2018-12-07T12:16:26",
-        "last_update": {
-            "last_updated_at": "2019-02-13T17:56:28",
-            "location": null,
-            "note": "asndaslnda",
-            "status": "Đã hủy",
-            "status_color": "#DB3E36",
-            "updated_at": "2019-02-13T17:56:28"
-        },
-        "logs": [],
         "package_info": {
             "items": [
                 {
-                    "id": "40",
                     "name": "test",
-                    "quantity": 2,
+                    "quantity": 1,
                     "retail_price": 0,
                     "selected": false,
-                    "weight": 2000
+                    "weight": 20
                 }
             ],
-            "snippet": "2 x 2kg test",
-            "total_weight": 4000
+            "snippet": "1 x 20g test",
+            "total_weight": 20,
+            "value": 200000
         },
+        "shop_id": null,
+        "customer_tracking_id": null,
         "services": {
             "cod_service": {
-                "amount": 0,
+                "amount": 200000,
                 "cost": 0,
-                "is_save_log_cod": true,
-                "use_cod": false
+                "is_save_log_cod": false,
+                "use_cod": true
+            },
+            "discount": {
+                "department": "HN",
+                "discount_percentage": 20
             },
             "insurance_cost": 0,
             "is_allow_checking_good": false,
             "is_allow_try_out": false,
+            "is_confirm_returned": false,
+            "is_exchange": false,
+            "is_new_customer": false,
             "is_receiver_pay": false,
-            "is_save_log_insurance_cost": false,
             "is_save_log_return": false,
-            "is_save_log_shipping_cost": true,
-            "is_save_log_shipping_cost_of_shop": false,
             "name": "same_day",
             "name_vi": "Trong ngày",
-            "shipping_cost": 20000,
+            "shipping_cost": 16000,
             "shipping_cost_of_shop": 0
         },
-        "short_id": 1032,
-        "status_color": "#DB3E36",
+        "department": {
+            "address": "35 Lê Văn Thiêm, Phường Nhân Chính",
+            "commune_id": "1011101",
+            "district_id": "10111",
+            "district_name": "Quận Thanh Xuân",
+            "full_address": "35 Lê Văn Thiêm, Phường Nhân Chính Quận Thanh Xuân Hà Nội",
+            "id": -1,
+            "name": "Snappy HN",
+            "phone_number": "1900636505",
+            "phone_number_care_ghtk": "0918392442",
+            "pickup_shippo_id": 10010376,
+            "province_id": "101",
+            "province_name": "Hà Nội",
+            "second_phone_number": ""
+        },
         "to": {
-            "address": "test",
+            "address": "addess test",
             "commune_id": null,
-            "district_id": "10107",
-            "full_address": "test - Quận Hai Bà Trưng, Hà Nội",
+            "district_id": "10101",
+            "full_address": "addess test - Quận Ba Đình, Hà Nội",
             "id": null,
             "name": "test",
             "phone_number": "0999999999",
-            "province_id": "101"
+            "province_id": "101",
+            "real_address": null,
+            "return_address": null
         },
-        "updated_at": "2019-02-13T17:56:28",
+        "creator": {
+            "avatar_url": null,
+            "email": "sonhgc00016@gmail.com",
+            "fb_id": "1361243100592751",
+            "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+            "name": "Hoàng Sơn",
+            "permission": 15,
+            "phone_number": "+84968999999",
+            "signatures": null
+        },
+        "addition_services": [],
+        "tags": [],
         "updates": [
             {
-                "last_updated_at": "2018-12-07T12:16:26",
-                "location": "ABC - Luffy Phường Kim Mã, Quận Ba Đình, Hà Nội",
-                "note": "Khởi tạo vận đơn",
-                "status": "Đã khởi tạo",
-                "status_color": "#AD7E05",
-                "updated_at": "2018-12-07T12:16:26"
-            },
-            {
-                "last_updated_at": "2019-02-13T17:56:28",
+                "editor": {
+                    "avatar_url": null,
+                    "email": "sonhgc00016@gmail.com",
+                    "fb_id": "1361243100592751",
+                    "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                    "name": "Hoàng Sơn",
+                    "permission": 15,
+                    "phone_number": "+84968999999",
+                    "signatures": null
+                },
+                "last_editor": {
+                    "avatar_url": null,
+                    "email": "sonhgc00016@gmail.com",
+                    "fb_id": "1361243100592751",
+                    "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                    "name": "Hoàng Sơn",
+                    "permission": 15,
+                    "phone_number": "+84968999999",
+                    "signatures": null
+                },
+                "last_updated_at": "2020-08-19T15:18:45",
                 "location": null,
-                "note": "asndaslnda",
+                "note": "Đã hủy",
+                "sny_warehouse": null,
                 "status": "Đã hủy",
                 "status_color": "#DB3E36",
-                "updated_at": "2019-02-13T17:56:28"
+                "updated_at": "2020-08-19T15:18:45"
+            },
+            {
+                "editor": {
+                    "avatar_url": null,
+                    "email": "sonhgc00016@gmail.com",
+                    "fb_id": "1361243100592751",
+                    "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                    "name": "Hoàng Sơn",
+                    "permission": 15,
+                    "phone_number": "+84968999999",
+                    "signatures": null
+                },
+                "last_editor": {
+                    "avatar_url": null,
+                    "email": "sonhgc00016@gmail.com",
+                    "fb_id": "1361243100592751",
+                    "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                    "name": "Hoàng Sơn",
+                    "permission": 15,
+                    "phone_number": "+84968999999",
+                    "signatures": null
+                },
+                "last_updated_at": "2020-08-19T15:05:40",
+                "location": "test - sô 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội",
+                "note": "Khởi tạo vận đơn",
+                "status": "Đơn mới",
+                "status_color": "#AD7E05",
+                "updated_at": "2020-08-19T15:05:40"
             }
-        ]
+        ],
+        "id": "S29994515",
+        "picked_up_at": null,
+        "business_address_id": "ca4fb6d3-51aa-4d85-a2fb-f22018809f6a",
+        "updated_at": "2020-08-19T15:18:45",
+        "log": null,
+        "short_id": 999451,
+        "creator_id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+        "returned_editor": null,
+        "balance_adjustment": 0,
+        "current_status": "Đã hủy",
+        "receiver_province_id": "101",
+        "last_update": {
+            "editor": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "fb_id": "1361243100592751",
+                "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                "name": "Hoàng Sơn",
+                "permission": 15,
+                "phone_number": "+84968999999",
+                "signatures": null
+            },
+            "last_editor": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "fb_id": "1361243100592751",
+                "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                "name": "Hoàng Sơn",
+                "permission": 15,
+                "phone_number": "+84968999999",
+                "signatures": null
+            },
+            "last_updated_at": "2020-08-19T15:18:45",
+            "location": null,
+            "note": "Lý do hủy vận đơn",
+            "sny_warehouse": null,
+            "status": "Đã hủy",
+            "status_color": "#DB3E36",
+            "updated_at": "2020-08-19T15:18:45"
+        },
+        "business_id": 37,
+        "receiver_district_id": "10101",
+        "returned_at": null,
+        "status_color": "#DB3E36",
+        "partner_info": {
+            "ems": {
+                "cod_cost": 0,
+                "insurance_cost": 0,
+                "shipping_cost": 17500
+            },
+            "ghtk": {
+                "cod_cost": 0,
+                "insurance_cost": 0,
+                "shipping_cost": 16000,
+                "transport": "fly"
+            },
+            "njv": {
+                "cod_cost": 0,
+                "insurance_cost": 0,
+                "shipping_cost": 25000
+            }
+        },
+        "inserted_at": "2020-08-19T15:05:40",
+        "tracking_undeliverable": null,
+        "current_status_en": "canceled",
+        "delivered_at": null,
+        "business": {
+            "hotlines": "0999999999, 0888888888",
+            "id": 37,
+            "name": "Hemlock",
+            "owner": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "fb_id": "1361243100592751",
+                "id": "ba1762fb-c3f5-4faa-9eea-e03b9ed9eb31",
+                "name": "Hoàng Sơn",
+                "permission": 15,
+                "phone_number": "+84968999999",
+                "signatures": null
+            },
+            "phone_number": "+84916880806"
+        },
+        "sny_warehouse_id": null,
+        "print_data": {
+            "district_type": "NT",
+            "receiver_province": "HN",
+            "sender_province": "HN"
+        },
+        "from": {
+            "address": "sô 58 tố hữu",
+            "commune_id": "1012123",
+            "district_id": "10121",
+            "full_address": "test - sô 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội",
+            "id": "ca4fb6d3-51aa-4d85-a2fb-f22018809f6a",
+            "name": "test",
+            "phone_number": "+84987654321",
+            "province_id": "101",
+            "real_address": null,
+            "return_address": null
+        },
+        "receiver_commune_id": null
     }
 }
 ```
