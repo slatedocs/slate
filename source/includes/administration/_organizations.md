@@ -323,7 +323,7 @@ curl -X POST "https://cloudmc_endpoint/v1/organizations87895f43-51c1-43cc-b987-7
 
 ```json
 {
-   "domain":"www.umbrellaCorp.com",
+   "domain":"www.umbrellaCorp.com"
 }
 ```
 
