@@ -31,7 +31,7 @@ https://api.practitest.com/api/v2/projects/4566/step_runs.json?runs-ids=23223,43
       "type": "step-runs",
       "attributes": {
         "project-id": 4849,
-        "qtest-run-id": 66126,
+        "run-id": 66126,
         "name": "Login to the system",
         "description": "Open your browser, go to the site http://www.test-test.com and log into the system",
         "expected-results": "You are taken to the personal landing page",
@@ -47,7 +47,7 @@ https://api.practitest.com/api/v2/projects/4566/step_runs.json?runs-ids=23223,43
     "type": "step-runs",
     "attributes": {
       "project-id": 4849,
-      "qtest-run-id": 66126,
+      "run-id": 66126,
       "name": "Go to the User Management Tab",
       "description": "In the upper right corner, press the Users Definition Icon to be taken to this area of the application",
       "expected-results": "Based on your permissions you are taken to the users tab and you can see all the users in the system",
@@ -70,22 +70,22 @@ https://api.practitest.com/api/v2/projects/4566/step_runs.json?runs-ids=23223,43
 }
 ```
 
-This endpoint retrieves all steps.
+This endpoint retrieves all step runs.
 
 ### HTTP Request
 
 <!-- http://localhost:3000/api/v2/projects/4849/step_runs.json?api_token=ef02d0ee6d583554020e82d10161a671a3d0b1fb&runs-ids=66126,66117&status=NO%20RUN -->
 
-`GET [BASE_URL]/api/v2/projects/:project-id/step_runs.json`
+`GET [BASE_URL]/api/v2/projects/YOUR_PROJECT_ID/step_runs.json`
 
 ### Query Parameters - [pagination](#pagination)
 
 Parameters* | Description |
 --------- | ------- |
-runs-ids | filter step runs with runs-ids (separated by commas) |
+run-ids | filter step runs with run-ids (separated by commas) |
 name_exact | filter by step runs name exact match; case sensitive! |
 name_like | filter by step runs name: case insensitive, phrase can be inside the name |
-status | filter by step runs name by status |
+status | filter by step runs name by status;  case sensitive! |
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
