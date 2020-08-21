@@ -78,7 +78,7 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
 `serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
-`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
+`connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
 `changes`<br/>*Array[Object]* | Array of all changes done on the product catalog.
 `categories`<br/>*Array[Object]* | The list of product categories object.
 `categories.id`<br/>*UUID* | The id of product category object.
@@ -182,7 +182,7 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
 `serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
-`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
+`connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
 `changes`<br/>*Array[Object]* | Array of all changes done on the product catalog.
 `categories`<br/>*Array[Object]* | The list of product categories object.
 `categories.id`<br/>*UUID* | The id of product category object.
@@ -344,7 +344,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
+`connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
 `categories`<br/>*Array[Object]* | The list of product categories object.
 `categories.id`<br/>*UUID* | The id of product category object. Required for each category object.
 `categories.name`<br/>*Object* | The name object in each language for the category.
@@ -531,7 +531,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
+`connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
 
 
 <!-------------------- DELETE PRODUCT CATALOG -------------------->
