@@ -360,7 +360,7 @@ Optional | &nbsp;
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
 `products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
 `products.id`<br/>*UUID* | The id of the product. Returned with the response.
-`products.attribute`<br/>*string* | The attribute that will be used to compute usage from the service type usage.
+`products.attribute`<br/>*string* | The source attribute that will be used to compute usage from the service type usage.
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
 `products.filters`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.filters.type`<br/>*string* | The type of the filter. Possible values: EXPRESSION, SIMPLE.
