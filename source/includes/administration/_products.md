@@ -373,7 +373,7 @@ Optional | &nbsp;
 
 Update an existing product catalog, including its associated categories and products.
 
-The catalog's service type as well as the existing product SKUs cannot be edited. In addition, users may not delete categories or products. Products may be marked as deprecated, deprecated products may not be updated or un-deprecated.
+The catalog's service type as well as the existing product SKUs cannot be edited. In addition, users may not delete categories or products. Products may be marked as deprecated. Deprecated products may not be updated or un-deprecated.
 
 ```shell
 # Updates a product catalog
