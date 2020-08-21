@@ -44,7 +44,6 @@ Retrieve a list of all secrets in a given [environment](#administration-environm
 | `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
 | `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
 | `metadata` <br/>_object_   | The metadata of the secret.                                                |
-| `kind`<br/>_string_        | The string value of the REST resource that this object represents.         |
 | `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
 
 <!-------------------- GET A secret -------------------->
@@ -86,7 +85,6 @@ Retrieve a secret and all its info in a given [environment](#administration-envi
 | `apiVersion` <br/>_string_ | The API version used to retrieve the secret.                               |
 | `encodedData`<br/>_object_ | The base64 encoded data stored in the secret.                              |
 | `metadata` <br/>_object_   | The metadata of the secret.                                                |
-| `kind`<br/>_string_        | The string value of the REST resource that this object represents.         |
 | `type` <br/>_string_       | A string used to facilitate programmatic handling of a secret's data.      |
 
 <!-------------------- CREATE A SECRET -------------------->

@@ -37,7 +37,6 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 | -------------------------- | ------------------------------------------------- |
 | `id` <br/>_string_         | The id of the config map.                         |
 | `apiVersion` <br/>_string_ | The API version used to retrieve this config map. |
-| `kind` <br/>_string_       | The type of the returned resource. ie, ConfigMap. |
 | `metadata` <br/>_object_   | The metadata of the config map.                   |
 
 <!-------------------- GET A CONFIG MAP -------------------->
@@ -71,7 +70,6 @@ Retrieve a config map and all its info in a given [environment](#administration-
 | -------------------------- | ------------------------------------------------- |
 | `id` <br/>_string_         | The id of the config map.                         |
 | `apiVersion` <br/>_string_ | The API version used to retrieve this config map. |
-| `kind` <br/>_string_       | The type of the returned resource. ie, ConfigMap. |
 | `metadata` <br/>_object_   | The metadata of the config map.                   |
 
 <!-------------------- CREATE A CONFIG MAP -------------------->

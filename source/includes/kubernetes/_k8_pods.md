@@ -502,7 +502,6 @@ Required Attributes                 | &nbsp;
 
 | Optional Attributes                       | &nbsp;                                                                  |
 | ----------------------------------------- | ----------------------------------------------------------------------- |
-| `kind`<br/>_string_                       | The string value of the REST resource that this object represents.      |
 | `metadata.namespace` <br/>_string_        | The namespace in which the pod is created                               |
 
 Return value:
@@ -563,7 +562,6 @@ Required Attributes                 | &nbsp;
 
 | Optional Attributes                       | &nbsp;                                                                  |
 | ----------------------------------------- | ----------------------------------------------------------------------- |
-| `kind`<br/>_string_                       | The string value of the REST resource that this object represents.      |
 | `metadata.namespace` <br/>_string_        | The namespace in which the pod is replaced.                             |
 
 Return value:

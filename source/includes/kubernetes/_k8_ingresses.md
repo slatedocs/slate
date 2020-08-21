@@ -212,7 +212,6 @@ Create an ingress in a given [environment](#administration-environments).
 
 | Optional Attributes                | &nbsp;                                                             |
 | ---------------------------------- | ------------------------------------------------------------------ |
-| `kind`<br/>_string_                | The string value of the REST resource that this object represents. |
 | `metadata.namespace` <br/>_string_ | The namespace in which the ingress is created.                     |
 
 Return value:
@@ -297,7 +296,6 @@ Replace an ingress in a given [environment](#administration-environments).
 | Required Attributes           | &nbsp;                                                             |
 | ----------------------------- | ------------------------------------------------------------------ |
 | `apiVersion` <br/> _string_   | The api version (versioned schema) of the ingress.                 |
-| `kind`<br/>_string_           | The string value of the REST resource that this object represents. |
 | `metadata` <br/>_object_      | The metadata of the ingress.                                       |
 | `metadata.name` <br/>_string_ | The name of the ingress.                                           |
 | `spec`<br/>_object_           | The specification used to create and run the ingress.              |

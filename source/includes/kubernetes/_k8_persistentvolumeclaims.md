@@ -212,7 +212,6 @@ Create a persistent volume claim in a given [environment](#administration-enviro
 
 | Optional Attributes                   | &nbsp;                                                                                        |
 | ------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `kind`<br/>_string_                   | The string value of the REST resource that this object represents.                            |
 | `metadata.namespace` <br/>_string_    | The namespace in which the pod is created, if not specified will create the claim in default. |
 | `spec.storageClassName` <br/>_string_ | The storage class for the persistent volume claim, will use the default if not specified.     |
 | `spec.resources.limits` <br/>_object_ | Limits describe the maximum number of storage resources allowed.                              |

@@ -152,7 +152,6 @@ Create a deployment in a given [environment](#administration-environments).
 
 | Optional Attributes                        | &nbsp;                                                                     |
 | ------------------------------------------ | -------------------------------------------------------------------------- |
-| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.         |
 | `metadata.namespace` <br/>_string_         | The namespace in which the deployment is replaced.                         |
 | `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a deployment.          |
 
@@ -229,7 +228,6 @@ Replace a deployment in a given [environment](#administration-environments).
 
 | Optional Attributes                        | &nbsp;                                                                     |
 | ------------------------------------------ | -------------------------------------------------------------------------- |
-| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.         |
 | `metadata.namespace` <br/>_string_         | The namespace in which the deployment is created.                          |
 | `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a deployment.          |
 
