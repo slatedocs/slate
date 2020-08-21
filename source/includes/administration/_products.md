@@ -248,12 +248,12 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
             "fr": "category_fr",
             "es": "category_es"
           },
-	  "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
+					"id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
         }
       ],
       "products": [
         {
-	  "categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+					"categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
           "metricType": "GAUGE",
           "unit": {
             "unit": "HOUR",
@@ -411,12 +411,12 @@ curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8
             "fr": "category_fr",
             "es": "category_es"
           },
-	  "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
+					"id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
         }
       ],
       "products": [
         {
-	  "categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+					"categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
           "metricType": "GAUGE",
           "unit": {
             "unit": "HOUR",
@@ -517,6 +517,7 @@ Required | &nbsp;
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
 `products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
+`products.id`<br/>*UUID* | The ID of the product.
 `products.attribute`<br/>*string* | The attribute that will be used to compute usage from the service type usage.
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
 `products.filters`<br/>*Array[Object]* | The list of products assigned to the catalog.
