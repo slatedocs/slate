@@ -1,6 +1,5 @@
 ## Releases
 
-
 <!-------------------- LIST RELEASES -------------------->
 
 ### List releases
@@ -10,6 +9,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -29,15 +29,10 @@ curl -X GET \
         "metadata": {
           "name": "aerospike",
           "home": "http://aerospike.com",
-          "sources": [
-            "https://github.com/aerospike/aerospike-server"
-          ],
+          "sources": ["https://github.com/aerospike/aerospike-server"],
           "version": "0.3.2",
           "description": "A Helm chart for Aerospike in Kubernetes",
-          "keywords": [
-            "aerospike",
-            "big-data"
-          ],
+          "keywords": ["aerospike", "big-data"],
           "maintainers": [
             {
               "name": "kavehmz",
@@ -91,53 +86,46 @@ curl -X GET \
 }
 ```
 
-
-
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases</code>
 
 Or
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases?namespace=default</code>
 
-
-
 Retrieve a list of all releases in a given [environment](#administration-environments).
 
+| Optional                  | &nbsp;                                                         |
+| ------------------------- | -------------------------------------------------------------- |
+| `namespace` <br/>_string_ | The namespace to list the release. This needs the exact value. |
 
-Optional | &nbsp;
-------- | -----------
-`namespace` <br/>*string* | The namespace to list the release. This needs the exact value.
-
-
-Attributes | &nbsp;
-------- | -----------
-`name` <br/>*string* | The name of the release.
-`info` <br/>*object* | The information about the release
-`info.first_deployed` <br/>*string* | The annotations of the pod
-`info.last_deployed` <br/>*string* | The date of creation of the pod as a string
-`info.deleted` <br/>*string* | The labels associated to the pod
-`info.description` <br/>*string* | The name of the pod
-`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback
-`info.notes` <br/>*string* | The notes linked to the release
-`chart`<br/>*object* | The information related to the chart of used in the release
-`chart.version` <br/>*string* | The version of the chart
-`chart.metadata` <br/>*object* | The metadata associated to the chart
-`chart.metadata.name` <br/>*string* | The name of the chart
-`chart.metadata.home` <br/>*string* | The home URL for the chart
-`chart.metadata.sources` <br/>*list* | The list of source of the charts
-`chart.metadata.version` <br/>*string* | The version of the chart
-`chart.metadata.description` <br/>*string* | The description of the chart
-`chart.metadata.keywords` <br/>*list* | The list of keywords linked to the chart
-`chart.metadata.maintainers` <br/>*list* | The list of the maintainer contact information
-`chart.metadata.icon` <br/>*string* | The icon URL for the chart
-`chart.metadata.appVersion` <br/>*string* | The version of the application
-`chart.metadata.deprecate` <br/>*bool* | If the chart is deprecated or not of the application
-`values` <br/>*object* | All values that were used to install the release
-`version`<br/>*string* | The revision of the release
-`namespace`<br/>*string* | The namespace to which the release is installed
+| Attributes                                 | &nbsp;                                                                                                                                                               |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` <br/>_string_                       | The name of the release.                                                                                                                                             |
+| `info` <br/>_object_                       | The information about the release                                                                                                                                    |
+| `info.first_deployed` <br/>_string_        | The annotations of the pod                                                                                                                                           |
+| `info.last_deployed` <br/>_string_         | The date of creation of the pod as a string                                                                                                                          |
+| `info.deleted` <br/>_string_               | The labels associated to the pod                                                                                                                                     |
+| `info.description` <br/>_string_           | The name of the pod                                                                                                                                                  |
+| `info.status` <br/>_string_                | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback |
+| `info.notes` <br/>_string_                 | The notes linked to the release                                                                                                                                      |
+| `chart`<br/>_object_                       | The information related to the chart of used in the release                                                                                                          |
+| `chart.version` <br/>_string_              | The version of the chart                                                                                                                                             |
+| `chart.metadata` <br/>_object_             | The metadata associated to the chart                                                                                                                                 |
+| `chart.metadata.name` <br/>_string_        | The name of the chart                                                                                                                                                |
+| `chart.metadata.home` <br/>_string_        | The home URL for the chart                                                                                                                                           |
+| `chart.metadata.sources` <br/>_list_       | The list of source of the charts                                                                                                                                     |
+| `chart.metadata.version` <br/>_string_     | The version of the chart                                                                                                                                             |
+| `chart.metadata.description` <br/>_string_ | The description of the chart                                                                                                                                         |
+| `chart.metadata.keywords` <br/>_list_      | The list of keywords linked to the chart                                                                                                                             |
+| `chart.metadata.maintainers` <br/>_list_   | The list of the maintainer contact information                                                                                                                       |
+| `chart.metadata.icon` <br/>_string_        | The icon URL for the chart                                                                                                                                           |
+| `chart.metadata.appVersion` <br/>_string_  | The version of the application                                                                                                                                       |
+| `chart.metadata.deprecate` <br/>_bool_     | If the chart is deprecated or not of the application                                                                                                                 |
+| `values` <br/>_object_                     | All values that were used to install the release                                                                                                                     |
+| `version`<br/>_string_                     | The revision of the release                                                                                                                                          |
+| `namespace`<br/>_string_                   | The namespace to which the release is installed                                                                                                                      |
 
 The information is not totally returned in the list. We filter out the manifest portion. We also filter out the files and the templates of the chart details. This information will be present in the GET request for an individual release.
-
 
 <!-------------------- GET RELEASE -------------------->
 
@@ -148,6 +136,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -167,15 +156,10 @@ curl -X GET \
       "metadata": {
         "name": "aerospike",
         "home": "http://aerospike.com",
-        "sources": [
-          "https://github.com/aerospike/aerospike-server"
-        ],
+        "sources": ["https://github.com/aerospike/aerospike-server"],
         "version": "0.3.2",
         "description": "A Helm chart for Aerospike in Kubernetes",
-        "keywords": [
-          "aerospike",
-          "big-data"
-        ],
+        "keywords": ["aerospike", "big-data"],
         "maintainers": [
           {
             "name": "kavehmz",
@@ -273,42 +257,42 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases/:id</code>
 
-
-Attributes | &nbsp;
-------- | -----------
-`name` <br/>*string* | The name of the release.
-`info` <br/>*object* | The information about the release
-`info.first_deployed` <br/>*string* | The annotations of the pod
-`info.last_deployed` <br/>*string* | The date of creation of the pod as a string
-`info.deleted` <br/>*string* | The labels associated to the pod
-`info.description` <br/>*string* | The name of the pod
-`info.status` <br/>*string* | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback
-`info.notes` <br/>*string* | The notes linked to the release
-`chart`<br/>*object* | The information related to the chart of used in the release
-`chart.version` <br/>*string* | The version of the chart
-`chart.metadata` <br/>*object* | The metadata associated to the chart
-`chart.metadata.name` <br/>*string* | The name of the chart
-`chart.metadata.home` <br/>*string* | The home URL for the chart
-`chart.metadata.sources` <br/>*list* | The list of source of the charts
-`chart.metadata.version` <br/>*string* | The version of the chart
-`chart.metadata.description` <br/>*string* | The description of the chart
-`chart.metadata.keywords` <br/>*list* | The list of keywords linked to the chart
-`chart.metadata.maintainers` <br/>*list* | The list of the maintainer contact information
-`chart.metadata.icon` <br/>*string* | The icon URL for the chart
-`chart.metadata.appVersion` <br/>*string* | The version of the application
-`chart.metadata.deprecate` <br/>*bool* | If the chart is deprecated or not of the application
-`chart.templates` <br/> *list* | The list of templates contained inside the chart.
-`chart.templates.name` <br/> *string* | The path name of the template inside the chart.
-`chart.templates.data` <br/> *string* | The contents of the template. This is a base64 encode string.
-`chart.files` <br/> *list* | The list of files contained inside the chart. These are not YAML files unlike the templates.
-`chart.files.name` <br/> *string* | The path name of the file inside the chart.
-`chart.files.data` <br/> *string* | The contents of the file. This is a base64 encode string.
-`manifest` <br/> *string* | The YAML Kubernetes resources created by the Helm templating.
-`values` <br/>*object* | All values that were used to install the release
-`version`<br/>*string* | The revision of the release
-`namespace`<br/>*string* | The namespace to which the release is installed
+| Attributes                                 | &nbsp;                                                                                                                                                               |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` <br/>_string_                       | The name of the release.                                                                                                                                             |
+| `info` <br/>_object_                       | The information about the release                                                                                                                                    |
+| `info.first_deployed` <br/>_string_        | The annotations of the pod                                                                                                                                           |
+| `info.last_deployed` <br/>_string_         | The date of creation of the pod as a string                                                                                                                          |
+| `info.deleted` <br/>_string_               | The labels associated to the pod                                                                                                                                     |
+| `info.description` <br/>_string_           | The name of the pod                                                                                                                                                  |
+| `info.status` <br/>_string_                | The status of the release. Possible values are unknown, installed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade, pending-rollback |
+| `info.notes` <br/>_string_                 | The notes linked to the release                                                                                                                                      |
+| `chart`<br/>_object_                       | The information related to the chart of used in the release                                                                                                          |
+| `chart.version` <br/>_string_              | The version of the chart                                                                                                                                             |
+| `chart.metadata` <br/>_object_             | The metadata associated to the chart                                                                                                                                 |
+| `chart.metadata.name` <br/>_string_        | The name of the chart                                                                                                                                                |
+| `chart.metadata.home` <br/>_string_        | The home URL for the chart                                                                                                                                           |
+| `chart.metadata.sources` <br/>_list_       | The list of source of the charts                                                                                                                                     |
+| `chart.metadata.version` <br/>_string_     | The version of the chart                                                                                                                                             |
+| `chart.metadata.description` <br/>_string_ | The description of the chart                                                                                                                                         |
+| `chart.metadata.keywords` <br/>_list_      | The list of keywords linked to the chart                                                                                                                             |
+| `chart.metadata.maintainers` <br/>_list_   | The list of the maintainer contact information                                                                                                                       |
+| `chart.metadata.icon` <br/>_string_        | The icon URL for the chart                                                                                                                                           |
+| `chart.metadata.appVersion` <br/>_string_  | The version of the application                                                                                                                                       |
+| `chart.metadata.deprecate` <br/>_bool_     | If the chart is deprecated or not of the application                                                                                                                 |
+| `chart.templates` <br/> _list_             | The list of templates contained inside the chart.                                                                                                                    |
+| `chart.templates.name` <br/> _string_      | The path name of the template inside the chart.                                                                                                                      |
+| `chart.templates.data` <br/> _string_      | The contents of the template. This is a base64 encode string.                                                                                                        |
+| `chart.files` <br/> _list_                 | The list of files contained inside the chart. These are not YAML files unlike the templates.                                                                         |
+| `chart.files.name` <br/> _string_          | The path name of the file inside the chart.                                                                                                                          |
+| `chart.files.data` <br/> _string_          | The contents of the file. This is a base64 encode string.                                                                                                            |
+| `manifest` <br/> _string_                  | The YAML Kubernetes resources created by the Helm templating.                                                                                                        |
+| `values` <br/>_object_                     | All values that were used to install the release                                                                                                                     |
+| `version`<br/>_string_                     | The revision of the release                                                                                                                                          |
+| `namespace`<br/>_string_                   | The namespace to which the release is installed                                                                                                                      |
 
 <!-- ROLLBACK RELEASE -->
+
 ### Rollback release to previous revision
 
 ```shell
@@ -316,6 +300,7 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954&operation=rollback"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -339,13 +324,14 @@ curl -X POST \
 
 Rollback a release in a given [environment](#administration-environments) to the previous revision.
 
-Attributes | &nbsp;
-------- | -----------
-`data` <br/>*Object* | The release object. See [get release](#get-release) for a description of the release attributes.
-`taskId` <br/>*string* | The task id related to the pod rollback.
-`taskStatus` <br/>*string* | The status of the operation.
+| Attributes                 | &nbsp;                                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------------------------ |
+| `data` <br/>_Object_       | The release object. See [get release](#get-release) for a description of the release attributes. |
+| `taskId` <br/>_string_     | The task id related to the pod rollback.                                                         |
+| `taskStatus` <br/>_string_ | The status of the operation.                                                                     |
 
 <!-------------------- UPGRADE RELEASE -------------------->
+
 ### Upgrade release
 
 ```shell
@@ -375,6 +361,7 @@ curl -X POST \
   "values": "---\n\"replicaCount\": 3\n"
 }
 ```
+
 > The above commands return JSON structured like this:
 
 ```json
@@ -388,21 +375,21 @@ curl -X POST \
 
 Upgrade a release in a given [environment](#administration-environments).
 
-Required | &nbsp;
-------- | -----------
-`upgradeChart` <br/>*string* | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use.
+| Required                     | &nbsp;                                                                                    |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `upgradeChart` <br/>_string_ | The id of the chart to upgrade (repo/name) or the url to the version of the chart to use. |
 
+| Optional               | &nbsp;                                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| `values` <br/>_string_ | YAML structured text that will overwrite the default values for the upgrade/installation of the chart. |
 
-Optional | &nbsp;
-------- | -----------
-`values` <br/>*string* | YAML structured text that will overwrite the default values for the upgrade/installation of the chart.
-
-Attributes | &nbsp;
-------- | -----------
-`taskId` <br/>*string* | The task id related to the pod upgrade.
-`taskStatus` <br/>*string* | The status of the operation.
+| Attributes                 | &nbsp;                                  |
+| -------------------------- | --------------------------------------- |
+| `taskId` <br/>_string_     | The task id related to the pod upgrade. |
+| `taskStatus` <br/>_string_ | The status of the operation.            |
 
 <!-- UNINSTALL RELEASE -->
+
 ### Uninstall a release
 
 ```shell
@@ -411,13 +398,15 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954&operation=uninstall"
    -d "request_body"
 ```
+
 > Request body example:
 
 ```json
 {
-   "keepHistory": true
+  "keepHistory": true
 }
 ```
+
 > The above command returns a JSON structured like this:
 
 ```js
@@ -435,13 +424,13 @@ curl -X POST \
 
 Uninstall a release in a given [environment](#administration-environments).
 
-Optional | &nbsp;
-------- | -----------
-`keepHistory` <br/>*bool* | If true, will keep release history after uninstalling. Defaults to false.
+| Optional                  | &nbsp;                                                                    |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `keepHistory` <br/>_bool_ | If true, will keep release history after uninstalling. Defaults to false. |
 
-Attributes | &nbsp;
-------- | -----------
-`version` <br/>*string* | The uninstalled release's revision. Revision 0 indicated it was uninstalled.
-`keepHistory` <br/>*string* | The *keepHistory* value used when uninstalling the chart.
-`taskId` <br/>*string* | The task id related to the pod uninstall.
-`taskStatus` <br/>*string* | The status of the operation.
+| Attributes                  | &nbsp;                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------- |
+| `version` <br/>_string_     | The uninstalled release's revision. Revision 0 indicated it was uninstalled. |
+| `keepHistory` <br/>_string_ | The *keepHistory* value used when uninstalling the chart.                    |
+| `taskId` <br/>_string_      | The task id related to the pod uninstall.                                    |
+| `taskStatus` <br/>_string_  | The status of the operation.                                                 |

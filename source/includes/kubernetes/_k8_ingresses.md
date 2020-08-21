@@ -64,8 +64,8 @@ curl -X GET \
         "selfLink": "/apis/extensions/v1beta1/namespaces/auth/ingresses/cm-acme-http-solver-75png",
         "uid": "48720f48-f2bc-45fc-95c5-60cae8ffe11e"
       },
-      "spec":{
-        "rules":[]
+      "spec": {
+        "rules": []
       },
       "status": {
         "loadBalancer": {}
@@ -79,19 +79,19 @@ curl -X GET \
 
 Retrieve a list of all ingresses in a given [environment](#administration-environments).
 
-| Attributes                                 | &nbsp;                                                          |
-| ------------------------------------------ | --------------------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the ingress                                           |
-| `endpoint` <br/>_string_                   | The endpoint of the ingress                                     |
-| `service` <br/>_object_                    | The service associated with the ingress                         |
-| `service.port` <br/>_string_               | The port of the service associated with the ingress             |
-| `service.name` <br/>_string_               | The name of the service associated with the ingress             |
-| `metadata` <br/>_object_                   | The metadata of the ingress                                     |
-| `metadata.name` <br/>_string_              | The name of the ingress                                         |
-| `metadata.namespace` <br/>_string_         | The namespace in which the ingress is created                   |
-| `metadata.labels` <br/>_object_            | The labels associated with the ingress                          |
-| `metadata.uid` <br/>_object_               | The UUID of the ingress                                         |
-| `spec`<br/>_object_                        | The attributes that a user specifies for an ingress             |
+| Attributes                         | &nbsp;                                               |
+| ---------------------------------- | ---------------------------------------------------- |
+| `id` <br/>_string_                 | The id of the ingress.                               |
+| `endpoint` <br/>_string_           | The endpoint of the ingress.                         |
+| `service` <br/>_object_            | The service associated with the ingress.             |
+| `service.port` <br/>_string_       | The port of the service associated with the ingress. |
+| `service.name` <br/>_string_       | The name of the service associated with the ingress. |
+| `metadata` <br/>_object_           | The metadata of the ingress.                         |
+| `metadata.name` <br/>_string_      | The name of the ingress.                             |
+| `metadata.namespace` <br/>_string_ | The namespace in which the ingress is created.       |
+| `metadata.labels` <br/>_object_    | The labels associated with the ingress.              |
+| `metadata.uid` <br/>_object_       | The UUID of the ingress.                             |
+| `spec`<br/>_object_                | The attributes that a user specifies for an ingress. |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
@@ -137,22 +137,202 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingress/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id</code>
 
 Retrieve an ingress and all its info in a given [environment](#administration-environments).
 
-| Attributes                                 | &nbsp;                                                          |
-| ------------------------------------------ | --------------------------------------------------------------- |
-| `id` <br/>_string_                         | The id of the ingress                                           |
-| `endpoint` <br/>_string_                   | The endpoint of the ingress                                     |
-| `service` <br/>_object_                    | The service associated with the ingress                         |
-| `service.port` <br/>_string_               | The port of the service associated with the ingress             |
-| `service.name` <br/>_string_               | The name of the service associated with the ingress             |
-| `metadata` <br/>_object_                   | The metadata of the ingress                                     |
-| `metadata.name` <br/>_string_              | The name of the ingress                                         |
-| `metadata.namespace` <br/>_string_         | The namespace in which the ingress is created                   |
-| `metadata.labels` <br/>_object_            | The labels associated with the ingress                          |
-| `metadata.uid` <br/>_object_               | The UUID of the ingress                                         |
-| `spec`<br/>_object_                        | The attributes that a user specifies for an ingress             |
+| Attributes                         | &nbsp;                                               |
+| ---------------------------------- | ---------------------------------------------------- |
+| `id` <br/>_string_                 | The id of the ingress.                               |
+| `endpoint` <br/>_string_           | The endpoint of the ingress.                         |
+| `service` <br/>_object_            | The service associated with the ingress.             |
+| `service.port` <br/>_string_       | The port of the service associated with the ingress. |
+| `service.name` <br/>_string_       | The name of the service associated with the ingress. |
+| `metadata` <br/>_object_           | The metadata of the ingress.                         |
+| `metadata.name` <br/>_string_      | The name of the ingress.                             |
+| `metadata.namespace` <br/>_string_ | The namespace in which the ingress is created.       |
+| `metadata.labels` <br/>_object_    | The labels associated with the ingress.              |
+| `metadata.uid` <br/>_object_       | The UUID of the ingress.                             |
+| `spec`<br/>_object_                | The attributes that a user specifies for an ingress. |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
+
+<!-------------------- CREATE INGRESS -------------------->
+
+#### Create an ingress
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/ingresses"
+  Content-Type: application/json
+  {
+  "apiVersion": "networking.k8s.io/v1beta1",
+  "kind": "Ingress",
+  "metadata": {
+    "name": "ingress-name",
+    "namespace": "default",
+    "annotations": {
+      "nginx.ingress.kubernetes.io/rewrite-target": "/"
+    }
+  },
+  "spec": {
+    "rules": [
+      {
+        "hostname": "endpoint.com",
+        "http": {
+          "paths": [
+            {
+              "path": "/testpath",
+              "pathType": "Prefix",
+              "backend": {
+                "serviceName": "test",
+                "servicePort": 80
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses</code>
+
+Create an ingress in a given [environment](#administration-environments).
+
+| Required Attributes           | &nbsp;                                                |
+| ----------------------------- | ----------------------------------------------------- |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the ingress.    |
+| `metadata` <br/>_object_      | The metadata of the ingress.                          |
+| `metadata.name` <br/>_string_ | The name of the ingress.                              |
+| `spec`<br/>_object_           | The specification used to create and run the ingress. |
+| `spec.rules`<br/>_object_     | The list of host rules used to configure the ingress. |
+
+| Optional Attributes                | &nbsp;                                                             |
+| ---------------------------------- | ------------------------------------------------------------------ |
+| `kind`<br/>_string_                | The string value of the REST resource that this object represents. |
+| `metadata.namespace` <br/>_string_ | The namespace in which the ingress is created.                     |
+
+Return value:
+
+| Attributes                 | &nbsp;                                           |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the create ingress task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
+
+<!-------------------- REPLACE AN INGRESS -------------------->
+
+#### Replace an ingress
+
+```shell
+curl -X PUT \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/ingresses/ingress-name/default"
+```
+> Request body example:
+
+```json
+{
+  "endpoint": "http://my-endpoint.com",
+  "service": {
+    "port": "6556",
+    "name": "test"
+  },
+  "apiVersion": "extensions/v1beta1",
+  "kind": "Ingress",
+  "metadata": {
+    "creationTimestamp": "2020-08-13T14:13:42.000-04:00",
+    "generation": 3,
+    "name": "ingress-name",
+    "namespace": "default",
+    "resourceVersion": "170302224",
+    "selfLink": "/apis/extensions/v1beta1/namespaces/default/ingresses/ingress-name",
+    "uid": "c67e6a6a-2b07-4976-8b3d-2ec9fd91ae5d"
+  },
+  "spec": {
+    "rules": [
+      {
+        "host": "my-endpoint.com",
+        "http": {
+          "paths": [
+            {
+              "backend": {
+                "serviceName": "test",
+                "servicePort": 6556
+              },
+              "path": "/testpath"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "status": {
+    "loadBalancer": {
+      "ingress": [
+        {
+          "hostname": "hostname-worker-01"
+        },
+        {
+          "hostname": "hostname-worker-02"
+        },
+        {
+          "hostname": "hostname-worker-03"
+        },
+        {
+          "hostname": "hostname-worker-04"
+        }
+      ]
+    }
+  }
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id</code>
+
+Replace an ingress in a given [environment](#administration-environments).
+
+| Required Attributes           | &nbsp;                                                             |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `apiVersion` <br/> _string_   | The api version (versioned schema) of the ingress.                 |
+| `kind`<br/>_string_           | The string value of the REST resource that this object represents. |
+| `metadata` <br/>_object_      | The metadata of the ingress.                                       |
+| `metadata.name` <br/>_string_ | The name of the ingress.                                           |
+| `spec`<br/>_object_           | The specification used to create and run the ingress.              |
+
+Return value:
+
+| Attributes                 | &nbsp;                                            |
+| -------------------------- | ------------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace ingress task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                      |
+
+<!-------------------- DELETE AN INGRESS -------------------->
+
+#### Delete an ingress
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/ingresses/test-ingress/default"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id</code>
+
+Delete an ingress from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                           |
+| -------------------------- | ------------------------------------------------ |
+| `taskId` <br/>_string_     | The id corresponding to the delete ingress task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                     |
