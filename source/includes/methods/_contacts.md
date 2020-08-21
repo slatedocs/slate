@@ -5,7 +5,7 @@
 Contacts represent people whom you can send payments to, or receive payments from. The contacts api method allows you to add, retrieve, list and update contacts in your Beyonic account. Contacts are also added automatically whenever you send a payment to a new phone number.
 
 The contacts api endpoint is:
-    <aside class="notice">https://app.beyonic.com/api/contacts</aside>
+    <aside class="notice">https://api.beyonic.com/api/contacts</aside>
 
 ## The Contact object
 
@@ -51,7 +51,7 @@ updated_by | string | The ID of the user who last updated the contact
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl https://api.beyonic.com/api/contacts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d first_name='John' \
 -d last_name='Doe' \
 -d phone_number='+80000000001' \
@@ -160,7 +160,7 @@ metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/contacts/44702 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/contacts/44702 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -237,7 +237,7 @@ id | Yes | Integer | 23 | The id of the contact you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/contacts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -288,7 +288,7 @@ catch (Exception e){
 ```json
 {
     "count": 2,
-    "next": "https://app.beyonic.com/api/contacts?offset=10",
+    "next": "https://api.beyonic.com/api/contacts?offset=10",
     "previous": null,
     "results": [
         {
@@ -332,7 +332,7 @@ To retrieve a list of all contacts, make a GET request to the contact end point.
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/contacts?first_name=luke -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/contacts?first_name=luke -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -397,7 +397,7 @@ You can search or filter contacts on the following fields. Simply add them to yo
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/contacts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl https://api.beyonic.com/api/contacts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d first_name='John' \
 -d last_name='Doe' \
 -d phone_number='+80000000001' \

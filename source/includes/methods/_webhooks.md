@@ -6,7 +6,7 @@ Webhooks or callback URLs allow you to define URLs on your server that notificat
 
 The webhooks api endpoint is:
 
-    <aside class="notice">https://app.beyonic.com/api/webhooks</aside>
+    <aside class="notice">https://api.beyonic.com/api/webhooks</aside>
 
 **Note:**
 
@@ -128,7 +128,7 @@ data | A JSON representation of the object that triggered the event. This is dif
 > Sample Request:
 
 ```shell
-curl http://app.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl http://api.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d "payment.status.changed" \
 -d target="https://my.callback.url/"
 ```
@@ -217,7 +217,7 @@ target | Yes | String | 'https://my.callback.url/"' | Must be an https URL
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/webhooks/23 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/webhooks/23 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -289,7 +289,7 @@ id | Yes | Integer | 23 | The id of the webhook you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/webhooks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -386,7 +386,7 @@ To retrieve a list of all webhooks, make a GET request to the webhooks endpoint.
 > Sample Request:
 
 ```shell
-ccurl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+ccurl http://api.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d event="payment.status.changed" \
 -d target="https://my.callback.url/" \
 -X PUT
@@ -464,7 +464,7 @@ To update a webhook, make a PUT request to the specific webhook’s endpoint, id
 > Sample Request:
 
 ```shell
-curl http://app.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" -X DELETE
+curl http://api.beyonic.com/api/webhooks/1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" -X DELETE
 ```
 
 ```ruby
@@ -517,7 +517,7 @@ To delete a webhook, make a DELETE request to the specific webhook’s endpoint,
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/webhooks?user=1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/webhooks?user=1 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

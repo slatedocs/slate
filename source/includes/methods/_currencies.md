@@ -6,7 +6,7 @@ The currency api method allows you to list the currencies supported by Beyonic, 
 
 The currency api endpoint is:
 
-    <aside class="notice">https://app.beyonic.com/api/currencies</aside>
+    <aside class="notice">https://api.beyonic.com/api/currencies</aside>
 
 ## The Currency object
 
@@ -43,7 +43,7 @@ usd_rate | float | The latest USD exchange rate
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/currencies/7 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/currencies/7 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -119,7 +119,7 @@ id | Yes | Integer | 7 | The id of the currency you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/currencies -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/currencies -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

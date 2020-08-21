@@ -6,7 +6,7 @@ Accounts hold your funds. The accounts api method allows you to list your accoun
 
 The accounts api endpoint is:
 
-    <aside class="notice">https://app.beyonic.com/api/accounts</aside>
+    <aside class="notice">https://api.beyonic.com/api/accounts</aside>
 
 ## The Account object
 
@@ -43,7 +43,7 @@ updated_by | string | The ID of the user who last updated the account
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/accounts/12 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/accounts/12 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -115,7 +115,7 @@ id | Yes | Integer | 12 | The id of the account you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/accounts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/accounts -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -166,7 +166,7 @@ catch (Exception e){
 ```json
 {
     "count": 2,
-    "next": "https://app.beyonic.com/api/accounts?offset=10",
+    "next": "https://api.beyonic.com/api/accounts?offset=10",
     "previous": null,
     "results": [
         {
@@ -202,7 +202,7 @@ To retrieve a list of all accounts, make a GET request to the accounts end point
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/accounts?currency=KES -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/accounts?currency=KES -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

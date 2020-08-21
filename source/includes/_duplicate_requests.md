@@ -3,7 +3,7 @@
 > Example Request:
 
 ```shell
-curl https://app.beyonic.com/api -H "Duplicate-Check-Key: ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api -H "Duplicate-Check-Key: ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

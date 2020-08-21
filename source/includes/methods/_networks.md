@@ -6,7 +6,7 @@ The network api method allows you to list the networks supported by Beyonic, inc
 
 The network api endpoint is:
 
-    <aside class="notice">https://app.beyonic.com/api/networks</aside>
+    <aside class="notice">https://api.beyonic.com/api/networks</aside>
 
 ## The Network object
 
@@ -41,7 +41,7 @@ phone_regex | string | The regular expression for phone numbers belonging to the
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/networks/15 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/networks/15 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -116,7 +116,7 @@ id | Yes | Integer | 15 | The id of the network you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/networks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/networks -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

@@ -3,7 +3,7 @@
 To send payments (mobile money or prepaid airtime credit) to a mobile subscriber, you create a new payment object using the payments API. You can also use the payments API to retrieve individual payments or list all payments, as shown in the sections below.
 
 The payments api endpoint is:
-    <aside class="notice">https://app.beyonic.com/api/payments</aside>
+    <aside class="notice">https://api.beyonic.com/api/payments</aside>
 
 ## The Payment object
 
@@ -87,7 +87,7 @@ charged_fee | decimal | The fee that was charged. It is only available for compl
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl https://api.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+80000000001 \
 -d first_name=Kennedy\
 -d last_name=Amani\
@@ -272,7 +272,7 @@ recipient_data | No | JSON-formatted list of dictionaries | [{'phonenumber': '+2
 curl -d '{"currency": "BXC", "description": "Test response on mutiples", "callback_url": "https://my.url.com/callback", "payment_type": "money", "account": 1, "recipient_data": "[\\n {\\n  \\"amount\\": 1,\\n \\"phonenumber\\": \\"+80000000001\\",\\n \\"first_name\\": \\"Jerry\\",\\n  \\"last_name\\": \\"Airtel\\",\\n \\"description\\": \\"This is a payment to {first_name}. This desc is in child obj.\\"\\n\\n  },\\n {\\n  \\"phonenumber\\": \\"+80000000002\\",\\n \\"description\\": \\"What the response?\\",\\n  \\"amount\\":5\\n }\\n ]\\n "}' \
 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -H "Content-type : application/json" \
-https://app.beyonic.com/api/payments
+https://api.beyonic.com/api/payments
 ```
 
 ```ruby
@@ -468,7 +468,7 @@ contact_bank_account | long integer | The id of the contact bank account in Beyo
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/payments/22744 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/payments/22744 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -573,7 +573,7 @@ id | Yes | Integer | 2314 | The id of the payment you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -633,7 +633,7 @@ catch (BeyonicException e){
 ```json
 {
     "count": 2,
-    "next": "http://app.beyonic.com/api/payments?offset=10",
+    "next": "http://api.beyonic.com/api/payments?offset=10",
     "previous": null,
     "results": [
         {
@@ -701,7 +701,7 @@ To return a list of all payments, make a GET request to the payments endpoint. T
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/payments?amount=500 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/payments?amount=500 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

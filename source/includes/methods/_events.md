@@ -7,7 +7,7 @@ Events track certain changes that happen to your Beyonic account. Events are cre
 You can use the events API to retrieve information about recent events. Events are saved for at least 30 days. After that, they may be discarded.
 
 The events api endpoint is:
-        <aside class="notice">https://app.beyonic.com/api/events</aside>
+        <aside class="notice">https://api.beyonic.com/api/events</aside>
 
 You can also set up your account to automatically notify you as event occur. See the [Webhooks API](#webhooks) for more information about setting up automatic notification for events.
 
@@ -69,7 +69,7 @@ updated_by | string | The ID of the user who last modified the event
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/events/12 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/events/12 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -155,7 +155,7 @@ id | Yes | Integer | 12 | The id of the event you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/events -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/events -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -206,7 +206,7 @@ catch (Exception e){
 ```json
 {
     "count": 1,
-    "next": "https://app.beyonic.com/api/events?offset=10",
+    "next": "https://api.beyonic.com/api/events?offset=10",
     "previous": null,
     "results": [
         {
@@ -240,7 +240,7 @@ To retrieve a list of all events, make a GET request to the events end point. Th
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/events?type=contact.created -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/events?type=contact.created -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

@@ -93,7 +93,7 @@ By clicking on "Recent Events", you will be able to see events and notification 
 
 A postman collection will be created with sample Beyonic API requests. Create an environment on postman by navigating to New > Environment then create the variables below in the environment
 
-    <aside class="notice">api_url: https://app.beyonic.com/api</aside>
+    <aside class="notice">api_url: https://api.beyonic.com/api</aside>
     <aside class="notice">api_key: Your api token </aside>
 
 Proceed to test the api requests in your postman collection.

@@ -7,7 +7,7 @@ transactions.
 
 The transactions api endpoint is:
 
-    <aside class="notice">https://app.beyonic.com/api/transactions</aside>
+    <aside class="notice">https://api.beyonic.com/api/transactions</aside>
 
 ## The Transaction object
 
@@ -38,7 +38,7 @@ type | string | The transaction type. This can be admin_funds_update, mobile_fun
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/transactions/12 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/transactions/12 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -107,7 +107,7 @@ id | Yes | Integer | 12 | The id of the transaction you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/transactions -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/transactions -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -158,7 +158,7 @@ catch (Exception e){
 ```json
 {
   "count": 2,
-  "next": "https://app.beyonic.com/api/transactions?limit=10&offset=10",
+  "next": "https://api.beyonic.com/api/transactions?limit=10&offset=10",
   "previous": null,
   "results": [
     {
@@ -188,7 +188,7 @@ To retrieve a list of all transactions, make a GET request to the transactions e
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/transactions?type=mobile_payment -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/transactions?type=mobile_payment -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

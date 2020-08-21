@@ -60,6 +60,6 @@ Can't wait to dive in? Follow the 6 steps below to get started.
 1. [Sign Up](https://app.beyonic.com/signup/) for a Beyonic account.
 2. [Login](https://app.beyonic.com/) and get your API Token by clicking your user name on the bottom left of the left sidebar menu and selecting 'Manage my account' from the dropdown menu. The API Token is shown at the very bottom of the page.
 3. Download the appropriate client library from links in the "Libraries" section of this reference.
-4. Using your API token and the library, connect to the API endpoint: https://app.beyonic.com/api
+4. Using your API token and the library, connect to the API endpoint: https://api.beyonic.com/api
 5. Identify the methods you need to use. See the "Methods" section of this reference.
 6. Profit!

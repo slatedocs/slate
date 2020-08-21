@@ -3,7 +3,7 @@
 > Pagination Example Request:
 
 ```shell
-curl https://app.beyonic.com/api/v2/contacts?limit=10&offset=5 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/v2/contacts?limit=10&offset=5 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

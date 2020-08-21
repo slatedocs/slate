@@ -3,7 +3,7 @@
 ## Introduction
 
 This api allows the users to check which banks are supported by the Beyonic API.
-The API endpoint is <aside class="notice">https://app.beyonic.com/api/banks</aside>
+The API endpoint is <aside class="notice">https://api.beyonic.com/api/banks</aside>
 
 ## The bank object
 A sample bank object looks like This

@@ -7,7 +7,7 @@ Creating a collection request prior to receiving an expected collection greatly 
 On some supported networks, collection requests actually "pull" the funds from the recipient's mobile money wallet, and all they have to do is enter their PIN code to approve the transaction. This greatly improves the customer experience.
 
 The collection requests api endpoint is:
-    <aside class="notice">https://app.beyonic.com/api/collectionrequests</aside>
+    <aside class="notice">https://api.beyonic.com/api/collectionrequests</aside>
 
 ## The Collection Request object
 
@@ -90,7 +90,7 @@ subscription_settings | JSON String or null | The subscriptions_settings option 
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl https://api.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+80000000001 \
 -d currency=BXC \
 -d amount=3000 \
@@ -247,7 +247,7 @@ subscription_settings | NO |  JSON String | "{'start_date': '24/05/2019 13:24:12
 > Sample Request : The recurrence for this collection  request is every week from 24th May 2019 until 24th June 2019
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl https://api.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+80000000001 \
 -d currency=BXC \
 -d amount=3000 \
@@ -314,7 +314,7 @@ print collection_request  # Examine the returned object
 > Sample Request : The recurrence for this collection request is in the month of July, August and December.
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl https://api.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+80000000001 \
 -d currency=BXC \
 -d amount=3000 \
@@ -396,7 +396,7 @@ To create a recurring collection request, use the options below in the subscript
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests/427737 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/collectionrequests/427737 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -506,7 +506,7 @@ id | Yes | Integer | 427737 | The id of the collection you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -563,7 +563,7 @@ catch (BeyonicException e){
 ```json
 {
     "count": 31271,
-    "next": "https://app.beyonic.com/api/collectionrequests?limit=10&offset=10",
+    "next": "https://api.beyonic.com/api/collectionrequests?limit=10&offset=10",
     "previous": null,
     "results": [{
         "id": 427737,
@@ -662,7 +662,7 @@ To retrieve a list of all collections, make a GET request to the collections end
 > Sample Request:
 
 ```shell
-curl "https://app.beyonic.com/api/collectionrequests?phonenumber=%2B80000000001&amount=500" -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl "https://api.beyonic.com/api/collectionrequests?phonenumber=%2B80000000001&amount=500" -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

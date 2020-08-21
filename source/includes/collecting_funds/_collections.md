@@ -5,7 +5,7 @@ Beyonic uses the term "Collections" for payments you receive (or collect) from m
 When the user sends in a payment, it will create a collection object that you can access via the Collections API using the methods shown below.
 
 The collections api endpoint is:
-  <aside class="notice">https://app.beyonic.com/api/collections</aside>
+  <aside class="notice">https://api.beyonic.com/api/collections</aside>
 
 **NOTE: If you want to initiate new collections, use the [Collection Requests API](#collection-requests. The collections api only allows you to view funds that have already been sent to you.**
 
@@ -241,7 +241,7 @@ You must respond within 60 seconds, otherwise the verification request will time
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections/131820 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/collections/131820 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -420,7 +420,7 @@ id | Yes | Integer | 23 | The id of the collection you want to retrieve
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/collections -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -472,7 +472,7 @@ catch (BeyonicException e){
 ```json
 {
     "count": 3,
-    "next": "https://app.beyonic.com/api/collections?offset=10",
+    "next": "https://api.beyonic.com/api/collections?offset=10",
     "previous": null,
     "results": [
         {
@@ -531,7 +531,7 @@ To retrieve a list of all collections, make a GET request to the collections end
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=%2B80000000001&remote_transaction_id=SS12312 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/collections?phonenumber=%2B80000000001&remote_transaction_id=SS12312 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby
@@ -631,7 +631,7 @@ Note that the response will be a list of collections, not a single collection.
 > Sample Request:
 
 ```shell
-curl https://app.beyonic.com/api/collections?phonenumber=%2B80000000001&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
+curl https://api.beyonic.com/api/collections?phonenumber=%2B80000000001&remote_transaction_id=SS12312&claim=True&amount=200 -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900"
 ```
 
 ```ruby

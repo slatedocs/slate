@@ -1,7 +1,7 @@
 # API Endpoint
 
 You access Beyonic’s API at the following endpoint:
-    <aside class="notice">https://app.beyonic.com/api</aside>
+    <aside class="notice">https://api.beyonic.com/api</aside>
 
 This endpoint uses your saved API version (see below). If you’d like to make sure that your application always accesses the same version, you can specify a specific version as shown in the versioning section.
 
@@ -10,7 +10,7 @@ This endpoint uses your saved API version (see below). If you’d like to make s
 > Example Request:
 
 ```shell
-curl -H "Beyonic-Version: v1" https://app.beyonic.com/api
+curl -H "Beyonic-Version: v1" https://api.beyonic.com/api
 ```
 
 ```ruby
@@ -42,7 +42,7 @@ You don't need to specify a version in your request. The first time an API reque
 
 You can temporarily override the API version for a specific request in 2 ways:
 
-* Use version specific URLS like: https://app.beyonic.com/api/v1
+* Use version specific URLS like: https://api.beyonic.com/api/v1
 * Include the Beyonic-Version header in your request as shown in the examples to the right.
 
 The various API libraries provide methods for changing the version, as shown in the examples to the right.

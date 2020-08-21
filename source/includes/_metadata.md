@@ -3,7 +3,7 @@
 > Example showing how to create a new payment with Metadata:
 
 ```shell
-curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+curl https://api.beyonic.com/api/payments -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
 -d phonenumber=+256778122118 \
 -d currency=UGX \
 -d amount=30 \
