@@ -81,7 +81,7 @@ Attributes | &nbsp;
 `connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
 `changes`<br/>*Array[Object]* | Array of all changes done on the product catalog.
 `categories`<br/>*Array[Object]* | The list of product categories object.
-`categories.id`<br/>*string* | The id of product category object.
+`categories.id`<br/>*UUID* | The id of product category object.
 `categories.name`<br/>*Object* | The name object in each language for the category.
 `products`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
@@ -185,7 +185,7 @@ Attributes | &nbsp;
 `connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
 `changes`<br/>*Array[Object]* | Array of all changes done on the product catalog.
 `categories`<br/>*Array[Object]* | The list of product categories object.
-`categories.id`<br/>*string* | The id of product category object.
+`categories.id`<br/>*UUID* | The id of product category object.
 `categories.name`<br/>*Object* | The name object in each language for the category.
 `products`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
@@ -504,7 +504,7 @@ Required | &nbsp;
 `description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
 `categories`<br/>*Array[Object]* | The list of product categories object.
-`categories.id`<br/>*string* | The id of product category object. Required for each category object.
+`categories.id`<br/>*UUID* | The id of product category object. Required for each category object.
 `categories.name`<br/>*Object* | The name object in each language for the category.
 `products`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
