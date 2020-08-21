@@ -50,6 +50,7 @@ curl "https://cloudmc_endpoint/rest/product_catalogs" \
             "name": {}
           },
           "period": "HOUR",
+          "deprecated": false,
           "name": {
             "en": "vCPU",
             "fr": "vCPU"
@@ -86,8 +87,9 @@ Attributes | &nbsp;
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
 `products.unit`<br/>*Object* | The unit object of the product.
 `products.unit.unit`<br/>*string* | The unit value of the product.
-`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom unit.
+`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom units.
 `products.period`<br/>*string* | The period for the product capture. Possible values: HOURS, MONTH.
+`products.deprecated`<br>*boolean* | Whether or not the product is deprecated. Defaults to false.
 `products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
@@ -101,7 +103,7 @@ Attributes | &nbsp;
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
-`products.sku`<br/>*string* | The SKU of the product information.
+`products.sku`<br/>*string* | The SKU of the product.
 `products.categoryId`<br/>*UUID* | The UUID of the category to which belongs the product.
 
 
@@ -152,6 +154,7 @@ curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afd
           "name": {}
         },
         "period": "HOUR",
+        "deprecated": false,
         "name": {
           "en": "vCPU",
           "fr": "vCPU"
@@ -188,8 +191,9 @@ Attributes | &nbsp;
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
 `products.unit`<br/>*Object* | The unit object of the product.
 `products.unit.unit`<br/>*string* | The unit value of the product.
-`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom unit.
+`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom units.
 `products.period`<br/>*string* | The period for the product capture. Possible values: HOURS, MONTH.
+`products.deprecated`<br>*boolean* | Whether or not the product is deprecated. Deprecated products may not be updated or undeprecated. Defaults to false.
 `products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
@@ -203,7 +207,7 @@ Attributes | &nbsp;
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
-`products.sku`<br/>*string* | The SKU of the product information.
+`products.sku`<br/>*string* | The SKU of the product.
 `products.categoryId`<br/>*UUID* | The UUID of the category to which belongs the product.
 
 
@@ -342,18 +346,20 @@ Optional | &nbsp;
 ------- | -----------
 `connectionIds`<br/>*Array[UUID]* | Array of the UUID service connection the catalog is bound to.
 `categories`<br/>*Array[Object]* | The list of product categories object.
-`categories.id`<br/>*string* | The id of product category object. Required for each category object.
+`categories.id`<br/>*UUID* | The id of product category object. Required for each category object.
 `categories.name`<br/>*Object* | The name object in each language for the category.
 `products`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
 `products.unit`<br/>*Object* | The unit object of the product.
 `products.unit.unit`<br/>*string* | The unit value of the product.
-`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom unit.
+`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom units.
 `products.period`<br/>*string* | The period for the product capture. Possible values: HOURS, MONTH.
+`products.deprecated`<br>*boolean* | Whether or not the product is deprecated. Deprecated products may not be updated or undeprecated. Defaults to false.
 `products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
 `products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
+`products.id`<br/>*UUID* | The id of the product. Returned with the response.
 `products.attribute`<br/>*string* | The attribute that will be used to compute usage from the service type usage.
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
 `products.filters`<br/>*Array[Object]* | The list of products assigned to the catalog.
@@ -362,7 +368,7 @@ Optional | &nbsp;
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
-`products.sku`<br/>*string* | The SKU of the product information.
+`products.sku`<br/>*string* | The SKU of the product.
 `products.categoryId`<br/>*UUID* | The UUID of the category to which belongs the product. Required for each product.
 
 
@@ -504,10 +510,10 @@ Required | &nbsp;
 `products.metricType`<br/>*string* | The type of metrics taken. Possible values: COUNTER, GAUGE.
 `products.unit`<br/>*Object* | The unit object of the product.
 `products.unit.unit`<br/>*string* | The unit value of the product.
-`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom unit.
+`products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom units.
 `products.period`<br/>*string* | The period for the product capture. Possible values: HOURS, MONTH.
 `products.name`<br/>*Object* | The name object in each language for the product name.
-`products.deprecataed`<br>*boolean* | Whether or not the product is deprecated. Deprecated products may not be updated or undeprecated. Defaults to false.
+`products.deprecated`<br>*boolean* | Whether or not the product is deprecated. Deprecated products may not be updated or undeprecated. Defaults to false.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
 `products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
@@ -519,7 +525,7 @@ Required | &nbsp;
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
-`products.sku`<br/>*string* | The SKU of the product information. May not be edited after product is created.
+`products.sku`<br/>*string* | The SKU of the product. May not be edited after product is created.
 `products.categoryId`<br/>*UUID* | The UUID of the category to which belongs the product. Required for each product.
 
 Optional | &nbsp;
