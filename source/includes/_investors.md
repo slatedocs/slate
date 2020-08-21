@@ -1398,11 +1398,11 @@ Updates the status of an investor's ISA. This can aid testing by placing an ISA 
 | remainingSubscriptionAmount.amount   | number | The amount                                                                    |
 | remainingSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
 
-## `POST /platformApi/investors/{investorId}/declaration/agreement`
+## `POST /platformApi/investors/{investorId}/isa/declaration/agreement`
 
 ```http
 
-POST /platformApi/investors/{investorId}/declaration/agreement HTTP/1.1
+POST /platformApi/investors/{investorId}/isa/declaration/agreement HTTP/1.1
 Host: api-sandbox.goji.investments
 Content-Type: application/json
 Authorization: Basic ...
