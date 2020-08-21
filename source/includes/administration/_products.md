@@ -248,12 +248,12 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
             "fr": "category_fr",
             "es": "category_es"
           },
-					"id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
+	  "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
         }
       ],
       "products": [
         {
-					"categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+	  "categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
           "metricType": "GAUGE",
           "unit": {
             "unit": "HOUR",
@@ -411,12 +411,12 @@ curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8
             "fr": "category_fr",
             "es": "category_es"
           },
-					"id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
+	  "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
         }
       ],
       "products": [
         {
-					"categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+	  "categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
           "metricType": "GAUGE",
           "unit": {
             "unit": "HOUR",
