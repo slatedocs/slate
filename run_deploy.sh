@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ $CIRCLE_BRANCH == "staging" ]]; then
+  RANCHER_CLUSTER=$RANCHER_CLUSTER_STAGING
+fi;
+
 # rancher login
 echo -e "${yellow}\nRancher Login${noc}"
 rancher login $RANCHER_API --token $RANCHER_TOKEN --context $RANCHER_CLUSTER
