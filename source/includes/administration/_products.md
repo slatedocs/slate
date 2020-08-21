@@ -99,7 +99,7 @@ Attributes | &nbsp;
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
 `products.filters`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.filters.type`<br/>*string* | The type of the filter. Possible values: EXPRESSION, SIMPLE.
-`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION.
+`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION. The expression must follow the syntax of Spring Expression Language(SPEL).
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
@@ -203,7 +203,7 @@ Attributes | &nbsp;
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
 `products.filters`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.filters.type`<br/>*string* | The type of the filter. Possible values: EXPRESSION, SIMPLE.
-`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION.
+`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION. The expression must follow the syntax of Spring Expression Language(SPEL).
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
@@ -364,7 +364,7 @@ Optional | &nbsp;
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
 `products.filters`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.filters.type`<br/>*string* | The type of the filter. Possible values: EXPRESSION, SIMPLE.
-`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION.
+`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION. The expression must follow the syntax of Spring Expression Language(SPEL).
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
@@ -522,7 +522,7 @@ Required | &nbsp;
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
 `products.filters`<br/>*Array[Object]* | The list of products assigned to the catalog.
 `products.filters.type`<br/>*string* | The type of the filter. Possible values: EXPRESSION, SIMPLE.
-`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION.
+`products.filters.expression`<br/>*string* | The expression to filter the product in the usage generation. Only required when the type is EXPRESSION. The expression must follow the syntax of Spring Expression Language(SPEL).
 `products.filters.field`<br/>*string* | The field to filter. This is only required when type is SIMPLE.
 `products.filters.operator`<br/>*string* | The operation to check on the selected field. This is only required when type is SIMPLE. Possible values: EQUAL, NOT_EQUAL, CONTAINS, STARTS_WITH, ENDS_WITH, MATCHES_REGEX, LESS_THAN, LESS_OR_EQUAL_THAN, BIGGER_THAN, BIGGER_OR_EQUAL_THAN.
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
