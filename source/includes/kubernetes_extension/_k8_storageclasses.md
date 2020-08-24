@@ -175,7 +175,6 @@ Create a storage class in a given [environment](#administration-environments).
 | Required Attributes               | &nbsp;                                                                                                                    |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `apiVersion` <br/> _string_       | The api version (versioned schema) of the storage class.                                                                  |
-| `kind`<br/>_string_               | The string value representing the REST resource this object represents.                                                   |
 | `metadata` <br/>_object_          | The metadata of the storage class.                                                                                        |
 | `metadata.name` <br/>_string_     | The name of the storage class.                                                                                            |
 | `provisioner` <br/>_string_       | The provisioner for the storage class                                                                                     |

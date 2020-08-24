@@ -144,7 +144,6 @@ Create a daemon set in a given [environment](#administration-environments).
 
 | Optional Attributes                        | &nbsp;                                                                     |
 | ------------------------------------------ | -------------------------------------------------------------------------- |
-| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.         |
 | `metadata.namespace` <br/>_string_         | The namespace in which the daemon set is created.                          |
 | `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a daemon set.          |
 
@@ -222,7 +221,6 @@ Replace a daemon set in a given [environment](#administration-environments).
 
 | Optional Attributes                        | &nbsp;                                                                     |
 | ------------------------------------------ | -------------------------------------------------------------------------- |
-| `kind`<br/>_string_                        | The string value of the REST resource that this object represents.         |
 | `metadata.namespace` <br/>_string_         | The namespace in which the daemon set is replaced.                         |
 | `spec.selector.matchLabels`<br/>_object_   | The key value pairs retrieved by a label query from a daemon set.          |
 

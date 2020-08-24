@@ -72,7 +72,6 @@ Retrieve a namespace and all its info in a given [environment](#administration-e
 | -------------------------- | ------------------------------------------------------------------------------------- |
 | `id` <br/>_string_         | The id of the namespace.                                                              |
 | `apiVersion` <br/>_string_ | APIVersion defines the versioned schema of this representation of a namespace object. |
-| `kind`<br/>_string_        | The string value of the REST resource that this object represents.                    |
 | `metadata` <br/>_object_   | The metadata of the namespace.                                                        |
 | `spec`<br/>_object_        | The specification describes the attributes on a namespace.                            |
 | `status`<br/>_object_      | The status information of the namespace.                                              |
@@ -113,10 +112,6 @@ Create a namespace in a given [environment](#administration-environments).
 | `apiVersion` <br/> _string_   | The api version (versioned schema) of the namespace. |
 | `metadata` <br/>_object_      | The metadata of the namespace.                       |
 | `metadata.name` <br/>_string_ | The name of the namespace.                           |
-
-| Optional Attributes | &nbsp;                                                             |
-| ------------------- | ------------------------------------------------------------------ |
-| `kind`<br/>_string_ | The string value of the REST resource that this object represents. |
 
 Return value:
 
