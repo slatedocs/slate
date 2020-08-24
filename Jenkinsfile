@@ -1,4 +1,7 @@
-@Library('cloudmc-jenkins-shared@master') _ 
+library(identifier: 'utils@v2.4.5', retriever: modernSCM(
+  [$class: 'GitSCMSource',
+   remote: 'git@github.com:cloudops/cloudmc-jenkins-shared.git',
+   credentialsId: 'gh-jenkins']))
 
 pipeline {
   agent { label 'cmc' }
