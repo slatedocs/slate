@@ -1,8 +1,3 @@
-// library(identifier: 'utils@v2.4.5', retriever: modernSCM(
-//   [$class: 'GitSCMSource',
-//    remote: 'git@github.com:cloudops/cloudmc-jenkins-shared.git',
-//    credentialsId: 'gh-jenkins']))
-
 @Library('cloudmc-jenkins-shared@master') _ 
 
 pipeline {
@@ -14,13 +9,6 @@ pipeline {
   }
 
   stages {
-    // stage('Setup') {
-    //   steps {
-    //     deleteDir()
-    //     git credentialsId: 'gh-jenkins', url: env.GIT_URL, branch: env.BRANCH_NAME
-    //   }
-    // }
-
     stage('Deploy github pages') {
       when {
         expression {
