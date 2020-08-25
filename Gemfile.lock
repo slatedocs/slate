@@ -98,7 +98,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (10.4.2)
+    rake (12.3.3)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -140,7 +140,7 @@ DEPENDENCIES
   middleman-gh-pages
   middleman-livereload (~> 3.3.0)
   middleman-syntax
-  rake (~> 10.4.0)
+  rake (~> 12.3.3)
   redcarpet (~> 3.2.1)
   rouge (= 1.7.2)
   ruby18_source_location
