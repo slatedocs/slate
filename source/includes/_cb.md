@@ -251,7 +251,7 @@ opening_hours[special][][hours][end] | Please only use allowed working hours for
 opening_hours[special][][date] | Date string with format 'yyyy-mm-dd'special_offer |		
 special_offer_description |		
 special_offer_expiry_date |		
-payment_methods	| <p>String with '&#124;' delimiter. E.g. cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;atm&#124;discover. Possible values - cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;invoice&#124;insurance&#124;atm&#124;travellers&#124;financing&#124;paypal&#124;discover</p>
+payment_methods	| <p>Array of options. E.g. ['cash', 'visa', 'mastercard', 'amex', 'cheque', 'atm', 'discover]. Possible values - cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;invoice&#124;insurance&#124;atm&#124;travellers&#124;financing&#124;paypal&#124;discover</p>
 social_profile_links | Object. See example on the right for reference. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
 receive-email-alerts | 		
 alert-email-addresses | 		
@@ -290,6 +290,10 @@ $success = $api->put('/v4/cb/' .$campaignId, [
     'contact_firstname'          => 'Joe',
     'contact_telephone'          => '+1 212-554-1515',
     'contact_email'              => 'joe.bloggs@test.com',	
+    'payment_methods'   => [
+            "visa",
+            "paypal"
+        ],
     'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":"","pinterest":"https:\/\/www.pinterest.co.uk\/brightlocal\/"}'
 ]);
 print_r($success);
@@ -420,7 +424,7 @@ opening_hours[special][][date] | Date string with format 'yyyy-mm-dd'
 special_offer |		
 special_offer_description |		
 special_offer_expiry_date |		
-payment_methods	| <p>String with '&#124;' delimiter. E.g. cash&#124;visa&#124;mastercard&#124;amex&#124;cheque&#124;atm&#124;discover. Possible values - cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travellers, financing, paypal, discover</p>
+payment_methods	| <p>Array of options. E.g. ['cash', 'visa', 'mastercard', 'amex', 'cheque', 'atm', 'discover']. Possible values - cash, visa, mastercard, amex, cheque, invoice, insurance, atm, travellers, financing, paypal, discover</p>
 social_profile_links | Object. Social channels supported are facebook, twitter, linkedin, pinterest and instagram.
 receive-email-alerts | 		
 alert-email-addresses | 		
