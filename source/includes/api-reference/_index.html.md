@@ -18463,6 +18463,7 @@ This is not an exhaustive list, but should cover the most common use cases.
  * Team - added, changed, deleted
  * Team Membership - added, removed
  * Workspace - added, removed, changed
+ * Workspace Memberships - added, removed
 </span>
 
 </section>

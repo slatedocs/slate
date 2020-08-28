@@ -781,6 +781,7 @@ tags:
        * Team - added, changed, deleted
        * Team Membership - added, removed
        * Workspace - added, removed, changed
+       * Workspace Memberships - added, removed
   - name: Workspaces
     description: >-
       A *workspace* is the highest-level organizational unit in Asana. All
