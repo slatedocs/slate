@@ -217,7 +217,7 @@ fax_number |
 brief_description | <span class="label label-required">Required</span>	
 full_description | <span class="label label-required">Required</span>	
 employees_number | <span class="label label-required">Required</span>	
-formation_date | <span class="label label-required">Required</span>	
+formation_date | <span class="label label-required">Required</span>	Month and date formatted ‘mm-yyyy’
 service_name_1 |		
 service_name_2 |		
 service_name_3 |		
@@ -259,7 +259,7 @@ old_business_name |
 old_lookup_data	| For e.g, old postcode
 is_public | Publish reports on a white label URL. Y or N.
 campaign_notes | Notes for any issues & concerns which you want our submission team to be aware of when they submit to directories
-white_label_profile_id | Id of existing White Label Profile
+white_label_profile_id | <span class="label label-required">Required</span> Id of existing White Label Profile
 
 ## Update Campaign
 
@@ -389,7 +389,7 @@ fax_number |
 brief_description | 	
 full_description | 	
 employees_number | 	
-formation_date | 	
+formation_date | Month and date formatted ‘mm-yyyy’	
 service_name_1 |		
 service_name_2 |		
 service_name_3 |		
@@ -432,7 +432,7 @@ old_business_name |
 old_lookup_data	| For e.g, old postcode
 is_public | Publish reports on a white label URL. Y or N.
 campaign_notes | Notes for any issues & concerns which you want our submission team to be aware of when they submit to directories
-white_label_profile_id | Id of existing White Label Profile
+white_label_profile_id | <span class="label label-required">Required</span> Id of existing White Label Profile
 
 ## Upload Image
 
