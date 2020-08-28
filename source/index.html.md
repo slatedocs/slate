@@ -147,7 +147,7 @@ We use OAuth2 to authorize the requests.
 
 ```shell
 curl "https://getquipu.com/oauth/token" \
-  -H "Authorization: Basic MGE2NzJjZDY5YmFkYjE1NjM4MWUyOTdlZjJkZjk4ZmE1Mjg5ZDdkNTA4 ..." \
+  -H "Authorization: Basic UHROeGZDc0drbGltRXJRcVZUZUFGRFVUVWpkTVZDcmpORklsclJlS..." \
   -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
   -d "scope=ecommerce"
   -d "grant_type=client_credentials"
@@ -166,6 +166,17 @@ curl "https://getquipu.com/oauth/token" \
 ```
 
 To get an access token you will need the account's `app_id` and `app_secret` credentials.
+
+As is standard in basic access authentication, the header's structure corresponds to `Authorization Basic credentials`, where `credentials` is the result of:
+
+* Joining `app_id` and `app_secret` by a single colon
+* Applying Base64 (URL safe mode) to the result
+
+Example:
+
+* if `app_id` were `PtNxfCsGklimErQqVTeAFDUTUjdMVCrjNFIlrReIimSHKMoOaWxAxwHPNevbIwFV`
+* and `app_secret` were `HRcqlIcHjYUWunjgVmAQiWYjbYFAGSoLhpXkHoGPhjdwQmXmRIxDQOQJOANpfnbD`
+* then the header would be `Authorization Basic UHROeGZDc0drbGltRXJRcVZUZUFGRFVUVWpkTVZDcmpORklsclJlSWltU0hLTW9PYVd4QXh3SFBOZXZiSXdGVjpIUmNxbEljSGpZVVd1bmpnVm1BUWlXWWpiWUZBR1NvTGhwWGtIb0dQaGpkd1FtWG1SSXhEUU9RSk9BTnBmbmJE`
 
 <aside class="notice">
   When a token expires you will need to request for a new one
