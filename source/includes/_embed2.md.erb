@@ -32,9 +32,27 @@ You should now see a small question mark button on the bottom right corner of yo
 
 ## Advanced Setup
 
-In some situations, the quick setup above may be too simplistic. You may want to delay instantiation of Embed2 until a certain event, your application might be a Single-Page App and you need more control, or perhaps you don't want to bind your settings to the window object. Whatever the reason, Embed2 ships with additional features to help you get setup.
+In some situations, the quick setup above may be too simplistic. You may want to delay instantiation of Embed2 until a certain event, your application might be a Single-Page App and you need more control, or perhaps you want to set the bot language. Whatever the reason, Embed2 ships with additional features to help you get setup.
 
 If you still require recommendations on how best to implement the Embed2 script, please reach out to an Ada team member. However, please note that all implementations are ultimately the responsiblity of your development team.
+
+### Ada Settings
+```html
+<script>
+  window.adaSettings = {
+    ...
+  }
+</script>
+...
+<!-- Define the Embed script afterwards -->
+```
+Embed2 supports a number of configurable options which can be set through an `adaSettings` object you define on your `window` scope. Alternatively, settings can also be passed to the `adaEmbed.start` method (see [Lazy Mode](#embed2-advanced-setup-lazy-mode) below).
+
+A full list of `adaSettings` options can be found in [API Reference](#embed2-api-reference).
+
+<aside class="warning">
+Embed2 requires `window.adaSettings` be defined before the script loads. You must therefore either define `window.adaSettings` before the Embed script, or make use of async on your embed script (see Async below).
+</aside>
 
 ### Lazy Mode
 
