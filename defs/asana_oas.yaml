@@ -2082,8 +2082,8 @@ components:
                 $ref: '#/components/schemas/CustomFieldSettingResponse'
             due_on:
               description: >-
-                The day on which this portfolio is due. This takes a date with
-                format YYYY-MM-DD.
+                The localized day on which this portfolio is due. This takes a
+                date with format YYYY-MM-DD.
               type: string
               nullable: true
               format: date-time
@@ -3568,18 +3568,18 @@ components:
               readOnly: true
             due_at:
               description: >-
-                Date and time on which this task is due, or null if the task has
-                no due time. This takes a UTC timestamp and should not be used
-                together with `due_on`.
+                The UTC date and time on which this task is due, or null if the
+                task has no due time. This takes a UTC timestamp and should not be
+                used together with `due_on`.
               type: string
               format: date
               example: '2019-09-15T02:06:58.147Z'
               nullable: true
             due_on:
               description: >-
-                Date on which this task is due, or null if the task has no due
-                date.  This takes a date with `YYYY-MM-DD` format and should not
-                be used together with due_at.
+                The localized date on which this task is due, or null if the task
+                has no due date.  This takes a date with `YYYY-MM-DD` format and
+                should not be used together with due_at.
               type: string
               format: date
               example: '2019-09-15'
