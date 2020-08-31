@@ -6294,3 +6294,17 @@ pre code {
 .property-checkboxes-include div, .property-checkboxes-expand div {
   display: inline-block;
 }
+
+.logo {
+  width: 214px;
+  height: 23px;
+}
+
+.header {
+  padding: 20px 15px 15px 15px;
+  border-bottom: 1px solid #e8ecee;
+}
+
+.header a {
+  border-bottom: none;
+}
