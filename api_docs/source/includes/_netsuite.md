@@ -696,6 +696,29 @@ CURRENCY_ID | ID of the currency being deleted
 204 No Content
 
 
+## Get Custom Field (Purchase Order)<code class='get'>GET</code>
+
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint retrieves the Purchase Order custom fields.
+
+### HTTP Request
+
+`GET https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/purchase-orders/`
+
+### HTTP Response Status Code
+
+200 OK
+
+### URL Parameters
+
+
 
 ## Create Custom Field<code class='post'>POST</code>
 
