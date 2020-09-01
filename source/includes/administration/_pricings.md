@@ -460,7 +460,7 @@ Optional | &nbsp;
 
 `DELETE /pricings/:id`
 
-Delete an extisting pricing. A pricing cannot be deleted if it is attached to an applied pricing.
+Delete an extisting pricing. A pricing cannot be deleted if it is associated to an applied pricing.
 
 ```shell
 # Creates a new pricing
