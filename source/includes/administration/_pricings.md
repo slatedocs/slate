@@ -382,12 +382,14 @@ curl -X PUT "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afdd
 ```js
 {
   "name": {
-    "en": "pricing-test",
-    "fr": "prix-pour-test",
-    "es": "precio"
+      "en": "name-updated",
+      "fr": "nom-updated",
+      "es": "nombre-updated"
   },
   "description": {
-    "en": "pricing-desc-for-api-doc"
+    "en": "pricing-desc-updated",
+    "fr": "desc_fr",
+    "es": "desc_es"
   }
 }
 ```
@@ -430,13 +432,15 @@ curl -X PUT "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afdd
       }
     ],
     "name": {
-      "en": "pricing-test",
-      "fr": "prix-pour-test",
-      "es": "precio"
+      "en": "name-updated",
+      "fr": "nom-updated",
+      "es": "nombre-updated"
     },
     "changes": [],
     "description": {
-      "en": "pricing-desc-for-api-doc"
+      "en": "pricing-desc-updated",
+      "fr": "desc_fr",
+      "es": "desc_es"
     },
     "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
     "effectiveDate": "2020-05-06T00:00:00Z"
@@ -456,7 +460,7 @@ Optional | &nbsp;
 
 `DELETE /pricings/:id`
 
-Delete an extisting pricing. The pricing cannot be deleted if it is attached to an applied pricing.
+Delete an extisting pricing. A pricing cannot be deleted if it is attached to an applied pricing.
 
 ```shell
 # Creates a new pricing
