@@ -363,3 +363,116 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `description` <br/>*Object* | A map of language language keys to the description in the specified language.
+
+<!-------------------- UPDATE PRICING -------------------->
+#### Update pricing
+
+`PUT /pricings/:id`
+
+Update an existing pricing's name and description.
+
+```shell
+# Creates a new pricing
+curl -X PUT "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> Request body example:
+
+```js
+{
+  "name": {
+      "en": "name-updated",
+      "fr": "nom-updated",
+      "es": "nombre-updated"
+  },
+  "description": {
+    "en": "pricing-desc-updated",
+    "fr": "desc_fr",
+    "es": "desc_es"
+  }
+}
+```
+
+> The above command return JSON structured like this:
+
+```js
+{
+  "data": {
+    "supportedCurrencies": [
+      "CAD",
+      "USD"
+    ],
+    "productCatalogs": [
+      {
+        "id": "b6c89a59-34bf-4be4-a9bf-4414de84f5f7"
+      }
+    ],
+    "organization": {
+      "id": "1d37a999-6ac6-4193-acb2-49df5c43ff31"
+    },
+    "pricingProducts": [
+      {
+        "unitPrice": 5,
+        "product": {
+          "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+        },
+        "cogs": 4,
+        "currency": "CAD",
+        "id": "45301951-59cb-461e-b0d0-85c46a7abb69"
+      },
+      {
+        "unitPrice": 5,
+        "product": {
+          "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+        },
+        "cogs": 4,
+        "currency": "USD",
+        "id": "30ec5361-0044-44d5-a8b1-68dca07d274e"
+      }
+    ],
+    "name": {
+      "en": "name-updated",
+      "fr": "nom-updated",
+      "es": "nombre-updated"
+    },
+    "changes": [],
+    "description": {
+      "en": "pricing-desc-updated",
+      "fr": "desc_fr",
+      "es": "desc_es"
+    },
+    "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
+    "effectiveDate": "2020-05-06T00:00:00Z"
+  }
+}
+```
+
+Required | &nbsp;
+------- | -----------
+`name` <br/>*Object* | A map of language keys to a name in the specified language. 
+
+Optional | &nbsp;
+------- | -----------
+`description` <br/>*Object* | A map of language language keys to the description in the specified language.
+
+#### Delete pricing
+
+`DELETE /pricings/:id`
+
+Delete an extisting pricing. A pricing cannot be deleted if it is associated to an applied pricing.
+
+```shell
+# Creates a new pricing
+curl -X DELETE "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "85df8dfb-b904-42dc-bb76-4824e6b50c83",
+  "taskStatus": "SUCCESS"
+}
+```
