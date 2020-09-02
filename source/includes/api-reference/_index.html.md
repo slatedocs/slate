@@ -17512,11 +17512,11 @@ determined when the user visits the project, is added to the project, and
 completes tasks in the project.
 
 Resources with type `task` are returned with priority placed on tasks
-the user is following, but no guarentee on the order of those tasks.
+the user is following, but no guarantee on the order of those tasks.
 
 Leaving the `query` string empty or omitted will give you results, still
 following the resource ordering above. This could be used to list users or
-projects that are relevent for the requesting user's api token.
+projects that are relevant for the requesting user's api token.
 </span>
 
 <h3 id="get-objects-via-typeahead-parameters">Parameters</h3>
