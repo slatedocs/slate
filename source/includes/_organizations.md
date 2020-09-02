@@ -48,7 +48,49 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
     "last_event_date": "2011-12-11T02:26:56.537-08:00",
     "last_interaction_date": "2012-03-04T05:06:07.890-08:00",
     "next_event_date": "2019-03-04T05:06:07.890-08:00",
+    "first_event_date": "2012-01-01T08:18:00.329-08:00",
   },
+  "interactions": {
+    "first_email": {
+      "date": "2011-11-23T08:12:45.328-08:00",
+      "person_ids": [
+        123
+      ]
+    },
+    "last_email": {
+      "date": "2012-03-04T05:06:07.890-08:00",
+      "person_ids": [
+        123
+      ]
+    },
+    "last_event": {
+      "date": "2011-12-11T02:26:56.537-08:00",
+      "person_ids": [
+        123
+      ]
+    },
+    "last_interaction": {
+      "date": "2012-03-04T05:06:07.890-08:00",
+      "person_ids": [
+        123,
+        111
+      ]
+    },
+    "next_event": {
+      "date": "2019-03-04T05:06:07.890-08:00",
+      "person_ids": [
+        123,
+        124,
+        125
+      ]
+    },
+    "first_event": {
+      "date": "2012-01-01T08:18:00.329-08:00",
+      "person_ids": [
+        123
+      ]
+    }
+  }
 }
 ```
 
@@ -80,7 +122,8 @@ the `/organizations/{organization_id}` endpoints.
 | person_ids        | string[]    | An array of unique identifiers of person that are associated with the organization                                                                                                                                                                                                      |
 | global            | boolean     | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.                                                                                                                                 |
 | list_entries      | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.                                                                                                                   |
-| interaction_dates | object      | An object with four string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
+| interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date`, and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
+| interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event.  Only returned when passing `with_interaction_dates=true`. |
 
 ## Search for organizations
 
@@ -155,7 +198,7 @@ curl "https://api.affinity.co/organizations?term=affinity&page_token=eyJwYXJhbXM
 | ------------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | term                           | string  | false    | A string used to search all the organizations in your team's address book. This could be a name or a domain name.                                                                                      |
 | with_interaction_dates         | boolean | false    | When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.                                                                    |
-| `{min,max}_<interaction>_date` | string  | false    | Only returns organizations with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, or `next_event`. |
+| `{min,max}_<interaction>_date` | string  | false    | Only returns organizations with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. |
 | page_size                      | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                            |
 | page_token                     | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                        |
 
