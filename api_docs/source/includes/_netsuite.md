@@ -696,17 +696,44 @@ CURRENCY_ID | ID of the currency being deleted
 204 No Content
 
 
+## Get PO Custom Field<code class='get'>GET</code>
 
-## Create Custom Field<code class='post'>POST</code>
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+        "id": 54,
+        "field_label": "Weight",
+        "field_required": false
+    },
+    "metadata": {}
+}
+```
+
+This endpoint retrieves the Purchase Order custom fields.
+
+### HTTP Request
+
+`GET https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/purchase-orders/`
+
+### HTTP Response Status Code
+
+200 OK
+
+### URL Parameters
+
+
+## Upsert PO Custom Field Value<code class='post'>POST</code>
 
 > The above command accepts a POST body:
 
 ```json
 {
-    "field_label": "Subsidiary",
-    "field_model": "order_item",
-    "field_required": 1,
-    "field_choices": ["some subsidiary name", "another subsidiary name"]
+	"purchase_order_id": 1
+	"custom_field_id": 1
+	"custom_field_value": "Test"
 }
 ```
 
@@ -715,19 +742,19 @@ CURRENCY_ID | ID of the currency being deleted
 ```json
 {
     "data": {
-        "id": 54,
-        "field_label": "Subsidary",
-        "field_required": true
+        "purchase_order_id": 1,
+        "custom_field_id": 1,
+        "custom_field_value": "Test"
     },
     "metadata": {}
 }
 ```
 
-This endpoint creates a custom field.
+This endpoint updates a PO custom field value.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/`
+`POST https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/purchase-orders/`
 
 ### HTTP Response Status Code
 
@@ -735,73 +762,15 @@ This endpoint creates a custom field.
 
 ### Arguments
 
-<code>field_label</code><span class="required-tag">required</span><br />
-Custom field name.
+<code>purchase_order_id</code><span class="required-tag">required</span><br />
+Purchase order ID.
 
-<code>field_model</code><span class="required-tag">required</span><br />
-Models that support custom fields.
+<code>custom_field_id</code><span class="required-tag">required</span><br />
+PO custom field ID.
 
-<code>field_required</code><br />
-Set custom field to be mandatory.
+<code>custom_field_value</code><span class="required-tag">required</span><br />
+Set custom field value for the purchase order.
 
-<code>external_id</code><span class="required-tag">required</span><br />
-ID of the integration object.
-
-## Update Custom Field<code class='put'>PUT</code>
-
-> The above command accepts a PUT body:
-
-```json
-{
-    "field_label": "Subsidiary",
-    "field_model": "order_item",
-    "field_required": 1,
-    "field_choices": ["some subsidiary name", "another subsidiary name"]
-}
-```
-
-> The above command returns a JSON structured like this:
-
-```json
-{
-    "data": {
-        "id": 54,
-        "field_label": "Subsidary",
-        "field_required": true
-    },
-    "metadata": {}
-}
-```
-
-This endpoint updates a specific custom field.
-
-### HTTP Request
-
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/<CUSTOM_FIELD_ID>/`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-CUSTOM_FIELD_ID | ID of the custom field being updated
-
-### HTTP Response Status Code
-
-200 OK
-
-### Arguments
-
-<code>field_label</code><span class="required-tag">required</span><br />
-Custom field name.
-
-<code>field_model</code><span class="required-tag">required</span><br />
-Models that support custom fields.
-
-<code>field_required</code><br />
-Set custom field to be mandatory.
-
-<code>external_id</code><span class="required-tag">required</span><br />
-ID of the integration object.
 
 
 
