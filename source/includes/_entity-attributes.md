@@ -74,7 +74,7 @@ For accessing list specific fields on a list, see the [Specific List](#get-a-spe
 ```shell
 curl "https://api.affinity.co/fields" \
   -u :<API-KEY> \
-  -d with_modified_names=true \
+  -d with_modified_names=true
 ```
 
 > Example Response
