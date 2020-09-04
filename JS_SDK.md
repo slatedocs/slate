@@ -63,7 +63,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
 | requireOTP | boolean | false | - | possible values are `true` or `false` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`, `dnc_agree_text`, `custom_tnc`, `custom_tnc_text`|
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`, `dnc_agree_text`, `custom_tnc`, `custom_tnc_text`,`source`, `sub_source`, `placement`|
 
 
 In the `options` object 
@@ -99,6 +99,8 @@ e.g if you want the default selected country to be U.A.E. then pass `{default_co
 `custom_tnc` is a boolean, that can be used to use your own text around terms and condition to be displayed before the submit button
 
 `custom_tnc_text` is a string can be an string of html elements like `<div><a href="https://google.com">Google</a></div>` this can be used to put your own tncs with links.
+
+`source`, `sub_source`, `placement` -- if you want to override the parameters and not pick from utm parameters
 
 `apartment_type_options` is a object with follow signature 
 
