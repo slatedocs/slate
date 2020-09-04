@@ -108,7 +108,7 @@ e.g if you want the default selected country to be U.A.E. then pass `{default_co
   {
     "show": true,
     "multi_select": true,
-    "options": [{ "id": 1, "name": "1 RK", custom_name: "Studio Big" }, { "id": 2, "name": "1 BHK" }],
+    "options": [{ "id": 1, "name": "1 RK", "custom_name": "Studio Big" }, { "id": 2, "name": "1 BHK" }],
     "title": "Select Interested BHK types",
     "mandatory": true,
     "error": "Select interested BHK type to proceed"
