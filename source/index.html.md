@@ -138,52 +138,51 @@ exemple
 
 > L'objet mesure
 
-```javascript
+```json
 {
-    annee_naissance: "1989",
-    antenne_id: null,
-    cabinet: null,
-    cause_sortie: "dessaisissement_famille",
-    civilite: "monsieur",
-    code_postal: "89000",
-    date_fin_mesure: "2020-04-04T00:00:00.000Z",
-    date_nomination: "2020-01-01T00:00:00.000Z",
-    department_id: 90,
-    etablissement: null,
-    etablissement_id: null,
-    judgment_date: null,
-    latitude: 47.8022,
-    longitude: 3.51709,
-    lieu_vie: "domicile",
-    mandataire_id: 501,
-    ti_id: null,
-    ville: "AUXERRE",
-    date_premier_mesure: "2020-01-10T00:00:00.000Z",
-    date_protection_en_cours: "2020-01-10T00:00:00.000Z",
-    status: "en_cours",
-    numero_dossier: "45656456",
-    numero_rg: "RG234534534",
-    pays: "FR",
-    magistrat_id: null,
-    id: 138671,
-    ressources: [{
-      id: 7
-      mesure_id: 138671,
-      annee: 2010,
-      niveau_ressource: 300,
-      prestations_sociales: "[\"PCH\",\"RSA\"]",
-    }],
-    etats: [{
-      id: 70,
-      mesure_id: 138671,
-      date_changement_etat: "2020-01-08T00:00:00.000Z",
-      nature_mesure: "curatelle_simple",
-      lieu_vie: "domicile",
-      code_postal: "89000",
-      ville: "AUXERRE",
-      pays: "FR",
-      etablissement_siret: ""
-    }]
+  "id": 138732,
+  "code_postal": "75015",
+  "ville": "paris",
+  "created_at": "2020-09-02",
+  "annee_naissance": "1989",
+  "date_nomination": "2020-01-01",
+  "date_fin_mesure": "2020-01-01",
+  "numero_dossier": "354354354354",
+  "numero_rg": "RG4354354354",
+  "antenne_id": null,
+  "latitude": 48.8402,
+  "longitude": 2.29356,
+  "pays": "FR",
+  "lieu_vie": "etablissement",
+  "type_etablissement": "autre_etablissement_s_ms",
+  "civilite": "monsieur",
+  "cause_sortie": "caducite",
+  "date_premier_mesure": "2020-01-01",
+  "date_protection_en_cours": "2020-01-01",
+  "resultat_revision": "allegement",
+  "etats": [
+    {
+      "id": 112,
+      "date_changement_etat": "2020-01-01",
+      "nature_mesure": "mesure_accompagnement_judiciaire",
+      "champ_mesure": "protection_bien_personne",
+      "lieu_vie": "etablissement",
+      "code_postal": "75015",
+      "ville": "paris",
+      "pays": "FR",
+      "type_etablissement": "autre_etablissement_s_ms",
+      "etablissement_siret": ""
+    }
+  ],
+  "ressources": [
+    {
+      "id": 7,
+      "mesure_id": 138671,
+      "annee": 2010,
+      "niveau_ressource": 300,
+      "prestations_sociales": "[\"PCH\",\"RSA\"]"
+    }
+  ]
 }
 ```
 
@@ -193,79 +192,29 @@ exemple
 
 ID de la mesure.
 
-**annee_naissance** `string`
-
-Année de naissance de la personne.
-
-**antenne_id** `string`
-
-Dans le cas d'un service mandataire, identifiant unique emjpm de l'antenne'
-
-**cabinet** `string`
-
-Cabinet du tribunal ayant attribué la mesure de protection.
-
-**champ_mesure** `string`
-
-Champ de la mesure de protection, les valeurs possibles sont "protection_bien", "protection_personne", ou "protection_bien_personne".
-
-**civilite** `string`
-
-Civilité de la personne, les valeurs possibles sont "monsieur" et "madame".
-
 **code_postal** `string`
 
 Code postal de la personne.
 
-**created_at** `timestamptz`
+**ville** `string`
 
-Date de création
+Ville de la personne.
 
-**date_fin_mesure** `date`
+**created_at** `string`
 
-Date de fin de la mesure de protection (yyyy-MM-dd)
+Date de d'insertion de la mesure en base de données
 
-**date_nomination** `date`
+**annee_naissance** `string`
+
+Année de naissance de la personne.
+
+**date_nomination** `string`
 
 Date de jugement ou ordonnance de nomination (yyyy-MM-dd)
 
-**date_premier_mesure** `date`
+**date_fin_mesure** `string`
 
-Date de la première mise sous protection juridique (yyyy-MM-dd)
-
-**date_protection_en_cours** `date`
-
-Date de la protection en cours (yyyy-MM-dd)
-
-**department_id** `number`
-
-ID du département
-
-**is_urgent** `boolean`
-
-**judgment_date** `date`
-
-Date de jugement
-
-**latitude** `number`
-
-**lieu_vie** `string`
-
-Lieu de vie du majeur protégé, les valeurs possibles sont "domicile", "etablissement", ou "etablissement_conservation_domicile".
-
-**longitude** `number`
-
-**magistrat_id** `number`
-
-ID du magistrat
-
-**mandataire_id** `number`
-
-ID du mandataire
-
-**nature_mesure** `string`
-
-Nature de la mesure de protection, les valeurs possibles sont "curatelle_simple", "curatelle_renforcee", "tutelle", "sauvegarde_justice", "mesure_accompagnement_judiciaire", "subroge_curateur", "subroge_tuteur", "mandat_protection_future", ou "mesure_ad_hoc".
+Date de fin de la mesure de protection (yyyy-MM-dd)
 
 **numero_dossier** `string`
 
@@ -275,37 +224,81 @@ Numéro de dossier de la mesure.
 
 Numéro RG de la mesure.
 
+**antenne_id** `string`
+
+Dans le cas d'un service mandataire, identifiant unique emjpm de l'antenne'
+
+**latitude** `number`
+
+**longitude** `number`
+
 **pays** `string`
 
 Code pays (ISO 3166-1 alpha-2) du lieu de vie du majeur protégé
 
-**resultat_revision** `string`
+**lieu_vie** `string`
 
-Résultat de la révision de la mesure de protection, les valeurs possibles sont "mainlevee", "reconduction", "aggravation", "allegement", "dessaisissement_famille", ou "dessaisissement_autre_mjpm".
-
-**service_id** `number`
-
-ID du service
-
-**status** `string`
-
-Status de la mesure, les valeurs possibles sont "en_attente", "en_cours", ou "eteinte".
-
-**ti_id** `number`
-
-ID du tribunal
+Lieu de vie du majeur protégé, les valeurs possibles sont "domicile", "etablissement", ou "etablissement_conservation_domicile".
 
 **type_etablissement**
 
 Type d'établissement, les valeurs possibles sont "etablissement_handicapes", "etablissement_personne_agee", "autre_etablissement_s_ms", "etablissement_hospitalier", ou "etablissement_psychiatrique".
 
+**civilite** `string`
+
+Civilité de la personne, les valeurs possibles sont "monsieur" et "madame".
+
+**cause_sortie** `string`
+
+**date_premier_mesure** `string`
+
+Date de la première mise sous protection juridique (yyyy-MM-dd)
+
+**date_protection_en_cours** `string`
+
+Date de la protection en cours (yyyy-MM-dd)
+
+**resultat_revision** `string`
+
+Résultat de la révision de la mesure de protection, les valeurs possibles sont "mainlevee", "reconduction", "aggravation", "allegement", "dessaisissement_famille", ou "dessaisissement_autre_mjpm".
+
 **etats** `array`
 
 Historique des états de la mesure
 
+**etats.[*].id** `number`
+
+**etats.[*].date_changement_etat** `string`
+
+**etats.[*].nature_mesure** `string`
+
+**etats.[*].champ_mesure** `string`
+
+Champ de la mesure de protection, les valeurs possibles sont "protection_bien", "protection_personne", ou "protection_bien_personne".
+
+**etats.[*].lieu_vie** `string`
+
+**etats.[*].code_postal** `string`
+
+**etats.[*].pays** `string`
+
+**etats.[*].type_etablissement** `string`
+
+**etats.[*].etablissement_siret** `string`
+
 **ressources** `array`
 
 Historique des mesures de protection
+
+**ressources.[*].id** `number`
+
+**ressources.[*].mesure_id** `number`
+
+**ressources.[*].annee** `number`
+
+**ressources.[*].niveau_ressource** `number`
+
+**ressources.[*].prestations_sociales** `string`
 
 ## Lister toutes les mesures
 
@@ -330,61 +323,47 @@ const response = await fetch(emjpmApiMesuresUrl, {
 {
   "mesures": [
     {
-      "id": 138671,
-      "code_postal": "89000",
-      "ville": "AUXERRE",
-      "etablissement": null,
-      "mandataire_id": 501,
-      "created_at": "2020-07-24T08:15:19.937Z",
+      "id": 138732,
+      "code_postal": "75015",
+      "ville": "paris",
+      "created_at": "2020-09-02",
       "annee_naissance": "1989",
-      "date_nomination": "2019-12-31T23:00:00.000Z",
-      "date_fin_mesure": "2020-04-03T22:00:00.000Z",
-      "etablissement_id": null,
-      "ti_id": null,
-      "numero_dossier": "45656456",
-      "cabinet": null,
-      "numero_rg": "RG234534534",
-      "department_id": 90,
+      "date_nomination": "2020-01-01",
+      "date_fin_mesure": "2020-01-01",
+      "numero_dossier": "354354354354",
+      "numero_rg": "RG4354354354",
       "antenne_id": null,
-      "service_id": null,
-      "is_urgent": false,
-      "judgment_date": null,
-      "latitude": 47.8022,
-      "longitude": 3.51709,
+      "latitude": 48.8402,
+      "longitude": 2.29356,
       "pays": "FR",
-      "magistrat_id": null,
-      "lieu_vie": "domicile",
-      "type_etablissement": null,
+      "lieu_vie": "etablissement",
+      "type_etablissement": "autre_etablissement_s_ms",
       "civilite": "monsieur",
-      "cause_sortie": "dessaisissement_famille",
-      "nature_mesure": null,
-      "champ_mesure": null,
-      "date_premier_mesure": "2020-01-09T23:00:00.000Z",
-      "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
-      "status": "en_cours",
-      "resultat_revision": null,
+      "cause_sortie": "caducite",
+      "date_premier_mesure": "2020-01-01",
+      "date_protection_en_cours": "2020-01-01",
+      "resultat_revision": "allegement",
       "etats": [
         {
-          "id": 70,
-          "mesure_id": 138671,
-          "date_changement_etat": "2020-01-07T23:00:00.000Z",
-          "nature_mesure": "curatelle_simple",
-          "champ_protection": null,
-          "lieu_vie": "domicile",
-          "code_postal": "89000",
-          "ville": "AUXERRE",
+          "id": 112,
+          "date_changement_etat": "2020-01-01",
+          "nature_mesure": "mesure_accompagnement_judiciaire",
+          "champ_mesure": "protection_bien_personne",
+          "lieu_vie": "etablissement",
+          "code_postal": "75015",
+          "ville": "paris",
           "pays": "FR",
-          "type_etablissement": null,
+          "type_etablissement": "autre_etablissement_s_ms",
           "etablissement_siret": ""
         }
       ],
       "ressources": [
         {
-          "id": 2,
-          "annee": 2020,
-          "niveau_ressource": 1000,
-          "prestations_sociales": "[\"AAH\"]",
-          "mesure_id": 138671
+          "id": 7,
+          "mesure_id": 138671,
+          "annee": 2010,
+          "niveau_ressource": 300,
+          "prestations_sociales": "[\"PCH\",\"RSA\"]"
         }
       ]
     }
@@ -424,61 +403,47 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-  "id": 138671,
-  "code_postal": "89000",
-  "ville": "AUXERRE",
-  "etablissement": null,
-  "mandataire_id": 501,
-  "created_at": "2020-07-24T08:15:19.937Z",
+  "id": 138732,
+  "code_postal": "75015",
+  "ville": "paris",
+  "created_at": "2020-09-02",
   "annee_naissance": "1989",
-  "date_nomination": "2019-12-31T23:00:00.000Z",
-  "date_fin_mesure": "2020-04-03T22:00:00.000Z",
-  "etablissement_id": null,
-  "ti_id": null,
-  "numero_dossier": "45656456",
-  "cabinet": null,
-  "numero_rg": "RG234534534",
-  "department_id": 90,
+  "date_nomination": "2020-01-01",
+  "date_fin_mesure": "2020-01-01",
+  "numero_dossier": "354354354354",
+  "numero_rg": "RG4354354354",
   "antenne_id": null,
-  "service_id": null,
-  "is_urgent": false,
-  "judgment_date": null,
-  "latitude": 47.8022,
-  "longitude": 3.51709,
+  "latitude": 48.8402,
+  "longitude": 2.29356,
   "pays": "FR",
-  "magistrat_id": null,
-  "lieu_vie": "domicile",
-  "type_etablissement": null,
+  "lieu_vie": "etablissement",
+  "type_etablissement": "autre_etablissement_s_ms",
   "civilite": "monsieur",
-  "cause_sortie": "dessaisissement_famille",
-  "nature_mesure": null,
-  "champ_mesure": null,
-  "date_premier_mesure": "2020-01-09T23:00:00.000Z",
-  "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
-  "status": "en_cours",
-  "resultat_revision": null,
+  "cause_sortie": "caducite",
+  "date_premier_mesure": "2020-01-01",
+  "date_protection_en_cours": "2020-01-01",
+  "resultat_revision": "allegement",
   "etats": [
     {
-      "id": 70,
-      "mesure_id": 138671,
-      "date_changement_etat": "2020-01-07T23:00:00.000Z",
-      "nature_mesure": "curatelle_simple",
-      "champ_protection": null,
-      "lieu_vie": "domicile",
-      "code_postal": "89000",
-      "ville": "AUXERRE",
+      "id": 112,
+      "date_changement_etat": "2020-01-01",
+      "nature_mesure": "mesure_accompagnement_judiciaire",
+      "champ_mesure": "protection_bien_personne",
+      "lieu_vie": "etablissement",
+      "code_postal": "75015",
+      "ville": "paris",
       "pays": "FR",
-      "type_etablissement": null,
+      "type_etablissement": "autre_etablissement_s_ms",
       "etablissement_siret": ""
     }
   ],
   "ressources": [
     {
-      "id": 2,
-      "annee": 2020,
-      "niveau_ressource": 1000,
-      "prestations_sociales": "[\"AAH\"]",
-      "mesure_id": 138671
+      "id": 7,
+      "mesure_id": 138671,
+      "annee": 2010,
+      "niveau_ressource": 300,
+      "prestations_sociales": "[\"PCH\",\"RSA\"]"
     }
   ]
 }
@@ -513,61 +478,47 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-  "id": 138671,
-  "code_postal": "89000",
-  "ville": "AUXERRE",
-  "etablissement": null,
-  "mandataire_id": 501,
-  "created_at": "2020-07-24T08:15:19.937Z",
+  "id": 138732,
+  "code_postal": "75015",
+  "ville": "paris",
+  "created_at": "2020-09-02",
   "annee_naissance": "1989",
-  "date_nomination": "2019-12-31T23:00:00.000Z",
-  "date_fin_mesure": "2020-04-03T22:00:00.000Z",
-  "etablissement_id": null,
-  "ti_id": null,
-  "numero_dossier": "45656456",
-  "cabinet": null,
-  "numero_rg": "RG234534534",
-  "department_id": 90,
+  "date_nomination": "2020-01-01",
+  "date_fin_mesure": "2020-01-01",
+  "numero_dossier": "354354354354",
+  "numero_rg": "RG4354354354",
   "antenne_id": null,
-  "service_id": null,
-  "is_urgent": false,
-  "judgment_date": null,
-  "latitude": 47.8022,
-  "longitude": 3.51709,
+  "latitude": 48.8402,
+  "longitude": 2.29356,
   "pays": "FR",
-  "magistrat_id": null,
-  "lieu_vie": "domicile",
-  "type_etablissement": null,
+  "lieu_vie": "etablissement",
+  "type_etablissement": "autre_etablissement_s_ms",
   "civilite": "monsieur",
-  "cause_sortie": "dessaisissement_famille",
-  "nature_mesure": null,
-  "champ_mesure": null,
-  "date_premier_mesure": "2020-01-09T23:00:00.000Z",
-  "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
-  "status": "en_cours",
-  "resultat_revision": null,
+  "cause_sortie": "caducite",
+  "date_premier_mesure": "2020-01-01",
+  "date_protection_en_cours": "2020-01-01",
+  "resultat_revision": "allegement",
   "etats": [
     {
-      "id": 70,
-      "mesure_id": 138671,
-      "date_changement_etat": "2020-01-07T23:00:00.000Z",
-      "nature_mesure": "curatelle_simple",
-      "champ_protection": null,
-      "lieu_vie": "domicile",
-      "code_postal": "89000",
-      "ville": "AUXERRE",
+      "id": 112,
+      "date_changement_etat": "2020-01-01",
+      "nature_mesure": "mesure_accompagnement_judiciaire",
+      "champ_mesure": "protection_bien_personne",
+      "lieu_vie": "etablissement",
+      "code_postal": "75015",
+      "ville": "paris",
       "pays": "FR",
-      "type_etablissement": null,
+      "type_etablissement": "autre_etablissement_s_ms",
       "etablissement_siret": ""
     }
   ],
   "ressources": [
     {
-      "id": 2,
-      "annee": 2020,
-      "niveau_ressource": 1000,
-      "prestations_sociales": "[\"AAH\"]",
-      "mesure_id": 138671
+      "id": 7,
+      "mesure_id": 138671,
+      "annee": 2010,
+      "niveau_ressource": 300,
+      "prestations_sociales": "[\"PCH\",\"RSA\"]"
     }
   ]
 }
@@ -661,61 +612,47 @@ const response = await fetch(emjpmApiMesuresUrl, {
 
 ```json
 {
-  "id": 138671,
-  "code_postal": "89000",
-  "ville": "AUXERRE",
-  "etablissement": null,
-  "mandataire_id": 501,
-  "created_at": "2020-07-24T08:15:19.937Z",
+  "id": 138732,
+  "code_postal": "75015",
+  "ville": "paris",
+  "created_at": "2020-09-02",
   "annee_naissance": "1989",
-  "date_nomination": "2019-12-31T23:00:00.000Z",
-  "date_fin_mesure": "2020-04-03T22:00:00.000Z",
-  "etablissement_id": null,
-  "ti_id": null,
-  "numero_dossier": "45656456",
-  "cabinet": null,
-  "numero_rg": "RG234534534",
-  "department_id": 90,
+  "date_nomination": "2020-01-01",
+  "date_fin_mesure": "2020-01-01",
+  "numero_dossier": "354354354354",
+  "numero_rg": "RG4354354354",
   "antenne_id": null,
-  "service_id": null,
-  "is_urgent": false,
-  "judgment_date": null,
-  "latitude": 47.8022,
-  "longitude": 3.51709,
+  "latitude": 48.8402,
+  "longitude": 2.29356,
   "pays": "FR",
-  "magistrat_id": null,
-  "lieu_vie": "domicile",
-  "type_etablissement": null,
+  "lieu_vie": "etablissement",
+  "type_etablissement": "autre_etablissement_s_ms",
   "civilite": "monsieur",
-  "cause_sortie": "dessaisissement_famille",
-  "nature_mesure": null,
-  "champ_mesure": null,
-  "date_premier_mesure": "2020-01-09T23:00:00.000Z",
-  "date_protection_en_cours": "2020-01-09T23:00:00.000Z",
-  "status": "en_cours",
-  "resultat_revision": null,
+  "cause_sortie": "caducite",
+  "date_premier_mesure": "2020-01-01",
+  "date_protection_en_cours": "2020-01-01",
+  "resultat_revision": "allegement",
   "etats": [
     {
-      "id": 70,
-      "mesure_id": 138671,
-      "date_changement_etat": "2020-01-07T23:00:00.000Z",
-      "nature_mesure": "curatelle_simple",
-      "champ_protection": null,
-      "lieu_vie": "domicile",
-      "code_postal": "89000",
-      "ville": "AUXERRE",
+      "id": 112,
+      "date_changement_etat": "2020-01-01",
+      "nature_mesure": "mesure_accompagnement_judiciaire",
+      "champ_mesure": "protection_bien_personne",
+      "lieu_vie": "etablissement",
+      "code_postal": "75015",
+      "ville": "paris",
       "pays": "FR",
-      "type_etablissement": null,
+      "type_etablissement": "autre_etablissement_s_ms",
       "etablissement_siret": ""
     }
   ],
   "ressources": [
     {
-      "id": 2,
-      "annee": 2020,
-      "niveau_ressource": 1000,
-      "prestations_sociales": "[\"AAH\"]",
-      "mesure_id": 138671
+      "id": 7,
+      "mesure_id": 138671,
+      "annee": 2010,
+      "niveau_ressource": 300,
+      "prestations_sociales": "[\"PCH\",\"RSA\"]"
     }
   ]
 }
