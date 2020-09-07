@@ -228,7 +228,7 @@ Content-Type: application/json
 }
 ```
 ### Description
-Creates a new investor and triggers a KYC check when appliable.
+Creates a new investor and triggers a KYC check when applicable.
 
 <aside class="warning">
 
@@ -244,7 +244,7 @@ When migrating existing investors over to the Goji platform, the dedicated <a hr
 | nationalities[].nationality         | string | The ISO country code. e.g GB.                                                                                                                                                                                         | optional |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
+| dateOfBirth                         | string | The date of birth of the investor. Must be between 18 and 100 years old.                                                                                                                                                                                    | required |
 | address                             | ref    |                                                                                                                                                                                                                       | required |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||
@@ -461,7 +461,7 @@ Updates an investor.
 | firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
 | middleName                          | string | The middle name of the investor.                                                                                                                                                                                      ||
 | lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
+| dateOfBirth                         | string | The date of birth of the investor. Must be between 18 and 100 years old.                                                                                                                                                                    | required |
 | address                             | ref    |                                                                                                                                                                                                                       | required |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||
@@ -2354,7 +2354,7 @@ The required <code>migrationDetails</code> allows the platform to provide an exi
 | nationalities[].nationality         | string | The ISO country code. e.g GB.                                                                                                                                                                                         | optional |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
+| dateOfBirth                         | string | The date of birth of the investor. Must be between 18 and 100 years old.                                                                                                                                              | required |
 | address                             | ref    |                                                                                                                                                                                                                       | required |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||

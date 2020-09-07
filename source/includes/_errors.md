@@ -64,7 +64,8 @@ This is returned as HTTP response code `500`
 | INVALID_NAME | First and last names must be longer than one character |
 | INVALID_ADDRESS | Address cannot be a PO Box |
 | INVALID_COUNTRY | Country is invalid |
-| UNDER_18 | Cannot create IF-ISA account for person under the age of 18 |
+| UNDER_18 | Cannot create account for person under the age of 18 |
+| OVER_100 | Cannot create account for person over the age of 100 |
 
 ## Add ISA Error Codes
 
@@ -72,7 +73,7 @@ This is returned as HTTP response code `500`
 |:---------|:---------|
 | INVESTOR_ISA_EXISTS | Investor with this N.I number already has an IF-ISA account with this originator |
 | TAX_YEAR_ISA_EXISTS | Investor with this N.I number has previously created an IF-ISA within this tax year |
-| UNDER_18 | Cannot create IF-ISA account for person under the age of 18 |
+| UNDER_18 | Cannot create account for person under the age of 18 |
 | INVALID_DATA | nationalInsuranceNumber is in invalid format. Must be in NI number format e.g. (AB123456C) |
 | INVALID_DATA | nationalInsuranceNumber cannot be null or empty |
 
