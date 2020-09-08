@@ -220,4 +220,114 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `endDate` <br/>*Date* | The end date for the applied pricing. 
-`scopeOrganization.id` <br/>*UUID* | The UUID of the organization that the scope is targeting. Only required for scopes : ORG_BASE, ORG_TREE, ORG_SUBS. 
+`scopeOrganization.id` <br/>*UUID* | The UUID of the organization that the scope is targeting. Only required for scopes : ORG_BASE, ORG_TREE, ORG_SUBS.
+
+
+<!-------------------- UPDATE APPLIED PRICING -------------------->
+#### Update applied pricing
+
+`PUT /applied_pricings/:id`
+
+Update an applied pricing. Updates to the pricing, the scope, start date and end date may cause charges to be rolled back.
+
+```shell
+# Update an applied pricing
+curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/8bb5e457-41c3-410b-aced-b9c694ff141a" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> Request body example:
+
+```js
+{
+  "pricingDefinition": {
+    "id": "f786b9c5-177b-4cbc-9011-331282485d05"
+  },
+  "organization": {
+    "id": "23910576-d29f-4c14-b663-31d728ff49a5"
+  },
+  "billingDay": 5,
+  "currency": "USD",
+  "scopeQualifier": "ORG_BASE",
+  "scopeOrganization": {
+    "id": "d2e467f8-3a33-441a-b074-aec960758452"
+  },
+  "startDate": "2020-06-05T00:00:00Z",
+  "endDate": "2021-06-05T23:59:59.999Z"
+}
+```
+
+> The above command return JSON structured like this:
+
+```js
+{
+  "data": {
+    "pricingDefinition": {
+      "supportedCurrencies": [
+        "CAD",
+        "USD"
+      ],
+      "organization": {
+        "id": "23910576-d29f-4c14-b663-31d728ff49a5"
+      },
+      "name": {
+        "en": "my-pricing",
+        "fr": "mon-pricing"
+      },
+      "changes": [],
+      "description": {},
+      "id": "f786b9c5-177b-4cbc-9011-331282485d05",
+      "effectiveDate": "2020-05-06T00:00:00Z"
+    },
+    "endDate": "2021-06-05T23:59:59.999Z",
+    "organization": {
+      "name": "Systemer",
+      "id": "52fd201e-aa82-4a27-86b3-ea9650a7fb1e"
+    },
+    "billingDay": 3,
+    "currency": "CAD",
+    "id": "d08b9332-d26e-42fe-b272-3071f2d64839",
+    "creationDate": "2020-09-08T17:44:18.000Z",
+    "scopeQualifier": "ORG_BASE",
+    "scopeOrganization": {
+      "id": "d2e467f8-3a33-441a-b074-aec960758452",
+      "name": "scoped-organization",
+    },
+    "startDate": "2020-06-05T00:00:00Z"
+  }
+}
+```
+
+Required | &nbsp;
+------- | -----------
+`organization.id` <br/>*UUID* | The UUID of the organization the applied pricing belongs to. 
+`pricingDefinition.id` <br/>*UUID* | the UUID of the pricing that will be used in the applied pricing.
+`scopeQualifier` <br/>*string* | The scope qualifier for the applied pricing. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
+`currency` <br/>*String* | The currency used for the applied pricing. The value is a ISO 4217 currency code that is part of the pricing selected. 
+`startDate` <br/>*Date* | The start date for the applied pricing.
+`billingDay` <br/>*int*| The billing day that the applied pricing will be applied.
+
+Optional | &nbsp;
+------- | -----------
+`endDate` <br/>*Date* | The end date for the applied pricing. 
+`scopeOrganization.id` <br/>*UUID* | The UUID of the organization that the scope is targeting. Only required for scopes : ORG_BASE, ORG_TREE, ORG_SUBS.
+
+#### Delete applied pricing
+
+`DELETE /applied_pricings/:id`
+
+Delete an existing applied pricing. Deleting an applied pricing that is ACTIVE or EXPIRED may cause charges to be rolled back.
+
+```shell
+curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/d08b9332-d26e-42fe-b272-3071f2d64839" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "85df8dfb-b904-42dc-bb76-4824e6b50c83",
+  "taskStatus": "SUCCESS"
+}
+```
