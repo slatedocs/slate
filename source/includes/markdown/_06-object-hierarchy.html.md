@@ -66,7 +66,7 @@ Things to note when working with subtasks:
 A workspace is the highest-level organizational unit in Asana. All projects, tasks, and teams have an associated workspace.
 
 * [Workspace / Organization API documentation](/docs/asana-workspaces)
-* [Workpsaces in the Asana Product Guide](https://asana.com/guide/help/workspaces/basics)
+* [Workspaces in the Asana Product Guide](https://asana.com/guide/help/workspaces/basics)
 
 <h3 id="organizations-hierarchy">Organizations</h3>
 
