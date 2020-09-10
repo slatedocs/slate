@@ -66,6 +66,7 @@ id | long integer | Unique object identifier
 organization | long integer | The ID of the organization that owns this collection request (This is usually your organization ID)
 amount | decimal | The collection request amount
 currency | string | The 3 letter ISO currency code for the collection request. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
+account | long integer | The ID of the account to which a collection will be sent
 phonenumber | string | The phone number that the collection request is intended for, in international format, starting with a +
 contact | object | The contact that has been matched to this request. See the "Contacts" section for more information.
 reason | string or null | Internal description or reason for this collection request
@@ -231,6 +232,7 @@ first_name | No | String | Luke | Optional subscriber first name - if omitted, t
 last_name | No | String | Woods | Optional subscriber last name - if omitted, the last name will be set to 'Contact'
 amount | Yes | String, Integer or Decimal | 3000 | Do not include thousands separators
 currency | Yes | String | BXC | 3 letter ISO currency code. No currency conversion is done, so the currency must be valid for the selected phonenumber. You must have funded Beyonic an account in this currency. If your account for this currency has zero balance, your payment will fail. **Note:**: BXC is the Beyonic Test Currency code. See the "Testing" section for more information. Supported currency codes are BXC (Testing), UGX (Uganda), KES (Kenya)
+account | No | Integer | 1 | The ID of the account to which a collection will be sent. The account must be active. This parameter is optional if a currency is provided. If you have more than one account with the same currency, and you leave this parameter out, the earliest created account (oldest account) that is still active will be used.
 reason | No | String | Transaction Fees | The reason for this collection request. This is used when sending automated instructions to the customer. If you omit this field, it will be set to your company name. Please keep this field below 20 characters because some networks may truncate it. You are also advised to include your company name so that it's clear who is requesting the funds.
 metadata | No | JSON String | "{'my_id': '123ASDAsd123'}" | Custom attributes to store with this object. See the Metadata section for more information.
 success_message | No | String (Max 140 characters) | "Thank you for your payment!" | *New in V2.* This message will be sent via SMS to the subscriber when they make a payment for this collection request. '-Powered by Beyonic' shall be appended to this message. If you leave this message out, a default message shall be sent by Beyonic. You can include {amount} and {customer} placeholders - these will be replaced with the amount and customer name or number details before the message is sent.
