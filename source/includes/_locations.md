@@ -329,10 +329,10 @@ contact-fax | 20 characters max
 number-of-employees | 10 characters max
 formation-date | Month and date formatted 'mm-yyyy'
 extra-business-categories-ids | Array. For example, [1234,5678,9012]. [See here for a full list of valid business category IDs.](#business-categories)
-opening-hours[regular][apply-to-all] | <span class="label label-required">Required</span> Boolean field
-opening-hours[regular][mon][status] | <span class="label label-required">Required</span> Can be 'open', 'closed', '24hrs', 'split'
-opening-hours[regular][mon][hours][start] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
-opening-hours[regular][mon][hours][end] | <span class="label label-required">Required</span> Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][apply-to-all] | Boolean field
+opening-hours[regular][mon][status] | Can be 'open', 'closed', '24hrs', 'split'
+opening-hours[regular][mon][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
+opening-hours[regular][mon][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
 opening-hours[regular][tue][status] | Can be 'open', 'closed', '24hrs', 'split'
 opening-hours[regular][tue][hours][start] | Please only use allowed working hours formats such as 14:45, 2:45 pm
 opening-hours[regular][tue][hours][end] | Please only use allowed working hours formats such as 14:45, 2:45 pm
