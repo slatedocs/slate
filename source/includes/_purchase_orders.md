@@ -58,6 +58,9 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -d "purchase_order[purchase_order_items_attributes][][status]=pending"
   -d "purchase_order[purchase_order_items_attributes][][quantity]=1.0"
   -d "purchase_order[purchase_order_items_attributes][][unit_price]=50"
+  -d "purchase_order[purchase_order_items_attributes][][custom[custom_field_values_attributes][][custom_field_id]=1"
+  -d "purchase_order[purchase_order_items_attributes][][custom[custom_field_values_attributes][][value]=custom field value"
+  -d "purchase_order[purchase_order_items_attributes][][custom[custom_field_values_attributes][][id]=1"
 ```
 
 > The above command returns JSON structured like this:
@@ -150,6 +153,31 @@ and that currency will be attached to the purchase order.
 we now have ability to create new Purchase order on behalf of other users. For security purpose, we only allow companyadmin to create purchase orders on behalf of other users. And also that user must be an employee of current company.
 
 To use this feature, you need to pass other user's id in `purchase_order[on_behalf_of]` params
+
+### QuickBooks Account
+
+If QuickBooks is connected, then customer also have ability to map QuickBooks Account with their PEX Budget,
+In that case Account custom field is required custom field, we can re-use already mapped QuickBooks Account
+value from [Budget](https://rubberstamp.github.io/slate/#get-a-specific-budget) API. Check for attribute named
+`quickbooks_account` in json response.
+
+To make sure User has enabled QuickBooks Account mapping with budget check for attribute named `link_budgets_to_qbo_account`
+in [Company Details](https://rubberstamp.github.io/slate/#get-a-specific-company) API. If this value is `true` you
+will see `quickbooks_account` attribute in Budget details api response.
+
+Now find `custom_fields` from [Company Details](https://rubberstamp.github.io/slate/#get-a-specific-company), and
+check for `custom_field` with name `Account`. Let's say it's id is 200 and `quickbooks_account` value is `Fuel - Expense`
+Then you can pass custom field value like given example:
+
+```ruby
+purchase_order_items_attributes: [
+    {
+        custom_field_values_attributes: [
+            { custom_field_id: 200, value: 'Fuel - Expense' },
+        ]
+    },
+]
+```
 
 ### HTTP Request
 
