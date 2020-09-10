@@ -1041,8 +1041,8 @@ Content-Type: application/json
 {
     "business_id": 37,
     "sender_district_id": "10101",
-    "receiver_district_id": "10109",
-    "receiver_commune_id": "1010901",
+    "receiver_district_id": "70129",
+    "receiver_commune_id": "7012901",
     "cod": 1000000,
     "value": 1000000,
     "total_weight": 100,
