@@ -1480,6 +1480,13 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>Id <code>UUID</code> of one of business address. Get in api <a href="#get-a-specific-business">GET /businesses/<ID></a></td>
 </tr>
 <tr>
+<td>pickup_note</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>Pickup note of shop</td>
+</tr>
+<tr>
 <td>receiver_name</td>
 <td>true</td>
 <td>string</td>
@@ -1533,7 +1540,7 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>false</td>
 <td>string</td>
 <td></td>
-<td>Name of service. Get in api <a href="#get-services">GET /snappy/trackings/get_services</a></td>
+<td>Name of service one of <code>express</code> or <code>standard</code>. Get in api <a href="#calculate-shipping-cost">GET /snappy/trackings/cal_shipping_cost</a></td>
 </tr>
 <tr>
 <td>cod</td>
@@ -1583,6 +1590,13 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>boolean</td>
 <td>false</td>
 <td>If <code>true</code> means to allow the receiver to try the product</td>
+</tr>
+<tr>
+<td>shop_note</td>
+<td>false</td>
+<td>string</td>
+<td>false</td>
+<td>Private note of shop</td>
 </tr>
 </tbody></table>
 
@@ -1640,11 +1654,31 @@ You must replace <code>access_token</code> with your personal access_token.
 <p>Response if success</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"cod"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cod_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"insurance_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"shipping_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="s2">"is_receiver_pay"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"receiver_district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70129"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"express"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 - 2 ngày"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"each_500"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"weight_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"standard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 - 4 ngày"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"each_500"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"weight_threshold"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"shipping_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint calculate all cost of a tracking.</p>

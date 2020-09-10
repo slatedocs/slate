@@ -1002,6 +1002,7 @@ Parameter | Required | Type    | Default | Description
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
 business_address_id | true | string | | Id `UUID` of one of business address. Get in api [GET /businesses/<ID>](#get-a-specific-business)
+pickup_note | false | string | | Pickup note of shop
 receiver_name | true | string | | Name of receiver
 receiver_phone_number | true | string | | Phone number of receiver
 receiver_address | true | string | | Address of receiver
@@ -1009,7 +1010,7 @@ receiver_province_id | true | string | | Id of receiver's province. Get in api [
 receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
 receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
 items | true | array | | List of items in tracking package
-service_name | false | string | | Name of service. Get in api [GET /snappy/trackings/get_services](#get-services)
+service_name | false | string | | Name of service one of `express` or `standard`. Get in api [GET /snappy/trackings/cal_shipping_cost](#calculate-shipping-cost)
 cod | false | integer | | Amount of cod or values of all items in package
 value | false | integer | | Insurance premium value, which is the basis for calculating insurance premiums and compensation when an incident occurs
 note | false | string | `Khởi tạo vận đơn` | Note of each status in tracking
@@ -1017,6 +1018,7 @@ customer_tracking_id | false | string |  | The custom id of customer
 is_receiver_pay | false | boolean | false | If `true` all cost of the tracking will be paid by the receiver
 is_allow_checking_good | false | boolean | false | If `true` means to allow the receiver to see the product
 is_allow_try_out | false | boolean | false | If `true` means to allow the receiver to try the product
+shop_note | false | string | false | Private note of shop
 
 Params `items`
 
@@ -1052,11 +1054,31 @@ Content-Type: application/json
 
 ```json
 {
+    "cod": 0,
     "cod_cost": 0,
     "discount": null,
+    "error": null,
     "insurance_cost": 0,
-    "shipping_cost": 20000,
-    "success": true
+    "is_receiver_pay": false,
+    "message": null,
+    "receiver_district_id": "70129",
+    "services": {
+        "express": {
+            "cost": 30000,
+            "delivery_time": "1 - 2 ngày",
+            "each_500": 10000,
+            "weight_threshold": 500
+        },
+        "standard": {
+            "cost": 25000,
+            "delivery_time": "3 - 4 ngày",
+            "each_500": 5000,
+            "weight_threshold": 1000
+        }
+    },
+    "shipping_cost": 30000,
+    "success": true,
+    "value": 0
 }
 ```
 
