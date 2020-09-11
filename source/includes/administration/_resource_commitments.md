@@ -10,11 +10,11 @@ Resource commitments allow you to set specific commitment levels on cloud resour
 
 ```shell
 # Retrieve visible resource commitments
-curl "https://cloudmc_endpoint/v2/resource_commitments" \
+curl "https://cloudmc_endpoint/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -77,20 +77,20 @@ An array of resource commitments with the following attributes are returned.
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the resource commitment
-`displayName`<br/>*string* | The name of the resource commitment
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the resource commitment was created
-`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active
-`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active<br/>*optional*: `if not present then the commitment has no end date`
-`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
-`currency`<br/>*string* | The currency type based on which the pricing is defined
-`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment
-`effectiveDiscount`<br/>*number* | The effective discount percentage (%) on this resource commitment
-`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated<br/>*optional*: `not present if the pricing method is FIXED_MONTHLY`
-`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated
+`id`<br/>*UUID* | The id of the resource commitment.
+`displayName`<br/>*string* | The name of the resource commitment.
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the resource commitment was created.
+`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active.
+`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active.<br/>*optional*: `if not present then the commitment has no end date`
+`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated.<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
+`currency`<br/>*string* | The currency type based on which the pricing is defined.
+`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment.
+`effectiveDiscount`<br/>*number* | The effective discount percentage (%) on this resource commitment.
+`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated.<br/>*optional*: `not present if the pricing method is FIXED_MONTHLY`
+`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated.
 `resourceCommitmentDetails`<br/>*Array [Commitment detail]* | The resources on which different commitment levels _(and discounts)_ have been set.<br/>*includes*: `id`, `name`, `primaryType`, `secondaryType`, `commitment`, `discountPercent`, `unit`, `labelKey`
-`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment is defined<br/>*includes*: `id`, `name`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment is defined<br/>*includes*: `id`, `name`, `type`
+`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment is defined.<br/>*includes*: `id`, `name`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment is defined.<br/>*includes*: `id`, `name`, `type`
 
 
 <!-------------------- GET A RESOURCE COMMITMENT -------------------->
@@ -100,13 +100,13 @@ Attributes | &nbsp;
 `GET /resource_commitments/:id`
 
 ```shell
-# Retrieve visible resource commitment
+# Retrieve visible a resource commitment
 
 curl "https://cloudmc_endpoint/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -163,20 +163,20 @@ Retrieve a specific resource commitment you have access to. You can only retriev
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the resource commitment
-`displayName`<br/>*string* | The name of the resource commitment
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the resource commitment was created
-`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active
-`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active<br/>*optional*: `if not present then the commitment has no end date`
-`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
-`currency`<br/>*string* | The currency type based on which the pricing is defined
-`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment
-`effectiveDiscount`<br/>*number* | The effective discount on this resource commitment
-`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated<br/>*optional*: `not present if the pricing method is FIXED_MONTHLY`
-`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated
+`id`<br/>*UUID* | The id of the resource commitment.
+`displayName`<br/>*string* | The name of the resource commitment.
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the resource commitment was created.
+`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active.
+`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active.<br/>*optional*: `if not present then the commitment has no end date`
+`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated.<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
+`currency`<br/>*string* | The currency type based on which the pricing is defined.
+`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment.
+`effectiveDiscount`<br/>*number* | The effective discount on this resource commitment.
+`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated.<br/>*optional*: `not present if the pricing method is FIXED_MONTHLY`
+`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated.
 `resourceCommitmentDetails`<br/>*Array [Commitment detail]* | The resources on which different commitment levels _(and discounts)_ have been set.<br/>*includes*: `id`, `name`, `primaryType`, `secondaryType`, `commitment`, `discountPercent`, `unit`, `labelKey`
-`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment is defined<br/>*includes*: `id`, `name`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment is defined<br/>*includes*: `id`, `name`, `type`
+`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment is defined.<br/>*includes*: `id`, `name`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment is defined.<br/>*includes*: `id`, `name`, `type`
 
 <!-------------------- CREATE A RESOURCE COMMITMENT -------------------->
 
@@ -188,13 +188,13 @@ Attributes | &nbsp;
 ```shell
 # Create a resource commitment
 
-curl -X POST "https://cloudmc_endpoint/v2/resource_commitments" \
+curl -X POST "https://cloudmc_endpoint/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "displayName": "NEW-RESOURCE-COMMITMENT",
@@ -234,17 +234,17 @@ Create a new resource commitment defined on a service connection. You will need 
 
 Required | &nbsp;
 -------- | -----------
-`displayName`<br/>*string* | The name of the resource commitment
-`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active
-`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active<br/>*optional*: `if not present then the commitment has no end date`
-`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
-`currency`<br/>*string* | The currency type based on which the pricing is defined
-`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment
-`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated<br/>*optional*: `only required if the pricing method is VARIABLE_UTILITY_DISCOUNT`
-`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated
+`displayName`<br/>*string* | The name of the resource commitment.
+`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active.
+`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active.<br/>*optional*: `if not present then the commitment has no end date`
+`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated.<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
+`currency`<br/>*string* | The currency type based on which the pricing is defined.
+`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment.
+`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated.<br/>*optional*: `only required if the pricing method is VARIABLE_UTILITY_DISCOUNT`
+`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated.
 `resourceCommitmentDetails`<br/>*Array [Commitment detail]* | The resources on which different commitment levels _(and discounts)_ have been set.<br/>*must include*: `primaryType`, `secondaryType`, `commitment`, `discountPercent`
-`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment is to be defined<br/>*must include*: `id`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment is to be defined<br/>*must include*: `id`
+`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment is to be defined.<br/>*must include*: `id`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment is to be defined.<br/>*must include*: `id`
 
 
 The responses' `data` field contains the created [resource-commitment](#administration-retrieve-a-resource-commitment).
@@ -259,13 +259,14 @@ The responses' `data` field contains the created [resource-commitment](#administ
 
 ```shell
 # Update a resource commitment
+
 curl -X PUT "https://cloudmc_endpoint/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "id": "ef17768a-c037-4a8a-8f12-f4595dd84ca0",
@@ -309,18 +310,18 @@ curl -X PUT "https://cloudmc_endpoint/v2/resource_commitments/fbgc7647-71e6-w69b
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the resource commitment
-`displayName`<br/>*string* | The name of the resource commitment
-`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active
-`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active<br/>*optional*: `if not present then the commitment has no end date`
-`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
-`currency`<br/>*string* | The currency type based on which the pricing is defined
-`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment
-`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated<br/>*optional*: `only required if the pricing method is VARIABLE_UTILITY_DISCOUNT`
-`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated
+`id`<br/>*UUID* | The id of the resource commitment.
+`displayName`<br/>*string* | The name of the resource commitment.
+`startDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) from when the resource commitment becomes active.
+`endDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) until when the resource commitment will be active.<br/>*optional*: `if not present then the commitment has no end date`
+`pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated.<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
+`currency`<br/>*string* | The currency type based on which the pricing is defined.
+`monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment.
+`billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated.<br/>*optional*: `only required if the pricing method is VARIABLE_UTILITY_DISCOUNT`
+`billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated.
 `resourceCommitmentDetails`<br/>*Array [Commitment detail]* | The resources on which different commitment levels _(and discounts)_ have been set.<br/>*includes*: `id`, `primaryType`, `secondaryType`, `commitment`, `discountPercent`
-`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment to be edited is defined<br/>*includes*: `id`
-`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment to be edited is defined<br/>*includes*: `id`
+`organization`<br/>*[Organization](#administration-organizations)* | The organization on whose connection the resource commitment to be edited is defined.<br/>*includes*: `id`
+`serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment to be edited is defined.<br/>*includes*: `id`
 
 
 The responses' `data` field contains the created [resource-commitment](#administration-retrieve-a-resource-commitment). You will need the `Commitments: Manage` permission to execute this operation.
@@ -337,7 +338,6 @@ The responses' `data` field contains the created [resource-commitment](#administ
 
 curl "https://cloudmc_endpoint/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -X DELETE -H "MC-Api-Key: your_api_key"
-
 ```
 
 Delete a specific resource commitment. You will need a [role](#administration-roles) with the `Commitments: Manage` permission to execute this operation.

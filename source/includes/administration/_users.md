@@ -13,9 +13,8 @@ A user account allows users to authenticate to an [organization](#administration
 
 curl "https://cloudmc_endpoint/v2/users" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -79,7 +78,6 @@ Attributes | &nbsp;
 `status`<br/>*string* | The current status of the user.
 `userName`<br/>*string* | The username of the user
 
-
 <!-------------------- GET USER -------------------->
 
 ### Retrieve a user
@@ -91,9 +89,8 @@ Attributes | &nbsp;
 
 curl "https://cloudmc_endpoint/v2/users/fdf60a19-980d-4380-acab-914485111305" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -170,6 +167,7 @@ Attributes | &nbsp;
 `status`<br/>*string* | The current status of the user.
 `userName`<br/>*string* | The username of the user
 
+
 <!-------------------- CREATE USER -------------------->
 
 ### Create user
@@ -182,10 +180,9 @@ Attributes | &nbsp;
 curl -X POST "https://cloudmc_endpoint/v2/users" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request-body]"
-
-# Request body example
+   -d "request-body"
 ```
+> Request body example:
 
 ```json
 {
@@ -220,15 +217,15 @@ You will need the `Create a new user` permission to execute this operation.
 Required | &nbsp;
 -------- | -----------
 `userName`<br/>*string* | Username of the new user. Should be unique across the organization.
-`firstName`<br/>*string* | First name of the user
-`lastName`<br/>*string* | Last name of the user
+`firstName`<br/>*string* | First name of the user.
+`lastName`<br/>*string* | Last name of the user.
 `email`<br/>*string* | Email of the user. Should be unique across the organization.
 `primaryRoleBinding.role.id`<br/>*UUID* | The id of the primary role to assign to this user
 
 Optional | &nbsp;
 -------- | -----------
-`organization`</br>*[Organization](#administration-organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
+`organization`</br>*[Organization](#administration-organization)* | Organization in which the user will be created. *Defaults to your organization*.<br/>*required:* `id`
+`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environment roles to give to the user.<br/>*required*: `id`
 
 Response | &nbsp;
 ---------- | -----------
@@ -239,6 +236,7 @@ Response | &nbsp;
 ```shell
 # Response body example
 ```
+The responses' `data` field contains the created [user](#administration-users) with its `id`.
 
 ```json
 {
@@ -291,10 +289,10 @@ Response | &nbsp;
 curl -X PUT "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request-body]"
-
-# Request body example
+   -d "request-body"
 ```
+> Request body example:
+
 ```json
 {
   "userName": "spidey1",
@@ -319,9 +317,14 @@ Update a specific user. It is important to note that updating the list of roles 
 Optional | &nbsp;
 -------- | -----------
 `userName`<br/>*string* | The new username of the user. Should be unique across the organization.
+<<<<<<< HEAD
 `firstName`<br/>*string* | The new first name of the user
 `lastName`<br/>*string* | The new last name of the user
 `primaryRoleBinding.role.id`<br/>*UUID* | The id of the primary role to assign to this user
+=======
+`firstName`<br/>*string* | The new first name of the user.
+`lastName`<br/>*string* | The new last name of the user.
+>>>>>>> cmc-dev
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
 `roles`<br/>*Array[[Role](#administration-roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 

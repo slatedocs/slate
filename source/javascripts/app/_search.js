@@ -20,9 +20,9 @@
   $(bind);
 
   function populate() {
-    $('h1, h2, h3, h4').each(function() {
+    $('h1, h2, h3, h4, h5').each(function() {
       var title = $(this);
-      var body = title.nextUntil('h1, h2, h3, h4');
+      var body = title.nextUntil('h1, h2, h3, h4, h5');
       index.add({
         id: title.prop('id'),
         title: title.text(),

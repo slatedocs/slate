@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell : curl
+  - shell: curl
   - js
 
 includes:
@@ -16,9 +16,19 @@ includes:
   - administration/environments 
   - administration/resource_commitments 
   - administration/usage
+  - administration/monetization
+  - administration/products
+  - administration/pricings
+  - administration/applied_pricings
+  - administration/authentication
+  - administration/identity_providers
+  - administration/service_providers
+  - administration/saml_settings
+  - administration/trials
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
+  - cloudstack/bare_metal_instances
   - cloudstack/templates
   - cloudstack/isos
   - cloudstack/ssh_keys
@@ -59,8 +69,103 @@ includes:
   - openstack/volumes
   - openstack/snapshots
   - gcp
+  - gcp/compute # Compute section
   - gcp/instances
+  - gcp/instance_groups
   - gcp/disks
+  - gcp/ssh_keys
+  - gcp/health_checks
+  - gcp/snapshots
+  - gcp/networking # Networking section
+  - gcp/networks
+  - gcp/firewall_rules
+  - gcp/external_ips
+  - gcp/routes
+  - gcp/routers
+  - gcp/vpn_gateways
+  - gcp/vpn_tunnels
+  - gcp/subnets
+  - gcp/load_balancing # Load balancing subsection
+  - gcp/load_balancer
+  - gcp/forwarding_rules
+  - gcp/target_proxies
+  - gcp/backend_services
+  - gcp/ssl_certificates
+  - gcp/kubernetes # Kubernetes section
+  - gcp/clusters
+  - gcp/k8_namespaces
+  - gcp/k8_workloads
+  - gcp/k8_pods
+  - gcp/k8_deployments
+  - gcp/k8_daemonsets
+  - gcp/k8_statefulsets
+  - gcp/k8_networking
+  - gcp/k8_services
+  - gcp/k8_ingresses
+  - gcp/k8_configuration
+  - gcp/k8_configmaps
+  - gcp/k8_secrets
+  - gcp/k8_storage
+  - gcp/k8_storageclasses
+  - gcp/k8_persistentvolumes
+  - gcp/k8_persistentvolumeclaims
+  - gcp/k8_releases
+  - gcp/k8_charts
+  - gcp/images
+  - gcp/regions
+  - kubernetes
+  - kubernetes/k8_namespaces
+  - kubernetes/k8_workloads
+  - kubernetes/k8_pods
+  - kubernetes/k8_deployments
+  - kubernetes/k8_daemonsets
+  - kubernetes/k8_statefulsets
+  - kubernetes/k8_networking
+  - kubernetes/k8_services
+  - kubernetes/k8_ingresses
+  - kubernetes/k8_configuration
+  - kubernetes/k8_configmaps
+  - kubernetes/k8_secrets
+  - kubernetes/k8_storage
+  - kubernetes/k8_storageclasses
+  - kubernetes/k8_persistentvolumes
+  - kubernetes/k8_persistentvolumeclaims
+  - kubernetes/k8_releases
+  - kubernetes/k8_charts  
+  - azure
+  - azure/compute
+  - azure/instances
+  - azure/regions
+  - azure/storage
+  - azure/disks
+  - azure/networking
+  - azure/networks
+  - azure/subnets
+  - azure/network_security_groups
+  - azure/security_rules
+  - azure/public_ip_addresses
+  - azure/kubernetes # Kubernetes section
+  - azure/clusters
+  - azure/k8_namespaces
+  - azure/k8_workloads
+  - azure/k8_pods
+  - azure/k8_deployments
+  - azure/k8_daemonsets
+  - azure/k8_statefulsets
+  - azure/k8_networking
+  - azure/k8_services
+  - azure/k8_ingresses
+  - azure/k8_configuration
+  - azure/k8_configmaps
+  - azure/k8_secrets
+  - azure/k8_storage
+  - azure/k8_storageclasses
+  - azure/k8_persistentvolumes
+  - azure/k8_persistentvolumeclaims
+  - masterportal
+  - masterportal/applications
+  - swift
+  - swift/containers
 
 search: true
 ---

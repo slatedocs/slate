@@ -6,9 +6,9 @@ Manage inbound traffic rules for isolated networks.
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/ingressrules"
-
-# Response example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": [
@@ -79,9 +79,9 @@ Query Parameters | &nbsp;
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/ingressrules/f1863d10-e7ec-4f17-8cdd-0e4046643b0b"
-
-# Response example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": {

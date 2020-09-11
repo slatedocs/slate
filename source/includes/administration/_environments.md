@@ -13,9 +13,9 @@ Environments allow you to manage resources of a specific service and to manage y
 # Retrieve visible environments
 curl "https://cloudmc_endpoint/v2/environments" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -70,7 +70,6 @@ Attributes | &nbsp;
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
 
-
 <!-------------------- GET ENVIRONMENT -------------------->
 
 ### Retrieve an environment
@@ -82,9 +81,9 @@ Attributes | &nbsp;
 
 curl "https://cloudmc_endpoint/v2/environments/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
    -H "MC-Api-Key: your_api_key"
-
-# Response body example
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -123,7 +122,7 @@ curl "https://cloudmc_endpoint/v2/environments/487a2745-bb8a-44bc-adb1-e3b048f6d
 }
 ```
 
-Retrieve an environment you have access to. You can always retrieve environments that you're member of but to access other environments you will need the `Environments read` permission.
+Retrieve an environment you have access to. You can always retrieve environments that you're a member of but to access other environments you will need the `Environments read` permission.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -137,6 +136,7 @@ Attributes | &nbsp;
 `allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
 `state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR_PROVISIONING, PURGED, PURGING, ERROR_PURGING, and PENDING.
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
+
 
 <!-------------------- CREATE ENVIRONMENT -------------------->
 
@@ -153,10 +153,10 @@ Environments are created asynchronously on the underlying service. When creating
 curl -X POST "https://cloudmc_endpoint/v2/environments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "name": "glados",
@@ -181,6 +181,7 @@ Optional | &nbsp;
 `description`<br/>*string* | The description of the new environment.
 `organization`<br/>*[Organization](#administration-organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
 `membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
+
 
 Response | &nbsp;
 ---------- | -----------
@@ -244,10 +245,10 @@ If the membership mode is changed, users will also be added or removed asynchron
 curl -X POST "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]"
-
-# Request body example
+   -d "request_body"
 ```
+> Request body example:
+
 ```json
 {
   "name": "skynet-beta-v2",
@@ -314,7 +315,6 @@ Response | &nbsp;
 }
 ```
 
-
 You will need the `Environments update` permission to execute this operation.
 
 <!-------------------- DELETE ENVIRONMENT -------------------->
@@ -332,6 +332,7 @@ If deleting an environment fails in the underlying service, subsequent delete at
 # Delete an environment
 
 curl "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
+
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 # Response body example

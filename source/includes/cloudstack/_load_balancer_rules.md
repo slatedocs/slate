@@ -9,6 +9,8 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules?public_ip_id=eb763d03-9935-4cd4-8a42-99134e242ccb"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [
@@ -74,6 +76,8 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/f8ed7f44-449c-4510-848c-dc18e6665db1"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -129,8 +133,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules"
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
    "name": "test",
@@ -207,8 +212,9 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
-   # Request example:
 ```
+> Request body example:
+
 ```json
 {
    "name": "test",
@@ -233,8 +239,9 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
-   # Request example:
 ```
+> Request body example:
+
 ```json
 {
    "instanceIds": [
@@ -258,8 +265,9 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
-   # Request example:
 ```
+> Request body example:
+
 ```json
 {
    "stickinessMethod": "LbCookie",

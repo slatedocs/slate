@@ -1,6 +1,6 @@
 ### Networks
 
-Networks are provisioned to be able to control data flow to instances. To communicate with the external network, the network must be connected to a [router](#openstack-routers)
+Networks are provisioned to be able to control data flow to instances. To communicate with the external network, the network must be connected to a [router](#openstack-routers).
 
 #### List networks
 
@@ -8,14 +8,21 @@ Networks are provisioned to be able to control data flow to instances. To commun
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/networks"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": [
         {
             "id": "a9e8861d-64a1-4126-b385-6e4db9a5814f",
             "name": "default",
-            "cidr": "10.64.0.0/22",
-            "dhcpEnabled":true
+            "enabled": true,
+            "external": false,
+            "gateway": "10.55.84.1",
+            "cidr": "10.55.84.0/22",
+            "dhcpEnabled":true,
+            "ipVersion": "V4",
+            "subnetId": "bda27442-f6c8-4033-84f0-ffcf319228a4"        
         }
     ],
     "metadata": {
@@ -30,13 +37,15 @@ Retrieve a list of all networks in an environment.
 
 | Attribute                  | Description                          |
 | -------------------------- | ------------------------------------ |
-| `id`<br/>*UUID*            | The network's id              |
-| `name`<br/>*string*        | The network's name            |
-| `cidr`<br/>*string* | CIDR of the network |
-| `dhcpEnabled`<br/>*boolean* | If DHCP is handled by the network |
-| `gateway`<br/>*string* | The IP of the gateway |
-| `ipVersion`<br/>*string* | V4 or V6 |
-| `subnetId`<br/>*string* | The id of the OpenStack subnet it maps to|
+| `id`<br/>*UUID*            | The network's id.                    |
+| `name`<br/>*string*        | The network's name.                  |
+| `enabled`<br/>*boolean*    | If the network is enabled.           |
+| `external`<br/>*boolean*   | If the network is accessible from the external.|
+| `gateway`<br/>*string*     | The IP of the gateway.               |
+| `cidr`<br/>*string*        | CIDR of the network.                 |
+| `dhcpEnabled`<br/>*boolean*| If DHCP is handled by the network.   |
+| `ipVersion`<br/>*string*   | V4 or V6.                            |
+| `subnetId`<br/>*string*    | The id of the OpenStack subnet it maps to.|
 
 #### Retrieve a network
 
@@ -44,13 +53,20 @@ Retrieve a list of all networks in an environment.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/networks/a9e8861d-64a1-4126-b385-6e4db9a5814f"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": {
         "id": "a9e8861d-64a1-4126-b385-6e4db9a5814f",
         "name": "default",
-        "cidr": "10.64.0.0/22",
-        "dhcpEnabled":true
+        "enabled": true,
+        "external": false,
+        "gateway": "10.55.84.1",
+        "cidr": "10.55.84.0/22",
+        "dhcpEnabled":true,
+        "ipVersion": "V4",
+        "subnetId": "bda27442-f6c8-4033-84f0-ffcf319228a4"        
     }
 }
 ```
@@ -61,13 +77,15 @@ Retrieve information about a network.
 
 | Attribute                  | Description                          |
 | -------------------------- | ------------------------------------ |
-| `id`<br/>*UUID*            | The network's id              |
-| `name`<br/>*string*        | The network's name            |
-| `cidr`<br/>*string* | CIDR of the network |
-| `dhcpEnabled`<br/>*boolean* | If DHCP is handled by the network |
-| `gateway`<br/>*string* | The IP of the gateway |
-| `ipVersion`<br/>*string* | V4 or V6 |
-| `subnetId`<br/>*string* | The id of the OpenStack subnet it maps to|
+| `id`<br/>*UUID*            | The network's id.                    |
+| `name`<br/>*string*        | The network's name.                  |
+| `enabled`<br/>*boolean*    | If the network is enabled.           |
+| `external`<br/>*boolean*   | If the network is accessible from the external.|
+| `gateway`<br/>*string*     | The IP of the gateway.               |
+| `cidr`<br/>*string*        | CIDR of the network.                 |
+| `dhcpEnabled`<br/>*boolean*| If DHCP is handled by the network.   |
+| `ipVersion`<br/>*string*   | V4 or V6.                            |
+| `subnetId`<br/>*string*    | The id of the OpenStack subnet it maps to.|
 
 #### Create a network
 
@@ -77,8 +95,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/networks"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "name": "web",

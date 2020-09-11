@@ -6,9 +6,9 @@ Remote access VPNs allow users to connect to [VPCs](#cloudstack-vpcs) through se
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/remoteaccessvpns"
-
-# Response example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": [
@@ -53,9 +53,9 @@ Query Parameters | &nbsp;
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/remoteaccessvpns/10001e7d-b4ef-489b-836e-0619a383bc8d"
-
-# Response example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": {

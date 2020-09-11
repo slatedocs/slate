@@ -7,9 +7,9 @@ Images are virtual machine images that have a virtual disk that contains a boota
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/images"
-
-Response body:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
    "data": [
@@ -34,17 +34,17 @@ Retrieve a list of available images.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The image's id
-`name`<br/>*string* | The image name
+`id`<br/>*UUID* | The image's id.
+`name`<br/>*string* | The image name.
 
 #### Retrieve an image
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/images/22f53310-798d-4029-bb00-747a52d2a376"
-
-Response body:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
    "data": {
@@ -56,9 +56,9 @@ Response body:
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/images/:id</code>
 
-Retrieve information about an image
+Retrieve information about an image.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The image's id
-`name`<br/>*string* | The image name
+`id`<br/>*UUID* | The image's id.
+`name`<br/>*string* | The image name.

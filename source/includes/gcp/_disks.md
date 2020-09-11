@@ -9,9 +9,9 @@ Deploy and manage your disks.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [
@@ -46,29 +46,29 @@ curl -X GET \
 ```
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks</code>
 
-Retrieve a list of all disks in a given [environment](#administration-environments)
+Retrieve a list of all disks in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `sizeGb` <br/>*string* | The size of the disk in GB. Acceptable values are 1 to 65536, inclusive.
 `zone`<br/>*string* | URL of the zone where the instance resides. 
 `status`<br/>*string* | The status of the disk. One of the following values: READY, CREATING, ATTACHING, ATTACHED, DETACHING, RESIZING, DELETING, and DEPRECATED.
-`selfLink`<br/>*string* | Server-defined URL for this resource
+`selfLink`<br/>*string* | Server-defined URL for this resource.
 `type`<br/>*string* | URL of the disk type resource describing which disk type to use to create the disk. Choices are ':url/pd-standard' or ':url/pd-ssd'.
 `lastAttachTimestamp`<br/>*string* | Timestamp representing the last time the disk was attached.
-`users`<br/>*Array[String] | Links to the instances the disk is attached to.
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
+`users`<br/>*Array[string]* | Links to the instances the disk is attached to.
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
 `physicalBlockSizeBytes`<br/>*string* | Physical block size of the persistent disk, in bytes. Currently supported sizes are 4096 and 16384.
 `kind`<br/>*string* | Type of the resource.
 `shortUsers`<br/>*string* | The names of the instances the disk is attached to.
 `shortType`<br/>*string* | The disk type. Choices are 'pd-standard' or 'pd-ssd'.
 `attach_mode`<br/>*string* | The mode used to attach the disk to instances. Valid modes are READ_WRITE or READ_ONLY.
 `autoDelete`<br/>*boolean* | Whether the resource should be deleted when the instance it's attached to are deleted.
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The display name of the instance
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The display name of the instance.
+`shortZone`<br/>*string* | A short version of the zone name.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 <!-------------------- RETRIEVE A DISK -------------------->
 
@@ -78,9 +78,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -110,29 +110,29 @@ curl -X GET \
 ```
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id</code>
 
-Retrieve a disk in a given [environment](#administration-environments)
+Retrieve a disk in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `sizeGb` <br/>*string* | The size of the disk in GB. Acceptable values are 1 to 65536, inclusive.
 `zone`<br/>*string* | URL of the zone where the instance resides. 
 `status`<br/>*string* | The status of the disk. One of the following values: READY, CREATING, ATTACHING, ATTACHED, DETACHING, RESIZING, DELETING, and DEPRECATED.
-`selfLink`<br/>*string* | Server-defined URL for this resource
+`selfLink`<br/>*string* | Server-defined URL for this resource.
 `type`<br/>*string* | URL of the disk type resource describing which disk type to use to create the disk. Choices are ':url/pd-standard' or ':url/pd-ssd'.
 `lastAttachTimestamp`<br/>*string* | Timestamp representing the last time the disk was attached.
-`users`<br/>*Array[String] | Links to the instances the disk is attached to.
-`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
+`users`<br/>*Array[string]* | Links to the instances the disk is attached to.
+`labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking.
 `physicalBlockSizeBytes`<br/>*string* | Physical block size of the persistent disk, in bytes. Currently supported sizes are 4096 and 16384.
 `kind`<br/>*string* | Type of the resource.
 `shortUsers`<br/>*string* | The names of the instances the disk is attached to.
 `shortType`<br/>*string* | The disk type. Choices are 'pd-standard' or 'pd-ssd'.
 `attachMode`<br/>*string* | The mode used to attach the disk to instances. Valid modes are READ_WRITE or READ_ONLY.
 `autoDelete`<br/>*boolean* | Whether the resource should be deleted when the instance it's attached to are deleted.
-`id`<br/>*UUID* | The id of the instance
-`name`<br/>*string* | The display name of the instance
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
+`id`<br/>*UUID* | The id of the instance.
+`name`<br/>*string* | The display name of the instance.
+`shortZone`<br/>*string* | A short version of the zone name.
+`shortRegion`<br/>*string* | A short version of the region name.
 
 <!-------------------- CREATE A DISK -------------------->
 
@@ -144,9 +144,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
   "name": "my-disk",
@@ -159,13 +159,13 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks</code>
 
-Creates a new disk
+Create a new disk
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The display name of the instance
-`shortRegion`<br/>*string* | A short version of the region name
-`shortZone`<br/>*string* | A short version of the zone name
+`name`<br/>*string* | The display name of the instance.
+`shortRegion`<br/>*string* | A short version of the region name.
+`shortZone`<br/>*string* | A short version of the zone name.
 `shortType`<br/>*string* | The disk type. Choices are 'pd-standard' or 'pd-ssd'.
 `sizeGb` <br/>*string* | The size of the disk in GB. Acceptable values are 1 to 65536, inclusive.
 
@@ -197,9 +197,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=attach"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "shortUsers": "5611478403377505138",
@@ -226,9 +226,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=detach"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "shortUsers": "5611478403377505138"
@@ -240,7 +240,7 @@ Detach an existing disk from a given [instance](#gcp-instances).
 
 Required | &nbsp;
 ---------- | -----
-`shortUsers`<br/>*string* | The id of the [instance](#gcp-instances) to which the created disk should be attached
+`shortUsers`<br/>*string* | The id of the [instance](#gcp-instances) to which the created disk should be attached.
 
 <!-------------------- RESIZE A DISK -------------------->
 
@@ -251,9 +251,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=resize"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "sizeGb": "50"
@@ -266,3 +266,32 @@ Resize an existing disk.
 Required | &nbsp;
 ---------- | -----
 `sizeGb` <br/>*string* | The size of the disk in GB. Valid values are 1 to 65536, inclusive, unless this is an [instance](#gcp-instances)'s boot disk, then the valid values are 1 to 2000.
+
+<!-------------------- TAKE SNAPSHOT -------------------->
+
+#### Take a snapshot of a disk
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=snapshot"
+```
+> Request body example:
+
+```json
+{
+   "snapshotName": "my-snapshot"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id?operation=snapshot</code>
+
+Take a snapshot of a persistent disk.
+
+<aside class="notice">
+Snapshots are incremental to avoid billing for redundant data and minimize use of storage. However, snapshots may occasionally capture the full disk for reliability. See the link for more information on <a href="https://cloud.google.com/compute/docs/disks/create-snapshots">creating snapshots.</a>
+</aside>
+
+Optional | &nbsp;
+---------- | -----
+`snapshotName` <br/>*string* | The name of the snapshot. A default value set if a snapshot name is not provided.

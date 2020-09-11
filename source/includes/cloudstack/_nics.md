@@ -11,9 +11,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics"
-
-# Example response:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -41,7 +41,7 @@ curl -X GET \
 }
 ```
 
-<code>GET <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules</code>
+<code>GET <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics</code>
 
 Retrieve a list of all NICs.
 
@@ -76,9 +76,9 @@ Query Parameters | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics/fff1f45a-8350-4c87-be43-947b96d01ebd"
-
-# Example response:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -130,17 +130,14 @@ Attributes | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "networkId": "d67e986d-fe04-4827-836e-1697ede8ed30",
@@ -166,12 +163,9 @@ Required | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics/fff1f45a-8350-4c87-be43-947b96d01ebd"
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id</code>
@@ -186,9 +180,6 @@ Delete an existing NIC. The NIC you're trying to delete must not be the default 
 
 
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2?operation=setDefault"

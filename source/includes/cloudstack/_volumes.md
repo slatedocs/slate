@@ -10,9 +10,9 @@ A volume is a virtual disk that provide storage for your instances. An OS volume
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/volumes"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [
@@ -67,9 +67,9 @@ Query Parameters | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/volumes/1bd672f4-b274-4371-a792-b0a6c6778cc7"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -118,9 +118,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/volumes"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "name": "my_volume",
@@ -146,15 +146,12 @@ instanceId<br/>*UUID* | The id of the [instance](#cloudstack-instances) to which
 #### Delete a volume
 
 ```shell
-
-# Example:
-
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
 
 Destroy an existing data volume. A volume can only be deleted if it's not attached to an [instance](#cloudstack-instances).
 
@@ -170,9 +167,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attachToInstance"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
@@ -217,9 +214,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/volumes/4fe54594-a788-442c-b7a8-0237f7a4f70d?operation=createSnapshotFromVolume"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "snapshot": {
@@ -237,4 +234,3 @@ Optional | &nbsp;
 ------ | -----------
 `name`<br/>*string* | A ***unique name*** to be given to the newly created **snapshot**. If this parameter is not provided then by default the concatenation of the *instance name*, *volume name* and the *current timestamp* is used. <br/><br/>*Eg:*<br/>&nbsp;&nbsp;&nbsp;&nbsp;*[instance.name]\_[volume.name]\_[timestamp]*<br/>&nbsp;&nbsp;&nbsp;&nbsp;***i-root-6E7_RapidVol_20190117153537***
 `rapid`<br/>*boolean* | Indicates the ***location*** as to where the snapshot is supposed to be made. <br/><br/>Setting this to **true** will ensure that the snapshot is created in the same primary storage as where the volume is. If **false**, then the snapshot is created in a secondary storage. <br/><br/>*Note: Rapid snapshots enable much faster volume and template creation than from regular snapshots, but at a higher expense. Not all volumes support the* **rapid** *snapshot option.*
-

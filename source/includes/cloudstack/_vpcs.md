@@ -11,9 +11,9 @@ A Virtual Private Cloud (VPC) is a logically isolated section of CloudMC, where 
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs"
-
-# Example response:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -38,7 +38,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs</code>
 
-Retrieve a list of all VPCs of an [environment](#administration-environments)
+Retrieve a list of all VPCs of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -64,9 +64,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
-
-# Example response:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -112,17 +112,14 @@ Attributes | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "my_vpc",
@@ -134,7 +131,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs</code>
 
-Create a VPC in an [environment](#administration-environments)
+Create a VPC in an [environment](#administration-environments).
 
 Required | &nbsp;
 ------ | -----------
@@ -154,17 +151,14 @@ Optional | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/d77e1ab1-0320-4504-83c5-e78b431c7577"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
   "name": "my_updated_vpc",
@@ -174,7 +168,7 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs</code>
 
-Update an existing VPC in your [environment](#administration-environments)
+Update an existing VPC in your [environment](#administration-environments).
 
 Optional | &nbsp;
 ------ | ---- | -----------
@@ -189,9 +183,6 @@ Optional | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
@@ -208,9 +199,6 @@ Destroy an existing VPC. To delete a VPC, you must first delete all the [network
 
 
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e?operation=restart"

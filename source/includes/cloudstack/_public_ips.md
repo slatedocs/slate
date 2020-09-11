@@ -6,9 +6,9 @@
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/publicipaddresses"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
    "data": [
@@ -79,9 +79,9 @@ Query Parameters | &nbsp;
 ```shell
 curl -X GET -H "MC-Api-Key: your_api_key"
 "https://cloudmc_endpoint/v1/services/compute-on/test_area/publicipaddresses/10001e7d-b4ef-489b-836e-0619a383bc8d"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
    "data": {
@@ -125,9 +125,9 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/publicipaddresses"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb"
@@ -163,9 +163,9 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b?operation=enableStaticNat"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "privateIpId": "5e30609d-7098-4d93-8317-3ecfe316ed00"

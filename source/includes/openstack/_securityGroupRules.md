@@ -8,6 +8,8 @@ Security group rules define the type of traffic that can access the instances as
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules?securitygroupid=f54f050b-01b2-4a73-b6e1-4e13a5566323"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": [
@@ -44,14 +46,14 @@ Retrieve a list of all security group rules in a security group.
 
  Attribute                      | Description                          
  ---------------------------    | ------------------------------------
- `id`<br/>*UUID*                | The security group rule's id         
- `remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule     
- `startPort`<br/>*int*          | Minimum port that is matched by this rule             
- `endPort`<br/>*int*            | Maximum port that is matched by this rule             
- `etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
- `protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP             
- `ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress            
- `securityGroupId`<br/>*UUID*   | The ID of the parent security group             
+ `id`<br/>*UUID*                | The security group rule's id.
+ `remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule.
+ `startPort`<br/>*int*          | Minimum port that is matched by this rule.
+ `endPort`<br/>*int*            | Maximum port that is matched by this rule.
+ `etherType`<br/>*string*       | IP type, either IPv4 or IPv6.
+ `protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP.
+ `ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress.
+ `securityGroupId`<br/>*UUID*   | The ID of the parent security group.
 
 
 #### Retrieve a security group rule
@@ -60,6 +62,8 @@ Retrieve a list of all security group rules in a security group.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules/655d3bcb-3f8a-4738-b50a-53bca43469b5"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
 	 "data": {
@@ -81,14 +85,14 @@ Retrieve information about a security group rule.
 
 Attribute                      | Description                          
 ---------------------------    | ------------------------------------
-`id`<br/>*UUID*                | The security group rule's id         
-`remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule     
-`startPort`<br/>*int*          | Minimum port that is matched by this rule             
-`endPort`<br/>*int*            | Maximum port that is matched by this rule             
-`etherType`<br/>*string*       | IP type, either IPv4 or IPv6              
-`protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP             
-`ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress             
-`securityGroupId`<br/>*UUID*   | The ID of the parent security group             
+`id`<br/>*UUID*                | The security group rule's id.
+`remoteAddress`<br/>*string*   | Remote IPs or CIDRs associated with this rule.
+`startPort`<br/>*int*          | Minimum port that is matched by this rule.
+`endPort`<br/>*int*            | Maximum port that is matched by this rule.
+`etherType`<br/>*string*       | IP type, either IPv4 or IPv6.
+`protocol`<br/>*string*        | The IP protocol, either ICMP, TCP or UDP.
+`ingress`<br/>*boolean*        | Direction in which the rule is applied, false implies egress.
+`securityGroupId`<br/>*UUID*   | The ID of the parent security group.
 
 
 
@@ -100,8 +104,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "ingress": true,
@@ -117,11 +122,11 @@ curl -X POST \
 
 Create a security group rule for a security group.
 
- Required attributes          | Description                          
+ Required          | Description                          
  --------------------------   | ------------------------------------
- `securityGroupId`<br/>*UUID* | The ID of the parent security group            
+ `securityGroupId`<br/>*UUID* | The ID of the parent security group.
 
- Optional attributes          | Description                          
+ Optional          | Description                          
  --------------------------   | ------------------------------------
  `ingress`<br/>*boolean*      | Direction in which the rule is applied, false implies egress. Defaults to ingress.            
  `protocol`<br/>*string*      | The IP protocol, either ICMP, TCP or UDP. Defaults to allow all protocols.

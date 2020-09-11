@@ -1,5 +1,8 @@
 ### Instances
+
 Deploy and manage your instances.
+
+For information regarding bare metal instances, please see [bare metal instances](#cloudstack-bare-metal-instances).
 
 <!-------------------- LIST INSTANCES -------------------->
 
@@ -9,34 +12,34 @@ Deploy and manage your instances.
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances"
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [
     {
       "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
       "name": "my_instance",
-      "state": "Running",
-      "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
-      "zoneName": "QC-1",
-      "imageId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
-      "imageName": "CentOS 6.8 PV",
+      "affinityGroupIds": [],
       "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
       "computeOfferingName": "1vCPU.512MB",
-      "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
-      "networkName": "Web-test_area",
-      "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
-      "vpcName": "prod-VPC",
+      "cpuCount": 1,
+      "hostname": "my_instance",
+      "imageId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
+      "imageName": "CentOS 6.8 PV",
       "ipAddress": "10.164.212.68",
       "isPasswordEnabled": true,
       "macAddress": "02:00:2b:67:00:30",
-      "cpuCount": 1,
       "memoryInMB": 512,
-      "hostname": "my_instance",
+      "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
+      "networkName": "Web-test_area",
+      "state": "Running",
       "username": "cca-user",
-      "affinityGroupIds": []
+      "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
+      "vpcName": "prod-VPC",
+      "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
+      "zoneName": "QC-1"
     }
   ],
   "metadata": {
@@ -47,31 +50,31 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given [environment](#administration-environments)
+Retrieve a list of all instances in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The display name of the instance
-`state`<br/>*string* | The current state of the instance
-`imageId`<br/>*UUID* | The [image](#cloudstack-images) id of the instance
-`imageName`<br/>*string* | The [image](#cloudstack-images) name of the instance
+`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#cloudstack-affinity-groups) to which the instance is associated.
 `computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) id of the instance
 `computeOfferingName`<br/>*string* | The [compute offering](#cloudstack-compute-offerings) name of the instance
 `cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#cloudstack-compute-offerings)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#cloudstack-compute-offerings)
-`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) where instance is deployed
-`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
-`username`<br/>*string* | The username that can be used to connect to the instance
-`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#cloudstack-affinity-groups) to which the instance is associated.
-`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where instance is deployed
-`zoneName`<br/>*string* | The name of associated [zone](#cloudstack-zones)
-`vpcId`<br/>*UUID* | The id of the associated [VPC](#cloudstack-vpcs)
-`vpcName`<br/>*string* | The name of associated [VPC](#cloudstack-vpcs)
+`imageId`<br/>*UUID* | The [image](#cloudstack-images) id of the instance
+`imageName`<br/>*string* | The [image](#cloudstack-images) name of the instance
 `ipAddress`<br/>*string* | The instance's private IPv4 address
 `isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
 `macAddress`<br/>*string* | The instance's MAC address
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#cloudstack-compute-offerings)
+`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) where instance is deployed
+`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) where instance is deployed
+`state`<br/>*string* | The current state of the instance
+`username`<br/>*string* | The username that can be used to connect to the instance
+`vpcId`<br/>*UUID* | The id of the associated [VPC](#cloudstack-vpcs)
+`vpcName`<br/>*string* | The name of associated [VPC](#cloudstack-vpcs)
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where instance is deployed
+`zoneName`<br/>*string* | The name of associated [zone](#cloudstack-zones)
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -81,35 +84,34 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
-
-
-# The above command returns JSON structured like this:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
     "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
     "name": "backup_instance",
-    "state": "Running",
-    "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
-    "zoneName": "QC-1",
-    "imageId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
-    "imageName": "CentOS 6.8 PV",
+    "affinityGroupIds": [],
     "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
     "computeOfferingName": "1vCPU.512MB",
-    "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
-    "networkName": "Web-test_area",
-    "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
-    "vpcName": "prod-VPC",
+    "cpuCount": 1,
+    "hostname": "backup_instance",
+    "imageId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
+    "imageName": "CentOS 6.8 PV",
     "ipAddress": "10.164.212.68",
     "isPasswordEnabled": true,
     "macAddress": "02:00:2b:67:00:30",
-    "cpuCount": 1,
     "memoryInMB": 512,
-    "hostname": "backup_instance",
-    "username": "cca-user",
-    "affinityGroupIds": [],
+    "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
+    "networkName": "Web-test_area",
+    "state": "Running",
     "userData": "",
+    "username": "cca-user",
+    "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
+    "vpcName": "prod-VPC",
+    "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
+    "zoneName": "QC-1",
     "publicIps": [{
       "id": "7a204b7f-1039-4867-8971-c1e4f778ef33",
       "ipAddress": "199.215.226.46",
@@ -137,28 +139,28 @@ Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*UUID* | The id of the instance
 `name`<br/>*string* | The display name of the instance
-`state`<br/>*string* | The current state of the instance
-`imageId`<br/>*UUID* | The image id of the instance
-`imageName`<br/>*string* | The image name of the instance
+`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#cloudstack-affinity-groups) to which the instance is associated.
 `computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) id of the instance
 `computeOfferingName`<br/>*string* | The [compute offering](#cloudstack-compute-offerings) name of the instance
 `cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#cloudstack-compute-offerings)
-`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#cloudstack-compute-offerings)
-`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) where instance is deployed
-`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
-`username`<br/>*string* | The username that can be used to connect to the instance
-`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#cloudstack-affinity-groups) to which the instance is associated.
-`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where instance is deployed
-`zoneName`<br/>*string* | The name of associated [zone](#cloudstack-zones)
-`vpcId`<br/>*UUID* | The id of the associated [VPC](#cloudstack-vpcs)
-`vpcName`<br/>*string* | The name of associated [VPC](#cloudstack-vpcs)
+`imageId`<br/>*UUID* | The image id of the instance
+`imageName`<br/>*string* | The image name of the instance
 `ipAddress`<br/>*string* | The instance's private IPv4 address
 `isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
 `macAddress`<br/>*string* | The instance's MAC address
-`userData`<br/>*string* | The user data of the instance
-`publicIps`<br/>*Array[[PublicIp](#cloudstack-public-ips)]* | The public IP addresses associated to the instance<br/>*includes:* `id`, `purposes`, `ipAddress`, `ports`
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#cloudstack-compute-offerings)
+`networkId`<br/>*UUID* | The id of the [network](#cloudstack-networks) where instance is deployed
+`networkName`<br/>*string* | The name of the [network](#cloudstack-networks) where instance is deployed
 `nics`<br/>*Array[[NIC](#cloudstack-nics)]* | The NICs of the instance<br/>*includes:* `id`, `isDefault`, `networkId`
+`publicIps`<br/>*Array[[PublicIp](#cloudstack-public-ips)]* | The public IP addresses associated to the instance<br/>*includes:* `id`, `purposes`, `ipAddress`, `ports`
+`state`<br/>*string* | The current state of the instance
+`userData`<br/>*string* | The user data of the instance
+`username`<br/>*string* | The username that can be used to connect to the instance
+`vpcId`<br/>*UUID* | The id of the associated [VPC](#cloudstack-vpcs)
+`vpcName`<br/>*string* | The name of associated [VPC](#cloudstack-vpcs)
+`zoneId`<br/>*UUID* | The id of the [zone](#cloudstack-zones) where instance is deployed
+`zoneName`<br/>*string* | The name of associated [zone](#cloudstack-zones)
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
@@ -167,80 +169,76 @@ Attributes | &nbsp;
 ```shell
 
 # Here is the absolute minimum information required to create a new instance:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "name": "jarvis",
-   "templateId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
-   "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
-   "networkId": "55ccea7f-8286-479e-a648-dd4a45866daf",
-   "diskOfferingId": "f16f7f1b-462d-47b9-97bb-25a19e47a648",
-   "rootVolumeSizeInGb": 60,
-   "additionalDiskSizeInGb": 20,
    "additionalDiskIops": 1000,
-   "sshKeyName": "mysshkey",
-   "volumeIdToAttach": "2478012b-3cf3-4eef-a8d6-85eb8599df6d",
+   "additionalDiskSizeInGb": 20,
    "affinityGroupId": "1c0bfd2b-d609-4892-a43e-273654532d26",
+   "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
+   "diskOfferingId": "f16f7f1b-462d-47b9-97bb-25a19e47a648",
+   "networkId": "55ccea7f-8286-479e-a648-dd4a45866daf",
    "portsToForward": ["80", "9999"],
-   "userData": "#!/bin/bash\necho 'hello world'"
+   "rootVolumeSizeInGb": 60,
+   "sshKeyName": "mysshkey",
+   "templateId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
+   "userData": "#!/bin/bash\necho 'hello world'",
+   "volumeIdToAttach": "2478012b-3cf3-4eef-a8d6-85eb8599df6d"
 }
 ```
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Create an instance in an [environment](#administration-environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
+Create an instance in an [environment](#administration-environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls. 
+
+In order to create [bare metal instances](#cloudstack-bare-metal-instances), please see the [acquire](#cloudstack-acquire-a-bare-metal-instance) operation.
 
 Required | &nbsp;
 ------ | -----------
 `name`<br/>*string* | Name of the newly created instance
-`templateId`<br/>*UUID* | The [template](#cloudstack-templates) to use for this instance
 `computeOfferingId`<br/>*UUID* | The [compute offering](#cloudstack-compute-offerings) will determine the number of CPU and RAM of your instance
 `networkId`<br/>*UUID* | The [network](#cloudstack-networks) in which the instance will be created. If you don't have a network, it can be created through the [create network](#cloudstack-create-network) api.
+`templateId`<br/>*UUID* | The [template](#cloudstack-templates) to use for this instance
 
 Optional | &nbsp;
 ------ | -----------
-`rootVolumeSizeInGb`<br/>*int* | The number of GB of the root volume. You must choose a [template](#cloudstack-templates) that allows the resize of root volume. If none specified, then the default one of the template will be used.
-`diskOfferingId`<br/>*UUID* | The [disk offering](#cloudstack-disk-offerings) to be used for a new volume to attach to this instance
-`additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a [disk offering](#cloudstack-disk-offerings) with custom disk size enabled.
 `additionalDiskIops`<br/>*int* | The number of IOPS the additional disk should have. You must choose a [disk offering](#cloudstack-disk-offerings) with custom IOPS enabled.
-`sshKeyName`<br/>*string* | The name of the [SSH key](#cloudstack-ssh-keys) to use for this instance. If you don't have an SSH key registered, you can do so through this [api](#cloudstack-create-ssh-key).
-`publicKey`<br/>*string* | The public key to use for this instance.
-`volumeIdToAttach`<br/>*UUID* | The [volume](#cloudstack-volumes) to attach to this instance.
+`additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a [disk offering](#cloudstack-disk-offerings) with custom disk size enabled.
 `affinityGroupId`<br/>*UUID* | The [affinity group](#cloudstack-affinity-groups) where to create the instance.
-`portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#cloudstack-public-ips), if it can't find one it will [acquire a new public IP](#cloudstack-acquire-a-public-ip).
-`userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance.
 `cpuCount`<br/>*int* | If the [compute offering](#cloudstack-compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
-`memoryInMB`<br/>*int* | If the [compute offering](#cloudstack-compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
+`diskOfferingId`<br/>*UUID* | The [disk offering](#cloudstack-disk-offerings) to be used for a new volume to attach to this instance
 `ipAddress`<br/>*string* | Private IPv4 address of this instance, must be within network's CIDR and not collide with other instances on the network.
-
-
+`memoryInMB`<br/>*int* | If the [compute offering](#cloudstack-compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
+`portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#cloudstack-public-ips), if it can't find one it will [acquire a new public IP](#cloudstack-acquire-a-public-ip).
+`publicKey`<br/>*string* | The public key to use for this instance.
+`rootVolumeSizeInGb`<br/>*int* | The number of GB of the root volume. You must choose a [template](#cloudstack-templates) that allows the resize of root volume. If none specified, then the default one of the template will be used.
+`sshKeyName`<br/>*string* | The name of the [SSH key](#cloudstack-ssh-keys) to use for this instance. If you don't have an SSH key registered, you can do so through this [api](#cloudstack-create-ssh-key).
+`userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance.
+`volumeIdToAttach`<br/>*UUID* | The [volume](#cloudstack-volumes) to attach to this instance.
 
 <!-------------------- UPDATE AN INSTANCE -------------------->
 
-
 #### Update an instance
-
 
 ```shell
 
 # Here is the absolute minimum information required to create a new instance:
-
 curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
    "name": "hal",
@@ -260,7 +258,6 @@ Optional | &nbsp;
 `name`<br/>*string* | Updated name of instance
 `hostname`<br/>*string* | Updated hostname of instance.
 
-
 <!-------------------- DELETE AN INSTANCE -------------------->
 
 #### Destroy an instance
@@ -268,14 +265,15 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint:443/v1/services/compute-on/test_area/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
-
-# Request example:
+   -d "request_body" \
+   "https://cloudmc_endpoint:443/v1/services/compute-on/test_area/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" 
 ```
+> Request body example:
+
 ```json
 {
-   "purgeImmediately":true,
    "deleteSnapshots":true,
+   "purgeImmediately":true,
    "publicIpIdsToRelease":[
       "fe446d61-a22c-403a-87bf-5351e65dc54d"
    ],
@@ -289,53 +287,43 @@ curl -X DELETE \
 
 Destroys an existing instance. The instance needs to be in the *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as [public IPs](#cloudstack-public-ips), [volumes](#cloudstack-volumes) and [snapshots](#cloudstack-snapshots). If the purgeImmediately flag is not true, then it will not completely remove the instance from the [environment](#administration-environments). (i.e. the instance could still be recovered).
 
+In order to destory [bare metal instances](#cloudstack-bare-metal-instances), please see the [release](#cloudstack-release-a-bare-metal-instance) operation.
 
 Optional | &nbsp;
 ------ | -----------
-`purgeImmediately`<br/>*boolean* | Will destroy and purge the instance if true, puts the instance in destroyed state otherwise. An instance that wasn't purged can be recovered.
 `deleteSnapshots`<br/>*boolean* | Will delete all [snapshots](#cloudstack-snapshots) of volumes attached to this instance if true, will keep snapshots otherwise.
 `publicIpIdsToRelease`<br/>*Array[UUID]* | List of IDs of the [public IP addresses](#cloudstack-public-ips) to release with the instance. Can only release public IPs of the instance being destroyed and they must not be used by other instances.
+`purgeImmediately`<br/>*boolean* | Will destroy and purge the instance if true, puts the instance in destroyed state otherwise. An instance that wasn't purged can be recovered.
 `volumeIdsToDelete`<br/>*Array[UUID]* | List of IDs of the [data volumes](#cloudstack-volumes) to delete with the instance. Can only destroy data volumes that are attached to this instance.
 
 <!-------------------- START AN INSTANCE -------------------->
 
-
 #### Start an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
-
 ```
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=start</code>
 
 Start an existing instance. The instance must be in the *Stopped* state for this operation to work.
 
-
 <!-------------------- STOP AN INSTANCE -------------------->
-
 
 #### Stop an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
    "forceStop":true
@@ -352,14 +340,9 @@ Optional | &nbsp;
 
 <!-------------------- REBOOT AN INSTANCE -------------------->
 
-
 #### Reboot an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -372,14 +355,9 @@ Reboot an existing instance. The instance must be in the *Running* or *Stopped* 
 
 <!-------------------- PURGE AN INSTANCE -------------------->
 
-
 #### Purge an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -392,14 +370,9 @@ Purges an existing instance (i.e. completely remove it from the environment). Th
 
 <!-------------------- RECOVER AN INSTANCE -------------------->
 
-
 #### Recover an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -412,14 +385,9 @@ Recover an existing instance that was previously destroyed. The instance must be
 
 <!-------------------- CHANGE COMPUTE OFFERING OF AN INSTANCE -------------------->
 
-
 #### Change the compute offering of an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -445,14 +413,9 @@ Required | (if custom compute offering)
 
 <!-------------------- RESET PASSWORD OF AN INSTANCE -------------------->
 
-
 #### Reset the password of an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -467,11 +430,7 @@ Reset the password of the default user of an existing instance. The new password
 
 #### Change network of an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -488,21 +447,16 @@ Required | &nbsp;
 
 <!-------------------- ASSOCIATE AN SSH KEY TO AN INSTANCE -------------------->
 
-
 #### Associate an SSH key to an instance
 
-
 ```shell
-
-# Example:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
-
-# Request example:
 ```
+> Request body example:
+
 ```json
 {
    "sshKeyName": "my_ssh_key"
@@ -525,9 +479,9 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=attachIso"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
    "isoId": "f092a051-8b3f-4941-b47f-5ecb77f3423b"
@@ -541,7 +495,6 @@ Attach an existing, non-bootable [ISO](#cloudstack-isos) to an instance. Each in
 Required                | &nbsp;                                                  
 ------------------------|----------------------------------------------------------
 `isoId`<br/>*UUID*      | The id of the ISO to attach
-
 
 #### Detach the ISO from an instance
 

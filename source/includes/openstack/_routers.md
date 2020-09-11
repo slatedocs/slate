@@ -8,6 +8,8 @@ Routers route traffic between networks, including the public internet.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": [
@@ -38,12 +40,12 @@ Retrieve a list of routers in an OpenStack environment.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `id`<br/>*UUID*                         | The router's ID                     |
-| `name`<br/>*string*                     | The router's name                   |
-| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs   |
-| `networkNames`<br/>*Array[string]*      | The router's internal network names |
-| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
-| `externalNetworkName`<br/>*string*      | The router's external network name  |
+| `id`<br/>*UUID*                         | The router's ID.                     |
+| `name`<br/>*string*                     | The router's name.                   |
+| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs.   |
+| `networkNames`<br/>*Array[string]*      | The router's internal network names. |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID.    |
+| `externalNetworkName`<br/>*string*      | The router's external network name.  |
 
 #### Retrieve a router
 
@@ -51,6 +53,8 @@ Retrieve a list of routers in an OpenStack environment.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
     "data": {
@@ -76,12 +80,12 @@ Retrieve a single router in an OpenStack environment.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `id`<br/>*UUID*                         | The router's ID                     |
-| `name`<br/>*string*                     | The router's name                   |
-| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs   |
-| `networkNames`<br/>*Array[string]*      | The router's internal network names |
-| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
-| `externalNetworkName`<br/>*string*      | The router's external network name  |
+| `id`<br/>*UUID*                         | The router's ID.                     |
+| `name`<br/>*string*                     | The router's name.                   |
+| `networkIds`<br/>*Array[UUID]*          | The router's internal network IDs.   |
+| `networkNames`<br/>*Array[string]*      | The router's internal network names. |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID.    |
+| `externalNetworkName`<br/>*string*      | The router's external network name.  |
 
 #### Create a router
 
@@ -91,8 +95,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "name": "external-router",
@@ -106,8 +111,8 @@ Create a router.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `name`<br/>*string*                     | The router's name                   |
-| `externalNetworkId`<br/>*UUID*          | The router's external network ID    |
+| `name`<br/>*string*                     | The router's name.                   |
+| `externalNetworkId`<br/>*UUID*          | The router's external network ID.   |
 
 #### Add a router interface
 
@@ -117,8 +122,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71?operation=addRouterInterface"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
     "networkId": "471eb361-c028-45f5-bd1a-6d05a057624f",
@@ -131,7 +137,7 @@ Connect a router to a network.
 
 | Attributes                            | Description                         |
 | ------------------------------------- | ----------------------------------- |
-| `networkId`<br/>*UUID*                | The ID of the network to connect    |
+| `networkId`<br/>*UUID*                | The ID of the network to connect.    |
 
 
 #### Delete a router

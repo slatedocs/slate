@@ -10,9 +10,9 @@ A site-to-site VPN allows multiple sites to establish a secure connection over t
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [
@@ -22,7 +22,7 @@ curl -X GET \
         "state": "Connected",
         "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
         "gateway":"19.19.19.19",
-        "cidr":"10.12.0.2/22",
+        "cidrList":"10.12.0.2/22,10.0.0.0/24",
         "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
         "ikeEncryptionAlgorithm": "aes256",
         "ikeHashAlgorithm": "sha1",
@@ -44,7 +44,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns</code>
 
-Retrieve a list of all site-to-site VPNs in an [environment](#administration-environments)
+Retrieve a list of all site-to-site VPNs in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -53,7 +53,7 @@ Attributes | &nbsp;
 `state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#cloudstack-reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
@@ -78,9 +78,9 @@ Query Parameters | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -89,7 +89,7 @@ curl -X GET \
       "state": "Connected",
       "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
       "gateway":"19.19.19.19",
-      "cidr":"10.12.0.2/22",
+      "cidrList":"10.12.0.2/22,10.0.0.0/24",
       "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
       "ikeEncryptionAlgorithm": "aes256",
       "ikeHashAlgorithm": "sha1",
@@ -116,7 +116,7 @@ Attributes | &nbsp;
 `state`<br/>*string* | The state of the site-to-site VPN. Can be Connected, Pending, Disconnected or Error. If disconnected, you can try to use the [reset](#cloudstack-reset-the-connection-of-a-site-to-site-vpn) operation
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
@@ -134,23 +134,21 @@ Attributes | &nbsp;
 #### Create a site-to-site VPN
 
 ```shell
-
 # Here is the absolute minimum information required to create a new site-to-site VPN:
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
       "name": "stargate",
       "vpcId": "3fe7d82a-f4c4-4552-ac3b-787fdafed4e7",
       "gateway":"19.19.19.19",
-      "cidr":"10.12.0.2/22",
+      "cidrList":"10.12.0.2/22,10.0.0.0/24",
       "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
       "ikeEncryptionAlgorithm": "aes256",
       "ikeHashAlgorithm": "sha1",
@@ -166,14 +164,14 @@ curl -X POST \
 ```
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns</code>
 
-Create a site-to-site VPN
+Create a site-to-site VPN.
 
 Required | &nbsp;
 ------ | -----------
 `name`<br/>*string* | The name of the site-to-site VPN. Must be unique in the environment.
 `vpcId`<br/>*UUID* | The VPC for which the site-to-site VPN was created.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
@@ -195,22 +193,20 @@ Optional | &nbsp;
 #### Update a site-to-site VPN
 
 ```shell
-
 # Here is the absolute minimum information required to update a site-to-site VPN:
-
 curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
-
-# Request should look like this
 ```
+> Request body example:
+
 ```json
 {
       "name": "stargate",
       "gateway":"19.19.19.19",
-      "cidr":"10.12.0.2/22",
+      "cidrList":"10.12.0.2/22,10.0.0.0/24",
       "ipSecPsk": "WtOBS9GRux2XtJPtHY2TUvrv",
       "ikeEncryptionAlgorithm": "aes256",
       "ikeHashAlgorithm": "sha1",
@@ -226,13 +222,13 @@ curl -X PUT \
 ```
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id</code>
 
-Update a site-to-site VPN
+Update a site-to-site VPN.
 
 Optional | &nbsp;
 ------ | -----------
 `name`<br/>*string* | The name of the site-to-site VPN. Must be unique in the environment.
 `gateway`<br/>*string*  | The gateway of the network you want to connect to. NOTE: you cannot use a gateway that has already been used by a site-to-site VPN in your environment
-`cidr`<br/>*string*  | CIDR of the network you want to connect to.
+`cidrList`<br/>*string*  | Comma-separated list of CIDRs of the networks you want to connect to.
 `ipSecPsk`<br/>*string*  | IPSec pre-shared key.
 `ikeEncryptionAlgorithm`<br/>*string*  | The Internet Key Exchange (IKE) policy for phase-1. The supported encryption algorithms are AES128, AES192, AES256, and 3DES.
 `ikeHashAlgorithm`<br/>*string*  | The IKE hash for phase-1. The supported hash algorithms are SHA1 and MD5.
@@ -252,9 +248,6 @@ Optional | &nbsp;
 
 
 ```shell
-
-# Example:
-
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
@@ -270,12 +263,10 @@ Delete an existing site-to-site VPN.
 #### Reset the connection of a site-to-site VPN
 
 ```shell
-
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/ca86b14f-20db-463d-b58a-9d3fa5959af2?operation=reset"
-
 ```
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sitetositevpns/:id?operation=reset</code>
 

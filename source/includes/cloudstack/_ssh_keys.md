@@ -9,9 +9,9 @@ SSH keys can be assigned to default users of instances by using the [associate S
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sshkeys"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": [{
@@ -26,7 +26,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys</code>
 
-Retrieve a list of all SSH keys in an [environment](#administration-environments)
+Retrieve a list of all SSH keys in an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----
@@ -43,9 +43,9 @@ Attributes | &nbsp;
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/sshkeys/mellon"
-
-# Example:
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
@@ -57,7 +57,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>
 
-Retrieve information about an SSH key of an [environment](#administration-environments)
+Retrieve information about an SSH key of an [environment](#administration-environments).
 
 Attributes | &nbsp;
 ---------- | -----

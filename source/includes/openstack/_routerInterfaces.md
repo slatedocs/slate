@@ -8,6 +8,8 @@ Router interfaces connect a router to a network.
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routerinterfaces?routerid=3de4f523-06ce-4955-acb0-b8e3d61ec582"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
 	"data": [
@@ -17,7 +19,8 @@ curl -H "MC-Api-Key: your_api_key" \
 			"networkId": "d507486c-eacb-48ff-841e-e3938213d95f",
 			"portId": "b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9",
 			"privateIp": "10.182.15.1",
-			"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582"
+			"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582",
+			"routerName": "routeName1"
 		}
 	],
 	"metadata": {
@@ -32,12 +35,13 @@ Retrieve a list of router interfaces associated with a router in an OpenStack en
 
  Attributes                    | Description                         
  ----------------------------- | -----------------------------------
- `id`<br/>*UUID*               | The router interface's ID                     
- `networkName`<br/>*string*    | The name of the connected network                   
- `networkId`<br/>*UUID*        | The ID of the connected network   
- `portId`<br/>*UUID*           | The ID of the port the interface is connected to (same as interface ID)
- `privateIp`<br/>*string*      | The private IP of the router interface  
- `routerId`<br/>*UUID*         | The ID of the parent router
+ `id`<br/>*UUID*               | The router interface's ID.
+ `networkName`<br/>*string*    | The name of the connected network.
+ `networkId`<br/>*UUID*        | The ID of the connected network.
+ `portId`<br/>*UUID*           | The ID of the port the interface is connected to (same as interface ID).
+ `privateIp`<br/>*string*      | The private IP of the router interface.
+ `routerId`<br/>*UUID*         | The ID of the parent router.
+ `routerName`<br/>*UUID*       | The name of the parent router.
 
 #### Retrieve a router interface
 
@@ -45,6 +49,8 @@ Retrieve a list of router interfaces associated with a router in an OpenStack en
 curl -H "MC-Api-Key: your_api_key" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routerinterfaces/b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9"
 ```
+> The above command returns a JSON structured like this:
+
 ```json
 {
 	"data": {
@@ -53,7 +59,8 @@ curl -H "MC-Api-Key: your_api_key" \
 		"networkId": "d507486c-eacb-48ff-841e-e3938213d95f",
 		"portId": "b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9",
 		"privateIp": "10.182.15.1",
-		"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582"
+		"routerId": "3de4f523-06ce-4955-acb0-b8e3d61ec582",
+		"routerName": "routeName1"
 	}
 }
 ```
@@ -64,12 +71,13 @@ Retrieve a single router interface in an OpenStack environment.
 
 Attributes                    | Description                         
 ----------------------------- | -----------------------------------
-`id`<br/>*UUID*               | The router interface's ID                     
-`networkName`<br/>*string*    | The name of the connected network                   
-`networkId`<br/>*UUID*        | The ID of the connected network   
-`portId`<br/>*UUID*           | The ID of the port the interface is connected to (same as interface ID)
-`privateIp`<br/>*string*      | The private IP of the router interface  
-`routerId`<br/>*UUID*         | The ID of the parent router
+`id`<br/>*UUID*               | The router interface's ID.
+`networkName`<br/>*string*    | The name of the connected network.
+`networkId`<br/>*UUID*        | The ID of the connected network.
+`portId`<br/>*UUID*           | The ID of the port the interface is connected to (same as interface ID).
+`privateIp`<br/>*string*      | The private IP of the router interface.
+`routerId`<br/>*UUID*         | The ID of the parent router.
+`routerName`<br/>*UUID*       | The name of the parent router.
 
 #### Create a router interface
 
@@ -79,8 +87,9 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d "request_body" \
     "https://api.your.cloudmc/v1/services/compute-os/devel/routerinterfaces"
-# Request should look like this:
 ```
+> Request body example:
+
 ```json
 {
 	"networkId": "d507486c-eacb-48ff-841e-e3938213d95f",
@@ -92,10 +101,10 @@ curl -X POST \
 
 Create a router interface.
 
-Required attributes          | Description                          
+Required          | Description                          
 --------------------------   | ------------------------------------
-`networkId`<br/>*UUID*        | The ID of the network that is being connected  
-`routerId`<br/>*UUID*         | The ID of the router
+`networkId`<br/>*UUID*        | The ID of the network that is being connected. 
+`routerId`<br/>*UUID*         | The ID of the router.
 
 
 #### Delete a router interface
