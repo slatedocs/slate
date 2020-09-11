@@ -178,15 +178,15 @@ Required | &nbsp;
 `direction`<br/>*string* | Direction of traffic to which this firewall applies, either INGRESS or EGRESS. The default is INGRESS.
 `name`<br/>*string* | The display name of the firewall rule.
 `priority`<br/>*string* | Priority for this rule. This is an integer between 0 and 65535, both inclusive. The default value is 1000.
-`range`<br/>*string* | The source or destination range depending on the `direction` specified. The firewall rule applies only to traffic that has a source/destination IP address in these ranges. These ranges must be expressed in CIDR format.
+`range`<br/>*Array[string]* | The source or destination range depending on the `direction` specified. The firewall rule applies only to traffic that has a source/destination IP address in these ranges. These ranges must be expressed in CIDR format.
 
 
 Optional | &nbsp;
 ------- | -----------
 `all`<br/>*boolean* | Specifies if the firewall rule is an allow all or deny all rule.
-`tcpPorts`<br/>*string* | The tcp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22.
-`udpPorts`<br/>*string* | The udp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22.
-`protocols`<br/>*string* | Supported protocols are: icmp, esp, ah, sctp, ipip or a valid [decimal IP protocol number](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
+`tcpPorts`<br/>*Array[string]* | The tcp ports on which to apply the rule. These must be in the range [0, 65535).
+`udpPorts`<br/>*Array[string]* | The udp ports on which to apply the rule. These must be in the range [0, 65535).
+`protocols`<br/>*Array[string]* | Supported protocols are: icmp, esp, ah, sctp, ipip or a valid [decimal IP protocol number](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
 
 
 <!-------------------- DELETE A FIREWALL RULE -------------------->
