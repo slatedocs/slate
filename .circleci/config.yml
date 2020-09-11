@@ -12,4 +12,4 @@ workflows:
             - dev
         context: ecr
         repo: web/apidocs
-        tag: "${CIRCLE_BRANCH}-$(date +'%Y%m%d')-$(git show-ref HEAD --abbrev -s)"
+        tag: "${CIRCLE_BRANCH}-$(date +'%Y%m%d')-$(git show-ref ${CIRCLE_BRANCH} --abbrev -s)"
