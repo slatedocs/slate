@@ -17,7 +17,7 @@ https://api.practitest.com/api/v2/projects/4566/step_runs.json?name_like=login
 # Get all step runs with run ids 23223,43121 from project #4566
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
-https://api.practitest.com/api/v2/projects/4566/step_runs.json?runs-ids=23223,43121
+https://api.practitest.com/api/v2/projects/4566/step_runs.json?run-ids=23223,43121
 
 ```
 
@@ -74,7 +74,7 @@ This endpoint retrieves all step runs.
 
 ### HTTP Request
 
-<!-- http://localhost:3000/api/v2/projects/4849/step_runs.json?api_token=ef02d0ee6d583554020e82d10161a671a3d0b1fb&runs-ids=66126,66117&status=NO%20RUN -->
+<!-- http://localhost:3000/api/v2/projects/4849/step_runs.json?api_token=ef02d0ee6d583554020e82d10161a671a3d0b1fb&run-ids=66126,66117&status=NO%20RUN -->
 
 `GET [BASE_URL]/api/v2/projects/YOUR_PROJECT_ID/step_runs.json`
 
