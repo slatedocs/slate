@@ -1,5 +1,5 @@
 <span></span>
-<section class="full-section">
+<section class="full-section beta">
 <section>
 
 # Overview

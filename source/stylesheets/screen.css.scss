@@ -1050,3 +1050,12 @@ pre {
     }
   }
 }
+
+// For Beta
+section:not(.beta) {
+  display: none !important;
+}
+
+hr {
+  display: none !important;
+}

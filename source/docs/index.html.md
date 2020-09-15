@@ -18,10 +18,11 @@ includes:
   - markdown/10-pagination.html.md
   - markdown/11-input-output-options.html.md
   - markdown/12-custom-external-data.html.md
-  - markdown/13-deprecations.html.md
-  - markdown/13-publish-your-app.html.md
-  - markdown/14-how-to-use.html.md
-  - markdown/13-why-use-asanas-api.html.md
+  - markdown/13-platform-ui.html.md
+  - markdown/14-deprecations.html.md
+  - markdown/14-publish-your-app.html.md
+  - markdown/15-how-to-use.html.md
+  - markdown/14-why-use-asanas-api.html.md
   - markdown/15-quick-start.html.md
   - markdown/16-official-client-libs.html.md
   - api-reference/index.html.md
