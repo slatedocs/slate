@@ -18,6 +18,7 @@ includes:
   - markdown/10-pagination.html.md
   - markdown/11-input-output-options.html.md
   - markdown/12-custom-external-data.html.md
+  - markdown/12-news-and-changelog.html.md
   - markdown/13-deprecations.html.md
   - markdown/13-publish-your-app.html.md
   - markdown/14-how-to-use.html.md

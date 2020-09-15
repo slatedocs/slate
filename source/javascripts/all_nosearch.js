@@ -69,8 +69,21 @@ $(function() {
       return false;
     }
   });
+
+  getChangelog();
 });
 
+function getChangelog() {
+  let div = $("#changelog");
+  try {
+    fetch("https://forum.asana.com/c/97.json")
+      .then(response => response.json())
+      .then(data => div.innerHtml = data.topic_list.topics)
+  } catch(err) {
+    console.log(err);
+    div.innerHtml = "Unable to load preview. Please visit https://forum.asana.com/c/developersAPI/platform-news";
+  }
+}
 window.onpopstate = function() {
   activateLanguage(getLanguageFromQueryString());
 };
