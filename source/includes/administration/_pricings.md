@@ -210,8 +210,7 @@ curl -X POST "https://cloudmc_endpoint/v2/pricings" \
           },
           "cogs": {
             "CAD": 10
-          },
-          "deprecated": false,
+          }
         }
       ]
 }
@@ -234,7 +233,6 @@ Required | &nbsp;
 `product`<br/>*Product* | The product being priced
 `cogs`<br/>*Map* | Map from currency code to cogs
 `unitPrice`<br/>*Map* | Map from currency code to unit price
-`deprecated`<br/>*Boolean* | True if priced product is deprecated
 
 ```shell
 # Response body example
@@ -309,23 +307,9 @@ curl -X PUT "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25d
 
 Required | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | The id of the pricing
 `name`<br/>*Map* | A map from language to name value for that language
 `description`<br/>*Map* | A map from language to description value for that language
-`supportedCurrencies`<br/>*List* | A list of currencies supported by the pricing
-`effectiveDate`<br/>*Date* | The date at which the pricing will take effect.
-`pricingProducts`<br/>*Array<PricedProduct>* | Products with an associated price on it
-
 Priced product
-
-Required | &nbsp;
----- | -----------
-`id`<br/>*UUID* | The id of the priced product
-`product`<br/>*Product* | The product being priced
-`cogs`<br/>*Map* | Map from currency code to cogs
-`unitPrice`<br/>*Map* | Map from currency code to unit price
-`deprecated`<br/>*Boolean* | True if priced product is deprecated
-
 
 ```shell
 # Response body example
@@ -654,7 +638,7 @@ curl -X POST "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25
     ],
     "effectiveDate": "2020-09-02T12:00:00Z",
     "pricingChangeType": "MODIFY_PRODUCTS"
-,
+}
 ```
 > Remove product body
 ```json
@@ -755,7 +739,7 @@ Attributes | &nbsp;
 
 `PUT /pricings/:id/changes/:change_id`
 
-Update a pricing change to a pricing
+Update a future pricing change of a pricing
 
 ```shell
 # Update a pricing change
@@ -771,7 +755,7 @@ See Add Pricing Change for body. You cannot change the `pricingChangType`
 
 `DELETE /pricings/:id/changes/:change_id`
 
-Remove a pricing change of a pricing
+Remove a future pricing change from a pricing
 
 ```shell
 # Remove a pricing change
