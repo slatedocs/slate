@@ -747,7 +747,7 @@ curl -X PUT "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25d
    -H "MC-Api-Key: your_api_key"
 ```
 
-See Add Pricing Change for body. You cannot change the `pricingChangType`
+See Add Pricing Change for body. You cannot change the `pricingChangeType`
 
 
 <!-------------------- REMOVE PRICING CHANGES -------------------->
