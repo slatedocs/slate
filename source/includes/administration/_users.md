@@ -317,14 +317,9 @@ Update a specific user. It is important to note that updating the list of roles 
 Optional | &nbsp;
 -------- | -----------
 `userName`<br/>*string* | The new username of the user. Should be unique across the organization.
-<<<<<<< HEAD
 `firstName`<br/>*string* | The new first name of the user
 `lastName`<br/>*string* | The new last name of the user
 `primaryRoleBinding.role.id`<br/>*UUID* | The id of the primary role to assign to this user
-=======
-`firstName`<br/>*string* | The new first name of the user.
-`lastName`<br/>*string* | The new last name of the user.
->>>>>>> cmc-dev
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
 `roles`<br/>*Array[[Role](#administration-roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 
