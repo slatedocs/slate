@@ -591,6 +591,7 @@ html, body {
       border-radius: $border-radius;
       color: #fff;
       display: flex;
+      margin-bottom: 10px;
 
       &:before {
         @extend %icon-info-sign;

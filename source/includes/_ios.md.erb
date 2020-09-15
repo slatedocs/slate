@@ -48,6 +48,9 @@ lazy var adaFramework = AdaWebHost(handle: "ada-example")
 
 Once you have installed the Ada iOS SDK, you are ready to use it in your app! To start, import `AdaEmbedFramework` into your controller. Then, create an instance of the `AdaWebHost`.
 
+> The lazy property prevents AdaWebHost from initializing until the property is used. Use of this property may help to prevent unwanted chatters from being created in the background.
+
+
 > Please note "ada-example" is being used for demonstration purposes. Be sure to sure modify "handle", as well as any other values as needed for your bot.
 
 Finally, launch Ada using any of the 3 opening methods: [launchModalWebSupport](#ios-sdk-api-methods-launchmodalwebsupport), [launchNavWebSupport](#ios-sdk-api-methods-launchnavwebsupport), or [launchInjectingWebSupport](#ios-sdk-api-methods-launchinjectingwebsupport).
