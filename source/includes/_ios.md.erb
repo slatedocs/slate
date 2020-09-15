@@ -43,7 +43,7 @@ import AdaEmbedFramework
 
 # ...
 
-var adaFramework = AdaWebHost(handle: "ada-example")
+lazy var adaFramework = AdaWebHost(handle: "ada-example")
 ```
 
 Once you have installed the Ada iOS SDK, you are ready to use it in your app! To start, import `AdaEmbedFramework` into your controller. Then, create an instance of the `AdaWebHost`.
@@ -90,7 +90,7 @@ Takes in a language code to programatically set the bot language. Languages must
 #### metaFields
 
 ```swift
-var adaFramework = AdaWebHost(handle: "ada-example", metafields: ["tier": "pro"])
+lazy var adaFramework = AdaWebHost(handle: "ada-example", metafields: ["tier": "pro"])
 ```
 
 `metafields: [String: String]? = [:]`
@@ -115,7 +115,7 @@ Setting custom styles based on Chat elements is inherently brittle, and can caus
 `zdChatterAuthCallback: ((((_ token: String) -> Void)) -> Void)? = nil`
 
 ```swift
-var adaFramework = AdaWebHost(handle: "nic", zendeskAuthCallback: { callback in
+lazy var adaFramework = AdaWebHost(handle: "nic", zendeskAuthCallback: { callback in
     // Request JWT from your API
     // Then...
     callback("your.JWT")
