@@ -206,10 +206,14 @@ If an allocation request is specified as being to an `investor`, it cannot simul
 
 Please specify either one or the other when sending an allocation instruction.
 
+⚠️ When allocating initial shares to the `nominee` the allocation will be placed in a `PENDING` state until the necessary paperwork has been
+completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
+an `ALLOCATED` status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.
+
 
 | Key                  | JSON Type | Value Type       | Value Description                                                                                                 |
 |----------------------|-----------|------------------|-------------------------------------------------------------------------------------------------------------------|
-| id                   | String    | AllocationId     | The platform generated unique ID of the allocation. Up to 100 characters.                                                                  |
+| id                   | String    | AllocationId     | The platform generated unique ID of the allocation. Up to 100 characters.                                         |
 | quantity             | Number    | Number           | The (whole) number of shares to allocate.                                                                         |
 | instrumentSymbol     | String    | InstrumentSymbol | Platform generated unique ID of the instrument.                                                                   |
 | investor             | Object    | Object           | Set to null for non-investor allocations, else populated with the fields below.                                   |
@@ -217,7 +221,7 @@ Please specify either one or the other when sending an allocation instruction.
 | investor.accountType | String    | Enum             | The investor's account to allocate to. Values: `GIA`, `ISA`. Required if `investor` specified on the allocation.  |
 | nominee              | Object    | Object           | Set to null when not allocating to a nominee, else fields below.                                                  |
 | nominee.accountType  | String    | Enum             | The nominee involved in the alloc. Value: `ORIGINATOR`. Required if `nominee` specified on the allocation.        |
-
+| status               | String    | Enum             | `PENDING`, `CANCELLED`, `ALLOCATED`                                                                               |
 
 ## `POST /allocations`
 
@@ -250,7 +254,8 @@ Content-Type: application/json
   "investor": null,
   "nominee": {
     "accountType": "ORIGINATOR"
-  }
+  },
+  "status": "PENDING"
 }
 ```
 
@@ -260,6 +265,10 @@ Creates a new allocation of shares.
 
 When initially issuing shares, the `nominee` must be specified.
 When migrating shares, the `investor` must be specified.
+
+⚠️ When allocating initial shares to the `nominee` the allocation will be placed in a `PENDING` state until the necessary paperwork has been
+completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
+an `ALLOCATED` status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.
 
 ### Request
 
@@ -298,7 +307,8 @@ Content-Type: application/json
   "investor": null,
   "nominee": {
     "accountType": "ORIGINATOR"
-  }
+  },
+  "status": "ALLOCATED"
 }
 ```
 
