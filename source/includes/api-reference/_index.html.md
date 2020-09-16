@@ -600,7 +600,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.batchapi.createBatchRequest({field: "value", field: "value", pretty: true})
+client.batchAPI.createBatchRequest({field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -862,7 +862,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.createCustomField({field: "value", field: "value", pretty: true})
+client.customFields.createCustomField({field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1075,7 +1075,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.getCustomField(customFieldGid, {param: "value", param: "value", opt_pretty: true})
+client.customFields.getCustomField(customFieldGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1217,7 +1217,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.updateCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+client.customFields.updateCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1426,7 +1426,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.deleteCustomField(customFieldGid)
+client.customFields.deleteCustomField(customFieldGid)
     .then((result) => {
         console.log(result);
     });
@@ -1536,7 +1536,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.getCustomFieldsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+client.customFields.getCustomFieldsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1675,7 +1675,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.createEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+client.customFields.createEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1810,7 +1810,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.insertEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+client.customFields.insertEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1938,7 +1938,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfields.updateEnumOption(enumOptionGid, {field: "value", field: "value", pretty: true})
+client.customFields.updateEnumOption(enumOptionGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2083,7 +2083,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfieldsettings.getCustomFieldSettingsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+client.customFieldSettings.getCustomFieldSettingsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2235,7 +2235,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customfieldsettings.getCustomFieldSettingsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+client.customFieldSettings.getCustomFieldSettingsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2725,7 +2725,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.organizationexports.createOrganizationExport({field: "value", field: "value", pretty: true})
+client.organizationExports.createOrganizationExport({field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2878,7 +2878,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.organizationexports.getOrganizationExport(organizationExportGid, {param: "value", param: "value", opt_pretty: true})
+client.organizationExports.getOrganizationExport(organizationExportGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4787,7 +4787,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.portfoliomemberships.getPortfolioMemberships({param: "value", param: "value", opt_pretty: true})
+client.portfolioMemberships.getPortfolioMemberships({param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4906,7 +4906,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.portfoliomemberships.getPortfolioMembership(portfolioMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.portfolioMemberships.getPortfolioMembership(portfolioMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -5019,7 +5019,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.portfoliomemberships.getPortfolioMembershipsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+client.portfolioMemberships.getPortfolioMembershipsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8223,7 +8223,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectmemberships.getProjectMembership(projectMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.projectMemberships.getProjectMembership(projectMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8337,7 +8337,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectmemberships.getProjectMembershipsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+client.projectMemberships.getProjectMembershipsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8466,7 +8466,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectstatuses.getProjectStatus(projectStatusGid, {param: "value", param: "value", opt_pretty: true})
+client.projectStatuses.getProjectStatus(projectStatusGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8585,7 +8585,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectstatuses.deleteProjectStatus(projectStatusGid)
+client.projectStatuses.deleteProjectStatus(projectStatusGid)
     .then((result) => {
         console.log(result);
     });
@@ -8695,7 +8695,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectstatuses.getProjectStatusesForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+client.projectStatuses.getProjectStatusesForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8805,7 +8805,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectstatuses.createProjectStatusForProject(projectGid, {field: "value", field: "value", pretty: true})
+client.projectStatuses.createProjectStatusForProject(projectGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -16935,7 +16935,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teammemberships.getTeamMembership(teamMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.teamMemberships.getTeamMembership(teamMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -17049,7 +17049,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teammemberships.getTeamMemberships({param: "value", param: "value", opt_pretty: true})
+client.teamMemberships.getTeamMemberships({param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -17169,7 +17169,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teammemberships.getTeamMembershipsForTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
+client.teamMemberships.getTeamMembershipsForTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -17287,7 +17287,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teammemberships.getTeamMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+client.teamMemberships.getTeamMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -18176,7 +18176,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.usertasklists.getUserTaskList(userTaskListGid, {param: "value", param: "value", opt_pretty: true})
+client.userTaskLists.getUserTaskList(userTaskListGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -18290,7 +18290,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.usertasklists.getUserTaskListForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+client.userTaskLists.getUserTaskListForUser(userGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -19705,7 +19705,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.workspacememberships.getWorkspaceMembership(workspaceMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.workspaceMemberships.getWorkspaceMembership(workspaceMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -19836,7 +19836,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.workspacememberships.getWorkspaceMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+client.workspaceMemberships.getWorkspaceMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -19953,7 +19953,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.workspacememberships.getWorkspaceMembershipsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+client.workspaceMemberships.getWorkspaceMembershipsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
