@@ -247,6 +247,11 @@ curl -X DELETE \
 
 Delete an existing instance.
 
+<aside class="notice">
+This will not delete the disks (OS/Data) attached to the instance but will leave them in detached state.
+</aside>
+
+
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
 #### Change machine type
