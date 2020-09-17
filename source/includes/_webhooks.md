@@ -714,3 +714,27 @@ This event is fired when an update related to a bulk payment request occurs. E.g
 This is fired when account fees have been processed
 
 
+## NOMINEE_ALLOCATION_STATUS_UPDATE
+```json
+{
+  "id": "b2b8be2d-5575-4c9c-8f89-57398ddc5ff3",
+  "quantity": 500,
+  "instrumentSymbol": "INSTRUMENT_SYMBOL",
+  "status": "ALLOCATED",
+  "createdAt": "2020-09-17T12:43:18.519524Z",
+  "updatedAt": "2020-09-18T13:43:18.523776Z"
+}
+```
+
+This webhook is fired whenever there is a change in the `status` of an allocation instructed to be received by a nominee.
+
+The `id` references the unique allocation id originally assigned when calling the [`POST /allocations`](/#settlement-equity-post-allocations) endpoint.
+
+There are three statuses that can be returned in a `NOMINEE_ALLOCATION_STATUS_UPDATE` webhook. 
+These are:
+
+(1) PENDING - this status is set when an allocation instruction towards a nominee is created.
+
+(2) ALLOCATED - a terminal status. This status is set when an allocation instruction towards a nominee been approved and actioned.
+  
+(3) CANCELLED - a terminal status. This status is set when an allocation instruction towards a nominee has been rejected and actioned.

@@ -210,6 +210,16 @@ Please specify either one or the other when sending an allocation instruction.
 completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
 an `ALLOCATED` status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.
 
+For integration purposes, endpoints have been made available in the test environments to manually move the `nominee allocation` into one of the
+terminal statuses. 
+
+These endpoints are:
+ 
+ (1) [`PUT /allocations/test/{id}/approve`](#settlement-equity-put-allocations-test-id-approve) 
+ (2) [`PUT /allocations/test/{id}/reject`](#settlement-equity-put-allocations-test-id-reject)
+
+The webhook in question is further described [`here`](#webhooks-nominee_allocation_status_update). 
+
 
 | Key                  | JSON Type | Value Type       | Value Description                                                                                                 |
 |----------------------|-----------|------------------|-------------------------------------------------------------------------------------------------------------------|
@@ -269,6 +279,12 @@ When migrating shares, the `investor` must be specified.
 ⚠️ When allocating initial shares to the `nominee` the allocation will be placed in a `PENDING` state until the necessary paperwork has been
 completed by our operations team to fulfil the CASS 6 regulations. Once approved the allocation will be moved into
 an `ALLOCATED` status and a webhook and email will be triggered notifying the share allocation is now eligible for trading.
+
+For integration purposes, endpoints have been made available in the test environments to manually move the `nominee allocation` into one of the
+terminal statuses. These endpoints are [`PUT /allocations/test/{id}/approve`](#settlement-equity-put-allocations-test-id-approve) and [`PUT /allocations/test/{id}/reject`](#settlement-equity-put-allocations-test-id-reject).
+
+The webhook in question is further described [`here`](#webhooks-nominee_allocation_status_update). 
+
 
 ### Request
 
@@ -334,3 +350,88 @@ Http Status:
 | 404 Not Found    | No allocation with this UUID exists              | None       | n/a              |
 
 
+## `PUT /allocations/test/{id}/approve`
+
+```http
+PUT /allocations/test/5dd40510-810e-4a55-a395-04819fd915b9/approve HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-CLIENT-ID: 59425d3d-cf73-44ff-aecb-590cd198a4bc
+```
+
+```http
+HTTP/1.1 202 ACCEPTED
+Content-Type: application/json
+
+```
+
+### Description
+
+⚠️ This endpoint is only available in the test and sandbox environments for integration purposes. 
+
+It will approve and action an existing allocation towards a nominee.
+
+Off the back of a call to this endpoint, the [`NOMINEE_ALLOCATION_STATUS_UPDATE`](#webhooks-nominee_allocation_status_update) webhook is triggered. 
+Post receipt of that webhook, the allocation instruction will have been executed and shares will have been allocated to the nominee.
+
+### Request
+
+No body. The `id` specified as a path parameter refers to the one described here: [Allocation Model](/#settlement-equity-allocation-model)
+
+### Response
+
+No body.
+
+Http Status: 
+
+| Code             | Description                                      | Body       | Content-Type     |
+|------------------|--------------------------------------------------|------------|------------------|
+| 202 Accepted     | Allocation exists and has been updated.          | None       | n/a              |
+| 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
+| 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
+| 404 Not Found    | No allocation with this UUID exists              | None       | n/a              |
+
+
+
+
+## `PUT /allocations/test/{id}/reject`
+
+```http
+PUT /allocations/test/5dd40510-810e-4a55-a395-04819fd915b9/reject HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-CLIENT-ID: 59425d3d-cf73-44ff-aecb-590cd198a4bc
+```
+
+```http
+HTTP/1.1 202 ACCEPTED
+Content-Type: application/json
+
+```
+
+### Description
+
+⚠️ This endpoint is only available in the test and sandbox environments for integration purposes. 
+
+It will cancel a pending allocation instruction towards a nominee.
+
+Off the back of a call to this endpoint, the [`NOMINEE_ALLOCATION_STATUS_UPDATE`](#webhooks-nominee_allocation_status_update) webhook is triggered. 
+
+### Request
+
+No body. The `id` specified as a path parameter refers to the one described here: [Allocation Model](/#settlement-equity-allocation-model)
+
+### Response
+
+No body.
+
+Http Status: 
+
+| Code             | Description                                      | Body       | Content-Type     |
+|------------------|--------------------------------------------------|------------|------------------|
+| 202 Accepted     | Allocation exists and has been updated.          | None       | n/a              |
+| 400 Bad Request  | The request was malformed.  See response body    | None       | n/a              |
+| 401 Unauthorized | No auth provided, auth failed, or not authorized | None       | n/a              |
+| 404 Not Found    | No allocation with this UUID exists              | None       | n/a              |
