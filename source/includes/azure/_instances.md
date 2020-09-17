@@ -248,9 +248,12 @@ curl -X DELETE \
 Delete an existing instance.
 
 <aside class="notice">
-This will not delete the disks (OS/Data) attached to the instance but will leave them in detached state.
+This will not delete the disks (OS/Data) attached to the instance but will leave them in detached state. To delete the OS disk attached to the instance `deleteOsDisk` query parameter can be used.
 </aside>
 
+Query Parameter | &nbsp;
+---------- | -----
+`deleteOsDisk`<br/>*boolean* | Will delete the OS disk attached to this instance. Default value is `false`.
 
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
