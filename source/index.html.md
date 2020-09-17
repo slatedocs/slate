@@ -1178,7 +1178,7 @@ Address Type can be:
 # Get Candidate
 
 ```shell
-curl --location --request GET 'https://api-dev.in.springverify.com/v1/candidate/fetch' \
+curl --location --request POST 'https://api-dev.in.springverify.com/v1/candidate/fetch' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiYW51cmFnLnNhbmRodUBzcHJpbmdyb2xlLmNvbSIsImNvbXBhbnlJZCI6Mn0sImlhdCI6MTU4MTU4MDM5NywiZXhwIjoxNTg1MTgwMzk3fQ.p4K0NefA8eOXFcCqxOYiLtnhmXM0KbqsiBuVxsUqT_o' \
 --data-raw '{
