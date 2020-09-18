@@ -275,12 +275,11 @@ Fetches a person with a specified `person_id`.
 
 ### Path Parameters
 
-| Parameter                | Type    | Required | Description                                                             |
-| ----------------------   | ------- | -------- | ----------------------------------------------------------------------- |
-| person_id                | integer | true     | The unique id of the person that needs to be retrieved.                 |
-| with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources. |
-| with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in
-conjunction with `with_interaction_dates` |
+| Parameter                | Type    | Required | Description                                                                                                 |
+| ----------------------   | ------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| person_id                | integer | true     | The unique id of the person that needs to be retrieved.                                                     |
+| with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources.                                     |
+| with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates` |
 
 ### Returns
 
