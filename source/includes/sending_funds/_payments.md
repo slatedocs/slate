@@ -766,5 +766,16 @@ You can search or filter payments on the following fields. Simply add them to yo
 * amount - the payment amount
 * currency - the payment currency code
 * payment_type - the payment type
+* payment_id - the ID of the payment that fulfilled or matched this payment
+* phone_number - the phone_number that the payment was intended for. Note that the phone_number will be matched in international format, starting with a '+' sign. If the '+' sign isn't included in your request, it will be appended before attempting to match your request.
+* remote_transaction_id - the transaction id or transaction reference of the payment on the mobile network operator's side
 * created_after - only return payments created after this date (E.g. 2017-01-01 00:00)
 * created_before - only return payments created before this date (E.g. 2017-01-01 00:00)
+* modified_after - only return payments modified after this date (E.g. 2020-01-01 00:00)
+* modified_before - only return payments modified before this date (E.g. 2020-01-01 00:00)
+* payment_state - only return Individual Payment Status that have this payment_state (one of: new, processing, pending_confirmation, complete, error, paused, parked, paused_for_admin_action, queued, aborted)
+* state - only return Group Payment Status that have this state (one of: new, validated, approval_needed, approval_requested, approved, rejected, scheduled, processed, processed_with_errors, cancelled)
+* paused_reason - only return payments that have this reason text
+* network - only return payments that are for this mobile phone network
+* first_name - only return payments that have this first name in the contact (E.g. James)
+* last_name - only return payments that have this last name in the contact (E.g. Doe)
