@@ -123,7 +123,7 @@ the `/organizations/{organization_id}` endpoints.
 | global            | boolean     | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.                                                                                                                                 |
 | list_entries      | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.                                                                                                                   |
 | interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date`, and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
-| interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event.  Only returned when passing `with_interaction_dates=true`. |
+| interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event (people only returned if passing `with_interaction_persons=true`).  Only returned when passing `with_interaction_dates=true`. |
 
 ## Search for organizations
 
@@ -147,6 +147,9 @@ confirm that there are no more resources).
 Pass `with_interaction_dates=true` as a query parameter to include dates of the most
 recent and upcoming interactions with organizations. When this parameter is included,
 organizations with no interactions will not be returned in the response.
+Pass `with_interaction_persons=true` as a query parameter if
+`with_interaction_dates=true` to also get the internal persons associated with the
+interaction.
 
 You can filter by interaction dates by providing additional query parameters like
 `min_last_email_date` or `max_next_event_date`. The value of these query parameters should
@@ -198,6 +201,7 @@ curl "https://api.affinity.co/organizations?term=affinity&page_token=eyJwYXJhbXM
 | ------------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | term                           | string  | false    | A string used to search all the organizations in your team's address book. This could be a name or a domain name.                                                                                      |
 | with_interaction_dates         | boolean | false    | When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.                                                                    |
+| with_interaction_persons       | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates`                                                                   |
 | `{min,max}_<interaction>_date` | string  | false    | Only returns organizations with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. |
 | page_size                      | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                            |
 | page_token                     | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                        |
@@ -248,10 +252,12 @@ Fetches an organization with a specified `organization_id`.
 
 ### Path Parameters
 
-| Parameter              | Type    | Required | Description                                                             |
-| ---------------------- | ------- | -------- | ----------------------------------------------------------------------- |
-| organization_id        | integer | true     | The unique id of the organization that needs to be retrieved.           |
-| with_interaction_dates | boolean | false    | When true, interaction dates will be present on the returned resources. |
+| Parameter                | Type    | Required | Description                                                             |
+| ----------------------   | ------- | -------- | ----------------------------------------------------------------------- |
+| organization_id          | integer | true     | The unique id of the organization that needs to be retrieved.           |
+| with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources. |
+| with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in
+conjunction with `with_interaction_dates` |
 
 ### Returns
 

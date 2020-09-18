@@ -157,6 +157,9 @@ confirm that there are no more resources).
 Pass `with_interaction_dates=true` as a query parameter to include dates of the most
 recent and upcoming interactions with persons. When this parameter is included, persons
 with no interactions will not be returned in the response.
+Pass `with_interaction_persons=true` as a query parameter if
+`with_interaction_dates=true` to also get the internal persons associated with the
+interaction.
 
 You can filter by interaction dates by providing additional query parameters like
 `min_last_email_date` or `max_next_event_date`. The value of these query parameters should
@@ -215,6 +218,7 @@ curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybS
 | ------------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | term                           | string  | true     | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.                                                                |
 | with_interaction_dates         | boolean | false    | When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.                                                                    |
+| with_interaction_persons       | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates`                                                                   |
 | `{min,max}_<interaction>_date` | string  | false    | Only returns persons with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. |
 | page_size                      | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                      |
 | page_token                     | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                  |
@@ -271,10 +275,12 @@ Fetches a person with a specified `person_id`.
 
 ### Path Parameters
 
-| Parameter              | Type    | Required | Description                                                             |
-| ---------------------- | ------- | -------- | ----------------------------------------------------------------------- |
-| person_id              | integer | true     | The unique id of the person that needs to be retrieved.                 |
-| with_interaction_dates | boolean | false    | When true, interaction dates will be present on the returned resources. |
+| Parameter                | Type    | Required | Description                                                             |
+| ----------------------   | ------- | -------- | ----------------------------------------------------------------------- |
+| person_id                | integer | true     | The unique id of the person that needs to be retrieved.                 |
+| with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources. |
+| with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in
+conjunction with `with_interaction_dates` |
 
 ### Returns
 
