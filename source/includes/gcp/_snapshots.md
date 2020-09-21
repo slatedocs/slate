@@ -151,7 +151,7 @@ Attributes | &nbsp;
 
 See [take a snapshot of a disk](#gcp-take-a-snapshot-of-a-disk) to create a snapshot.
 
-<!-------------------- DELETE A DISK -------------------->
+<!-------------------- DELETE A SNAPSHOT -------------------->
 
 #### Delete a snapshot
 
