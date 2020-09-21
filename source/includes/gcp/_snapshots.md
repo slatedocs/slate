@@ -150,3 +150,17 @@ Attributes | &nbsp;
 #### Create a snapshot
 
 See [take a snapshot of a disk](#gcp-take-a-snapshot-of-a-disk) to create a snapshot.
+
+<!-------------------- DELETE A DISK -------------------->
+
+#### Delete a snapshot
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/snapshots/463325715266630842"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots/:id</code>
+
+Destroy an existing snapshot. A snapshot can only be deleted if it is in READY state.
