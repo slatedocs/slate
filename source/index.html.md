@@ -11,6 +11,73 @@ toc_footers:
 
 search: true
 ---
+# Home
+
+Welcome to OY! We are aiming to be the world class financial services and always put our customers first in everything we do. We have a variety of products ranging from sending payments, accepting payments, and other financial related products that are all ready to meet your needs. We are ready to help you achieve greater success. 
+
+### How to Register 
+You can immediately tcreate an account and enjoy some of our features in trial mode with limited functionalities until your account is upgraded to the full version. Our documentation will help you navigate through the entire registration process, including submitting requests for upgrading your account. For further inquiries, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
+
+1. **Register on our Portal**: To create your account, please go to our business portal at [https://business.oyindonesia.com/](https://business.oyindonesia.com), click "Register Now", and complete the form with al the required information. 
+
+*Screenshot placeholder* 
+
+2. **Activate your account**: Once the registration is submitted, an activation link will be sent to your email. 
+
+*Screenshot placeholder* 
+
+Once you are able to login, you will be able to test some of our features in a trial mode or request to upgrade your account to enjoy the full version! 
+
+### Upgrading your Account 
+
+1. **Request to Upgrade your Account**: to upgrade the available services to full version, please select “Upgrade Your Account” on the menu at the left side of the dashboard and complete all the required information.
+
+*Please note that the receiving bank account information cannot be changed via OY dashboard once your upgrade account request is approved for security reasons. Please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) to change the receiving bank account information.*
+
+*Screenshot Placeholder* 
+
+2. **Upload the Required Supporting Documents**: Please upload the required supporting documents according to your business type. Documents are only accepted in PDF format and must be less than 10 MB in size each. 
+
+3. **Submit your Request**: Click “Submit & Request to Upgrade”, and a new status of “Upgrade Account Requested” should appear on this page, indicating that your request has been submitted along with your supporting documents.
+
+This process should take about 1 week. In the event that the status of your request is **Resubmit** or **Rejected**, please keep reading below. Otherwise, you are good to go! 
+
+**Status: Resubmit** 
+Upon reviewing the upgrade request, we might ask for additional documentations. Please follow the steps below: 
+
+1. **Read our report**: A report will be sent to your email regarding the information and documents that will need to be revised or added. 
+
+2. **Refill out the form**: When submitting another request to upgrade your account, please resubmit all your supporting documents. Documents are only accepted in PDF format and must be less than 10 MB in size.
+
+3. **Submit your request**: Click “Submit & Request to Upgrade”, and a new status of “Upgrade Account Requested” should appear on this page, indicating that your request has been submitted along with your supporting documents.
+
+For further inquiries, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
+
+**Status: Rejected** 
+For further inquiries regarding this review, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
+
+### Required Supporting Documents 
+Below is the list of documentation to be submitted for an upgrade request:
+1. SIUP/Izin Usaha lainnya
+2. NPWP Perusahaan
+3. Akta Pendirian Perusahaan
+4. Akta Perubahan Terakhir
+5. Lembar Pengesahan Men-hakim
+6. Kartu Identitas Direksi atau yang dikuasakan
+7. Surat Kuasa Direksi apabila dikuasakan
+8. NIB/TDP
+
+### Completion Checklist 
+This set up checklist is recommended to ensure you correctly set up your professional profile and fully maximize the capabilities of our platform: 
+1. Create an account
+2. Fill out the upgrade requirement
+3. Ensure the receiving bank account information is accurate
+4. Upload the required documentations
+5. Optional - create additional sub-account users under User Management
+You are good to go!
+
+___ 
+
 
 # Introduction
 
