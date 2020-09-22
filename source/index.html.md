@@ -370,6 +370,482 @@ No, we are available 24/7 including holidays.
 **Is there a maximum transaction volume and transaction amount in a day?**
 There are no daily limits of how many bulk campaigns can be created and executed. There is also no limit to the number of total transactions per disbursement campaign. 
 
+# Accept Payments
+
+## VA Aggregator 
+
+**What is a VA?** 
+Businesses are struggling to manage hundreds or even thousands physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the number of bank accounts to be maintained and lots of man hours to be spent for reporting and reconciliation purposes combining different information from different accounts. Virtual Account (VA) is essentially a dummy account that is linked to a physical account and has all the physical account characteristics that enables a much easier reporting and reconciliation process by centralizing the money flow into the physical account. By issuing VAs, you can assign each VA for specific person and/or purposes.
+
+*Diagram placeholder*
+
+From the example above, it shows how payments made through the VAs are merely pass-throughs for the physical accounts to receive money. Without VAs, the above example might require up to 8 physical accounts from 2 different banks rather than 2 physical accounts from 2 different banks.
+
+**OY VA Aggregator**
+Our VA Aggregator product provides you with the capabilities to create unique Virtual Account (VA) numbers as a bank transfer payment method for your customers while the fund movements take place through OY!'s physical account. It provides you with the capabilities to receive payments from your customers via bank transfer without having each respective bank account across multiple banks.  
+
+Our virtual accounts are adjustable according to your needs. We offer options of static or dynamic accounts, single or mutli use accounts, opened or closed amounts, and determinable expiration dates. You can also track all created virtual accounts, incoming payments, and their respective details either through our API callback or OY portal. 
+
+*Diagram placeholder* 
+
+### Key Features
+
+_Static VA vs Dynamic VA_
+A static VA is an account that has a lifetime validity that will exist until it is manually deactivated. Therefore, a static VA is always active and configured to be used for multiple times.
+
+A dynamic VA is an account that has a specific validity that will exist until it is expired or manually deactivated. 
+
+_Closed vs Opened Amount_ 
+A closed amount is a configuration so that a VA can only be paid if the actual declared amount is paid to the VA
+
+An opened amount is a configuration so that a VA can be paid up to the declared amount (or any, if amount is not declared)
+
+_Single Use vs Multi Use_
+A single use configuration can only be setup for a dynamic VA where the VA is no longer usable once it receives a payment
+
+A multi use configuration, by nature, is the characteristic of a static VA. For dynamic VA, it means it can be used for multiple times until the VA is expired or manually deactivated
+
+_Update VA_
+All VA characteristics mentioned above can be updated. Below are a few examples of what features can be updated on a VA: 
+* A static VA with a closed amount can be updated with a new closed amount hence it can work as a bill to be paid for a particular customer
+* A static VA can be updated to a single use so it will be the last payment received from a particular customer
+* A dynamic VA with a closed amount is updated to an opened amount so that it can accept payments for any amount
+
+All of the VA information, even after they are updated, is available on the OY! dashboard or via api 
+
+Once a VA is updated, the new set of configuration will apply for that VA and the previous configure is overridden and no longer applicable 
+
+_Retrieve the VA details and incoming transactions- 
+All of the created VAs and incoming transactions can be monitored on the OY! dashboard and also from APIs ([https://api-docs.oyindonesia.com/#get-list-of-created-va](https://api-docs.oyindonesia.com/#get-list-of-created-va) and [https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va)). Notifications will be sent for all incoming transactions.
+
+# Registration and Set Up
+
+Prerequisities:
+* Register an account on the OY! dashboard
+* Upgrade your account 
+* Upgrade request is approved
+* Provide an IP to be whitelisted and callback link to our business team 
+* API Key to be shared
+* Integrate with our API [https://api-docs.oyindonesia.com/#fund-disbursement](https://api-docs.oyindonesia.com/#fund-disbursement)
+
+# How to Use
+
+> Below is an example of a request body to execute your request:
+
+```shell
+curl -X POST https://partner.oyindonesia.com/api/generate-static-va 
+-H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
+-d '{"partner_user_id": "oy00000001",
+    "bank_code": "002",
+    "amount": 500000}'
+```
+
+> It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#va-aggregator-response-codes](https://api-docs.oyindonesia.com/#va-aggregator-response-codes). Otherwise, below is the sample of response parameters that will be returned:
+
+```json
+{
+    "id": "12345b1-23be-45670-a123-5ca678f12b3e",
+    "status": {
+        "code": "000",
+        "message": "Success"
+    },
+    "amount": 500000,
+    "va_number": "123456789182827272",
+    "bank_code": "002",
+    "is_open": false,
+    "is_single_use": false,
+    "expiration_time": 1582783668175,
+    "va_status": "WAITING_PAYMENT",
+    "username_display": "va name"}
+```
+
+Send us instructions to generate a new VA number.
+
+> Below is an example of our callback response: 
+
+```json
+{
+    "status":{
+        "code":"000",
+        "message":"Success"
+    },
+    "amount":125000,
+    "recipient_name":"John Doe",
+    "recipient_bank":"008",
+    "recipient_account":"1234567890",
+    "trx_id":"ABC-456",
+    "partner_trx_id":"1234-asde",
+    "timestamp":"16-10-2020 10:34:23",
+    "created_date": "24-01-2020 06:48:08",
+    "last_updated_date": "24-01-2020 06:48:39"
+}
+```
+
+A callback with the following information will be sent to the callback endpoint that you can register with us. 
+
+> Below is an example of the request body:
+
+```shell
+curl -X GET https://partner.oyindonesia.com/api/static-virtual-account/1414255-12121-21212121-212121 
+-H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321'
+```
+
+> Below is the sample of response parameters that will be returned:
+
+```json 
+{
+    "id": "1414255-12121-21212121-212121",
+    "status": {
+        "code": "000",
+        "message": "Success"
+    },
+    "amount": 10000.0000,
+    "va_number": "1233456000000000001",
+    "bank_code": "002",
+    "is_open": true,
+    "is_single_use": false,
+    "expiration_time": 1582790250609,
+    "va_status": "WAITING_PAYMENT",
+    "username_display": "username",
+    "amount_detected": 0,
+    "partner_user_id": "123456"
+}
+```
+
+An endpoint to check your VA information is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#get-va-info](https://api-docs.oyindonesia.com/#get-va-info).
+
+> Below is an example of the request body:
+
+```shell
+curl -X PUT https://partner.oyindonesia.com/api/static-virtual-account/1414255-12121-21212121-212121 
+-H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
+-d '{"is_open" : true,"amount": 50000,"is_single_use" : false,"expiration_time": 30,"username_display" : "test","bank_code": "002"}'
+```
+
+> Below is the sample of response parameters that will be returned:
+
+```json 
+{
+    "id": "1414255-12121-21212121-212121",
+    "status": {
+        "code": "000",
+        "message": "Success"
+    },
+    "amount": 50000,
+    "va_number": "1001234000000000001",
+    "bank_code": "002",
+    "is_open": true,
+    "is_single_use": false,
+    "expiration_time": 1582802205412,
+    "va_status": "WAITING_PAYMENT",
+    "username_display": "vaname",
+    "partner_user_id": "12345677"
+}
+```
+
+If you wish to change the details of your VA, you can do so by updating your VA at any time [https://api-docs.oyindonesia.com/#update-va](https://api-docs.oyindonesia.com/#update-va).
+
+All details regarding your created VA and its payments can be monitored from OY! dashboard.
+
+*Screenshot Placeholder* 
+
+### FAQ (Virtual Account)
+
+## Payment Checkouts/Invoice 
+
+Our Payment Checkout/Invoice product allows you to create and send URLs to accept payments from your users. You can either send your users a pre-generated URL for your account ("Payment Checkout/Invoice Link") or a unique encapsulated URL generated through an API ("API Payment Checkout/Invoice"). 
+
+### Kay Features 
+
+_Payment Checkout/Invoice Link_
+**No Integration Needed**
+Access and declare all parameters needed from the URL with easy and simple declaration. 
+
+**Reusable Link** 
+One link can be used many times without repeating declaration. 
+
+**Amount and Payment Method Customization** 
+You can customize the amount to be billed to your user whether they have to pay a fix amount (closed amount) or any amount (open amount). We provide Bank Transfers, Credit Card, Debit Card, and QR code payment methods that you can also enable/disable at any time.
+
+**Check Incoming Transactions Status and Callback** 
+For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
+
+_API Payment Checkout/Invoice_ 
+**Complete Customization**
+* Open vs. closed amount
+* Admin fee to be paid by your customers
+* Amount and payment method customization
+* Choose the bank(s) to be enabled for your Bank Transfer
+* Set an expiry time for your payment link
+
+**Static VA for Invoice Payment**
+You can enable a static VA option when using the API specifically assigned to your customer.
+
+**Upload or Create a PDF for your Invoice Billing**
+You can upload an invoice attachment or create an attachment using the OY! PDF templates via our API so you do not need to send a separate email to your customer.
+
+**Payment Link Delivery by Email**
+Payment link created can be sent to your customer’s email directly instead of sharing the payment link separately.
+
+**Check Incoming Transaction Status and Callback**
+For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status . IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
+
+
+***Enjoy the quality services of our product!***
+Whether you send your user a pre-generated link or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through our OY portal. You will be able to see the details of the payment checkout including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status. 
+
+
+### Registration and Set Up*** 
+Prerequisites 
+* Register and account on the OY! dashboard 
+* Upgrade your account 
+* Upgrade request is approved
+* Provide an IP to be whitelisted (for API Payment Checkout/Invoice) and callback link to our business team 
+* For link: once your account is approved, you can access it via [https://pay.oyindonesia.com/v2?username=yourusername (https://pay.oyindonesia.com/v2?username](https://pay.oyindonesia.com/v2?username=yourusername). Please refer to the how to use section for further information. 
+* For API: 
+1. Complete IP whitelisting process
+2. Retrieve API Key 
+3. Integrate with our API [https://api-docs.oyindonesia.com/#api-create-payment-checkout](https://api-docs.oyindonesia.com/#api-create-payment-checkout)
+
+### How to Use Payment Checkout via Link
+
+1. **Access your payment link and input amount**: Access our pre-generated link unique to your account by simply replacing yourusername with your username approved with OY at [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). Our payment link includes parameters that are easily adjustable according to your needs. You can send the link to your customer at any point within this process. 
+
+By default, payment checkout via link declaration will be expired within 24 hours.
+
+*Screenshot Placeholder* 
+
+If you do not want to specify the amount, you can immediately send the link at this step to your customers, allowing them to input their desired amount. 
+
+If you would like to charge your customers for a specific amount, input the number and click “lanjutkan”.
+
+2. **(Optional) Lock amount**: You might notice that you can easily change the checkout details by simply editing the parameters within the link. For example, amount=100000 can be changed to a different number and the payment details will readjust accordingly. The same is true when you edit the username, step, and sender_name.
+
+`https://pay.oyindonesia.com/v2?username=yourusername&amount=100000&partner_tx_id=OY2020ABCD123&step=input_personal_info`
+
+In order to lock editing the amount for your customers, add `is_open=false` to the payment link and `partner_tx_id` and `amount` becomes mandatory to be filled out. This will permanently attaches the `amount` to the unique transaction ID. In the example above, the `amount=100000` is locked to this specific `partner_tx_id`.
+
+`https://pay.oyindonesia.com/v2?username=yourusername&amount=100000&partner_tx_id=OY2020ABCD123&step=input_personal_info&is_open=false`
+
+When this is done, deleting `is_open=false` from the link or changing it back to `is_open=true` will not revert the amount back to an unlocked value. Once `is_open=false` is declared, the amount is permanently frozen for this particular `partner_tx_id`.
+
+Test your link to ensure that the amount is locked by changing the `amount` parameter within your link. If done correctly, the amount displayed on the payment checkout page should reflect what you have previously locked regardless of what is altered within the link.
+
+3. **Input the customer's information**: After inputting the amount, you will be required to enter the customer’s information. Either you or your customer can fill out this information. 
+
+*Screenshot Placeholder*
+
+4. **Select Payment Method**: We support payments either through bank transfer, credit card, or debit card. You can choose specific payment methods to be enabled via parameter declaration by specifying `enable_payment_va`, `enable_payment_cc` or `enable_payment_debit` as `true` or `false`.
+
+*Screenshots Placeholder* 
+
+5. **[Reconciliation and Reporting] Monitor incoming payment**: You can monitor the payment status through the OY portal. Simply navigate to Request Money > Payment Checkout > Incoming Payment. This report will include all incoming payments from checkouts generated through both the link and API method.
+
+*Screenshot Placeholder* 
+
+You can access more details for each incoming payment including the URL, status, payment details, and customer details. 
+
+*Screenshot Placholder* 
+
+6. **[Reconciliation and Reporting] Monitor all your payment checkout links**: Our portal also provides you with the capabilities to monitor all your created payment links and their statuses under Payment Checkout > Payment Link. This allows you to track the status of each created link, including those that have expired. This report will include all payment checkouts generated from both the link and API method.
+
+*Screenshot Placeholder* 
+
+### How to Use Payment Checkout via API 
+
+> Below is an example of a request body to execute your request:
+
+```shell
+curl -X POST \
+  https://partner.oyindonesia.com/api/payment-checkout/create-v2 \-H 'cache-control: no-cache' -H 'content-type: application/json' \-H 'X-Api-Key: apikeymu' -H 'X-Oy-Username: yourusername' \-d '{
+        "partner_tx_id":"partnerTxId",
+        "description":"description",
+        "notes":"notes",
+        "sender_name":"Sender name",
+        "amount":50000,
+        "email":"",
+        "phone_number":"",
+        "is_open":false,
+        "step":"input-amount",
+        "include_admin_fee":false,
+        "list_disabled_payment_methods":"",
+        "list_enabled_banks":"",
+        "expiration":"2020-08-08 08:09:12"
+    }'
+```
+
+> It will return an error message if the request is not valid based on the error response codes in the documentation. Otherwise, below is the sample of response parameters that will be returned:
+
+```json
+    "success": true,
+    "url": "https://pay.oyindonesia.com/id",
+    "message": "success",
+    "email_status": "PROCESSED",
+    "payment_link_id": "id"
+}
+```
+
+We provide 3 different payment checkout endpoints depending on your requirements and needs. We provide payment checkout, invoicing, and recurring invoice.  
+
+Send us instructions to generate a payment checkout link [https://api-docs.oyindonesia.com/#api-create-payment-checkout](https://api-docs.oyindonesia.com/#api-create-payment-checkout). 
+
+
+> Below is an example of a request body to execute your request:
+
+```shell
+url -X POST \
+  https://partner.oyindonesia.com/api/payment-checkout/create-invoice\-H 'cache-control: no-cache' -H 'content-type: application/json' \-H 'X-Api-key: apikeymu' -H 'X-Oy-Username: yourusername' \-d '{
+        "partner_tx_id":"partner tx id",
+        "description":"desc invoice",
+        "notes":"notes satu",
+        "sender_name":"Sender Name API",
+        "amount":"30000",
+        "email":"",
+        "phone_number":"",
+        "is_open":"true",
+        "step":"input-amount",
+        "include_admin_fee":false,
+        "list_disabled_payment_methods":"",
+        "list_enabled_banks":"013",
+        "expiration":"2020-07-28 19:15:13",
+        "partner_user_id":"partner user id", 
+          "full_name" : "Raymond",
+          "is_va_lifetime": false,
+        "attachment": "JVBERi0xLjQKJeLjz9MKMyAwIG9iago8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvTGVuZ3RoIDQ5Nj4+c3RyZWFtCnicrZVdb9MwFIbv/SsOd51EwrHjz0tKhxQk2IciJMS4CG46lbVNyYcE/HqcbNloh5xO8U3OUXJ8Hr/2aweBQkQBQRjhnnZLfpJ5RhIJQhjIluQ8I1eEwYfubVeHMFRnW/LmPQWKkK3I7Cz70dU+lfTN/hnE3ChJY9SPA0U3EPvP1S2ZXXx5Bemnzxfpu/OuGcLtfxp+/ebisp+QH8VkrNjhHJ9QaV23xRKyciKIGuCGjYPmv6cq0idKWuRNEYDlV7VoixAgwcdEXeZVsysqyH5BughA88t6uy3bXQNO3XRbCEq9pKr8sw5gPuXT8zGv7/JNCOeh9mAYMoxQRcyEMJ5KRlEmokkI63lVrSgqi8JEWlsV8ZURkRFMR1pILkVuZcJYCEd69V7vY3eZxYj4GvEkGsaMK5SAMTcauYsKje6aObskUsGWaKr7bPOYHUd7/8XIocZlx9H2DfuSh+Qw2AG4GZLDYMlqmLfHEQIS/XyBaOf++5uoqG213jfrcjfVfAYdi/tY0288noxBrpqpvwoh1AjjslrbqUo6j/kpWdnkG7iZpYvrm7MQmyOe045vBhkhDbFFI6gTz6Jvj9zqCd+frz/5MRMvOvyeBUxGRM3bvIHvRZXvmryGu7Jq901ZhTDJqEweC+xlvkTqX6+ILeYKZW5kc3RyZWFtCmVuZG9iagoxIDAgb2JqCjw8L1RhYnMvUy9Hcm91cDw8L1MvVHJhbnNwYXJlbmN5L1R5cGUvR3JvdXAvQ1MvRGV2aWNlUkdCPj4vQ29udGVudHMgMyAwIFIvVHlwZS9QYWdlL1Jlc291cmNlczw8L0NvbG9yU3BhY2U8PC9DUy9EZXZpY2VSR0I+Pi9Qcm9jU2V0IFsvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJXS9Gb250PDwvRjEgMiAwIFI+Pj4+L1BhcmVudCA0IDAgUi9Sb3RhdGUgOTAvTWVkaWFCb3hbMCAwIDU5NSA4NDJdPj4KZW5kb2JqCjUgMCBvYmoKWzEgMCBSL1hZWiAwIDYwNSAwXQplbmRvYmoKMiAwIG9iago8PC9TdWJ0eXBlL1R5cGUxL1R5cGUvRm9udC9CYXNlRm9udC9IZWx2ZXRpY2EvRW5jb2RpbmcvV2luQW5zaUVuY29kaW5nPj4KZW5kb2JqCjQgMCBvYmoKPDwvS2lkc1sxIDAgUl0vVHlwZS9QYWdlcy9Db3VudCAxL0lUWFQoMi4xLjcpPj4KZW5kb2JqCjYgMCBvYmoKPDwvTmFtZXNbKEpSX1BBR0VfQU5DSE9SXzBfMSkgNSAwIFJdPj4KZW5kb2JqCjcgMCBvYmoKPDwvRGVzdHMgNiAwIFI+PgplbmRvYmoKOCAwIG9iago8PC9OYW1lcyA3IDAgUi9UeXBlL0NhdGFsb2cvUGFnZXMgNCAwIFIvVmlld2VyUHJlZmVyZW5jZXM8PC9QcmludFNjYWxpbmcvQXBwRGVmYXVsdD4+Pj4KZW5kb2JqCjkgMCBvYmoKPDwvTW9kRGF0ZShEOjIwMjAwNzI5MTE1MzE1WikvQ3JlYXRvcihKYXNwZXJSZXBvcnRzIExpYnJhcnkgdmVyc2lvbiBudWxsKS9DcmVhdGlvbkRhdGUoRDoyMDIwMDcyOTExNTMxNVopL1Byb2R1Y2VyKGlUZXh0IDIuMS43IGJ5IDFUM1hUKT4+CmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwNTc4IDAwMDAwIG4gCjAwMDAwMDA4NjQgMDAwMDAgbiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAwOTUyIDAwMDAwIG4gCjAwMDAwMDA4MjkgMDAwMDAgbiAKMDAwMDAwMTAxNSAwMDAwMCBuIAowMDAwMDAxMDY5IDAwMDAwIG4gCjAwMDAwMDExMDEgMDAwMDAgbiAKMDAwMDAwMTIwNCAwMDAwMCBuIAp0cmFpbGVyCjw8L0luZm8gOSAwIFIvSUQgWzwzZWMyMWUyNjkwNjcxYzViYTliNjUxODNhY2IxOTM3ND48NzZhNzM1MWE1YmY4ZmMxNDNmY2NlZmUwYjRjMzA4MWI+XS9Sb290IDggMCBSL1NpemUgMTA+PgpzdGFydHhyZWYKMTM1OAolJUVPRgo=",
+          "invoice_items": [
+          {
+            "item":"item name", 
+            "description":"description", 
+            "quantity": 10, 
+            "date_of_purchase":"2020-09-20", 
+            "price_per_item": 33000  
+          }
+        ],
+          "attachment": "string base 64 pdf"
+    }'
+```
+
+> Below is the sample of response parameters that will be returned:
+
+```json
+{
+    "success": true,
+    "url": "https://pay.oyindonesia.com/invoice/id",
+    "message": "success",
+    "email_status": "PROCESSED",
+    "payment_link_id": "id"
+}
+```
+
+Send us instructions to generate a payment checkout invoice link [(https://api-docs.oyindonesia.com/#api-create-invoicing](https://api-docs.oyindonesia.com/#api-create-invoicing). 
+
+
+> Below is an example of a request body to execute your request: tbd
+
+Send us instructions to generate a recurring payment checkout invoice link [https://api-docs.oyindonesia.com/#api-create-recurring-invoice-coming-soon](https://api-docs.oyindonesia.com/#api-create-recurring-invoice-coming-soon). 
+
+> Below is an example of a request body to execute your request: 
+
+```shell
+curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner_tx_id=OY123456&send_callback=false' -H 'x-oy-username:yourusername' -H ' x-api-key:yourapikey'
+```
+
+> It will return an error message if the request is not valid based on the error response codes in the documentation. Otherwise, below is the sample of response parameters that will be returned:
+
+```json
+{
+    "partner_tx_id": "partner000001",
+    "tx_ref_number": "1234567",
+    "amount": 15000,
+    "sender_name": "Joko Widodo",
+    "sender_phone": "+6281111111",
+    "sender_note": "Mohon dikirim segera",
+    "status": "success",
+    "settlement_type": "realtime",
+    "sender_bank": "008",
+    "payment_method": "DC",
+    "va_number" : ""
+}
+```
+
+An endpoint to retrieve and/or re-send the latest callback status of a transaction is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#api-payment-status](https://api-docs.oyindonesia.com/#api-payment-status). 
+
+> Below is an example of a request body to execute your request: 
+
+```shell
+curl -X GET \
+  https://partner.oyindonesia.com/api/payment-checkout/{payment_link_id_or_partner_tx_id}\
+  -H 'cache-control: no-cache' -H 'content-type: application/json' \
+  -H 'X-Api-key: apikeymu' -H 'X-Oy-Username: yourusername'
+```
+
+> It will return an error message if the request is not valid based on the error response codes in the documentation. Otherwise, below is the sample of response parameters that will be returned:
+
+```json 
+{
+    "data": {
+        "partnerTxId": "abc10",
+        "paymentLinkId": "703e05c0-48e3-47bd-9c22-670941d4d5fe",
+        "amount": 15000,
+        "username": "justkhals",
+        "senderName": "John Doe",
+        "senderPhoneNumber": null,
+        "senderNotes": null,
+        "status": "CREATED",
+        "txRefNumber": null,
+        "description": "testdesc",
+        "isOpen": true,
+        "step": "input-amount",
+        "notes": "testnote",
+        "phoneNumber": "085248395555",
+        "email": "maskalgrr@gmail.com",
+        "includeAdminFee": false,
+        "listDisabledPaymentMethods": "",
+        "listEnabledBanks": "008",
+        "expirationTime": "2020-08-12 00:00:00",
+        "invoiceData": {
+            "fullName": "John Dooe",
+            "isVaLifetime": false,
+            "isScheduled": false,
+            "recurringStartDate": null,
+            "recurringEndDate": null,
+            "recurringFrequency": null,
+            "invoiceItems": "[{\"item\": \"AK 47\", \"quantity\": 2000, \"description\": \"Untuk Kemanan Negara\", \"price_per_item\": 2250000, \"date_of_purchase\": 1590969600000}]"
+        }
+    },
+   "message": "return payment checkout data",
+   "status": true
+}
+```
+
+An endpoint to check your payment or invoice data is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#api-get](https://api-docs.oyindonesia.com/#api-get).
+
+
+> Below is an example of a request body to execute your request: 
+
+```shell
+curl -X DELETE \
+  https://partner.oyindonesia.com/api/payment-checkout/{payment_link_id_or_partner_tx_id}\
+  -H 'cache-control: no-cache' -H 'content-type: application/json' \
+  -H 'X-Api-key: apikeymu' -H 'X-Oy-Username: yourusername' 
+```
+
+> Below is the sample of response parameters that will be returned:
+
+```json
+{
+    "status" : true,
+    "message" : "success delete payment checkout data"
+}
+```
+
+Lastly, we provide an endpoint to delete your payment or invoice link based on `payment_link_id` or `partner_tx_id`. The payment or invoice link must still be active and a payment method must not have been selected.
+
+
+Just like the Payment Checkout via Link, you can monitor incoming payment and all your payment checkout links from the OY! dashboard. This report will include all payment checkouts generated from both the link and API method.
+
+*Screenshot Placeholder* 
+
 
 ___ 
 
