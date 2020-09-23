@@ -63,7 +63,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
 | requireOTP | boolean | false | - | possible values are `true` or `false` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`, `dnc_agree_text`, `custom_tnc`, `custom_tnc_text`,`source`, `sub_source`, `placement`|
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`,`remarksMandatory`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`, `dnc_agree_text`, `custom_tnc`, `custom_tnc_text`,`source`, `sub_source`, `placement`|
 
 
 In the `options` object 
@@ -71,6 +71,8 @@ In the `options` object
 `showRemarks` is a boolean. Should be passed `true` if you want a queries section in the form as in the second form at https://marketing.anarock.com/static/test.html
 
 `remarksTitle` is a string, Label that should be showing as title of queries section in the form. 
+
+`remarksMandatory` is a boolean with default value `false`, setting it `true` will make remark mandatory IF `showRemarks` is also `true`.
 
 `show_label` is a boolean to show or hide label in input boxes. Default value is `true`.
 
