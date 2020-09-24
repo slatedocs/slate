@@ -649,7 +649,7 @@ package_id | <span class="label label-required">Required</span> CB package id co
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | JSON Array. List of sites you require listings for. You can leave citations empty for auto selecting citations.
 remove-duplicates | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
-aggregators | JSON Array. List of aggregators you require listings for. Possible values are ‘dataaxle' formerly known as ‘infogroup’ (both supported), ‘factual’, ‘neustar’, and ‘foursquare’ for USA. For CAN ‘dataaxle' formerly known as ‘infogroup’ (both supported) 'factual’, and 'foursquare’. The only possible values for non USA countries are 'factual’ and 'foursquare’.
+aggregators | JSON Array. List of aggregators you require listings for. Possible values are ‘dataaxle’ formerly known as ‘infogroup’ (both supported), ‘factual’, ‘neustar’, and ‘foursquare’ for USA. For CAN ‘dataaxle’ (‘infogroup’), ‘factual’, and ‘foursquare’. The only possible values for non USA countries are ‘factual’ and ‘foursquare’.
 notes | Provide instructions to our submissions team with specifics about how you'd like your campaign handled.
 
 ## Get Campaigns
@@ -710,7 +710,7 @@ var campaigns = request.Get("/v4/cb/get-all", parameters);
                 ],
                 "aggregators":  [
 				    {
-					    "name": "data-axle",
+					    "name": "dataaxle",
 					    "status": "Live",
 					    "site_type": "Aggregator",
 					    "citation_url": "data-axle.com",
