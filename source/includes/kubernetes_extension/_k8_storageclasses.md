@@ -222,13 +222,13 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id?cluster_id=:cluster_id</code>
 
-Replace a persistent volume claim in a given [environment](#administration-environments).
+Replace a storage class in a given [environment](#administration-environments).
 
 Required Attributes                 | &nbsp;
 ----------------------------------- | ------------------------------------------------------------
-`apiVersion` <br/>_string_          | The api version (versioned schema) of the pod.
-`metadata` <br/>_object_            | The metadata of the pod.
-`metadata.name` <br/>_string_       | The name of the pod.
+`apiVersion` <br/>_string_          | The api version (versioned schema) of the storage class.
+`metadata` <br/>_object_            | The metadata of the storage class.
+`metadata.name` <br/>_string_       | The name of the storage class.
 `provisioner`<br/>_object_          | The type of provisioner.
 
 | Optional Attributes                       | &nbsp;                                                                  |
@@ -241,7 +241,7 @@ Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the replace pod task.|
+| `taskId` <br/>_string_     | The id corresponding to the replace storage class task.|
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- DELETE A storage class -------------------->

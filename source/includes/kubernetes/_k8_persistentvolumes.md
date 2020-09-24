@@ -296,10 +296,10 @@ Replace a persistent volume in a given [environment](#administration-environment
 
 Required Attributes                 | &nbsp;
 ----------------------------------- | ------------------------------------------------------------
-`apiVersion` <br/>_string_          | The api version (versioned schema) of the pod.
-`metadata` <br/>_object_            | The metadata of the pod.
-`metadata.name` <br/>_string_       | The name of the pod.
-`spec`<br/>_object_                 | The specification used to replace and run the pod.
+`apiVersion` <br/>_string_          | The api version (versioned schema) of the volume.
+`metadata` <br/>_object_            | The metadata of the volume.
+`metadata.name` <br/>_string_       | The name of the volume.
+`spec`<br/>_object_                 | The specification used to replace and run the volume.
 `spec.accessModes`<br/>_string_ | The desired access modes the volume should have.
 `spec.capacity.storage`<br/>_string_  | The size of the claim.
 `spec.hostPath.path`<br/>_string_  | The path of the directory on the host.
@@ -318,7 +318,7 @@ Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the replace pod task.|
+| `taskId` <br/>_string_     | The id corresponding to the replace volume task.|
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 

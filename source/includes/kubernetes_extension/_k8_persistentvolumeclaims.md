@@ -283,10 +283,10 @@ Replace a persistent volume claim in a given [environment](#administration-envir
 
 Required Attributes                 | &nbsp;
 ----------------------------------- | ------------------------------------------------------------
-`apiVersion` <br/>_string_          | The api version (versioned schema) of the pod.
-`metadata` <br/>_object_            | The metadata of the pod.
-`metadata.name` <br/>_string_       | The name of the pod.
-`spec`<br/>_object_                 | The specification used to replace and run the pod.
+`apiVersion` <br/>_string_          | The api version (versioned schema) of the claim.
+`metadata` <br/>_object_            | The metadata of the claim.
+`metadata.name` <br/>_string_       | The name of the claim.
+`spec`<br/>_object_                 | The specification used to replace and run the claim.
 `spec.accessModes`<br/>_string_ | The desired access modes the volume should have.
 `spec.resources.requests.storage`<br/>_string_  | The size of the claim.
 `spec.storageClassName`<br/>_string_  | The name of the StorageClass required by the claim.
@@ -303,7 +303,7 @@ Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the replace pod task.|
+| `taskId` <br/>_string_     | The id corresponding to the replace persistent volume claim task.|
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- DELETE a persistent volume claim  -------------------->
