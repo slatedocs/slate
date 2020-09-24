@@ -307,7 +307,7 @@ Required Attributes                 | &nbsp;
 | Optional Attributes                       | &nbsp;                                                                  |
 | ----------------------------------------- | ----------------------------------------------------------------------- |
 | `metadata.annotations` <br/>_string_        | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.|
-| `spec.claimRef` <br/>_string_        | part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound|
+| `spec.claimRef` <br/>_string_        | part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound.|
 | `spec.persistentVolumeReclaimPolicy` <br/>_string_        | What happens to a persistent volume when released from its claim.|
 | `spec.storageClassName` <br/>_string_        | Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.|
 | `spec.volumeMode` <br/>_string_        | Defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.|
