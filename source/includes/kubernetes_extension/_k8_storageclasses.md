@@ -195,7 +195,7 @@ Return value:
 
 <!-------------------- REPLACE STORAGE CLASS -------------------->
 
-#### Replace a storage class
+##### Replace a storage class
 
 ```shell
 curl -X PUT \

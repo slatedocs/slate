@@ -237,7 +237,7 @@ Return value:
 
 <!-------------------- REPLACE PERSISTENT VOLUME CLAIM -------------------->
 
-#### Replace a persistent volume claim
+##### Replace a persistent volume claim
 
 ```shell
 curl -X PUT \
