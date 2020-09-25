@@ -248,7 +248,7 @@ Return value:
 
 <!-------------------- REPLACE PERSISTENT VOLUME -------------------->
 
-#### Replace a persistent volume
+##### Replace a persistent volume
 
 ```shell
 curl -X PUT \
