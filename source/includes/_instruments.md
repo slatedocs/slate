@@ -35,6 +35,17 @@ before they can be used for the following instrument attributes:
 
 (2) `feeTypes[].bankAccountId`
 
+⚠️ Please note that before registering instruments, ownerPartyIds have to be registered at the endpoint:
+
+[`POST /companies`](/#payments-manager-post-companies)
+
+before they can be used for the following instrument attributes
+the company is required to be in a <br>
+`REGISTERED` state:
+
+(1) `ownerPartyId`
+
+
 
 ### Required Attributes
 
@@ -43,6 +54,7 @@ before they can be used for the following instrument attributes:
 | symbol                                          | String    | InstrumentSymbol | Unique symbol used to identify this instrument. Max 100 characters.                                                  |
 | name                                            | String    | String           | Human readable name of the instrument.                                                                               |
 | assetClass                                      | String    | AssetClass       | Values: EQUITY                                                                                                       |
+| ownerPartyId                                    | String    | String           | The partyId of the legal entity that owns the instrument as previously registered.                                                                                                       |
 | paymentInstructions                             | Object    | Object           | Contains the attributes listed below.                                                                                |
 | paymentInstructions. primaryMarketBankAccountId | String    | BankAccountId    | The BankAccountId to send primary market sale funds to.                                                              |
 
@@ -68,6 +80,7 @@ X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
   "symbol": "SPV1",
   "name": "Happy Parade - SPV1",
   "assetClass": "EQUITY",
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502"
   "paymentInstructions": {
     "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
     "feeTypes": [
@@ -89,6 +102,7 @@ X-GOJI-REQUEST-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
   "symbol": "SPV1",
   "name": "Happy Parade - SPV1",
   "assetClass": "EQUITY",
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "paymentInstructions": {
     "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
     "feeTypes": [
@@ -152,6 +166,7 @@ X-GOJI-REQUEST-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eab
   "symbol": "SPV99",
   "name": "Happy Parade - SPV99",
   "assetClass": "EQUITY",
+  "ownerPartyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "paymentInstructions": {
     "primaryMarketBankAccountId": "01700ae3-1b61-41c8-87d9-c59e82f33a41",
     "feeTypes": [
