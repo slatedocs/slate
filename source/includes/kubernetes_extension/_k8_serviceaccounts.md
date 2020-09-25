@@ -1,14 +1,14 @@
-### Service accounts
+#### Service accounts
 
 
 <!-------------------- LIST SERVICE ACCOUNTS -------------------->
 
-#### List service accounts
+##### List service accounts
 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts?cluster_id=:cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -36,7 +36,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/serviceaccounts</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/serviceaccounts?cluster_id=:cluster_id</code>
 
 Retrieve a list of all service accounts in a given [environment](#administration-environments).
 
