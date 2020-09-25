@@ -390,13 +390,25 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/5611478403377505138"
+```
+
+> Request body example:
+
+```json
+{
+   "deleteSnapshots": true,
+}
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Delete an existing instance.
 
+Optional | &nbsp;
+------ | -----------
+`deleteSnapshots`<br/>*boolean* | Whether captured snapshops of associated auto-deletable disks should be deleted
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
 #### Change machine type

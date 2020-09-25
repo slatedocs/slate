@@ -180,12 +180,25 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697"
+```
+
+> Request body example:
+
+```json
+{
+   "deleteSnapshots": true,
+}
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id</code>
 
 Destroy an existing disk. A disk can only be deleted if it's not attached to an [instance](#gcp-instances).
+
+Optional | &nbsp;
+------ | -----------
+`deleteSnapshots`<br/>*boolean* | Whether captured snapshops should be deleted
 
 <!-------------------- ATTACH A DISK -------------------->
 
