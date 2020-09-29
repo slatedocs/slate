@@ -21,15 +21,14 @@ Clone this repository
 Option 1: use docker
 
 ```shell
-cd /path/to/repo/
+cd /path/to/repo/cloudmc-api-docs/
 docker-compose up -d
 ```
 
 Option 2: local or vagrant
 
-1. `cd /path/to/repo/`
-2. `cd slate`
-3. Initialize and start Slate.
+1. `cd /path/to/repo/cloudmc-api-docs/slate`
+2. Initialize and start Slate.
 
 ```shell
 # either run locally
