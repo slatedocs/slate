@@ -48,7 +48,7 @@ Retrieve a list of all service accounts in a given [environment](#administration
 | `metadata.name` <br/>_string_              | The name of the service account.                                                             |
 | `metadata.namespace` <br/>_string_         | The namespace in which the service account is created.                                       |
 | `metadata.uid` <br/>_object_               | The UUID of the service account.                                                             |
-| `metadata.secrets` <br/>_List<object>_     | The secrets of the service account.                                                          |
+| `metadata.secrets` <br/>_List&lt;object&gt;_     | The secrets of the service account.                                                          |
 | `secretsSize` <br/>_integer_               | The number of secrets of the service account.                                                |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
