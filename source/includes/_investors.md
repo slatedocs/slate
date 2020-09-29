@@ -73,7 +73,7 @@ An investor can be one of the following statuses:
 `ENHANCED_VERIFIED` The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.
 
 To simulate different KYC statuses in sandbox create an investor with last name that contains:
- - `REFERRED`, `DECLINED` or `FORCE_KYC` for `ENHANCED_VERIFICATION_REQUIRED` status
+ - `REFERRED`, `DECLINED` or `FORCEKYC` for `ENHANCED_VERIFICATION_REQUIRED` status
  - `INPROGRESS` for `AWAITING_CREDIT_AGENCY_CHECK` status
  - By default all investors will get `ELECTRONICALLY_VERIFIED` status.
 
