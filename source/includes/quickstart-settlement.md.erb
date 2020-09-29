@@ -78,7 +78,7 @@ The Goji Platform will generate a `clientId` which should be saved as this is us
 ## Checking the KYC details
 Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc](/#investors-get-platformapi-investors-clientid-kyc)
 
-In the sandbox environment, all Investors are considered verified unless the `lastName` contains `referred`.
+In the sandbox environment, all Investors are considered verified unless the `lastName` contains `referred` or `forcekyc`.
 
 ## Depositing Test Funds
 
