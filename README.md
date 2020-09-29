@@ -16,17 +16,25 @@ You're going to need one of the following:
 
 ### Getting Set Up
 
-1. Clone this repository
+Clone this repository
+
+Option 1: use docker
+
+```shell
+cd /path/to/repo/
+docker-compose up -d
+```
+
+Option 2: local or vagrant
+
+1. `cd /path/to/repo/`
 2. `cd slate`
-3. Initialize and start Slate. You can either do this locally, through docker or with Vagrant:
+3. Initialize and start Slate.
 
 ```shell
 # either run locally
 bundle install
 bundle exec middleman server
-
-# OR use docker
-docker-compose up -d
 
 # OR use vagrant
 vagrant up
