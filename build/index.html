@@ -2280,14 +2280,13 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>When tracking update status to another status, Snappy will send a POST request following the callback url created in api <a href="#create-webhook">POST /snappy/trackings/webhook</a>. Max retry of the request with each tracking status to callback url is 10 times. List tracking status <a href="#tracking-status">Tracking Status</a>. The body of POST request sent to callback url similar to <code>tracking</code> field response from api <a href="#create-tracking">POST /snappy/trackings/create</a></p>
-<h2 id='create-webhook'>Create Webhook</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/snappy/trackings/webhook?access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='create-webhook'>Create Webhook</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/snappy/businesses/&lt;business_id&gt;/webhook?access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 </code></pre>
 <blockquote>
 <p>Sample params</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJ1aWQiOiIxNGQ0YTFhMS1lYTQyLTQxNjQtODA1ZC1lMjQwZjI1NjFmNzEiLCJpYXQiOj"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"callback_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://postman-echo.com/post"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2304,7 +2303,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span></code></pre>
 <p>This endpoint create an unique webhook callback url into your business.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
-<p><code>POST /snappy/trackings/webhook</code></p>
+<p><code>POST /snappy/businesses/&lt;business_id&gt;/webhook</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -2337,7 +2336,7 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>The endpoint Snappy will send POST request</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-specific-webhook'>Get a Specific Webhook</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/snappy/trackings/webhook?business_id=&lt;business_id&gt;&amp;access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='get-a-specific-webhook'>Get a Specific Webhook</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/snappy/businesses/&lt;business_id&gt;/webhook&amp;access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -2352,7 +2351,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span></code></pre>
 <p>This endpoint retrieves a specific webhook callback url into your specific business.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
-<p><code>GET /snappy/trackings/webhook</code></p>
+<p><code>GET /snappy/businesses/&lt;business_id&gt;/webhook</code></p>
 <h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>

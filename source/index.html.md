@@ -1526,14 +1526,13 @@ When tracking update status to another status, Snappy will send a POST request f
 ## Create Webhook
 
 ```http
-POST /snappy/trackings/webhook?access_token=<access_token> HTTP/1.1
+POST /snappy/businesses/<business_id>/webhook?access_token=<access_token> HTTP/1.1
 ```
 > Sample params
 
 ```json
 {
     "access_token": "eyJ1aWQiOiIxNGQ0YTFhMS1lYTQyLTQxNjQtODA1ZC1lMjQwZjI1NjFmNzEiLCJpYXQiOj",
-    "business_id": 1,
     "callback_url": "https://postman-echo.com/post"
 }
 ```
@@ -1554,7 +1553,7 @@ This endpoint create an unique webhook callback url into your business.
 
 ### HTTP Request
 
-`POST /snappy/trackings/webhook`
+`POST /snappy/businesses/<business_id>/webhook`
 
 ### URL Parameters
 
@@ -1567,7 +1566,7 @@ callback_url | true | string | | The endpoint Snappy will send POST request
 ## Get a Specific Webhook
 
 ```http
-GET /snappy/trackings/webhook?business_id=<business_id>&access_token=<access_token> HTTP/1.1
+GET /snappy/businesses/<business_id>/webhook&access_token=<access_token> HTTP/1.1
 ```
 
 > Response
@@ -1586,7 +1585,7 @@ This endpoint retrieves a specific webhook callback url into your specific busin
 
 ### HTTP Request
 
-`GET /snappy/trackings/webhook`
+`GET /snappy/businesses/<business_id>/webhook`
 
 ### URL Parameters
 
