@@ -1593,3 +1593,35 @@ Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+
+## Update Webhook
+
+```http
+PUT /snappy/businesses/<business_id>/webhook&access_token=<access_token> HTTP/1.1
+```
+
+> Response
+
+```json
+{
+    "success": true,
+    "webhook": {
+        "business_id": 1,
+        "callback_url": "https://postman-echo.com/post"
+    }
+}
+```
+
+This endpoint retrieves a specific webhook callback url into your specific business.
+
+### HTTP Request
+
+`PUT /snappy/businesses/<business_id>/webhook`
+
+### URL Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+callback_url | true | string | | The endpoint Snappy will send POST request
