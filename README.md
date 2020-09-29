@@ -27,10 +27,9 @@ docker-compose up -d
 
 Option 2: local or vagrant
 
-1. `cd /path/to/repo/cloudmc-api-docs/slate`
-2. Initialize and start Slate.
-
 ```shell
+cd /path/to/repo/cloudmc-api-docs/slate
+
 # either run locally
 bundle install
 bundle exec middleman server
