@@ -52,3 +52,31 @@ Retrieve a list of all service accounts in a given [environment](#administration
 | `secretsSize` <br/>_integer_               | The number of secrets of the service account.                                                |
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
+
+<!-------------------- DELETE SERVICE ACCOUNT -------------------->
+
+#### Delete a service account
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts/my-service-account/my-namespace"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/serviceaccounts/:id</code>
+
+Delete a secret from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                          |
+| -------------------------- | ----------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete service account task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                    |
