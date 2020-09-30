@@ -51,7 +51,7 @@ Retrieve a list of all role bindings in a given [environment](#administration-en
 | Attributes                                 | &nbsp;                                                                                       |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
 | `id` <br/>_string_                         | The id of the role binding.                                                               |                                                    |
-| `metadata` <br/>_object_                   | The metadata of the service account.                                                         |
+| `metadata` <br/>_object_                   | The metadata of the role binding.                                                         |
 | `metadata.creationTimestamp` <br/>_string_ | The date of creation of the role binding as a string.                                     |
 | `metadata.name` <br/>_string_              | The name of the role binding.                                                             |
 | `metadata.namespace` <br/>_string_         | The namespace in which the role binding is created.                                       |
