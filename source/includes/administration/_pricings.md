@@ -32,6 +32,7 @@ curl "https://cloudmc_endpoint/v2/pricings" \
       "supportedCurrencies": [
         "CAD"
       ],
+      "missingCurrenciesPricing": false,
       "effectiveDate": "2020-08-31T15:43:53Z",
       "productCatalogs": [
         {
@@ -69,6 +70,7 @@ Attributes | &nbsp;
 `name`<br/>*Map* | A map from language to name value for that language
 `description`<br/>*Map* | A map from language to description value for that language
 `supportedCurrencies`<br/>*List* | A list of currencies supported by the pricing
+`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the changes is missing the prices for one or more currencies.
 `effectiveDate`<br/>*Date* | The date at which the pricing will take effect.
 `productCatalogs`<br/>*Array<ProductCatalog>* | A list of catalogs added to the pricing
 `organization`<br/>*Organization* | Organization where the pricing was created. Fields: `id`
@@ -116,6 +118,7 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5"
       "supportedCurrencies": [
         "CAD"
       ],
+      "missingCurrenciesPricing": false,
       "effectiveDate": "2020-08-31T15:43:53Z",
       "productCatalogs": [
         {
@@ -152,6 +155,7 @@ Attributes | &nbsp;
 `name`<br/>*Map* | A map from language to name value for that language
 `description`<br/>*Map* | A map from language to description value for that language
 `supportedCurrencies`<br/>*List* | A list of currencies supported by the pricing
+`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the changes is missing the prices for one or more currencies.
 `effectiveDate`<br/>*Date* | The date at which the pricing will take effect.
 `productCatalogs`<br/>*Array<ProductCatalog>* | A list of catalogs added to the pricing
 `organization`<br/>*Organization* | Organization where the pricing was created. Fields: `id`
@@ -398,6 +402,7 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/
       "supportedCurrencies": [
         "CAD"
       ],
+      "missingCurrenciesPricing": false,
       "effectiveDate": "2020-08-31T15:43:53Z",
       "productCatalogs": [
         {
@@ -438,6 +443,7 @@ Attributes | &nbsp;
 `name`<br/>*Map* | A map from language to name value for that language
 `description`<br/>*Map* | A map from language to description value for that language
 `supportedCurrencies`<br/>*List* | A list of currencies supported by the pricing
+`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the changes is missing the prices for one or more currencies.
 `effectiveDate`<br/>*Date* | The date at which the pricing will take effect.
 `productCatalogs`<br/>*Array<ProductCatalog>* | A list of catalogs added to the pricing
 `organization`<br/>*Organization* | Organization where the pricing was created. Fields: `id`
@@ -492,6 +498,7 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/
       ],
       "creationDate": "2020-09-01T18:34:43Z",
       "effectiveDate": "2020-09-02T12:00:00Z",
+      "missingCurrencies": [],
       "pricingChangeType": "ADD_PRODUCTS"
     },
     {
@@ -510,6 +517,7 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/
       ],
       "creationDate": "2020-09-01T15:08:40Z",
       "effectiveDate": "2020-09-02T12:00:00Z",
+      "missingCurrencies": [],
       "pricingChangeType": "MODIFY_PRODUCTS"
     },
     {
@@ -523,6 +531,7 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/
       "pricedProductsToDeprecate": [
         "dd3fcab9-5b31-4f08-9b50-ed3326bccfb4"
       ],
+      "missingCurrencies": [],
       "pricingChangeType": "REMOVE_PRODUCTS"
     },
     {
@@ -550,6 +559,7 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/
       ],
       "creationDate": "2020-09-01T18:34:43Z",
       "effectiveDate": "2020-09-02T12:00:00Z",
+      "missingCurrencies": [],
       "pricingChangeType": "ADD_CURRENCIES"
     }
   ]
@@ -565,6 +575,7 @@ Attributes | &nbsp;
 `pricedProductsToModify`<br/> *Array<PricedProductChange>* | A change to a priced product in the pricing. Only with MODIFY_PRODUCTS and ADD_CURRENCIES type.
 `pricedProductsToDeprecate`<br> *Array<UUID>* | Priced products to deprecate
 `currenciesToAdd`<br/> *Array<String>* | Currencies to add to the pricing. Only with ADD_CURRENCIES type.
+`missingCurrencies`<br/> *Array<String>* | Currencies that are missing some prices for either the unitPrice or COGS.
 `pricingChangeType`<br/> *string* | Type of change to apply
 `effectiveDate`<br/> *Date* | Date that the change should be applied
 `creationDate`<br/> *Date* | Date that the change was created
