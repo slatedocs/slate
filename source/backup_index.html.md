@@ -1,29 +1,31 @@
 ---
-title: OY! API Reference
+title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+  - ruby
+  - python
   - javascript
-  - android
-  - ios
 
 toc_footers:
-  - <a href='#'>Sign Up for Trial</a>
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
-
+  - errors
 
 search: true
+
+code_clipboard: true
 ---
 
 # Introduction
 
-OY! Bayar service enables business owners like you to receive payments from customers, either from your Application or independently by sending your Payment URL to your customers.
+Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
-With quick and easy integration, your business can start accepting payments on Day 1 after registration.
+We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-![Signup for Trial](images/img_signup.png)
-
-![Integration](images/img_integration.png)
+This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
