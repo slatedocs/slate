@@ -111,6 +111,7 @@ includes:
   - gcp/k8_accesscontrol
   - gcp/k8_serviceaccounts
   - gcp/k8_roles
+  - gcp/k8_rolebindings
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/images
@@ -135,6 +136,7 @@ includes:
   - kubernetes/k8_accesscontrol
   - kubernetes/k8_serviceaccounts
   - kubernetes/k8_roles
+  - kubernetes/k8_rolebindings
   - kubernetes/k8_releases
   - kubernetes/k8_charts  
   - azure
@@ -170,6 +172,7 @@ includes:
   - azure/k8_accesscontrol
   - azure/k8_serviceaccounts
   - azure/k8_roles
+  - azure/k8_rolebindings
   - masterportal
   - masterportal/applications
   - swift
