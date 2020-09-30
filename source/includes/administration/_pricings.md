@@ -70,7 +70,7 @@ Attributes | &nbsp;
 `name`<br/>*Map* | A map from language to name value for that language
 `description`<br/>*Map* | A map from language to description value for that language
 `supportedCurrencies`<br/>*List* | A list of currencies supported by the pricing
-`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the change is missing the prices for one or more currencies.
+`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the changes is missing the prices for one or more currencies.
 `effectiveDate`<br/>*Date* | The date at which the pricing will take effect.
 `productCatalogs`<br/>*Array<ProductCatalog>* | A list of catalogs added to the pricing
 `organization`<br/>*Organization* | Organization where the pricing was created. Fields: `id`
@@ -155,7 +155,7 @@ Attributes | &nbsp;
 `name`<br/>*Map* | A map from language to name value for that language
 `description`<br/>*Map* | A map from language to description value for that language
 `supportedCurrencies`<br/>*List* | A list of currencies supported by the pricing
-`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the change is missing the prices for one or more currencies.
+`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the changes is missing the prices for one or more currencies.
 `effectiveDate`<br/>*Date* | The date at which the pricing will take effect.
 `productCatalogs`<br/>*Array<ProductCatalog>* | A list of catalogs added to the pricing
 `organization`<br/>*Organization* | Organization where the pricing was created. Fields: `id`
@@ -443,7 +443,7 @@ Attributes | &nbsp;
 `name`<br/>*Map* | A map from language to name value for that language
 `description`<br/>*Map* | A map from language to description value for that language
 `supportedCurrencies`<br/>*List* | A list of currencies supported by the pricing
-`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the change is missing the prices for one or more currencies.
+`missingCurrenciesPricing`<br/>*boolean* | Specifies if one of the changes is missing the prices for one or more currencies.
 `effectiveDate`<br/>*Date* | The date at which the pricing will take effect.
 `productCatalogs`<br/>*Array<ProductCatalog>* | A list of catalogs added to the pricing
 `organization`<br/>*Organization* | Organization where the pricing was created. Fields: `id`
@@ -575,7 +575,7 @@ Attributes | &nbsp;
 `pricedProductsToModify`<br/> *Array<PricedProductChange>* | A change to a priced product in the pricing. Only with MODIFY_PRODUCTS and ADD_CURRENCIES type.
 `pricedProductsToDeprecate`<br> *Array<UUID>* | Priced products to deprecate
 `currenciesToAdd`<br/> *Array<String>* | Currencies to add to the pricing. Only with ADD_CURRENCIES type.
-`missingCurrencies`<br/> *Array<String>* | Currencies that are missing some price for either the unitPrice or COGS.
+`missingCurrencies`<br/> *Array<String>* | Currencies that are missing some prices for either the unitPrice or COGS.
 `pricingChangeType`<br/> *string* | Type of change to apply
 `effectiveDate`<br/> *Date* | Date that the change should be applied
 `creationDate`<br/> *Date* | Date that the change was created
