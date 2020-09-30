@@ -1,5 +1,5 @@
 ---
-title: Payment Checkout Reference
+title: Product Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
@@ -20,11 +20,13 @@ You can immediately tcreate an account and enjoy some of our features in trial m
 
 1. **Register on our Portal**: To create your account, please go to our business portal at [https://business.oyindonesia.com/](https://business.oyindonesia.com), click "Register Now", and complete the form with al the required information. 
 
-*Screenshot placeholder* 
+![Portal Login](images/login)
 
 2. **Activate your account**: Once the registration is submitted, an activation link will be sent to your email. 
 
-*Screenshot placeholder* 
+![Register](images/register_1)
+
+![Register](images/register_2)
 
 Once you are able to login, you will be able to test some of our features in a trial mode or request to upgrade your account to enjoy the full version! 
 
@@ -34,11 +36,15 @@ Once you are able to login, you will be able to test some of our features in a t
 
 *Please note that the receiving bank account information cannot be changed via OY dashboard once your upgrade account request is approved for security reasons. Please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) to change the receiving bank account information.*
 
-*Screenshot Placeholder* 
+![Upgrade](images/upgrade_1)
 
 2. **Upload the Required Supporting Documents**: Please upload the required supporting documents according to your business type. Documents are only accepted in PDF format and must be less than 10 MB in size each. 
 
+![Upgrade](images/upgrade_2)
+
 3. **Submit your Request**: Click “Submit & Request to Upgrade”, and a new status of “Upgrade Account Requested” should appear on this page, indicating that your request has been submitted along with your supporting documents.
+
+![Upgrade](images/upgrade_3)
 
 This process should take about 1 week. In the event that the status of your request is **Resubmit** or **Rejected**, please keep reading below. Otherwise, you are good to go! 
 
@@ -108,15 +114,14 @@ You can check your available balance at anytime to ensure  that you have suffici
 ### Testing (Testing environment coming soon)
 
 ### How to Use 
-Before you execute a disbursement, you can verify the beneficiary account information from our inquiry endpoint [https://api-docs.oyindonesia.com/#bank-account-inquiry](https://api-docs.oyindonesia.com/#bank-account-inquiry). 
 
 > Below is an example of the request body for inquiry:
 
 ```shell 
 curl -X POST https://partner.oyindonesia.com/api/inquiry 
 -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:987654' 
--d '{"recipient_bank": "014", 
-    "recipient_account": "1239812390"}'
+-d '{"recipient_bank": "022", 
+    "recipient_account": "7823023345"}'
 ```
 
 > It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#fund-disbursement-response-codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes). Otherwise, below is the sample of response parameters that will be returned:
@@ -127,24 +132,24 @@ curl -X POST https://partner.oyindonesia.com/api/inquiry
         "code":"000",
         "message":"Success"
     },
-    "recipient_bank":"014",
-    "recipient_account":"1239812390",
-    "recipient_name":"John Doe",
+    "recipient_bank":"022",
+    "recipient_account":"7823023345",
+    "recipient_name":"Budi Soemitra Nasution",
     "timestamp":"16-10-2019 09:55:31"
 }
 ```
-Next, send a request body to executre a disbursement request to be sent to our disbursement endpoint [https://api-docs.oyindonesia.com/#disbursement](https://api-docs.oyindonesia.com/#disbursement). 
+Before you execute a disbursement, you can verify the beneficiary account information from our inquiry endpoint [https://api-docs.oyindonesia.com/#bank-account-inquiry](https://api-docs.oyindonesia.com/#bank-account-inquiry). 
 
 > Below is an example of the request body for the inquiry: 
 ```shell
 curl -X POST https://partner.oyindonesia.com/api/remit 
 -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
--d '{"recipient_bank": "014", 
-    "recipient_account": "1239812390", 
-    "amount":125000, 
-    "note":"Split lunch bill", 
-    "partner_trx_id":"1234-asdf",
-    "email" :"napoleon@email.com test@email.com"}'
+-d '{"recipient_bank": "022", 
+    "recipient_account": "7823023345", 
+    "amount":100000, 
+    "note":"Pembayaran Nov IV", 
+    "partner_trx_id":"Tx15048563JKFJ",
+    "email" :"budi.s@gmail.com"}'
 ```
 
 > It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#fund-disbursement-response-codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes). Otherwise, below is the sample of response parameters that will be returned:
@@ -155,27 +160,28 @@ curl -X POST https://partner.oyindonesia.com/api/remit
         "code":"101",
         "message":"Request is Processed"
     },
-    "amount":125000,
-    "recipient_bank":"014",
-    "recipient_account":"1239812390",
-    "trx_id":"ABC-456",
-    "partner_trx_id":"1234-asdf",
+    "amount":100000,
+    "recipient_bank":"022",
+    "recipient_account":"7823023345",
+    "trx_id":"89718ca8-4db6-40a0-a138-a9e30d82c67d",
+    "partner_trx_id":"Tx15048563JKFJ",
     "timestamp":"16-10-2019 10:23:42"
 }
 ```
+Next, send a request body to execute a disbursement request to be sent to our disbursement endpoint [https://api-docs.oyindonesia.com/#disbursement](https://api-docs.oyindonesia.com/#disbursement). 
+
+
+> Below is an example of the callback you will receive: (coming soon) 
 
 A callback with the following information will be sent to the callback endpoint that you can register with us. 
 
-> Below is an example of the callback you will receive: tbd 
-
-An enpoint to theck the transaction is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#get-disbursement-status](https://api-docs.oyindonesia.com/#get-disbursement-status). 
 
 > Below is an example of the request body: 
 
 ```shell 
 curl -X POST https://partner.oyindonesia.com/api/remit-status 
 -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
--d '{"partner_trx_id": "1234-asdf"}'
+-d '{"partner_trx_id": "Tx15048563JKFJ"}'
 ```
 
 > It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#fund-disbursement-response-codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes). Otherwise, below is the sample of response parameters that will be returned:
@@ -186,19 +192,18 @@ curl -X POST https://partner.oyindonesia.com/api/remit-status
         "code":"000",
         "message":"Success"
     },
-    "amount":125000,
-    "recipient_name":"John Doe",
-    "recipient_bank":"008",
-    "recipient_account":"1234567890",
-    "trx_id":"ABC-456",
-    "partner_trx_id":"1234-asdf",
-    "timestamp":"16-10-2020 10:34:23",
-    "created_date": "24-01-2020 06:48:08",
-    "last_updated_date": "24-01-2020 06:48:39"
+    "amount":100000,
+    "recipient_name":"Budi Soemitra Nasution",
+    "recipient_bank":"022",
+    "recipient_account":"7823023345",
+    "trx_id":"89718ca8-4db6-40a0-a138-a9e30d82c67d",
+    "partner_trx_id":"Tx15048563JKFJ",
+    "timestamp":"16-10-2019 10:40:23",
+    "created_date": "16-10-2019 10:23:42",
+    "last_updated_date": "16-10-2019 10:34:23"
 }
 ```
-
-You can also check your balance anytime to ensure you have sufficient balance from our endpoint [https://api-docs.oyindonesia.com/#get-balance](https://api-docs.oyindonesia.com/#get-balance).
+An enpoint to check the transaction is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#get-disbursement-status](https://api-docs.oyindonesia.com/#get-disbursement-status). 
 
 > Below is an example of a request body to check the balance:
 
@@ -225,9 +230,14 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
 }
 ```
 
+You can also check your balance anytime to ensure you have sufficient balance from our endpoint [https://api-docs.oyindonesia.com/#get-balance](https://api-docs.oyindonesia.com/#get-balance).
+
 Lastly, all transactions can be monitored from the OY! dashboard which includes all the transaction details.
 
-*Screenshot Placeholder*
+![API Disburse](images/api_disburse_list)
+
+![API Disburse](images/api_disburse_success)
+
 
 For further details on the parameters definition and proper usage, please refer to the API Documentation [https://api-docs.oyindonesia.com/#fund-disbursement](https://api-docs.oyindonesia.com/#fund-disbursement)
 
@@ -272,8 +282,6 @@ Click here for more details and instructions about topping up to your OY! accoun
 
 1. **Create Disbursement**: On the OY! dashboard, navigate to Send Payments > Bulk Disburse on your left menu bar. Click “Create Disbursement” on the far righthand side of that page to create a new bulk disbursement campaign.
 
-*Screenshot Placeholder* 
-
 2. **Create Campaign Details**: Fill in the campaign details and upload an xlsx or csv file. 
 
 Please fill out a campaign name and campaign description in the provided spaces. These details are strictly used as your tracking information only and will not be shared to the transaction recipients. 
@@ -290,50 +298,50 @@ Bank Account Number | Recipient Bank Account Number | 12341234
 Phone Number | Recipient Phone Number | 62812341234
 Notes (Optional) | Transaction Notes (Please refer to this page to learn more about "Notes") | 
 
-*Screenshot Placeholder* 
+![Bulk Disburse](images/bulk_disburse_1)
 
 3. **Re-verify all the Information and Submit**: Once your xlsx or csv file is uploaded, you can verify all of the information uploaded from the file from the table displayed. If there is any incorrect submission such as invalid entry due to special characters, a red box will appear to highlight the entry that should be corrected. Issues must be resolved before a campaign can be submitted.
 
-*Screenshot Placeholder*
+![Bulk Disburse](images/bulk_disburse_2)
 
 If there is no issue with the details uploaded from the xlsx or csv file, a blue bar with “100%” will show up above the list of transactions, indicating that all information is valid. Click “Submit” to complete creating the bulk disbursement campaign. 
 
-*Screenshot Placeholder* 
+![Bulk Disburse](images/bulk_disburse_3)
 
 *Note: there is no limit to the amount of bulk disbursement campaigns that can be created at a given period of time.* 
 
-4. **Approve/Cancel Campaign**: Once the bulk disbursement campaign is created, a new status of `pending approval` will appear. Approve the campaign by clicking the “Approve” button. If you want to cancel a campaign, click the “...” button and select “Cancel”. Once a campaign is approved and executed by our system, you will receive an email with the campaign information summary (“Outgoing Transfer Alert”).
+4. **Approve/Cancel Campaign**: Once the bulk disbursement campaign is created, a new status of `waiting approval` will appear. Approve the campaign by clicking the “Approve” button. If you want to cancel a campaign, click the “...” button and select “Cancel”. 
 
-When a campaign is approved, the balances should immediately reflect changes. For more information about the different types of balances, click here. 
-
-*Screenshot Placeholder* 
-
-Multiple campaigns can be approved at a time as long as there is sufficient available balance to complete campaigns that have already been approved but are still in queue to be processed.
-
-*Screenshot Placeholder* 
+![Bulk Disburse](images/bulk_disburse_4)
 
 Once the bulk disbursement campaign is approved, details regarding the campaign can no longer be changed. This includes changes made to individual transactions and their respective recipient information. 
 
+When a campaign is approved, the balances should immediately reflect changes. For more information about the different types of balances, click here. You will also receive an email with the campaign information summary (“Outgoing Transfer Alert”) when transactions are executed.
+
+*Note: Multiple campaigns can be approved at a time as long as there is sufficient available balance to complete campaigns that have already been approved but are still in queue to be processed.*
+
 5. **Keep Track of Campaign Details**: To check the details of the bulk disbursement campaign, click on the campaign name to find the campaign summary and its recipient list. Keep track of the both the overall campaign status and the status of individual transactions through the page. 
 
-*Screenshot Placeholder* 
+![Bulk Disburse](images/bulk_disburse_5)
 
 6. **Status: Running, Cancel, and Finish**: Congratulations! You just made your first bulk disbursement with OY! Below are a list of statuses you will find on your dashboard. 
 
-_Running_
-As your individual disbursements are executed, the status of your bulk disbursement campaign will indicate a running status. 
+_In Progress_
+As your individual disbursements are executed, the status of your bulk disbursement campaign will indicate an in-progress status. 
 
-_Cancelled_ 
-If you choose to stop your disbursement campaign, the status of your bulk disbursement campaign will indicate a cancel status. 
+![Bulk Disburse](images/bulk_disburse_in_progress)
 
 _Finish_
 Once all the listed transactions are executed and reflect their respective statuses, the status of your bulk disbursement campaign will transition to Finish. The recipients should have all received an email detailing an “Incoming Transfer Alert.” You can also download a report of the campaign details directly through the portal. 
 
-*Screenshot Placeholder* 
+![Bulk Disburse](images/bulk_disburse_finish)
+
+_Cancelled_ 
+If you choose to stop your disbursement campaign, the status of your bulk disbursement campaign will indicate a cancel status. 
+
+![Bulk Disburse](images/bulk_disburse_cancel)
 
 You can also double check each of your transactions by navigating to the account statement page on our portal. 
-
-*Screenshot Placeholder* 
 
 ### FAQ (Bulk Disburse)
 
@@ -346,9 +354,7 @@ The name and phone number are visible only to the partner and is used for the pa
 You can send up to 5 emails per transactions with a limit of 255 characters total. For each transaction, simply list out the email recipients. 
 
 ## Bank Codes 
-We support transactions to 100+ banks in Indonesia. Please refer to the bank codes below when using our disbursement products. (Please note that we currently do not support disbursements to Virtual Accounts.)
-
-*migrate table from: https://api-docs.oyindonesia.com/#disbursement-bank-codes* 
+We support transactions to 100+ banks in Indonesia. Please refer to the bank codes [here](https://api-docs.oyindonesia.com/#disbursement-bank-codes) when using our disbursement products. (Please note that we currently do not support disbursements to Virtual Accounts.)
 
 ## FAQ (General for disbursement) 
 
@@ -359,10 +365,14 @@ Banks often have regular maintenance schedules which differ from one bank to ano
 _e-wallet_
 Since each e-wallet provide limits to the amount each user can hold at a time, disbursements made to e-wallet accounts have their respective limits. 
 
-*E-wallet table placeholder* 
-
-**How many banks are available?**
-OY! supports transactions to 100+ banks in Indonesia. For more information about which banks are supported, please click here. 
+Wallet | Account Type | Maximum Amount
+------ | ------------ | --------------
+OVO | OVO Club | Rp 2.000.000
+OVO | OVO Premier | Rp 10.000.000
+DANA | DANA Verified | Rp 1.000.000
+DANA | DANA Premium | Rp 10.000.000
+GoPay | Unverified | Rp 2.000.000
+GoPay | Verified | Rp 10.000.000
 
 **Is there a cut-off time?**
 No, we are available 24/7 including holidays. 
@@ -377,7 +387,7 @@ There are no daily limits of how many bulk campaigns can be created and executed
 **What is a VA?** 
 Businesses are struggling to manage hundreds or even thousands physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the number of bank accounts to be maintained and lots of man hours to be spent for reporting and reconciliation purposes combining different information from different accounts. Virtual Account (VA) is essentially a dummy account that is linked to a physical account and has all the physical account characteristics that enables a much easier reporting and reconciliation process by centralizing the money flow into the physical account. By issuing VAs, you can assign each VA for specific person and/or purposes.
 
-*Diagram placeholder*
+![VA Aggregator](images/va_diagram_1)
 
 From the example above, it shows how payments made through the VAs are merely pass-throughs for the physical accounts to receive money. Without VAs, the above example might require up to 8 physical accounts from 2 different banks rather than 2 physical accounts from 2 different banks.
 
@@ -386,7 +396,7 @@ Our VA Aggregator product provides you with the capabilities to create unique Vi
 
 Our virtual accounts are adjustable according to your needs. We offer options of static or dynamic accounts, single or mutli use accounts, opened or closed amounts, and determinable expiration dates. You can also track all created virtual accounts, incoming payments, and their respective details either through our API callback or OY portal. 
 
-*Diagram placeholder* 
+![VA Aggregator](images/va_diagram_2)
 
 ### Key Features
 
@@ -418,7 +428,7 @@ Once a VA is updated, the new set of configuration will apply for that VA and th
 _Retrieve the VA details and incoming transactions- 
 All of the created VAs and incoming transactions can be monitored on the OY! dashboard and also from APIs ([https://api-docs.oyindonesia.com/#get-list-of-created-va](https://api-docs.oyindonesia.com/#get-list-of-created-va) and [https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va)). Notifications will be sent for all incoming transactions.
 
-# Registration and Set Up
+### Registration and Set Up
 
 Prerequisities:
 * Register an account on the OY! dashboard
@@ -428,16 +438,17 @@ Prerequisities:
 * API Key to be shared
 * Integrate with our API [https://api-docs.oyindonesia.com/#fund-disbursement](https://api-docs.oyindonesia.com/#fund-disbursement)
 
-# How to Use
+### How to Use
 
 > Below is an example of a request body to execute your request:
 
-```shell
-curl -X POST https://partner.oyindonesia.com/api/generate-static-va 
--H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
--d '{"partner_user_id": "oy00000001",
-    "bank_code": "002",
-    "amount": 500000}'
+```shell 
+curl --location --request POST https://partner.oyindonesia.com/api/generate-static-va
+--header 'content-type: application/json' \
+--header 'accept: application/json' \
+--header 'x-oy-username: username' \
+--header 'x-api-key: apikey' \
+-d '{"partner_user_id":"51200021","bank_code": "014","amount": 150000,"is_open" : false,"is_single_use" : false,"is_lifetime": false,"expiration_time": 5,"username_display" : "va name","email": "email@mail.com"}'
 ```
 
 > It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#va-aggregator-response-codes](https://api-docs.oyindonesia.com/#va-aggregator-response-codes). Otherwise, below is the sample of response parameters that will be returned:
@@ -449,66 +460,56 @@ curl -X POST https://partner.oyindonesia.com/api/generate-static-va
         "code": "000",
         "message": "Success"
     },
-    "amount": 500000,
-    "va_number": "123456789182827272",
-    "bank_code": "002",
+    "amount": 15000,
+    "va_number": "700707760000000003",
+    "bank_code": "014",
     "is_open": false,
     "is_single_use": false,
     "expiration_time": 1582783668175,
     "va_status": "WAITING_PAYMENT",
-    "username_display": "va name"}
+    "username_display": "va name",
+    "trx_expiration_time" : 1582783668175,
+    "partner_trx_id" : "TRX0001"
+}
 ```
 
 Send us instructions to generate a new VA number.
 
-> Below is an example of our callback response: 
+Once a VA is created, its details can be seen and monitored through the OY! dashboard. 
 
-```json
-{
-    "status":{
-        "code":"000",
-        "message":"Success"
-    },
-    "amount":125000,
-    "recipient_name":"John Doe",
-    "recipient_bank":"008",
-    "recipient_account":"1234567890",
-    "trx_id":"ABC-456",
-    "partner_trx_id":"1234-asde",
-    "timestamp":"16-10-2020 10:34:23",
-    "created_date": "24-01-2020 06:48:08",
-    "last_updated_date": "24-01-2020 06:48:39"
-}
-```
-
-A callback with the following information will be sent to the callback endpoint that you can register with us. 
+![VA Aggregator](images/va_waiting_payment)
 
 > Below is an example of the request body:
 
 ```shell
-curl -X GET https://partner.oyindonesia.com/api/static-virtual-account/1414255-12121-21212121-212121 
--H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321'
+curl --location --request GET https://partner.oyindonesia.com/api/static-virtual-account/12345b1-23be-45670-a123-5ca678f12b3e
+--header 'content-type: application/json' \
+--header 'accept: application/json' \
+--header 'x-oy-username: username' \
+--header 'x-api-key: apikey'
 ```
 
 > Below is the sample of response parameters that will be returned:
 
 ```json 
 {
-    "id": "1414255-12121-21212121-212121",
+    "id": "12345b1-23be-45670-a123-5ca678f12b3e",
     "status": {
         "code": "000",
         "message": "Success"
     },
-    "amount": 10000.0000,
-    "va_number": "1233456000000000001",
-    "bank_code": "002",
-    "is_open": true,
+    "amount": 150000.0000,
+    "va_number": "700707760000000003",
+    "bank_code": "014",
+    "is_open": false,
     "is_single_use": false,
-    "expiration_time": 1582790250609,
+    "expiration_time": 1582783668175,
     "va_status": "WAITING_PAYMENT",
-    "username_display": "username",
+    "username_display": "va name",
     "amount_detected": 0,
-    "partner_user_id": "123456"
+    "partner_user_id": "123456",
+    "trx_expiration_time": 1582783668175,
+    "partner_trx_id": "TRX0001"
 }
 ```
 
@@ -517,39 +518,50 @@ An endpoint to check your VA information is also available and can be accessed a
 > Below is an example of the request body:
 
 ```shell
-curl -X PUT https://partner.oyindonesia.com/api/static-virtual-account/1414255-12121-21212121-212121 
--H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
--d '{"is_open" : true,"amount": 50000,"is_single_use" : false,"expiration_time": 30,"username_display" : "test","bank_code": "002"}'
+curl --location --request PUT https://partner.oyindonesia.com/api/static-virtual-account/12345b1-23be-45670-a123-5ca678f12b3e
+--header 'content-type: application/json' \
+--header 'accept: application/json' \
+--header 'x-oy-username: username' \
+--header 'x-api-key: apikey' \
+-d '{"is_open" : true,"amount": 50000,"is_single_use" : false,"expiration_time": 30,"username_display" : "va name","bank_code": "014","trx_expiration_time":5,"partner_trx_id":"TRX0001"}'
 ```
 
 > Below is the sample of response parameters that will be returned:
 
 ```json 
 {
-    "id": "1414255-12121-21212121-212121",
+    "id": "12345b1-23be-45670-a123-5ca678f12b3e",
     "status": {
         "code": "000",
         "message": "Success"
     },
     "amount": 50000,
-    "va_number": "1001234000000000001",
-    "bank_code": "002",
+    "va_number": "700707760000000003",
+    "bank_code": "014",
     "is_open": true,
     "is_single_use": false,
     "expiration_time": 1582802205412,
     "va_status": "WAITING_PAYMENT",
-    "username_display": "vaname",
-    "partner_user_id": "12345677"
+    "username_display": "va name",
+    "partner_user_id": "123456",
+    "trx_expiration_time": 1582802205412,
+    "partner_trx_id": "TRX0001"
 }
 ```
 
 If you wish to change the details of your VA, you can do so by updating your VA at any time [https://api-docs.oyindonesia.com/#update-va](https://api-docs.oyindonesia.com/#update-va).
 
-All details regarding your created VA and its payments can be monitored from OY! dashboard.
+All details regarding your created VA and its payments can be retrieved via our API endpoint ([https://api-docs.oyindonesia.com/#get-list-of-created-va](https://api-docs.oyindonesia.com/#get-list-of-created-va)) or can be monitored directly from the OY! dashboard.
 
-*Screenshot Placeholder* 
+![VA Aggregator](images/va_created_va)
 
-### FAQ (Virtual Account)
+Similarly, all the details regarding incoming transactions for specific va numbers can be retrived via our API endpoint ([https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va)) or can be monitored directly the from OY! dashboard.
+
+![VA Aggregator](images/va_incoming)
+
+For further details regarding OY!'s extensive VA Aggregator capabilities and endpoints, please refer to the [OY! API Documentation](https://api-docs.oyindonesia.com/#va-aggregator).
+
+### FAQ (Virtual Account) (coming soon)
 
 ## Payment Checkouts/Invoice 
 
@@ -557,7 +569,7 @@ Our Payment Checkout/Invoice product allows you to create and send URLs to accep
 
 ### Kay Features 
 
-_Payment Checkout/Invoice Link_
+_Payment Checkout/Invoice via Link_
 **No Integration Needed**
 Access and declare all parameters needed from the URL with easy and simple declaration. 
 
@@ -570,7 +582,7 @@ You can customize the amount to be billed to your user whether they have to pay 
 **Check Incoming Transactions Status and Callback** 
 For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
 
-_API Payment Checkout/Invoice_ 
+_Payment Checkout/Invoice via API_ 
 **Complete Customization**
 * Open vs. closed amount
 * Admin fee to be paid by your customers
@@ -590,6 +602,7 @@ Payment link created can be sent to your customer’s email directly instead of 
 **Check Incoming Transaction Status and Callback**
 For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status . IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
 
+_Payment Checkout/Invoice via Dashboard (Coming Soon)_ 
 
 ***Enjoy the quality services of our product!***
 Whether you send your user a pre-generated link or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through our OY portal. You will be able to see the details of the payment checkout including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status. 
@@ -613,7 +626,7 @@ Prerequisites
 
 By default, payment checkout via link declaration will be expired within 24 hours.
 
-*Screenshot Placeholder* 
+![Payment Checkout](images/payment_checkout_1)
 
 If you do not want to specify the amount, you can immediately send the link at this step to your customers, allowing them to input their desired amount. 
 
@@ -633,23 +646,21 @@ Test your link to ensure that the amount is locked by changing the `amount` para
 
 3. **Input the customer's information**: After inputting the amount, you will be required to enter the customer’s information. Either you or your customer can fill out this information. 
 
-*Screenshot Placeholder*
+![Payment Checkout](images/payment_checkout_2)
 
 4. **Select Payment Method**: We support payments either through bank transfer, credit card, or debit card. You can choose specific payment methods to be enabled via parameter declaration by specifying `enable_payment_va`, `enable_payment_cc` or `enable_payment_debit` as `true` or `false`.
 
-*Screenshots Placeholder* 
+![Payment Checkout](images/payment_checkout_3)
 
-5. **[Reconciliation and Reporting] Monitor incoming payment**: You can monitor the payment status through the OY portal. Simply navigate to Request Money > Payment Checkout > Incoming Payment. This report will include all incoming payments from checkouts generated through both the link and API method.
+5. **Access payment checkout link details**:
 
-*Screenshot Placeholder* 
+You can look at your payment checkout link details through the OY! dashboard. It notes each created payment checkout link including the URL, status, payment link details, and user details. 
 
-You can access more details for each incoming payment including the URL, status, payment details, and customer details. 
+![Payment Checkout](images/payment_checkout_complete)
 
-*Screenshot Placholder* 
+6. **Monitor all your payment checkout links**: Our portal also provides you with the capabilities to monitor all your created payment links and their statuses. This allows you to track the statuses of each created link, including those that have expired. This report will include all payment checkout links generated both via Link and API.
 
-6. **[Reconciliation and Reporting] Monitor all your payment checkout links**: Our portal also provides you with the capabilities to monitor all your created payment links and their statuses under Payment Checkout > Payment Link. This allows you to track the status of each created link, including those that have expired. This report will include all payment checkouts generated from both the link and API method.
-
-*Screenshot Placeholder* 
+![Payment Checkout](images/payment_checkout_list)
 
 ### How to Use Payment Checkout via API 
 
@@ -842,412 +853,8 @@ curl -X DELETE \
 Lastly, we provide an endpoint to delete your payment or invoice link based on `payment_link_id` or `partner_tx_id`. The payment or invoice link must still be active and a payment method must not have been selected.
 
 
-Just like the Payment Checkout via Link, you can monitor incoming payment and all your payment checkout links from the OY! dashboard. This report will include all payment checkouts generated from both the link and API method.
+Just like the Payment Checkout via Link, you can access all your payment checkout links and its details from the OY! dashboard. This report will include all payment checkout links generated both via Link and API.
 
-*Screenshot Placeholder* 
+![Payment Checkout](images/payment_checkout_list)
 
-
-___ 
-
-
-# Introduction
-
-Payment Checkout service enables business owners like you to receive payments from customers, either **from your Application** or independently **by sending your Payment URL to your customers**.
-
-With quick and easy integration, your business can start accepting payments on Day 1 after registration.
-
-Payment Checkout supports multiple payment methods, including *Direct Debit*, *Credit Cards*, and *Bank Virtual Accounts*.
-
-# Quick Integration
-
-> To open Payment Checkout, use following code from your platform:
-
-```javascript
-window.open("https://pay.oyindonesia.com/username", "_blank");
-```
-
-```java
-Intent intent = new Intent(context, YourWebviewActivity.class);
-intent.putExtra("url", "https://pay.oyindonesia.com/username")
-startActivity(intent)
-```
-
-```swift
-let controller = OyWebViewController()
-controller.url = "https://pay.oyindonesia.com/username"
-let navigationController = UINavigationController(rootViewController: controller)
-present(navigationController, animated: true, completion: nil)
-```
-
-> Make sure to replace `username` with your account username, given on the email.
-
-### Get Payment URL for your business
-![Signup for Trial](images/img_signup.png)
-
-1. Register for a unique payment URL here: [https://business.oyindonesia.com/register](https://business.oyindonesia.com/register)
-2. You will receive an email containing a unique payment URL for *trial version* of the checkout page. From here, you can immediately start the integration.
-
-<aside class="warning">
-Limitation of Payment Checkout (Trial Version)
-</aside>
-
-Payment URL for the *trial version* will have several limitations, including:
-
-* Amount of payment is locked to Rp 15.000
-* It contains BIG watermark mentioning unverified account (note: you are not supposed to use this for production)
-* You don't get API Callback for payment result. However, you will notice that money will be sent to your bank account in real time
-
-You can upgrade to OY! business partner to remove above limitations, by sending reply to the email that you receive. Our team will response your email quickly.
-
-### How Does It Work?
-![Integration flow](images/img_integration.png)
-
-1. **Put the logic of opening webview** on your app button, so that whenever buyer clicks on "Payment" button, it will open Payment Checkout
-2. You implement your own **Product details page**
-3. You implement your **Order System to create transactionId** for buyers to checkout their order
-4. Your App/Web **opens Payment Checkout** page with additional parameters required
-5. Buyer pays using any of *Direct Debit*, *Credit Cards*, or *Bank Virtual Accounts*.
-6. You **receive money on your receiving account** and OY! will **send Payment status Callback** to your end point (note: Only available for non-trial account)
-
-# Payment Checkout V1 (To be Deprecated)
-
-## Request With Parameters
-
-```javascript
-// note: at most only two of the payment method are false
-let params = 'open=true';
-params += (txid !== null) ? '&txid='+txid : '';
-params += (amount !== null) ? '&amount='+amount : '';
-params += (description !== null) ? '&description='+encodeURIComponent(description) : '';
-params += (show_contact !== null) ? '&show_contact='+show_contact : '';
-params += (show_account !== null) ? '&show_account='+show_account : '';
-params += (send_notif !== null) ? '&send_notif='+send_notif : '';
-params += (enable_payment_cc !== null) ? '&enable_payment_cc'+enable_payment_cc : '';
-params += (enable_payment_va !== null) ? '&enable_payment_va'+enable_payment_va : '';
-params += (enable_payment_debit !== null) ? '&enable_payment_debit'+enable_payment_debit : '';
-
-window.open("https://pay.oyindonesia.com/username?" + params, "_blank");
-```
-
-Once you complete the registration and activation for payment checkout, you can immediately access our payment checkout link at [https://pay.oyindonesia.com/yourusername](https://pay.oyindonesia.com/yourusername)
-
-<aside class="success">
-Remember — Make sure to replace `username` with your account username, given on the email.
-</aside>
-
-### Query Parameters
-
-Note: Make sure at most only two of the payment method are false
-
-Parameter | Default | Description
---------- | ------- | -----------
-txid | not set | If set to specific ID, OY! will echo back the transactionID label via the Payment Result Callback (parameter name `txid`)
-amount | not set | If set to certain amount, will lock the amount of payment that Buyer can pay. Otherwise, Buyer needs to input the amount
-description | not set | If set, description text will be shown the main page of Payment Checkout. Otherwise, it will show blank description
-show_contact | true | If set to true, Payment Checkout will show Contact Form asking details of the Buyer
-show_account | true | If set to true, Payment Checkout will show your bank account number
-send_notif | true | Whether OY! should send payment notification to the Buyer via SMS/Push Notif
-enable_payment_cc | true | Whether OY! should enable payment using Credit Card
-enable_payment_va | true | Whether OY! should enable payment using Bank Virtual Accounts
-enable_payment_debit | true | Whether OY! should enable payment using Direct Debit
-
-### Sample payment checkout URL with all parameters defined:
-
-`https://pay.oyindonesia.com/yourusername?txid=partner000001&amount=15000&description=Mohon%20dikirim%20segera&show_contact=true&show_account=true&send_notif=true&enable_payment_cc=false&enable_payment_va=false&enable_payment_debit=true`
-
-
-## Payment Result Callback
-
-> The above command returns JSON structured similar like this:
-
-```json
-{
-  "txid": "partner000001",
-  "oy_txid": "1234567",
-  "nominal": 15000,
-  "name": "Joko Widodo",
-  "phone_number": "+6281111111",
-  "note": "Mohon dikirim segera",
-  "result": "success",
-  "sender_bank": "008",
-  "payment_method": "Instant Pay"
-}
-```
-
-Non-trial Account can register specific end point URL (web hook) to receive callback whenever payment occurs.
-
-<aside class="warning">You need to register an end point URL to receive this callback. Note that Trial Account would not get access to this feature</aside>
-
-### Callback Parameters
-
-The data on the callback will be sent using JSON format via POST data to your web hook.
-
-
-Parameter | Type | Description
---------- | ---- | -----------
-txid | String | (Optional) TransactionID which partner set on the initial Payment Checkout URL
-oy_txid | String | Internal TransactionID from OY! system
-nominal | BigDecimal | Amount of payment by the Buyer
-name | String | Name of Buyer
-phone_number | String | Phone Number of Buyer
-note | String | (Optional) This is note from the Buyer
-result | String | Payment Status of Buyer. Can be either "success" or "failed" or "processing"
-sender_bank | String | Bank code used by buyer to do payment
-payment_method | String | Define what payment method to be used in transaction (`Instant Pay`/`Manual Pay`/`Manual Bank Transfer`)*
-va_number | String | VA number to be used on payment if using Manual Pay
-
-*Instant Pay = direct-debit or cc; Manual Pay = virtual account; Manual Bank Transfer = pay using manual transfer
-
-## Response Codes
-
-Possible status codes on the Payment Result Callback:
-
-Payment Status | Type | Meaning
--------------- | ---- | -------
-success | String | Payment by Buyer is successful and has been sent to your bank account
-failed | String | Payment by Buyer is failed
-
-
-# Payment Checkout V2 
-
-## Request With Parameters
-
-Once you complete the registration and activation for payment checkout, you can immediately access our payment checkout link at [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername)
-
-<aside class="success">
-Make sure at most only two of the payment method are false and always use HTTPS instead of HTTP to ensure the payment checkout link functioning properly.
-</aside>
-
-```javascript
-// note: at most only two of the payment method can be false
-let params = 'username=' + username;
-params += (partner_tx_id !== null) ? '&partner_tx_id=' + partner_tx_id : '';
-params += (amount !== null) ? '&amount=' + amount : '';
-params += (sender_name !== null) ? '&sender_name=' + sender_name : '';
-params += (sender_phone !== null) ? '&sender_phone=' + sender_phone : '';
-params += (sender_note !== null) ? '&sender_note=' + sender_note : '';
-params += (description !== null) ? '&description=' + encodeURIComponent(description) : '';
-params += (is_open !== null) ? '&is_open=' + is_open : '';
-params += (step !== null) ? '&step=' + step : '';
-
-window.open("https://pay.oyindonesia.com/v2?" + params, "_blank");
-```
-
-### Query Parameters
-
-
-Parameter | Type | Default Value | Description | Limitation
---------- | ------- | ----------- | -------- | -------- |
-username | String | - | The username used by partner for registration with OY! | -
-partner_tx_id | String | Auto generated | A unique transaction ID provided by partner | A partner_tx_id that has been succesfully paid cannot be used anymore under the same username
-amount | Integer | - | The amount of a transaction to be paid | The amount that can be processed is between IDR 15,000 and IDR 25,000,000
-sender_name | String | - | Name of the payer for a transaction | Only accepts alphabets (A-Z) and space as input (cannot be empty)
-sender_phone | Numeric | - | Phone number of the payer for a transaction | -
-sender_note | String | - | Additional notes from the payer for a transaction | Only accepts alphabets (A-Z), numeric (0-9) and space as input
-description | String | - | Description of the payment checkout link | Only accepts alphabets (A-Z), numeric (0-9) and space as input
-is_open | String | TRUE | Enable open/closed amount transaction method | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
-step | String | - | Accessing specific page of the payment checkout URL. Possible values for this parameter: input-amount, input-personal-info, select-payment-method | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
-enable_payment_va | Boolean | - | Enable VA payment method for the payment checkout link | There should be at least one payment method enabled
-enable_payment_debit | Boolean | - | Enable debit card payment method for the payment checkout link | There should be at least one payment method enabled
-enable_payment_cc | Boolean | - | Enable credit card payment method for the payment checkout link | There should be at least one payment method enabled
-
-### Sample payment checkout URL with all parameters defined:
-
-`https://pay.oyindonesia.com/v2?username=yourusername&partner_tx_id=testSample&amount=50000&sender_name=testsender&description=payment%20checkout%20testing&is_open=false&step=select-payment-method&enable_payment_cc=false&enable_payment_debit=false`
-
-The above URL will produce a payment checkout link with a closed amount of IDR 50,000 with VA payment method only available and payer will be redirected to the payment method page upon accessing the URL.
-
-## Callback Results
-
-In order to receive a callback result, please register specific end point URL (web hook) to receive callback whenever payment occurs.
-
-> The above command returns JSON structured similar like this:
-
-```json
-{
-  "partner_tx_id": "partner000001",
-  "tx_ref_number": "1234567",
-  "amount": 15000,
-  "sender_name": "Joko Widodo",
-  "sender_phone": "+6281111111",
-  "sender_note": "Mohon dikirim segera",
-  "status": "success",
-  "settlement_type": "realtime",
-  "sender_bank": "008",
-  "payment_method": "DC",
-  "va_number" : ""
-}
-```
-
-<aside class="warning">You need to register an end point Callback URL to receive this callback.</aside>
-
-## Callback Parameters
-
-The data on the callback will be sent using JSON format via POST data to your web hook.
-Check here for example: [example](/?json#payment-result-callback-v2)
-
-Parameter | Type | Description
---------- | ---- | -----------
-partner_tx_id | String | A unique transaction ID provided by partner
-tx_ref_number | String | OY's internal unique transaction ID
-amount | BigDecimal | The amount of a transaction that is paid
-sender_name | String | Name of a payer for a transaction
-sender_phone | String | Phone number of a payer for a transaction
-sender_note | String | Additional notes from a payer for a transaction
-status | String | The status of a transaction (e.g. success/failed/processing)
-sender_bank | String | The bank code used by a payer to do payment
-payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
-va_number | String | VA number to be used on payment if using Virtual Account
-settlement_type | String | Indicate if a transaction will be settled in realtime/non-realtime
-created | DateTime | The timestamp which indicates the creation time of a payment checkout link
-updated | DateTime | The timestamp which indicates the latest updated time of a payment checkout link due to status update
-
-## Callback Response Codes
-
-Payment Status | Type | Payment Method | Description
----- | ---- | ---- | ----
-waiting_payment | String | Bank Transfer | Payer triggers a payment status check for an unpaid VA
-expired_va | String | Bank Transfer | An unpaid VA has expired and payer can retry a payment
-charge_in_progress | String | Card | OTP for card payment method has been succesfully entered and processed
-charge_sucess | String | Bank Transfer/Card | A payment has been successfully received by OY
-charge_failed | String | Card | OTP for card payment method has been succesfully entered but payment is rejected
-disburse_in_progress | String | Bank Transfer/Card | For "Realtime" settlement option, disbursement is currently in progress to partner's registered bank account
-complete | String | Bank Transfer/Card | For "Realtime" settlement option, disbursement has been succesfully executed and received by partner
-
-## API Callback
-
-An endpoint to retrieve and/or re-send the latest callback status of a transaction. Please contact us to submit a request of an API Key and IP whitelisting.
-
-### HTTPS Request
-
-GET `https://partner.oyindonesia.com/api/payment-checkout/status`
-
-
-> To retrieve a callback result for a particular transaction, use following code from your platform:
-
-```shell
-curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner_tx_id=OY123456&send_callback=false' -H 'x-oy-username:yourusername' -H ' x-api-key:yourapikey'
-```
-
-> The above command returns JSON structured similar like this:
-
-```json
-{
-  "partner_tx_id": "partner000001",
-  "tx_ref_number": "1234567",
-  "amount": 15000,
-  "sender_name": "Joko Widodo",
-  "sender_phone": "+6281111111",
-  "sender_note": "Mohon dikirim segera",
-  "status": "success",
-  "settlement_type": "realtime",
-  "sender_bank": "008",
-  "payment_method": "DC",
-  "va_number" : ""
-}
-```
-
-### Request Headers
-
-Parameters | Type | Description
----- | ---- | ----
-x-api-key | String | API Key for establishing connection to this particular endpoint
-x-oy-username | String | The registered partner username which access is enabled for payment checkout product
-
-### Request Parameters
-
-Parameters | Type | Description
----- | ---- | ----
-partner_tx_id | String | A unique transaction ID which callback status to be checked
-send_callback | Boolean | A flag to indiciate if the latest callback of a transaction need to be re-sent or not
-
-### Response Parameters
-Parameter | Type | Description
----- | ---- | ----
-partner_tx_id | String | A unique transaction ID provided by partner
-tx_ref_number | String | OY's internal unique transaction ID
-amount | BigDecimal | The amount of a transaction that is paid
-sender_name | String | Name of a payer for a transaction
-sender_phone | String | Phone number of a payer for a transaction
-sender_note | String | Additional notes from a payer for a transaction
-status | String | The status of a transaction
-sender_bank | String | The bank code used by a payer to do payment
-payment_method | String | The payment method used in a transaction such as CC (Credit Card), DC (Debit Card) or VA (Virtual Account)
-va_number | String | VA number to be used on payment if using Virtual Account
-settlement_type | String | Indicate if a transaction will be settled in realtime/non-realtime
-created | String | The timestamp which indicates the creation time of a payment checkout link
-updated | String | The timestamp which indicates the latest updated time of a payment checkout link due to status update
-
-## API Create URL
-
-An endpoint to create payment checkout URL which return parameters by encapsulation.
-
-> Sample Curl
-
-```shell
-curl -X POST \
-  https://partner.oyindonesia.com/api/payment-checkout/create \
-  -H 'cache-control: no-cache' -H 'content-type: application/json' \
-  -H 'x-api-key: apikeymu' -H 'x-oy-username: yourusername' \
-  -d '{"username":"testaccount","partner_tx_id":"ABC123456527","sender_name":"Roberto F",
-        "sender_note":"bill payment","sender_phone": "082114845847","checkout_url":"string",
-        "amount":75000,"is_open":false,"step":"select-payment-method","enable_payment_cc":false,
-        "enable_payment_va":true,"enable_payment_debit":false,"description":"payment for March 2020"
-    }'
-```
-
-### HTTPS Request
-
-POST `https://partner.oyindonesia.com/api/payment-checkout/create`
-
-> Json Response
-
-```json
-{
-        "username":"testaccount",
-        "partner_tx_id":"ABC123456527",
-        "sender_name":"Roberto F",
-        "sender_note":"bill payment",
-        "sender_phone": "082114845847",
-        "checkout_url":"string",
-        "amount":75000,
-        "is_open":false,
-        "step":"select-payment-method" ,
-        "enable_payment_cc":false,
-        "enable_payment_va":true,
-        "enable_payment_debit":false,
-        "description":"payment for March 2020"
-}
-```
-
-### Request Headers
-
-Parameters | Type | Description
----- | ---- | ----
-x-api-key | String | API Key for establishing connection to this particular endpoint
-x-oy-username | String | The registered partner username which access is enabled for payment checkout product
-
-### Request Parameters
-
-*Note: all parameters defined via API are mandatory to be declared in the request*
-
-Parameters | Type | Description | Limitation
----- | ---- | ------ | -------
-username | String | The username used by partner for registration with OY! | -
-partner_tx_id | String | A unique transaction ID provided by partner. | A partner_tx_id that has been succesfully paid cannot be used anymore under the same username and only accepts alphanumerics.
-amount | Integer | The amount of a transaction to be paid. | The amount that can be processed is between IDR 15,000 and IDR 25,000,000.
-sender_name | String | Name of the payer for a transaction. | Only accepts alphabets (A-Z) and space as input and cannot be empty.
-sender_phone | Numeric | Phone number of the payer for a transaction. | Do not use special character (e.g. "+") and cannot be empty.
-sender_note | String | Additional notes from the payer for a transaction. | Only accepts alphabets (A-Z), numeric (0-9) and space as input.
-description | String | Description of the payment checkout link. | Only accepts alphabets (A-Z), numeric (0-9) and space as input.
-is_open	| Boolean | Enable open/closed amount transaction method. | If is_open = TRUE and the amount parameter is defined, then a payer can pay any amount (greater than IDR 15,000) up to the defined amount. And in the case that is_open=false, then the amount and partner_tx_id parameters must be defined. Once a partner_tx_id has ever been defined with is_open=false, the amount and the is_open parameters cannot be updated unless the transaction is completed for that particular partner_tx_id.
-step | String | Accessing specific page of the payment checkout URL. Possible values for this parameter are either (input-amount, input-personal-info, select-payment-method). | If step = input-personal-info then the amount parameter must be defined. And if step = select-payment-method then the amount and sender_name parameters must be defined.
-enable_payment_va | Boolean | Enable VA payment method for the payment checkout link. | There should be at least one payment method enabled.
-enable_payment_debit | Boolean | Enable debit card payment method for the payment checkout link. | There should be at least one payment method enabled.
-enable_payment_cc | Boolean | Enable credit card payment method for the payment checkout link. | There should be at least one payment method enabled.
-
-### Response Parameters
-Parameter | Type | Description
----- | ---- | ----
-success | Boolean | The username used by partner for registration with OY!
-url | String | A unique transaction ID provided by partner
+### How to Use Payment Checkout via Dashboard (comming soon)
