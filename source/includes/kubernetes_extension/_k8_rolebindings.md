@@ -105,13 +105,13 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/rolebindings/:id?cluster_id=:cluster_id</code>
 
-Retrieve a role and all its info in a given [environment](#administration-environments).
+Retrieve a role binding and all its info in a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                            |
 | -------------------------- | ------------------------------------------------- |
 | `id` <br/>_string_         | The id of the role binding.                          |
 | `apiVersion` <br/>_string_ | The API version used to retrieve this role binding.  |
 | `metadata` <br/>_object_   | The metadata of the role binding.                    |
-| `rules` <br/>_array_       | The array of subjects associated with this role.|
+| `subjects` <br/>_array_       | The array of subjects associated with this role binding.|
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
