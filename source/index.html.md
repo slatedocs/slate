@@ -4,7 +4,7 @@ title: Product Documentation
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
   - java
-  - swift
+  
 
 toc_footers:
   - <a href='https://business.oyindonesia.com/register'>Sign Up for Trial</a>
