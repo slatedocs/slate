@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-if ruby -e 'exit(1) unless RUBY_VERSION.to_f >= 2.0'; then
-  bundle exec cucumber
-fi

@@ -1,4 +1,0 @@
-(define Y
-  (lambda (m)
-    ((lambda (f) (m (lambda (a) ((f f) a))))
-     (lambda (f) (m (lambda (a) ((f f) a)))))))

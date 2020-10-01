@@ -1,3 +1,0 @@
-class Greeter(name: String = "World") {
-  def sayHi() { println("Hi " + name + "!") }
-}

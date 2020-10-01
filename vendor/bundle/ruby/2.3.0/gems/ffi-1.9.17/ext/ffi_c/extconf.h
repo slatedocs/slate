@@ -1,7 +1,0 @@
-#ifndef EXTCONF_H
-#define EXTCONF_H
-#define HAVE_RB_THREAD_CALL_WITH_GVL 1
-#define HAVE_RB_THREAD_CALL_WITHOUT_GVL 1
-#define USE_INTERNAL_LIBFFI 1
-#define RUBY_1_9 1
-#endif

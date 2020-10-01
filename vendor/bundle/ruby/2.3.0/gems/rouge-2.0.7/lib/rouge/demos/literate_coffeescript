@@ -1,3 +1,0 @@
-Import the helpers we plan to use.
-
-    {extend, last} = require './helpers'

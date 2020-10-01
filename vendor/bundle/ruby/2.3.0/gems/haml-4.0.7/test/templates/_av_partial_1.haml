@@ -1,9 +1,0 @@
-%h2 This is a pretty complicated partial
-.partial
-  %p It has several nested partials,
-  %ul
-    - 5.times do
-      %li
-        %strong Partial:
-        - @nesting = 5
-        = render :partial => 'templates/av_partial_2'

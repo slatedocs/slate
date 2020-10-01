@@ -1,3 +1,0 @@
-filename { imported: /test/sass/templates/_filename_fn_import.scss; }
-
-filename { local: /test/sass/templates/filename_fn.scss; local-mixin: /test/sass/templates/filename_fn.scss; local-function: /test/sass/templates/filename_fn.scss; imported-mixin: /test/sass/templates/_filename_fn_import.scss; imported-function: /test/sass/templates/_filename_fn_import.scss; }

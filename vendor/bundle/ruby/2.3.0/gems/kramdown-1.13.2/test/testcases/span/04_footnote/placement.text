@@ -1,8 +1,0 @@
-* footnotes will be placed here
-{:footnotes}
-
-Some para with a[^1] footnote.
-
-[^1]: Footnote \\\` text
-
-And another para.

@@ -1,6 +1,0 @@
-This is a {::comment}simple{:/} paragraph.
-This is a {::comment}simple{:/comment} paragraph.
-This is a {::comment}simple {:/other} paragraph{:/comment}.
-This is a {::comment/} paragraph.
-This is a {:/comment} simple {:/} paragraph.
-This is a {::comment} paragraph.

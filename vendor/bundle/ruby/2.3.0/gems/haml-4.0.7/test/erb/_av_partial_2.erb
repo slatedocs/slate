@@ -1,8 +1,0 @@
-<% @nesting -= 1 %>
-<div class="partial" level="<%= @nesting %>">
-  <h3>This is a crazy deep-nested partial.</h3>
-  <p>Nesting level <%= @nesting %></p>
-  <% if @nesting > 0 %>
-    <%= render :partial => 'erb/av_partial_2' %>
-  <% end %>
-</div>

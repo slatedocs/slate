@@ -1,5 +1,0 @@
-- @nesting -= 1
-.partial{:level => @nesting}
-  %h3 This is a crazy deep-nested partial.
-  %p== Nesting level #{@nesting}
-  = render :partial => 'templates/av_partial_2_ugly' if @nesting > 0

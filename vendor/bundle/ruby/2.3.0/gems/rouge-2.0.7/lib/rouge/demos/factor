@@ -1,5 +1,0 @@
-USING: io kernel sequences ;
-
-4 iota [
-    "Happy Birthday " write 2 = "dear NAME" "to You" ? print
-] each

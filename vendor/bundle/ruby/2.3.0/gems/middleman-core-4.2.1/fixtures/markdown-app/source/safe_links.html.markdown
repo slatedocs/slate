@@ -1,1 +1,0 @@
-[IRC](irc://chat.freenode.org/#freenode)

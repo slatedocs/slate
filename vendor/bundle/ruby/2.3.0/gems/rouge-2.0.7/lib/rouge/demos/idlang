@@ -1,8 +1,0 @@
-for i = 99L, 0, -1 do begin
-
-  print, i, format="(I0, 1X, 'bottles of beer on the wall,')"
-  print, i, format="(I0, 1X, 'bottles of beer.')"
-  print, 'Take one down, pass it around,'
-  print, i, format="(I0, 1X, 'bottles of beer on the wall.', /)"
-
-endfor

@@ -1,5 +1,0 @@
-Simple: [Some ![alt text](/images/other.png)](local.html)
-
-Nested: [Some ![alt ![img](text.png) text](/images/other.png)](local.html)
-
-Simple: [Some *text ![alt text](/images/other.png) text*](local.html)

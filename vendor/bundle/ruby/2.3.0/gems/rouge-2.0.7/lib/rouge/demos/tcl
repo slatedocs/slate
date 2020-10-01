@@ -1,1 +1,0 @@
-proc cross_sum {s} {expr [join [split $s ""] +]}

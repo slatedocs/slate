@@ -1,6 +1,0 @@
-lib/**/*.rb
---exclude lib/vendored-middleman-deps/
---exclude lib/middleman-core/step_definitions
---no-private
---hide-void-return
---markup=markdown

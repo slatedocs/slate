@@ -1,1 +1,0 @@
-[This link](http://example.net/) <a href="links.html">links</a>
