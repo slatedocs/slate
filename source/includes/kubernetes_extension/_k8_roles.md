@@ -105,3 +105,66 @@ Retrieve a role and all its info in a given [environment](#administration-enviro
 | `rules` <br/>_array_       | The array of rules assocaited with this role.|
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
+
+<!-------------------- CREATE ROLE -------------------->
+
+##### Create a role
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/roles"
+  Content-Type: application/json
+  {
+   "apiVersion": "rbac.authorization.k8s.io/v1",
+   "kind": "Role",
+   "namespace": "default",
+   "name": "test-name",
+   "metadata": {
+      "namespace": "default",
+      "name": "test-name"
+   },
+   "rules": [
+      {
+         "apiGroups": [
+            ""
+         ],
+         "resources": [
+            "resource"
+         ],
+         "verbs": [
+            "get",
+            "watch"
+         ]
+      }
+   ]
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/roles</code>
+
+Create a role in a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                            |
+| -------------------------- | ------------------------------------------------- |
+| `id` <br/>_string_         | The id of the role.                          |
+| `apiVersion` <br/>_string_ | The API version used to create this role.  |
+| `metadata.name` <br/>_string_   | The name of the role.                    |
+| `metadata.namespace` <br/>_string_   | The namespace of the role.                    |
+| `rules` <br/>_array_       | The array of rules assocaited with this role.|
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create role task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
