@@ -1,9 +1,0 @@
-source 'https://rubygems.org'
-
-gemspec
-
-gem 'rails',     '< 5'
-gem 'sprockets', '>= 3.4.0', '< 4.0'
-gem 'sprockets-rails'
-
-eval_gemfile "#{ File.dirname(__FILE__) }/shared.gemfile"

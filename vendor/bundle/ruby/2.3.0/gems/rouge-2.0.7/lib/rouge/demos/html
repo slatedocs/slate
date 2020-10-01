@@ -1,8 +1,0 @@
-<html>
-  <head><title>Title!</title></head>
-  <body>
-    <p id="foo">Hello, World!</p>
-    <script type="text/javascript">var a = 1;</script>
-    <style type="text/css">#foo { font-weight: bold; }</style>
-  </body>
-</html>

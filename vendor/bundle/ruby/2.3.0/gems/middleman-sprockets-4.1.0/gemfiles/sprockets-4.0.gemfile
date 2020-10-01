@@ -1,6 +1,0 @@
-root_gemfile = IO.read( File.expand_path('../Gemfile', File.dirname(__FILE__)))
-root_gemfile.sub! "gemspec", 'gemspec path: "../"'
-root_gemfile.sub! "path: 'fixtures/gems/", "path: '../fixtures/gems/"
-eval root_gemfile, binding
-
-gem 'sprockets', github: 'rails/sprockets'

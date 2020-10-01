@@ -1,2 +1,0 @@
-default: --require features --tags ~@wip
-wip: --require features --tags @wip

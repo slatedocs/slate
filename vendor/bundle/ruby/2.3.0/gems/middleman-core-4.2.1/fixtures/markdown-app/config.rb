@@ -1,1 +1,0 @@
-set :markdown, smartypants: true

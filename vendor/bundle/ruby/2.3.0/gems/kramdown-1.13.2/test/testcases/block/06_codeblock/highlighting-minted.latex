@@ -1,8 +1,0 @@
-\begin{minted}[]{ruby}
-x = Class.new
-
-\end{minted}
-\begin{minted}[]{html}
-<a>href</a>
-
-\end{minted}

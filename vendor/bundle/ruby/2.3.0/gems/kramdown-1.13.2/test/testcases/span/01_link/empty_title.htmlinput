@@ -1,3 +1,0 @@
-<p>Image with empty title: <img src="/images/other.png" alt="alt text" title="" /></p>
-
-<p>Link <a href="http://example.tld" title="">reference</a> with empty title.</p>

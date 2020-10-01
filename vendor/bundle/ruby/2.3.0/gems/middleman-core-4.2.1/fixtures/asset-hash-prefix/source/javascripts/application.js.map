@@ -1,1 +1,0 @@
-{"version":3,"sources":["source/javascripts/application.js"],"names":["foo","message","para","document","createElement","innerHTML","body","getElementsByTagName","insertBefore","firstChild","window","onload"],"mappings":"AAAA,QAASA,OACP,GAAIC,SAAU,mBACd,IAAIC,MAAOC,SAASC,cAAc,IAClCF,MAAKG,UAAYJ,OACb,IAAIK,MAAOH,SAASI,qBAAqB,QAAQ,EAC/CD,MAAKE,aAAaN,KAAMI,KAAKG,YAGpCC,OAAOC,OAASX"}

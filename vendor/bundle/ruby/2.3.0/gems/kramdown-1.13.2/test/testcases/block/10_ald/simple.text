@@ -1,8 +1,0 @@
-Some paragraph
-
-{:id: ref1}
-{:id: .class1}
- {:id: #id}
-  {:id: key="value"}
-   {:id: .class2 .class3 ref2 #id-with key="value" key='value' key='dfsd\}' }
-{:test: k ey=value}

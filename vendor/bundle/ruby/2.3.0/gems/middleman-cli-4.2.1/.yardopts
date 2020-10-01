@@ -1,9 +1,0 @@
-lib/**/*.rb
---exclude lib/middleman-cli/templates/default/
---exclude lib/middleman-cli/templates/html5/
---exclude lib/middleman-cli/templates/mobile/
---exclude lib/middleman-cli/templates/shared/
---exclude lib/middleman-cli/templates/extension/
---no-private
---hide-void-return
---markup=markdown

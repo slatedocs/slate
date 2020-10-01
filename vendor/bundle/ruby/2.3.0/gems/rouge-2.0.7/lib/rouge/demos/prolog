@@ -1,9 +1,0 @@
-diff(plus(A,B), X, plus(DA, DB))
-   <= diff(A, X, DA) and diff(B, X, DB).
-
-diff(times(A,B), X, plus(times(A, DB), times(DA, B)))
-   <= diff(A, X, DA) and diff(B, X, DB).
-
-equal(X, X).
-diff(X, X, 1).
-diff(Y, X, 0) <= not equal(Y, X).

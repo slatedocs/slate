@@ -1,5 +1,0 @@
-// reverse byte order (16-bit)
-public static UInt16 ReverseBytes(UInt16 value)
-{
-  return (UInt16)((value & 0xFFU) << 8 | (value & 0xFF00U) >> 8);
-}

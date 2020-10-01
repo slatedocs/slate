@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 2.8.3)
-
-project(foo C)
-
-# some note
-add_executable(foo utils.c "foo.c")
-target_link_libraries(foo ${LIBRARIES})

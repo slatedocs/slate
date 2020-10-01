@@ -1,4 +1,0 @@
-Private Sub Form_Load()
-    ' Execute a simple message box that says "Hello, World!"
-    MsgBox "Hello, World!"
-End Sub

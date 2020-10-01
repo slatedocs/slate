@@ -1,6 +1,0 @@
-lo_obj ?= lo_obj->do_nothing( 'Char' && ` String` ).
-
-SELECT SINGLE * FROM mara INTO ls_mara WHERE matkl EQ '1324'.
-LOOP AT lt_mara ASSIGNING <mara>.
-  CHECK <mara>-mtart EQ '0001'.
-ENDLOOP.

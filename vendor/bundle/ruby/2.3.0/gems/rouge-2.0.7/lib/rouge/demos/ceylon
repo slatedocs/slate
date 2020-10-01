@@ -1,7 +1,0 @@
-shared class CeylonClass<Parameter>()
-    given Parameter satisfies Object {
-    
-    shared String name => "CeylonClass";
-} 
-
-shared void run() => CeylonClass();

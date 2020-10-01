@@ -1,5 +1,0 @@
-#!/usr/bin/env perl
-use warnings;
-print "a: ";
-my $a = "foo";
-print $a;

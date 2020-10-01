@@ -1,1 +1,0 @@
-# ✉ [Mail](mailto:mail@mail.com)

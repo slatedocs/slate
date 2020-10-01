@@ -1,2 +1,0 @@
--- AppleScript playing with iTunes
-tell application "iTunes" to get current selection

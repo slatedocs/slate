@@ -1,8 +1,0 @@
-dbenford <- function(x){
-    log10(1 + 1/x)
-}
-
-pbenford <- function(q){
-    cumprobs <- cumsum(dbenford(1:9))
-    return(cumprobs[q])
-}

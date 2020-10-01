@@ -1,9 +1,0 @@
----
-es:
-  paths:
-    hello: "hola"
-    morning: "manana"
-    one: "una"
-  
-  greetings: "Como Esta?"
-  hi: "Hola"

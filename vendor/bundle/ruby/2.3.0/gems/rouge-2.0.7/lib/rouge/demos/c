@@ -1,8 +1,0 @@
-#include "ruby/ruby.h"
-
-static int
-clone_method_i(st_data_t key, st_data_t value, st_data_t data)
-{
-    clone_method((VALUE)data, (ID)key, (const rb_method_entry_t *)value);
-    return ST_CONTINUE;
-}

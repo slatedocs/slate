@@ -1,4 +1,0 @@
-# coding:utf-8
-RAKE_ROOT = __FILE__.freeze
-GEM_NAME = 'middleman'.freeze
-require File.expand_path(File.dirname(__FILE__) + '/../gem_rake_helper')

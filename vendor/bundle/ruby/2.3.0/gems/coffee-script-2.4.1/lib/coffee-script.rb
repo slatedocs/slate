@@ -1,1 +1,0 @@
-require 'coffee_script'
