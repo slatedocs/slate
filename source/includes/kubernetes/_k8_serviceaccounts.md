@@ -74,7 +74,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/serviceaccounts/:id</code>
 
-Delete a secret from a given [environment](#administration-environments).
+Delete a service account from a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                          |
 | -------------------------- | ----------------------------------------------- |
