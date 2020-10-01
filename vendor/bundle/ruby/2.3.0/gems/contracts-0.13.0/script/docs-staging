@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-relish push contracts-staging/contracts-ruby

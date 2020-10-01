@@ -1,9 +1,0 @@
----
-title: a/sub.html.erb
----
-Current locale: <%= I18n.locale %>
-path: <%=
-hierarchy = [current_page]
-hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
-hierarchy.collect {|page| page.data.title }.join(" # ")
-%>

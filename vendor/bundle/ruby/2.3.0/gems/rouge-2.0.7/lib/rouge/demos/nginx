@@ -1,5 +1,0 @@
-server {
-  listen          80;
-  server_name     example.com *.example.com;
-  rewrite ^       http://www.domain.com$request_uri? permanent;
-}

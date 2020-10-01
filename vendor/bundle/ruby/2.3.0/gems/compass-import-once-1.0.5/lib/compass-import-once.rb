@@ -1,1 +1,0 @@
-require 'compass/import-once'

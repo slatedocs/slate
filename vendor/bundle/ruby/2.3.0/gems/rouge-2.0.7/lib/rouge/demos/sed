@@ -1,4 +1,0 @@
-/begin/,/end/ {
-  /begin/n # skip over the line that has "begin" on it
-  s/old/new/
-}

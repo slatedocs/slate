@@ -1,2 +1,0 @@
-require 'middleman-syntax'
-

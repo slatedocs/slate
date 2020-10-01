@@ -1,5 +1,0 @@
-    x = Class.new
-{: .language-ruby}
-
-    <a>this is a reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, long link</a>
-{: .language-html}

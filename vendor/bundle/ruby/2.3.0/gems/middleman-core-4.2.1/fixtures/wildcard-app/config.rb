@@ -1,1 +1,0 @@
-page "/admin/*", layout: :admin

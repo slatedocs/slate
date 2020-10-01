@@ -1,4 +1,0 @@
----
-layout: layout
----
-Hello World

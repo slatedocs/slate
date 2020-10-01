@@ -1,1 +1,0 @@
-activate :directory_indexes

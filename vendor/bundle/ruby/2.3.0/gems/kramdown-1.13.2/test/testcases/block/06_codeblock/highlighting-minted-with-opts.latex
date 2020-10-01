@@ -1,9 +1,0 @@
-\begin{minted}[breaklines,linenos]{ruby}
-x = Class.new
-
-\end{minted}
-
-\begin{minted}[breaklines,linenos]{html}
-<a>this is a reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, reaally, long link</a>
-
-\end{minted}

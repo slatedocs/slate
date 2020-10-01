@@ -1,7 +1,0 @@
-# You are reading the ".properties" entry.
-! The exclamation mark can also mark text as comments.
-website = http\://en.wikipedia.org/
-language = English
-country : Poland
-continent=Europe
-key.with.dots=This is the value that could be looked up with the key "key.with.dots".

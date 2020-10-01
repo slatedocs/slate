@@ -1,1 +1,0 @@
-pdf.text "Hello Template!"

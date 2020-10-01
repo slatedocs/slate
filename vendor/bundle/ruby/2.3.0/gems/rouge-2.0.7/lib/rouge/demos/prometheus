@@ -1,9 +1,0 @@
-"this is a string"
-'these are unescaped: \n \\ \t'
-`these are not unescaped: \n ' " \t`
-
-http_requests_total{environment=~"staging|testing|development", method!="GET"}
-
-http_requests_total offset 5m
-
-sum(http_requests_total{method="GET"}[10m] offset 5m)

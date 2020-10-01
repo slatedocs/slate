@@ -1,7 +1,0 @@
-%%% Geometry module.
--module(geometry).
--export([area/1]).
-
-%% Compute rectangle and circle area.
-area({rectangle, Width, Ht}) -> Width * Ht;
-area({circle, R})            -> 3.14159 * R * R.

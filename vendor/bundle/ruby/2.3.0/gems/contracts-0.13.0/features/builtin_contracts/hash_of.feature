@@ -1,1 +1,0 @@
-Feature: HashOf (TODO)

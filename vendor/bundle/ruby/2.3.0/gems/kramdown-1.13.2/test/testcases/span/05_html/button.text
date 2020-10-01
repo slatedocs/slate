@@ -1,7 +1,0 @@
-<button>Some Text</button>
-
-First some text and then a <button>here</button>
-
-<button>A button</button> and then text.
-
-A <button>with **some** `code` in ![alt](image.png)</button> it.

@@ -1,6 +1,0 @@
-.PHONY: all
-all: $(OBJ)
-
-$(OBJ): $(SOURCE)
-	@echo "compiling..."
-	$(GCC) $(CFLAGS) $< > $@

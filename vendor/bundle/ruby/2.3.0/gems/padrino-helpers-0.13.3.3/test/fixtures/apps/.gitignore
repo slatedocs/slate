@@ -1,7 +1,0 @@
-.DS_Store
-log/**/*
-tmp/**/*
-vendor/gems/gems
-vendor/gems/specifications
-vendor/gems/doc
-vendor/gems/environment.rb

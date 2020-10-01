@@ -1,4 +1,0 @@
-body {
-    font-size: 12pt;
-    background: #fff url(temp.png) top left no-repeat;
-}

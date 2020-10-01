@@ -1,9 +1,0 @@
-<p>This *text
-should* be parsed
-as span
-</P>
-
-<p>This produces `</p>` an unwanted result.</p>
-
-<p>This *text* too</p><p>
-some text
