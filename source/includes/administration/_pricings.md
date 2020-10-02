@@ -1,8 +1,8 @@
-## Pricings
+### Pricings
 
 
 <!-------------------- LIST PRICINGS -------------------->
-### List pricings
+#### List pricings
 
 `GET /pricings`
 
@@ -88,7 +88,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- FIND PRICING -------------------->
-### Retrieve pricing
+#### Retrieve pricing
 
 `GET /pricings/:id`
 
@@ -172,7 +172,7 @@ Attributes | &nbsp;
 `deprecated`<br/>*Boolean* | True if priced product is deprecated
 
 <!-------------------- CREATE PRICING -------------------->
-### Create Pricing
+#### Create Pricing
 
 `POST /pricings`
 
@@ -281,7 +281,7 @@ Required | &nbsp;
 
 
 <!-------------------- UPDATE PRICING -------------------->
-### Update Pricing 
+#### Update Pricing 
 
 `PUT /pricings/:id`
 
@@ -357,7 +357,7 @@ Priced product
 ```
 
 <!-------------------- DELETE PRICING -------------------->
-### Delete Pricing 
+#### Delete Pricing 
 
 `DELETE /pricings/:id`
 
@@ -372,7 +372,7 @@ curl -X DELETE "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad
 ```
 
 <!-------------------- FIND EFFECTIVE PRICING -------------------->
-### Retrieve Effective Pricing
+#### Retrieve Effective Pricing
 
 `GET /pricings/:id`
 
@@ -461,7 +461,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- List PRICING CHANGES -------------------->
-### List pricing changes
+#### List pricing changes
 
 `GET /pricings/:id/changes`
 
@@ -602,7 +602,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- CREATE PRICING CHANGES -------------------->
-### Add pricing change
+#### Add pricing change
 
 `POST /pricings/:id/changes`
 
@@ -613,8 +613,9 @@ Add a pricing change to a pricing
 curl -X POST "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes" \
    -H "MC-Api-Key: your_api_key"
 ```
-> Request body example:
+> Request body example: 
 > Add product body
+
 ```json
 {
     "description": "Adding a product",
@@ -636,6 +637,7 @@ curl -X POST "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25
 }
 ```
 > Modify product body
+
 ```json
 {
     "description": "Modifying a product",
@@ -652,6 +654,7 @@ curl -X POST "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25
 }
 ```
 > Remove product body
+
 ```json
 {
     "description": "Removing a product",
@@ -663,6 +666,7 @@ curl -X POST "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25
 }
 ```
 > Add currency to pricing body
+
 ```json
 {
     "description": "Adding a currency",
@@ -746,7 +750,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- UPDATE PRICING CHANGES -------------------->
-### Update pricing change
+#### Update pricing change
 
 `PUT /pricings/:id/changes/:change_id`
 
@@ -762,7 +766,7 @@ See Add Pricing Change for body. You cannot change the `pricingChangeType`
 
 
 <!-------------------- REMOVE PRICING CHANGES -------------------->
-### Remove pricing change
+#### Remove pricing change
 
 `DELETE /pricings/:id/changes/:change_id`
 
