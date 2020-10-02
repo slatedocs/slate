@@ -106,6 +106,50 @@ Retrieve a service account and all its info in a given [environment](#administra
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
+<!-------------------- CREATE SERVICE ACCOUNT -------------------->
+
+##### Create a service account
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts?cluster_id=:cluster_id"
+  Content-Type: application/json
+  {
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "service-account-name",
+        "namespace": "default"
+    }
+  }
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/serviceaccounts?cluster_id=:cluster_id</code>
+
+Create a service account in a given [environment](#administration-environments).
+
+| Required Attributes                 | &nbsp;                                                      |
+| ----------------------------------- | ----------------------------------------------------------- |
+| `apiVersion` <br/>_string_          | The api version (versioned schema) of the service account.               |
+| `metadata` <br/>_object_            | The metadata of the service account.                                     |
+| `metadata.name` <br/>_string_       | The name of the service account.                                         |
+| `metadata.namespace` <br/>_string_       | The namespace of the service account.                                         |
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create service account task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- DELETE SERVICE ACCOUNT -------------------->
 
