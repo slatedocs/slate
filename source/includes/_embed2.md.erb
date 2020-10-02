@@ -258,7 +258,7 @@ Can be used to change the subdomain. Unless directed by an Ada team member, you 
 #### embedStyles
 `embedStyles?: string;`
 
-The embedStyles option can be used to override default styles inside Embed2 elements. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature.
+The embedStyles option can be used to override default styles inside Embed2 elements. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature, and may not be available in all packages.
 
 <aside class="warning">
 Setting custom styles based on Embed2 elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
@@ -360,7 +360,7 @@ Can be used to override the rollout value set in the dashboard. This can be usef
 #### styles
 `styles?: string;`
 
-The styles option can be used to override default styles inside the Web Chat iFrame. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature.
+The styles option can be used to override default styles inside the Web Chat iFrame. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature, and may not be available in all packages.
 
 <aside class="warning">
 Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
