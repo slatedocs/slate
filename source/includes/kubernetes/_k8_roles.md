@@ -102,7 +102,7 @@ Retrieve a role and all its info in a given [environment](#administration-enviro
 | `id` <br/>_string_         | The id of the role.                          |
 | `apiVersion` <br/>_string_ | The API version used to retrieve this role.  |
 | `metadata` <br/>_object_   | The metadata of the role.                    |
-| `rules` <br/>_array_       | The array of rules assocaited with this role.|
+| `rules` <br/>_array_       | The array of rules associated with this role.|
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
