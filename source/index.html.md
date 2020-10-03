@@ -404,46 +404,98 @@ curl -X GET \
             "quantity_listed": 1,
             "item_condition": "new",
             "item_location": null,
-            "product_images": [
+            "variant_listings": [
                 {
-                    "id": "5e73df8a584085c98200030a",
-                    "product_id": "5e73df57584085c9820002fe",
-                    "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-                    "position": 1,
-                    "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/41GAMTpSarL.jpg",
-                    "small_image_url": null,
-                    "medium_image_url": null,
-                    "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/41GAMTpSarL.jpg"
+                    "id": "5f729cabd8a35f6298bf1908",
+                    "variant_id": "5f729ca9d8a35f6298bf18db",
+                    "product_listing_id": "5f729c29d8a35f63fb159780",
+                    "option1_name": "Color",
+                    "option1_value": "BLACK",
+                    "option2_name": "Size",
+                    "option2_value": "10-13",
+                    "option3_name": null,
+                    "option3_value": null,
+                    "option4_name": null,
+                    "option4_value": null,
+                    "sku": "BLACK-10-13",
+                    "alt_sku": null,
+                    "position": 0,
+                    "title": null,
+                    "upc": "732755004384",
+                    "asin": "B07GJJK5TF",
+                    "item_location": null,
+                    "quantity": null,
+                    "retail_price": 999.99,
+                    "weight_in_pounds": null
                 },
                 {
-                    "id": "5e73df8a584085c98200030b",
-                    "product_id": "5e73df57584085c9820002fe",
-                    "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
+                    "id": "5f729cabd8a35f6298bf190a",
+                    "variant_id": "5f729ca9d8a35f6298bf18e0",
+                    "product_listing_id": "5f729c29d8a35f63fb159780",
+                    "option1_name": "Color",
+                    "option1_value": "DENIM BLUE",
+                    "option2_name": "Size",
+                    "option2_value": "10-13",
+                    "option3_name": null,
+                    "option3_value": null,
+                    "option4_name": null,
+                    "option4_value": null,
+                    "sku": "DENIM BLUE-10-13",
+                    "alt_sku": null,
                     "position": 1,
-                    "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/31LKUpz0yTL.jpg",
-                    "small_image_url": null,
-                    "medium_image_url": null,
-                    "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/31LKUpz0yTL.jpg"
+                    "title": null,
+                    "upc": "732755004537",
+                    "asin": "B07H5JTKFV",
+                    "item_location": null,
+                    "quantity": null,
+                    "retail_price": 999.99,
+                    "weight_in_pounds": null
                 },
                 {
-                    "id": "5e73df8a584085c98200030c",
-                    "product_id": "5e73df57584085c9820002fe",
-                    "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-                    "position": 1,
-                    "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/41TCMfP2uGL.jpg",
-                    "small_image_url": null,
-                    "medium_image_url": null,
-                    "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/41TCMfP2uGL.jpg"
+                    "id": "5f729cabd8a35f6298bf190b",
+                    "variant_id": "5f729ca9d8a35f6298bf18e5",
+                    "product_listing_id": "5f729c29d8a35f63fb159780",
+                    "option1_name": "Color",
+                    "option1_value": "MIX",
+                    "option2_name": "Size",
+                    "option2_value": "10-13",
+                    "option3_name": null,
+                    "option3_value": null,
+                    "option4_name": null,
+                    "option4_value": null,
+                    "sku": "MIX-10-13",
+                    "alt_sku": null,
+                    "position": 2,
+                    "title": null,
+                    "upc": "732755004407",
+                    "asin": "B07GJ8QGR7",
+                    "item_location": null,
+                    "quantity": null,
+                    "retail_price": 999.99,
+                    "weight_in_pounds": null
                 },
                 {
-                    "id": "5e73df8a584085c98200030d",
-                    "product_id": "5e73df57584085c9820002fe",
-                    "product_name": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
-                    "position": 1,
-                    "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/31-nGA7ezgL.jpg",
-                    "small_image_url": null,
-                    "medium_image_url": null,
-                    "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/31-nGA7ezgL.jpg"
+                    "id": "5f729cacd8a35f6298bf190c",
+                    "variant_id": "5f729ca9d8a35f6298bf18ea",
+                    "product_listing_id": "5f729c29d8a35f63fb159780",
+                    "option1_name": "Color",
+                    "option1_value": "WHITE",
+                    "option2_name": "Size",
+                    "option2_value": "10-13",
+                    "option3_name": null,
+                    "option3_value": null,
+                    "option4_name": null,
+                    "option4_value": null,
+                    "sku": "WHITE-10-13",
+                    "alt_sku": null,
+                    "position": 3,
+                    "title": null,
+                    "upc": "732755004391",
+                    "asin": "B07GJCZSWN",
+                    "item_location": null,
+                    "quantity": null,
+                    "retail_price": 999.99,
+                    "weight_in_pounds": null
                 }
             ],
             "list_status": "okay_to_ship",
@@ -518,7 +570,16 @@ curl --request POST \
             "international_shipping_service_code" : "", "international_shipping_service_cost" : "",
             "extra_international_shipping_service_cost" : "", "international_ship_to_locations" : "", "international_rate_table" : "false",
             "return_in_days_value" : "30", "refund_policy_value" : "", "return_shipping_paid_by_value" : "",
-            "quantity_in_case" : "", "cost_price" : "2.00", "expiration_date" : "2020-10-30", "fnsku" : "", "image_urls" : ['https://someurl.com'], "external_ids" : []}
+            "quantity_in_case" : "", "cost_price" : "2.00", "expiration_date" : "2020-10-30", "fnsku" : "", "image_urls" : ['https://someurl.com'], "external_ids" : [],
+            variant_listings: [
+                {
+                    variant_sku: 'V1', option1_name: 'Color', option1_value: 'Red', option2_name: 'Style', option2_value: 'Solid', asin: 'B00XX', upc: '12345', quantity: 10, retail_price: 10.00, item_location: 'A1'
+                },
+                {
+                    variant_sku: 'V2', option1_name: 'Color', option1_value: 'Blue', option2_name: 'Style', option2_value: 'Checkered', asin: 'B00XX', upc: '12345', quantity: 10, retail_price: 10.00, item_location: 'A1'
+                }
+            ]
+        }
     ] }'
 ```
 ### URL Parameters
@@ -580,7 +641,24 @@ expiration_date | Date(Optional) | Example: 2019-04-27
 fnsku | String(Optional) | Example: 0060011831
 image_urls | Array(Optional) | Array of image urls. Example [user.png, user1.png]
 external_ids | Array(Optional) | Example: ["B07G22S48Q", "883929635085"]
-
+variant_listings | Array of hashes (optional)
+  - variant_sku | String (optional) | The variant SKU
+  - variant_alt_sku | String (optional) | The variant ALT SKU
+  - position | Integer (optional) | The variant's position
+  - option1_name | String (required) | The option name, ex: Color
+  - option1_value | String (required) | The option value, ex: Red
+  - option2_name | String (optional) | The option name, ex: Style
+  - option2_value | String (optional) | The option value, ex: Checkered
+  - option3_name | String (optional) | The option name
+  - option3_value | String (optional) | The option value
+  - option4_name | String (optional) | The option name
+  - option4_value | String (optional) | The option value
+  - retail_price | Float (optional) | The retail price of the variant
+  - quantity | Integer (optional) | The quantity of the variant_listing
+  - item_location | String (optional) | The variant's warehouse bin location
+  - weight_in_pounds | Float (optional) | The variant's weight
+  - title | String (optional) | The variant's title
+  - image_urls | Array (string) | The variant's image urls
 > The above command returns JSON structured like this:
 
 ```json
@@ -676,6 +754,14 @@ sku | String (optional) | The product SKU to search for (case-sensitive)
 asin | String (optional) | The product ASIN to search for
 upc | String (optional) | The product UPC/ISBN/EAN to search for
 marketplace_id | String (optional) | The product marketplace_id (ex: eBay Item ID) to search for
+created_at_start | String (optional) | Returns products that were created after the specified date Example: 2015-01-01T00:00:00
+created_at_end | String (optional) | Returns products that were created before the specified date Example: 2015-01-30T00:00:00
+updated_at_start | String (optional) | Returns products that were upated after the specified date Example: 2015-01-01T00:00:00
+updated_at_end | String (optional) | Returns products that were updated before the specified date Example: 2015-01-01T00:00:00
+tag | String (optional) | Returns products that have this tag. NOTE: Use this to search for products that have just one tag.
+tags_array | String (optional) | Returns products that have exactly the specified tags.  NOTE: Use this to search for products that have multiple tags.  Ex: tags_array[]=A&tags_array[]=B
+
+
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -748,7 +834,31 @@ marketplace_account_id | String (optional) | Returns the products belonging to t
                 "width": null,
                 "height": null
             },
-            "inventory_locations": []
+            "inventory_locations": [],
+            "variants": [
+               {
+                   "id": "5f729ca9d8a35f6298bf18db",
+                   "option1_name": "Color",
+                   "option1_value": "BLACK",
+                   "option2_name": "Size",
+                   "option2_value": "10-13",
+                   "option3_name": null,
+                   "option3_value": null,
+                   "option4_name": null,
+                   "option4_value": null,
+                   "sku": "BLACK-10-13",
+                   "alt_sku": null,
+                   "position": 0,
+                   "title": null,
+                   "upc": "732755004384",
+                   "asin": "B07GJJK5TF",
+                   "item_location": null,
+                   "quantity_available": 0,
+                   "retail_price": 999.99,
+                   "weight_in_pounds": null,
+                   "inventory_locations": []
+                }
+            ]
         }
     ]
 }
@@ -829,7 +939,61 @@ product_id | String (optional) | The ID for the product to fetch.
             "width": null,
             "height": null
         },
-        "inventory_locations": []
+        "inventory_locations": [],
+        "product_images": [
+            {
+                "id": "5f729c7bd8a35f63fb1597ab",
+                "product_id": "5f729c29d8a35f63fb159777",
+                "product_name": "JOURNOW 10 Pairs Men's Cotton Extra Heavy Cushion Crew Socks",
+                "position": 1,
+                "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/41oNK1fKzJL._AC_US1500_.jpg",
+                "small_image_url": null,
+                "medium_image_url": null,
+                "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/41oNK1fKzJL._AC_US1500_.jpg"
+            }
+        ],
+        "variants": [
+           {
+               "id": "5f729ca9d8a35f6298bf18db",
+               "option1_name": "Color",
+               "option1_value": "BLACK",
+               "option2_name": "Size",
+               "option2_value": "10-13",
+               "option3_name": null,
+               "option3_value": null,
+               "option4_name": null,
+               "option4_value": null,
+               "sku": "BLACK-10-13",
+               "alt_sku": null,
+               "position": 0,
+               "title": null,
+               "upc": "732755004384",
+               "asin": "B07GJJK5TF",
+               "item_location": null,
+               "quantity_available": 0,
+               "retail_price": 999.99,
+               "weight_in_pounds": null,
+               "inventory_locations": [],
+               "images": [
+                   {
+                       "id": "5f729cadd8a35f6298bf1918",
+                       "position": 0,
+                       "option_name": "Color",
+                       "option_value": "BLACK",
+                       "product_image": {
+                           "id": "5f729cadd8a35f6298bf1916",
+                           "product_id": "5f729c29d8a35f63fb159777",
+                           "product_name": "JOURNOW 10 Pairs Men's Cotton Extra Heavy Cushion Crew Socks",
+                           "position": 1,
+                           "original_image_url": "https://images-na.ssl-images-amazon.com/images/I/41oNK1fKzJL._AC_US1500_.jpg",
+                           "small_image_url": null,
+                           "medium_image_url": null,
+                           "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/41oNK1fKzJL._AC_US1500_.jpg"
+                       }
+                   }
+               ]
+            }
+        ]
     }
 }
 ```
