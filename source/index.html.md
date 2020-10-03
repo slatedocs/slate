@@ -145,7 +145,14 @@ curl --request POST \
             "international_rate_table" : "false", "return_in_days_value" : "30",
             "refund_policy_value" : "", "return_shipping_paid_by_value" : "",
             "quantity_in_case" : "", "cost_price" : "2.00", "expiration_date" : "2020-10-30", "fnsku" : "",
-            "image_urls" : ['https://someurl.com'], "external_ids" : []}
+            "image_urls" : ['https://someurl.com'], "external_ids" : [], "variant_listings": [
+                {
+                    variant_sku: 'V1', option1_name: 'Color', option1_value: 'Red', option2_name: 'Style', option2_value: 'Solid', asin: 'B00XX', upc: '12345', quantity: 10, retail_price: 10.00, item_location: 'A1'
+                },
+                {
+                    variant_sku: 'V2', option1_name: 'Color', option1_value: 'Blue', option2_name: 'Style', option2_value: 'Checkered', asin: 'B00XX', upc: '12345', quantity: 10, retail_price: 10.00, item_location: 'A1'
+                }
+            ]}
     ]
 } }'
 ```
@@ -220,6 +227,28 @@ expiration_date | Date(Optional) | Example: 2019-04-27
 fnsku | String(Optional) | Example: 0060011831
 image_urls | Array(Optional) | Array of image urls. Example [user.png, user1.png]
 external_ids | Array(Optional) | Example: ["B07G22S48Q", "883929635085"]
+
+VariantListing parameters should be an array for product listings containing variants
+
+Name | Data Type | Description
+----------- | --------------- | ------------------
+variant_sku | String (optional) | The variant SKU
+variant_alt_sku | String (optional) | The variant ALT SKU
+position | Integer (optional) | The variant's position
+option1_name | String (required) | The option name, ex: Color
+option1_value | String (required) | The option value, ex: Red
+option2_name | String (optional) | The option name, ex: Style
+option2_value | String (optional) | The option value, ex: Checkered
+option3_name | String (optional) | The option name
+option3_value | String (optional) | The option value
+option4_name | String (optional) | The option name
+option4_value | String (optional) | The option value
+retail_price | Float (optional) | The retail price of the variant
+quantity | Integer (optional) | The quantity of the variant_listing
+item_location | String (optional) | The variant's warehouse bin location
+weight_in_pounds | Float (optional) | The variant's weight
+title | String (optional) | The variant's title
+image_urls | Array (string) | The variant's image urls
 
 > The above command returns JSON structured like this:
 
@@ -641,24 +670,29 @@ expiration_date | Date(Optional) | Example: 2019-04-27
 fnsku | String(Optional) | Example: 0060011831
 image_urls | Array(Optional) | Array of image urls. Example [user.png, user1.png]
 external_ids | Array(Optional) | Example: ["B07G22S48Q", "883929635085"]
-variant_listings | Array of hashes (optional)
-  - variant_sku | String (optional) | The variant SKU
-  - variant_alt_sku | String (optional) | The variant ALT SKU
-  - position | Integer (optional) | The variant's position
-  - option1_name | String (required) | The option name, ex: Color
-  - option1_value | String (required) | The option value, ex: Red
-  - option2_name | String (optional) | The option name, ex: Style
-  - option2_value | String (optional) | The option value, ex: Checkered
-  - option3_name | String (optional) | The option name
-  - option3_value | String (optional) | The option value
-  - option4_name | String (optional) | The option name
-  - option4_value | String (optional) | The option value
-  - retail_price | Float (optional) | The retail price of the variant
-  - quantity | Integer (optional) | The quantity of the variant_listing
-  - item_location | String (optional) | The variant's warehouse bin location
-  - weight_in_pounds | Float (optional) | The variant's weight
-  - title | String (optional) | The variant's title
-  - image_urls | Array (string) | The variant's image urls
+
+VariantListing parameters should be an array if product listing contains variants
+
+Name | Data Type | Description
+----------- | --------------- | ------------------
+variant_sku | String (optional) | The variant SKU
+variant_alt_sku | String (optional) | The variant ALT SKU
+position | Integer (optional) | The variant's position
+option1_name | String (required) | The option name, ex: Color
+option1_value | String (required) | The option value, ex: Red
+option2_name | String (optional) | The option name, ex: Style
+option2_value | String (optional) | The option value, ex: Checkered
+option3_name | String (optional) | The option name
+option3_value | String (optional) | The option value
+option4_name | String (optional) | The option name
+option4_value | String (optional) | The option value
+retail_price | Float (optional) | The retail price of the variant
+quantity | Integer (optional) | The quantity of the variant_listing
+item_location | String (optional) | The variant's warehouse bin location
+weight_in_pounds | Float (optional) | The variant's weight
+title | String (optional) | The variant's title
+image_urls | Array (string) | The variant's image urls
+
 > The above command returns JSON structured like this:
 
 ```json
