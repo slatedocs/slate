@@ -52,7 +52,7 @@ Retrieve a list of all roles in a given [environment](#administration-environmen
 | `metadata.name` <br/>_string_              | The name of the role.|
 | `metadata.namespace` <br/>_string_         | The namespace in which the role is created.|
 | `metadata.uid` <br/>_object_               | The UUID of the role.|
-| `rules` <br/>_array_               | The array of rules assocaited with this role.|
+| `rules` <br/>_array_               | The array of rules associated with this role.|
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
@@ -160,7 +160,7 @@ Create a role in a given [environment](#administration-environments).
 | `apiVersion` <br/>_string_ | The API version used to create this role.  |
 | `metadata.name` <br/>_string_   | The name of the role.                    |
 | `metadata.namespace` <br/>_string_   | The namespace of the role.                    |
-| `rules` <br/>_array_       | The array of rules assocaited with this role.|
+| `rules` <br/>_array_       | The array of rules assocted with this role.|
 
 Return value:
 
