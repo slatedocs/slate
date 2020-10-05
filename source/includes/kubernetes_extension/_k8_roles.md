@@ -160,7 +160,7 @@ Create a role in a given [environment](#administration-environments).
 | `apiVersion` <br/>_string_ | The API version used to create this role.  |
 | `metadata.name` <br/>_string_   | The name of the role.                    |
 | `metadata.namespace` <br/>_string_   | The namespace of the role.                    |
-| `rules` <br/>_array_       | The array of rules assocted with this role.|
+| `rules` <br/>_array_       | The array of rules associated with this role.|
 
 Return value:
 
