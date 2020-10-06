@@ -13,26 +13,24 @@ search: true
 ---
 # Home
 
-Welcome to OY! We are aiming to be the world class financial services and always put our customers first in everything we do. We have a variety of products ranging from sending payments, accepting payments, and other financial related products that are all ready to meet your needs. We are ready to help you achieve greater success. 
+Welcome to OY! We aim to be among the world class financial services and always put our customers first in everything we do. We have a variety of products ranging from sending payments, accepting payments, and other financial related products that are all ready to meet your needs. We are ready to help you achieve greater success. 
 
 ### How to Register 
-You can immediately tcreate an account and enjoy some of our features in trial mode with limited functionalities until your account is upgraded to the full version. Our documentation will help you navigate through the entire registration process, including submitting requests for upgrading your account. For further inquiries, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
+You can immediately create an account and enjoy some of our features in trial mode with limited functionalities until your account is upgraded to the full version. Our documentation will help you navigate through the entire registration process, including submitting requests for upgrading your account. For further inquiries, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
 
-**1. Register on our Portal**: To create your account, please go to our business portal at [https://business.oyindonesia.com/](https://business.oyindonesia.com), click "Register Now", and complete the form with al the required information. 
-
-![Portal Login](images/login.png)
-
-**2. Activate your account**: Once the registration is submitted, an activation link will be sent to your email. 
+**1. Register on our Portal**: To create your account, please register [here](https://business.oyindonesia.com/register?), and complete the form with all the required information. 
 
 ![Register](images/register_1.png)
 
+**2. Activate your account**: Once the registration is submitted, an activation link will be sent to your email. 
+
 ![Register](images/register_2.png)
 
-Once you are able to login, you will be able to test some of our features in a trial mode or request to upgrade your account to enjoy the full version! 
+Once you are able to login, you will be able to test some of our features in trial mode or request to upgrade your account to enjoy the full version! 
 
 ### Upgrading your Account 
 
-**1. Request to Upgrade your Account**: to upgrade the available services to full version, please select “Upgrade Your Account” on the menu at the left side of the dashboard and complete all the required information.
+**1. Request to Upgrade your Account**: to access the full version of our products and services, please select “Upgrade Your Account” on the menu at the left side of the dashboard and complete all the required information.
 
 *Please note that the receiving bank account information cannot be changed via OY dashboard once your upgrade account request is approved for security reasons. Please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) to change the receiving bank account information.*
 
@@ -49,6 +47,7 @@ Once you are able to login, you will be able to test some of our features in a t
 This process should take about 1 week. In the event that the status of your request is **Resubmit** or **Rejected**, please keep reading below. Otherwise, you are good to go! 
 
 **Status: Resubmit** 
+
 Upon reviewing the upgrade request, we might ask for additional documentations. Please follow the steps below: 
 
 **1. Read our report**: A report will be sent to your email regarding the information and documents that will need to be revised or added. 
@@ -60,6 +59,7 @@ Upon reviewing the upgrade request, we might ask for additional documentations. 
 For further inquiries, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
 
 **Status: Rejected** 
+
 For further inquiries regarding this review, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
 
 ### Required Supporting Documents 
@@ -94,11 +94,9 @@ This set up checklist is recommended to ensure you correctly set up your profess
 
 5. *Optional* - create additional sub-account users under User Management
 
-You are good to go!
+# API Disburse
 
-### API Disburse
-
-API disbursement product provides the capability for you to disburse to 100+ banks in Indonesia via OY! at any time. The integration process to use the API disbursement product is straight forward and the details can be checked in here [https://api-docs.oyindonesia.com/#fund-disbursement](https://api-docs.oyindonesia.com/#fund-disbursement).  
+API disbursement product provides the capability for you to disburse to 100+ banks in Indonesia via OY! at any time. The integration process to use the API disbursement product is straight forward and the details can be checked [here](https://api-docs.oyindonesia.com/#fund-disbursement).  
 
 ## Key Features 
 **Overdraft**
@@ -115,12 +113,12 @@ For all disbursements executed, you will receive notifications regarding your tr
 
 **Check Balance**
 
-You can check your available balance at anytime to ensure  that you have sufficient balance to execute a disbursement
+You can check your available balance at anytime to ensure  that you have sufficient balance to execute a disbursement.
 
 ## Registration and Set Up 
 **Prerequisites** 
 
-* Register an account on OY dashboard
+* Register an account on the [OY! dashboard](https://business.oyindonesia.com/login)
 
 * Upgrade your account 
 
@@ -130,13 +128,13 @@ You can check your available balance at anytime to ensure  that you have suffici
 
 * Receive an API Key from us
 
-* Integrate with our API at [https://api-docs.oyindonesia.com/#fund-disbursement](https://api-docs.oyindonesia.com/#fund-disbursement)
+* Integrate with our [API](https://api-docs.oyindonesia.com/#fund-disbursement)
 
 ## Testing (Testing environment coming soon)
 
 ## How to Use 
 
-Before you execute a disbursement, you can verify the beneficiary account information from our inquiry endpoint [https://api-docs.oyindonesia.com/#bank-account-inquiry](https://api-docs.oyindonesia.com/#bank-account-inquiry). 
+Before you execute a disbursement, you can verify the beneficiary account information from our [inquiry endpoint](https://api-docs.oyindonesia.com/#bank-account-inquiry). 
 
 > Below is an example of the request body for inquiry:
 
@@ -147,7 +145,7 @@ curl -X POST https://partner.oyindonesia.com/api/inquiry
     "recipient_account": "7823023345"}'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#fund-disbursement-response-codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes). Otherwise, below is the sample of response parameters that will be returned:
+> It will return an error message if the request is not valid based on the [error response codes]((https://api-docs.oyindonesia.com/#fund-disbursement-response-codes)) documentation. Otherwise, below is the sample of response parameters that will be returned:
 
 ```json
 {
@@ -162,7 +160,7 @@ curl -X POST https://partner.oyindonesia.com/api/inquiry
 }
 ```
 
-Next, send a request body to execute a disbursement request to be sent to our disbursement endpoint [https://api-docs.oyindonesia.com/#disbursement](https://api-docs.oyindonesia.com/#disbursement). 
+Next, send a request body to execute a disbursement request to be sent to our [disbursement endpoint](https://api-docs.oyindonesia.com/#disbursement). 
 
 > Below is an example of the request body for the inquiry: 
 ```shell
@@ -176,7 +174,7 @@ curl -X POST https://partner.oyindonesia.com/api/remit
     "email" :"budi.s@gmail.com"}'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#fund-disbursement-response-codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes). Otherwise, below is the sample of response parameters that will be returned:
+> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
 
 ```json 
 {
@@ -193,12 +191,11 @@ curl -X POST https://partner.oyindonesia.com/api/remit
 }
 ```
 
-An enpoint to check the transaction is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#get-disbursement-status](https://api-docs.oyindonesia.com/#get-disbursement-status). 
+An enpoint to [check the transaction](https://api-docs.oyindonesia.com/#get-disbursement-status) is also available and can be accessed at anytime. 
 
 > Below is an example of the callback you will receive: (coming soon) 
 
 A callback with the following information will be sent to the callback endpoint that you can register with us. 
-
 
 > Below is an example of the request body: 
 
@@ -208,7 +205,7 @@ curl -X POST https://partner.oyindonesia.com/api/remit-status
 -d '{"partner_trx_id": "Tx15048563JKFJ"}'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#fund-disbursement-response-codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes). Otherwise, below is the sample of response parameters that will be returned:
+> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
 
 ```json
 {
@@ -228,7 +225,7 @@ curl -X POST https://partner.oyindonesia.com/api/remit-status
 }
 ```
 
-You can also check your balance anytime to ensure you have sufficient balance from our endpoint [https://api-docs.oyindonesia.com/#get-balance](https://api-docs.oyindonesia.com/#get-balance).
+You can also [check your balance](https://api-docs.oyindonesia.com/#get-balance) anytime to ensure you have sufficient balance from our endpoint.
 
 > Below is an example of a request body to check the balance:
 
@@ -238,7 +235,7 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
 -H 'X-OY-Username: janedoe' -H 'X-Api-Key: 7654321'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#fund-disbursement-response-codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes). Otherwise, below is the sample of response parameters that will be returned:
+> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
 
 ```json 
 {
@@ -262,12 +259,12 @@ Lastly, all transactions can be monitored from the OY! dashboard which includes 
 ![API Disburse](images/api_disburse_success.png)
 
 
-For further details on the parameters definition and proper usage, please refer to the [API Documentation](https://api-docs.oyindonesia.com/#fund-disbursement)
+For further details on the parameters definition and proper usage, please refer to our [API Documentation](https://api-docs.oyindonesia.com/#fund-disbursement).
 
 
 # Bulk Disburse 
 
-Bulk disbursement product provides the capability to execute disbursements to multiple beneficiaries with a single xlsx or csv file upload (“Campaign”). Bulk disbursement is made through OY dashboard, where details regarding the disbursement campaign can be found. No technical integration is required to use this product. 
+Our Bulk disbursement product provides the capability to execute disbursements to multiple beneficiaries with a single xlsx or csv file upload (“Campaign”). Bulk disbursement is made through the OY! dashboard, where details regarding the disbursement campaign can be found. No technical integration is required to use this product. 
 
 ## Key Features 
 **Overdraft**
@@ -280,7 +277,7 @@ OY! can use the funds directly from your Mandiri and CIMB bank accounts for your
 
 **Account Management** 
 
-When you first created an account, your account will be assigned as a super admin role. As a super admin, you have the ability to create new sub-accounts and assign different roles to your team such as maker and approver that is applicable for bulk disbursement. The super admin and admin can also edit or delete created sub-accounts. 
+When you first create an account, your account will be assigned as a super admin role. As a super admin, you have the ability to create new sub-accounts and assign different roles to your team such as Maker and Approver that is applicable for bulk disbursement. The super admin and admin can also edit or delete created sub-accounts. 
 
 *Note: it is not necessary to create new sub-accounts in order to use bulk disbursement. The Super Admin role allows you to directly create and approve bulk disbursements.*
 
@@ -292,12 +289,12 @@ Keep track of all the details of the entire campaign such as the total amount of
 
 **Transaction Details**
 
-Itemized details of each individual transaction, including their respective statuses: success, pending, or failed
+Itemized details of each individual transaction, including their respective statuses: success, pending, or failed.
 
 ## Registration and Set Up 
 **Prerequisites**
 
-* Register an account on OY dashboard
+* Register an account on the [OY! dashboard](https://business.oyindonesia.com/login)
 
 * Upgrade your account 
 
@@ -324,10 +321,10 @@ Column | Description | Example
 Name | Recipient Name | Budy
 Email | Recipient Email (can contain up to 5 emails with a total maximum of 255 characters, incoming transaction notifications will be sent to these emails) | Budi@email.com
 Amount | Amount in IDR (only numbers) | 100000
-Bank Code | Destination Bank (please refer to our bank codes below) | 014
+Bank Code | [Destination Bank](https://docs.oyindonesia.com/#disbursement-bank-codes) | 014
 Bank Account Number | Recipient Bank Account Number | 12341234
 Phone Number | Recipient Phone Number | 62812341234
-Notes (Optional) | Transaction Notes (Please refer to this page to learn more about "Notes") | 
+Notes (Optional) | Transaction Notes | 
 
 ![Bulk Disburse](images/bulk_disburse_1.png)
 
@@ -355,9 +352,9 @@ When a campaign is approved, the balances should immediately reflect changes. Fo
 
 ![Bulk Disburse](images/bulk_disburse_5.png)
 
-**6. Status: Running, Cancel, and Finish**: Congratulations! You just made your first bulk disbursement with OY! Below are a list of statuses you will find on your dashboard. 
+**6. Status: In-Progress, Finish, and Cancel**: Congratulations! You just made your first bulk disbursement with OY! Below are a list of statuses you will find on your dashboard. 
 
-_In Progress_
+_In-Progress_
 
 As your individual disbursements are executed, the status of your bulk disbursement campaign will indicate an in-progress status. 
 
@@ -369,9 +366,9 @@ Once all the listed transactions are executed and reflect their respective statu
 
 ![Bulk Disburse](images/bulk_disburse_finish.png)
 
-_Cancelled_ 
+_Cancel_ 
 
-If you choose to stop your disbursement campaign, the status of your bulk disbursement campaign will indicate a cancel status. 
+If you choose to stop your disbursement campaign, the status of your bulk disbursement campaign will indicate a cancelled status. 
 
 ![Bulk Disburse](images/bulk_disburse_cancel.png)
 
@@ -389,45 +386,12 @@ The name and phone number are visible only to the partner and is used for the pa
 
 You can send up to 5 emails per transactions with a limit of 255 characters total. For each transaction, simply list out the email recipients. 
 
-# Disbursement Bank Codes 
-
-We support transactions to 100+ banks in Indonesia. Please refer to the bank codes [here](https://api-docs.oyindonesia.com/#disbursement-bank-codes) when using our disbursement products. (Please note that we currently do not support disbursements to Virtual Accounts.)
-
-# Disbursement FAQs
-
-**Bank Maintenance Schedule**
-
-Banks often have regular maintenance schedules which differ from one bank to another. These regular maintenance schedules prevent the execution of transactions to the respective recipient bank during the set period of time. In the event that an unplanned maintenance or maintenance schedules run for an extended period of time, we will notify our users.
-
-**Disbursement Amount Limits**
-
-_e-wallet_
-
-Since each e-wallet provide limits to the amount each user can hold at a time, disbursements made to e-wallet accounts have their respective limits. 
-
-Wallet | Account Type | Maximum Amount
------- | ------------ | --------------
-OVO | OVO Club | Rp 2.000.000
-OVO | OVO Premier | Rp 10.000.000
-DANA | DANA Verified | Rp 1.000.000
-DANA | DANA Premium | Rp 10.000.000
-GoPay | Unverified | Rp 2.000.000
-GoPay | Verified | Rp 10.000.000
-
-**Is there a cut-off time?**
-
-No, we are available 24/7 including holidays. 
-
-**Is there a maximum transaction volume and transaction amount in a day?**
-
-There are no daily limits of how many bulk campaigns can be created and executed. There is also no limit to the number of total transactions per disbursement campaign. 
-
 
 # VA Aggregator 
 
 **What is a VA?** 
 
-Businesses are struggling to manage hundreds or even thousands physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the number of bank accounts to be maintained and lots of man hours to be spent for reporting and reconciliation purposes combining different information from different accounts. Virtual Account (VA) is essentially a dummy account that is linked to a physical account and has all the physical account characteristics that enables a much easier reporting and reconciliation process by centralizing the money flow into the physical account. By issuing VAs, you can assign each VA for specific person and/or purposes.
+Businesses are struggling to manage hundreds or even thousands of physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the amount of account maintainence and man hours needed for reporting and reconciliation purposes, combining different information from different accounts. Virtual Account (VA) is essentially a dummy account that is linked to a physical account and has all the physical account characteristics that enables a much easier reporting and reconciliation process by centralizing the money flow into the physical account. By issuing VAs, you can assign each VA for specific person and/or purposes.
 
 ![VA Aggregator](images/va_diagram_1.png)
 
@@ -481,7 +445,7 @@ All of the created VAs and incoming transactions can be monitored on the OY! das
 
 **Prerequisities:**
 
-* Register an account on the OY! dashboard
+* Register an account on the [OY! dashboard](https://business.oyindonesia.com/login)
 
 * Upgrade your account 
 
@@ -491,7 +455,7 @@ All of the created VAs and incoming transactions can be monitored on the OY! das
 
 * API Key to be shared
 
-* Integrate with our API [https://api-docs.oyindonesia.com/#fund-disbursement](https://api-docs.oyindonesia.com/#fund-disbursement)
+* Integrate with our [API](https://api-docs.oyindonesia.com/#fund-disbursement)
 
 ## How to Use
 
@@ -508,7 +472,7 @@ curl --location --request POST https://partner.oyindonesia.com/api/generate-stat
 -d '{"partner_user_id":"51200021","bank_code": "014","amount": 150000,"is_open" : false,"is_single_use" : false,"is_lifetime": false,"expiration_time": 5,"username_display" : "va name","email": "email@mail.com"}'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes documentation [https://api-docs.oyindonesia.com/#va-aggregator-response-codes](https://api-docs.oyindonesia.com/#va-aggregator-response-codes). Otherwise, below is the sample of response parameters that will be returned:
+> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#va-aggregator-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
 
 ```json
 {
@@ -534,7 +498,7 @@ Once a VA is created, its details can be seen and monitored through the OY! dash
 
 ![VA Aggregator](images/va_waiting_payment.png)
 
-An endpoint to check your VA information is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#get-va-info](https://api-docs.oyindonesia.com/#get-va-info).
+An endpoint to [check your VA information](https://api-docs.oyindonesia.com/#get-va-info) is also available and can be accessed at anytime.
 
 > Below is an example of the request body:
 
@@ -570,7 +534,7 @@ curl --location --request GET https://partner.oyindonesia.com/api/static-virtual
 }
 ```
 
-If you wish to change the details of your VA, you can do so by updating your VA at any time [https://api-docs.oyindonesia.com/#update-va](https://api-docs.oyindonesia.com/#update-va).
+If you wish to change the details of your VA, you can do so by [updating your VA](https://api-docs.oyindonesia.com/#update-va) at any time.
 
 > Below is an example of the request body:
 
@@ -606,11 +570,11 @@ curl --location --request PUT https://partner.oyindonesia.com/api/static-virtual
 }
 ```
 
-All details regarding your created VA and its payments can be retrieved via our API endpoint ([https://api-docs.oyindonesia.com/#get-list-of-created-va](https://api-docs.oyindonesia.com/#get-list-of-created-va)) or can be monitored directly from the OY! dashboard.
+All details regarding your [created VA](https://api-docs.oyindonesia.com/#get-list-of-created-va) and its payments can be retrieved via our API endpoint or can be monitored directly from the OY! dashboard.
 
 ![VA Aggregator](images/va_created_va.png)
 
-Similarly, all the details regarding incoming transactions for specific va numbers can be retrived via our API endpoint ([https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va)) or can be monitored directly the from OY! dashboard.
+Similarly, all the details regarding [incoming transactions](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va) for specific va numbers can be retrived via our API endpoint or can be monitored directly the from OY! dashboard.
 
 ![VA Aggregator](images/va_incoming.png)
 
@@ -620,31 +584,30 @@ For further details regarding OY!'s extensive VA Aggregator capabilities and end
 
 # Payment Checkouts/Invoice 
 
-Our Payment Checkout/Invoice product allows you to create and send URLs to accept payments from your users. You can either send your users a pre-generated URL for your account ("Payment Checkout/Invoice Link") or a unique encapsulated URL generated through an API ("API Payment Checkout/Invoice"). 
+Our Payment Checkout/Invoice product allows you to create and send URLs to accept payments from your users. You can either send your users a pre-generated URL for your account ("Payment Checkout/Invoice via Link") or a unique encapsulated URL generated through an API ("Payment Checkout/Invoice via API") or our OY! Dashboard ("Payment Checkout/Invoice via Dashboard"). 
 
-## Kay Features 
-
+## Key Features 
 ### Payment Checkout/Invoice via Link
 
-**No Integration Needed**
+**_1. No Integration Needed_** 
 
 Access and declare all parameters needed from the URL with easy and simple declaration. 
 
-**Reusable Link** 
+**_2. Reusable Link_** 
 
 One link can be used many times without repeating declaration. 
 
-**Amount and Payment Method Customization** 
+**_3. Amount and Payment Method Customization_** 
 
 You can customize the amount to be billed to your user whether they have to pay a fix amount (closed amount) or any amount (open amount). We provide Bank Transfers, Credit Card, Debit Card, and QR code payment methods that you can also enable/disable at any time.
 
-**Check Incoming Transactions Status and Callback** 
+**_4. Check Incoming Transactions Status and Callback_** 
 
 For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
 
 ### Payment Checkout/Invoice via API
 
-**Complete Customization**
+**_1. Complete Customization_**
 
 * Open vs. closed amount
 
@@ -657,37 +620,38 @@ For all incoming payments, you will receive notifications regarding your transac
 * Set an expiry time for your payment link
 
 
-**Static VA for Invoice Payment**
+**_2. Static VA for Invoice Payment_**
 
 You can enable a static VA option when using the API specifically assigned to your customer.
 
 
-**Upload or Create a PDF for your Invoice Billing**
+**_3. Upload or Create a PDF for your Invoice Billing_**
 
 You can upload an invoice attachment or create an attachment using the OY! PDF templates via our API so you do not need to send a separate email to your customer.
 
 
-**Payment Link Delivery by Email**
+**_4. Payment Link Delivery by Email_**
 
 Payment link created can be sent to your customer’s email directly instead of sharing the payment link separately.
 
 
-**Check Incoming Transaction Status and Callback**
+**_5. Check Incoming Transaction Status and Callback_**
 
-For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status . IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
+For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
 
 ### Payment Checkout/Invoice via Dashboard (Coming Soon) 
 
 ### Enjoy the quality services of our product!
 
-Whether you send your user a pre-generated link or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through our OY portal. You will be able to see the details of the payment checkout including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status. 
+Whether you send your user a pre-generated link or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through our OY! Dashboard. You will be able to see the details of the payment checkout including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status. 
 
+![Payment Checkout](images/payment_checkout_list.png)
 
 ## Registration and Set Up
 
 **Prerequisites** 
 
-* Register and account on the OY! dashboard 
+* Register an account on the [OY! dashboard](https://business.oyindonesia.com/login)
 
 * Upgrade your account 
 
@@ -695,7 +659,7 @@ Whether you send your user a pre-generated link or an API-generated encapsulated
 
 * Provide an IP to be whitelisted (for API Payment Checkout/Invoice) and callback link to our business team 
 
-* For link: once your account is approved, you can access it via [https://pay.oyindonesia.com/v2?username=yourusername (https://pay.oyindonesia.com/v2?username](https://pay.oyindonesia.com/v2?username=yourusername). Please refer to the how to use section for further information. 
+* For link: once your account is approved, you can access it via [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). Please refer to the [how to use](https://docs.oyindonesia.com/#how-to-use-payment-checkout-via-link) section for further information. 
 
 
 * For API: 
@@ -704,7 +668,7 @@ Whether you send your user a pre-generated link or an API-generated encapsulated
 
 2. Retrieve API Key 
 
-3. Integrate with our API [https://api-docs.oyindonesia.com/#api-create-payment-checkout](https://api-docs.oyindonesia.com/#api-create-payment-checkout)
+3. Integrate with our [API](https://api-docs.oyindonesia.com/#api-create-payment-checkout)
 
 ## How to Use Payment Checkout via Link
 
@@ -718,11 +682,11 @@ If you do not want to specify the amount, you can immediately send the link at t
 
 If you would like to charge your customers for a specific amount, input the number and click “lanjutkan”.
 
-**2. (Optional) Lock amount**: You might notice that you can easily change the checkout details by simply editing the parameters within the link. For example, amount=100000 can be changed to a different number and the payment details will readjust accordingly. The same is true when you edit the username, step, and sender_name.
+**2. (Optional) Lock amount**: You might notice that you can easily change the checkout details by simply editing the parameters within the link. For example, `amount=100000` can be changed to a different number and the payment details will readjust accordingly. The same is true when you edit the `username`, `step`, and `sender_name`.
 
 `https://pay.oyindonesia.com/v2?username=yourusername&amount=100000&partner_tx_id=OY2020ABCD123&step=input_personal_info`
 
-In order to lock editing the amount for your customers, add `is_open=false` to the payment link and `partner_tx_id` and `amount` becomes mandatory to be filled out. This will permanently attaches the `amount` to the unique transaction ID. In the example above, the `amount=100000` is locked to this specific `partner_tx_id`.
+In order to lock editing the amount for your customers, add `is_open=false` to the payment link and the `partner_tx_id` and `amount` becomes mandatory to be filled out. This will permanently attach the amount to the unique transaction ID. In the example above, the `amount=100000` is locked to this specific `partner_tx_id`.
 
 `https://pay.oyindonesia.com/v2?username=yourusername&amount=100000&partner_tx_id=OY2020ABCD123&step=input_personal_info&is_open=false`
 
@@ -734,7 +698,7 @@ Test your link to ensure that the amount is locked by changing the `amount` para
 
 ![Payment Checkout](images/payment_checkout_2.png)
 
-**4. Select Payment Method**: We support payments either through bank transfer, credit card, or debit card. You can choose specific payment methods to be enabled via parameter declaration by specifying `enable_payment_va`, `enable_payment_cc` or `enable_payment_debit` as `true` or `false`.
+**4. Select Payment Method**: We support payments either through bank transfer, credit card, debit card, or QR code. You can choose specific payment methods to be enabled via parameter declaration by specifying `enable_payment_va`, `enable_payment_cc` or `enable_payment_debit` as `true` or `false`.
 
 ![Payment Checkout](images/payment_checkout_3.png)
 
@@ -752,7 +716,7 @@ You can look at your payment checkout link details through the OY! dashboard. It
 
 We provide 3 different payment checkout endpoints depending on your requirements and needs. We provide payment checkout, invoicing, and recurring invoice.  
 
-Send us instructions to generate a payment checkout link [https://api-docs.oyindonesia.com/#api-create-payment-checkout](https://api-docs.oyindonesia.com/#api-create-payment-checkout). 
+Send us instructions to generate a [payment checkout link](https://api-docs.oyindonesia.com/#api-create-payment-checkout). 
 
 > Below is an example of a request body to execute your request:
 
@@ -786,7 +750,7 @@ curl -X POST \
 }
 ```
 
-Send us instructions to generate a payment checkout invoice link [(https://api-docs.oyindonesia.com/#api-create-invoicing](https://api-docs.oyindonesia.com/#api-create-invoicing). 
+Send us instructions to generate a [payment checkout invoice link](https://api-docs.oyindonesia.com/#api-create-invoicing). 
 
 > Below is an example of a request body to execute your request:
 
@@ -835,11 +799,11 @@ url -X POST \
 }
 ```
 
-Send us instructions to generate a recurring payment checkout invoice link [https://api-docs.oyindonesia.com/#api-create-recurring-invoice-coming-soon](https://api-docs.oyindonesia.com/#api-create-recurring-invoice-coming-soon). 
+Send us instructions to generate a [recurring payment checkout invoice link](https://api-docs.oyindonesia.com/#api-create-recurring-invoice-coming-soon). 
 
 > Below is an example of a request body to execute your request: tbd
 
-An endpoint to retrieve and/or re-send the latest callback status of a transaction is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#api-payment-status](https://api-docs.oyindonesia.com/#api-payment-status). 
+An endpoint to retrieve and/or re-send the latest [callback status](https://api-docs.oyindonesia.com/#api-payment-status) of a transaction is also available and can be accessed at anytime.
 
 > Below is an example of a request body to execute your request: 
 
@@ -865,7 +829,7 @@ curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner
 }
 ```
 
-An endpoint to check your payment or invoice data is also available and can be accessed at anytime [https://api-docs.oyindonesia.com/#api-get](https://api-docs.oyindonesia.com/#api-get).
+An endpoint to check your [payment or invoice data](https://api-docs.oyindonesia.com/#api-get) is also available and can be accessed at anytime.
 
 > Below is an example of a request body to execute your request: 
 
@@ -915,7 +879,7 @@ curl -X GET \
 }
 ```
 
-Lastly, we provide an endpoint to delete your payment or invoice link based on `payment_link_id` or `partner_tx_id`. The payment or invoice link must still be active and a payment method must not have been selected.
+Lastly, we provide an endpoint to [delete your payment or invoice link](https://api-docs.oyindonesia.com/#api-delete) based on `payment_link_id` or `partner_tx_id`. The payment or invoice link must still be active and a payment method must not have been selected.
 
 > Below is an example of a request body to execute your request: 
 
@@ -940,3 +904,36 @@ Just like the Payment Checkout via Link, you can access all your payment checkou
 ![Payment Checkout](images/payment_checkout_list.png)
 
 ## How to Use Payment Checkout via Dashboard (comming soon)
+
+# FAQs
+
+## Disbursement Bank Codes 
+
+We support transactions to 100+ banks in Indonesia. Please refer to the bank codes [here](https://api-docs.oyindonesia.com/#disbursement-bank-codes) when using our disbursement products. (Please note that we currently do not support disbursements to Virtual Accounts.)
+
+## Disbursement Products
+
+**Bank Maintenance Schedule**
+
+Banks often have regular maintenance schedules which differ from one bank to another. These regular maintenance schedules prevent the execution of transactions to the respective recipient bank during the set period of time. In the event that an unplanned maintenance or maintenance schedules run for an extended period of time, we will notify our users.
+
+**Disbursement Amount Limits**
+
+_e-wallet:_ Since each e-wallet provide limits to the amount each user can hold at a time, disbursements made to e-wallet accounts have their respective limits. 
+
+Wallet | Account Type | Maximum Amount
+------ | ------------ | --------------
+OVO | OVO Club | Rp 2.000.000
+OVO | OVO Premier | Rp 10.000.000
+DANA | DANA Verified | Rp 1.000.000
+DANA | DANA Premium | Rp 10.000.000
+GoPay | Unverified | Rp 2.000.000
+GoPay | Verified | Rp 10.000.000
+
+**Is there a cut-off time?**
+
+No, we are available 24/7 including holidays. 
+
+**Is there a maximum transaction volume and transaction amount in a day?**
+
+There are no daily limits of how many bulk campaigns can be created and executed. There is also no limit to the number of total transactions per disbursement campaign. 
