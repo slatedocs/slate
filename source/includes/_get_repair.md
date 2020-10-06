@@ -12,7 +12,17 @@
     >>> {
             "status": "success",
             "message": "Repair found",
-            "data": {'repair_id': 1}
+            "data": {
+                'repair_id': 1,
+                'config': {
+                    '12v_load_current': 1.0,
+                    'usb_load_current': 1.7,
+                    'connectivity_timeout': 120,
+                    'discharge_voltage': 6.0,
+                    'final_state_of_charge': 50,
+                    'pass_capacity_mah': 8000
+                }
+            }
     }
 ```
 
@@ -30,6 +40,8 @@ __response__ | 200
 
 The format of the data returned by this endpoint is a dictionary with key `status`, `data`, and (optionally) `message`.
 
-The `data` key contains a dictionary with key `repair_id`. The value associated with this key is the identifier of the repair workflow.
+The `data` key contains a dictionary with key `repair_id` and (optionally) `config`. The value associated with the `repair_id` key is the identifier of the repair workflow. If present, the value of the `config` key is a dictionary containing configuration values to be used by 
+the client application when communicating with the product under repair (the actual keys and values will vary by product type - the values 
+shown above are just for illustrative purposes).
 
 If there are any formatting errors in requests the API will return error_code `400` and indicate the error in question in the `message` section of the response
