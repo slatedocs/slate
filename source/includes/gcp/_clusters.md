@@ -21,6 +21,20 @@ curl -X GET \
       "endpoint": "104.197.118.234",
       "location": "us-central1-a",
       "creationTimestamp": "2019-07-08T18:45:16+00:00",
+      "caCert": "LS0tLS1CRUdJTiBD...",
+      "addressRange": "10.4.0.0/14",
+      "networkName": "default",
+      "subnetName": "default",
+      "currentMasterVersion": "1.15.12-gke.20",
+      "cpuCount": 12,
+      "memoryInGB": 24.00,
+      "labels": {
+        "key1": "value1"
+      },
+        "instanceGroupUrls": [
+        "https://www.googleapis.com/compute/v1/projects/cmc-test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-default-pool",
+        "https://www.googleapis.com/compute/v1/projects/cmc-test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-pool-1"
+      ],
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1",
       "name": "standard-cluster-1"
     },
@@ -30,9 +44,19 @@ curl -X GET \
       "endpoint": "34.66.215.161",
       "location": "us-central1-a",
       "creationTimestamp": "2019-07-08T14:59:19+00:00",
+      "caCert": "LS0tLS1CRUdJS0K...",
+      "addressRange": "10.44.0.0/14",
+      "networkName": "default",
+      "subnetName": "default",
+      "currentMasterVersion": "1.15.12-gke.20",
+      "cpuCount": 6,
+      "memoryInGB": 12.00,
+      "labels": {},
+      "instanceGroupUrls": [
+        "https://www.googleapis.com/compute/v1/projects/cmc-test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-2-pool-1"
+      ],
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/your-first-cluster-1",
       "name": "your-first-cluster-1",
-      "caCert": "LS0tLS1CRUdJS0K"
     }
   ],
   "metadata": {
@@ -41,6 +65,8 @@ curl -X GET \
 }
 ```
 
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters</code>
+
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
@@ -48,10 +74,17 @@ Attributes | &nbsp;
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster.
+`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster.
+`addressRange` <br/> *string* | The IP address range of the container pods in this cluster, in CIDR notation (e.g. 10.96.0.0/14).
+`networkName` <br/> *string* | The name of the Google Compute Engine network to which the cluster is connected.
+`subnetName` <br/> *string* | The name of the Google Compute Engine subnetwork to which the cluster is connected.
+`currentMasterVersion` <br/> *string* | The current software version of the master endpoint.
+`cpuCount` <br/> *int* | The sum of CPU cores of all compute instances of the cluster.
+`memoryInGB` <br/> *double* | The sum of memory allocated for all compute instances of the cluster.
+`labels` <br/> *Map<String, String>* | The resource labels for the cluster to use to annotate any related Google Compute Engine resources.
+`instanceGroupUrls` <br/> *List<String>* | URLs of the Google Compute group instances associated with the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster.
-`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 
-
 <!-------------------- RETRIEVE A CLUSTER -------------------->
 
 #### Retrieve a cluster
@@ -59,7 +92,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/clusters/standard-cluster-1/projects/testarea-ugx/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 > The above command returns a JSON structured like this:
 
@@ -71,12 +104,28 @@ curl -X GET \
       "endpoint": "104.197.118.234",
       "location": "us-central1-a",
       "creationTimestamp": "2019-07-08T18:45:16+00:00",
+      "caCert": "LS0tLS1CRUdJTiBD...",
+      "addressRange": "10.4.0.0/14",
+      "networkName": "default",
+      "subnetName": "default",
+      "currentMasterVersion": "1.15.12-gke.20",
+      "cpuCount": 12,
+      "memoryInGB": 24.00,
+      "labels": {
+        "key1": "value1"
+      },
+      "instanceGroupUrls": [
+        "https://www.googleapis.com/compute/v1/projects/test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-default-pool",
+        "https://www.googleapis.com/compute/v1/projects/test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-pool-1"
+      ],
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1",
-      "name": "standard-cluster-1",
-      "caCert": "LS0tLS1CRUdJS0K"
+      "name": "standard-cluster-1"
     }
 }
 ```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:cluster_id</a></code>
+
 
 Attributes | &nbsp;
 ------- | -----------
@@ -85,6 +134,14 @@ Attributes | &nbsp;
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster.
+`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster.
+`addressRange` <br/> *string* | The IP address range of the container pods in this cluster, in CIDR notation (e.g. 10.96.0.0/14).
+`networkName` <br/> *string* | The name of the Google Compute Engine network to which the cluster is connected.
+`subnetName` <br/> *string* | The name of the Google Compute Engine subnetwork to which the cluster is connected.
+`currentMasterVersion` <br/> *string* | The current software version of the master endpoint.
+`cpuCount` <br/> *int* | The sum of CPU cores of all compute instances of the cluster.
+`memoryInGB` <br/> *double* | The sum of memory allocated for all compute instances of the cluster.
+`labels` <br/> *Map<String, String>* | The resource labels for the cluster to use to annotate any related Google Compute Engine resources.
+`instanceGroupUrls` <br/> *List<String>* | URLs of the Google Compute group instances associated with the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster.
-`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 
