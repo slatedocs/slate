@@ -31,10 +31,9 @@ curl -X GET \
       "labels": {
         "key1": "value1"
       },
-        "instanceGroupUrls": [
-        "https://www.googleapis.com/compute/v1/projects/cmc-test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-default-pool",
-        "https://www.googleapis.com/compute/v1/projects/cmc-test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-pool-1"
-      ],
+      "nodePoolMachineTypes": {
+            "e2-medium": 1,
+      },
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1",
       "name": "standard-cluster-1"
     },
@@ -52,9 +51,9 @@ curl -X GET \
       "cpuCount": 6,
       "memoryInGB": 12.00,
       "labels": {},
-      "instanceGroupUrls": [
-        "https://www.googleapis.com/compute/v1/projects/cmc-test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-2-pool-1"
-      ],
+      "nodePoolMachineTypes": {
+        "e2-custom-2-1024": 3
+        },
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/your-first-cluster-1",
       "name": "your-first-cluster-1",
     }
@@ -82,7 +81,7 @@ Attributes | &nbsp;
 `cpuCount` <br/> *int* | The sum of CPU cores of all compute instances of the cluster.
 `memoryInGB` <br/> *double* | The sum of memory allocated for all compute instances of the cluster.
 `labels` <br/> *Map<String, String>* | The resource labels for the cluster to use to annotate any related Google Compute Engine resources.
-`instanceGroupUrls` <br/> *List<String>* | URLs of the Google Compute group instances associated with the cluster.
+`nodePoolMachineTypes` <br/> *Map<String, Integer>* | The machine type of the nodepools of the cluster, and the number of machines with that type for the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster.
 <!-------------------- RETRIEVE A CLUSTER -------------------->
@@ -114,10 +113,10 @@ curl -X GET \
       "labels": {
         "key1": "value1"
       },
-      "instanceGroupUrls": [
-        "https://www.googleapis.com/compute/v1/projects/test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-default-pool",
-        "https://www.googleapis.com/compute/v1/projects/test-area-ugx/zones/us-central1-a/instanceGroupManagers/gke-cluster-1-pool-1"
-      ],
+      "nodePoolMachineTypes": {
+      "e2-medium": 1,
+    },
+
       "id": "projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1",
       "name": "standard-cluster-1"
     }
@@ -142,6 +141,6 @@ Attributes | &nbsp;
 `cpuCount` <br/> *int* | The sum of CPU cores of all compute instances of the cluster.
 `memoryInGB` <br/> *double* | The sum of memory allocated for all compute instances of the cluster.
 `labels` <br/> *Map<String, String>* | The resource labels for the cluster to use to annotate any related Google Compute Engine resources.
-`instanceGroupUrls` <br/> *List<String>* | URLs of the Google Compute group instances associated with the cluster.
+`nodePoolMachineTypes` <br/> *Map<String, Integer>* | The machine type of the nodepools of the cluster, and the number of machines with that type for the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster.
