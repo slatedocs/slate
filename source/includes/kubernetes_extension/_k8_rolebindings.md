@@ -112,7 +112,8 @@ Retrieve a role binding and all its info in a given [environment](#administratio
 | `id` <br/>_string_         | The id of the role binding.                          |
 | `apiVersion` <br/>_string_ | The API version used to retrieve this role binding.  |
 | `metadata` <br/>_object_   | The metadata of the role binding.                    |
-| `subjects` <br/>_array_       | The array of subjects associated with this role binding.|
+|`roleRef`<br/>_object_      | The role to bind. Can reference a Role in the current namespace or a ClusterRole in the global namespace.|
+| `subjects` <br/>_array_    | The array of subjects associated with this role binding.|
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
@@ -184,6 +185,67 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create role binding task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
+<!-------------------- REPLACE ROLE BINDING -------------------->
+
+##### Replace a role binding
+
+```shell
+curl -X PUT \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/rolebindings/rolebinding-name/namespace-name?cluster_id=:cluster_id"
+  Content-Type: application/json
+  {
+    "metadata": {
+        "name": "service-account-name",
+        "namespace": "namespace-name"
+    },
+    "roleRef": {
+      "apiGroup": "",
+      "kind": "Role",
+      "name": "role-name"
+    },
+    "subjects": [
+      {
+        "kind": "ServiceAccount",
+        "name": "default",
+        "namespace": "default"
+      },
+      {
+        "kind": "user",
+        "name": "user1",
+      }
+    ]
+  }
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/rolebindings/:id?cluster_id=:cluster_id</code>
+
+Replace a role binding in a given [environment](#administration-environments).
+
+| Required Attributes                 | &nbsp;                                                      |
+| ----------------------------------- | ----------------------------------------------------------- |
+| `metadata` <br/>_object_            | The metadata of the role binding.|
+| `metadata.name` <br/>_string_       | The name of the role binding.|
+| `metadata.namespace` <br/>_string_       | The namespace of the role binding.|
+|`roleRef`<br/>_object_                 | The role to bind. Can reference a Role in the current namespace or a ClusterRole in the global namespace.|
+|`subjects`<br/>_array_ | Subjects hold references to the objets the role applies to. Can be users, groups, or service accounts.|
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace role binding operation. |
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
+
 <!-------------------- DELETE A ROLE BINDING -------------------->
 
 ##### Delete a role binding
@@ -195,13 +257,6 @@ curl -X DELETE \
 ```
 
 > The above command returns a JSON structured like this:
-```json
-{
-  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
-  "taskStatus": "PENDING"
-}
-```
-
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/rolebindings/:id?cluster_id=:cluster_id</code>
 
 Delete a role binding from a given [environment](#administration-environments).
