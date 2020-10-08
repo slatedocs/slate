@@ -257,6 +257,12 @@ curl -X DELETE \
 ```
 
 > The above command returns a JSON structured like this:
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/rolebindings/:id?cluster_id=:cluster_id</code>
 
 Delete a role binding from a given [environment](#administration-environments).
