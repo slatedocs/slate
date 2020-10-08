@@ -109,11 +109,11 @@ OY! can use the funds directly from your Mandiri and CIMB bank accounts for your
 
 **Check Transaction Status and Callback**
 
-For all disbursements executed, you will receive notifications regarding your transaction whether it’s successful, failed or pending. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
+For all disbursements executed, you will receive notifications regarding your transaction whether it is successful, failed or pending. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
 
 **Check Balance**
 
-You can check your available balance at anytime to ensure  that you have sufficient balance to execute a disbursement.
+You can check your available balance at anytime to ensure that you have sufficient balance to execute a disbursement.
 
 ## Registration and Set Up 
 **Prerequisites** 
@@ -139,13 +139,11 @@ Before you execute a disbursement, you can verify the beneficiary account inform
 > Below is an example of the request body for inquiry:
 
 ```shell 
-curl -X POST https://partner.oyindonesia.com/api/inquiry 
--H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:987654' 
--d '{"recipient_bank": "022", 
+curl -X POST https://partner.oyindonesia.com/api/inquiry -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:987654' -d '{"recipient_bank": "022", 
     "recipient_account": "7823023345"}'
 ```
 
-> It will return an error message if the request is not valid based on the [error response codes]((https://api-docs.oyindonesia.com/#fund-disbursement-response-codes)) documentation. Otherwise, below is the sample of response parameters that will be returned:
+> It will return an [error message](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes) if the request is not valid. Otherwise, below is the sample response parameters that will be returned:
 
 ```json
 {
@@ -160,21 +158,17 @@ curl -X POST https://partner.oyindonesia.com/api/inquiry
 }
 ```
 
+> 
+
 Next, send a request body to execute a disbursement request to be sent to our [disbursement endpoint](https://api-docs.oyindonesia.com/#disbursement). 
 
 > Below is an example of the request body for the inquiry: 
+
 ```shell
-curl -X POST https://partner.oyindonesia.com/api/remit 
--H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
--d '{"recipient_bank": "022", 
-    "recipient_account": "7823023345", 
-    "amount":100000, 
-    "note":"Pembayaran Nov IV", 
-    "partner_trx_id":"Tx15048563JKFJ",
-    "email" :"budi.s@gmail.com"}'
+curl -X POST https://partner.oyindonesia.com/api/remit -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' -d '{"recipient_bank": "022", "recipient_account": "7823023345", "amount":100000, "note":"Pembayaran Nov IV", "partner_trx_id":"Tx15048563JKFJ", "email" :"budi.s@gmail.com"}'
 ```
 
-> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
+> Below is the sample response parameters that will be returned:
 
 ```json 
 {
@@ -191,21 +185,47 @@ curl -X POST https://partner.oyindonesia.com/api/remit
 }
 ```
 
+> 
+
 An enpoint to [check the transaction](https://api-docs.oyindonesia.com/#get-disbursement-status) is also available and can be accessed at anytime. 
 
-> Below is an example of the callback you will receive: (coming soon) 
+> Below is an example of the request body: 
+
+```shell
+curl -X POST https://partner.oyindonesia.com/api/remit-status -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' -d '{"partner_trx_id": "1234-asde", "send_callback": "true"}'
+```
+
+> The above command returns a JSON structured similar like this:
+
+```json
+{
+  "status":{
+    "code":"000",
+    "message":"Success"
+  },
+  "amount":125000,
+  "recipient_name":"John Doe",
+  "recipient_bank":"008",
+  "recipient_account":"1234567890",
+  "trx_id":"ABC-456",
+  "partner_trx_id":"1234-asde",
+  "timestamp":"16-10-2020 10:34:23",
+  "created_date": "24-01-2020 06:48:08",
+  "last_updated_date": "24-01-2020 06:48:39"
+}
+```
+
+>
 
 A callback with the following information will be sent to the callback endpoint that you can register with us. 
 
 > Below is an example of the request body: 
 
 ```shell 
-curl -X POST https://partner.oyindonesia.com/api/remit-status 
--H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
--d '{"partner_trx_id": "Tx15048563JKFJ"}'
+curl -X POST https://partner.oyindonesia.com/api/remit-status -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' -d '{"partner_trx_id": "Tx15048563JKFJ"}'
 ```
 
-> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
+> Below is the sample response parameters that will be returned:
 
 ```json
 {
@@ -225,17 +245,17 @@ curl -X POST https://partner.oyindonesia.com/api/remit-status
 }
 ```
 
+>
+
 You can also [check your balance](https://api-docs.oyindonesia.com/#get-balance) anytime to ensure you have sufficient balance from our endpoint.
 
 > Below is an example of a request body to check the balance:
 
 ```shell
-curl -X GET 'https://partner.oyindonesia.com/api/balance' 
--H 'Content-Type: application/json' -H 'Accept: application/json' 
--H 'X-OY-Username: janedoe' -H 'X-Api-Key: 7654321'
+curl -X GET 'https://partner.oyindonesia.com/api/balance' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-OY-Username: janedoe' -H 'X-Api-Key: 7654321'
 ```
 
-> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#fund-disbursement-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
+> Below is the sample response parameters that will be returned:
 
 ```json 
 {
@@ -251,6 +271,8 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
     "timestamp":"10-12-2019 12:15:37"
 }
 ```
+
+>
 
 Lastly, all transactions can be monitored from the OY! dashboard which includes all the transaction details.
 
@@ -277,11 +299,11 @@ OY! can use the funds directly from your Mandiri and CIMB bank accounts for your
 
 **Account Management** 
 
-When you first create an account, your account will be assigned as a super admin role. As a super admin, you have the ability to create new sub-accounts and assign different roles to your team such as Maker and Approver that is applicable for bulk disbursement. The super admin and admin can also edit or delete created sub-accounts. 
+When you first create an account, your account will be assigned as a Super Admin role. As a Super Admin, you have the ability to create new sub-accounts and assign different roles to your team such as Admin, Maker and Approver that are applicable for bulk disbursement. The Super Admin and Admin can also edit or delete created sub-accounts. 
 
-*Note: it is not necessary to create new sub-accounts in order to use bulk disbursement. The Super Admin role allows you to directly create and approve bulk disbursements.*
+*Note: it is not necessary to create new sub-accounts in order to use bulk disbursement. The Super Admin and Admin roles allows you to directly create and approve bulk disbursements.*
 
-For more detailed step-by-step instructions on setting up user management and the different role types, click here. 
+Detailed step-by-step instructions on setting up user management and the different role types coming soon. 
 
 **Overall Campaign Summary**
 
@@ -306,7 +328,7 @@ Itemized details of each individual transaction, including their respective stat
 
 In order to create disbursement campaigns, a sufficient available OY! balance is required in the account. If there is an insufficient available balance in the account, campaigns can still be created but not approved. 
 
-Click here for more details and instructions about topping up to your OY! account. 
+More details and instructions about topping up to your OY! account coming soon. 
 
 **1. Create Disbursement**: On the OY! dashboard, navigate to Send Payments > Bulk Disburse on your left menu bar. Click “Create Disbursement” on the far righthand side of that page to create a new bulk disbursement campaign.
 
@@ -344,7 +366,7 @@ If there is no issue with the details uploaded from the xlsx or csv file, a blue
 
 Once the bulk disbursement campaign is approved, details regarding the campaign can no longer be changed. This includes changes made to individual transactions and their respective recipient information. 
 
-When a campaign is approved, the balances should immediately reflect changes. For more information about the different types of balances, click here. You will also receive an email with the campaign information summary (“Outgoing Transfer Alert”) when transactions are executed.
+The balances will also immediately reflect changes. For more information about the different types of balances, click here. You will also receive an email with the campaign information summary (“Outgoing Transfer Alert”) when transactions are executed.
 
 *Note: Multiple campaigns can be approved at a time as long as there is sufficient available balance to complete campaigns that have already been approved but are still in queue to be processed.*
 
@@ -368,30 +390,20 @@ Once all the listed transactions are executed and reflect their respective statu
 
 _Cancel_ 
 
-If you choose to stop your disbursement campaign, the status of your bulk disbursement campaign will indicate a cancelled status. 
+If you choose not to approve your disbursement campaign, the status of your bulk disbursement campaign will indicate a cancelled status. 
 
 ![Bulk Disburse](images/bulk_disburse_cancel.png)
 
 You can also double check each of your transactions by navigating to the account statement page on our portal. 
-
-## FAQ (Bulk Disburse)
-
-**What if the recipient name on the CSV file is different from the bank account name? What is the phone number used for?**
-
-As long as the bank account number is valid and not dormant, the transaction will still be executed. 
-
-The name and phone number are visible only to the partner and is used for the partner’s own documentation. The name and phone number listed are not used by OY or sent to the recipient. 
-
-**How many recipient emails can I send the transaction notification to?**
-
-You can send up to 5 emails per transactions with a limit of 255 characters total. For each transaction, simply list out the email recipients. 
 
 
 # VA Aggregator 
 
 **What is a VA?** 
 
-Businesses are struggling to manage hundreds or even thousands of physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the amount of account maintainence and man hours needed for reporting and reconciliation purposes, combining different information from different accounts. Virtual Account (VA) is essentially a dummy account that is linked to a physical account and has all the physical account characteristics that enables a much easier reporting and reconciliation process by centralizing the money flow into the physical account. By issuing VAs, you can assign each VA for specific person and/or purposes.
+Businesses are struggling to manage hundreds or even thousands of physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the amount of account maintainence and man hours needed for reporting and reconciliation purposes, combining different information from different accounts. 
+
+Virtual Account (VA) is essentially a dummy account that is linked to a physical account and has all the physical account characteristics that enables a much easier reporting and reconciliation process by centralizing the money flow into the physical account. By issuing VAs, you can assign each VA for specific person and/or purposes.
 
 ![VA Aggregator](images/va_diagram_1.png)
 
@@ -409,21 +421,21 @@ Our virtual accounts are adjustable according to your needs. We offer options of
 
 ***Static VA vs Dynamic VA***
 
-A static VA is an account that has a lifetime validity that will exist until it is manually deactivated. Therefore, a static VA is always active and configured to be used for multiple times.
+* A static VA is an account that has a lifetime validity that will exist until it is manually deactivated. Therefore, a static VA is always active and configured to be used for multiple times.
 
-A dynamic VA is an account that has a specific validity that will exist until it is expired or manually deactivated. 
+* A dynamic VA is an account that has a specific validity that will exist until it is expired or manually deactivated. 
 
 **Closed vs Opened Amount**
 
-A closed amount is a configuration so that a VA can only be paid if the actual declared amount is paid to the VA
+* A closed amount is a configuration so that a VA can only be paid if the actual declared amount is paid to the VA.
 
-An opened amount is a configuration so that a VA can be paid up to the declared amount (or any, if amount is not declared)
+* An opened amount is a configuration so that a VA can be paid up to the declared amount (or any, if amount is not declared).
 
 **Single Use vs Multi Use**
 
-A single use configuration can only be setup for a dynamic VA where the VA is no longer usable once it receives a payment
+* A single use configuration can only be setup for a dynamic VA where the VA is no longer usable once it receives a payment.
 
-A multi use configuration, by nature, is the characteristic of a static VA. For dynamic VA, it means it can be used for multiple times until the VA is expired or manually deactivated
+* A multi use configuration, by nature, is the characteristic of static VAs. For dynamic VAs, it means it can be used for multiple times until the VA is expired or manually deactivated.
 
 **Update VA**
 
@@ -439,7 +451,8 @@ All of the VA information, even after they are updated, is available on the OY! 
 
 ***Retrieve the VA details and incoming transactions***
 
-All of the created VAs and incoming transactions can be monitored on the OY! dashboard and also from APIs ([https://api-docs.oyindonesia.com/#get-list-of-created-va](https://api-docs.oyindonesia.com/#get-list-of-created-va) and [https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va)). Notifications will be sent for all incoming transactions.
+All details regarding your [created VAs](https://api-docs.oyindonesia.com/#get-list-of-created-va) and[incoming transactions](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va) can be retrieved via our API endpoint or can be monitored directly from the OY! dashboard. Notifications will also be sent for all incoming transactions.
+
 
 ## Registration and Set Up
 
@@ -472,7 +485,7 @@ curl --location --request POST https://partner.oyindonesia.com/api/generate-stat
 -d '{"partner_user_id":"51200021","bank_code": "014","amount": 150000,"is_open" : false,"is_single_use" : false,"is_lifetime": false,"expiration_time": 5,"username_display" : "va name","email": "email@mail.com"}'
 ```
 
-> It will return an error message if the request is not valid based on the [error response codes](https://api-docs.oyindonesia.com/#va-aggregator-response-codes) documentation. Otherwise, below is the sample of response parameters that will be returned:
+> It will return an [error message](https://api-docs.oyindonesia.com/#va-aggregator-response-codes) if the request is not valid. Otherwise, below is the sample response parameters that will be returned:
 
 ```json
 {
@@ -494,6 +507,8 @@ curl --location --request POST https://partner.oyindonesia.com/api/generate-stat
 }
 ```
 
+>
+
 Once a VA is created, its details can be seen and monitored through the OY! dashboard. 
 
 ![VA Aggregator](images/va_waiting_payment.png)
@@ -510,7 +525,7 @@ curl --location --request GET https://partner.oyindonesia.com/api/static-virtual
 --header 'x-api-key: apikey'
 ```
 
-> Below is the sample of response parameters that will be returned:
+> Below is the sample response parameters that will be returned:
 
 ```json 
 {
@@ -533,6 +548,8 @@ curl --location --request GET https://partner.oyindonesia.com/api/static-virtual
     "partner_trx_id": "TRX0001"
 }
 ```
+
+>
 
 If you wish to change the details of your VA, you can do so by [updating your VA](https://api-docs.oyindonesia.com/#update-va) at any time.
 
@@ -570,6 +587,8 @@ curl --location --request PUT https://partner.oyindonesia.com/api/static-virtual
 }
 ```
 
+>
+
 All details regarding your [created VA](https://api-docs.oyindonesia.com/#get-list-of-created-va) and its payments can be retrieved via our API endpoint or can be monitored directly from the OY! dashboard.
 
 ![VA Aggregator](images/va_created_va.png)
@@ -580,7 +599,6 @@ Similarly, all the details regarding [incoming transactions](https://api-docs.oy
 
 For further details regarding OY!'s extensive VA Aggregator capabilities and endpoints, please refer to the [OY! API Documentation](https://api-docs.oyindonesia.com/#va-aggregator).
 
-## FAQ (Virtual Account) (coming soon)
 
 # Payment Checkouts/Invoice 
 
@@ -599,7 +617,7 @@ One link can be used many times without repeating declaration.
 
 **_3. Amount and Payment Method Customization_** 
 
-You can customize the amount to be billed to your user whether they have to pay a fix amount (closed amount) or any amount (open amount). We provide Bank Transfers, Credit Card, Debit Card, and QR code payment methods that you can also enable/disable at any time.
+You can customize the amount to be billed to your users whether they have to pay a fix amount (closed amount) or any amount (open amount). We provide Bank Transfers, Credit Card, Debit Card, and QR code payment methods that you can also enable/disable at any time.
 
 **_4. Check Incoming Transactions Status and Callback_** 
 
@@ -643,7 +661,9 @@ For all incoming payments, you will receive notifications regarding your transac
 
 ### Enjoy the quality services of our product!
 
-Whether you send your user a pre-generated link or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through our OY! Dashboard. You will be able to see the details of the payment checkout including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status. 
+Whether you send your user a pre-generated link or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through our OY! Dashboard. 
+
+You will be able to see the details of the payment checkout including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status. 
 
 ![Payment Checkout](images/payment_checkout_list.png)
 
@@ -659,7 +679,7 @@ Whether you send your user a pre-generated link or an API-generated encapsulated
 
 * Provide an IP to be whitelisted (for API Payment Checkout/Invoice) and callback link to our business team 
 
-* For link: once your account is approved, you can access it via [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). Please refer to the [how to use](https://docs.oyindonesia.com/#how-to-use-payment-checkout-via-link) section for further information. 
+* For link: once your account is approved, you can access it via [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). Step by step instructions can be found [here](https://docs.oyindonesia.com/#how-to-use-payment-checkout-via-link).
 
 
 * For API: 
@@ -672,7 +692,9 @@ Whether you send your user a pre-generated link or an API-generated encapsulated
 
 ## How to Use Payment Checkout via Link
 
-**1. Access your payment link and input amount**: Access our pre-generated link unique to your account by simply replacing yourusername with your username approved with OY at [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). Our payment link includes parameters that are easily adjustable according to your needs. You can send the link to your customer at any point within this process. 
+*Note:* Our payment link includes parameters that are easily adjustable according to your needs. You can send the link to your customer at any point within this process. 
+
+**1. Access your payment link and input amount**: Access our pre-generated link unique to your account by simply replacing yourusername with your username approved with OY at [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). 
 
 By default, payment checkout via link declaration will be expired within 24 hours.
 
@@ -739,9 +761,10 @@ curl -X POST \
     }'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes in the documentation. Otherwise, below is the sample of response parameters that will be returned:
+> Below is the sample response parameters that will be returned:
 
 ```json
+{
     "success": true,
     "url": "https://pay.oyindonesia.com/id",
     "message": "success",
@@ -749,6 +772,8 @@ curl -X POST \
     "payment_link_id": "id"
 }
 ```
+
+>
 
 Send us instructions to generate a [payment checkout invoice link](https://api-docs.oyindonesia.com/#api-create-invoicing). 
 
@@ -799,9 +824,11 @@ url -X POST \
 }
 ```
 
+>
+
 Send us instructions to generate a [recurring payment checkout invoice link](https://api-docs.oyindonesia.com/#api-create-recurring-invoice-coming-soon). 
 
-> Below is an example of a request body to execute your request: tbd
+> Below is an example of a request body to execute your request: coming soon
 
 An endpoint to retrieve and/or re-send the latest [callback status](https://api-docs.oyindonesia.com/#api-payment-status) of a transaction is also available and can be accessed at anytime.
 
@@ -811,7 +838,7 @@ An endpoint to retrieve and/or re-send the latest [callback status](https://api-
 curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner_tx_id=OY123456&send_callback=false' -H 'x-oy-username:yourusername' -H ' x-api-key:yourapikey'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes in the documentation. Otherwise, below is the sample of response parameters that will be returned:
+> Below is the sample response parameters that will be returned:
 
 ```json
 {
@@ -829,6 +856,8 @@ curl -X GET 'https://partner.oyindonesia.com/api/payment-checkout/status?partner
 }
 ```
 
+>
+
 An endpoint to check your [payment or invoice data](https://api-docs.oyindonesia.com/#api-get) is also available and can be accessed at anytime.
 
 > Below is an example of a request body to execute your request: 
@@ -840,7 +869,8 @@ curl -X GET \
   -H 'X-Api-key: apikeymu' -H 'X-Oy-Username: yourusername'
 ```
 
-> It will return an error message if the request is not valid based on the error response codes in the documentation. Otherwise, below is the sample of response parameters that will be returned:
+> Below is the sample response parameters that will be returned:
+
 
 ```json 
 {
@@ -879,6 +909,8 @@ curl -X GET \
 }
 ```
 
+>
+
 Lastly, we provide an endpoint to [delete your payment or invoice link](https://api-docs.oyindonesia.com/#api-delete) based on `payment_link_id` or `partner_tx_id`. The payment or invoice link must still be active and a payment method must not have been selected.
 
 > Below is an example of a request body to execute your request: 
@@ -898,6 +930,8 @@ curl -X DELETE \
     "message" : "success delete payment checkout data"
 }
 ```
+
+>
 
 Just like the Payment Checkout via Link, you can access all your payment checkout links and its details from the OY! dashboard. This report will include all payment checkout links generated both via Link and API.
 
@@ -937,3 +971,13 @@ No, we are available 24/7 including holidays.
 **Is there a maximum transaction volume and transaction amount in a day?**
 
 There are no daily limits of how many bulk campaigns can be created and executed. There is also no limit to the number of total transactions per disbursement campaign. 
+
+**How many recipient emails can I send the transaction notification to?**
+
+You can send up to 5 emails per transactions with a limit of 255 characters total. For each transaction, simply list out the email recipients. 
+
+**[Bulk Disburse Specific] What if the recipient name on the xlsx or CSV file is different from the bank account name? What is the phone number used for?**
+
+As long as the bank account number is valid and not dormant, the transaction will still be executed. 
+
+The name and phone number are visible only to the partner and is used for the partner’s own documentation. The name and phone number listed are not used by OY or sent to the recipient. 
