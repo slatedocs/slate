@@ -116,14 +116,44 @@ Retrieve a role binding and all its info in a given [environment](#administratio
 
 Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
-<!-------------------- DELETE ROLE BINDING -------------------->
+<!-------------------- CREATE ROLE BINDING -------------------->
 
-#### Delete a role binding
+#### Create a role binding
 
 ```shell
-curl -X DELETE \
-   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/rolebindings/default-token-xxxmt/default"
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/rolebindings"
+  Content-Type: application/json
+  {
+    "kind": "Rolebinding",
+    "metadata": {
+        "name": "rolebinding-name",
+        "namespace": "namespace-name"
+    },
+    "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "role-name"
+    },
+    "subjects": [
+        {
+            "kind": "ServiceAccount",
+            "name": "service-account-name",
+            "namespace": "service-account-namespace"
+        },
+        {
+            "kind": "Group",
+            "name": "group-name",
+            "namespace": "group-namespace"
+        },
+        {
+            "kind": "User",
+            "name": "user-name",
+        }
+
+    ]
+  }
 ```
 
 > The above command returns a JSON structured like this:
@@ -135,11 +165,21 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/rolebindings/:id</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/rolebindings</code>
 
-Delete a role binding from a given [environment](#administration-environments).
+Create a role binding in a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                          |
-| -------------------------- | ----------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the delete role binding task. |
-| `taskStatus` <br/>_string_ | The status of the operation.                    |
+Required Attributes                 | &nbsp;
+----------------------------------- | ------------------------------------------------------------
+`metadata` <br/>_object_            | The metadata of the role binding.
+`metadata.name` <br/>_string_       | The name of the role binding.
+`metadata.namespace` <br/>_string_       | The namespace of the role binding.
+`roleRef`<br/>_object_                 | The role to bind. Can reference a Role in the current namespace or a ClusterRole in the global namespace.
+`subjects`<br/>_array_ | Subjects hold references to the objets the role applies to. Can be users, groups, or service accounts.
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the create role binding task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
