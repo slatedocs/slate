@@ -181,7 +181,7 @@ Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the create role binding operation. |
+| `taskId` <br/>_string_     | The id corresponding to the create role binding task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- REPLACE ROLE BINDING -------------------->
@@ -242,7 +242,6 @@ Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-<<<<<<< HEAD
 | `taskId` <br/>_string_     | The id corresponding to the replace role binding operation.|
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
@@ -266,7 +265,5 @@ Delete a role binding from a given [environment](#administration-environments).
 | -------------------------- | ----------------------------------------------- |
 | `taskId` <br/>_string_     | The id corresponding to the delete role binding task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                    |
-=======
 | `taskId` <br/>_string_     | The id corresponding to the replace role binding operation. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
->>>>>>> MC-12541: grammar changes
