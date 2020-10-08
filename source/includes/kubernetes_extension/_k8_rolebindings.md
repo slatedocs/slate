@@ -243,7 +243,7 @@ Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the replace role binding task. |
+| `taskId` <br/>_string_     | The id corresponding to the replace role binding operation. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- DELETE A ROLE BINDING -------------------->
