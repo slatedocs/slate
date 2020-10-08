@@ -194,5 +194,5 @@ Delete a roles from a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                          |
 | -------------------------- | ----------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the delete roles task. |
+| `taskId` <br/>_string_     | The id corresponding to the delete role task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                    |
