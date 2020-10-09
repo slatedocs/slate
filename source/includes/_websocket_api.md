@@ -496,12 +496,14 @@ A snapshot of all open/pending orders will be sent after subscribing a symbol. A
 All updates including snapshot will have incremental seq_id. seq_id is separate for each symbol.
 
 Any of the following events can be tracked by the reason field in this channel
+
 - fill
 - stop_update
 - stop_trigger
 - stop_cancel
 - liquidation
 - self_trade
+
 ```
 // Order update
 
