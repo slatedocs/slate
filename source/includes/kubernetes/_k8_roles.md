@@ -183,6 +183,21 @@ curl -X PUT \
         "name": "role-name",
         "namespace": "namespace-name"
     }
+    "rules": [
+      {
+         "apiGroups": [
+            ""
+         ],
+         "resources": [
+            "resource"
+         ],
+         "verbs": [
+            "get",
+            "watch",
+            "..."
+         ]
+      }
+   ]
   }
 
 > The above command returns a JSON structured like this:
