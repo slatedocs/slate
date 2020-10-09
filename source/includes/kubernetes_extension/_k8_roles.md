@@ -209,7 +209,7 @@ Return value:
 
 | Attributes                 | &nbsp;                                       |
 | -------------------------- | -------------------------------------------- |
-| `taskId` <br/>_string_     | The id corresponding to the update role task. |
+| `taskId` <br/>_string_     | The id corresponding to the replace role operation. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 
