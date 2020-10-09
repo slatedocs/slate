@@ -13,12 +13,11 @@ curl -X GET \
 ```
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:id/redirect</code>
 
-Preview private objects by generating a temporary URL that provides GET access for limited time. The generated URL will expire after one hour.
+Preview both public and private objects. Previews of private objects will generate a temporary URL that provides GET access for limited time. The generated URL will expire after one hour.
 
 <aside class="notice">
-Object preview is only available for private objects. The Get URL operation is preferred for public objects.
-<br/>
-Object preview requires  <a href="https://docs.openstack.org/swift/latest/api/temporary_url_middleware.html">TempURL Middleware</a>  be configured on the cluster. At time of writing, object preview only supports <code>SHA-1</code> digests. Ensure HTTP <code>GET</code> requests and digest <code>SHA-1</code> is allowed on the cluster.
+Preview of private objects requires <a href="https://docs.openstack.org/swift/latest/api/temporary_url_middleware.html">TempURL Middleware</a> be configured on the cluster with support for HTTP <code>GET</code> requests. Currently, private object preview supports digests <code>SHA-1</code>, <code>SHA-256</code> and <code>SHA-512</code>. The most secure digest configured on the cluster will be used.
+
 <br/>
 If the secret <code>X-Account-Meta-Temp-URL-Key</code> key does not already exist, the operation will set one on the user account.
 </aside>
