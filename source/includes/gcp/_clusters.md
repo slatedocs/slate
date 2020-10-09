@@ -144,3 +144,54 @@ Attributes | &nbsp;
 `nodePoolMachineTypes` <br/> *Map<String, Integer>* | The machine type of the nodepools of the cluster, and the number of machines with that type for the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster.
+`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 
+
+
+
+<!-------------------- CREATE A CLUSTER -------------------->
+
+#### Create a cluster
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/clusters"
+```
+> Request body examples:
+
+```js
+// Create a cluster
+{
+  "name": "my-cluster",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-a",
+  "initialClusterVersion": "1.17.12-gke.500",
+  "nodePools": {
+    "initialNodeCount":"3",
+    "nodeConfig":{
+      "machineType":"e2-highcpu-16"
+    }
+  },
+  "network": "default",
+  "subnetwork": "default"
+  }
+  ```
+
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters</code>
+
+Create a new cluster.
+
+Required | &nbsp;
+------- | -----------
+`name`<br/>*string* | The display name of the cluster.
+`shortRegion`<br/>*string* | A short version of the region name.
+`shortZone`<br/>*string* | A short version of the zone name.
+`initialClusterVersion`<br/>*string* | The version of GKE used for this cluster.
+`initialNodeCount` <br/>*string* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
+`nodeType`<br/>*string* | The machine types of the nodes in the default node pool of this cluster.
+`network`<br/>*string* | The network that the Kubernetes cluster is in.
+`subnetwork`<br/>*string* | Subnetwork to which the cluster will belong. The subnetwork specified must belong the network specified.
+
