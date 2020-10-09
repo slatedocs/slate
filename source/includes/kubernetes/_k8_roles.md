@@ -169,6 +169,7 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create role task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
 
+<<<<<<< HEAD
 <!-------------------- REPLACE ROLE -------------------->
 
 #### Replace a role
@@ -184,6 +185,16 @@ curl -X PUT \
         "namespace": "namespace-name"
     }
   }
+=======
+<!-------------------- DELETE A ROLE -------------------->
+
+#### Delete a role
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/roles/default-token-xxxmt/default"
+>>>>>>> 5f9d830f05b3f09a2a4fd553a928946d28e0e7d3
 ```
 
 > The above command returns a JSON structured like this:
@@ -195,6 +206,7 @@ curl -X PUT \
 }
 ```
 
+<<<<<<< HEAD
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/roles/:id?cluster_id=:cluster_id</code>
 
 Replace a role in a given [environment](#administration-environments).
@@ -211,3 +223,13 @@ Return value:
 | -------------------------- | -------------------------------------------- |
 | `taskId` <br/>_string_     | The id corresponding to the update role task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
+=======
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/roles/:id</code>
+
+Delete a roles from a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                          |
+| -------------------------- | ----------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete role task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                    |
+>>>>>>> 5f9d830f05b3f09a2a4fd553a928946d28e0e7d3

@@ -184,7 +184,7 @@ curl -X PUT \
         "namespace": "namespace-name"
     }
   }
-```
+  ```
 
 > The above command returns a JSON structured like this:
 
@@ -211,3 +211,36 @@ Return value:
 | -------------------------- | -------------------------------------------- |
 | `taskId` <br/>_string_     | The id corresponding to the update role task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                 |
+
+
+<!-------------------- DELETE ROLE -------------------->
+
+##### Delete a role
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/roles/default-token-xxxmt/default?cluster_id=a_cluster_id"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/roles/:id?cluster_id=:cluster_id</code>
+
+Delete a role from a given [environment](#administration-environments).
+
+| Required                   | &nbsp;                                               |
+| -------------------------- | ---------------------------------------------------- |
+| `cluster_id` <br/>_string_ | The id of the cluster in which to delete the role. |
+
+| Attributes                 | &nbsp;                                          |
+| -------------------------- | ----------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the delete role task. |
+| `taskStatus` <br/>_string_ | The status of the operation.                    |
