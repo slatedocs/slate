@@ -475,6 +475,8 @@ Channel provides updates for change in position. Need to pass list of product sy
 // Position update
 {
     "type": "positions",
+    "action": "",                       // "create"/"update"/"delete"
+    "reason": "",                       // null, "auto_topup"
     "symbol": "BTCUSD_29Mar",           // Product Symbol
     "product_id": 1,                    // Product ID
     "size": -100,                       // Position size, if > 0 -> long else short
@@ -493,15 +495,20 @@ A snapshot of all open/pending orders will be sent after subscribing a symbol. A
 
 All updates including snapshot will have incremental seq_id. seq_id is separate for each symbol.
 
-
+Any of the following events can be tracked by the reason field in this channel
+- fill
+- stop_update
+- stop_trigger
+- stop_cancel
+- liquidation
+- self_trade
 ```
 // Order update
-type: "orders",
-      timestamp: System.system_time(:microsecond)
+
 {
     "type": "orders",
     "action": "create",                 // "create"/"update"/"delete"
-    "reason": "",                       // ""/"fill"/"stop_update"/"stop_trigger"/"stop_cancel"
+    "reason": "",                       // "fill"/"stop_update"/"stop_trigger"/"stop_cancel"/"liquidation"/"self_trade"/null
     "symbol": "BTCUSD_29Mar",           // Product Symbol
     "product_id": 1,                    // Product ID
     "order_id": 1234                    // Order id
@@ -516,15 +523,11 @@ type: "orders",
     "state": "open"                     // "open"/"pending"/"closed"/"cancelled"
     "seq_no": 1                         // Incremental sequence number
     "timestamp": 1594105083998848       // Unix timestamp in microseconds
-}
-
-// Stop Order or Bracket orders will include these extra fields, refer bracket order documentation for more details
-{  
-    "stop_price": "9010.00"                     
-    "trigger_price_max_or_min": "9020.00"
+    "stop_price": "9010.00"                             // stop_price of stop order        
+    "trigger_price_max_or_min": "9020.00"               // for trailing stop orders
     "bracket_stop_loss_price": "8090.00"
     "bracket_stop_loss_limit_price": "8090.00"
-    "bracket_take_profit_price": "9020"
+    "bracket_take_profit_price": "9020"      
     "bracket_take_profit_limit_price": "9020"
     "bracket_trail_amount": "10.00"
 }
@@ -565,11 +568,11 @@ Channel provides updates for fills. Need to pass list of product symbols while s
 
 All updates will have incremental seq_id. seq_id is separate for each symbol.
 
+Auto Deleverage Liquidations of a position can be tracked by reason: "adl" in the user_trades channel.
 
 ```
 // user_trades
 {
-    
     "symbol": "BNBBTC_30Nov",
     "fill_id": "1234-abcd-qwer-3456",
     "reason": "normal"                      // "normal" or "adl"
