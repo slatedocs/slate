@@ -12469,7 +12469,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
@@ -13078,7 +13078,7 @@ Returns the complete updated task record.
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
@@ -14244,7 +14244,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
 |»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
@@ -22512,7 +22512,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |dependents<span class="param-type"> [object]</span>|[Opt In](/docs/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
 |due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
 |» data<span class="param-type"> string</span>|none|
