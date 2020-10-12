@@ -4537,12 +4537,12 @@ paths:
 
           *Note when using curl:*
 
-          Be sure to add an `‘@’` before the file path, and use the `—form`
+          Be sure to add an `‘@’` before the file path, and use the `--form`
           option instead of the `-d` option.
 
           When uploading PDFs with curl, force the content-type to be pdf by
-          appending the content type to the file path: `—form
-          “file=@file.pdf;type=application/pdf”`.
+          appending the content type to the file path: `--form
+          "file=@file.pdf;type=application/pdf"`.
         required: true
         content:
           multipart/form-data:

@@ -380,8 +380,8 @@ Returns the compact records for all attachments on the task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Content-Type: multipart/form-data' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -508,12 +508,12 @@ in order for the server to reliably and properly handle the request.
 
 *Note when using curl:*
 
-Be sure to add an `‘@’` before the file path, and use the `—form`
+Be sure to add an `‘@’` before the file path, and use the `--form`
 option instead of the `-d` option.
 
 When uploading PDFs with curl, force the content-type to be pdf by
-appending the content type to the file path: `—form
-“file=@file.pdf;type=application/pdf”`.
+appending the content type to the file path: `--form
+"file=@file.pdf;type=application/pdf"`.
 
 <h3 id="upload-an-attachment-responses">Responses</h3>
 
@@ -590,8 +590,8 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 curl -X POST https://app.asana.com/api/1.0/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -600,7 +600,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.batchAPI.createBatchRequest({field: "value", field: "value", pretty: true})
+client.batchapi.createBatchRequest({field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -852,8 +852,8 @@ Custom Fields are a complex feature of the Asana platform, and their access in t
 curl -X POST https://app.asana.com/api/1.0/custom_fields \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -862,7 +862,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.createCustomField({field: "value", field: "value", pretty: true})
+client.customfields.createCustomField({field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1075,7 +1075,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.getCustomField(customFieldGid, {param: "value", param: "value", opt_pretty: true})
+client.customfields.getCustomField(customFieldGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1207,8 +1207,8 @@ type-specific custom field definitions.
 curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -1217,7 +1217,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.updateCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+client.customfields.updateCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1426,7 +1426,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.deleteCustomField(customFieldGid)
+client.customfields.deleteCustomField(customFieldGid)
     .then((result) => {
         console.log(result);
     });
@@ -1536,7 +1536,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.getCustomFieldsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+client.customfields.getCustomFieldsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1665,8 +1665,8 @@ Returns a list of the compact representation of all of the custom fields in a wo
 curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -1675,7 +1675,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.createEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+client.customfields.createEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1800,8 +1800,8 @@ Returns the full record of the newly created enum option.
 curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -1810,7 +1810,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.insertEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
+client.customfields.insertEnumOptionForCustomField(customFieldGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -1928,8 +1928,8 @@ Locked custom fields can only be reordered by the user who locked the field.
 curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -1938,7 +1938,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFields.updateEnumOption(enumOptionGid, {field: "value", field: "value", pretty: true})
+client.customfields.updateEnumOption(enumOptionGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2083,7 +2083,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFieldSettings.getCustomFieldSettingsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+client.customfieldsettings.getCustomFieldSettingsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2235,7 +2235,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.customFieldSettings.getCustomFieldSettingsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+client.customfieldsettings.getCustomFieldSettingsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2715,8 +2715,8 @@ To export an Organization using this API:
 curl -X POST https://app.asana.com/api/1.0/organization_exports \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -2725,7 +2725,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.organizationExports.createOrganizationExport({field: "value", field: "value", pretty: true})
+client.organizationexports.createOrganizationExport({field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -2878,7 +2878,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.organizationExports.getOrganizationExport(organizationExportGid, {param: "value", param: "value", opt_pretty: true})
+client.organizationexports.getOrganizationExport(organizationExportGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -3131,8 +3131,8 @@ Returns a list of the portfolios in compact representation that are owned by the
 curl -X POST https://app.asana.com/api/1.0/portfolios \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -3549,8 +3549,8 @@ Returns the complete portfolio record for a single portfolio.
 curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -4003,8 +4003,8 @@ Get a list of the items in compact form in a portfolio.
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -4133,8 +4133,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -4259,8 +4259,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -4389,8 +4389,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -4513,8 +4513,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -4639,8 +4639,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -4787,7 +4787,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.portfolioMemberships.getPortfolioMemberships({param: "value", param: "value", opt_pretty: true})
+client.portfoliomemberships.getPortfolioMemberships({param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4906,7 +4906,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.portfolioMemberships.getPortfolioMembership(portfolioMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.portfoliomemberships.getPortfolioMembership(portfolioMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -5019,7 +5019,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.portfolioMemberships.getPortfolioMembershipsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
+client.portfoliomemberships.getPortfolioMembershipsForPortfolio(portfolioGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -5257,8 +5257,8 @@ Returns the compact project records for some filtered set of projects. Use one o
 curl -X POST https://app.asana.com/api/1.0/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -5760,8 +5760,8 @@ Returns the complete project record for a single project.
 curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -6179,8 +6179,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -6560,8 +6560,8 @@ Returns the compact project records for all projects in the team.
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -6971,8 +6971,8 @@ Returns the compact project records for all projects in the workspace.
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -7276,8 +7276,8 @@ Returns the full record of the newly created project.
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -7446,8 +7446,8 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -7697,8 +7697,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -7823,8 +7823,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeMembers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -7949,8 +7949,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -8075,8 +8075,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -8223,7 +8223,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectMemberships.getProjectMembership(projectMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.projectmemberships.getProjectMembership(projectMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8337,7 +8337,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectMemberships.getProjectMembershipsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+client.projectmemberships.getProjectMembershipsForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8466,7 +8466,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectStatuses.getProjectStatus(projectStatusGid, {param: "value", param: "value", opt_pretty: true})
+client.projectstatuses.getProjectStatus(projectStatusGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8585,7 +8585,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectStatuses.deleteProjectStatus(projectStatusGid)
+client.projectstatuses.deleteProjectStatus(projectStatusGid)
     .then((result) => {
         console.log(result);
     });
@@ -8695,7 +8695,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectStatuses.getProjectStatusesForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
+client.projectstatuses.getProjectStatusesForProject(projectGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -8795,8 +8795,8 @@ Returns the compact project status update records for all updates on the project
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -8805,7 +8805,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.projectStatuses.createProjectStatusForProject(projectGid, {field: "value", field: "value", pretty: true})
+client.projectstatuses.createProjectStatusForProject(projectGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -9093,8 +9093,8 @@ Returns the complete record for a single section.
 curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -9465,8 +9465,8 @@ Returns the compact records for all sections in the specified project.
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -9606,8 +9606,8 @@ Returns the full record of the newly created section.
 curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -9739,8 +9739,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -10163,8 +10163,8 @@ Returns the full record for a single story.
 curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -10684,8 +10684,8 @@ Returns the compact records for all stories on the task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -11108,8 +11108,8 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 curl -X POST https://app.asana.com/api/1.0/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -11400,8 +11400,8 @@ Returns the complete tag record for a single tag.
 ```shell
 curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -11860,8 +11860,8 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -12185,8 +12185,8 @@ include assigning, renaming, completing, and adding stories.*
 curl -X POST https://app.asana.com/api/1.0/tasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -12792,8 +12792,8 @@ Returns the complete task record for a single task.
 curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -13266,8 +13266,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -13966,8 +13966,8 @@ Returns a compact representation of all of the subtasks of a task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -14319,8 +14319,8 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -14697,8 +14697,8 @@ Returns the compact representations of all of the dependencies of a task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -14825,8 +14825,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15063,8 +15063,8 @@ Returns the compact representations of all of the dependents of a task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15189,8 +15189,8 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15319,8 +15319,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15463,8 +15463,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15591,8 +15591,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15716,8 +15716,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15841,8 +15841,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -15971,8 +15971,8 @@ Status Code **200**
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -16652,8 +16652,8 @@ Returns the compact records for all teams to which the given user is assigned.
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -16788,8 +16788,8 @@ The user making this call must be a member of the team in order to add others. T
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -16935,7 +16935,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teamMemberships.getTeamMembership(teamMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.teammemberships.getTeamMembership(teamMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -17049,7 +17049,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teamMemberships.getTeamMemberships({param: "value", param: "value", opt_pretty: true})
+client.teammemberships.getTeamMemberships({param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -17169,7 +17169,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teamMemberships.getTeamMembershipsForTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
+client.teammemberships.getTeamMembershipsForTeam(teamGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -17287,7 +17287,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teamMemberships.getTeamMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+client.teammemberships.getTeamMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -18176,7 +18176,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.userTaskLists.getUserTaskList(userTaskListGid, {param: "value", param: "value", opt_pretty: true})
+client.usertasklists.getUserTaskList(userTaskListGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -18290,7 +18290,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.userTaskLists.getUserTaskListForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+client.usertasklists.getUserTaskListForUser(userGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -18610,8 +18610,8 @@ Get the compact representation of all webhooks your app has registered for the a
 curl -X POST https://app.asana.com/api/1.0/webhooks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -19292,8 +19292,8 @@ Returns the full workspace record for a single workspace.
 curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -19419,8 +19419,8 @@ Returns the complete, updated workspace record.
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -19556,8 +19556,8 @@ The user can be referenced by their globally unique user ID or their email addre
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-  -d '{"field":"value","field":"value"}'
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
 
 ```
 
@@ -19705,7 +19705,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.workspaceMemberships.getWorkspaceMembership(workspaceMembershipGid, {param: "value", param: "value", opt_pretty: true})
+client.workspacememberships.getWorkspaceMembership(workspaceMembershipGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -19836,7 +19836,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.workspaceMemberships.getWorkspaceMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
+client.workspacememberships.getWorkspaceMembershipsForUser(userGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -19953,7 +19953,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.workspaceMemberships.getWorkspaceMembershipsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+client.workspacememberships.getWorkspaceMembershipsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
