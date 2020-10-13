@@ -1625,3 +1625,395 @@ Parameter | Required | Type    | Default | Description
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
 callback_url | true | string | | The endpoint Snappy will send POST request
+
+# Request
+
+## Request Category
+
+Category | Translate | Sample Changes | Sample Updates
+-----| ------------------ | ------ | -------
+`request_delivering`| Yêu cầu giao hàng | null | null
+`request_pickup`| Yêu cầu lấy hàng | null | null
+`request_return`| Yêu cầu trả hàng | null | null
+`update_cod`| Đổi COD vận đơn | { cod: 100000 } | { key: "Tiền COD", old: "0 ₫", new: "100000 ₫" }
+`update_phone_number`| Đổi tên, số điện thoại hoặc thêm số điện thoại Người nhận | { name: "hoàng sơn", phone_number: "0999999999" } | { key: "Thông tin người nhận", old: "Phạm thị hậu 0888888888", new: "hoàng sơn 0999999999" }
+`update_receiver_address`| Đổi địa chỉ giao hàng | { address: "123 chinh kinh nhan chinh", receiver_district_id: "10111", receiver_commune_id: "1011101", full_address: "123 chinh kinh nhan chinh Phường Nhân Chính Quận Thanh Xuân Hà Nội" } | { key: "Địa chỉ giao hàng", old: "Số 24 ngõ 1 ngách 1 Lý Tự Trọng Phường - Phường La Khê, Quận Hà Đông, Hà Nội", new: "123 chinh kinh nhan chinh Phường Nhân Chính Quận Thanh Xuân Hà Nội" }
+`update_pickup_address`| Đổi thông tin điểm lấy | { business_address_id: "9c538687-71b5-453e-8cd0-b2c9b380e4af" } | { key: "Điểm lấy hàng", old: "58 Tố Hữu, Phường Kim Mã, Quận Ba Đình, Hà Nội", new: "kho hang moi moi - dia chi moi moii - Phường Đội Cấn, Quận Ba Đình, Hà Nội" }
+`other`| Khác | null | null
+`complain_attitude` | Thái độ của Nhân viên Snappy | null | null
+`complain_lost` | Hàng thất lạc, giao thiếu, giao nhầm | null | null
+`complain_break` | Hàng hỏng, vỡ | null | null
+`complain_cod` | Thu sai tiền thu hộ | null | null
+`complain_wrong_payment` | Đối soát thiếu tiền | null | null
+`complain_delay_payment` | Chưa nhận được tiền chuyển khoản | null | null
+
+<aside class="notice">
+Please note that <code>changes</code> and <code>updates</code> is important to help us identify exactly update tracking information
+</aside>
+
+## Request Tag
+
+Tag | Translate
+-----| ------------------
+`1`| GẤP
+`2`| Quan trọng
+
+## Create Request
+
+```http
+POST /snappy/request?access_token=<access_token> HTTP/1.1
+```
+> Sample params
+
+```json
+{
+    "access_token": "eyJ1aWQiOiIxNGQ0YTFhMS1lYTQyLTQxNjQtODA1ZC1lMjQwZjI1NjFmNzEiLCJpYXQiOj",
+    "tracking_id": "S00037457"
+    "category": "request_delivering",
+    "reason": "Giao lại giúp mình vào ngày mai nhé",
+    "changes": null,
+    "updates": null,
+    "delivery_date": "2020-10-20",
+    "tag": 1
+}
+```
+
+> Response if success
+
+```json
+{
+    "message": "Gửi yêu cầu hỗ trợ thành công",
+    "request": {
+        "business": {
+            "hotlines": "0111111111, 0222222222",
+            "id": 1,
+            "name": "Snappy",
+            "phone_number": "0999999999"
+        },
+        "business_id": 1,
+        "category_vi": "Yêu cầu giao lại/ lấy/ trả hàng",
+        "changes": null,
+        "creator": {
+            "avatar_url": null,
+            "email": "sonhgc00016@gmail.com",
+            "fb_id": "1361232487260479",
+            "id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+            "name": "Hoàng Sơn",
+            "phone_number": "+84999999999"
+        },
+        "creator_id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+        "delivery_date": "2020-10-20",
+        "department": -1,
+        "editor": null,
+        "editor_id": null,
+        "handle_time": null,
+        "handler": null,
+        "handler_id": null,
+        "id": 103,
+        "inserted_at": "2020-10-13T23:08:57",
+        "is_shop_recently_updated": null,
+        "last_message": {
+            "creator": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "fb_id": "1361232487260479",
+                "id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                "name": "Hoàng Sơn",
+                "phone_number": "+84999999999"
+            },
+            "creator_id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+            "delivery_date": "2020-10-20",
+            "id": "c31301c1-fadf-4a2e-80bc-262424e289fe",
+            "inserted_at": "2020-10-13T23:08:57",
+            "is_mod": null,
+            "message": "Giao lại giúp mình vào ngày mai nhé",
+            "request_id": 103
+        },
+        "last_shop_message": {
+            "counter": 1,
+            "creator": {
+                "avatar_url": null,
+                "email": "sonhgc00016@gmail.com",
+                "id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                "name": "Hoàng Sơn",
+                "phone_number": "+84999999999"
+            },
+            "creator_id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+            "delivery_date": "2020-10-20",
+            "id": "c31301c1-fadf-4a2e-80bc-262424e289fe",
+            "inserted_at": "2020-10-13T23:08:57",
+            "is_mod": null,
+            "message": "Giao lại giúp mình vào ngày mai nhé",
+            "request_id": 103
+        },
+        "last_sny_message": null,
+        "rate": null,
+        "rate_note": null,
+        "reason": "Giao lại giúp mình vào ngày mai nhé",
+        "status": 1,
+        "sub_category_vi": "Yêu cầu giao hàng",
+        "tags": [
+            0,
+            1
+        ],
+        "tracking": {
+            "from": {
+                "address": "58 Tố Hữu",
+                "commune_id": "1010111",
+                "district_id": "10101",
+                "full_address": "58 Tố Hữu, Phường Kim Mã, Quận Ba Đình, Hà Nội",
+                "id": "f1e378e9-47d3-494e-960d-cbcebd34d424",
+                "name": "One piece",
+                "phone_number": "0988123789",
+                "province_id": "101",
+                "real_address": null,
+                "return_address": null
+            },
+            "services": {
+                "cod": 0,
+                "cod_cost": 0,
+                "cod_service": {
+                    "amount": 0,
+                    "cost": 0,
+                    "is_save_log_cod": false,
+                    "use_cod": false
+                },
+                "delivery_note": "",
+                "discount": {
+                    "department": "HN",
+                    "shipping_cost_suburban_lt_5000": 22000
+                },
+                "error": null,
+                "insurance_cost": 0,
+                "is_allow_checking_good": true,
+                "is_allow_try_out": true,
+                "is_confirm_returned": false,
+                "is_exchange": false,
+                "is_new_customer": false,
+                "is_receiver_pay": false,
+                "is_save_log_insurance_cost": false,
+                "is_save_log_return": false,
+                "is_save_log_shipping_cost": false,
+                "is_save_log_shipping_cost_of_shop": false,
+                "name": "express",
+                "name_vi": "Chuyển phát nhanh",
+                "pickup_note": "",
+                "receiver_district_id": "10125",
+                "shipping_cost": 22000,
+                "shipping_cost_of_shop": 0,
+                "shop_note": "",
+                "value": 0
+            },
+            "to": {
+                "address": "Số 2 LK6A Làng Việt Kiều Châu Âu Đường Nguyễn Văn Lộc Phường",
+                "commune_id": "1012503",
+                "district_id": "10125",
+                "full_address": "Số 2 LK6A Làng Việt Kiều Châu Âu Đường Nguyễn Văn Lộc Phường - Phường Mộ Lao, Quận Hà Đông, Hà Nội",
+                "id": null,
+                "name": "Trần Mai Hằng",
+                "phone_number": "0999999999",
+                "province_id": "101",
+                "real_address": null,
+                "return_address": null
+            }
+        },
+        "tracking_id": "S00037442",
+        "unread_count": 0,
+        "updated_at": "2020-10-13T23:08:57",
+        "updates": null
+    },
+    "success": true
+}
+```
+
+This endpoint create an unique webhook callback url into your business.
+
+### HTTP Request
+
+`PUT /snappy/businesses/<business_id>/webhook`
+
+### URL Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+tracking_id | true | string | | tracking id of a tracking
+category | true | string | | Category of request. Get in [Request Category](#request-category)
+reason | true | string | | Reason of request
+delivery_date | false | string | | delivery date of request category `request_delivering`
+tag | false | integer | | Tag of request. Get in [Request Tag](#request-tag)
+changes | true | map | | Changes of request must have for request category `update_cod`, `update_phone_number`, `update_receiver_address` and `update_pickup_address`. Get in [Request Tag](#request-category)
+updates | true | map | | Updates of request must have for request category `update_cod`, `update_phone_number`, `update_receiver_address` and `update_pickup_address`. Get in [Request Tag](#request-category)
+
+## Get List Requests for Trackings
+
+```http
+GET /snappy/request&access_token=<access_token> HTTP/1.1
+```
+
+> Response
+
+```json
+{
+    "success": true,
+    "trackings": [
+        {
+            "id": "S00037457",
+            "requests": [
+                {
+                    "business": {
+                        "hotlines": "0111111111, 0222222222",
+                        "id": 1,
+                        "name": "Snappy",
+                        "phone_number": "0999999999"
+                    },
+                    "business_id": 1,
+                    "category_vi": "Yêu cầu giao lại/ lấy/ trả hàng",
+                    "changes": null,
+                    "creator": {
+                        "avatar_url": null,
+                        "email": "sonhgc00016@gmail.com",
+                        "fb_id": "1361232487260479",
+                        "id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                        "name": "Hoàng Sơn",
+                        "phone_number": "+84999999999",
+                    },
+                    "creator_id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                    "delivery_date": "2020-10-20",
+                    "department": -1,
+                    "editor": null,
+                    "editor_id": null,
+                    "handle_time": null,
+                    "handler": null,
+                    "handler_id": null,
+                    "id": 101,
+                    "inserted_at": "2020-10-13T22:57:59",
+                    "last_message": {
+                        "creator": {
+                            "avatar_url": null,
+                            "email": "sonhgc00016@gmail.com",
+                            "fb_id": "1361232487260479",
+                            "id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                            "name": "Hoàng Sơn",
+                            "phone_number": "+84999999999"
+                        },
+                        "creator_id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                        "delivery_date": "2020-10-20",
+                        "id": "92142d60-dff6-4544-a647-de1ca0a6eabd",
+                        "inserted_at": "2020-10-13T22:57:59",
+                        "is_mod": null,
+                        "message": "1111",
+                        "request_id": 101
+                    },
+                    "last_shop_message": {
+                        "counter": 1,
+                        "creator": {
+                            "avatar_url": null,
+                            "email": "sonhgc00016@gmail.com",
+                            "fb_id": "1361232487260479",
+                            "id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                            "name": "Hoàng Sơn",
+                            "phone_number": "+84999999999"
+                        },
+                        "creator_id": "200da0c1-da68-42ad-ad3e-455d84e4e864",
+                        "delivery_date": "2020-10-20",
+                        "id": "92142d60-dff6-4544-a647-de1ca0a6eabd",
+                        "inserted_at": "2020-10-13T22:57:59",
+                        "is_mod": null,
+                        "message": "1111",
+                        "request_id": 101
+                    },
+                    "last_sny_message": null,
+                    "rate": null,
+                    "rate_note": null,
+                    "reason": "1111",
+                    "status": 1,
+                    "sub_category_vi": "Yêu cầu giao hàng",
+                    "tags": [
+                        0
+                    ],
+                    "tracking": {
+                        "from": {
+                            "address": "58 Tố Hữu",
+                            "commune_id": "1010111",
+                            "district_id": "10101",
+                            "full_address": "58 Tố Hữu, Phường Kim Mã, Quận Ba Đình, Hà Nội",
+                            "id": "f1e378e9-47d3-494e-960d-cbcebd34d424",
+                            "name": "One piece",
+                            "phone_number": "0988123789",
+                            "province_id": "101",
+                            "real_address": null,
+                            "return_address": null
+                        },
+                        "services": {
+                            "cod": 0,
+                            "cod_cost": 0,
+                            "cod_service": {
+                                "amount": 0,
+                                "cost": 0,
+                                "is_save_log_cod": false,
+                                "use_cod": false
+                            },
+                            "delivery_note": "",
+                            "discount": {
+                                "department": "HN",
+                                "shipping_cost_suburban_lt_5000": 22000
+                            },
+                            "error": null,
+                            "insurance_cost": 0,
+                            "is_allow_checking_good": true,
+                            "is_allow_try_out": true,
+                            "is_confirm_returned": false,
+                            "is_exchange": false,
+                            "is_new_customer": false,
+                            "is_receiver_pay": false,
+                            "is_save_log_insurance_cost": false,
+                            "is_save_log_return": false,
+                            "is_save_log_shipping_cost": false,
+                            "is_save_log_shipping_cost_of_shop": false,
+                            "name": "express",
+                            "name_vi": "Chuyển phát nhanh",
+                            "pickup_note": "",
+                            "receiver_district_id": "10125",
+                            "shipping_cost": 22000,
+                            "shipping_cost_of_shop": 0,
+                            "shop_note": "",
+                            "value": 0
+                        },
+                        "to": {
+                            "address": "Chung cư xuân mai complex dương nội (toà L) Phường",
+                            "commune_id": "1012519",
+                            "district_id": "10125",
+                            "full_address": "Chung cư xuân mai complex dương nội (toà L) Phường - Phường Yên Nghĩa, Quận Hà Đông, Hà Nội",
+                            "id": null,
+                            "name": "Nguyễn thuỳ linh",
+                            "phone_number": "0999999999",
+                            "province_id": "101",
+                            "real_address": null,
+                            "return_address": null
+                        }
+                    },
+                    "tracking_id": "S00037457",
+                    "unread_count": 0,
+                    "updated_at": "2020-10-13T22:57:59",
+                    "updates": null
+                }
+            ]
+        },
+    ]
+}
+```
+
+This endpoint retrieves a specific webhook callback url into your specific business.
+
+### HTTP Request
+
+`GET /snappy/businesses/<business_id>/webhook`
+
+### URL Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+tracking_ids | true | string | | List of tracking ids separate by comma. Sample: S00037457,S00037442,S0003743

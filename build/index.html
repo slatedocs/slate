@@ -301,6 +301,23 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#request" class="toc-h1 toc-link" data-title="request">Request</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request-category" class="toc-h2 toc-link" data-title="request-category">Request Category</a>
+                  </li>
+                  <li>
+                    <a href="#request-tag" class="toc-h2 toc-link" data-title="request-tag">Request Tag</a>
+                  </li>
+                  <li>
+                    <a href="#create-request" class="toc-h2 toc-link" data-title="create-request">Create Request</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-requests-for-trackings" class="toc-h2 toc-link" data-title="get-list-requests-for-trackings">Get List Requests for Trackings</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
@@ -2426,6 +2443,542 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>string</td>
 <td></td>
 <td>The endpoint Snappy will send POST request</td>
+</tr>
+</tbody></table>
+<h1 id='request'>Request</h1><h2 id='request-category'>Request Category</h2>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Translate</th>
+<th>Sample Changes</th>
+<th>Sample Updates</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>request_delivering</code></td>
+<td>Yêu cầu giao hàng</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>request_pickup</code></td>
+<td>Yêu cầu lấy hàng</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>request_return</code></td>
+<td>Yêu cầu trả hàng</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>update_cod</code></td>
+<td>Đổi COD vận đơn</td>
+<td>{ cod: 100000 }</td>
+<td>{ key: &quot;Tiền COD&quot;, old: &quot;0 ₫&quot;, new: &quot;100000 ₫&quot; }</td>
+</tr>
+<tr>
+<td><code>update_phone_number</code></td>
+<td>Đổi tên, số điện thoại hoặc thêm số điện thoại Người nhận</td>
+<td>{ name: &quot;hoàng sơn&quot;, phone_number: &quot;0999999999&quot; }</td>
+<td>{ key: &quot;Thông tin người nhận&quot;, old: &quot;Phạm thị hậu 0888888888&quot;, new: &quot;hoàng sơn 0999999999&quot; }</td>
+</tr>
+<tr>
+<td><code>update_receiver_address</code></td>
+<td>Đổi địa chỉ giao hàng</td>
+<td>{ address: &quot;123 chinh kinh nhan chinh&quot;, receiver_district_id: &quot;10111&quot;, receiver_commune_id: &quot;1011101&quot;, full_address: &quot;123 chinh kinh nhan chinh Phường Nhân Chính Quận Thanh Xuân Hà Nội&quot; }</td>
+<td>{ key: &quot;Địa chỉ giao hàng&quot;, old: &quot;Số 24 ngõ 1 ngách 1 Lý Tự Trọng Phường - Phường La Khê, Quận Hà Đông, Hà Nội&quot;, new: &quot;123 chinh kinh nhan chinh Phường Nhân Chính Quận Thanh Xuân Hà Nội&quot; }</td>
+</tr>
+<tr>
+<td><code>update_pickup_address</code></td>
+<td>Đổi thông tin điểm lấy</td>
+<td>{ business_address_id: &quot;9c538687-71b5-453e-8cd0-b2c9b380e4af&quot; }</td>
+<td>{ key: &quot;Điểm lấy hàng&quot;, old: &quot;58 Tố Hữu, Phường Kim Mã, Quận Ba Đình, Hà Nội&quot;, new: &quot;kho hang moi moi - dia chi moi moii - Phường Đội Cấn, Quận Ba Đình, Hà Nội&quot; }</td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>Khác</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>complain_attitude</code></td>
+<td>Thái độ của Nhân viên Snappy</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>complain_lost</code></td>
+<td>Hàng thất lạc, giao thiếu, giao nhầm</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>complain_break</code></td>
+<td>Hàng hỏng, vỡ</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>complain_cod</code></td>
+<td>Thu sai tiền thu hộ</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>complain_wrong_payment</code></td>
+<td>Đối soát thiếu tiền</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>complain_delay_payment</code></td>
+<td>Chưa nhận được tiền chuyển khoản</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Please note that <code>changes</code> and <code>updates</code> is important to help us identify exactly update tracking information
+</aside>
+<h2 id='request-tag'>Request Tag</h2>
+<table><thead>
+<tr>
+<th>Tag</th>
+<th>Translate</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>1</code></td>
+<td>GẤP</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Quan trọng</td>
+</tr>
+</tbody></table>
+<h2 id='create-request'>Create Request</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/snappy/request?access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Sample params</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJ1aWQiOiIxNGQ0YTFhMS1lYTQyLTQxNjQtODA1ZC1lMjQwZjI1NjFmNzEiLCJpYXQiOj"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tracking_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S00037457"</span><span class="w">
+    </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"request_delivering"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao lại giúp mình vào ngày mai nhé"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"changes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response if success</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gửi yêu cầu hỗ trợ thành công"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"hotlines"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0111111111, 0222222222"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snappy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0999999999"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yêu cầu giao lại/ lấy/ trả hàng"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"changes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sonhgc00016@gmail.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1361232487260479"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoàng Sơn"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84999999999"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"editor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"handle_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"handler"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"handler_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T23:08:57"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_shop_recently_updated"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sonhgc00016@gmail.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1361232487260479"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoàng Sơn"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84999999999"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c31301c1-fadf-4a2e-80bc-262424e289fe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T23:08:57"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_mod"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao lại giúp mình vào ngày mai nhé"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"last_shop_message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"counter"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sonhgc00016@gmail.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoàng Sơn"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84999999999"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c31301c1-fadf-4a2e-80bc-262424e289fe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T23:08:57"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_mod"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao lại giúp mình vào ngày mai nhé"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"last_sny_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao lại giúp mình vào ngày mai nhé"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sub_category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yêu cầu giao hàng"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"tracking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58 Tố Hữu"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"commune_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010111"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10101"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"full_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58 Tố Hữu, Phường Kim Mã, Quận Ba Đình, Hà Nội"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f1e378e9-47d3-494e-960d-cbcebd34d424"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One piece"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0988123789"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"province_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"real_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"return_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"cod"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"cod_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"cod_service"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"is_save_log_cod"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"use_cod"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"delivery_note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HN"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"shipping_cost_suburban_lt_5000"</span><span class="p">:</span><span class="w"> </span><span class="mi">22000</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insurance_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_allow_checking_good"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_allow_try_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_confirm_returned"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_exchange"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_new_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_receiver_pay"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_save_log_insurance_cost"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_save_log_return"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_save_log_shipping_cost"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_save_log_shipping_cost_of_shop"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"express"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chuyển phát nhanh"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pickup_note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"receiver_district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10125"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"shipping_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">22000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"shipping_cost_of_shop"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"shop_note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Số 2 LK6A Làng Việt Kiều Châu Âu Đường Nguyễn Văn Lộc Phường"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"commune_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1012503"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10125"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"full_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Số 2 LK6A Làng Việt Kiều Châu Âu Đường Nguyễn Văn Lộc Phường - Phường Mộ Lao, Quận Hà Đông, Hà Nội"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Trần Mai Hằng"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0999999999"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"province_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"real_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"return_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tracking_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S00037442"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unread_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T23:08:57"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint create an unique webhook callback url into your business.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>PUT /snappy/businesses/&lt;business_id&gt;/webhook</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access_token</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>Your personal acess_token</td>
+</tr>
+<tr>
+<td>tracking_id</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>tracking id of a tracking</td>
+</tr>
+<tr>
+<td>category</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>Category of request. Get in <a href="#request-category">Request Category</a></td>
+</tr>
+<tr>
+<td>reason</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>Reason of request</td>
+</tr>
+<tr>
+<td>delivery_date</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>delivery date of request category <code>request_delivering</code></td>
+</tr>
+<tr>
+<td>tag</td>
+<td>false</td>
+<td>integer</td>
+<td></td>
+<td>Tag of request. Get in <a href="#request-tag">Request Tag</a></td>
+</tr>
+<tr>
+<td>changes</td>
+<td>true</td>
+<td>map</td>
+<td></td>
+<td>Changes of request must have for request category <code>update_cod</code>, <code>update_phone_number</code>, <code>update_receiver_address</code> and <code>update_pickup_address</code>. Get in <a href="#request-category">Request Tag</a></td>
+</tr>
+<tr>
+<td>updates</td>
+<td>true</td>
+<td>map</td>
+<td></td>
+<td>Updates of request must have for request category <code>update_cod</code>, <code>update_phone_number</code>, <code>update_receiver_address</code> and <code>update_pickup_address</code>. Get in <a href="#request-category">Request Tag</a></td>
+</tr>
+</tbody></table>
+<h2 id='get-list-requests-for-trackings'>Get List Requests for Trackings</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/snappy/request&amp;access_token=&lt;access_token&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"trackings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S00037457"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"hotlines"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0111111111, 0222222222"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snappy"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0999999999"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yêu cầu giao lại/ lấy/ trả hàng"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"changes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sonhgc00016@gmail.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1361232487260479"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoàng Sơn"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84999999999"</span><span class="p">,</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-20"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"editor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"editor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"handle_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"handler"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"handler_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T22:57:59"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sonhgc00016@gmail.com"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1361232487260479"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoàng Sơn"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84999999999"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-20"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92142d60-dff6-4544-a647-de1ca0a6eabd"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T22:57:59"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"is_mod"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"last_shop_message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"counter"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sonhgc00016@gmail.com"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1361232487260479"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoàng Sơn"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84999999999"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200da0c1-da68-42ad-ad3e-455d84e4e864"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-20"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92142d60-dff6-4544-a647-de1ca0a6eabd"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T22:57:59"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"is_mod"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"last_sny_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"rate_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sub_category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yêu cầu giao hàng"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="mi">0</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"tracking"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58 Tố Hữu"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"commune_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010111"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10101"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"full_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58 Tố Hữu, Phường Kim Mã, Quận Ba Đình, Hà Nội"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f1e378e9-47d3-494e-960d-cbcebd34d424"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One piece"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0988123789"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"province_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"real_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"return_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"cod"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"cod_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"cod_service"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"is_save_log_cod"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"use_cod"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"delivery_note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HN"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"shipping_cost_suburban_lt_5000"</span><span class="p">:</span><span class="w"> </span><span class="mi">22000</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insurance_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_allow_checking_good"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_allow_try_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_confirm_returned"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_exchange"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_new_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_receiver_pay"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_save_log_insurance_cost"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_save_log_return"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_save_log_shipping_cost"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"is_save_log_shipping_cost_of_shop"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"express"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"name_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chuyển phát nhanh"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"pickup_note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"receiver_district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10125"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"shipping_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">22000</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"shipping_cost_of_shop"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"shop_note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chung cư xuân mai complex dương nội (toà L) Phường"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"commune_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1012519"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10125"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"full_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chung cư xuân mai complex dương nội (toà L) Phường - Phường Yên Nghĩa, Quận Hà Đông, Hà Nội"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nguyễn thuỳ linh"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0999999999"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"province_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"real_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"return_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"tracking_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S00037457"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"unread_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-13T22:57:59"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"updates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific webhook callback url into your specific business.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET /snappy/businesses/&lt;business_id&gt;/webhook</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access_token</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>Your personal acess_token</td>
+</tr>
+<tr>
+<td>business_id</td>
+<td>true</td>
+<td>integer</td>
+<td></td>
+<td>Id of a business in list businesses. Get in api <a href="#get-all-businesses">GET /user/me</a></td>
+</tr>
+<tr>
+<td>tracking_ids</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>List of tracking ids separate by comma. Sample: S00037457,S00037442,S0003743</td>
 </tr>
 </tbody></table>
 
