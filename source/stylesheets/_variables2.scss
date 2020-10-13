@@ -107,12 +107,12 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 }
 
 %default-font {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: 'AvenirNext', Helvetica, Arial, sans-serif;
   @extend %base-font;
 }
 
 %header-font {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: 'AvenirNext', Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 
