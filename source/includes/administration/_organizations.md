@@ -25,6 +25,7 @@ curl "https://cloudmc_endpoint/v1/organizations" \
          "entryPoint": "umbrella",
          "billableStartDate": "2017-08-15T12:00:00.000Z",
          "isBillable": true,
+         "isReseller": false,
          "tags": ["a-tag"],
          "parent": {
             "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
@@ -75,6 +76,7 @@ Attributes | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
+`isReseller`<br/>*boolean* | Whether or not this organization is a reseller or not.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | The custom domain for the organization.
 
 <!-------------------- FIND ORGANIZATION -------------------->
@@ -99,6 +101,7 @@ curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c
       "entryPoint": "nintendo-us",
       "billableStartDate": "2017-08-15T12:00:00.000Z",
       "isBillable": true,
+      "isReseller": false,
       "tags": ["a-tag"],
       "parent": {
          "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
@@ -148,6 +151,7 @@ Attributes | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
+`isReseller`<br/>*boolean* | Whether or not this organization is a reseller or not.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | The custom domain for the organization.
 
 <!-------------------- CREATE ORGANIZATION -------------------->
@@ -455,3 +459,16 @@ Optional | &nbsp;
 `verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of objects containing the ids of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
 
 Returns an HTTP status code 200, with an empty response body.
+
+
+<!-------------------- MARK AS RESELLER -------------------->
+### Mark organization as reseller
+`POST /organizations/:organization_id/mark_reseller`
+
+```shell
+# Mark an organization as reseller
+curl -X POST "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/mark_reseller" \
+   -H "MC-Api-Key: your_api_key" \
+```
+
+Mark the organization as a reseller. Returns an HTTP status code 200, with an empty response body.
