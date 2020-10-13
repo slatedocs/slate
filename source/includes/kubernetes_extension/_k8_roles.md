@@ -219,6 +219,10 @@ Replace a role in a given [environment](#administration-environments).
 | `metadata` <br/>_object_            | The metadata of the role.                                     |
 | `metadata.name` <br/>_string_       | The name of the role.                                         |
 | `metadata.namespace` <br/>_string_       | The namespace of the role.                                         |
+| `metadata.namespace` <br/>_string_       | The namespace of the role.                                         |
+
+| Optional Attributes                 | &nbsp;                                                      |
+| ----------------------------------- | ----------------------------------------------------------- |
 | `rules` <br/>_array_       | The array of rules associated with this role.|
 
 Return value:
