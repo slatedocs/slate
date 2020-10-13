@@ -157,7 +157,7 @@ Create a role in a given [environment](#administration-environments).
 | Attributes                 | &nbsp;                                            |
 | -------------------------- | ------------------------------------------------- |
 | `id` <br/>_string_         | The id of the role.                          |
-| `apiVersion` <br/>_string_ | The API vsersion used to create this role.  |
+| `apiVersion` <br/>_string_ | The API version used to create this role.  |
 | `metadata.name` <br/>_string_   | The name of the role.                    |
 | `metadata.namespace` <br/>_string_   | The namespace of the role.                    |
 | `rules` <br/>_array_       | The array of rules associated with this role.|
