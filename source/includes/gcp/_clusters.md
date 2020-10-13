@@ -169,6 +169,7 @@ curl -X POST \
   "shortZone": "northamerica-northeast1-a",
   "initialClusterVersion": "1.17.12-gke.500",
   "nodePools": {
+    "name": "default-pool"
     "initialNodeCount":"3",
     "nodeConfig":{
       "machineType":"e2-highcpu-16"
