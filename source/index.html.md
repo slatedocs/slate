@@ -1830,7 +1830,7 @@ This endpoint create an unique webhook callback url into your business.
 
 ### HTTP Request
 
-`PUT /snappy/businesses/<business_id>/webhook`
+`POST /snappy/request`
 
 ### URL Parameters
 
@@ -2008,7 +2008,7 @@ This endpoint retrieves a specific webhook callback url into your specific busin
 
 ### HTTP Request
 
-`GET /snappy/businesses/<business_id>/webhook`
+`GET /snappy/request&access_token=<access_token>`
 
 ### URL Parameters
 
