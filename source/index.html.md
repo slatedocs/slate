@@ -2008,7 +2008,7 @@ This endpoint retrieves a specific webhook callback url into your specific busin
 
 ### HTTP Request
 
-`GET /snappy/request&access_token=<access_token>`
+`GET /snappy/request`
 
 ### URL Parameters
 
