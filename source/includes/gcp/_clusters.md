@@ -196,3 +196,17 @@ Required | &nbsp;
 `network`<br/>*string* | The network that the Kubernetes cluster is in.
 `subnetwork`<br/>*string* | Subnetwork to which the cluster will belong. The subnetwork specified must belong the network specified.
 
+<!-------------------- DELETE A CLUSTER -------------------->
+
+#### Delete a cluster
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/clusters/projects/cmc-test-area-ugx/locations/us-central1-c/clusters/cluster-1"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:id</code>
+
+Delete a cluster. A cluster can only be deleted if it is in RUNNING or ERROR states.
+
