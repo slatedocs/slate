@@ -1,6 +1,10 @@
 .site-header {
   height: inherit;
-  padding-top: 0;
+  padding: $size-md 0;
+
+  &__title {
+    font-weight: $font-weight-normal;
+  }
 
   nav {
     margin-left: auto;
@@ -9,13 +13,12 @@
     justify-content: space-between;
 
     a {
-      color: #70cf32;
-      font-weight: 700;
-      text-transform: uppercase;
+      color: $c-gray-2;
     }
 
     .active {
-      color: #889096;
+      color: $c-gray-1;
+      font-weight: $font-weight-bold;
     }    
   }
 

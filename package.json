@@ -14,7 +14,7 @@
     "url": "git+https://github.com/tradegecko/smaug.git"
   },
   "dependencies": {
-    "@tradegecko/styles": "git+https://github.com/tradegecko/tradegecko-assets.git",
+    "@tradegecko/styles": "git+https://github.com/tradegecko/tradegecko-assets.git#1e4fde324def5081f6b7b42addae92a60634b74c",
     "bootstrap": "^4.3.1"
   },
   "author": "",

@@ -49,11 +49,6 @@
 @import 'content';
 @import 'guides';
 
-.site-header nav a {
-  @extend %header-font;
-  font-weight: 700;
-}
-
 .btn-primary:hover {
   color: white;
 }
@@ -68,8 +63,7 @@
 
 .plain-link {
   text-decoration: none;
-  color: #70cf32;
-  font-weight: 700;
+  color: $c-green-2;
 }
 .base__body {
   overflow: visible;
@@ -94,7 +88,7 @@
   }
 }
 
-$border-base: solid 1px $gray-3;
+$border-base: solid 1px $c-gray-3;
 $base-shadow: 0px 1px 3px rgba(0, 0, 0, 0.10);
 $border-radius: 3px;
 
