@@ -1,14 +1,11 @@
 ---
-title: API Reference
+title: F1Sales API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='mailto:support@f1sales.zendesk.com'>Dúvidas, sugestões? Entre em contato</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,223 +16,110 @@ search: true
 code_clipboard: true
 ---
 
-# Introduction
+# Introdução
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Bem-vindo a API do F1Sales! Você pode usar os endpoints para inserir leads no sistema.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Autenticação
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Não é nescessário autenticação para inserir leads.
 
-# Authentication
+# Endpoint
 
-> To authorize, use this code:
+Para se comunicar com API a aplicação precisa saber o *ID da loja* que é seu subdominio, por exemplo:
 
-```ruby
-require 'kittn'
+<code>https://lojateste.f1sales.org</code>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Possui o ID <strong><code>lojateste</code></strong>.
 
-```python
-import kittn
+Endpoint da API:
 
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+<code>https://<strong>lojateste</strong>.f1lsales.org/public/api/v1/</code>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Os exemplos utilizam o endpoint da loja de Sandbox, lembre-se que em produção você tem que utilizar o ID do cliente no endpoint.
 </aside>
 
-# Kittens
+# Leads
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Inserir Leads
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl -X POST "https://sandbox.f1sales.org/public/api/v1/leads"\
+  -H "Content-Type: application/json"\
+  -H "accept: application/json"\
+  -d "
+  {
+    \"lead\":{
+      \"customer\":{
+        \"name\":\"Darth Vader\",
+        \"phone\":\"11989889988\",
+        \"email\":\"darthvader@deathstar.com\"
+      },
+      \"product\":{
+        \"name\":\"Tie Fighter\"
+      },
+      \"source\":{
+        \"name\":\"Galactic Market - Used Ships\"
+      },
+      \"message\":\"Hi, my name is vader and would like to know more about..\",
+      \"description\":\"Clicked on header banner\"
+    }
+  }"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+>  O comando acima retorna o seguinte JSON:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+  "data": {
+    "id": "5f85cb84810ac5e35cceb235",
+    "type": "leads",
+    "attributes": {
+      "created-at": "2008-09-01T10:05:01.183Z",
+      "message": "Hi, my name is vader and would like to know more about..",
+      "description": "Clicked on header banner"
+    }
   }
-]
+}
 ```
 
-This endpoint retrieves all kittens.
+Esse endpoint insere um lead.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST http://sandbox.f1sales.org/api/public/leads`
 
-### Query Parameters
+### Paremetros da Query
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parametro | Obrigatório | Tipo | Descrição
+--------- | ----------- | ---- |----------
+lead | sim | JSON | Chave raiz raiz dos leads
+customer | sim | JSON | Dados do consumidor
+product | sim | JSON | Dados do produto
+source | sim | JSON | Dados da fonte
+message | não | String | Mensagem do cliente
+description | não | String | Descrição do lead, informação adicional para o vendedor
+
+
+#### Parametros de `customer`
+Parametro | Obrigatório | Tipo | Descrição
+--------- | ----------- | ---- | ----------
+name | sim | String | Nome do insteressado
+phone | não | String | Telefone do interessado
+email | não | String | Email do interessado
+
+#### Parametros de `product`
+Parametro | Obrigatório | Tipo | Descrição
+--------- | ----------- | ---- | ----------
+name | sim | String | Nome do produto
+
+#### Parametros de `source`
+Parametro | Obrigatório | Tipo | Descrição | Observação
+--------- | ----------- | ---- | --------- | ----------
+name | sim | String | Nome da fonte | **Mantenha sempre o formato: 'Nome do portal - Categoria', ex: 'Mercado de Alderan - Seminovos'**
+
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Qualquer dúvida entre em contato! support@f1sales.zendesk.com
 </aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
