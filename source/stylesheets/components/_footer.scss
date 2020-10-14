@@ -2,7 +2,7 @@
   position: relative;
 
   .container {
-    margin-top:75px;
+    margin: 50px auto;
   }
 
   legend {
@@ -107,7 +107,7 @@ h6.corner-ribbon {
              rotate(45deg);
   text-transform: uppercase;
   font-size: 12px;
-  font-family: "open sans";
+  font-family: $font-family-body;
   font-weight: 700;
   will-change: transform;
   pointer-events: auto;

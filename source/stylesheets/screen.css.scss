@@ -58,7 +58,7 @@
 }
 
 .index-page__section {
-  margin-top: 100px;
+  margin: 30px 0;
 }
 
 .plain-link {
@@ -134,10 +134,6 @@ $border-radius: 3px;
     justify-content: inherit;
     width:100%;
     justify-content: flex-end;
-  }
-
-  .site-header {
-    padding-top: 0;
   }
 
   .site-header {
