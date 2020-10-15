@@ -25,6 +25,6 @@ platforms :mri_18 do
   gem "ruby18_source_location"
 end
 
-gem "rake", "~> 10.4.0"
+gem "rake", "~> 12.3.3"
 
 gem 'therubyracer', :platforms => :ruby
