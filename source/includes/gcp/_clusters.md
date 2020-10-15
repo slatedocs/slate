@@ -208,7 +208,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:id</code>
 
-Delete a cluster. A cluster can only be deleted if it is in RUNNING or ERROR states.
+Delete a cluster. A cluster can only be deleted if it is in RUNNING or ERROR state.
 
 > The above command returns a JSON structured like this:
 
