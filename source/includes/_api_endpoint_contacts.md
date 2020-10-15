@@ -139,6 +139,7 @@ ipAddresses|array|Array of IPs currently associated with this contact
 fields|array|Array of all contact fields with data grouped by field group. See JSON code example for format. This array includes an "all" key that includes an single level array of fieldAlias => contactValue pairs.
 tags|array|Array of tags associated with this contact. See JSON code example for format.
 utmtags|array|Array of UTM Tags associated with this contact. See JSON code example for format.
+doNotContact|array|Array of Do Not Contact objects. See JSON code example for format.
 
 ### List Contacts
 ```php
@@ -252,6 +253,13 @@ $contacts = $contactApi->getList($searchFilter, $start, $limit, $orderBy, $order
               "utmMedium": "social",
               "utmSource": "fb",
               "utmTerm": "test1"
+            }],
+            "doNotContact": [{
+                "id": 2,
+                "reason": 2,
+                "comments": "",
+                "channel": "email",
+                "channelId": null
             }]
         }
     }
