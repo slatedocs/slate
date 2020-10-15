@@ -210,3 +210,11 @@ curl -X DELETE \
 
 Delete a cluster. A cluster can only be deleted if it is in RUNNING or ERROR states.
 
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "3e4d4466-ce4b-404b-ada5-ee5a3fb76f4e",
+  "taskStatus": "PENDING"
+}
+```
