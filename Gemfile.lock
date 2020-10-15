@@ -33,7 +33,8 @@ GEM
     eventmachine (1.2.0.1)
     execjs (2.7.0)
     ffi (1.9.14)
-    haml (4.0.7)
+    haml (5.1.2)
+      temple (>= 0.8.0)
       tilt
     hike (1.2.3)
     hitimes (1.2.4)
@@ -117,6 +118,7 @@ GEM
     sprockets-sass (1.3.1)
       sprockets (~> 2.0)
       tilt (~> 1.1)
+    temple (0.8.2)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
