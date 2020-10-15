@@ -27,6 +27,10 @@ curl "https://cloudmc_endpoint/rest/product_catalogs" \
         "en": "fgsfdg",
         "fr": "sfdg"
       },
+      "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
+      },
       "changes": [],
       "description": {
         "en": "sdfg",
@@ -75,6 +79,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the product catalog.
 `name`<br/>*Object* | The name object in each language for the product catalog.
+`organization`<br/>*Object* | The organization the product catalog is scoped to.
 `description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
 `serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
@@ -131,6 +136,10 @@ curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afd
       "en": "fgsfdg",
       "fr": "sfdg"
     },
+    "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
+    },
     "changes": [],
     "description": {
       "en": "sdfg",
@@ -179,6 +188,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the product catalog.
 `name`<br/>*Object* | The name object in each language for the product catalog.
+`organization`<br/>*Object* | The organization the product catalog is scoped to.
 `description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
 `serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
@@ -236,6 +246,9 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
         "fr": "name_fr",
         "es": "name_es"
       },
+      "organization": {
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
+      },
       "description": {
         "en": "beep boop",
         "fr": "beep boop",
@@ -289,6 +302,10 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
       "en": "madeInApi",
       "fr": "madeInApi",
       "es": "madeInApi"
+    },
+    "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
     },
     "description": {
       "en": "beep boop",
@@ -344,6 +361,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
+`organization`<br/>*string* | The orgnization the product catalog is scoped to. If no organization is provided, the user's organization is used by default.
 `connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
 `categories`<br/>*Array[Object]* | The list of product categories object.
 `categories.id`<br/>*UUID* | The id of product category object. Required for each category object.
@@ -452,6 +470,10 @@ curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8
       "en": "updated_en",
       "fr": "name_fr",
       "es": "name_es"
+    },
+    "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
     },
     "description": {
       "en": "beep boop",
