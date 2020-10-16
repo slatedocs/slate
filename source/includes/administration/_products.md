@@ -13,7 +13,7 @@ Retrieves a list of product catalogs configured in the system.
 # Retrieve product catalog list
 curl "https://cloudmc_endpoint/rest/product_catalogs" \
    -H "MC-Api-Key: your_api_key"
-```s
+```
 > The above command returns a JSON structured like this:
 
 ```json
@@ -361,7 +361,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`organization`<br/>*string* | The orgnization the product catalog is scoped to. If no organization is provided, the user's organization is used by default.
+`organization`<br/>*Object* | The orgnization the product catalog is scoped to. If no organization is provided, the user's organization is used by default.
 `connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
 `categories`<br/>*Array[Object]* | The list of product categories object.
 `categories.id`<br/>*UUID* | The id of product category object. Required for each category object.
