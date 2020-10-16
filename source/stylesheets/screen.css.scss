@@ -1056,6 +1056,8 @@ section:not(.beta) {
   display: none !important;
 }
 
-hr {
-  display: none !important;
+.content {
+  hr {
+    display: none;
+  }
 }

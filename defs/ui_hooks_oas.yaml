@@ -1,0 +1,136 @@
+---
+openapi: 3.0.0
+info:
+  description: >-
+    This is the interface for handling requests from
+    [UI Hooks](https://developers.asana.com/docs/ui-hooks). This reference
+    is generated from an [OpenAPI spec]
+    (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
+  title: Asana
+  termsOfService: https://asana.com/terms
+  contact:
+    name: Asana Support
+    url: https://asana.com/support
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '0.1'
+  x-docs-schema-whitelist:
+    - AsanaResource
+    - AsanaNamedResource
+    - AttachmentResponse
+servers:
+  - url: https://app.asana.com/api/1.0
+    description: Main endpoint.
+security:
+  - personalAccessToken: []
+  - oauth2: []
+tags:
+  - name: Attachments
+    description: >-
+      An *attachment* object represents any file attached to a task in Asana,
+      whether it’s an uploaded file or one associated via a third-party service
+      such as Dropbox or Google Drive.
+components:
+  parameters:
+    fields:
+      name: opt_fields
+      in: query
+      description: >-
+        Defines fields to return.
+
+        Some requests return *compact* representations of objects in order to
+        conserve resources and complete the request more efficiently. Other times
+        requests return more information than you may need. This option allows
+        you to list the exact set of fields that the API should be sure to
+        return for the objects. The field names should be provided as paths,
+        described below.
+
+        The id of included objects will always be returned, regardless of the
+        field options.
+  responses:
+    GenericErrorResponse:
+      description: >-
+        Sadly, sometimes requests to the API are not successful. Failures can
+        occur for a wide range of reasons. In all cases, the API should return
+        an HTTP Status Code that indicates the nature of the failure,
+        with a response body in JSON format containing additional information.
+        In the event of a server error the response body will contain an error
+        phrase. These phrases are automatically generated using the
+        [node-asana-phrase
+        library](https://github.com/Asana/node-asana-phrase) and can be used by
+        Asana support to quickly look up the incident that caused the server
+        error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    AsanaResource:
+      description: >-
+        A generic Asana Resource, containing a globally unique identifier.
+      type: object
+      properties:
+        gid:
+          description: >-
+            Globally unique identifier of the resource, as a string.
+          type: string
+          readOnly: true
+          example: '12345'
+          x-insert-after: false
+        resource_type:
+          description: The base type of this resource.
+          type: string
+          readOnly: true
+          example: task
+          x-insert-after: gid
+  securitySchemes:
+    personalAccessToken:
+      type: http
+      description: >-
+        A personal access token allows access to the api for the user who
+        created it. This should be kept a secret and be treated like a
+        password.
+      scheme: bearer
+paths:
+  /attachments/{attachment_gid}:
+    parameters:
+      - $ref: '#/components/parameters/attachment_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get an attachment
+      description: Get the full record for a single attachment.
+      tags:
+        - Attachments
+      operationId: getAttachment
+      responses:
+        200:
+          description: Successfully retrieved the record for a single attachment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AttachmentResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        424:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        501:
+          $ref: '#/components/responses/BadGateway'
+        503:
+          $ref: '#/components/responses/ServiceUnavailable'
+        504:
+          $ref: '#/components/responses/GatewayTimeout'

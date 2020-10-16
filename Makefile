@@ -36,6 +36,7 @@ code_gen: java_gen node_gen php_gen ruby_gen python_gen
 docs_gen:
 	node ../widdershins/widdershins.js -e widdershins_config.json --summary defs/asana_oas.yaml -o source/includes/api-reference/_index.html.md
 	node pull_code_samples.js
+	node pull_forum_updates.js
 
 serve:
 	bundle exec middleman server
