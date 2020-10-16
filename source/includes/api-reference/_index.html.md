@@ -9950,16 +9950,16 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
     "gid": "12345",
     "resource_type": "story",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": {
+    "html_text": "<body>This is a comment.<body>",
+    "is_pinned": false,
+    "resource_subtype": "comment_added",
+    "text": "This is a comment.",
+    "assignee": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "resource_subtype": "comment_added",
-    "text": "This is a comment.",
-    "html_text": "<body>This is a comment.<body>",
-    "is_pinned": false,
-    "assignee": {
+    "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
@@ -10223,9 +10223,6 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
 ```json
 {
   "data": {
-    "created_by": {
-      "name": "Greg Sanchez"
-    },
     "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "text": "This is a comment."
@@ -10241,16 +10238,16 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
     "gid": "12345",
     "resource_type": "story",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": {
+    "html_text": "<body>This is a comment.<body>",
+    "is_pinned": false,
+    "resource_subtype": "comment_added",
+    "text": "This is a comment.",
+    "assignee": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "resource_subtype": "comment_added",
-    "text": "This is a comment.",
-    "html_text": "<body>This is a comment.<body>",
-    "is_pinned": false,
-    "assignee": {
+    "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
@@ -10427,8 +10424,6 @@ Updates the story and returns the full record for the updated story. Only commen
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The comment story to update.|
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
-|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
@@ -10744,9 +10739,6 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
 ```json
 {
   "data": {
-    "created_by": {
-      "name": "Greg Sanchez"
-    },
     "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "text": "This is a comment."
@@ -10762,16 +10754,16 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
     "gid": "12345",
     "resource_type": "story",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": {
+    "html_text": "<body>This is a comment.<body>",
+    "is_pinned": false,
+    "resource_subtype": "comment_added",
+    "text": "This is a comment.",
+    "assignee": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "resource_subtype": "comment_added",
-    "text": "This is a comment.",
-    "html_text": "<body>This is a comment.<body>",
-    "is_pinned": false,
-    "assignee": {
+    "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
@@ -10952,8 +10944,6 @@ Returns the full record for the new story added to the task.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The story to create.|
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
-|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
@@ -21850,16 +21840,16 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
   "gid": "12345",
   "resource_type": "story",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": {
+  "html_text": "<body>This is a comment.<body>",
+  "is_pinned": false,
+  "resource_subtype": "comment_added",
+  "text": "This is a comment.",
+  "assignee": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "resource_subtype": "comment_added",
-  "text": "This is a comment.",
-  "html_text": "<body>This is a comment.<body>",
-  "is_pinned": false,
-  "assignee": {
+  "created_by": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
@@ -22032,15 +22022,15 @@ A story represents an activity associated with an object in the Asana system.
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
+|is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
+|assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
-|html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
-|is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
-|assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
