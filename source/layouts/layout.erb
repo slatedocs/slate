@@ -158,7 +158,7 @@ under the License.
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
-            <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") || h1[:title].start_with?("Developer Sandbox")%>
+            <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") || h1[:title].start_with?("Developer Sandbox") || h1[:title].start_with?("Platform UI (UI Hooks)")%>
               <hr>
             <% end %>
             <a href="/docs/<%= h1[:id] %>" class="toc-h1 toc-link<% if h1[:title].start_with?("Overview") %> active<% end %>" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>

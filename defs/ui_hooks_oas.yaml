@@ -20,7 +20,7 @@ info:
     - AsanaNamedResource
     - AttachmentResponse
 servers:
-  - url: https://app.asana.com/api/1.0
+  - url: https://custom_app_server/api/1.0
     description: Main endpoint.
 security:
   - personalAccessToken: []
