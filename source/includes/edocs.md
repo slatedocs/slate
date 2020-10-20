@@ -99,3 +99,155 @@ Consulta de representación XML de los comprobantes. El ID del comprobante `id-d
 
 `GET app.datil.co/ver/<id-doc>/xml`
 
+# Envío por correo
+
+Envíe cualquier tipo de comprobantes por correo electrónico hacia la persona que va dirigada el comprobante o una lista de destinatarios.
+
+## Envío simple
+
+Envíe el comprobante al correo electrónico que está definido en el comprobante
+
+#### Operación
+
+`POST edocs/send-email/<id-doc>`
+
+#### Requerimiento
+
+Reemplaza en la ruta `<id-doc>` por el `id` del comprobante a enviar por correo.  
+
+```shell
+curl -v https://link.datil.co/edocs/send-email/<id-doc> \
+-H "Content-Type: application/json" \
+-H "X-Key: <clave-del-api>"
+
+```
+
+```python
+import requests
+cabeceras = {
+  'x-key': '<clave-del-api>',
+  'content-type': 'application/json'}
+respuesta = requests.post(
+    'https://link.datil.co/edocs/send-email/<id-factura>',
+    headers = cabeceras)
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      var client = new RestClient("https://link.datil.co/");
+      var idDocumento = "<id-doc>";
+      var request = new RestRequest("edocs/send-email/" + idDocumento, Method.POST);
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("Content-Type", "application/json");
+
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+    }
+  }
+}
+```
+
+### Respuesta
+
+Parámetro    | Tipo    | Descripción
+------------ | ------- | -----------
+id           | string  | El id del documento al cual se envío el correo.
+result       | string  | Resultado del requerimiento.
+
+## Envio a multiples receptores
+
+Envié cualquier tipo de comprobante a multiples receptores especificando los correos electrónicos de estos en el cuerpo del requerimiento en formato JSON.
+
+#### Operación
+
+`POST edocs/send-email/<id-doc>`
+
+#### Requerimiento
+
+Reemplaza en la ruta `<id-doc>` por el `id` del comprobante a enviar por correo. El cuerpo del requerimiento debe de tener una lista con los correos de los receptores del comprobante.
+
+Parámetro    | Tipo    | Descripción
+------------ | ------- | -----------
+destinatarios| lista   | Lista de los correos de los destinatarios del correo del comprobante.
+
+```shell
+curl -v https://link.datil.co/edocs/send-email/<id-doc> \
+-H "Content-Type: application/json" \
+-H "X-Key: <clave-del-api>"
+-d '{
+      "destinatarios": [
+        "juan.perez@xyz.com",
+        "joel@xyz.com"
+      ]
+    }'
+```
+
+```python
+import requests, json
+
+destinatarios = {
+  "destinatarios": [
+    "juan.perez@xyz.com",
+    "joel@xyz.com"
+  ]
+}
+cabeceras = {
+  'x-key': '<clave-del-api>',
+  'content-type': 'application/json'}
+respuesta = requests.post(
+    'https://link.datil.co/edocs/send-email/<id-factura>',
+    headers = cabeceras
+    data = json.dumps(destinatarios))
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      var client = new RestClient("https://link.datil.co/");
+      var idDocumento = "<id-doc>";
+      var request = new RestRequest("edocs/send-email" + idDocumento, Method.POST);
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("Content-Type", "application/json");
+      request.RequestFormat = DataFormat.Json;
+
+      var body = (@"{
+        ""destinatarios"": [
+          ""juan.perez@xyz.com"",
+          ""joel@xyz.com""
+        ]
+      }");
+
+      request.AddParameter("application/json", body, ParameterType.RequestBody);
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+      Console.ReadLine();
+    }
+  }
+}
+```
+
+### Respuesta
+
+Parámetro    | Tipo    | Descripción
+------------ | ------- | -----------
+id           | string  | El id del documento al cual se envío el correo.
+result       | string  | Resultado del requerimiento.
