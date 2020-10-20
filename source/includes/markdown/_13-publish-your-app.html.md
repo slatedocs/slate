@@ -19,14 +19,44 @@ To request a developer sandbox, please fill out **[this form](https://form-beta.
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
-
-
 </select>
+
 
 
 <hr>
 <section>
+# API Explorer
 
+<span class="description">
+The Asana API Explorer is a tool to easily make API requests in your browser and quickly test various routes, fields, and parameters. 
+
+The Explorer is not meant to be an exhaustive tool with every endpoint in the API (try [Postman](/using-postman) if you want a tool with complete coverage). Instead, the Explorer is designed to be a simple tool to help developers quickly access the API and see examples of requests and responses fetching real Asana data.  
+</span>
+
+### Follow these steps to get started:
+
+1. Go to the API Explorer site: <a href="https://developers.asana.com/explorer" target="_blank">https://developers.asana.com/explorer</a>
+2. Click the large button that says “Click to authorize API Explorer”. This will use your Asana credentials to provide cookie authentication for the requests you make in the explorer. Because the explorer is using your Asana account, it only allows read requests (i.e. `GET` only) to protect against unintentionally changing your Asana data.
+3. Choose the resource you wish to query from the dropdown. 
+4. In the next dropdown, choose your desired route for that resource. 
+5. Select any fields you would like to include. 
+6. The default response limit is 10. You can increase it up to 100.
+7. Add the required “Attribute parameters” for your selected request (note that task and project gids can be found in the URLs when viewing those resources in the Asana web product). 
+8. In subsequent requests, you may have a pagination token to paste into the “Offset” field.
+9. You have the option to include additional parameters in your request.
+10. Click “submit” to send your request to the API. You will receive a JSON pretty formatted response.   
+
+
+<div>
+  <div class="docs-developer-satisfaction-content">
+      <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
+  </div>
+</div>
+</section>
+
+
+<hr>
+<section>
 # Submit your App
 
 <span class="description">
@@ -58,6 +88,6 @@ We expect existing apps to maintain the same level of user experience that they 
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
-
 </section>
+
 </section>

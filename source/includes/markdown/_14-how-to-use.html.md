@@ -186,7 +186,7 @@ Asana has [client libraries](/docs/official-client-libraries) in several popular
 </blockquote>
 
 <span class="description">
-You can quickly get started on Asana's API with the [API Explorer](/explorer). However, if you want a more robust experience hitting the API, we recommend using Postman. You can get started with the 'Run in Postman' button!
+You can quickly get started on Asana's API with the [API Explorer](/docs/api-explorer). However, if you want a more robust experience hitting the API, we recommend using Postman. You can get started with the 'Run in Postman' button!
 </span>
 
 Once you have the collection, you should [create an environment](https://learning.getpostman.com/docs/postman/environments_and_globals/manage_environments/).
