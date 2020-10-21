@@ -39,13 +39,11 @@ Only users with superuser role can call this endpoint.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/initialize/`
+`https://example.procurify.com/api/v3/integrations/netsuite/initialize/`
 
 ### HTTP Response Status Code
 
 201 Created
-
-
 
 ## Get Accounts<code class='get'>GET</code>
 
@@ -92,7 +90,7 @@ This endpoint retrieves a list of accounts with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/accounts/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/accounts/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -104,9 +102,40 @@ STATUS | status can be "pending", "synced", or "error"
 
 200 OK
 
+## Get Single Account Details<code class='get'>GET</code>
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+            "id": 1,
+            "code": "1000",
+            "description": "Supplies",
+            "parent": null,
+            "active": true,
+            "account_type": "Expense",
+            "external_id": "1234",
+            "custom_fields": {}
+    },
+    "metadata": {}
+    }
+}
+```
+
+This endpoint retrieves a list of accounts with specific status.
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/netsuite/accounts/<ACCOUNT_ID>/`
+
+### HTTP Response Status Code
+
+200 OK
+
 ## Create Account<code class='post'>POST</code>
 
-> The above command accepts a POST body:
+> The above command accepts a body:
 
 ```json
 {
@@ -140,7 +169,7 @@ This endpoint creates an account.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/accounts/`
+`https://example.procurify.com/api/v3/integrations/netsuite/accounts/`
 
 ### HTTP Response Status Code
 
@@ -171,7 +200,7 @@ ID of the integration object.
 
 ## Update Account<code class='put'>PUT</code>
 
-> The above command accepts a PUT body:
+> The above command accepts a body:
 
 ```json
 {
@@ -205,7 +234,7 @@ This endpoint updates a specific account.
 
 ### HTTP Request
 
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/accounts/<ACCOUNT_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/accounts/<ACCOUNT_ID>/`
 
 
 ### URL Parameters
@@ -247,7 +276,7 @@ This endpoint deletes a specific account.
 
 ### HTTP Request
 
-`DELETE https://example.procurify.com/api/v3/integrations/netsuite/accounts/<ACCOUNT_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/accounts/<ACCOUNT_ID>/`
 
 ### URL Parameters
 
@@ -301,7 +330,7 @@ This endpoint retrieves a list of catalog items with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -315,7 +344,7 @@ STATUS | status can be "pending", "synced", or "error"
 
 ## Create Catalog Item<code class='post'>POST</code>
 
-> The above command accepts a POST body:
+> The above command accepts a body:
 
 ```json
 {
@@ -359,7 +388,7 @@ This endpoint creates a catalog item.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/`
+`https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/`
 
 ### HTTP Response Status Code
 
@@ -399,7 +428,7 @@ ID of the integration object.
 
 ## Update Catalog Item<code class='put'>PUT</code>
 
-> The above command accepts a PUT body:
+> The above command accepts a body:
 
 ```json
 {
@@ -443,7 +472,7 @@ This endpoint updates a specific catalog item.
 
 ### HTTP Request
 
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/<CATALOG_ITEM_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/<CATALOG_ITEM_ID>/`
 
 ### URL Parameters
 
@@ -493,7 +522,7 @@ This endpoint deletes a specific catalog item.
 
 ### HTTP Request
 
-`DELETE https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/<CATALOG_ITEM_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/<CATALOG_ITEM_ID>/`
 
 ### URL Parameters
 
@@ -543,7 +572,7 @@ This endpoint retrieves a list content types.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/content-types/?model=<MODEL>`
+`https://example.procurify.com/api/v3/integrations/netsuite/content-types/?model=<MODEL>`
 
 ### URL Parameters
 
@@ -592,7 +621,7 @@ This endpoint retrieves a list of currencies with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/currencies/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/currencies/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -606,7 +635,7 @@ STATUS | status can be "pending", "synced", or "error"
 
 ## Update Currency<code class='put'>PUT</code>
 
-> The above command accepts a PUT body:
+> The above command accepts a body:
 
 ```json
 {
@@ -641,7 +670,7 @@ This endpoint updates a specific currency.
 
 ### HTTP Request
 
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/currencies/<CURRENCY_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/currencies/<CURRENCY_ID>/`
 
 ### URL Parameters
 
@@ -683,7 +712,7 @@ This endpoint deletes a specific currency.
 
 ### HTTP Request
 
-`DELETE https://example.procurify.com/api/v3/integrations/netsuite/currencies/<CURRENCY_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/currencies/<CURRENCY_ID>/`
 
 ### URL Parameters
 
@@ -716,7 +745,7 @@ This endpoint retrieves the Purchase Order custom fields.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/purchase-orders/`
+`https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/purchase-orders/`
 
 ### HTTP Response Status Code
 
@@ -727,7 +756,7 @@ This endpoint retrieves the Purchase Order custom fields.
 
 ## Upsert PO Custom Field Value<code class='post'>POST</code>
 
-> The above command accepts a POST body:
+> The above command accepts a body:
 
 ```json
 {
@@ -754,7 +783,7 @@ This endpoint updates a PO custom field value.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/purchase-orders/`
+`https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/purchase-orders/`
 
 ### HTTP Response Status Code
 
@@ -807,7 +836,7 @@ This endpoint retrieves a list of departments with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/departments/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/departments/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -821,7 +850,7 @@ STATUS | status can be "pending", "synced", or "error"
 
 ## Create Department<code class='post'>POST</code>
 
-> The above command accepts a POST body:
+> The above command accepts a body:
 
 ```json
 {
@@ -854,7 +883,7 @@ Departments are created for ALL locations in Procurify.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/departments/`
+`https://example.procurify.com/api/v3/integrations/netsuite/departments/`
 
 ### HTTP Response Status Code
 
@@ -870,7 +899,7 @@ ID of the integration object.
 
 ## Update Department<code class='put'>PUT</code>
 
-> The above command accepts a PUT body:
+> The above command accepts a body:
 
 ```json
 {
@@ -899,7 +928,7 @@ This endpoint updates a specific department.
 
 ### HTTP Request
 
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/departments/<DEPARTMENT_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/departments/<DEPARTMENT_ID>/`
 
 ### URL Parameters
 
@@ -929,7 +958,7 @@ Departments are removed from ALL locations.
 
 ### HTTP Request
 
-`DELETE https://example.procurify.com/api/v3/integrations/netsuite/departments/<DEPARTMENT_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/departments/<DEPARTMENT_ID>/`
 
 ### URL Parameters
 
@@ -1000,7 +1029,7 @@ This endpoint retrieves a list of locations with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/locations/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/locations/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -1014,7 +1043,7 @@ STATUS | status can be "pending", "synced", or "error"
 
 ## Create Location<code class='post'>POST</code>
 
-> The above command accepts a POST body:
+> The above command accepts a body:
 
 ```json
 {
@@ -1099,7 +1128,7 @@ This endpoint creates a location.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/locations/`
+`https://example.procurify.com/api/v3/integrations/netsuite/locations/`
 
 ### HTTP Response Status Code
 
@@ -1133,7 +1162,7 @@ ID of the integration object.
 
 ## Update Location<code class='put'>PUT</code>
 
-> The above command accepts a PUT body:
+> The above command accepts a body:
 
 ```json
 {
@@ -1218,7 +1247,7 @@ This endpoint updates a specific location.
 
 ### HTTP Request
 
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/locationss/<LOCATION_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/locationss/<LOCATION_ID>/`
 
 ### URL Parameters
 
@@ -1262,7 +1291,7 @@ This endpoint deletes a specific location.
 
 ### HTTP Request
 
-`DELETE https://example.procurify.com/api/v3/integrations/netsuite/locations/<LOCATION_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/locations/<LOCATION_ID>/`
 
 ### URL Parameters
 
@@ -1315,7 +1344,7 @@ This endpoint retrieves a list of object maps with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/object-maps/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/object-maps/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -1329,7 +1358,7 @@ STATUS | status can be "pending", "synced", or "error"
 
 ## Upsert Object Map<code class='post'>POST</code>
 
-> The above command accepts a POST body:
+> The above command accepts a body:
 
 ```json
 {
@@ -1360,7 +1389,7 @@ This endpoint upserts an object map.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/object-maps/`
+`https://example.procurify.com/api/v3/integrations/netsuite/object-maps/`
 
 ### HTTP Response Status Code
 
@@ -1398,7 +1427,7 @@ This endpoint deletes a specific object map.
 
 ### HTTP Request
 
-`DELETE https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/<OBJECT_MAP_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/<OBJECT_MAP_ID>/`
 
 ### URL Parameters
 
@@ -1605,7 +1634,7 @@ This endpoint retrieves a list of purchase orders with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/purchase-orders/?status=pending,ignore&transaction_date=2020-01-02`
+`https://example.procurify.com/api/v3/integrations/netsuite/purchase-orders/?status=pending,ignore&transaction_date=2020-01-02`
 
 ### URL Parameters
 
@@ -1753,7 +1782,7 @@ This endpoint retrieves a list of item receipt lines with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/item-receipt-lines/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/item-receipt-lines/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -1827,7 +1856,7 @@ This endpoint retrieves a list of vendors with specific status.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/vendors/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/vendors/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -1839,9 +1868,54 @@ STATUS | status can be "pending", "synced", or "error"
 
 200 OK
 
+## Get Single Vendor Details<code class='get'>GET</code>
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+            "id": 2,
+            "name": "Staples",
+            "active": true,
+            "address_line_one": "1852 24th Ave",
+            "address_line_two": "Unit 123",
+            "postal_code": "72715",
+            "city": "New York",
+            "state_province": "NY",
+            "country": "US",
+            "email": "vendoremail@test.com",
+            "alt_email": "vendoraltemail@test.com",
+            "contact": "Joe Smith",
+            "phone": "479-195-8789",
+            "alt_phone": "479-696-4781",
+            "fax": "479-222-5688",
+            "comments": "Please call AR when placing PO to confirm receipt.",
+            "url": "http://www.staples.com/",
+            "payment_term": "Due on Receipt",
+            "shipping_term": "FOB",
+            "vendor_external_id": "VENDOR_EX_1",
+            "external_id": "EX_VENDOR_2",
+            "custom_field": {}
+        },
+    "metadata": {}
+    }
+}
+```
+
+This endpoint retrieves a list of vendors with specific status.
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/netsuite/vendors/<VENDOR_ID>/`
+
+### HTTP Response Status Code
+
+200 OK
+
 ## Create Vendor<code class='post'>POST</code>
 
-> The above command accepts a POST body:
+> The above command accepts a body:
 
 ```json
 {
@@ -1903,7 +1977,7 @@ This endpoint creates a vendor.
 
 ### HTTP Request
 
-`POST https://example.procurify.com/api/v3/integrations/netsuite/vendors/`
+`https://example.procurify.com/api/v3/integrations/netsuite/vendors/`
 
 ### HTTP Response Status Code
 
@@ -1970,7 +2044,7 @@ ID of the integration object.
 
 ## Update Vendor<code class='put'>PUT</code>
 
-> The above command accepts a PUT body:
+> The above command accepts a body:
 
 ```json
 {
@@ -2032,7 +2106,7 @@ This endpoint updates a specific vendor.
 
 ### HTTP Request
 
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/vendors/<VENDOR_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/vendors/<VENDOR_ID>/`
 
 ### URL Parameters
 
@@ -2109,7 +2183,7 @@ This endpoint deletes a specific vendor.
 
 ### HTTP Request
 
-`DELETE https://example.procurify.com/api/v3/integrations/netsuite/vendors/<VENDOR_ID>/`
+`https://example.procurify.com/api/v3/integrations/netsuite/vendors/<VENDOR_ID>/`
 
 ### URL Parameters
 
@@ -2125,7 +2199,7 @@ VENDOR_ID | ID of the vendor being deleted
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/logs/`
+`https://example.procurify.com/api/v3/integrations/netsuite/logs/`
 
 > The above command returns a JSON structured like this:
 
