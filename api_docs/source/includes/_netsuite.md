@@ -45,8 +45,6 @@ Only users with superuser role can call this endpoint.
 
 201 Created
 
-
-
 ## Get Accounts<code class='get'>GET</code>
 
 > The above command returns a JSON structured like this:
@@ -99,6 +97,37 @@ This endpoint retrieves a list of accounts with specific status.
 Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
+
+### HTTP Response Status Code
+
+200 OK
+
+## Get Single Account Details<code class='get'>GET</code>
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+            "id": 1,
+            "code": "1000",
+            "description": "Supplies",
+            "parent": null,
+            "active": true,
+            "account_type": "Expense",
+            "external_id": "1234",
+            "custom_fields": {}
+    },
+    "metadata": {}
+    }
+}
+```
+
+This endpoint retrieves a list of accounts with specific status.
+
+### HTTP Request
+
+`GET https://example.procurify.com/api/v3/integrations/netsuite/accounts/<ACCOUNT_ID>/`
 
 ### HTTP Response Status Code
 
@@ -1834,6 +1863,51 @@ This endpoint retrieves a list of vendors with specific status.
 Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
+
+### HTTP Response Status Code
+
+200 OK
+
+## Get Single Vendor Details<code class='get'>GET</code>
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+            "id": 2,
+            "name": "Staples",
+            "active": true,
+            "address_line_one": "1852 24th Ave",
+            "address_line_two": "Unit 123",
+            "postal_code": "72715",
+            "city": "New York",
+            "state_province": "NY",
+            "country": "US",
+            "email": "vendoremail@test.com",
+            "alt_email": "vendoraltemail@test.com",
+            "contact": "Joe Smith",
+            "phone": "479-195-8789",
+            "alt_phone": "479-696-4781",
+            "fax": "479-222-5688",
+            "comments": "Please call AR when placing PO to confirm receipt.",
+            "url": "http://www.staples.com/",
+            "payment_term": "Due on Receipt",
+            "shipping_term": "FOB",
+            "vendor_external_id": "VENDOR_EX_1",
+            "external_id": "EX_VENDOR_2",
+            "custom_field": {}
+        },
+    "metadata": {}
+    }
+}
+```
+
+This endpoint retrieves a list of vendors with specific status.
+
+### HTTP Request
+
+`GET https://example.procurify.com/api/v3/integrations/netsuite/vendors/<VENDOR_ID>/`
 
 ### HTTP Response Status Code
 
