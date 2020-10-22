@@ -7,7 +7,7 @@ $(function() {
   if (pathname.split('/').length > 2) {
     window.location.hash = pathname.split('/')[2];
   }
-  var beta = getParameterByName('beta');
+  var beta = getParameterByName('beta', window.location.href);
   if (beta && beta.includes('platform-ui')) {
     $('.platform-ui-alpha').removeClass("platform-ui-alpha");
   }
@@ -76,7 +76,7 @@ $(function() {
   });
 });
 
-function getParameterByName(name, url = window.location.href) {
+function getParameterByName(name, url) {
   name = name.replace(/[\[\]]/g, '\\$&');
   var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
     results = regex.exec(url);

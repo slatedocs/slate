@@ -21,7 +21,7 @@ Options:
 
 
 run_build() {
-  bundle exec middleman build --clean
+  bundle exec middleman build --clean --verbose
 }
 
 parse_args() {
