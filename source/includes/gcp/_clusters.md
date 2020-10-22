@@ -167,17 +167,12 @@ curl -X POST \
   "name": "my-cluster",
   "shortRegion": "northamerica-northeast1",
   "shortZone": "northamerica-northeast1-a",
-  "initialClusterVersion": "1.17.12-gke.500",
-  "nodePools": {
-    "name": "default-pool"
-    "initialNodeCount":"3",
-    "nodeConfig":{
-      "machineType":"e2-highcpu-16"
-    }
-  },
-  "network": "default",
-  "subnetwork": "default"
-  }
+  "currentMasterVersion": "1.17.12-gke.1501",
+  "nodeCount":"3",
+  "nodeType":"e2-highcpu-16",
+  "networkName": "default",
+  "subnetName": "default"
+}
   ```
 
 
@@ -190,11 +185,11 @@ Required | &nbsp;
 `name`<br/>*string* | The display name of the cluster.
 `shortRegion`<br/>*string* | A short version of the region name.
 `shortZone`<br/>*string* | A short version of the zone name.
-`initialClusterVersion`<br/>*string* | The version of GKE used for this cluster.
-`initialNodeCount` <br/>*string* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
+`currentMasterVersion`<br/>*string* | The version of GKE used for this cluster.
+`nodeCount` <br/>*string* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
 `nodeType`<br/>*string* | The machine types of the nodes in the default node pool of this cluster.
-`network`<br/>*string* | The network that the Kubernetes cluster is in.
-`subnetwork`<br/>*string* | Subnetwork to which the cluster will belong. The subnetwork specified must belong the network specified.
+`networkName`<br/>*string* | The network that the Kubernetes cluster is in.
+`subnetName`<br/>*string* | Subnetwork to which the cluster will belong. The subnetwork specified must belong the network specified.
 
 <!-------------------- DELETE A CLUSTER -------------------->
 
