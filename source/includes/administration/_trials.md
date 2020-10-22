@@ -306,7 +306,7 @@ Attributes | &nbsp;
 `createdDate`<br/>*string* | The creation date of the trial.
 `expiryDate`<br/>*string* | The expiration date of the trial.
 `persistedOrganizationId`<br/>*UUID* | The id of the organization created in the system once the trial is approved.
-`organization`<br/>*Object* | The organization object create in the system for this organization once the trial is approved.
+`organization`<br/>*Object* | The organization object created in the system for this organization once the trial is approved.
 
 
 <!-------------------- GET TRIAL -------------------->
@@ -389,8 +389,8 @@ Attributes | &nbsp;
 `createdDate`<br/>*string* | The creation date of the trial.
 `expiryDate`<br/>*string* | The expiration date of the trial.
 `persistedOrganizationId`<br/>*UUID* | The id of the organization created in the system once the trial is approved.
-`organization`<br/>*Object* | The organization object create in the system for this organization once the trial is approved.
-`username`<br/>*string* | The username associate to the creator of the trial.
+`organization`<br/>*Object* | The organization object created in the system for this organization once the trial is approved.
+`username`<br/>*string* | The username associated to the creator of the trial.
 `approvalDate`<br/>*string* | The approval date of the trial.
 `denialDate`<br/>*string* | The denial date of the trial.
 `denialReason`<br/>*string* | The reason the trial is denied.
