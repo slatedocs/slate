@@ -2943,6 +2943,8 @@ components:
         - $ref: '#/components/schemas/StoryBase'
         - type: object
           properties:
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
             is_edited:
               description: >-
                 *Conditional*. Whether the text of the story has been edited
@@ -3169,9 +3171,28 @@ components:
       $ref: '#/components/schemas/StoryBase'
     StoryBase:
       allOf:
-        - $ref: '#/components/schemas/StoryCompact'
+        - $ref: '#/components/schemas/AsanaResource'
         - type: object
+          description: >-
+            A story represents an activity associated with an object in the Asana
+            system.
+          x-docs-overrides:
+            properties.resource_type.example: story
           properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            resource_subtype:
+              description: >-
+                The subtype of this resource. Different subtypes retain many of the
+                same fields and behavior, but may render differently in Asana or
+                represent resources with different semantic meaning.
+              type: string
+              readOnly: true
+              example: comment_added
             text:
               description: The plain text of the comment to add. Cannot be used with
                 html_text.
