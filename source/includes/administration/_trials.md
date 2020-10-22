@@ -430,7 +430,7 @@ Indicates how many organizations can concurrently have an active trial with auto
 
 Query Params | &nbsp;
 ---- | -----------
-`organization_id`<br/>*UUID* | Return only settings for the provided organization id. If not provided, it will default to the reseller configurtion matching the url.
+`organization_id`<br/>*UUID* | Return only settings for the provided organization id. If not provided, it will default to the reseller configuration matching the url.
 
 
 <!-------------------- ACTIVATE TRIAL -------------------->
@@ -581,7 +581,7 @@ Attributes | &nbsp;
 `createdDate`<br/>*string* | The creation date of the activity.
 `updatedDate`<br/>*string* | The update date of the activity.
 `requesterIp`<br/>*string* | The requester ip address
-`parentId`<br/>*UUID* | The organization object create in the system for this organization once the trial is approved.
+`parentId`<br/>*UUID* | The organization object created in the system for this organization once the trial is approved.
 `environmentId`<br/>*UUID* | The id of the impacted environment.
 `environmentName`<br/>*string* | The name of the impacted environment.
 `serviceConnectionId`<br/>*UUID* | The id of the impacted service connection.
