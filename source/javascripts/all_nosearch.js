@@ -8,7 +8,7 @@ $(function() {
     window.location.hash = pathname.split('/')[2];
   }
   var beta = getParameterByName('beta');
-  if (beta && beta.includes('platform-ui-alpha')) {
+  if (beta && beta.includes('platform-ui')) {
     $('.platform-ui-alpha').removeClass("platform-ui-alpha");
   }
   loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
@@ -64,7 +64,8 @@ $(function() {
     var ref = $(this).attr('href');
     if (ref && ref.startsWith("/docs/")) {
       event.preventDefault();
-      window.history.pushState(null, "", ref);
+      var query = window.location.search;
+      window.history.pushState(null, "", ref + query);
 
       ref = "#" + ref.split('/')[2];
 

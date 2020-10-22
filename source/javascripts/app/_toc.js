@@ -86,7 +86,8 @@
         $toc.find(tocListSelector).filter(":not(.active)").slideUp(150);
         $toc.find(tocListSelector).filter(".active").slideDown(150);
         if (window.history.replaceState) {
-          window.history.replaceState(null, "", $best.attr('href') === "/docs/overview" ? "/docs" : $best.attr('href'));
+          var query = window.location.search;
+          window.history.replaceState(null, "", $best.attr('href') === "/docs/overview" ? "/docs" + query : $best.attr('href') + query);
 
           // Update meta tag
           if (previousMeta) {

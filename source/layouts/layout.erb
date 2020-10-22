@@ -156,9 +156,11 @@ under the License.
         <ul class="search-results"></ul>
       <% end %>
       <ul id="toc" class="toc-list-h1">
+        <% platform_ui_alpha = false %>
         <% toc_data(page_content).each do |h1| %>
-
-          <li<% if h1[:title].start_with?("Platform UI (UI Hooks)") || h1[:title].start_with?("Platform UI Reference") || h1[:title].start_with?("Platform UI Schemas") || h1[:title].start_with?("Forms") || h1[:title].start_with?("Rules") || h1[:title].start_with?("Typeahead (Platform UI)") || h1[:title].start_with?("Widgets") || h1[:title].start_with?("UI Hooks Security") || h1[:title].start_with?("Platform UI App") || h1[:title].start_with?("UI Hooks Guide") %> class="platform-ui-alpha"<% end %>>
+          <% if h1[:title].start_with?("Platform UI (UI Hooks)"); platform_ui_alpha = true; end %>
+          <% if h1[:title].start_with?("API Reference"); platform_ui_alpha = false; end %>
+          <li<% if platform_ui_alpha %> class="platform-ui-alpha"<% end %>>
             <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") || h1[:title].start_with?("Developer Sandbox") || h1[:title].start_with?("Platform UI (UI Hooks)") || h1[:title].start_with?("Platform UI Reference") || h1[:title].start_with?("Platform UI Schemas")%>
               <hr>
             <% end %>

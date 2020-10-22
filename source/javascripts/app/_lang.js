@@ -40,7 +40,7 @@ under the License.
     window.recacheHeights();
 
     // scroll to the new location of the position
-    var splitPath = window.location.href.split('/');
+    var splitPath = window.location.pathname.split('/');
     var section = $("#" + splitPath[splitPath.length - 1]).get(0);
     if (section) {
       section.scrollIntoView(true);
@@ -139,7 +139,7 @@ under the License.
 
     languages = l;
 
-    var presetLanguage = getLanguageFromQueryString();
+    var presetLanguage = null; // getLanguageFromQueryString();
     if (presetLanguage) {
       // the language is in the URL, so use that language!
       activateLanguage(presetLanguage);

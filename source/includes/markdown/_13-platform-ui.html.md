@@ -234,9 +234,9 @@ App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rul
 
 <hr class="full-line">
 
-# UI Hooks Security
+# Security - UI Hooks
 
-## Authentication
+## Authentication - UI Hooks
 
 We provide authentication through a shared secret which is transmitted out-of-band to the app. This shared secret is not passed in the clear through any system the attacker may control, such as a browser client.
 We cannot simply add the secret to the request because the request is made from the client. Instead, we use a system where we sign the parameters of the request using a shared secret and a SHA-256 HMAC.
@@ -244,14 +244,14 @@ The app is responsible for verifying the signature. If it can generate the same 
 
 <hr>
 
-## Authorization
+## Authorization - UI Hooks
 
 Some information is only added to the request on the server, such as the current user ID, to ensure that the client cannot provide incorrect data.
 Additionally, all parameters that represent data-model objects are checked for access control to prevent users from asking the app for data they shouldn't be able to see, such as an attachment on a task they cannot see.
 
 <hr>
 
-## Message Integrity
+## Message Integrity - UI Hooks
 
 Message integrity is provided by the signature. This is a SHA-256 HMAC. This is URL parameters in the case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted in a header. The app calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
 The signature must be on the exact parameter string that will be passed to the app because the signature will change if something as trivial as spacing changes. We must pass the exact string for the app to be able to verify the signature.
@@ -259,7 +259,7 @@ The burden of verifying the request is on the app. We don't have a way to force 
 
 <hr>
 
-## Timeliness
+## Timeliness - UI Hooks
 
 Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request recorded, such as in logs, could be reused to continue to request information from the app at a later time.
 The burden of verifying the request has not expired is on the app. We don't have a way to force the app to do this right now.

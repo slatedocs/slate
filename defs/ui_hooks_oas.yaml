@@ -16,15 +16,11 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   version: '0.1'
   x-docs-schema-whitelist:
-    - AttachResourceRequest
-    - AttachResourceResponse
-    - FormSubmissionRequest
-    - ActionFormSubmissionRequest
-    - FormOnChangeRequest
-    - ActionFormOnChangeRequest
-    - RunActionRequest
-    - RunActionResponse
+    - AttachedResourceResponse
+    - FormMetadataResponse
+    - RanActionResponse
     - WidgetMetadataResponse
+    - TypeaheadItem
 servers:
   - url: "{siteUrl}"
     description: Main endpoint.
@@ -177,7 +173,7 @@ components:
               description: >-
                 The user’s input in the attach resource text input (this is often a resource url or resource key, such as
                 CP-1 or https://abcde.atlassian.net/browse/CP-1)
-    AttachResourceResponse:
+    AttachedResourceResponse:
       description: >-
         The response to a successful attach request.
       type: object
@@ -283,6 +279,43 @@ components:
             The URL for the icon beside the label. If not present, no icon will be displayed.
           type: string
           example: 'some-icon.png'
+    FormMetadataResponse:
+      description: >-
+        Contains the metadata that describes how to display and manage a form
+      type: object
+      properties:
+        title:
+          description: >-
+            The title of the form, which is displayed at the top of the creation modal
+          type: string
+          example: 'Create New Issue'
+        fields:
+          description: >-
+            An array of FormField objects that are rendered in the order they are in the array.
+          type: array
+          items:
+            $ref: '#/components/schemas/FormField'
+        submit_button_text:
+          description: >-
+            The text to display on the form’s submit button. If not provided, the default text “Submit” will be
+            displayed on the button.
+          type: string
+          example: 'Create New Issue'
+        on_submit_callback:
+          description: >-
+            The URL to POST the form to when the user clicks the submit button.
+
+            If this is field is omitted then the submission button will be disabled. This is useful if the user must
+            enter information in a watched field first, such as to show additional fields.
+          type: string
+          example: 'Create New Issue'
+        on_change:
+          $ref: '#/components/schemas/FormOnChangeConfig'
+        error:
+          description: >-
+            The error that should be displayed at the footer of the creation modal
+          type: string
+          example: 'Create New Issue'
     FormOnChangeConfig:
       description: >-
         Contains the information to handle whenever watched form fields are changed
@@ -378,7 +411,7 @@ components:
               type: string
               description: >-
                 The id from the configuration used to create the app action. This is a developer-provided string.
-    RunActionResponse:
+    RanActionResponse:
       type: object
       description: >-
         The response to an action request.
@@ -397,7 +430,7 @@ components:
             shape that Asana expects. `resources_created` expects the name and url of the resources that the action
             created.
           items:
-            $ref: '#/components/schemas/AttachResourceResponse'
+            $ref: '#/components/schemas/AttachedResourceResponse'
     TypeaheadItem:
       description: >-
         An object describing a typeahead result
@@ -568,7 +601,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AttachResourceResponse'
+                $ref: '#/components/schemas/AttachedResourceResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -665,7 +698,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AttachResourceResponse'
+                $ref: '#/components/schemas/AttachedResourceResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -729,7 +762,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RunActionResponse'
+                $ref: '#/components/schemas/RanActionResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
