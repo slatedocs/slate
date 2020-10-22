@@ -1,5 +1,5 @@
-<hr>
-<section class="beta">
+<hr class="platform-ui-alpha">
+<section class="platform-ui-alpha">
 
 # App Server
 
