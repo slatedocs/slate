@@ -1,5 +1,72 @@
 require 'middleman-core/renderers/redcarpet'
 require 'digest'
+
+class AsanaHighlight < Rouge::CSSTheme
+  name 'asana'
+
+  style Comment::Multiline,               :fg => '#9CA6AF', :italic => true
+  style Comment::Preproc,                 :fg => '#9CA6AF', :bold => true
+  style Comment::Single,                  :fg => '#9CA6AF', :italic => true
+  style Comment::Special,                 :fg => '#9CA6AF', :italic => true, :bold => true
+  style Comment,                          :fg => '#9CA6AF', :italic => true
+  style Error,                            :fg => '#000000'
+  style Generic::Deleted,                 :fg => '#000000', :bg => '#ffdddd'
+  style Generic::Emph,                    :fg => '#000000', :italic => true
+  style Generic::Error,                   :fg => '#6F7782'
+  style Generic::Heading,                 :fg => '#b7bfc6'
+  style Generic::Inserted,                :fg => '#000000', :bg => '#ddffdd'
+  style Generic::Output,                  :fg => '#9ca6af'
+  style Generic::Prompt,                  :fg => '#555555'
+  style Generic::Strong,                  :bold => true
+  style Generic::Subheading,              :fg => '#aaaaaa'
+  style Generic::Traceback,               :fg => '#aa0000'
+  style Keyword::Constant,                :fg => '#6F7782', :bold => true
+  style Keyword::Declaration,             :fg => '#6F7782', :bold => true
+  style Keyword::Namespace,               :fg => '#6F7782', :bold => true
+  style Keyword::Pseudo,                  :fg => '#6F7782', :bold => true
+  style Keyword::Reserved,                :fg => '#6F7782', :bold => true
+  style Keyword::Type,                    :fg => '#6F7782', :bold => true
+  style Keyword,                          :fg => '#6F7782', :bold => true
+  style Literal::Number::Float,           :fg => '#00bf9c'
+  style Literal::Number::Hex,             :fg => '#00bf9c'
+  style Literal::Number::Integer::Long,   :fg => '#00bf9c'
+  style Literal::Number::Integer,         :fg => '#00bf9c'
+  style Literal::Number::Oct,             :fg => '#00bf9c'
+  style Literal::Number,                  :fg => '#00bf9c'
+  style Literal::String::Backtick,        :fg => '#FF5263'
+  style Literal::String::Char,            :fg => '#FF5263'
+  style Literal::String::Doc,             :fg => '#FF5263'
+  style Literal::String::Double,          :fg => '#FF5263'
+  style Literal::String::Escape,          :fg => '#FF5263'
+  style Literal::String::Heredoc,         :fg => '#FF5263'
+  style Literal::String::Interpol,        :fg => '#FF5263'
+  style Literal::String::Other,           :fg => '#FF5263'
+  style Literal::String::Regex,           :fg => '#FF5263'
+  style Literal::String::Single,          :fg => '#FF5263'
+  style Literal::String::Symbol,          :fg => '#FF5263'
+  style Literal::String,                  :fg => '#FF5263'
+  style Name::Attribute,                  :fg => '#008ce3'
+  style Name::Builtin::Pseudo,            :fg => '#b7bfc6'
+  style Name::Builtin,                    :fg => '#0086B3'
+  style Name::Class,                      :fg => '#445588', :bold => true
+  style Name::Constant,                   :fg => '#008ce3'
+  style Name::Decorator,                  :fg => '#3c5d5d', :bold => true
+  style Name::Entity,                     :fg => '#800080'
+  style Name::Exception,                  :fg => '#ff5263', :bold => true
+  style Name::Function,                   :fg => '#ff5263', :bold => true
+  style Name::Label,                      :fg => '#ff5263', :bold => true
+  style Name::Namespace,                  :fg => '#555555'
+  style Name::Tag,                        :fg => '#000080'
+  style Name::Variable::Class,            :fg => '#008ce3'
+  style Name::Variable::Global,           :fg => '#008ce3'
+  style Name::Variable::Instance,         :fg => '#008ce3'
+  style Name::Variable,                   :fg => '#008ce3'
+  style Operator::Word,                   :fg => '#000000', :bold => true
+  style Operator,                         :fg => '#000000', :bold => true
+  style Text::Whitespace,                 :fg => '#d5dce0'
+  style Text,                             :bg => '#f6f8f9'
+end
+
 class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
   def initialize
     super
