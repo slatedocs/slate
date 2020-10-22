@@ -1051,13 +1051,7 @@ pre {
   }
 }
 
-// For Beta
-//section:not(.beta) {
-//  display: none !important;
-//}
-//
-//.content {
-//  hr {
-//    display: none;
-//  }
-//}
+// For Platform UI Alpha
+.platform-ui-alpha {
+  display: none !important;
+}

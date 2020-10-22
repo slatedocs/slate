@@ -1,5 +1,5 @@
-<hr>
-<section class="beta">
+<hr class="platform-ui-alpha">
+<section class="platform-ui-alpha">
 
 # Platform UI (UI Hooks)
 
@@ -11,7 +11,9 @@ controls what information is shown and the App Server controls what happens when
 takes an action within these components.
 
 We will cover some of the main UI Hook components here.
- 
+
+<hr>
+
 ## App Widget
 
 > Request to the App Server
@@ -72,6 +74,8 @@ that fits with an App's registered `match url` (ex: `https:\/\/.*.atlassian.net\
 we show a widget. We then send a GET request to the App's `widget url`, including 
 URL parameters like `task`, `user`, and `workspace`. 
 
+<hr>
+
 ## Resource Typeahead
 
 > Request to the App Server
@@ -108,6 +112,8 @@ is via typeahead.
 
 If instead, you want to create the resource from Asana, you should use the [App Modal](/docs/app-modal). Typeahead is 
 also supported within the App Modal.
+
+<hr>
 
 ## App Modal
 
@@ -178,7 +184,7 @@ the App Server can receieve `on_change` requests. These requests include what th
 allow the App Server to respond with an updated form. Apps can build complex branching logic depending
 on changes a user makes.
 
-
+<hr>
 
 ## App Action
 
@@ -226,26 +232,39 @@ with all of the user-specified inputs. When the rule is triggered, Asana sends a
 
 App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
 
+<hr class="full-line">
+
 # UI Hooks Security
 
 ## Authentication
+
 We provide authentication through a shared secret which is transmitted out-of-band to the app. This shared secret is not passed in the clear through any system the attacker may control, such as a browser client.
 We cannot simply add the secret to the request because the request is made from the client. Instead, we use a system where we sign the parameters of the request using a shared secret and a SHA-256 HMAC.
 The app is responsible for verifying the signature. If it can generate the same signature using its shared secret, then it knows the sender possesses the same secret and must be Asana.
 
+<hr>
+
 ## Authorization
+
 Some information is only added to the request on the server, such as the current user ID, to ensure that the client cannot provide incorrect data.
 Additionally, all parameters that represent data-model objects are checked for access control to prevent users from asking the app for data they shouldn't be able to see, such as an attachment on a task they cannot see.
 
+<hr>
+
 ## Message Integrity
+
 Message integrity is provided by the signature. This is a SHA-256 HMAC. This is URL parameters in the case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted in a header. The app calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
 The signature must be on the exact parameter string that will be passed to the app because the signature will change if something as trivial as spacing changes. We must pass the exact string for the app to be able to verify the signature.
 The burden of verifying the request is on the app. We don't have a way to force the app to do this right now (but there are things we could change to do so).
+
+<hr>
 
 ## Timeliness
 
 Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request recorded, such as in logs, could be reused to continue to request information from the app at a later time.
 The burden of verifying the request has not expired is on the app. We don't have a way to force the app to do this right now.
+
+<hr class="full-line">
 
 # Platform UI App
 
@@ -372,6 +391,8 @@ form with the data in the table below.
 
 Once your app is submitted, an Asana Developer will enable your app and notify you via email when it's ready to use. 
 
+<hr class="full-line">
+
 # UI Hooks Guide
 
 ## Have an App Server running locally (or remotely)
@@ -403,6 +424,8 @@ One or more Automation/[App Actions](/docs/app-action)
 
 You will provide Asana these paths in the next step.
 
+<hr>
+
 ## Register a Platform UI App
 
 First, complete the [Create a UI Hook Alpha App](https://docs.google.com/forms/d/e/1FAIpQLSd0Uw_bjt7GBNftrV_duKXFRgc4yOkmJUF-RVWzYJLINIax5g/viewform?usp=sf_link)
@@ -422,6 +445,8 @@ provide:
  * `automation` is required if you want to connect your app to [Asana Automation](https://asana.com/product/automation).
 
 Once your app is submitted, an Asana Developer will enable your app and notify you via email when it's ready to use.
+
+<hr>
 
 ## Install your app in a project
 
@@ -449,6 +474,8 @@ so lets attach one now.
 On the task pane, there should be a new field for your app with a dropdown next to it. Click the dropdown and you will
 see options for Typeahead and Create. Create will open the modal, typeahead will start a typeahead search by hitting 
 your server.
+
+<hr>
 
 ## Modal Basics
 
@@ -499,6 +526,8 @@ match against our example url.
 Open the modal again (if needed), and hit "Create". Your response tells Asana to add an attachment to the Task. This new
 attachment matches your `matchUrlPattern` so Asana will try and load the Widget.
 
+<hr>
+
 ## Widget Basics
 
 > GET http://localhost:5000/resource/widget/metadata
@@ -525,6 +554,8 @@ your server, refresh Asana.
 You should now see this Widget on the right. We're faking all of our data currently, but there's an attachment on the 
 which Asana task that tells Asana to hit your server with information about the task. Your server is giving Asana the
 data to display in the widget. Clicking on the widget will take you to the attachment's url. 
+
+<hr>
 
 ## Typeahead Basics
 
@@ -558,6 +589,7 @@ Once you remove the attachment, click the dropdown you hit earlier in this guide
 Pick either one of your results. Either way, they will hit the `resourceAttachUrl`. As long as that URL returns a valid
 resource, a new attachment will be made and attached. Your widget should return!
 
+<hr>
 
 ## Automation Basics
 
@@ -618,6 +650,8 @@ see your customized form. Feel free to submit it and create the rule.
 Sadly, you will be unable to test the action being triggered while hosting locally. To test this, deploy your server 
 or setup something like ngrok to expose your localhost server.
 
+<hr>
+
 ## Being Secure
 
 ```javascript
@@ -660,6 +694,8 @@ server after. This is also shown in the pseudocode on the right.
 
 You should read the [UI Hooks Security](/docs/ui-hooks-security) section before deploying anything to production.
 
+<hr>
+
 ## Deploying
  
 To deploy you'll need to host your localhost server to a full [App Server](/docs/app-server).
@@ -667,6 +703,8 @@ To deploy you'll need to host your localhost server to a full [App Server](/docs
    1. All of your urls need to change to the new hosted location (both in your app definition and your responses).
    2. We recommend hosting on AWS Lambda or Google Cloud Functions for reliable uptime and easy maintenance.
    
+<hr>
+
 ## Publishing
 
 **Publishing is not available during the Alpha**

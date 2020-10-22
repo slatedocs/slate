@@ -29,6 +29,9 @@ includes:
   - markdown/15-quick-start.html.md
   - markdown/16-official-client-libs.html.md
   - markdown/13-platform-ui.html.md
+  - helpers/platform-ui-wrapper.html.md
+  - ui-hooks-reference/index.html.md
+  - helpers/platform-ui-wrapper-close.html.md
   - api-reference/index.html.md
 search: true
 highlight_theme: github

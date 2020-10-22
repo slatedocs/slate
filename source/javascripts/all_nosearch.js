@@ -7,6 +7,10 @@ $(function() {
   if (pathname.split('/').length > 2) {
     window.location.hash = pathname.split('/')[2];
   }
+  var beta = getParameterByName('beta');
+  if (beta && beta.includes('platform-ui-alpha')) {
+    $('.platform-ui-alpha').removeClass("platform-ui-alpha");
+  }
   loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
   setupLanguages($('body').data('languages'));
   $('.content').imagesLoaded( function() {
@@ -70,6 +74,15 @@ $(function() {
     }
   });
 });
+
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
 window.onpopstate = function() {
   activateLanguage(getLanguageFromQueryString());

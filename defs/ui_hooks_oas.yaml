@@ -6,7 +6,7 @@ info:
     [UI Hooks](https://developers.asana.com/docs/ui-hooks). This reference
     is generated from an [OpenAPI spec]
     (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
-  title: Asana
+  title: Platform UI
   termsOfService: https://asana.com/terms
   contact:
     name: Asana Support
@@ -16,121 +16,834 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   version: '0.1'
   x-docs-schema-whitelist:
-    - AsanaResource
-    - AsanaNamedResource
-    - AttachmentResponse
+    - AttachResourceRequest
+    - AttachResourceResponse
+    - FormSubmissionRequest
+    - ActionFormSubmissionRequest
+    - FormOnChangeRequest
+    - ActionFormOnChangeRequest
+    - RunActionRequest
+    - RunActionResponse
+    - WidgetMetadataResponse
 servers:
-  - url: https://custom_app_server/api/1.0
+  - url: "{siteUrl}"
     description: Main endpoint.
-security:
-  - personalAccessToken: []
-  - oauth2: []
 tags:
-  - name: Attachments
+  - name: Forms
     description: >-
-      An *attachment* object represents any file attached to a task in Asana,
-      whether it’s an uploaded file or one associated via a third-party service
-      such as Dropbox or Google Drive.
+      The creation modal is displayed when the user starts the flow to create a resource. Asana will make a signed
+      request to the specified form_metadata_url in the capabilities, and expect a response with the metadata needed to
+      create the form. This process is also used for forms within rules.
+  - name: Rules
+    description: >-
+      When a rule containing an app action is triggered, the Rules Engine will make a Platform UI request to the app to
+      inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine
+      whether the action was successfully completed and, if not, specify a cause for the error.
+  - name: Typeahead (Platform UI)
+    description: >-
+      Each typeahead form field contains a typeahead_url to fetch typeahead options based on input text. While the user
+      inputs text into the field, Asana will periodically (every 700ms) send signed requests to the typeahead_url and
+      expect responses with lists of items matching the given input.
+  - name: Widgets
+    description: >-
+      The widget is displayed when the user views a task with an attachment with a resource URL matching your
+      capability’s match_url_pattern. When this happens, Asana will make a signed request to your widget_metadata_url,
+      and expect a response with information to build the widget.
 components:
   parameters:
-    fields:
-      name: opt_fields
+    action:
+      name: action
       in: query
       description: >-
-        Defines fields to return.
-
-        Some requests return *compact* representations of objects in order to
-        conserve resources and complete the request more efficiently. Other times
-        requests return more information than you may need. This option allows
-        you to list the exact set of fields that the API should be sure to
-        return for the objects. The field names should be provided as paths,
-        described below.
-
-        The id of included objects will always be returned, regardless of the
-        field options.
+        The asset id of the asset containing the URL attachment
+    action_type:
+      name: action_type
+      in: query
+      description: >-
+        The id of the configuration used to create the app action
+    asset:
+      name: asset
+      in: query
+      description: >-
+        The id of an existing app action that is being edited. Should be omitted when configuring a new app action.
+    attachment:
+      name: attachment
+      in: query
+      description: >-
+        The attachment id of the URL attachment
+    expires:
+      name: expires
+      in: query
+      description: >-
+        The time in milliseconds since epoch time when the request should expire
+    fragment:
+      name: fragment
+      in: query
+      description: >-
+        The text entered into the typeahead input
+    locale:
+      name: locale
+      in: query
+      description: >-
+        The locale of the user (i.e. en, fr)
+    user:
+      name: user
+      in: query
+      description: >-
+        The user gid this hook is coming from.
+    resource_url:
+      name: resource_url
+      in: query
+      description: >-
+        The URL of the URL attachment on the task (i.e. Jira issue, Github pull request)
+    task:
+      name: task
+      in: query
+      description: >-
+        The task gid this hook is coming from.
+    workspace:
+      name: workspace
+      in: query
+      description: >-
+        The workspace gid this hook is coming from.
   responses:
-    GenericErrorResponse:
+    BadRequest:
       description: >-
-        Sadly, sometimes requests to the API are not successful. Failures can
-        occur for a wide range of reasons. In all cases, the API should return
-        an HTTP Status Code that indicates the nature of the failure,
-        with a response body in JSON format containing additional information.
-        In the event of a server error the response body will contain an error
-        phrase. These phrases are automatically generated using the
-        [node-asana-phrase
-        library](https://github.com/Asana/node-asana-phrase) and can be used by
-        Asana support to quickly look up the incident that caused the server
-        error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+        Bad Request
+    Unauthorized:
+      description: >-
+        Unauthorized
+    Forbidden:
+      description: >-
+        Forbidden
+    NotFound:
+      description: >-
+        Not Found
+    TooManyRequests:
+      description: >-
+        Too Many Requests
+    Gone:
+      description: >-
+        Gone
+    InternalServerError:
+      description: >-
+        Server Error
+    ImATeapot:
+      description: >-
+        I'm A Teapot
   schemas:
-    AsanaResource:
+    RootPlatformUIRequest:
       description: >-
-        A generic Asana Resource, containing a globally unique identifier.
+        The building block of all platform UI requests.
       type: object
       properties:
-        gid:
+        expires:
+          type: string
           description: >-
-            Globally unique identifier of the resource, as a string.
+            The time in milliseconds since epoch time when the request should expire
+        locale:
           type: string
-          readOnly: true
-          example: '12345'
-          x-insert-after: false
-        resource_type:
-          description: The base type of this resource.
+          description: >-
+            The locale of the user (i.e. en, fr)
+        user:
           type: string
-          readOnly: true
-          example: task
-          x-insert-after: gid
-  securitySchemes:
-    personalAccessToken:
-      type: http
+          description: >-
+            The user gid this hook is coming from.
+        task:
+          type: string
+          description: >-
+            The task gid this hook is coming from.
+        workspace:
+          type: string
+          description: >-
+            The workspace gid this hook is coming from.
+    AttachResourceRequest:
+      allOf:
+        - $ref: '#/components/schemas/RootPlatformUIRequest'
+        - type: object
+          description: >-
+            The body of an attach request.
+          properties:
+            asset:
+              type: string
+              description: >-
+                The asset id of the asset containing the URL attachment
+            attachment:
+              type: string
+              description: >-
+                The attachment id of the URL attachment
+            value:
+              type: string
+              description: >-
+                The user’s input in the attach resource text input (this is often a resource url or resource key, such as
+                CP-1 or https://abcde.atlassian.net/browse/CP-1)
+    AttachResourceResponse:
       description: >-
-        A personal access token allows access to the api for the user who
-        created it. This should be kept a secret and be treated like a
-        password.
-      scheme: bearer
+        The response to a successful attach request.
+      type: object
+      properties:
+        resource_name:
+          description: >-
+            The name of the attached resource
+          type: string
+          example: 'Build the Thing'
+        resource_url:
+          description: >-
+            The URL of the attached resource
+          type: string
+          example: 'https://example.atlassian.net/browse/CP-1'
+    FormField:
+      description: >-
+        Every form field type has a set of properties to describe what should be rendered on the form. These are the
+        common properties among every form field type, which should be included in addition to any unique properties of
+        each form field type.
+      type: object
+      properties:
+        type:
+          description: >-
+            The URL that Platform UI should send requests to whenever watched field values are changed
+          type: string
+          enum:
+            - single_line_text
+            - multi_line_text
+            - rich_text
+            - static_text
+            - dropdown
+            - checkboxes
+            - date_input
+            - date_time_input
+            - typeahead
+          example: 'single_line_text'
+        id:
+          description: >-
+            The id of the field, which is used to reference the field. These should be unique across the entire form
+          type: string
+          example: 'item-description'
+        title:
+          description: >-
+            The title displayed on top of the field in the creation modal. If not provided, no title will be shown.
+          type: string
+          example: 'Item Description'
+        value:
+          description: >-
+            The value of the field, the type of which varies based on the particular field. If not provided, the field
+            will be empty and the form cannot be submitted if it is required.
+          example: "It's over 9000"
+        required:
+          description: >-
+            Whether the field is required to submit the form
+          type: boolean
+          example: true
+        error:
+          description: >-
+            If present, the field will render as having an error and the error will be displayed under the form field
+          type: string
+          example: 'Maximum description length is 256 characters'
+        placeholder:
+          description: >-
+            *Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`,
+            `date_time_input`, and `typeahead`.
+            The placeholder for the input, which is shown if the field has no value. If not provided, there will be no
+            placeholder.
+          type: string
+          example: 'Type description here...'
+        width:
+          description: >-
+            *Conditional*. Only relevant for custom fields of type
+            `single_line_text`. The width of the form field. The default is "full".
+          type: string
+          enum:
+            - full
+            - half
+        options:
+          description: >-
+            *Conditional*. Only relevant for custom fields of type `dropdown`.
+            An array of FieldOption objects
+          items:
+            $ref: '#/components/schemas/FieldOption'
+    FieldOption:
+      description: >-
+        An option for a dropdown or checkbox field. This is a property of the dropdown field, and should not include the
+        FormField properties.
+      type: object
+      properties:
+        id:
+          description: >-
+            The id of the option
+          type: string
+          example: 'opt-in'
+        label:
+          description: >-
+            The label of the option
+          type: string
+          example: 'Opt in to emails.'
+        icon_url:
+          description: >-
+            *Conditional*. Only relevant for fields of type `dropdown`.
+            The URL for the icon beside the label. If not present, no icon will be displayed.
+          type: string
+          example: 'some-icon.png'
+    FormOnChangeConfig:
+      description: >-
+        Contains the information to handle whenever watched form fields are changed
+      type: object
+      properties:
+        on_change_callback:
+          description: >-
+            The URL that Platform UI should send requests to whenever watched field values are changed
+          type: string
+          example: 'https://app-server/form/onchange'
+        watched_fields:
+          description: >-
+            An array of FormField names to indicate which fields should send requests when their values are changed
+          type: array
+          items:
+            type: string
+            example: 'description'
+    FormSubmissionRequest:
+      allOf:
+        - $ref: '#/components/schemas/RootPlatformUIRequest'
+        - type: object
+          description: >-
+            The body of a form submission.
+          properties:
+            values:
+              type: object
+              description: >-
+                A FormValues object mapping each FormField’s name to its value
+              additionalProperties:
+                type: object
+                properties:
+                  field_name:
+                    type: string
+                  field_object:
+                    $ref: '#/components/schemas/FormField'
+    ActionFormSubmissionRequest:
+      allOf:
+        - $ref: '#/components/schemas/FormSubmissionRequest'
+        - type: object
+          description: >-
+            The body of a form submission.
+          properties:
+            rule_name:
+              type: string
+              description: >-
+                The name of the rule being created
+            action:
+              type: string
+              description: >-
+                The id of an existing app action that is being edited
+            action_type:
+              type: string
+              description: >-
+                The id of the configuration used to create the app action
+    FormOnChangeRequest:
+      allOf:
+        - $ref: '#/components/schemas/FormSubmission'
+        - type: object
+          description: >-
+            The body of an onchange event.
+          properties:
+            changed_field:
+              type: string
+              description: >-
+                The name of the changed FormField
+    ActionFormOnChangeRequest:
+      allOf:
+        - $ref: '#/components/schemas/FormOnChangeRequest'
+        - type: object
+          description: >-
+            The body of an action onchange event.
+          properties:
+            action:
+              type: string
+              description: >-
+                The id of an existing app action that is being edited
+            action_type:
+              type: string
+              description: >-
+                The id of the configuration used to create the app action
+    RunActionRequest:
+      allOf:
+        - $ref: '#/components/schemas/RootPlatformUIRequest'
+        - type: object
+          description: >-
+            The body of an action request.
+          properties:
+            target_object:
+              type: string
+              description: >-
+                The id of the target object that the Rule is acting on (currently always a Task id)
+            action_type:
+              type: string
+              description: >-
+                The id from the configuration used to create the app action. This is a developer-provided string.
+    RunActionResponse:
+      type: object
+      description: >-
+        The response to an action request.
+      properties:
+        action_result:
+          type: string
+          enum:
+            - resources_created
+            - ok
+          description: >-
+            Specifies any additional information that the app wants to send to Asana on completion of the action.
+        resources_created:
+          type: array
+          description: >-
+            A field with the data corresponding to the action_result value. Each action_result has its own data field
+            shape that Asana expects. `resources_created` expects the name and url of the resources that the action
+            created.
+          items:
+            $ref: '#/components/schemas/AttachResourceResponse'
+    TypeaheadItem:
+      description: >-
+        An object describing a typeahead result
+      type: object
+      properties:
+        title:
+          description: >-
+            The title of the typeahead item
+          type: string
+          example: 'OTP Team PF'
+        subtitle:
+          description: >-
+            The subtitle of the typeahead item
+          type: string
+          example: 'OTP'
+        value:
+          description: >-
+            The value of the typeahead item
+          type: string
+          example: 'OTP'
+        icon_url:
+          description: >-
+            The URL of the icon to display next to the title
+          type: string
+          example: 'https://example-icon.png'
+    WidgetMetadataResponse:
+      description: >-
+        An object containing information about the widget
+      type: object
+      properties:
+        title:
+          description: >-
+            The text to show in the title of the widget
+          type: string
+          example: 'Status'
+        fields:
+          description: >-
+            An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.
+          type: array
+          items:
+            $ref: '#/components/schemas/WidgetField'
+        subtitle:
+          description: >-
+            The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the
+            resource_name from the app definition will be used as default
+          type: string
+          example: 'Custom App Story · Open in Custom App'
+        subicon_url:
+          description: >-
+            The URL of the subicon next to the subtitle . If not provided, no icon will be shown
+          type: string
+          example: 'https://example-icon.png'
+        footer:
+          description: >-
+            The text to show in the title of the widget
+          type: string
+          example: 'Last updated 19 hours ago'
+        comment_count:
+          description: >-
+            The number of comments to display on the lower right corner of the widget. If not provided, no comment
+            count will be shown
+          type: integer
+          example: 2
+    WidgetField:
+      description: >-
+        Contains the information to display a pill field on the widget
+      type: object
+      properties:
+        name:
+          description: >-
+            The text to show in the title of the field.
+          type: string
+          example: 'Status'
+        type:
+          description: The type of widget field (this should be `pill`).
+          type: string
+          enum:
+            - pill
+            - icon
+          example: 'pill'
+        text:
+          description: The text to show in the field.
+          type: string
+          example: 'To Do'
+        color:
+          description: The color of the pill.
+          type: string
+          enum:
+            - none
+            - red"
+            - orange
+            - yellow-orange
+            - yellow
+            - yellow-green
+            - green
+            - blue-green
+            - aqua
+            - blue
+            - indigo
+            - purple
+            - magenta
+            - hot-pink
+            - pink
+            - cool-gray
+          example: 'gray'
+        icon_url:
+          description: The URL of the icon to display next to the text
+          type: string
+          example: 'https://example-icon.png'
 paths:
-  /attachments/{attachment_gid}:
+  /{widget_metadata_url}:
     parameters:
-      - $ref: '#/components/parameters/attachment_path_gid'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/resource_url'
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/task'
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/locale'
+      - $ref: '#/components/parameters/attachment'
+      - $ref: '#/components/parameters/asset'
+      - $ref: '#/components/parameters/expires'
     get:
-      summary: Get an attachment
-      description: Get the full record for a single attachment.
+      summary: Get widget metadata
+      description: >-
+        Get the metadata from the App Server to render a widget.
       tags:
-        - Attachments
-      operationId: getAttachment
+        - Widgets
+      operationId: getWidgetMetadata
       responses:
         200:
-          description: Successfully retrieved the record for a single attachment.
+          description: Successfully retrieved the metadata for a single widget.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetMetadataResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        418:
+          $ref: '#/components/responses/Unauthorized'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{resource_attach_url}:
+    post:
+      summary: Attach resource
+      description: >-
+        When the user attaches a resource URL to a task, Asana will make a signed request to the specified
+        resource_attach_url in the capabilities. Information about the attached resource should be included in the
+        response.
+      tags:
+        - Widgets
+      operationId: attachResource
+      requestBody:
+        description: >-
+          Request to attach a resource.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachResourceRequest'
+      responses:
+        200:
+          description: Successfully attached the resource to the given object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachResourceResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{form_metadata_url}:
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/task'
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/locale'
+      - $ref: '#/components/parameters/expires'
+    get:
+      summary: Get form metadata
+      description: >-
+        Get the metadata from the App Server to render a form.
+      tags:
+        - Forms
+      operationId: getFormMetadata
+      responses:
+        200:
+          description: Successfully retrieved the metadata for a single form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{on_change_callback}:
+    post:
+      summary: On change callback
+      description: >-
+        The callback request made to an App Server when a watched field's value changes within a form.
+      tags:
+        - Forms
+      operationId: onFormChange
+      requestBody:
+        description: >-
+          Request to notify of an on change event.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormOnChangeRequest'
+      responses:
+        200:
+          description: Successfully returned the new state of the form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{on_submit_callback}:
+    post:
+      summary: On submit callback
+      description: >-
+        The callback request made to an App Server when a form is submitted.
+      tags:
+        - Forms
+      operationId: onFormSubmit
+      requestBody:
+        description: >-
+          Request to notify of a form submission.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormSubmissionRequest'
+      responses:
+        200:
+          description: Successfully attached the resource created by the form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachResourceResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{typeahead_url}:
+    parameters:
+      - $ref: '#/components/parameters/fragment'
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/task'
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/locale'
+      - $ref: '#/components/parameters/expires'
+    get:
+      summary: Typeahead (UI)
+      description: >-
+        The typeahead request made to an App Server when a typeahead field changes.
+      tags:
+        - Typeahead (Platform UI)
+      operationId: typeaheadUI
+      responses:
+        200:
+          description: Successfully attached the resource created by the form.
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  data:
-                    $ref: '#/components/schemas/AttachmentResponse'
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TypeaheadItem'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{run_action_url}:
+    post:
+      summary: Run action
+      description: >-
+        The request made when an action is triggered.
+      tags:
+        - Rules
+      operationId: runAction
+      requestBody:
+        description: >-
+          Request to notify of an action running.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunActionRequest'
+      responses:
+        200:
+          description: Successfully attached the resource created by the form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunActionResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
-        402:
-          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        424:
-          $ref: '#/components/responses/TooManyRequests'
+        410:
+          $ref: '#/components/responses/Gone'
         500:
           $ref: '#/components/responses/InternalServerError'
-        501:
-          $ref: '#/components/responses/BadGateway'
-        503:
-          $ref: '#/components/responses/ServiceUnavailable'
-        504:
-          $ref: '#/components/responses/GatewayTimeout'
+  /{metadata_url}:
+    parameters:
+      - $ref: '#/components/parameters/action'
+      - $ref: '#/components/parameters/action_type'
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/task'
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/locale'
+      - $ref: '#/components/parameters/expires'
+    get:
+      summary: Get action metadata
+      description: >-
+        When a user has navigated to the Custom Rule Builder UI and selected an App Action (either through the sidebar
+        or via a Rule Preset), Asana will make a Platform UI request to the app to get the configuration form definition
+        for the chosen app action. This will initiate the flow to configure a new app action or edit the configuration
+        of an existing app action. This is the endpoint and schema for updating app actions; app triggers (V2) will be
+        analogous.
+      tags:
+        - Rules
+      operationId: getActionMetadata
+      responses:
+        200:
+          description: Successfully retrieved the metadata for a single action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        418:
+          $ref: '#/components/responses/Unauthorized'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{action.on_change_callback}:
+    post:
+      summary: On action change callback
+      description: >-
+        The callback request made to an App Server when a watched field's value changes within an action form.
+      tags:
+        - Rules
+      operationId: onActionFormChange
+      requestBody:
+        description: >-
+          Request to notify of an on change event.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionFormOnChangeRequest'
+      responses:
+        200:
+          description: Successfully returned the new state of the form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{action.on_submit_callback}:
+    post:
+      summary: On action submit callback
+      description: >-
+        The form is submitted when the user chooses to create their Rule. Asana will create the app action data model
+        object and make a signed request to the on_submit_callback specified in the form metadata returned from the
+        fetch/update app rule form endpoints. Information about the created app action should be included in the
+        response if it was successfully created. This is the endpoint and schema for updating app actions; app triggers
+        (V2) will be analogous.
+      tags:
+        - Rules
+      operationId: onActionFormSubmit
+      requestBody:
+        description: >-
+          Request to submit an action form.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionFormSubmissionRequest'
+      responses:
+        200:
+          description: Successfully handled form submission.
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
