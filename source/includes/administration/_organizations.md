@@ -24,6 +24,7 @@ curl "https://cloudmc_endpoint/v1/organizations" \
          "name": "Umbrella Corporation",
          "entryPoint": "umbrella",
          "billableStartDate": "2017-08-15T12:00:00.000Z",
+         "billingDay": 5,
          "isBillable": true,
          "isReseller": false,
          "tags": ["a-tag"],
@@ -64,6 +65,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the organization.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
+`billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `tags`<br/>*Array[string]* | Tags associated to the organization.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
@@ -100,6 +102,7 @@ curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c
       "name": "Nintendo US",
       "entryPoint": "nintendo-us",
       "billableStartDate": "2017-08-15T12:00:00.000Z",
+      "billingDay": 5,
       "isBillable": true,
       "isReseller": false,
       "tags": ["a-tag"],
@@ -139,6 +142,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the organization.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL :<br/>`[entryPoint].CloudMC`.
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
+`billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `tags`<br/>*Array[string]* | Tags associated to the organization.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
@@ -195,6 +199,7 @@ Optional | &nbsp;
 ---- | ----
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
+`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 
 The responses' `data` field contains the created [organization](#administration-organizations) with its `id`.
 
@@ -237,6 +242,7 @@ Optional | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | An object describing a verified domain. Must have the `Organization: Manage reseller features` permission. <br/>*required* : `id`
+`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 
 The responses' `data` field contains the updated [organization](#administration-organizations).
 
