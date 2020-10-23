@@ -984,6 +984,8 @@ Content-Type: application/json
             "snippet": "1 x 20g test",
             "total_weight": 20,
             "value": 200000
+            "parent_id": null,
+            "child_tracking_id": null
         }
     }
 }
