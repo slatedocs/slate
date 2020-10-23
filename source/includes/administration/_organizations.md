@@ -199,7 +199,7 @@ Optional | &nbsp;
 ---- | ----
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
-`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28, the default value is 1.
+`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 
 The responses' `data` field contains the created [organization](#administration-organizations) with its `id`.
 
@@ -242,7 +242,7 @@ Optional | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | An object describing a verified domain. Must have the `Organization: Manage reseller features` permission. <br/>*required* : `id`
-`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28, the default value is 1.
+`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 
 The responses' `data` field contains the updated [organization](#administration-organizations).
 
