@@ -2,7 +2,9 @@ FROM ruby:2.6-slim
 
 WORKDIR /srv/slate
 
+VOLUME /srv/slate/build
 VOLUME /srv/slate/source
+
 EXPOSE 4567
 
 COPY Gemfile .
@@ -20,4 +22,7 @@ RUN apt-get update \
 
 COPY . /srv/slate
 
-CMD ["bundle", "exec", "middleman", "server", "--watcher-force-polling"]
+RUN chmod +x /srv/slate/slate.sh
+
+ENTRYPOINT ["/srv/slate/slate.sh"]
+CMD ["build"]
