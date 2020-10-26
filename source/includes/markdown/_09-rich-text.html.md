@@ -96,7 +96,7 @@ Because of this, the API will return additional attributes in `<a>` tags to conv
 |-------------------------|---------|
 | `data-asana-accessible` | Boolean, representing whether or not the linked object is accessible to the current user. If the resource is inaccessible, no other `data-asana-*` attributes will be included in the tag. |
 | `data-asana-dynamic`    | Boolean, represents if contents of the `a` tag is the canonical name of the object in Asana. If you want to set custom text that links to an Asana object, set `data-asana-dynamic="false"` when creating the tag. |
-| `data-asana-type`       | The type of the referenced object. One of `user`, `task`, `project`, `tag`, `conversation`, `status_update`, `team`, or `search`. |
+| `data-asana-type`       | The type of the referenced object. One of `user`, `task`, `project`, `tag`, `conversation`, `project_status`, `team`, or `search`. |
 | `data-asana-gid`        | The GID of the referenced object. If the referenced object is a user, this is the user's GID.  | 
 | `data-asana-project`    | If the type of the referenced object is a task, and the link references that task in a particular project, this is the GID of that project. |
 | `data-asana-tag`        | If the type of the referenced object is a task, and the link references that task in a particular tag, this is the GID of that tag. |
