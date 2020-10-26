@@ -5,7 +5,8 @@ WORKDIR /srv/slate
 VOLUME /srv/slate/source
 EXPOSE 4567
 
-COPY . /srv/slate
+COPY Gemfile .
+COPY Gemfile.lock .
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -16,5 +17,7 @@ RUN apt-get update \
     && apt-get remove -y build-essential \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
+
+COPY . /srv/slate
 
 CMD ["bundle", "exec", "middleman", "server", "--watcher-force-polling"]
