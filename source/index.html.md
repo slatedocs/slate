@@ -533,7 +533,7 @@ Funds are transferred instantly with 0 commission fee.
 |---|---|---|---|---|
 | nip | String | Yes | All | Transactional NIP (e.g. '1234'). |
 | coin | String | Yes | All | Coin symbol (e.g. 'btc'). |
-| email | String | Yes | All | Receiver email. |
+| recipient | String | Yes | All | Receiver's email. |
 | amount | Float | Yes | All | Amount to send. |
 
 ## Mexican Pesos Withdraw (SPEI)
