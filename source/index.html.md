@@ -31,7 +31,7 @@ curl https://api.kardia.com/v1/patients \
 The Kardia API uses API keys to authenticate requests. APIs within the Kardia platform require the use of HTTP Basic Authentication, constructed from a valid API key as the username and empty password combination.
 
 
-> Example Requests 
+> Example Requests
 
 ```shell
 # Get your API Key
@@ -338,7 +338,7 @@ Name                | Type   | Description
 ------------------- | ------ | -----------
 frequency           | int    | The frequency in hertz of the ECG recording, i.e. 300Hz
 mainsFrequency      | int    | The mains frequency either 50 (e.g. Europe) or 60 (e.g. America) Hz.
-amplitudeResolution | int  | The number of nanovolts corresponding to each sample unit. 
+amplitudeResolution | int  | The number of nanovolts corresponding to each sample unit.
 samples             | object | The ECG data samples
 
 ## ECG Samples Object
@@ -400,7 +400,7 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
         "AVR": [...],
         "AVL": [...],
         "AVF": [...]
-      }, 
+      },
       "numLeads": 6
     },
     "enhanced": {
@@ -435,14 +435,14 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
         "AVR": [...],
         "AVL": [...],
         "AVF": [...]
-      }, 
+      },
       "numLeads": 6
     }
   }
 }
 ```
 
-To get a single ECG for a given patient send a `GET` request to `/v1/recordings/:id` 
+To get a single ECG for a given patient send a `GET` request to `/v1/recordings/:id`
 
 ## Single ECG PDF
 
@@ -453,7 +453,7 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a.pdf \
   -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
-To get a single ECG PDF for a given patient send a `GET` request to `/v1/recordings/:id.pdf` 
+To get a single ECG PDF for a given patient send a `GET` request to `/v1/recordings/:id.pdf`
 
 ## Get All Recordings
 
@@ -666,6 +666,50 @@ curl https://api.kardia.com/v1/callback \
 }
 ```
 
+## Callback JSON examples
+
+> Participant connected to a team
+
+```json
+{
+    "eventType": "participantConnected",
+    "customParticipantId": "mrn123",
+    "patientId": "patientid123"
+}
+```
+
+> Participant disconnected from a team
+
+```json
+{
+    "eventType": "participantDisconnected",
+    "customParticipantId": "mrn123",
+    "patientId": "patientid123"
+}
+```
+
+> New recording made by patient
+
+```json
+{
+    "eventType":   "newRecording",
+    "recordingId": "recordingid123",
+    "patientId": "patientid123"
+}
+```
+
+> Stack updated based on an automatic "trigger" or "manual" action
+
+```json
+{
+	"eventType": "recordingInboxUpdated",
+	"stackID": "stackid123",
+	"action": "trigger"
+}
+```
+
+This section provides examples of JSON request bodies that are sent to the callback URL from Alivecor backend when the described events take place
+
 ## Set QT Analysis Callback URL
 
 > Example Request
@@ -702,6 +746,19 @@ curl https://api.kardia.com/v1/qtCallback \
   "url": "https://www.example.com/webhooks",
 }
 ```
+
+## QT callback JSON example
+
+> QT analysis complete
+
+```json
+{
+    "eventType": "qtAnalysis",
+    "recordingId": "recordingID123",
+}
+```
+
+This section provides examples of JSON request bodies that are sent to the QT callback URL from Alivecor backend when the described events take place
 
 ## Get callback logs
 
