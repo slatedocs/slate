@@ -703,7 +703,7 @@ curl https://api.kardia.com/v1/callback \
 ```json
 {
 	"eventType": "recordingInboxUpdated",
-	"stackID": "stackid123",
+	"memberId": "memberid123",
 	"action": "trigger"
 }
 ```
