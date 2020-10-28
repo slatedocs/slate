@@ -937,7 +937,7 @@ Just like the Payment Checkout via Link, you can access all your payment checkou
 
 ![Payment Checkout](images/payment_checkout_list.png)
 
-## How to Use Payment Checkout via Dashboard (comming soon)
+## How to Use Payment Checkout via Dashboard (coming soon)
 
 # FAQs
 
