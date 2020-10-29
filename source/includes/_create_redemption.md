@@ -8,7 +8,6 @@ This endpoint redeems a reward.
 $ curl -i -X POST -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/redemptions?apikey=your_key_here' 
     --data '{
               "userId": 0,
-              "senderId": 0,
               "rewardId": "string",
               "name": "string",
               "description": "string",
@@ -31,7 +30,6 @@ var options = {
   },
   json: {
           "userId": 0,
-          "senderId": 0,
           "rewardId": "string",
           "name": "string",
           "description": "string",

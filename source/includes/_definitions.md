@@ -185,7 +185,6 @@ skills for which your recipient(s) have demonstrated.
 ```json
 {
   "userId": 0,
-  "senderId": 0,
   "rewardId": "string",
   "name": "string",
   "description": "string",
@@ -204,7 +203,6 @@ skills for which your recipient(s) have demonstrated.
 | Attribute | Description | Required | Type |
 |---|---|---|---|
 |userId|Redeeming user ID, can be fetched from [user lookup](#opIdlookUpUser)|true|integer|
-|senderId|Request sender (redemption creator) user ID, can be fetched from [user lookup](#opIdlookUpUser) |true|integer|
 |rewardId|Reward ID|true|string|
 |name|Reward name|true|string|
 |description|Reward Description|false|string|

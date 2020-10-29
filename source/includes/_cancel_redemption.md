@@ -5,15 +5,15 @@
 This endpoint looks up a user by email address or employee number; both are not required.
 
 ```shell
-$ curl -i -X DELETE -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/redemptions/{id}?apikey=your_key_here&userId=0&senderId=0'
+$ curl -i -X DELETE -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/redemptions/{id}?apikey=your_key_here&userId=0'
 Or
-$ curl -i -X DELETE -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/redemptions/{id}?userId=0&senderId=0'
+$ curl -i -X DELETE -H 'Content-Type: application/json' --url 'https://api-client.kudosnow.com/v1/redemptions/{id}?userId=0'
 ```
 ```javascript
 var request = require('request');
 
 var options = {
-  uri: 'https://api-client.kudosnow.com/v1/redemptions/{id}?userId=0&senderId=0',
+  uri: 'https://api-client.kudosnow.com/v1/redemptions/{id}?userId=0',
   method: 'DELETE',
   headers: {
     "apikey": "your_key_here"
@@ -23,7 +23,7 @@ var options = {
 Or
 
 var options = {
-  uri: 'https://api-client.kudosnow.com/v1/redemptions/{id}?userId=0&senderId=0',
+  uri: 'https://api-client.kudosnow.com/v1/redemptions/{id}?userId=0',
   method: 'DELETE',
   headers: {
     "apikey": "your_key_here"
@@ -47,7 +47,6 @@ Cancel a redemption
 |---|---|---|---|---|
 |id|path|integer|true|Redemption ID|
 |userId|query|integer|true|User ID|
-|senderId|query|integer|true|Sender ID|
 
 > Example responses
 
