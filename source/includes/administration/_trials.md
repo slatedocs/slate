@@ -22,7 +22,9 @@ curl "https://cloudmc_endpoint/rest/trials_settings" \
   "data": [
     {
       "id": "b41f2aa3-e2d1-48d8-9760-8b874c20e8ae",
-      "organizationId": "23910576-d29f-4c14-b663-31d728ff49a5",
+      "organization": {
+        "id": "23910576-d29f-4c14-b663-31d728ff49a5",     
+      },
       "duration": 14,
       "extensionDays": 7,
       "maxConcurrentTrials": 5,
@@ -55,7 +57,7 @@ Query Params | &nbsp;
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the trial settings.
-`organizationId`<br/>*UUID* | The organization id that the trial settings is linked to.
+`organization.id`<br/>*UUID* | The organization id that the trial settings is linked to.
 `duration`<br/>*integer* | The number of days a trial account will remain active.
 `extensionDays`<br/>*integer* | The number of days that a trial administrator adds when extending an active trial.
 `maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
@@ -89,7 +91,9 @@ curl "https://cloudmc_endpoint/rest/trials_settings/b41f2aa3-e2d1-48d8-9760-8b87
 {
   "data": {
     "id": "b41f2aa3-e2d1-48d8-9760-8b874c20e8ae",
-    "organizationId": "23910576-d29f-4c14-b663-31d728ff49a5",
+    "organization": {
+      "id": "23910576-d29f-4c14-b663-31d728ff49a5",     
+    },
     "duration": 14,
     "extensionDays": 7,
     "maxConcurrentTrials": 5,
@@ -117,7 +121,7 @@ Retrieve the trial settings configured associated to the id on the system.
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the trial settings.
-`organizationId`<br/>*UUID* | The organization id that the trial settings is linked to.
+`organization.id`<br/>*UUID* | The organization id that the trial settings is linked to.
 `duration`<br/>*integer* | The number of days a trial account will remain active.
 `extensionDays`<br/>*integer* | The number of days that a trial administrator adds when extending an active trial.
 `maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
@@ -150,6 +154,9 @@ curl -X PUT "https://cloudmc_endpoint/rest/trials_settings/:id" \
 ```json
 {
   "id": "b41f2aa3-e2d1-48d8-9760-8b874c20e8ae",
+  "organization": {
+    "id": "23910576-d29f-4c14-b663-31d728ff49a5",     
+  },
   "organizationId": "23910576-d29f-4c14-b663-31d728ff49a5",
   "duration": 14,
   "extensionDays": 7,
@@ -178,7 +185,9 @@ curl -X PUT "https://cloudmc_endpoint/rest/trials_settings/:id" \
 {
   "data": {
     "id": "b41f2aa3-e2d1-48d8-9760-8b874c20e8ae",
-    "organizationId": "23910576-d29f-4c14-b663-31d728ff49a5",
+    "organization": {
+      "id": "23910576-d29f-4c14-b663-31d728ff49a5",     
+    },
     "duration": 14,
     "extensionDays": 7,
     "maxConcurrentTrials": 5,
@@ -207,7 +216,7 @@ Updates a specific trial's settings.
 Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the trial settings.
-`organizationId`<br/>*UUID* | The organization id that the trial settings is linked to. It cannot be changed.
+`organization.id`<br/>*UUID* | The organization id that the trial settings is linked to. It cannot be changed.
 `duration`<br/>*integer* | The number of days a trial account will remain active.
 `extensionDays`<br/>*integer* | The number of days that a trial administrator adds when extending an active trial.
 `maxConcurrentTrials`<br/>*integer* | The number of organizations that can concurrently have an active trial account. A value of zero indicates that there is no upper limit.
@@ -250,7 +259,9 @@ curl "https://cloudmc_endpoint/rest/trials" \
       "firstName": "John",
       "lastName": "Doe",
       "persistedOrganizationId": "0518842d-1ad6-4b66-abc4-2cf48d502b4c",
-      "resellerOrganizationId": "3518842d-1ad6-4b66-abc4-2cf48d502b4d",
+      "resellerOrganization": {
+        "id": "23910576-d29f-4c14-b663-31d728ff49a5",     
+      },
       "createdDate": "2020-10-19T13:36:25.000Z",
       "organizationName": "John Doe Corp",
       "activity": [
@@ -297,7 +308,7 @@ Query Params | &nbsp;
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the trial.
-`resellerOrganizationId`<br/>*UUID* | The reseller organization id that the trial belongs to.
+`resellerOrganization.id`<br/>*UUID* | The reseller organization id that the trial belongs to.
 `status`<br/>*string* | The status of the trial. Possible values are:  SUBMITTED, PENDING, DENIED, ONGOING, EXPIRED, PURGED, CONVERTED.
 `firstName`<br/>*string* | The first name of the person that requested the trial.
 `lastName`<br/>*string* | The last name of the person that requested the trial.
@@ -326,7 +337,9 @@ curl "https://cloudmc_endpoint/rest/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae"
 {
   "data": {
     "id": "b41f2aa3-e2d1-48d8-9760-8b874c20e8ae",
-    "resellerOrganizationId": "3518842d-1ad6-4b66-abc4-2cf48d502b4d",
+    "resellerOrganization": {
+      "id": "23910576-d29f-4c14-b663-31d728ff49a5",     
+    },
     "lastName": "Doe",
     "approvalDate": "2020-10-19T13:38:57.000Z",
     "activity": [
@@ -379,7 +392,7 @@ Retrieve the trial associated to the id on the system.
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the trial.
-`resellerOrganizationId`<br/>*UUID* | The reseller organization id that the trial belongs to.
+`resellerOrganization.id`<br/>*UUID* | The reseller organization id that the trial belongs to.
 `status`<br/>*string* | The status of the trial. Possible values are:  SUBMITTED, PENDING, DENIED, ONGOING, EXPIRED, PURGED, CONVERTED.
 `firstName`<br/>*string* | The first name of the person that requested the trial.
 `lastName`<br/>*string* | The last name of the person that requested the trial.
