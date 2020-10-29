@@ -4,6 +4,8 @@
 
 Documentation site for Admetricks' Clientela and Brandy APIs. 
 
+It's available at https://admetricks.github.io/slay/
+
 Quickstart
 ------------------------------
 
@@ -15,3 +17,8 @@ There are three available ways to run the site:
 * [Natively](https://github.com/slatedocs/slate/wiki/Using-Slate-Natively)
 * [Using Vagrant](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Vagrant)
 * [Using Docker](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Docker)
+
+
+### Deploy
+
+Slay is automagically deployed via an [Action's workflow](https://github.com/admetricks/slay/actions). All you have to do is update the master branch.
