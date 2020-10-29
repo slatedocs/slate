@@ -346,7 +346,7 @@ An OAuth app is not required for a Platform UI App. However, if your app needs a
 create an OAuth app and connect it to to your Platform UI App. To create an oauth app, see 
 [Authenication Quick Start](/docs/authentication-quick-start).
 
-To create a Platform UI App you'll need to fill out the [Create a UI Hook Alpha App](https://docs.google.com/forms/d/e/1FAIpQLSd0Uw_bjt7GBNftrV_duKXFRgc4yOkmJUF-RVWzYJLINIax5g/viewform?usp=sf_link)
+To create a Platform UI App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 form with the data in the table below.
 
 |Field|Type|Description|
@@ -428,7 +428,7 @@ You will provide Asana these paths in the next step.
 
 ## Register a Platform UI App
 
-First, complete the [Create a UI Hook Alpha App](https://docs.google.com/forms/d/e/1FAIpQLSd0Uw_bjt7GBNftrV_duKXFRgc4yOkmJUF-RVWzYJLINIax5g/viewform?usp=sf_link)
+First, complete the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 described in the [Platform UI App Section](/docs/platform-ui-app). Here is a cheat-sheet for what data you need to 
 provide:
 
