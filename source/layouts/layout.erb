@@ -32,6 +32,8 @@ under the License.
     <title><%= current_page.data.title || "API Documentation" %></title>
     <%= favicon_tag 'favicon.png' %>
 
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
     <style media="screen">
       <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
     </style>
@@ -64,7 +66,7 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <%= image_tag "logo.svg", class: 'logo' %>
+      <%= image_tag "logo.svg", class: 'logo p-3' %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
