@@ -27,23 +27,13 @@ Base URLs:
 <a href="https://www.admetricks.com/terms/">Terms of service</a>
 Email: <a href="mailto:dev@admetricks.com">Support</a>
 
-<%= partial "includes/quickstart.md.erb" %>
-<%= partial "includes/faq.md.erb" %>
-
 # Authentication
 
-- HTTP Authentication, scheme: basic
-
-* API Key (Bearer)
+* API Key (Access_token)
     - Parameter Name: **Authorization**, in: header. Access Token
 
-- oAuth2 authentication. OAuth Access
-
-    - Flow: authorizationCode
-    - Authorization URL = [https://example.com/oauth/authorize](https://example.com/oauth/authorize)
-
-|Scope|Scope Description|
-|---|---|
+<%= partial "includes/quickstart.md.erb" %>
+<%= partial "includes/faq.md.erb" %>
 
 <h1 id="clientela-active-campaign">active-campaign</h1>
 
@@ -680,273 +670,7 @@ None & None & None & None & None & None
 
 `POST /brand-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="brand-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="brand-report_xlsx-responses">Responses</h3>
 
@@ -1533,273 +1257,7 @@ None & None & None & None & None & None
 
 `POST /brands-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="brands-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="brands-report_xlsx-responses">Responses</h3>
 
@@ -2912,273 +2370,7 @@ None & None & None & None & None & None
 
 `POST /campaigns/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="campaigns_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="campaigns_xlsx-responses">Responses</h3>
 
@@ -3807,273 +2999,7 @@ None & None & None & None & None & None
 
 `POST /industry-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="industry-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="industry-report_xlsx-responses">Responses</h3>
 
@@ -4660,7 +3586,7 @@ None & None & None & None & None & None
 
 `POST /market-report/data/`
 
-*Create Market Data Report*
+*Create Market Data Report (V1)*
 
 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups
 
@@ -4669,254 +3595,33 @@ Lorem ipsum is placeholder text commonly used in the graphic, print, and publish
 ```json
 {
   "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
+    "day",
+    "device",
+    "country",
+    "ad_type"
   ],
   "type": "object",
   "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
+    "day": {
+      "title": "Day",
+      "description": "Date and Time from which the report will take things into account",
       "type": "string",
-      "minLength": 1
+      "format": "date-time"
     },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    "device": {
+      "title": "Device",
+      "description": "Filter by Device ID",
+      "type": "integer"
     },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
+    "country": {
+      "title": "Country",
+      "description": "Filter by Country ID",
+      "type": "integer"
     },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
+    "ad_type": {
+      "title": "Ad type",
+      "description": "Filter by Ad type ID",
+      "type": "integer"
     }
   }
 }
@@ -4926,274 +3631,16 @@ Lorem ipsum is placeholder text commonly used in the graphic, print, and publish
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
-
-> Example responses
-
-> 201 Response
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
+|body|body|[MarketReportQuery](#schemamarketreportquery)|true|none|
 
 <h3 id="market-report_data_create-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ReportRequest](#schemareportrequest)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|On missing params (e.g. day, device, ad_type or country)|None|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Success|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Missing or invalid query params|None|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|No results, no data or response too long|None|
+|502|[Bad Gateway](https://tools.ietf.org/html/rfc7231#section-6.6.3)|Unavailable service|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -5206,544 +3653,31 @@ None & None & None & None & None & None
 
 `POST /market-report/data/v2/`
 
-*Create Market Data Report*
+*Create Market Data Report (V2)*
 
 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
 
 <h3 id="market-report_data_v2_create-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
-
-> Example responses
-
-> 201 Response
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
+|day|query|string(date-time)|true|Date and Time from which the report will take things into account|
+|device|query|integer|true|Filter by Device ID|
+|country|query|integer|true|Filter by Country ID|
+|ad_type|query|integer|true|Filter by Ad type ID|
 
 <h3 id="market-report_data_v2_create-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ReportRequest](#schemareportrequest)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|On missing params (e.g. day, device, ad_type or country)|None|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Success|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Missing or invalid query params|None|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|No results, no data or response too long|None|
+|502|[Bad Gateway](https://tools.ietf.org/html/rfc7231#section-6.6.3)|Unavailable service|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-None & None & None & None & None & None
+Access_token
 </aside>
 
 ## market-report_data_v3_create
@@ -5752,273 +3686,18 @@ None & None & None & None & None & None
 
 `POST /market-report/data/v3/`
 
-*Create Market Data Report*
+*Create Market Data Report (V3)*
 
-Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
+This is the current, most up-to-date version of the Create Market Data report endpoint. Lorem ipsum dolor sit amet.
 
 <h3 id="market-report_data_v3_create-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+|day|query|string(date-time)|true|Date and Time from which the report will take things into account|
+|device|query|integer|true|Filter by Device ID|
+|country|query|integer|true|Filter by Country ID|
+|ad_type|query|integer|true|Filter by Ad type ID|
 
 > Example responses
 
@@ -6027,254 +3706,96 @@ Lorem ipsum is placeholder text commonly used in the graphic, print, and publish
 ```json
 {
   "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
+    "name",
+    "query"
   ],
   "type": "object",
   "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
+    "id": {
+      "title": "ID",
+      "type": "integer",
+      "readOnly": true
     },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1
     },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
+    "query": {
+      "title": "Query",
+      "type": "string",
+      "minLength": 1
     },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
+    "filter": {
+      "title": "Filter",
+      "type": "string",
+      "minLength": 1
     },
-    "date_range": {
-      "title": "Date range",
+    "period": {
+      "title": "Period",
+      "type": "integer"
+    },
+    "daily_updates": {
+      "title": "Daily updates",
+      "type": "boolean"
+    },
+    "weekly_updates": {
+      "title": "Weekly updates",
+      "type": "boolean"
+    },
+    "monthly_updates": {
+      "title": "Monthly updates",
+      "type": "boolean"
+    },
+    "monthly_memories": {
+      "title": "Monthly memories",
+      "type": "boolean"
+    },
+    "last_delivered_date": {
+      "title": "Last delivered date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "last_delivered_status": {
+      "title": "Last delivered status",
+      "type": "string",
+      "maxLength": 50,
+      "nullable": true
+    },
+    "weekly_updates_delivery_day": {
+      "title": "Weekly updates delivery day",
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    "report_type": {
       "required": [
-        "start",
-        "end"
+        "name"
       ],
       "type": "object",
       "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
         },
-        "end": {
-          "title": "End",
+        "name": {
+          "title": "Name",
           "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
+          "maxLength": 50,
           "minLength": 1
         }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
+      },
+      "readOnly": true
     }
   }
 }
@@ -6284,12 +3805,14 @@ Lorem ipsum is placeholder text commonly used in the graphic, print, and publish
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|none|[ReportRequest](#schemareportrequest)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|On missing params (e.g. day, device, ad_type or country)|None|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created report|[Report](#schemareport)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Missing or invalid query params|None|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|No results, no data or response too long|None|
+|502|[Bad Gateway](https://tools.ietf.org/html/rfc7231#section-6.6.3)|Unavailable service|None|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
-None & None & None & None & None & None
+Access_token
 </aside>
 
 ## market-report_xlsx
@@ -6298,273 +3821,7 @@ None & None & None & None & None & None
 
 `POST /market-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="market-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="market-report_xlsx-responses">Responses</h3>
 
@@ -7130,273 +4387,7 @@ None & None & None & None & None & None
 
 `POST /newdeals-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="newdeals-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="newdeals-report_xlsx-responses">Responses</h3>
 
@@ -7962,273 +4953,7 @@ None & None & None & None & None & None
 
 `POST /opportunity-brand-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="opportunity-brand-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="opportunity-brand-report_xlsx-responses">Responses</h3>
 
@@ -9660,273 +6385,7 @@ None & None & None & None & None & None
 
 `POST /verification-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="verification-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="verification-report_xlsx-responses">Responses</h3>
 
@@ -10492,273 +6951,7 @@ None & None & None & None & None & None
 
 `POST /website-report/xlsx/`
 
-*Get XLSX File from Report*
-
-Create Excel
-
-> Body parameter
-
-```json
-{
-  "required": [
-    "devices",
-    "ad_types",
-    "countries",
-    "date_range"
-  ],
-  "type": "object",
-  "properties": {
-    "devices": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "ad_types": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "countries": {
-      "title": "Devices",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "sold_by": {
-      "title": "Sold by",
-      "required": [
-        "include"
-      ],
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "string",
-                "minLength": 1
-              },
-              "name": {
-                "title": "Name",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "date_range": {
-      "title": "Date range",
-      "required": [
-        "start",
-        "end"
-      ],
-      "type": "object",
-      "properties": {
-        "start": {
-          "title": "Start",
-          "type": "string",
-          "format": "date-time"
-        },
-        "end": {
-          "title": "End",
-          "type": "string",
-          "format": "date-time"
-        },
-        "group_by": {
-          "title": "Group by",
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "order_by": {
-      "title": "Order by",
-      "type": "string",
-      "minLength": 1
-    },
-    "websites": {
-      "title": "Websites",
-      "type": "object",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "title": "Id",
-                "type": "integer"
-              },
-              "domain": {
-                "title": "Domain",
-                "type": "string",
-                "minLength": 1
-              },
-              "share": {
-                "title": "Share",
-                "required": [
-                  "start",
-                  "end"
-                ],
-                "type": "object",
-                "properties": {
-                  "start": {
-                    "title": "Start",
-                    "type": "integer"
-                  },
-                  "end": {
-                    "title": "End",
-                    "type": "integer"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "new_campaigns": {
-      "title": "New campaigns",
-      "type": "boolean"
-    },
-    "ad_format": {
-      "title": "Ad format",
-      "type": "boolean"
-    },
-    "api_version": {
-      "title": "Api version",
-      "type": "string",
-      "minLength": 1
-    }
-  }
-}
-```
-
-<h3 id="website-report_xlsx-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ReportRequest](#schemareportrequest)|true|none|
+*Create Excel file from Report data*
 
 <h3 id="website-report_xlsx-responses">Responses</h3>
 
@@ -11480,6 +7673,196 @@ Websites
 |new_campaigns|boolean|false|none|none|
 |ad_format|boolean|false|none|none|
 |api_version|string|false|none|none|
+
+<h2 id="tocS_MarketReportQuery">MarketReportQuery</h2>
+<!-- backwards compatibility -->
+<a id="schemamarketreportquery"></a>
+<a id="schema_MarketReportQuery"></a>
+<a id="tocSmarketreportquery"></a>
+<a id="tocsmarketreportquery"></a>
+
+```json
+{
+  "required": [
+    "day",
+    "device",
+    "country",
+    "ad_type"
+  ],
+  "type": "object",
+  "properties": {
+    "day": {
+      "title": "Day",
+      "description": "Date and Time from which the report will take things into account",
+      "type": "string",
+      "format": "date-time"
+    },
+    "device": {
+      "title": "Device",
+      "description": "Filter by Device ID",
+      "type": "integer"
+    },
+    "country": {
+      "title": "Country",
+      "description": "Filter by Country ID",
+      "type": "integer"
+    },
+    "ad_type": {
+      "title": "Ad type",
+      "description": "Filter by Ad type ID",
+      "type": "integer"
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|day|string(date-time)|true|none|Date and Time from which the report will take things into account|
+|device|integer|true|none|Filter by Device ID|
+|country|integer|true|none|Filter by Country ID|
+|ad_type|integer|true|none|Filter by Ad type ID|
+
+<h2 id="tocS_Report">Report</h2>
+<!-- backwards compatibility -->
+<a id="schemareport"></a>
+<a id="schema_Report"></a>
+<a id="tocSreport"></a>
+<a id="tocsreport"></a>
+
+```json
+{
+  "required": [
+    "name",
+    "query"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "ID",
+      "type": "integer",
+      "readOnly": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1
+    },
+    "query": {
+      "title": "Query",
+      "type": "string",
+      "minLength": 1
+    },
+    "filter": {
+      "title": "Filter",
+      "type": "string",
+      "minLength": 1
+    },
+    "period": {
+      "title": "Period",
+      "type": "integer"
+    },
+    "daily_updates": {
+      "title": "Daily updates",
+      "type": "boolean"
+    },
+    "weekly_updates": {
+      "title": "Weekly updates",
+      "type": "boolean"
+    },
+    "monthly_updates": {
+      "title": "Monthly updates",
+      "type": "boolean"
+    },
+    "monthly_memories": {
+      "title": "Monthly memories",
+      "type": "boolean"
+    },
+    "last_delivered_date": {
+      "title": "Last delivered date",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "last_delivered_status": {
+      "title": "Last delivered status",
+      "type": "string",
+      "maxLength": 50,
+      "nullable": true
+    },
+    "weekly_updates_delivery_day": {
+      "title": "Weekly updates delivery day",
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    "report_type": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      },
+      "readOnly": true
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer|false|read-only|none|
+|name|string|true|none|none|
+|query|string|true|none|none|
+|filter|string|false|none|none|
+|period|integer|false|none|none|
+|daily_updates|boolean|false|none|none|
+|weekly_updates|boolean|false|none|none|
+|monthly_updates|boolean|false|none|none|
+|monthly_memories|boolean|false|none|none|
+|last_delivered_date|string(date-time)¦null|false|none|none|
+|last_delivered_status|string¦null|false|none|none|
+|weekly_updates_delivery_day|integer|false|none|none|
+|report_type|object|false|read-only|none|
+|» id|integer|false|read-only|none|
+|» name|string|true|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|weekly_updates_delivery_day|1|
+|weekly_updates_delivery_day|2|
+|weekly_updates_delivery_day|4|
+|weekly_updates_delivery_day|8|
+|weekly_updates_delivery_day|16|
+|weekly_updates_delivery_day|32|
+|weekly_updates_delivery_day|64|
 
 <h2 id="tocS_UserFeedback">UserFeedback</h2>
 <!-- backwards compatibility -->
