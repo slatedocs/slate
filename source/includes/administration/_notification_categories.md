@@ -54,7 +54,12 @@ Attributes | &nbsp;
 `updatedAt`<br/>*string* | The date on which the notification category was updated.
 `icon`<br/>*string* | The icon used when displaying the notification category.
 `version`<br/>*integer* | The notification category's version.
-`translations`<br/>*Array[Translation]* | The translations of the different languages the notification category was written in.<br/>*includes*: `id`, `language`, `text`, `type`, `version`
+`translations`<br/>*Array[Object]* | The translations of the notification category content.
+`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.text`<br/>*string* | The content of the notification.
+`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.id`<br/>*UUID* | The translation's id.
+`translations.version`<br/>*integer* | The translation's version
 
 
 <!-------------------- GET NOTIFICATION CATEGORY -------------------->
@@ -108,7 +113,12 @@ Attributes | &nbsp;
 `updatedAt`<br/>*string* | The date on which the notification category was updated.
 `icon`<br/>*string* | The icon used when displaying the notification category.
 `version`<br/>*integer* | The notification category's version.
-`translations`<br/>*Array[Translation]* | The translations of the different languages the notification category was written in.<br/>*includes*: `id`, `language`, `text`, `type`, `version`
+`translations`<br/>*Array[Object]* | The translations of the notification category's content.
+`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.text`<br/>*string* | The content of the notification.
+`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.id`<br/>*UUID* | The translation's id.
+`translations.version`<br/>*integer* | The translation's version
 
 <!-------------------- CREATE NOTIFICATION CATEGORY -------------------->
 
@@ -126,6 +136,7 @@ curl -X POST "https://cloudmc_endpoint/v2/rest/content/categories/" \
 > Request body example:
 
 ```json
+{
     "organizationId":"2cc1b5ba-2cfb-4bf9-9cb9-c67d34ba27b1",
     "icon": "fa fa-envelope",
     "translations": [
@@ -140,6 +151,7 @@ curl -X POST "https://cloudmc_endpoint/v2/rest/content/categories/" \
             "text":"trial-tt"
         }
     ]
+}
 ```
 Create a notification category.
 
@@ -149,7 +161,10 @@ Required | &nbsp;
 `createdAt`<br/>*string* | The date on which the notification category was created.
 `updatedAt`<br/>*string* | The date on which the notification category was updated.
 `icon`<br/>*string* | The icon used when displaying the notification category.
-`translations`<br/>*Array[Translation]* | The translations of the different languages the notification category was written in.<br/>*includes*: `language`, `text`, `type`
+`translations`<br/>*Array[Object]* | The translations of the notification category's content.
+`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.text`<br/>*string* | The content of the notification.
+`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
 
 <!-------------------- UPDATE NOTIFICATION CATEGORY -------------------->
 
@@ -194,7 +209,10 @@ Required | &nbsp;
 `createdAt`<br/>*string* | The date on which the notification category was created.
 `updatedAt`<br/>*string* | The date on which the notification category was updated.
 `icon`<br/>*string* | The icon used when displaying the notification category.
-`translations`<br/>*Array[Translation]* | The translations of the different languages the notification category was written in.<br/>*includes*: `language`, `text`, `type`
+`translations`<br/>*Array[Object]* | The translations of the notification category's content.
+`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.text`<br/>*string* | The content of the notification.
+`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
 
 
 <!-------------------- DELETE NOTIFICATION CATEGORY -------------------->
@@ -211,7 +229,7 @@ curl "https://cloudmc_endpoint/v2/content/categories/:id" \
 
 ```
 
-Delete a notification category. You must ensure that this category has no associated notifications.
+Delete a notification category. You must ensure that this category has no associated
 
 
 
