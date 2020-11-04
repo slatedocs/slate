@@ -92,8 +92,8 @@ List the notifications configured for the organization.
 
 Optional Query Parameters | &nbsp;
 ---------- | -----------
-`organization_id`<br/>*UUID* | The id of the organization we wish to display notifications for. When left blank, the current user's notifications will be shown.
-`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
+`organization_id`<br/>*UUID* | The id of the organization we wish to display notifications for. If not provided, the current user's organization id will be used.
+`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -113,7 +113,7 @@ Attributes | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification, this can only be "title" or "body".
 `translations.id`<br/>*UUID* | The translation's id.
 `translations.version`<br/>*integer* | The translation's version.
 
@@ -207,8 +207,8 @@ Get a specific notification.
 
 Optional Query Parameters | &nbsp;
 ---------- | -----------
-`organization_id`<br/>*UUID* | The id of the organization we wish to display notifications for. When left blank, the current user's notifications will be shown.
-`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
+`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
+
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -228,19 +228,19 @@ Attributes | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category's title.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification, this can only be "title" or "body".
 `translations.id`<br/>*UUID* | The translation's id.
 `translations.version`<br/>*integer* | The translation's version.
 
-<!-------------------- CREATE NOTIFICATION CATEGORY -------------------->
+<!-------------------- CREATE NOTIFICATION -------------------->
 
-#### Create notification category
+#### Create notification
 
-`POST /content/categories/`
+`POST /content/notifications/`
 
 ```shell
-# Create notification category
-curl -X POST "https://cloudmc_endpoint/v2/rest/content/categories/" \
+# Create notification
+curl -X POST "https://cloudmc_endpoint/v2/rest/content/notifications/" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request-body"
@@ -284,7 +284,7 @@ Required | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification, this can only be "title" or "body".
 
 Optional | &nbsp;
 ---------- | -----------
@@ -347,7 +347,7 @@ Required | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification, this can only be "title" or "body".
 
 Optional | &nbsp;
 ---------- | -----------
@@ -355,6 +355,7 @@ Optional | &nbsp;
 `deprecatedAt`<br/>*string* | The date on which the notification has been/will be deprecated.
 `splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen until it reaches its deprecated date. Only one of splash and sticky can be set to true.
 `sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging in. Only one of splash and sticky can be set to true.
+`translations.id`<br/>*UUID* | When specified, the existing translation will be modified. If not provided, a new translation will replace the existing one.
 
 
 <!-------------------- DELETE NOTIFICATION -------------------->

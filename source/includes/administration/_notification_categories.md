@@ -9,7 +9,7 @@ Manage notification categories.
 
 ```shell
 # Retrieve notification categories
-curl "https://cloudmc_endpoint/v2/rest/content/categories?language=:language&organization_id=:organiationId" \
+curl "https://cloudmc_endpoint/v2/rest/content/categories?language=:language&organization_id=:organizationId" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -48,8 +48,8 @@ List the notification categories configured for the organization.
 
 Optional Query Parameters | &nbsp;
 ---------- | -----------
-`organization_id`<br/>*UUID* | The id of the organization we wish to display notification categories for. When left blank, the current user's notification categories will be shown.
-`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
+`organization_id`<br/>*UUID* | The id of the organization we wish to display notification categories for. If not provided, the current user's organization id will be used.
+`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -62,7 +62,7 @@ Attributes | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category content.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification category, this can only be "title".
 `translations.id`<br/>*UUID* | The translation's id.
 `translations.version`<br/>*integer* | The translation's version.
 
@@ -112,8 +112,7 @@ Get a specific notification category.
 
 Optional Query Parameters | &nbsp;
 ---------- | -----------
-`organization_id`<br/>*UUID* | The id of the organization we wish to display notification categories for. When left blank, the current user's notification categories will be shown.
-`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
+`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -126,7 +125,7 @@ Attributes | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification category, this can only be "title".
 `translations.id`<br/>*UUID* | The translation's id.
 `translations.version`<br/>*integer* | The translation's version.
 
@@ -172,7 +171,7 @@ Required | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification category, this can only be "title".
 
 <!-------------------- UPDATE NOTIFICATION CATEGORY -------------------->
 
@@ -218,7 +217,11 @@ Required | &nbsp;
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
 `translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
+`translations.type`<br/>*string* | The content that we are translating. For a notification category, this can only be "title".
+
+Optional | &nbsp;
+---------- | -----------
+`translations.id`<br/>*UUID* | When specified, the existing translation will be modified. If not provided, a new translation will replace the existing one.
 
 
 <!-------------------- DELETE NOTIFICATION CATEGORY -------------------->
