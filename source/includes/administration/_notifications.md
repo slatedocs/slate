@@ -103,7 +103,7 @@ Attributes | &nbsp;
 `authorLastName`<br/>*string* | The author's last name.
 `splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen until it reaches its deprecated date. Only one of splash and sticky can be set to true.
 `sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging in. Only one of splash and sticky can be set to true.
-`status`<br/>*string* | The status of the notification within it's lifecycle. (draft, published, deprecated)
+`status`<br/>*string* | The status of the notification within it's lifecycle (draft, published, deprecated).
 `createdAt`<br/>*string* | The date on which the notification was created.
 `updatedAt`<br/>*string* | The date on which the notification was updated.
 `publishedAt`<br/>*string* | The date on which the notification was published.
