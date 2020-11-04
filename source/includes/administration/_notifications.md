@@ -88,16 +88,21 @@ curl "https://cloudmc_endpoint/v2/rest/content/notifications?language=:language&
     ]
 }
 ```
-List the notifications configured on the system.
+List the notifications configured for the organization.
+
+Optional Query Parameters | &nbsp;
+---------- | -----------
+`organization_id`<br/>*UUID* | The id of the organization we wish to display notifications for. When left blank, the current user's notifications will be shown.
+`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
 
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the notification.
-`authorId`<br/>*UUID* | The id of the notification's author.
-`authorFirstName`<br/>*string* | The notification's author's first name.
-`authorLastName`<br/>*string* | The notification's author's last name.
-`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen of CloudMC until it reaches its deprecated date. Only one of splash and sticky can be set to true.
-`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging into CloudMC. Only one of splash and sticky can be set to true.
+`authorId`<br/>*UUID* | The author's id.
+`authorFirstName`<br/>*string* | The author's first name.
+`authorLastName`<br/>*string* | The author's last name.
+`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen until it reaches its deprecated date. Only one of splash and sticky can be set to true.
+`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging in. Only one of splash and sticky can be set to true.
 `status`<br/>*string* | The status of the notification within it's lifecycle. (draft, published, deprecated)
 `createdAt`<br/>*string* | The date on which the notification was created.
 `updatedAt`<br/>*string* | The date on which the notification was updated.
@@ -106,11 +111,11 @@ Attributes | &nbsp;
 `version`<br/>*integer* | The notification's version.
 `category`<br/>*Array[[Notification Category](#administration-notification-categories)]* | The notification category that the notification belongs to.<br/>*includes*: `id`, `organizationId`, `createdAt`, `updatedAt`, `translations`, `icon`, `version`
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 `translations.id`<br/>*UUID* | The translation's id.
-`translations.version`<br/>*integer* | The translation's version
+`translations.version`<br/>*integer* | The translation's version.
 
 
 <!-------------------- GET NOTIFICATION -------------------->
@@ -200,14 +205,19 @@ curl "https://cloudmc_endpoint/v2/rest/content/notifications/:id?language=:langu
 ```
 Get a specific notification.
 
+Optional Query Parameters | &nbsp;
+---------- | -----------
+`organization_id`<br/>*UUID* | The id of the organization we wish to display notifications for. When left blank, the current user's notifications will be shown.
+`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
+
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the notification.
-`authorId`<br/>*UUID* | The id of the notification's author.
-`authorFirstName`<br/>*string* | The notification's author's first name.
-`authorLastName`<br/>*string* | The notification's author's last name.
-`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen of CloudMC until it reaches its deprecated date. Only one of splash and sticky can be set to true.
-`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging into CloudMC. Only one of splash and sticky can be set to true.
+`authorId`<br/>*UUID* | The author's id.
+`authorFirstName`<br/>*string* | The author's first name.
+`authorLastName`<br/>*string* | The author's last name.
+`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen until it reaches its deprecated date. Only one of splash and sticky can be set to true.
+`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging in. Only one of splash and sticky can be set to true.
 `status`<br/>*string* | The status of the notification.
 `createdAt`<br/>*string* | The date on which the notification was created.
 `updatedAt`<br/>*string* | The date on which the notification was updated.
@@ -216,11 +226,11 @@ Attributes | &nbsp;
 `version`<br/>*integer* | The notification's version.
 `category`<br/>*Array[[Notification Category](#administration-notification-categories)]* | The notification category that the notification belongs to.<br/>*includes*: `id`, `organizationId`, `createdAt`, `updatedAt`, `translations`, `icon`, `version`
 `translations`<br/>*Array[Object]* | The translations of the notification category's title.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 `translations.id`<br/>*UUID* | The translation's id.
-`translations.version`<br/>*integer* | The translation's version
+`translations.version`<br/>*integer* | The translation's version.
 
 <!-------------------- CREATE NOTIFICATION CATEGORY -------------------->
 
@@ -272,16 +282,16 @@ Required | &nbsp;
 ---------- | -----------
 `category`<br/>*[Notification Category](#administration-notification-categories)]* | The notification category that the notification belongs to.<br/>*includes*: `id`
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 
 Optional | &nbsp;
 ---------- | -----------
 `publishedAt`<br/>*string* | The date on which the notification has been/will be published.
 `deprecatedAt`<br/>*string* | The date on which the notification has been/will be deprecated.
-`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen of CloudMC until it reaches its deprecated date. Only one of splash and sticky can be set to true.
-`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging into CloudMC. Only one of splash and sticky can be set to true.
+`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen until it reaches its deprecated date. Only one of splash and sticky can be set to true.
+`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging in. Only one of splash and sticky can be set to true.
 
 <!-------------------- UPDATE NOTIFICATION -------------------->
 
@@ -335,22 +345,22 @@ Required | &nbsp;
 `id`<br/>*UUID* | The id of the notification.
 `category`<br/>*[Notification Category](#administration-notification-categories)]* | The notification category that the notification belongs to.<br/>*includes*: `id`
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 
 Optional | &nbsp;
 ---------- | -----------
 `publishedAt`<br/>*string* | The date on which the notification has been/will be published.
 `deprecatedAt`<br/>*string* | The date on which the notification has been/will be deprecated.
-`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen of CloudMC until it reaches its deprecated date. Only one of splash and sticky can be set to true.
-`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging into CloudMC. Only one of splash and sticky can be set to true.
+`splash`<br/>*boolean* | When set to true, the notification will be displayed in the home screen until it reaches its deprecated date. Only one of splash and sticky can be set to true.
+`sticky`<br/>*boolean* | When set to true, the notification will be displayed upon logging in. Only one of splash and sticky can be set to true.
 
 
 <!-------------------- DELETE NOTIFICATION -------------------->
 
 
-### Delete notification category
+### Delete notification
 
 `DELETE /content/notifications/:id`
 

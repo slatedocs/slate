@@ -44,7 +44,12 @@ curl "https://cloudmc_endpoint/v2/rest/content/categories?language=:language&org
     ]
 }
 ```
-List the notification categories configured on the system.
+List the notification categories configured for the organization.
+
+Optional Query Parameters | &nbsp;
+---------- | -----------
+`organization_id`<br/>*UUID* | The id of the organization we wish to display notification categories for. When left blank, the current user's notification categories will be shown.
+`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -55,11 +60,11 @@ Attributes | &nbsp;
 `icon`<br/>*string* | The icon used when displaying the notification category.
 `version`<br/>*integer* | The notification category's version.
 `translations`<br/>*Array[Object]* | The translations of the notification category content.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 `translations.id`<br/>*UUID* | The translation's id.
-`translations.version`<br/>*integer* | The translation's version
+`translations.version`<br/>*integer* | The translation's version.
 
 
 <!-------------------- GET NOTIFICATION CATEGORY -------------------->
@@ -105,6 +110,11 @@ curl "https://cloudmc_endpoint/v2/rest/content/categories/:id?language=:language
 ```
 Get a specific notification category.
 
+Optional Query Parameters | &nbsp;
+---------- | -----------
+`organization_id`<br/>*UUID* | The id of the organization we wish to display notification categories for. When left blank, the current user's notification categories will be shown.
+`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en" or "fr" as opposed to "english" or "french".
+
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the notification category.
@@ -114,11 +124,11 @@ Attributes | &nbsp;
 `icon`<br/>*string* | The icon used when displaying the notification category.
 `version`<br/>*integer* | The notification category's version.
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 `translations.id`<br/>*UUID* | The translation's id.
-`translations.version`<br/>*integer* | The translation's version
+`translations.version`<br/>*integer* | The translation's version.
 
 <!-------------------- CREATE NOTIFICATION CATEGORY -------------------->
 
@@ -158,13 +168,11 @@ Create a notification category.
 Required | &nbsp;
 ---------- | -----------
 `organizationId`<br/>*UUID* | The organization id of the notification category.
-`createdAt`<br/>*string* | The date on which the notification category was created.
-`updatedAt`<br/>*string* | The date on which the notification category was updated.
 `icon`<br/>*string* | The icon used when displaying the notification category.
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 
 <!-------------------- UPDATE NOTIFICATION CATEGORY -------------------->
 
@@ -206,13 +214,11 @@ Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the notification category.
 `organizationId`<br/>*UUID* | The organization id of the notification category.
-`createdAt`<br/>*string* | The date on which the notification category was created.
-`updatedAt`<br/>*string* | The date on which the notification category was updated.
 `icon`<br/>*string* | The icon used when displaying the notification category.
 `translations`<br/>*Array[Object]* | The translations of the notification category's content.
-`translations.language`<br/>*string* | The language of that the translation is in.
+`translations.language`<br/>*string* | The language of the translation.
 `translations.text`<br/>*string* | The content of the notification.
-`translations.type`<br/>*string* | The content that we are translating. (Must be one of: title, body, description, url slug)
+`translations.type`<br/>*string* | The content that we are translating (must be one of: title, body, description, url slug).
 
 
 <!-------------------- DELETE NOTIFICATION CATEGORY -------------------->
@@ -229,7 +235,7 @@ curl "https://cloudmc_endpoint/v2/content/categories/:id" \
 
 ```
 
-Delete a notification category. You must ensure that this category has no associated
+Delete a notification category. You must ensure that this category has no associated notification.
 
 
 
