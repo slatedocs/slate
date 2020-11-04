@@ -93,7 +93,7 @@ List the notifications configured for the organization.
 Optional Query Parameters | &nbsp;
 ---------- | -----------
 `organization_id`<br/>*UUID* | The id of the organization we wish to display notifications for. If not provided, the current user's organization id will be used.
-`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
+`language`<br/>*UUID* | Language of the notification.Expected values are "en" (English), "fr" (French) or "es" (Spanish).
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -207,7 +207,7 @@ Get a specific notification.
 
 Optional Query Parameters | &nbsp;
 ---------- | -----------
-`language`<br/>*UUID* | Language of the notification. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
+`language`<br/>*UUID* | Language of the notification. Expected values are "en" (English), "fr" (French) or "es" (Spanish).
 
 
 Attributes | &nbsp;

@@ -49,7 +49,7 @@ List the notification categories configured for the organization.
 Optional Query Parameters | &nbsp;
 ---------- | -----------
 `organization_id`<br/>*UUID* | The id of the organization we wish to display notification categories for. If not provided, the current user's organization id will be used.
-`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
+`language`<br/>*UUID* | Language of the notification categories. Expected values are "en" (English), "fr" (French) or "es" (Spanish).
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -112,7 +112,7 @@ Get a specific notification category.
 
 Optional Query Parameters | &nbsp;
 ---------- | -----------
-`language`<br/>*UUID* | Language of the notification categories. Values expected are of the form : "en", "fr" or "es as opposed to "English", "French", or "Spanish".
+`language`<br/>*UUID* | Language of the notification categories. Expected values are "en" (English), "fr" (French) or "es" (Spanish).
 
 Attributes | &nbsp;
 ---------- | -----------
