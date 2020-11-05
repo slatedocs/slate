@@ -24,7 +24,7 @@ curl -X GET \
         "deleted": "",
         "description": "Upgrade complete",
         "status": "installed",
-        "notes": "You can connect to the container running cloudflare-dyndns. To open a shell session in the pod run the following:\n\n- kubectl exec -i -t --namespace my-namespace $(kubectl get pods --namespace my-namespace -l app=my-cloudflare-cloudflare-dyndns -o jsonpath='{.items[0].metadata.name}') /bin/sh\n\nTo trail the logs for the cloudflare-dyndns pod run the following:\n\n- kubectl logs -f --namespace my-namespace $(kubectl get pods --namespace my-namespace -l app=my-cloudflare-cloudflare-dyndns -o jsonpath='{ .items[0].metadata.name }')"
+        "notes": "You can connect to the container running cloudflare-dyndns. To open a shell session in the pod run the following:\n..."
       },
       "chart": {
         "metadata": {
@@ -107,6 +107,7 @@ curl -X GET \
   }
 }
 ```
+
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/releases</code>
 
 Or
@@ -156,13 +157,7 @@ The information is not totally returned in the list. We filter out the manifest 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954"
-```
-
-```shell
-curl --request GET \
-  --url https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/my-namespace/my-cloudflare \
-  --header 'mc-api-key: 21z5eXOKfSIHYsUNduyXNw=='
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/my-namespace/my-cloudflare"
 ```
 
 > The above command returns a JSON structured like this:
@@ -368,15 +363,9 @@ Rollback a release in a given [environment](#administration-environments) to the
 ### Upgrade release
 
 ```shell
-curl --request POST \
-  --url 'https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/my-namespcea/my-aerospike?operation=upgrade' \
-  --data 'request_body'
-```
-
-```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954?operation=upgrade"
+   "https://cloudmc_endpoint/v1/services/a_service/an_environment/releases/my-namespace/my-aerospike?operation=upgrade"
    -d "request_body"
 ```
 

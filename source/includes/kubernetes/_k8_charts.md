@@ -51,7 +51,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/charts</code>
 
-Retrieve a list of all charts in a given [environment](#administration-environments). To get more chart details, such as available versions, the chart's readme and list of maintainers, see <a href="#kubernetes-get-chart">Get chart</a>.
+Retrieve a list of all charts in a given [environment](#administration-environments). To get more chart details, such as available versions, the chart's readme and list of maintainers, see the GET request for an individual chart.
 
 | Attributes                                         | &nbsp;                                                                                                     |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------|
@@ -192,6 +192,7 @@ Retrieve a specific chart in a given [environment](#administration-environments)
 ```shell
 curl --request POST \
   --url https://cloudmc_endpoint/v1/services/a_service/an_environment/charts \
+  --header 'MC-Api-Key: your_api_key' \
   --data '{
 	"namespace": "my-namespace",
 	"releaseName": "my-aerospike",
