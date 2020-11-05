@@ -1,0 +1,59 @@
+# Authentication
+
+The Clientela API uses tokens to authenticate requests. Your token carries many privileges, so **be sure to keep it secure!** Do not share it or expose it on publicly available areas such as GitHub or client-side code.
+
+<br />
+
+```shell
+curl -X 'POST' 'https://clientela.admetricks.com/o/token/?username=YOUR_USERNAME&password=YOUR_PASSWORD&client_id=IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT&client_secret=KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu&grant_type=password'
+```
+
+```javascript
+const credentials = {
+  username: "YOUR_USERNAME",
+  password: "YOUR_PASSWORD"
+}
+
+const client = {
+  id: "IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT",
+  secret: "KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu"
+}
+
+const endpoint = `https://clientela.admetricks.com/o/token/?username=${credentials.username}&password=${credentials.password}&client_id=${client.id}&client_secret=${client.secret}&grant_type=password`
+
+fetch(endpoint, {
+  body: null,
+  method: "POST",
+})
+  .then(response => response.json())
+  .then(token => console.log(token)) // print your token data
+```
+
+```python
+import requests
+
+url = 'https://clientela.admetricks.com/o/token/?username=YOUR_USERNAME&password=YOUR_PASSWORD&client_id=IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT&client_secret=KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu&grant_type=password'
+response = requests.post(url)
+
+# print your token data
+print(response)
+```
+
+```java
+
+```
+
+You may obtain your access token by making a POST request with your credentials. To the right you'll find examples in many popular languages.
+
+<br />
+
+The authentication endpoint uses the following response/error codes:
+
+<br />
+
+Response code | Meaning
+------------- | -------
+200           | OK
+401           | Invalid credentials
+404           | Service not available
+405           | Wrong method (i.e. GET instead of POST)
