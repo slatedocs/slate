@@ -1050,8 +1050,6 @@ Yes. Disbursements executed through our API Disbursement are all performed in re
 
 We currently have 6 available banks for our API VA Aggregator. Please refer to the bank codes [here](https://api-docs.oyindonesia.com/#va-aggregator-bank-code).
 
-**What closed amount 
-
 **Is the amount received in realtime?** 
 
 Yes, all the amount received are in realtime and will be immediately available in your OY! balance.
