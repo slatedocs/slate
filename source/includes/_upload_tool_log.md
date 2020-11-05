@@ -43,6 +43,7 @@ tiger_test_jig_production | jig_id, machine_id, user, time, software_version, pa
 tiger_test_jig_repair | jig_id, machine_id, user, software_version, passed, serial_number, product_imei, count
 koala_test_jig_production | jig_id, machine_id, user, software_version, passed, serial_number, product_imei, hostname, control_board_revision
 bpower20_registration_production | machine_id, hostname, user, software_version, passed, serial_number, product_imei
+bpower50_registration_production | machine_id, hostname, user, software_version, passed, serial_number, product_imei
 
 
 ### POST
