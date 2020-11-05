@@ -42,11 +42,11 @@ curl "https://cloudmc_endpoint/rest/brandings" \
 }
 ```
 
-List the branding configured on the system.
+List the branding configured for the organization.
 
 Query Params | &nbsp;
 ---- | -----------
-`organization_id`<br/>*UUID* | Return only branding for the provided organization id. If not provided, will default to the user organization.
+`organization_id`<br/>*UUID* | Return only the branding for the provided organization id. If not provided, will default to the user's organization.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -57,7 +57,7 @@ Attributes | &nbsp;
 `defaultTimezone`<br/>*String* | The default timezone.
 `applicationName`<br/>*String* | The application name displayed to the user.
 `factory`<br/>*boolean* | If the branding is the factory branding.
-`artifacts`<br/>*Array[Object]* | The list of artifacts link to the branding. This includes the custom css, colours css, logos, favicons.
+`artifacts`<br/>*Array[Object]* | The list of artifacts linked to the branding. This includes the custom css, colours css, logos, favicons.
 `artifacts.id`<br/>*UUID* | The artifact id.
 `artifacts.name`<br/>*string* | The artifact name.
 `artifacts.mimeType`<br/>*string* | The mime type of the artifact.
@@ -118,7 +118,7 @@ Attributes | &nbsp;
 `defaultTimezone`<br/>*String* | The default timezone.
 `applicationName`<br/>*String* | The application name displayed to the user.
 `factory`<br/>*boolean* | If the branding is the factory branding.
-`artifacts`<br/>*Array[Object]* | The list of artifacts link to the branding. This includes the custom css, colours css, logos, favicons.
+`artifacts`<br/>*Array[Object]* | The list of artifacts linked to the branding. This includes the custom css, colours css, logos, favicons.
 `artifacts.id`<br/>*UUID* | The artifact id.
 `artifacts.name`<br/>*string* | The artifact name.
 `artifacts.mimeType`<br/>*string* | The mime type of the artifact.

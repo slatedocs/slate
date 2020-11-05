@@ -94,11 +94,11 @@ curl "https://cloudmc_endpoint/rest/content/kb" \
 }
 ```
 
-List the knowledge base configured on the system.
+List the knowledge base configured for the organization.
 
 Query Params | &nbsp;
 ---- | -----------
-`organization_id`<br/>*UUID* | Return only knowledge base for the provided organization id. If not provided, will default to the user organization.
+`organization_id`<br/>*UUID* | Return only the knowledge base for the provided organization id. If not provided, will default to the user's organization.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -122,7 +122,7 @@ Attributes | &nbsp;
 `categories.translations.id`<br/>*UUID* | The id of the translation.
 `categories.translations.language`<br/>*string* | The language of the translation.
 `categories.translations.text`<br/>*string* | The content of the translation.
-`categories.translations.type`<br/>*string* | The type of translation. Possible values are: title, body, description or url_slug.
+`categories.translations.type`<br/>*string* | The type of translation. Possible values are: title or url_slug.
 `categories.translations.version`<br/>*integer* | The version of the translation.
 `categories.articles`<br/>*Array[Object]* | The list of articles in the category.
 `categories.articles.id`<br/>*UUID* | The id of the article.
@@ -135,7 +135,7 @@ Attributes | &nbsp;
 `categories.articles.translations.id`<br/>*UUID* | The id of the translation.
 `categories.articles.translations.language`<br/>*string* | The language of the translation.
 `categories.articles.translations.text`<br/>*string* | The content of the translation.
-`categories.articles.translations.type`<br/>*string* | The type of translation. Possible values are: title, body, description or url_slug.
+`categories.articles.translations.type`<br/>*string* | The type of translation. Possible values are: title, body or url_slug.
 `categories.articles.translations.version`<br/>*integer* | The version of the translation.
 
 <!-------------------- GET KNOWLEDGE BASES -------------------->
@@ -253,7 +253,7 @@ Attributes | &nbsp;
 `categories.translations.id`<br/>*UUID* | The id of the translation.
 `categories.translations.language`<br/>*string* | The language of the translation.
 `categories.translations.text`<br/>*string* | The content of the translation.
-`categories.translations.type`<br/>*string* | The type of translation. Possible values are: title, body, description or url_slug.
+`categories.translations.type`<br/>*string* | The type of translation. Possible values are: title or url_slug.
 `categories.translations.version`<br/>*integer* | The version of the translation.
 `categories.articles`<br/>*Array[Object]* | The list of articles in the category.
 `categories.articles.id`<br/>*UUID* | The id of the article.
@@ -266,5 +266,5 @@ Attributes | &nbsp;
 `categories.articles.translations.id`<br/>*UUID* | The id of the translation.
 `categories.articles.translations.language`<br/>*string* | The language of the translation.
 `categories.articles.translations.text`<br/>*string* | The content of the translation.
-`categories.articles.translations.type`<br/>*string* | The type of translation. Possible values are: title, body, description or url_slug.
+`categories.articles.translations.type`<br/>*string* | The type of translation. Possible values are: title, body or url_slug.
 `categories.articles.translations.version`<br/>*integer* | The version of the translation.
