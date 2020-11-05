@@ -126,6 +126,7 @@ includes:
   - force_connection
   - get_repair
   - suggest_energy_limit
+  - upload_tool_log
 
   - product_data
 
