@@ -24,6 +24,7 @@ includes:
   - administration/service_providers
   - administration/saml_settings
   - administration/trials
+  - administration/email_settings
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
