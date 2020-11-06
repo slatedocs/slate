@@ -62,7 +62,7 @@ Retrieve a list of all charts in a given [environment](#administration-environme
 | `license` <br/>_string_                            | The chart's license.                                                                                       |
 | `deprecated` <br/>_boolean_                        | True if the chart is deprecated.                                                                           |
 | `repository` <br/>_object_                         | The chart's parent repository.                                                                             |
-| `repoository.url` <br/>_string_                    | The repository url.                                                                                        |
+| `repoository.url` <br/>_string_                    | The repository URL.                                                                                        |
 | `repository.name` <br/>_string_                    | The repository name.                                                                                       |
 | `repository.kind` <br/>_integer_                   | The repository kind, where `{0: Helm chart, 1: Falco rule, 2: OPA policy, 3: OLM operator }`.              |
 | `repository.official` <br/>_boolean_               | True if it is an official repository. That is, if the publisher owns the software deployed by the package. |
@@ -165,7 +165,7 @@ Retrieve a specific chart in a given [environment](#administration-environments)
 | `license` <br/>_string_                            | The chart's license.                                                                                       |
 | `deprecated` <br/>_boolean_                        | True if the chart is deprecated.                                                                           |
 | `repository` <br/>_object_                         | The chart's parent repository.                                                                             |
-| `repoository.url` <br/>_string_                    | The repository url.                                                                                        |
+| `repoository.url` <br/>_string_                    | The repository URL.                                                                                        |
 | `repository.name` <br/>_string_                    | The repository name.                                                                                       |
 | `repository.kind` <br/>_integer_                   | The repository kind, where `{0: Helm chart, 1: Falco rule, 2: OPA policy, 3: OLM operator }`.              |
 | `repository.official` <br/>_boolean_               | True if it is an official repository. That is, if the publisher owns the software deployed by the package. |
@@ -218,13 +218,16 @@ curl --request POST \
 
 Install a chart in a given [environment](#administration-environments).
 
-| Attributes                      | &nbsp;                                                                           |
-|---------------------------------|----------------------------------------------------------------------------------|
-| `namespace` <br/>_string_       | The namespace in which the chart will be installed.                              |
-| `releaseName` <br/>_string_     | The desired release name.                                                        |
-| `name` <br/>_string_            | The chart name.                                                                  |
-| `version` <br/>_string_         | The chart version to be installed. Defaults to the latest version if left blank. |
-| `values` <br/>_string_          | The values to use to install the chart. It must be a valid Yaml format.          |
-| `repository` <br/>_object_      | The chart's parent repository from which it should be installed.                 |
-| `repoository.url` <br/>_string_ | The repository url.                                                              |
-| `insecureServer`<br/>_boolean_  | True if accessing the chart requires an unsecured connection.                    |
+| Required                        | &nbsp;                                                           |
+|---------------------------------|------------------------------------------------------------------|
+| `namespace` <br/>_string_       | The namespace in which the chart will be installed.              |
+| `releaseName` <br/>_string_     | The desired release name.                                        |
+| `name` <br/>_string_            | The chart name.                                                  |
+| `repository` <br/>_object_      | The chart's parent repository from which it should be installed. |
+| `repoository.url` <br/>_string_ | The repository URL.                                              |
+
+| Optional                       | &nbsp;                                                                                                                       |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `version` <br/>_string_        | The chart version to be installed. Defaults to the latest version if left blank.                                             |
+| `values` <br/>_string_         | The values used to install the chart. Must be a valid Yaml format. If not provided, the chart's default values will be used. |
+| `insecureServer`<br/>_boolean_ | True if accessing the chart requires an unsecured connection.                                                                |

@@ -320,10 +320,10 @@ Retrieve a release in a given [environment](#administration-environments).
 | `chart.metadata.deprecate` <br/>_bool_     | If the chart is deprecated or not of the application.                                                                                                                                   |
 | `chart.templates` <br/> _list_             | The list of templates contained inside the chart.                                                                                                                                       |
 | `chart.templates.name` <br/> _string_      | The path name of the template inside the chart.                                                                                                                                         |
-| `chart.templates.data` <br/> _string_      | The contents of the template. This is a base64 encode string.                                                                                                                           |
+| `chart.templates.data` <br/> _string_      | The contents of the template. This is a base64 encoded string.                                                                                                                           |
 | `chart.files` <br/> _list_                 | The list of files contained inside the chart. These are not YAML files unlike the templates.                                                                                            |
 | `chart.files.name` <br/> _string_          | The path name of the file inside the chart.                                                                                                                                             |
-| `chart.files.data` <br/> _string_          | The contents of the file. This is a base64 encode string.                                                                                                                               |
+| `chart.files.data` <br/> _string_          | The contents of the file. This is a base64 encoded string.                                                                                                                               |
 | `manifest` <br/> _string_                  | The YAML Kubernetes resources created by the Helm templating.                                                                                                                           |
 | `config` <br/>_object_                     | All values that were used to install the release.                                                                                                                                       |
 | `version`<br/>_string_                     | The revision of the release.                                                                                                                                                            |
@@ -398,8 +398,8 @@ curl -X POST \
 
 // Change to a specific version of a chart
 {
-  "upgradeChart": {
-		"name": "aerospike",
+	"upgradeChart": {
+    "name": "aerospike",
     "version": "4.9.0",
 		"repository": {
 			"url": "https://aerospike.github.io/aerospike-kubernetes-enterprise"
@@ -409,12 +409,12 @@ curl -X POST \
 
 // Change the values for the latest version
 {
-  "upgradeChart": {
-		"name": "aerospike",
+	"upgradeChart": {
+    "name": "aerospike",
 		"repository": {
 			"url": "https://aerospike.github.io/aerospike-kubernetes-enterprise"
 		}
-	}
+  },
   "upgradeValues": "\"replicaCount\": 3"
 }
 ```
