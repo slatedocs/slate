@@ -385,8 +385,8 @@ curl -X POST \
 // Change to a specific version of a chart
 {
 	"upgradeChart": {
-    "name": "aerospike",
-    "version": "4.9.0",
+		"name": "aerospike",
+		"version": "4.9.0",
 		"repository": {
 			"url": "https://aerospike.github.io/aerospike-kubernetes-enterprise"
 		}
@@ -396,12 +396,12 @@ curl -X POST \
 // Change the values for the latest version
 {
 	"upgradeChart": {
-    "name": "aerospike",
+		"name": "aerospike",
 		"repository": {
 			"url": "https://aerospike.github.io/aerospike-kubernetes-enterprise"
 		}
-  },
-  "upgradeValues": "\"replicaCount\": 3"
+	},
+	"upgradeValues": "\"replicaCount\": 3"
 }
 ```
 
