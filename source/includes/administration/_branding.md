@@ -52,10 +52,10 @@ Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the branding.
 `organization.id`<br/>*UUID* | The organization id that the branding is linked to.
-`defaultLanguage`<br/>*String* | The default language.
-`activeLanguages`<br/>*Array[String]* | List of the possible languages.
-`defaultTimezone`<br/>*String* | The default timezone.
-`applicationName`<br/>*String* | The application name displayed to the user.
+`defaultLanguage`<br/>*string* | The default language.
+`activeLanguages`<br/>*Array[string]* | List of the possible languages.
+`defaultTimezone`<br/>*string* | The default timezone.
+`applicationName`<br/>*string* | The application name displayed to the user.
 `factory`<br/>*boolean* | If the branding is the factory branding.
 `artifacts`<br/>*Array[Object]* | The list of artifacts linked to the branding. This includes the custom css, colours css, logos, favicons.
 `artifacts.id`<br/>*UUID* | The artifact id.
@@ -113,10 +113,10 @@ Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the branding.
 `organization.id`<br/>*UUID* | The organization id that the branding is linked to.
-`defaultLanguage`<br/>*String* | The default language.
-`activeLanguages`<br/>*Array[String]* | List of the possible languages.
-`defaultTimezone`<br/>*String* | The default timezone.
-`applicationName`<br/>*String* | The application name displayed to the user.
+`defaultLanguage`<br/>*string* | The default language.
+`activeLanguages`<br/>*Array[string]* | List of the possible languages.
+`defaultTimezone`<br/>*string* | The default timezone.
+`applicationName`<br/>*string* | The application name displayed to the user.
 `factory`<br/>*boolean* | If the branding is the factory branding.
 `artifacts`<br/>*Array[Object]* | The list of artifacts linked to the branding. This includes the custom css, colours css, logos, favicons.
 `artifacts.id`<br/>*UUID* | The artifact id.

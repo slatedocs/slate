@@ -104,13 +104,13 @@ Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the knowledge base.
 `organization.id`<br/>*UUID* | The organization id that the knowledge base is linked to.
-`state`<br/>*String* | The source state. Possible values:  IMPORTING, SYNCHING, READY, ERROR.
+`state`<br/>*string* | The source state. Possible values:  IMPORTING, SYNCHING, READY, ERROR.
 `sources`<br/>*Array[Object]* | List of sources associated to the knowledge base
 `sources.id`<br/>*UUID* | The source id.
 `sources.url`<br/>*string* | The source URL.
 `sources.branch`<br/>*string* | The source branch.
-`sources.createdDate`<br/>*String* | The date the source was created.
-`sources.lastSyncDate`<br/>*String* | The last date the source was synchronized.
+`sources.createdDate`<br/>*string* | The date the source was created.
+`sources.lastSyncDate`<br/>*string* | The last date the source was synchronized.
 `categories.id`<br/>*UUID* | The category id.
 `categories.gitKey`<br/>*string* | The category git key.
 `categories.rank`<br/>*integer* | The category rank.
@@ -235,13 +235,13 @@ Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The id of the knowledge base.
 `organization.id`<br/>*UUID* | The organization id that the knowledge base is linked to.
-`state`<br/>*String* | The source state. Possible values:  IMPORTING, SYNCHING, READY, ERROR.
+`state`<br/>*string* | The source state. Possible values:  IMPORTING, SYNCHING, READY, ERROR.
 `sources`<br/>*Array[Object]* | List of sources associated to the knowledge base
 `sources.id`<br/>*UUID* | The source id.
 `sources.url`<br/>*string* | The source URL.
 `sources.branch`<br/>*string* | The source branch.
-`sources.createdDate`<br/>*String* | The date the source was created.
-`sources.lastSyncDate`<br/>*String* | The last date the source was synchronized.
+`sources.createdDate`<br/>*string* | The date the source was created.
+`sources.lastSyncDate`<br/>*string* | The last date the source was synchronized.
 `categories.id`<br/>*UUID* | The category id.
 `categories.gitKey`<br/>*string* | The category git key.
 `categories.rank`<br/>*integer* | The category rank.
