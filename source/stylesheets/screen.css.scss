@@ -1055,3 +1055,10 @@ pre {
 .platform-ui-alpha {
   display: none !important;
 }
+
+.beta-indicator {
+  font-weight: 500;
+  color: $purple;
+  text-transform: uppercase;
+  padding-right: $spacing-xs;
+}

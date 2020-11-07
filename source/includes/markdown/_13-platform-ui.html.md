@@ -1,16 +1,16 @@
 <hr class="platform-ui-alpha">
 <section class="platform-ui-alpha">
 
-# Platform UI (UI Hooks)
+# Platform UI Overview
 
 Requires an [App Server](/docs/app-server).
 
-With Hooks, apps can display customized widgets, modals, and rules within Asana's UI. 
-Browsers, and sometimes Asana servers, make requests to an App's server. The App Server 
-controls what information is shown and the App Server controls what happens when a User 
-takes an action within these components.
+Using Platform UI, apps can display customized widgets, modals, and rules within Asana's UI. 
+From Asana, requests are sent to an App's server. The App Server controls what information 
+is shown to the user and the App Server controls what happens when a User 
+takes actions within these components.
 
-We will cover some of the main UI Hook components here.
+We will cover the main Platform UI components here.
 
 <hr>
 
@@ -61,6 +61,8 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&at
 
 An App Widget displays external data within Asana. The contents of a 
 widget may change but the overall format stays consistent across apps.
+Apps can control what layout they prefer by supplying their preferred 
+`template`.
 
 The content of this widget is controlled by the App Server. When an 
 Asana user's browser navigates to a widget, the browser sends a 
@@ -234,9 +236,9 @@ App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rul
 
 <hr class="full-line">
 
-# Security - UI Hooks
+# Security - Platform UI
 
-## Authentication - UI Hooks
+## Authentication - Platform UI
 
 We provide authentication through a shared secret which is transmitted out-of-band to the app. This shared secret is not passed in the clear through any system the attacker may control, such as a browser client.
 We cannot simply add the secret to the request because the request is made from the client. Instead, we use a system where we sign the parameters of the request using a shared secret and a SHA-256 HMAC.
@@ -244,14 +246,14 @@ The app is responsible for verifying the signature. If it can generate the same 
 
 <hr>
 
-## Authorization - UI Hooks
+## Authorization - Platform UI
 
 Some information is only added to the request on the server, such as the current user ID, to ensure that the client cannot provide incorrect data.
 Additionally, all parameters that represent data-model objects are checked for access control to prevent users from asking the app for data they shouldn't be able to see, such as an attachment on a task they cannot see.
 
 <hr>
 
-## Message Integrity - UI Hooks
+## Message Integrity - Platform UI
 
 Message integrity is provided by the signature. This is a SHA-256 HMAC. This is URL parameters in the case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted in a header. The app calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
 The signature must be on the exact parameter string that will be passed to the app because the signature will change if something as trivial as spacing changes. We must pass the exact string for the app to be able to verify the signature.
@@ -266,7 +268,7 @@ The burden of verifying the request has not expired is on the app. We don't have
 
 <hr class="full-line">
 
-# Platform UI App
+# Apps - Platform UI
 
 ```json
 
@@ -327,11 +329,6 @@ The burden of verifying the request has not expired is on the app. We don't have
       subtitle: "Here's what you can do in Asana with the Jira Cloud app.",
       buttonText: "Get started",
   },
-  developmentStatus: {
-    status: "Published",
-    flag: null,
-  },
-  developmentStage: "Published",
   coachmarkText: "Add or create new Jira issues on any task in this project.",
   actionsMenuTitle: "Add Jira Issue",
   feedbackLink: "https://form-beta.asana.com?hash=6da775cf552078ee2299eda9309d22f32239aa29900b5b9330cd57891e7d6068&id=1148560723305775",
@@ -339,12 +336,12 @@ The burden of verifying the request has not expired is on the app. We don't have
 }
 ```
 
-Currently "Platform UI Apps" are totally disconnected from "OAuth Apps". We are planning to combine them in the future, but 
+Currently, "Platform UI Apps" are separate from "OAuth Apps". We are planning to combine them in the future, but 
 until them, you'll need to define both if you want functionality from both in your app.
 
 An OAuth app is not required for a Platform UI App. However, if your app needs access to the Asana API, then you need to 
-create an OAuth app and connect it to to your Platform UI App. To create an oauth app, see 
-[Authenication Quick Start](/docs/authentication-quick-start).
+create an OAuth app and connect it to your Platform UI App. To create an oauth app, see 
+[Authentication Quick Start](/docs/authentication-quick-start).
 
 To create a Platform UI App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 form with the data in the table below.
@@ -432,8 +429,8 @@ First, complete the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=L
 described in the [Platform UI App Section](/docs/platform-ui-app). Here is a cheat-sheet for what data you need to 
 provide:
 
- * `authenticationUrl` & `authModalMetadata` is only required if your app needs access to the Asana API. If you plan to 
- use the API, create an [OAuth App](/docs/oauth) via the [Developer Console](https://app.asana.com/0/developer-console). 
+ * `authenticationUrl` & `authModalMetadata` is only required if your app needs access to the Asana API and/or needs to 
+ oauth with a different application. If you plan to use Asana's API, create an [OAuth App](/docs/oauth) via the [Developer Console](https://app.asana.com/0/developer-console). 
  The URL you place in `authenticationUrl` should be something like `https://localhost:5000/auth`. This url should redirect
  users to the [User Authorization Endpoint](#user-authorization-endpoint) with the required url parameters for OAuth.
  * `resource_widget` is required if you want to display an [App Widget](/docs/app-widget). Widgets are displayed for 
@@ -489,7 +486,7 @@ your server.
 }
 ```
 
-Lets hit the Create option and check the logs for our server. You should have seen a request to your `resource_widget`
+Let's hit the Create option and check the logs for our server. You should have seen a request to your `create_resource`
 url. This request tells Asana what fields to display here. For now, you should change your server to respond with 
 the "My Modal" example on the right.  You can add more to this this by referencing the
 [Resource Modal Reference](resource-modal). 
@@ -579,6 +576,8 @@ data to display in the widget. Clicking on the widget will take you to the attac
   ]
 }
 ```
+
+**WARNING: This functionality may not yet work as expected.**
 
 Lets add a functioning typeahead. Change your `resourceTypeaheadUrl` response to return the "items" example on the 
 right. Restart your server, refresh your Asana tab. Nothing will have changed! In order to see this typeahead in action,

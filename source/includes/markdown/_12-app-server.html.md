@@ -65,7 +65,9 @@ echo 'Hello World';
 ```
 
 An App Server is required for working with [Webhooks](/docs/webhooks)
-and [UI Hooks](/docs/ui-hooks).
+and [Platform UI](/docs/platform-ui-overview) (UI Hooks). When we say "App Server", we
+are referring to the server Asana directly sends requests to. This is different
+than the service it may be connecting to in the end (like Slack or Jira).
 
 For some features, Asana needs to send requests to an App. In order for an App to
 use these features, they will need to implement an App Server. App Servers are simply servers 
@@ -74,9 +76,9 @@ response codes, and sometimes return valid json bodies to requests from Asana. S
 will be sent from an Asana user's browser, while other requests will be sent from Asana's 
 servers. 
 
-App Servers are allowed to define their own paths. During the lifecycle of a Webhook or UI Hook, 
+App Servers define their own paths. During the lifecycle of a Webhook or UI Hook, 
 apps will need to declare the endpoints for Asana. For Webhooks, this happens when you create a 
-new webhook. For UI Hooks, some endpoints are declared on App Creation while others are dynamically 
+new webhook. For Platform UI, some UI Hooks are declared on App Creation while others are dynamically 
 declared in responses to requests from Asana.
 
 You should test/debug your App Server with a tool like [Postman](https://www.postman.com/) or 
