@@ -107,7 +107,7 @@ Attributes | &nbsp;
 
 ```shell
 # Updates an existing email settings for an organization
-curl -X PUT "https://cloudmc_endpoint/rest/email_settings/:id" \
+curl -X PUT "https://cloudmc_endpoint/rest/email_settings/dc30f8f7-1edc-11eb-92b6-0242ac120003 \
    -H "MC-Api-Key: your_api_key"
    -H "Content-Type: application/json" \
    -d "request-body"
