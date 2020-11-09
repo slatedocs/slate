@@ -118,7 +118,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/email_settings/dc30f8f7-1edc-11eb-92b
 ```json
 {
   "organization": {
-		"id": "ce77d759-c015-4a92-b594-3f7119867e1f"
+    "id": "ce77d759-c015-4a92-b594-3f7119867e1f"
   },
   "mailgunPrivateKey": "VALIDPRIVATEKEY",
   "smtpHost": "valid.host",
