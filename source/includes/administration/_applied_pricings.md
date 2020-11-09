@@ -1,4 +1,4 @@
-### Applied Pricings
+## Applied Pricings
 
 The applied pricing allows the assignment of pricing to organization with a determined scope.
 

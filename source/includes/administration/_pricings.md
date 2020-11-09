@@ -1,4 +1,4 @@
-### Pricings
+## Pricings
 
 The pricing determines the price for each product defined for a selected catalog.
 

@@ -1,4 +1,4 @@
-### Product Catalogs
+## Product Catalogs
 
 The product catalogs determine the product configured for a service type and optionally for specific connections.
 
