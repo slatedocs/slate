@@ -88,7 +88,7 @@ Retrieve the email settings associated to the email settings id.
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The configured email settings' id.
-`organization.id`<br/>*UUID* | The organization id that the email settings is linked to.
+`organization.id`<br/>*UUID* | The organization id that the email settings are linked to.
 `smtpHost`<br/>*string* | Hostname or IP address of your SMTP mail server (e.g. smtp.yourcompany.com).
 `smtpFromAddress`<br/>*string* | Email address used in the 'sender address' (or 'from') field.
 `smtpUsername`<br/>*string* | If your SMTP host requires authentication, specify the username of these authentication credentials here.
@@ -119,16 +119,16 @@ curl -X PUT "https://cloudmc_endpoint/rest/email_settings/dc30f8f7-1edc-11eb-92b
 {
   "organization": {
 		"id": "ce77d759-c015-4a92-b594-3f7119867e1f"
-	},
-	"mailgunPrivateKey": "VALIDPRIVATEKEY",
-	"smtpHost": "valid.host",
-	"smtpFromAddress": "valid.address@domain.com",
-	"smtpUsername": "valid.username@gmail.com",
-	"smtpPort": 2,
-	"mailgunDomain": "valid.mailgun.domain",
-	"smtpPassword": "coolPassword",
-	"smtpUseSsl": false,
-	"id": "dc30f8f7-1edc-11eb-92b6-0242ac120003"
+  },
+  "mailgunPrivateKey": "VALIDPRIVATEKEY",
+  "smtpHost": "valid.host",
+  "smtpFromAddress": "valid.address@domain.com",
+  "smtpUsername": "valid.username@gmail.com",
+  "smtpPort": 2,
+  "mailgunDomain": "valid.mailgun.domain",
+  "smtpPassword": "coolPassword",
+  "smtpUseSsl": false,
+  "id": "dc30f8f7-1edc-11eb-92b6-0242ac120003"
 }
 ```
 > The above command return JSON structured like this:
@@ -169,4 +169,3 @@ Optional | &nbsp;
 `smtpUseSsl`<br/>*boolean* | Set to true if your SMTP host uses the SSL protocol.
 `mailgunDomain`<br/>string* | Domain name for the MailGun service.
 `mailgunPrivateKey`<br/>*string* | Private key for the MailGun service.
-
