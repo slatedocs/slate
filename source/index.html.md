@@ -16,6 +16,8 @@ includes:
   - administration/resource_commitments
   - administration/usage
   - administration/monetization
+  - administration/notification_categories
+  - administration/notifications
   - administration/products
   - administration/pricings
   - administration/applied_pricings
@@ -23,6 +25,8 @@ includes:
   - administration/identity_providers
   - administration/service_providers
   - administration/saml_settings
+  - administration/branding
+  - administration/knowledge_base
   - administration/trials
   - administration/email_settings
   - cloudstack

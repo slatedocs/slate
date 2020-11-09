@@ -1,4 +1,4 @@
-## Notification
+## Notifications
 Manage notifications.
 
 <!-------------------- LIST NOTIFICATIONS -------------------->
