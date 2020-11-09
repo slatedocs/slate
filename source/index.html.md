@@ -28,6 +28,7 @@ includes:
   - administration/branding
   - administration/knowledge_base
   - administration/trials
+  - administration/email_settings
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
