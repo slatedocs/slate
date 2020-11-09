@@ -37,10 +37,13 @@
       windowHeight = $(window).height();
 
       $toc.find(tocLinkSelector).each(function() {
-        var hrefSplit = $(this).attr('href').split("/docs/");
-        if (hrefSplit.length > 1) {
-          var targetId = hrefSplit[1];
-          headerHeights[targetId] = $('#' + targetId).offset().top - 100;
+        var href = $(this).attr('href');
+        if (href) {
+          var hrefSplit = href.split("/docs/");
+          if (hrefSplit.length > 1) {
+            var targetId = hrefSplit[1];
+            headerHeights[targetId] = $('#' + targetId).offset().top - 100;
+          }
         }
       });
     };
