@@ -156,7 +156,7 @@ Updates the email settings of an organization.
 
 Required | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the email settings.
+`id`<br/>*UUID* | The configured email settings' id.
 `organization.id`<br/>*UUID* | The organization id that the email settings are linked to. It cannot be changed.
 
 Optional | &nbsp;
