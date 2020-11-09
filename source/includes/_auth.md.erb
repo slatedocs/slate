@@ -1,8 +1,10 @@
 # Authentication
 
-The Clientela API uses tokens to authenticate requests. Your token carries many privileges, so **be sure to keep it secure!** Do not share it or expose it on publicly available areas such as GitHub or client-side code.
+`POST /o/token/`
 
-<br />
+> Example request
+
+> Replace `YOUR_USERNAME` and `YOUR_PASSWORD` with your credentials
 
 ```shell
 curl -X 'POST' 'https://clientela.admetricks.com/o/token/?username=YOUR_USERNAME&password=YOUR_PASSWORD&client_id=IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT&client_secret=KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu&grant_type=password'
@@ -39,11 +41,35 @@ response = requests.post(url)
 print(response)
 ```
 
-```java
+> Example response (200 OK)
 
+```json
+{
+  "access_token": "YOUR_TOKEN",
+  "expires_in": 36000,
+  "token_type": "Bearer",
+  "scope": "read write",
+  "refresh_token": "REFRESH_TOKEN"
+}
 ```
 
-You may obtain your access token by making a POST request with your credentials. To the right you'll find examples in many popular languages.
+The Clientela API uses tokens to authenticate requests. Your token carries many privileges, so **be sure to keep it secure!** Do not share it or expose it on publicly available areas such as GitHub or client-side code.
+
+<br />
+
+**This endpoint accepts the following parameters:**
+
+Parameter | Description | In
+------------- | ------- | ------
+`username`      | Your Admetricks username | Querystring
+`password`      | Your Admetricks username | Querystring
+`client_id`     | Clientela-specific key. The value is always the same for everyone | Querystring
+`client_secret` | Clientela-specific secret. The value is always the same for everyone | Querystring
+
+The values for client ID and client secret are:
+
+- **Client ID:** `IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT`
+- **Client Secret:** `KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu`
 
 <br />
 
@@ -56,4 +82,4 @@ Response code | Meaning
 200           | OK
 401           | Invalid credentials
 404           | Service not available
-405           | Wrong method (i.e. GET instead of POST)
+405           | Invalid method (i.e. `GET` instead of `POST`)
