@@ -19,14 +19,6 @@ includes:
   - users/show
   - users/update
 
-  - power_zones/overview
-  - power_zones/show
-  - power_zones/update
-
-  - heart_rate_zones/overview
-  - heart_rate_zones/show
-  - heart_rate_zones/update
-
   - workouts/overview
   - workouts/create
   - workouts/show
