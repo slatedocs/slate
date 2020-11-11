@@ -66,7 +66,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A WORKLOAD -------------------->
 
-### Retrieve an instance
+### Retrieve a workload
 
 ```shell
 curl -X GET \
@@ -98,7 +98,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads/:id</code>
 
-Retrieve an instance in a given [environment](#administration-environments).
+Retrieve a workload in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
