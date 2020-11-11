@@ -45,13 +45,13 @@ Query Params | &nbsp;
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | The instance ID. It is the combination of the instance workloadId and instance name.
+`id`<br/>*string* | The instance ID. It is the combination of <workloadId>/<name>.
 `name`<br/>*string* | The instance name.
 `status`<br/>*string* | The instance status. Possible values are: RUNNING, STARTING, SCHEDULING.
 `stackId`<br/>*UUID* | The stack ID to which this instance belongs.
 `workloadId`<br/>*UUID* | The workload ID to which this instance belongs.
-`ipAddress`<br/>*string* | The internal IP address associated to the instance.
-`publicIpAddress`<br/>*string* | The public IP address associated to the instance.
+`ipAddress`<br/>*string* | The internal IP address associated with the instance.
+`publicIpAddress`<br/>*string* | The public IP address associated with the instance.
 `location`<br/>*string* | The instance location.
 `createdDate`<br/>*string* | The instance creation date.
 `startedDate`<br/>*string* | The instance started date.
@@ -91,13 +91,13 @@ Retrieve an instance in a given [environment](#administration-environments) with
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | The instance ID. It is the combination of the instance workloadId and instance name.
+`id`<br/>*string* | The instance ID. It is the combination of <workloadId>/<name>.
 `name`<br/>*string* | The instance name.
 `status`<br/>*string* | The instance status. Possible values are: RUNNING, STARTING, SCHEDULING.
 `stackId`<br/>*UUID* | The stack ID to which this instance belongs.
 `workloadId`<br/>*UUID* | The workload ID to which this instance belongs.
-`ipAddress`<br/>*string* | The internal IP address associated to the instance.
-`publicIpAddress`<br/>*string* | The public IP address associated to the instance.
+`ipAddress`<br/>*string* | The internal IP address associated with the instance.
+`publicIpAddress`<br/>*string* | The public IP address associated with the instance.
 `location`<br/>*string* | The instance location.
 `createdDate`<br/>*string* | The instance creation date.
 `startedDate`<br/>*string* | The instance started date.
