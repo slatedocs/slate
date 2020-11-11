@@ -55,9 +55,6 @@ curl --header "Authorization: Bearer users-token-goes-here"
 
 Updates the current authenticated user.
 
-<aside class="notice">
-  There are separate endpoints for updating power and heart rate zones.
-</aside>
 
 ### HTTP Request
 
