@@ -35,13 +35,13 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instance?workload=:worlloadId</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instance?workloadId=:workloadId</code>
 
 Retrieve a list of all workload instance in a given [environment](#administration-environments) for a given workload id.
 
 Query Params | &nbsp;
 ---- | -----------
-`workloadId`<br/>*string* | The workload load id to get the instances for. It is mandatory.
+`workloadId`<br/>*string* | The workload ID to get the instances for. It is mandatory.
 
 Attributes | &nbsp;
 ------- | -----------
