@@ -116,3 +116,25 @@ Attributes | &nbsp;
 `memory`<br/>*string* | The memory size for the workload's instance.
 `isRemoteManagementEnabled`<br/>*boolean* | Specify if remote management is enabled on workload instance or not.
 `image`<br/>*string* | The workload's instance operating system image.
+
+<!-------------------- DELETE A WORKLOAD -------------------->
+
+### Delete a workload
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "ef70cafa-0544-4709-a66a-c68595ee105a",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads/:id</code>
+
+Delete a workload in a given [environment](#administration-environments).
