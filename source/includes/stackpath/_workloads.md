@@ -1,10 +1,10 @@
-### Workloads
+## Workloads
 
 Deploy and manage your workloads.
 
 <!-------------------- LIST WORKLOADS -------------------->
 
-#### List workloads
+### List workloads
 
 ```shell
 curl -X GET \
@@ -63,7 +63,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A WORKLOAD -------------------->
 
-#### Retrieve a workload
+### Retrieve a workload
 
 ```shell
 curl -X GET \

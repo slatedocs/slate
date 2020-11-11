@@ -1,10 +1,10 @@
-### Instances
+## Instances
 
-Manage your workload instances
+Manage your workload instances.
 
 <!-------------------- LIST INSTANCES -------------------->
 
-#### List instances
+### List instances
 
 ```shell
 curl -X GET \
@@ -37,7 +37,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instance?workloadId=:workloadId</code>
 
-Retrieve a list of all workload instance in a given [environment](#administration-environments) for a given workload id.
+Retrieve a list of all workload instance in a given [environment](#administration-environments) for a given workload ID.
 
 Query Params | &nbsp;
 ---- | -----------
@@ -45,11 +45,11 @@ Query Params | &nbsp;
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | The instance id. It is the combination of the instance workloadId and instance name.
+`id`<br/>*string* | The instance ID. It is the combination of the instance workloadId and instance name.
 `name`<br/>*string* | The instance name.
 `status`<br/>*string* | The instance status. Possible values are: RUNNING, STARTING, SCHEDULING.
-`stackId`<br/>*UUID* | The stack ID to which belongs the instance.
-`workloadId`<br/>*UUID* | The workload ID to which belongs the instance.
+`stackId`<br/>*UUID* | The stack ID to which this instance belongs.
+`workloadId`<br/>*UUID* | The workload ID to which this instance belongs.
 `ipAddress`<br/>*string* | The internal IP address associated to the instance.
 `publicIpAddress`<br/>*string* | The public IP address associated to the instance.
 `location`<br/>*string* | The instance location.
@@ -59,7 +59,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
-#### Retrieve an instance
+### Retrieve an instance
 
 ```shell
 curl -X GET \
@@ -87,15 +87,15 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Retrieve an instance in a given [environment](#administration-environments) with the specific id.
+Retrieve an instance in a given [environment](#administration-environments) with the specific ID.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | The instance id. It is the combination of the instance workloadId and instance name.
+`id`<br/>*string* | The instance ID. It is the combination of the instance workloadId and instance name.
 `name`<br/>*string* | The instance name.
 `status`<br/>*string* | The instance status. Possible values are: RUNNING, STARTING, SCHEDULING.
-`stackId`<br/>*UUID* | The stack ID to which belongs the instance.
-`workloadId`<br/>*UUID* | The workload ID to which belongs the instance.
+`stackId`<br/>*UUID* | The stack ID to which this instance belongs.
+`workloadId`<br/>*UUID* | The workload ID to which this instance belongs.
 `ipAddress`<br/>*string* | The internal IP address associated to the instance.
 `publicIpAddress`<br/>*string* | The public IP address associated to the instance.
 `location`<br/>*string* | The instance location.
@@ -104,7 +104,7 @@ Attributes | &nbsp;
 
 <!-------------------- RESTART AN INSTANCE -------------------->
 
-#### Restart an instance
+### Restart an instance
 
 ```shell
 curl -X POST \
@@ -114,4 +114,4 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=restartt</code>
 
-Restart an instance in a given [environment](#administration-environments) with the specific id.
+Restart an instance in a given [environment](#administration-environments) with the specific ID.
