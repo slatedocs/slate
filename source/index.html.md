@@ -183,6 +183,8 @@ includes:
   - swift
   - swift/containers
   - swift/objects
+  - stackpath
+  - stackpath/workloads
 
 search: true
 ---
