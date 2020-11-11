@@ -1,6 +1,9 @@
 ## Workloads
 
+StackPath Edge Computing uses the concept of workloads to organize different applications. A workload can consist of one container or virtual machine image that is deployed to one or many locations.
+
 Deploy and manage your workloads.
+
 
 <!-------------------- LIST WORKLOADS -------------------->
 
@@ -53,7 +56,7 @@ Attributes | &nbsp;
 `spec`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
 `created`<br/>*string* | Creation timestamp of the workload.
-`type`<br/>*string* | Specify whether a workload is a VM based workload or container based.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
 `network`<br/>*string* | Network interfaces to bind to the workload's instances.
 `cpu`<br/>*string* | The number of vCPUs for the workload's instance.
 `memory`<br/>*string* | The memory size for the workload's instance.
@@ -107,7 +110,7 @@ Attributes | &nbsp;
 `spec`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
 `created`<br/>*string* | Creation timestamp of the workload.
-`type`<br/>*string* | Specify whether a workload is a VM based workload or container based.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
 `network`<br/>*string* | Network interfaces to bind to the workload's instances.
 `cpu`<br/>*string* | The number of vCPUs for the workload's instance.
 `memory`<br/>*string* | The memory size for the workload's instance.
