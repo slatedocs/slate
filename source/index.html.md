@@ -185,6 +185,7 @@ includes:
   - swift/objects
   - stackpath
   - stackpath/workloads
+  - stackpath/instances
 
 search: true
 ---
