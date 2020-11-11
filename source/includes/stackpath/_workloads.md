@@ -63,7 +63,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A WORKLOAD -------------------->
 
-#### Retrieve an instance
+### Retrieve an instance
 
 ```shell
 curl -X GET \
