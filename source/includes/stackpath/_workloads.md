@@ -1,10 +1,10 @@
-### Workloads
+## Workloads
 
 Deploy and manage your workloads.
 
 <!-------------------- LIST WORKLOADS -------------------->
 
-#### List workloads
+### List workloads
 
 ```shell
 curl -X GET \
