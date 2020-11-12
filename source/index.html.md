@@ -186,6 +186,7 @@ includes:
   - stackpath
   - stackpath/workloads
   - stackpath/instances
+  - stackpath/images
 
 search: true
 ---
