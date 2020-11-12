@@ -19,9 +19,9 @@
       this.pipeline.add(lunr.trimmer, lunr.stopWordFilter);
       var lunrConfig = this;
 
-      $('h1, h2').each(function() {
+      $('h1, h2, h3, h4').each(function() {
         var title = $(this);
-        var body = title.nextUntil('h1, h2');
+        var body = title.nextUntil('h1, h2, h3, h4');
         lunrConfig.add({
           id: title.prop('id'),
           title: title.text(),
