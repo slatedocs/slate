@@ -7,7 +7,7 @@
 > Reemplaza `USERNAME` y `PASSWORD` con tus credenciales de Admetricks.
 
 ```shell
-curl -X 'POST' 'https://clientela.admetricks.com/o/token/?username=USERNAME&password=PASSWORD&client_id=IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT&client_secret=KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu&grant_type=password'
+curl -X 'POST' 'https://clientela.admetricks.com/o/token/?client_id=IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT&client_secret=KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu&grant_type=password&username=USERNAME&password=PASSWORD'
 ```
 
 ```javascript
@@ -59,13 +59,13 @@ Tu token tiene muchos privilegios,  **¡asegúrate de mantenerlo seguro!** No lo
 
 **Este *endpoint* acepta los siguientes parámetros:**
 
-| Parámetro       | Descripción                                                               | En            |
-| ----------------| --------------------------------------------------------------------------|---------------|
-| `username`      | Tu nombre de usuario en Admetricks                                        | Querystring   |
-| `password`      | Tu contraseña en Admetricks                                               | Querystring   |
-| `client_id`     | key específico de Clientela. Este valor siempre es el mismo para todos    | Querystring   |
-| `client_secret` | secret específico de Clientela. Este valor siempre es el mismo para todos | Querystring   |
-| `grant_type`    | El valor siempre es "password"                                            | Querystring   |
+| Parámetro       | Descripción                                                               | En             |
+| ----------------| --------------------------------------------------------------------------|----------------|
+| `username`      | Tu nombre de usuario en Admetricks                                        | Query string   |
+| `password`      | Tu contraseña en Admetricks                                               | Query string   |
+| `client_id`     | key específico de Clientela. Este valor siempre es el mismo para todos    | Query string   |
+| `client_secret` | secret específico de Clientela. Este valor siempre es el mismo para todos | Query string   |
+| `grant_type`    | El valor siempre es "password"                                            | Query string   |
 
 
 Los valores para la identificación del cliente y el secreto del cliente son:
@@ -82,3 +82,5 @@ Estado        | Descripción
 401           | Credenciales inválidas
 404           | Servicio no disponible
 405           | Método inválido (ejemplo: `GET` en vez de `POST`)
+
+Recuerda que tu usuario **debe estar habilitado** para el uso de la API. Si tu usuario aún no está habilitado, ponte en contacto con nuestro equipo de Customer Success.

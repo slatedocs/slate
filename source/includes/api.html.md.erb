@@ -1,0 +1,168 @@
+---
+title: Clientela v1
+language_tabs:
+  - shell: cURL
+  - python: Python
+  - javascript: JavaScript
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
+## Crear Reporte de Mercado
+
+> Ejemplo de petición
+
+```shell
+curl -X POST -H "Authorization: Bearer YOUR_TOKEN" "https://clientela.admetricks.com/market-report/data/v3/?day=2020-10-01&country=1&device=1&ad_type=1"
+```
+
+```python
+import requests
+
+headers = {
+    'Authorization': 'Bearer YOUR_TOKEN',
+    'content-type': 'application/json'
+}
+
+params = (
+    ('day', '2020-10-01'),
+    ('country', '1'),
+    ('device', '1'),
+    ('ad_type', '1'),
+)
+
+response = requests.post(
+  'https://clientela.admetricks.com/market-report/data/v3/',
+  headers=headers,
+  params=params
+)
+```
+
+```javascript
+const endpoint = "https://clientela.admetricks.com/market-report/data/v3/?day=2020-10-01&country=1&device=1&ad_type=1"
+
+fetch(endpoint, {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer YOUR_TOKEN',
+        'content-type': 'application/json'
+    }
+});
+```
+
+<a id="opIdCrear reporte de Mercado"></a>
+
+`POST /market-report/data/v3/`
+
+**Parámetros**
+
+|Nombre|En|Tipo|Requerido|Descripción|
+|---|---|---|---|---|
+|ad_type|query|integere|Filtrar por AdType|
+|country|query|integere|Filtrar por país|
+|day|query|string|true|Formato: `YYYY-MM-DD`|
+|device|query|integere|Filtrar por dispositivo|
+
+> Ejemplo de respuesta (200 OK)
+
+```json
+{
+  "ad_link": "https://ads.admetricks.com/banner_cde655f46e2ee4707f846dbe52aac863.jpg",
+  "ad_sizes": "120x600",
+  "ad_type_id": 1,
+  "ad_type": "display",
+  "advertiser": "Not classified",
+  "brand_id": 20017,
+  "brand": "parque del recuerdo",
+  "campaign_id": 6783369,
+  "campaign_landing_page": "parquedelrecuerdo.cl/sostenibilidad",
+  "campaign_name": "Sostenibilidad | Parque del Recuerdo",
+  "campaign_tags": "adaptación, amistad, feliz, gesto, mañana, personas naturaleza, pie foto, póster, árbol",
+  "country_id": 1,
+  "country": "chile",
+  "date": "2019-10-23",
+  "device_id": 1,
+  "device": "desktop",
+  "duration": "0",
+  "hosted_by": "googlesyndication.com",
+  "industry_id": 279,
+  "industry": "servicios públicos y privados - servicios de empresas",
+  "metrics_count": 150,
+  "metrics_impact": 450,
+  "metrics_impressions": 4950,
+  "metrics_valuation_usd": 7.9236213918219764,
+  "metrics_valuation": 5740,
+  "position": "First scroll: 100.00%, Second scroll: 0.00%, Third or more: 0.00%",
+  "publisher": "red 13.cl",
+  "screenshot_link": "https://screenshots.admetricks.com/cache_ide7cdd2738c7545218a80f04cae335386.jpg",
+  "skip": 0.0,
+  "sold_bys": "direct",
+  "web_report": "https://web.admetricks.com/#/campaign?name=Sostenibilidad%20%7C%20Parque%20del%20Recuerdo&request_filters=eyJjYW1wYWlnbnMiOiB7ImluY2x1ZGUiOiBbeyJpZCI6IDY3ODMzNjl9XX0sICJkYXRlX3JhbmdlIjogeyJzdGFydCI6ICIyMDE5LTEwLTIzVDAwOjAwOjAwLjAwMFoiLCAiZW5kIjogIjIwMTktMTAtMjNUMjM6NTk6NTkuOTk5WiJ9LCAiYWRfdHlwZXMiOiB7ImluY2x1ZGUiOiBbeyJpZCI6IDF9XX0sICJkZXZpY2VzIjogeyJpbmNsdWRlIjogW3siaWQiOiAxfV19LCAiY291bnRyaWVzIjogeyJpbmNsdWRlIjogW3siaWQiOiAxfV19fQ%3D%3D",
+  "website_id": 4254,
+  "website_sections": "interior,home",
+  "website": "oasisfm.cl",
+}
+
+```
+
+**Respuestas**
+
+
+|Estado|Resumen|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Reporte creado|[MarketReportResponse](#schemamarketreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Parámetros inválidos o faltantes||
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Token de acceso expiró o no fue encontrado||
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|No se encontraron datos o la respuesta es muy larga||
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Servicio no disponible||
+
+<aside class="warning">
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#autenticacion">token de acceso</a></strong>
+</aside>
+
+## Modelos
+
+### MarketReportResponse
+<a id="schemamarketreportresponse"></a>
+<a id="schema_MarketReportResponse"></a>
+<a id="tocSmarketreportresponse"></a>
+<a id="tocsmarketreportresponse"></a>
+
+
+|Nombre|Tipo|Requerido|Descripción|
+|---|---|---|---|
+| ad_link | string | true | Anuncio | "http://ads.admetricks.com/banner_461ef5c4476e968994dfa0a4eb0178d3.swf" |
+| ad_sizes | string | true | Tamaños de publicidad | 120x600,300x250,300x600,728x90 |
+| ad_type | string | true | Tipo de publicidad (nombre) | display |
+| ad_type_id | integer | true | Tipo de publicidad | 1 |
+| advertiser | string | false | Advertiser | prisa |
+| brand | string | true | Nombre de un avisador o marca | Absal |
+| brand_id | integer | true | Identificador de un avisador o marca | 1131 |
+| campaign_tags | string | false | Etiquetas que se generan a partir del contenido de las campañas | jabón, producto, logo, perfume |
+| campaign_id | integer | true | Identificador de campaña | 71090 |
+| campaign_landing_page | string | false | Link de campaña | http://www.absal.cl/ |
+| campaign_name | string | false | Nombre de campaña | PROYECTOS EN VENTA |
+| country | string | true | País (nombre) | Chile |
+| country_id | integer | true | País (ID) | 1 |
+| date | string | true | Fecha | 2015-03-02 |
+| device | string | true | Tipo de dispositivo | desktop |
+| duration | string | false | Largos de publicidades | 0 |
+| hosted_by | string | false | Adservers | 2mdn.net |
+| industry | string | true | Industria (nombre) | Inmobiliarias y Propiedades |
+| industry_id | integer | true | Industria (ID) | 13 |
+| metrics_count | integer | true | Cantidad de anuncios | 5 |
+| metrics_impact | integer | true | Impacto de campaña, equivalente a valor. | 4793443 |
+| metrics_valuation | integer | true | Valorización en pesos chilenos | 169110 |
+| position | string | false | Identifica el porcentaje de los ads de la campaña que aparecieron en el primer, segundo o tercer scroll | First scroll: 100.00%, Second scroll: 0.00%, Third or more: 0.00% |
+| publisher | string | false | Publisher de sitio web | natura |
+| screenshot_link | string | true | Pantallazo de captura | http://screenshots.admetricks.com/cache_id9c82a01f221b46bdbc3a821f0930eed0.jpg |
+| skip | integer | false | false la publicidad bloquea la pantalla | 0.2111 |
+| sold_bys | string | false | Quién la vendió | others |
+| web_report | string | true | Link a la campaña en Admetricks | Ver ejemplo abajo |
+| website | string | true | Nombre de medio o soporte | emol.com |
+| website_id | integer | true | Identificador de medio o soporte | 19 |
+| website_sections | string | false | Secciones de website | home |
