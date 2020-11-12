@@ -35,6 +35,12 @@ body {
   background-color: $main-bg;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
+  * {
+    box-sizing: border-box;
+  }
+  a {
+    text-decoration: none;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +83,7 @@ body {
     display: block;
     max-width: 100%;
     margin-bottom: $logo-margin;
+    padding: 10px;
   }
 
   & > .search {
@@ -387,7 +394,7 @@ body {
   h2 {
     @extend %header-font;
     font-size: 19px;
-    margin-top: 4em;
+    margin-top: 1em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
