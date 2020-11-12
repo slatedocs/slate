@@ -138,3 +138,8 @@ curl -X DELETE \
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads/:id</code>
 
 Delete a workload in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the workload deletion.
+`taskStatus` <br/>*string* | The status of the operation.
