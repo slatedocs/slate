@@ -2,7 +2,7 @@
 
 Clientela se organiza a través de ciertos recursos, los cuales pueden ser utilizados para realizar peticiones como también entregados en las respuestas.
 
-### Dispositivos
+### Dispositivos (Devices)
 
 Puedes filtrar tus consultas según el tipo de dispositivo que necesites.
 
@@ -11,7 +11,7 @@ Puedes filtrar tus consultas según el tipo de dispositivo que necesites.
 | 1   | De escritorio |
 | 2   | Móvil         |
 
-### Tipos de publicidad
+### Tipos de publicidad (AdTypes)
 
 Puedes filtrar tus consultas según el tipo de publicidad que necesites.
 
@@ -21,7 +21,7 @@ Puedes filtrar tus consultas según el tipo de publicidad que necesites.
 | 2   | Video      |
 | 3   | Texto      |
 
-### Países
+### Países (Countries)
 
 Puedes filtrar tus consultas según el país que necesites.
 

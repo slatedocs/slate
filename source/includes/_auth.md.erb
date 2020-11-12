@@ -53,8 +53,9 @@ print(response)
 }
 ```
 
-El API de Clientela utiliza tokens para autentificar las solicitudes. Tu token tiene muchos privilegios, así que **asegúrate de mantenerlo seguro!** No lo compartas ni lo expongas en áreas de acceso público como GitHub o código de *front-end*.
-<br />
+El API de Clientela utiliza tokens para autentificar las solicitudes.
+
+Tu token tiene muchos privilegios,  **¡asegúrate de mantenerlo seguro!** No lo compartas ni lo expongas en áreas de acceso público como GitHub o código de *front-end*.
 
 **Este *endpoint* acepta los siguientes parámetros:**
 
@@ -75,9 +76,9 @@ Los valores para la identificación del cliente y el secreto del cliente son:
 
 El *endpoint* de autenticación entrega las siguientes respuestas:
 
-Response code | Meaning
+Estado        | Descripción
 ------------- | -------
 200           | OK
-401           | Invalid credentials
-404           | Service not available
-405           | Invalid method (i.e. `GET` instead of `POST`)
+401           | Credenciales inválidas
+404           | Servicio no disponible
+405           | Método inválido (ejemplo: `GET` en vez de `POST`)
