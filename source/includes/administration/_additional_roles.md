@@ -13,7 +13,6 @@ ORG_TREE | Applies the role on a specific organization and its sub-organzations 
 ORG_SUBS | Applies the role the sub-organzations of a specific organization | `organization.id`
 ORG_TOPLEVEL | Applies the role on all top-level organizations | &nbsp;
 TAGS_ANYMATCH | Applies the role on all organizations that are tagged with at least one the specified tags | `tags`
-GLOBAL | Applies role on all organizations | &nbsp;
 
 ### Get additional roles of user
 
@@ -95,7 +94,7 @@ curl -X POST "https://cloudmc_endpoint/v2/users/:id/additional_roles" \
 Required | &nbsp;
 ---------- | -----------
 `scopeQualifier`<br/>*string* | The scope of this additional role (ORG_BASE, TAGS_ANYMATCH, GLOBAL, etc..)
-`role.id`<br/>*UUID* | The id of the role to apply on the target scope
+`role.id`<br/>*UUID* | The id of the role to apply on the target scope. Operator cannot be used as additional role.
 `organization.id`<br/>*UUID* | The id of the target organization of the scope. Only required when using a scope qualifier that targets an organization.
 `tags`<br/>*UUID* | The organization tags of the scope. Only required when using the TAGS_ANYMATCH scope.
 
