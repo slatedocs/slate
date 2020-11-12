@@ -3,7 +3,7 @@
 StackPath Edge Computing makes use of images to deploy virtual machines within a workload. The image can be from StackPath default images or
 a custom one. Only non-deprecated images are returned by default.
 
-Deploy and manage your Images.
+Deploy and manage your images.
 
 
 <!-------------------- LIST IMAGES -------------------->
@@ -22,7 +22,7 @@ curl -X GET \
   "data": [
     {
       "stackId": "a8050b2b-39eb-4929-bce5-1af42055903e",
-      "id": "acad328a-153c-405b-a94d-d03479010e91",
+      "id": "a8050b2b-39eb-4929-bce5-1af42055903e/centos7/v20201110",
       "family": "centos7",
       "tag": "v20201110",
       "createdAt": "2020-11-10T20:33:32.609434Z",
@@ -32,7 +32,7 @@ curl -X GET \
     },
     {
       "stackId": "a8050b2b-39eb-4929-bce5-1af42055903e",
-      "id": "c6f9f9c4-31a3-4114-946e-0bb82883301a",
+      "id": "a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu/v20201110",
       "family": "ubuntu",
       "tag": "v20201110",
       "createdAt": "2020-11-10T20:34:11.328575Z",
@@ -53,7 +53,7 @@ Retrieve a list of all images in a given [environment](#administration-environme
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | An image's unique identifier. It is the combination of /.
+`id`<br/>*string* | An image's unique identifier. It is the combination of stackId/family/tag.
 `stackId`<br/>*string* | The ID of the stack that an image belongs to.
 `family`<br/>*string* | The family of the image.
 `tag`<br/>*string* | The tag of the image.
@@ -70,7 +70,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/stackpath/test-area/images/image?family=ubuntu&tag=v20201110"
+   "https://cloudmc_endpoint/v1/services/stackpath/test-area/images/:id"
 ```
 > The above command returns a JSON structured like this:
 
@@ -78,7 +78,7 @@ curl -X GET \
 {
   "data": {
     "stackId": "a8050b2b-39eb-4929-bce5-1af42055903e",
-    "id": "c6f9f9c4-31a3-4114-946e-0bb82883301a",
+    "id": "a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu/v20201110",
     "family": "ubuntu",
     "tag": "v20201110",
     "createdAt": "2020-11-10T20:34:11.328575Z",
@@ -95,7 +95,7 @@ Retrieve an image in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | An image's unique identifier. It is the combination of /.
+`id`<br/>*string* | An image's unique identifier. It is the combination of stackId/family/tag.
 `stackId`<br/>*string* | The ID of the stack that an image belongs to.
 `family`<br/>*string* | The family of the image.
 `tag`<br/>*string* | The tag of the image.
