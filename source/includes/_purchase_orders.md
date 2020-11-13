@@ -1264,3 +1264,47 @@ Ability to generate purchase order pdf [Purchase Order Details](/slate/#get-purc
 | -------------------- | ------ | -------------------- |
 | authentication_token | header | Authentication token |
 | app_company_id       | header | Company ID           |
+
+## Complete Delivery or Close Delivery
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/complete_delivery',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/complete_delivery'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true
+}
+```
+
+You can find `can_complete_delivery` in [Purchase Order Details](/slate/#get-purchase-order-details)
+page, This value should be true in order to allow user to complete delivery.
+
+### HTTP Request
+
+`POST https://app.procurementexpress.com/api/v1/purchase_orders/:id/complete_delivery`
+
+### URL Parameters
+
+| Params               | Type    | Description                        |
+| -------------------- | ------- | ---------------------------------- |
+| authentication_token | header  | Authentication token               |
+| app_company_id       | header  | Company ID                         |
