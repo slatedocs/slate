@@ -56,7 +56,7 @@ Retrieve a list of all charts in a given [environment](#administration-environme
 | Attributes                                         | &nbsp;                                                                                                     |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | `id` <br/>_string_                                 | The id for the chart, of the form `repositoryName/chartName`.                                              |
-| `name` <br/>_st                                    | The chart name.                                                                                            |
+| `name` <br/>_string_                               | The chart name.                                                                                            |
 | `description` <br/>_string_                        | The chart description.                                                                                     |
 | `version` <br/>_string_                            | The latest chart version.                                                                                  |
 | `license` <br/>_string_                            | The chart's license.                                                                                       |
@@ -159,7 +159,7 @@ Retrieve a specific chart in a given [environment](#administration-environments)
 | Attributes                                         | &nbsp;                                                                                                     |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | `id` <br/>_string_                                 | The id for the chart, of the form `repositoryName/chartName`.                                              |
-| `name` <br/>_st                                    | The chart name.                                                                                            |
+| `name` <br/>_string_                               | The chart name.                                                                                            |
 | `description` <br/>_string_                        | The chart description.                                                                                     |
 | `version` <br/>_string_                            | The latest chart version.                                                                                  |
 | `license` <br/>_string_                            | The chart's license.                                                                                       |

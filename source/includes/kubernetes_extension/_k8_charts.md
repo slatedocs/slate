@@ -63,7 +63,7 @@ Attributes | &nbsp;
 | Attributes                                         | &nbsp;                                                                                                     |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | `id` <br/>_string_                                 | The id for the chart, of the form `repositoryName/chartName`.                                              |
-| `name` <br/>_st                                    | The chart name.                                                                                            |
+| `name` <br/>_string_                               | The chart name.                                                                                            |
 | `description` <br/>_string_                        | The chart description.                                                                                     |
 | `version` <br/>_string_                            | The latest chart version.                                                                                  |
 | `license` <br/>_string_                            | The chart's license.                                                                                       |
@@ -173,7 +173,7 @@ Required | &nbsp;
 | Attributes                                         | &nbsp;                                                                                                     |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | `id` <br/>_string_                                 | The id for the chart, of the form `repositoryName/chartName`.                                              |
-| `name` <br/>_st                                    | The chart name.                                                                                            |
+| `name` <br/>_string_                               | The chart name.                                                                                            |
 | `description` <br/>_string_                        | The chart description.                                                                                     |
 | `version` <br/>_string_                            | The latest chart version.                                                                                  |
 | `license` <br/>_string_                            | The chart's license.                                                                                       |
