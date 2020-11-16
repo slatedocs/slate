@@ -234,17 +234,21 @@ Optional | &nbsp;
 ---- | ----
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
-`serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
+`serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. <br/>_Read below (after the request parameter list) for more details._<br/>*required attributes of the service connection:* `id`
 `tags`<br/>*Array[string]* | Tags associated to the organization.
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
-`users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*required* : `id`
+`users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*required attributes of the organization* : `id`
 `notes`<br/>*string* | Organization notes. Must have the `Organization metadata: Manage` permission.
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | An object describing a verified domain. Must have the `Organization: Manage reseller features` permission. <br/>*required* : `id`
 `billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 
-The responses' `data` field contains the updated [organization](#administration-organizations).
+The responses' `data` field contains the updated [organization](#administration-organizations).</br>
+**NB :** At this time the API only enables adding access to Service connections but not revoking it. A Service connection can be assigned to an organization only if: 
+
+- The organization owns the service connection _(i.e. the organizationId of the service connection is this organization's id)_
+- If the organization is a sub-organization in some organization hierachy, then the service connection must be either **owned by** or **assigned to** its immediate parent organization
 
 <!-------------------- DELETE ORGANIZATION -------------------->
 ### Delete organization
@@ -466,6 +470,77 @@ Optional | &nbsp;
 
 Returns an HTTP status code 200, with an empty response body.
 
+<!-------------------- GET MANAGEABLE CONNECTIONS OF ORGANIZATION -------------------->
+### Get manageable connections of an organization
+`GET /organizations/:id/manageable_connections`
+
+Get a list of Service connections that can be managed by the current user on the given organization.
+
+```shell
+# Update an organization
+curl -X GET "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/manageable_connections" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+[
+  {
+    "id": "2f7b4d49-b426-424f-b272-396b66947bb1",
+    "name": "Microsoft Azure",
+    "type": "azure",
+    "serviceCode": "azure-dev",
+    "status": {
+      "id": "97b3f5fa-1bda-4dae-b716-8039d9b89a56",
+      "serviceConnection": null,
+      "reachable": true,
+      "lastUpdated": null,
+      "message": null,
+      "version": null
+    },
+    "quotas": []
+  },
+  {
+    "id": "b1dc9202-4e1a-4180-9ed6-28025b5aacdd",
+    "name": "Objects Lab",
+    "type": "swiftstack",
+    "serviceCode": "objects-lab",
+    "status": {
+      "id": "74a78d2b-c0da-475e-9bb7-218adc745d81",
+      "serviceConnection": null,
+      "reachable": true,
+      "lastUpdated": null,
+      "message": null,
+      "version": null
+    },
+    "quotas": [
+      { ... },
+      { ... },
+    ]
+  }
+]
+```
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*string* | The id of the service connection.
+`name`<br/>*string* | The name of the service connection.
+`type`<br/>*string* | The type of the service connection. _(e.g. gcp, azure, aws, cloudca, swift, etc.)_
+`serviceCode`<br/>*string* | The globally unique serviceCode that identifies the service connection.
+`status`<br/>*Object* | The status object describing the status of connectivity to this service from CloudMc.
+`quotas`<br/>*Array[Quotas]* | A list of quotas that can be associated to the service connnection.
+
+The user should have `Connections reseller` permission on the organization. This list includes the following types of Service connections:
+
+- If the API user is from this organization:
+   - Service connections `owned by` and `assigned to` this organization
+- If the API user is from this organization's immediate parent organization:
+   - Service connections `assigned to` this organization
+   - Service connections `owned by` and `assigned to` this organization's immediate parent organization _(i.e. the user's organization)_
+- If the API user is from any organization between this organization's immediate parent organization and the root organization:
+   - Service connections `assigned to` this organization
+   - Service connections `owned by` the user's organization **and** is `assigned to` this organization's immediate parent organization
+   - Service connections `assigned to` the user's organization **and** is `assigned to` this organization's immediate parent organization
 
 <!-------------------- MARK AS RESELLER -------------------->
 ### Mark organization as reseller
