@@ -3,7 +3,7 @@
 Network policy rules allows you to control inbound and outbound traffic to your [workload](#stackpath-workloads).
 
 
-<!-------------------- CREATE A FIREWALL RULE -------------------->
+<!-------------------- CREATE A NETWORK POLICY RULE -------------------->
 
 #### Create a network policy rule
 
