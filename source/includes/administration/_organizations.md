@@ -24,7 +24,9 @@ curl "https://cloudmc_endpoint/v1/organizations" \
          "name": "Umbrella Corporation",
          "entryPoint": "umbrella",
          "billableStartDate": "2017-08-15T12:00:00.000Z",
+         "billingDay": 5,
          "isBillable": true,
+         "isReseller": false,
          "tags": ["a-tag"],
          "parent": {
             "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
@@ -63,6 +65,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the organization.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
+`billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `tags`<br/>*Array[string]* | Tags associated to the organization.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
@@ -75,6 +78,7 @@ Attributes | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
+`isReseller`<br/>*boolean* | Whether or not this organization is a reseller or not.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | The custom domain for the organization.
 
 <!-------------------- FIND ORGANIZATION -------------------->
@@ -98,7 +102,9 @@ curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c
       "name": "Nintendo US",
       "entryPoint": "nintendo-us",
       "billableStartDate": "2017-08-15T12:00:00.000Z",
+      "billingDay": 5,
       "isBillable": true,
+      "isReseller": false,
       "tags": ["a-tag"],
       "parent": {
          "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
@@ -136,6 +142,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the organization.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL :<br/>`[entryPoint].CloudMC`.
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
+`billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `tags`<br/>*Array[string]* | Tags associated to the organization.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
@@ -148,6 +155,7 @@ Attributes | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
+`isReseller`<br/>*boolean* | Whether or not this organization is a reseller or not.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | The custom domain for the organization.
 
 <!-------------------- CREATE ORGANIZATION -------------------->
@@ -191,6 +199,7 @@ Optional | &nbsp;
 ---- | ----
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
+`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 
 The responses' `data` field contains the created [organization](#administration-organizations) with its `id`.
 
@@ -233,6 +242,7 @@ Optional | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | An object describing a verified domain. Must have the `Organization: Manage reseller features` permission. <br/>*required* : `id`
+`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 
 The responses' `data` field contains the updated [organization](#administration-organizations).</br>
 **NB :** At this time the API only enables adding access to Service connections but not revoking it. A Service connection can be assigned to an organization only if: 
@@ -531,3 +541,15 @@ The user should have `Connections reseller` permission on the organization. This
    - Service connections `assigned to` this organization
    - Service connections `owned by` the user's organization **and** is `assigned to` this organization's immediate parent organization
    - Service connections `assigned to` the user's organization **and** is `assigned to` this organization's immediate parent organization
+
+<!-------------------- MARK AS RESELLER -------------------->
+### Mark organization as reseller
+`POST /organizations/:organization_id/mark_reseller`
+
+```shell
+# Mark an organization as reseller
+curl -X POST "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/mark_reseller" \
+   -H "MC-Api-Key: your_api_key" \
+```
+
+Mark the organization as a reseller. Returns an HTTP status code 200, with an empty response body.

@@ -144,3 +144,72 @@ Attributes | &nbsp;
 `nodePoolMachineTypes` <br/> *Map<String, Integer>* | The machine type of the nodepools of the cluster, and the number of machines with that type for the cluster.
 `id` <br/> *string* | The cluster is uniquely identified by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster.
+`caCert` <br/> *string* | The *base64 encoded* certificate authority certificate for the cluster. 
+
+
+
+<!-------------------- CREATE A CLUSTER -------------------->
+
+#### Create a cluster
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/clusters"
+```
+> Request body examples:
+
+```js
+// Create a cluster
+{
+  "name": "my-cluster",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-a",
+  "currentMasterVersion": "1.17.12-gke.1501",
+  "nodeCount":"3",
+  "nodeType":"e2-highcpu-16",
+  "networkName": "default",
+  "subnetName": "default"
+}
+  ```
+
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters</code>
+
+Create a new cluster.
+
+Required | &nbsp;
+------- | -----------
+`name`<br/>*string* | The display name of the cluster.
+`shortRegion`<br/>*string* | A short version of the region name.
+`shortZone`<br/>*string* | A short version of the zone name.
+`currentMasterVersion`<br/>*string* | The version of GKE used for this cluster.
+`nodeCount` <br/>*string* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
+`nodeType`<br/>*string* | The machine types of the nodes in the default node pool of this cluster.
+`networkName`<br/>*string* | The network that the Kubernetes cluster is in.
+`subnetName`<br/>*string* | Subnetwork to which the cluster will belong. The subnetwork specified must belong the network specified.
+
+<!-------------------- DELETE A CLUSTER -------------------->
+
+#### Delete a cluster
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/clusters/projects/cmc-test-area-ugx/locations/us-central1-c/clusters/cluster-1"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:id</code>
+
+Delete a cluster. A cluster can only be deleted if it is in RUNNING or ERROR state.
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "3e4d4466-ce4b-404b-ada5-ee5a3fb76f4e",
+  "taskStatus": "PENDING"
+}
+```
