@@ -5,7 +5,7 @@ Network policy rules allows you to control inbound and outbound traffic to your 
 
 <!-------------------- CREATE A NETWORK POLICY RULE -------------------->
 
-#### Create a network policy rule
+### Create a network policy rule
 
 ```shell
 curl -X POST \
