@@ -187,6 +187,7 @@ includes:
   - stackpath/workloads
   - stackpath/instances
   - stackpath/images
+  - stackpath/network_policy_rules
 
 search: true
 ---
