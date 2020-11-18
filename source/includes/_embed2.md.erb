@@ -179,35 +179,6 @@ Settings are set on the window object as `window.adaSettings = { ... }`. Alterna
 
 Specifies a callback function to be called when Embed2 has finished setting up. This is especially useful when Embed2 is loaded asynchronously.
 
-#### analyticsCallback
-
-```html
-<script type="text/javascript">
-  window.adaSettings = {
-    analyticsCallback: (event) => {
-      // Here is where you can forward this event to Adobe (or elsewhere)
-      console.log(event);
-    }
-  }
-</script>
-```
-
-> Example event
-
-```js
-{
-  chatter_id: "5d9f84b2a35763fc71cb7bf",
-  session_id: "59f84b22c4683df7c38bf69",
-  answer_name: "Greeting",
-  event_name: "answer presented",
-  authenticated: false
-}
-```
-
-`analyticsCallback?(analytics: object): void;`
-
-Can be used to pass back data analytics. Make sure you have the `adobe_analytics` feature enabled on your bot.
-
 #### chatterTokenCallback
 `chatterTokenCallback?(chatter: string): void;`
 
