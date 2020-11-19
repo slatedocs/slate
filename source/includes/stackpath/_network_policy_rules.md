@@ -67,7 +67,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET A NETWORK POLICY RULE -------------------->
 
-### Get a network policy rule
+### Retrieve a network policy rule
 
 ```shell
 curl -X GET \
