@@ -747,3 +747,65 @@ This endpoint will return information about your current subscription. Informati
 | -------------------- | ------- | -------------------- |
 | authentication_token | headers | Authentication token |
 | app_company_id       | headers | Company id           |
+
+## Chart of accounts
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.procurementexpress.com/api/v1/companies/chart_of_accounts',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'token'
+  }
+)
+```
+
+```sh
+curl 'https://app.procurementexpress.com/api/v1/companies/chart_of_accounts'
+  -X GET
+  -H 'authentication_token: token'
+  -H 'app_company_id: 1'
+```
+
+> Above command will response
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Advertising",
+    "classification": "Expense",
+    "account_type": "Expense",
+    "archived": false,
+  },
+  {
+    "id": 2,
+    "name": "Automobile",
+    "classification": "Expense",
+    "account_type": "Expense",
+    "archived": false,
+  },
+  {
+    "id": 3,
+    "name": "Fuel",
+    "classification": "Expense",
+    "account_type": "Expense",
+    "archived": false,
+  }
+]
+```
+
+This endpoint will return all ChartOfAccounts for given companies, if company is connected with QuickBooks online, otherwise it will return empty [].
+
+### HTTP Request
+
+`GET https://app.procurementexpress.com/api/v1/companies/chart_of_accounts`
+
+### URL Parameters
+
+| Params               | Type    | Description          |
+| -------------------- | ------- | -------------------- |
+| authentication_token | headers | Authentication token |
+| app_company_id       | headers | Company id           |

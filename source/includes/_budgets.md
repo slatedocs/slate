@@ -14,6 +14,7 @@ RestClient.post(
       currency_id: 1,
       creator_id: 1,
       allow_anyone_to_approve_a_po: false,
+      chart_of_account_id: 1,
       department_ids: [1,4],
       approver_ids: [1,2]
     }
@@ -36,6 +37,7 @@ curl https://app.procurementexpress.com/api/v1/budgets
   -d "budget[currency_id]=1"
   -d "budget[creator_id]=1"
   -d "budget[allow_anyone_to_approve_a_po]=false"
+  -d "budget[chart_of_account_id]=1"
   -d "budget[department_ids]=[1,4]"
   -d "budget[approvers_ids]=[1,2]"
 ```
@@ -61,7 +63,6 @@ curl https://app.procurementexpress.com/api/v1/budgets
   "creator_id": 1,
   "department_ids": [],
   "approver_ids": [],
-  "chart_of_account_name": "Bank Charge",
   "chart_of_account_id": 1
 }
 ```
@@ -103,6 +104,7 @@ date format for `start_date` and `end_date`. Please find date format in [Company
 | budget[end_date]                     | date    | optional | Budget end date               |
 | budget[approver_ids]                 | Array   | optional | Array of approver ids         |
 | budget[department_ids]               | Array   | optional | Array of department ids       |
+| budget[chart_of_account_id]          | integer | optional | Chart of Account ID (QBO)     |
 
 ## GET All Budgets
 
@@ -148,7 +150,8 @@ curl 'https://app.procurementexpress.com/api/v1/budgets'
       "summary": "Advocacy : 2017",
       "creator_id": 1,
       "department_ids": [],
-      "approver_ids": []
+      "approver_ids": [],
+      "chart_of_account_id": 1
     },
     {
       "id": 2,
@@ -167,7 +170,8 @@ curl 'https://app.procurementexpress.com/api/v1/budgets'
       "summary": "Audit And Accountancy Fees : 2017",
       "creator_id": 1,
       "department_ids": [],
-      "approver_ids": []
+      "approver_ids": [],
+      "chart_of_account_id": 2
     },
     {
       "id": 3,
@@ -186,7 +190,8 @@ curl 'https://app.procurementexpress.com/api/v1/budgets'
       "summary": "Board Expenses : 2017",
       "creator_id": 1,
       "department_ids": [],
-      "approver_ids": []
+      "approver_ids": [],
+      "chart_of_account_id": ""
     }
   ],
   "meta": {
@@ -270,7 +275,7 @@ curl 'https://app.procurementexpress.com/api/v1/budgets/1'
   "creator_id": 1,
   "department_ids": [],
   "approver_ids": [],
-  "quickbooks_account": false
+  "chart_of_account_id": 1
 }
 ```
 
