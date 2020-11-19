@@ -52,6 +52,11 @@ curl -X GET \
 
 Retrieve a list of all network policy rules in a given [environment](#administration-environments).
 
+Query Params | &nbsp;
+---- | -----------
+`workloadId`<br/>*string* | The workload ID to get the network policy rules for. It is optional.
+`type`<br/>*string* | The type of network policy rule, either `INBOUND` or `OUTBOUND`. It is optional.
+
 Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*string* | The ID of the network policy rule, in the form `workloadId/hashCode`.
@@ -62,7 +67,7 @@ Attributes | &nbsp;
 `type`<br/>*string* | The type of network policy rule, either `inbound` or `outbound`.
 `source`<br/>*string* | A subnet that will define all the IPs allowed or denied by this rule.
 `action`<br/>*string* | The network policy rule action: `ALLOW` (allow traffic) or `BLOCK` (deny traffic).
-`protocol`<br/>*string* | Supported protocols are: `tcp`, `udp`, `tcpUdp`, `esp` and `ah`.
+`protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`, `ESP`, `AH`, `ICMP` or `GRE`.
 `portRange`<br/>*string* | This specifies on which ports traffic will be allowed or denied by this rule. It can be a range of ports separated by a hyphen.
 
 <!-------------------- GET A NETWORK POLICY RULE -------------------->
@@ -108,7 +113,7 @@ Attributes | &nbsp;
 `type`<br/>*string* | The type of network policy rule, either `inbound` or `outbound`.
 `source`<br/>*string* | A subnet that will define all the IPs allowed or denied by this rule.
 `action`<br/>*string* | The network policy rule action: `ALLOW` (allow traffic) or `BLOCK` (deny traffic).
-`protocol`<br/>*string* | Supported protocols are: `tcp`, `udp`, `tcpUdp`, `esp` and `ah`.
+`protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`, `ESP`, `AH`, `ICMP` or `GRE`.
 `portRange`<br/>*string* | This specifies on which ports traffic will be allowed or denied by this rule. It can be a range of ports separated by a hyphen.
 
 <!-------------------- CREATE A NETWORK POLICY RULE -------------------->
