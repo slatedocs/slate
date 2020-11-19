@@ -155,3 +155,17 @@ Required | &nbsp;
 `action`<br/>*string* | The network policy rule action: `ALLOW` (allow traffic) or `DENY` (deny traffic).
 `source`<br/>*string* | A subnet that will define all the IPs allowed or denied by this rule.
 `portRange`<br/>*string* | This specifies on which ports traffic will be allowed or denied by this rule. It can be a range of ports separated by a hyphen.
+
+<!-------------------- DELETE A NETWORK POLICY RULE -------------------->
+
+### Delete a network policy rule
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+  "https://cloudmc_endpoint/v1/services/stack/razine-test-env/networkpolicyrules/93cf3029-3657-44c4-add1-22c4ee2bcb94/INBOUND/1617554972"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>//networkpolicyrules/:id</code>
+
+Delete a network policy rule.
