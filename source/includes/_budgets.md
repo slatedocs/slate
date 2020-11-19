@@ -61,7 +61,8 @@ curl https://app.procurementexpress.com/api/v1/budgets
   "creator_id": 1,
   "department_ids": [],
   "approver_ids": [],
-  "quickbooks_account": "Bank Charge - Expenses"
+  "chart_of_account_name": "Bank Charge",
+  "chart_of_account_id": 1
 }
 ```
 

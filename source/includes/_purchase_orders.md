@@ -25,7 +25,8 @@ RestClient.post(
           tax_rate_id: 1,
           status: "pending",
           quantity: "1.0",
-          unit_price: "50"
+          unit_price: "50",
+          chart_of_account_id: 1,
         }
       ]
     }
@@ -58,6 +59,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -d "purchase_order[purchase_order_items_attributes][][status]=pending"
   -d "purchase_order[purchase_order_items_attributes][][quantity]=1.0"
   -d "purchase_order[purchase_order_items_attributes][][unit_price]=50"
+  -d "purchase_order[purchase_order_items_attributes][][chart_of_account_id]=1"
   -d "purchase_order[purchase_order_items_attributes][][custom[custom_field_values_attributes][][custom_field_id]=1"
   -d "purchase_order[purchase_order_items_attributes][][custom[custom_field_values_attributes][][value]=custom field value"
   -d "purchase_order[purchase_order_items_attributes][][custom[custom_field_values_attributes][][id]=1"
@@ -158,16 +160,16 @@ To use this feature, you need to pass other user's id in `purchase_order[on_beha
 
 If QuickBooks is connected, then customer also have ability to map QuickBooks Account with their PEX Budget,
 In that case Account custom field is required custom field, we can re-use already mapped QuickBooks Account
-value from [Budget](https://rubberstamp.github.io/slate/#get-a-specific-budget) API. Check for attribute named
-`quickbooks_account` in json response.
+value from [Budget](https://rubberstamp.github.io/slate/#get-a-specific-budget) API. Check for attributes named
+`chart_of_account_id` and `chart_of_account_name` in json response.
 
 To make sure User has enabled QuickBooks Account mapping with budget check for attribute named `link_budgets_to_qbo_account`
 in [Company Details](https://rubberstamp.github.io/slate/#get-a-specific-company) API. If this value is `true` you
 will see `quickbooks_account` attribute in Budget details api response.
 
-Now find `custom_fields` from [Company Details](https://rubberstamp.github.io/slate/#get-a-specific-company), and
-check for `custom_field` with name `Account`. Let's say it's id is 200 and `quickbooks_account` value is `Fuel - Expense`
-Then you can pass custom field value like given example:
+To auto select Account dropdown for selected budget, you can simply get `chart_of_account_id` from budget api
+and select that value in Account Dropdown.
+
 
 ```ruby
 purchase_order_items_attributes: [
