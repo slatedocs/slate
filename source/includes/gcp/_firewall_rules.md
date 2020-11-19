@@ -168,7 +168,7 @@ curl -X POST \
 }
 ```
 
-<code>CREATE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrule</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrule</code>
 
 Create a new firewall rule.
 

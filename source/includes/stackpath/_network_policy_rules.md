@@ -3,6 +3,119 @@
 Network policy rules allows you to control inbound and outbound traffic to your [workload](#stackpath-workloads).
 
 
+<!-------------------- LIST NETWORK POLICY RULES -------------------->
+### List network policy rules
+
+```shell
+curl -X GET \
+  -H "MC-Api-Key: your_api_key" \
+  "https://cloudmc_endpoint/v1/services/stackpath/test-area/networkpolicyrules"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "stackId": "bcc60174-50e6-44e4-bd45-463845124d87",
+      "workloadId": "",
+      "networkPolicyId": "f89e80ed-1208-4607-82b2-df2779d90f21",
+      "id": "f89e80ed-1208-4607-82b2-df2779d90f21/701825869",
+      "description": "Allow ICMP packets",
+      "type": "INGRESS",
+      "source": "0.0.0.0/0",
+      "action": "inbound",
+      "protocol": "icmp",
+      "portRange": "",
+    },
+    {
+      "stackId": "bcc60174-50e6-44e4-bd45-463845124d87",
+      "workloadId": "6ca53aff-8930-46d6-ba86-afbeb0b46bb7",
+      "networkPolicyId": "2ac958f2-0976-4de9-95f6-3546fc10f8d0",
+      "id": "2ac958f2-0976-4de9-95f6-3546fc10f8d0/-812331665",
+      "description": "custom-inbound",
+      "type": "inbound",
+      "source": "192.168.0.1/32",
+      "action": "ALLOW",
+      "protocol": "tcp",
+      "portRange": "80",
+    }
+  ],
+  "metadata": {
+    "recordCount": 2
+  }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules</code>
+
+Retrieve a list of all network policy rules in a given [environment](#administration-environments).
+
+Query Params | &nbsp;
+---- | -----------
+`workloadId`<br/>*string* | The workload ID to get the network policy rules for. It is optional.
+`type`<br/>*string* | The type of network policy rule, either `INBOUND` or `OUTBOUND`. It is optional.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The ID of the network policy rule, in the form `workloadId/hashCode`.
+`stackId`<br/>*UUID* | The UUID of the stack to which the network policy belongs.
+`workloadId`<br/>*UUID* | The UUID of the workload to which the network policy rule is applied. Corresponds to the first workload ID in the network policy's list of instance selectors.
+`networkPolicyId`<br/>*UUID* | The UUID of the network policy to which the network policy rule belongs.
+`description`<br/>*string* | A summary of what this rule does or a name of this rule. It is highly recommended to give a unique description to easily identify a rule.
+`type`<br/>*string* | The type of network policy rule, either `inbound` or `outbound`.
+`source`<br/>*string* | A subnet that will define all the IPs allowed or denied by this rule.
+`action`<br/>*string* | The network policy rule action: `ALLOW` (allow traffic) or `BLOCK` (deny traffic).
+`protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`, `ESP`, `AH`, `ICMP` or `GRE`.
+`portRange`<br/>*string* | This specifies on which ports traffic will be allowed or denied by this rule. It can be a range of ports separated by a hyphen.
+
+<!-------------------- GET A NETWORK POLICY RULE -------------------->
+
+### Retrieve a network policy rule
+
+```shell
+curl -X GET \
+  -H "MC-Api-Key: your_api_key" \
+  "https://cloudmc_endpoint/v1/services/stackpath/test-area/networkpolicyrules/2ac958f2-0976-4de9-95f6-3546fc10f8d0/-812331665"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "stackId": "bcc60174-50e6-44e4-bd45-463845124d87",
+    "workloadId": "6ca53aff-8930-46d6-ba86-afbeb0b46bb7",
+    "networkPolicyId": "2ac958f2-0976-4de9-95f6-3546fc10f8d0",
+    "id": "2ac958f2-0976-4de9-95f6-3546fc10f8d0/-812331665",
+    "description": "custom-inbound",
+    "type": "ingress",
+    "source": "192.168.0.1/32",
+    "action": "ALLOW",
+    "protocol": "tcp",
+    "portRange": "80"
+  }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules/:id</code>
+
+Retrieve a network policy rule in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The ID of the network policy rule, in the form `workloadId/hashCode`.
+`stackId`<br/>*UUID* | The UUID of the stack to which the network policy belongs.
+`workloadId`<br/>*UUID* | The UUID of the workload to which the network policy rule is applied. Corresponds to the first workload ID in the network policy's list of instance selectors.
+`networkPolicyId`<br/>*UUID* | The UUID of the network policy to which the network policy rule belongs.
+`description`<br/>*string* | A summary of what this rule does or a name of this rule. It is highly recommended to give a unique description to easily identify a rule.
+`type`<br/>*string* | The type of network policy rule, either `inbound` or `outbound`.
+`source`<br/>*string* | A subnet that will define all the IPs allowed or denied by this rule.
+`action`<br/>*string* | The network policy rule action: `ALLOW` (allow traffic) or `BLOCK` (deny traffic).
+`protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`, `ESP`, `AH`, `ICMP` or `GRE`.
+`portRange`<br/>*string* | This specifies on which ports traffic will be allowed or denied by this rule. It can be a range of ports separated by a hyphen.
+
 <!-------------------- CREATE A NETWORK POLICY RULE -------------------->
 
 ### Create a network policy rule
@@ -26,7 +139,7 @@ curl -X POST \
 }
 ```
 
-<code>CREATE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules?workloadId=:workloadId</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules?workloadId=:workloadId</code>
 
 Create a new network policy rule.
 
