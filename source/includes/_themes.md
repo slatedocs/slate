@@ -75,7 +75,7 @@ When the theme is opened in the builder, the div with attribute `data-slot="text
 Example:
 
 ```html
-<div data-slot=”text”>
+<div data-slot="text">
     <a>@JaneDoe</a> has invited you to join Awesome inc!
 </div>
 ```
@@ -106,7 +106,7 @@ Example:
 
 ```html
 <div data-slot-container="1">
-    <div data-slot=”text”>
+    <div data-slot="text">
         <a>@JaneDoe</a> has invited you to join Awesome inc!
     </div>
 </div>
@@ -129,7 +129,7 @@ Example:
 ```html
 <div data-section="1">
     <div data-slot-container="1">
-        <div data-slot=”text”>
+        <div data-slot="text">
             <a>@JaneDoe</a> has invited you to join Awesome inc!
         </div>
     </div>
@@ -147,7 +147,7 @@ Example:
 <div data-section-wrapper="1">
     <div data-section="1">
       <div data-slot-container="1">
-          <div data-slot=”text”>
+          <div data-slot="text">
               <a>@JaneDoe</a> has invited you to join Awesome inc!
           </div>
       </div>
