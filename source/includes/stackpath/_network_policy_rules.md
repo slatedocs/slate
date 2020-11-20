@@ -27,7 +27,7 @@ curl -X GET \
       "source": "0.0.0.0/0",
       "action": "INBOUND",
       "protocol": "ICMP",
-      "portRange": "",
+      "portRange": ""
     },
     {
       "stackId": "bcc60174-50e6-44e4-bd45-463845124d87",
@@ -39,7 +39,7 @@ curl -X GET \
       "source": "192.168.0.1/32",
       "action": "ALLOW",
       "protocol": "TCP",
-      "portRange": "80",
+      "portRange": "80"
     }
   ],
   "metadata": {
@@ -48,14 +48,14 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules/</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules</code>
 
 Retrieve a list of all network policy rules in a given [environment](#administration-environments).
-
 
 Query Params | &nbsp;
 ---- | -----------
 `workloadId`<br/>*string* | The workload ID to get the network policy rules for. It is optional.
+`type`<br/>*string* | The type of network policy rule, either `INBOUND` or `OUTBOUND`. It is optional.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -72,7 +72,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET A NETWORK POLICY RULE -------------------->
 
-### Get a network policy rule
+### Retrieve a network policy rule
 
 ```shell
 curl -X GET \

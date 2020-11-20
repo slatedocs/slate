@@ -32,7 +32,7 @@ Attributes | &nbsp;
 
 Optional query parameters | &nbsp;
 ---------- | -----
-`organizationId`<br/>*string* | The organization whose connections are to be retreived. If this is not provided then the request defaults to the user's organization.
+`organizationId`<br/>*string* | The organization whose connections are to be retrieved. If this is not provided then the request defaults to the user's organization.
 
 <!-------------------- GET SERVICE CONNECTION -------------------->
 
@@ -69,7 +69,7 @@ Attributes | &nbsp;
 `GET /services/descriptors/:pluginType/parameters`
 
 ```shell
-# Retreive service connection parameters
+# Retrieve service connection parameters
 
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
