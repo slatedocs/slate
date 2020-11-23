@@ -130,7 +130,7 @@ curl -X POST \
 
 ```json
 {
-  "workloadId": "bf9fd2ac-f761-46ef-88e0-b61ef68f8619"
+  "workloadId": "bf9fd2ac-f761-46ef-88e0-b61ef68f8619",
   "description": "npr_cloudmc_isk",
   "protocol": "tcp",
   "type": "INBOUND",
