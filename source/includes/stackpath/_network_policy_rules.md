@@ -132,7 +132,7 @@ curl -X POST \
 {
   "workloadId": "bf9fd2ac-f761-46ef-88e0-b61ef68f8619",
   "description": "npr_cloudmc_isk",
-  "protocol": "tcp",
+  "protocol": "TCP",
   "type": "INBOUND",
   "action": "ALLOW",
   "source": "0.0.0.0/0",
@@ -149,7 +149,7 @@ Required | &nbsp;
 `workloadId`<br/>*UUID* | The workload UUID to create a network policy for.
 `description`<br/>*string* | A summary of what this rule does or a name of this rule. It is highly recommended to give a unique description to easily identify a rule.
 `protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`, `ESP` and `AH`. 
-`type`<br/>*string* | Either Inbound or Outbound
+`type`<br/>*string* | The type of network policy rule. Supported types are: `INBOUND` (Ingress) and `OUTBOUND` (Egress).
 `action`<br/>*string* | The network policy rule action: `ALLOW` (allow traffic) or `BLOCK` (block traffic).
 `source`<br/>*string* | A subnet that will define all the IPs allowed or denied by this rule.
 `portRange`<br/>*string* | This specifies on which ports traffic will be allowed or denied by this rule. It can be a range of ports separated by a hyphen.
@@ -200,7 +200,7 @@ Required | &nbsp;
 ------- | -----------
 `description`<br/>*string* | A summary of what this rule does or a name of this rule. It is highly recommended to give a unique description to easily identify a rule.
 `workloadId`<br/>*UUID* | The UUID of the workload to which the network policy rule is applied. Corresponds to the first workload ID in the network policy's list of instance selectors.
-`type`<br/>*string* | The type of network policy rule, either `INBOUND` or `OUTBOUND`.
+`type`<br/>*string* | The type of network policy rule. Supported types are: `INBOUND` (Ingress) and `OUTBOUND` (Egress).
 `source`<br/>*string* | A CIDR subnet that will define all the IPs allowed or denied by this rule.
 `action`<br/>*string* | The network policy rule action: `ALLOW` (allow traffic) or `BLOCK` (deny traffic).
 `protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`, `ESP` or `AH`.
