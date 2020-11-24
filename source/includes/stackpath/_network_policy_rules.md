@@ -170,7 +170,7 @@ Delete a network policy rule.
 
 <!-------------------- EDIT A NETWORK POLICY RULE -------------------->
 
-### EDIT a network policy rule
+### Edit a network policy rule
 
 ```shell
 curl -X PUT \
@@ -194,7 +194,7 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules/:id</code>
 
-Edit a new network policy rule.
+Edit a network policy rule.
 
 Required | &nbsp;
 ------- | -----------
