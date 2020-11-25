@@ -45,6 +45,6 @@ If you'd prefer to use Docker, instructions are available [in the wiki](https://
 
 ### Deploying to S3
 
-1. Ensure you have AWS staging access to S3.  If you don't, speak with @neto
+1. Ensure you have AWS staging access to S3.  If you don't, speak with @prokervify
 2. Compile your changes into static files using the command `bundle exec middleman build --clean`
 3. Copy your static files to S3, using the command `aws s3 sync ./build s3://public-docs.procurify-staging.com/integrations`
