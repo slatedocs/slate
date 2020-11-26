@@ -117,6 +117,88 @@ Attributes | &nbsp;
 `isRemoteManagementEnabled`<br/>*boolean* | Specify if remote management is enabled on workload instance or not.
 `image`<br/>*string* | The workload's instance operating system image.
 
+<!-------------------- CREATE A WORKLOAD -------------------->
+### Create a workload
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -d "request_body" \
+    "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads"
+```
+> Request body example for a VM:
+```json
+{
+   "name":"w-user-zwg",
+   "slug":"w-user-zwg",
+   "type":"VM",
+   "image":"stackpath-edge/centos-7-cpanel:v201905241955",
+   "vpc":"Default",
+   "addAnyCastIpAddress":false,
+   "publicPorts":"80",
+   "protocol":"TCP",
+   "firstBootSshKey":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcYr9OnzsDfYVW2I1kX/iYJ0mPG490bI5mbxbOAKPLMuWLguxRohX804j1XbwZJ+Sna+9rSfxaYA8vgd1MoYX10l9cnMLx/MMbYp4ZquauN4pGY3WoDeCqsTss3VUMW+7RFBILpU3SJTlDV02FI36D3IXb4A8XymCyU3KC99XXTfTQsuKC+WFRMsTWtklrasqCVd5yEG90i/aJc6A3TZGOYgPFNEeVYvNDaJmIkb3y4FfShoBIMgZRt0ay7SvWZUvyfvyNmK5W9ePdhZZ58R+7tQNmCzjQ4v0suWRuGJ/XL3+03w3HEsDdQx+noL+R+qAjoNFwc0spBBhJK+Q4ADqr nothing@gmail.com",
+   "specs":"SP-1",
+   "persistenceStoragePath":"",
+   "persistenceStorageSize":1,
+   "deploymentName":"wi-root-ion",
+   "deploymentInstancePerPops":1,
+   "enableAutoScaling":false,
+   "deploymentPops":"YYZ"
+}
+```
+> Request body example for a Container:
+```json
+{
+   "name":"w-user-pah",
+   "type":"CONTAINER",
+   "image":"nginx:latest",
+   "addImagePullCredentialsOption":true,
+   "containerUsername":"test.username",
+   "containerPassword":"test-password",
+   "containerServer":null,
+   "containerEmail":null,
+   "secretEnvironmentVariableKey":null,
+   "secretEnvironmentVariableValue":null,
+   "vpc":"Default",
+   "addAnyCastIpAddress":false,
+   "publicPorts":"80-200",
+   "protocol":"UDP",
+   "specs":"SP-3",
+   "persistenceStoragePath":null,
+   "persistenceStorageSize":1,
+   "deploymentName":"wi-root-pxa",
+   "deploymentInstancePerPops":1,
+   "deploymentPops":"FRA",
+   "enableAutoScaling":true,
+   "cpuUtilization":50,
+   "minInstancesPerPop":1,
+   "maxInstancesPerPop":2
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules</code>
+
+Create a new workload
+
+Required | &nbsp;
+------- | -----------
+`Required | &nbsp;
+ ------- | -----------
+ `name`<br/>*string* | The name of the workload.
+ `stackId`<br/>*UUID* | The ID of the stack that a workload belongs to.
+ `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
+ `version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
+ `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
+ `isRemoteManagementEnabled` <br/>*boolean* | Specify if you would like to manage your instances remotely via serial console or VNC.
+ `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
+ `cpu`<br/>*string* | The number of vCPUs for the workload's instance.
+ `memory`<br/>*string* | The memory size for the workload's instance.
+ `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
+ `deploymentName`<br/>*string* | The name of the deployment.
+ `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z]. I
+ `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling.
+ `id`<br/>*string* | A workload's unique identifier.
+ `status`<br/>*string* | The status of the workload. It can be either ACTIVE or DISABLED.
+
 <!-------------------- EDIT A WORKLOAD -------------------->
 
 ### EDIT a workload
@@ -127,14 +209,15 @@ curl -X PUT \
   -d "request_body" \
   "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
-> Request body example for a VM:
+
+> Request body example for a Container:
 ```json
 {
   "name": "my-vm-workload",
   "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
   "slug": "my-vm-workload",
   "version": "8",
-  "type": "VM",
+  "type": "CONTAINER",
   "isRemoteManagementEnabled": false,
   "image": "stackpath-edge/centos-7-cpanel:v201905241955",
   "cpu": "1",
