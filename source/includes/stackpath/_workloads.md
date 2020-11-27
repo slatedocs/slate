@@ -177,7 +177,7 @@ curl -X POST \
    "maxInstancesPerPop":2
 }
 ```
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workload</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads</code>
 
 Create a new workload
 
@@ -186,10 +186,10 @@ Required | &nbsp;
  `name`<br/>*string* | The name of the workload.
  `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
  `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
- `vpc`<br/>*string* | The virtual private cloud for now supports default vpc only.
- `protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`.
+ `vpc`<br/>*string* | The virtual private cloud option for now supports default vpc only.
+ `protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
  `firstBootSshKey(s)`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by commas.
- `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported Specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
+ `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment.
  `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z].
  `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, the following fields are required.
