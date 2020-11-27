@@ -125,8 +125,9 @@ curl -X POST \
     -d "request_body" \
     "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads"
 ```
-> Request body example for a VM:
-```json
+> Request body example(s):
+```js
+// Request body example for a VM:
 {
    "name":"w-user-zwg",
    "slug":"w-user-zwg",
@@ -145,9 +146,8 @@ curl -X POST \
    "enableAutoScaling":false,
    "deploymentPops":"YYZ"
 }
-```
-> Request body example for a Container:
-```json
+
+// Request body example for a Container:
 {
    "name":"w-user-pah",
    "type":"CONTAINER",
@@ -177,9 +177,16 @@ curl -X POST \
    "maxInstancesPerPop":2
 }
 ```
+> The above commands return a JSON structured like this:
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads</code>
 
-Create a new workload
+Create a new workload in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
