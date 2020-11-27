@@ -157,6 +157,8 @@ curl -X POST \
    "containerPassword":"test-password",
    "containerServer":null,
    "containerEmail":null,
+   "environmentVariableKey": null,
+   "environmentVariableValue": null,
    "secretEnvironmentVariableKey":null,
    "secretEnvironmentVariableValue":null,
    "vpc":"Default",
@@ -175,127 +177,42 @@ curl -X POST \
    "maxInstancesPerPop":2
 }
 ```
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workload</code>
 
 Create a new workload
 
 Required | &nbsp;
 ------- | -----------
-`Required | &nbsp;
- ------- | -----------
  `name`<br/>*string* | The name of the workload.
- `stackId`<br/>*UUID* | The ID of the stack that a workload belongs to.
- `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
- `version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
  `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
- `isRemoteManagementEnabled` <br/>*boolean* | Specify if you would like to manage your instances remotely via serial console or VNC.
  `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
- `cpu`<br/>*string* | The number of vCPUs for the workload's instance.
- `memory`<br/>*string* | The memory size for the workload's instance.
- `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
+ `vpc`<br/>*string* | The virtual private cloud for now supports default vpc only.
+ `protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP`, `TCP_UDP`.
+ `firstBootSshKey(s)`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by commas.
+ `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported Specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment.
- `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z]. I
- `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling.
- `id`<br/>*string* | A workload's unique identifier.
- `status`<br/>*string* | The status of the workload. It can be either ACTIVE or DISABLED.
-
-<!-------------------- EDIT A WORKLOAD -------------------->
-
-### EDIT a workload
-
-```shell
-curl -X PUT \
-  -H "MC-Api-Key: your_api_key" \
-  -d "request_body" \
-  "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
-```
-
-> Request body example for a Container:
-```json
-{
-  "name": "my-vm-workload",
-  "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
-  "slug": "my-vm-workload",
-  "version": "8",
-  "type": "CONTAINER",
-  "isRemoteManagementEnabled": false,
-  "image": "stackpath-edge/centos-7-cpanel:v201905241955",
-  "cpu": "1",
-  "memory": "2Gi",
-  "specs": "SP-1",
-  "firstBootSshKey": "ssh-rsa...",
-  "deploymentName": "chicago-1",
-  "deploymentPops": "ORD",
-  "enableAutoScaling": true,
-  "cpuUtilization": 50,
-  "minInstancesPerPop": 2,
-  "maxInstancesPerPop": 3,
-  "id": "4b23edf3-9847-4400-b779-f94203227324",
-  "status": "ACTIVE"
-}
-```
-
-> Request body example for a Container:
-```json
-{
-  "name": "my-container-workload",
-  "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
-  "slug": "my-container-workload",
-  "version": "1",
-  "type": "Container",
-  "isRemoteManagementEnabled": false,
-  "image": "redis:alpine",
-  "addImagePullCredentialsOption": true,
-  "containerUsername": "username",
-  "containerServer": "container.server.io",
-  "containerEmail": "myemail@email.com",
-  "containerPassword": "my-password",
-  "cpu": "2",
-  "memory": "4Gi",
-  "specs": "SP-2",
-  "deploymentName": "toronto-1",
-  "deploymentPops": "YYZ",
-  "enableAutoScaling": false,
-  "deploymentInstancePerPops": 2,
-  "id": "e5f95455-1b50-4da1-86e1-6f9293f818a9",
-  "status": "ACTIVE"
-}
-```
-
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules/:id</code>
-
-Edit a new network policy rule.
-
-Required | &nbsp;
-------- | -----------
-`name`<br/>*string* | The name of the workload.
-`stackId`<br/>*UUID* | The ID of the stack that a workload belongs to.
-`slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
-`version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
-`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
-`isRemoteManagementEnabled` <br/>*boolean* | Specify if you would like to manage your instances remotely via serial console or VNC.
-`image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
-`cpu`<br/>*string* | The number of vCPUs for the workload's instance.
-`memory`<br/>*string* | The memory size for the workload's instance.
-`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
-`deploymentName`<br/>*string* | The name of the deployment.
-`deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z]. I
-`enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling.
-`id`<br/>*string* | A workload's unique identifier.
-`status`<br/>*string* | The status of the workload. It can be either ACTIVE or DISABLED.
-
-Optional | &nbsp;
-------- | -----------
-`addImagePullCredentialsOption`<br/>*boolean* | Specify if there are credentials neededed to pull a container image. Defaults to false. Only appicable for containers.
-`containerUsername`<br/>*string* | The username that should be used for authenticate the image pull.
-`containerEmail`<br/>*string* | The password that should be used to authenticate the image pull.
-`containerServer`<br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set.
-`containerPassword`<br/>*string* | The password that should be used to authenticate the image pull.
-`firstBootSshKey`<br/>*string* | The first boot SSH key.
-`deploymentInstancePerPops`<br/>*integer* | The number of deployments per point of presence. Only required if autoscaling is not enabled.
-`cpuUtilization`<br/>*integer* | The average CPU utlilization threshold to be reached before deploying a new instance. Only required if autoscaling is enabled.
-`minInstancesPerPop`<br/>*integer* | The minimum number of instances per point of presence. Only required if autoscaling is enabled.
-`maxInstancesPerPop`<br/>*integer* | The maximum number of instances per point of presence. Only required if autoscaling is enabled.
+ `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z].
+ `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, the following fields are required.
+ `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
+ `minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP.
+ `maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP.
+ 
+ Optional | &nbsp;
+ ------- | -----------
+ `addAnyCastIpAddress`<br/>*boolean* | Option to AnyCast IP Address.
+ `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name.
+ `publicPorts`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535.
+ `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
+ `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
+ `addImagePullCredentialsOption` <br/>*boolean* | When creating a Container based workload, use this option to pull a container image.
+ `containerUsername` <br/>*string* | The username used to authenticate the image pull.
+ `containerPassword` <br/>*string* | The password used to authenticate the image pull.
+ `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set.
+ `containerEmail` <br/>*string* | The email address to use for the docker registry account
+ `environmentVariableKey` <br/>*string* | The location to obtain a value for an environment variable.
+ `environmentVariableValue` <br/>*string* | An environment variable's value.
+ `secretEnvironmentVariableKey` <br/>*string* | The secret environment variable's key.
+ `secretEnvironmentVariableValue` <br/>*string* | A sensitive environment variable that should not be exposed.
 
 <!-------------------- DELETE A WORKLOAD -------------------->
 
