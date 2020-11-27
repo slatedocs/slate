@@ -199,7 +199,7 @@ Required | &nbsp;
  `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment.
  `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z].
- `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, the following fields are required.
+ `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
  `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
  `minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP.
  `maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP.
@@ -211,7 +211,7 @@ Required | &nbsp;
  `publicPorts`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535.
  `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
  `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
- `addImagePullCredentialsOption` <br/>*boolean* | When creating a Container based workload, use this option to pull a container image.
+ `addImagePullCredentialsOption` <br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not.
  `containerUsername` <br/>*string* | The username used to authenticate the image pull.
  `containerPassword` <br/>*string* | The password used to authenticate the image pull.
  `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set.
