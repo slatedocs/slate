@@ -1,0 +1,68 @@
+## Configura tu token
+<div></div>
+> Si no sabes dónde obtener este token, contacta a nuestro equipo de Customer
+Success.
+
+<section class="token">
+  Ingresa tu token de acceso a la API. Esto te permitirá copiar y pegar
+  directamente los ejemplos de código que te brindamos en el panel lateral.
+
+  <form class="token--form" action="javascript:void(0);">
+    <input
+      type="text"
+      name="token"
+      placeholder="Ingresa tu token aquí"
+      required
+    />
+    <img
+      hidden
+      src="/static/check.svg"
+      alt="Token de acceso"
+      class="token--check"
+    />
+    <button type="submit" class="btn-info">Guardar</button>
+  </form>
+</section>
+
+<script>
+  (() => {
+    const { body } = document;
+    const form = document.querySelector(".token--form");
+    const input = form.querySelector("input");
+    const check = form.querySelector(".token--check");
+
+    const replaceToken = (replaceStr = "", reload = true) => {
+      const { value = "" } = input;
+
+      replaceStr = replaceStr || getOrSetToken() || "YOUR_TOKEN";
+      replaceTextOnPage(replaceStr, value);
+      getOrSetToken(value);
+      reload && location.reload();
+    };
+
+    const getOrSetToken = (token = "") => {
+      const { localStorage } = window;
+      const key = "TOKEN_API";
+
+      if (token) {
+        localStorage.setItem(key, token);
+        input.value = token;
+        check.removeAttribute("hidden", !!token);
+        return;
+      }
+
+      return localStorage.getItem(key) || "";
+    };
+
+    form.addEventListener("submit", replaceToken);
+    window.addEventListener("DOMContentLoaded", () => {
+      const token = getOrSetToken();
+      if (!token) {
+        return;
+      }
+
+      input.value = token;
+      replaceToken("YOUR_TOKEN", false);
+    });
+  })();
+</script>

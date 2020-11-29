@@ -2,6 +2,7 @@
 @import "normalize";
 @import "variables";
 @import "icon-font";
+@import "buttons";
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -279,29 +280,9 @@ body {
 // PAGE LAYOUT AND CODE SAMPLE BACKGROUND
 ////////////////////////////////////////////////////////////////////////////////
 
-details {
+section {
   max-width: 600px;
-  padding: 0.2em 1em;
-  summary {
-    padding: 1em;
-  }
-  &[open] summary ~ * {
-    animation: open 100ms;
-  }
-  p {
-    text-align: justify;
-  }
-
-  @keyframes open {
-    0% {
-      opacity: 0;
-      margin-top: -20px;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 0px;
-    }
-  }
+  padding: 0 2em;
 }
 
 .page-wrapper {
@@ -731,3 +712,10 @@ details {
 .copy-clipboard:hover {
   opacity: 0.8;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// ADMETRICKS
+////////////////////////////////////////////////////////////////////////////////
+// These are our customizations. Make sure to follow 7-1 folder structure.
+
+@import "components/components";

@@ -2,7 +2,7 @@
 
 # Slay
 
-Documentation site for Admetricks' Clientela and Brandy APIs. 
+Documentation site for Admetricks' Clientela and Brandy APIs.
 
 It's available at https://admetricks.github.io/slay/
 
@@ -17,6 +17,12 @@ There are three available ways to run the site:
 * [Natively](https://github.com/slatedocs/slate/wiki/Using-Slate-Natively)
 * [Using Vagrant](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Vagrant)
 * [Using Docker](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Docker)
+
+You can also run Slay locally by executing
+
+```
+sh ./run-dev.sh
+```
 
 
 ### Deploy

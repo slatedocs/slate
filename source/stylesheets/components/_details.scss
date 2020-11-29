@@ -1,0 +1,24 @@
+details {
+  max-width: 600px;
+  padding: 0.2em 1em;
+  summary {
+    padding: 1em;
+  }
+  &[open] summary ~ * {
+    animation: open 100ms;
+  }
+  p {
+    text-align: justify;
+  }
+
+  @keyframes open {
+    0% {
+      opacity: 0;
+      margin-top: -20px;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0px;
+    }
+  }
+}
