@@ -1,0 +1,40 @@
+@mixin bg($bg) {
+  background: $bg;
+  &:hover {
+    background: darken($bg, 8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background: darken($bg, 25%);
+  }
+}
+@mixin borders($borderColor) {
+  border: 1px solid darken($borderColor, 3%);
+  border-radius: 4px;
+}
+
+@mixin button($bg: #f8f8f8, $textColor: #444) {
+  color: $textColor;
+  @include bg($bg);
+  @include borders($bg);
+}
+
+button {
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  @include button();
+  &.btn {
+    &-success {
+      @include button(#2ecc71);
+    }
+    &-info {
+      @include button(#1e75d5, whitesmoke);
+    }
+    &-warning {
+      @include button(#f1c40f);
+    }
+    &-danger {
+      @include button(#e74c3c);
+    }
+  }
+}

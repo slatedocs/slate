@@ -62,10 +62,10 @@ fetch(endpoint, {
 
 |Nombre|En|Tipo|Requerido|Descripción|
 |---|---|---|---|---|
-|ad_type|query|integer|Filtrar por AdType|
-|country|query|integer|Filtrar por país|
+|ad_type|query|integer|true|Filtrar por AdType|
+|country|query|integer|true|Filtrar por país|
 |day|query|string|true|Formato: `YYYY-MM-DD`|
-|device|query|integer|Filtrar por dispositivo|
+|device|query|integer|true|Filtrar por dispositivo|
 
 > Ejemplo de respuesta (200 OK)
 
@@ -121,7 +121,7 @@ fetch(endpoint, {
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Servicio no disponible||
 
 <aside class="warning">
-Para realizar esta operación es obligatorio utilizar tu <strong><a href="#autenticacion">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
 ## Modelos

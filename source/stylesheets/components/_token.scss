@@ -1,0 +1,22 @@
+.token {
+  &--form {
+    display: flex;
+    position: relative;
+    padding: 1em 0;
+    input {
+      padding: 0.5em 3em 0.5em 1em;
+      min-width: 300px;
+      border-radius: 6px;
+      border: 1px solid lightgray;
+      text-overflow: ellipsis;
+    }
+    button {
+      margin: 0 10px;
+    }
+  }
+  &--check {
+    width: 20px;
+    position: relative;
+    left: -30px;
+  }
+}
