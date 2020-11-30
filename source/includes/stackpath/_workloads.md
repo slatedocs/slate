@@ -135,7 +135,6 @@ curl -X PUT \
   "id": "4b23edf3-9847-4400-b779-f94203227324",
   "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
   "slug": "my-vm-workload",
-  "version": "8",
   "type": "VM",
   "cpu": "1",
   "memory": "2Gi",
@@ -155,7 +154,6 @@ curl -X PUT \
   "id": "e5f95455-1b50-4da1-86e1-6f9293f818a9",
   "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
   "slug": "my-container-workload",
-  "version": "1",
   "type": "Container",
   "image": "redis:alpine",
   "environmentVariableKey": "env-key",
@@ -187,7 +185,6 @@ Required | &nbsp;
 `id`<br/>*string* | A workload's unique identifier.
 `stackId`<br/>*UUID* | The ID of the stack that a workload belongs to.
 `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
-`version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
 `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either 'VM' or 'CONTAINER'.
 `image`<br/>*string* | The location of a Docker image to run as a container. Only available when `type`is equal to 'CONTAINER'.
 `cpu`<br/>*string* | The number of vCPUs for the workload's instance.
