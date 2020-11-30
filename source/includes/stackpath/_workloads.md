@@ -132,36 +132,36 @@ curl -X PUT \
 // Request body example for a VM
 {
   "name": "my-vm-workload",
+  "id": "4b23edf3-9847-4400-b779-f94203227324",
   "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
   "slug": "my-vm-workload",
   "version": "8",
   "type": "VM",
-  "isRemoteManagementEnabled": false,
-  "image": "stackpath-edge/centos-7-cpanel:v201905241955",
   "cpu": "1",
   "memory": "2Gi",
   "specs": "SP-1",
-  "firstBootSshKey": "ssh-rsa...",
   "deploymentName": "chicago-1",
   "deploymentPops": "ORD",
   "enableAutoScaling": true,
   "cpuUtilization": 50,
   "minInstancesPerPop": 2,
-  "maxInstancesPerPop": 3,
-  "id": "4b23edf3-9847-4400-b779-f94203227324",
-  "status": "ACTIVE"
+  "maxInstancesPerPop": 3
 }
 
 // Request body example for a Container:
 
 {
   "name": "my-container-workload",
+  "id": "e5f95455-1b50-4da1-86e1-6f9293f818a9",
   "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
   "slug": "my-container-workload",
   "version": "1",
   "type": "Container",
-  "isRemoteManagementEnabled": false,
   "image": "redis:alpine",
+  "environmentVariableKey": "env-key",
+  "environmentVariableValue": "env-value",
+  "secretEnvironmentVariableKey": "secret-key",
+  "secretEnvironmentVariableValue": "secret-value",
   "addImagePullCredentialsOption": true,
   "containerUsername": "username",
   "containerServer": "container.server.io",
@@ -173,42 +173,41 @@ curl -X PUT \
   "deploymentName": "toronto-1",
   "deploymentPops": "YYZ",
   "enableAutoScaling": false,
-  "deploymentInstancePerPops": 2,
-  "id": "e5f95455-1b50-4da1-86e1-6f9293f818a9",
-  "status": "ACTIVE"
+  "deploymentInstancePerPops": 2
 }
 ```
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads/:id</code>
 
-Edit a workload.
+Edit a workload in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
 `name`<br/>*string* | The name of the workload.
+`id`<br/>*string* | A workload's unique identifier.
 `stackId`<br/>*UUID* | The ID of the stack that a workload belongs to.
 `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
 `version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
-`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
-`isRemoteManagementEnabled` <br/>*boolean* | Specify if you would like to manage your instances remotely via serial console or VNC.
-`image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either 'VM' or 'CONTAINER'.
+`image`<br/>*string* | The location of a Docker image to run as a container. Only available when `type`is equal to 'CONTAINER'.
 `cpu`<br/>*string* | The number of vCPUs for the workload's instance.
 `memory`<br/>*string* | The memory size for the workload's instance.
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deploymentName`<br/>*string* | The name of the deployment.
 `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z]. I
-`enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling.
-`id`<br/>*string* | A workload's unique identifier.
-`status`<br/>*string* | The status of the workload. It can be either ACTIVE or DISABLED.
+`enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
 
 Optional | &nbsp;
 ------- | -----------
-`addImagePullCredentialsOption`<br/>*boolean* | Specify if there are credentials neededed to pull a container image. Defaults to false. Only appicable for containers.
-`containerUsername`<br/>*string* | The username that should be used for authenticate the image pull.
-`containerEmail`<br/>*string* | The password that should be used to authenticate the image pull.
-`containerServer`<br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set.
-`containerPassword`<br/>*string* | The password that should be used to authenticate the image pull.
-`firstBootSshKey`<br/>*string* | The first boot SSH key.
+`environmentVariableKey`<br/>*string* | The key of the environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
+`environmentVariableValue`<br/>*string* | The value of the environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
+`secretEnvironmentVariableKey`<br/>*string* | The key of the secret environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
+`secretEnvironmentVariableValue`<br/>*string* | The value of the secret environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
+`addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only available when `type`is equal to 'CONTAINER'.
+`containerUsername`<br/>*string* | The username that should be used for authenticate the image pull. Only available when `type`is equal to 'CONTAINER'.
+`containerEmail`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type`is equal to 'CONTAINER'.
+`containerServer`<br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only available when `type`is equal to 'CONTAINER'.
+`containerPassword`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type`is equal to 'CONTAINER'.
 `deploymentInstancePerPops`<br/>*integer* | The number of deployments per point of presence. Only required if autoscaling is not enabled.
 `cpuUtilization`<br/>*integer* | The average CPU utlilization threshold to be reached before deploying a new instance. Only required if autoscaling is enabled.
 `minInstancesPerPop`<br/>*integer* | The minimum number of instances per point of presence. Only required if autoscaling is enabled.
