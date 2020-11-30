@@ -119,7 +119,7 @@ Attributes | &nbsp;
 
 <!-------------------- EDIT A WORKLOAD -------------------->
 
-### EDIT a workload
+### Edit a workload
 
 ```shell
 curl -X PUT \
@@ -127,8 +127,9 @@ curl -X PUT \
   -d "request_body" \
   "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
-> Request body example for a VM:
-```json
+> Request body example:
+```js
+// Request body example for a VM
 {
   "name": "my-vm-workload",
   "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
@@ -150,10 +151,9 @@ curl -X PUT \
   "id": "4b23edf3-9847-4400-b779-f94203227324",
   "status": "ACTIVE"
 }
-```
 
-> Request body example for a Container:
-```json
+// Request body example for a Container:
+
 {
   "name": "my-container-workload",
   "stackId": "2f661cf6-8d08-42d0-918c-c20362fc9940",
@@ -179,9 +179,9 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules/:id</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads/:id</code>
 
-Edit a new network policy rule.
+Edit a workload.
 
 Required | &nbsp;
 ------- | -----------
