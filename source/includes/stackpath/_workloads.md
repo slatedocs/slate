@@ -127,9 +127,9 @@ curl -X PUT \
   -d "request_body" \
   "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
-> Request body example:
-```js
-// Request body example for a VM
+> Request body example for a VM Workload type:
+
+```json
 {
   "name": "my-vm-workload",
   "id": "4b23edf3-9847-4400-b779-f94203227324",
@@ -146,9 +146,10 @@ curl -X PUT \
   "minInstancesPerPop": 2,
   "maxInstancesPerPop": 3
 }
+```
+> Request body example for a CONTAINER Workload type:
 
-// Request body example for a Container:
-
+```json
 {
   "name": "my-container-workload",
   "id": "e5f95455-1b50-4da1-86e1-6f9293f818a9",
