@@ -4,7 +4,7 @@
 
 Extrae información, crea reportes y analiza estadísticas para descubrir dónde y cuánto dinero están invirtiendo las marcas en sus campañas digitales. **Clientela es la mejor forma de interactuar con Admetricks** de manera automática.
 
-El API de Clientela se organiza alredededor de [REST](https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional). Implementa URLs orientadas a recursos y entrega respuestas en [formato JSON](http://www.json.org/) a través de códigos de estado y verbos HTTP.
+El API de Clientela se organiza alredededor de <a href="https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional" target="_blank">REST</a>. Implementa URLs orientadas a recursos y entrega respuestas en <a href="https://www.json.org/json-es.html" target="_blank">JSON</a> a través de códigos de estado y verbos HTTP.
 
 ## Actualización de datos
 
@@ -29,4 +29,4 @@ Un límite de actualización (del inglés *rate limit*) es el **número de llama
 
 **El API de Clientela está sujeto a límites de tarifas**. Cada usuario puede realizar **máximo 1000 consultas a la API por día y 120 consultas por minuto**. Si cualquiera de los dos límites es excedido, podrá volver a realizar consultas una vez termine el periodo sobrepasado.
 
-**URL base:** todas tus peticiones deben ser enviadas a [https://clientela.admetricks.com](https://clientela.admetricks.com)
+**URL base:** todas tus peticiones deben ser enviadas a <a href="https://clientela.admetricks.com" target="_blank">https://clientela.admetricks.com</a>
