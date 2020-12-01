@@ -17,14 +17,14 @@ headingLevel: 2
 > Ejemplo de petición
 
 ```shell
-curl -X POST -H "Authorization: Bearer YOUR_TOKEN" "https://clientela.admetricks.com/market-report/data/v3/?day=2020-10-01&country=1&device=1&ad_type=1"
+curl -X POST -H "Authorization: Token YOUR_TOKEN" "https://clientela.admetricks.com/market-report/data/v3/?day=2020-10-01&country=1&device=1&ad_type=1"
 ```
 
 ```python
 import requests
 
 headers = {
-    'Authorization': 'Bearer YOUR_TOKEN',
+    'Authorization': 'Token YOUR_TOKEN',
     'content-type': 'application/json'
 }
 
@@ -48,7 +48,7 @@ const endpoint = "https://clientela.admetricks.com/market-report/data/v3/?day=20
 fetch(endpoint, {
     method: 'POST',
     headers: {
-        'Authorization': 'Bearer YOUR_TOKEN',
+        'Authorization': 'Token YOUR_TOKEN',
         'content-type': 'application/json'
     }
 });
