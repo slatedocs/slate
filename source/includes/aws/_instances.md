@@ -62,7 +62,7 @@ Attributes | &nbsp;
 `publicDnsName`<br/>*string* | (IPv4 only) The public DNS name assigned to the instance. This name is not available until the instance enters the running state. For EC2-VPC, this name is only available if you've enabled DNS hostnames for your VPC.
 `publicIpAddress`<br/>*string* | The public IPv4 address, or the Carrier IP address assigned to the instance, if applicable.
 `state`<br/>*string* | The current state of the instance.
-`subnetId`<br/>*string* | [EC2-VPC] The ID of the subnet in which the instance is running.]
+`subnetId`<br/>*string* | [EC2-VPC] The ID of the subnet in which the instance is running.
 `vpcId`<br/>*string* | [EC2-VPC] The ID of the VPC in which the instance is running.
 `architecture`<br/>*string* | The architecture of the image.
 `clientToken`<br/>*string* | The idempotency token you provided when you launched the instance, if applicable.
@@ -128,7 +128,7 @@ Attributes | &nbsp;
 `publicDnsName`<br/>*string* | (IPv4 only) The public DNS name assigned to the instance. This name is not available until the instance enters the running state. For EC2-VPC, this name is only available if you've enabled DNS hostnames for your VPC.
 `publicIpAddress`<br/>*string* | The public IPv4 address, or the Carrier IP address assigned to the instance, if applicable.
 `state`<br/>*string* | The current state of the instance.
-`subnetId`<br/>*string* | [EC2-VPC] The ID of the subnet in which the instance is running.]
+`subnetId`<br/>*string* | [EC2-VPC] The ID of the subnet in which the instance is running.
 `vpcId`<br/>*string* | [EC2-VPC] The ID of the VPC in which the instance is running.
 `architecture`<br/>*string* | The architecture of the image.
 `clientToken`<br/>*string* | The idempotency token you provided when you launched the instance, if applicable.
