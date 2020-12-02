@@ -133,14 +133,28 @@
         "tags": [
           "Products"
         ],
-        "summary": "Get live products",
+        "summary": "Get list of products",
         "operationId": "getProducts",
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "contract_types",
+            "description": "Comma separated list of contract types",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "states",
+            "description": "Comma separated list of states",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "List of live products",
+            "description": "List of products",
             "schema": {
               "allOf": [
                 {
@@ -1789,6 +1803,15 @@
         "tick_size": {
           "type": "string",
           "description": "The minimum gap between 2 consecutive prices."
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "live",
+            "expired",
+            "upcoming"
+          ],
+          "description": "current state of the product"
         },
         "trading_status": {
           "type": "string",

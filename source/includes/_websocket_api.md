@@ -8,8 +8,8 @@ Websocket api can be used for the following use cases
 
 Access url
 
-- Production - wss://api.delta.exchange:2096
-- Testnet - wss://testnet-api.delta.exchange:2096
+- Production - wss://socket.delta.exchange
+- Testnet - wss://testnet-socket.delta.exchange
 
 # Subscribing to Channels
 

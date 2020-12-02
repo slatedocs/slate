@@ -179,7 +179,7 @@ This operation does not require authentication.
 
 Get Product List
 
-## Get live products
+## Get list of products
 
 <a id="opIdgetProducts"></a>
 
@@ -224,6 +224,13 @@ p JSON.parse(result)
 
 `GET /products`
 
+<h3 id="get-list-of-products-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|contract_types|query|string|false|Comma separated list of contract types|
+|states|query|string|false|Comma separated list of states|
+
 > Example responses
 
 > 200 Response
@@ -246,6 +253,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
+      "state": "live",
       "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
@@ -288,13 +296,13 @@ p JSON.parse(result)
 }
 ```
 
-<h3 id="get-live-products-responses">Responses</h3>
+<h3 id="get-list-of-products-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live products|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of products|Inline|
 
-<h3 id="get-live-products-responseschema">Response Schema</h3>
+<h3 id="get-list-of-products-responseschema">Response Schema</h3>
 
 #### Enumerated Values
 
@@ -302,6 +310,9 @@ p JSON.parse(result)
 |---|---|
 |notional_type|vanilla|
 |notional_type|inverse|
+|state|live|
+|state|expired|
+|state|upcoming|
 |trading_status|operational|
 |trading_status|disrupted_cancel_only|
 |trading_status|disrupted_post_only|
@@ -3144,6 +3155,7 @@ This operation does not require authentication.
   "contract_value": "string",
   "contract_unit_currency": "string",
   "tick_size": "string",
+  "state": "live",
   "trading_status": "operational",
   "max_leverage_notional": "string",
   "default_leverage": "string",
@@ -3202,6 +3214,7 @@ This operation does not require authentication.
 |contract_value|string|false|none|The notional value of a futures contract is simply the spot price of the asset multiplied by the amount of the asset specified in the contract|
 |contract_unit_currency|string|false|none|This is the unit of  1 contract, for vanilla futures, its underlying asset. for inverse, it is settling asset. for quanto, its settling asset / quoting asset|
 |tick_size|string|false|none|The minimum gap between 2 consecutive prices.|
+|state|string|false|none|current state of the product|
 |trading_status|string|false|none|trading status of the contract e.g. 'operational','disrupted_cancel_only' or 'disrupted_post_only'|
 |max_leverage_notional|string|false|none|maximum notional position size (in settling asset terms) that can be acquired at highest allowed leverage for a given contract.|
 |default_leverage|string|false|none|default leverage|
@@ -3228,6 +3241,9 @@ This operation does not require authentication.
 |---|---|
 |notional_type|vanilla|
 |notional_type|inverse|
+|state|live|
+|state|expired|
+|state|upcoming|
 |trading_status|operational|
 |trading_status|disrupted_cancel_only|
 |trading_status|disrupted_post_only|
@@ -3252,6 +3268,7 @@ This operation does not require authentication.
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
+    "state": "live",
     "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
