@@ -19,7 +19,7 @@ CLOUDMC-API-DOCS TEMPLATE
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/k8s/my-env/releases/my-release/aerospike?operation=upgrade"
+   "https://cloudmc_endpoint/api/v1/services/k8s/my-env/releases/my-release/aerospike?operation=upgrade"
 ```
 > Request body example(s):
 

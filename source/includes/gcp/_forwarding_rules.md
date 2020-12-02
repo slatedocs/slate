@@ -8,7 +8,7 @@ A forwarding rule and its corresponding IP address represent the frontend config
 ```shell
 curl -X GET \
   -H 'MC-Api-key: your_api_key'
-  "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules"
+  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/forwardingrules"
 ```
 > The above command returns a JSON structured like this:
 
@@ -68,7 +68,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules/4724455712741277576"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/forwardingrules/4724455712741277576"
 ```
 > The above command returns a JSON structured like this:
 
@@ -122,7 +122,7 @@ curl -X POST \
   -H 'MC-Api-Key: your_api_key' \
   -H "Content-Type: application/json" \
   -d "request _body" \
-  "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules"
+  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/forwardingrules"
 ```
 > Request body examples:
 
@@ -174,7 +174,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/forwardingrules/5459493658413662148"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/forwardingrules/5459493658413662148"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules/:id</code>

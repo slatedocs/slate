@@ -8,7 +8,7 @@
 
 ```shell
 # Retrieve usage summary in JSON
-curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=json" \
+curl "https://cloudmc_endpoint/api/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=json" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -31,7 +31,7 @@ curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8
 
 ```shell
 # Retrieve usage summary in CSV
-curl "https://cloudmc_endpoint/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=csv" \
+curl "https://cloudmc_endpoint/api/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5?start_date=2017-05-01&end_date=2017-05-15&format=csv" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:

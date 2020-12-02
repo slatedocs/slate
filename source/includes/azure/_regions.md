@@ -7,7 +7,7 @@ A region is location where Azure resources are physically deployed. They can be 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/regions"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/regions"
 ```
 > The above command returns a JSON structured like this:
 
@@ -40,7 +40,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/regions/useast"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/regions/useast"
 ```
 > The above command returns a JSON structured like this:
 

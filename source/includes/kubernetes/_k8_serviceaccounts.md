@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/serviceaccounts"
 ```
 
 > The above command returns a JSON structured like this:
@@ -60,7 +60,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts/serviceaccount-name/serviceaccount-namespace"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/serviceaccounts/serviceaccount-name/serviceaccount-namespace"
 ```
 
 > The above command returns a JSON structured like this:
@@ -112,7 +112,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/serviceaccounts"
   Content-Type: application/json
   {
     "apiVersion": "v1",
@@ -157,7 +157,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts/service-account-name/namespace-name"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/serviceaccounts/service-account-name/namespace-name"
   Content-Type: application/json
   {
     "metadata": {
@@ -200,7 +200,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/serviceaccounts/my-service-account/my-namespace"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/serviceaccounts/my-service-account/my-namespace"
 ```
 
 > The above command returns a JSON structured like this:

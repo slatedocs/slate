@@ -11,7 +11,7 @@ Environments allow you to manage resources of a specific service and to manage y
 
 ```shell
 # Retrieve visible environments
-curl "https://cloudmc_endpoint/v1/environments" \
+curl "https://cloudmc_endpoint/api/v1/environments" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -69,7 +69,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve visible environment
-curl "https://cloudmc_endpoint/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
+curl "https://cloudmc_endpoint/api/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -132,7 +132,7 @@ Attributes | &nbsp;
 ```shell
 # Create an environment
 
-curl -X POST "https://cloudmc_endpoint/v1/environments" \
+curl -X POST "https://cloudmc_endpoint/api/v1/environments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -187,7 +187,7 @@ The responses' `data` field contains the updated [environment](#administration-e
 
 ```shell
 # Update an environment
-curl -X POST "https://cloudmc_endpoint/v1/environments/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
+curl -X POST "https://cloudmc_endpoint/api/v1/environments/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -227,7 +227,7 @@ You will need the `Environments update` permission to execute this operation.
 
 ```shell
 # Delete an environment
-curl "https://cloudmc_endpoint/v1/environments/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
+curl "https://cloudmc_endpoint/api/v1/environments/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```

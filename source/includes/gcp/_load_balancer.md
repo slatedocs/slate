@@ -9,7 +9,7 @@ HTTP(S) load balancing can balance HTTP and HTTPS traffic across multiple backen
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/loadbalancers"
 ```
 > The above command returns a JSON structured like this:
 
@@ -59,7 +59,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
 ```
 > The above command returns a JSON structured like this:
 
@@ -105,7 +105,7 @@ curl -X POST \
   -H 'MC-Api-Key: your_api_key' \
   -H "Content-Type: application/json" \
   -d "request_body" \
-  "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers"
+  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/loadbalancers"
 ```
 > Request body examples:
 
@@ -168,7 +168,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/loadbalancers/8268558443601303519"
 ```
 > The above command returns a JSON structured like this:
 

@@ -8,7 +8,7 @@ SSH keys can be assigned to default users of instances by using the [associate S
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sshkeys"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/sshkeys"
 ```
 > The above command returns a JSON structured like this:
 
@@ -42,7 +42,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sshkeys/mellon"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/sshkeys/mellon"
 ```
 > The above command returns a JSON structured like this:
 

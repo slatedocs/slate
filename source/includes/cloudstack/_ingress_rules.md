@@ -5,7 +5,7 @@ Manage inbound traffic rules for isolated networks.
 #### List ingress rules
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/ingressrules"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/ingressrules"
 ```
 > The above command returns a JSON structured like this:
 
@@ -78,7 +78,7 @@ Query Parameters | &nbsp;
 #### Retrieve a specific ingress rule
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/ingressrules/f1863d10-e7ec-4f17-8cdd-0e4046643b0b"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/ingressrules/f1863d10-e7ec-4f17-8cdd-0e4046643b0b"
 ```
 > The above command returns a JSON structured like this:
 
@@ -123,7 +123,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/ingressrules"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/ingressrules"
 ```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressrules</code>
 
@@ -147,7 +147,7 @@ Protocol-specific       | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/ingressrules/3247167a-e7e7-11e3-9187-06669c0000ad"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/ingressrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressrules/:id</code>
 

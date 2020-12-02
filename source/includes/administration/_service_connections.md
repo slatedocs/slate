@@ -73,7 +73,7 @@ Attributes | &nbsp;
 
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/descriptors/gcp/parameters"
+   "https://cloudmc_endpoint/api/v1/services/descriptors/gcp/parameters"
 ```
 > Request body example:
 
@@ -143,7 +143,7 @@ This call returns a list of parameters that must be provided _(when creating a n
 ```shell
 # Create a service connection
 
-curl -X POST "https://cloudmc_endpoint/v1/services/connections" \
+curl -X POST "https://cloudmc_endpoint/api/v1/services/connections" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -206,7 +206,7 @@ Required | &nbsp;
 ```shell
 # Test a new service connection
 
-curl -X POST "https://cloudmc_endpoint/v1/services/connections/test" \
+curl -X POST "https://cloudmc_endpoint/api/v1/services/connections/test" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -229,7 +229,7 @@ Test a new service connection before creating it. The request body is the same a
 ```shell
 # Test a new service connection
 
-curl -X POST "https://cloudmc_endpoint/v1/services/connections/9571b279-abaf-4a37-9f39-85d1a915af7d/test" \
+curl -X POST "https://cloudmc_endpoint/api/v1/services/connections/9571b279-abaf-4a37-9f39-85d1a915af7d/test" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json"
 ```
@@ -248,7 +248,7 @@ Query Parameters | &nbsp;
 
 ```shell
 # Retrieve connection policy descriptors
-curl "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies/descriptors?section=trials" \
+curl "https://cloudmc_endpoint/api/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies/descriptors?section=trials" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -316,7 +316,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "[{"name": "serviceVersion", "value": "1.1"}, {"name": "cacheEnabled", "value": "true"}]" \
-   "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies"
+   "https://cloudmc_endpoint/api/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies"
 ```
 > The above command returns a JSON structured like this:
 

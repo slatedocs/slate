@@ -11,7 +11,7 @@ Configure methods of authentication for your organizations.
 
 ```shell
 # Retrieve identity providers
-curl "https://cloudmc_endpoint/v1/identity_providers" \
+curl "https://cloudmc_endpoint/api/v1/identity_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
