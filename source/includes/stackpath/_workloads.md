@@ -346,7 +346,7 @@ curl -X PUT \
   "memory": "2Gi",
   "specs": "SP-1",
   "deploymentName": "chicago-1",
-  "deploymentPops": "ORD",
+  "deploymentPops": ["ORD"],
   "enableAutoScaling": true,
   "cpuUtilization": 50,
   "minInstancesPerPop": 2,
@@ -373,7 +373,7 @@ curl -X PUT \
   "memory": "4Gi",
   "specs": "SP-2",
   "deploymentName": "toronto-1",
-  "deploymentPops": "YYZ",
+  "deploymentPops": ["YYZ"],
   "enableAutoScaling": false,
   "deploymentInstancePerPops": 2
 }
@@ -400,7 +400,7 @@ Required | &nbsp;
 `memory`<br/>*string* | The memory size for the workload's instance.
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deploymentName`<br/>*string* | The name of the deployment.
-`deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z].
+`deploymentPops`<br/>*string* | The points of presence of a deployment. In the format [A-Z][A-Z][A-Z].
 `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is required.
 
 Optional | &nbsp;
