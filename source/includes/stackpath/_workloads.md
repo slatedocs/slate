@@ -104,9 +104,9 @@ Attributes | &nbsp;
 `isRemoteManagementEnabled`<br/>*boolean* | Specifies if remote management is enabled on workload instance or not.
 `image`<br/>*string* | The workload's instance operating system image.
 `addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only applicable to workloads of `type` 'CONTAINER'.
-`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'True'.
-`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'True'.
-`containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'True'.
+`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `environmentVariableKey` <br/>*string* | The location to obtain a value for an environment variable. Only applicable to workloads of `type` 'CONTAINER'.
 `environmentVariableValue` <br/>*string* | An environment variable's value. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariableKey` <br/>*string* | The location to obtain a value for a secret environment variable. Only applicable to workloads of `type` 'CONTAINER'.
