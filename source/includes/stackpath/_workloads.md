@@ -229,6 +229,10 @@ Required | &nbsp;
  `publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule.
  `protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
 
+ <aside class="notice">
+A workload can be created without `publicPort`, `publicPortSrc`, `publicPortDesc` and `protocol` as part of the payload. But all these fields are required to open a port/port-range on the created workload.
+</aside>
+
 <!-------------------- EDIT A WORKLOAD -------------------->
 
 ### Edit a workload
