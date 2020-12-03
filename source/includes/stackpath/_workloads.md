@@ -114,7 +114,7 @@ Attributes | &nbsp;
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deploymentName`<br/>*string* | The name of the deployment.
-`deploymentPops`<br/>*array* | The points of presence of a deployment. In the format [A-Z][A-Z][A-Z].
+`deploymentPops`<br/>*array* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
 `enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
 `deploymentInstancePerPops`<br/>*integer* | The number of deployments per point of presence. Only applicable if autoscaling is not enabled.
 `cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
@@ -185,9 +185,9 @@ Attributes | &nbsp;
 `isRemoteManagementEnabled`<br/>*boolean* | Specifies if remote management is enabled on workload instance or not.
 `image`<br/>*string* | The workload's instance operating system image.
 `addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only applicable to workloads of `type` 'CONTAINER'.
-`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'True'.
-`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'True'.
-`containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'True'.
+`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `environmentVariableKey` <br/>*string* | The location to obtain a value for an environment variable. Only applicable to workloads of `type` 'CONTAINER'.
 `environmentVariableValue` <br/>*string* | An environment variable's value. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariableKey` <br/>*string* | The location to obtain a value for a secret environment variable. Only applicable to workloads of `type` 'CONTAINER'.
@@ -212,7 +212,6 @@ curl -X POST \
     -d "request_body" \
     "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
 ```
-<<<<<<< HEAD
 > Request body example for a VM Workload type:
 
 ```json
@@ -292,7 +291,7 @@ Required | &nbsp;
  `firstBootSshKey(s)`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by commas.
  `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment.
- `deploymentPops`<br/>*array* | The points of presence of a deployment. In the format [A-Z][A-Z][A-Z].
+ `deploymentPops`<br/>*array* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
  `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is 
  `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
  `minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP.
@@ -400,7 +399,7 @@ Required | &nbsp;
 `memory`<br/>*string* | The memory size for the workload's instance.
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deploymentName`<br/>*string* | The name of the deployment.
-`deploymentPops`<br/>*string* | The points of presence of a deployment. In the format [A-Z][A-Z][A-Z].
+`deploymentPops`<br/>*string* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
 `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is required.
 
 Optional | &nbsp;
