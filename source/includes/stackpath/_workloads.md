@@ -118,12 +118,13 @@ Attributes | &nbsp;
 `image`<br/>*string* | The workload's instance operating system image.
 
 <!-------------------- CREATE A WORKLOAD -------------------->
+
 ### Create a workload
 ```shell
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -d "request_body" \
-    "https://cloudmc_endpoint/v1/services/stackpath/test-area/workloads"
+    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
 ```
 > Request body example(s):
 ```js
@@ -135,8 +136,10 @@ curl -X POST \
    "image":"stackpath-edge/centos-7-cpanel:v201905241955",
    "vpc":"Default",
    "addAnyCastIpAddress":false,
-   "publicPorts":"80",
-   "protocol":"TCP",
+   "publicPort": "80",
+   "publicPortSrc": "0.0.0.0/0",
+   "publicPortDesc": "npr_root_btd",
+   "protocol": "TCP",
    "firstBootSshKey":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcYr9OnzsDfYVW2I1kX/iYJ0mPG490bI5mbxbOAKPLMuWLguxRohX804j1XbwZJ+Sna+9rSfxaYA8vgd1MoYX10l9cnMLx/MMbYp4ZquauN4pGY3WoDeCqsTss3VUMW+7RFBILpU3SJTlDV02FI36D3IXb4A8XymCyU3KC99XXTfTQsuKC+WFRMsTWtklrasqCVd5yEG90i/aJc6A3TZGOYgPFNEeVYvNDaJmIkb3y4FfShoBIMgZRt0ay7SvWZUvyfvyNmK5W9ePdhZZ58R+7tQNmCzjQ4v0suWRuGJ/XL3+03w3HEsDdQx+noL+R+qAjoNFwc0spBBhJK+Q4ADqr nothing@gmail.com",
    "specs":"SP-1",
    "persistenceStoragePath":"/lib/data/newFolder",
@@ -163,8 +166,10 @@ curl -X POST \
    "secretEnvironmentVariableValue":null,
    "vpc":"Default",
    "addAnyCastIpAddress":false,
-   "publicPorts":"80-200",
-   "protocol":"UDP",
+   "publicPort": "80",
+   "publicPortSrc": "0.0.0.0/0",
+   "publicPortDesc": "npr_root_btd",
+   "protocol": "TCP",
    "specs":"SP-3",
    "persistenceStoragePath":null,
    "persistenceStorageSize":1,
@@ -194,21 +199,16 @@ Required | &nbsp;
  `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
  `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
  `vpc`<br/>*string* | The virtual private cloud option for now supports default vpc only.
- `protocol`<br/>*string* | Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
  `firstBootSshKey(s)`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by commas.
  `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment.
  `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z].
- `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
- `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
- `minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP.
- `maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP.
+ `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is required.
  
  Optional | &nbsp;
  ------- | -----------
  `addAnyCastIpAddress`<br/>*boolean* | Option to AnyCast IP Address.
  `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name.
- `publicPorts`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535.
  `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
  `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
  `addImagePullCredentialsOption` <br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not.
@@ -220,6 +220,19 @@ Required | &nbsp;
  `environmentVariableValue` <br/>*string* | An environment variable's value.
  `secretEnvironmentVariableKey` <br/>*string* | The secret environment variable's key.
  `secretEnvironmentVariableValue` <br/>*string* | A sensitive environment variable that should not be exposed.
+ `deploymentInstancePerPops`<br/>*integer* | The number of deployments per point of presence. Only required if autoscaling is not enabled.
+ `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
+ `minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP.
+ `maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP.
+ `publicPort`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535 for which a network policy rule will be created for the workload.
+ `publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule.
+ `publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule.
+ `protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
+
+<aside class="notice">
+A workload can be created without `publicPort`, `publicPortSrc`, `publicPortDesc` and `protocol` as part of the payload. But all these fields are required to open a port/port-range on the created workload.
+</aside>
+
 <!-------------------- EDIT A WORKLOAD -------------------->
 
 ### Edit a workload
@@ -296,7 +309,7 @@ Required | &nbsp;
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deploymentName`<br/>*string* | The name of the deployment.
 `deploymentPops`<br/>*string* | The point of presence of a deployment. In the format [A-Z][A-Z][A-Z].
-`enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
+`enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is required.
 
 Optional | &nbsp;
 ------- | -----------
