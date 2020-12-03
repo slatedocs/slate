@@ -127,7 +127,7 @@ curl -X POST \
     "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
 ```
 > Request body example for a VM Workload type:
-```js
+```json
 {
    "name":"w-user-zwg",
    "slug":"w-user-zwg",
@@ -151,7 +151,7 @@ curl -X POST \
 ```
 > Request body example for a CONTAINER Workload type:
 
-```
+```json
 {
    "name":"w-user-pah",
    "type":"CONTAINER",
