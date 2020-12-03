@@ -212,7 +212,9 @@ curl -X POST \
     -d "request_body" \
     "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
 ```
+<<<<<<< HEAD
 > Request body example for a VM Workload type:
+
 ```json
 {
    "name":"w-user-zwg",
@@ -270,6 +272,7 @@ curl -X POST \
 }
 ```
 > The above commands return a JSON structured like this:
+
 ```json
 {
   "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
@@ -376,6 +379,14 @@ curl -X PUT \
 }
 ```
 
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads/:id</code>
 
 Edit a workload in a given [environment](#administration-environments).
