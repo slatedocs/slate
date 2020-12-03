@@ -14,6 +14,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -73,6 +74,7 @@ curl -X GET \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -120,6 +122,7 @@ Attributes | &nbsp;
 <!-------------------- CREATE A WORKLOAD -------------------->
 
 ### Create a workload
+
 ```shell
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
@@ -127,6 +130,7 @@ curl -X POST \
     "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
 ```
 > Request body example for a VM Workload type:
+
 ```json
 {
    "name":"w-user-zwg",
@@ -149,6 +153,7 @@ curl -X POST \
    "deploymentPops":"YYZ"
 }
 ```
+
 > Request body example for a CONTAINER Workload type:
 
 ```json
@@ -184,12 +189,14 @@ curl -X POST \
 }
 ```
 > The above commands return a JSON structured like this:
+
 ```json
 {
   "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
   "taskStatus": "PENDING"
 }
 ```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads</code>
 
 Create a new workload in a given [environment](#administration-environments).
