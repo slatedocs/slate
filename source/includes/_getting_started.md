@@ -4,14 +4,14 @@ The CloudMC API allows you to manage your environments and provision resources i
 
 The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer). Responses, successful or not, are returned in [JSON](http://www.json.org/). Request bodies must be [JSON](http://www.json.org/), and should be made over SSL.
 
-API endpoint : `https://cloudmc_endpoint/v1`
+API endpoint : `https://cloudmc_endpoint/api/v1`
 
 ## Authentication
 
 ```shell
 ## To authenticate, add a header
 ## Make sure to replace `your_api_key` with your API key.
-curl "https://cloudmc_endpoint/v1/organizations" \
+curl "https://cloudmc_endpoint/api/v1/organizations" \
    -H "MC-Api-Key: your_api_key"
 ```
 

@@ -8,7 +8,7 @@ Create and manage your subnets. Subnets belongs to a network.
 ```shell
 curl -X GET \
   -H "mc-api-key: your_api_key" \
-  "https://cloudmc_endpoint/v1/services/gcp/test-area/subnetworks"
+  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/subnetworks"
 ```
 > The above command returns a JSON structured like this:
 
@@ -69,7 +69,7 @@ Retrieve a list of all networks in a given [environment](#administration-environ
 ```shell
 curl -X GET \
   -H "mc-api-key: your_api_key" \
-  "https://cloudmc_endpoint/v1/services/gcp/test-area/subnetworks/8841143494674098002"
+  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/subnetworks/8841143494674098002"
 ```
 > The above command returns a JSON structured like this:
 
@@ -122,7 +122,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/subnetworks"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/subnetworks"
 ```
 > Request body example:
 
@@ -157,7 +157,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
   -H "mc-api-key: your_api_key" \
-  "https://cloudmc_endpoint/v1/services/gcp/test-area/subnetworks/8841143494674098002"
+  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/subnetworks/8841143494674098002"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks/:id</code>

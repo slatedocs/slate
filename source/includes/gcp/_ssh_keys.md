@@ -9,7 +9,7 @@ SSH keys are managed at the [environment](#administration-environments) level.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sshkeys"
 ```
 > The above command returns a JSON structured like this:
 
@@ -45,7 +45,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys/user1"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sshkeys/user1"
 ```
 > The above command returns a JSON structured like this:
 
@@ -77,7 +77,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sshkeys"
 ```
 > Request body example:
 
@@ -104,7 +104,7 @@ Attributes | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys/user1"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sshkeys/user1"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>

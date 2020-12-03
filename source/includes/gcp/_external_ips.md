@@ -9,7 +9,7 @@ External IP address to an instance or a forwarding rule if you need to communica
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/externalips"
 ```
 > The above command returns a JSON structured like this:
 
@@ -83,7 +83,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips/8516891730356002156"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/externalips/8516891730356002156"
 ```
 > The above command returns a JSON structured like this:
 
@@ -147,7 +147,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips?operation=reserve"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/externalips?operation=reserve"
 ```
 > Request body example:
 
@@ -180,7 +180,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips/8516891730356002156"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/externalips/8516891730356002156"
 ```
 
 <aside class="notice">

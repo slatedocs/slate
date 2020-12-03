@@ -9,7 +9,7 @@ Configure the service providers that can use CloudMC as their authentication sou
 
 ```shell
 # Retrieve service providers
-curl "https://cloudmc_endpoint/v1/service_providers" \
+curl "https://cloudmc_endpoint/api/v1/service_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -70,7 +70,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve service providers
-curl "https://cloudmc_endpoint/v1/service_providers/04b77783-516f-4064-a6df-e7f9cae222c1" \
+curl "https://cloudmc_endpoint/api/v1/service_providers/04b77783-516f-4064-a6df-e7f9cae222c1" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:

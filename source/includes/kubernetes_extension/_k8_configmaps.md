@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/configmaps?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -50,7 +50,7 @@ Retrieve a list of all config maps in a given [environment](#administration-envi
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/coredns/kube-system?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/configmaps/coredns/kube-system?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -90,7 +90,7 @@ Retrieve a config map and all its info in a given [environment](#administration-
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps?cluster_id=:cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/configmaps?cluster_id=:cluster_id"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -146,7 +146,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/game-demo/default?cluster_id=:cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/configmaps/game-demo/default?cluster_id=:cluster_id"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -203,7 +203,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/configmaps/cert-manager-cainjector-leader-election/kube-system?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/configmaps/cert-manager-cainjector-leader-election/kube-system?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:

@@ -10,7 +10,7 @@ Allows to change the configuration for the service provider integrated with SAML
 
 ```shell
 # Retrieve SAML settings
-curl "https://cloudmc_endpoint/v1/saml_settings" \
+curl "https://cloudmc_endpoint/api/v1/saml_settings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -44,7 +44,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve saml settings
-curl "https://cloudmc_endpoint/v1/saml_settings/04b77783-516f-4064-a6df-e7f9cae222c1" \
+curl "https://cloudmc_endpoint/api/v1/saml_settings/04b77783-516f-4064-a6df-e7f9cae222c1" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:

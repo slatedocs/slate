@@ -6,7 +6,7 @@ Volumes are block-level storage devices that can be attached to instances.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes"
 ```
 > The above command returns a JSON structured like this:
 
@@ -47,7 +47,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24"
 ```
 > The above command returns a JSON structured like this:
 
@@ -85,7 +85,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes"
 ```
 > Request body example:
 
@@ -112,7 +112,7 @@ Required                | Description
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
@@ -126,7 +126,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=attach"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=attach"
 ```
 > Request body example:
 
@@ -149,7 +149,7 @@ Required                | Description
 ```shell
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=detach"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=detach"
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=detach</code>
@@ -163,7 +163,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=extend"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=extend"
 ```
 > Request body example:
 
@@ -188,7 +188,7 @@ Required                | Description
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=snapshot"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/volumes/52cfc2f8-5b1f-4833-83cd-a77f55c5ed24?operation=snapshot"
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=snapshot</code>

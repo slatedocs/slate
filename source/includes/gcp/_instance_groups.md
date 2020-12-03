@@ -9,7 +9,7 @@ An instance group is a collection of [VM instances](#gcp-instances) that you can
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instancegroups"
 ```
 > The above command returns a JSON structured like this:
 
@@ -72,7 +72,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instancegroups/2986056884972096897"
 ```
 > The above command returns a JSON structured like this:
 
@@ -132,7 +132,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instancegroups"
 ```
 > Request body example:
 
@@ -170,7 +170,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instancegroups/2986056884972096897"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id</code>
@@ -185,7 +185,7 @@ Delete an existing instance group.
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897?operation=manage_instance_members"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instancegroups/2986056884972096897?operation=manage_instance_members"
 ```
 > Request body example:
 

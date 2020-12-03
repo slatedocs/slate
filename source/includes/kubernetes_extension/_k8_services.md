@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/services?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -72,7 +72,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/services/test-aerospike/auth?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services/test-aerospike/auth?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -123,7 +123,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/services"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -190,7 +190,7 @@ Return value:
 ```shell
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/services/service-name/default?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services/service-name/default?cluster_id=test-cluster"
 ```
 > Request body example:
 
@@ -264,7 +264,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/services/test-service/default?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services/test-service/default?cluster_id=test-cluster"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services/:id?cluster_id=:cluster_id</code>

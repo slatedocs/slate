@@ -11,7 +11,7 @@ Retrieves a list of organizations visible to the caller. In most cases, only the
 
 ```shell
 # Retrieve visible organizations
-curl "https://cloudmc_endpoint/v1/organizations" \
+curl "https://cloudmc_endpoint/api/v1/organizations" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -90,7 +90,7 @@ Retrieve an organization's details.
 
 ```shell
 # Retrieve an organization
-curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -167,7 +167,7 @@ Creates a new organization as a sub-organization of the caller's organization, o
 
 ```shell
 # Create an organization
-curl -X POST "https://cloudmc_endpoint/v1/organizations" \
+curl -X POST "https://cloudmc_endpoint/api/v1/organizations" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -211,7 +211,7 @@ Update an organization. Its parent organization cannot be changed. It can be ass
 
 ```shell
 # Update an organization
-curl -X PUT "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -258,7 +258,7 @@ Delete an organization. The caller may not delete his own organization. Also, an
 
 ```shell
 # Delete an organization
-curl -X DELETE "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -272,7 +272,7 @@ Get a list of all verified domains on the specified organization.
 
 ```shell
 # Retrieve all verified domains
-curl "https://cloudmc_endpoint/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -328,7 +328,7 @@ Creates a new verified domain in the specified organization.
 
 ```shell
 # Create a verified domain
-curl -X POST "https://cloudmc_endpoint/v1/organizations87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
+curl -X POST "https://cloudmc_endpoint/api/v1/organizations87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -356,7 +356,7 @@ Delete a specified domain on the organization.
 
 ```shell
 # Delete a verified domain
-curl -X DELETE "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/verified_domains/22d30872-8e90-43b5-b1ba-636bead42e34" \
+curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/verified_domains/22d30872-8e90-43b5-b1ba-636bead42e34" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -370,7 +370,7 @@ Retrieve the security settings for the organization.
 
 ```shell
 # Retrieve the organization's security settings
-curl "https://cloudmc_endpoint/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/security_settings" \
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/security_settings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -435,7 +435,7 @@ Attributes | &nbsp;
 
 ```shell
 # Update an organization's security settings
-curl -X PUT "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/security_settings" \
+curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/security_settings" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -478,7 +478,7 @@ Get a list of Service connections that can be managed by the current user on the
 
 ```shell
 # Update an organization
-curl -X GET "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/manageable_connections" \
+curl -X GET "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/manageable_connections" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -548,7 +548,7 @@ The user should have `Connections reseller` permission on the organization. This
 
 ```shell
 # Mark an organization as reseller
-curl -X POST "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/mark_reseller" \
+curl -X POST "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/mark_reseller" \
    -H "MC-Api-Key: your_api_key" \
 ```
 
