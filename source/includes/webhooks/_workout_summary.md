@@ -4,7 +4,7 @@ Requires the `offline_data` scope
 
 > Sample Workout Summary Webhook Message
 
-```JSON
+``````json
 {
   "event_type": "workout_summary",
   "webhook_token": <webhook_token>,
@@ -13,19 +13,19 @@ Requires the `offline_data` scope
   },
   "workout_summary": {
     "id": 8297,
-    "ascent_accum": null,
-    "cadence_avg": null,
-    "calories_accum": null,
-    "distance_accum": null,
-    "duration_active_accum": null,
-    "duration_paused_accum": null,
-    "duration_total_accum": null,
-    "heart_rate_avg": null,
-    "power_bike_np_last": null,
-    "power_bike_tss_last": null,
-    "power_avg": null,
-    "speed_avg": null,
-    "work_accum": null,
+    "ascent_accum": 450.00,
+    "cadence_avg": 50.00,
+    "calories_accum": 1500.00,
+    "distance_accum": 24909.71,
+    "duration_active_accum": 179,
+    "duration_paused_accum": 95,
+    "duration_total_accum": 275,
+    "heart_rate_avg": 124,
+    "power_bike_np_last": 150,
+    "power_bike_tss_last": 304.90,
+    "power_avg": 94.59,
+    "speed_avg": 10.75,
+    "work_accum": 104148000,
     "created_at": "2018-10-23T20:43:50.000Z",
     "updated_at": "2018-10-23T20:43:50.000Z",
     "file": {
