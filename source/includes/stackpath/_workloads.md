@@ -115,7 +115,7 @@ Attributes | &nbsp;
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deploymentName`<br/>*string* | The name of the deployment.
-`deploymentPops`<br/>*array* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
 `enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
 `deploymentInstancePerPops`<br/>*integer* | The number of deployments per point of presence. Only applicable if autoscaling is not enabled.
 `cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
@@ -197,7 +197,7 @@ Attributes | &nbsp;
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deploymentName`<br/>*string* | The name of the deployment.
-`deploymentPops`<br/>*array* | The points of presence of a deployment. In the format [A-Z][A-Z][A-Z].
+`deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the format [A-Z][A-Z][A-Z].
 `enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
 `deploymentInstancePerPops`<br/>*integer* | The number of deployments per point of presence. Only applicable if autoscaling is not enabled.
 `cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
@@ -296,7 +296,7 @@ Required | &nbsp;
  `firstBootSshKey(s)`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by commas.
  `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment.
- `deploymentPops`<br/>*array* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+ `deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
  `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is 
  `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
  `minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP.
@@ -404,7 +404,7 @@ Required | &nbsp;
 `memory`<br/>*string* | The memory size for the workload's instance.
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deploymentName`<br/>*string* | The name of the deployment.
-`deploymentPops`<br/>*string* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
 `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is required.
 
 Optional | &nbsp;
