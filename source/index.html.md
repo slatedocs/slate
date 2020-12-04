@@ -188,6 +188,9 @@ includes:
   - stackpath/instances
   - stackpath/images
   - stackpath/network_policy_rules
+  - aws
+  - aws/compute
+  - aws/instances
 
 search: true
 ---
