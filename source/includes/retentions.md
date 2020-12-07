@@ -593,3 +593,288 @@ items | vector de objetos tipo [impuesto](#impuesto-retenido) | Listado de impue
 sujeto | objeto [persona](#persona) | Información del sujeto al que se le retiene.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 version | string | Versión de la especificación, opciones válidas: `1.0.0`, `1.1.0`
+
+## Re-emisión de una retención
+
+### Operación
+
+`POST /retentions/:id/reissue`
+
+### Requerimiento
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/retentions/<id-retencion>/reissue \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":14,
+  "fecha_emision":"2015-12-25T11:28:56.782Z",
+  "periodo_fiscal":"12/2015",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "informacion_adicional":{
+    "Envíada al correo electónico":"contabilidad@xyz.com"
+  },
+  "items":[
+    {
+      "base_imponible": 4226.4,
+      "codigo": 1,
+      "codigo_porcentaje": "312",
+      "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
+      "numero_documento_sustento": "011-007-000000251",
+      "porcentaje": 1.0,
+      "tipo_documento_sustento": "01",
+      "valor_retenido": 42.26
+    }
+  ]
+  "sujeto":{
+    "email":"contabilidad@email.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"046029400"
+  }
+}'
+```
+
+```python
+import requests, json
+
+retencion = {
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":14,
+  "fecha_emision":"2015-12-25T11:28:56.782Z",
+  "periodo_fiscal":"12/2015",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "informacion_adicional":{
+    "Envíada al correo electónico":"contabilidad@xyz.com"
+  },
+  "items":[
+    {
+      "base_imponible": 4226.4,
+      "codigo": 1,
+      "codigo_porcentaje": "312",
+      "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
+      "numero_documento_sustento": "011-007-000000251",
+      "porcentaje": 1.0,
+      "tipo_documento_sustento": "01",
+      "valor_retenido": 42.26
+    }
+  ],
+  "sujeto":{
+    "email":"contabilidad@email.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"046029400"
+  }
+}
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/retentions/<id-retencion>/reissue",
+    headers = cabeceras,
+    data = json.dumps(retencion))
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      // Este ejemplo utiliza RestSharp
+      // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
+      // copia y pega y presiona enter: Install-Package RestSharp
+
+      var client = new RestClient("https://link.datil.co/");
+      var idRetention = "<id-retencion>"
+      var request = new RestRequest("retentions/" + idRetention + "/reissue", Method.POST);
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("X-Password", "<clave-certificado-firma>");
+
+      request.AddBody(@"{
+        ""ambiente"":1,
+        ""tipo_emision"":1,
+        ""secuencial"":14,
+        ""fecha_emision"":""2015-12-25T11:28:56.782Z"",
+        ""periodo_fiscal"":""12/2015"",
+        ""emisor"":{
+          ""ruc"":""0910000000001"",
+          ""obligado_contabilidad"":true,
+          ""contribuyente_especial"":""12345"",
+          ""nombre_comercial"":""XYZ Corp"",
+          ""razon_social"":""XYZ Corporación S.A."",
+          ""direccion"":""Av. Primera 234 y calle 5ta"",
+          ""establecimiento"":{
+            ""punto_emision"":""002"",
+            ""codigo"":""001"",
+            ""direccion"":""Av. Primera 234 y calle 5ta""
+          }
+        },
+        ""informacion_adicional"":{
+          ""Envíada al correo electónico"":""contabilidad@xyz.com""
+        },
+        ""items"":[
+          {
+            ""base_imponible"": 4226.4,
+            ""codigo"": 1,
+            ""codigo_porcentaje"": ""312"",
+            ""fecha_emision_documento_sustento"": ""2015-12-04T00:00:00-05:19"",
+            ""numero_documento_sustento"": ""011007000000251"",
+            ""porcentaje"": 1.0,
+            ""tipo_documento_sustento"": ""01"",
+            ""valor_retenido"": 42.26
+          }
+        ],
+        ""sujeto"":{
+          ""email"":""contabilidad@email.com"",
+          ""identificacion"":""0987654321"",
+          ""tipo_identificacion"":""05"",
+          ""razon_social"":""Juan Pérez"",
+          ""direccion"":""Calle única Numero 987"",
+          ""telefono"":""046029400""
+        }
+      }");
+
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+      Console.ReadLine();
+    }
+  }
+}
+```
+
+Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o DEVUELTOS por el Servicio de Rentas Internas.
+
+En la URL de esta opción se debe incluir el id de la retención recibida al momento de emitirla.
+
+El cuerpo del requerimiento es un objeto retención con los datos corregidos para que pueda ser procesado y autorizado.
+
+### Respuesta
+
+> #### Respuesta de ejemplo
+
+```json
+{
+  "id": "abcdef09876123cea56784f01",
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":148,
+  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "clave_acceso": "2802201501091000000000120010010000100451993736618",
+  "emisor":{
+    "ruc": "0910000000001",
+    "obligado_contabilidad": true,
+    "contribuyente_especial": "12345",
+    "nombre_comercial": "XYZ Corp",
+    "razon_social": "XYZ Corporación S.A.",
+    "direccion": "Av. Primera 234 y calle 5ta",
+    "establecimiento": {
+      "punto_emision": "002",
+      "codigo": "001",
+      "direccion": "Av. Primera 234 y calle 5ta"
+    }
+  },
+  "moneda": "USD",
+  "informacion_adicional": {
+    "Tiempo de entrega": "5 días"
+  },
+  "totales": {
+    "total_sin_impuestos": 120.89,
+    "impuestos": [
+      {
+        "base_imponible": 0.0,
+        "valor": 0.0,
+        "codigo": "2",
+        "codigo_porcentaje": "0",
+        "tarifa": 0.0
+      },
+      {
+        "base_imponible": 120.89,
+        "valor": 14.51,
+        "codigo": "2",
+        "codigo_porcentaje": "2",
+        "tarifa": 12.0
+      }
+    ],
+    "importe_total": 135.4,
+    "propina": 0.0,
+    "descuento": 0.0
+  },
+  "comprador": {
+    "email": "juan.perez@xyz.com",
+    "identificacion": "0987654321",
+    "tipo_identificacion": "05",
+    "razon_social": "Juan Pérez",
+    "direccion": "Calle única Numero 987",
+    "telefono": "046029400"
+  },
+  "items":[
+    {
+      "cantidad": 622.0,
+      "codigo_principal": "ZNC",
+      "codigo_auxiliar": "050",
+      "precio_unitario": 7.01,
+      "descripcion": "Zanahoria granel  50 Kg.",
+      "precio_total_sin_impuestos": 4360.22,
+      "impuestos":[
+        {
+          "base_imponible": 120.89,
+          "valor": 14.51,
+          "tarifa": 12.0,
+          "codigo": "2",
+          "codigo_porcentaje": "2"
+        }
+      ],
+      "detalles_adicionales": {
+        "Peso": "5000.0000"
+      },
+      "descuento": 0.0
+    }
+  ]
+}
+```
+
+Retorna un objeto tipo **[retención](#requerimiento-retencion)** que incluye un nuevo parámetro `id`,
+el cual identifica de manera única a la retención. El campo `clave_acceso`
+generado también se incluirá como parte de la respuesta. Sí el comprobante de retención ya está autorizada se retornará un error.

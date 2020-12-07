@@ -36,6 +36,7 @@ sequence_to<p class="dt-data-type">string</p> | Lista facturas hasta esta secuen
 supplier_points_of_sale<p class="dt-data-type">array</p> | Listado de códigos de punto de emisión separados por coma, ej: 001,004,005
 select_keys<p class="dt-data-type">array</p> | Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
+environment<p class="dt-data-type">integer</p> | Lista facturas dependiento del ambiente
 
 
 #### Respuesta

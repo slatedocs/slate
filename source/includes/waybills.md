@@ -368,7 +368,7 @@ Retorna un objeto tipo **[guía de remisión](#requerimiento-guia-remision)** qu
 el cual identifica de manera única a la guía de remisión. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
-## Emisión de una guia de remisión a partir de XML
+## Emisión de una guía de remisión a partir de XML
 
 `POST /waybills/issue/xml`
 
@@ -594,7 +594,7 @@ se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuest
 > #### Requerimiento de ejemplo
 
 ```shell
-curl -v https://link.datil.co/waybills/<id-notacredito> \
+curl -v https://link.datil.co/waybills/<id-guiaremision> \
 -H "Content-Type: application/json" \
 -H "X-Key: <clave-del-api>" \
 -H "X-Password: <clave-certificado-firma>" \
@@ -604,7 +604,7 @@ curl -v https://link.datil.co/waybills/<id-notacredito> \
 import requests
 cabeceras = {'x-key': '<clave-del-api>'}
 respuesta = requests.get(
-    'https://link.datil.co/waybills/<id-notacredito>',
+    'https://link.datil.co/waybills/<id-guiaremision>',
     headers = cabeceras)
 ```
 
@@ -620,7 +620,7 @@ namespace DatilClient {
     static void Main(string[] args) {
 
       var client = new RestClient("https://link.datil.co/");
-      var idNotaCredito = "<id-notacredito>";
+      var idNotaCredito = "<id-guiaremision>";
       var request = new RestRequest("invoices/" + idNotaCredito, Method.GET);
       request.AddHeader("X-Key", "<clave-del-api>");
 
@@ -752,3 +752,318 @@ clave_acceso | string | La clave de acceso representa un identificador único de
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6)
 informacion_adicional | objeto | Información adicional adjunta al comprobante en forma de diccionario. Ejemplo:<br>` {"email": "juan@empresa.com", "Carga asegurada por": "Securitas"}`
+
+## Re-emisión de una guía de remisión
+
+### Operación
+
+`POST /waybills/:id/reissue`
+
+### Requerimiento
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/waybills/<id-guiaremision>/reissue \
+-H "Content-Type: application/json" \
+-H "X-Key: <API-key>" \
+-H "X-Password: <clave-certificado-firma>" \
+-d '{
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":50,
+  "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
+  "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
+  "direccion_partida": "Victor Emilio Estrada",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "transportista":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"04 6029400",
+    "placa":"GSM-0123"
+  },
+  "destinatarios": [{
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "email":"juan.perez@xyz.com",
+    "telefono":"046029400",
+    "fecha_emision_documento_sustento": "2015-02-27T11:28:56.782Z",
+    "numero_documento_sustento": "001-001-000000008",
+    "numero_autorizacion_documento_sustento": "0123456789",
+    "motivo_traslado": "Venta",
+    "tipo_documento_sustento": "01",
+    "ruta": "GYE - UIO",
+    "documento_aduanero_unico": "",
+    "codigo_establecimiento_destino": "001",
+    "items": [{
+      "cantidad": 1.0,
+      "codigo_principal": "SPS",
+      "codigo_auxiliar": "001",
+      "descripcion": "Playstation 4",
+      "detalles_adicionales": {
+        "numero": "DFGDG2342-2",
+        "serie": "1-2014-2"
+      }
+    }]
+  }]
+}'
+```
+
+```python
+import requests, json
+
+guia_remision = {
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":50,
+  "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
+  "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
+  "direccion_partida": "Victor Emilio Estrada",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "transportista":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"04 6029400",
+    "placa":"GSM-0123"
+  },
+  "destinatarios": [{
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "email":"juan.perez@xyz.com",
+    "telefono":"046029400",
+    "fecha_emision_documento_sustento": "2015-02-27T11:28:56.782Z",
+    "numero_documento_sustento": "001-001-000000008",
+    "numero_autorizacion_documento_sustento": "0123456789",
+    "motivo_traslado": "Venta",
+    "tipo_documento_sustento": "01",
+    "ruta": "GYE - UIO",
+    "documento_aduanero_unico": "",
+    "codigo_establecimiento_destino": "001",
+    "items": [{
+      "cantidad": 1.0,
+      "codigo_principal": "SPS",
+      "codigo_auxiliar": "001",
+      "descripcion": "Playstation 4",
+      "detalles_adicionales": {
+        "numero": "DFGDG2342-2",
+        "serie": "1-2014-2"
+      }
+    }]
+  }]
+}
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.post(
+    "https://link.datil.co/waybills/<id-guiaremision>/reissue",
+    headers = cabeceras,
+    data = json.dumps(guia_remision))
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      // Este ejemplo utiliza RestSharp
+      // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
+      // copia y pega y presiona enter: Install-Package RestSharp
+
+      var client = new RestClient("https://link.datil.co/");
+      var idGuiaRemision = "<id-guiaremision>"
+      var request = new RestRequest("waybills/" + idGuiaRemision + "/reissue", Method.POST);
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("X-Password", "<clave-certificado-firma>");
+
+      request.AddBody(@"{
+        ""ambiente"":1,
+        ""tipo_emision"":1,
+        ""secuencial"":50,
+        ""fecha_inicio_transporte"":""2015-02-28T11:28:56.782Z"",
+        ""fecha_fin_transporte"":""2015-02-28T11:28:56.782Z"",
+        ""direccion_partida"": ""Victor Emilio Estrada"",
+        ""emisor"":{
+          ""ruc"":""0910000000001"",
+          ""obligado_contabilidad"":true,
+          ""contribuyente_especial"":""12345"",
+          ""nombre_comercial"":""XYZ Corp"",
+          ""razon_social"":""XYZ Corporación S.A."",
+          ""direccion"":""Av. Primera 234 y calle 5ta"",
+          ""establecimiento"":{
+            ""punto_emision"":""002"",
+            ""codigo"":""001"",
+            ""direccion"":""Av. Primera 234 y calle 5ta""
+          }
+        },
+        ""informacion_adicional"":{
+          ""Tiempo de entrega"":""5 días""
+        },
+        ""transportista"":{
+          ""email"":""juan.perez@xyz.com"",
+          ""identificacion"":""0987654321"",
+          ""tipo_identificacion"":""05"",
+          ""razon_social"":""Juan Pérez"",
+          ""direccion"":""Calle única Numero 987"",
+          ""telefono"":""04 6029400"",
+          ""placa"":""GSM-0123""
+        },
+        ""destinatarios"": [{
+          ""identificacion"":""0987654321"",
+          ""tipo_identificacion"":""05"",
+          ""razon_social"":""Juan Pérez"",
+          ""direccion"":""Calle única Numero 987"",
+          ""email"":""juan.perez@xyz.com"",
+          ""telefono"":""046029400"",
+          ""fecha_emision_documento_sustento"": ""2015-02-27T11:28:56.782Z"",
+          ""numero_documento_sustento"": ""001-001-000000008"",
+          ""numero_autorizacion_documento_sustento"": ""0123456789"",
+          ""motivo_traslado"": ""Venta"",
+          ""tipo_documento_sustento"": ""01"",
+          ""ruta"": ""GYE - UIO"",
+          ""documento_aduanero_unico"": """",
+          ""codigo_establecimiento_destino"": ""001"",
+          ""items"": [{
+            ""cantidad"": 1.0,
+            ""codigo_principal"": ""SPS"",
+            ""codigo_auxiliar"": ""001"",
+            ""descripcion"": ""Playstation 4"",
+            ""detalles_adicionales"": {
+              ""numero"": ""DFGDG2342-2"",
+              ""serie"": ""1-2014-2""
+            }
+          }]
+        }]
+      }");
+
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+      Console.ReadLine();
+    }
+  }
+}
+```
+
+Esta operación debe ser utilizada para corregir comprobantes NO AUTORIZADOS o DEVUELTOS por el Servicio de Rentas Internas.
+
+En la URL de esta opción se debe incluir el id de la retención recibida al momento de emitirla.
+
+El cuerpo del requerimiento es un objeto retención con los datos corregidos para que pueda ser procesado y autorizado.
+
+### Respuesta
+
+> #### Respuesta de ejemplo
+
+```json
+{
+  "id": "abcfde09817263847cdaef8493018fef",
+  "clave_acceso":"2802201501091000000000120010010000100451993736618",
+  "ambiente":1,
+  "tipo_emision":1,
+  "secuencial":50,
+  "fecha_inicio_transporte":"2015-02-28T11:28:56.782Z",
+  "fecha_fin_transporte":"2015-02-28T11:28:56.782Z",
+  "emisor":{
+    "ruc":"0910000000001",
+    "obligado_contabilidad":true,
+    "contribuyente_especial":"12345",
+    "nombre_comercial":"XYZ Corp",
+    "razon_social":"XYZ Corporación S.A.",
+    "direccion":"Av. Primera 234 y calle 5ta",
+    "establecimiento":{
+      "punto_emision":"002",
+      "codigo":"001",
+      "direccion":"Av. Primera 234 y calle 5ta"
+    }
+  },
+  "informacion_adicional":{
+    "Tiempo de entrega":"5 días"
+  },
+  "transportista":{
+    "email":"juan.perez@xyz.com",
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "telefono":"04 6029400",
+    "placa":"GSM-0123"
+  },
+  "destinatarios": [{
+    "identificacion":"0987654321",
+    "tipo_identificacion":"05",
+    "razon_social":"Juan Pérez",
+    "direccion":"Calle única Numero 987",
+    "email":"juan.perez@xyz.com",
+    "telefono":"046029400",
+    "fecha_emision_documento_sustento": "2015-02-27T11:28:56.782Z",
+    "numero_documento_sustento": "001-001-000000008",
+    "numero_autorizacion_documento_sustento": "0123456789",
+    "motivo_traslado": "Venta",
+    "tipo_documento_sustento": "01",
+    "ruta": "GYE - UIO",
+    "documento_aduanero_unico": "",
+    "codigo_establecimiento_destino": "001",
+    "items": [{
+      "cantidad": 1.0,
+      "codigo_principal": "SPS",
+      "codigo_auxiliar": "001",
+      "descripcion": "Playstation 4",
+      "detalles_adicionales": {
+        "numero": "DFGDG2342-2",
+        "serie": "1-2014-2"
+      }
+    }]
+  }]
+}
+```
+
+Retorna un objeto tipo **[guía de remisión](#requerimiento-guia-remision)** que incluye un nuevo parámetro `id`,
+el cual identifica de manera única a la guía de remisión. El campo `clave_acceso`
+generado también se incluirá como parte de la respuesta. Sí la guía de remisión ya está autorizada se retornará un error.

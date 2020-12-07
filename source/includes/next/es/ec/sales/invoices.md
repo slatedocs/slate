@@ -417,6 +417,7 @@ supplier_locations_points_of_sale<p class="dt-data-type">array</p> | Listado de 
 select_keys<p class="dt-data-type">string</p> | Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
 order_by <p class="dt-data-type">string</p> | Listado de nombres de atributos de la factura por los que quisieras ordenar el listado, por ejemplo: "sequence". Para ordenar de forma descendente utiliza un guión "-" como prefijo al nombre del atributo, así: "-sequence"
+environment<p class="dt-data-type">integer</p> | Lista facturas dependiento del ambiente
 
 
 #### Respuesta
