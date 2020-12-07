@@ -2122,3 +2122,27 @@ CREATE TABLE [liquidaciones_compra].[info_adicional](
     CONSTRAINT pk_info_adicionales PRIMARY KEY (id_liquidacion, nombre)
 )
 ```
+
+## Consulta de documentos
+
+La información que Link consulta cuando un documento ha sido emitido y el query `on_status_update` ha sido definido son los mismos detallados en la [consulta de documentos](https://datil.dev/#envio-sri). Se puede acceder y personalizar la sentencia SQL utilizando las etiquetas [Jinja2](http://jinja.pocoo.org/)
+
+> #### Ejemplo para guardar autorizacion de facturas
+
+```sql
+on_status_update = {% if autorizacion is defined %}
+INSERT INTO dbo.RESPUESTA_SRI_FACTURSA (
+  id,
+  numero,
+  clave_acceso,
+  codig_estado
+) VALUES (
+  {{ id_local }},
+  {{ autorzacio.numero }},
+  {% if autorizacion.numero == 'AUTORIZADO' %} 
+    100
+  {% else %}
+    0
+  {% endif %}
+)
+```
