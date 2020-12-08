@@ -113,7 +113,7 @@ Attributes | &nbsp;
 `environmentVariableKey` <br/>*string* | The location to obtain a value for an environment variable. Only applicable to workloads of `type` 'CONTAINER'.
 `environmentVariableValue` <br/>*string* | An environment variable's value. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariableKey` <br/>*string* | The location to obtain a value for a secret environment variable. Only applicable to workloads of `type` 'CONTAINER'.
-`firstBootSshKey(s)`<br/>*string* | The ssh key(s) for the VM image. Only applicable to workloads of `type` 'VM'.
+`firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deploymentName`<br/>*string* | The name of the deployment.
@@ -196,7 +196,7 @@ Attributes | &nbsp;
 `environmentVariableKey` <br/>*string* | The location to obtain a value for an environment variable. Only applicable to workloads of `type` 'CONTAINER'.
 `environmentVariableValue` <br/>*string* | An environment variable's value. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariableKey` <br/>*string* | The location to obtain a value for a secret environment variable. Only applicable to workloads of `type` 'CONTAINER'.
-`firstBootSshKey(s)`<br/>*string* | The ssh key(s) for the VM image. Only applicable to workloads of `type` 'VM'.
+`firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deploymentName`<br/>*string* | The name of the deployment.
@@ -296,7 +296,7 @@ Required | &nbsp;
  `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
  `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
  `vpc`<br/>*string* | The virtual private cloud option for now supports default vpc only.
- `firstBootSshKey(s)`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by newlines `\n`.
+ `firstBootSshKey`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by newlines `\n`.
  `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment.
  `deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
@@ -313,7 +313,7 @@ Required | &nbsp;
  `publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule.
  `publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule.
  `protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
- `firstBootSshKey(s)`<br/>*string* | The ssh key(s) for the VM image. Only applicable to workloads of `type` 'VM'.
+ `firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
  `commands`<br/>*string* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
  `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
  `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
