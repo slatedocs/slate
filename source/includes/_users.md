@@ -240,6 +240,14 @@ This endpoint returns `User` object along with `authentication_token`.
 RubberStamp expects for the Authentication token to be included in all API
 requests to the server in a header.
 
+### Two Factor Authentication
+
+If two factor authentication is enabled, then you will not get the `authentication_token` and
+logged in user information in the information. In that case, OTP code is sent to users email address
+and response will be `{ otp_sent: true }`. And you can pass user's OTP code using `/api/v1/verify_otp`
+endpoint, which will actually verify OTP and return you `authentication_token` and logged in
+users information in the response.
+
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/login`
@@ -266,6 +274,167 @@ You can track each login with [segment.io](https://segment.com) by passing
 <aside class="success">
 Remember — You need to be a valid user to get authenticated. If you haven't
 registered yet, try register api.
+</aside>
+
+## Verify OTP
+
+```ruby
+require 'rest-client'
+
+# Example Without Tracking info
+
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/verify_otp',
+  {
+    email: 'api@example.com',
+    otp_attempt: '123456'
+  }
+)
+
+# Example With Tracking Info
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/verify_otp',
+  {
+    email: 'api@example.com',
+    otp_attempt: '123456'
+  },
+  headers = {
+    "tracking_info": {
+      {
+        "properties": {
+          "uuid": "your uuid",
+          "is_web_view": false,
+          "is_ipad": false,
+          "is_ios": true,
+          "is_android": false,
+          "platform": "ios",
+          "version": 0
+        }
+      }
+    }
+  }
+)
+```
+
+```shell
+# Example Without Tracking Info
+
+curl 'https://app.procurementexpress.com/api/v1/verify_otp'
+  -X POST
+  -H "Content-Type: application/json"
+  -d "email=api@example.com"
+  -d "otp_attempt=123456"
+
+# Example With Tracking Info
+
+curl 'https://app.procurementexpress.com/api/v1/verify_otp'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "tracking_info[properties][uuid]=your uuid"
+  -H "tracking_info[properties][is_web_view]=false"
+  -H "tracking_info[properties][is_ipad]=false"
+  -H "tracking_info[properties][is_ios]=true"
+  -H "tracking_info[properties][is_android]=false"
+  -H "tracking_info[properties][platform]=ios"
+  -H "tracking_info[properties][version]=0"
+  -d "email=api@example.com"
+  -d "otp_attempt=123456"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "email": "api@example.com",
+  "name": "Api user",
+  "phone_number": "98xxxxxxxx",
+  "setup_incomplete": false,
+  "employer_id": 1,
+  "authentication_token": "t0k3n",
+  "approval_limit": 0,
+  "companies": [
+    {
+      "id": 1,
+      "name": "My Demo Company"
+    }
+  ]
+}
+```
+
+This endpoint returns `User` object along with `authentication_token` if given OTP code is
+matching code.
+
+### HTTP Request
+
+`POST https://app.procurementexpress.com/api/v1/verify_otp`
+
+### Tracking Registration
+
+You can track each login with [segment.io](https://segment.com) by passing
+`tracking_info` `HEADER` params as shown in the example.
+
+### Query Parameters
+
+| Param                                  | Type   | Description                                              |
+| -------------------------------------- | ------ | -------------------------------------------------------- |
+| email                                  | string | Your registered email address                            |
+| otp_attempt                            | string | OTP Code                                                 |
+| tracking_info[properties][uuid]        | header | Pass uuid to track                                       |
+| tracking_info[properties][is_web-view] | header | `true` if user is using web browsers otherwise `false`   |
+| tracking_info[properties][is_ipad]     | header | `true` if user is using IPad otherwise `false`           |
+| tracking_info[properties][is_ios]      | header | `true` if user is using IOS device otherwise `false`     |
+| tracking_info[properties][is_android]  | header | `true` if user is using android device otherwise `false` |
+| tracking_info[properties][platform]    | header | device platform                                          |
+| tracking_info[properties][version]     | header | device version                                           |
+
+<aside class="success">
+Remember — You need to be a valid user to get authenticated. If you haven't
+registered yet, try register api.
+</aside>
+
+
+## Resend OTP
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/resend_otp',
+  {
+    email: 'api@example.com',
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/resend_otp'
+  -X POST
+  -d "email=api@example.com"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "otp_sent": true
+}
+```
+
+It will resend OTP code to user's email address, if they didn't received email from previous login session.
+
+### HTTP Request
+
+`POST https://app.procurementexpress.com/api/v1/resend_otp`
+
+### Query Parameters
+
+| Param                                  | Type   | Description                                              |
+| -------------------------------------- | ------ | -------------------------------------------------------- |
+| email                                  | string | Your registered email address                            |
+
+<aside class="success">
+Remember — Only valid user will receive OTP code.
 </aside>
 
 ## GET Current User
