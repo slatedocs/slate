@@ -1,16 +1,16 @@
 <hr class="platform-ui-alpha">
 <section class="platform-ui-alpha">
 
-# Platform UI Overview
+# Workflow Apps Overview
 
 Requires an [App Server](/docs/app-server).
 
-Using Platform UI, apps can display customized widgets, modals, and rules within Asana's UI. 
-From Asana, requests are sent to an App's server. The App Server controls what information 
-is shown to the user and the App Server controls what happens when a User 
-takes actions within these components.
+Workflow Apps can display customized widgets, modals, and rules within Asana's UI. 
+Requests go from Asana directly to an App's server. The App Server controls  
+the information within these customized widgets, and the App Server controls what 
+happens when a User takes actions within these components.
 
-We will cover the main Platform UI components here.
+We will cover the main Workflow App components here.
 
 <hr>
 
@@ -60,11 +60,12 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&at
 <img style="max-width:420px" src="../images/jira-widget.png" />
 
 An App Widget displays external data within Asana. The contents of a 
-widget may change but the overall format stays consistent across apps.
+widget may change, but the overall format stays consistent across apps.
 Apps can control what layout they prefer by supplying their preferred 
-`template`.
+`template`. You can see the available templates in the *Enumerated Values* 
+section of [response schema](/docs/widget-metadata).
 
-The content of this widget is controlled by the App Server. When an 
+The App Server controls the content of this widget. When an 
 Asana user's browser navigates to a widget, the browser sends a 
 request to the registered App Server. As long as the response from 
 the server is valid (like the example on the right), the widget 
@@ -75,45 +76,6 @@ Asana, we look at each attachment on the task. If an attachment has a url
 that fits with an App's registered `match url` (ex: `https:\/\/.*.atlassian.net\/.*`) 
 we show a widget. We then send a GET request to the App's `widget url`, including 
 URL parameters like `task`, `user`, and `workspace`. 
-
-<hr>
-
-## Resource Typeahead
-
-> Request to the App Server
-
-```http
-https://app-server.com/widget?fragment=Cool&workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
-```
-
-> Response from the App Server
-
-```json
-{
-  "items": [
-    {
-      "title": "Cool project!!!",
-      "subtitle": "CP",
-      "value": "CP",
-      "icon_url": "https://jira.com/cool_project_icon.png",
-    },
-    {
-      "title": "Cool Team PF",
-      "subtitle": "OTP",
-      "value": "OTP",
-      "icon_url": "https://jira.com/some_project_icon.png",
-    }
-  ]
-}
-```
-
-<img style="max-width:658px" src="../images/jira-resource-typeahead.png" />
-
-Platform UI introduces the idea of "connecting" an Asana task to an external resource. One way to do this
-is via typeahead. 
-
-If instead, you want to create the resource from Asana, you should use the [App Modal](/docs/app-modal). Typeahead is 
-also supported within the App Modal.
 
 <hr>
 
@@ -177,14 +139,51 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&ex
 <img style="max-width:580px; box-shadow: 0 0 0 1px rgba(111,119,130,.15), 0 5px 20px 0 rgba(21,27,38,.08); border-radius: 4px;" src="../images/jira-modal.png" />
 
 An App Modal allows users to fill out a dynamic app-controlled form. The # of fields can range from 0-20.
-Once a modal is submitted, all of the information is sent to the App Server and no further actions 
-are taken on the Asana side of things. If the modal should cause changes within Asana, the App 
+Once a modal is submitted, the information is sent to the App Server and Asana will perform different functionality
+depending on what they responded with. If the modal should cause changes within Asana, the App 
 Server will need to make the changes via the API. 
 
 An advanced feature of the App Modal is live `on_change` events. While a user is filling out a form,
-the App Server can receieve `on_change` requests. These requests include what the user has changed, and
+the App Server can receive `on_change` requests. These requests include what the user has changed, and
 allow the App Server to respond with an updated form. Apps can build complex branching logic depending
 on changes a user makes.
+
+<hr>
+
+## Resource Typeahead
+
+> Request to the App Server
+
+```http
+https://app-server.com/resource-typeahead?fragment=Cool&workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
+```
+
+> Response from the App Server
+
+```json
+{
+  "items": [
+    {
+      "title": "Cool project!!!",
+      "subtitle": "CP",
+      "value": "CP",
+      "icon_url": "https://jira.com/cool_project_icon.png",
+    },
+    {
+      "title": "Cool Team PF",
+      "subtitle": "OTP",
+      "value": "OTP",
+      "icon_url": "https://jira.com/some_project_icon.png",
+    }
+  ]
+}
+```
+
+<img style="max-width:658px" src="../images/jira-resource-typeahead.png" />
+
+The [App Modal](/docs/app-modal) supports typeahead fields. To use these, a typeahead field must be declared within the
+modal. When a user types in that field, a request will be sent to the `typeahead_url`. The App Server then responds with
+the applicable objects for their query. The App Server entirely determines what queries mean and how to handle them. 
 
 <hr>
 
@@ -213,7 +212,7 @@ https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&acti
       "type": "typeahead",
       "id": "typeahead_full_width",
       "required": true,
-      "typeahead_url": "https://app-server.com/slack/typeahead",
+      "typeahead_url": "https://app-server.com/slack/typeahead"
     },
     {
       "title": "Write a message",
@@ -230,45 +229,49 @@ https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&acti
 An App Action allows users to customize app actions triggered by Asana's rule engine. Similar to a modal, 
 Asana requests a form definition from the App Server. The app controls the form fields, handles `on_change` 
 events, and stores the inputs of the form. When a rule is created, Asana sends a request to the App Server
-with all of the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server. 
+with the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server. 
 
 App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
 
 <hr class="full-line">
 
-# Security - Platform UI
+# Security - Workflow
 
-## Authentication - Platform UI
+## Authorization - Workflow
 
-We provide authentication through a shared secret which is transmitted out-of-band to the app. This shared secret is not passed in the clear through any system the attacker may control, such as a browser client.
-We cannot simply add the secret to the request because the request is made from the client. Instead, we use a system where we sign the parameters of the request using a shared secret and a SHA-256 HMAC.
-The app is responsible for verifying the signature. If it can generate the same signature using its shared secret, then it knows the sender possesses the same secret and must be Asana.
+Authorization is handled by the app. When a Workflow App is added to a project, the user adding it is sent to the App's 
+`authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or perform none!
 
-<hr>
+As long as the app confirms the flow was complete, Asana will successfully add the app to the project. This will allow 
+requests to be sent to the App's pre-defined endpoints.
 
-## Authorization - Platform UI
-
-Some information is only added to the request on the server, such as the current user ID, to ensure that the client cannot provide incorrect data.
-Additionally, all parameters that represent data-model objects are checked for access control to prevent users from asking the app for data they shouldn't be able to see, such as an attachment on a task they cannot see.
+If the App wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
+an OAuth flow against Asana (see https://developers.asana.com/docs/oauth). 
 
 <hr>
 
-## Message Integrity - Platform UI
+## Message Integrity - Workflow
 
-Message integrity is provided by the signature. This is a SHA-256 HMAC. This is URL parameters in the case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted in a header. The app calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
-The signature must be on the exact parameter string that will be passed to the app because the signature will change if something as trivial as spacing changes. We must pass the exact string for the app to be able to verify the signature.
-The burden of verifying the request is on the app. We don't have a way to force the app to do this right now (but there are things we could change to do so).
+Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
+case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
+calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
+The signature must be on the exact parameter string that will be passed to the app because the signature will change if 
+something as trivial as spacing changes.
+
+The burden of verifying the request is on the app.
 
 <hr>
 
-## Timeliness - UI Hooks
+## Timeliness - Workflow
 
-Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request recorded, such as in logs, could be reused to continue to request information from the app at a later time.
-The burden of verifying the request has not expired is on the app. We don't have a way to force the app to do this right now.
+Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
+recorded, such as in logs, could be reused to continue to request information from the app at a later time.
+
+The burden of verifying the request has not expired is on the app.
 
 <hr class="full-line">
 
-# Apps - Platform UI
+# Workflow Apps
 
 ```json
 
@@ -294,34 +297,33 @@ The burden of verifying the request has not expired is on the app. We don't have
       text: "Add visibility for stakeholders to reduce status meetings.",
     },
   ],
-  tier: "tier-1-premium",
-  siteUrl: "http://localhost:5000",
+  siteUrl: "https://jira-asana-integration.asana.com",
   appDirectoryUrl: "https://www.asana.com/apps/jiracloud",
-  authenticationUrl: "https://jira-server.asana.plus/auth",
+  authenticationUrl: "https://jira-asana-integration.asana.com/auth",
   icon: {
-    x32: "https://d3ki9tyy5l5ruj.cloudfront.net/obj/45f4b5caefbc1187308fc9917dc270ee928a0644/jira_cloud_32.png",
-    x48: "https://d3ki9tyy5l5ruj.cloudfront.net/obj/c673f8a8fa75b60e7c18aabae5dddebb4c781723/jira_cloud_48.png",
-    x64: "https://d3ki9tyy5l5ruj.cloudfront.net/obj/44a48121b66eebee259ff60cd12a7ba7e4751e98/jira_cloud_64.png",
-    x96: "https://d3ki9tyy5l5ruj.cloudfront.net/obj/f9523eb9dda1def01494567d13bb3b52ad66ac2a/jira_cloud_96.png",
-    x192: "https://d3ki9tyy5l5ruj.cloudfront.net/obj/d45b0587bf33434a05d548c150c97ad94c8868df/jira_cloud_192.png",
+    x32: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_32.png",
+    x48: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_48.png",
+    x64: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_64.png",
+    x96: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_96.png",
+    x192: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_192.png",
   },
-  logo: "https://d3ki9tyy5l5ruj.cloudfront.net/obj/30800ab8262b11cbf7d9495365e538e600190ad7/Jira-full.png",
+  logo: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/Jira-full.png",
   capabilities: [
     {
       type: "ResourceSearch",
-      resourceTypeaheadUrl: "https://jira-server.asana.plus/project/typeahead",
-      resourceAttachUrl: "https://jira-server.asana.plus/actions/attach"
+      resourceTypeaheadUrl: "https://jira-asana-integration.asana.com/project/typeahead",
+      resourceAttachUrl: "https://jira-asana-integration.asana.com/actions/attach"
     },
     {
       type: "ResourceWidget",
-      widgetMetadataUrl: "https://jira-server.asana.plus/issue/widget",
+      widgetMetadataUrl: "https://jira-asana-integration.asana.com/issue/widget",
       matchUrlPattern: "https:\\/\\/.*.atlassian.net\\/.*"
     },
     {
       type: "CreateResource",
-      formMetadataUrl: "https://jira-server.asana.plus/actions/form",
-      formOnChangeUrl: "https://jira-server.asana.plus/actions/form/onchange",
-      formOnSubmitUrl: "https://jira-server.asana.plus/actions/create",
+      formMetadataUrl: "https://jira-asana-integration.asana.com/actions/form",
+      formOnChangeUrl: "https://jira-asana-integration.asana.com/actions/form/onchange",
+      formOnSubmitUrl: "https://jira-asana-integration.asana.com/actions/create",
     },
   ],
   authModalMetadata: {
@@ -336,14 +338,14 @@ The burden of verifying the request has not expired is on the app. We don't have
 }
 ```
 
-Currently, "Platform UI Apps" are separate from "OAuth Apps". We are planning to combine them in the future, but 
+Currently, "Workflow Apps" are separate from "OAuth Apps". We are planning to combine them in the future, but 
 until them, you'll need to define both if you want functionality from both in your app.
 
-An OAuth app is not required for a Platform UI App. However, if your app needs access to the Asana API, then you need to 
+An OAuth app is not required for a Workflow App. However, if the app needs access to the Asana API, then you need to 
 create an OAuth app and connect it to your Platform UI App. To create an oauth app, see 
 [Authentication Quick Start](/docs/authentication-quick-start).
 
-To create a Platform UI App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
+To create a Workflow App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 form with the data in the table below.
 
 |Field|Type|Description|
@@ -390,14 +392,14 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 <hr class="full-line">
 
-# UI Hooks Guide
+# Workflow Apps Quickstart
 
 ## Have an App Server running locally (or remotely)
 
 We will assume your server is running locally at `localhost:5000/`. You should log the request body and url for all 
 requests to your to help get everything setup. For each PlatformUI feature you want to use, you'll need to add some 
-paths. You are in charge of what each path looks like, however I provided example paths you can use for now. Add these 
-paths for each feature you want:
+paths. You are in charge of what each path looks like, but here are some provided example paths you can use for now. 
+Add these paths for each feature you want:
 
 [App Widget](/docs/app-widget) 
 
@@ -411,8 +413,8 @@ paths for each feature you want:
 [App Modal](/docs/app-modal) 
 
  * `formMetadataUrl` (ex: `GET http://localhost:5000/resource/create`)
- * One or more `typeahead_url`s (ex: `GET http://localhost:5000/users/typeahead`). This could re-use your resource typeahead url,
- but you'll need different urls for different types of results, like users vs tickets.
+ * One or more `typeahead_url`s (ex: `GET http://localhost:5000/users/typeahead`). You'll need different urls for 
+ different types of results, like users vs tickets.
  
 One or more Automation/[App Actions](/docs/app-action)
 
@@ -435,7 +437,7 @@ provide:
  users to the [User Authorization Endpoint](#user-authorization-endpoint) with the required url parameters for OAuth.
  * `resource_widget` is required if you want to display an [App Widget](/docs/app-widget). Widgets are displayed for 
  connected resources. For the `matchUrlPattern`, you can place `http:\\/\\/.*.localhost:5000\\/.*` for now.
- * `resource_search` is required if you want typeahead functionality when connecting an external resource to an asana 
+ * `resource_search` is required if you want type in functionality to connect an external resource to an asana 
  task.
  * `create_resource` is required if you want to use the [App Modal](/docs/app-modal). The App Modal submits data that 
  should be used to create an external resource.
@@ -486,19 +488,18 @@ your server.
 }
 ```
 
-Let's hit the Create option and check the logs for our server. You should have seen a request to your `create_resource`
+Let's hit the `Create` option and check the logs for our server. You should have seen a request to your `create_resource`
 url. This request tells Asana what fields to display here. For now, you should change your server to respond with 
-the "My Modal" example on the right.  You can add more to this this by referencing the
+the "My Modal" example on the right.  You can add more to this by referencing the
 [Resource Modal Reference](resource-modal). 
 
 Once you've made the change, close and re-open the modal. You should see something new! (If you don't try debugging 
 `http://localhost:5000/resource/create` with Postman)
 
-Try hitting "Create", and depending on your server, you may get an error here. This is expected, as I never told you to 
+Try hitting "Create", and depending on your server, you may get an error here. This is expected, ad you still need to 
 create an endpoint for `http://localhost:5000/resource`. Different errors cause different things to happen (For 
-example, if your server returns a 401, we will try to reauthorize!). Regardless of what happened here, lets resolve the
-error. Either change your modal to point to a url you have already defined (perhaps your `resourceAttachUrl`), or define
-a new endpoint for this request. 
+example, if your server returns a `401`, the UI will try to reauthorize with your app!). Either change your modal to 
+point to a url you have already defined (perhaps your `resourceAttachUrl`) or define a new endpoint for this request. 
 
 > POST http://localhost:5000/resource/attach
 
@@ -509,19 +510,19 @@ a new endpoint for this request.
 }
 ```
 
-The intention of the modal is for a user to provide you with enough information to create the resource on your side. If
+The intention of the modal is for a user to provide enough information to create the resource on the App Server. If
 a user instead wanted to connect via typeahead, they're going to hit your `resourceAttachUrl` with a url param named 
-`value`. `value` is usually the id or name of the resource they want to connect to. For my server, my `/resource/attach`
-endpoint handles both typeahead attachments and new resources via modals. You're in charge of what your urls look like 
-and handle.
+`value`. `value` is usually the id or name of the resource they want to connect to. For example, some of our server's 
+`/resource/attach` endpoints handle both typeahead attachments and new resources via modals. You're in charge of what 
+your urls look like and handle.
 
 Whatever endpoint you use for the modal, change it to return the "My Attachment" example on the right (or something 
-similar). The important part here is the "resource_url". Your `matchUrlPattern` regex should match against it if you 
-want your widget to show up. Earlier I suggested you place `http:\\/\\/.*.localhost:5000\\/.*` as your regex. That would
-match against our example url. 
+similar). The important part here is the `resource_url`. Your `matchUrlPattern` regex should match against it if you 
+want your widget to show up. Earlier, this guide suggested you place `http:\\/\\/.*.localhost:5000\\/.*` as your regex. 
+If you followed that, provide a `resource_url` that matches it, like `http://test.localhost:5000/test_attachment`.
 
 Open the modal again (if needed), and hit "Create". Your response tells Asana to add an attachment to the Task. This new
-attachment matches your `matchUrlPattern` so Asana will try and load the Widget.
+attachment matches your `matchUrlPattern` so Asana will try to load the Widget.
 
 <hr>
 
@@ -577,14 +578,32 @@ data to display in the widget. Clicking on the widget will take you to the attac
 }
 ```
 
-**WARNING: This functionality may not yet work as expected.**
+> New Modal
+
+```json
+{
+  "title": "My Modal",
+  "on_submit_callback": "http://localhost:5000/resource",
+  "submit_button_text": "Create",
+  "fields": [
+    {
+      "type": "typeahead",
+      "name": "example_typeahead",
+      "title": "Example Typeahead",
+      "placeholder": "Search your app for an object",
+      "required": true,
+      "typeahead_url": "https://jira-asana-integration.asana.com/user/typeahead",
+    }
+  ]
+}
+```
 
 Lets add a functioning typeahead. Change your `resourceTypeaheadUrl` response to return the "items" example on the 
-right. Restart your server, refresh your Asana tab. Nothing will have changed! In order to see this typeahead in action,
+right. Additionally, change your Restart your server, refresh your Asana tab. Nothing will have changed! In order to see this typeahead in action,
 you'll need to remove the currently connected resource. You can do this by hitting the x on the corresponding 
 attachment or using the kabob menu (three dots) on the top right of the widget.
 
-Once you remove the attachment, click the dropdown you hit earlier in this guide, but this time use the typeahead option. 
+Once you remove the attachment, you'll need to open click the dropdown you hit earlier in this guide, but this time use the typeahead option. 
 Pick either one of your results. Either way, they will hit the `resourceAttachUrl`. As long as that URL returns a valid
 resource, a new attachment will be made and attached. Your widget should return!
 

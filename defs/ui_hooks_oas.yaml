@@ -461,39 +461,47 @@ components:
         An object containing information about the widget
       type: object
       properties:
-        title:
-          description: >-
-            The text to show in the title of the widget
+        template:
           type: string
-          example: 'Status'
-        fields:
-          description: >-
-            An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.
-          type: array
-          items:
-            $ref: '#/components/schemas/WidgetField'
-        subtitle:
-          description: >-
-            The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the
-            resource_name from the app definition will be used as default
-          type: string
-          example: 'Custom App Story · Open in Custom App'
-        subicon_url:
-          description: >-
-            The URL of the subicon next to the subtitle . If not provided, no icon will be shown
-          type: string
-          example: 'https://example-icon.png'
-        footer:
-          description: >-
-            The text to show in the title of the widget
-          type: string
-          example: 'Last updated 19 hours ago'
-        comment_count:
-          description: >-
-            The number of comments to display on the lower right corner of the widget. If not provided, no comment
-            count will be shown
-          type: integer
-          example: 2
+          enum:
+            - summary_with_details_v0
+          example: 'summary_with_details_v0'
+        data:
+          type: object
+          properties:
+            title:
+              description: >-
+                The text to show in the title of the widget
+              type: string
+              example: 'Status'
+            fields:
+              description: >-
+                An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.
+              type: array
+              items:
+                $ref: '#/components/schemas/WidgetField'
+            subtitle:
+              description: >-
+                The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the
+                resource_name from the app definition will be used as default
+              type: string
+              example: 'Custom App Story · Open in Custom App'
+            subicon_url:
+              description: >-
+                The URL of the subicon next to the subtitle . If not provided, no icon will be shown
+              type: string
+              example: 'https://example-icon.png'
+            footer:
+              description: >-
+                The text to show in the title of the widget
+              type: string
+              example: 'Last updated 19 hours ago'
+            comment_count:
+              description: >-
+                The number of comments to display on the lower right corner of the widget. If not provided, no comment
+                count will be shown
+              type: integer
+              example: 2
     WidgetField:
       description: >-
         Contains the information to display a pill field on the widget

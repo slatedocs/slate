@@ -409,7 +409,7 @@ The callback request made to an App Server when a form is submitted.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [AttachResource](#schemaattachresource)</span>|Successfully attached the resource created by the form.|
+|200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource created by the form.|
 |400<span class="param-type"> None</span>|Bad Request|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
@@ -1087,20 +1087,23 @@ getWidgetMetadata
 
 ```json
 {
-  "comment_count": 2,
-  "fields": [
-    {
-      "color": "gray",
-      "icon_url": "https://example-icon.png",
-      "name": "Status",
-      "text": "To Do",
-      "type": "pill"
-    }
-  ],
-  "footer": "Last updated 19 hours ago",
-  "subicon_url": "https://example-icon.png",
-  "subtitle": "Custom App Story · Open in Custom App",
-  "title": "Status"
+  "sgsd": {
+    "comment_count": 2,
+    "fields": [
+      {
+        "color": "gray",
+        "icon_url": "https://example-icon.png",
+        "name": "Status",
+        "text": "To Do",
+        "type": "pill"
+      }
+    ],
+    "footer": "Last updated 19 hours ago",
+    "subicon_url": "https://example-icon.png",
+    "subtitle": "Custom App Story · Open in Custom App",
+    "title": "Status"
+  },
+  "template": "summary_with_details_v0"
 }
 ```
 
@@ -1232,7 +1235,7 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [AttachResource](#schemaattachresource)</span>|Successfully attached the resource to the given object.|
+|200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource to the given object.|
 |400<span class="param-type"> None</span>|Bad Request|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
@@ -1249,12 +1252,12 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 </section>
 <hr>
 <section>
-<a id="schemaattachresource"></a>
-<a id="schema_AttachResource"></a>
-<a id="tocSattachresource"></a>
-<a id="tocsattachresource"></a>
-<a id="tocS_AttachResource"></a>
-<h2 id="attach-resource">AttachResource</h2>
+<a id="schemaattachedresource"></a>
+<a id="schema_AttachedResource"></a>
+<a id="tocSattachedresource"></a>
+<a id="tocsattachedresource"></a>
+<a id="tocS_AttachedResource"></a>
+<h2 id="attached-resource">AttachedResource</h2>
 
 ```json
 {
@@ -1411,6 +1414,39 @@ The response to an action request.
 
 </section><hr>
 <section>
+<a id="schematypeaheaditem"></a>
+<a id="schema_TypeaheadItem"></a>
+<a id="tocStypeaheaditem"></a>
+<a id="tocstypeaheaditem"></a>
+<a id="tocS_TypeaheadItem"></a>
+<h2 id="typeahead-item">TypeaheadItem</h2>
+
+```json
+{
+  "icon_url": "https://example-icon.png",
+  "subtitle": "OTP",
+  "title": "OTP Team PF",
+  "value": "OTP"
+}
+
+```
+
+<span class="description">
+An object describing a typeahead result
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the title|
+|subtitle<span class="param-type"> string</span>|The subtitle of the typeahead item|
+|title<span class="param-type"> string</span>|The title of the typeahead item|
+|value<span class="param-type"> string</span>|The value of the typeahead item|
+
+</section><hr>
+<section>
 <a id="schemawidgetmetadata"></a>
 <a id="schema_WidgetMetadata"></a>
 <a id="tocSwidgetmetadata"></a>
@@ -1420,20 +1456,23 @@ The response to an action request.
 
 ```json
 {
-  "comment_count": 2,
-  "fields": [
-    {
-      "color": "gray",
-      "icon_url": "https://example-icon.png",
-      "name": "Status",
-      "text": "To Do",
-      "type": "pill"
-    }
-  ],
-  "footer": "Last updated 19 hours ago",
-  "subicon_url": "https://example-icon.png",
-  "subtitle": "Custom App Story · Open in Custom App",
-  "title": "Status"
+  "sgsd": {
+    "comment_count": 2,
+    "fields": [
+      {
+        "color": "gray",
+        "icon_url": "https://example-icon.png",
+        "name": "Status",
+        "text": "To Do",
+        "type": "pill"
+      }
+    ],
+    "footer": "Last updated 19 hours ago",
+    "subicon_url": "https://example-icon.png",
+    "subtitle": "Custom App Story · Open in Custom App",
+    "title": "Status"
+  },
+  "template": "summary_with_details_v0"
 }
 
 ```
@@ -1447,17 +1486,19 @@ An object containing information about the widget
 
 |Name|Description|
 |---|---|
-|comment_count<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
-|fields<span class="param-type"> [object]</span>|An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.|
-|» color<span class="param-type"> string</span>|The color of the pill.|
-|» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the text|
-|» name<span class="param-type"> string</span>|The text to show in the title of the field.|
-|» text<span class="param-type"> string</span>|The text to show in the field.|
-|» type<span class="param-type"> string</span>|The type of widget field (this should be `pill`).|
-|footer<span class="param-type"> string</span>|The text to show in the title of the widget|
-|subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
-|subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
-|title<span class="param-type"> string</span>|The text to show in the title of the widget|
+|sgsd<span class="param-type"> object</span>|none|
+|» comment_count<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
+|» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.|
+|»» color<span class="param-type"> string</span>|The color of the pill.|
+|»» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the text|
+|»» name<span class="param-type"> string</span>|The text to show in the title of the field.|
+|»» text<span class="param-type"> string</span>|The text to show in the field.|
+|»» type<span class="param-type"> string</span>|The type of widget field (this should be `pill`).|
+|» footer<span class="param-type"> string</span>|The text to show in the title of the widget|
+|» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
+|» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
+|» title<span class="param-type"> string</span>|The text to show in the title of the widget|
+|template<span class="param-type"> string</span>|none|
 
 #### Enumerated Values
 
@@ -1481,6 +1522,7 @@ An object containing information about the widget
 |color|cool-gray|
 |type|pill|
 |type|icon|
+|template|summary_with_details_v0|
 
 </section>
 
