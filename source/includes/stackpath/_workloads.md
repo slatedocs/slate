@@ -113,7 +113,7 @@ Attributes | &nbsp;
 `environmentVariableKey` <br/>*string* | The location to obtain a value for an environment variable. Only applicable to workloads of `type` 'CONTAINER'.
 `environmentVariableValue` <br/>*string* | An environment variable's value. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariableKey` <br/>*string* | The location to obtain a value for a secret environment variable. Only applicable to workloads of `type` 'CONTAINER'.
-`firstBootSshKey(s)`<br/>*string* | The ssh key for the VM image. Only applicable to workloads of `type` 'VM'.
+`firstBootSshKey(s)`<br/>*string* | The ssh key(s) for the VM image. Only applicable to workloads of `type` 'VM'.
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deploymentName`<br/>*string* | The name of the deployment.
@@ -196,7 +196,7 @@ Attributes | &nbsp;
 `environmentVariableKey` <br/>*string* | The location to obtain a value for an environment variable. Only applicable to workloads of `type` 'CONTAINER'.
 `environmentVariableValue` <br/>*string* | An environment variable's value. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariableKey` <br/>*string* | The location to obtain a value for a secret environment variable. Only applicable to workloads of `type` 'CONTAINER'.
-`firstBootSshKey(s)`<br/>*string* | The ssh key for the VM image. Only applicable to workloads of `type` 'VM'.
+`firstBootSshKey(s)`<br/>*string* | The ssh key(s) for the VM image. Only applicable to workloads of `type` 'VM'.
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deploymentName`<br/>*string* | The name of the deployment.
@@ -307,8 +307,13 @@ Required | &nbsp;
  
  Optional | &nbsp;
  ------- | -----------
+  `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name.
  `addAnyCastIpAddress`<br/>*boolean* | Option to AnyCast IP Address.
- `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name.
+  `publicPort`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535 for which a network policy rule will be created for the workload.
+ `publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule.
+ `publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule.
+ `protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
+ `firstBootSshKey(s)`<br/>*string* | The ssh key(s) for the VM image. Only applicable to workloads of `type` 'VM'.
  `commands`<br/>*string* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
  `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
  `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
@@ -325,10 +330,6 @@ Required | &nbsp;
  `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
  `minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP.
  `maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP.
- `publicPort`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535 for which a network policy rule will be created for the workload.
- `publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule.
- `publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule.
- `protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
 
 <aside class="notice">
 A workload can be created without `publicPort`, `publicPortSrc`, `publicPortDesc` and `protocol` as part of the payload. But all these fields are required to open a port/port-range on the created workload.
