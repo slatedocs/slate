@@ -313,7 +313,6 @@ Required | &nbsp;
  `publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule.
  `publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule.
  `protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
- `firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
  `commands`<br/>*string* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
  `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
  `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
