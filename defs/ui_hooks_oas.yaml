@@ -27,7 +27,7 @@ servers:
 tags:
   - name: Forms
     description: >-
-      The creation modal is displayed when the user starts the flow to create a resource. Asana will make a signed
+      The creation form is displayed when the user starts the flow to create a resource. Asana will make a signed
       request to the specified form_metadata_url in the capabilities, and expect a response with the metadata needed to
       create the form. This process is also used for forms within rules.
   - name: Rules
@@ -35,7 +35,7 @@ tags:
       When a rule containing an app action is triggered, the Rules Engine will make a Platform UI request to the app to
       inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine
       whether the action was successfully completed and, if not, specify a cause for the error.
-  - name: Typeahead (Platform UI)
+  - name: Typeahead - Workflow Apps
     description: >-
       Each typeahead form field contains a typeahead_url to fetch typeahead options based on input text. While the user
       inputs text into the field, Asana will periodically (every 700ms) send signed requests to the typeahead_url and
@@ -217,7 +217,7 @@ components:
           example: 'item-description'
         title:
           description: >-
-            The title displayed on top of the field in the creation modal. If not provided, no title will be shown.
+            The title displayed on top of the field in the creation form. If not provided, no title will be shown.
           type: string
           example: 'Item Description'
         value:
@@ -286,7 +286,7 @@ components:
       properties:
         title:
           description: >-
-            The title of the form, which is displayed at the top of the creation modal
+            The title of the form, which is displayed at the top of the creation form
           type: string
           example: 'Create New Issue'
         fields:
@@ -313,7 +313,7 @@ components:
           $ref: '#/components/schemas/FormOnChangeConfig'
         error:
           description: >-
-            The error that should be displayed at the footer of the creation modal
+            The error that should be displayed at the footer of the creation form
           type: string
           example: 'Create New Issue'
     FormOnChangeConfig:
@@ -730,7 +730,7 @@ paths:
       description: >-
         The typeahead request made to an App Server when a typeahead field changes.
       tags:
-        - Typeahead (Platform UI)
+        - Typeahead - Workflow Apps
       operationId: typeaheadUI
       responses:
         200:

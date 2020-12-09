@@ -5,7 +5,7 @@
 
 Requires an [App Server](/docs/app-server).
 
-Workflow Apps can display customized widgets, modals, and rules within Asana's UI. 
+Workflow Apps can display customized widgets, forms, and rules within Asana's UI. 
 Requests go from Asana directly to an App's server. The App Server controls  
 the information within these customized widgets, and the App Server controls what 
 happens when a User takes actions within these components.
@@ -66,25 +66,44 @@ Apps can control what layout they prefer by supplying their preferred
 section of [response schema](/docs/widget-metadata).
 
 The App Server controls the content of this widget. When an 
-Asana user's browser navigates to a widget, the browser sends a 
+Asana user's browser navigates to a widget, Asana sends a 
 request to the registered App Server. As long as the response from 
 the server is valid (like the example on the right), the widget 
 will display.
 
+> Example URL attachment Request
+
+```
+{
+    "data": {
+        "resource_subtype": "external",
+        "name": <string>,
+        "url": <valid_url_string>,
+        "app_identifier": <string>
+    }
+}
+```
+
 How does Asana determine when a widget should be shown? When a task is opened in
-Asana, we look at each attachment on the task. If an attachment has a url 
+Asana, it checks each attachment on the task. If an attachment has a url 
 that fits with an App's registered `match url` (ex: `https:\/\/.*.atlassian.net\/.*`) 
-we show a widget. We then send a GET request to the App's `widget url`, including 
+then it shows a widget. A GET request is sent to the App's `widget url`, including 
 URL parameters like `task`, `user`, and `workspace`. 
+
+Related References: 
+* [Get widget metadata](/docs/get-widget-metadata)
+* [Attach resource](/docs/attach-resource)
+* [Upload Attachment](/docs/upload-an-attachment) >> To create a url attachment via the 
+API (See sample on the right).
 
 <hr>
 
-## App Modal
+## App Form
 
 > Request to the App Server
 
 ```http
-https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
+https://app-server.com/form?workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
 ```
 
 > Response from the App Server
@@ -138,24 +157,34 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&ex
 
 <img style="max-width:580px; box-shadow: 0 0 0 1px rgba(111,119,130,.15), 0 5px 20px 0 rgba(21,27,38,.08); border-radius: 4px;" src="../images/jira-modal.png" />
 
-An App Modal allows users to fill out a dynamic app-controlled form. The # of fields can range from 0-20.
-Once a modal is submitted, the information is sent to the App Server and Asana will perform different functionality
-depending on what they responded with. If the modal should cause changes within Asana, the App 
+An App Form allows users to fill out a dynamic app-controlled list of fields. The # of fields can range from 0-20.
+Once a form is submitted, the information is sent to the App Server and Asana will perform different functionality
+depending on what they responded with. If the App wants to cause additional changes within Asana, the App 
 Server will need to make the changes via the API. 
 
-An advanced feature of the App Modal is live `on_change` events. While a user is filling out a form,
+An advanced feature of App Forms is live `on_change` events. While a user is filling out a form,
 the App Server can receive `on_change` requests. These requests include what the user has changed, and
 allow the App Server to respond with an updated form. Apps can build complex branching logic depending
 on changes a user makes.
 
+To take advantage of `on_change` events, you'll supply a list of `watched_fields` and an endpoint to hit with updates. 
+See the `on_change` field in the response to the 
+[form metadata request](/get-form-metadata). The request sent to that
+endpoint is the [On change callback request](/docs/on-change-callback).
+
+Related References: 
+* [Get form metadata](/docs/get-form-metadata)
+* [On change callback](/docs/on-change-callback)
+* [On change callback](/docs/on-submit-callback)
+
 <hr>
 
-## Resource Typeahead
+## Resource Search
 
 > Request to the App Server
 
 ```http
-https://app-server.com/resource-typeahead?fragment=Cool&workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
+https://app-server.com/resource-search?fragment=Cool&workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
 ```
 
 > Response from the App Server
@@ -167,23 +196,26 @@ https://app-server.com/resource-typeahead?fragment=Cool&workspace=12345&task=234
       "title": "Cool project!!!",
       "subtitle": "CP",
       "value": "CP",
-      "icon_url": "https://jira.com/cool_project_icon.png",
+      "icon_url": "https://jira.com/cool_project_icon.png"
     },
     {
       "title": "Cool Team PF",
       "subtitle": "OTP",
       "value": "OTP",
-      "icon_url": "https://jira.com/some_project_icon.png",
+      "icon_url": "https://jira.com/some_project_icon.png"
     }
   ]
 }
 ```
 
-<img style="max-width:658px" src="../images/jira-resource-typeahead.png" />
+<img style="max-width:658px" src="../images/jira-resource-search.png" />
 
-The [App Modal](/docs/app-modal) supports typeahead fields. To use these, a typeahead field must be declared within the
-modal. When a user types in that field, a request will be sent to the `typeahead_url`. The App Server then responds with
+[App Forms](/docs/app-form) supports typeahead fields. To use these, a typeahead field must be declared within the
+form. When a user types in that field, a request will be sent to the `typeahead_url`. The App Server then responds with
 the applicable objects for their query. The App Server entirely determines what queries mean and how to handle them. 
+
+Related References: 
+* [Typeahead](/docs/typeahead-workflow-apps)
 
 <hr>
 
@@ -226,12 +258,17 @@ https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&acti
 
 <img style="max-width:380px; box-shadow: 0 0 0 1px rgba(111,119,130,.15), 0 5px 20px 0 rgba(21,27,38,.08); border-radius: 4px;" src="../images/slack-rule.png" />
 
-An App Action allows users to customize app actions triggered by Asana's rule engine. Similar to a modal, 
-Asana requests a form definition from the App Server. The app controls the form fields, handles `on_change` 
-events, and stores the inputs of the form. When a rule is created, Asana sends a request to the App Server
-with the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server. 
+An App Action allows users to customize app actions triggered by Asana's rule engine. They use the same functionality as
+the [App Form](/docs/app-form), as Asana requests a form definition from the App Server. The app controls the form 
+fields, handles `on_change` events, and stores the inputs of the form. When a rule is created, Asana sends a request to 
+the App Server with the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server. 
 
 App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
+
+Related References: 
+* [Get action metadata](/docs/get-action-metadata)
+* [On action change callback](/docs/on-action-change-callback)
+* [On action change callback](/docs/on-action-submit-callback)
 
 <hr class="full-line">
 
@@ -248,6 +285,10 @@ requests to be sent to the App's pre-defined endpoints.
 If the App wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
 an OAuth flow against Asana (see https://developers.asana.com/docs/oauth). 
 
+Keep in mind, this authorization provides the App Server with a single user's auth token. Multiple users of Asana will
+hit the UI Hooks and send requests to the App Server, but the server will likely only have the token for 1 user. It 
+might be a good idea to suggest users authenticate with a bot account. 
+
 <hr>
 
 ## Message Integrity - Workflow
@@ -258,7 +299,8 @@ calculates the same signature and compares that to the value in the header, reje
 The signature must be on the exact parameter string that will be passed to the app because the signature will change if 
 something as trivial as spacing changes.
 
-The burden of verifying the request is on the app.
+The burden of verifying the request is on the app. Without this check, attackers can send requests to the App 
+Server pretending to be Asana.
 
 <hr>
 
@@ -267,7 +309,8 @@ The burden of verifying the request is on the app.
 Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
 recorded, such as in logs, could be reused to continue to request information from the app at a later time.
 
-The burden of verifying the request has not expired is on the app.
+The burden of verifying the request has not expired is on the app. Without this check, the App Server is vulnerable to 
+replay attacks. 
 
 <hr class="full-line">
 
@@ -342,7 +385,7 @@ Currently, "Workflow Apps" are separate from "OAuth Apps". We are planning to co
 until them, you'll need to define both if you want functionality from both in your app.
 
 An OAuth app is not required for a Workflow App. However, if the app needs access to the Asana API, then you need to 
-create an OAuth app and connect it to your Platform UI App. To create an oauth app, see 
+create an OAuth app and connect it to your Workflow  App. To create an oauth app, see 
 [Authentication Quick Start](/docs/authentication-quick-start).
 
 To create a Workflow App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
@@ -356,22 +399,22 @@ form with the data in the table below.
 |» `src`                      | String (url) | (Optional) src for image of feature |
 |» `alt`                      | String (url) | (Optional) alt for image of feature |
 |» `text`                     | String (url) | text below image of feature |
-| `siteUrl`                   | String (url) | A URL which informs the Platform UI system where to make requests. |
-| `authenticationUrl`         | String (url) | A URL which informs the Platform UI system where to make requests for authenticating and authorizing users.  This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
-| `icon`                      | Object       | A collection of URLs pointing to icon assets of various sizes. Used to display icons of the app in the Asana UI.<br><br>Note: This field is experimental. We may move to having Asana manage uploading and displaying these assets instead of allowing developers to specify them as a url in the app definition. |
+| `siteUrl`                   | String (url) | A URL which informs the Workflow App system where to make requests. |
+| `authenticationUrl`         | String (url) | A URL which informs the Workflow App system where to make requests for authenticating and authorizing users.  This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
+| `icon`                      | Object       | A collection of URLs pointing to icon assets of various sizes. Used to display icons of the app in the Asana UI.<br><br>Note: This field is experimental. We may move to managing uploading and displaying these assets instead of allowing developers to specify them as a url in the app definition. |
 |» `x32`                      | String (url) | 32x32 icon asset |
+|» `x48`                      | String (url) | 48x48 icon asset |
 |» `x64`                      | String (url) | 64x64 icon asset |
 |» `x96`                      | String (url) | 96x96 icon asset |
 |» `x192`                     | String (url) | 192x192 icon asset |
-| `capabilities`              | Object       | A list of Platform UI capabilities supported by the app and their configuration. |
+| `capabilities`              | Object       | A list of Workflow App capabilities supported by the app and their configuration. |
 |» `resource_widget`          | String (url) | The container for resource widget functionality  |
-|»» `widgetMetadataUrl`       | String (url) | A URL that the Platform UI system uses to make requests for the data needed to load an app widget which displays information about a 3rd party resource. |
-|»» `matchUrlPattern`         | String (url) | A regex which allows Platform UI to compute whether a UrlAttachment is supported by an activated app on the project in order to render an app widget. |
+|»» `widgetMetadataUrl`       | String (url) | A URL that the Workflow App system uses to make requests for the data needed to load an app widget which displays information about a 3rd party resource. |
+|»» `matchUrlPattern`         | String (url) | A regex which allows Workflow App to compute whether a UrlAttachment is supported by an activated app on the project in order to render an app widget. |
 |» `resource_search`          | Object       | The container for typeahead functionality |
-|»» `resourceTypeaheadUrl`    | String (url) | A URL that the Platform UI system uses to request typeahead data based on a search string specified by the user in the resource search typeahead. |
-|»» `resourceAttachUrl`       | String (url) | A URL that the Platform UI system will make a request of when a user submits a value to attach. |
+|»» `resourceAttachUrl`       | String (url) | A URL that the Workflow App system will make a request of when a user submits a value to attach. |
 |» `create_resource`          | Object       | The container for resource creation functionality |
-|»» `formMetadataUrl`         | String (url) | A URL that the Platform UI system uses to request data from the app about fields it should display in the resource creation modal when the form is first displayed. |
+|»» `formMetadataUrl`         | String (url) | A URL that the Workflow App system uses to request data from the app about fields it should display in the resource creation modal when the form is first displayed. |
 |» `automation`               | Object       | The container for automation functionality |
 |»» `app_actions`             | Object[]     | The set of app actions exposed by the app |
 |»»» `identifier`             | String       | The unique identifier for the action on the app. |
@@ -396,7 +439,7 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 ## Have an App Server running locally (or remotely)
 
-We will assume your server is running locally at `localhost:5000/`. You should log the request body and url for all 
+Asana will assume your server is running locally at `localhost:5000/`. You should log the request body and url for all 
 requests to your to help get everything setup. For each PlatformUI feature you want to use, you'll need to add some 
 paths. You are in charge of what each path looks like, but here are some provided example paths you can use for now. 
 Add these paths for each feature you want:
@@ -405,12 +448,11 @@ Add these paths for each feature you want:
 
  * `widgetMetadataUrl` (ex: `GET http://localhost:5000/resource/widget/metadata`)
  
-[Resource Typeahead](/docs/resource-typeahead)
+[Resource Search](/docs/resource-search)
 
- * `resourceTypeaheadUrl` (ex: `GET http://localhost:5000/resource/typeahead`)
  * `resourceAttachUrl` (ex: `GET http://localhost:5000/resource/attach`)
 
-[App Modal](/docs/app-modal) 
+[App Form](/docs/app-form) 
 
  * `formMetadataUrl` (ex: `GET http://localhost:5000/resource/create`)
  * One or more `typeahead_url`s (ex: `GET http://localhost:5000/users/typeahead`). You'll need different urls for 
@@ -425,10 +467,10 @@ You will provide Asana these paths in the next step.
 
 <hr>
 
-## Register a Platform UI App
+## Register a Workflow App App
 
 First, complete the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
-described in the [Platform UI App Section](/docs/platform-ui-app). Here is a cheat-sheet for what data you need to 
+described in the [Workflow App Section](/docs/workflow-app). Here is a cheat-sheet for what data you need to 
 provide:
 
  * `authenticationUrl` & `authModalMetadata` is only required if your app needs access to the Asana API and/or needs to 
@@ -439,7 +481,7 @@ provide:
  connected resources. For the `matchUrlPattern`, you can place `http:\\/\\/.*.localhost:5000\\/.*` for now.
  * `resource_search` is required if you want type in functionality to connect an external resource to an asana 
  task.
- * `create_resource` is required if you want to use the [App Modal](/docs/app-modal). The App Modal submits data that 
+ * `create_resource` is required if you want to use the [App Form](/docs/app-form). The App Form submits data that 
  should be used to create an external resource.
  * `automation` is required if you want to connect your app to [Asana Automation](https://asana.com/product/automation).
 
@@ -466,23 +508,23 @@ things happened:
 
 If your app installed successfully, you should now open a task. Create one if you need to. 
 
-Right when you open a Task, we look at all of the attachments on the task. If any of the attachments match your 
-`matchUrlPattern` regex, we will display a widget. At this point, it's unlikely you have an attachment ready to go, 
+Right when you open a Task, Asana looks at all of the attachments on the task. If any of the attachments match your 
+`matchUrlPattern` regex, Asana will display a widget. At this point, it's unlikely you have an attachment ready to go, 
 so lets attach one now.
 
 On the task pane, there should be a new field for your app with a dropdown next to it. Click the dropdown and you will
-see options for Typeahead and Create. Create will open the modal, typeahead will start a typeahead search by hitting 
-your server.
+see options for Search and Create. Create will open the form in a modal, Search will allow you to type in a query which is 
+sent to your Attach endpoint.
 
 <hr>
 
-## Modal Basics
+## Form Basics
 
 > GET http://localhost:5000/resource/create
 
 ```json
 {
-  "title": "My Modal",
+  "title": "My Form",
   "on_submit_callback": "http://localhost:5000/resource",
   "submit_button_text": "Create"
 }
@@ -490,15 +532,15 @@ your server.
 
 Let's hit the `Create` option and check the logs for our server. You should have seen a request to your `create_resource`
 url. This request tells Asana what fields to display here. For now, you should change your server to respond with 
-the "My Modal" example on the right.  You can add more to this by referencing the
-[Resource Modal Reference](resource-modal). 
+the "My Form" example on the right.  You can add more to this by referencing the
+[Resource Form Reference](/docs/get-form-metadata). 
 
 Once you've made the change, close and re-open the modal. You should see something new! (If you don't try debugging 
 `http://localhost:5000/resource/create` with Postman)
 
 Try hitting "Create", and depending on your server, you may get an error here. This is expected, ad you still need to 
 create an endpoint for `http://localhost:5000/resource`. Different errors cause different things to happen (For 
-example, if your server returns a `401`, the UI will try to reauthorize with your app!). Either change your modal to 
+example, if your server returns a `401`, the UI will try to reauthorize with your app!). Either change your form to 
 point to a url you have already defined (perhaps your `resourceAttachUrl`) or define a new endpoint for this request. 
 
 > POST http://localhost:5000/resource/attach
@@ -510,18 +552,18 @@ point to a url you have already defined (perhaps your `resourceAttachUrl`) or de
 }
 ```
 
-The intention of the modal is for a user to provide enough information to create the resource on the App Server. If
-a user instead wanted to connect via typeahead, they're going to hit your `resourceAttachUrl` with a url param named 
+The intention of the form modal is for a user to provide enough information to create the resource on the App Server. If
+a user prefers to connect via search, they'll instead hit your `resourceAttachUrl` with a url param named 
 `value`. `value` is usually the id or name of the resource they want to connect to. For example, some of our server's 
-`/resource/attach` endpoints handle both typeahead attachments and new resources via modals. You're in charge of what 
+`/resource/attach` endpoints handle both typeahead attachments and new resources via forms. You're in charge of what 
 your urls look like and handle.
 
-Whatever endpoint you use for the modal, change it to return the "My Attachment" example on the right (or something 
+Whatever endpoint you use for the form, change it to return the "My Attachment" example on the right (or something 
 similar). The important part here is the `resource_url`. Your `matchUrlPattern` regex should match against it if you 
 want your widget to show up. Earlier, this guide suggested you place `http:\\/\\/.*.localhost:5000\\/.*` as your regex. 
 If you followed that, provide a `resource_url` that matches it, like `http://test.localhost:5000/test_attachment`.
 
-Open the modal again (if needed), and hit "Create". Your response tells Asana to add an attachment to the Task. This new
+Open the form again (if needed), and hit "Create". Your response tells Asana to add an attachment to the Task. This new
 attachment matches your `matchUrlPattern` so Asana will try to load the Widget.
 
 <hr>
@@ -549,9 +591,9 @@ You can think of the widget as an "advanced attachment". Asana evaluates each at
 Change your `widgetMetadataUrl` path on your server to return the "My Widget" example on the right. Once you restart 
 your server, refresh Asana.
 
-You should now see this Widget on the right. We're faking all of our data currently, but there's an attachment on the 
-which Asana task that tells Asana to hit your server with information about the task. Your server is giving Asana the
-data to display in the widget. Clicking on the widget will take you to the attachment's url. 
+You should now see this Widget on the right. This guide has you faking all of the data currently, but there's an 
+attachment on the Asana task that tells Asana to hit your server with information about the task. Your server is giving
+Asana the data to display in the widget. Clicking on the widget will take you to the attachment's url. 
 
 <hr>
 
@@ -578,11 +620,11 @@ data to display in the widget. Clicking on the widget will take you to the attac
 }
 ```
 
-> New Modal
+> New Form
 
 ```json
 {
-  "title": "My Modal",
+  "title": "My Form",
   "on_submit_callback": "http://localhost:5000/resource",
   "submit_button_text": "Create",
   "fields": [
@@ -644,15 +686,15 @@ resource, a new attachment will be made and attached. Your widget should return!
 ```
 
 Automation is a little more complicated. If you understand how to customize and handle requests from the 
-[App Modal](/docs/app-modal), then you know how to handle the first part of automation as it works essentially 
+[App Form](/docs/app-form), then you know how to handle the first part of automation as it works essentially 
 the same. For this guide, go ahead and change your server to return the example jsons on the right.
 
 The first step of automation is setting up a rule. When an Asana user is done creating the rule (filling in the fields you 
-asked for), they will hit submit. That data is sent to your servers immediately, just like a modal. Note that the automation
+asked for), they will hit submit. That data is sent to your servers immediately, just like the modal form. Note that the automation
 has likely not fired yet.
 
-Later on, when the automation fires, we will send different information to your server. Instead of including all 
-of the responses from the user again, we simply include an `id` of the `action` and a `target_object`. 
+Later on, when the automation fires, Asana will send different information to your server. Instead of including all 
+of the responses from the user again, Asana simply includes an `id` of the `action` and a `target_object`. 
 In order for your app to fully understand what the automation is suppose to do, you will need to look up the 
 `action` that the user setup in the first step. Asana does not save this information for you. This means you will need
 a persistent data store to write & read this information.
@@ -662,7 +704,7 @@ debugging this (unless you setup a localhost proxy like ngrok).
 
 Once your server is ready, follow the [Asana Rules_Guide](https://asana.com/guide/help/premium/rules) to create a rule.
 When choosing an action, you should select your app's action. These will only show up if the project has the app installed
-and you submitted app actions when you [registered your Platform UI app](/docs/register-a-platform-ui-app). You should 
+and you submitted app actions when you [registered your Workflow App](/docs/register-a-platform-ui-app). You should 
 see your customized form. Feel free to submit it and create the rule.
 
 Sadly, you will be unable to test the action being triggered while hosting locally. To test this, deploy your server 

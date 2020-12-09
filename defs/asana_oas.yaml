@@ -6083,6 +6083,8 @@ paths:
         Returns the compact project records for some filtered set of projects.
         Use one or more of the parameters provided to filter the projects
         returned.
+
+        *Note: This endpoint may timeout for large domains. Try filtering by team!*
       tags:
         - Projects
       operationId: getProjects
@@ -6443,6 +6445,8 @@ paths:
       summary: Get all projects in a workspace
       description: >-
         Returns the compact project records for all projects in the workspace.
+
+        *Note: This endpoint may timeout for large domains. Prefer the `/teams/{team_gid}/projects` endpoint.*
       tags:
         - Projects
       operationId: getProjectsForWorkspace
