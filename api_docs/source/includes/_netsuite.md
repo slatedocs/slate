@@ -90,13 +90,14 @@ This endpoint retrieves a list of accounts with specific status.
 
 ### HTTP Request
 
-`https://example.procurify.com/api/v3/integrations/netsuite/accounts/?status=<STATUS>`
+`https://example.procurify.com/api/v3/integrations/netsuite/accounts/`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-STATUS | status can be "pending", "synced", or "error"
+Parameter | Description | Example
+--------- | ----------- | ---------
+STATUS | status can be `pending`, `synced`, or `error` | `?status=pending`
+CODE | the alphanumeric account code, **can be comma separated** | `?code=ABC123,DEF456,999`
 
 ### HTTP Response Status Code
 
