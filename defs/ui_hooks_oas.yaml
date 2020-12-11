@@ -2,11 +2,11 @@
 openapi: 3.0.0
 info:
   description: >-
-    This is the interface for handling requests from
-    [UI Hooks](https://developers.asana.com/docs/ui-hooks). This reference
+    This is the interface for handling requests for
+    [Workflow Apps](https://developers.asana.com/docs/workflow-apps). This reference
     is generated from an [OpenAPI spec]
     (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
-  title: Platform UI
+  title: Workflow Apps
   termsOfService: https://asana.com/terms
   contact:
     name: Asana Support
@@ -32,7 +32,7 @@ tags:
       create the form. This process is also used for forms within rules.
   - name: Rules
     description: >-
-      When a rule containing an app action is triggered, the Rules Engine will make a Platform UI request to the app to
+      When a rule containing an app action is triggered, the Rules Engine will make a Workflow App request to the app to
       inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine
       whether the action was successfully completed and, if not, specify a cause for the error.
   - name: Typeahead - Workflow Apps
@@ -128,9 +128,9 @@ components:
       description: >-
         I'm A Teapot
   schemas:
-    RootPlatformUIRequest:
+    RootWorkflowAppRequest:
       description: >-
-        The building block of all platform UI requests.
+        The building block of all Workflow App requests.
       type: object
       properties:
         expires:
@@ -155,7 +155,7 @@ components:
             The workspace gid this hook is coming from.
     AttachResourceRequest:
       allOf:
-        - $ref: '#/components/schemas/RootPlatformUIRequest'
+        - $ref: '#/components/schemas/RootWorkflowAppRequest'
         - type: object
           description: >-
             The body of an attach request.
@@ -197,7 +197,7 @@ components:
       properties:
         type:
           description: >-
-            The URL that Platform UI should send requests to whenever watched field values are changed
+            The URL that Asana should send requests to whenever watched field values are changed
           type: string
           enum:
             - single_line_text
@@ -323,7 +323,7 @@ components:
       properties:
         on_change_callback:
           description: >-
-            The URL that Platform UI should send requests to whenever watched field values are changed
+            The URL that Asana should send requests to whenever watched field values are changed
           type: string
           example: 'https://app-server/form/onchange'
         watched_fields:
@@ -335,7 +335,7 @@ components:
             example: 'description'
     FormSubmissionRequest:
       allOf:
-        - $ref: '#/components/schemas/RootPlatformUIRequest'
+        - $ref: '#/components/schemas/RootWorkflowAppRequest'
         - type: object
           description: >-
             The body of a form submission.
@@ -398,7 +398,7 @@ components:
                 The id of the configuration used to create the app action
     RunActionRequest:
       allOf:
-        - $ref: '#/components/schemas/RootPlatformUIRequest'
+        - $ref: '#/components/schemas/RootWorkflowAppRequest'
         - type: object
           description: >-
             The body of an action request.
@@ -796,7 +796,7 @@ paths:
       summary: Get action metadata
       description: >-
         When a user has navigated to the Custom Rule Builder UI and selected an App Action (either through the sidebar
-        or via a Rule Preset), Asana will make a Platform UI request to the app to get the configuration form definition
+        or via a Rule Preset), Asana will make a Workflow App request to the app to get the configuration form definition
         for the chosen app action. This will initiate the flow to configure a new app action or edit the configuration
         of an existing app action. This is the endpoint and schema for updating app actions; app triggers (V2) will be
         analogous.

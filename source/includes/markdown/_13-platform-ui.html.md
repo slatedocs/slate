@@ -272,9 +272,9 @@ Related References:
 
 <hr class="full-line">
 
-# Security - Workflow
+# Workflow App Security
 
-## Authorization - Workflow
+## Workflow App Authorization
 
 Authorization is handled by the app. When a Workflow App is added to a project, the user adding it is sent to the App's 
 `authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or perform none!
@@ -291,7 +291,7 @@ might be a good idea to suggest users authenticate with a bot account.
 
 <hr>
 
-## Message Integrity - Workflow
+## Workflow App Message Integrity
 
 Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
 case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
@@ -304,7 +304,7 @@ Server pretending to be Asana.
 
 <hr>
 
-## Timeliness - Workflow
+## Workflow App Timeliness
 
 Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
 recorded, such as in logs, could be reused to continue to request information from the app at a later time.
@@ -315,6 +315,8 @@ replay attacks.
 <hr class="full-line">
 
 # Workflow Apps
+
+> Sample of a full Workflow App definiton
 
 ```json
 
@@ -381,12 +383,11 @@ replay attacks.
 }
 ```
 
-Currently, "Workflow Apps" are separate from "OAuth Apps". We are planning to combine them in the future, but 
-until them, you'll need to define both if you want functionality from both in your app.
+Currently, "Workflow Apps" are separate from "OAuth Apps". To create a Workflow App, you will need to create an OAuth 
+App and request the Workflow App functionliaty onto it via the 
+[Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) form.
 
-An OAuth app is not required for a Workflow App. However, if the app needs access to the Asana API, then you need to 
-create an OAuth app and connect it to your Workflow  App. To create an oauth app, see 
-[Authentication Quick Start](/docs/authentication-quick-start).
+To create an oauth app, see [Authentication Quick Start](/docs/authentication-quick-start).
 
 To create a Workflow App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 form with the data in the table below.
@@ -493,6 +494,8 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 Login with your user and ensure you're in your sandbox domain (The one you provided in the register form). Open or 
 create an Asana project and open it.
+
+*Note, you may need to use the "Customize" dropdown instead.*
 
 <img src="../images/project-apps-button.png" />
 

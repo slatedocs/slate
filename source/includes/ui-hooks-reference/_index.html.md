@@ -2,12 +2,12 @@
 
 <hr class="full-line">
 <section class="full-section">
-<h1 id="platform-ui">Platform UI Reference</h1>
+<h1 id="workflow-apps">Workflow App Reference</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
 <span class="description">
-This is the interface for handling requests from [UI Hooks](https://developers.asana.com/docs/ui-hooks). This reference is generated from an [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
+This is the interface for handling requests for [Workflow Apps](https://developers.asana.com/docs/workflow-apps). This reference is generated from an [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
 </span>
 
 Base URLs:
@@ -384,7 +384,7 @@ The callback request made to an App Server when a form is submitted.
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |»»» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
-|»»» type<span class="param-type"> string</span>|The URL that Platform UI should send requests to whenever watched field values are changed|
+|»»» type<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -426,7 +426,7 @@ The callback request made to an App Server when a form is submitted.
 </pre>
 
 <span class="description">
-When a rule containing an app action is triggered, the Rules Engine will make a Platform UI request to the app to inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine whether the action was successfully completed and, if not, specify a cause for the error.
+When a rule containing an app action is triggered, the Rules Engine will make a Workflow App request to the app to inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine whether the action was successfully completed and, if not, specify a cause for the error.
 </span>
 
 </section>
@@ -616,7 +616,7 @@ getActionMetadata
 </p>
 
 <span class="description">
-When a user has navigated to the Custom Rule Builder UI and selected an App Action (either through the sidebar or via a Rule Preset), Asana will make a Platform UI request to the app to get the configuration form definition for the chosen app action. This will initiate the flow to configure a new app action or edit the configuration of an existing app action. This is the endpoint and schema for updating app actions; app triggers (V2) will be analogous.
+When a user has navigated to the Custom Rule Builder UI and selected an App Action (either through the sidebar or via a Rule Preset), Asana will make a Workflow App request to the app to get the configuration form definition for the chosen app action. This will initiate the flow to configure a new app action or edit the configuration of an existing app action. This is the endpoint and schema for updating app actions; app triggers (V2) will be analogous.
 </span>
 
 <h3 id="get-action-metadata-parameters">Parameters</h3>
@@ -889,7 +889,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |»»» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
-|»»» type<span class="param-type"> string</span>|The URL that Platform UI should send requests to whenever watched field values are changed|
+|»»» type<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -1244,7 +1244,7 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 
 </section><hr class="full-line">
 <section class="full-section">
-# Platform UI Schemas
+# Workflow App Schemas
 <span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
 default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
@@ -1343,11 +1343,11 @@ Contains the metadata that describes how to display and manage a form
 |» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
-|» type<span class="param-type"> string</span>|The URL that Platform UI should send requests to whenever watched field values are changed|
+|» type<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
 |» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
 |» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |on_change<span class="param-type"> object</span>|Contains the information to handle whenever watched form fields are changed|
-|» on_change_callback<span class="param-type"> string</span>|The URL that Platform UI should send requests to whenever watched field values are changed|
+|» on_change_callback<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
 |» watched_fields<span class="param-type"> [string]</span>|An array of FormField names to indicate which fields should send requests when their values are changed|
 |on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button.<br>If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
 |submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|

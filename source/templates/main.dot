@@ -2,7 +2,7 @@
 
 <hr class="full-line">
 <section class="full-section">
-<h1 id="{{=data.title_prefix}}">{{ if (data.title_prefix == "platform-ui") { }}Platform UI Reference{{ } else { }}API Reference{{ } }}</h1>
+<h1 id="{{=data.title_prefix}}">{{ if (data.title_prefix == "workflow-apps") { }}Workflow App Reference{{ } else { }}API Reference{{ } }}</h1>
 
 > Scroll down for {{? data.header.language_tabs.length > 1}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length > 1}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
 
@@ -51,7 +51,7 @@ Base URLs:
 {{= data.templates.operation(data) }}
 </section>{{ } /* of methods */ }}{{ } /* of resources */ }}{{? data.api.components && data.api.components.schemas }}<hr class="full-line">
 <section class="full-section">
-# {{ if (data.title_prefix == "platform-ui") { }}Platform UI Schemas{{ } else { }}Schemas{{ } }}
+# {{ if (data.title_prefix == "workflow-apps") { }}Workflow App Schemas{{ } else { }}Schemas{{ } }}
 <span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
 default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
