@@ -623,6 +623,71 @@ Session Queue のオブジェクトの返却は、
 #### robot
 ロボットの詳細が記述されている JSON オブジェクトです。返却される項目は、ID とロボット名 (name) だけです。
 
+# Workflow
+Workflow とは、自動化設定そのものです。外部からワークフローを指定してSession Queue に登録する際に Workflow の ID が必要になりますが、一覧取得のエンドポイントによりIDを確認し指定することができるようになります。
+## ワークフロー一覧を取得する。
+このエンドポイントは、API Key が作成されたプロジェクトの Session Queue の一覧を取得します。パラメーターとして、ページ数、ページあたりの件数を設定できます。パラメーターの指定がない時は、ページあたりの件数は、300件、ページは1ページ目になります。ページあたりの件数は最大で、1000まで指定できます。
+### HTTP Request
+> GET /v1/workflows
+
+```shell
+curl --location --request GET "https://api.roboticcrowd.com/v1/workflows?page=1&per_page=10" \
+  --header "Authorization: Bearer [your_jwt]"
+```
+
+> Response
+
+```json
+{
+  "workflows": [
+    {
+      "id": 123123122,
+      "name": "workflow name1",
+      "description": "this is tutorail user's workflow",
+      "vpn_option_id": null,
+      "debug_mode": true,
+      "robot_type": "singleruntime",
+      "single_process_mode": true,
+      "error_handler_workflow_id": null,
+      "color": "#000000",
+      "receiver_infos": "",
+      "workflow_robots": []
+    },
+    {
+      "id": 123123123,
+      "name": "workflow name2",
+      "description": "this is tutorials user's workflow",
+      "vpn_option_id": null,
+      "debug_mode": true,
+      "robot_type": "singleruntime",
+      "single_process_mode": true,
+      "error_handler_workflow_id": nil,
+      "color": "#000000",
+      "receiver_infos": "",
+      "workflow_robots": []
+    }
+ ],
+ "total_count": 102
+}
+```
+
+### クエリパラメーター
+#### per_page
+初期値
+300
+#### 説明
+取得するページあたりの件数です。 1ページあたりの最大数は50件です。
+#### page
+初期値
+1
+#### 説明
+取得するページです。
+### 応答
+JSON オブジェクトを返却します。
+#### workflows
+Workflow Schema の JSON オブジェクトの配列が格納されています。
+#### total_count
+トータル件数が格納されています。
 # Quota
 
 APIリクエストの制限は、各組織で契約しているロボット数に応じて決定されています。ロボット一台の契約につき、 1分ごとに60リクエストを上限としています。
