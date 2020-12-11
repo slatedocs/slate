@@ -253,12 +253,12 @@ curl -X POST \
    "addImagePullCredentialsOption":true,
    "containerUsername":"test.username",
    "containerPassword":"test-password",
-   "containerServer":null,
-   "containerEmail":null,
-   "environmentVariableKey": null,
-   "environmentVariableValue": null,
-   "secretEnvironmentVariableKey":null,
-   "secretEnvironmentVariableValue":null,
+   "containerServer":"container.server.io",
+   "containerEmail":"mytestEmail@email.com",
+   "environmentVariableKey": "env-key",
+   "environmentVariableValue": "env-value",
+   "secretEnvironmentVariableKey":"secret-key",
+   "secretEnvironmentVariableValue":"secret-value",
    "vpc":"Default",
    "addAnyCastIpAddress":false,
    "publicPort": "80",
@@ -293,7 +293,7 @@ Create a new workload in a given [environment](#administration-environments).
 Required | &nbsp;
 ------- | -----------
  `name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
- `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
+ `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either `VM` or `CONTAINER`.
  `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
  `vpc`<br/>*string* | The virtual private cloud option for now supports default vpc only.
  `firstBootSshKey`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by newlines `\n`.
@@ -313,7 +313,7 @@ Required | &nbsp;
  `publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule.
  `publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule.
  `protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
- `commands`<br/>*string* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
+ `commands`<br/>*string* | The commands that start a container. Only applicable to workloads of type `CONTAINER`.
  `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
  `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
  `addImagePullCredentialsOption` <br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not.
@@ -398,8 +398,8 @@ Edit a workload in a given [environment](#administration-environments).
 Required | &nbsp;
 ------- | -----------
 `name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
-`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either 'VM' or 'CONTAINER'.
-`image`<br/>*string* | The location of a Docker image to run as a container. Only editable when `type`is equal to 'CONTAINER'.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either `VM` or `CONTAINER`.
+`image`<br/>*string* | The location of a Docker image to run as a container. Only editable when `type` is equal to `CONTAINER`.
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deploymentName`<br/>*string* | The name of the deployment. The deployment name must not exceed 18 characters.
 `deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
@@ -407,15 +407,15 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`environmentVariableKey`<br/>*string* | The key of the environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
-`environmentVariableValue`<br/>*string* | The value of the environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
-`secretEnvironmentVariableKey`<br/>*string* | The key of the secret environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
-`secretEnvironmentVariableValue`<br/>*string* | The value of the secret environmental variable you would like to edit. Only available when `type`is equal to 'CONTAINER'.
-`addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only available when `type`is equal to 'CONTAINER'.
-`containerUsername`<br/>*string* | The username that should be used for authenticate the image pull. Only available when `type`is equal to 'CONTAINER'.
-`containerEmail`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type`is equal to 'CONTAINER'.
-`containerServer`<br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only available when `type`is equal to 'CONTAINER'.
-`containerPassword`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type`is equal to 'CONTAINER'.
+`environmentVariableKey`<br/>*string* | The key of the environmental variable you would like to edit. Only available when `type` is equal to `CONTAINER`.
+`environmentVariableValue`<br/>*string* | The value of the environmental variable you would like to edit. Only available when `type` is equal to `CONTAINER`.
+`secretEnvironmentVariableKey`<br/>*string* | The key of the secret environmental variable you would like to edit. Only available when `type` is equal to `CONTAINER`.
+`secretEnvironmentVariableValue`<br/>*string* | The value of the secret environmental variable you would like to edit. Only available when `type` is equal to `CONTAINER`.
+`addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only available when `type` is equal to `CONTAINER`.
+`containerUsername`<br/>*string* | The username that should be used for authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
+`containerEmail`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
+`containerServer`<br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only available when `type` is equal to `CONTAINER`.
+`containerPassword`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
 `deploymentInstancePerPops`<br/>*integer* | The number of deployments per point of presence. Only required if autoscaling is not enabled.
 `cpuUtilization`<br/>*integer* | The average CPU utlilization threshold to be reached before deploying a new instance. Only required if autoscaling is enabled.
 `minInstancesPerPop`<br/>*integer* | The minimum number of instances per point of presence. Only required if autoscaling is enabled.
