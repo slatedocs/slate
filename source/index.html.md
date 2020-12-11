@@ -661,7 +661,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/workflows?page=1&
       "debug_mode": true,
       "robot_type": "singleruntime",
       "single_process_mode": true,
-      "error_handler_workflow_id": nil,
+      "error_handler_workflow_id": null,
       "color": "#000000",
       "receiver_infos": "",
       "workflow_robots": []
