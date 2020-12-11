@@ -15,6 +15,8 @@ includes:
 
   - authorization
 
+  - deauthorize
+
   - users/overview
   - users/show
   - users/update
