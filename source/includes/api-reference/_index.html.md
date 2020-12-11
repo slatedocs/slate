@@ -5220,6 +5220,7 @@ $result = $client->projects->getProjects(array('param' => 'value', 'param' => 'v
 
 <span class="description">
 Returns the compact project records for some filtered set of projects. Use one or more of the parameters provided to filter the projects returned.
+*Note: This endpoint may timeout for large domains. Try filtering by team!*
 </span>
 
 <h3 id="get-multiple-projects-parameters">Parameters</h3>
@@ -6935,6 +6936,7 @@ $result = $client->projects->getProjectsForWorkspace($workspace_gid, array('para
 
 <span class="description">
 Returns the compact project records for all projects in the workspace.
+*Note: This endpoint may timeout for large domains. Prefer the `/teams/{team_gid}/projects` endpoint.*
 </span>
 
 <h3 id="get-all-projects-in-a-workspace-parameters">Parameters</h3>
