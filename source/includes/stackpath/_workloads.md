@@ -292,13 +292,13 @@ Create a new workload in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
- `name`<br/>*string* | The name of the workload. The length of `<workload_name>-<deployment_name>` must not exceed 40 characters.
+ `name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
  `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
  `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
  `vpc`<br/>*string* | The virtual private cloud option for now supports default vpc only.
  `firstBootSshKey`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by newlines `\n`.
  `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
- `deploymentName`<br/>*string* | The name of the deployment. The length of `<workload_name>-<deployment_name>` must not exceed 40 characters.
+ `deploymentName`<br/>*string* | The name of the deployment. The deployment name must not exceed 18 characters.
  `deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
  `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is 
  `cpuUtilization` <br/>*int* | Specify the percentage of CPU utilization.
@@ -307,7 +307,7 @@ Required | &nbsp;
  
  Optional | &nbsp;
  ------- | -----------
-  `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name.
+  `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name. It must not exceed 18 characters.
  `addAnyCastIpAddress`<br/>*boolean* | Option to AnyCast IP Address.
   `publicPort`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535 for which a network policy rule will be created for the workload.
  `publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule.
@@ -397,11 +397,11 @@ Edit a workload in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The name of the workload. The length of `<workload_name>-<deployment_name>` must not exceed 40 characters.
+`name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
 `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either 'VM' or 'CONTAINER'.
 `image`<br/>*string* | The location of a Docker image to run as a container. Only editable when `type`is equal to 'CONTAINER'.
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
-`deploymentName`<br/>*string* | The name of the deployment. The length of `<workload_name>-<deployment_name>` must not exceed 40 characters.
+`deploymentName`<br/>*string* | The name of the deployment. The deployment name must not exceed 18 characters.
 `deploymentPops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
 `enableAutoScaling` <br/>*boolean* | Specify if you would like to enable autoscaling. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required else `deploymentInstancePerPops` is required.
 
