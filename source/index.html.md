@@ -2123,6 +2123,128 @@ Use this endpoint to cancel an active orders
 
 
 
+## Edit Price
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.
+key = "XXXX"
+secret = "YYYY"
+
+# python3
+secret_bytes = bytes(secret, encoding='utf-8')
+# python2
+secret_bytes = bytes(secret)
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", # Enter your Order ID here.
+  "timestamp": timeStamp,
+  "price_per_unit": 123.45 # Enter the new-price here
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret_bytes, json_body.encode(), hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/orders/edit"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "XXXX";
+secret = "YYYY";
+
+body = {
+  "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Enter your Order ID here.
+  "timestamp": timeStamp,
+  "price_per_unit": 123.45 // Enter the new-price here
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+	url: baseurl + "/exchange/v1/orders/edit",
+	headers: {
+		'X-AUTH-APIKEY': key,
+		'X-AUTH-SIGNATURE': signature
+	},
+	json: true,
+	body: body
+}
+
+request.post(options, function(error, response, body) {
+	console.log(body);
+})
+
+```
+
+> Response:
+
+```json
+{
+  "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "market": "TRXETH",
+  "order_type": "limit_order",
+  "side": "buy",
+  "status": "open",
+  "fee_amount": 0.0000008,
+  "fee": 0.1,
+  "total_quantity": 2,
+  "remaining_quantity": 2.0,
+  "avg_price": 0.0,
+  "price_per_unit": 123.45,
+  "created_at": "2020-12-12T18:17:28.022Z",
+  "updated_at": "2020-12-12T18:17:28.022Z"
+}
+```
+
+
+Use this endpoint to edit the price of an active order
+
+### HTTP Request
+
+`POST /exchange/v1/orders/edit`
+
+### Parameters
+
+| Name           | Required | Example                              | Description                    |
+|----------------|----------|--------------------------------------|--------------------------------|
+| id             | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
+| price_per_unit | Yes      | 123.45                               | New Price for the order        |
+| timestamp      | Yes      | 1524211224                           | When was the request generated |
+
+
+
+
 
 
 
