@@ -226,7 +226,6 @@ curl -X POST \
    "slug":"w-user-zwg",
    "type":"VM",
    "image":"stackpath-edge/centos-7-cpanel:v201905241955",
-   "vpc":"Default",
    "addAnyCastIpAddress":false,
    "publicPort": "80",
    "publicPortSrc": "0.0.0.0/0",
@@ -259,7 +258,6 @@ curl -X POST \
    "environmentVariableValue": "env-value",
    "secretEnvironmentVariableKey":"secret-key",
    "secretEnvironmentVariableValue":"secret-value",
-   "vpc":"Default",
    "addAnyCastIpAddress":false,
    "publicPort": "80",
    "publicPortSrc": "0.0.0.0/0",
@@ -295,7 +293,6 @@ Required | &nbsp;
  `name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
  `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either `VM` or `CONTAINER`.
  `image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
- `vpc`<br/>*string* | The virtual private cloud option for now supports default vpc only.
  `firstBootSshKey`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by newlines `\n`.
  `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
  `deploymentName`<br/>*string* | The name of the deployment. The deployment name must not exceed 18 characters.
