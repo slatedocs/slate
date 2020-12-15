@@ -226,8 +226,9 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/recordi
       "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
       "duration": 30000,
       "heartRate": 65,  
-      "note": "Drank coffee, having palpitations."
-      "recordedAt": "2008-09-15T15:53:00+05:00"
+      "note": "Drank coffee, having palpitations.",
+      "recordedAt": "2008-09-15T15:53:00+05:00",
+      "tags": ["Low sleep", "At doctors office"]
     }
   ],
   "pageInfo": {
@@ -365,8 +366,9 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
   "algorithmDetermination": "normal",
   "duration": 30000,
   "heartRate": 65,  
-  "note": "Drank coffee, having palpitations."
-  "recordedAt": "2008-09-15T15:53:00+05:00"
+  "note": "Drank coffee, having palpitations.",
+  "tags": ["Low sleep", "At doctors office"],
+  "recordedAt": "2008-09-15T15:53:00+05:00",
   "data": {
     "raw": {
       "frequency": 300,
@@ -475,8 +477,9 @@ curl https://api.kardia.com/v1/recordings \
       "algorithmDetermination": "normal",
       "duration": 30000,
       "heartRate": 65,  
-      "note": "Drank coffee, having palpitations."
-      "recordedAt": "2008-09-15T15:53:00+05:00"
+      "note": "Drank coffee, having palpitations.",
+      "recordedAt": "2008-09-15T15:53:00+05:00",
+      "tags": ["Low sleep", "At doctors office"]
   }],
   "pageInfo": {
     "startCursor": "c3RhcnRDdXJzb3I=",
@@ -514,7 +517,8 @@ curl https://api.kardia.com/v1/screening/recordings \
       "algorithmDetermination": "normal",
       "duration": 30000,
       "heartRate": 65,  
-      "note": "Drank coffee, having palpitations."
+      "note": "Drank coffee, having palpitations.",
+      "tags": ["Low sleep", "At doctors office"],
       "recordedAt": "2008-09-15T15:53:00+05:00"
   }],
   "pageInfo": {
