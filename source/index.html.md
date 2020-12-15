@@ -29,6 +29,7 @@ includes:
   - administration/knowledge_base
   - administration/trials
   - administration/email_settings
+  - administration/feedback_settings
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
