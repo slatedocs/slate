@@ -542,12 +542,12 @@ var citations = request.Get("/v2/cb/citations", parameters);
     },
     "aggregators": [
         {
-            "citation" : "factual",
+            "citation" : "foursquare",
             "domain_authority": "N/A",
             "type": "Aggregators",
             "phone_verification": "N/A",
             "client_verification": "N/A",
-            "notes": "Factual will only contact the business if key data doesn’t align",
+            "notes": "Foursquare will only contact the business if key data doesn’t align",
             "no_update": "N/A",
             "no_photos": "N/A",
             "part_of_yext_network": "N/A",
@@ -590,7 +590,7 @@ $success = $api->post('/v2/cb/confirm-and-pay', [
 	'package_id'        => 'cb15',
 	'autoselect'        => 'N',
 	'remove-duplicates' => 'Y',
-	'aggregators'       => '["factual"]',
+	'aggregators'       => '["foursquare"]',
 	'citations'         => '["brownbook.net", "bing.com", "manta.com", "yell.com", "accessplace.com", "bizfo.co.uk", "bizwiki.co.uk", "citylocal.co.uk", "cylex-uk.co.uk", "where2go.com", "yelp.co.uk", "scoot.co.uk", "restaurants.co.uk", "opendi.co.uk", "misterwhat.co.uk"]',
 	'notes'             => 'Some very important notes'
 ]);
@@ -606,7 +606,7 @@ parameters.Add("campaign_id", campaignId);
 parameters.Add("package_id", "cb15");
 parameters.Add("autoselect", "N");
 parameters.Add("remove-duplicates", "Y");
-parameters.Add("aggregators", "['factual']");
+parameters.Add("aggregators", "['foursquare']");
 parameters.Add("citations", "['brownbook.net', 'bing.com', 'manta.com', 'yell.com', 'accessplace.com', 'bizfo.co.uk', 'bizwiki.co.uk', 'citylocal.co.uk', 'cylex-uk.co.uk', 'where2go.com', 'yelp.co.uk', 'scoot.co.uk', 'restaurants.co.uk', 'opendi.co.uk', 'misterwhat.co.uk']");
 parameters.Add("notes", "Some very important notes");
 
@@ -649,7 +649,7 @@ package_id | <span class="label label-required">Required</span> CB package id co
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | JSON Array. List of sites you require listings for. You can leave citations empty for auto selecting citations.
 remove-duplicates | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
-aggregators | JSON Array. List of aggregators you require listings for. Possible values are ‘dataaxle’ formerly known as ‘infogroup’ (both supported), ‘factual’, ‘neustar’, and ‘foursquare’ for USA. For CAN ‘dataaxle’ (‘infogroup’), ‘factual’, and ‘foursquare’. The only possible values for non USA countries are ‘factual’ and ‘foursquare’.
+aggregators | JSON Array. List of aggregators you require listings for. Possible values are ‘dataaxle’ formerly known as ‘infogroup’ (both supported)’, ‘neustar’, and ‘foursquare (includes factual)’ for USA. For CAN ‘dataaxle’ (‘infogroup’), and ‘foursquare (includes factual)’. The only possible values for non USA countries are ‘foursquare (includes factual)’.
 notes | Provide instructions to our submissions team with specifics about how you'd like your campaign handled.
 
 ## Get Campaigns
@@ -718,10 +718,10 @@ var campaigns = request.Get("/v4/cb/get-all", parameters);
 					    "citation_value": "NA"
 				    },
 				    {
-					    "name": "factual",
+					    "name": "foursquare",
 					    "status": "Updated",
 					    "site_type": "Aggregator",
-					    "citation_url": "factual.com",
+					    "citation_url": "foursquare.com",
 					    "domain_authority": "NA",
 					    "citation_value": "NA"
 				    }
