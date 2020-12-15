@@ -2,25 +2,25 @@
 
 When a rate limit is exceeded, a status of 429 Too Many Requests will be returned.
 'X-RATE-LIMIT-RESET' is returned in response header with time left in milisecond
-after which next API request can be hit.
+after which next API request can be hit. 
 
+We throttle unauthenticated api requests by IP and authenticated requests by user ID. 
 
-### REST API
+Default Quota is 5000 for a fixed 5 minute window.
 
-### Limits
+### REST API Cost Structure
+Every rest endpoint has been assigned a cost (weight). When you make an api call, the cost incurred is deducted from your 5 min quota. So, Apis related to reading public data are cheaper whereas Apis related to writing private data (like placing an order) are the costliest. 
 
-We throttle unauthenticated api requests by IP and authenticated requests by user ID.
-These are the limits for different categories of requests in a 5 minute rolling window.
+Here is the cost structure for various endpoints. Please note that any endpoint not mentioned here has a cost of 1 unit.
 
-|Request Type|Limit|Description|
-|---|---|---|
-|Chart data|1000|Requests for chart data|
-|Public read requests|500|Requests to get list of live products, L2 orderbook etc|
-|Private read requests|200|Requests to get open orders, fills, positions etc|
-|Private write requests|150|Requests to place orders, change leverage, cancel orders etc|
-|Account requests|200|Requests to change password, create api keys etc|
-|Others|300|All other requests|
+Cost Slab|API Endpoints
+--|--
+3| Get Products, Get Orderbook, Get Tickers, Get Open Orders, Get Open Postions, Get Balances, OHLC Candles
+5| Place/Edit/Delete Order, Add Position Margin
+10| Get Order History, Get Fills, Get Txn Logs
+25| Batch Order Apis
+
 
 ### Increasing your rate limits
 
-If you are running up against our limits and believe that you have a legitimate need, please email us at (support@delta.exchange)[mailto:support@delta.exchange] to discuss increasing your rate limits.
+If you are running up against our limits and believe that you have a legitimate need, please email us at [support@delta.exchange](mailto:support@delta.exchange) to discuss increasing your rate limits.

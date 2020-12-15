@@ -77,7 +77,11 @@ p JSON.parse(result)
     {
       "id": 0,
       "symbol": "string",
-      "precision": 0
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
     }
   ]
 }
@@ -90,6 +94,15 @@ p JSON.parse(result)
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all assets|Inline|
 
 <h3 id="get-list-of-all-assets-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|deposit_status|enabled|
+|deposit_status|disabled|
+|withdrawal_status|enabled|
+|withdrawal_status|disabled|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -157,7 +170,10 @@ p JSON.parse(result)
       "symbol": "string",
       "constituent_exchanges": [
         {}
-      ]
+      ],
+      "underlying_asset_id": 0,
+      "quoting_asset_id": 0,
+      "index_type": "spot_pair"
     }
   ]
 }
@@ -170,6 +186,14 @@ p JSON.parse(result)
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of indices (Spot underlyings, Interest Rates indexes)|Inline|
 
 <h3 id="get-indices-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|index_type|spot_pair|
+|index_type|fixed_interest_rate|
+|index_type|floating_interest_rate|
 
 <aside class="success">
 This operation does not require authentication.
@@ -230,6 +254,9 @@ p JSON.parse(result)
 |---|---|---|---|---|
 |contract_types|query|string|false|Comma separated list of contract types|
 |states|query|string|false|Comma separated list of states|
+|after|query|string|false|after cursor for paginated request|
+|before|query|string|false|before cursor for paginated request|
+|page_size|query|string|false|size of a single page for paginated request, default: 100|
 
 > Example responses
 
@@ -253,6 +280,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
+      "product_specs": {},
       "state": "live",
       "trading_status": "operational",
       "max_leverage_notional": "string",
@@ -272,24 +300,39 @@ p JSON.parse(result)
       "underlying_asset": {
         "id": 0,
         "symbol": "string",
-        "precision": 0
+        "precision": 0,
+        "deposit_status": "enabled",
+        "withdrawal_status": "enabled",
+        "base_withdrawal_fee": "string",
+        "min_withdrawal_amount": "string"
       },
       "quoting_asset": {
         "id": 0,
         "symbol": "string",
-        "precision": 0
+        "precision": 0,
+        "deposit_status": "enabled",
+        "withdrawal_status": "enabled",
+        "base_withdrawal_fee": "string",
+        "min_withdrawal_amount": "string"
       },
       "settling_asset": {
         "id": 0,
         "symbol": "string",
-        "precision": 0
+        "precision": 0,
+        "deposit_status": "enabled",
+        "withdrawal_status": "enabled",
+        "base_withdrawal_fee": "string",
+        "min_withdrawal_amount": "string"
       },
       "spot_index": {
         "id": 0,
         "symbol": "string",
         "constituent_exchanges": [
           {}
-        ]
+        ],
+        "underlying_asset_id": 0,
+        "quoting_asset_id": 0,
+        "index_type": "spot_pair"
       }
     }
   ]
@@ -316,6 +359,175 @@ p JSON.parse(result)
 |trading_status|operational|
 |trading_status|disrupted_cancel_only|
 |trading_status|disrupted_post_only|
+|deposit_status|enabled|
+|deposit_status|disabled|
+|withdrawal_status|enabled|
+|withdrawal_status|disabled|
+|index_type|spot_pair|
+|index_type|fixed_interest_rate|
+|index_type|floating_interest_rate|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+## Get product by symbol
+
+<a id="opIdgetProduct"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/v2/products/{symbol}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/products/{symbol} \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/products/{symbol}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /products/{symbol}`
+
+<h3 id="get-product-by-symbol-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|symbol|path|string|true|symbol of the desired product|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "id": 0,
+    "symbol": "string",
+    "description": "string",
+    "created_at": "string",
+    "updated_at": "string",
+    "settlement_time": "string",
+    "notional_type": "vanilla",
+    "impact_size": 0,
+    "initial_margin": 0,
+    "maintenance_margin": "string",
+    "contract_value": "string",
+    "contract_unit_currency": "string",
+    "tick_size": "string",
+    "product_specs": {},
+    "state": "live",
+    "trading_status": "operational",
+    "max_leverage_notional": "string",
+    "default_leverage": "string",
+    "initial_margin_scaling_factor": "string",
+    "maintenance_margin_scaling_factor": "string",
+    "taker_commission_rate": "string",
+    "maker_commission_rate": "string",
+    "liquidation_penalty_factor": "string",
+    "contract_type": "string",
+    "position_size_limit": 0,
+    "basis_factor_max_limit": "string",
+    "is_quanto": true,
+    "funding_method": "string",
+    "annualized_funding": "string",
+    "price_band": "string",
+    "underlying_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "quoting_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "settling_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "spot_index": {
+      "id": 0,
+      "symbol": "string",
+      "constituent_exchanges": [
+        {}
+      ],
+      "underlying_asset_id": 0,
+      "quoting_asset_id": 0,
+      "index_type": "spot_pair"
+    }
+  }
+}
+```
+
+<h3 id="get-product-by-symbol-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of products|Inline|
+
+<h3 id="get-product-by-symbol-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|notional_type|vanilla|
+|notional_type|inverse|
+|state|live|
+|state|expired|
+|state|upcoming|
+|trading_status|operational|
+|trading_status|disrupted_cancel_only|
+|trading_status|disrupted_post_only|
+|deposit_status|enabled|
+|deposit_status|disabled|
+|withdrawal_status|enabled|
+|withdrawal_status|disabled|
+|index_type|spot_pair|
+|index_type|fixed_interest_rate|
+|index_type|floating_interest_rate|
 
 <aside class="success">
 This operation does not require authentication.
@@ -375,6 +587,7 @@ p JSON.parse(result)
   "success": true,
   "result": [
     {
+      "product_id": 0,
       "symbol": "string",
       "timestamp": 0,
       "open": 0,
@@ -386,7 +599,8 @@ p JSON.parse(result)
       "spot_price": "string",
       "turnover": 0,
       "turnover_symbol": "string",
-      "turnover_usd": 0
+      "turnover_usd": 0,
+      "contract_type": "string"
     }
   ]
 }
@@ -463,6 +677,7 @@ p JSON.parse(result)
 {
   "success": true,
   "result": {
+    "product_id": 0,
     "symbol": "string",
     "timestamp": 0,
     "open": 0,
@@ -474,7 +689,8 @@ p JSON.parse(result)
     "spot_price": "string",
     "turnover": 0,
     "turnover_symbol": "string",
-    "turnover_usd": 0
+    "turnover_usd": 0,
+    "contract_type": "string"
   }
 }
 ```
@@ -561,9 +777,13 @@ p JSON.parse(result)
   "size": 0,
   "side": "buy",
   "order_type": "limit_order",
+  "stop_order_type": "stop_loss_order",
+  "stop_price": "string",
+  "stop_trigger_method": "mark_price",
   "time_in_force": "gtc",
   "post_only": "true",
-  "reduce_only": "true"
+  "reduce_only": "true",
+  "client_order_id": "string"
 }
 ```
 
@@ -582,7 +802,9 @@ p JSON.parse(result)
   "success": true,
   "result": {
     "id": "ashb1212",
+    "client_order_id": "asbasa",
     "product_id": 27,
+    "product_symbol": "BTCUSD",
     "limit_price": "9200",
     "side": "buy",
     "size": 100,
@@ -705,7 +927,9 @@ p JSON.parse(result)
   "success": true,
   "result": {
     "id": "ashb1212",
+    "client_order_id": "asbasa",
     "product_id": 27,
+    "product_symbol": "BTCUSD",
     "limit_price": "9200",
     "side": "buy",
     "size": 100,
@@ -830,7 +1054,9 @@ p JSON.parse(result)
   "success": true,
   "result": {
     "id": "ashb1212",
+    "client_order_id": "asbasa",
     "product_id": 27,
+    "product_symbol": "BTCUSD",
     "limit_price": "9200",
     "side": "buy",
     "size": 100,
@@ -931,7 +1157,8 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |product_ids|query|string|false|comma separated product ids|
-|contract_types|query|string|false|comma separated product ids|
+|states|query|string|false|comma separated list of states - open,pending|
+|contract_types|query|string|false|comma separated list of desired contract types|
 |order_types|query|string|false|comma separated order types|
 |start_time|query|integer|false|from time in micro-seconds in epoc|
 |end_time|query|integer|false|from time in micro-seconds in epoc|
@@ -943,13 +1170,6 @@ p JSON.parse(result)
 
 |Parameter|Value|
 |---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-|contract_types|interest_rate_swaps|
-|contract_types|move_options|
-|contract_types|spreads|
 |order_types|market|
 |order_types|limit|
 |order_types|stop_market|
@@ -966,7 +1186,9 @@ p JSON.parse(result)
   "result": [
     {
       "id": "ashb1212",
+      "client_order_id": "asbasa",
       "product_id": 27,
+      "product_symbol": "BTCUSD",
       "limit_price": "9200",
       "side": "buy",
       "size": 100,
@@ -1074,6 +1296,7 @@ p JSON.parse(result)
 ```json
 {
   "product_id": 0,
+  "contract_types": "string",
   "cancel_limit_orders": "true",
   "cancel_stop_orders": "true"
 }
@@ -1174,9 +1397,13 @@ p JSON.parse(result)
       "size": 0,
       "side": "buy",
       "order_type": "limit_order",
+      "stop_order_type": "stop_loss_order",
+      "stop_price": "string",
+      "stop_trigger_method": "mark_price",
       "time_in_force": "gtc",
       "post_only": "true",
-      "reduce_only": "true"
+      "reduce_only": "true",
+      "client_order_id": "string"
     }
   ],
   "product_id": 0
@@ -1194,9 +1421,13 @@ p JSON.parse(result)
 |»» size|body|integer|false|none|
 |»» side|body|string|false|side for which to place order|
 |»» order_type|body|string|false|none|
+|»» stop_order_type|body|string|false|none|
+|»» stop_price|body|string|false|none|
+|»» stop_trigger_method|body|string|false|none|
 |»» time_in_force|body|string|false|none|
 |»» post_only|body|string|false|none|
 |»» reduce_only|body|string|false|none|
+|»» client_order_id|body|string|false|none|
 |» product_id|body|integer|false|none|
 
 #### Enumerated Values
@@ -1207,6 +1438,11 @@ p JSON.parse(result)
 |»» side|sell|
 |»» order_type|limit_order|
 |»» order_type|market_order|
+|»» stop_order_type|stop_loss_order|
+|»» stop_order_type|take_profit_order|
+|»» stop_trigger_method|mark_price|
+|»» stop_trigger_method|last_traded_price|
+|»» stop_trigger_method|spot_price|
 |»» time_in_force|gtc|
 |»» time_in_force|ioc|
 |»» time_in_force|fok|
@@ -1225,7 +1461,9 @@ p JSON.parse(result)
   "result": [
     {
       "id": "ashb1212",
+      "client_order_id": "asbasa",
       "product_id": 27,
+      "product_symbol": "BTCUSD",
       "limit_price": "9200",
       "side": "buy",
       "size": 100,
@@ -1365,7 +1603,9 @@ batch order edit
   "result": [
     {
       "id": "ashb1212",
+      "client_order_id": "asbasa",
       "product_id": 27,
+      "product_symbol": "BTCUSD",
       "limit_price": "9200",
       "side": "buy",
       "size": 100,
@@ -1499,7 +1739,9 @@ p JSON.parse(result)
   "result": [
     {
       "id": "ashb1212",
+      "client_order_id": "asbasa",
       "product_id": 27,
+      "product_symbol": "BTCUSD",
       "limit_price": "9200",
       "side": "buy",
       "size": 100,
@@ -1855,6 +2097,13 @@ p JSON.parse(result)
 
 `GET /positions/margined`
 
+<h3 id="get-margined-positions-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_ids|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated list of desired contract types|
+
 > Example responses
 
 > 200 Response
@@ -1871,7 +2120,11 @@ p JSON.parse(result)
       "liquidation_price": "string",
       "bankruptcy_price": "string",
       "adl_level": 0,
-      "product_id": 0
+      "product_id": 0,
+      "product_symbol": "string",
+      "commission": "string",
+      "realized_pnl": "string",
+      "realized_funding": "string"
     }
   ]
 }
@@ -1978,7 +2231,11 @@ p JSON.parse(result)
     "liquidation_price": "string",
     "bankruptcy_price": "string",
     "adl_level": 0,
-    "product_id": 0
+    "product_id": 0,
+    "product_symbol": "string",
+    "commission": "string",
+    "realized_pnl": "string",
+    "realized_funding": "string"
   }
 }
 ```
@@ -2059,7 +2316,7 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |product_ids|query|string|false|comma separated product ids|
-|contract_types|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated list of desired contract types|
 |order_types|query|string|false|comma separated order types|
 |start_time|query|integer|false|from time in micro-seconds in epoc|
 |end_time|query|integer|false|from time in micro-seconds in epoc|
@@ -2071,13 +2328,6 @@ p JSON.parse(result)
 
 |Parameter|Value|
 |---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-|contract_types|interest_rate_swaps|
-|contract_types|move_options|
-|contract_types|spreads|
 |order_types|market|
 |order_types|limit|
 |order_types|stop_market|
@@ -2094,7 +2344,9 @@ p JSON.parse(result)
   "result": [
     {
       "id": "ashb1212",
+      "client_order_id": "asbasa",
       "product_id": 27,
+      "product_symbol": "BTCUSD",
       "limit_price": "9200",
       "side": "buy",
       "size": 100,
@@ -2189,24 +2441,13 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_ids|query|string|false|none|
-|contract_types|query|string|false|none|
-|start_time|query|integer|false|Start time for the fills query|
-|end_time|query|integer|false|End time for the fills query|
-|before|query|string|false|from time in micro-seconds in epoc|
+|product_ids|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated list of desired contract types|
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
+|after|query|string|false|after cursor for pagination|
+|before|query|string|false|before cursor for pagination|
 |page_size|query|integer|false|number of records per page|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-|contract_types|interest_rate_swaps|
-|contract_types|move_options|
-|contract_types|spreads|
 
 > Example responses
 
@@ -2224,7 +2465,8 @@ p JSON.parse(result)
       "role": "taker",
       "commission": "string",
       "created_at": "string",
-      "product_id": 0
+      "product_id": 0,
+      "product_symbol": "string"
     }
   ],
   "meta": {
@@ -2270,7 +2512,7 @@ headers = {
 }
 
 r = requests.get('https://api.delta.exchange/v2/fills/history/download/csv', params={
-  'start_time': '0',  'end_time': '0'
+
 }, headers = headers)
 
 print r.json()
@@ -2279,7 +2521,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/v2/fills/history/download/csv?start_time=0&end_time=0 \
+curl -X GET https://api.delta.exchange/v2/fills/history/download/csv \
   -H 'api-key: ****' \
   -H 'signature: ****' \
   -H 'timestamp: ****'
@@ -2298,9 +2540,7 @@ headers = {
 
 result = RestClient.get 'https://api.delta.exchange/v2/fills/history/download/csv',
   params: {
-  'start_time' => 'integer',
-'end_time' => 'integer'
-}, headers: headers
+  }, headers: headers
 
 p JSON.parse(result)
 
@@ -2312,22 +2552,10 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_ids|query|string|false|none|
-|contract_types|query|string|false|none|
-|start_time|query|integer|true|Start time for the fills query|
-|end_time|query|integer|true|End time for the fills query|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-|contract_types|interest_rate_swaps|
-|contract_types|move_options|
-|contract_types|spreads|
+|product_ids|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated list of desired contract types|
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
 
 <h3 id="download-wallet-transactions-responses">Responses</h3>
 
@@ -2597,11 +2825,9 @@ p JSON.parse(result)
       "position_margin": "string",
       "commission": "string",
       "available_balance": "string",
-      "asset": {
-        "id": 0,
-        "symbol": "string",
-        "precision": 0
-      }
+      "interest_credit": "string",
+      "asset_id": 0,
+      "asset_symbol": "string"
     }
   ]
 }
@@ -2677,8 +2903,9 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|asset_id|query|integer|false|asset_id for which to get txns logs|
-|end_time|query|integer|false|end time in micro-seconds in epoc|
+|asset_ids|query|integer|false|comma separated list of asset_ids for which to get txns logs|
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
 |after|query|string|false|after cursor for pagination|
 |before|query|string|false|before cursor for pagination|
 |page_size|query|integer|false|number of records per page|
@@ -2699,6 +2926,7 @@ p JSON.parse(result)
       "meta_data": {},
       "product_id": 0,
       "asset_id": 0,
+      "asset_symbol": 0,
       "created_at": "string"
     }
   ],
@@ -2726,11 +2954,16 @@ p JSON.parse(result)
 |transaction_type|withdrawal|
 |transaction_type|commission|
 |transaction_type|conversion|
-|transaction_type|perpetual_futures_funding|
+|transaction_type|funding|
 |transaction_type|withdrawal_cancellation|
 |transaction_type|referral_bonus|
 |transaction_type|commission_rebate|
 |transaction_type|promo_credit|
+|transaction_type|trading_credits|
+|transaction_type|trading_credits_forfeited|
+|transaction_type|trading_credits_paid|
+|transaction_type|liquidation_fee|
+|transaction_type|interest_credit|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -2791,9 +3024,12 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|asset_id|query|integer|false|asset_id for which to get txns logs|
-|start_time|query|integer|false|Start time for the transaction query|
-|end_time|query|integer|false|End time for the transaction query|
+|asset_ids|query|integer|false|comma separated list of asset_ids|
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
+|after|query|string|false|after cursor for pagination|
+|before|query|string|false|before cursor for pagination|
+|page_size|query|integer|false|number of records per page|
 
 <h3 id="download-wallet-transactions-responses">Responses</h3>
 
@@ -3058,7 +3294,10 @@ This operation does not require authentication.
   "symbol": "string",
   "constituent_exchanges": [
     {}
-  ]
+  ],
+  "underlying_asset_id": 0,
+  "quoting_asset_id": 0,
+  "index_type": "spot_pair"
 }
 
 ```
@@ -3070,6 +3309,17 @@ This operation does not require authentication.
 |id|integer(int64)|false|none|none|
 |symbol|string|false|none|none|
 |constituent_exchanges|[object]|false|none|none|
+|underlying_asset_id|integer|false|none|Asset ID for base symbol|
+|quoting_asset_id|integer|false|none|Asset ID for quoting symbol|
+|index_type|string|false|none|Type of index|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|index_type|spot_pair|
+|index_type|fixed_interest_rate|
+|index_type|floating_interest_rate|
 
 <h2 id="tocSarrayofindices">ArrayOfIndices</h2>
 
@@ -3082,7 +3332,10 @@ This operation does not require authentication.
     "symbol": "string",
     "constituent_exchanges": [
       {}
-    ]
+    ],
+    "underlying_asset_id": 0,
+    "quoting_asset_id": 0,
+    "index_type": "spot_pair"
   }
 ]
 
@@ -3102,7 +3355,11 @@ This operation does not require authentication.
 {
   "id": 0,
   "symbol": "string",
-  "precision": 0
+  "precision": 0,
+  "deposit_status": "enabled",
+  "withdrawal_status": "enabled",
+  "base_withdrawal_fee": "string",
+  "min_withdrawal_amount": "string"
 }
 
 ```
@@ -3114,6 +3371,19 @@ This operation does not require authentication.
 |id|integer(int64)|false|none|none|
 |symbol|string|false|none|none|
 |precision|integer|false|none|none|
+|deposit_status|string|false|none|none|
+|withdrawal_status|string|false|none|none|
+|base_withdrawal_fee|string|false|none|none|
+|min_withdrawal_amount|string|false|none|Minimum value of allowed withdrawal|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|deposit_status|enabled|
+|deposit_status|disabled|
+|withdrawal_status|enabled|
+|withdrawal_status|disabled|
 
 <h2 id="tocSarrayofassets">ArrayOfAssets</h2>
 
@@ -3124,7 +3394,11 @@ This operation does not require authentication.
   {
     "id": 0,
     "symbol": "string",
-    "precision": 0
+    "precision": 0,
+    "deposit_status": "enabled",
+    "withdrawal_status": "enabled",
+    "base_withdrawal_fee": "string",
+    "min_withdrawal_amount": "string"
   }
 ]
 
@@ -3155,6 +3429,7 @@ This operation does not require authentication.
   "contract_value": "string",
   "contract_unit_currency": "string",
   "tick_size": "string",
+  "product_specs": {},
   "state": "live",
   "trading_status": "operational",
   "max_leverage_notional": "string",
@@ -3174,24 +3449,39 @@ This operation does not require authentication.
   "underlying_asset": {
     "id": 0,
     "symbol": "string",
-    "precision": 0
+    "precision": 0,
+    "deposit_status": "enabled",
+    "withdrawal_status": "enabled",
+    "base_withdrawal_fee": "string",
+    "min_withdrawal_amount": "string"
   },
   "quoting_asset": {
     "id": 0,
     "symbol": "string",
-    "precision": 0
+    "precision": 0,
+    "deposit_status": "enabled",
+    "withdrawal_status": "enabled",
+    "base_withdrawal_fee": "string",
+    "min_withdrawal_amount": "string"
   },
   "settling_asset": {
     "id": 0,
     "symbol": "string",
-    "precision": 0
+    "precision": 0,
+    "deposit_status": "enabled",
+    "withdrawal_status": "enabled",
+    "base_withdrawal_fee": "string",
+    "min_withdrawal_amount": "string"
   },
   "spot_index": {
     "id": 0,
     "symbol": "string",
     "constituent_exchanges": [
       {}
-    ]
+    ],
+    "underlying_asset_id": 0,
+    "quoting_asset_id": 0,
+    "index_type": "spot_pair"
   }
 }
 
@@ -3214,6 +3504,7 @@ This operation does not require authentication.
 |contract_value|string|false|none|The notional value of a futures contract is simply the spot price of the asset multiplied by the amount of the asset specified in the contract|
 |contract_unit_currency|string|false|none|This is the unit of  1 contract, for vanilla futures, its underlying asset. for inverse, it is settling asset. for quanto, its settling asset / quoting asset|
 |tick_size|string|false|none|The minimum gap between 2 consecutive prices.|
+|product_specs|object|false|none|Specs related to specific contract types (IRS indices, options volatility limits)|
 |state|string|false|none|current state of the product|
 |trading_status|string|false|none|trading status of the contract e.g. 'operational','disrupted_cancel_only' or 'disrupted_post_only'|
 |max_leverage_notional|string|false|none|maximum notional position size (in settling asset terms) that can be acquired at highest allowed leverage for a given contract.|
@@ -3229,7 +3520,7 @@ This operation does not require authentication.
 |is_quanto|boolean|false|none|Flag which denotes whether future contract is quanto or not|
 |funding_method|string|false|none|Method used to calculate funding for given contract. e.g. Fixed or mark price|
 |annualized_funding|string|false|none|Maximum allowed value of funding, expressed as annual rate.|
-|price_band|string|false|none|he range around mark price in which trading is allowed. This number is in percentage.|
+|price_band|string|false|none|the range around mark price in which trading is allowed. This number is in percentage.|
 |underlying_asset|[Asset](#schemaasset)|false|none|none|
 |quoting_asset|[Asset](#schemaasset)|false|none|none|
 |settling_asset|[Asset](#schemaasset)|false|none|none|
@@ -3268,6 +3559,7 @@ This operation does not require authentication.
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
+    "product_specs": {},
     "state": "live",
     "trading_status": "operational",
     "max_leverage_notional": "string",
@@ -3287,24 +3579,39 @@ This operation does not require authentication.
     "underlying_asset": {
       "id": 0,
       "symbol": "string",
-      "precision": 0
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
     },
     "quoting_asset": {
       "id": 0,
       "symbol": "string",
-      "precision": 0
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
     },
     "settling_asset": {
       "id": 0,
       "symbol": "string",
-      "precision": 0
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
     },
     "spot_index": {
       "id": 0,
       "symbol": "string",
       "constituent_exchanges": [
         {}
-      ]
+      ],
+      "underlying_asset_id": 0,
+      "quoting_asset_id": 0,
+      "index_type": "spot_pair"
     }
   }
 ]
@@ -3324,7 +3631,9 @@ This operation does not require authentication.
 ```json
 {
   "id": "ashb1212",
+  "client_order_id": "asbasa",
   "product_id": 27,
+  "product_symbol": "BTCUSD",
   "limit_price": "9200",
   "side": "buy",
   "size": 100,
@@ -3352,10 +3661,13 @@ This operation does not require authentication.
 |limit_price|string|false|none|none|
 |stop_order_type|string|false|none|none|
 |stop_price|string|false|none|none|
+|paid_commission|string|false|none|net commission paid for the order|
 |close_on_trigger|string|false|none|none|
+|client_order_id|string|false|none|client order id provided by the user while creating order|
 |state|string|false|none|Order Status|
 |created_at|string|false|none|none|
 |product_id|integer|false|none|none|
+|product_symbol|string|false|none|none|
 
 #### Enumerated Values
 
@@ -3381,7 +3693,9 @@ This operation does not require authentication.
 [
   {
     "id": "ashb1212",
+    "client_order_id": "asbasa",
     "product_id": 27,
+    "product_symbol": "BTCUSD",
     "limit_price": "9200",
     "side": "buy",
     "size": 100,
@@ -3412,9 +3726,13 @@ This operation does not require authentication.
   "size": 0,
   "side": "buy",
   "order_type": "limit_order",
+  "stop_order_type": "stop_loss_order",
+  "stop_price": "string",
+  "stop_trigger_method": "mark_price",
   "time_in_force": "gtc",
   "post_only": "true",
-  "reduce_only": "true"
+  "reduce_only": "true",
+  "client_order_id": "string"
 }
 
 ```
@@ -3430,9 +3748,13 @@ This operation does not require authentication.
 |size|integer|false|none|none|
 |side|string|false|none|side for which to place order|
 |order_type|string|false|none|none|
+|stop_order_type|string|false|none|none|
+|stop_price|string|false|none|none|
+|stop_trigger_method|string|false|none|none|
 |time_in_force|string|false|none|none|
 |post_only|string|false|none|none|
 |reduce_only|string|false|none|none|
+|client_order_id|string|false|none|none|
 
 #### Enumerated Values
 
@@ -3442,6 +3764,11 @@ This operation does not require authentication.
 |side|sell|
 |order_type|limit_order|
 |order_type|market_order|
+|stop_order_type|stop_loss_order|
+|stop_order_type|take_profit_order|
+|stop_trigger_method|mark_price|
+|stop_trigger_method|last_traded_price|
+|stop_trigger_method|spot_price|
 |time_in_force|gtc|
 |time_in_force|ioc|
 |time_in_force|fok|
@@ -3462,9 +3789,13 @@ This operation does not require authentication.
     "size": 0,
     "side": "buy",
     "order_type": "limit_order",
+    "stop_order_type": "stop_loss_order",
+    "stop_price": "string",
+    "stop_trigger_method": "mark_price",
     "time_in_force": "gtc",
     "post_only": "true",
-    "reduce_only": "true"
+    "reduce_only": "true",
+    "client_order_id": "string"
   }
 ]
 
@@ -3551,6 +3882,7 @@ This operation does not require authentication.
 ```json
 {
   "product_id": 0,
+  "contract_types": "string",
   "cancel_limit_orders": "true",
   "cancel_stop_orders": "true"
 }
@@ -3564,6 +3896,7 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |product_id|integer|false|none|cancel all orders for particular product, cancels orders for all products if not provided|
+|contract_types|string|false|none|comma separated list of desired contract types|
 |cancel_limit_orders|string|false|none|set as true to cancel open limit orders|
 |cancel_stop_orders|string|false|none|set as true to cancel stop orders|
 
@@ -3609,7 +3942,11 @@ This operation does not require authentication.
   "liquidation_price": "string",
   "bankruptcy_price": "string",
   "adl_level": 0,
-  "product_id": 0
+  "product_id": 0,
+  "product_symbol": "string",
+  "commission": "string",
+  "realized_pnl": "string",
+  "realized_funding": "string"
 }
 
 ```
@@ -3628,6 +3965,10 @@ This operation does not require authentication.
 |bankruptcy_price|string|false|none|none|
 |adl_level|integer|false|none|none|
 |product_id|integer|false|none|none|
+|product_symbol|string|false|none|none|
+|commission|string|false|none|commissions blocked in the position|
+|realized_pnl|string|false|none|Net realized pnl since the position was opened|
+|realized_funding|string|false|none|Net realized funding since the position was opened|
 
 <h2 id="tocSarrayofpositions">ArrayOfPositions</h2>
 
@@ -3643,7 +3984,11 @@ This operation does not require authentication.
     "liquidation_price": "string",
     "bankruptcy_price": "string",
     "adl_level": 0,
-    "product_id": 0
+    "product_id": 0,
+    "product_symbol": "string",
+    "commission": "string",
+    "realized_pnl": "string",
+    "realized_funding": "string"
   }
 ]
 
@@ -3668,7 +4013,8 @@ This operation does not require authentication.
   "role": "taker",
   "commission": "string",
   "created_at": "string",
-  "product_id": 0
+  "product_id": 0,
+  "product_symbol": "string"
 }
 
 ```
@@ -3687,6 +4033,7 @@ This operation does not require authentication.
 |commission|string|false|none|Commission paid on this fill, negative value means commission was earned because of maker role|
 |created_at|string|false|none|none|
 |product_id|integer|false|none|none|
+|product_symbol|string|false|none|none|
 
 #### Enumerated Values
 
@@ -3711,7 +4058,8 @@ This operation does not require authentication.
     "role": "taker",
     "commission": "string",
     "created_at": "string",
-    "product_id": 0
+    "product_id": 0,
+    "product_symbol": "string"
   }
 ]
 
@@ -3829,11 +4177,9 @@ This operation does not require authentication.
   "position_margin": "string",
   "commission": "string",
   "available_balance": "string",
-  "asset": {
-    "id": 0,
-    "symbol": "string",
-    "precision": 0
-  }
+  "interest_credit": "string",
+  "asset_id": 0,
+  "asset_symbol": "string"
 }
 
 ```
@@ -3847,7 +4193,9 @@ This operation does not require authentication.
 |position_margin|string|false|none|Margin blocked in open positions|
 |commission|string|false|none|Commissions blocked in open orders and open positions|
 |available_balance|string|false|none|Amount available for withdrawals|
-|asset|[Asset](#schemaasset)|false|none|none|
+|interest_credit|string|false|none|Interest credit earned till now|
+|asset_id|integer|false|none|none|
+|asset_symbol|string|false|none|none|
 
 <h2 id="tocSarrayofwallets">ArrayOfWallets</h2>
 
@@ -3861,11 +4209,9 @@ This operation does not require authentication.
     "position_margin": "string",
     "commission": "string",
     "available_balance": "string",
-    "asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
+    "interest_credit": "string",
+    "asset_id": 0,
+    "asset_symbol": "string"
   }
 ]
 
@@ -3890,6 +4236,7 @@ This operation does not require authentication.
   "meta_data": {},
   "product_id": 0,
   "asset_id": 0,
+  "asset_symbol": 0,
   "created_at": "string"
 }
 
@@ -3906,6 +4253,7 @@ This operation does not require authentication.
 |meta_data|object|false|none|none|
 |product_id|integer|false|none|none|
 |asset_id|integer|false|none|none|
+|asset_symbol|integer|false|none|none|
 |created_at|string|false|none|none|
 
 #### Enumerated Values
@@ -3917,11 +4265,16 @@ This operation does not require authentication.
 |transaction_type|withdrawal|
 |transaction_type|commission|
 |transaction_type|conversion|
-|transaction_type|perpetual_futures_funding|
+|transaction_type|funding|
 |transaction_type|withdrawal_cancellation|
 |transaction_type|referral_bonus|
 |transaction_type|commission_rebate|
 |transaction_type|promo_credit|
+|transaction_type|trading_credits|
+|transaction_type|trading_credits_forfeited|
+|transaction_type|trading_credits_paid|
+|transaction_type|liquidation_fee|
+|transaction_type|interest_credit|
 
 <h2 id="tocSarrayoftransactions">ArrayOfTransactions</h2>
 
@@ -3937,6 +4290,7 @@ This operation does not require authentication.
     "meta_data": {},
     "product_id": 0,
     "asset_id": 0,
+    "asset_symbol": 0,
     "created_at": "string"
   }
 ]
@@ -3955,6 +4309,7 @@ This operation does not require authentication.
 
 ```json
 {
+  "product_id": 0,
   "symbol": "string",
   "timestamp": 0,
   "open": 0,
@@ -3966,7 +4321,8 @@ This operation does not require authentication.
   "spot_price": "string",
   "turnover": 0,
   "turnover_symbol": "string",
-  "turnover_usd": 0
+  "turnover_usd": 0,
+  "contract_type": "string"
 }
 
 ```
@@ -3975,6 +4331,7 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|product_id|integer|false|none|none|
 |symbol|string|false|none|none|
 |timestamp|integer|false|none|none|
 |open|number|false|none|none|
@@ -3987,6 +4344,7 @@ This operation does not require authentication.
 |turnover|number|false|none|none|
 |turnover_symbol|string|false|none|none|
 |turnover_usd|number|false|none|none|
+|contract_type|string|false|none|none|
 
 <h2 id="tocSarrayoftickers">ArrayOfTickers</h2>
 
@@ -3995,6 +4353,7 @@ This operation does not require authentication.
 ```json
 [
   {
+    "product_id": 0,
     "symbol": "string",
     "timestamp": 0,
     "open": 0,
@@ -4006,7 +4365,8 @@ This operation does not require authentication.
     "spot_price": "string",
     "turnover": 0,
     "turnover_symbol": "string",
-    "turnover_usd": 0
+    "turnover_usd": 0,
+    "contract_type": "string"
   }
 ]
 

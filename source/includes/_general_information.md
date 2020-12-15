@@ -37,11 +37,13 @@ It is important to note that the BTCUSD Index price doesn't follow this conventi
 
   
 ## Pagination
-Pagination allows to fetch data page-wise.
+Pagination allows to fetch data page-wise. We use cursor based pagination where each response metadata contains a before and after cursor. The cursor needs to passed on with the next request to paginate over the result. Please note that the cursors are updated with each new page.
+
 Pagination can be called in following APIs
 
 API|End point|
 --|--
+Products|/products
 Orders|/orders
 Orders History|/orders/history
 Fills|/fills
@@ -49,22 +51,31 @@ Wallet transactions|/wallet/transactions
 
 **Pagination parameters**
 
-  - page_num 
-    - page number for pagination
-    - Default value: 1
+  - after 
+    - after cursor to fetch the next page
+  - before 
+    - before cursor to fetch the previous page
   - page_size
     - page size for pagination
-    - Default value: 25
 
-In API response following headers will be received
+In API response, meta data will contain the cursors as show below
 
-  - x-pagination-page-size : page size specified in API request
-  - x-pagination-page-num: page number specified in API request
-  - x-pagination-total : total number of records 
-
+```
+{
+  success: true,
+  result: [ {}, {}, .....],
+  meta: {
+    after: "an_arbitary_string",
+    before: "another_arbitary_string"
+  }
+}
+```
+  
 **Example**
 
-https://api.delta.exchange/orders?state=open&page_num=1&page_size=30
+https://api.delta.exchange/v2/products?page_size=30
+
+https://api.delta.exchange/v2/products?page_size=30&after=after_cursor_from_last_request
 
 ## Data Centers 
 Delta Exchange data centers are in **AWS Ireland**

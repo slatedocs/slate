@@ -150,6 +150,24 @@
             "name": "states",
             "description": "Comma separated list of states",
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "description": "after cursor for paginated request",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "description": "before cursor for paginated request",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "size of a single page for paginated request, default: 100",
+            "type": "string"
           }
         ],
         "responses": {
@@ -165,6 +183,46 @@
                   "properties": {
                     "result": {
                       "$ref": "#/definitions/ArrayOfProducts"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/products/{symbol}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get product by symbol",
+        "operationId": "getProduct",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "description": "symbol of the desired product",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Product"
                     }
                   }
                 }
@@ -445,18 +503,15 @@
           },
           {
             "in": "query",
+            "name": "states",
+            "description": "comma separated list of states - open,pending",
+            "type": "string"
+          },
+          {
+            "in": "query",
             "name": "contract_types",
-            "description": "comma separated product ids",
-            "type": "string",
-            "enum": [
-              "futures",
-              "perpetual_futures",
-              "call_options",
-              "put_options",
-              "interest_rate_swaps",
-              "move_options",
-              "spreads"
-            ]
+            "description": "comma separated list of desired contract types",
+            "type": "string"
           },
           {
             "in": "query",
@@ -905,17 +960,8 @@
           {
             "in": "query",
             "name": "contract_types",
-            "description": "comma separated product ids",
-            "type": "string",
-            "enum": [
-              "futures",
-              "perpetual_futures",
-              "call_options",
-              "put_options",
-              "interest_rate_swaps",
-              "move_options",
-              "spreads"
-            ]
+            "description": "comma separated list of desired contract types",
+            "type": "string"
           },
           {
             "in": "query",
@@ -1000,42 +1046,39 @@
         ],
         "parameters": [
           {
-            "name": "product_ids",
             "in": "query",
-            "type": "string",
-            "description": ""
+            "name": "product_ids",
+            "description": "comma separated product ids",
+            "type": "string"
           },
           {
-            "name": "contract_types",
             "in": "query",
-            "type": "string",
-            "description": "",
-            "enum": [
-              "futures",
-              "perpetual_futures",
-              "call_options",
-              "put_options",
-              "interest_rate_swaps",
-              "move_options",
-              "spreads"
-            ]
+            "name": "contract_types",
+            "description": "comma separated list of desired contract types",
+            "type": "string"
           },
           {
             "in": "query",
             "name": "start_time",
-            "description": "Start time for the fills query",
+            "description": "from time in micro-seconds in epoc",
             "type": "integer"
           },
           {
             "in": "query",
             "name": "end_time",
-            "description": "End time for the fills query",
+            "description": "from time in micro-seconds in epoc",
             "type": "integer"
           },
           {
             "in": "query",
+            "name": "after",
+            "description": "after cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
             "name": "before",
-            "description": "from time in micro-seconds in epoc",
+            "description": "before cursor for pagination",
             "type": "string"
           },
           {
@@ -1093,39 +1136,28 @@
         ],
         "parameters": [
           {
-            "name": "product_ids",
             "in": "query",
-            "type": "string",
-            "description": ""
+            "name": "product_ids",
+            "description": "comma separated product ids",
+            "type": "string"
           },
           {
-            "name": "contract_types",
             "in": "query",
-            "type": "string",
-            "description": "",
-            "enum": [
-              "futures",
-              "perpetual_futures",
-              "call_options",
-              "put_options",
-              "interest_rate_swaps",
-              "move_options",
-              "spreads"
-            ]
+            "name": "contract_types",
+            "description": "comma separated list of desired contract types",
+            "type": "string"
           },
           {
             "in": "query",
             "name": "start_time",
-            "description": "Start time for the fills query",
-            "type": "integer",
-            "required": true
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
           },
           {
             "in": "query",
             "name": "end_time",
-            "description": "End time for the fills query",
-            "type": "integer",
-            "required": true
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
           }
         ],
         "responses": {
@@ -1207,6 +1239,20 @@
             "api-key": [],
             "signature": [],
             "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "product_ids",
+            "description": "comma separated product ids",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "contract_types",
+            "description": "comma separated list of desired contract types",
+            "type": "string"
           }
         ],
         "responses": {
@@ -1447,14 +1493,20 @@
         "parameters": [
           {
             "in": "query",
-            "name": "asset_id",
-            "description": "asset_id for which to get txns logs",
+            "name": "asset_ids",
+            "description": "comma separated list of asset_ids for which to get txns logs",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "description": "from time in micro-seconds in epoc",
             "type": "integer"
           },
           {
             "in": "query",
             "name": "end_time",
-            "description": "end time in micro-seconds in epoc",
+            "description": "from time in micro-seconds in epoc",
             "type": "integer"
           },
           {
@@ -1525,23 +1577,40 @@
         "parameters": [
           {
             "in": "query",
-            "name": "asset_id",
-            "description": "asset_id for which to get txns logs",
+            "name": "asset_ids",
+            "description": "comma separated list of asset_ids",
             "type": "integer"
           },
           {
             "in": "query",
             "name": "start_time",
-            "description": "Start time for the transaction query",
-            "type": "integer",
-            "required": false
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
           },
           {
             "in": "query",
             "name": "end_time",
-            "description": "End time for the transaction query",
+            "description": "from time in micro-seconds in epoc",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "description": "after cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "description": "before cursor for pagination",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "number of records per page",
             "type": "integer",
-            "required": false
+            "default": 10
           }
         ],
         "responses": {
@@ -1714,6 +1783,23 @@
           "items": {
             "type": "object"
           }
+        },
+        "underlying_asset_id": {
+          "type": "integer",
+          "description": "Asset ID for base symbol"
+        },
+        "quoting_asset_id": {
+          "type": "integer",
+          "description": "Asset ID for quoting symbol"
+        },
+        "index_type": {
+          "type": "string",
+          "description": "Type of index",
+          "enum": [
+            "spot_pair",
+            "fixed_interest_rate",
+            "floating_interest_rate"
+          ]
         }
       }
     },
@@ -1735,6 +1821,21 @@
         },
         "precision": {
           "type": "integer"
+        },
+        "deposit_status": {
+          "type": "string",
+          "enum": ["enabled", "disabled"]
+        },
+        "withdrawal_status": {
+          "type": "string",
+          "enum": ["enabled", "disabled"]
+        },
+        "base_withdrawal_fee": {
+          "type": "string"
+        },
+        "min_withdrawal_amount": {
+          "type": "string",
+          "description": "Minimum value of allowed withdrawal"
         }
       }
     },
@@ -1803,6 +1904,10 @@
         "tick_size": {
           "type": "string",
           "description": "The minimum gap between 2 consecutive prices."
+        },
+        "product_specs": {
+          "type": "object",
+          "description": "Specs related to specific contract types (IRS indices, options volatility limits)"
         },
         "state": {
           "type": "string",
@@ -1874,7 +1979,7 @@
         },
         "price_band": {
           "type": "string",
-          "description": "he range around mark price in which trading is allowed. This number is in percentage."
+          "description": "the range around mark price in which trading is allowed. This number is in percentage."
         },
         "underlying_asset": {
           "$ref": "#/definitions/Asset"
@@ -1939,12 +2044,20 @@
         "stop_price": {
           "type": "string"
         },
+        "paid_commission": {
+          "type": "string",
+          "description": "net commission paid for the order"
+        },
         "close_on_trigger": {
           "type": "string",
           "enum": [
             "false",
             "true"
           ]
+        },
+        "client_order_id": {
+          "type": "string",
+          "description": "client order id provided by the user while creating order"
         },
         "state": {
           "type": "string",
@@ -1961,9 +2074,12 @@
         },
         "product_id": {
           "type": "integer"
+        },
+        "product_symbol": {
+          "type": "string"
         }
       },
-      "example": { "id": "ashb1212", "product_id": 27, "limit_price": "9200", "side": "buy", "size": 100, "unfilled_size": 50, "user_id": 1, "order_type": "limit_order", "state": "open", "created_at": "..."}
+      "example": { "id": "ashb1212", "client_order_id": "asbasa", "product_id": 27, "product_symbol": "BTCUSD", "limit_price": "9200", "side": "buy", "size": 100, "unfilled_size": 50, "user_id": 1, "order_type": "limit_order", "state": "open", "created_at": "..."}
     },
     "ArrayOfOrders": {
       "type": "array",
@@ -2002,6 +2118,22 @@
             "market_order"
           ]
         },
+        "stop_order_type": {
+          "type": "string",
+          "enum": [
+            "stop_loss_order",
+            "take_profit_order"
+          ]
+        },
+        "stop_price": {
+          "type": "string"
+        },
+        "stop_trigger_method": {
+          "type": "string",
+          "enum": [
+            "mark_price", "last_traded_price", "spot_price"
+          ]
+        },
         "time_in_force": {
           "type": "string",
           "enum": [
@@ -2023,6 +2155,9 @@
             "true",
             "false"
           ]
+        },
+        "client_order_id": {
+          "type": "string"
         }
       }
     },
@@ -2077,6 +2212,10 @@
           "type": "integer",
           "description": "cancel all orders for particular product, cancels orders for all products if not provided"
         },
+        "contract_types": {
+          "type": "string",
+          "description": "comma separated list of desired contract types"
+        },
         "cancel_limit_orders": {
           "type": "string",
           "description": "set as true to cancel open limit orders",
@@ -2129,6 +2268,21 @@
         },
         "product_id": {
           "type": "integer"
+        },
+        "product_symbol": {
+          "type": "string"
+        },
+        "commission": {
+          "type": "string",
+          "description": "commissions blocked in the position"
+        },
+        "realized_pnl": {
+          "type": "string",
+          "description": "Net realized pnl since the position was opened"
+        },
+        "realized_funding": {
+          "type": "string",
+          "description": "Net realized funding since the position was opened"
         }
       }
     },
@@ -2175,6 +2329,9 @@
         },
         "product_id": {
           "type": "integer"
+        },
+        "product_symbol": {
+          "type": "string"
         }
       }
     },
@@ -2302,8 +2459,15 @@
           "type": "string",
           "description": "Amount available for withdrawals"
         },
-        "asset": {
-          "$ref": "#/definitions/Asset"
+        "interest_credit": {
+          "type": "string",
+          "description": "Interest credit earned till now"
+        },
+        "asset_id": {
+          "type": "integer"
+        },
+        "asset_symbol": {
+          "type": "string"
         }
       }
     },
@@ -2335,11 +2499,16 @@
             "withdrawal",
             "commission",
             "conversion",
-            "perpetual_futures_funding",
+            "funding",
             "withdrawal_cancellation",
             "referral_bonus",
             "commission_rebate",
-            "promo_credit"
+            "promo_credit",
+            "trading_credits",
+            "trading_credits_forfeited",
+            "trading_credits_paid",
+            "liquidation_fee",
+            "interest_credit"
           ]
         },
         "meta_data": {
@@ -2349,6 +2518,9 @@
           "type": "integer"
         },
         "asset_id": {
+          "type": "integer"
+        },
+        "asset_symbol": {
           "type": "integer"
         },
         "created_at": {
@@ -2365,6 +2537,9 @@
     "Ticker": {
       "type": "object",
       "properties": {
+        "product_id": {
+          "type": "integer"
+        },
         "symbol": {
           "type": "string"
         },
@@ -2400,6 +2575,9 @@
         },
         "turnover_usd": {
           "type": "number"
+        },
+        "contract_type": {
+          "type": "string"
         }
       }
     },
