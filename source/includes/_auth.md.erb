@@ -41,6 +41,18 @@ response = requests.post(url)
 print(response)
 ```
 
+```php
+<?php
+
+include('vendor/rmccue/requests/library/Requests.php');
+Requests::register_autoloader();
+
+$headers = array();
+$response = Requests::post('https://clientela.admetricks.com/o/token/?client_id=IW8M80h7qgCaSz4hPm3gr3wJP89NiJTPyhkwPurT&client_secret=KnBW84uyHlxwlNrKOXyym6Ro1IT6IlYdhScdop63hHddCzJIxUwDG7VItNgEONb1U2ebEH6fBmkYgX9LrZD4uqFJlYscHYn9MLxOm2qVccNE2WGEuePpKA7t3jQ2CvMu&grant_type=password&username=USERNAME&password=PASSWORD', $headers);
+
+?>
+```
+
 > Ejemplo de respuesta (200 OK)
 
 ```json
