@@ -289,6 +289,208 @@ ACCOUNT_ID | ID of the account being deleted
 
 204 No Content
 
+## Get Payment Terms<code class='get'>GET</code>
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": [
+        {
+            "id": 13,
+            "name": "New term",
+            "description": "",
+            "external_id": "haha",
+            "custom_fields": {}
+        },
+        {
+        "id": 14,
+        "name": "New term 2",
+        "description": "",
+        "external_id": "haha 2",
+        "custom_fields": {}
+    },
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
+    }
+}
+```
+
+This endpoint retrieves a list of payment-terms with specific status.
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/netsuite/payment-terms/`
+
+### URL Parameters
+
+Parameter | Description | Example
+--------- | ----------- | ---------
+STATUS | status can be `pending`, `synced`, or `error` | `?status=pending`
+
+### HTTP Response Status Code
+
+200 OK
+
+## Get Single Payment Term Details<code class='get'>GET</code>
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+        "id": 14,
+        "name": "New term 2",
+        "description": "",
+        "external_id": "haha 2",
+        "custom_fields": {}
+    },
+    "metadata": {}
+    }
+}
+```
+
+This endpoint retrieves a list of payment-terms with specific status.
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/netsuite/payment-terms/<PAYMENT_TERM_ID>/`
+
+### HTTP Response Status Code
+
+200 OK
+
+## Create Payment Term<code class='post'>POST</code>
+
+> The above command accepts a body:
+
+```json
+{
+    "name": "New term 2",
+    "description": "This describes me",
+    "external_id": "haha 2"
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+        "id": 14,
+        "name": "New term 2",
+        "description": "",
+        "external_id": "haha 2",
+        "custom_fields": {}
+    },
+    "metadata": {}
+    }
+}
+```
+
+This endpoint creates an account.
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/netsuite/payment-terms/`
+
+### HTTP Response Status Code
+
+201 Created
+
+### Arguments
+
+<code>name</code><span class="required-tag">required</span><br />
+Name of the payment term
+
+<code>description</code><br />
+Payment Term description.
+
+<code>external_id</code><span class="required-tag">required</span><br />
+ID of the integration object.
+
+## Update Payment Term<code class='put'>PUT</code>
+
+> The above command accepts a body:
+
+```json
+{
+    "name": "New term 2",
+    "description": "This describes me",
+    "external_id": "haha 2"
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": {
+        "id": 14,
+        "name": "New term 2",
+        "description": "",
+        "external_id": "haha 2",
+        "custom_fields": {}
+    },
+    "metadata": {}
+    }
+}
+```
+
+This endpoint updates a specific account.
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/netsuite/payment-terms/<PAYMENT_TERM_ID>/`
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PAYMENT_TERM_ID | ID of the account being updated
+
+### HTTP Response Status Code
+
+200 OK
+
+### Arguments
+
+<code>name</code><span class="required-tag">required</span><br />
+Name of the payment term
+
+<code>description</code><br />
+Payment Term description.
+
+<code>external_id</code><span class="required-tag">required</span><br />
+ID of the integration object.
+
+## Delete Payment Term<code class='delete'>DELETE</code>
+
+This endpoint deletes a specific account.
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/netsuite/payment-terms/<PAYMENT_TERM_ID>/`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+PAYMENT_TERM_ID | ID of the account being deleted
+
+### HTTP Response Status Code
+
+204 No Content
+
 ## Get Content Types<code class='get'>GET</code>
 
 > The above command returns a JSON structured like this:
