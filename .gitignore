@@ -25,3 +25,5 @@ doc/
 
 # Vagrant artifacts
 ubuntu-*-console.log
+node_modules
+.firebase

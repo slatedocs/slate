@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "firebase-tools": "^8.19.0"
+  },
+  "scripts": {
+    "dev": "bundle exec middleman server",
+    "deploy": "sh ./deploy.sh",
+    "deploy:stage": "npx firebase deploy"
+  }
+}
