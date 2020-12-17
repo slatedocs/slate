@@ -21,10 +21,11 @@ There are three available ways to run the site:
 You can also run Slay locally by executing
 
 ```
-sh ./run-dev.sh
+npm run dev
 ```
 
 
 ### Deploy
 
-Slay is automagically deployed via an [Action's workflow](https://github.com/admetricks/slay/actions). All you have to do is update the master branch.
+- Slay is automagically deployed via an [Action's workflow](https://github.com/admetricks/slay/actions). All you have to do is update the master branch.
+- You can also test a new branch by running `npm run deploy:stage`. It'll be available at https://admx-slay.web.app/

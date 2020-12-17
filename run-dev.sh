@@ -1,1 +1,0 @@
-bundle exec middleman server
