@@ -553,3 +553,48 @@ curl -X POST "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-9
 ```
 
 Mark the organization as a reseller. Returns an HTTP status code 200, with an empty response body.
+
+
+<!-------------------- GET IDENTITY PROVIDERS -------------------->
+### Get identity providers
+`GET /organizations/organization_id/identity_providers`
+
+Retrieve the identity providers for the organization.
+
+```shell
+# Retrieve the organization's identity providers
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/identity_providers" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": "32a5640c-b366-44b1-882a-ee2e1951c592",
+      "organization": {
+        "name": "my organization",
+        "id": "87895f43-51c1-43cc-b987-7e301bf5b86a",
+        "entryPoint": "myOrg"
+      },
+      "type": "OIDC",
+      "css": "",
+      "provider": "GOOGLE",
+      "displayName": "Google",
+      "logo": "/static/img/google_signin.svg",
+      "rank": 1
+    }
+  ]
+}
+```
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | The id of the identity provider.
+`organization`<br/>*[Organization](#administration-organizations)* | The organization to which the verified domain belongs. *includes*:`id`,`name`, `entryPoint`.
+`type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
+`css`<br/>*string* | Custom css for the login button of the identity provider.
+`provider`<br/>*string* | The name of the provider. Possible values include the default providers (e.g GOOGLE), or CUSTOM for a custom user-defined provider.
+`displayName`<br/>*string* | The display name of the identity provider that will appear on the login screen.
+`logo`<br/>*string* | A base64 encoded data URL or URL to an image for the logo to display on the login screen.
+`rank`<br/>*int* | If provided, this integer sorts identity providers on the Login page in ascending order.
