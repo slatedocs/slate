@@ -5539,6 +5539,7 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
+| color|blue|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -6041,6 +6042,7 @@ Returns the complete updated project record.
 | color|green|
 | color|yellow|
 | color|red|
+| color|blue|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -6835,6 +6837,7 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
+| color|blue|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -7250,6 +7253,7 @@ Returns the full record of the newly created project.
 | color|green|
 | color|yellow|
 | color|red|
+| color|blue|
 | default_view|list|
 | default_view|board|
 | default_view|calendar|
@@ -8442,7 +8446,7 @@ Returns the compact project membership records for the project.
 </pre>
 
 <span class="description">
-A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: “green” for projects that are on track, “yellow” for projects at risk, and “red” for projects that are behind.
+A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: “green” for projects that are on track, “yellow” for projects at risk, “red” for projects that are behind, and "blue" for projects on hold.
 
 Project statuses can be created and deleted, but not modified.
 </span>
@@ -8936,6 +8940,7 @@ Returns the full record of the newly created project status update.
 | color|green|
 | color|yellow|
 | color|red|
+| color|blue|
 
 <h3 id="create-a-project-status-responses">Responses</h3>
 
@@ -21559,6 +21564,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |color|green|
 |color|yellow|
 |color|red|
+|color|blue|
 |default_view|list|
 |default_view|board|
 |default_view|calendar|
@@ -21699,6 +21705,7 @@ A *project status* is an update on the progress of a particular project, and is 
 |color|green|
 |color|yellow|
 |color|red|
+|color|blue|
 
 </section><hr>
 <section>
