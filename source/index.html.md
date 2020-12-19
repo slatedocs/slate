@@ -63,6 +63,37 @@ Region | Host
 US     | https://api.kardia.com
 EU     | https://eu-api.kardia.com
 
+# Partners
+
+## Get associated teams
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/partner/v1/teams\
+ -u YOUR-API-KEY:
+```
+
+> Example Response
+
+```shell
+{
+	"teams": [{
+		"id": "abcdefg",
+		"name": "team name",
+		"avatarUrl": "https://s3.amazonaws.com/public/images/partner-logos/fpo_avatar.png",
+		"callbackUrl": "https://ptsv.com/t/qgies-callbackTest/post",
+		"logoUrl": "https://s3.amazonaws.com/fpo_logo.png",
+		"timezone": "America/Los_Angeles",
+		"secretKey": "secret-key",
+		"createdAt": "2016-06-02 19:41:59.01917 +0000 +0000",
+		"updatedAt": "2020-12-14 07:17:59.564112 +0000 +0000"
+	}]
+}
+```
+
+Responds to `GET` requests to `/partner/v1/teams` and returns a list of teams associated with the partner.
+
 
 # Patients
 
