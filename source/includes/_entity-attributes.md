@@ -56,16 +56,17 @@ For accessing person global fields, see the [Person Fields](#get-global-fields) 
 For accessing organization global fields, see the [Organization Fields](#get-global-fields33) endpoint.
 For accessing list specific fields on a list, see the [Specific List](#get-a-specific-list) endpoint.
 
-| Value | Type            | Description                                                                                                                                                                                   |
-| ----- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0     | Person          | This type enables you to add person objects as a value. Eg: External Source, Owner, Friends                                                                                                   |
-| 1     | Organization    | This type enables you to add organization objects as a value. Eg: Place of work, Co-Investors                                                                                                 |
-| 2     | Dropdown        | This type allows you to add a text option into a single cell. This is best used when you want to store information that is unique to a person or organization. Eg: Interests, Stage, Industry |
-| 3     | Number          | This type enables you to add number as a value. Eg: Deal Size, Check Size, Revenue                                                                                                            |
-| 4     | Date            | This type enables you to add date as a value. Eg: Date of Event, Birthday                                                                                                                     |
-| 5     | Location        | This type enables you to add a smart Google Maps location as a value. Eg: Address                                                                                                             |
-| 6     | Text            | This type enables you to add a long text block as a value. Eg: Summary                                                                                                                        |
-| 7     | Ranked Dropdown | This type allows you to add values in a particular order as well as assign colors to them. This is the equivalent of a pick list. Eg: Status, Priority, Ranking                               |
+| Value | Type                    | Description                                                                                                                                                                                 |
+| ----- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0     | Person                  | This type enables you to add person objects as a value. Eg: External Source, Owner, Friends                                                                                                 |
+| 1     | Organization            | This type enables you to add organization objects as a value. Eg: Place of work, Co-Investors                                                                                               |
+| 2     | Old Text _(deprecated)_ | This type allows you to add a text option into a single cell. This type is being deprecated in favor of the Text field type (6).                                                            |
+| 3     | Number                  | This type enables you to add number as a value. Eg: Deal Size, Check Size, Revenue                                                                                                          |
+| 4     | Date                    | This type enables you to add date as a value. Eg: Date of Event, Birthday                                                                                                                   |
+| 5     | Location                | This type enables you to add a smart Google Maps location as a value. Eg: Address                                                                                                           |
+| 6     | Text                    | This type enables you to add a long text block as a value. Eg: Summary                                                                                                                      |
+| 7     | Ranked Dropdown         | This type allows you to add values in a particular order as well as assign colors to them. This is the equivalent of a pick list. Eg: Status, Priority, Ranking                             |
+| 17    | Dropdown                | This type allows you to add text values into a single cell. This is best used when you want to store information that is unique to a person or organization. Eg: Interests, Stage, Industry |
 
 ## Get fields
 
@@ -147,9 +148,9 @@ Deletes an field with the specified `id`.
 
 ### Path Parameters
 
-| Parameter      | Type    | Required | Description                                                |
-| -------------- | ------- | -------- | ---------------------------------------------------------- |
-| id | integer | true     | The unique id of the field that needs to be deleted. |
+| Parameter | Type    | Required | Description                                          |
+| --------- | ------- | -------- | ---------------------------------------------------- |
+| id        | integer | true     | The unique id of the field that needs to be deleted. |
 
 ### Returns
 

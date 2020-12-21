@@ -3,10 +3,37 @@
 Field value changes allow you to see historical changes to the values of fields in Affinity.
 This is especially useful for tracking progress through statuses (e.g. Lead --> Closed Won).
 
+## Supported field types
+
+Not all fields can track historical changes. The following field types support tracking of
+historical changes.
+
 **Note:**
-Not all fields can track historical changes; you can see if a field does so by looking at the
+You can also see if a field does so by looking at the
 `track_changes` attribute in the [field resource](#get-fields). The API will return an
 appropriate error if the field doesn't support historical tracking.
+
+### Multi-valued Fields
+
+| Value | Type                    |
+| ----- | ----------------------- |
+| 0     | Person                  |
+| 1     | Organization            |
+| 2     | Old Text _(deprecated)_ |
+| 3     | Number                  |
+| 5     | Location                |
+
+### Single valued fields
+
+| Value | Type                    |
+| ----- | ----------------------- |
+| 0     | Person                  |
+| 1     | Organization            |
+| 2     | Old Text _(deprecated)_ |
+| 3     | Number                  |
+| 4     | Date                    |
+| 5     | Location                |
+| 7     | Ranked Dropdown         |
 
 ## The field value change resource
 
