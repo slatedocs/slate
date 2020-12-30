@@ -126,7 +126,7 @@ curl --request POST \
     "product_listings_attributes" : [
         {
             "asin" : "B07G22S48Q", "quantity" : "10", "item_condition" : "like_new", "upc" : "0123456789",
-            "sku" : "S123", "title" : "My product title", "retail_price" : "10.00",
+            "sku" : "S123", "title" : "My product title", "retail_price" : "10.00", "msrp_price": "20.00", "cost_price": "3.00",
             "item_location" : "SHELF A - BIN 1", "item_category" : "Clothing",
             "item_category_id" : "123", "item_remarks" : "Packaging is missing",
             "brand" : "Polo", "description" : "Green polo shirt", "features" : ['Green', 'Solid'],
