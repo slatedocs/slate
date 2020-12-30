@@ -181,6 +181,8 @@ upc | String(Optional) | Example: 883929635085
 sku | String(Optional) | SKU of the listing. Example: AB883929635085.
 title | String(Required) | Title of the listing. Example: DCU Justice League: Throne of Atlantis Commemorative Edition (BD) [Blu-ray].
 retail_price | Float(Optional) | Retail Price of the listing. Example: 9.99
+msrp_price | Float(Optional) | Manufactrer Suggested Retail Price of the listing. Example: 19.99
+cost_price | Float(Optional) | Csot Price of the listing. Example: 2.99
 color | String(Optional) | Example: Navy
 manufacturer | String(Optional) | Example: Charmed
 model | String(Optional) | Example: P3Q-00001
@@ -222,7 +224,6 @@ international_rate_table | Boolean(Optional) | Example: False
 return_in_days_value | String(Optional) | It is an enum consist of the following values: [ReturnsNotAccepted, Days_30, Days_60] anyone. Example: Days_30
 refund_policy_value | String(Optional) | It is an enum consist of the following values: [MoneyBack, MoneyBackOrReplacement, MoneyBackOrExchange] anyone. Example: MoneyBack
 return_shipping_paid_by_value | String(Optional) | Example: Seller
-cost_price | Float(Optional) | Example: 0.0
 expiration_date | Date(Optional) | Example: 2019-04-27
 fnsku | String(Optional) | Example: 0060011831
 image_urls | Array(Optional) | Array of image urls. Example [user.png, user1.png]
@@ -584,7 +585,7 @@ curl --request POST \
         {
             "asin" : "B07G22S48Q", "quantity" : "10", "item_condition" : "like_new",
             "upc" : "0123456789", "sku" : "S123", "title" : "My product title",
-            "retail_price" : "10.00", "item_location" : "SHELF A - BIN 1",
+            "retail_price" : "10.00", "msrp_price": 20.00, "cost_price": 2.00, "item_location" : "SHELF A - BIN 1",
             "item_category" : "Clothing", "item_category_id" : "123", "item_remarks" : "Packaging is missing",
             "brand" : "Polo", "description" : "Green polo shirt", "features" : ['Green', 'Solid'],
             "details_html" : "More details here",
@@ -599,7 +600,7 @@ curl --request POST \
             "international_shipping_service_code" : "", "international_shipping_service_cost" : "",
             "extra_international_shipping_service_cost" : "", "international_ship_to_locations" : "", "international_rate_table" : "false",
             "return_in_days_value" : "30", "refund_policy_value" : "", "return_shipping_paid_by_value" : "",
-            "quantity_in_case" : "", "cost_price" : "2.00", "expiration_date" : "2020-10-30", "fnsku" : "", "image_urls" : ['https://someurl.com'], "external_ids" : [],
+            "quantity_in_case" : "", "expiration_date" : "2020-10-30", "fnsku" : "", "image_urls" : ['https://someurl.com'], "external_ids" : [],
             variant_listings: [
                 {
                     variant_sku: 'V1', option1_name: 'Color', option1_value: 'Red', option2_name: 'Style', option2_value: 'Solid', asin: 'B00XX', upc: '12345', quantity: 10, retail_price: 10.00, item_location: 'A1'
@@ -624,6 +625,8 @@ upc | String(Optional) | Example: 883929635085
 sku | String(Optional) | SKU of the listing. Example: AB883929635085.
 title | String(Required) | Title of the listing. Example: DCU Justice League: Throne of Atlantis Commemorative Edition (BD) [Blu-ray].
 retail_price | Float(Optional) | Retail Price of the listing. Example: 9.99
+msrp_price | Float (optional) | Manufacturer Suggested Retail Price.  Example: 20.00
+cost_price | Float (optional) | Cost Price of the list.  Example: 3.00
 color | String(Optional) | Example: Navy
 manufacturer | String(Optional) | Example: Charmed
 model | String(Optional) | Example: P3Q-00001
@@ -665,7 +668,6 @@ international_rate_table | Boolean(Optional) | Example: False
 return_in_days_value | String(Optional) | It is an enum consist of the following values: [ReturnsNotAccepted, Days_30, Days_60] anyone. Example: Days_30
 refund_policy_value | String(Optional) | It is an enum consist of the following values: [MoneyBack, MoneyBackOrReplacement, MoneyBackOrExchange] anyone. Example: MoneyBack
 return_shipping_paid_by_value | String(Optional) | Example: Seller
-cost_price | Float(Optional) | Example: 0.0
 expiration_date | Date(Optional) | Example: 2019-04-27
 fnsku | String(Optional) | Example: 0060011831
 image_urls | Array(Optional) | Array of image urls. Example [user.png, user1.png]
@@ -1048,7 +1050,10 @@ curl -X PUT \
   -d '{
     "product": {
         "title": "New Title",
-        "quantity_available": 2
+        "quantity_available": 2,
+        "retail_price": 10.00,
+        "cost_price": 3.00,
+        "msrp_price": 15.00
     }
 }'
 
@@ -1062,6 +1067,8 @@ Name | Data Type | Description
 title | String | Product title
 description | String | Product description (can contain HTML)
 retail_price | Float | Product's selling price
+cost_price | Float | Product's cost price
+msrp_price | Float | Product's MSRP
 quantity_available | Integer | Product quantity available for purchase
 
 
