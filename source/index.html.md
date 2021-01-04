@@ -30,6 +30,7 @@ includes:
   - administration/trials
   - administration/email_settings
   - administration/feedback_settings
+  - administration/custom_fields
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
