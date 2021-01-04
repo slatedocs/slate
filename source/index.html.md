@@ -51,7 +51,7 @@ Ratelimit-Reset: 1597048500
 ## Get all actor profiles
 
 ```shell
-curl "https://www.castupload.com/api/v1/actor_profiles"
+curl "https://www.castupload.com/api/v1/actor_profiles" \
   -H "Authorization: Token token=API_KEY"
 ```
 
