@@ -8,7 +8,7 @@ Custom fields allow administrators to define new fields on the organization and 
 
 ```shell
 # Retrieve custom fields
-curl "https://cloudmc_endpoint/rest/customfields?organization_id=fb0eeef9-eddd-48bc-949c-871481777ff9" \
+curl "https://cloudmc_endpoint/rest/custom_fields?organization_id=fb0eeef9-eddd-48bc-949c-871481777ff9" \
   -h "Mc-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -56,7 +56,7 @@ Attributes | &nbsp;
 `GET /custom_fields/:id`
 
 ```shell
-curl "http://localhost:8080/rest/customfields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e" \
+curl "http://localhost:8080/rest/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e" \
   -h "Mc-Api-Key: your_api_key"
 ```
 
