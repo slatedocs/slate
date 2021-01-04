@@ -94,7 +94,7 @@ Field | Type | Description
 --------- | ------- | -----------
 id | number | Unique ID of the actor profile
 age | number |
-gender | string | `f` for female, `m` for male, `i` for intersex
+gender | string | `f` for female, `m` for male, `i` for diverse
 name | string | Full name (ie. first & last name) _name can be retrieved separately by using the fields parameter_
 first_name | string |
 last_name | string |
