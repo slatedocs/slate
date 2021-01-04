@@ -17,7 +17,7 @@ code_clipboard: true
 > To authorize, use this code:
 
 ```shell
-curl "api_endpoint_here"
+curl "api_endpoint_here" \
   -H "Authorization: Token token=API_KEY"
 ```
 
@@ -105,7 +105,7 @@ picture_url | string | profile picture url of specified version
 ## Get a specific actor profile
 
 ```shell
-curl "https://www.castupload.com/api/v1/actor_profiles/123"
+curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   -H "Authorization: Token token=API_KEY"
 ```
 
@@ -148,7 +148,7 @@ locale | en | Translates attributes with closed lists, free text fields are only
 ## Get talent agency data
 
 ```shell
-curl "https://www.castupload.com/api/v1/talent_agencies/123"
+curl "https://www.castupload.com/api/v1/talent_agencies/123" \
   -H "Authorization: Token token=API_KEY"
 ```
 

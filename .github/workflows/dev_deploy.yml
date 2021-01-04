@@ -1,8 +1,8 @@
-name: Deploy
+name: Dev Deploy
 
 on:
   push:
-    branches: [ 'master' ]
+    branches: [ 'dev' ]
 
 jobs:
   deploy:
@@ -33,9 +33,18 @@ jobs:
 
     - run: bundle exec middleman build
 
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_ACCESS_KEY }}
+        repository: slatedocs/slate
+        tag_with_ref: true
+
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v3.7.0-8
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_dir: dev
         publish_dir: ./build
         keep_files: true
