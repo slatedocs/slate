@@ -91,8 +91,11 @@ then it shows a widget. A GET request is sent to the App's `widget url`, includi
 URL parameters like `task`, `user`, and `workspace`. 
 
 Related References: 
+
 * [Get widget metadata](/docs/get-widget-metadata)
+
 * [Attach resource](/docs/attach-resource)
+
 * [Upload Attachment](/docs/upload-an-attachment) >> To create a url attachment via the 
 API (See sample on the right).
 
@@ -173,8 +176,11 @@ See the `on_change` field in the response to the
 endpoint is the [On change callback request](/docs/on-change-callback).
 
 Related References: 
+
 * [Get form metadata](/docs/get-form-metadata)
+
 * [On change callback](/docs/on-change-callback)
+
 * [On change callback](/docs/on-submit-callback)
 
 <hr>
@@ -215,6 +221,7 @@ form. When a user types in that field, a request will be sent to the `typeahead_
 the applicable objects for their query. The App Server entirely determines what queries mean and how to handle them. 
 
 Related References: 
+
 * [Typeahead](/docs/typeahead-workflow-apps)
 
 <hr>
@@ -266,8 +273,11 @@ the App Server with the user-specified inputs. When the rule is triggered, Asana
 App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
 
 Related References: 
+
 * [Get action metadata](/docs/get-action-metadata)
+
 * [On action change callback](/docs/on-action-change-callback)
+
 * [On action change callback](/docs/on-action-submit-callback)
 
 <hr class="full-line">
