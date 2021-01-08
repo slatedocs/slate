@@ -170,7 +170,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id</code>
 
-Delete an existing NIC. The NIC you're trying to delete must not be the default one and most not be associated to a load balancing rule and/or a port forwarding rule.
+Delete an existing NIC. The NIC you're trying to delete must not be the default one and must not be associated to a load balancing rule and/or a port forwarding rule.
 
 
 <!-------------------- SET A NIC AS DEFAULT -------------------->
