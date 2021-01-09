@@ -44,4 +44,4 @@ jobs:
           source_dir: "."
           destination_dir: "docs"
       - name: Success
-        run: echo "Deployed to web(dot)admetricks(dot)com/docs"
+        run: echo "Deployed to admetricks(dot)com/docs"
