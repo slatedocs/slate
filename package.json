@@ -4,7 +4,6 @@
   },
   "scripts": {
     "dev": "bundle exec middleman server",
-    "deploy": "sh ./deploy.sh",
-    "deploy:stage": "npx firebase deploy"
+    "deploy": "sh ./deploy.sh"
   }
 }

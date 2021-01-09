@@ -1,0 +1,47 @@
+name: Deploy to S3 (Production)
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['2.6']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Save gems to cache
+      uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Generate static site
+      run: bundle exec middleman build --clean
+    - name: Save artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: ./build/
+        if-no-files-found: error
+
+  upload:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve built project
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET_STAGE }}
+          source_dir: "."
+          destination_dir: "docs"
+      - name: Success
+        run: echo "Deployed to web(dot)admetricks(dot)com/docs"
