@@ -1,10 +1,10 @@
-*Yaaasss! Girl you slay.*
-
 # Slay
 
-Documentation site for Admetricks' Clientela and Brandy APIs.
+📖 Documentation site for Admetricks' Clientela, Brandy and Reach and Frequency APIs. 
 
-It's available at https://admetricks.github.io/slay/
+It's available at:
+- Production: https://admetricks.com/docs/
+- Stage: https://stage.admetricks.com/docs/
 
 Quickstart
 ------------------------------
@@ -27,5 +27,4 @@ npm run dev
 
 ### Deploy
 
-- Slay is automagically deployed via an [Action's workflow](https://github.com/admetricks/slay/actions). All you have to do is update the master branch.
-- You can also test a new branch by running `npm run deploy:stage`. It'll be available at https://admx-slay.web.app/
+Slay is automagically deployed via an [Action's workflow](https://github.com/admetricks/slay/actions). All you have to do is update the `main` branch or create a new PR.
